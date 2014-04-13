@@ -52,14 +52,14 @@ class Lumen<T> {
 
     } //init
 
-    function on_window_created() {
+    function on_window_created( _config:LumenConfig<T> ) {
         trace('/ lumen / done.');
+        trace(_config);
     }
 
     public function shutdown() {
 
         shutting_down = true;
-
 
         has_shutdown = true;
 

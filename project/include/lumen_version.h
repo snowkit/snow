@@ -1,3 +1,3 @@
-#ifndef NME_VERSION_NAME
-#define NME_VERSION_NAME "5.0.0"
+#ifndef LUMEN_VERSION
+#define LUMEN_VERSION "0.0.1"
 #endif
