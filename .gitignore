@@ -1,0 +1,10 @@
+*/.DS_Store
+.DS_Store
+.DS_Store?
+*/thumbs.db
+thumbs.db
+.thumbs.db?
+bin/
+obj/
+builds/
+users/

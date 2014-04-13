@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<extension>
+
+    <templatePath name="templates" />
+    <sample path="samples" />
+
+    <haxedef name="lumen_html5" if="html5" />
+    <haxedef name="lumen_native" if="native" />
+    <haxedef name="no-compilation" />
+
+    <section unless="display">
+
+        <!-- <haxelib name="hxlibc" if="cpp" /> -->
+            
+        <ndll name="lumen" />
+
+        <ndll name="openal" register="false" if="android" />
+        <architecture name="armv7" if="android" />
+        
+        <ndll name="curl_ssl" register="false" if="ios" />
+        <ndll name="png" register="false" if="ios" />
+        <ndll name="jpeg" register="false" if="ios" />
+        <ndll name="freetype" register="false" if="ios" />
+        <ndll name="ogg" register="false" if="ios" />
+        <ndll name="vorbis" register="false" if="ios" />
+
+        <!-- <dependency name="extension-api" path="dependencies/extension-api" if="android" /> -->
+
+        <include haxelib="lime-tools" />
+        
+    </section>
+    
+</extension>
