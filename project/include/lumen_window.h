@@ -109,15 +109,6 @@ namespace lumen {
         //that it can be wrapped in a haxe abstract and passed to hx.
         //Window managers inherit from this, like SDL2.
 
-    inline void print_config( const window_config &config ) {
-
-        printf("fs : %d, rs : %d, b : %d, aa : %d, s : %d, d : %d, v : %d, f : %d, w : %d, h : %d, t : %s  \n", 
-            config.fullscreen, config.resizable, config.borderless, config.antialiasing, 
-            config.stencil_buffer, config.depth_buffer, config.vsync, config.fps, 
-            config.width, config.height, config.title.c_str());
-
-    }
-
     class LumenWindow : public Object {
 
         public:
@@ -151,8 +142,6 @@ namespace lumen {
             void on_created() {
 
                 created = true;                
-
-                print_config(config);
 
                 if(created_handler != NULL) {
 
