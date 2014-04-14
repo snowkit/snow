@@ -6,7 +6,7 @@
 	<source path="src" />
 	
 	<meta title="lumen empty" package="com.lumenframework.samples" version="1.0.0" company="lumenframework" />
-	<window width="1280" height="720" orientation="landscape" fps="30" vsync="false" resizable="false" />
+	<window width="960" height="640" orientation="landscape" fps="30" vsync="false" resizable="false" />
 
 	<assets path="assets" rename="assets" exclude="*.svg" />
 	<!-- <icon path="Assets/lumen.svg" /> -->

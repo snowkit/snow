@@ -2,6 +2,7 @@
 #include "lumen_window.h"
 
 #include <SDL.h>
+#include <SDL_opengl.h>
 
 namespace lumen {
 
@@ -22,12 +23,23 @@ namespace lumen {
         public:
 
             SDL_Window* window;
-            SDL_Renderer* renderer;
+            SDL_GLContext gl_context;
             SDL_Event window_event;
 
             bool is_open;
 
-            ~LumenWindowSDL2() {}
+            ~LumenWindowSDL2() {
+
+                if(gl_context) {
+                    SDL_GL_DeleteContext(gl_context);
+                }
+                
+                if(window) {
+                    SDL_DestroyWindow(window);
+                }
+            
+            }
+
             LumenWindowSDL2() 
                 : LumenWindow(), window_event() 
                     { is_open = false; }
@@ -104,6 +116,12 @@ namespace lumen {
         }
       
         SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
+
+        if(_config.vsync) {
+            SDL_GL_SetSwapInterval(1);
+        } else {
+            SDL_GL_SetSwapInterval(0);
+        }
       
         if(_config.antialiasing != 0) {
             SDL_GL_SetAttribute(SDL_GL_MULTISAMPLEBUFFERS, true);
@@ -113,19 +131,18 @@ namespace lumen {
                 //now actually try and create a window
 
             window = NULL;
-            renderer = NULL;    
 
             int trycount = 0;
 
                 //keep trying to create a window
-            while (!window || !renderer) { 
+            // while (!window) { 
 
                     // if there's an old window around
                     // from a failed attempt, destroy it
-                if (window) {
-                    SDL_DestroyWindow(window);
-                    window = NULL;
-                } //window exists
+                // if (window) {
+                //     SDL_DestroyWindow(window);
+                //     window = NULL;
+                // } //window exists
 
                 ++trycount;
 
@@ -134,26 +151,7 @@ namespace lumen {
                     //fetch ones actually used by window
                 real_flags = SDL_GetWindowFlags( window );
 
-                int render_flags = SDL_RENDERER_ACCELERATED;
-
-                    if(_config.vsync) { render_flags |= SDL_RENDERER_PRESENTVSYNC; }
-
-                renderer = SDL_CreateRenderer( window, -1, render_flags );
-
-                if (!renderer && _config.antialiasing != 0) {
-
-                        // if no window was created and AA was enabled, disable AA and try again
-                    fprintf(stderr, "Multisampling is not available. Retrying without. (%s)\n", SDL_GetError());
-                    SDL_GL_SetAttribute(SDL_GL_MULTISAMPLEBUFFERS, false);
-                    SDL_GL_SetAttribute(SDL_GL_MULTISAMPLESAMPLES, 0);
-                        //update the config for return
-                    // _config.antialiasing = 0;
-
-                } else {
-                    break;
-                }
-
-            } //while !window && !renderer
+            // } //while !window 
 
         printf("/ lumen / tried %d times for a window\n", trycount);
 
@@ -162,16 +160,26 @@ namespace lumen {
             on_created();
             return;
         } //!window
-       
-        if( !renderer ) {
-            fprintf(stderr, "/ lumen / Failed to create SDL renderer: %s\n", SDL_GetError());
-            on_created();
-            return;
-        } //!renderer
 
         is_open = true;
         id = SDL_GetWindowID(window);
         config = _config;
+
+            //now try creating the GL context
+        gl_context = SDL_GL_CreateContext(window);
+
+        if( !gl_context ) {
+            fprintf(stderr, "/ lumen / Failed to create GL context for window %d : %s\n", id, SDL_GetError() );
+            on_created();
+            return;
+        } //!window
+
+        SDL_GL_MakeCurrent(window, gl_context);
+
+        glClearColor( 1.0f, 0.4f, 0.1f, 1.0f );
+        glClear( GL_COLOR_BUFFER_BIT );
+
+        SDL_GL_SwapWindow(window);
 
         on_created();
 

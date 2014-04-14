@@ -123,6 +123,7 @@
 
         <file name="${SRC_DIR}/window/lumen_window_sdl2.cpp"/>
         <file name="${SRC_DIR}/lumen/lumen_core_sdl2.cpp" />
+        <file name="${SRC_DIR}/opengl/lumen_opengl_sdl2.cpp" />
 
       </section>
 
