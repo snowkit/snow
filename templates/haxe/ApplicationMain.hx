@@ -1,22 +1,23 @@
 import ::APP_MAIN::;
 
 import lumen.Lumen;
+import lumen.LumenTypes;
 
 class ApplicationMain {
 
     public static var _host : ::APP_MAIN::;
-    public static var _lumen : Lumen<::APP_MAIN::>;
+    public static var _lumen : Lumen;
 
     public static function main () {
 
             //Create the runtime
-        _lumen = new Lumen<::APP_MAIN::>();
+        _lumen = new Lumen();
             //Create the app class, give it to the bootstrapper
         _host = new ::APP_MAIN::();
-            //Create the config
-        var _config : LumenConfig<::APP_MAIN::> = {
 
-            host            : _host,
+            //Create the window config 
+        var _window_config = {
+
             fullscreen      : ::WIN_FULLSCREEN::,
             resizable       : ::WIN_RESIZABLE::,
             borderless      : ::WIN_BORDERLESS::,
@@ -29,7 +30,15 @@ class ApplicationMain {
             height          : Std.int(::WIN_HEIGHT::), 
             title           : "::APP_TITLE::",
 
-            orientation     : "::WIN_ORIENTATION::",
+            orientation     : "::WIN_ORIENTATION::"
+
+        } //_window_config
+
+            //Create the main config
+        var _config : LumenConfig = {
+
+            host            : _host,
+            window_config   : _window_config
 
         };
 

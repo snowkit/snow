@@ -17,7 +17,7 @@
    <set name="PLATFORM" value="android-9" if="android" />
    <set name="PLATFORM" value="android-14" if="HXCPP_X86" />
    <set name="HXCPP_CPP11" value="1" />
-   <set name="debug" value="debug" if="lumen fulldebug" />
+   <set name="debug" value="debug"  />
 
 <!-- Build set up -->
 
@@ -116,10 +116,14 @@
    <!-- Library specifics -->
 
       <section if="LUMEN_SDL2">
+
         <compilerflag value="-I${NME_DEV}/include/SDL2" />
-        <file name="${SRC_DIR}/window/lumen_window_sdl2.cpp"/>
         <compilerflag value="-DSDL_OGL" />
         <compilerflag value="-DLUMEN_SDL2" />
+
+        <file name="${SRC_DIR}/window/lumen_window_sdl2.cpp"/>
+        <file name="${SRC_DIR}/lumen/lumen_core_sdl2.cpp" />
+
       </section>
 
       <section if="LUMEN_CURL">
