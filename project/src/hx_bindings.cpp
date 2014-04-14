@@ -84,8 +84,6 @@ namespace lumen {
             //create the actual window
         window_config config = window_config_from_hx(_in_config);
 
-        print_config(config);
-
         create_window( config, on_created, on_event );
 
         return alloc_null();
