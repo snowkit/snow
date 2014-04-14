@@ -5,217 +5,305 @@
 
 namespace lumen {
 
-    static bool sdl_inited = false;
-    static bool sdl_has_gamepads = false;
+        //forward
+    int init_window_sdl();    
+    class LumenWindowSDL2;
 
-    int init_sdl() {
-        
-        if(sdl_inited) {
-            return 0;
-        }
+        //local values
+    static int no_event = -1;
+    static bool window_sdl_inited = false;
 
-        sdl_inited = true;
 
-            //try and inititate SDL with video and timer
-        int err = SDL_Init(SDL_INIT_VIDEO | SDL_INIT_TIMER);
-            //check and init gamepad subsystem
-        if (err == 0 && SDL_InitSubSystem(SDL_INIT_JOYSTICK) == 0) {
-            sdl_has_gamepads = true;
-        }
-       
-        return err;
-
-    } //init_sdl
+//LumenWindow
+//LumenWindowSDL2 declaration
 
     class LumenWindowSDL2 : public LumenWindow {
+
         public:
+
             SDL_Window* window;
             SDL_Renderer* renderer;
-            window_config create( window_config config );
+            SDL_Event window_event;
+
+            bool is_open;
+
+            ~LumenWindowSDL2() {}
+            LumenWindowSDL2() 
+                : LumenWindow(), window_event() 
+                    { is_open = false; }
+ 
+            void update();
+            void create( const window_config &config, AutoGCRoot* _on_created, AutoGCRoot* _on_event );
+            void simple_message( const char* message, const char* title );
+
+            void handle_sdl_event(SDL_Event &event);
+
         private:
-    };
 
-    static LumenWindowSDL2* window_sdl2;
+    }; //LumenWindowSDL2
 
-    static bool is_running = true;
+//API implementations
 
-#ifndef SDL_NOEVENT
-#define SDL_NOEVENT -1;
-#endif
-
-    void start_loop() {
+    LumenWindow* create_window( const window_config &config, AutoGCRoot* on_created, AutoGCRoot* on_event ) {
         
-        SDL_Event event;
-        bool first = true;
+        printf("/ lumen / creating window : %s\n", config.title.c_str() );
 
-        while(is_running) {
-            
-            event.type = SDL_NOEVENT;
+        LumenWindowSDL2* new_window = new LumenWindowSDL2();
 
-            while (is_running && (first || SDL_WaitEvent(&event))) {
+            new_window->create( config, on_created, on_event );
 
-                first = false;
-
-                // if (sgTimerActive && sgTimerID) {
-                //     SDL_RemoveTimer(sgTimerID);
-                //     sgTimerActive = false;
-                //     sgTimerID = 0;
-                // }
-
-                if (event.type == SDL_QUIT || event.type == SDL_WINDOWEVENT_CLOSE) {
-                    is_running = false;
-                }
-
-                if(!is_running) {
-                    break;
-                }
-
-                event.type = SDL_NOEVENT;
-
-                while (SDL_PollEvent(&event)) {
-                    
-                    // ProcessEvent (event);
-                    if (event.type == SDL_QUIT || event.type == SDL_WINDOWEVENT_CLOSE) {
-                        is_running = false;
-                    }
-
-                    if(!is_running) {
-                        break;
-                    }
-
-                    event.type = -1;
-                }
-
-                // Event poll(etPoll);
-                // sgSDLFrame->ProcessEvent(poll);
-
-                if(!is_running) {
-                    break;
-                }
-
-                // double next = sgSDLFrame->GetStage()->GetNextWake() - GetTimeStamp();
-
-                // if (next > 0.001) {
-                //     int snooze = next*1000.0;
-                //     sgTimerActive = true;
-                //     sgTimerID = SDL_AddTimer(snooze, OnTimer, 0);
-                // } else { 
-                //     OnTimer(0, 0);
-                // }
-                SDL_RenderPresent(window_sdl2->renderer);
-            }
-        }
-
-        SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "DONE!?", "YES!", window_sdl2->window);
-
-        SDL_Quit();
-
-    } //start_loop
-
-    window_config create_window( create_window_callback _on_complete, window_config config ) {
-        
-        printf("/ lumen / creating window : %s\n", config.title );
-
-        window_sdl2 = new LumenWindowSDL2();
-        config = window_sdl2->create(config);
-
-        _on_complete( config );
-
-        start_loop();
-
-        return config;
+        return new_window;
 
     } //create_window
 
 
+    void LumenWindowSDL2::simple_message( const char* message, const char* title ) {
 
-    window_config LumenWindowSDL2::create(window_config config) {
+        SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, message, title, window );
 
-        int err = init_sdl();
+    } //LumenWindowSDL2::simple_message
+
+    void LumenWindowSDL2::create( const window_config &_config, AutoGCRoot* _on_created, AutoGCRoot* _on_event ) {
+
+            //store these first
+        created_handler = _on_created;
+        event_handler = _on_event;
+
+            //then try init sdl video system
+
+        int err = init_window_sdl();
         if (err == -1) {
-            fprintf(stderr,"Could not initialize SDL : %s\n", SDL_GetError());
-            return config;
+            fprintf(stderr,"/ lumen / Could not initialize Video for SDL : %s\n", SDL_GetError());
+            on_created();
+            return;
         }
+
+            //then create flags for the given config
 
         int request_flags = 0;
         int real_flags = 0;
 
             request_flags |= SDL_WINDOW_OPENGL;
                
-        if(config.resizable)    { request_flags |= SDL_WINDOW_RESIZABLE;  }
-        if(config.borderless)   { request_flags |= SDL_WINDOW_BORDERLESS; }
-        if(config.fullscreen)   { request_flags |= SDL_WINDOW_FULLSCREEN; } //SDL_WINDOW_FULLSCREEN_DESKTOP;
+        if(_config.resizable)    { request_flags |= SDL_WINDOW_RESIZABLE;  }
+        if(_config.borderless)   { request_flags |= SDL_WINDOW_BORDERLESS; }
+        if(_config.fullscreen)   { request_flags |= SDL_WINDOW_FULLSCREEN; } //SDL_WINDOW_FULLSCREEN_DESKTOP;
 
             //opengl specifics
+
         SDL_GL_SetAttribute(SDL_GL_RED_SIZE, 8);
         SDL_GL_SetAttribute(SDL_GL_GREEN_SIZE, 8);
         SDL_GL_SetAttribute(SDL_GL_BLUE_SIZE, 8);
         
-        if(config.depth_buffer) {
-            SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 32 - (config.stencil_buffer ? 8 : 0) );
+        if(_config.depth_buffer) {
+            SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 32 - (_config.stencil_buffer ? 8 : 0) );
         }
       
-        if(config.stencil_buffer) {
+        if(_config.stencil_buffer) {
             SDL_GL_SetAttribute(SDL_GL_STENCIL_SIZE, 8);
         }
       
         SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
       
-        if(config.antialiasing != 0) {
+        if(_config.antialiasing != 0) {
             SDL_GL_SetAttribute(SDL_GL_MULTISAMPLEBUFFERS, true);
-            SDL_GL_SetAttribute(SDL_GL_MULTISAMPLESAMPLES, config.antialiasing);
+            SDL_GL_SetAttribute(SDL_GL_MULTISAMPLESAMPLES, _config.antialiasing);
         }
 
-        window = NULL;
-        renderer = NULL;
+                //now actually try and create a window
 
-            //keep trying to create a window
-        while (!window || !renderer) {
+            window = NULL;
+            renderer = NULL;    
 
-                // if there's an old window around
-                // from a failed attempt, destroy it
-            if (window) {
-                SDL_DestroyWindow(window);
-                window = NULL;
-            } //window exists
+            int trycount = 0;
 
-            window = SDL_CreateWindow( config.title, SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, config.width, config.height, request_flags );
-                //fetch ones actually used by window
-            real_flags = SDL_GetWindowFlags( window );
+                //keep trying to create a window
+            while (!window || !renderer) { 
 
-            int render_flags = SDL_RENDERER_ACCELERATED;
+                    // if there's an old window around
+                    // from a failed attempt, destroy it
+                if (window) {
+                    SDL_DestroyWindow(window);
+                    window = NULL;
+                } //window exists
 
-                if(config.vsync) { render_flags |= SDL_RENDERER_PRESENTVSYNC; }
+                ++trycount;
 
-            renderer = SDL_CreateRenderer( window, -1, render_flags );
+                window = SDL_CreateWindow( _config.title.c_str(), SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, _config.width, _config.height, request_flags );
+                    
+                    //fetch ones actually used by window
+                real_flags = SDL_GetWindowFlags( window );
 
-            if (!renderer && config.antialiasing != 0) {
+                int render_flags = SDL_RENDERER_ACCELERATED;
 
-                    // if no window was created and AA was enabled, disable AA and try again
-                fprintf(stderr, "Multisampling is not available. Retrying without. (%s)\n", SDL_GetError());
-                SDL_GL_SetAttribute(SDL_GL_MULTISAMPLEBUFFERS, false);
-                SDL_GL_SetAttribute(SDL_GL_MULTISAMPLESAMPLES, 0);
-                    //update the config for sending back to them
-                config.antialiasing = 0;
-            
-            } else {
+                    if(_config.vsync) { render_flags |= SDL_RENDERER_PRESENTVSYNC; }
+
+                renderer = SDL_CreateRenderer( window, -1, render_flags );
+
+                if (!renderer && _config.antialiasing != 0) {
+
+                        // if no window was created and AA was enabled, disable AA and try again
+                    fprintf(stderr, "Multisampling is not available. Retrying without. (%s)\n", SDL_GetError());
+                    SDL_GL_SetAttribute(SDL_GL_MULTISAMPLEBUFFERS, false);
+                    SDL_GL_SetAttribute(SDL_GL_MULTISAMPLESAMPLES, 0);
+                        //update the config for return
+                    // _config.antialiasing = 0;
+
+                } else {
+                    break;
+                }
+
+            } //while !window && !renderer
+
+        printf("/ lumen / tried %d times for a window\n", trycount);
+
+        if( !window ) {
+            fprintf(stderr, "/ lumen / Failed to create SDL window: %s\n", SDL_GetError());
+            on_created();
+            return;
+        } //!window
+       
+        if( !renderer ) {
+            fprintf(stderr, "/ lumen / Failed to create SDL renderer: %s\n", SDL_GetError());
+            on_created();
+            return;
+        } //!renderer
+
+        is_open = true;
+        id = SDL_GetWindowID(window);
+        config = _config;
+
+        on_created();
+
+    } //LumenWindowSDL2::create
+
+    void LumenWindowSDL2::update() {    
+
+        window_event.type = we_unknown;
+
+        while( SDL_PollEvent( &window_event ) ) {
+                        
+            handle_sdl_event( window_event );
+
+                //if one of these was a close event
+                //we don't want to keep processing 
+                //against a closed window so break
+            if(!is_open) {
                 break;
             }
 
-        } //while !window && !renderer
+            window_event.type = we_unknown;
 
-        if( !window ) {
-            fprintf(stderr, "Failed to create SDL window: %s\n", SDL_GetError());
-            return config;
-        }  
-       
-        if( !renderer ) {
-            fprintf(stderr, "Failed to create SDL renderer: %s\n", SDL_GetError());
-            return config;
+        } //while events are in queue
+
+    } //update
+
+
+    void LumenWindowSDL2::handle_sdl_event( SDL_Event &event ) {
+
+            //the event to dispatch, if any
+        WindowEvent new_event;
+
+        switch(event.type) {
+
+            case SDL_WINDOWEVENT: {
+
+                switch (event.window.event) {
+
+                    case SDL_WINDOWEVENT_SHOWN: {
+                        new_event.type = we_shown;
+                        break;
+                    } //shown
+
+                    case SDL_WINDOWEVENT_HIDDEN: {
+                        new_event.type = we_hidden;
+                        break;
+                    } //hidden
+
+                    case SDL_WINDOWEVENT_EXPOSED: {
+                        new_event.type = we_exposed;
+                        break;
+                    } //exposed
+
+                    case SDL_WINDOWEVENT_MOVED: {
+                        new_event.type = we_moved;
+                        break;
+                    } //moved
+
+                    case SDL_WINDOWEVENT_RESIZED: {
+                        new_event.type = we_resized;
+                        break;
+                    } //resized
+
+                    case SDL_WINDOWEVENT_MINIMIZED: {
+                        new_event.type = we_minimized;
+                        break;
+                    } //minimized
+
+                    case SDL_WINDOWEVENT_MAXIMIZED: {
+                        new_event.type = we_maximized;
+                        break;
+                    } //maximized
+
+                    case SDL_WINDOWEVENT_RESTORED: {
+                        new_event.type = we_restored;
+                        break;
+                    } //restored
+
+                    case SDL_WINDOWEVENT_ENTER: {
+                        new_event.type = we_enter;
+                        break;
+                    } //enter
+
+                    case SDL_WINDOWEVENT_LEAVE: {
+                        new_event.type = we_leave;
+                        break;
+                    } //leave
+
+                    case SDL_WINDOWEVENT_FOCUS_GAINED: {
+                        new_event.type = we_focus_gained;
+                        break;
+                    } //focus gain
+
+                    case SDL_WINDOWEVENT_FOCUS_LOST: {
+                        new_event.type = we_focus_lost;
+                        break;
+                    } //focus lost
+
+                    case SDL_WINDOWEVENT_CLOSE: {
+                        new_event.type = we_close;
+                        is_open = false;
+                        break;
+                    } //close
+                
+                } //switch window.event type
+
+                break;
+
+            } //SDL_WINDOWEVENT
+
+        } //switch event.type
+
+            //dispatch the event!
+        if(new_event.type != we_unknown) {
+            handle_event( new_event );
         }
 
-        return config;
+    } // LumenWindowSDL2::handle_sdl_event
 
-    } //LumenWindowSDL2::create
+//Helpers
+
+    int init_window_sdl() {
+        
+        if(window_sdl_inited) {
+            return 0;
+        }
+
+        window_sdl_inited = true;
+
+        return SDL_InitSubSystem(SDL_INIT_VIDEO);
+
+    } //init_window_sdl   
+
 
 } //namespace lumen

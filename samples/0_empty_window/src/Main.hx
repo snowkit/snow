@@ -2,19 +2,16 @@
 import lumen.Lumen;
 
 
-class Main {
+class Main extends lumen.App {
 
-    var _lumen_ : Lumen<Main>;
-
-    public function new () {
+    public function new() {
 
     } //new
 
-    public function ready ( _lumen : Lumen<Main> ) : Void {
+    override public function ready() {
         
-        _lumen_ = _lumen;
 
-        trace('ready');
+        trace('/ HOST / ready');
 
     } //ready
 

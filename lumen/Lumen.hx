@@ -2,29 +2,25 @@ package lumen;
 
 import haxe.Timer;
 
-typedef LumenConfig<T> = {
-    ? host                  : T,
-    ? fullscreen            : Bool,
-    ? resizable             : Bool,
-    ? borderless            : Bool,
-    ? antialiasing          : Int,
-    ? stencil_buffer        : Bool,
-    ? depth_buffer          : Bool,
-    ? vsync                 : Bool,
-    ? fps                   : Int,
-    ? width                 : Int,
-    ? height                : Int,
-    ? title                 : String,
+import lumen.LumenTypes;
 
-    ? orientation           : String,
-    ? multitouch_supported  : Bool,
-    ? multitouch            : Bool
+import lumen.window.WindowManager;
+import lumen.window.Window;
+
+class App {
+    
+    public var app : Lumen;
+
+    public function ready() {}
+
 }
 
-class Lumen<T> {
+class Lumen {
+    
+    public var host : App;
+    public var config : LumenConfig;
 
-    public var host : T;
-    public var config : LumenConfig<T>;
+    public var windower : WindowManager;
 
     public var shutting_down : Bool = false;
     public var has_shutdown : Bool = false;
@@ -35,31 +31,27 @@ class Lumen<T> {
 
 //Internal API
 
-    @:noCompletion public function init( _host:T, _config : LumenConfig<T> ) {
+    @:noCompletion public function init( _host:App, _config : LumenConfig ) {
         
         host = _host;
+        host.app = this;
         config = _config;
 
         // #if debug
             _debug('/ lumen / initializing - ', true);
-            _debug('/ lumen / Creating window at ' + config.width + 'x' + config.height, true);
         // #end
 
-        trace("/ lumen / hold on... ");
-        lumen_create_window( on_window_created, config );
+        windower = new WindowManager( this );
 
-        _debug('/ lumen / Ready.');
+        lumen_init( on_event );
 
     } //init
-
-    function on_window_created( _config:LumenConfig<T> ) {
-        trace('/ lumen / done.');
-        trace(_config);
-    }
 
     public function shutdown() {
 
         shutting_down = true;
+
+        lumen_shutdown();
 
         has_shutdown = true;
 
@@ -68,6 +60,47 @@ class Lumen<T> {
         // #end
 
     } //shutdown
+
+
+    var main_window : Window;
+
+    function on_lumen_ready() {
+
+        _debug('/ lumen / ready and setting up additional requests...');
+
+            //now if they requested a window, let's open one
+        main_window = windower.create( config.window_config );
+            //and track the main window only for now 
+        main_window.window_event_handler = on_main_window_event;
+
+            //tell the host app we are done
+        host.ready();
+
+    } //on_lumen_ready
+
+    function on_main_window_event( _event:WindowEvent ) {
+
+        if(_event.type == window_close) {
+                shutdown();
+        } //if close
+
+    } //main_window_events
+
+    function on_event( _event:SystemEvent ) {
+            
+        _event.type = SystemEvents.typed( cast _event.type );
+
+        if(_event.type != SystemEventType.update) {
+            trace( "/ lumen / system event : " + _event );
+        } else {
+            windower.update();
+        }
+
+        if(_event.type == SystemEventType.ready) {
+            on_lumen_ready();
+        }
+
+    } //on_event
 
 //Helpers
 
@@ -82,7 +115,8 @@ class Lumen<T> {
 
     #if lumen_native
 
-        private static var lumen_create_window = load( "lumen", "lumen_create_window", 2 );
+        private static var lumen_init = load( "lumen", "lumen_init", 1 );
+        private static var lumen_shutdown = load( "lumen", "lumen_shutdown", 0 );
 
     #end //lumen_native
 
