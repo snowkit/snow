@@ -373,27 +373,19 @@ ByteArray ByteArray::FromFile(const char *inFilename)
 
 
 
-        // Reference this to bring in all 
-        //the symbols for the static library
     #ifdef STATIC_LINK
         extern "C" int lumen_opengl_sdl2_register_prims();
-        extern "C" int std_register_prims();
-        extern "C" int regexp_register_prims();
-        extern "C" int zlib_register_prims();        
     #endif //STATIC_LINK
 
     extern "C" int lumen_register_prims() {
 
-       lumen_entry_point();
-        
-        #ifdef STATIC_LINK
-            std_register_prims();
-            regexp_register_prims();
-            zlib_register_prims();
-            lumen_opengl_sdl2_register_prims();
-        #endif
+          lumen_entry_point();
+
+            #ifdef STATIC_LINK
+                lumen_opengl_sdl2_register_prims();
+            #endif
        
-       return 0;
+        return 0;
 
     } //lumen_register_prims
 
