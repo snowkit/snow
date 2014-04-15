@@ -64,6 +64,7 @@
 
       <compilerflag value="-I${NME_DEV}/include" />
       <compilerflag value="-D_7ZIP_ST" unless="windows"/>
+      <compilerflag value="-DGLEW_STATIC"/>
       
    <!-- Common sources -->
 
