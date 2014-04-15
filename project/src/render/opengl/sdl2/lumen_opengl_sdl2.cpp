@@ -12,6 +12,8 @@
 #include "hx_bindings.h"
 #include "ByteArray.h"
 
+  //glew first, before any gl.h (important)
+#include "libs/glew/GL/glew.h"
 #include <SDL.h>
 #include <SDL_opengl.h>
 
@@ -285,21 +287,32 @@ namespace lumen {
     GL_IS(buffer,Buffer)
     GL_IS(enabled,Enabled)
     GL_IS(program,Program)
-    //GL_IS(framebuffer,Framebuffer)
-    //GL_IS(renderbuffer,Renderbuffer)
-
-    // value lumen_gl_is_framebuffer(value val) { 
-    //     if (&glIsFramebuffer) return alloc_bool(glIsFramebuffer(val_int(val)));
-    //     return alloc_bool(false);
-    // } DEFINE_PRIM(lumen_gl_is_framebuffer,1);
-
-    // value lumen_gl_is_renderbuffer(value val) { 
-    //     if (&glIsRenderbuffer) return alloc_bool(glIsRenderbuffer(val_int(val)));
-    //     return alloc_bool(false);
-    // } DEFINE_PRIM(lumen_gl_is_renderbuffer,1);
-
     GL_IS(shader,Shader)
     GL_IS(texture,Texture)
+
+      //since these are plausibly unsupported and need glew checks,
+      // they are manually defined below
+    // GL_IS(framebuffer,Framebuffer)
+    // GL_IS(renderbuffer,Renderbuffer)
+
+    value lumen_gl_is_framebuffer(value val) { 
+        
+      if (GLEW_EXT_framebuffer_object) {
+          return alloc_bool(glIsFramebuffer(val_int(val)));
+      }
+
+        return alloc_bool(false);
+    } DEFINE_PRIM(lumen_gl_is_framebuffer,1);
+
+    value lumen_gl_is_renderbuffer(value val) {
+        
+      if (GLEW_EXT_framebuffer_object) {
+          return alloc_bool( glIsRenderbuffer(val_int(val)) );
+      }
+
+        return alloc_bool(false);
+    } DEFINE_PRIM(lumen_gl_is_renderbuffer,1);
+
 
     // --- Stencil -------------------------------------------
 
@@ -1068,68 +1081,116 @@ namespace lumen {
     // --- Framebuffer -------------------------------
 
     value lumen_gl_bind_framebuffer(value target, value framebuffer) {
-       // if (&glBindFramebuffer) glBindFramebuffer(val_int(target), val_int(framebuffer) );
+        
+        if (GLEW_EXT_framebuffer_object) {
+            glBindFramebuffer(val_int(target), val_int(framebuffer) );
+        }
+
        return alloc_null();
     } DEFINE_PRIM(lumen_gl_bind_framebuffer,2);
 
     value lumen_gl_bind_renderbuffer(value target, value renderbuffer) {
-       // if (&glBindRenderbuffer) glBindRenderbuffer(val_int(target),val_int(renderbuffer));
+        
+        if (GLEW_EXT_framebuffer_object) {
+            glBindRenderbuffer(val_int(target),val_int(renderbuffer));
+        }
+
        return alloc_null();
     } DEFINE_PRIM(lumen_gl_bind_renderbuffer,2);
 
     value lumen_gl_create_framebuffer( ) {
        GLuint id = 0;
-       // if (&glGenFramebuffers) glGenFramebuffers(1,&id);
+
+        if (GLEW_EXT_framebuffer_object) {
+            glGenFramebuffers(1,&id);
+        }
+
        return alloc_int(id);
     } DEFINE_PRIM(lumen_gl_create_framebuffer,0);
 
     value lumen_gl_delete_framebuffer(value target) {
        GLuint id = val_int(target);
-       // if (&glDeleteFramebuffers) glDeleteFramebuffers(1, &id);
+
+        if (GLEW_EXT_framebuffer_object) {
+            glDeleteFramebuffers(1, &id);
+        }
+
        return alloc_null();
     } DEFINE_PRIM(lumen_gl_delete_framebuffer,1);
 
     value lumen_gl_create_render_buffer( ) {
        GLuint id = 0;
-       // if (&glGenRenderbuffers) glGenRenderbuffers(1,&id);
+
+        if (GLEW_EXT_framebuffer_object) {
+          glGenRenderbuffers(1,&id);
+        }
+
        return alloc_int(id);
     } DEFINE_PRIM(lumen_gl_create_render_buffer,0);
 
     value lumen_gl_delete_render_buffer(value target) {
        GLuint id = val_int(target);
-       // if (&glDeleteRenderbuffers) glDeleteRenderbuffers(1, &id);
+
+        if (GLEW_EXT_framebuffer_object) {
+          glDeleteRenderbuffers(1, &id);
+        }
+
        return alloc_null();
     } DEFINE_PRIM(lumen_gl_delete_render_buffer,1);
 
     value lumen_gl_framebuffer_renderbuffer(value target, value attachment, value renderbuffertarget, value renderbuffer) {
-       // if (&glFramebufferRenderbuffer) glFramebufferRenderbuffer(val_int(target), val_int(attachment), val_int(renderbuffertarget), val_int(renderbuffer) );
+
+        if (GLEW_EXT_framebuffer_object) {
+          glFramebufferRenderbuffer(val_int(target), val_int(attachment), val_int(renderbuffertarget), val_int(renderbuffer) );
+        }
+
        return alloc_null();
     } DEFINE_PRIM(lumen_gl_framebuffer_renderbuffer,4);
 
     value lumen_gl_framebuffer_texture2D(value target, value attachment, value textarget, value texture, value level) {
-       // if (&glFramebufferTexture2D) glFramebufferTexture2D( val_int(target), val_int(attachment), val_int(textarget), val_int(texture), val_int(level) );
+
+        if (GLEW_EXT_framebuffer_object) {
+          glFramebufferTexture2D( val_int(target), val_int(attachment), val_int(textarget), val_int(texture), val_int(level) );
+        }
+
        return alloc_null();
     } DEFINE_PRIM(lumen_gl_framebuffer_texture2D,5);
 
     value lumen_gl_renderbuffer_storage(value target, value internalFormat, value width, value height) {
-       // if (&glRenderbufferStorage) glRenderbufferStorage( val_int(target), val_int(internalFormat), val_int(width), val_int(height) );
+
+        if (GLEW_EXT_framebuffer_object) {
+          glRenderbufferStorage( val_int(target), val_int(internalFormat), val_int(width), val_int(height) );
+        }
+
        return alloc_null();
     } DEFINE_PRIM(lumen_gl_renderbuffer_storage,4);
 
     value lumen_gl_check_framebuffer_status(value inTarget) {
-       // if (&glCheckFramebufferStatus) return alloc_int( glCheckFramebufferStatus(val_int(inTarget)));
+
+        if (GLEW_EXT_framebuffer_object) {
+          return alloc_int( glCheckFramebufferStatus(val_int(inTarget)));
+        }
+
        return alloc_int(0);
     } DEFINE_PRIM(lumen_gl_check_framebuffer_status,1);
 
     value lumen_gl_get_framebuffer_attachment_parameter(value target, value attachment, value pname) {
        GLint result = 0;
-       // if (&glGetFramebufferAttachmentParameteriv) glGetFramebufferAttachmentParameteriv( val_int(target), val_int(attachment), val_int(pname), &result);
+
+        if (GLEW_EXT_framebuffer_object) {
+          glGetFramebufferAttachmentParameteriv( val_int(target), val_int(attachment), val_int(pname), &result);
+        }
+
        return alloc_int(result);
     } DEFINE_PRIM(lumen_gl_get_framebuffer_attachment_parameter,3);
 
     value lumen_gl_get_render_buffer_parameter(value target, value pname) {
        int result = 0;
-       // if (&glGetRenderbufferParameteriv) glGetRenderbufferParameteriv(val_int(target), val_int(pname), &result);
+
+        if (GLEW_EXT_framebuffer_object) {
+          glGetRenderbufferParameteriv(val_int(target), val_int(pname), &result);
+        }
+
        return alloc_int(result);
     } DEFINE_PRIM(lumen_gl_get_render_buffer_parameter,2);
 
@@ -1293,25 +1354,6 @@ namespace lumen {
        return alloc_null();
     } DEFINE_PRIM(lumen_gl_bind_texture,2);
 
-    value lumen_gl_bind_bitmap_data_texture(value inBitmapData) {
-       // Surface  *surface;
-       // if (AbstractToObject(inBitmapData,surface) )
-       // {
-       //    HardwareContext *ctx = gDirectRenderContext;
-       //    if (!ctx)
-       //       ctx = lumen::HardwareContext::current;
-       //    if (ctx)
-       //    {
-       //       Texture *texture = surface->GetOrCreateTexture(*gDirectRenderContext);
-       //       if (texture)
-       //          texture->Bind(surface,-1);
-       //    }
-       // }
-
-       return alloc_null();
-    } DEFINE_PRIM(lumen_gl_bind_bitmap_data_texture,1);
-
-
     value lumen_gl_tex_image_2d(value *arg, int argCount) {
        enum { aTarget, aLevel, aInternal, aWidth, aHeight, aBorder, aFormat, aType, aBuffer, aOffset };
 
@@ -1427,16 +1469,21 @@ namespace lumen {
 
 
     value lumen_gl_generate_mipmap(value inTarget) {
-       // if (&glGenerateMipmap) glGenerateMipmap(val_int(inTarget));
-       return alloc_null();
+                
+        if (&glGenerateMipmap) {
+          glGenerateMipmap(val_int(inTarget));
+        }
+
+        return alloc_null();
+
     } DEFINE_PRIM(lumen_gl_generate_mipmap,1);
 
-
-
     value lumen_gl_get_tex_parameter(value inTarget,value inPname) {
-       int result = 0;
-       glGetTexParameteriv(val_int(inTarget), val_int(inPname), &result);
-       return alloc_int(result);
+
+      int result = 0;
+      glGetTexParameteriv(val_int(inTarget), val_int(inPname), &result);
+      return alloc_int(result);
+    
     } DEFINE_PRIM(lumen_gl_get_tex_parameter,2);
 
 
