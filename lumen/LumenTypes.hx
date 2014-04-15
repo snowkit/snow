@@ -19,6 +19,8 @@ typedef WindowConfig = {
     ? depth_buffer          : Bool,
     ? vsync                 : Bool,
     ? fps                   : Int,
+    ? x                     : Int,
+    ? y                     : Int,
     ? width                 : Int,
     ? height                : Int,
     ? title                 : String,
@@ -44,7 +46,10 @@ typedef SystemEvent = {
 typedef WindowEvent = {
 
     ? type : WindowEventType,
-    ? window_id : Int
+    ? timestamp : Int,
+    ? window_id : Int,
+    ? data1 : Int,
+    ? data2 : Int
 
 } //WindowEvent
 
@@ -79,6 +84,7 @@ enum WindowEventType {
     window_exposed;
     window_moved;
     window_resized;
+    window_size_changed;
     window_minimized;
     window_maximized;
     window_restored;
@@ -143,14 +149,15 @@ class WindowEvents {
     public static var we_exposed          = 3;
     public static var we_moved            = 4;
     public static var we_resized          = 5;
-    public static var we_minimized        = 6;
-    public static var we_maximized        = 7;
-    public static var we_restored         = 8;
-    public static var we_enter            = 9;
-    public static var we_leave            = 10;
-    public static var we_focus_gained     = 11;
-    public static var we_focus_lost       = 12;
-    public static var we_close            = 13;
+    public static var we_size_changed     = 6;
+    public static var we_minimized        = 7;
+    public static var we_maximized        = 8;
+    public static var we_restored         = 9;
+    public static var we_enter            = 10;
+    public static var we_leave            = 11;
+    public static var we_focus_gained     = 12;
+    public static var we_focus_lost       = 13;
+    public static var we_close            = 14;
 
 //Helpers
 
@@ -161,6 +168,7 @@ class WindowEvents {
             if(type == we_exposed)        return WindowEventType.window_exposed;
             if(type == we_moved)          return WindowEventType.window_moved;
             if(type == we_resized)        return WindowEventType.window_resized;
+            if(type == we_size_changed)   return WindowEventType.window_size_changed;
             if(type == we_minimized)      return WindowEventType.window_minimized;
             if(type == we_maximized)      return WindowEventType.window_maximized;
             if(type == we_restored)       return WindowEventType.window_restored;

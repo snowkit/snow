@@ -62,8 +62,6 @@ namespace lumen {
 
     LumenWindow* create_window( const window_config &config, AutoGCRoot* on_created ) {
         
-        printf("/ lumen / creating window : %s\n", config.title.c_str() );
-
         LumenWindowSDL2* new_window = new LumenWindowSDL2();
 
             new_window->create( config, on_created );
@@ -82,8 +80,9 @@ namespace lumen {
     void LumenWindowSDL2::create( const window_config &_config, AutoGCRoot* _on_created ) {
 
             //store these first
-        created_handler = _on_created;
-
+        created_handler = _on_created;        
+            //assign it now so we take a copy from the const
+        config = _config;
             //then try init sdl video system
 
         int err = init_window_sdl();
@@ -149,14 +148,12 @@ namespace lumen {
 
                 ++trycount;
 
-                window = SDL_CreateWindow( _config.title.c_str(), SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, _config.width, _config.height, request_flags );
-                    
+                window = SDL_CreateWindow( _config.title.c_str(), _config.x, _config.y, _config.width, _config.height, request_flags );                
+
                     //fetch ones actually used by window
-                real_flags = SDL_GetWindowFlags( window );
+                // real_flags = SDL_GetWindowFlags( window );
 
             // } //while !window 
-
-        printf("/ lumen / tried %d times for a window\n", trycount);
 
         if( !window ) {
             fprintf(stderr, "/ lumen / Failed to create SDL window: %s\n", SDL_GetError());
@@ -164,9 +161,11 @@ namespace lumen {
             return;
         } //!window
 
+        SDL_GetWindowPosition( window, &config.x, &config.y );
+        SDL_GetWindowSize( window, &config.width, &config.height );
+
         is_open = true;
-        id = SDL_GetWindowID(window);
-        config = _config;
+        id = SDL_GetWindowID(window);        
 
             //now try creating the GL context
         if(!lumen_gl_context) {

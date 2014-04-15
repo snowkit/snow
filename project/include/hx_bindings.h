@@ -14,11 +14,18 @@ namespace lumen {
         //id's
     extern int id_id;
     extern int id_type;
+    extern int id_x;
+    extern int id_y;
     extern int id_width;
     extern int id_height;
+
         //window related
     extern int id_window;
     extern int id_window_id;
+    extern int id_timestamp;
+    extern int id_data1;
+    extern int id_data2;
+
     extern int id_title;
     extern int id_fullscreen;
     extern int id_resizable;
@@ -39,6 +46,8 @@ namespace lumen {
 
         id_id                   = val_id("id");
         id_type                 = val_id("type");
+        id_x                    = val_id("x");
+        id_y                    = val_id("y");
         id_width                = val_id("width");
         id_height               = val_id("height");
 
@@ -46,6 +55,10 @@ namespace lumen {
 
         id_window               = val_id("window");
         id_window_id            = val_id("window_id");
+        id_timestamp            = val_id("timestamp");
+        id_data1                = val_id("data1");
+        id_data2                = val_id("data2");
+
         id_title                = val_id("title");
         id_fullscreen           = val_id("fullscreen");
         id_resizable            = val_id("resizable");
