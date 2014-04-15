@@ -129,7 +129,7 @@ namespace lumen {
         }
 
             //the event to dispatch, if any
-        WindowEvent new_event;
+        WindowEvent new_event;        
 
         switch(event.type) {
 
@@ -161,6 +161,11 @@ namespace lumen {
                         new_event.type = we_resized;
                         break;
                     } //resized
+
+                    case SDL_WINDOWEVENT_SIZE_CHANGED: {
+                        new_event.type = we_size_changed;
+                        break;
+                    } //size_changed
 
                     case SDL_WINDOWEVENT_MINIMIZED: {
                         new_event.type = we_minimized;
@@ -211,7 +216,11 @@ namespace lumen {
         } //switch event.type
 
             //dispatch the event!
+        new_event.data1 = event.window.data1;
+        new_event.data2 = event.window.data2;
+        new_event.timestamp = event.window.timestamp;
         new_event.window_id = event.window.windowID;
+
         dispatch_window_event( new_event );
 
     } //handle_window_event

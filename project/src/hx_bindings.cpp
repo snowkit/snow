@@ -31,11 +31,17 @@ namespace lumen {
 
     int id_id;
     int id_type;
+    int id_x;
+    int id_y;
     int id_width;
     int id_height;
 
     int id_window;
     int id_window_id;
+    int id_timestamp;
+    int id_data1;
+    int id_data2;
+
     int id_title;
     int id_fullscreen;
     int id_resizable;
