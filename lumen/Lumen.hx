@@ -25,6 +25,8 @@ class Lumen {
     public var shutting_down : Bool = false;
     public var has_shutdown : Bool = false;
 
+    var was_ready : Bool = false;
+
     public function new() {
 
     } //new
@@ -66,10 +68,27 @@ class Lumen {
 
     function on_lumen_ready() {
 
+        if(was_ready) {
+            _debug("/ lumen / firing ready event repeatedly is likely not ideal...");
+            return;
+        }
+
+        was_ready = true;
+
         _debug('/ lumen / ready and setting up additional requests...');
 
             //now if they requested a window, let's open one
         main_window = windower.create( config.window_config );
+        
+            var w2 = windower.create( config.window_config );
+            var w3 = windower.create( config.window_config );
+            var w4 = windower.create( config.window_config );
+
+        trace(w2.id);
+        trace(w3.id);
+        trace(w4.id);
+        trace(main_window.id);
+
             //and track the main window only for now 
         main_window.window_event_handler = on_main_window_event;
 
@@ -78,29 +97,62 @@ class Lumen {
 
     } //on_lumen_ready
 
-    function on_main_window_event( _event:WindowEvent ) {
+    function on_lumen_update() {
 
-        if(_event.type == window_close) {
-                shutdown();
-        } //if close
+        windower.update();
 
-    } //main_window_events
+    } //on_lumen_update
 
     function on_event( _event:SystemEvent ) {
             
         _event.type = SystemEvents.typed( cast _event.type );
 
-        if(_event.type != SystemEventType.update) {
+        if( _event.type != update && 
+            _event.type != unknown && 
+            _event.type != window 
+
+        ) {
             trace( "/ lumen / system event : " + _event );
-        } else {
-            windower.update();
         }
 
-        if(_event.type == SystemEventType.ready) {
-            on_lumen_ready();
-        }
+        switch(_event.type) {
+
+            case ready: {
+                on_lumen_ready();
+            } //ready
+
+            case update: {
+                on_lumen_update();
+            } //update
+
+            case quit: {
+                shutdown();
+            } //update
+
+            case window: {
+                windower.on_event( _event.window );
+            }
+
+            case unknown : {}
+            case shutdown : {}
+            case app_willenterforeground : {}
+            case app_willenterbackground : {}
+            case app_terminating : {}
+            case app_lowmemory : {}
+            case app_didenterforeground : {}
+            case app_didenterbackground : {}
+
+        } //switch _event.type
 
     } //on_event
+
+    function on_main_window_event( _event:WindowEvent ) {
+
+        if(_event.type == window_close) {
+            shutdown();
+        } //if close
+
+    } //main_window_events
 
 //Helpers
 

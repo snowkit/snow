@@ -31,22 +31,41 @@ typedef WindowConfig = {
 
 typedef SystemEvent = {
 
-    ? type : SystemEventType
+    ? type : SystemEventType,
+
+        //certain events have data structures passed in
+        //which are null if that event is not of the right type
+        //so, if this event.type == se_window, window should be non-null
+        //and populated with the specifics to that event
+    ? window : WindowEvent
 
 } //SystemEvent
 
 typedef WindowEvent = {
 
-    ? type : WindowEventType
+    ? type : WindowEventType,
+    ? window_id : Int
 
 } //WindowEvent
 
 
 enum SystemEventType {
+
     unknown;
+
     ready;    
     update;
     shutdown;
+    window;
+
+    quit;
+    app_terminating;
+    app_lowmemory;
+    app_willenterbackground;
+    app_didenterbackground;
+    app_willenterforeground;
+    app_didenterforeground;
+
 }
 
 //Window stuff
@@ -70,19 +89,40 @@ enum WindowEventType {
 
 
 class SystemEvents {
-    
-    public static var se_unknown               = 0;
-    public static var se_ready                 = 1;
-    public static var se_update                = 2;
-    public static var se_shutdown              = 3;
+        
+        //lumen core events
+
+    public static var se_unknown                    = 0;
+    public static var se_ready                      = 1;
+    public static var se_update                     = 2;
+    public static var se_shutdown                   = 3;
+    public static var se_window                     = 4;
+
+        //lumen application events
+
+    public static var se_quit                       = 5;
+    public static var se_app_terminating            = 6;
+    public static var se_app_lowmemory              = 7;
+    public static var se_app_willenterbackground    = 8;
+    public static var se_app_didenterbackground     = 9;
+    public static var se_app_willenterforeground    = 10;
+    public static var se_app_didenterforeground     = 11;
 
 //Helpers
 
     public static function typed(type:Int) : SystemEventType {
         
-            if(type == se_ready)  return SystemEventType.ready;
-            if(type == se_update)  return SystemEventType.update;
-            if(type == se_shutdown)  return SystemEventType.shutdown;
+            if(type == se_ready)                        return SystemEventType.ready;
+            if(type == se_update)                       return SystemEventType.update;
+            if(type == se_shutdown)                     return SystemEventType.shutdown;
+            if(type == se_window)                       return SystemEventType.window;
+            if(type == se_quit)                         return SystemEventType.quit;
+            if(type == se_app_terminating)              return SystemEventType.app_terminating;
+            if(type == se_app_lowmemory)                return SystemEventType.app_lowmemory;
+            if(type == se_app_willenterbackground)      return SystemEventType.app_willenterbackground;
+            if(type == se_app_didenterbackground)       return SystemEventType.app_didenterbackground;
+            if(type == se_app_willenterforeground)      return SystemEventType.app_willenterforeground;
+            if(type == se_app_didenterforeground)       return SystemEventType.app_didenterforeground;
 
         return SystemEventType.unknown;
 

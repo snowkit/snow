@@ -14,6 +14,7 @@ namespace lumen {
         //implemented in subsystems
     int init_core_aux();
     int shutdown_core_aux();
+    int update_core_aux();
 
     extern int id_type;
 
@@ -21,10 +22,23 @@ namespace lumen {
 
     enum SystemEventType {
 
-        se_unknown                 = 0,
-        se_ready                   = 1,
-        se_update                  = 2,
-        se_shutdown                = 3,
+            //lumen core events
+
+        se_unknown                      = 0,
+        se_ready                        = 1,
+        se_update                       = 2,
+        se_shutdown                     = 3,
+        se_window                       = 4,
+
+            //lumen application events
+
+        se_quit                         = 5,
+        se_app_terminating              = 6,
+        se_app_lowmemory                = 7,
+        se_app_willenterbackground      = 8,
+        se_app_didenterbackground       = 9,
+        se_app_willenterforeground      = 10,
+        se_app_didenterforeground       = 11
 
     }; //SystemEvent
 
@@ -41,9 +55,7 @@ namespace lumen {
 
     typedef void (*SystemEventHandler)( SystemEvent &event );
 
-        //core event haxe callback handler
-    static AutoGCRoot *system_event_handler = 0;
-    static void core_event_handler( SystemEvent &event ) {
+    inline static void core_event_handler( const SystemEvent &event ) {
 
         value _event = alloc_empty_object();
 
@@ -57,6 +69,7 @@ namespace lumen {
 
     void dispatch_events();
     void dispatch_system_event( SystemEventType _type );
+    void dispatch_system_event_type( SystemEventType _type );
 
         //this will initiate auxilary systems as well
         //as the core systems required to run lumen
@@ -70,12 +83,19 @@ namespace lumen {
     inline void shutdown_core() {
 
             //tell everything we are shutting down
-        dispatch_system_event( se_shutdown );
+        dispatch_system_event_type( se_shutdown );
 
             //shutdown subsystems
         shutdown_core_aux();
 
     } //
+
+
+    inline void update_core() {
+
+        update_core_aux();
+
+    } //update_core
 
     inline void lumen_core_shutdown() {
 
@@ -90,22 +110,31 @@ namespace lumen {
         init_core();
 
             //tell haxe side we are ready
-        dispatch_system_event( se_ready );
+        dispatch_system_event_type( se_ready );
 
             //run the main loop
         while( !shutdown ) {
-            
-            dispatch_system_event( se_update );
 
-        }
+            update_core();            
+
+            dispatch_system_event_type( se_update );
+
+        } //!shutdown
 
         shutdown_core();
 
     } //lumen_core_init
 
-    inline void dispatch_system_event( SystemEventType _type = se_unknown ) {
+        //a convenience helper for dispatching a unadorned event in place
+    inline void dispatch_system_event_type( SystemEventType _type = se_unknown ) {
             
         SystemEvent event(_type);
+        core_event_handler(event);
+
+    } //dispatch_system_event_type
+
+    inline void dispatch_system_event( const SystemEvent &event ) {
+                
         core_event_handler(event);
 
     } //dispatch_events

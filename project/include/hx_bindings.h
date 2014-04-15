@@ -10,11 +10,16 @@ namespace lumen {
 
         //externs
     extern vkind global_lumen_object_kind;
+    extern AutoGCRoot *system_event_handler;
 
         //id's
+    extern int id_id;
     extern int id_type;
     extern int id_width;
     extern int id_height;
+        //window related
+    extern int id_window;
+    extern int id_window_id;
     extern int id_title;
     extern int id_fullscreen;
     extern int id_resizable;
@@ -23,7 +28,7 @@ namespace lumen {
     extern int id_depth_buffer;
     extern int id_stencil_buffer;
     extern int id_vsync;
-    extern int id_fps;
+    extern int id_fps;    
 
     inline void lumen_init_ids() {
         
@@ -33,12 +38,15 @@ namespace lumen {
 
             //more common flags
 
+        id_id                   = val_id("id");
         id_type                 = val_id("type");
         id_width                = val_id("width");
         id_height               = val_id("height");
 
-            //window config flags
+            //window related flags
 
+        id_window               = val_id("window");
+        id_window_id            = val_id("window_id");
         id_title                = val_id("title");
         id_fullscreen           = val_id("fullscreen");
         id_resizable            = val_id("resizable");
@@ -47,7 +55,7 @@ namespace lumen {
         id_depth_buffer         = val_id("depth_buffer");
         id_stencil_buffer       = val_id("stencil_buffer");
         id_vsync                = val_id("vsync");
-        id_fps                  = val_id("fps");
+        id_fps                  = val_id("fps");        
 
     } //lumen_init_ids    
 
