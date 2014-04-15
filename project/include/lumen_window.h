@@ -11,16 +11,19 @@ namespace lumen {
 
         //forward
     class LumenWindow;
-    struct window_config;    
+    struct window_config;
+    struct WindowEvent;
+
     value window_config_to_hx( const window_config &config );
     window_config window_config_from_hx( value _in_config );
+
+    void dispatch_window_event( const WindowEvent &event );
 
         //This function is called by hx_bindings, and should attempt
         // to create a window with the specified configuration,
         // any failed configuration will result in the config being updated, 
         // and when complete the configuration will be passed back to the on_complete listener.
-        // events from the window should be forwarded to the on_event         
-    LumenWindow* create_window( const window_config &config, AutoGCRoot* on_created, AutoGCRoot* on_event );
+    LumenWindow* create_window( const window_config &config, AutoGCRoot* on_created );
 
 
         //window configuration 
@@ -98,9 +101,10 @@ namespace lumen {
 
         public:
             WindowEventType type;
+            int window_id;
 
-        WindowEvent( WindowEventType _type = we_unknown ) 
-            : type(_type)
+        WindowEvent( WindowEventType _type = we_unknown, int _window_id = 1 ) 
+            : type(_type), window_id(_window_id)
                 {}
 
     };
@@ -116,26 +120,25 @@ namespace lumen {
                 //members
             int id;
             bool created;
+            float r;
             window_config config;
-            AutoGCRoot* event_handler;
             AutoGCRoot* created_handler;
 
             LumenWindow() {
                 id = -1;
                 created = false;
-                event_handler = NULL;
-                created_handler = NULL;
+                created_handler = NULL;                
             }
 
             ~LumenWindow() {
-                delete event_handler;
                 delete created_handler;
             }
 
                 //functions
-            virtual void create( const window_config &_config, AutoGCRoot* _on_created, AutoGCRoot* _on_event ) = 0;
+            virtual void create( const window_config &_config, AutoGCRoot* _on_created ) = 0;
             virtual void simple_message( const char* message, const char* title ) = 0;
             virtual void update() = 0;
+            virtual void render() = 0;
 
         protected:            
 
@@ -155,25 +158,36 @@ namespace lumen {
 
             } //_on_created
 
-            void handle_event( lumen::WindowEvent &event ) {
-
-                if(event_handler != NULL) {
-
-                    value _event = alloc_empty_object();
-
-                       alloc_field( _event, id_type, alloc_int(event.type) );
-
-                    val_call1( event_handler->get(), _event );
-
-                    //event.result = (EventResult)val_int( val_field(_event, id_result) );
-
-                } //if event_handler != NULL
-
-            } //handle_event
-
         private:
 
     };
+
+//Helper dispatch window events through the core event handler, since window events are agnostic and come from main SDL loop
+
+    inline static void window_event_handler( const WindowEvent &event ) {
+
+        value _window_event = alloc_empty_object();
+
+            alloc_field( _window_event, id_type, alloc_int( event.type ) );
+            alloc_field( _window_event, id_window_id, alloc_int( event.window_id ) );
+
+        value _system_event = alloc_empty_object();
+
+                //event type is always se_window event
+            alloc_field( _system_event, id_type, alloc_int( se_window ) );
+                //store the .window value
+            alloc_field( _system_event, id_window, _window_event );
+            
+            //finally, call the handler
+        val_call1( system_event_handler->get(), _system_event );
+
+    } //core_event_handler
+
+    inline void dispatch_window_event( const WindowEvent &event ) {
+
+        window_event_handler( event );
+
+    } //dispatch_window_event
 
 
 //Helper : window config to/from

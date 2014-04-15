@@ -24,35 +24,40 @@ class Window {
         asked_config = _config;
         config = _config;
 
-        lumen_window_create( _config, on_window_created, on_window_event );
+        lumen_window_create( _config, on_window_created );
 
     } //new
 
     function on_window_created( _handle:Dynamic, _id:Int, _config:WindowConfig ) {
 
         id = _id;
-        handle = _handle;        
+        handle = _handle;
         config = _config;
 
+        trace("/ lumen / created window with id: " + id);
         trace('/ lumen / updating real window config for $id is ' + _config);
 
     } //on_window_created
 
-    function on_window_event( _event:WindowEvent ) {
+    @:noCompletion public function on_event( _event:WindowEvent ) {
 
-        _event.type = WindowEvents.typed( cast _event.type );
-
-        trace("window event : " + id + " / " + _event.type );
+        trace("/ lumen / window event " + id + " / " + _event.type );
 
         if(window_event_handler != null) {
             window_event_handler( _event );
-        }        
+        }
 
-    } //on_window_event
+    } //on_event
 
     public function update() {
 
         lumen_window_update( handle );
+
+    } //update
+    
+    public function render() {
+
+        lumen_window_render( handle );
 
     } //update
 
@@ -62,8 +67,9 @@ class Window {
 
     } //simple_message
 
-    private static var lumen_window_create = Lumen.load( "lumen", "lumen_window_create", 3 );
+    private static var lumen_window_create = Lumen.load( "lumen", "lumen_window_create", 2 );
     private static var lumen_window_update = Lumen.load( "lumen", "lumen_window_update", 1 );
+    private static var lumen_window_render = Lumen.load( "lumen", "lumen_window_render", 1 );
     private static var lumen_window_simple_message = Lumen.load( "lumen", "lumen_window_simple_message", 3 );
 
 } //Window

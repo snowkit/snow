@@ -22,11 +22,18 @@ namespace lumen {
         //has id's etc been inited?
     static int global_lumen_init = false;
         //a "kind" type for native wrapped objects
-    vkind global_lumen_object_kind;    
+    vkind global_lumen_object_kind;
+        //core event haxe callback handler
+        //a core system event handler implementation (defined in hx_bindings.h)
+    AutoGCRoot *system_event_handler = 0;
 
+    int id_id;
     int id_type;
     int id_width;
     int id_height;
+
+    int id_window;
+    int id_window_id;
     int id_title;
     int id_fullscreen;
     int id_resizable;
@@ -75,20 +82,19 @@ namespace lumen {
 
 //Window
 
-    value lumen_window_create( value _in_config, value _on_created, value _on_event  ) {
+    value lumen_window_create( value _in_config, value _on_created ) {
 
             //fetch the callback for when it's done opening the window
         AutoGCRoot *on_created = new AutoGCRoot( _on_created );
-        AutoGCRoot *on_event = new AutoGCRoot( _on_event );
             
-            //create the actual window
+            //fetch window config from the haxe side
         window_config config = window_config_from_hx(_in_config);
-
-        create_window( config, on_created, on_event );
+            //create the actual window
+        create_window( config, on_created );
 
         return alloc_null();
     
-    } DEFINE_PRIM(lumen_window_create, 3);
+    } DEFINE_PRIM(lumen_window_create, 2);
 
 
     value lumen_window_update( value _window ) {
@@ -104,6 +110,20 @@ namespace lumen {
         return alloc_null();
 
     } DEFINE_PRIM(lumen_window_update, 1);
+
+    value lumen_window_render( value _window ) {
+
+        LumenWindow* window = NULL;
+
+        if( Object_from_hx(_window, window) ) {
+
+            window->render();
+
+        } //fetch window
+
+        return alloc_null();
+
+    } DEFINE_PRIM(lumen_window_render, 1);
 
 
     value lumen_window_simple_message( value _window, value _message, value _title ) {
