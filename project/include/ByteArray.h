@@ -4,6 +4,7 @@
 #include "Object.h"
 #include "QuickVec.h"
 // #include "Utils.h"
+#include <stdio.h>
 
 
 namespace lumen {
@@ -18,8 +19,30 @@ namespace lumen {
       #define OpenOverwrite(x) _wfopen(x,L"wb") // [ddc]
 
    #else
+
       typedef char OSChar;
       #define val_os_string val_string
+
+      #ifdef IPHONE
+
+         FILE *OpenRead(const char *inName);
+         FILE *OpenOverwrite(const char *inName); // [ddc]
+
+      #elif defined(HX_MACOS)
+
+         } // close namespace lumen
+
+         extern "C" FILE *OpenRead(const char *inName);
+         extern "C" bool GetBundleFilename(const char *inName, char *outBuffer,int inBufSize);
+         extern "C" FILE *OpenOverwrite(const char *inName);
+         
+         namespace lumen {
+
+      #endif
+         
+         #define OpenRead(x) fopen(x,"rb")
+         #define OpenOverwrite(x) fopen(x,"wb") // [ddc]
+      
    #endif
 
    // If you put this structure on the stack, then you do not have to worry about GC.
@@ -63,5 +86,6 @@ namespace lumen {
    #endif //ANDROID
 
 } //namespace lumen
+
 
 #endif //LIME_BYTE_ARRAY_H

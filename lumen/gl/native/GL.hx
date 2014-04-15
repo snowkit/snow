@@ -442,12 +442,6 @@ class GL {
         lumen_gl_bind_attrib_location(program.id, index, name);
     }
 
-        //todo sven
-    // public static function bindBitmapDataTexture(texture:BitmapData):Void 
-    // {
-    //  lumen_gl_bind_bitmap_data_texture(texture.__handle);
-    // }
-
     public static function bindBuffer(target:Int, buffer:GLBuffer):Void 
     {
         lumen_gl_bind_buffer(target, buffer == null ? 0 : buffer.id);
@@ -1164,7 +1158,6 @@ class GL {
     private static var lumen_gl_active_texture = load("lumen_gl_active_texture", 1);
     private static var lumen_gl_attach_shader = load("lumen_gl_attach_shader", 2);
     private static var lumen_gl_bind_attrib_location = load("lumen_gl_bind_attrib_location", 3);
-    private static var lumen_gl_bind_bitmap_data_texture = load("lumen_gl_bind_bitmap_data_texture", 1);
     private static var lumen_gl_bind_buffer = load("lumen_gl_bind_buffer", 2);
     private static var lumen_gl_bind_framebuffer = load("lumen_gl_bind_framebuffer", 2);
     private static var lumen_gl_bind_renderbuffer = load("lumen_gl_bind_renderbuffer", 2);
