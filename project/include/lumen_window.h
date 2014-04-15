@@ -4,6 +4,7 @@
 #include <string>
 
 #include <hx/CFFI.h>
+#include "Object.h"
 #include "hx_bindings.h"
 #include "lumen_core.h"
 
@@ -139,6 +140,7 @@ namespace lumen {
             virtual void simple_message( const char* message, const char* title ) = 0;
             virtual void update() = 0;
             virtual void render() = 0;
+            virtual void swap() = 0;
 
         protected:            
 

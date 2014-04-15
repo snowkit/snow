@@ -47,6 +47,8 @@ namespace lumen {
  
             void update();
             void render();
+            void swap();
+
             void create( const window_config &config, AutoGCRoot* _on_created );
             void simple_message( const char* message, const char* title );
 
@@ -184,7 +186,11 @@ namespace lumen {
         SDL_GL_MakeCurrent(window, lumen_gl_context);
 
         glClearColor( r, 0.4f, 0.1f, 1.0f );
-        glClear( GL_COLOR_BUFFER_BIT );
+        glClear( GL_COLOR_BUFFER_BIT );        
+
+    }
+
+    void LumenWindowSDL2::swap() {
 
         SDL_GL_SwapWindow(window);
 
