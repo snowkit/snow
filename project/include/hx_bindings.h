@@ -2,11 +2,10 @@
 #define LUMEN_HX_BINDINGS_H
 
 #include <hx/CFFI.h>
+#include "Object.h"
 
-namespace lumen {    
+namespace lumen {
 
-        //forward
-    class Object;
 
         //externs
     extern vkind global_lumen_object_kind;
@@ -57,47 +56,7 @@ namespace lumen {
         id_vsync                = val_id("vsync");
         id_fps                  = val_id("fps");        
 
-    } //lumen_init_ids    
-
-// native object wrapper tools
-
-    class Object {
-
-        public:
-            
-            int ref_count;
-
-        protected:
-
-            virtual ~Object() {}
-
-        public:
-
-            Object( bool has_initial_ref = false ) : ref_count( has_initial_ref ? 1 : 0 ) {}
-
-            Object *grab() {
-
-                ref_count++;
-
-                return this; 
-
-            } //grab
-
-            void drop() { 
-                
-                ref_count--; 
-                
-                if( ref_count <= 0 ) {
-                    delete this; 
-                }
-
-            } //drop
-
-            // virtual int getApiVersion() { 
-            //     return NME_API_VERSION; 
-            // }
-        
-    }; //Object
+    } //lumen_init_ids
 
     inline value Object_to_hx( Object *object ) {
 

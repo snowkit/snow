@@ -2,6 +2,8 @@ package lumen.window;
 
 import lumen.LumenTypes;
 import lumen.window.WindowManager;
+
+import lumen.gl.GL;
     
     //A window has it's own event loop
     //and allows opening and closing windows
@@ -54,12 +56,24 @@ class Window {
         lumen_window_update( handle );
 
     } //update
-    
+
     public function render() {
 
         lumen_window_render( handle );
 
-    } //update
+        GL.clearColor( Math.random(), Math.random(), Math.random(), 1.0);
+        GL.clear( GL.COLOR_BUFFER_BIT );
+
+        swap();
+
+    } //render
+
+
+    public function swap() {
+
+        lumen_window_swap( handle );
+
+    }
 
     public function simple_message( message:String, title:String="" ) {
 
@@ -67,9 +81,12 @@ class Window {
 
     } //simple_message
 
+    private static var lumen_gl_clear = Lumen.load("lumen", "lumen_gl_clear", 1);
+
     private static var lumen_window_create = Lumen.load( "lumen", "lumen_window_create", 2 );
     private static var lumen_window_update = Lumen.load( "lumen", "lumen_window_update", 1 );
     private static var lumen_window_render = Lumen.load( "lumen", "lumen_window_render", 1 );
+    private static var lumen_window_swap = Lumen.load( "lumen", "lumen_window_swap", 1 );
     private static var lumen_window_simple_message = Lumen.load( "lumen", "lumen_window_simple_message", 3 );
 
 } //Window
