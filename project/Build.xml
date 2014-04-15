@@ -69,11 +69,19 @@
 
       <file name="src/hx_bindings.cpp" />
 
+   <!-- Lib sources -->
+
+         <!-- lzma -->
+      <file name="${SRC_DIR}/libs/lzma/LzmaBinding.cpp" />
       <file name="${SRC_DIR}/libs/lzma/LzFind.c" />
       <file name="${SRC_DIR}/libs/lzma/LzmaDec.c" />
       <file name="${SRC_DIR}/libs/lzma/LzmaEnc.c" />
       <file name="${SRC_DIR}/libs/lzma/LzFindMt.c" if="windows" />
       <file name="${SRC_DIR}/libs/lzma/Threads.c" if="windows" />
+      <file name="${SRC_DIR}/libs/lzma/Threads.c" if="windows" />
+
+         <!-- glew -->
+      <file name="${SRC_DIR}/libs/glew/glew.c" />
 
    <!-- Platform specific sources  -->
 
@@ -121,9 +129,9 @@
         <compilerflag value="-DSDL_OGL" />
         <compilerflag value="-DLUMEN_SDL2" />
 
-        <file name="${SRC_DIR}/window/lumen_window_sdl2.cpp"/>
-        <file name="${SRC_DIR}/lumen/lumen_core_sdl2.cpp" />
-        <file name="${SRC_DIR}/opengl/lumen_opengl_sdl2.cpp" />
+        <file name="${SRC_DIR}/window/sdl2/lumen_window_sdl2.cpp"/>
+        <file name="${SRC_DIR}/lumen/sdl2/lumen_core_sdl2.cpp" />
+        <file name="${SRC_DIR}/render/opengl/sdl2/lumen_opengl_sdl2.cpp" />
 
       </section>
 

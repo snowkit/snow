@@ -7,7 +7,7 @@ typedef LumenConfig = {
     ? host                  : App,
     ? window_config         : WindowConfig
 
-}
+} //LumenConfig
 
 typedef WindowConfig = {
 
@@ -27,7 +27,7 @@ typedef WindowConfig = {
     ? multitouch_supported  : Bool,
     ? multitouch            : Bool
 
-}
+} //WindowConfig
 
 typedef SystemEvent = {
 
@@ -66,12 +66,14 @@ enum SystemEventType {
     app_willenterforeground;
     app_didenterforeground;
 
-}
+} //SystemEventType
 
 //Window stuff
 
 enum WindowEventType {
+
     unknown;
+
     window_shown;
     window_hidden;
     window_exposed;
@@ -85,7 +87,8 @@ enum WindowEventType {
     window_focus_gained;
     window_focus_lost;
     window_close;
-}
+
+} //WindowEventType
 
 
 class SystemEvents {

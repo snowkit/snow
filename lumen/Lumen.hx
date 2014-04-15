@@ -84,11 +84,6 @@ class Lumen {
             var w3 = windower.create( config.window_config );
             var w4 = windower.create( config.window_config );
 
-        trace(w2.id);
-        trace(w3.id);
-        trace(w4.id);
-        trace(main_window.id);
-
             //and track the main window only for now 
         main_window.window_event_handler = on_main_window_event;
 

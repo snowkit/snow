@@ -35,6 +35,7 @@ class Window {
         id = _id;
         handle = _handle;
         config = _config;
+        r = Math.random();
 
         trace("/ lumen / created window with id: " + id);
         trace('/ lumen / updating real window config for $id is ' + _config);
@@ -43,7 +44,7 @@ class Window {
 
     @:noCompletion public function on_event( _event:WindowEvent ) {
 
-        trace("/ lumen / window event " + id + " / " + _event.type );
+        // trace("/ lumen / window event " + id + " / " + _event.type );
 
         if(window_event_handler != null) {
             window_event_handler( _event );
@@ -57,12 +58,17 @@ class Window {
 
     } //update
 
+    var r = 0.0; var rdir = -1;
     public function render() {
 
         lumen_window_render( handle );
 
-        GL.clearColor( Math.random(), Math.random(), Math.random(), 1.0);
+        GL.clearColor( r, 0.5, 0.1, 1.0);
         GL.clear( GL.COLOR_BUFFER_BIT );
+
+        r += 0.0005 * rdir;
+        if(r >= 1) { rdir = -1; }
+        if(r <= 0.8) { rdir = 1; }
 
         swap();
 

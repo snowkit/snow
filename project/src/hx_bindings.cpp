@@ -17,6 +17,7 @@
 #include "lumen_core.h"
 #include "lumen_window.h"
 #include "ByteArray.h"
+#include "libs/lzma/lzma.h"
 
 namespace lumen {
 
@@ -171,7 +172,23 @@ namespace lumen {
 
 
 
+// LZMA
 
+    value lumen_lzma_encode(value input_value)
+    {
+       buffer input_buffer = val_to_buffer(input_value);
+       buffer output_buffer = alloc_buffer_len(0);
+       Lzma::Encode(input_buffer, output_buffer);
+       return buffer_val(output_buffer);
+    } DEFINE_PRIM(lumen_lzma_encode,1);
+
+    value lumen_lzma_decode(value input_value)
+    {
+       buffer input_buffer = val_to_buffer(input_value);
+       buffer output_buffer = alloc_buffer_len(0);
+       Lzma::Decode(input_buffer, output_buffer);
+       return buffer_val(output_buffer);
+    } DEFINE_PRIM(lumen_lzma_decode,1);
 
 
 // --- ByteArray -----------------------------------------------------
@@ -250,10 +267,96 @@ unsigned char *ByteArray::Bytes()
 
 // --------------------
 
+// [ddc]
+value lumen_byte_array_overwrite_file(value inFilename, value inBytes)
+{
+   // file is created if it doesn't exist,
+   // if it exists, it is truncated to zero
+   FILE *file = OpenOverwrite(val_os_string(inFilename));
+   if (!file)
+   {
+      #ifdef ANDROID
+      // [todo]
+      #endif
+      return alloc_null();
+   }
+
+   ByteArray array(inBytes);
+
+   // The function fwrite() writes nitems objects, each size bytes long, to the
+   // stream pointed to by stream, obtaining them from the location given by
+   // ptr.
+   // fwrite(const void *restrict ptr, size_t size, size_t nitems, FILE *restrict stream);
+   fwrite( array.Bytes() , 1, array.Size() , file);
+
+   fclose(file);
+   return alloc_null();
+}
+DEFINE_PRIM(lumen_byte_array_overwrite_file,2);
+
+value lumen_byte_array_read_file(value inFilename)
+{
+   ByteArray result = ByteArray::FromFile(val_os_string(inFilename));
+   return result.mValue;
+}
+DEFINE_PRIM(lumen_byte_array_read_file,1);
+
+
+value lumen_byte_array_get_native_pointer(value inByteArray)
+{
+   ByteArray bytes (inByteArray);
+   if (!val_is_null (bytes.mValue))
+   {
+      return alloc_int((intptr_t)bytes.Bytes ());
+   }
+   return alloc_null();
+}
+DEFINE_PRIM(lumen_byte_array_get_native_pointer,1);
 
 
 
 
+ByteArray ByteArray::FromFile(const OSChar *inFilename)
+{
+   FILE *file = OpenRead(inFilename);
+   if (!file)
+   {
+      #ifdef ANDROID
+      return AndroidGetAssetBytes(inFilename);
+      #endif
+      return ByteArray();
+   }
+
+   fseek(file,0,SEEK_END);
+   int len = ftell(file);
+   fseek(file,0,SEEK_SET);
+
+   ByteArray result(len);
+   int status = fread(result.Bytes(),len,1,file);
+   fclose(file);
+
+   return result;
+}
+
+
+#ifdef HX_WINDOWS
+ByteArray ByteArray::FromFile(const char *inFilename)
+{
+   FILE *file = fopen(inFilename,"rb");
+   if (!file)
+      return ByteArray();
+
+   fseek(file,0,SEEK_END);
+   int len = ftell(file);
+   fseek(file,0,SEEK_SET);
+
+   ByteArray result(len);
+   fread(result.Bytes(),len,1,file);
+   fclose(file);
+
+   return result;
+}
+#endif
 
 
 
