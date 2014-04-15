@@ -42,10 +42,13 @@ namespace lumen {
 
         int antialiasing;
         int fps;
+        int x;
+        int y;
         int width;
         int height;
 
         window_config() {
+
             title            = "lumen";
             fullscreen       = false;
             resizable        = true;
@@ -55,9 +58,12 @@ namespace lumen {
             stencil_buffer   = false;
             antialiasing     = 0;
             fps              = 60;
+            x                = 0;
+            y                = 0;
             width            = 960;
             height           = 640;
-        }
+
+        } //window_config
 
         window_config( const window_config &other ) {
 
@@ -70,10 +76,12 @@ namespace lumen {
             stencil_buffer = other.stencil_buffer;
             antialiasing = other.antialiasing;
             fps = other.fps;
+            x = other.x;
+            y = other.y;
             width = other.width;
             height = other.height;
 
-        }
+        } //window_config( const window_config &other )
 
     }; //window_config
 
@@ -86,14 +94,15 @@ namespace lumen {
         we_exposed          = 3,
         we_moved            = 4,
         we_resized          = 5,
-        we_minimized        = 6,
-        we_maximized        = 7,
-        we_restored         = 8,
-        we_enter            = 9,
-        we_leave            = 10,
-        we_focus_gained     = 11,
-        we_focus_lost       = 12,
-        we_close            = 13
+        we_size_changed     = 6,
+        we_minimized        = 7,
+        we_maximized        = 8,
+        we_restored         = 9,
+        we_enter            = 10,
+        we_leave            = 11,
+        we_focus_gained     = 12,
+        we_focus_lost       = 13,
+        we_close            = 14
 
     }; //WindowEventType
 
@@ -103,9 +112,12 @@ namespace lumen {
         public:
             WindowEventType type;
             int window_id;
+            int timestamp;
+            int data1;
+            int data2;
 
-        WindowEvent( WindowEventType _type = we_unknown, int _window_id = 1 ) 
-            : type(_type), window_id(_window_id)
+        WindowEvent( WindowEventType _type = we_unknown, int _window_id = 1, int _timestamp = 0, int _data1 = 0, int _data2 = 0 ) 
+            : type(_type), window_id(_window_id), timestamp(_timestamp), data1(_data1), data2(_data2)
                 {}
 
     };
@@ -172,6 +184,9 @@ namespace lumen {
 
             alloc_field( _window_event, id_type, alloc_int( event.type ) );
             alloc_field( _window_event, id_window_id, alloc_int( event.window_id ) );
+            alloc_field( _window_event, id_timestamp, alloc_int( event.timestamp ) );
+            alloc_field( _window_event, id_data1, alloc_int( event.data1 ) );
+            alloc_field( _window_event, id_data2, alloc_int( event.data2 ) );
 
         value _system_event = alloc_empty_object();
 
@@ -209,6 +224,8 @@ namespace lumen {
             
             alloc_field( _object, id_antialiasing, alloc_int(config.antialiasing) );
             alloc_field( _object, id_fps, alloc_int(config.fps) );
+            alloc_field( _object, id_x, alloc_int(config.x) );
+            alloc_field( _object, id_y, alloc_int(config.y) );
             alloc_field( _object, id_width, alloc_int(config.width) );
             alloc_field( _object, id_height, alloc_int(config.height) );
 
@@ -225,19 +242,21 @@ namespace lumen {
 
         if( !val_is_null(_in_config) ) {
 
-            config.title                  = property_string( _in_config, id_title, config.title.c_str() );
+            config.title                    = property_string( _in_config, id_title, config.title.c_str() );
 
-            config.fullscreen             = property_bool( _in_config, id_fullscreen, config.fullscreen );
-            config.resizable              = property_bool( _in_config, id_resizable, config.resizable );
-            config.vsync                  = property_bool( _in_config, id_vsync, config.vsync );
-            config.borderless             = property_bool( _in_config, id_borderless, config.borderless );
-            config.depth_buffer           = property_bool( _in_config, id_depth_buffer, config.depth_buffer );
-            config.stencil_buffer         = property_bool( _in_config, id_stencil_buffer, config.stencil_buffer );
+            config.fullscreen               = property_bool( _in_config, id_fullscreen, config.fullscreen );
+            config.resizable                = property_bool( _in_config, id_resizable, config.resizable );
+            config.vsync                    = property_bool( _in_config, id_vsync, config.vsync );
+            config.borderless               = property_bool( _in_config, id_borderless, config.borderless );
+            config.depth_buffer             = property_bool( _in_config, id_depth_buffer, config.depth_buffer );
+            config.stencil_buffer           = property_bool( _in_config, id_stencil_buffer, config.stencil_buffer );
 
-            config.antialiasing           = property_int( _in_config, id_antialiasing, config.antialiasing );
-            config.fps                    = property_int( _in_config, id_fps, config.fps );
-            config.width                  = property_int( _in_config, id_width, config.width );
-            config.height                 = property_int( _in_config, id_height, config.height );
+            config.antialiasing             = property_int( _in_config, id_antialiasing, config.antialiasing );
+            config.fps                      = property_int( _in_config, id_fps, config.fps );
+            config.x                        = property_int( _in_config, id_x, config.x );
+            config.y                        = property_int( _in_config, id_y, config.y );
+            config.width                    = property_int( _in_config, id_width, config.width );
+            config.height                   = property_int( _in_config, id_height, config.height );
 
         } // _in_config != null
 

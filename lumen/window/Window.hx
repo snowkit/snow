@@ -5,6 +5,16 @@ import lumen.window.WindowManager;
 
 import lumen.gl.GL;
     
+typedef WindowPosition = {
+    var x : Int;
+    var y : Int;
+}
+
+typedef WindowSize = {
+    var w : Int;
+    var h : Int;
+}
+
     //A window has it's own event loop
     //and allows opening and closing windows
 class Window {
@@ -20,7 +30,13 @@ class Window {
     public var handle : Dynamic;
     public var window_event_handler : WindowEvent->Void;
 
+    @:isVar public var position (get,set) : WindowPosition;
+    @:isVar public var size (get,set) : WindowSize;
+
     public function new( _manager:WindowManager, _config:WindowConfig ) {
+
+        position = { x:0, y:0 };
+        size = { w:0, h:0 };        
 
         manager = _manager;
         asked_config = _config;
@@ -35,6 +51,15 @@ class Window {
         id = _id;
         handle = _handle;
         config = _config;
+
+            //update the position and size 
+            //because it updates in the config
+        position.x = _config.x;
+        position.y = _config.y;
+
+        size.w = _config.width;
+        size.h = _config.height;
+
         r = Math.random();
 
         trace("/ lumen / created window with id: " + id);
@@ -44,7 +69,32 @@ class Window {
 
     @:noCompletion public function on_event( _event:WindowEvent ) {
 
-        // trace("/ lumen / window event " + id + " / " + _event.type );
+        // trace("/ lumen / window event " + id + " / " + _event.type + " / " + _event.data1 + " / " + _event.data2 );
+
+        switch(_event.type) {
+            
+            case window_shown : {}
+            case window_hidden : {}
+            case window_exposed : {}
+
+            case window_moved : { position = { x:_event.data1, y:_event.data2 }; }
+            case window_resized : { position = { x:_event.data1, y:_event.data2 }; }
+            case window_size_changed : { size = { w:_event.data1, h:_event.data2 }; }
+
+            case window_minimized : {}
+            case window_maximized : {}
+            case window_restored : {}
+            case window_enter : {}
+            case window_leave : {}
+            case window_focus_gained : {
+
+            }
+            case window_focus_lost : {}
+            case window_close : {}
+
+            default: {}
+
+        } //switch
 
         if(window_event_handler != null) {
             window_event_handler( _event );
@@ -66,14 +116,13 @@ class Window {
         GL.clearColor( r, 0.5, 0.1, 1.0);
         GL.clear( GL.COLOR_BUFFER_BIT );
 
-        r += 0.0005 * rdir;
+        r += 0.005 * rdir;
         if(r >= 1) { rdir = -1; }
         if(r <= 0.8) { rdir = 1; }
 
         swap();
 
     } //render
-
 
     public function swap() {
 
@@ -86,6 +135,22 @@ class Window {
         lumen_window_simple_message( handle, message, title );
 
     } //simple_message
+
+    function get_position() : WindowPosition {
+        return position;
+    }
+
+    function get_size() : WindowSize {
+        return size;
+    }
+
+    function set_position( _pos:WindowPosition ) : WindowPosition {
+        return position = _pos;
+    }
+
+    function set_size( _size:WindowSize ) : WindowSize {
+        return size = _size;
+    }
 
     private static var lumen_gl_clear = Lumen.load("lumen", "lumen_gl_clear", 1);
 
