@@ -8,3 +8,4 @@ bin/
 obj/
 builds/
 users/
+samples/_tests_builds_/0_empty_window/upx.exe
