@@ -1,4 +1,4 @@
-#include "libs/lzma/Lzma.h"
+#include "libs/lzma/lzma.h"
 #include "./LzmaEnc.h"
 #include "./LzmaDec.h"
 
