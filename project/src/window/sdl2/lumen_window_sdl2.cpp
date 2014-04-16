@@ -212,6 +212,31 @@ namespace lumen {
 
 //Events
 
+    value sdl2_window_event_to_hx( WindowEvent &new_event, SDL_Event &event ) {
+
+        value _object = alloc_empty_object();
+
+            alloc_field( _object, id_type, alloc_int(event.window.event) );
+            alloc_field( _object, id_window_id, alloc_int(event.window.windowID) );
+            alloc_field( _object, id_timestamp, alloc_int(event.window.timestamp) );
+
+            switch (event.window.event) {
+
+                case SDL_WINDOWEVENT_MOVED:
+                case SDL_WINDOWEVENT_RESIZED:
+                case SDL_WINDOWEVENT_SIZE_CHANGED: {
+
+                    alloc_field( _object, id_data1, alloc_int(event.window.data1) );
+                    alloc_field( _object, id_data2, alloc_int(event.window.data2) );
+
+                }
+
+            } //switch event.type
+
+        return _object;
+
+    } //sdl2_window_event_to_hx
+
     void handle_window_event( SDL_Event &event ) {
 
             //not a window event?
@@ -254,7 +279,7 @@ namespace lumen {
                     } //resized
 
                     case SDL_WINDOWEVENT_SIZE_CHANGED: {
-                        new_event.type = we_size_changed;
+                        new_event.type = we_size_changed;                        
                         break;
                     } //size_changed
 
@@ -306,12 +331,12 @@ namespace lumen {
 
         } //switch event.type
 
-            //dispatch the event!
-        new_event.data1 = event.window.data1;
-        new_event.data2 = event.window.data2;
+            //populate it's event structure first
+        new_event.event = sdl2_window_event_to_hx(new_event, event);            
         new_event.timestamp = event.window.timestamp;
         new_event.window_id = event.window.windowID;
 
+            //dispatch the event!
         dispatch_window_event( new_event );
 
     } //handle_window_event    
