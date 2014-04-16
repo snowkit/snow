@@ -114,11 +114,10 @@ namespace lumen {
             WindowEventType type;
             int window_id;
             int timestamp;
-            int data1;
-            int data2;
+            value event;
 
-        WindowEvent( WindowEventType _type = we_unknown, int _window_id = 1, int _timestamp = 0, int _data1 = 0, int _data2 = 0 ) 
-            : type(_type), window_id(_window_id), timestamp(_timestamp), data1(_data1), data2(_data2)
+        WindowEvent( WindowEventType _type = we_unknown, int _window_id = 1, int _timestamp = 0 ) 
+            : type(_type), window_id(_window_id), timestamp(_timestamp)
                 {}
 
     };
@@ -186,8 +185,7 @@ namespace lumen {
             alloc_field( _window_event, id_type, alloc_int( event.type ) );
             alloc_field( _window_event, id_window_id, alloc_int( event.window_id ) );
             alloc_field( _window_event, id_timestamp, alloc_int( event.timestamp ) );
-            alloc_field( _window_event, id_data1, alloc_int( event.data1 ) );
-            alloc_field( _window_event, id_data2, alloc_int( event.data2 ) );
+            alloc_field( _window_event, id_event, event.event );
 
         value _system_event = alloc_empty_object();
 
