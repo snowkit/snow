@@ -49,8 +49,7 @@ typedef WindowEvent = {
     ? type : WindowEventType,
     ? timestamp : Int,
     ? window_id : Int,
-    ? data1 : Int,
-    ? data2 : Int
+    ? event : Dynamic
 
 } //WindowEvent
 

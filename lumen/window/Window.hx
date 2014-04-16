@@ -69,7 +69,8 @@ class Window {
 
     @:noCompletion public function on_event( _event:WindowEvent ) {
 
-        // trace("/ lumen / window event " + id + " / " + _event.type + " / " + _event.data1 + " / " + _event.data2 );
+        // trace("/ lumen / window event " + id + " / " + _event.type + " / " + _event.event );
+        trace(_event);
 
         switch(_event.type) {
             
@@ -77,9 +78,9 @@ class Window {
             case window_hidden : {}
             case window_exposed : {}
 
-            case window_moved : { position = { x:_event.data1, y:_event.data2 }; }
-            case window_resized : { position = { x:_event.data1, y:_event.data2 }; }
-            case window_size_changed : { size = { w:_event.data1, h:_event.data2 }; }
+            case window_moved : { position = { x:_event.event.data1, y:_event.event.data2 }; }
+            case window_resized : { position = { x:_event.event.data1, y:_event.event.data2 }; }
+            case window_size_changed : { size = { w:_event.event.data1, h:_event.event.data2 }; }
 
             case window_minimized : {}
             case window_maximized : {}
