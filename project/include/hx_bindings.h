@@ -2,7 +2,7 @@
 #define LUMEN_HX_BINDINGS_H
 
 #include <hx/CFFI.h>
-#include "Object.h"
+#include "common/Object.h"
 
 namespace lumen {
 
