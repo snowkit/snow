@@ -4,8 +4,10 @@ import haxe.Timer;
 
 import lumen.LumenTypes;
 
-import lumen.window.WindowManager;
 import lumen.window.Window;
+import lumen.window.WindowManager;
+import lumen.input.InputManager;
+
 
 class App {
     
@@ -21,11 +23,13 @@ class Lumen {
     public var config : LumenConfig;
 
     public var windower : WindowManager;
+    public var inputer : InputManager;
 
     public var shutting_down : Bool = false;
     public var has_shutdown : Bool = false;
 
     var was_ready : Bool = false;
+    var is_ready : Bool = false;
 
     public function new() {
 
@@ -44,6 +48,7 @@ class Lumen {
         // #end
 
         windower = new WindowManager( this );
+        inputer = new InputManager( this );
 
         lumen_init( on_event );
 
@@ -52,6 +57,9 @@ class Lumen {
     public function shutdown() {
 
         shutting_down = true;
+
+        inputer.destroy();
+        windower.destroy();
 
         lumen_shutdown();
 
@@ -87,6 +95,9 @@ class Lumen {
             //and track the main window only for now 
         main_window.window_event_handler = on_main_window_event;
 
+            //now ready
+        is_ready = true;
+
             //tell the host app we are done
         host.ready();
 
@@ -95,6 +106,7 @@ class Lumen {
     function on_lumen_update() {
 
         windower.update();
+        inputer.update();
 
     } //on_lumen_update
 
@@ -104,13 +116,16 @@ class Lumen {
 
         if( _event.type != update && 
             _event.type != unknown && 
-            _event.type != window 
+            _event.type != window &&
+            _event.type != input 
 
         ) {
             trace( "/ lumen / system event : " + _event );
         }
 
         switch(_event.type) {
+
+            case unknown : { }
 
             case ready: {
                 on_lumen_ready();
@@ -125,17 +140,22 @@ class Lumen {
             } //update
 
             case window: {
-                windower.on_event( _event.window );
+                windower.on_event( _event );
+            }
+            
+            case input: {
+                if(is_ready) {
+                    inputer.on_event( _event );
+                }
             }
 
-            case unknown : {}
-            case shutdown : {}
-            case app_willenterforeground : {}
-            case app_willenterbackground : {}
-            case app_terminating : {}
-            case app_lowmemory : {}
-            case app_didenterforeground : {}
-            case app_didenterbackground : {}
+            case shutdown : { }
+            case app_willenterforeground : { }
+            case app_willenterbackground : { }
+            case app_terminating : { }
+            case app_lowmemory : { }
+            case app_didenterforeground : { }
+            case app_didenterbackground : { }
 
         } //switch _event.type
 

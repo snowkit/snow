@@ -210,6 +210,112 @@ namespace lumen {
 
     } //update
 
+//Events
+
+    void handle_window_event( SDL_Event &event ) {
+
+            //not a window event?
+        if(event.type != SDL_WINDOWEVENT) {
+            return;
+        }
+
+            //the event to dispatch, if any
+        WindowEvent new_event;        
+
+        switch(event.type) {
+
+            case SDL_WINDOWEVENT: {
+
+                switch (event.window.event) {
+
+                    case SDL_WINDOWEVENT_SHOWN: {
+                        new_event.type = we_shown;
+                        break;
+                    } //shown
+
+                    case SDL_WINDOWEVENT_HIDDEN: {
+                        new_event.type = we_hidden;
+                        break;
+                    } //hidden
+
+                    case SDL_WINDOWEVENT_EXPOSED: {
+                        new_event.type = we_exposed;
+                        break;
+                    } //exposed
+
+                    case SDL_WINDOWEVENT_MOVED: {
+                        new_event.type = we_moved;
+                        break;
+                    } //moved
+
+                    case SDL_WINDOWEVENT_RESIZED: {
+                        new_event.type = we_resized;
+                        break;
+                    } //resized
+
+                    case SDL_WINDOWEVENT_SIZE_CHANGED: {
+                        new_event.type = we_size_changed;
+                        break;
+                    } //size_changed
+
+                    case SDL_WINDOWEVENT_MINIMIZED: {
+                        new_event.type = we_minimized;
+                        break;
+                    } //minimized
+
+                    case SDL_WINDOWEVENT_MAXIMIZED: {
+                        new_event.type = we_maximized;
+                        break;
+                    } //maximized
+
+                    case SDL_WINDOWEVENT_RESTORED: {
+                        new_event.type = we_restored;
+                        break;
+                    } //restored
+
+                    case SDL_WINDOWEVENT_ENTER: {
+                        new_event.type = we_enter;
+                        break;
+                    } //enter
+
+                    case SDL_WINDOWEVENT_LEAVE: {
+                        new_event.type = we_leave;
+                        break;
+                    } //leave
+
+                    case SDL_WINDOWEVENT_FOCUS_GAINED: {
+                        new_event.type = we_focus_gained;
+                        break;
+                    } //focus gain
+
+                    case SDL_WINDOWEVENT_FOCUS_LOST: {
+                        new_event.type = we_focus_lost;
+                        break;
+                    } //focus lost
+
+                    case SDL_WINDOWEVENT_CLOSE: {
+                        new_event.type = we_close;
+                        break;
+                    } //close
+                
+                } //switch window.event type
+
+                break;
+
+            } //SDL_WINDOWEVENT
+
+        } //switch event.type
+
+            //dispatch the event!
+        new_event.data1 = event.window.data1;
+        new_event.data2 = event.window.data2;
+        new_event.timestamp = event.window.timestamp;
+        new_event.window_id = event.window.windowID;
+
+        dispatch_window_event( new_event );
+
+    } //handle_window_event    
+
 
 //Helpers
 

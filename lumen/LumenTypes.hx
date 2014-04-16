@@ -39,7 +39,8 @@ typedef SystemEvent = {
         //which are null if that event is not of the right type
         //so, if this event.type == se_window, window should be non-null
         //and populated with the specifics to that event
-    ? window : WindowEvent
+    ? window : WindowEvent,
+    ? input : InputEvent
 
 } //SystemEvent
 
@@ -53,6 +54,15 @@ typedef WindowEvent = {
 
 } //WindowEvent
 
+typedef InputEvent = {
+
+    ? type : InputEventType,
+    ? timestamp : Int,
+    ? window_id : Int,
+    ? event : Dynamic
+
+} //InputEvent
+
 
 enum SystemEventType {
 
@@ -62,6 +72,7 @@ enum SystemEventType {
     update;
     shutdown;
     window;
+    input;
 
     quit;
     app_terminating;
@@ -97,6 +108,18 @@ enum WindowEventType {
 } //WindowEventType
 
 
+enum InputEventType {
+
+    unknown;
+
+    key;
+    mouse;
+    touch;
+    joystick;
+    controller;
+
+} //InputEventType
+
 class SystemEvents {
         
         //lumen core events
@@ -106,16 +129,17 @@ class SystemEvents {
     public static var se_update                     = 2;
     public static var se_shutdown                   = 3;
     public static var se_window                     = 4;
+    public static var se_input                      = 5;
 
         //lumen application events
 
-    public static var se_quit                       = 5;
-    public static var se_app_terminating            = 6;
-    public static var se_app_lowmemory              = 7;
-    public static var se_app_willenterbackground    = 8;
-    public static var se_app_didenterbackground     = 9;
-    public static var se_app_willenterforeground    = 10;
-    public static var se_app_didenterforeground     = 11;
+    public static var se_quit                       = 6;
+    public static var se_app_terminating            = 7;
+    public static var se_app_lowmemory              = 8;
+    public static var se_app_willenterbackground    = 9;
+    public static var se_app_didenterbackground     = 10;
+    public static var se_app_willenterforeground    = 11;
+    public static var se_app_didenterforeground     = 12;
 
 //Helpers
 
@@ -125,6 +149,8 @@ class SystemEvents {
             if(type == se_update)                       return SystemEventType.update;
             if(type == se_shutdown)                     return SystemEventType.shutdown;
             if(type == se_window)                       return SystemEventType.window;
+            if(type == se_input)                        return SystemEventType.input;
+
             if(type == se_quit)                         return SystemEventType.quit;
             if(type == se_app_terminating)              return SystemEventType.app_terminating;
             if(type == se_app_lowmemory)                return SystemEventType.app_lowmemory;
@@ -183,3 +209,32 @@ class WindowEvents {
     } //typed
 
 } //WindowEvents
+
+class InputEvents {
+    
+//Input events
+
+        public static var ie_unknown                    = 0;
+
+        public static var ie_key                        = 1;
+        public static var ie_mouse                      = 2;
+        public static var ie_touch                      = 3;
+        public static var ie_joystick                   = 4;
+        public static var ie_controller                 = 5;
+
+//Helpers
+
+    public static function typed(type:Int) : InputEventType {
+        
+            if(type == ie_unknown)      return InputEventType.unknown;
+            if(type == ie_key)          return InputEventType.key;
+            if(type == ie_mouse)        return InputEventType.mouse;
+            if(type == ie_touch)        return InputEventType.touch;
+            if(type == ie_joystick)     return InputEventType.joystick;
+            if(type == ie_controller)   return InputEventType.controller;
+            
+        return InputEventType.unknown;
+
+    } //typed
+
+} //InputEvents
