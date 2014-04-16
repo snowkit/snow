@@ -70,7 +70,6 @@ class Window {
     @:noCompletion public function on_event( _event:WindowEvent ) {
 
         // trace("/ lumen / window event " + id + " / " + _event.type + " / " + _event.event );
-        trace(_event);
 
         switch(_event.type) {
             
