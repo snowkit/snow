@@ -69,6 +69,7 @@
    <!-- Common sources -->
 
       <file name="src/hx_bindings.cpp" />
+      <file name="src/common/ByteArray.cpp" />
 
    <!-- Lib sources -->
 
