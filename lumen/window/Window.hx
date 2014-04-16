@@ -152,8 +152,6 @@ class Window {
         return size = _size;
     }
 
-    private static var lumen_gl_clear = Lumen.load("lumen", "lumen_gl_clear", 1);
-
     private static var lumen_window_create = Lumen.load( "lumen", "lumen_window_create", 2 );
     private static var lumen_window_update = Lumen.load( "lumen", "lumen_window_update", 1 );
     private static var lumen_window_render = Lumen.load( "lumen", "lumen_window_render", 1 );

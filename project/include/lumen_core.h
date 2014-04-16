@@ -29,16 +29,17 @@ namespace lumen {
         se_update                       = 2,
         se_shutdown                     = 3,
         se_window                       = 4,
+        se_input                        = 5,
 
             //lumen application events
 
-        se_quit                         = 5,
-        se_app_terminating              = 6,
-        se_app_lowmemory                = 7,
-        se_app_willenterbackground      = 8,
-        se_app_didenterbackground       = 9,
-        se_app_willenterforeground      = 10,
-        se_app_didenterforeground       = 11
+        se_quit                         = 6,
+        se_app_terminating              = 7,
+        se_app_lowmemory                = 8,
+        se_app_willenterbackground      = 9,
+        se_app_didenterbackground       = 10,
+        se_app_willenterforeground      = 11,
+        se_app_didenterforeground       = 12
 
     }; //SystemEvent
 

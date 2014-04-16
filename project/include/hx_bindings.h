@@ -14,17 +14,47 @@ namespace lumen {
         //id's
     extern int id_id;
     extern int id_type;
+    extern int id_event;
     extern int id_x;
     extern int id_y;
     extern int id_width;
     extern int id_height;
+    extern int id_text;
+    extern int id_length;
 
         //window related
+
     extern int id_window;
     extern int id_window_id;
     extern int id_timestamp;
     extern int id_data1;
     extern int id_data2;
+
+        //input related
+
+    extern int id_input;
+    extern int id_start;
+    extern int id_state;
+    extern int id_repeat;
+    extern int id_mod;
+    extern int id_keysym;
+    extern int id_sym;
+    extern int id_scancode;
+    extern int id_which;
+    extern int id_xrel;
+    extern int id_yrel;
+    extern int id_button;
+    extern int id_dx;
+    extern int id_dy;
+    extern int id_finger_id;
+    extern int id_touch_id;
+    extern int id_pressure;
+    extern int id_axis;
+    extern int id_value;
+    extern int id_ball;
+    extern int id_hat;
+
+        //window config
 
     extern int id_title;
     extern int id_fullscreen;
@@ -46,10 +76,13 @@ namespace lumen {
 
         id_id                   = val_id("id");
         id_type                 = val_id("type");
+        id_event                = val_id("event");
         id_x                    = val_id("x");
         id_y                    = val_id("y");
         id_width                = val_id("width");
         id_height               = val_id("height");
+        id_text                 = val_id("text");
+        id_length               = val_id("length");
 
             //window related flags
 
@@ -58,6 +91,31 @@ namespace lumen {
         id_timestamp            = val_id("timestamp");
         id_data1                = val_id("data1");
         id_data2                = val_id("data2");
+
+            //input related flags
+        id_input                = val_id("input");
+        id_start                = val_id("start");
+        id_state                = val_id("state");
+        id_repeat               = val_id("repeat");
+        id_mod                  = val_id("mod");
+        id_keysym               = val_id("keysym");
+        id_sym                  = val_id("sym");
+        id_scancode             = val_id("scancode");
+        id_which                = val_id("which");
+        id_xrel                 = val_id("xrel");
+        id_yrel                 = val_id("yrel");
+        id_button               = val_id("button");
+        id_dx                   = val_id("dx");
+        id_dy                   = val_id("dy");
+        id_finger_id            = val_id("finger_id");
+        id_touch_id             = val_id("touch_id");
+        id_pressure             = val_id("pressure");
+        id_axis                 = val_id("axis");
+        id_value                = val_id("value");
+        id_ball                 = val_id("ball");
+        id_hat                  = val_id("hat");
+
+            //window config related
 
         id_title                = val_id("title");
         id_fullscreen           = val_id("fullscreen");

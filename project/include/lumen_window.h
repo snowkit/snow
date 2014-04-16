@@ -4,6 +4,7 @@
 #include <string>
 
 #include <hx/CFFI.h>
+
 #include "common/Object.h"
 #include "hx_bindings.h"
 #include "lumen_core.h"

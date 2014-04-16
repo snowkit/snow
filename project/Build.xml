@@ -131,8 +131,9 @@
         <compilerflag value="-DSDL_OGL" />
         <compilerflag value="-DLUMEN_SDL2" />
 
-        <file name="${SRC_DIR}/window/sdl2/lumen_window_sdl2.cpp"/>
         <file name="${SRC_DIR}/lumen/sdl2/lumen_core_sdl2.cpp" />
+        <file name="${SRC_DIR}/window/sdl2/lumen_window_sdl2.cpp"/>
+        <file name="${SRC_DIR}/input/sdl2/lumen_input_sdl2.cpp"/>
         <file name="${SRC_DIR}/render/opengl/sdl2/lumen_opengl_sdl2.cpp" />
 
       </section>

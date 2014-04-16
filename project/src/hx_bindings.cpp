@@ -14,8 +14,11 @@
 #endif
 
 #include "hx_bindings.h"
+
 #include "lumen_core.h"
 #include "lumen_window.h"
+#include "lumen_input.h"
+
 #include "common/ByteArray.h"
 #include "libs/lzma/lzma.h"
 
@@ -31,16 +34,41 @@ namespace lumen {
 
     int id_id;
     int id_type;
+    int id_event;
     int id_x;
     int id_y;
     int id_width;
     int id_height;
+    int id_text;
+    int id_length;
 
     int id_window;
     int id_window_id;
     int id_timestamp;
     int id_data1;
     int id_data2;
+
+    int id_input;
+    int id_start;
+    int id_state;
+    int id_repeat;
+    int id_mod;
+    int id_sym;
+    int id_keysym;
+    int id_scancode;
+    int id_which;
+    int id_xrel;
+    int id_yrel;
+    int id_button;
+    int id_dx;
+    int id_dy;
+    int id_finger_id;
+    int id_touch_id;
+    int id_pressure;
+    int id_axis;
+    int id_value;
+    int id_ball;
+    int id_hat;
 
     int id_title;
     int id_fullscreen;
@@ -74,7 +102,6 @@ namespace lumen {
 
 
 
-
     value lumen_init( value _on_event ) {
 
             //fetch the callback for system events
@@ -86,7 +113,7 @@ namespace lumen {
         return alloc_null();
     
     } DEFINE_PRIM(lumen_init, 1);
-    
+
 
     value lumen_shutdown() {
 
@@ -180,6 +207,32 @@ namespace lumen {
         return alloc_null();
 
     } DEFINE_PRIM(lumen_window_simple_message, 3);
+
+
+
+
+
+// input bindings
+
+
+
+
+
+    value lumen_gamepad_open( value _id ) {
+
+        input_gamepad_open(val_int(_id));
+
+        return alloc_null();
+
+    } DEFINE_PRIM(lumen_gamepad_open, 1)
+
+    value lumen_gamepad_close( value _id ) {
+
+        input_gamepad_close(val_int(_id));
+
+        return alloc_null();
+
+    } DEFINE_PRIM(lumen_gamepad_close, 1)
 
 
 
