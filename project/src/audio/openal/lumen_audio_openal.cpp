@@ -387,22 +387,73 @@ namespace lumen {
     } DEFINE_PRIM(alhx_alcMakeContextCurrent, 1);
 
     value alhx_alcProcessContext() {
+
+        ALHX_ALContext* context;
+
+        if( Object_from_hx(_context, context) ) {
+
+            alcProcessContext( context->al_context );
+
+        } //fetch context
+
         return alloc_null();
     } DEFINE_PRIM(alhx_alcProcessContext, 1);
 
     value alhx_alcSuspendContext() {
+
+        ALHX_ALContext* context;
+
+        if( Object_from_hx(_context, context) ) {
+
+            alcSuspendContext( context->al_context );
+
+        } //fetch context
+
         return alloc_null();
     } DEFINE_PRIM(alhx_alcSuspendContext, 1);
 
     value alhx_alcDestroyContext() {
+
+        ALHX_ALContext* context;
+
+        if( Object_from_hx(_context, context) ) {
+
+            alcDestroyContext( context->al_context );
+
+        } //fetch context
+
         return alloc_null();
     } DEFINE_PRIM(alhx_alcDestroyContext, 1);
 
     value alhx_alcGetCurrentContext() {
+
+        if( Object_from_hx(_context, context) ) {
+
+            ALCcontext *_al_context = alcGetCurrentContext();
+
+            ALHX_ALContext* context = new ALHX_ALContext(_al_context);
+
+            return Object_to_hx(context);
+
+        } //fetch context
+
         return alloc_null();
     } DEFINE_PRIM(alhx_alcGetCurrentContext, 0);
 
     value alhx_alcGetContextsDevice() {
+
+        ALHX_ALContext* context;
+
+        if( Object_from_hx(_context, context) ) {
+
+            ALDevice* _al_device = alcGetContextsDevice( context->al_context );
+            
+            ALHX_ALDevice* device = new ALHX_ALDevice(_al_device);
+
+            return Object_to_hx(device);
+
+        } //fetch context
+
         return alloc_null();
     } DEFINE_PRIM(alhx_alcGetContextsDevice, 1);
 
