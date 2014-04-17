@@ -7,6 +7,7 @@ import lumen.LumenTypes;
 import lumen.window.Window;
 import lumen.window.WindowManager;
 import lumen.input.InputManager;
+import lumen.audio.AudioManager;
 
 
 class App {
@@ -22,8 +23,9 @@ class Lumen {
     public var host : App;
     public var config : LumenConfig;
 
-    public var windower : WindowManager;
-    public var inputer : InputManager;
+    public var window : WindowManager;
+    public var input : InputManager;
+    public var audio : AudioManager;
 
     public var shutting_down : Bool = false;
     public var has_shutdown : Bool = false;
@@ -47,8 +49,9 @@ class Lumen {
             _debug('/ lumen / initializing - ', true);
         // #end
 
-        windower = new WindowManager( this );
-        inputer = new InputManager( this );
+        window = new WindowManager( this );
+        input = new InputManager( this );
+        audio = new AudioManager( this );
 
         lumen_init( on_event );
 
@@ -58,8 +61,9 @@ class Lumen {
 
         shutting_down = true;
 
-        inputer.destroy();
-        windower.destroy();
+        audio.destroy();
+        input.destroy();
+        window.destroy();
 
         lumen_shutdown();
 
@@ -86,11 +90,11 @@ class Lumen {
         _debug('/ lumen / ready and setting up additional requests...');
 
             //now if they requested a window, let's open one
-        main_window = windower.create( config.window_config );
+        main_window = window.create( config.window_config );
         
-            var w2 = windower.create( config.window_config );
-            var w3 = windower.create( config.window_config );
-            var w4 = windower.create( config.window_config );
+            var w2 = window.create( config.window_config );
+            var w3 = window.create( config.window_config );
+            var w4 = window.create( config.window_config );
 
             //and track the main window only for now 
         main_window.window_event_handler = on_main_window_event;
@@ -105,8 +109,9 @@ class Lumen {
 
     function on_lumen_update() {
 
-        windower.update();
-        inputer.update();
+        window.update();
+        input.update();
+        audio.update();
 
     } //on_lumen_update
 
@@ -114,10 +119,10 @@ class Lumen {
             
         _event.type = SystemEvents.typed( cast _event.type );
 
-        if( _event.type != update && 
-            _event.type != unknown && 
-            _event.type != window &&
-            _event.type != input 
+        if( _event.type != SystemEventType.update && 
+            _event.type != SystemEventType.unknown && 
+            _event.type != SystemEventType.window &&
+            _event.type != SystemEventType.input 
 
         ) {
             trace( "/ lumen / system event : " + _event );
@@ -125,37 +130,30 @@ class Lumen {
 
         switch(_event.type) {
 
-            case unknown : { }
-
-            case ready: {
+            case SystemEventType.ready: {
                 on_lumen_ready();
             } //ready
 
-            case update: {
+            case SystemEventType.update: {
                 on_lumen_update();
             } //update
 
-            case quit: {
+            case SystemEventType.quit: {
                 shutdown();
             } //update
 
-            case window: {
-                windower.on_event( _event );
+            case SystemEventType.window: {
+                window.on_event( _event );
             }
             
-            case input: {
+            case SystemEventType.input: {
                 if(is_ready) {
-                    inputer.on_event( _event );
+                    input.on_event( _event );
                 }
             }
 
-            case shutdown : { }
-            case app_willenterforeground : { }
-            case app_willenterbackground : { }
-            case app_terminating : { }
-            case app_lowmemory : { }
-            case app_didenterforeground : { }
-            case app_didenterbackground : { }
+            default:{}
+
 
         } //switch _event.type
 
