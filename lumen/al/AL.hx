@@ -450,8 +450,8 @@ class AL {
         return alhx_alcGetError(device);
     }
 
-    public static function alcGetString(device:Dynamic) : String {
-        return alhx_alcGetString(device);
+    public static function alcGetString(device:Dynamic, param:Int) : String {
+        return alhx_alcGetString(device, param);
     }
 
     public static function alcGetIntegerv(device:Dynamic, param:Int, size:Int) : Array<Int> {
@@ -472,7 +472,7 @@ class AL {
     private static var alhx_alcCloseDevice = Libs.load("lumen", "alhx_alcCloseDevice", 1);
 
     private static var alhx_alcGetError = Libs.load("lumen", "alhx_alcGetError", 1);
-    private static var alhx_alcGetString = Libs.load("lumen", "alhx_alcGetString", 1);
+    private static var alhx_alcGetString = Libs.load("lumen", "alhx_alcGetString", 2);
     private static var alhx_alcGetIntegerv = Libs.load("lumen", "alhx_alcGetIntegerv", 3);
 
 //
@@ -549,7 +549,7 @@ class AL {
     private static var alhx_DeleteBuffers = Libs.load("lumen", "alhx_DeleteBuffers", 2);
     private static var alhx_IsBuffer = Libs.load("lumen", "alhx_IsBuffer", 1);
 
-    private static var alhx_Buffer = Libs.load("lumen", "alhx_Buffer", 3);
+    private static var alhx_Bufferf = Libs.load("lumen", "alhx_Bufferf", 3);
     private static var alhx_Buffer3f = Libs.load("lumen", "alhx_Buffer3f", 5);
     private static var alhx_Bufferfv = Libs.load("lumen", "alhx_Bufferfv", 3);
     private static var alhx_Bufferi = Libs.load("lumen", "alhx_Bufferi", 3);
