@@ -334,7 +334,7 @@ class AL {
     // public static function alBufferData(buffer:Int, format:Int, const ALvoid *data, size:Int, freq:Int) : Void;
 
     public static function alBufferf(buffer:Int, param:Int, value:Float) : Void {
-        alhx_Buffer(buffer, param, value);
+        alhx_Bufferf(buffer, param, value);
     }
 
     public static function alBuffer3f(buffer:Int, param:Int, value1:Float, value2:Float, value3:Float) : Void {
