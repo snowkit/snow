@@ -47,36 +47,62 @@ namespace lumen {
 
 
     value alhx_DopplerFactor(value _value) {
+        
+        alDopplerFactor(val_float(_value));
+
         return alloc_null();
+
     } DEFINE_PRIM(alhx_DopplerFactor, 1);
 
     value alhx_DopplerVelocity(value _value) {
+        
+        alDopplerVelocity(val_float(_value));
+
         return alloc_null();
+
     } DEFINE_PRIM(alhx_DopplerVelocity, 1);
 
     value alhx_SpeedOfSound(value _value) {
+        
+        alSpeedOfSound(val_float(_value));
+
         return alloc_null();
+
     } DEFINE_PRIM(alhx_SpeedOfSound, 1);
 
 
     value alhx_DistanceModel(value _distanceModel) {
+
+        alDistanceModel( val_float(_distanceModel) );
+
         return alloc_null();
+
     } DEFINE_PRIM(alhx_DistanceModel, 1);
 
     value alhx_Enable(value _capability) {
+
+        alEnable( val_int(_capability) );
+
         return alloc_null();
     } DEFINE_PRIM(alhx_Enable, 1);
 
     value alhx_Disable(value _capability) {
+
+        alDisable( val_int(_capability) );
+
         return alloc_null();
     } DEFINE_PRIM(alhx_Disable, 1);
 
     value alhx_IsEnabled(value _capability) {
-        return alloc_null();
+
+        return alloc_bool( alIsEnabled(val_int(_capability)) );
+
     } DEFINE_PRIM(alhx_IsEnabled, 1);
 
     value alhx_GetString(value _param) {
-        return alloc_null();
+
+        return alloc_string( alGetString(val_int(_param)) );
+
     } DEFINE_PRIM(alhx_GetString, 1);
 
     value alhx_GetBooleanv(value _param) {
@@ -96,66 +122,91 @@ namespace lumen {
     } DEFINE_PRIM(alhx_GetDoublev, 1);
 
     value alhx_GetBoolean(value _param) {
-        return alloc_null();
+        return alloc_bool( alGetBoolean(val_int(_param)) );
     } DEFINE_PRIM(alhx_GetBoolean, 1);
 
     value alhx_GetInteger(value _param) {
-        return alloc_null();
+        return alloc_int( alGetInteger(val_int(_param)) );
     } DEFINE_PRIM(alhx_GetInteger, 1);
 
     value alhx_GetFloat(value _param) {
-        return alloc_null();
+        return alloc_float( alGetFloat(val_int(_param)) );
     } DEFINE_PRIM(alhx_GetFloat, 1);
 
     value alhx_GetDouble(value _param) {
-        return alloc_null();
+        return alloc_float( (float)alGetDouble(val_int(_param)) );
     } DEFINE_PRIM(alhx_GetDouble, 1);
     
 
     value alhx_GetError() {
-        return alloc_null();
+        return alloc_int( alGetError() );
     } DEFINE_PRIM(alhx_GetError, 0);
 
     value alhx_IsExtensionPresent(value _extname) {
-        return alloc_null();
+        return alloc_bool( alIsExtensionPresent(val_string(_extname)) );
     } DEFINE_PRIM(alhx_IsExtensionPresent, 1);
 
     value alhx_GetProcAddress(value _fname) {
-        return alloc_null();
+        return alloc_null(); //:todo:
     } DEFINE_PRIM(alhx_GetProcAddress, 1);
 
     value alhx_GetEnumValue(value _ename) {
-        return alloc_null();
+        return alloc_int( alGetEnumValue(val_string(_ename)) );
     } DEFINE_PRIM(alhx_GetEnumValue, 1);
 
 
     value alhx_Listenerf(value _param, value _value) {
+
+        alListenerf( val_int(_param), val_float(_value) );
+
         return alloc_null();
+
     } DEFINE_PRIM(alhx_Listenerf, 2);
 
     value alhx_Listener3f(value _param, value _value1, value _value2, value _value3) {
+
+        alListener3f( val_int(_param), val_float(_value1),val_float(_value2),val_float(_value3) );
+
         return alloc_null();
+
     } DEFINE_PRIM(alhx_Listener3f, 4);
 
     value alhx_Listenerfv(value _param, value _values) {
+        
         return alloc_null();
+
     } DEFINE_PRIM(alhx_Listenerfv, 2);
 
     value alhx_Listeneri(value _param, value _value) {
+
+        alListeneri( val_int(_param), val_int(_value) );
+
         return alloc_null();
+
     } DEFINE_PRIM(alhx_Listeneri, 2);
 
     value alhx_Listener3i(value _param, value _value1, value _value2, value _value3) {
+
+        alListener3i( val_int(_param), val_int(_value1),val_int(_value2),val_int(_value3) );
+
         return alloc_null();
+
     } DEFINE_PRIM(alhx_Listener3i, 4);
 
     value alhx_Listeneriv(value _param, value _values) {
+
         return alloc_null();
+
     } DEFINE_PRIM(alhx_Listeneriv, 2);
 
 
     value alhx_GetListenerf(value _param) {
-        return alloc_null();
+
+        float the_value;
+        alGetListenerf( val_int(_param), &the_value );
+
+        return alloc_float(the_value);
+
     } DEFINE_PRIM(alhx_GetListenerf, 1);
 
     value alhx_GetListener3f(value _param) {
@@ -167,7 +218,12 @@ namespace lumen {
     } DEFINE_PRIM(alhx_GetListenerfv, 1);
 
     value alhx_GetListeneri(value _param) {
-        return alloc_null();
+
+        int the_value;
+        alGetListeneri( val_int(_param), &the_value );
+
+        return alloc_int(the_value);
+
     } DEFINE_PRIM(alhx_GetListeneri, 1);
 
     value alhx_GetListener3i(value _param) {
@@ -193,23 +249,39 @@ namespace lumen {
 
 
     value alhx_Sourcef(value _source, value _param, value _value) {
+
+        alSourcef(val_int(_source), val_int(_param), val_float(_value));
+
         return alloc_null();
+
     } DEFINE_PRIM(alhx_Sourcef, 3);
 
     value alhx_Source3f(value _source, value _param, value _value1, value _value2, value _value3) {
+
+        alSource3f(val_int(_source), val_int(_param), val_float(_value1), val_float(_value2), val_float(_value3));
+
         return alloc_null();
+
     } DEFINE_PRIM(alhx_Source3f, 5);
 
     value alhx_Sourcefv(value _source, value _param, value _values) {
         return alloc_null();
     } DEFINE_PRIM(alhx_Sourcefv, 3);
 
-    value alhx_Sourcei() {
+    value alhx_Sourcei(value _source, value _param, value _value) {
+
+        alSourcei(val_int(_source), val_int(_param), val_int(_value));
+
         return alloc_null();
+
     } DEFINE_PRIM(alhx_Sourcei, 3);
 
     value alhx_Source3i(value _source, value _param, value _value1, value _value2, value _value3) {
+
+        alSource3i(val_int(_source), val_int(_param), val_int(_value1), val_int(_value2), val_int(_value3));
+
         return alloc_null();
+
     } DEFINE_PRIM(alhx_Source3i, 5);
 
     value alhx_Sourceiv(value _source, value _param, value _values) {
@@ -218,7 +290,12 @@ namespace lumen {
 
 
     value alhx_GetSourcef(value _source, value _param) {
-        return alloc_null();
+
+        float the_value;
+        alGetSourcef( val_int(_source), val_int(_param), &the_value );
+
+        return alloc_float(the_value);
+
     } DEFINE_PRIM(alhx_GetSourcef, 2);
 
     value alhx_GetSource3f(value _source, value _param) {
@@ -230,7 +307,12 @@ namespace lumen {
     } DEFINE_PRIM(alhx_GetSourcefv, 2);
 
     value alhx_GetSourcei(value _source, value _param) {
-        return alloc_null();
+
+        int the_value;
+        alGetSourcei( val_int(_source), val_int(_param), &the_value );
+
+        return alloc_int(the_value);
+
     } DEFINE_PRIM(alhx_GetSourcei, 2);
 
     value alhx_GetSource3i(value _source, value _param) {
@@ -260,18 +342,30 @@ namespace lumen {
 
 
     value alhx_SourcePlay(value _source) {
+
+        alSourcePlay( val_int(_source) );
+
         return alloc_null();
     } DEFINE_PRIM(alhx_SourcePlay, 1);
 
     value alhx_SourceStop(value _source) {
+
+        alSourceStop( val_int(_source) );
+
         return alloc_null();
     } DEFINE_PRIM(alhx_SourceStop, 1);
 
     value alhx_SourceRewind(value _source) {
+
+        alSourceRewind( val_int(_source) );
+
         return alloc_null();
     } DEFINE_PRIM(alhx_SourceRewind, 1);
 
     value alhx_SourcePause(value _source) {
+
+        alSourcePause( val_int(_source) );
+
         return alloc_null();
     } DEFINE_PRIM(alhx_SourcePause, 1);
 
@@ -298,11 +392,17 @@ namespace lumen {
     } DEFINE_PRIM(alhx_IsBuffer, 1);
 
 
-    value alhx_Buffer(value _buffer, value _param, value _value) {
+    value alhx_Bufferf(value _buffer, value _param, value _value) {
+
+        alBufferf(val_int(_buffer), val_int(_param), val_float(_value) );
+
         return alloc_null();
-    } DEFINE_PRIM(alhx_Buffer, 3);
+    } DEFINE_PRIM(alhx_Bufferf, 3);
 
     value alhx_Buffer3f(value _buffer, value _param, value _value1, value _value2, value _value3) {
+        
+        alBuffer3f(val_int(_buffer), val_int(_param), val_float(_value1),val_float(_value2),val_float(_value3) );
+
         return alloc_null();
     } DEFINE_PRIM(alhx_Buffer3f, 5);
 
@@ -311,10 +411,17 @@ namespace lumen {
     } DEFINE_PRIM(alhx_Bufferfv, 3);
 
     value alhx_Bufferi(value _buffer, value _param, value _value) {
+
+        alBufferi(val_int(_buffer), val_int(_param), val_int(_value) );
+
         return alloc_null();
+
     } DEFINE_PRIM(alhx_Bufferi, 3);
 
     value alhx_Buffer3i(value _buffer, value _param, value _value1, value _value2, value _value3) {
+
+        alBuffer3i(val_int(_buffer), val_int(_param), val_int(_value1),val_int(_value2),val_int(_value3) );
+
         return alloc_null();
     } DEFINE_PRIM(alhx_Buffer3i, 5);
 
@@ -324,7 +431,13 @@ namespace lumen {
 
 
     value alhx_GetBufferf(value _buffer, value _param) {
-        return alloc_null();
+
+        float the_value;
+        
+        alGetBufferf( val_int(_buffer), val_int(_param), &the_value );
+
+        return alloc_float(the_value);
+
     } DEFINE_PRIM(alhx_GetBufferf, 2);
 
     value alhx_GetBuffer3f(value _buffer, value _param) {
@@ -336,7 +449,13 @@ namespace lumen {
     } DEFINE_PRIM(alhx_GetBufferfv, 2);
 
     value alhx_GetBufferi(value _buffer, value _param) {
-        return alloc_null();
+        
+        int the_value;
+        
+        alGetBufferi( val_int(_buffer), val_int(_param), &the_value );
+
+        return alloc_int(the_value);
+
     } DEFINE_PRIM(alhx_GetBufferi, 2);
 
     value alhx_GetBuffer3i(value _buffer, value _param) {
@@ -483,15 +602,44 @@ namespace lumen {
     } DEFINE_PRIM(alhx_alcCloseDevice, 1);
 
 
-    value alhx_alcGetError() {
+    value alhx_alcGetError(value _device) {
+
+        ALHX_ALDevice* device;
+
+        if( Object_from_hx(_device, device) ) {
+
+            alcGetError( device->al_device );
+
+        } //fetch device
+
         return alloc_null();
     } DEFINE_PRIM(alhx_alcGetError, 1);
 
-    value alhx_alcGetString() {
-        return alloc_null();
-    } DEFINE_PRIM(alhx_alcGetString, 1);
+    value alhx_alcGetString(value _device, value _param) {
 
-    value alhx_alcGetIntegerv() {
+        ALHX_ALDevice* device;
+
+        if( Object_from_hx(_device, device) ) {
+
+            return alloc_string( alcGetString(device->al_device, val_int(_param)) );
+
+        } //fetch device
+
+        return alloc_null();
+    } DEFINE_PRIM(alhx_alcGetString, 2);
+
+    value alhx_alcGetIntegerv(value _device, value _param, value _size) {
+
+        ALHX_ALDevice* device;
+
+        if( Object_from_hx(_device, device) ) {
+
+            // :todo:
+            // alcGetIntegerv(device->al_device, val_int(_param), val_int(_size), &values) );
+            // return _array;
+
+        } //fetch device
+
         return alloc_null();
     } DEFINE_PRIM(alhx_alcGetIntegerv, 3);
 
