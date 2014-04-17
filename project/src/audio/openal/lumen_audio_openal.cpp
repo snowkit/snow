@@ -386,7 +386,7 @@ namespace lumen {
         return alloc_null();
     } DEFINE_PRIM(alhx_alcMakeContextCurrent, 1);
 
-    value alhx_alcProcessContext() {
+    value alhx_alcProcessContext(value _context) {
 
         ALHX_ALContext* context;
 
@@ -399,7 +399,7 @@ namespace lumen {
         return alloc_null();
     } DEFINE_PRIM(alhx_alcProcessContext, 1);
 
-    value alhx_alcSuspendContext() {
+    value alhx_alcSuspendContext(value _context) {
 
         ALHX_ALContext* context;
 
@@ -412,7 +412,7 @@ namespace lumen {
         return alloc_null();
     } DEFINE_PRIM(alhx_alcSuspendContext, 1);
 
-    value alhx_alcDestroyContext() {
+    value alhx_alcDestroyContext(value _context) {
 
         ALHX_ALContext* context;
 
@@ -427,26 +427,21 @@ namespace lumen {
 
     value alhx_alcGetCurrentContext() {
 
-        if( Object_from_hx(_context, context) ) {
+        ALCcontext *_al_context = alcGetCurrentContext();
 
-            ALCcontext *_al_context = alcGetCurrentContext();
+        ALHX_ALContext* context = new ALHX_ALContext(_al_context);
 
-            ALHX_ALContext* context = new ALHX_ALContext(_al_context);
+        return Object_to_hx(context);
 
-            return Object_to_hx(context);
-
-        } //fetch context
-
-        return alloc_null();
     } DEFINE_PRIM(alhx_alcGetCurrentContext, 0);
 
-    value alhx_alcGetContextsDevice() {
+    value alhx_alcGetContextsDevice(value _context) {
 
         ALHX_ALContext* context;
 
         if( Object_from_hx(_context, context) ) {
 
-            ALDevice* _al_device = alcGetContextsDevice( context->al_context );
+            ALCdevice* _al_device = alcGetContextsDevice( context->al_context );
             
             ALHX_ALDevice* device = new ALHX_ALDevice(_al_device);
 
