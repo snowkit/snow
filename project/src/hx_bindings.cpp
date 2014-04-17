@@ -334,6 +334,7 @@ namespace lumen {
 
     #ifdef STATIC_LINK
         extern "C" int lumen_opengl_sdl2_register_prims();
+        extern "C" int lumen_audio_openal_register_prims();
     #endif //STATIC_LINK
 
     extern "C" int lumen_register_prims() {
@@ -342,6 +343,7 @@ namespace lumen {
 
             #ifdef STATIC_LINK
                 lumen_opengl_sdl2_register_prims();
+                lumen_audio_openal_register_prims();
             #endif
        
         return 0;
