@@ -338,7 +338,7 @@ class AL {
     }
 
     public static function alBuffer3f(buffer:Int, param:Int, value1:Float, value2:Float, value3:Float) : Void {
-        alBuffer3f(buffer, param, value1, value2, value3);
+        alhx_Buffer3f(buffer, param, value1, value2, value3);
     }
 
     public static function alBufferfv(buffer:Int, param:Int, values:Array<Float> ) : Void {
