@@ -37,7 +37,6 @@ class AudioManager {
 
         buffer = AL.genBuffer();
 
-            //intentionally doing incorrect combos
         trace( AL.getDoublev(AL.SPEED_OF_SOUND, 1) );   trace( AL.getErrorMeaning(AL.getError()) );
         trace( AL.getBooleanv(AL.SPEED_OF_SOUND, 1) );  trace( AL.getErrorMeaning(AL.getError()) );
         trace( AL.getIntegerv(AL.SPEED_OF_SOUND, 1) );  trace( AL.getErrorMeaning(AL.getError()) );
