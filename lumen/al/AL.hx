@@ -65,7 +65,7 @@ class AL {
     public static var EXTENSIONS : Int                          = 0xB004;
 
 
-    public static var AL_DOPPLER_FACTOR:Int                     = 0xC000;
+    public static var DOPPLER_FACTOR:Int                        = 0xC000;
     public static var SPEED_OF_SOUND:Int                        = 0xC003;
     public static var DOPPLER_VELOCITY:Int                      = 0xC001;
 
@@ -79,56 +79,56 @@ class AL {
 
 // scene configs
 
-    public static function DopplerFactor(value:Float) : Void {
+    public static function dopplerFactor(value:Float) : Void {
         alhx_DopplerFactor(value);
     }
     
-    public static function DopplerVelocity(value:Float) : Void {
+    public static function dopplerVelocity(value:Float) : Void {
         alhx_DopplerVelocity(value);
     }
 
-    public static function SpeedOfSound(value:Float) : Void {
+    public static function speedOfSound(value:Float) : Void {
         alhx_SpeedOfSound(value);
     }
 
-    public static function DistanceModel(distanceModel:Int) : Void {
+    public static function distanceModel(distanceModel:Int) : Void {
         alhx_DistanceModel(distanceModel);
     }
 
 // scene management
 
-    public static function Enable(capability:Int) : Void {
+    public static function enable(capability:Int) : Void {
         alhx_Enable(capability);
     }
 
-    public static function Disable(capability:Int) : Void {
+    public static function disable(capability:Int) : Void {
         alhx_Disable(capability);
     }
 
-    public static function IsEnabled(capability:Int) : Bool {
+    public static function isEnabled(capability:Int) : Bool {
         return alhx_IsEnabled(capability);
     }
 
 // scene state
 
-    public static function GetString(param:Int) : String {
+    public static function getString(param:Int) : String {
         return alhx_GetString(param);
     }
 
-    public static function GetBooleanv(param:Int) : Array<Bool> {
-        return alhx_GetBooleanv(param);
+    public static function getBooleanv(param:Int, ?count:Int = 1 ) : Array<Bool> {
+        return alhx_GetBooleanv(param, count);
     }
 
-    public static function getIntegerv(param:Int) : Array<Int> {
-        return alhx_GetIntegerv(param);
+    public static function getIntegerv(param:Int, ?count:Int = 1 ) : Array<Int> {
+        return alhx_GetIntegerv(param, count);
     }
 
-    public static function getFloatv(param:Int) : Array<Float> {
-        return alhx_GetFloatv(param);
+    public static function getFloatv(param:Int, ?count:Int = 1 ) : Array<Float> {
+        return alhx_GetFloatv(param, count);
     }
 
-    public static function getDoublev(param:Int) : Array<Float> {
-        return alhx_GetDoublev(param);
+    public static function getDoublev(param:Int, ?count:Int = 1 ) : Array<Float> {
+        return alhx_GetDoublev(param, count);
     }
 
     public static function getBoolean(param:Int) : Bool {
@@ -200,8 +200,8 @@ class AL {
         return alhx_GetListener3f(param);
     }
 
-    public static function getListenerfv(param:Int) : Array<Float> {
-        return alhx_GetListenerfv(param);
+    public static function getListenerfv(param:Int, ?count:Int = 1) : Array<Float> {
+        return alhx_GetListenerfv(param, count);
     }
 
     public static function getListeneri(param:Int) : Int {
@@ -212,8 +212,8 @@ class AL {
         return alhx_GetListener3i(param);
     }
 
-    public static function getListeneriv(param:Int) : Array<Int> {
-        return alhx_GetListeneriv(param);
+    public static function getListeneriv( param:Int, ?count:Int = 1) : Array<Int> {
+        return alhx_GetListeneriv(param, count);
     }
 
 // source management
@@ -276,8 +276,8 @@ class AL {
         return alhx_GetSource3i(source,param);
     }
 
-    public static function getSourceiv(source:Int,  param:Int) : Array<Int> {
-        return alhx_GetSourceiv(source,param);
+    public static function getSourceiv(source:Int,  param:Int, ?count:Int = 1) : Array<Int> {
+        return alhx_GetSourceiv(source,param,count);
     }
 
 //source states
@@ -372,8 +372,8 @@ class AL {
         return alhx_GetBuffer3f(buffer, param);
     }
 
-    public static function getBufferfv(buffer:Int, param:Int) : Array<Float> {
-        return alhx_GetBufferfv(buffer, param);
+    public static function getBufferfv(buffer:Int, param:Int, ?count:Int = 1) : Array<Float> {
+        return alhx_GetBufferfv(buffer, param, count);
     }
 
     public static function getBufferi(buffer:Int, param:Int) : Array<Int> {
@@ -384,8 +384,8 @@ class AL {
         return alhx_GetBuffer3i(buffer, param);
     }
 
-    public static function getBufferiv(buffer:Int, param:Int) : Array<Int> {
-        return alhx_GetBufferiv(buffer, param);
+    public static function getBufferiv(buffer:Int, param:Int, ?count:Int = 1) : Array<Int> {
+        return alhx_GetBufferiv(buffer, param, count);
     }
 
 //unofficial API helpers
@@ -436,10 +436,10 @@ class AL {
     private static var alhx_Disable                 = Libs.load("lumen", "alhx_Disable", 1);
     private static var alhx_IsEnabled               = Libs.load("lumen", "alhx_IsEnabled", 1);
     private static var alhx_GetString               = Libs.load("lumen", "alhx_GetString", 1);
-    private static var alhx_GetBooleanv             = Libs.load("lumen", "alhx_GetBooleanv", 1);
-    private static var alhx_GetIntegerv             = Libs.load("lumen", "alhx_GetIntegerv", 1);
-    private static var alhx_GetFloatv               = Libs.load("lumen", "alhx_GetFloatv", 1);
-    private static var alhx_GetDoublev              = Libs.load("lumen", "alhx_GetDoublev", 1);
+    private static var alhx_GetBooleanv             = Libs.load("lumen", "alhx_GetBooleanv", 2);
+    private static var alhx_GetIntegerv             = Libs.load("lumen", "alhx_GetIntegerv", 2);
+    private static var alhx_GetFloatv               = Libs.load("lumen", "alhx_GetFloatv", 2);
+    private static var alhx_GetDoublev              = Libs.load("lumen", "alhx_GetDoublev", 2);
     private static var alhx_GetBoolean              = Libs.load("lumen", "alhx_GetBoolean", 1);
     private static var alhx_GetInteger              = Libs.load("lumen", "alhx_GetInteger", 1);
     private static var alhx_GetFloat                = Libs.load("lumen", "alhx_GetFloat", 1);
@@ -459,10 +459,10 @@ class AL {
 
     private static var alhx_GetListenerf            = Libs.load("lumen", "alhx_GetListenerf", 1);
     private static var alhx_GetListener3f           = Libs.load("lumen", "alhx_GetListener3f", 1);
-    private static var alhx_GetListenerfv           = Libs.load("lumen", "alhx_GetListenerfv", 1);
+    private static var alhx_GetListenerfv           = Libs.load("lumen", "alhx_GetListenerfv", 2);
     private static var alhx_GetListeneri            = Libs.load("lumen", "alhx_GetListeneri", 1);
     private static var alhx_GetListener3i           = Libs.load("lumen", "alhx_GetListener3i", 1);
-    private static var alhx_GetListeneriv           = Libs.load("lumen", "alhx_GetListeneriv", 1);
+    private static var alhx_GetListeneriv           = Libs.load("lumen", "alhx_GetListeneriv", 2);
 
     private static var alhx_GenSources              = Libs.load("lumen", "alhx_GenSources", 1);
     private static var alhx_DeleteSources           = Libs.load("lumen", "alhx_DeleteSources", 2);
@@ -480,7 +480,7 @@ class AL {
     private static var alhx_GetSourcefv             = Libs.load("lumen", "alhx_GetSourcefv", 2);
     private static var alhx_GetSourcei              = Libs.load("lumen", "alhx_GetSourcei", 2);
     private static var alhx_GetSource3i             = Libs.load("lumen", "alhx_GetSource3i", 2);
-    private static var alhx_GetSourceiv             = Libs.load("lumen", "alhx_GetSourceiv", 2);
+    private static var alhx_GetSourceiv             = Libs.load("lumen", "alhx_GetSourceiv", 3);
 
     private static var alhx_SourcePlayv             = Libs.load("lumen", "alhx_SourcePlayv", 2);
     private static var alhx_SourceStopv             = Libs.load("lumen", "alhx_SourceStopv", 2);
@@ -508,10 +508,10 @@ class AL {
 
     private static var alhx_GetBufferf              = Libs.load("lumen", "alhx_GetBufferf", 2);
     private static var alhx_GetBuffer3f             = Libs.load("lumen", "alhx_GetBuffer3f", 2);
-    private static var alhx_GetBufferfv             = Libs.load("lumen", "alhx_GetBufferfv", 2);
+    private static var alhx_GetBufferfv             = Libs.load("lumen", "alhx_GetBufferfv", 3);
     private static var alhx_GetBufferi              = Libs.load("lumen", "alhx_GetBufferi", 2);
     private static var alhx_GetBuffer3i             = Libs.load("lumen", "alhx_GetBuffer3i", 2);
-    private static var alhx_GetBufferiv             = Libs.load("lumen", "alhx_GetBufferiv", 2);
+    private static var alhx_GetBufferiv             = Libs.load("lumen", "alhx_GetBufferiv", 3);
 
 //unofficial API helpers
 
