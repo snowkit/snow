@@ -13,6 +13,7 @@ class AudioManager {
     var device : Device;
     var context : Context;
     var source : Int;
+    var buffer : Int;
 
     public function new( _lib:Lumen ) {
 
@@ -35,7 +36,14 @@ class AudioManager {
 
         AL.sourcei( source, AL.LOOPING, AL.FALSE );
 
+        buffer = AL.genBuffer();
+
         trace( AL.getErrorMeaning(AL.getError()) );
+
+        trace( AL.getDoublev(AL.SPEED_OF_SOUND, 1) );
+        trace( AL.getBooleanv(AL.SPEED_OF_SOUND, 1) );
+        trace( AL.getIntegerv(AL.SPEED_OF_SOUND, 1) );
+        trace( AL.getFloatv(AL.SPEED_OF_SOUND, 1) );
     } //new
 
     public function destroy() {
