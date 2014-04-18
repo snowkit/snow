@@ -69,10 +69,6 @@ class Lumen {
 
         has_shutdown = true;
 
-        // #if debug
-            _debug('/ lumen / Goodbye.');
-        // #end
-
     } //shutdown
 
 
@@ -150,6 +146,12 @@ class Lumen {
                 if(is_ready) {
                     input.on_event( _event );
                 }
+            }
+
+            case SystemEventType.shutdown: {
+                // #if debug
+                    _debug('/ lumen / Goodbye.');
+                // #end
             }
 
             default:{}

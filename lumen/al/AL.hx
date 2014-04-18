@@ -338,7 +338,9 @@ class AL {
 
 //buffer data and state
 
-    // public static function bufferData(buffer:Int, format:Int, const ALvoid *data, size:Int, freq:Int) : Void;
+    public static function bufferData(buffer:Int, format:Int, data:Float32Array, size:Int, freq:Int) : Void {
+        alhx_BufferData(buffer, format, data.getByteBuffer(), size, freq);
+    }
 
     public static function bufferf(buffer:Int, param:Int, value:Float) : Void {
         alhx_Bufferf(buffer, param, value);
@@ -498,6 +500,8 @@ class AL {
     private static var alhx_GenBuffers              = Libs.load("lumen", "alhx_GenBuffers", 1);
     private static var alhx_DeleteBuffers           = Libs.load("lumen", "alhx_DeleteBuffers", 2);
     private static var alhx_IsBuffer                = Libs.load("lumen", "alhx_IsBuffer", 1);
+ 
+    private static var alhx_BufferData              = Libs.load("lumen", "alhx_BufferData", 5);
 
     private static var alhx_Bufferf                 = Libs.load("lumen", "alhx_Bufferf", 3);
     private static var alhx_Buffer3f                = Libs.load("lumen", "alhx_Buffer3f", 5);
