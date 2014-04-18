@@ -234,6 +234,29 @@ namespace lumen {
         return alloc_null();
     } DEFINE_PRIM(alhx_GetListeneriv, 1);
 
+// --- > not official api
+
+    value alhx_GenSource() {
+
+        ALuint source;
+
+        alGenSources((ALuint)1, &source);
+
+        return alloc_int(source);
+
+    } DEFINE_PRIM(alhx_GenSource, 0);
+
+    value alhx_DeleteSource(value _source) {
+        
+        ALuint source = val_int(_source);
+        
+        alDeleteSources(1, &source);
+
+        return alloc_null();
+
+    } DEFINE_PRIM(alhx_DeleteSource, 1);
+
+// --- > 
 
     value alhx_GenSources(value _n) {
         return alloc_null();
@@ -379,9 +402,9 @@ namespace lumen {
     } DEFINE_PRIM(alhx_SourceUnqueueBuffers, 3);
 
 
-    value alhx_GenBuffers(value _n, value _buffers) {
+    value alhx_GenBuffers(value _n) {
         return alloc_null();
-    } DEFINE_PRIM(alhx_GenBuffers, 2);
+    } DEFINE_PRIM(alhx_GenBuffers, 1);
 
     value alhx_DeleteBuffers(value _n, value _buffers) {
         return alloc_null();
@@ -391,6 +414,29 @@ namespace lumen {
         return alloc_null();
     } DEFINE_PRIM(alhx_IsBuffer, 1);
 
+//unofficial api 
+
+    value alhx_GenBuffer() {
+
+        ALuint buffer;
+
+        alGenBuffers( (ALuint)1, &buffer );
+
+        return alloc_int(buffer);
+
+    } DEFINE_PRIM(alhx_GenBuffer, 0);
+
+    value alhx_DeleteBuffer(value _buffer) {
+
+        ALuint buffer = val_int(_buffer);
+
+        alDeleteBuffers((ALuint)1, &buffer );
+
+        return alloc_null();
+
+    } DEFINE_PRIM(alhx_DeleteBuffer, 1);
+
+// // end unofficial api 
 
     value alhx_Bufferf(value _buffer, value _param, value _value) {
 
