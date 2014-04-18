@@ -5,12 +5,12 @@ access to native windowing, audio, rendering and input
 
 Things that are done:
 
-- [x] main event loop
-- [x] opening multiple windows
-- [x] all input events to haxe
-- [x] all system events to haxe
-- [x] OpenGL bindings to haxe
-- [x] OpenAL bindings to haxe
+-[x] main event loop   
+-[x] opening multiple windows   
+-[x] all input events to haxe   
+-[x] all system events to haxe   
+-[x] OpenGL bindings to haxe   
+-[x] OpenAL bindings to haxe   
 
 Things that are still required for usage, semi ordered in importance:
 
