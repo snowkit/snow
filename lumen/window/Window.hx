@@ -62,8 +62,8 @@ class Window {
 
         r = Math.random();
 
-        trace("/ lumen / created window with id: " + id);
-        trace('/ lumen / updating real window config for $id is ' + _config);
+        // trace("/ lumen / created window with id: " + id);
+        // trace('/ lumen / updating real window config for $id is ' + _config);
 
     } //on_window_created
 
