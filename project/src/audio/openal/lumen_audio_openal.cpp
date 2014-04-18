@@ -11,7 +11,7 @@
 
 #include "hx_bindings.h"
 #include "common/Object.h"
-
+#include "common/ByteArray.h"
 
 namespace lumen {
 
@@ -707,7 +707,7 @@ namespace lumen {
         if(buffers) {
             alDeleteBuffers( val_int(_n), (ALuint*)buffers );
         } else {
-            //todo: try val_array normal approach
+            //warn: try val_array normal approach
         }
 
         return alloc_null();
@@ -744,7 +744,24 @@ namespace lumen {
 
 // // end unofficial api 
 
-    // :todo: bufferData(buffer:Int, format:Int, const ALvoid *data, size:Int, freq:Int)
+    value alhx_BufferData(value _buffer, value _format, value _data, value _size, value _freq) {
+
+        ByteArray bytes(_data);
+        int bytesize = bytes.Size();
+
+        const float *data = (float *)bytes.Bytes();
+        int n_elems = bytesize / sizeof(float);
+            
+            //since size is explicitly passed in,
+            //we are going to use that, but the calculated count is n_elems>>2;
+        int count = val_int(_size); 
+
+        alBufferData( val_int(_buffer), val_int(_format), data, count, val_int(_freq) );
+
+        return alloc_null();
+
+    } DEFINE_PRIM(alhx_BufferData, 5);
+
 
     value alhx_Bufferf(value _buffer, value _param, value _value) {
 
