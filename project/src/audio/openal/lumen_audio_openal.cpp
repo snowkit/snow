@@ -110,7 +110,7 @@ namespace lumen {
     value alhx_GetBooleanv(value _param, value _count) {
 
         int count = val_int(_count);
-        ALboolean vals[count];
+        ALboolean* vals = new ALboolean[count];
 
         alGetBooleanv( val_int(_param), vals );
         
@@ -127,7 +127,7 @@ namespace lumen {
     value alhx_GetIntegerv(value _param, value _count) {
         
         int count = val_int(_count);
-        ALint vals[count];
+        ALint* vals = new ALint[count];
 
         alGetIntegerv( val_int(_param), vals );
         
@@ -144,7 +144,7 @@ namespace lumen {
     value alhx_GetFloatv(value _param, value _count) {
 
         int count = val_int(_count);
-        ALfloat vals[count];
+        ALfloat* vals = new ALfloat[count];
 
         alGetFloatv( val_int(_param), vals );
         
@@ -161,7 +161,7 @@ namespace lumen {
     value alhx_GetDoublev(value _param, value _count) {
         
         int count = val_int(_count);
-        ALdouble vals[count];
+        ALdouble* vals = new ALdouble[count];
 
         alGetDoublev( val_int(_param), vals );
         
@@ -298,7 +298,7 @@ namespace lumen {
     value alhx_GetListenerfv(value _param, value _count) {
 
         int count = val_int(_count);
-        ALfloat vals[count];
+        ALfloat* vals = new ALfloat[count];
 
         alGetListenerfv( val_int(_param), vals );
         
@@ -341,7 +341,7 @@ namespace lumen {
     value alhx_GetListeneriv(value _param, value _count) {
         
         int count = val_int(_count);
-        ALint vals[count];
+        ALint* vals = new ALint[count];
 
         alGetListeneriv( val_int(_param), vals );
         
@@ -382,7 +382,7 @@ namespace lumen {
     value alhx_GenSources(value _n) {
             
         int count = val_int(_n);
-        ALuint sources[count];
+        ALuint* sources = new ALuint[count];
 
         alGenSources( count, sources );
         
@@ -506,7 +506,7 @@ namespace lumen {
     value alhx_GetSourcefv(value _source, value _param, value _count) {
     
         int count = val_int(_count);
-        ALfloat vals[count];
+        ALfloat* vals = new ALfloat[count];
 
         alGetSourcefv( val_int(_source), val_int(_param), vals );
         
@@ -549,7 +549,7 @@ namespace lumen {
     value alhx_GetSourceiv(value _source, value _param, value _count) {
         
         int count = val_int(_count);
-        ALint vals[count];
+        ALint* vals = new ALint[count];
 
         alGetSourceiv( val_int(_source), val_int(_param), vals );
         
@@ -686,7 +686,7 @@ namespace lumen {
     value alhx_GenBuffers(value _n) {
 
         int count = val_int(_n);
-        ALuint buffers[count];
+        ALuint* buffers = new ALuint[count];
 
         alGenBuffers( count, buffers );
         
@@ -852,7 +852,7 @@ namespace lumen {
     value alhx_GetBufferfv(value _buffer, value _param, value _count) {
         
         int count = val_int(_count);
-        ALfloat vals[count];
+        ALfloat* vals = new ALfloat[count];
 
         alGetBufferfv( val_int(_buffer), val_int(_param), vals );
         
@@ -895,7 +895,7 @@ namespace lumen {
     value alhx_GetBufferiv(value _buffer, value _param, value _count) {
         
         int count = val_int(_count);
-        ALint vals[count];
+        ALint* vals = new ALint[count];
 
         alGetBufferiv( val_int(_buffer), val_int(_param), vals );
         
@@ -1087,7 +1087,7 @@ namespace lumen {
         if( Object_from_hx(_device, device) ) {
 
             int count = val_int(_size);
-            ALint vals[count];
+            ALint* vals = new ALint[count];
 
             alcGetIntegerv( device->al_device, val_int(_param), count, vals );
             
