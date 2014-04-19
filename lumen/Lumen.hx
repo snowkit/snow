@@ -78,7 +78,9 @@ class Lumen {
         }
 
             //ensure that we are in the correct location for asset loading
-        Sys.setCwd( lumen_app_path() );        
+        Sys.setCwd( lumen_app_path() );
+            //test this on other platforms, on mac it's writing to 'lumen/def/'
+        lumen_pref_path('lumen','default');
             
             //create the sub systems 
         window = new WindowManager( this );
@@ -190,6 +192,7 @@ class Lumen {
         private static var lumen_init = load( "lumen", "lumen_init", 1 );
         private static var lumen_shutdown = load( "lumen", "lumen_shutdown", 0 );
         private static var lumen_app_path = load( "lumen", "lumen_app_path", 0 );
+        private static var lumen_pref_path = load( "lumen", "lumen_pref_path", 2 );
 
     #end //lumen_native
 
