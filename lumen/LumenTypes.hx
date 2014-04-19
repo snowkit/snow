@@ -1,6 +1,7 @@
 package lumen;
 
 import lumen.Lumen;
+import lumen.utils.ByteArray;
 
 typedef LumenConfig = {
 
@@ -8,6 +9,16 @@ typedef LumenConfig = {
     ? window_config         : WindowConfig
 
 } //LumenConfig
+
+typedef ImageInfo = {
+
+    bpp : Int,          //used bits per pixel
+    width : Int,        //image width
+    height : Int,       //image height
+    bpp_source : Int,   //source bits per pixel
+    data : ByteArray    //image data
+
+}
 
 typedef WindowConfig = {
 

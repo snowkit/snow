@@ -51,6 +51,7 @@ class WindowManager {
         for(window in window_list) {
             window.render();
         }
+        
     } //update
 
     public function destroy() {

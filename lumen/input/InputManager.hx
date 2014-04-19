@@ -18,7 +18,12 @@ class InputManager {
         _input_event.type = InputEvents.typed( cast _input_event.type );
 
             //ignore mouse move for now
-        if(_input_event.event.type != 1024) {
+        if(_input_event.type == key) {            
+            if(_input_event.event.keysym != null) {
+                if(_input_event.event.keysym.sym == 32 && _input_event.event.state == 0) {
+                    lib.audio.toggle();                
+                }
+            }
         }
 
         if(_input_event.type == controller) {

@@ -16,6 +16,7 @@ class AudioManager {
     var context : Context;
     var source : Int;
     var buffer : Int;
+    var playing : Bool = true;
 
     public function new( _lib:Lumen ) {
 
@@ -60,7 +61,19 @@ class AudioManager {
 
                 trace( AL.getErrorMeaning(AL.getError()) );
 
-    } //new
+    } //new    
+
+    public function toggle() {
+
+        playing = !playing;
+
+        if(playing) {
+            AL.sourcePlay(source);
+        } else {
+            AL.sourceStop(source);
+        }
+
+    }
 
     public function destroy() {
         
@@ -72,11 +85,18 @@ class AudioManager {
     var dir : Int = 1;
 
     public function update() {
-        pitch += 0.01 * dir;
-        if(pitch > 2) dir = -1;
-        if(pitch <= 0.1) dir = 1;
 
-        AL.sourcef( source, AL.PITCH, pitch );
+        if(playing) {
+
+            pitch += 0.01 * dir;
+
+            if(pitch > 2) dir = -1;
+            if(pitch <= 0.1) dir = 1;
+
+            AL.sourcef( source, AL.PITCH, pitch );
+
+        }
+
     }
 
     public static function getBytes(id:String):ByteArray {

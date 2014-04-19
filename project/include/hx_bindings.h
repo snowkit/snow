@@ -21,12 +21,13 @@ namespace lumen {
     extern int id_height;
     extern int id_text;
     extern int id_length;
+    extern int id_data;
 
         //window related
 
     extern int id_window;
     extern int id_window_id;
-    extern int id_timestamp;
+    extern int id_timestamp;    
     extern int id_data1;
     extern int id_data2;
 
@@ -53,6 +54,11 @@ namespace lumen {
     extern int id_value;
     extern int id_ball;
     extern int id_hat;
+
+        //image related
+
+    extern int id_bpp;
+    extern int id_bpp_source;
 
         //window config
 
@@ -83,12 +89,13 @@ namespace lumen {
         id_height               = val_id("height");
         id_text                 = val_id("text");
         id_length               = val_id("length");
-
+        id_data                 = val_id("data");
+        
             //window related flags
 
         id_window               = val_id("window");
         id_window_id            = val_id("window_id");
-        id_timestamp            = val_id("timestamp");
+        id_timestamp            = val_id("timestamp");        
         id_data1                = val_id("data1");
         id_data2                = val_id("data2");
 
@@ -114,6 +121,11 @@ namespace lumen {
         id_value                = val_id("value");
         id_ball                 = val_id("ball");
         id_hat                  = val_id("hat");
+
+            //image related
+
+        id_bpp                  = val_id("bpp");
+        id_bpp_source           = val_id("bpp_source");
 
             //window config related
 

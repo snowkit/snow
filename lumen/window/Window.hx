@@ -29,6 +29,7 @@ class Window {
         //the native window handle
     public var handle : Dynamic;
     public var window_event_handler : WindowEvent->Void;
+    public var window_render_handler : Window->Void;
 
     @:isVar public var position (get,set) : WindowPosition;
     @:isVar public var size (get,set) : WindowSize;
@@ -105,11 +106,16 @@ class Window {
 
         lumen_window_render( handle );
 
+        if(window_render_handler != null) {
+            window_render_handler(this);
+            return;
+        }
+
         GL.clearColor( r, 0.5, 0.1, 1.0);
         GL.clear( GL.COLOR_BUFFER_BIT );
 
         r += 0.005 * rdir;
-        
+
         if(r >= 1) { rdir = -1; }
         if(r <= 0.8) { rdir = 1; }
 
