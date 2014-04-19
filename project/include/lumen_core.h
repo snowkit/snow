@@ -11,7 +11,9 @@ namespace lumen {
 
     void init_core();
     void shutdown_core();
+
     const char* core_app_path();
+    const char* core_pref_path(const char* org, const char* app);
     
         //implemented in subsystems
     int init_core_aux();

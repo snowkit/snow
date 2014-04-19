@@ -109,6 +109,7 @@ class Window {
         GL.clear( GL.COLOR_BUFFER_BIT );
 
         r += 0.005 * rdir;
+        
         if(r >= 1) { rdir = -1; }
         if(r <= 0.8) { rdir = 1; }
 

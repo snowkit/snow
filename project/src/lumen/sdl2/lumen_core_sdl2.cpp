@@ -13,6 +13,9 @@ namespace lumen {
     int shutdown_core_sdl();
     void handle_system_event( SDL_Event &event );
 
+    const char* core_app_path();
+    const char* core_pref_path(const char* org, const char* app);
+
     extern void handle_window_event( SDL_Event &event );
     extern void handle_input_event( SDL_Event &event );
     extern void init_input_sdl();
@@ -25,6 +28,7 @@ namespace lumen {
     static int no_event = -1;
 
     const char* base_path = "./";
+    const char* pref_path = NULL;
 
         //general handler for lumen auxiliary 
         //stuff, like SDL core systems
@@ -34,7 +38,7 @@ namespace lumen {
         if (_base_path) {
             base_path = SDL_strdup(_base_path);
             SDL_free( _base_path );
-        }
+        }        
 
         init_core_sdl();
         init_input_sdl();
@@ -56,6 +60,22 @@ namespace lumen {
         return base_path;
 
     } //core_app_path
+
+    const char* core_pref_path( const char* org, const char* app ) {        
+
+        if(pref_path == NULL) {
+
+            char *_pref_path = SDL_GetPrefPath(org, app);
+            if (_pref_path) {                
+                pref_path = SDL_strdup(_pref_path);
+                SDL_free(_pref_path);
+            }            
+
+        } //pref_path
+
+        return pref_path;
+
+    } //core_pref_path
 
     int update_core_aux() {
 

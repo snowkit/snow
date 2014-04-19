@@ -32,54 +32,6 @@ namespace lumen {
         //a core system event handler implementation (defined in hx_bindings.h)
     AutoGCRoot *system_event_handler = 0;
 
-    int id_id;
-    int id_type;
-    int id_event;
-    int id_x;
-    int id_y;
-    int id_width;
-    int id_height;
-    int id_text;
-    int id_length;
-
-    int id_window;
-    int id_window_id;
-    int id_timestamp;
-    int id_data1;
-    int id_data2;
-
-    int id_input;
-    int id_start;
-    int id_state;
-    int id_repeat;
-    int id_mod;
-    int id_sym;
-    int id_keysym;
-    int id_scancode;
-    int id_which;
-    int id_xrel;
-    int id_yrel;
-    int id_button;
-    int id_dx;
-    int id_dy;
-    int id_finger_id;
-    int id_touch_id;
-    int id_pressure;
-    int id_axis;
-    int id_value;
-    int id_ball;
-    int id_hat;
-
-    int id_title;
-    int id_fullscreen;
-    int id_resizable;
-    int id_borderless;
-    int id_antialiasing;
-    int id_depth_buffer;
-    int id_stencil_buffer;
-    int id_vsync;
-    int id_fps;
-
     extern "C" void lumen_entry_point() {
 
         if (global_lumen_init){
@@ -124,11 +76,19 @@ namespace lumen {
     
     } DEFINE_PRIM(lumen_shutdown, 0);
 
+
     value lumen_app_path() {
 
         return alloc_string( core_app_path() );
     
     } DEFINE_PRIM(lumen_app_path, 0);
+
+
+    value lumen_pref_path(value _org, value _app) {
+
+        return alloc_string( core_pref_path( val_string(_org), val_string(_app) ) );
+
+    } DEFINE_PRIM(lumen_pref_path, 2);
 
 
 
@@ -335,6 +295,54 @@ namespace lumen {
 
 //Native glue stuff
 
+
+    int id_id;
+    int id_type;
+    int id_event;
+    int id_x;
+    int id_y;
+    int id_width;
+    int id_height;
+    int id_text;
+    int id_length;
+
+    int id_window;
+    int id_window_id;
+    int id_timestamp;
+    int id_data1;
+    int id_data2;
+
+    int id_input;
+    int id_start;
+    int id_state;
+    int id_repeat;
+    int id_mod;
+    int id_sym;
+    int id_keysym;
+    int id_scancode;
+    int id_which;
+    int id_xrel;
+    int id_yrel;
+    int id_button;
+    int id_dx;
+    int id_dy;
+    int id_finger_id;
+    int id_touch_id;
+    int id_pressure;
+    int id_axis;
+    int id_value;
+    int id_ball;
+    int id_hat;
+
+    int id_title;
+    int id_fullscreen;
+    int id_resizable;
+    int id_borderless;
+    int id_antialiasing;
+    int id_depth_buffer;
+    int id_stencil_buffer;
+    int id_vsync;
+    int id_fps;
 
 
 
