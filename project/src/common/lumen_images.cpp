@@ -12,7 +12,7 @@ namespace lumen {
         
         unsigned char *data = stbi_load(_id, w, h, bpp_source, req_bpp);
 
-        printf("lumen / image / w:%d h:%d source bpp:%d bpp:%d\n", *w, *h, *bpp_source, req_bpp);
+        // printf("lumen / image / w:%d h:%d source bpp:%d bpp:%d\n", *w, *h, *bpp_source, req_bpp);
 
         if(data != NULL) {
             
