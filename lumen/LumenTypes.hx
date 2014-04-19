@@ -89,6 +89,7 @@ enum WindowEventType {
 
     unknown;
 
+    window_created;
     window_shown;
     window_hidden;
     window_exposed;
@@ -103,7 +104,7 @@ enum WindowEventType {
     window_focus_gained;
     window_focus_lost;
     window_close;
-
+    
 } //WindowEventType
 
 
@@ -169,25 +170,27 @@ class WindowEvents {
 //window events
 
     public static var we_unknown          = 0;
-    public static var we_shown            = 1;
-    public static var we_hidden           = 2;
-    public static var we_exposed          = 3;
-    public static var we_moved            = 4;
-    public static var we_resized          = 5;
-    public static var we_size_changed     = 6;
-    public static var we_minimized        = 7;
-    public static var we_maximized        = 8;
-    public static var we_restored         = 9;
-    public static var we_enter            = 10;
-    public static var we_leave            = 11;
-    public static var we_focus_gained     = 12;
-    public static var we_focus_lost       = 13;
-    public static var we_close            = 14;
+    public static var we_created          = 1;
+    public static var we_shown            = 2;
+    public static var we_hidden           = 3;
+    public static var we_exposed          = 4;
+    public static var we_moved            = 5;
+    public static var we_resized          = 6;
+    public static var we_size_changed     = 7;
+    public static var we_minimized        = 8;
+    public static var we_maximized        = 9;
+    public static var we_restored         = 10;
+    public static var we_enter            = 11;
+    public static var we_leave            = 12;
+    public static var we_focus_gained     = 13;
+    public static var we_focus_lost       = 14;
+    public static var we_close            = 15;
 
 //Helpers
 
     public static function typed(type:Int) : WindowEventType {
         
+            if(type == we_created)        return WindowEventType.window_created;
             if(type == we_shown)          return WindowEventType.window_shown;
             if(type == we_hidden)         return WindowEventType.window_hidden;
             if(type == we_exposed)        return WindowEventType.window_exposed;

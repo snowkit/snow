@@ -12,6 +12,7 @@ namespace lumen {
     int init_core_sdl();
     int shutdown_core_sdl();
     void handle_system_event( SDL_Event &event );
+
     extern void handle_window_event( SDL_Event &event );
     extern void handle_input_event( SDL_Event &event );
     extern void init_input_sdl();
@@ -23,10 +24,17 @@ namespace lumen {
         //a tag for a non valid event
     static int no_event = -1;
 
+    const char* base_path = "./";
 
         //general handler for lumen auxiliary 
         //stuff, like SDL core systems
     int init_core_aux() {
+
+        char *_base_path = SDL_GetBasePath();
+        if (_base_path) {
+            base_path = SDL_strdup(_base_path);
+            SDL_free( _base_path );
+        }
 
         init_core_sdl();
         init_input_sdl();
@@ -42,6 +50,12 @@ namespace lumen {
         return 0;
 
     } //shutdown_core_aux
+
+    const char* core_app_path() {
+        
+        return base_path;
+
+    } //core_app_path
 
     int update_core_aux() {
 

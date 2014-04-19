@@ -90,20 +90,23 @@ namespace lumen {
     enum WindowEventType {
 
         we_unknown          = 0,
-        we_shown            = 1,
-        we_hidden           = 2,
-        we_exposed          = 3,
-        we_moved            = 4,
-        we_resized          = 5,
-        we_size_changed     = 6,
-        we_minimized        = 7,
-        we_maximized        = 8,
-        we_restored         = 9,
-        we_enter            = 10,
-        we_leave            = 11,
-        we_focus_gained     = 12,
-        we_focus_lost       = 13,
-        we_close            = 14
+
+        we_created          = 1,
+        
+        we_shown            = 2,
+        we_hidden           = 3,
+        we_exposed          = 4,
+        we_moved            = 5,
+        we_resized          = 6,
+        we_size_changed     = 7,
+        we_minimized        = 8,
+        we_maximized        = 9,
+        we_restored         = 10,
+        we_enter            = 11,
+        we_leave            = 12,
+        we_focus_gained     = 13,
+        we_focus_lost       = 14,
+        we_close            = 15        
 
     }; //WindowEventType
 

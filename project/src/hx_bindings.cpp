@@ -124,6 +124,12 @@ namespace lumen {
     
     } DEFINE_PRIM(lumen_shutdown, 0);
 
+    value lumen_app_path() {
+
+        return alloc_string( core_app_path() );
+    
+    } DEFINE_PRIM(lumen_app_path, 0);
+
 
 
 

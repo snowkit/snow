@@ -62,6 +62,13 @@ class Window {
 
         r = Math.random();
 
+        on_event({ 
+            type:WindowEventType.window_created,
+            window_id : _id,
+            timestamp : 0, 
+            event : {}
+        });
+
         // trace("/ lumen / created window with id: " + id);
         // trace('/ lumen / updating real window config for $id is ' + _config);
 
@@ -73,24 +80,9 @@ class Window {
 
         switch(_event.type) {
             
-            case window_shown : {}
-            case window_hidden : {}
-            case window_exposed : {}
-
             case window_moved : { position = { x:_event.event.data1, y:_event.event.data2 }; }
             case window_resized : { position = { x:_event.event.data1, y:_event.event.data2 }; }
             case window_size_changed : { size = { w:_event.event.data1, h:_event.event.data2 }; }
-
-            case window_minimized : {}
-            case window_maximized : {}
-            case window_restored : {}
-            case window_enter : {}
-            case window_leave : {}
-            case window_focus_gained : {
-
-            }
-            case window_focus_lost : {}
-            case window_close : {}
 
             default: {}
 
