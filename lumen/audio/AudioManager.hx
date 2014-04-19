@@ -40,13 +40,13 @@ class AudioManager {
         trace( AL.getDoublev(AL.SPEED_OF_SOUND, 1) );   trace( AL.getErrorMeaning(AL.getError()) );
         trace( AL.getBooleanv(AL.SPEED_OF_SOUND, 1) );  trace( AL.getErrorMeaning(AL.getError()) );
         trace( AL.getIntegerv(AL.SPEED_OF_SOUND, 1) );  trace( AL.getErrorMeaning(AL.getError()) );
-        trace( AL.getFloatv(AL.SPEED_OF_SOUND, 1) );    trace( AL.getErrorMeaning(AL.getError()) );
+        trace( AL.getFloatv(AL.SPEED_OF_SOUND, 1) );    trace( AL.getErrorMeaning(AL.getError()) );        
 
-        #if mac
-        var data = getBytes( "../Resources/assets/sound.pcm" );
-        #else
         var data = getBytes( "./assets/sound.pcm" );
-        #end
+
+        if(data == null) {
+            return;
+        }
 
         AL.bufferData(buffer, AL.FORMAT_MONO16, new Float32Array(data), data.byteLength, 16000 );
 
