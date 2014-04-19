@@ -49,10 +49,6 @@ class Lumen {
             _debug('/ lumen / initializing - ', true);
         // #end
 
-        window = new WindowManager( this );
-        input = new InputManager( this );
-        audio = new AudioManager( this );
-
         lumen_init( on_event );
 
     } //init
@@ -72,7 +68,7 @@ class Lumen {
     } //shutdown
 
 
-    var main_window : Window;
+    public var main_window : Window;
 
     function on_lumen_ready() {
 
@@ -81,23 +77,31 @@ class Lumen {
             return;
         }
 
+            //ensure that we are in the correct location for asset loading
+        Sys.setCwd( lumen_app_path() );        
+            
+            //create the sub systems 
+        window = new WindowManager( this );
+        input = new InputManager( this );
+        audio = new AudioManager( this );        
+
         was_ready = true;
 
-        _debug('/ lumen / ready and setting up additional requests...');
+        _debug('/ lumen / ready, setting up additional systems...');
 
             //now if they requested a window, let's open one
         main_window = window.create( config.window_config );
-        
-            var w2 = window.create( config.window_config );
-            var w3 = window.create( config.window_config );
-            var w4 = window.create( config.window_config );
+            
+            window.create( config.window_config );
+            window.create( config.window_config );
+            window.create( config.window_config );
 
             //and track the main window only for now 
         main_window.window_event_handler = on_main_window_event;
 
             //now ready
-        is_ready = true;
-
+        is_ready = true;        
+        
             //tell the host app we are done
         host.ready();
 
@@ -136,26 +140,27 @@ class Lumen {
 
             case SystemEventType.quit: {
                 shutdown();
-            } //update
+            } //quit
 
             case SystemEventType.window: {
                 window.on_event( _event );
-            }
+            } //window
             
             case SystemEventType.input: {
                 if(is_ready) {
                     input.on_event( _event );
                 }
-            }
+            } //input
 
             case SystemEventType.shutdown: {
                 // #if debug
                     _debug('/ lumen / Goodbye.');
                 // #end
-            }
+            } //shutdown
 
-            default:{}
+            default: {
 
+            } //default
 
         } //switch _event.type
 
@@ -165,7 +170,7 @@ class Lumen {
 
         if(_event.type == window_close) {
             shutdown();
-        } //if close
+        }
 
     } //main_window_events
 
@@ -184,6 +189,7 @@ class Lumen {
 
         private static var lumen_init = load( "lumen", "lumen_init", 1 );
         private static var lumen_shutdown = load( "lumen", "lumen_shutdown", 0 );
+        private static var lumen_app_path = load( "lumen", "lumen_app_path", 0 );
 
     #end //lumen_native
 

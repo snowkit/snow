@@ -73,7 +73,7 @@ namespace lumen {
 
     void LumenWindowSDL2::simple_message( const char* message, const char* title ) {
 
-        SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, message, title, window );
+        SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, title, message, window );
 
     } //LumenWindowSDL2::simple_message
 
@@ -126,34 +126,15 @@ namespace lumen {
         }
       
         if(_config.antialiasing != 0) {
-            SDL_GL_SetAttribute(SDL_GL_MULTISAMPLEBUFFERS, true);
-            SDL_GL_SetAttribute(SDL_GL_MULTISAMPLESAMPLES, _config.antialiasing);
+            SDL_GL_SetAttribute(SDL_GL_MULTISAMPLEBUFFERS, true );
+            SDL_GL_SetAttribute(SDL_GL_MULTISAMPLESAMPLES, _config.antialiasing );
         }
 
-                //now actually try and create a window
+            //now actually try and create a window
+        window = SDL_CreateWindow( _config.title.c_str(), _config.x, _config.y, _config.width, _config.height, request_flags );                
 
-            window = NULL;
-
-            int trycount = 0;
-
-                //keep trying to create a window
-            // while (!window) { 
-
-                    // if there's an old window around
-                    // from a failed attempt, destroy it
-                // if (window) {
-                //     SDL_DestroyWindow(window);
-                //     window = NULL;
-                // } //window exists
-
-                ++trycount;
-
-                window = SDL_CreateWindow( _config.title.c_str(), _config.x, _config.y, _config.width, _config.height, request_flags );                
-
-                    //fetch ones actually used by window
-                // real_flags = SDL_GetWindowFlags( window );
-
-            // } //while !window 
+        // fetch ones actually used by window
+        // real_flags = SDL_GetWindowFlags( window );
 
         if( !window ) {
             fprintf(stderr, "/ lumen / Failed to create SDL window: %s\n", SDL_GetError());
@@ -228,6 +209,8 @@ namespace lumen {
 
                     alloc_field( _object, id_data1, alloc_int(event.window.data1) );
                     alloc_field( _object, id_data2, alloc_int(event.window.data2) );
+
+                    break;
 
                 }
 
@@ -332,9 +315,9 @@ namespace lumen {
         } //switch event.type
 
             //populate it's event structure first
-        new_event.event = sdl2_window_event_to_hx(new_event, event);            
-        new_event.timestamp = event.window.timestamp;
         new_event.window_id = event.window.windowID;
+        new_event.timestamp = event.window.timestamp;
+        new_event.event = sdl2_window_event_to_hx(new_event, event);            
 
             //dispatch the event!
         dispatch_window_event( new_event );

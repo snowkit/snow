@@ -45,7 +45,10 @@
 
    <!-- always using SDL2 for main platforms -->
    <set name="LUMEN_SDL2" value="1"/>
+   <!-- always using OpenAL for main platforms -->
    <set name="LUMEN_OPENAL" value="1"/>
+   <!-- always using stb_image for main platforms  -->
+   <set name="LUMEN_STB_IMAGE" value="1"/>
 
    <!-- Do we need to implement curl in NME -->
    <set name="LUMEN_CURL" value="1" />
@@ -70,6 +73,7 @@
 
       <file name="src/hx_bindings.cpp" />
       <file name="src/common/ByteArray.cpp" />
+      <file name="src/common/lumen_images.cpp" />
 
    <!-- Lib sources -->
 
@@ -84,6 +88,7 @@
 
          <!-- glew -->
       <file name="${SRC_DIR}/libs/glew/glew.c" />
+
 
    <!-- Platform specific sources  -->
 
@@ -147,6 +152,10 @@
          <file name="${SRC_DIR}/audio/openal/lumen_audio_openal.cpp" />
          <!-- <file name="${SRC_DIR}/openal/OpenALSound.cpp" /> -->
          <!-- <file name="${SRC_DIR}/common/Audio.cpp" /> -->
+      </section>
+
+      <section if="LUMEN_STB_IMAGE">
+         <file name="${SRC_DIR}/libs/stb_image/stb_image.c" />
       </section>
 
    </files>
