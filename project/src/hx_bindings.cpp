@@ -202,6 +202,33 @@ namespace lumen {
 
 
 
+// image loading
+
+extern void image_load_bytes( QuickVec<unsigned char> &out_buffer, const char* _id, int* w, int* h, int* bpp, int* bpp_source, int req_bpp );
+
+    value lumen_image_load_bytes( value _id, value _req_bpp ) {
+
+        QuickVec<unsigned char> buffer;
+
+        int w = 0, h = 0, bpp = 0, bpp_source = 0;
+        int req_bpp = val_int(_req_bpp);
+
+        image_load_bytes( buffer, val_string(_id), &w, &h, &bpp, &bpp_source, req_bpp );
+
+        value _object = alloc_empty_object();
+
+            alloc_field( _object, id_width, alloc_int(w) );
+            alloc_field( _object, id_height, alloc_int(h) );
+            alloc_field( _object, id_bpp, alloc_int(bpp) );
+            alloc_field( _object, id_bpp_source, alloc_int(bpp_source) );
+            alloc_field( _object, id_data, ByteArray(buffer).mValue );
+
+        return _object;
+
+    } DEFINE_PRIM(lumen_image_load_bytes, 2);
+
+
+
 
 
 //LZMA bindings
@@ -305,10 +332,11 @@ namespace lumen {
     int id_height;
     int id_text;
     int id_length;
+    int id_data;
 
     int id_window;
     int id_window_id;
-    int id_timestamp;
+    int id_timestamp;    
     int id_data1;
     int id_data2;
 
@@ -333,6 +361,9 @@ namespace lumen {
     int id_value;
     int id_ball;
     int id_hat;
+
+    int id_bpp;
+    int id_bpp_source;
 
     int id_title;
     int id_fullscreen;
