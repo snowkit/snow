@@ -211,7 +211,6 @@
             <lib name="user32.lib" />
             <lib name="kernel32.lib" />
             <lib name="advapi32.lib" />
-            <lib name="${SUP_DIR}/windows/dxguid.lib"/>
             <lib name="winmm.lib" />
             <lib name="imm32.lib"  />
             <lib name="ole32.lib" />
