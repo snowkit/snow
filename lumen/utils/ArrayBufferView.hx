@@ -195,7 +195,7 @@ package lumen.utils;
         inline public function getUInt32( position:Int ) : Int {
             
             #if cpp
-            untyped return __global__.__hxcpp_memory_get_ui32(bytes, position + byteOffset) & 0xffffffff;
+            untyped return __global__.__hxcpp_memory_get_ui32(bytes, position + byteOffset);
             #else
             buffer.position = position + byteOffset;
             return buffer.readUnsignedInt();
