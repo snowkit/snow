@@ -4,6 +4,7 @@ import haxe.Timer;
 
 import lumen.LumenTypes;
 
+import lumen.utils.ByteArray;
 import lumen.window.Window;
 import lumen.window.WindowManager;
 import lumen.input.InputManager;
@@ -15,6 +16,7 @@ class App {
     public var app : Lumen;
 
     public function ready() {}
+    public function update() {}
 
 }
 
@@ -78,9 +80,11 @@ class Lumen {
         }
 
             //ensure that we are in the correct location for asset loading
-        Sys.setCwd( lumen_app_path() );
-            //test this on other platforms, on mac it's writing to 'lumen/def/'
-        lumen_pref_path('lumen','default');
+        #if lumen_native 
+            Sys.setCwd( lumen_app_path() );
+                //test this on other platforms, on mac it's writing to 'lumen/def/'
+            lumen_pref_path('lumen','default');
+        #end //lumen_native
             
             //create the sub systems 
         window = new WindowManager( this );
@@ -94,9 +98,9 @@ class Lumen {
             //now if they requested a window, let's open one
         main_window = window.create( config.window_config );
             
-            window.create( config.window_config );
-            window.create( config.window_config );
-            window.create( config.window_config );
+            // window.create( config.window_config );
+            // window.create( config.window_config );
+            // window.create( config.window_config );
 
             //and track the main window only for now 
         main_window.window_event_handler = on_main_window_event;
@@ -105,7 +109,7 @@ class Lumen {
         is_ready = true;        
         
             //tell the host app we are done
-        host.ready();
+        host.ready();        
 
     } //on_lumen_ready
 
@@ -114,6 +118,7 @@ class Lumen {
         window.update();
         input.update();
         audio.update();
+        host.update();
 
     } //on_lumen_update
 
@@ -168,6 +173,10 @@ class Lumen {
 
     } //on_event
 
+    public function loadimage( path:String, ?components:Int = 4 ) : ImageInfo {
+        return lumen_image_load_bytes( path, components );
+    }
+
     function on_main_window_event( _event:WindowEvent ) {
 
         if(_event.type == window_close) {
@@ -193,6 +202,8 @@ class Lumen {
         private static var lumen_shutdown = load( "lumen", "lumen_shutdown", 0 );
         private static var lumen_app_path = load( "lumen", "lumen_app_path", 0 );
         private static var lumen_pref_path = load( "lumen", "lumen_pref_path", 2 );
+        
+        private static var lumen_image_load_bytes = load( "lumen", "lumen_image_load_bytes", 2 );
 
     #end //lumen_native
 
