@@ -29,10 +29,10 @@ class AudioManager {
 
         source = AL.genSource();
 
-        AL.sourcef( source, AL.PITCH, 1 );
-        AL.sourcef( source, AL.GAIN, 1 );
-        AL.source3f( source, AL.POSITION, 0, 0, 0 );
-        AL.source3f( source, AL.VELOCITY, 0, 0, 0 );
+        AL.sourcef( source, AL.PITCH, 1.0 );
+        AL.sourcef( source, AL.GAIN, 1.0 );
+        AL.source3f( source, AL.POSITION, 0.0, 0.0, 0.0 );
+        AL.source3f( source, AL.VELOCITY, 0.0, 0.0, 0.0 );
 
         AL.sourcei( source, AL.LOOPING, AL.TRUE );
 
