@@ -790,60 +790,64 @@ namespace lumen {
     GL_UNFORM_4(i,val_int)
     GL_UNFORM_4(f,val_number)
 
-    value lumen_gl_uniform1iv(value inLocation,value inArray) {
+    value lumen_gl_uniform1iv(value inLocation,value inByteBuffer) {
        
-        int *i = val_array_int(inArray);
-        
-        if( i ) {
-            glUniform1iv(val_int(inLocation),1,i);
-        } else {
-            lumen_gl_uniform1i(inLocation,val_array_i(inArray,0));
-        }
+        int loc = val_int(inLocation);
+
+        ByteArray bytes(inByteBuffer);
+        int size = bytes.Size();
+        const int *data = (int *)bytes.Bytes();
+        int nbElems = size / sizeof(int);
+
+        glUniform1iv(loc,nbElems,data);
 
         return alloc_null();
 
     } DEFINE_PRIM(lumen_gl_uniform1iv,2);
 
 
-    value lumen_gl_uniform2iv(value inLocation,value inArray) {
+    value lumen_gl_uniform2iv(value inLocation,value inByteBuffer) {
        
-        int *i = val_array_int(inArray);
+        int loc = val_int(inLocation);
 
-        if( i ) {
-            glUniform2iv(val_int(inLocation),1,i);
-        } else {
-            lumen_gl_uniform2i(inLocation,val_array_i(inArray,0),val_array_i(inArray,1));
-        }
+        ByteArray bytes(inByteBuffer);
+        int size = bytes.Size();
+        const int *data = (int *)bytes.Bytes();
+        int nbElems = size / sizeof(int);
+
+        glUniform2iv(loc,nbElems>>1,data);
 
         return alloc_null();
 
     } DEFINE_PRIM(lumen_gl_uniform2iv,2);
 
 
-    value lumen_gl_uniform3iv(value inLocation,value inArray) {
+    value lumen_gl_uniform3iv(value inLocation,value inByteBuffer) {
        
-        int *i = val_array_int(inArray);
-        
-        if( i ) {
-            glUniform3iv(val_int(inLocation),1,i);
-        } else {
-            lumen_gl_uniform3i(inLocation,val_array_i(inArray,0),val_array_i(inArray,1),val_array_i(inArray,2));
-        }
+        int loc = val_int(inLocation);
+
+        ByteArray bytes(inByteBuffer);
+        int size = bytes.Size();
+        const int *data = (int *)bytes.Bytes();
+        int nbElems = size / sizeof(int);
+
+        glUniform3iv(loc,nbElems/3,data);
 
         return alloc_null();
 
     } DEFINE_PRIM(lumen_gl_uniform3iv,2);
 
 
-    value lumen_gl_uniform4iv(value inLocation,value inArray) {
+    value lumen_gl_uniform4iv(value inLocation,value inByteBuffer) {
 
-        int *i = val_array_int(inArray);
+        int loc = val_int(inLocation);
 
-        if( i ) {
-            glUniform4iv(val_int(inLocation),1,i);
-        } else {
-            lumen_gl_uniform4i(inLocation,val_array_i(inArray,0),val_array_i(inArray,1),val_array_i(inArray,2),val_array_i(inArray,3));
-        }
+        ByteArray bytes(inByteBuffer);
+        int size = bytes.Size();
+        const int *data = (int *)bytes.Bytes();
+        int nbElems = size / sizeof(int);
+
+        glUniform4iv(loc,nbElems>>2,data);
 
         return alloc_null();
 
