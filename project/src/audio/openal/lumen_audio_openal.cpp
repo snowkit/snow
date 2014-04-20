@@ -1,4 +1,3 @@
-
 #include <hx/CFFI.h>
 
 #if defined(HX_MACOS) || defined(IPHONE)
@@ -1024,7 +1023,7 @@ namespace lumen {
 
     value alhx_alcOpenDevice(value _devicename) {        
 
-        ALCdevice* _al_device = alcOpenDevice( val_string(_devicename) );
+        ALCdevice* _al_device = alcOpenDevice( _devicename == val_null ? 0 : val_string(_devicename) );
         
         if(!_al_device) {
             printf("/ lumen / failed to create AL device. \n");
