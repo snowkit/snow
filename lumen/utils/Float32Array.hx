@@ -64,7 +64,7 @@ package lumen.utils;
                 
             } else {
 
-                super(bufferOrArray, start, length << 2);
+                super(bufferOrArray, start, (length != null) ? length << 2 : null);
                 
                 if ((byteLength & 0x03) > 0) {
                     throw "Invalid array size";
