@@ -37,7 +37,7 @@ class Main extends lumen.App {
 
     override public function ready() {
 
-        trace('/ HOST / ready');
+        trace('/ HOST / ready');        
 
         initializeShaders();
         createBuffers();

@@ -44,12 +44,13 @@ class AudioManager {
         trace( AL.getFloatv(AL.SPEED_OF_SOUND, 1) );    trace( AL.getErrorMeaning(AL.getError()) );        
 
         var data = getBytes( "./assets/sound.pcm" );
+        var info : AudioInfo = lib.loadsound_ogg("assets/sound.ogg");
 
         if(data == null) {
             return;
         }
 
-        AL.bufferData(buffer, AL.FORMAT_MONO16, new Float32Array(data), data.byteLength, 16000 );
+        AL.bufferData(buffer, (info.channels > 1) ? AL.FORMAT_STEREO16 : AL.FORMAT_MONO16, new Float32Array(info.data), info.data.byteLength, info.rate );
 
                 trace( AL.getErrorMeaning(AL.getError()) );
 

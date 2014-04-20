@@ -12,11 +12,29 @@ typedef LumenConfig = {
 
 typedef ImageInfo = {
 
+    id : String,        //source asset id
     bpp : Int,          //used bits per pixel
     width : Int,        //image width
     height : Int,       //image height
     bpp_source : Int,   //source bits per pixel
     data : ByteArray    //image data
+
+}
+
+enum AudioFormatType {
+    unknown;
+    ogg;
+    wav;
+}
+
+typedef AudioInfo = {
+
+    id : String,                //file source
+    format : AudioFormatType,   //format
+    channels : Int,             //number of channels
+    rate : Int,                 //hz rate 
+    bitrate : Int,              //sound bitrate
+    data : ByteArray            //sound raw data
 
 }
 

@@ -176,6 +176,9 @@ class Lumen {
     public function loadimage( path:String, ?components:Int = 4 ) : ImageInfo {
         return lumen_image_load_bytes( path, components );
     }
+    public function loadsound_ogg( path:String ) : AudioInfo {
+        return lumen_audio_load_ogg_bytes( path );
+    }
 
     function on_main_window_event( _event:WindowEvent ) {
 
@@ -203,6 +206,7 @@ class Lumen {
         private static var lumen_app_path = load( "lumen", "lumen_app_path", 0 );
         private static var lumen_pref_path = load( "lumen", "lumen_pref_path", 2 );
         
+        private static var lumen_audio_load_ogg_bytes = load( "lumen", "lumen_audio_load_ogg_bytes", 1 );
         private static var lumen_image_load_bytes = load( "lumen", "lumen_image_load_bytes", 2 );
 
     #end //lumen_native
