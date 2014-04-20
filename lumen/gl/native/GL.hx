@@ -904,10 +904,10 @@ class GL {
         lumen_gl_polygon_offset(factor, units);
     }
 
-        //todo sven
-    // public static function readPixels(x:Int, y:Int, width:Int, height:Int, format:Int, type:Int, pixels:ByteArray):Void 
-    // {
-    // }
+    public static function readPixels(x:Int, y:Int, width:Int, height:Int, format:Int, type:Int, pixels:ArrayBufferView):Void 
+    {
+        lumen_gl_read_pixels(x, y, width, height, format, type, pixels == null ? null : pixels.getByteBuffer(), pixels == null ? null : pixels.getStart());
+    }
 
     public static function renderbufferStorage(target:Int, internalformat:Int, width:Int, height:Int):Void 
     {
@@ -1247,6 +1247,7 @@ class GL {
     private static var lumen_gl_link_program = load("lumen_gl_link_program", 1);
     private static var lumen_gl_pixel_storei = load("lumen_gl_pixel_storei", 2);
     private static var lumen_gl_polygon_offset = load("lumen_gl_polygon_offset", 2);
+    private static var lumen_gl_read_pixels = load("lumen_gl_read_pixels", -1);
     private static var lumen_gl_renderbuffer_storage = load("lumen_gl_renderbuffer_storage", 4);
     private static var lumen_gl_sample_coverage = load("lumen_gl_sample_coverage", 2);
     private static var lumen_gl_scissor = load("lumen_gl_scissor", 4);
