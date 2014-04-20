@@ -1040,13 +1040,6 @@ namespace lumen {
        
         int id = val_int(inId);
         const char *source = val_string(inSource);
-       
-        #ifdef lumen_GLES
-           // TODO - do something better here //:todo:
-            std::string buffer;
-            buffer = std::string("precision mediump float;\n") + source;
-            source = buffer.c_str();
-        #endif
 
         glShaderSource(id,1,&source,0);
 
