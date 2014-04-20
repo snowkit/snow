@@ -125,8 +125,8 @@ namespace lumen {
                 printf("bitrate lower   %lu \n",    ogg_source->info->bitrate_lower);
                 printf("bitrate window  %lu \n",    ogg_source->info->bitrate_window);
                 printf("vendor          %s \n",     ogg_source->comments->vendor);
-                printf("length          %lld \n",   ogg_source->length);
-                printf("uncompressed    %lld \n",   total_length);
+                printf("length          %ld \n",    ogg_source->length);
+                printf("uncompressed    %lld \n",   (long long)total_length);
                 
             for(int i = 0; i < ogg_source->comments->comments; i++) {
                 printf("\t%s\n",  ogg_source->comments->user_comments[i]);
