@@ -7,6 +7,7 @@ import lumen.utils.ArrayBuffer;
 import lumen.utils.ArrayBufferView;
 import lumen.utils.Float32Array;
 import lumen.utils.IMemoryRange;
+import lumen.utils.Int32Array;
 
 class GL {
     
@@ -990,9 +991,9 @@ class GL {
         lumen_gl_uniform1i(location, x);
     }
 
-    public static function uniform1iv(location:GLUniformLocation, v:Array<Int>):Void 
+    public static function uniform1iv(location:GLUniformLocation, v:Int32Array):Void 
     {
-        lumen_gl_uniform1iv(location, v);
+        lumen_gl_uniform1iv(location, v.getByteBuffer());
     }
 
     public static function uniform2f(location:GLUniformLocation, x:Float, y:Float):Void 
@@ -1010,9 +1011,9 @@ class GL {
         lumen_gl_uniform2i(location, x, y);
     }
 
-    public static function uniform2iv(location:GLUniformLocation, v:Array<Int>):Void 
+    public static function uniform2iv(location:GLUniformLocation, v:Int32Array):Void 
     {
-        lumen_gl_uniform2iv(location, v);
+        lumen_gl_uniform2iv(location, v.getByteBuffer());
     }
 
     public static function uniform3f(location:GLUniformLocation, x:Float, y:Float, z:Float):Void 
@@ -1030,9 +1031,9 @@ class GL {
         lumen_gl_uniform3i(location, x, y, z);
     }
 
-    public static function uniform3iv(location:GLUniformLocation, v:Array<Int>):Void 
+    public static function uniform3iv(location:GLUniformLocation, v:Int32Array):Void 
     {
-        lumen_gl_uniform3iv(location, v);
+        lumen_gl_uniform3iv(location, v.getByteBuffer());
     }
 
     public static function uniform4f(location:GLUniformLocation, x:Float, y:Float, z:Float, w:Float):Void 
@@ -1050,9 +1051,9 @@ class GL {
         lumen_gl_uniform4i(location, x, y, z, w);
     }
 
-    public static function uniform4iv(location:GLUniformLocation, v:Array<Int>):Void 
+    public static function uniform4iv(location:GLUniformLocation, v:Int32Array):Void 
     {
-        lumen_gl_uniform4iv(location, v);
+        lumen_gl_uniform4iv(location, v.getByteBuffer());
     }
 
     public static function uniformMatrix2fv(location:GLUniformLocation, transpose:Bool, v:Float32Array):Void 
