@@ -202,6 +202,41 @@ namespace lumen {
 
 
 
+// audio loading
+
+extern void audio_load_ogg_bytes( QuickVec<unsigned char> &out_buffer, const char* _id, 
+                int* channels, long* rate, long* bitrate_upper, long* bitrate_nominal, 
+                long* bitrate_lower, long* bitrate_window );
+
+    value lumen_audio_load_ogg_bytes( value _id ) {
+
+        QuickVec<unsigned char> buffer;
+        int ch; 
+        long rate; 
+        long br_u; 
+        long br_l; 
+        long br_n; 
+        long br_w;
+
+        audio_load_ogg_bytes( buffer, val_string(_id), &ch, &rate, &br_u, &br_n, &br_l, &br_w );
+
+        value _object = alloc_empty_object();
+
+            alloc_field( _object, id_id, _id );
+            alloc_field( _object, id_channels, alloc_int(ch) );
+            alloc_field( _object, id_rate, alloc_int(rate) );
+            alloc_field( _object, id_format, alloc_int(1) );
+            alloc_field( _object, id_bitrate, alloc_int(br_n) );
+            alloc_field( _object, id_data, ByteArray(buffer).mValue );
+            // alloc_field( _object, id_bitrate_upper, alloc_int(br_u) );
+            // alloc_field( _object, id_bitrate_lower, alloc_int(br_l) );
+            // alloc_field( _object, id_bitrate_window, alloc_int(br_w) );
+
+        return _object;
+
+    } DEFINE_PRIM(lumen_audio_load_ogg_bytes, 1);
+
+
 // image loading
 
 extern void image_load_bytes( QuickVec<unsigned char> &out_buffer, const char* _id, int* w, int* h, int* bpp, int* bpp_source, int req_bpp );
@@ -217,6 +252,7 @@ extern void image_load_bytes( QuickVec<unsigned char> &out_buffer, const char* _
 
         value _object = alloc_empty_object();
 
+            alloc_field( _object, id_id, _id );
             alloc_field( _object, id_width, alloc_int(w) );
             alloc_field( _object, id_height, alloc_int(h) );
             alloc_field( _object, id_bpp, alloc_int(bpp) );
@@ -364,6 +400,15 @@ extern void image_load_bytes( QuickVec<unsigned char> &out_buffer, const char* _
 
     int id_bpp;
     int id_bpp_source;
+
+    int id_format;
+    int id_channels;
+    int id_rate;
+    int id_bitrate;
+    int id_bitrate_upper;
+    int id_bitrate_nominal;
+    int id_bitrate_lower;
+    int id_bitrate_window;
 
     int id_title;
     int id_fullscreen;

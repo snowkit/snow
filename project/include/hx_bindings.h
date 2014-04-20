@@ -60,6 +60,17 @@ namespace lumen {
     extern int id_bpp;
     extern int id_bpp_source;
 
+        //audio related
+
+    extern int id_format;
+    extern int id_channels;
+    extern int id_rate;
+    extern int id_bitrate;
+    extern int id_bitrate_upper;
+    extern int id_bitrate_nominal;
+    extern int id_bitrate_lower;
+    extern int id_bitrate_window;
+
         //window config
 
     extern int id_title;
@@ -126,6 +137,17 @@ namespace lumen {
 
         id_bpp                  = val_id("bpp");
         id_bpp_source           = val_id("bpp_source");
+
+            //audio related
+
+        id_format               = val_id("format");
+        id_channels             = val_id("channels");
+        id_rate                 = val_id("rate");
+        id_bitrate              = val_id("bitrate");
+        id_bitrate_upper        = val_id("bitrate_upper");
+        id_bitrate_nominal      = val_id("bitrate_nominal");
+        id_bitrate_lower        = val_id("bitrate_lower");
+        id_bitrate_window       = val_id("bitrate_window");
 
             //window config related
 
