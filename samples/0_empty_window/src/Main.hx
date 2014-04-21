@@ -70,9 +70,13 @@ class Main extends lumen.App {
     var next_tick : Float = 0;
     var phys_posx : Float = 0;
 
-    override function update(t:Float, dt:Float) {
+    override function update(t:Float, delta:Float) {
 
-        phys_posx += (speed * dirX * dt);
+        positionX = phys_posx;
+        
+        phys_posx += (speed * dirX * delta);
+
+        // Sys.println('phys:${phys_posx}  dt:${delta}');
 
             //swap textures once a second
             p = true;
@@ -86,7 +90,7 @@ class Main extends lumen.App {
 
             current_texture = textures[tex_index];
             
-        }        
+        }
     }
 
     var avgdt = 0.0;
@@ -120,7 +124,7 @@ class Main extends lumen.App {
         }
 
         if(p == true) {
-            Sys.println('alpha:${alpha_time} dt:${app.last_frame_time} avgdt:${avgdt} simtime:${app.t}');
+            // Sys.println('alpha:${alpha_time} dt:${app.last_frame_time} avgdt:${avgdt} simtime:${app.t}');
             p = false;
         }
 
@@ -243,7 +247,7 @@ class Main extends lumen.App {
         
     var positionX : Float = 0;
     var dirX : Float = 1;
-    var speed : Float = 80;
+    var speed : Float = 100;
 
     function render(){
         

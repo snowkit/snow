@@ -87,8 +87,6 @@ class AudioManager {
 
     public function update() {
 
-        return;
-        
         if(playing) {
 
             pitch += 0.01 * dir;
