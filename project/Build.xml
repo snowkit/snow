@@ -74,6 +74,7 @@
       <file name="src/hx_bindings.cpp" />
       <file name="src/common/ByteArray.cpp" />
       <file name="src/common/lumen_images.cpp" />
+      <file name="src/common/lumen_timestamp.cpp" />
 
       <!-- audio sources -->
       
