@@ -8,7 +8,7 @@
 	<meta title="lumen empty" package="com.lumenframework.samples" version="1.0.0" company="lumenframework" />
 
 		<!-- / temp / add this to use for fixed window pos, (currently main display only) parameters="{ x:100, y:100 }" -->
-	<window  width="320" height="200" orientation="landscape" fps="1000" vsync="false" resizable="true" />
+	<window  width="320" height="200" orientation="landscape" fps="60" vsync="true" resizable="true" />
 
 	<assets path="assets" rename="assets" exclude="*.svg" />
 	<!-- <icon path="Assets/lumen.svg" /> -->
