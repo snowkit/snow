@@ -15,8 +15,11 @@ class App {
     
     public var app : Lumen;
 
+    public function new() {} 
     public function ready() {}
-    public function update() {}
+    public function update(t:Float, dt:Float) {
+
+    }
 
 }
 
@@ -105,20 +108,59 @@ class Lumen {
             //and track the main window only for now 
         main_window.window_event_handler = on_main_window_event;
 
+            //fixed delta time
+        mspf = 0.016; //50 fps update
+        last_frame_start = lumen_timestamp();
+
             //now ready
-        is_ready = true;        
+        is_ready = true;
         
             //tell the host app we are done
         host.ready();        
 
     } //on_lumen_ready
 
+    public var last_frame_start : Float = 0.0;
+    public var current_frame_start : Float = 0.0;
+    public var last_frame_time : Float = 0.0;
+    public var overflow : Float = 0.0;
+    public var mspf : Float = 0.01;
+    public var t : Float = 0;
+
     function on_lumen_update() {
 
-        window.update();
-        input.update();
-        audio.update();
-        host.update();
+        if(!is_ready) {
+            return;
+        }
+
+        current_frame_start = lumen_timestamp();
+        last_frame_time = current_frame_start - last_frame_start;
+        
+        if(last_frame_time > 0.25) {
+            last_frame_time = 0.25;
+        }
+
+        last_frame_start = current_frame_start;
+
+        overflow += last_frame_time;
+
+        while(overflow >= mspf) {
+            
+            input.update();
+            audio.update();
+            host.update(t, mspf);
+
+            t += mspf;
+
+            overflow -= mspf;
+
+        }
+
+            //render
+        window.update( overflow / mspf );
+
+            //yield
+        Sys.sleep(0);
 
     } //on_lumen_update
 
@@ -203,6 +245,7 @@ class Lumen {
 
         private static var lumen_init = load( "lumen", "lumen_init", 1 );
         private static var lumen_shutdown = load( "lumen", "lumen_shutdown", 0 );
+        private static var lumen_timestamp = load( "lumen", "lumen_timestamp", 0 );
         private static var lumen_app_path = load( "lumen", "lumen_app_path", 0 );
         private static var lumen_pref_path = load( "lumen", "lumen_pref_path", 2 );
         

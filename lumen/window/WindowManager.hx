@@ -42,14 +42,14 @@ class WindowManager {
 
     } //on_event
 
-    public function update() {
+    public function update( alpha_time:Float ) {
 
         for(window in window_list) {
             window.update();
         }
 
         for(window in window_list) {
-            window.render();
+            window.render( alpha_time );
         }
         
     } //update
