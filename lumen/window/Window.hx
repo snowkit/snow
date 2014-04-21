@@ -29,7 +29,7 @@ class Window {
         //the native window handle
     public var handle : Dynamic;
     public var window_event_handler : WindowEvent->Void;
-    public var window_render_handler : Window->Void;
+    public var window_render_handler : Window->Float->Void;
 
     @:isVar public var position (get,set) : WindowPosition;
     @:isVar public var size (get,set) : WindowSize;
@@ -102,12 +102,15 @@ class Window {
     } //update
 
     var r = 0.0; var rdir = -1;
-    public function render() {
+    public function render( alpha_time:Float ) {
 
+            //:todo: this calls makeCurrent (good) and does fake drawing (bad)
+            //either make current should exist here, instead, or render is renamed cos internal does
+            //no "rendering" and only sets the window for rendering ready.
         lumen_window_render( handle );
 
         if(window_render_handler != null) {
-            window_render_handler(this);
+            window_render_handler( this, alpha_time );
             return;
         }
 
@@ -151,10 +154,10 @@ class Window {
         return size = _size;
     }
 
-    private static var lumen_window_create = Lumen.load( "lumen", "lumen_window_create", 2 );
-    private static var lumen_window_update = Lumen.load( "lumen", "lumen_window_update", 1 );
-    private static var lumen_window_render = Lumen.load( "lumen", "lumen_window_render", 1 );
-    private static var lumen_window_swap = Lumen.load( "lumen", "lumen_window_swap", 1 );
-    private static var lumen_window_simple_message = Lumen.load( "lumen", "lumen_window_simple_message", 3 );
+    static var lumen_window_create = Lumen.load( "lumen", "lumen_window_create", 2 );
+    static var lumen_window_update = Lumen.load( "lumen", "lumen_window_update", 1 );
+    static var lumen_window_render = Lumen.load( "lumen", "lumen_window_render", 1 );
+    static var lumen_window_swap = Lumen.load( "lumen", "lumen_window_swap", 1 );
+    static var lumen_window_simple_message = Lumen.load( "lumen", "lumen_window_simple_message", 3 );
 
 } //Window

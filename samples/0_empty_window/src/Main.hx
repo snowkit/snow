@@ -6,12 +6,14 @@ import lumen.gl.GLTexture;
 import lumen.gl.GLProgram;
 import lumen.gl.GLBuffer;
 
+import lumen.utils.ByteArray;
 import lumen.utils.UInt8Array;
 import lumen.utils.Float32Array;
 import lumen.utils.Matrix3D;
 
 import lumen.window.Window;
 import lumen.LumenTypes.ImageInfo;
+
 
 class Main extends lumen.App {
 
@@ -30,14 +32,10 @@ class Main extends lumen.App {
     
     var size : Int = 128;
 
-        //constructor is required
-    public function new() {
-
-    } //new
 
     override public function ready() {
 
-        trace('/ HOST / ready');        
+        trace('/ HOST / ready');
 
         initializeShaders();
         createBuffers();
@@ -70,23 +68,65 @@ class Main extends lumen.App {
     } //ready
 
     var next_tick : Float = 0;
-    function onrender(window:Window) {
+    var phys_posx : Float = 0;
 
-        render();
+    override function update(t:Float, dt:Float) {
 
-        window.swap();
+        phys_posx += (speed * dirX * dt);
 
-        if(haxe.Timer.stamp() > next_tick) {
+            //swap textures once a second
+            p = true;
+        if(t > next_tick) {
 
-            next_tick = haxe.Timer.stamp() + 1.0;
+            next_tick = t + 1.0;
             tex_index++;
             if(tex_index == files.length) {
                 tex_index = 0;
             }
 
             current_texture = textures[tex_index];
+            
+        }        
+    }
 
+    var avgdt = 0.0;
+    var accumdt = 0.0;
+    var dtf = 0;
+    var p = false;
+
+    function onrender( window:Window, alpha_time:Float ) {
+
+        dtf++;
+        accumdt += app.last_frame_time;
+        if(dtf >= 10) {
+            avgdt = accumdt/10;
+            dtf = 0;
+            accumdt = 0;
         }
+        //"update"
+        //this is to test the fix-your-timestep thing
+        //essentially app.mspf is a fixed timestep, alpha time is how far we are into one...        
+
+        var prevx = positionX;
+
+        positionX = (phys_posx * alpha_time) + prevx * ( 1.0 - alpha_time );
+
+        if(positionX >= app.main_window.size.w) {            
+            positionX = app.main_window.size.w;
+            dirX = -1;
+        } else if(positionX <= 0) {
+            positionX = 0;
+            dirX = 1;
+        }
+
+        if(p == true) {
+            Sys.println('alpha:${alpha_time} dt:${app.last_frame_time} avgdt:${avgdt} simtime:${app.t}');
+            p = false;
+        }
+
+        render();
+
+        window.swap();
 
     } //onrender hook
 
@@ -200,7 +240,11 @@ class Main extends lumen.App {
         GL.bindBuffer (GL.ARRAY_BUFFER, null);
         
     }
-    
+        
+    var positionX : Float = 0;
+    var dirX : Float = 1;
+    var speed : Float = 80;
+
     function render(){
         
         GL.viewport (0, 0, app.main_window.size.w, app.main_window.size.h);
@@ -208,7 +252,7 @@ class Main extends lumen.App {
         GL.clearColor (1.0, 0.5, 0.2, 1.0);
         GL.clear (GL.COLOR_BUFFER_BIT);
         
-        var positionX = (app.main_window.size.w - size) / 2;
+        // var positionX = (app.main_window.size.w - size) / 2;
         var positionY = (app.main_window.size.h - size) / 2;
         
         var projectionMatrix = Matrix3D.createOrtho (0, app.main_window.size.w, app.main_window.size.h, 0, 1000, -1000);
