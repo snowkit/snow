@@ -51,7 +51,7 @@ namespace lumen {
 // core bindings
 
 
-
+extern double timestamp();
 
 
     value lumen_init( value _on_event ) {
@@ -75,6 +75,22 @@ namespace lumen {
         return alloc_null();
     
     } DEFINE_PRIM(lumen_shutdown, 0);
+
+
+    value lumen_timestamp() {
+
+        return alloc_float( lumen::timestamp() );
+
+    } DEFINE_PRIM(lumen_timestamp, 0);
+
+
+
+
+
+//application helpers
+
+
+
 
 
     value lumen_app_path() {
@@ -202,7 +218,15 @@ namespace lumen {
 
 
 
+
+
+
 // audio loading
+
+
+
+
+
 
 extern void audio_load_ogg_bytes( QuickVec<unsigned char> &out_buffer, const char* _id, 
                 int* channels, long* rate, long* bitrate_upper, long* bitrate_nominal, 
@@ -228,16 +252,20 @@ extern void audio_load_ogg_bytes( QuickVec<unsigned char> &out_buffer, const cha
             alloc_field( _object, id_format, alloc_int(1) );
             alloc_field( _object, id_bitrate, alloc_int(br_n) );
             alloc_field( _object, id_data, ByteArray(buffer).mValue );
-            // alloc_field( _object, id_bitrate_upper, alloc_int(br_u) );
-            // alloc_field( _object, id_bitrate_lower, alloc_int(br_l) );
-            // alloc_field( _object, id_bitrate_window, alloc_int(br_w) );
 
         return _object;
 
     } DEFINE_PRIM(lumen_audio_load_ogg_bytes, 1);
 
 
+
+
+
 // image loading
+
+
+
+
 
 extern void image_load_bytes( QuickVec<unsigned char> &out_buffer, const char* _id, int* w, int* h, int* bpp, int* bpp_source, int req_bpp );
 
