@@ -109,7 +109,7 @@ class Lumen {
         main_window.window_event_handler = on_main_window_event;
 
             //fixed delta time
-        mspf = 0.016; //50 fps update
+        mspf = 1.0/60.0;
         last_frame_start = lumen_timestamp();
 
             //now ready
@@ -124,7 +124,7 @@ class Lumen {
     public var current_frame_start : Float = 0.0;
     public var last_frame_time : Float = 0.0;
     public var overflow : Float = 0.0;
-    public var mspf : Float = 0.01;
+    public var mspf : Float = 0.0167;
     public var t : Float = 0;
 
     function on_lumen_update() {
