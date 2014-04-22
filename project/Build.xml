@@ -76,6 +76,14 @@
       <file name="src/common/lumen_images.cpp" />
       <file name="src/common/lumen_timestamp.cpp" />
 
+   <!-- Platform sources -->
+
+      <file name="src/platform/windows/lumen_windows.cpp" if="windows"/>
+      <file name="src/platform/mac/lumen_mac.mm" if="macos"/>
+      <file name="src/platform/linux/lumen_linux.cpp" if="linux"/>
+      <file name="src/platform/ios/lumen_ios.mm" if="iphone"/>
+      <file name="src/platform/android/lumen_android.cpp" if="android"/>
+
       <!-- audio sources -->
       
       <file name="src/audio/lumen_audio_files.cpp" />
