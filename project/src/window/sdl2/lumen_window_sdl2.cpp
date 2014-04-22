@@ -387,7 +387,117 @@ namespace lumen {
             //dispatch the event!
         dispatch_window_event( new_event );
 
-    } //handle_window_event    
+    } //handle_window_event
+
+//Display modes
+
+    value display_mode_to_hx( display_mode mode ) {
+        
+        value _object = alloc_empty_object();
+
+            alloc_field( _object, id_width, alloc_int(mode.width) );
+            alloc_field( _object, id_height, alloc_int(mode.height) );
+            alloc_field( _object, id_refresh_rate, alloc_int(mode.refresh_rate) );
+            alloc_field( _object, id_format, alloc_int(mode.format) );
+
+        return _object;
+
+    } //display_mode_to_hx
+    
+    value display_bounds_to_hx( bounds_rect bounds ) {
+        
+        value _object = alloc_empty_object();
+
+            alloc_field( _object, id_x, alloc_int(bounds.x) );
+            alloc_field( _object, id_y, alloc_int(bounds.y) );
+            alloc_field( _object, id_width, alloc_int(bounds.width) );
+            alloc_field( _object, id_height, alloc_int(bounds.height) );
+
+        return _object;
+
+    } //display_bounds_to_hx
+
+    int desktop_get_display_count() {
+
+        return SDL_GetNumVideoDisplays();
+
+    } //desktop_get_display_count
+
+    value desktop_get_display_native_mode(int display) {
+
+        SDL_DisplayMode _mode;
+        SDL_GetDesktopDisplayMode( display, &_mode );
+
+        display_mode mode;
+
+            mode.width = _mode.w;
+            mode.height = _mode.h;
+            mode.refresh_rate = _mode.refresh_rate;
+            mode.format = _mode.format;
+
+        return display_mode_to_hx(mode);
+
+    } //desktop_get_display_native_mode
+
+    value desktop_get_display_current_mode(int display) {
+
+        SDL_DisplayMode _mode;
+        SDL_GetCurrentDisplayMode( display, &_mode );
+
+        display_mode mode;
+
+            mode.width = _mode.w;
+            mode.height = _mode.h;
+            mode.refresh_rate = _mode.refresh_rate;
+            mode.format = _mode.format;
+
+        return display_mode_to_hx(mode);
+
+    } //desktop_get_display_current_mode
+
+    value desktop_get_display_mode(int display, int mode_index) {
+
+        SDL_DisplayMode _mode;
+        SDL_GetDisplayMode( display, mode_index, &_mode );
+
+        display_mode mode;
+
+            mode.width = _mode.w;
+            mode.height = _mode.h;
+            mode.refresh_rate = _mode.refresh_rate;
+            mode.format = _mode.format;
+
+        return display_mode_to_hx(mode);
+
+    } //desktop_get_display_mode
+
+    int desktop_get_display_mode_count(int display) {
+
+        return SDL_GetNumDisplayModes(display);
+
+    } //desktop_get_display_mode_count
+
+    value desktop_get_display_bounds(int display) {
+
+        SDL_Rect _rect;
+        SDL_GetDisplayBounds(display, &_rect);
+
+        bounds_rect bounds;
+
+            bounds.x = _rect.x;
+            bounds.y = _rect.y;
+            bounds.width = _rect.w;
+            bounds.height = _rect.h;
+
+        return display_bounds_to_hx(bounds);
+
+    } //desktop_get_display_bounds
+
+    const char* desktop_get_display_name(int display) {
+
+        return SDL_GetDisplayName(display);
+        
+    } //desktop_get_display_name
 
 
 //Helpers

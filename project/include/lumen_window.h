@@ -27,6 +27,19 @@ namespace lumen {
         // and when complete the configuration will be passed back to the on_complete listener.
     LumenWindow* create_window( const window_config &config, AutoGCRoot* on_created );
 
+    struct display_mode { 
+        int width;
+        int height;
+        int refresh_rate;
+        int format;
+    };
+
+    struct bounds_rect {
+        int x;
+        int y;
+        int width;
+        int height;
+    };
 
         //window configuration 
     struct window_config {
