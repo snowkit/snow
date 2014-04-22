@@ -47,6 +47,26 @@ class Main extends lumen.AppFixedTimestep {
         texture_time = app.config.runtime_config.texture_time;
         timescale = app.config.runtime_config.timescale;
 
+
+        var dcount : Int = app.window.desktop_get_display_count();
+        trace('A total of ${dcount} displays were found');
+        for(i in 0 ... dcount) {
+            var bounds = app.window.desktop_get_display_bounds(i);
+            var name = app.window.desktop_get_display_name(i);
+            trace('display ${i}, name: ${name} bounds: ${bounds} modes:' );
+
+                //get list of modes for this display
+            var modecount = app.window.desktop_get_display_mode_count(i);
+
+            for(j in 0 ... modecount) {
+                var mode = app.window.desktop_get_display_mode(i,j);
+                trace('\t\t ${mode.width} x ${mode.height}  @  ${mode.refresh_rate}hz ');
+            }
+
+        }
+
+        trace("desktop native resolution of primary display : " + app.window.desktop_get_display_native_mode(0) );
+
         initializeShaders();
         createBuffers();
 
