@@ -29,7 +29,11 @@ namespace lumen {
     extern int id_window_id;
     extern int id_timestamp;    
     extern int id_data1;
-    extern int id_data2;
+    extern int id_data2;    
+
+        //display related
+    
+    extern int id_refresh_rate;
 
         //input related
 
@@ -110,7 +114,12 @@ namespace lumen {
         id_data1                = val_id("data1");
         id_data2                = val_id("data2");
 
+            //display related flags
+
+        id_refresh_rate         = val_id("refresh_rate");
+
             //input related flags
+        
         id_input                = val_id("input");
         id_start                = val_id("start");
         id_state                = val_id("state");
