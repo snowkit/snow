@@ -47,7 +47,6 @@ class Main extends lumen.AppFixedTimestep {
         texture_time = app.config.runtime_config.texture_time;
         timescale = app.config.runtime_config.timescale;
 
-
         initializeShaders();
         createBuffers();
 

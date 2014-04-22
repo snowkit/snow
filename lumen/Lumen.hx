@@ -82,7 +82,7 @@ class Lumen {
         #end //lumen_native
 
             //fetch runtime config before we actually tell them to pre-ready init
-        config.runtime_config = host.get_runtime_config(); 
+        config.runtime_config = host.get_runtime_config();
 
             //any app pre ready init can be handled in here 
         host.on_lumen_init();
@@ -105,6 +105,19 @@ class Lumen {
 
             //disllow re-entry
         was_ready = true;
+
+            //for now, load in the window size from the runtime config
+        if(config.runtime_config.window != null) {
+
+            if(config.runtime_config.window.width != null) {
+                config.window_config.width = config.runtime_config.window.width;
+            }
+
+            if(config.runtime_config.window.height != null) {
+                config.window_config.height = config.runtime_config.window.height;
+            }
+
+        } //runtime config window flag
 
             //now if they requested a window, let's open one
         main_window = window.create( config.window_config );
@@ -228,7 +241,9 @@ class Lumen {
         private static var lumen_timestamp = load( "lumen", "lumen_timestamp", 0 );
         private static var lumen_app_path = load( "lumen", "lumen_app_path", 0 );
         private static var lumen_pref_path = load( "lumen", "lumen_pref_path", 2 );
-        
+        private static var lumen_render_enable_vsync = load( "lumen", "lumen_render_enable_vsync", 1 );
+        private static var lumen_window_show_cursor = load( "lumen", "lumen_window_show_cursor", 1 );
+
         private static var lumen_audio_load_ogg_bytes = load( "lumen", "lumen_audio_load_ogg_bytes", 1 );
         private static var lumen_image_load_bytes = load( "lumen", "lumen_image_load_bytes", 2 );
 

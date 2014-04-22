@@ -111,8 +111,29 @@ extern double timestamp();
 
 
 
+//render bindings
+
+
+extern int render_enable_vsync(bool enable);
+
+
+    value lumen_render_enable_vsync( value _enable ) {
+
+        int result = render_enable_vsync( val_bool(_enable) );
+
+        return alloc_int( result );
+
+    } DEFINE_PRIM(lumen_render_enable_vsync, 1);
+
+
+
+
 // window bindings
 
+
+
+
+extern void window_show_cursor(bool enable);
 
 
 
@@ -192,8 +213,131 @@ extern double timestamp();
     } DEFINE_PRIM(lumen_window_simple_message, 3);
 
 
+    value lumen_window_set_size(value _window, value _x, value _y) {
+
+        LumenWindow* window = NULL;
+
+        if( Object_from_hx(_window, window) ) {
+
+            window->set_size( val_int(_x), val_int(_y) );
+
+        } //fetch window
+
+        return alloc_null();
+
+    } DEFINE_PRIM(lumen_window_set_size, 3);
 
 
+    value lumen_window_set_position(value _window, value _x, value _y) {
+
+        LumenWindow* window = NULL;
+
+        if( Object_from_hx(_window, window) ) {
+
+            window->set_position( val_int(_x), val_int(_y) );
+
+        } //fetch window
+
+        return alloc_null();
+
+    } DEFINE_PRIM(lumen_window_set_position, 3);
+
+
+    value lumen_window_set_title(value _window, value _title) {
+
+        LumenWindow* window = NULL;
+
+        if( Object_from_hx(_window, window) ) {
+
+            window->set_title( val_string(_title) );
+
+        } //fetch window
+
+        return alloc_null();
+
+    } DEFINE_PRIM(lumen_window_set_title, 2);
+
+
+    value lumen_window_set_max_size(value _window, value _x, value _y) {
+        
+        LumenWindow* window = NULL;
+
+        if( Object_from_hx(_window, window) ) {
+
+            window->set_max_size( val_int(_x), val_int(_y) );
+
+        } //fetch window
+
+        return alloc_null();
+
+    } DEFINE_PRIM(lumen_window_set_max_size, 3);
+
+
+    value lumen_window_set_min_size(value _window, value _x, value _y) {
+
+        LumenWindow* window = NULL;
+
+        if( Object_from_hx(_window, window) ) {
+
+            window->set_min_size( val_int(_x), val_int(_y) );
+
+        } //fetch window
+
+        return alloc_null();
+
+    } DEFINE_PRIM(lumen_window_set_min_size, 3);
+
+
+    value lumen_window_grab(value _window, value _enable) {
+        
+        LumenWindow* window = NULL;
+
+        if( Object_from_hx(_window, window) ) {
+
+            window->grab( val_bool(_enable) );
+
+        } //fetch window
+
+        return alloc_null();
+
+    } DEFINE_PRIM(lumen_window_grab, 2);
+
+
+    value lumen_window_fullscreen(value _window, value _enable, value _flag) {
+
+        LumenWindow* window = NULL;
+
+        if( Object_from_hx(_window, window) ) {
+
+            window->fullscreen( val_bool(_enable), val_int(_flag) );
+
+        } //fetch window
+
+        return alloc_null();
+
+    } DEFINE_PRIM(lumen_window_fullscreen, 3);
+
+
+    value lumen_window_bordered(value _window, value _enable) {
+
+        LumenWindow* window = NULL;
+
+        if( Object_from_hx(_window, window) ) {
+
+            window->bordered( val_bool(_enable) );
+
+        } //fetch window
+
+        return alloc_null();
+
+    } DEFINE_PRIM(lumen_window_bordered, 2);
+
+
+    value lumen_window_show_cursor(value _enable) {
+
+        window_show_cursor( val_bool(_enable) );
+
+    } DEFINE_PRIM(lumen_window_show_cursor, 1);
 
 // input bindings
 
