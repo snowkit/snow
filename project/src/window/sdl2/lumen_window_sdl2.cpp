@@ -53,6 +53,14 @@ namespace lumen {
 
             void create( const window_config &config, AutoGCRoot* _on_created );
             void simple_message( const char* message, const char* title );
+            void set_size(int x, int y);
+            void set_position(int x, int y);
+            void set_title(const char* title);
+            void set_max_size(int x, int y);
+            void set_min_size(int x, int y);
+            void grab(bool enable);
+            void fullscreen(bool enable, int flags);
+            void bordered(bool enable);
 
         private:
 
@@ -188,11 +196,65 @@ namespace lumen {
 
         SDL_GL_SwapWindow(window);
 
-    }
+    } //swap
 
     void LumenWindowSDL2::update() {    
 
     } //update
+
+    void LumenWindowSDL2::set_size(int x, int y) {
+
+        SDL_SetWindowSize(window, x, y);
+
+    } //set_size
+
+    void LumenWindowSDL2::set_position(int x, int y) {
+
+        SDL_SetWindowPosition(window, x, y);
+
+    } //set_position
+
+    void LumenWindowSDL2::set_title(const char* title) {
+
+        SDL_SetWindowTitle(window, title);
+
+    } //set_title
+
+    void LumenWindowSDL2::set_max_size(int x, int y) {
+
+        SDL_SetWindowMaximumSize(window, x, y);
+
+    } //set_max_size
+
+    void LumenWindowSDL2::set_min_size(int x, int y) {
+
+        SDL_SetWindowMinimumSize(window, x, y);
+
+    } //set_min_size
+
+    void LumenWindowSDL2::grab(bool enable) {
+
+        SDL_SetWindowGrab( window, enable ? SDL_TRUE : SDL_FALSE);
+
+    } //grab
+
+    void LumenWindowSDL2::fullscreen(bool enable, int flags = 0) {
+
+        int flag = enable ? SDL_WINDOW_FULLSCREEN_DESKTOP : 0;
+
+        if(flags == 1 && enable) {
+            flag = SDL_WINDOW_FULLSCREEN;
+        }
+
+        SDL_SetWindowFullscreen( window, flag );
+
+    } //fullscreen
+
+    void LumenWindowSDL2::bordered(bool enable) {
+
+        SDL_SetWindowBordered( window, enable ? SDL_TRUE : SDL_FALSE );
+
+    } //bordered
 
 //Events
 
@@ -342,5 +404,17 @@ namespace lumen {
 
     } //init_window_sdl   
 
+    
+    int render_enable_vsync(bool enable) {
+
+        return SDL_GL_SetSwapInterval( enable ? 1 : 0 );
+
+    } //render_enable_vsync
+
+    void window_show_cursor(bool enable) {
+
+        SDL_ShowCursor( enable ? 1 : 0 );
+
+    } //render_enable_vsync
 
 } //namespace lumen

@@ -23,6 +23,11 @@ class InputManager {
                 if(_input_event.event.keysym.sym == 32 && _input_event.event.state == 0) {
                     lib.audio.toggle();                
                 }
+                if(_input_event.event.keysym.sym == 13 && _input_event.event.state == 0) {
+                    if(_input_event.event.keysym.mod == 256) {
+                        lib.main_window.fullscreen = !lib.main_window.fullscreen;
+                    }
+                }
             }
         }
 
