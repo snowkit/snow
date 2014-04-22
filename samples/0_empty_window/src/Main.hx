@@ -31,10 +31,22 @@ class Main extends lumen.AppFixedTimestep {
     var files : Array<String>;
     
     var size : Int = 128;
+    var texture_time : Float = 1.0;
+    var positionX : Float = 0;
+    var dirX : Float = 1;
+    var speed : Float = 100;
 
     override public function ready() {
 
         trace('/ HOST / ready');
+
+        trace("app config is loaded as : " + app.config.runtime_config );
+
+        size = app.config.runtime_config.size;
+        speed = app.config.runtime_config.movespeed;
+        texture_time = app.config.runtime_config.texture_time;
+        timescale = app.config.runtime_config.timescale;
+
 
         initializeShaders();
         createBuffers();
@@ -62,7 +74,7 @@ class Main extends lumen.AppFixedTimestep {
 
         app.main_window.window_render_handler = onrender;
        
-        next_tex_tick = haxe.Timer.stamp() + 1.0;
+        next_tex_tick = haxe.Timer.stamp() + texture_time;
 
     } //ready
 
@@ -79,7 +91,7 @@ class Main extends lumen.AppFixedTimestep {
 
         if(current_time > next_tex_tick) {
 
-            next_tex_tick = current_time + 1.0;
+            next_tex_tick = current_time + texture_time;
             tex_index++;
             if(tex_index == files.length) {
                 tex_index = 0;
@@ -103,8 +115,8 @@ class Main extends lumen.AppFixedTimestep {
 
         positionX = (phys_posx * alpha_time) + prevx * ( 1.0 - alpha_time );
 
-        if(positionX >= app.main_window.size.w) {            
-            positionX = app.main_window.size.w;
+        if(positionX >= (app.main_window.size.w - size)) {            
+            positionX = (app.main_window.size.w - size);
             dirX = -1;
         } else if(positionX <= 0) {
             positionX = 0;
@@ -229,10 +241,6 @@ class Main extends lumen.AppFixedTimestep {
         GL.bindBuffer (GL.ARRAY_BUFFER, null);
         
     }
-        
-    var positionX : Float = 0;
-    var dirX : Float = 1;
-    var speed : Float = 100;
 
     function render(){
         
