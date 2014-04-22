@@ -50,7 +50,7 @@ class App {
     public function get_runtime_config() : Dynamic {
 
         //we want to load the runtime config from a json file by default
-        //:todo: this config name will be settable from project file
+        //:todo: this config name will be settable from project config
         var config_data = ByteArray.readFile('config.json');
 
             //only care if there is a config
