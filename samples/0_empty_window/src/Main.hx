@@ -13,9 +13,9 @@ import lumen.utils.Matrix3D;
 
 import lumen.window.Window;
 import lumen.LumenTypes.ImageInfo;
+import lumen.App;
 
-
-class Main extends lumen.App {
+class Main extends lumen.AppFixedTimestep {
 
     var imageUniform:Int;
     var modelViewMatrixUniform:Int;
@@ -31,7 +31,6 @@ class Main extends lumen.App {
     var files : Array<String>;
     
     var size : Int = 128;
-
 
     override public function ready() {
 
@@ -63,26 +62,24 @@ class Main extends lumen.App {
 
         app.main_window.window_render_handler = onrender;
        
-        next_tick = haxe.Timer.stamp() + 1.0;
+        next_tex_tick = haxe.Timer.stamp() + 1.0;
 
     } //ready
 
-    var next_tick : Float = 0;
+    var next_tex_tick : Float = 0;
     var phys_posx : Float = 0;
 
-    override function update(t:Float, delta:Float) {
+    override function update(delta:Float) {
 
         positionX = phys_posx;
-        
+
         phys_posx += (speed * dirX * delta);
 
-        // Sys.println('phys:${phys_posx}  dt:${delta}');
+        // Sys.println('dt:${delta}');
 
-            //swap textures once a second
-            p = true;
-        if(t > next_tick) {
+        if(current_time > next_tex_tick) {
 
-            next_tick = t + 1.0;
+            next_tex_tick = current_time + 1.0;
             tex_index++;
             if(tex_index == files.length) {
                 tex_index = 0;
@@ -91,27 +88,18 @@ class Main extends lumen.App {
             current_texture = textures[tex_index];
             
         }
+
     }
 
-    var avgdt = 0.0;
-    var accumdt = 0.0;
-    var dtf = 0;
-    var p = false;
+    function onrender( window:Window ) {
 
-    function onrender( window:Window, alpha_time:Float ) {
-
-        dtf++;
-        accumdt += app.last_frame_time;
-        if(dtf >= 10) {
-            avgdt = accumdt/10;
-            dtf = 0;
-            accumdt = 0;
-        }
         //"update"
         //this is to test the fix-your-timestep thing
         //essentially app.mspf is a fixed timestep, alpha time is how far we are into one...        
 
         var prevx = positionX;
+        var alpha_time : Float = overflow / mspf;
+        // var alpha_time : Float = 1; use this to test the others
 
         positionX = (phys_posx * alpha_time) + prevx * ( 1.0 - alpha_time );
 
@@ -123,10 +111,7 @@ class Main extends lumen.App {
             dirX = 1;
         }
 
-        if(p == true) {
-            // Sys.println('alpha:${alpha_time} dt:${app.last_frame_time} avgdt:${avgdt} simtime:${app.t}');
-            p = false;
-        }
+        // Sys.println('alpha:${alpha_time} dt:${app.last_frame_time} avgdt:${avgdt} simtime:${app.t}');
 
         render();
 

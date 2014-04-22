@@ -8,7 +8,7 @@ class ApplicationMain {
     public static var _host : ::APP_MAIN::;
     public static var _lumen : Lumen;
 
-    public static function main () {
+    public static function main () {        
 
             //Create the runtime
         _lumen = new Lumen();
@@ -54,6 +54,7 @@ class ApplicationMain {
             window_config   : _window_config
 
         };
+
 
             //Start up
         _lumen.init( _host, _config );

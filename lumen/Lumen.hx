@@ -2,6 +2,7 @@ package lumen;
 
 import haxe.Timer;
 
+import lumen.App;
 import lumen.LumenTypes;
 
 import lumen.utils.ByteArray;
@@ -11,20 +12,10 @@ import lumen.input.InputManager;
 import lumen.audio.AudioManager;
 
 
-class App {
-    
-    public var app : Lumen;
-
-    public function new() {} 
-    public function ready() {}
-    public function update(t:Float, dt:Float) {
-
-    }
-
-}
-
 class Lumen {
     
+    public var time (get,never) : Float;
+
     public var host : App;
     public var config : LumenConfig;
 
@@ -35,11 +26,13 @@ class Lumen {
     public var shutting_down : Bool = false;
     public var has_shutdown : Bool = false;
 
+    public var main_window : Window;
+
     var was_ready : Bool = false;
     var is_ready : Bool = false;
-
+    
     public function new() {
-
+        
     } //new
 
 //Internal API
@@ -53,6 +46,10 @@ class Lumen {
         // #if debug
             _debug('/ lumen / initializing - ', true);
         // #end
+
+            //any app pre ready init 
+            //can be handled in here 
+        host.on_lumen_init();
 
         lumen_init( on_event );
 
@@ -72,21 +69,24 @@ class Lumen {
 
     } //shutdown
 
-
-    public var main_window : Window;
+    function get_time() : Float {
+        return lumen_timestamp();
+    }
 
     function on_lumen_ready() {
 
         if(was_ready) {
-            _debug("/ lumen / firing ready event repeatedly is likely not ideal...");
+            _debug("/ lumen / firing ready event repeatedly is not ideal...");
             return;
         }
 
             //ensure that we are in the correct location for asset loading
         #if lumen_native 
+
             Sys.setCwd( lumen_app_path() );
-                //test this on other platforms, on mac it's writing to 'lumen/def/'
+            
             lumen_pref_path('lumen','default');
+
         #end //lumen_native
             
             //create the sub systems 
@@ -101,16 +101,8 @@ class Lumen {
             //now if they requested a window, let's open one
         main_window = window.create( config.window_config );
             
-            // window.create( config.window_config );
-            // window.create( config.window_config );
-            // window.create( config.window_config );
-
             //and track the main window only for now 
         main_window.window_event_handler = on_main_window_event;
-
-            //fixed delta time
-        mspf = 1.0/60.0;
-        last_frame_start = lumen_timestamp();
 
             //now ready
         is_ready = true;
@@ -120,12 +112,15 @@ class Lumen {
 
     } //on_lumen_ready
 
-    public var last_frame_start : Float = 0.0;
-    public var current_frame_start : Float = 0.0;
-    public var last_frame_time : Float = 0.0;
-    public var overflow : Float = 0.0;
-    public var mspf : Float = 0.0167;
-    public var t : Float = 0;
+    @:noCompletion public function do_internal_update( dt:Float ) {
+        input.update();
+        audio.update();
+        host.update( dt );
+    }
+
+    @:noCompletion public function do_internal_render() {
+        window.update();
+    }
 
     function on_lumen_update() {
 
@@ -133,34 +128,8 @@ class Lumen {
             return;
         }
 
-        current_frame_start = lumen_timestamp();
-        last_frame_time = current_frame_start - last_frame_start;
-        
-        if(last_frame_time > 0.25) {
-            last_frame_time = 0.25;
-        }
-
-        last_frame_start = current_frame_start;
-
-        overflow += last_frame_time;
-
-        while(overflow >= mspf) {
-            
-            input.update();
-            audio.update();
-            host.update(t, mspf);
-
-            t += mspf;
-
-            overflow -= mspf;
-
-        }
-
-            //render
-        window.update( overflow / mspf );
-
-            //yield
-        Sys.sleep(0);
+            //handle any internal updates
+        host.on_lumen_update();
 
     } //on_lumen_update
 
@@ -218,6 +187,7 @@ class Lumen {
     public function loadimage( path:String, ?components:Int = 4 ) : ImageInfo {
         return lumen_image_load_bytes( path, components );
     }
+
     public function loadsound_ogg( path:String ) : AudioInfo {
         return lumen_audio_load_ogg_bytes( path );
     }
