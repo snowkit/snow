@@ -20,6 +20,11 @@ namespace lumen {
     int shutdown_core_aux();
     int update_core_aux();
 
+        //implemented in platform files
+    void init_core_platform();
+    void shutdown_core_platform();
+    void update_core_platform();
+
     extern int id_type;
 
 //core event handling
@@ -84,6 +89,9 @@ namespace lumen {
             //call subsystem inits
         init_core_aux();
 
+            //call platform inits
+        init_core_platform();
+
     } //init_core
 
     inline void shutdown_core() {
@@ -94,12 +102,16 @@ namespace lumen {
             //shutdown subsystems
         shutdown_core_aux();
 
+            //shutdown platform
+        shutdown_core_platform();
+
     } //shutdown_core
 
 
     inline void update_core() {
 
         update_core_aux();
+        update_core_platform();
 
     } //update_core
 
