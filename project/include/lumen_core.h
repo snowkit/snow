@@ -29,21 +29,22 @@ namespace lumen {
             //lumen core events
 
         se_unknown                      = 0,
-        se_ready                        = 1,
-        se_update                       = 2,
-        se_shutdown                     = 3,
-        se_window                       = 4,
-        se_input                        = 5,
+        se_init                         = 1,
+        se_ready                        = 2,
+        se_update                       = 3,
+        se_shutdown                     = 4,
+        se_window                       = 5,
+        se_input                        = 6,
 
             //lumen application events
 
-        se_quit                         = 6,
-        se_app_terminating              = 7,
-        se_app_lowmemory                = 8,
-        se_app_willenterbackground      = 9,
-        se_app_didenterbackground       = 10,
-        se_app_willenterforeground      = 11,
-        se_app_didenterforeground       = 12
+        se_quit                         = 7,
+        se_app_terminating              = 8,
+        se_app_lowmemory                = 9,
+        se_app_willenterbackground      = 10,
+        se_app_didenterbackground       = 11,
+        se_app_willenterforeground      = 12,
+        se_app_didenterforeground       = 13
 
     }; //SystemEvent
 
@@ -83,7 +84,7 @@ namespace lumen {
             //call subsystem inits
         init_core_aux();
 
-    }
+    } //init_core
 
     inline void shutdown_core() {
 
@@ -93,7 +94,7 @@ namespace lumen {
             //shutdown subsystems
         shutdown_core_aux();
 
-    } //
+    } //shutdown_core
 
 
     inline void update_core() {
@@ -106,13 +107,16 @@ namespace lumen {
 
         shutdown = true;
 
-    }
+    } //lumen_core_shutdown
 
         //this will start a main loop and start pumping events
     inline void lumen_core_init() {
 
             //init low level systems 
         init_core();
+
+            //allow haxe side to do any pre-ready init
+        dispatch_system_event_type( se_init );
 
             //tell haxe side we are ready
         dispatch_system_event_type( se_ready );

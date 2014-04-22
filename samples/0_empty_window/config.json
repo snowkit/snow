@@ -1,0 +1,6 @@
+{
+    "size":128,
+    "movespeed" : 100,
+    "texture_time": 0.1,
+    "timescale": 1
+}

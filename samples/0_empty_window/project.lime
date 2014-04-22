@@ -11,6 +11,7 @@
 	<window  width="320" height="200" orientation="landscape" fps="60" vsync="true" resizable="true" />
 
 	<assets path="assets" rename="assets" exclude="*.svg" />
+	<assets path="config.json" />
 	<!-- <icon path="Assets/lumen.svg" /> -->
 
 	<haxelib name="lumen" />
