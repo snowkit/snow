@@ -1,4 +1,9 @@
 {
+    "window" : {
+        "width" : 640,
+        "height" : 320
+    },
+
     "size":128,
     "movespeed" : 100,
     "texture_time": 0.1,

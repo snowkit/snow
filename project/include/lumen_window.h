@@ -157,6 +157,15 @@ namespace lumen {
             virtual void render() = 0;
             virtual void swap() = 0;
 
+            virtual void set_size(int x, int y) = 0;
+            virtual void set_position(int x, int y) = 0;
+            virtual void set_title(const char* title) = 0;
+            virtual void set_max_size(int x, int y) = 0;
+            virtual void set_min_size(int x, int y) = 0;
+            virtual void grab(bool enable) = 0;
+            virtual void fullscreen(bool enable, int flags) = 0;
+            virtual void bordered(bool enable) = 0;
+
         protected:            
 
             void on_created() {
