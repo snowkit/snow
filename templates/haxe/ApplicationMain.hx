@@ -51,7 +51,9 @@ class ApplicationMain {
         var _config : LumenConfig = {
 
             host            : _host,
-            window_config   : _window_config
+            window_config   : _window_config,
+            runtime_config  : {},
+            run_loop        : true
 
         };
 

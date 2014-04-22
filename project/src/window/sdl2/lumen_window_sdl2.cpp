@@ -161,14 +161,9 @@ namespace lumen {
 
         if(_config.vsync) {
             res = SDL_GL_SetSwapInterval(1);
-            printf("config vsync enabled %d\n", _config.vsync);
         } else {
             res = SDL_GL_SetSwapInterval(0);
-            printf("config vsync disabled %d\n", _config.vsync);
         }
-
-        printf("res:%d \n", res);
-        printf("%s\n", SDL_GetError());
 
         if( !lumen_gl_context ) {
             fprintf(stderr, "/ lumen / Failed to create GL context for window %d : %s\n", id, SDL_GetError() );

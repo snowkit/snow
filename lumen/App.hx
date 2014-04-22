@@ -1,4 +1,6 @@
 package lumen;
+
+import lumen.utils.ByteArray;
         
     //Note all times in lumen are in seconds.
     //The default type of application, with variable delta time, or fixed delta time, or a fixed frame rate
@@ -42,6 +44,23 @@ class App {
     public function new() {}
     public function ready() {}
     public function update(dt:Float) {}
+
+//override this if you want to change how the runtime config is loaded/handled
+
+    public function get_runtime_config() : Dynamic {
+
+        //we want to load the runtime config from a json file by default
+        //:todo: this config name will be settable from project file
+        var config_data = ByteArray.readFile('config.json');
+
+            //only care if there is a config
+        if(config_data != null) {
+            return haxe.Json.parse( config_data.toString() );
+        }
+
+        return {};
+
+    } //get_runtime_config
 
 //No need to interact with these, unless you want pre-ready init, just call super.on_lumen_init() etc
 //to maintain expected App behavior. You can override behavior in the base class, like AppFixedTimestep

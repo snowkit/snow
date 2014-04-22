@@ -43,15 +43,7 @@ class Lumen {
         host.app = this;
         config = _config;
 
-        // #if debug
-            _debug('/ lumen / initializing - ', true);
-        // #end
-
-            //any app pre ready init 
-            //can be handled in here 
-        host.on_lumen_init();
-
-        lumen_init( on_event );
+        lumen_init( on_event );        
 
     } //init
 
@@ -70,8 +62,32 @@ class Lumen {
     } //shutdown
 
     function get_time() : Float {
+
         return lumen_timestamp();
-    }
+
+    } //time getter
+
+    function on_lumen_init() {
+
+        _debug('/ lumen / initializing - ', true);
+
+            //ensure that we are in the correct location for asset loading
+
+        #if lumen_native 
+
+            Sys.setCwd( lumen_app_path() );
+            
+            lumen_pref_path('lumen','default');
+
+        #end //lumen_native
+
+            //fetch runtime config before we actually tell them to pre-ready init
+        config.runtime_config = host.get_runtime_config(); 
+
+            //any app pre ready init can be handled in here 
+        host.on_lumen_init();
+
+    } //on_lumen_init
 
     function on_lumen_ready() {
 
@@ -80,23 +96,15 @@ class Lumen {
             return;
         }
 
-            //ensure that we are in the correct location for asset loading
-        #if lumen_native 
+        _debug('/ lumen / ready, setting up additional systems...');
 
-            Sys.setCwd( lumen_app_path() );
-            
-            lumen_pref_path('lumen','default');
-
-        #end //lumen_native
-            
             //create the sub systems 
         window = new WindowManager( this );
         input = new InputManager( this );
         audio = new AudioManager( this );        
 
+            //disllow re-entry
         was_ready = true;
-
-        _debug('/ lumen / ready, setting up additional systems...');
 
             //now if they requested a window, let's open one
         main_window = window.create( config.window_config );
@@ -148,6 +156,10 @@ class Lumen {
 
         switch(_event.type) {
 
+            case SystemEventType.init: {
+                on_lumen_init();
+            } //init
+
             case SystemEventType.ready: {
                 on_lumen_ready();
             } //ready
@@ -171,9 +183,7 @@ class Lumen {
             } //input
 
             case SystemEventType.shutdown: {
-                // #if debug
-                    _debug('/ lumen / Goodbye.');
-                // #end
+                _debug('/ lumen / Goodbye.');
             } //shutdown
 
             default: {

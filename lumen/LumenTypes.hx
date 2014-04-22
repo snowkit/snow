@@ -5,8 +5,10 @@ import lumen.utils.ByteArray;
 
 typedef LumenConfig = {
 
-    ? host                  : App,
-    ? window_config         : WindowConfig
+    ? host                  : App,              //the bootstrapped application
+    ? window_config         : WindowConfig,     //the window config for a default window, if any
+    ? run_loop              : Bool,             //whether or not the core should run a loop at all
+    ? runtime_config        : Dynamic           //the user specific config read from json at runtime
 
 } //LumenConfig
 
@@ -96,6 +98,7 @@ enum SystemEventType {
 
     unknown;
 
+    init;    
     ready;    
     update;
     shutdown;
@@ -154,26 +157,28 @@ class SystemEvents {
         //lumen core events
 
     public static var se_unknown                    = 0;
-    public static var se_ready                      = 1;
-    public static var se_update                     = 2;
-    public static var se_shutdown                   = 3;
-    public static var se_window                     = 4;
-    public static var se_input                      = 5;
+    public static var se_init                       = 1;
+    public static var se_ready                      = 2;
+    public static var se_update                     = 3;
+    public static var se_shutdown                   = 4;
+    public static var se_window                     = 5;
+    public static var se_input                      = 6;
 
         //lumen application events
 
-    public static var se_quit                       = 6;
-    public static var se_app_terminating            = 7;
-    public static var se_app_lowmemory              = 8;
-    public static var se_app_willenterbackground    = 9;
-    public static var se_app_didenterbackground     = 10;
-    public static var se_app_willenterforeground    = 11;
-    public static var se_app_didenterforeground     = 12;
+    public static var se_quit                       = 7;
+    public static var se_app_terminating            = 8;
+    public static var se_app_lowmemory              = 9;
+    public static var se_app_willenterbackground    = 10;
+    public static var se_app_didenterbackground     = 11;
+    public static var se_app_willenterforeground    = 12;
+    public static var se_app_didenterforeground     = 13;
 
 //Helpers
 
     public static function typed(type:Int) : SystemEventType {
         
+            if(type == se_init)                         return SystemEventType.init;
             if(type == se_ready)                        return SystemEventType.ready;
             if(type == se_update)                       return SystemEventType.update;
             if(type == se_shutdown)                     return SystemEventType.shutdown;
