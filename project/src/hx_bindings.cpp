@@ -337,6 +337,8 @@ extern void window_show_cursor(bool enable);
 
         window_show_cursor( val_bool(_enable) );
 
+        return alloc_null();
+
     } DEFINE_PRIM(lumen_window_show_cursor, 1);
 
 // input bindings
