@@ -116,7 +116,6 @@ extern double timestamp();
 
 extern int render_enable_vsync(bool enable);
 
-
     value lumen_render_enable_vsync( value _enable ) {
 
         int result = render_enable_vsync( val_bool(_enable) );
@@ -128,13 +127,77 @@ extern int render_enable_vsync(bool enable);
 
 
 
+//display bindings
+
+
+
+extern int          desktop_get_display_count();
+extern int          desktop_get_display_mode_count(int display);
+extern value        desktop_get_display_native_mode(int display);
+extern value        desktop_get_display_current_mode(int display);
+extern value        desktop_get_display_mode(int display, int mode_index);
+extern value        desktop_get_display_bounds(int display);
+extern const char*  desktop_get_display_name(int display);
+
+
+    value lumen_desktop_get_display_count() {
+
+        return alloc_int(desktop_get_display_count());
+
+    } DEFINE_PRIM(lumen_desktop_get_display_count, 0);
+    
+
+    value lumen_desktop_get_display_mode_count(value _display) {
+
+        return alloc_int(desktop_get_display_mode_count( val_int(_display) ));
+
+    } DEFINE_PRIM(lumen_desktop_get_display_mode_count, 1);
+
+
+    value lumen_desktop_get_display_native_mode(value _display) {
+
+        return desktop_get_display_native_mode( val_int(_display) );
+
+    } DEFINE_PRIM(lumen_desktop_get_display_native_mode, 1);
+
+
+    value lumen_desktop_get_display_current_mode(value _display) {
+
+        return desktop_get_display_current_mode( val_int(_display) );
+
+    } DEFINE_PRIM(lumen_desktop_get_display_current_mode, 1);
+
+
+    value lumen_desktop_get_display_mode(value _display, value _mode_index) {
+
+        return desktop_get_display_mode( val_int(_display), val_int(_mode_index) );
+
+    } DEFINE_PRIM(lumen_desktop_get_display_mode, 2);
+
+
+    value lumen_desktop_get_display_bounds(value _display) {
+
+        return desktop_get_display_bounds( val_int(_display) );
+
+    } DEFINE_PRIM(lumen_desktop_get_display_bounds, 1);
+
+
+    value lumen_desktop_get_display_name(value _display) {
+
+        return alloc_string( desktop_get_display_name( val_int(_display) ));
+
+    } DEFINE_PRIM(lumen_desktop_get_display_name, 1);
+
+
+
+
+
 // window bindings
 
 
 
 
 extern void window_show_cursor(bool enable);
-
 
 
 
@@ -550,6 +613,8 @@ extern void image_load_bytes( QuickVec<unsigned char> &out_buffer, const char* _
     int id_timestamp;    
     int id_data1;
     int id_data2;
+
+    int id_refresh_rate;
 
     int id_input;
     int id_start;
