@@ -3,9 +3,9 @@ package lumen.utils;
 class Libs {
 	
         //for Load function
-    @:noCompletion private static var __moduleNames:Map<String, String> = null;
+    @:noCompletion static var __moduleNames:Map<String, String> = null;
 	
-    private static function tryLoad( name:String, library:String, func:String, args:Int ) : Dynamic {
+    static function tryLoad( name:String, library:String, func:String, args:Int ) : Dynamic {
         
         #if lumen_native
 
@@ -42,7 +42,7 @@ class Libs {
     
     #if neko
 
-        private static function loadNekoAPI ():Void {
+        static function loadNekoAPI ():Void {
             
             var init = load ("lumen", "neko_init", 5);
             
@@ -61,7 +61,7 @@ class Libs {
 
     #end //neko 
 
-    static private function findHaxeLib( library:String ) : String {
+    static function findHaxeLib( library:String ) : String {
         
         try {
             
@@ -105,7 +105,7 @@ class Libs {
         
     } //findHaxeLib
     
-    private static function get_system_name() : String {
+    static function get_system_name() : String {
         
         #if lumen_native
             #if cpp
@@ -218,7 +218,7 @@ class Libs {
         
     } //load
 
-    private static function loaderTrace( message:String ) {
+    static function loaderTrace( message:String ) {
         
         #if lumen_native
 

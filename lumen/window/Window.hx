@@ -3,7 +3,7 @@ package lumen.window;
 import lumen.LumenTypes;
 import lumen.window.WindowManager;
 
-import lumen.gl.GL;
+import lumen.render.gl.GL;
     
 typedef WindowPosition = {
     var x : Int;
@@ -47,10 +47,10 @@ class Window {
 
     public function new( _manager:WindowManager, _config:WindowConfig ) {
 
-        position = { x:0, y:0 };
-        size = { w:0, h:0 };
-        max_size = { w:0, h:0 };
-        min_size = { w:0, h:0 };
+        position    = { x:0, y:0 };
+        size        = { w:0, h:0 };
+        max_size    = { w:0, h:0 };
+        min_size    = { w:0, h:0 };
 
         manager = _manager;
         asked_config = _config;
@@ -73,8 +73,6 @@ class Window {
 
         size.w = _config.width;
         size.h = _config.height;
-
-        r = Math.random();
 
         on_event({ 
             type:WindowEventType.window_created,
@@ -114,9 +112,6 @@ class Window {
 
     } //update
 
-    var r = 0.0; 
-    var rdir = -1;
-
     public function render() {
 
             //:todo: this calls makeCurrent (good) and does fake drawing (bad)
@@ -129,13 +124,8 @@ class Window {
             return;
         }
 
-        GL.clearColor( r, 0.5, 0.1, 1.0);
+        GL.clearColor( 0.12, 0.12, 0.12, 1.0 );
         GL.clear( GL.COLOR_BUFFER_BIT );
-
-        r += 0.005 * rdir;
-
-        if(r >= 1) { rdir = -1; }
-        if(r <= 0.8) { rdir = 1; }
 
         swap();
 

@@ -6,7 +6,7 @@ package lumen.utils;
 
 #else
 
-    import lumen.utils.Matrix3D;
+    import lumen.utils.compat.Matrix3D;
 
     class Float32Array extends ArrayBufferView implements ArrayAccess<Float> {
         

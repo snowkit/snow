@@ -494,7 +494,7 @@ extern bool audio_load_wav_bytes( QuickVec<unsigned char> &out_buffer, const cha
             alloc_field( _object, id_id, _id );
             alloc_field( _object, id_channels, alloc_int(ch) );
             alloc_field( _object, id_rate, alloc_int(rate) );
-            alloc_field( _object, id_format, alloc_int(0) ); //0 here is wav
+            alloc_field( _object, id_format, alloc_int(2) ); //2 here is wav
             alloc_field( _object, id_bitrate, alloc_int(bitrate) );
             alloc_field( _object, id_bits_per_sample, alloc_int(bits_per_sample) );
             alloc_field( _object, id_data, ByteArray(buffer).mValue );
