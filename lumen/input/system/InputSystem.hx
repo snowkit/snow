@@ -7,6 +7,10 @@ import lumen.input.InputManager;
 
     typedef LumenInputSystem = lumen.input.system.sdl.InputSystemSDL;
 
+#else
+        
+    typedef LumenInputSystem = lumen.input.system.InputSystem;
+
 #end //lumen_input_sdl
 
 
