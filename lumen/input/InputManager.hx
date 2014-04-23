@@ -5,7 +5,6 @@ import lumen.LumenTypes;
 import lumen.input.system.InputSystem;
 import lumen.input.system.InputSystem.LumenInputSystem;
 
-
 class InputManager {
 
     var lib : Lumen;
@@ -23,50 +22,21 @@ class InputManager {
 
     public function on_event( _event:SystemEvent ) {
 
-        var _input_event = _event.input;
-        _input_event.type = InputEvents.typed( cast _input_event.type );
-
-            //ignore mouse move for now
-        if(_input_event.type == key) {            
-            if(_input_event.event.keysym != null) {
-                if(_input_event.event.keysym.sym == 32 && _input_event.event.state == 0) {
-                    lib.audio.toggle();                
-                }
-                if(_input_event.event.keysym.sym == 13 && _input_event.event.state == 0) {
-                    if(_input_event.event.keysym.mod == 256) {
-                        lib.main_window.fullscreen = !lib.main_window.fullscreen;
-                    }
-                }
-            }
-        }
-
-        if(_input_event.type == controller) {
-
-            if(_input_event.event.type == 1619) {
-                on_gamepad_added( _input_event.event );
-            }
-
-            if(_input_event.event.type == 1620) {
-                on_gamepad_removed( _input_event.event );
-            }
-
-        }
+        system.on_event( _event.input );
 
     } //on_event
 
-    function on_gamepad_added( _event:Dynamic ) {
-        
-        trace("added gamepad : " + _event.which );
+    public function on_gamepad_added( _event:Dynamic ) {
         
         lumen_gamepad_open( _event.which );
 
-    }
+    } //on_gamepad_added
     
-    function on_gamepad_removed( _event:Dynamic ) {
+    public function on_gamepad_removed( _event:Dynamic ) {
         
         lumen_gamepad_close( _event.which );
 
-    }
+    } //on_gamepad_removed
 
     public function update() {
 

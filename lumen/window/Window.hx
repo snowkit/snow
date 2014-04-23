@@ -92,9 +92,23 @@ class Window {
 
         switch(_event.type) {
             
-            case window_moved : { position = { x:_event.event.data1, y:_event.event.data2 }; }
-            case window_resized : { position = { x:_event.event.data1, y:_event.event.data2 }; }
-            case window_size_changed : { size = { w:_event.event.data1, h:_event.event.data2 }; }
+            case window_moved : {
+                internal_position = true;
+                position = { x:_event.event.data1, y:_event.event.data2 };
+                internal_position = false;
+            }
+
+            case window_resized : {
+                internal_resize = true;
+                size = { w:_event.event.data1, h:_event.event.data2 };
+                internal_resize = false;
+            }
+
+            case window_size_changed : {
+                internal_resize = true;
+                size = { w:_event.event.data1, h:_event.event.data2 };
+                internal_resize = false;
+            }
 
             default: {}
 
@@ -213,7 +227,7 @@ class Window {
 
     function set_position( _pos:WindowPosition ) : WindowPosition {
 
-        if(position != null && handle != null) {
+        if(position != null && handle != null && !internal_position) {
             lumen_window_set_position( handle, _pos.x, _pos.y );
         }
 
@@ -221,9 +235,12 @@ class Window {
 
     } //set_position
 
+    var internal_position : Bool = false;
+    var internal_resize : Bool = false;
+
     function set_size( _size:WindowSize ) : WindowSize {
 
-        if(size != null && handle != null) {
+        if(size != null && handle != null && !internal_resize) {
             lumen_window_set_size( handle, _size.w, _size.h );
         }
 
