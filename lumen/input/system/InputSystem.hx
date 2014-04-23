@@ -1,6 +1,7 @@
 package lumen.input.system;
 
 import lumen.Lumen;
+import lumen.LumenTypes;
 import lumen.input.InputManager;
 
 #if lumen_input_sdl
@@ -34,5 +35,9 @@ class InputSystem {
 
     public function destroy() {
     } //destroy
+
+    public function on_event( _event : InputEvent ) {
+
+    } //on_event
 
 } //InputSystem
