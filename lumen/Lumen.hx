@@ -240,17 +240,17 @@ class Lumen {
 
     #if lumen_native
 
-        private static var lumen_init = load( "lumen", "lumen_init", 1 );
-        private static var lumen_shutdown = load( "lumen", "lumen_shutdown", 0 );
-        private static var lumen_timestamp = load( "lumen", "lumen_timestamp", 0 );
-        private static var lumen_app_path = load( "lumen", "lumen_app_path", 0 );
-        private static var lumen_pref_path = load( "lumen", "lumen_pref_path", 2 );
-        private static var lumen_render_enable_vsync = load( "lumen", "lumen_render_enable_vsync", 1 );
-        private static var lumen_window_show_cursor = load( "lumen", "lumen_window_show_cursor", 1 );
+        static var lumen_init = load( "lumen", "lumen_init", 1 );
+        static var lumen_shutdown = load( "lumen", "lumen_shutdown", 0 );
+        static var lumen_timestamp = load( "lumen", "lumen_timestamp", 0 );
+        static var lumen_app_path = load( "lumen", "lumen_app_path", 0 );
+        static var lumen_pref_path = load( "lumen", "lumen_pref_path", 2 );
+        static var lumen_render_enable_vsync = load( "lumen", "lumen_render_enable_vsync", 1 );
+        static var lumen_window_show_cursor = load( "lumen", "lumen_window_show_cursor", 1 );
 
-        private static var lumen_audio_load_ogg_bytes = load( "lumen", "lumen_audio_load_ogg_bytes", 1 );
-        private static var lumen_audio_load_wav_bytes = load( "lumen", "lumen_audio_load_wav_bytes", 1 );
-        private static var lumen_image_load_bytes = load( "lumen", "lumen_image_load_bytes", 2 );
+        static var lumen_audio_load_ogg_bytes = load( "lumen", "lumen_audio_load_ogg_bytes", 1 );
+        static var lumen_audio_load_wav_bytes = load( "lumen", "lumen_audio_load_wav_bytes", 1 );
+        static var lumen_image_load_bytes = load( "lumen", "lumen_image_load_bytes", 2 );
 
     #end //lumen_native
 

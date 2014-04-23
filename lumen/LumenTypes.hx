@@ -21,13 +21,15 @@ typedef ImageInfo = {
     bpp_source : Int,   //source bits per pixel
     data : ByteArray    //image data
 
-}
+} //ImageInfo
 
 enum AudioFormatType {
+
     unknown;
     ogg;
     wav;
-}
+
+} //AudioFormatType
 
 typedef AudioInfo = {
 
@@ -39,7 +41,7 @@ typedef AudioInfo = {
     bits_per_sample : Int,      //bits per sample, 8 / 16
     data : ByteArray            //sound raw data
 
-}
+} //AudioInfo
 
 typedef WindowConfig = {
 
