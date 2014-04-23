@@ -8,6 +8,10 @@
     <haxedef name="lumen_html5" if="html5" />
     <haxedef name="lumen_native" if="native" />
     <haxedef name="no-compilation" />
+    
+    <haxedef name="lumen_audio_openal" if="native" />
+    <haxedef name="lumen_input_sdl" if="native" />
+    <haxedef name="lumen_window_sdl" if="native" />
 
     <section unless="display">
 

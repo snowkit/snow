@@ -1,15 +1,15 @@
 
 import lumen.Lumen;
 
-import lumen.gl.GL;
-import lumen.gl.GLTexture;
-import lumen.gl.GLProgram;
-import lumen.gl.GLBuffer;
+import lumen.render.gl.GL;
+import lumen.render.gl.GLTexture;
+import lumen.render.gl.GLProgram;
+import lumen.render.gl.GLBuffer;
 
 import lumen.utils.ByteArray;
 import lumen.utils.UInt8Array;
 import lumen.utils.Float32Array;
-import lumen.utils.Matrix3D;
+import lumen.utils.compat.Matrix3D;
 
 import lumen.window.Window;
 import lumen.LumenTypes.ImageInfo;

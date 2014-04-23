@@ -7,7 +7,7 @@ import lumen.utils.Libs;
 import haxe.io.Bytes;
 import haxe.io.BytesData;
 // import lumen.errors.EOFError; // Ensure that the neko->haxe callbacks are initialized
-import lumen.utils.CompressionAlgorithm;
+import lumen.utils.compat.CompressionAlgorithm;
 import lumen.utils.IDataInput;
 
 #if !lumen_html5
@@ -613,8 +613,8 @@ class ByteArray extends Bytes #if !haxe3 , #end implements ArrayAccess<Int> #if 
    // Getters & Setters
    private function get_bytesAvailable():Int { return length - position; }
    private function get_byteLength():Int { return length; }
-   private function get_endian():String { return bigEndian ? Endian.BIG_ENDIAN : Endian.LITTLE_ENDIAN; }
-   private function set_endian(s:String):String { bigEndian =(s == Endian.BIG_ENDIAN); return s; }
+   private function get_endian():String { return bigEndian ? lumen.utils.compat.Endian.BIG_ENDIAN : lumen.utils.compat.Endian.LITTLE_ENDIAN; }
+   private function set_endian(s:String):String { bigEndian =(s == lumen.utils.compat.Endian.BIG_ENDIAN); return s; }
 
    // Native Methods
    /** @private */ private static var _double_bytes =    Libs.load("std", "double_bytes", 2);
