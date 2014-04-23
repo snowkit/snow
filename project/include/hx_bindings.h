@@ -70,6 +70,7 @@ namespace lumen {
     extern int id_channels;
     extern int id_rate;
     extern int id_bitrate;
+    extern int id_bits_per_sample;
     extern int id_bitrate_upper;
     extern int id_bitrate_nominal;
     extern int id_bitrate_lower;
@@ -153,6 +154,7 @@ namespace lumen {
         id_channels             = val_id("channels");
         id_rate                 = val_id("rate");
         id_bitrate              = val_id("bitrate");
+        id_bits_per_sample      = val_id("bits_per_sample");
         id_bitrate_upper        = val_id("bitrate_upper");
         id_bitrate_nominal      = val_id("bitrate_nominal");
         id_bitrate_lower        = val_id("bitrate_lower");
