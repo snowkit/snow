@@ -7,6 +7,10 @@ import lumen.window.WindowManager;
 
     typedef LumenWindowSystem = lumen.window.system.sdl.WindowSystemSDL;
 
+#else
+
+    typedef LumenWindowSystem = lumen.input.system.WindowSystem;
+
 #end //lumen_window_sdl
 
 
