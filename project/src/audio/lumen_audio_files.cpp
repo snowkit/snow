@@ -16,7 +16,9 @@ namespace lumen {
         static int ogg_close_func(void* datasource);
         static long ogg_tell_func(void* datasource);
 
+
         class OGG_file_source : public Object {
+
             public:
                 FILE*               file_source;
                 std::string         source_name;
@@ -37,7 +39,10 @@ namespace lumen {
                 ov_clear(ogg_file);
 
             } //~
-        };
+
+        }; //OGG_file_source
+
+
 
         std::string ogg_error_string(int code) {
             switch(code)
@@ -58,17 +63,17 @@ namespace lumen {
         }
 
         #define OGG_BUFFER_LENGTH 4096
-        // 0 for Little-Endian, 1 for Big-Endian
+            // 0 for Little-Endian, 1 for Big-Endian
         #ifdef HXCPP_BIG_ENDIAN
             #define OGG_BUFFER_READ_TYPE 1
         #else
             #define OGG_BUFFER_READ_TYPE 0
         #endif
 
-        void audio_load_ogg_bytes(
+        bool audio_load_ogg_bytes(
             QuickVec<unsigned char> &out_buffer, const char* _id, 
-            int* channels, long* rate, long* bitrate_upper, long* bitrate_nominal, 
-            long* bitrate_lower, long* bitrate_window 
+            int* channels, long* rate, long* bitrate_upper, long* bitrate, 
+            long* bitrate_lower, long* bitrate_window, int *bits_per_sample 
         ) {
 
             ov_callbacks open_callbacks;
@@ -91,7 +96,7 @@ namespace lumen {
             ogg_source->file_source = fopen(_id, "rb");
             if(!ogg_source->file_source) {
                 printf("%s %s\n", "error opening file:", _id);
-                return;
+                return false;
             }
             
             fseek(ogg_source->file_source, 0, SEEK_END);
@@ -106,9 +111,9 @@ namespace lumen {
                 delete ogg_source;
                 
                 std::string s = ogg_error_string(result);
-                printf("%s result:%d   code:%s \n", "ogg stream failed to open!?", result, s.c_str());
+                printf("%s result:%d   code:%s \n", "ogg file failed to open!?", result, s.c_str());
                 
-                return;
+                return false;
 
             } //result < 0
 
@@ -120,24 +125,27 @@ namespace lumen {
                 printf("version         %d \n",     ogg_source->info->version);
                 printf("channels        %d \n",     ogg_source->info->channels);
                 printf("rate (hz)       %lu \n",    ogg_source->info->rate);
-                printf("bitrate upper   %lu \n",    ogg_source->info->bitrate_upper);
-                printf("bitrate nominal %lu \n",    ogg_source->info->bitrate_nominal);
-                printf("bitrate lower   %lu \n",    ogg_source->info->bitrate_lower);
-                printf("bitrate window  %lu \n",    ogg_source->info->bitrate_window);
+                printf("bitrate         %lu \n",    ogg_source->info->bitrate_nominal);
+                // printf("bitrate upper   %lu \n",    ogg_source->info->bitrate_upper);
+                // printf("bitrate lower   %lu \n",    ogg_source->info->bitrate_lower);
+                // printf("bitrate window  %lu \n",    ogg_source->info->bitrate_window);
                 printf("vendor          %s \n",     ogg_source->comments->vendor);
-                printf("length          %lld \n",    (long long)ogg_source->length);
+                printf("length          %lld \n",   (long long)ogg_source->length);
                 printf("uncompressed    %lld \n",   (long long)total_length);
                 
             for(int i = 0; i < ogg_source->comments->comments; i++) {
                 printf("\t%s\n",  ogg_source->comments->user_comments[i]);
             }
 
-            *channels           = ogg_source->info->channels;
             *rate               = ogg_source->info->rate;
+            *channels           = ogg_source->info->channels;
+            *bitrate            = ogg_source->info->bitrate_nominal;
+            *bits_per_sample    = 16;
+
             *bitrate_upper      = ogg_source->info->bitrate_upper;
-            *bitrate_nominal    = ogg_source->info->bitrate_nominal;
             *bitrate_lower      = ogg_source->info->bitrate_lower;
             *bitrate_window     = ogg_source->info->bitrate_window;
+
 
                 //(2) here is bytes per sample in file
             
@@ -159,7 +167,10 @@ namespace lumen {
                 //clean up
             delete ogg_source;
 
-        }
+                //yay.
+            return true;
+
+        } //audio_load_ogg_bytes
 
         static size_t ogg_read_func(void* ptr, size_t size, size_t nmemb, void* datasource) {
 
@@ -212,6 +223,165 @@ namespace lumen {
             return (long)ftell(source->file_source) - source->offset;
 
         } //tell_func
+
+
+
+
+//WAV files
+
+        struct RIFF_Header {
+            char chunkID[4];
+            unsigned int chunkSize; //size not including chunkSize or chunkID
+            char format[4];
+        };
+        
+        struct WAVE_Format {
+            char subChunkID[4];
+            unsigned int subChunkSize;
+            short audioFormat;
+            short numChannels;
+            unsigned int sampleRate;
+            unsigned int byteRate;
+            short blockAlign;
+            short bitsPerSample;
+        };
+        
+        struct WAVE_Data {
+            char subChunkID[4]; //should contain the word data
+            unsigned int subChunkSize; //Stores the size of the data block
+        };
+
+
+        bool audio_load_wav_bytes( QuickVec<unsigned char> &out_buffer, const char *_id,  int *channels, int* rate, int *bitrate, int *bits_per_sample) {
+            
+            //http://www.dunsanyinteractive.com/blogs/oliver/?p=72
+
+            WAVE_Format wave_format;
+            RIFF_Header riff_header;
+            WAVE_Data wave_data;
+
+            FILE* f = NULL;
+            unsigned char* data;
+            
+            // #ifdef ANDROID
+                // FileInfo info = AndroidGetAssetFD(_id);
+                // f = fdopen(info.fd, "rb");
+                // fseek(f, info.offset, 0);
+            // #else
+                f = fopen(_id, "rb");
+            // #endif
+            
+            if (!f) {
+                printf("%s : %s\n", _id, "failed to open sound file, does this file exist?\n");
+                return false;
+            }
+            
+            // Read in the first chunk into the struct
+            int result = fread(&riff_header, sizeof(RIFF_Header), 1, f);
+
+            //check for RIFF and WAVE tag in memory
+
+            if(
+                (riff_header.chunkID[0] != 'R'  ||
+                riff_header.chunkID[1]  != 'I'  ||
+                riff_header.chunkID[2]  != 'F'  ||
+                riff_header.chunkID[3]  != 'F') ||
+                
+                (riff_header.format[0]  != 'W'  ||
+                riff_header.format[1]   != 'A'  ||
+                riff_header.format[2]   != 'V'  ||
+                riff_header.format[3]   != 'E'  )
+            ) {
+                printf("%s : %s\n", _id, "Invalid RIFF or WAVE header");
+                return false;
+            }
+            
+            long int current_head = 0;
+            bool found_format = false;
+
+            while (!found_format) {
+
+                // Save the current position indicator of the stream
+                current_head = ftell(f);
+                
+                    //Read in the 2nd chunk for the wave info
+                result = fread(&wave_format, sizeof(WAVE_Format), 1, f);
+                
+                if (result != 1) {
+                    printf("%s : %s\n", _id, "Invalid WAV format!");
+                    return false;
+                }
+                
+                //check for fmt tag in memory
+                if(
+                    wave_format.subChunkID[0] != 'f' ||
+                    wave_format.subChunkID[1] != 'm' ||
+                    wave_format.subChunkID[2] != 't' ||
+                    wave_format.subChunkID[3] != ' '
+                ) {
+                    fseek(f, wave_data.subChunkSize, SEEK_CUR);
+                } else {
+                    found_format = true;
+                }
+
+            } //while !found_format
+            
+                //check for extra parameters;
+            if (wave_format.subChunkSize > 16) {
+                fseek(f, sizeof(short), SEEK_CUR);
+            }
+            
+            bool found_data = false;
+
+            while (!found_data) {
+
+                //Read in the the last byte of data before the sound file
+                result = fread(&wave_data, sizeof(WAVE_Data), 1, f);
+                
+                if (result != 1) {
+                    printf("%s : %s\n", _id, "Invalid WAV data header");
+                    return false;
+                }
+                
+                if(
+                    wave_data.subChunkID[0] != 'd' ||
+                    wave_data.subChunkID[1] != 'a' ||
+                    wave_data.subChunkID[2] != 't' ||
+                    wave_data.subChunkID[3] != 'a'
+                ) {
+                        // Goto next chunk.
+                    fseek(f, current_head + sizeof(WAVE_Data) + wave_format.subChunkSize, SEEK_SET);
+                } else {
+                    found_data = true;
+                }
+
+            } //!found_data
+            
+                //Allocate memory for data
+            data = new unsigned char[wave_data.subChunkSize];
+            
+                // Read in the sound data into the soundData variable
+            if (!fread(data, wave_data.subChunkSize, 1, f)) {
+                printf("%s : %s\n", _id, "Error loading WAV data into struct");
+                return false;
+            }   
+            
+                //Store in the out_buffer
+            out_buffer.Set(data, wave_data.subChunkSize);
+            
+                //Now we set the variables that we passed in with the data from the structs
+            *rate = wave_format.sampleRate;
+            *bitrate = (int)wave_format.byteRate;
+            *channels = wave_format.numChannels;
+            *bits_per_sample = wave_format.bitsPerSample;
+            
+                //clean up and return true if successful
+            fclose(f);
+            delete[] data;
+            
+            return true;
+
+        } // audio_load_wav_bytes    
 
 } //namespace lumen
 

@@ -43,14 +43,44 @@ class AudioManager {
         trace( AL.getIntegerv(AL.SPEED_OF_SOUND, 1) );  trace( AL.getErrorMeaning(AL.getError()) );
         trace( AL.getFloatv(AL.SPEED_OF_SOUND, 1) );    trace( AL.getErrorMeaning(AL.getError()) );        
 
-        var data = getBytes( "./assets/sound.pcm" );
-        var info : AudioInfo = lib.loadsound_ogg("assets/sound.ogg");
+        // var data = getBytes( "./assets/sound.pcm" );
+        // var info : AudioInfo = lib.loadsound_ogg("assets/sound.ogg");
+        var info : AudioInfo = lib.loadsound_wav("assets/sound.wav");
 
-        if(data == null) {
+        if(info == null) {
+            trace("Not playing test sound, failed to load sound");
             return;
+        } else {
+            trace("loading audio file : " + info.id + " / " + info.format);
+
+            trace("\t rate : " + info.rate);
+            trace("\t channels : " + info.channels);
+            trace("\t bitrate : " + info.bitrate);
+            trace("\t bits_per_sample : " + info.bits_per_sample);
         }
 
-        AL.bufferData(buffer, (info.channels > 1) ? AL.FORMAT_STEREO16 : AL.FORMAT_MONO16, new Float32Array(info.data), info.data.byteLength, info.rate );
+        var format = AL.FORMAT_STEREO16;
+
+            //stereo is 2+ channels
+        if(info.channels > 1) {
+            if(info.bits_per_sample == 8) {
+                format = AL.FORMAT_STEREO8;
+                trace("\t format : STEREO 8");
+            } else {
+                format = AL.FORMAT_STEREO16;
+                trace("\t format : STEREO 16");
+            }
+        } else { //mono 
+            if(info.bits_per_sample == 8) {
+                format = AL.FORMAT_MONO8;
+                trace("\t format : MONO 8");
+            } else {
+                format = AL.FORMAT_MONO16;
+                trace("\t format : MONO 16");
+            }
+        }
+
+        AL.bufferData(buffer, format, new Float32Array(info.data), info.data.byteLength, info.rate );
 
                 trace( AL.getErrorMeaning(AL.getError()) );
 
