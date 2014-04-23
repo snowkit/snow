@@ -8,6 +8,10 @@ import lumen.Lumen;
 
     typedef LumenAudioSystem = lumen.audio.system.openal.AudioSystemOpenAL;
 
+#else
+
+    typedef LumenAudioSystem = lumen.audio.system.AudioSystem;
+
 #end //lumen_audio_openal
 
 
