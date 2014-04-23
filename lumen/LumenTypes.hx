@@ -36,6 +36,7 @@ typedef AudioInfo = {
     channels : Int,             //number of channels
     rate : Int,                 //hz rate 
     bitrate : Int,              //sound bitrate
+    bits_per_sample : Int,      //bits per sample, 8 / 16
     data : ByteArray            //sound raw data
 
 }
