@@ -2,7 +2,7 @@ package lumen.input.system;
 
 import lumen.Lumen;
 import lumen.LumenTypes;
-import lumen.input.InputManager;
+import lumen.input.Input;
 
 #if lumen_input_sdl
 
@@ -17,10 +17,10 @@ import lumen.input.InputManager;
 
 class InputSystem {
 
-    var manager : InputManager;
+    var manager : Input;
     var lib : Lumen;
 
-    public function new( _manager:InputManager, _lib:Lumen ) {
+    public function new( _manager:Input, _lib:Lumen ) {
 
         manager = _manager;
         lib = _lib;
@@ -37,7 +37,29 @@ class InputSystem {
     } //destroy
 
     public function on_event( _event : InputEvent ) {
+    } //on_event    
 
-    } //on_event
+    public function mod_state_from_event( event:InputEvent ) : ModState {
+
+        return {
+            none    : true,
+            lshift  : false, 
+            rshift  : false,
+            lctrl   : false,
+            rctrl   : false,
+            lalt    : false,
+            ralt    : false,
+            lmeta   : false,
+            rmeta   : false,
+            num     : false,
+            caps    : false,
+            mode    : false,
+            ctrl    : false,
+            shift   : false,
+            alt     : false,
+            meta    : false
+        };
+
+    } //mod_state_from_event
 
 } //InputSystem

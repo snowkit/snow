@@ -1,6 +1,6 @@
 package lumen.audio.system;
 
-import lumen.audio.AudioManager;
+import lumen.audio.Audio;
 import lumen.Lumen;
 
 
@@ -17,10 +17,10 @@ import lumen.Lumen;
 
 class AudioSystem {
 
-    var manager : AudioManager;
+    var manager : Audio;
     var lib : Lumen;
 
-    public function new( _manager:AudioManager, _lib:Lumen ) {
+    public function new( _manager:Audio, _lib:Lumen ) {
 
         manager = _manager;
         lib = _lib;

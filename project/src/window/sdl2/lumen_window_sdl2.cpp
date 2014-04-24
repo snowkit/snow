@@ -264,7 +264,7 @@ namespace lumen {
 
             alloc_field( _object, id_type, alloc_int(event.window.event) );
             alloc_field( _object, id_window_id, alloc_int(event.window.windowID) );
-            alloc_field( _object, id_timestamp, alloc_int(event.window.timestamp) );
+            alloc_field( _object, id_timestamp, alloc_float(event.window.timestamp/1000.0) );
 
             switch (event.window.event) {
 
