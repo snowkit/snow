@@ -1,7 +1,7 @@
 package lumen.window;
 
 import lumen.LumenTypes;
-import lumen.window.WindowManager;
+import lumen.window.Windowing;
 
 import lumen.render.gl.GL;
     
@@ -22,7 +22,7 @@ class Window {
         //the window id, for tracking them
     public var id : Int;
         //the manager this window belongs to
-    public var manager : WindowManager;
+    public var manager : Windowing;
         //the requested and actual configs
     public var asked_config : WindowConfig;
     public var config : WindowConfig;
@@ -45,7 +45,7 @@ class Window {
         //set this for fullscreen desktop mode, instead of fullscreen mode
     public var fullscreen_desktop : Bool = true;
 
-    public function new( _manager:WindowManager, _config:WindowConfig ) {
+    public function new( _manager:Windowing, _config:WindowConfig ) {
 
         position    = { x:0, y:0 };
         size        = { w:0, h:0 };

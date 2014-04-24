@@ -4,12 +4,13 @@ import haxe.Timer;
 
 import lumen.App;
 import lumen.LumenTypes;
-
 import lumen.utils.ByteArray;
+
+import lumen.input.Input;
+import lumen.audio.Audio;
+import lumen.window.Windowing;
+
 import lumen.window.Window;
-import lumen.window.WindowManager;
-import lumen.input.InputManager;
-import lumen.audio.AudioManager;
 
 
 class Lumen {
@@ -19,9 +20,9 @@ class Lumen {
     public var host : App;
     public var config : LumenConfig;
 
-    public var window : WindowManager;
-    public var input : InputManager;
-    public var audio : AudioManager;
+    public var window : Windowing;
+    public var input : Input;
+    public var audio : Audio;
 
     public var shutting_down : Bool = false;
     public var has_shutdown : Bool = false;
@@ -99,9 +100,9 @@ class Lumen {
         _debug('/ lumen / ready, setting up additional systems...');
 
             //create the sub systems 
-        window = new WindowManager( this );
-        input = new InputManager( this );
-        audio = new AudioManager( this );        
+        window = new Windowing( this );
+        input = new Input( this );
+        audio = new Audio( this );        
 
             //disllow re-entry
         was_ready = true;
@@ -226,6 +227,50 @@ class Lumen {
         }
 
     } //main_window_events
+
+//Input handlers
+
+    public function onkeydown( _event : KeyEvent ) {
+
+        host.onkeydown(_event);
+
+    } //onkeydown
+    
+    public function onkeyup( _event : KeyEvent ) {
+
+        host.onkeyup(_event);
+
+    } //onkeyup
+    
+    public function ontextinput( _event : TextEvent ) {
+
+        host.ontextinput(_event);
+
+    } //onkeyup
+
+    public function onmouseup( _event:MouseEvent ) {
+        
+        host.onmouseup(_event);
+        
+    } //onmouseup
+
+    public function onmousedown( _event:MouseEvent ) {
+
+        host.onmousedown(_event);
+
+    } //onmousedown
+
+    public function onmousewheel( _event:MouseEvent ) {
+
+        host.onmousewheel(_event);
+
+    } //onmousewheel
+
+    public function onmousemove( _event:MouseEvent ) {
+
+        host.onmousemove(_event);
+
+    } //onmousemove
 
 //Helpers
 

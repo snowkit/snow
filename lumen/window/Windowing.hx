@@ -21,7 +21,7 @@ typedef DisplayBounds = {
     height : Int
 }
 
-class WindowManager {
+class Windowing {
 
     var lib : Lumen;
 
@@ -135,4 +135,4 @@ class WindowManager {
 
 #end //lumen_native
 
-} //WindowManager
+} //Windowing

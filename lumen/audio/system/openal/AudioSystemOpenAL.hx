@@ -19,7 +19,7 @@ import lumen.audio.al.AL.Device;
         var source : Int;
         var buffer : Int;
 
-        var playing : Bool = true;
+        var playing : Bool = false;
         var pitch : Float = 1;
         var dir : Int = 1;
 

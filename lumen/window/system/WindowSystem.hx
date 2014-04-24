@@ -1,7 +1,7 @@
 package lumen.window.system;
 
 import lumen.Lumen;
-import lumen.window.WindowManager;
+import lumen.window.Windowing;
 
 #if lumen_window_sdl
 
@@ -16,10 +16,10 @@ import lumen.window.WindowManager;
 
 class WindowSystem {
 
-    var manager : WindowManager;
+    var manager : Windowing;
     var lib : Lumen;
 
-    public function new( _manager:WindowManager, _lib:Lumen ) {
+    public function new( _manager:Windowing, _lib:Lumen ) {
 
         manager = _manager;
         lib = _lib;

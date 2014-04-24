@@ -81,7 +81,7 @@ typedef SystemEvent = {
 typedef WindowEvent = {
 
     ? type : WindowEventType,
-    ? timestamp : Int,
+    ? timestamp : Float,
     ? window_id : Int,
     ? event : Dynamic
 
@@ -90,7 +90,7 @@ typedef WindowEvent = {
 typedef InputEvent = {
 
     ? type : InputEventType,
-    ? timestamp : Int,
+    ? timestamp : Float,
     ? window_id : Int,
     ? event : Dynamic
 
