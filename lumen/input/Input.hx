@@ -47,7 +47,7 @@ class Input {
             
         lib.host.ontextinput(_event);
 
-    } //dispatch_key_event
+    } //dispatch_text_event
 
     public function dispatch_mouse_event( _event:MouseEvent ) {
 
@@ -61,7 +61,19 @@ class Input {
             lib.host.onmousewheel(_event);
         }
 
-    } //dispatch_key_event
+    } //dispatch_mouse_event
+
+    public function dispatch_touch_event( _event:TouchEvent ) {
+
+        if(_event.state == TouchState.down) {
+            lib.host.ontouchdown(_event);
+        } else if(_event.state == TouchState.up) {
+            lib.host.ontouchup(_event);
+        } else if(_event.state == TouchState.move) {
+            lib.host.ontouchmove(_event);
+        }
+
+    } //dispatch_touch_event
 
     public function dispatch_gamepad_event( _event:GamepadEvent ) {
 
@@ -156,6 +168,13 @@ enum GamepadEventType {
     device_remapped;
 }
 
+enum TouchState {
+    unknown;
+    down;
+    up;
+    move; 
+}
+
 typedef ModState = {
     none : Bool,
     lshift : Bool,
@@ -220,5 +239,17 @@ typedef GamepadEvent = {
     value : Int
 } //GamepadEvent
 
+typedef TouchEvent = {
+    raw : InputEvent,
+    state : TouchState,
+    timestamp : Float,
+    touch_id : Int,
+    device_id : Int,
+    x : Float,
+    y : Float,
+    dx : Float, 
+    dy : Float,
+    pressure : Float
+}
 
 
