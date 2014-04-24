@@ -228,49 +228,6 @@ class Lumen {
 
     } //main_window_events
 
-//Input handlers
-
-    public function onkeydown( _event : KeyEvent ) {
-
-        host.onkeydown(_event);
-
-    } //onkeydown
-    
-    public function onkeyup( _event : KeyEvent ) {
-
-        host.onkeyup(_event);
-
-    } //onkeyup
-    
-    public function ontextinput( _event : TextEvent ) {
-
-        host.ontextinput(_event);
-
-    } //onkeyup
-
-    public function onmouseup( _event:MouseEvent ) {
-        
-        host.onmouseup(_event);
-        
-    } //onmouseup
-
-    public function onmousedown( _event:MouseEvent ) {
-
-        host.onmousedown(_event);
-
-    } //onmousedown
-
-    public function onmousewheel( _event:MouseEvent ) {
-
-        host.onmousewheel(_event);
-
-    } //onmousewheel
-
-    public function onmousemove( _event:MouseEvent ) {
-
-        host.onmousemove(_event);
-
-    } //onmousemove
 
 //Helpers
 
