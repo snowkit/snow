@@ -133,10 +133,8 @@ class Main extends lumen.AppFixedTimestep {
     } //onkeyup
 
     override public function ontextinput( event : TextEvent ) {
-        // trace("text input : " + event);
+        trace("text input : " + event);
     } //ontextinput
-
-
 
 
     override function onmousemove( event:MouseEvent ) {
@@ -144,24 +142,36 @@ class Main extends lumen.AppFixedTimestep {
     }
 
     override function onmouseup( event:MouseEvent ) {
-        // trace("up " + event);
+        trace("up " + event);
         positionY = event.y - (size/2);
         positionX = event.x - (size/2);
         phys_posx = positionX;
     }
 
     override function onmousedown( event:MouseEvent ) {
-        // trace("down " + event);
+        trace("down " + event);
     }
 
     override function onmousewheel( event:MouseEvent ) {
-        // trace("wheel " + event);
+        trace("wheel " + event);
     }
 
 
+    override function ongamepadaxis( _event:GamepadEvent ) {
+        trace('axis; device: ${_event.which}, axis: ${_event.axis}, value: ${_event.value}');
+    }
 
+    override function ongamepadbuttonup( _event:GamepadEvent ) {
+        trace('button up; device: ${_event.which}, button: ${_event.button}');
+    }
 
+    override function ongamepadbuttondown( _event:GamepadEvent ) {
+        trace('button down; device: ${_event.which}, button: ${_event.button}');
+    }
 
+    override function ongamepaddevice( _event:GamepadEvent ) {
+        trace('device event; device: ${_event.which}, type: ${_event.type}');
+    }
 
 
     var next_tex_tick : Float = 0;
