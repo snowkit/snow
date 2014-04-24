@@ -64,11 +64,11 @@ namespace lumen {
                 alloc_field( _object, id_type, alloc_int(event.tfinger.type) );
                 alloc_field( _object, id_touch_id, alloc_int(event.tfinger.touchId) );
                 alloc_field( _object, id_finger_id, alloc_int(event.tfinger.fingerId) );
-                alloc_field( _object, id_x, alloc_int(event.tfinger.x) );
-                alloc_field( _object, id_y, alloc_int(event.tfinger.y) );
-                alloc_field( _object, id_dx, alloc_int(event.tfinger.dx) );
-                alloc_field( _object, id_dy, alloc_int(event.tfinger.dy) );
-                alloc_field( _object, id_pressure, alloc_int(event.tfinger.pressure) );
+                alloc_field( _object, id_x, alloc_float(event.tfinger.x) );
+                alloc_field( _object, id_y, alloc_float(event.tfinger.y) );
+                alloc_field( _object, id_dx, alloc_float(event.tfinger.dx) );
+                alloc_field( _object, id_dy, alloc_float(event.tfinger.dy) );
+                alloc_field( _object, id_pressure, alloc_float(event.tfinger.pressure) );
             
                 break;
 

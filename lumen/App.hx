@@ -55,6 +55,10 @@ class App {
     public function onmousewheel( _event:MouseEvent ) {}
     public function onmousemove( _event:MouseEvent ) {}
 
+    public function ontouchup( _event:TouchEvent ) {}
+    public function ontouchdown( _event:TouchEvent ) {}
+    public function ontouchmove( _event:TouchEvent ) {}
+
     public function ongamepadaxis( _event:GamepadEvent ) {}
     public function ongamepadbuttonup( _event:GamepadEvent ) {}
     public function ongamepadbuttondown( _event:GamepadEvent ) {}

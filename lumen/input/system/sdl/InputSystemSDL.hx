@@ -77,6 +77,22 @@ import lumen.input.Input;
 
     } //GamepadEventTypes
 
+    class TouchEventTypes {
+        static var te_down      : Int = 1792;
+        static var te_up        : Int = 1793;
+        static var te_move      : Int = 1794;
+
+        public static function typed(te_type:Int) : TouchState {
+            
+            if(te_type == te_down)      return TouchState.down;
+            if(te_type == te_up)        return TouchState.up;
+            if(te_type == te_move)      return TouchState.move;
+
+            return TouchState.unknown;
+        } //typed
+
+    } //TouchEventTypes
+
     class MouseEventTypes {
 
         static var me_move  : Int     = 1024;
@@ -246,6 +262,30 @@ class ModValue {
                     manager.dispatch_text_event( api_event );
 
                 } //
+
+        //Touch events
+
+            } else if(_event.type == touch) {
+                
+                _event.event.type = TouchEventTypes.typed(_event.event.type);
+                var _state = _event.event.type;
+
+                    //the mapping from touch_id -> finger_id is intentional,
+                    //and the device_id is not a mistake here.
+                var api_event = {
+                    raw : _event,
+                    state : _state,
+                    timestamp : _event.timestamp,
+                    touch_id : _event.event.finger_id,
+                    device_id : _event.event.touch_id,
+                    x : _event.event.x,
+                    y : _event.event.x,
+                    dx : _event.event.dx, 
+                    dy : _event.event.dy,
+                    pressure : _event.event.pressure
+                }
+
+                manager.dispatch_touch_event( api_event );
 
         //Gamepad events
 
