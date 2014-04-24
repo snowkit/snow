@@ -12,6 +12,8 @@ import lumen.utils.Float32Array;
 import lumen.utils.compat.Matrix3D;
 
 import lumen.window.Window;
+import lumen.input.Input;
+
 import lumen.LumenTypes.ImageInfo;
 import lumen.App;
 
@@ -33,6 +35,7 @@ class Main extends lumen.AppFixedTimestep {
     var size : Int = 128;
     var texture_time : Float = 1.0;
     var positionX : Float = 0;
+    var positionY : Float = 0;
     var dirX : Float = 1;
     var speed : Float = 100;
 
@@ -73,14 +76,13 @@ class Main extends lumen.AppFixedTimestep {
         textures = [];
 
         files = [ 
-            'assets/test.bmp', 
+            'assets/test.bmp',
             'assets/test.gif', 
             'assets/test.jpg', 
             'assets/test.png', 
             'assets/test.psd', 
             'assets/test.tga', 
         ];
-
         
         for(f in files) {
             var info : ImageInfo = app.loadimage(f);
@@ -95,7 +97,72 @@ class Main extends lumen.AppFixedTimestep {
        
         next_tex_tick = haxe.Timer.stamp() + texture_time;
 
+        positionY = (app.main_window.size.h - size) / 2;
+
     } //ready
+
+
+
+
+    override function onkeydown( event:KeyEvent ) {
+        // trace("key down : " + event);
+
+            //console scan code should be universally next to 1
+        if(event.scancode == Scan.GRAVE) {
+            trace("console key!");
+        }
+
+    } //onkeydown
+
+    override function onkeyup( event:KeyEvent ) {
+
+            //space to pause/unpause sound test
+        if( event.keycode == Key.SPACE ) {
+            app.audio.toggle();
+        }
+
+            //alt enter to toggle fullscreen test
+        if( event.keycode == Key.RETURN && event.mod.alt ) {
+            app.main_window.fullscreen = !app.main_window.fullscreen;
+        }
+
+        if(event.keycode == Key.ESCAPE) {
+            app.shutdown();
+        }
+
+    } //onkeyup
+
+    override public function ontextinput( event : TextEvent ) {
+        // trace("text input : " + event);
+    } //ontextinput
+
+
+
+
+    override function onmousemove( event:MouseEvent ) {
+        // trace("move " + event);
+    }
+
+    override function onmouseup( event:MouseEvent ) {
+        // trace("up " + event);
+        positionY = event.y - (size/2);
+        positionX = event.x - (size/2);
+        phys_posx = positionX;
+    }
+
+    override function onmousedown( event:MouseEvent ) {
+        // trace("down " + event);
+    }
+
+    override function onmousewheel( event:MouseEvent ) {
+        // trace("wheel " + event);
+    }
+
+
+
+
+
+
 
     var next_tex_tick : Float = 0;
     var phys_posx : Float = 0;
@@ -120,7 +187,8 @@ class Main extends lumen.AppFixedTimestep {
             
         }
 
-    }
+    } //update
+
 
     function onrender( window:Window ) {
 
@@ -162,7 +230,7 @@ class Main extends lumen.AppFixedTimestep {
 
         return texture;
         
-    }
+    } //createTexture
     
     function initializeShaders ():Void {
         
@@ -227,7 +295,7 @@ class Main extends lumen.AppFixedTimestep {
         modelViewMatrixUniform = GL.getUniformLocation (shaderProgram, "uModelViewMatrix");
         imageUniform = GL.getUniformLocation (shaderProgram, "uImage0");
         
-    }
+    } //initializeShaders
 
     function createBuffers ():Void {
         
@@ -259,7 +327,7 @@ class Main extends lumen.AppFixedTimestep {
         GL.bufferData (GL.ARRAY_BUFFER, new Float32Array (cast texCoords), GL.STATIC_DRAW);
         GL.bindBuffer (GL.ARRAY_BUFFER, null);
         
-    }
+    } //createBuffers
 
     function render(){
         
@@ -269,7 +337,7 @@ class Main extends lumen.AppFixedTimestep {
         GL.clear (GL.COLOR_BUFFER_BIT);
         
         // var positionX = (app.main_window.size.w - size) / 2;
-        var positionY = (app.main_window.size.h - size) / 2;
+        // var positionY = (app.main_window.size.h - size) / 2;
         
         var projectionMatrix = Matrix3D.createOrtho (0, app.main_window.size.w, app.main_window.size.h, 0, 1000, -1000);
         var modelViewMatrix = Matrix3D.create2D (positionX, positionY, 1, 0);
@@ -300,5 +368,7 @@ class Main extends lumen.AppFixedTimestep {
         GL.disableVertexAttribArray (vertexAttribute);
         GL.disableVertexAttribArray (texCoordAttribute);
         GL.useProgram (null);
-    }
+    
+    } //render
+
 } //Main

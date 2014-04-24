@@ -31,11 +31,11 @@ namespace lumen {
         
         value _object = alloc_empty_object();
 
-            new_event.timestamp = event.key.timestamp;
+            new_event.timestamp = event.key.timestamp/1000.0;
             new_event.window_id = event.key.windowID;
 
             alloc_field( _object, id_type, alloc_int(event.key.type) );
-            alloc_field( _object, id_timestamp, alloc_int(event.key.timestamp) );
+            alloc_field( _object, id_timestamp, alloc_float(event.key.timestamp/1000.0) );
             alloc_field( _object, id_window_id, alloc_int(event.key.windowID) );
             alloc_field( _object, id_state, alloc_int(event.key.state) );
             alloc_field( _object, id_repeat, alloc_int(event.key.repeat) );
@@ -50,7 +50,7 @@ namespace lumen {
 
         value _object = alloc_empty_object();
         
-        new_event.timestamp = event.tfinger.timestamp;
+        new_event.timestamp = event.tfinger.timestamp/1000.0;
             //touch events have no window id because of single screen touch devices
             //right now, but this is where sdl would add this later
         new_event.window_id = 1;
@@ -88,11 +88,11 @@ namespace lumen {
 
             case SDL_MOUSEMOTION: {
 
-                new_event.timestamp = event.motion.timestamp;
+                new_event.timestamp = event.motion.timestamp/1000.0;
                 new_event.window_id = event.motion.windowID;
 
                 alloc_field( _object, id_type, alloc_int(event.motion.type) );
-                alloc_field( _object, id_timestamp, alloc_int(event.motion.timestamp) );
+                alloc_field( _object, id_timestamp, alloc_float(event.motion.timestamp/1000.0) );
                 alloc_field( _object, id_window_id, alloc_int(event.motion.windowID) );
                 alloc_field( _object, id_which, alloc_int(event.motion.which) );
                 alloc_field( _object, id_state, alloc_int(event.motion.state) );
@@ -108,17 +108,17 @@ namespace lumen {
             case SDL_MOUSEBUTTONDOWN:
             case SDL_MOUSEBUTTONUP: {
 
-                new_event.timestamp = event.button.timestamp;
+                new_event.timestamp = event.button.timestamp/1000.0;
                 new_event.window_id = event.button.windowID;
 
                 alloc_field( _object, id_type, alloc_int(event.button.type) );
-                alloc_field( _object, id_timestamp, alloc_int(event.button.timestamp) );
+                alloc_field( _object, id_timestamp, alloc_float(event.button.timestamp/1000.0) );
                 alloc_field( _object, id_window_id, alloc_int(event.button.windowID) );
                 alloc_field( _object, id_which, alloc_int(event.button.which) );
-                alloc_field( _object, id_button, alloc_int(event.button.button) );
                 alloc_field( _object, id_state, alloc_int(event.button.state) );
                 alloc_field( _object, id_x, alloc_int(event.button.x) );
                 alloc_field( _object, id_y, alloc_int(event.button.y) );
+                alloc_field( _object, id_button, alloc_int(event.button.button) );
 
                 break;
 
@@ -126,11 +126,11 @@ namespace lumen {
 
             case SDL_MOUSEWHEEL: {
 
-                new_event.timestamp = event.wheel.timestamp;
+                new_event.timestamp = event.wheel.timestamp/1000.0;
                 new_event.window_id = event.wheel.windowID;
 
                 alloc_field( _object, id_type, alloc_int(event.wheel.type) );
-                alloc_field( _object, id_timestamp, alloc_int(event.wheel.timestamp) );
+                alloc_field( _object, id_timestamp, alloc_float(event.wheel.timestamp/1000.0) );
                 alloc_field( _object, id_window_id, alloc_int(event.wheel.windowID) );
                 alloc_field( _object, id_which, alloc_int(event.wheel.which) );
                 alloc_field( _object, id_x, alloc_int(event.wheel.x) );
@@ -154,11 +154,11 @@ namespace lumen {
 
             case SDL_TEXTEDITING:{
                 
-                new_event.timestamp = event.edit.timestamp;
+                new_event.timestamp = event.edit.timestamp/1000.0;
                 new_event.window_id = event.edit.windowID;
 
                 alloc_field( _object, id_type, alloc_int(event.type) );
-                alloc_field( _object, id_timestamp, alloc_int(event.edit.timestamp) );
+                alloc_field( _object, id_timestamp, alloc_float(event.edit.timestamp/1000.0) );
                 alloc_field( _object, id_window_id, alloc_int(event.edit.windowID) );
                 alloc_field( _object, id_text, alloc_string(event.edit.text) );
                 alloc_field( _object, id_start, alloc_int(event.edit.start) );
@@ -170,11 +170,11 @@ namespace lumen {
 
             case SDL_TEXTINPUT:{
                 
-                new_event.timestamp = event.text.timestamp;
+                new_event.timestamp = event.text.timestamp/1000.0;
                 new_event.window_id = event.text.windowID;
 
                 alloc_field( _object, id_type, alloc_int(event.type) );
-                alloc_field( _object, id_timestamp, alloc_int(event.text.timestamp) );
+                alloc_field( _object, id_timestamp, alloc_float(event.text.timestamp/1000.0) );
                 alloc_field( _object, id_window_id, alloc_int(event.text.windowID) );
                 alloc_field( _object, id_text, alloc_string(event.text.text) );
 
@@ -199,10 +199,10 @@ namespace lumen {
 
             case SDL_JOYAXISMOTION: {
 
-                new_event.timestamp = event.jaxis.timestamp;
+                new_event.timestamp = event.jaxis.timestamp/1000.0;
 
                 alloc_field( _object, id_type, alloc_int(event.jaxis.type) );
-                alloc_field( _object, id_timestamp, alloc_int(event.jaxis.timestamp) );
+                alloc_field( _object, id_timestamp, alloc_float(event.jaxis.timestamp/1000.0) );
                 alloc_field( _object, id_which, alloc_int(event.jaxis.which) );
                 alloc_field( _object, id_axis, alloc_int(event.jaxis.axis) );
                     //(range: -32768 to 32767)
@@ -214,10 +214,10 @@ namespace lumen {
 
             case SDL_JOYBALLMOTION: {
 
-                new_event.timestamp = event.jball.timestamp;
+                new_event.timestamp = event.jball.timestamp/1000.0;
 
                 alloc_field( _object, id_type, alloc_int(event.jball.type) );
-                alloc_field( _object, id_timestamp, alloc_int(event.jball.timestamp) );
+                alloc_field( _object, id_timestamp, alloc_float(event.jball.timestamp/1000.0) );
                 alloc_field( _object, id_which, alloc_int(event.jball.which) );
                 alloc_field( _object, id_ball, alloc_int(event.jball.ball) );
                 alloc_field( _object, id_xrel, alloc_int(event.jball.xrel) );
@@ -229,10 +229,10 @@ namespace lumen {
 
             case SDL_JOYHATMOTION: {
 
-                new_event.timestamp = event.jhat.timestamp;
+                new_event.timestamp = event.jhat.timestamp/1000.0;
 
                 alloc_field( _object, id_type, alloc_int(event.jhat.type) );
-                alloc_field( _object, id_timestamp, alloc_int(event.jhat.timestamp) );
+                alloc_field( _object, id_timestamp, alloc_float(event.jhat.timestamp/1000.0) );
                 alloc_field( _object, id_which, alloc_int(event.jhat.which) );
                 alloc_field( _object, id_hat, alloc_int(event.jhat.hat) );
                 alloc_field( _object, id_value, alloc_int(event.jhat.value) );
@@ -245,10 +245,10 @@ namespace lumen {
             case SDL_JOYBUTTONUP: 
             {
 
-                new_event.timestamp = event.jbutton.timestamp;
+                new_event.timestamp = event.jbutton.timestamp/1000.0;
 
                 alloc_field( _object, id_type, alloc_int(event.jbutton.type) );
-                alloc_field( _object, id_timestamp, alloc_int(event.jbutton.timestamp) );
+                alloc_field( _object, id_timestamp, alloc_float(event.jbutton.timestamp/1000.0) );
                 alloc_field( _object, id_which, alloc_int(event.jbutton.which) );
                 alloc_field( _object, id_button, alloc_int(event.jbutton.button) );
                 alloc_field( _object, id_state, alloc_int(event.jbutton.state) );
@@ -261,10 +261,10 @@ namespace lumen {
             case SDL_JOYDEVICEREMOVED: 
             {
 
-                new_event.timestamp = event.jdevice.timestamp;
+                new_event.timestamp = event.jdevice.timestamp/1000.0;
 
                 alloc_field( _object, id_type, alloc_int(event.jdevice.type) );
-                alloc_field( _object, id_timestamp, alloc_int(event.jdevice.timestamp) );
+                alloc_field( _object, id_timestamp, alloc_float(event.jdevice.timestamp/1000.0) );
                 alloc_field( _object, id_which, alloc_int(event.jdevice.which) );
 
                 break;
@@ -290,10 +290,10 @@ namespace lumen {
 
             case SDL_CONTROLLERAXISMOTION: {
 
-                new_event.timestamp = event.caxis.timestamp;
+                new_event.timestamp = event.caxis.timestamp/1000.0;
 
                 alloc_field( _object, id_type, alloc_int(event.caxis.type) );
-                alloc_field( _object, id_timestamp, alloc_int(event.caxis.timestamp) );
+                alloc_field( _object, id_timestamp, alloc_float(event.caxis.timestamp/1000.0) );
                 alloc_field( _object, id_which, alloc_int(event.caxis.which) );
                 alloc_field( _object, id_axis, alloc_int(event.caxis.axis) );
                     // (range: -32768 to 32767)
@@ -307,10 +307,10 @@ namespace lumen {
             case SDL_CONTROLLERBUTTONUP: 
             {
 
-                new_event.timestamp = event.cbutton.timestamp;
+                new_event.timestamp = event.cbutton.timestamp/1000.0;
 
                 alloc_field( _object, id_type, alloc_int(event.cbutton.type) );
-                alloc_field( _object, id_timestamp, alloc_int(event.cbutton.timestamp) );
+                alloc_field( _object, id_timestamp, alloc_float(event.cbutton.timestamp/1000.0) );
                 alloc_field( _object, id_which, alloc_int(event.cbutton.which) );
                 alloc_field( _object, id_button, alloc_int(event.cbutton.button) );
                 alloc_field( _object, id_state, alloc_int(event.cbutton.state) );
@@ -324,10 +324,10 @@ namespace lumen {
             case SDL_CONTROLLERDEVICEREMAPPED: 
             {
 
-                new_event.timestamp = event.cdevice.timestamp;
+                new_event.timestamp = event.cdevice.timestamp/1000.0;
 
                 alloc_field( _object, id_type, alloc_int(event.cdevice.type) );
-                alloc_field( _object, id_timestamp, alloc_int(event.cdevice.timestamp) );
+                alloc_field( _object, id_timestamp, alloc_float(event.cdevice.timestamp/1000.0) );
                 alloc_field( _object, id_which, alloc_int(event.cdevice.which) );
 
                 break;

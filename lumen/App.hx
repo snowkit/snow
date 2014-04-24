@@ -1,7 +1,8 @@
 package lumen;
 
 import lumen.utils.ByteArray;
-        
+import lumen.input.Input;
+
     //Note all times in lumen are in seconds.
     //The default type of application, with variable delta time, or fixed delta time, or a fixed frame rate
 
@@ -44,6 +45,15 @@ class App {
     public function new() {}
     public function ready() {}
     public function update(dt:Float) {}
+    
+    public function onkeydown( _event : KeyEvent ) {}
+    public function onkeyup( _event : KeyEvent ) {}
+    public function ontextinput( _event : TextEvent ) {}
+
+    public function onmouseup( _event:MouseEvent ) {}
+    public function onmousedown( _event:MouseEvent ) {}
+    public function onmousewheel( _event:MouseEvent ) {}
+    public function onmousemove( _event:MouseEvent ) {}
 
 //override this if you want to change how the runtime config is loaded/handled
 
