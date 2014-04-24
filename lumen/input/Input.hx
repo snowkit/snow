@@ -35,33 +35,53 @@ class Input {
 
     public function dispatch_key_event( _event:KeyEvent ) {
             
-        if(_event.state == KeyState.up) {
-            lib.onkeyup(_event);
+        if(_event.state == PressedState.up) {
+            lib.host.onkeyup(_event);
         } else {
-            lib.onkeydown(_event);
+            lib.host.onkeydown(_event);
         }
 
     } //dispatch_key_event
 
     public function dispatch_text_event( _event:TextEvent ) {
             
-        lib.ontextinput(_event);
+        lib.host.ontextinput(_event);
 
     } //dispatch_key_event
 
     public function dispatch_mouse_event( _event:MouseEvent ) {
 
-        if(_event.state == down) {
-            lib.onmousedown(_event);
-        } else if(_event.state == up) {
-            lib.onmouseup(_event);
-        } else if(_event.state == move) {
-            lib.onmousemove(_event);
-        } else if(_event.state == wheel) {
-            lib.onmousewheel(_event);
+        if(_event.state == MouseState.down) {
+            lib.host.onmousedown(_event);
+        } else if(_event.state == MouseState.up) {
+            lib.host.onmouseup(_event);
+        } else if(_event.state == MouseState.move) {
+            lib.host.onmousemove(_event);
+        } else if(_event.state == MouseState.wheel) {
+            lib.host.onmousewheel(_event);
         }
 
     } //dispatch_key_event
+
+    public function dispatch_gamepad_event( _event:GamepadEvent ) {
+
+        if(_event.type == GamepadEventType.axis) {
+            lib.host.ongamepadaxis(_event);
+        } else if(_event.type == GamepadEventType.button) {
+            if(_event.state == PressedState.down) {
+                lib.host.ongamepadbuttondown(_event);
+            } else if(_event.state == PressedState.up) {
+                lib.host.ongamepadbuttonup(_event);
+            }
+        } else 
+        if( _event.type == GamepadEventType.device_added || 
+            _event.type == GamepadEventType.device_removed ||
+            _event.type == GamepadEventType.device_remapped
+        ) {
+            lib.host.ongamepaddevice(_event);
+        }
+
+    } //dispatch_gamepad_event
 
     public function on_gamepad_added( _event:Dynamic ) {
         
@@ -98,7 +118,7 @@ class Input {
 
 } //Input
 
-enum KeyState {
+enum PressedState {
     unknown;
     down;
     up;
@@ -127,6 +147,15 @@ enum TextEventType {
     input;
 }
 
+enum GamepadEventType {
+    unknown;
+    axis;
+    button;
+    device_added;
+    device_removed;
+    device_remapped;
+}
+
 typedef ModState = {
     none : Bool,
     lshift : Bool,
@@ -144,7 +173,7 @@ typedef ModState = {
     shift : Bool,
     alt : Bool,
     meta : Bool
-}
+} //ModState
 
 typedef MouseEvent = {
     raw : InputEvent,
@@ -157,18 +186,18 @@ typedef MouseEvent = {
     y : Int,
     xrel : Int,
     yrel : Int,
-}
+} //MouseEvent
 
 typedef KeyEvent = {
     raw : InputEvent,
     scancode : Int,
     keycode : Int,
-    state : KeyState,
+    state : PressedState,
     mod : ModState,
-    repeat : Bool,    
+    repeat : Bool,
     timestamp : Float,
     window_id : Int
-}
+} //KeyEvent
 
 typedef TextEvent = {
     raw : InputEvent,
@@ -178,7 +207,18 @@ typedef TextEvent = {
     window_id : Int,
     start : Int,
     length : Int
-}
+} //TextEvent
+
+typedef GamepadEvent = {
+    raw : InputEvent,
+    timestamp : Float,
+    type : GamepadEventType,
+    state : PressedState,
+    which : Int,
+    button : Int,
+    axis : Int,
+    value : Int
+} //GamepadEvent
 
 
 

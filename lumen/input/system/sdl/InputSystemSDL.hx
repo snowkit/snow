@@ -15,18 +15,22 @@ import lumen.input.Input;
         textinput;
     }
 
-    enum GamepadEventType {
-        unknown;
-        added;
-        removed;
-    }
-
     enum MouseEventType { 
         unknown;
         move;
         down;
         up;
         wheel;
+    }
+
+    enum ControllerEventType {
+        unknown;
+        button_up;
+        button_down;
+        axis;
+        added;
+        removed;
+        remapped;
     }
 
     class KeyEventTypes {
@@ -51,15 +55,23 @@ import lumen.input.Input;
 
     class GamepadEventTypes {
 
-        static var ge_added : Int       = 1619;
-        static var ge_removed : Int     = 1620;
+        static var ge_axis : Int            = 1616;
+        static var ge_button_down : Int     = 1617;
+        static var ge_button_up : Int       = 1618;
+        static var ge_added : Int           = 1619;
+        static var ge_removed : Int         = 1620;
+        static var ge_remapped : Int        = 1621;
 
-        public static function typed(ge_type:Int) : GamepadEventType {
+        public static function typed(ge_type:Int) : ControllerEventType {
 
-            if(ge_type == ge_added)     return GamepadEventType.added;
-            if(ge_type == ge_removed)   return GamepadEventType.removed;
+            if(ge_type == ge_axis)          return ControllerEventType.axis;
+            if(ge_type == ge_button_down)   return ControllerEventType.button_down;
+            if(ge_type == ge_button_up)     return ControllerEventType.button_up;
+            if(ge_type == ge_added)         return ControllerEventType.added;
+            if(ge_type == ge_removed)       return ControllerEventType.removed;
+            if(ge_type == ge_remapped)      return ControllerEventType.remapped;
 
-            return GamepadEventType.unknown;
+            return ControllerEventType.unknown;
 
         } //typed
 
@@ -155,16 +167,16 @@ class ModValue {
 
         } //mod_state_from_event
 
-        function key_state_from_event( type:KeyEventType ) : KeyState {
+        function key_state_from_event( type:KeyEventType ) : PressedState {
 
             switch( type ) {
             
                 case KeyEventType.down:
-                    return KeyState.down;                    
+                    return PressedState.down;
                 case KeyEventType.up:
-                    return KeyState.up;
+                    return PressedState.up;
                 default:
-                    return KeyState.unknown;
+                    return PressedState.unknown;
             
             } //switch(type)
 
@@ -217,7 +229,7 @@ class ModValue {
                         window_id : _event.window_id
                     };
                         
-                    lib.input.dispatch_key_event( api_event );
+                    manager.dispatch_key_event( api_event );
 
                 } else if(_event.event.type == KeyEventType.textedit || _event.event.type == KeyEventType.textinput) {
 
@@ -231,7 +243,7 @@ class ModValue {
                         length : _event.event.length == null ? 0 : _event.event.length
                     }
 
-                    lib.input.dispatch_text_event( api_event );
+                    manager.dispatch_text_event( api_event );
 
                 } //
 
@@ -241,13 +253,65 @@ class ModValue {
 
                 _event.event.type = GamepadEventTypes.typed(_event.event.type);
 
-                if(_event.event.type == GamepadEventType.added) {
-                    manager.on_gamepad_added( _event.event );
+                var _gamepad_event = _event.event;
+
+                    //these device events are special and want to be handled internally as well
+                if(_gamepad_event.type == ControllerEventType.added) {
+                    manager.on_gamepad_added( _gamepad_event );
                 }
 
-                if(_event.event.type == GamepadEventType.removed) {
-                    manager.on_gamepad_removed( _event.event );
+                if(_gamepad_event.type == ControllerEventType.removed) {
+                    manager.on_gamepad_removed( _gamepad_event );
                 }
+
+                var _button : Int = -1;
+                var _axis   : Int = -1;
+                var _value  : Int =  0;
+                var _state  : PressedState = PressedState.unknown;
+                var _type   : GamepadEventType = GamepadEventType.unknown;
+
+            //Buttons
+                if(_gamepad_event.type == ControllerEventType.button_up) {
+                    _type = GamepadEventType.button;
+                    _state = PressedState.up;
+                    _button = _gamepad_event.button;
+                } 
+                else
+                if(_gamepad_event.type == ControllerEventType.button_down ) {
+                    _type = GamepadEventType.button;
+                    _state = PressedState.down;
+                    _button = _gamepad_event.button;
+                } 
+                else 
+            //Axis
+                if(_gamepad_event.type == ControllerEventType.axis) {
+                    _type = GamepadEventType.axis;
+                    _value = _gamepad_event.value;
+                    _axis = _gamepad_event.axis;                    
+                } 
+                else
+                if(_gamepad_event.type == ControllerEventType.added) {
+                    _type = GamepadEventType.device_added;
+                } else 
+                if(_gamepad_event.type == ControllerEventType.removed) {
+                    _type = GamepadEventType.device_removed;
+                } else 
+                if(_gamepad_event.type == ControllerEventType.remapped) {
+                    _type = GamepadEventType.device_remapped;
+                }
+
+                var api_event : GamepadEvent = {
+                    raw : _event,
+                    timestamp : _event.timestamp,
+                    type : _type,
+                    state : _state,
+                    which : _gamepad_event.which,
+                    button : _button,
+                    axis : _axis,
+                    value : _value
+                };
+
+                manager.dispatch_gamepad_event( api_event );
 
         //Mouse events
 
@@ -290,7 +354,7 @@ class ModValue {
                     yrel : _yrel,
                 };
 
-                lib.input.dispatch_mouse_event( api_event );
+                manager.dispatch_mouse_event( api_event );
 
         //Touch events
 

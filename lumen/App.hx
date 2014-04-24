@@ -55,6 +55,11 @@ class App {
     public function onmousewheel( _event:MouseEvent ) {}
     public function onmousemove( _event:MouseEvent ) {}
 
+    public function ongamepadaxis( _event:GamepadEvent ) {}
+    public function ongamepadbuttonup( _event:GamepadEvent ) {}
+    public function ongamepadbuttondown( _event:GamepadEvent ) {}
+    public function ongamepaddevice( _event:GamepadEvent ) {}
+
 //override this if you want to change how the runtime config is loaded/handled
 
     public function get_runtime_config() : Dynamic {
