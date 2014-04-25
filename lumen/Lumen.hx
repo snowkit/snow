@@ -212,14 +212,6 @@ class Lumen {
         return lumen_image_load_bytes( path, components );
     }
 
-    public function loadsound_ogg( path:String ) : AudioInfo {
-        return lumen_audio_load_ogg_bytes( path );
-    }
-
-    public function loadsound_wav( path:String ) : AudioInfo {
-        return lumen_audio_load_wav_bytes( path );
-    }
-
     function on_main_window_event( _event:WindowEvent ) {
 
         if(_event.type == window_close) {
@@ -250,8 +242,6 @@ class Lumen {
         static var lumen_render_enable_vsync = load( "lumen", "lumen_render_enable_vsync", 1 );
         static var lumen_window_show_cursor = load( "lumen", "lumen_window_show_cursor", 1 );
 
-        static var lumen_audio_load_ogg_bytes = load( "lumen", "lumen_audio_load_ogg_bytes", 1 );
-        static var lumen_audio_load_wav_bytes = load( "lumen", "lumen_audio_load_wav_bytes", 1 );
         static var lumen_image_load_bytes = load( "lumen", "lumen_image_load_bytes", 2 );
 
     #end //lumen_native
