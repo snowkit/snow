@@ -17,6 +17,11 @@ class Input {
     var lib : Lumen;
     var system : LumenInputSystem;
 
+        //this is the enum based flags for keypressed/keyreleased/keydown
+    var key_code_down : Map<Int, Bool>;
+    var key_code_pressed : Map<Int, Bool>;
+    var key_code_released : Map<Int, Bool>;
+
     public function new( _lib:Lumen ) {
 
         lib = _lib;
@@ -25,7 +30,27 @@ class Input {
 
         system.init();
 
+        key_code_pressed = new Map();        
+        key_code_down = new Map();
+        key_code_released = new Map();
+
     } //new    
+
+//Public facing API
+    
+        //these use Key.* values, not Scan.*
+    public function keypressed( _code:Int ) {
+        return key_code_pressed.exists(_code);
+    } //keypressed
+
+    public function keyreleased( _code:Int ) {
+        return key_code_released.exists(_code);
+    } //keyreleased
+
+    public function keydown( _code:Int ) {
+       return key_code_down.exists(_code);
+    } //keydown
+
 
     public function on_event( _event:SystemEvent ) {
 
@@ -36,8 +61,25 @@ class Input {
     public function dispatch_key_event( _event:KeyEvent ) {
             
         if(_event.state == PressedState.up) {
+
+                //flag it as released but unprocessed
+            key_code_released.set(_event.keycode, false);
+                //remove the down flag
+            key_code_down.remove(_event.keycode);
+                //dispatch the event
             lib.host.onkeyup(_event);
-        } else {
+
+        } else if(_event.state == PressedState.down) {
+
+            //only do the realtime flags if not key repeat
+            if(!_event.repeat) {
+                    //flag the key as pressed, but unprocessed (false)
+                key_code_pressed.set(_event.keycode, false);
+                    //flag it as down, because keyup removes it
+                key_code_down.set(_event.keycode, true);
+            }
+
+                //dispatch the event
             lib.host.onkeydown(_event);
         }
 
@@ -112,6 +154,34 @@ class Input {
     public function update() {
 
         system.update();
+
+            //remove any stale key pressed value
+            //unless it wasn't alive for a full frame yet,
+            //then flag it so that it may be
+        for(_code in key_code_pressed.keys()){
+
+            var _flag : Bool = key_code_pressed.get(_code);            
+            if(_flag){
+                key_code_pressed.remove(_code);
+            } else {
+                key_code_pressed.set(_code, true);
+            }
+
+        } //each pressed_code
+
+            //remove any stale key released value
+            //unless it wasn't alive for a full frame yet,
+            //then flag it so that it may be
+        for(_code in key_code_released.keys()){
+
+            var _flag : Bool = key_code_released.get(_code);            
+            if(_flag){
+                key_code_released.remove(_code);
+            } else {
+                key_code_released.set(_code, true);
+            }
+
+        } //each pressed_code
 
     } //update
 
