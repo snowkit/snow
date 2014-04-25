@@ -223,6 +223,18 @@ class Main extends lumen.AppFixedTimestep {
             
         }
 
+        if(app.input.keyreleased(Key.SPACE)) {
+            trace('space released');
+        }
+
+        if(app.input.keypressed(Key.SPACE)) {
+            trace('space pressed');
+        }
+
+        if(app.input.keydown(Key.SPACE)) {
+            // trace('space down');
+        }
+
     } //update
 
 
