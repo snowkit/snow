@@ -7,10 +7,12 @@ import lumen.Lumen;
 #if lumen_audio_openal
 
     typedef LumenAudioSystem = lumen.audio.system.openal.AudioSystemOpenAL;
+    typedef LumenSound = lumen.audio.system.openal.SoundOpenAL;
 
 #else
 
     typedef LumenAudioSystem = lumen.audio.system.AudioSystem;
+    typedef LumenSound = lumen.audio.system.Sound;
 
 #end //lumen_audio_openal
 

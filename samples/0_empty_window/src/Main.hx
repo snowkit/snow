@@ -17,6 +17,8 @@ import lumen.input.Input;
 import lumen.LumenTypes.ImageInfo;
 import lumen.App;
 
+import lumen.audio.system.AudioSystem.LumenSound;
+
 class Main extends lumen.AppFixedTimestep {
 
     var imageUniform:Int;
@@ -99,27 +101,51 @@ class Main extends lumen.AppFixedTimestep {
 
         positionY = (app.main_window.size.h - size) / 2;
 
+        sound1 = app.audio.create("assets/sound.pcm", 'one');
+        sound2 = app.audio.create("assets/sound.ogg");
+        sound3 = app.audio.create("assets/sound.wav", 'three');
+
+        trace("sound1 : " + sound1.name);
+        trace("sound2 : " + sound2.name);
+        trace("sound3 : " + sound3.name);
+
     } //ready
 
 
+    var sound1 : LumenSound;
+    var sound2 : LumenSound;
+    var sound3 : LumenSound;
 
+    var left : Bool = false;
 
     override function onkeydown( event:KeyEvent ) {
+        
         // trace("key down : " + event);
 
             //console scan code should be universally next to 1
+        if(event.keycode == Key.KEY_e) {            
+            sound1.play();
+        }
+
+        if(event.keycode == Key.KEY_q) {
+            left = !left;
+            sound2.pan = left ? -1 : 1;
+            sound2.play();
+        }
+
+        if(event.keycode == Key.KEY_w) {
+            app.audio.pitch('three', 1.5);
+            sound3.play();
+        }
+
         if(event.scancode == Scan.GRAVE) {
-            trace("console key!");
+            app.audio.pitch('three', 0.5);
+            sound3.play();            
         }
 
     } //onkeydown
 
     override function onkeyup( event:KeyEvent ) {
-
-            //space to pause/unpause sound test
-        if( event.keycode == Key.SPACE ) {
-            app.audio.toggle();
-        }
 
             //alt enter to toggle fullscreen test
         if( event.keycode == Key.RETURN && event.mod.alt ) {
@@ -133,7 +159,7 @@ class Main extends lumen.AppFixedTimestep {
     } //onkeyup
 
     override public function ontextinput( event : TextEvent ) {
-        trace("text input : " + event);
+        // trace("text input : " + event);
     } //ontextinput
 
 
@@ -142,35 +168,35 @@ class Main extends lumen.AppFixedTimestep {
     }
 
     override function onmouseup( event:MouseEvent ) {
-        trace("up " + event);
+        // trace("up " + event);
         positionY = event.y - (size/2);
         positionX = event.x - (size/2);
         phys_posx = positionX;
     }
 
     override function onmousedown( event:MouseEvent ) {
-        trace("down " + event);
+        // trace("down " + event);
     }
 
     override function onmousewheel( event:MouseEvent ) {
-        trace("wheel " + event);
+        // trace("wheel " + event);
     }
 
 
     override function ongamepadaxis( _event:GamepadEvent ) {
-        trace('axis; device: ${_event.which}, axis: ${_event.axis}, value: ${_event.value}');
+        // trace('axis; device: ${_event.which}, axis: ${_event.axis}, value: ${_event.value}');
     }
 
     override function ongamepadbuttonup( _event:GamepadEvent ) {
-        trace('button up; device: ${_event.which}, button: ${_event.button}');
+        // trace('button up; device: ${_event.which}, button: ${_event.button}');
     }
 
     override function ongamepadbuttondown( _event:GamepadEvent ) {
-        trace('button down; device: ${_event.which}, button: ${_event.button}');
+        // trace('button down; device: ${_event.which}, button: ${_event.button}');
     }
 
     override function ongamepaddevice( _event:GamepadEvent ) {
-        trace('device event; device: ${_event.which}, type: ${_event.type}');
+        // trace('device event; device: ${_event.which}, type: ${_event.type}');
     }
 
 
