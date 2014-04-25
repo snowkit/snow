@@ -80,15 +80,17 @@ class Input {
         if(_event.type == GamepadEventType.axis) {
             lib.host.ongamepadaxis(_event);
         } else if(_event.type == GamepadEventType.button) {
+
             if(_event.state == PressedState.down) {
                 lib.host.ongamepadbuttondown(_event);
             } else if(_event.state == PressedState.up) {
                 lib.host.ongamepadbuttonup(_event);
             }
-        } else 
-        if( _event.type == GamepadEventType.device_added || 
-            _event.type == GamepadEventType.device_removed ||
-            _event.type == GamepadEventType.device_remapped
+
+        } 
+        else if( _event.type == GamepadEventType.device_added || 
+                 _event.type == GamepadEventType.device_removed ||
+                 _event.type == GamepadEventType.device_remapped
         ) {
             lib.host.ongamepaddevice(_event);
         }

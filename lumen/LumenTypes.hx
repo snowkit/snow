@@ -28,6 +28,7 @@ enum AudioFormatType {
     unknown;
     ogg;
     wav;
+    pcm;
 
 } //AudioFormatType
 

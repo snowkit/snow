@@ -122,20 +122,20 @@ namespace lumen {
 
             ogg_int64_t total_length = ov_pcm_total( ogg_source->ogg_file, -1 ) * ogg_source->info->channels * (2);
 
-                printf("version         %d \n",     ogg_source->info->version);
-                printf("channels        %d \n",     ogg_source->info->channels);
-                printf("rate (hz)       %lu \n",    ogg_source->info->rate);
-                printf("bitrate         %lu \n",    ogg_source->info->bitrate_nominal);
+                // printf("version         %d \n",     ogg_source->info->version);
+                // printf("channels        %d \n",     ogg_source->info->channels);
+                // printf("rate (hz)       %lu \n",    ogg_source->info->rate);
+                // printf("bitrate         %lu \n",    ogg_source->info->bitrate_nominal);
                 // printf("bitrate upper   %lu \n",    ogg_source->info->bitrate_upper);
                 // printf("bitrate lower   %lu \n",    ogg_source->info->bitrate_lower);
                 // printf("bitrate window  %lu \n",    ogg_source->info->bitrate_window);
-                printf("vendor          %s \n",     ogg_source->comments->vendor);
-                printf("length          %lld \n",   (long long)ogg_source->length);
-                printf("uncompressed    %lld \n",   (long long)total_length);
+                // printf("vendor          %s \n",     ogg_source->comments->vendor);
+                // printf("length          %lld \n",   (long long)ogg_source->length);
+                // printf("uncompressed    %lld \n",   (long long)total_length);
                 
-            for(int i = 0; i < ogg_source->comments->comments; i++) {
-                printf("\t%s\n",  ogg_source->comments->user_comments[i]);
-            }
+            // for(int i = 0; i < ogg_source->comments->comments; i++) {
+            //     printf("\t%s\n",  ogg_source->comments->user_comments[i]);
+            // }
 
             *rate               = ogg_source->info->rate;
             *channels           = ogg_source->info->channels;
