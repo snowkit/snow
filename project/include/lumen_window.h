@@ -1,6 +1,6 @@
 #ifndef LUMEN_LUMEN_WINDOW_H
 #define LUMEN_LUMEN_WINDOW_H
-    
+
 #include <string>
 
 #include <hx/CFFI.h>
@@ -27,7 +27,7 @@ namespace lumen {
         // and when complete the configuration will be passed back to the on_complete listener.
     LumenWindow* create_window( const window_config &config, AutoGCRoot* on_created );
 
-    struct display_mode { 
+    struct display_mode {
         int width;
         int height;
         int refresh_rate;
@@ -105,7 +105,7 @@ namespace lumen {
         we_unknown          = 0,
 
         we_created          = 1,
-        
+
         we_shown            = 2,
         we_hidden           = 3,
         we_exposed          = 4,
@@ -119,7 +119,7 @@ namespace lumen {
         we_leave            = 12,
         we_focus_gained     = 13,
         we_focus_lost       = 14,
-        we_close            = 15        
+        we_close            = 15
 
     }; //WindowEventType
 
@@ -149,6 +149,7 @@ namespace lumen {
                 //members
             int id;
             bool created;
+            bool closed;
             float r;
             window_config config;
             AutoGCRoot* created_handler;
@@ -156,7 +157,8 @@ namespace lumen {
             LumenWindow() {
                 id = -1;
                 created = false;
-                created_handler = NULL;                
+                closed = true;
+                created_handler = NULL;
             }
 
             ~LumenWindow() {
@@ -169,6 +171,7 @@ namespace lumen {
             virtual void update() = 0;
             virtual void render() = 0;
             virtual void swap() = 0;
+            virtual void close() = 0;
 
             virtual void set_size(int x, int y) = 0;
             virtual void set_position(int x, int y) = 0;
@@ -179,11 +182,11 @@ namespace lumen {
             virtual void fullscreen(bool enable, int flags) = 0;
             virtual void bordered(bool enable) = 0;
 
-        protected:            
+        protected:
 
             void on_created() {
 
-                created = true;                
+                created = true;
 
                 if(created_handler != NULL) {
 
@@ -218,7 +221,7 @@ namespace lumen {
             alloc_field( _system_event, id_type, alloc_int( se_window ) );
                 //store the .window value
             alloc_field( _system_event, id_window, _window_event );
-            
+
             //finally, call the handler
         val_call1( system_event_handler->get(), _system_event );
 
@@ -245,7 +248,7 @@ namespace lumen {
             alloc_field( _object, id_borderless, alloc_bool(config.borderless) );
             alloc_field( _object, id_depth_buffer, alloc_bool(config.depth_buffer) );
             alloc_field( _object, id_stencil_buffer, alloc_bool(config.stencil_buffer) );
-            
+
             alloc_field( _object, id_antialiasing, alloc_int(config.antialiasing) );
             alloc_field( _object, id_fps, alloc_int(config.fps) );
             alloc_field( _object, id_x, alloc_int(config.x) );

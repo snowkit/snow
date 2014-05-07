@@ -11,11 +11,10 @@
 namespace lumen {
 
         //forward
-    int init_window_sdl();    
+    int init_window_sdl();
     class LumenWindowSDL2;
 
         //local values
-    
     static bool window_sdl_inited = false;
 
     static SDL_GLContext lumen_gl_context;
@@ -27,7 +26,7 @@ namespace lumen {
 
         public:
 
-            SDL_Window* window;            
+            SDL_Window* window;
             SDL_Event window_event;
 
             bool is_open;
@@ -37,19 +36,20 @@ namespace lumen {
                 if(window) {
                     SDL_DestroyWindow(window);
                 }
-            
+
             }
 
-            LumenWindowSDL2() 
-                : LumenWindow(), window_event() 
-                    { 
-                        is_open = false; 
+            LumenWindowSDL2()
+                : LumenWindow(), window_event()
+                    {
+                        is_open = false;
                         r = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
                     }
- 
+
             void update();
             void render();
             void swap();
+            void close();
 
             void create( const window_config &config, AutoGCRoot* _on_created );
             void simple_message( const char* message, const char* title );
@@ -69,10 +69,11 @@ namespace lumen {
 //API implementations
 
     LumenWindow* create_window( const window_config &config, AutoGCRoot* on_created ) {
-        
+
         LumenWindowSDL2* new_window = new LumenWindowSDL2();
 
             new_window->create( config, on_created );
+            new_window->closed = false;
 
         return new_window;
 
@@ -81,14 +82,24 @@ namespace lumen {
 
     void LumenWindowSDL2::simple_message( const char* message, const char* title ) {
 
+        if(closed) return;
+
         SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, title, message, window );
 
     } //LumenWindowSDL2::simple_message
 
+    void LumenWindowSDL2::close() {
+
+        closed = true;
+
+        SDL_DestroyWindow(window);
+
+    } //LumenWindowSDL2::close
+
     void LumenWindowSDL2::create( const window_config &_config, AutoGCRoot* _on_created ) {
 
             //store these first
-        created_handler = _on_created;        
+        created_handler = _on_created;
             //assign it now so we take a copy from the const
         config = _config;
             //then try init sdl video system
@@ -106,7 +117,7 @@ namespace lumen {
         int real_flags = 0;
 
             request_flags |= SDL_WINDOW_OPENGL;
-               
+
         if(_config.resizable)    { request_flags |= SDL_WINDOW_RESIZABLE;  }
         if(_config.borderless)   { request_flags |= SDL_WINDOW_BORDERLESS; }
         if(_config.fullscreen)   { request_flags |= SDL_WINDOW_FULLSCREEN; } //SDL_WINDOW_FULLSCREEN_DESKTOP;
@@ -116,24 +127,24 @@ namespace lumen {
         SDL_GL_SetAttribute(SDL_GL_RED_SIZE, 8);
         SDL_GL_SetAttribute(SDL_GL_GREEN_SIZE, 8);
         SDL_GL_SetAttribute(SDL_GL_BLUE_SIZE, 8);
-        
+
         if(_config.depth_buffer) {
             SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 32 - (_config.stencil_buffer ? 8 : 0) );
         }
-      
+
         if(_config.stencil_buffer) {
             SDL_GL_SetAttribute(SDL_GL_STENCIL_SIZE, 8);
         }
-      
+
         SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
-      
+
         if(_config.antialiasing != 0) {
             SDL_GL_SetAttribute(SDL_GL_MULTISAMPLEBUFFERS, true );
             SDL_GL_SetAttribute(SDL_GL_MULTISAMPLESAMPLES, _config.antialiasing );
         }
 
             //now actually try and create a window
-        window = SDL_CreateWindow( _config.title.c_str(), _config.x, _config.y, _config.width, _config.height, request_flags );                
+        window = SDL_CreateWindow( _config.title.c_str(), _config.x, _config.y, _config.width, _config.height, request_flags );
 
         // fetch ones actually used by window
         // real_flags = SDL_GetWindowFlags( window );
@@ -148,13 +159,13 @@ namespace lumen {
         SDL_GetWindowSize( window, &config.width, &config.height );
 
         is_open = true;
-        id = SDL_GetWindowID(window);        
+        id = SDL_GetWindowID(window);
 
             //now try creating the GL context
         if(!lumen_gl_context) {
-            
+
             lumen_gl_context = SDL_GL_CreateContext(window);
-                
+
             int err = glewInit();
             if(err != 0) {
                 fprintf(stderr, "/ lumen / Failed to init glew?! %s\n", glewGetErrorString(err));
@@ -163,7 +174,6 @@ namespace lumen {
             }
 
         }
-
 
         int res = 0;
 
@@ -185,24 +195,32 @@ namespace lumen {
 
     void LumenWindowSDL2::render() {
 
+        if(closed) return;
+
         SDL_GL_MakeCurrent(window, lumen_gl_context);
 
         glClearColor( r, 0.4f, 0.1f, 1.0f );
-        glClear( GL_COLOR_BUFFER_BIT );        
+        glClear( GL_COLOR_BUFFER_BIT );
 
     }
 
     void LumenWindowSDL2::swap() {
 
+        if(closed) return;
+
         SDL_GL_SwapWindow(window);
 
     } //swap
 
-    void LumenWindowSDL2::update() {    
+    void LumenWindowSDL2::update() {
+
+        if(closed) return;
 
     } //update
 
     void LumenWindowSDL2::set_size(int x, int y) {
+
+        if(closed) return;
 
         SDL_SetWindowSize(window, x, y);
 
@@ -210,11 +228,15 @@ namespace lumen {
 
     void LumenWindowSDL2::set_position(int x, int y) {
 
+        if(closed) return;
+
         SDL_SetWindowPosition(window, x, y);
 
     } //set_position
 
     void LumenWindowSDL2::set_title(const char* title) {
+
+        if(closed) return;
 
         SDL_SetWindowTitle(window, title);
 
@@ -222,11 +244,15 @@ namespace lumen {
 
     void LumenWindowSDL2::set_max_size(int x, int y) {
 
+        if(closed) return;
+
         SDL_SetWindowMaximumSize(window, x, y);
 
     } //set_max_size
 
     void LumenWindowSDL2::set_min_size(int x, int y) {
+
+        if(closed) return;
 
         SDL_SetWindowMinimumSize(window, x, y);
 
@@ -234,11 +260,15 @@ namespace lumen {
 
     void LumenWindowSDL2::grab(bool enable) {
 
+        if(closed) return;
+
         SDL_SetWindowGrab( window, enable ? SDL_TRUE : SDL_FALSE);
 
     } //grab
 
     void LumenWindowSDL2::fullscreen(bool enable, int flags = 0) {
+
+        if(closed) return;
 
         int flag = enable ? SDL_WINDOW_FULLSCREEN_DESKTOP : 0;
 
@@ -251,6 +281,8 @@ namespace lumen {
     } //fullscreen
 
     void LumenWindowSDL2::bordered(bool enable) {
+
+        if(closed) return;
 
         SDL_SetWindowBordered( window, enable ? SDL_TRUE : SDL_FALSE );
 
@@ -293,7 +325,7 @@ namespace lumen {
         }
 
             //the event to dispatch, if any
-        WindowEvent new_event;        
+        WindowEvent new_event;
 
         switch(event.type) {
 
@@ -327,7 +359,7 @@ namespace lumen {
                     } //resized
 
                     case SDL_WINDOWEVENT_SIZE_CHANGED: {
-                        new_event.type = we_size_changed;                        
+                        new_event.type = we_size_changed;
                         break;
                     } //size_changed
 
@@ -370,7 +402,7 @@ namespace lumen {
                         new_event.type = we_close;
                         break;
                     } //close
-                
+
                 } //switch window.event type
 
                 break;
@@ -382,7 +414,7 @@ namespace lumen {
             //populate it's event structure first
         new_event.window_id = event.window.windowID;
         new_event.timestamp = event.window.timestamp;
-        new_event.event = sdl2_window_event_to_hx(new_event, event);            
+        new_event.event = sdl2_window_event_to_hx(new_event, event);
 
             //dispatch the event!
         dispatch_window_event( new_event );
@@ -392,7 +424,7 @@ namespace lumen {
 //Display modes
 
     value display_mode_to_hx( display_mode mode ) {
-        
+
         value _object = alloc_empty_object();
 
             alloc_field( _object, id_width, alloc_int(mode.width) );
@@ -403,9 +435,9 @@ namespace lumen {
         return _object;
 
     } //display_mode_to_hx
-    
+
     value display_bounds_to_hx( bounds_rect bounds ) {
-        
+
         value _object = alloc_empty_object();
 
             alloc_field( _object, id_x, alloc_int(bounds.x) );
@@ -496,14 +528,14 @@ namespace lumen {
     const char* desktop_get_display_name(int display) {
 
         return SDL_GetDisplayName(display);
-        
+
     } //desktop_get_display_name
 
 
 //Helpers
 
     int init_window_sdl() {
-        
+
         if(window_sdl_inited) {
             return 0;
         }
@@ -512,9 +544,9 @@ namespace lumen {
 
         return SDL_InitSubSystem(SDL_INIT_VIDEO);
 
-    } //init_window_sdl   
+    } //init_window_sdl
 
-    
+
     int render_enable_vsync(bool enable) {
 
         return SDL_GL_SetSwapInterval( enable ? 1 : 0 );
