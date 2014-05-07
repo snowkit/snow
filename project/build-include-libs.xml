@@ -112,32 +112,8 @@
 
         <compilerflag value="-I${INC_DIR}"/>
         <compilerflag value="-I${INC_DIR}/libs/openal/"/>
-        <compilerflag value="-I${SRC_DIR}/libs/openal/OpenAL32/include"/>
+        <compilerflag value="-I${SRC_DIR}/libs/openal/OpenAL32/include/"/>
         <compilerflag value="-DAL_LIBTYPE_STATIC" />
-
-        <section if="linux">
-            <compilerflag value="-DLIBTYPE=STATIC" />
-            <compilerflag value="-DREQUIRE_PULSEAUDIO=ON" />
-            <compilerflag value="-DREQUIRE_ALSA=ON" />
-            <file name="${SRC_DIR}/libs/openal/Alc/backends/pulseaudio.c" />
-            <file name="${SRC_DIR}/libs/openal/Alc/backends/alsa.c" />
-            <file name="${SRC_DIR}/libs/openal/Alc/backends/oss.c" />
-        </section>
-
-        <section if="android">
-            <compilerflag value="-DOPENSL=1" />
-            <file name="${SRC_DIR}/libs/openal/Alc/backends/opensl.c" />
-        </section>
-
-        <section if="mac">
-            <file name="${SRC_DIR}/libs/openal/Alc/backends/coreaudio.c" />
-        </section>
-
-        <section if="windows">
-            <file name="${SRC_DIR}/libs/openal/Alc/backends/winmm.c" />
-            <file name="${SRC_DIR}/libs/openal/Alc/backends/dsound.c" />
-            <file name="${SRC_DIR}/libs/openal/Alc/backends/mmdevapi.c" />
-        </section>
 
         <file name="${SRC_DIR}/libs/openal/OpenAL32/alAuxEffectSlot.c"/>
         <file name="${SRC_DIR}/libs/openal/OpenAL32/alBuffer.c"/>
@@ -170,6 +146,33 @@
         <file name="${SRC_DIR}/libs/openal/Alc/backends/wave.c" />
         <file name="${SRC_DIR}/libs/openal/Alc/backends/null.c"/>
 
+        <section if="linux">
+            <compilerflag value="-I${INC_DIR}/libs/openal/pulse/"/>
+            <compilerflag value="-I${INC_DIR}/libs/openal/alsa/"/>
+            <compilerflag value="-DLIBTYPE=STATIC" />
+            <compilerflag value="-DREQUIRE_PULSEAUDIO=ON" />
+            <compilerflag value="-DREQUIRE_ALSA=ON" />
+            <compilerflag value="-msse" />
+            <file name="${SRC_DIR}/libs/openal/Alc/backends/pulseaudio.c" />
+            <file name="${SRC_DIR}/libs/openal/Alc/backends/alsa.c" />
+            <file name="${SRC_DIR}/libs/openal/Alc/backends/oss.c" />
+        </section>
+
+        <section if="android">
+            <compilerflag value="-DOPENSL=1" />
+            <file name="${SRC_DIR}/libs/openal/Alc/backends/opensl.c" />
+        </section>
+
+        <section if="mac">
+            <file name="${SRC_DIR}/libs/openal/Alc/backends/coreaudio.c" />
+        </section>
+
+        <section if="windows">
+            <file name="${SRC_DIR}/libs/openal/Alc/backends/winmm.c" />
+            <file name="${SRC_DIR}/libs/openal/Alc/backends/dsound.c" />
+            <file name="${SRC_DIR}/libs/openal/Alc/backends/mmdevapi.c" />
+        </section>
+
     </files>
 
     <files id="libs-curl">
@@ -177,6 +180,7 @@
         <compilerflag value="-I${INC_DIR}"/>
         <compilerflag value="-I${INC_DIR}/libs/"/>
         <compilerflag value="-I${SRC_DIR}/libs/curl/"/>
+        <compilerflag value="-I${INC_DIR}/libs/zlib/"/>
         <compilerflag value="-DCURL_STATICLIB" />
         <compilerflag value="-DUSE_AXTLS=1" if="LUMEN_CURL_SSL" />
         <compilerflag value="-DHAVE_CONFIG_H" unless="windows"/>
