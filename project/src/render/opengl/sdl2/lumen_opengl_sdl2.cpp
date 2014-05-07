@@ -14,8 +14,8 @@
 
   //glew first, before any gl.h (important)
 #include "libs/glew/GL/glew.h"
-#include <SDL.h>
-#include <SDL_opengl.h>
+#include "libs/sdl/SDL.h"
+#include "libs/sdl/SDL_opengl.h"
 
 
 namespace lumen {
