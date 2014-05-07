@@ -140,7 +140,7 @@
 
 #else
 
-#  include <ogg/config_types.h>
+#  include <libs/ogg/config_types.h>
 
 #endif
 
