@@ -61,7 +61,7 @@
 
 #if !defined(_O_THEORA_CODEC_H_)
 # define _O_THEORA_CODEC_H_ (1)
-# include <ogg/ogg.h>
+# include <libs/ogg/ogg.h>
 
 #if defined(__cplusplus)
 extern "C" {

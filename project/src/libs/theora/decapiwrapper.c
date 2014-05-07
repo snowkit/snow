@@ -20,7 +20,7 @@
 #include <limits.h>
 #include "apiwrapper.h"
 #include "decint.h"
-#include "theora/theoradec.h"
+#include "libs/theora/theoradec.h"
 
 static void th_dec_api_clear(th_api_wrapper *_api){
   if(_api->setup)th_setup_free(_api->setup);

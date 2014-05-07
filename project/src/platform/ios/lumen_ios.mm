@@ -11,7 +11,7 @@ namespace lumen {
     } //shutdown_core_platform
 
     void update_core_platform() {
-        
+
     } //update_core_platform
 
 

@@ -17,7 +17,7 @@
 
 #ifndef _V_RANDOM_H_
 #define _V_RANDOM_H_
-#include "vorbis/codec.h"
+#include "libs/vorbis/codec.h"
 
 extern void *_vorbis_block_alloc(vorbis_block *vb,long bytes);
 extern void _vorbis_block_ripcord(vorbis_block *vb);

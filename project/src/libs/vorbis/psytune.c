@@ -24,7 +24,7 @@
 #include <string.h>
 #include <math.h>
 
-#include "vorbis/codec.h"
+#include "libs/vorbis/codec.h"
 #include "codec_internal.h"
 #include "os.h"
 #include "misc.h"

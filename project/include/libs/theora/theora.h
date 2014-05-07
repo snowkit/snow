@@ -25,7 +25,7 @@ extern "C"
 
 #include <stddef.h>	/* for size_t */
 
-#include <ogg/ogg.h>
+#include <libs/ogg/ogg.h>
 
 /** \file
  * The libtheora pre-1.0 legacy C API.

@@ -17,7 +17,7 @@
 
 #include <stdlib.h>
 #include <string.h>
-#include <ogg/ogg.h>
+#include <libs/ogg/ogg.h>
 #include "decint.h"
 #if defined(OC_DUMP_IMAGES)
 # include <stdio.h>

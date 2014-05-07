@@ -1,0 +1,115 @@
+<xml>
+
+    <set name="LUMEN_ROOT" value="" />
+    <set name="SRC_DIR" value="${LUMEN_ROOT}src" />
+    <set name="INC_DIR" value="${LUMEN_ROOT}include" />
+    <set name="LUMEN_INC_DIR" value="${LUMEN_ROOT}../include" />
+
+    <files id="libs-glew">
+
+        <compilerflag value="-I${INC_DIR}"/>
+        <compilerflag value="-DGLEW_STATIC"/>
+
+        <file name="${SRC_DIR}/libs/glew/glew.c" />
+
+    </files>
+
+    <files id="libs-lzma">
+
+        <compilerflag value="-I${INC_DIR}"/>
+        <compilerflag value="-D_7ZIP_ST" unless="windows"/>
+
+        <file name="${SRC_DIR}/libs/lzma/LzmaBinding.cpp" />
+        <file name="${SRC_DIR}/libs/lzma/LzFind.c" />
+        <file name="${SRC_DIR}/libs/lzma/LzmaDec.c" />
+        <file name="${SRC_DIR}/libs/lzma/LzmaEnc.c" />
+        <file name="${SRC_DIR}/libs/lzma/LzFindMt.c" if="windows" />
+        <file name="${SRC_DIR}/libs/lzma/Threads.c" if="windows" />
+        <file name="${SRC_DIR}/libs/lzma/Threads.c" if="windows" />
+
+    </files>
+
+    <files id="libs-zlib">
+
+        <compilerflag value="-I${INC_DIR}"/>
+
+        <file name="${SRC_DIR}/libs/zlib/adler32.c"/>
+        <file name="${SRC_DIR}/libs/zlib/crc32.c"/>
+        <file name="${SRC_DIR}/libs/zlib/infback.c"/>
+        <file name="${SRC_DIR}/libs/zlib/inflate.c"/>
+        <file name="${SRC_DIR}/libs/zlib/uncompr.c"/>
+        <file name="${SRC_DIR}/libs/zlib/compress.c"/>
+        <file name="${SRC_DIR}/libs/zlib/deflate.c"/>
+        <file name="${SRC_DIR}/libs/zlib/gzio.c"/>
+        <file name="${SRC_DIR}/libs/zlib/inffast.c"/>
+        <file name="${SRC_DIR}/libs/zlib/inftrees.c"/>
+        <file name="${SRC_DIR}/libs/zlib/trees.c"/>
+        <file name="${SRC_DIR}/libs/zlib/zutil.c"/>
+
+    </files>
+
+    <files id="libs-media" >
+
+      <compilerflag value="-I${INC_DIR}"/>
+
+        <!-- Lib sources -->
+
+           <!-- ogg -->
+        <file name="${SRC_DIR}/libs/ogg/bitwise.c" />
+        <file name="${SRC_DIR}/libs/ogg/framing.c" />
+
+           <!-- vorbis -->
+        <file name="${SRC_DIR}/libs/vorbis/mdct.c"/>
+        <file name="${SRC_DIR}/libs/vorbis/smallft.c"/>
+        <file name="${SRC_DIR}/libs/vorbis/block.c"/>
+        <file name="${SRC_DIR}/libs/vorbis/envelope.c"/>
+        <file name="${SRC_DIR}/libs/vorbis/window.c"/>
+        <file name="${SRC_DIR}/libs/vorbis/lsp.c"/>
+        <file name="${SRC_DIR}/libs/vorbis/lpc.c"/>
+        <file name="${SRC_DIR}/libs/vorbis/analysis.c"/>
+        <file name="${SRC_DIR}/libs/vorbis/synthesis.c"/>
+        <file name="${SRC_DIR}/libs/vorbis/psy.c"/>
+        <file name="${SRC_DIR}/libs/vorbis/info.c"/>
+        <file name="${SRC_DIR}/libs/vorbis/floor1.c"/>
+        <file name="${SRC_DIR}/libs/vorbis/floor0.c"/>
+        <file name="${SRC_DIR}/libs/vorbis/res0.c"/>
+        <file name="${SRC_DIR}/libs/vorbis/mapping0.c"/>
+        <file name="${SRC_DIR}/libs/vorbis/registry.c"/>
+        <file name="${SRC_DIR}/libs/vorbis/codebook.c"/>
+        <file name="${SRC_DIR}/libs/vorbis/sharedbook.c"/>
+        <!--<file name="${SRC_DIR}/libs/vorbis/lookup.c"/>-->
+        <file name="${SRC_DIR}/libs/vorbis/bitrate.c"/>
+        <file name="${SRC_DIR}/libs/vorbis/vorbisfile.c"/>
+        <file name="${SRC_DIR}/libs/vorbis/vorbisenc.c"/>
+
+           <!-- theora -->
+        <file name="${SRC_DIR}/libs/theora/analyze.c"/>
+        <file name="${SRC_DIR}/libs/theora/apiwrapper.c"/>
+        <file name="${SRC_DIR}/libs/theora/bitpack.c"/>
+        <file name="${SRC_DIR}/libs/theora/decapiwrapper.c"/>
+        <file name="${SRC_DIR}/libs/theora/decinfo.c"/>
+        <file name="${SRC_DIR}/libs/theora/decode.c"/>
+        <file name="${SRC_DIR}/libs/theora/encode.c"/>
+        <file name="${SRC_DIR}/libs/theora/encapiwrapper.c"/>
+        <file name="${SRC_DIR}/libs/theora/encfrag.c"/>
+        <file name="${SRC_DIR}/libs/theora/encinfo.c"/>
+        <file name="${SRC_DIR}/libs/theora/enquant.c"/>
+        <file name="${SRC_DIR}/libs/theora/dequant.c"/>
+        <file name="${SRC_DIR}/libs/theora/fdct.c"/>
+        <file name="${SRC_DIR}/libs/theora/fragment.c"/>
+        <file name="${SRC_DIR}/libs/theora/huffdec.c"/>
+        <file name="${SRC_DIR}/libs/theora/huffenc.c"/>
+        <file name="${SRC_DIR}/libs/theora/idct.c"/>
+        <file name="${SRC_DIR}/libs/theora/info.c"/>
+        <file name="${SRC_DIR}/libs/theora/internal.c"/>
+        <file name="${SRC_DIR}/libs/theora/mathops.c"/>
+        <file name="${SRC_DIR}/libs/theora/mcenc.c"/>
+        <file name="${SRC_DIR}/libs/theora/quant.c"/>
+        <file name="${SRC_DIR}/libs/theora/rate.c"/>
+        <file name="${SRC_DIR}/libs/theora/state.c"/>
+        <file name="${SRC_DIR}/libs/theora/tokenize.c"/>
+        <file name="${SRC_DIR}/libs/theora/theoraplay.cpp"/>
+
+    </files>
+
+</xml>

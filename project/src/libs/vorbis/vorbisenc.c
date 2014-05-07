@@ -19,8 +19,8 @@
 #include <string.h>
 #include <math.h>
 
-#include "vorbis/codec.h"
-#include "vorbis/vorbisenc.h"
+#include "libs/vorbis/codec.h"
+#include "libs/vorbis/vorbisenc.h"
 
 #include "codec_internal.h"
 

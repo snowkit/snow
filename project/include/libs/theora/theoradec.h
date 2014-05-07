@@ -21,7 +21,7 @@
 #if !defined(_O_THEORA_THEORADEC_H_)
 # define _O_THEORA_THEORADEC_H_ (1)
 # include <stddef.h>
-# include <ogg/ogg.h>
+# include <libs/ogg/ogg.h>
 # include "codec.h"
 
 #if defined(__cplusplus)

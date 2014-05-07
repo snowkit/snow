@@ -17,7 +17,7 @@
 
 #if !defined(_quant_H)
 # define _quant_H (1)
-# include "theora/codec.h"
+# include "libs/theora/codec.h"
 # include "ocintrin.h"
 
 typedef ogg_uint16_t   oc_quant_table[64];
