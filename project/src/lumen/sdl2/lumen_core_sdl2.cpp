@@ -3,7 +3,7 @@
 #include "lumen_window.h"
 #include "lumen_input.h"
 
-#include <SDL.h>
+#include "libs/sdl/SDL.h"
 
 namespace lumen {
 

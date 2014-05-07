@@ -3,7 +3,7 @@
 #include "common/QuickVec.h"
 #include "common/Object.h"
 
-#include <vorbis/vorbisfile.h>
+#include "libs/vorbis/vorbisfile.h"
 
 #include <string>
 
