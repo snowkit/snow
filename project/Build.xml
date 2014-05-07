@@ -1,6 +1,6 @@
 <xml>
 
-   <!-- 
+   <!--
       Build with:
          -Diphonesim              -> build i386 version
          -Diphoneos               -> build armv6
@@ -37,7 +37,7 @@
    <set name="SLIBEXT" value=".a" unless="windows"/>
    <set name="PRELIB" value="${NME_DEV}/lib/${BINDIR}/lib" />
    <set name="POSTLIB" value="${LIBEXTRA}${SLIBEXT}" />
-   
+
    <set name="LIBNAME" value="lumen" />
    <set name="DEBUGEXTRA" value="-debug" if="lumen fulldebug" />
 
@@ -68,7 +68,7 @@
       <compilerflag value="-I${NME_DEV}/include" />
       <compilerflag value="-D_7ZIP_ST" unless="windows"/>
       <compilerflag value="-DGLEW_STATIC"/>
-      
+
    <!-- Common sources -->
 
       <file name="src/hx_bindings.cpp" />
@@ -85,7 +85,7 @@
       <file name="src/platform/android/lumen_android.cpp" if="android"/>
 
       <!-- audio sources -->
-      
+
       <file name="src/audio/lumen_audio_files.cpp" />
 
    <!-- Lib sources -->
@@ -98,6 +98,76 @@
       <file name="${SRC_DIR}/libs/lzma/LzFindMt.c" if="windows" />
       <file name="${SRC_DIR}/libs/lzma/Threads.c" if="windows" />
       <file name="${SRC_DIR}/libs/lzma/Threads.c" if="windows" />
+
+         <!-- ogg -->
+      <file name="${SRC_DIR}/libs/ogg/bitwise.c" />
+      <file name="${SRC_DIR}/libs/ogg/framing.c" />
+
+         <!-- vorbis -->
+      <file name="${SRC_DIR}/libs/vorbis/mdct.c"/>
+      <file name="${SRC_DIR}/libs/vorbis/smallft.c"/>
+      <file name="${SRC_DIR}/libs/vorbis/block.c"/>
+      <file name="${SRC_DIR}/libs/vorbis/envelope.c"/>
+      <file name="${SRC_DIR}/libs/vorbis/window.c"/>
+      <file name="${SRC_DIR}/libs/vorbis/lsp.c"/>
+      <file name="${SRC_DIR}/libs/vorbis/lpc.c"/>
+      <file name="${SRC_DIR}/libs/vorbis/analysis.c"/>
+      <file name="${SRC_DIR}/libs/vorbis/synthesis.c"/>
+      <file name="${SRC_DIR}/libs/vorbis/psy.c"/>
+      <file name="${SRC_DIR}/libs/vorbis/info.c"/>
+      <file name="${SRC_DIR}/libs/vorbis/floor1.c"/>
+      <file name="${SRC_DIR}/libs/vorbis/floor0.c"/>
+      <file name="${SRC_DIR}/libs/vorbis/res0.c"/>
+      <file name="${SRC_DIR}/libs/vorbis/mapping0.c"/>
+      <file name="${SRC_DIR}/libs/vorbis/registry.c"/>
+      <file name="${SRC_DIR}/libs/vorbis/codebook.c"/>
+      <file name="${SRC_DIR}/libs/vorbis/sharedbook.c"/>
+      <!--<file name="${SRC_DIR}/libs/vorbis/lookup.c"/>-->
+      <file name="${SRC_DIR}/libs/vorbis/bitrate.c"/>
+      <file name="${SRC_DIR}/libs/vorbis/vorbisfile.c"/>
+      <file name="${SRC_DIR}/libs/vorbis/vorbisenc.c"/>
+
+         <!-- theora -->
+      <file name="${SRC_DIR}/libs/theora/analyze.c"/>
+      <file name="${SRC_DIR}/libs/theora/apiwrapper.c"/>
+      <file name="${SRC_DIR}/libs/theora/bitpack.c"/>
+      <file name="${SRC_DIR}/libs/theora/decapiwrapper.c"/>
+      <file name="${SRC_DIR}/libs/theora/decinfo.c"/>
+      <file name="${SRC_DIR}/libs/theora/decode.c"/>
+      <file name="${SRC_DIR}/libs/theora/encode.c"/>
+      <file name="${SRC_DIR}/libs/theora/encapiwrapper.c"/>
+      <file name="${SRC_DIR}/libs/theora/encfrag.c"/>
+      <file name="${SRC_DIR}/libs/theora/encinfo.c"/>
+      <file name="${SRC_DIR}/libs/theora/enquant.c"/>
+      <file name="${SRC_DIR}/libs/theora/dequant.c"/>
+      <file name="${SRC_DIR}/libs/theora/fdct.c"/>
+      <file name="${SRC_DIR}/libs/theora/fragment.c"/>
+      <file name="${SRC_DIR}/libs/theora/huffdec.c"/>
+      <file name="${SRC_DIR}/libs/theora/huffenc.c"/>
+      <file name="${SRC_DIR}/libs/theora/idct.c"/>
+      <file name="${SRC_DIR}/libs/theora/info.c"/>
+      <file name="${SRC_DIR}/libs/theora/internal.c"/>
+      <file name="${SRC_DIR}/libs/theora/mathops.c"/>
+      <file name="${SRC_DIR}/libs/theora/mcenc.c"/>
+      <file name="${SRC_DIR}/libs/theora/quant.c"/>
+      <file name="${SRC_DIR}/libs/theora/rate.c"/>
+      <file name="${SRC_DIR}/libs/theora/state.c"/>
+      <file name="${SRC_DIR}/libs/theora/tokenize.c"/>
+      <file name="${SRC_DIR}/libs/theora/theoraplay.cpp"/>
+
+         <!-- zlib -->
+      <file name="${SRC_DIR}/libs/zlib/adler32.c"/>
+      <file name="${SRC_DIR}/libs/zlib/crc32.c"/>
+      <file name="${SRC_DIR}/libs/zlib/infback.c"/>
+      <file name="${SRC_DIR}/libs/zlib/inflate.c"/>
+      <file name="${SRC_DIR}/libs/zlib/uncompr.c"/>
+      <file name="${SRC_DIR}/libs/zlib/compress.c"/>
+      <file name="${SRC_DIR}/libs/zlib/deflate.c"/>
+      <file name="${SRC_DIR}/libs/zlib/gzio.c"/>
+      <file name="${SRC_DIR}/libs/zlib/inffast.c"/>
+      <file name="${SRC_DIR}/libs/zlib/inftrees.c"/>
+      <file name="${SRC_DIR}/libs/zlib/trees.c"/>
+      <file name="${SRC_DIR}/libs/zlib/zutil.c"/>
 
          <!-- glew -->
       <file name="${SRC_DIR}/libs/glew/glew.c" />
@@ -163,8 +233,6 @@
       <section if="LUMEN_OPENAL">
          <compilerflag value="-DAL_LIBTYPE_STATIC=1" if="windows || mac || linux" />
          <file name="${SRC_DIR}/audio/openal/lumen_audio_openal.cpp" />
-         <!-- <file name="${SRC_DIR}/openal/OpenALSound.cpp" /> -->
-         <!-- <file name="${SRC_DIR}/common/Audio.cpp" /> -->
       </section>
 
       <section if="LUMEN_STB_IMAGE">
@@ -181,10 +249,6 @@
 
       <files id="lumen"/>
 
-         <lib name="${PRELIB}freetype${POSTLIB}" />
-         <lib name="${PRELIB}jpeg${POSTLIB}" />
-         <lib name="${PRELIB}png${POSTLIB}" />         
-
          <section if="LUMEN_SDL2">
             <lib name="${PRELIB}SDL2${POSTLIB}" unless="iphone || android" />
             <lib name="${PRELIB}SDL2${POSTLIB}" if="linux"/>
@@ -192,22 +256,14 @@
 
          <section if="LUMEN_OPENAL">
             <lib name="${PRELIB}openal${POSTLIB}" if="windows || mac || linux"/>
-            <lib name="${PRELIB}vorbis${POSTLIB}" />
-            <lib name="${PRELIB}ogg${POSTLIB}" />
          </section>
-         
+
          <section>
-            <!-- <section if="NME_SDL2" unless="LUMEN_OPENAL">
-               <lib name="${PRELIB}vorbis${POSTLIB}" />
-               <lib name="${PRELIB}ogg${POSTLIB}" />
-               <lib name="${PRELIB}theora${POSTLIB}" />
-            </section> -->
 
             <section if="LUMEN_CURL">
                <lib name="${PRELIB}curl${LUMEN_CURL_SSL_EXTRA}${POSTLIB}" />
             </section>
 
-            <lib name="${PRELIB}z${POSTLIB}" unless="android"/>
          </section>
 
 
@@ -215,8 +271,6 @@
 
          <ext value=".so" />
          <ext value=".ndll" if="windows || mac || linux" />
-
-         <!-- <lib name="${PRELIB}libfreetype${LIBEXTRA}${SLIBEXT}" if="iphone"/> -->
 
          <section if="windows">
             <lib name="gdi32.lib" />
@@ -261,12 +315,11 @@
             <lib name="-ldl" />
             <lib name="-landroid" />
             <lib name="-lGLESv2" />
-            <lib name="-lz" />
 
             <lib name="-L../ndll/Android" if="LUMEN_OPENAL"/>
             <lib name="-lopenal" if="LUMEN_OPENAL"/>
          </section>
-      
+
       </section>
 
    </target>

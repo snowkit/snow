@@ -126,6 +126,7 @@ class Window {
 
     } //update
 
+
     public function render() {
 
             //:todo: this calls makeCurrent (good) and does fake drawing (bad)
@@ -150,6 +151,13 @@ class Window {
         lumen_window_swap( handle );
 
     } //swap
+
+
+    public function close() {
+        
+        lumen_window_close( handle );
+
+    } //close
 
     public function simple_message( message:String, title:String="" ) {
 
@@ -289,6 +297,7 @@ class Window {
     } //set_grab    
 
     static var lumen_window_create          = Lumen.load( "lumen", "lumen_window_create", 2 );
+    static var lumen_window_close           = Lumen.load( "lumen", "lumen_window_close", 1 );
     static var lumen_window_update          = Lumen.load( "lumen", "lumen_window_update", 1 );
     static var lumen_window_render          = Lumen.load( "lumen", "lumen_window_render", 1 );
     static var lumen_window_swap            = Lumen.load( "lumen", "lumen_window_swap", 1 );
