@@ -108,6 +108,69 @@
 
     </files>
 
+    <files id="libs-openal">
+
+        <compilerflag value="-I${INC_DIR}"/>
+        <compilerflag value="-DAL_LIBTYPE_STATIC=1" />
+
+        <section if="linux">
+            <compilerflag value="-DLIBTYPE=STATIC" />
+            <compilerflag value="-DREQUIRE_PULSEAUDIO=ON" />
+            <compilerflag value="-DREQUIRE_ALSA=ON" />
+            <file name="Alc/backends/pulseaudio.c" />
+            <file name="Alc/backends/alsa.c" />
+            <file name="Alc/backends/oss.c" />
+        </section>
+
+        <section if="android">
+            <compilerflag value="-DOPENSL=1" />
+            <file name="Alc/backends/opensl.c" />
+        </section>
+
+        <section if="mac">
+            <file name="Alc/backends/coreaudio.c" />
+        </section>
+
+        <section if="windows">
+            <file name="Alc/backends/winmm.c" />
+            <file name="Alc/backends/dsound.c" />
+            <file name="Alc/backends/mmdevapi.c" />
+            <file name="Alc/mixer_sse.c"/>
+        </section>
+
+
+        <file name="OpenAL32/alAuxEffectSlot.c"/>
+        <file name="OpenAL32/alBuffer.c"/>
+        <file name="OpenAL32/alEffect.c"/>
+        <file name="OpenAL32/alError.c"/>
+        <file name="OpenAL32/alExtension.c"/>
+        <file name="OpenAL32/alFilter.c"/>
+        <file name="OpenAL32/alListener.c"/>
+        <file name="OpenAL32/alSource.c"/>
+        <file name="OpenAL32/alState.c"/>
+        <file name="OpenAL32/alThunk.c"/>
+        <file name="Alc/ALc.c"/>
+        <file name="Alc/ALu.c"/>
+        <file name="Alc/alcConfig.c"/>
+        <file name="Alc/alcDedicated.c"/>
+        <file name="Alc/alcEcho.c"/>
+        <file name="Alc/alcModulator.c"/>
+        <file name="Alc/alcReverb.c"/>
+        <file name="Alc/alcRing.c"/>
+        <file name="Alc/alcThread.c"/>
+        <file name="Alc/bs2b.c"/>
+        <file name="Alc/helpers.c"/>
+        <file name="Alc/panning.c"/>
+        <file name="Alc/hrtf.c"/>
+        <file name="Alc/mixer.c"/>
+        <file name="Alc/mixer_c.c"/>
+
+        <file name="Alc/backends/loopback.c"/>
+        <file name="Alc/backends/wave.c" />
+        <file name="Alc/backends/null.c"/>
+
+    </files>
+
     <files id="libs-curl">
 
         <compilerflag value="-I${INC_DIR}"/>
