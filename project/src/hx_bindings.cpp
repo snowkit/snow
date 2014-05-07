@@ -205,14 +205,14 @@ extern void window_show_cursor(bool enable);
 
             //fetch the callback for when it's done opening the window
         AutoGCRoot *on_created = new AutoGCRoot( _on_created );
-            
+
             //fetch window config from the haxe side
         window_config config = window_config_from_hx(_in_config);
             //create the actual window
         create_window( config, on_created );
 
         return alloc_null();
-    
+
     } DEFINE_PRIM(lumen_window_create, 2);
 
 
@@ -259,6 +259,21 @@ extern void window_show_cursor(bool enable);
         return alloc_null();
 
     } DEFINE_PRIM(lumen_window_swap, 1);
+
+
+    value lumen_window_close( value _window ) {
+
+        LumenWindow* window = NULL;
+
+        if( Object_from_hx(_window, window) ) {
+
+            window->close();
+
+        } //fetch window
+
+        return alloc_null();
+
+    } DEFINE_PRIM(lumen_window_close, 1);
 
 
     value lumen_window_simple_message( value _window, value _message, value _title ) {
@@ -322,7 +337,7 @@ extern void window_show_cursor(bool enable);
 
 
     value lumen_window_set_max_size(value _window, value _x, value _y) {
-        
+
         LumenWindow* window = NULL;
 
         if( Object_from_hx(_window, window) ) {
@@ -352,7 +367,7 @@ extern void window_show_cursor(bool enable);
 
 
     value lumen_window_grab(value _window, value _enable) {
-        
+
         LumenWindow* window = NULL;
 
         if( Object_from_hx(_window, window) ) {

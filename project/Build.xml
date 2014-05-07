@@ -121,7 +121,7 @@
 
       <section if="android">
          <!-- <file name="${SRC_DIR}/android/AndroidCommon.cpp" />
-         <file name="${SRC_DIR}/android/AndroidSound.cpp" unless="NME_OPENAL"/>
+         <file name="${SRC_DIR}/android/AndroidSound.cpp" unless="NME_OPsNAL"/>
          <file name="${SRC_DIR}/android/AndroidFont.cpp"/>
          <file name="${SRC_DIR}/android/AndroidFrame.cpp"/>
          <file name="${SRC_DIR}/android/JNI.cpp"/>
@@ -164,21 +164,19 @@
 
       <outdir name="${OUT_DIR}/${BINDIR}" />
 
-      <files id="libs-curl" if="LUMEN_CURL"/>
       <files id="libs-glew"/>
       <files id="libs-lzma"/>
       <files id="libs-zlib"/>
       <files id="libs-media"/>
+      <files id="libs-curl" if="LUMEN_CURL"/>
+         <!-- mac and iOS have OpenAL.framework, and rather rely on system version than statically linked one -->
+      <files id="libs-openal" if="LUMEN_OPENAL" unless="mac || iphone"/>
 
       <files id="lumen"/>
 
          <section if="LUMEN_SDL2">
             <lib name="${PRELIB}SDL2${POSTLIB}" unless="iphone || android" />
             <lib name="${PRELIB}SDL2${POSTLIB}" if="linux"/>
-         </section>
-
-         <section if="LUMEN_OPENAL">
-            <lib name="${PRELIB}openal${POSTLIB}" if="windows || mac || linux"/>
          </section>
 
       <section unless="static_link">
@@ -230,8 +228,8 @@
             <lib name="-landroid" />
             <lib name="-lGLESv2" />
 
-            <lib name="-L../ndll/Android" if="LUMEN_OPENAL"/>
-            <lib name="-lopenal" if="LUMEN_OPENAL"/>
+            <!-- <lib name="-L../ndll/Android" if="LUMEN_OPsNAL"/> -->
+            <!-- <lib name="-lopenal" if="LUMEN_OPENAL"/> -->
          </section>
 
       </section>

@@ -4,8 +4,8 @@
     #include <OpenAL/al.h>
     #include <OpenAL/alc.h>
 #else
-    #include <AL/al.h>
-    #include <AL/alc.h>
+    #include "libs/openal/AL/al.h"
+    #include "libs/openal/AL/alc.h"
 #endif
 
 #include "hx_bindings.h"
