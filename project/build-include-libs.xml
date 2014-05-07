@@ -1,9 +1,6 @@
 <xml>
 
-    <set name="LUMEN_ROOT" value="" />
-    <set name="SRC_DIR" value="${LUMEN_ROOT}src" />
-    <set name="INC_DIR" value="${LUMEN_ROOT}include" />
-    <set name="LUMEN_INC_DIR" value="${LUMEN_ROOT}../include" />
+    <include name="${HXCPP}/build-tool/BuildCommon.xml"/>
 
     <files id="libs-glew">
 
@@ -51,8 +48,6 @@
     <files id="libs-media" >
 
       <compilerflag value="-I${INC_DIR}"/>
-
-        <!-- Lib sources -->
 
            <!-- ogg -->
         <file name="${SRC_DIR}/libs/ogg/bitwise.c" />
@@ -111,5 +106,137 @@
         <file name="${SRC_DIR}/libs/theora/theoraplay.cpp"/>
 
     </files>
+
+    <files id="libs-curl">
+
+        <compilerflag value="-I${INC_DIR}"/>
+        <compilerflag value="-I${INC_DIR}/libs/"/>
+        <compilerflag value="-I${SRC_DIR}/libs/curl/"/>
+        <compilerflag value="-DCURL_STATICLIB" />
+        <compilerflag value="-DUSE_AXTLS=1" if="LUMEN_CURL_SSL" />
+        <compilerflag value="-DHAVE_CONFIG_H" />
+
+        <compilerflag value="-DALLOW_MSVC6_WITHOUT_PSDK" if="windows"/>
+
+        <section if="windows">
+          <!--<file name="${SRC_DIR}/libs/curl/hostthre.c"/>-->
+          <file name="${SRC_DIR}/libs/curl/strtok.c"/>
+          <file name="${SRC_DIR}/libs/curl/hostasyn.c"/>
+          <file name="${SRC_DIR}/libs/curl/curl_threads.c"/>
+          <!-- todo - check? -->
+          <file name="${SRC_DIR}/libs/curl/idn_win32.c"/>
+          <file name="${SRC_DIR}/libs/curl/inet_ntop.c"/>
+          <file name="${SRC_DIR}/libs/curl/inet_pton.c"/>
+          <!--<file name="${SRC_DIR}/libs/curl/krb4.c"/>-->
+          <file name="${SRC_DIR}/libs/curl/krb5.c"/>
+          <file name="${SRC_DIR}/libs/curl/ldap.c"/>
+          <file name="${SRC_DIR}/libs/curl/openldap.c"/>
+        </section>
+
+        <file name="${SRC_DIR}/libs/curl/base64.c"/>
+        <file name="${SRC_DIR}/libs/curl/connect.c"/>
+        <file name="${SRC_DIR}/libs/curl/content_encoding.c"/>
+        <file name="${SRC_DIR}/libs/curl/cookie.c"/>
+        <file name="${SRC_DIR}/libs/curl/curl_addrinfo.c"/>
+        <file name="${SRC_DIR}/libs/curl/curl_fnmatch.c"/>
+        <file name="${SRC_DIR}/libs/curl/curl_gethostname.c"/>
+        <file name="${SRC_DIR}/libs/curl/curl_memrchr.c"/>
+        <!--<file name="${SRC_DIR}/libs/curl/curl_rand.c"/>-->
+        <file name="${SRC_DIR}/libs/curl/dict.c"/>
+        <file name="${SRC_DIR}/libs/curl/easy.c"/>
+        <file name="${SRC_DIR}/libs/curl/escape.c"/>
+        <file name="${SRC_DIR}/libs/curl/file.c"/>
+        <file name="${SRC_DIR}/libs/curl/fileinfo.c"/>
+        <file name="${SRC_DIR}/libs/curl/formdata.c"/>
+        <file name="${SRC_DIR}/libs/curl/ftp.c"/>
+        <file name="${SRC_DIR}/libs/curl/ftplistparser.c"/>
+        <file name="${SRC_DIR}/libs/curl/getenv.c"/>
+        <file name="${SRC_DIR}/libs/curl/getinfo.c"/>
+        <file name="${SRC_DIR}/libs/curl/gopher.c"/>
+        <file name="${SRC_DIR}/libs/curl/hash.c"/>
+        <file name="${SRC_DIR}/libs/curl/hmac.c"/>
+        <file name="${SRC_DIR}/libs/curl/hostip.c"/>
+        <file name="${SRC_DIR}/libs/curl/hostip4.c" if="windows" />
+        <file name="${SRC_DIR}/libs/curl/hostip6.c"/>
+        <file name="${SRC_DIR}/libs/curl/hostsyn.c"/>
+        <file name="${SRC_DIR}/libs/curl/http.c"/>
+        <file name="${SRC_DIR}/libs/curl/http_proxy.c"/>
+        <file name="${SRC_DIR}/libs/curl/http_chunks.c"/>
+        <file name="${SRC_DIR}/libs/curl/http_digest.c"/>
+        <file name="${SRC_DIR}/libs/curl/if2ip.c"/>
+        <file name="${SRC_DIR}/libs/curl/imap.c"/>
+        <file name="${SRC_DIR}/libs/curl/llist.c"/>
+        <file name="${SRC_DIR}/libs/curl/md5.c"/>
+        <file name="${SRC_DIR}/libs/curl/mprintf.c"/>
+        <file name="${SRC_DIR}/libs/curl/multi.c"/>
+        <file name="${SRC_DIR}/libs/curl/netrc.c"/>
+        <file name="${SRC_DIR}/libs/curl/nonblock.c"/>
+        <file name="${SRC_DIR}/libs/curl/parsedate.c"/>
+        <file name="${SRC_DIR}/libs/curl/pingpong.c"/>
+        <file name="${SRC_DIR}/libs/curl/pop3.c"/>
+        <file name="${SRC_DIR}/libs/curl/progress.c"/>
+        <file name="${SRC_DIR}/libs/curl/rawstr.c"/>
+        <file name="${SRC_DIR}/libs/curl/rtsp.c"/>
+        <file name="${SRC_DIR}/libs/curl/select.c"/>
+        <file name="${SRC_DIR}/libs/curl/sendf.c"/>
+        <file name="${SRC_DIR}/libs/curl/share.c"/>
+        <file name="${SRC_DIR}/libs/curl/slist.c"/>
+        <file name="${SRC_DIR}/libs/curl/smtp.c"/>
+        <file name="${SRC_DIR}/libs/curl/socks.c"/>
+        <file name="${SRC_DIR}/libs/curl/speedcheck.c"/>
+        <file name="${SRC_DIR}/libs/curl/splay.c"/>
+        <!--<file name="${SRC_DIR}/libs/curl/sslgen.c"/>-->
+        <file name="${SRC_DIR}/libs/curl/strequal.c"/>
+        <file name="${SRC_DIR}/libs/curl/strerror.c"/>
+        <file name="${SRC_DIR}/libs/curl/telnet.c"/>
+        <file name="${SRC_DIR}/libs/curl/tftp.c"/>
+        <file name="${SRC_DIR}/libs/curl/timeval.c"/>
+        <file name="${SRC_DIR}/libs/curl/transfer.c"/>
+        <file name="${SRC_DIR}/libs/curl/url.c"/>
+        <file name="${SRC_DIR}/libs/curl/version.c"/>
+        <file name="${SRC_DIR}/libs/curl/warnless.c"/>
+        <file name="${SRC_DIR}/libs/curl/wildcard.c"/>
+
+        <file name="${SRC_DIR}/libs/curl/curl_sasl.c" />
+        <file name="${SRC_DIR}/libs/curl/asyn-ares.c" if="windows" />
+        <file name="${SRC_DIR}/libs/curl/asyn-thread.c" if="windows" />
+        <file name="${SRC_DIR}/libs/curl/conncache.c" />
+        <file name="${SRC_DIR}/libs/curl/pipeline.c" />
+        <file name="${SRC_DIR}/libs/curl/bundles.c" />
+        <file name="${SRC_DIR}/libs/curl/dotdot.c" />
+        <file name="${SRC_DIR}/libs/curl/hostcheck.c" />
+        <file name="${SRC_DIR}/libs/curl/vtls/vtls.c" />
+
+        <section if="LUMEN_CURL_SSL" >
+
+            <compilerflag value="-I${SRC_DIR}/libs/curl/axTLS/crypto" />
+            <compilerflag value="-I${SRC_DIR}/libs/curl/axTLS/ssl" />
+            <compilerflag value="-I${SRC_DIR}/libs/curl/axTLS/config" />
+
+            <file name="${SRC_DIR}/libs/curl/axTLS/crypto/aes.c" />
+            <file name="${SRC_DIR}/libs/curl/axTLS/crypto/bigint.c" />
+            <file name="${SRC_DIR}/libs/curl/axTLS/crypto/crypto_misc.c" />
+            <file name="${SRC_DIR}/libs/curl/axTLS/crypto/hmac.c" />
+            <file name="${SRC_DIR}/libs/curl/axTLS/crypto/md2.c" />
+            <file name="${SRC_DIR}/libs/curl/axTLS/crypto/md5.c" />
+            <file name="${SRC_DIR}/libs/curl/axTLS/crypto/rc4.c" />
+            <file name="${SRC_DIR}/libs/curl/axTLS/crypto/rsa.c" />
+            <file name="${SRC_DIR}/libs/curl/axTLS/crypto/sha1.c" />
+            <file name="${SRC_DIR}/libs/curl/axTLS/ssl/asn1.c" />
+            <!-- <file name="${SRC_DIR}/libs/curl/axTLS/ssl/gen_cert.c" /> -->
+            <file name="${SRC_DIR}/libs/curl/axTLS/ssl/loader.c" />
+            <file name="${SRC_DIR}/libs/curl/axTLS/ssl/openssl.c" />
+            <file name="${SRC_DIR}/libs/curl/axTLS/ssl/os_port.c" />
+            <file name="${SRC_DIR}/libs/curl/axTLS/ssl/p12.c" />
+            <file name="${SRC_DIR}/libs/curl/axTLS/ssl/tls1.c" />
+            <file name="${SRC_DIR}/libs/curl/axTLS/ssl/tls1_clnt.c" />
+            <file name="${SRC_DIR}/libs/curl/axTLS/ssl/tls1_svr.c" />
+            <file name="${SRC_DIR}/libs/curl/axTLS/ssl/x509.c" />
+
+            <file name="${SRC_DIR}/libs/curl/vtls/axtls.c" />
+
+        </section>  <!-- curl ssl -->
+
+    </files> <!-- libs-curl -->
 
 </xml>
