@@ -23,7 +23,7 @@ namespace lumen {
 
     #define INT(a) val_int(arg[a])
 
-    
+
 // --- General -------------------------------------------
 
 
@@ -59,8 +59,8 @@ namespace lumen {
     } DEFINE_PRIM(lumen_gl_version,0);
 
 
-    value lumen_gl_enable(value inCap) {    
-        
+    value lumen_gl_enable(value inCap) {
+
         //#ifndef lumen_FORCE_GLES2 ? //:todo:
         glEnable(val_int(inCap));
         //#endif
@@ -1695,16 +1695,16 @@ namespace lumen {
 
 
     value lumen_gl_tex_sub_image_2d(value *arg, int argCount) {
-        
+
         enum { aTarget, aLevel, aXOffset, aYOffset, aWidth, aHeight, aFormat, aType, aBuffer, aOffset };
 
         unsigned char *data = 0;
         ByteArray bytes( arg[aBuffer] );
-        
+
         if (bytes.mValue) {
             data = bytes.Bytes() + val_int(arg[aOffset]);
         }
-     
+
         glTexSubImage2D( INT(aTarget),  INT(aLevel),
                          INT(aXOffset), INT(aYOffset),
                          INT(aWidth),   INT(aHeight),
@@ -1717,7 +1717,7 @@ namespace lumen {
 
 
     value lumen_gl_compressed_tex_image_2d(value *arg, int argCount) {
-       
+
         enum { aTarget, aLevel, aInternal, aWidth, aHeight, aBorder, aBuffer, aOffset };
 
         unsigned char *data = 0;
@@ -1798,15 +1798,15 @@ namespace lumen {
 
         glCopyTexSubImage2D( INT(aTarget), INT(aLevel), INT(aXOffset), INT(aYOffset),
                             INT(aX), INT(aY), INT(aWidth), INT(aHeight) );
-       
+
         return alloc_null();
 
     } DEFINE_PRIM_MULT(lumen_gl_copy_tex_sub_image_2d);
 
 
     value lumen_gl_generate_mipmap(value inTarget) {
-          
-          //:todo: no fail safe        
+
+          //:todo: no fail safe
         glGenerateMipmap(val_int(inTarget));
 
         return alloc_null();
@@ -1820,13 +1820,13 @@ namespace lumen {
         glGetTexParameteriv(val_int(inTarget), val_int(inPname), &result);
 
         return alloc_int(result);
-    
+
     } DEFINE_PRIM(lumen_gl_get_tex_parameter,2);
 
 
 } //namespace lumen
 
 
-extern "C" int lumen_opengl_sdl2_register_prims() { 
+extern "C" int lumen_opengl_sdl2_register_prims() {
     return 0;
 }
