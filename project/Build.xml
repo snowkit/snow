@@ -23,8 +23,6 @@
 
    <include name="${HXCPP}/build-tool/BuildCommon.xml"/>
 
-   <!-- Where to find static libraries/includes -->
-   <set name="NME_DEV" value="${haxelib:nme-dev}" unless="NME_DEV" />
    <!-- where to build from -->
    <set name="LUMEN_ROOT" value="" />
 
@@ -35,7 +33,7 @@
 
    <set name="SLIBEXT" value=".lib" if="windows"/>
    <set name="SLIBEXT" value=".a" unless="windows"/>
-   <set name="PRELIB" value="${NME_DEV}/lib/${BINDIR}/lib" />
+   <set name="PRELIB" value="lib/${BINDIR}/${LIBPREFIX}" />
    <set name="POSTLIB" value="${LIBEXTRA}${SLIBEXT}" />
 
    <set name="LIBNAME" value="lumen" />
@@ -45,6 +43,8 @@
 
    <!-- always using SDL2 for main platforms -->
    <set name="LUMEN_SDL2" value="1"/>
+   <!-- enable this to build sdl as a .a file, and then link it (instead of embedded in the core code) -->
+   <!-- <set name="LUMEN_SDL_STATIC_EXTERNAL" value="1" /> -->
    <!-- always using OpenAL for main platforms -->
    <set name="LUMEN_OPENAL" value="1"/>
    <!-- always using stb_image for main platforms  -->
@@ -58,6 +58,7 @@
 
       <!-- include statically linked third party libs -->
    <include name="build-include-libs.xml" />
+   <include name="build-include-sdl2.xml" />
 
       <!-- lumen sources -->
    <files id="lumen">
@@ -68,8 +69,6 @@
 
       <compilerflag value="-DGLEW_STATIC"/>
       <compilerflag value="-D_7ZIP_ST" unless="windows"/>
-
-      <compilerflag value="-I${NME_DEV}/include" />
 
    <!-- Common sources -->
 
@@ -121,7 +120,7 @@
 
       <section if="android">
          <!-- <file name="${SRC_DIR}/android/AndroidCommon.cpp" />
-         <file name="${SRC_DIR}/android/AndroidSound.cpp" unless="NME_OPsNAL"/>
+         <file name="${SRC_DIR}/android/AndroidSound.cpp" unless="LUMEN_OPsNAL"/>
          <file name="${SRC_DIR}/android/AndroidFont.cpp"/>
          <file name="${SRC_DIR}/android/AndroidFrame.cpp"/>
          <file name="${SRC_DIR}/android/JNI.cpp"/>
@@ -132,9 +131,9 @@
 
       <section if="LUMEN_SDL2">
 
-        <compilerflag value="-I${NME_DEV}/include/SDL2" />
         <compilerflag value="-DSDL_OGL" />
         <compilerflag value="-DLUMEN_SDL2" />
+        <compilerflag value="-DHAVE_LIBC" unless="LUMEN_SDL_STATIC_EXTERNAL" />
 
         <file name="${SRC_DIR}/lumen/sdl2/lumen_core_sdl2.cpp" />
         <file name="${SRC_DIR}/window/sdl2/lumen_window_sdl2.cpp"/>
@@ -169,14 +168,14 @@
       <files id="libs-zlib"/>
       <files id="libs-media"/>
       <files id="libs-curl" if="LUMEN_CURL"/>
+      <files id="libs-sdl" unless="LUMEN_SDL_STATIC_EXTERNAL"/>
          <!-- mac and iOS have OpenAL.framework, and rather rely on system version than statically linked one -->
       <files id="libs-openal" if="LUMEN_OPENAL" unless="mac || iphone"/>
 
       <files id="lumen"/>
 
          <section if="LUMEN_SDL2">
-            <lib name="${PRELIB}SDL2${POSTLIB}" unless="iphone || android" />
-            <lib name="${PRELIB}SDL2${POSTLIB}" if="linux"/>
+            <lib name="${PRELIB}SDL2${POSTLIB}" if="LUMEN_SDL_STATIC_EXTERNAL"/>
          </section>
 
       <section unless="static_link">
@@ -237,6 +236,7 @@
    </target>
 
    <target id="default">
+     <target id="libs-sdl" if="LUMEN_SDL_STATIC_EXTERNAL"/>
      <target id="NDLL"/>
    </target>
 

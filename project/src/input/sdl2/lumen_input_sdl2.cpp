@@ -2,7 +2,7 @@
 #include "lumen_input.h"
 
 #include <hx/CFFI.h>
-#include <SDL.h>
+#include "libs/sdl/SDL.h"
 
 #include <map>
 
@@ -28,7 +28,7 @@ namespace lumen {
     } //sdl2_keysym_to_hx
 
     value sdl2_key_event_to_hx( InputEvent &new_event, SDL_Event &event ) {
-        
+
         value _object = alloc_empty_object();
 
             new_event.timestamp = event.key.timestamp/1000.0;
@@ -49,7 +49,7 @@ namespace lumen {
     value sdl2_touch_event_to_hx( InputEvent &new_event, SDL_Event &event ) {
 
         value _object = alloc_empty_object();
-        
+
         new_event.timestamp = event.tfinger.timestamp/1000.0;
             //touch events have no window id because of single screen touch devices
             //right now, but this is where sdl would add this later
@@ -69,7 +69,7 @@ namespace lumen {
                 alloc_field( _object, id_dx, alloc_float(event.tfinger.dx) );
                 alloc_field( _object, id_dy, alloc_float(event.tfinger.dy) );
                 alloc_field( _object, id_pressure, alloc_float(event.tfinger.pressure) );
-            
+
                 break;
 
             } //case
@@ -81,7 +81,7 @@ namespace lumen {
     } //sdl2_touch_event_to_hx
 
     value sdl2_mouse_event_to_hx( InputEvent &new_event, SDL_Event &event ) {
-        
+
         value _object = alloc_empty_object();
 
         switch(event.type) {
@@ -153,7 +153,7 @@ namespace lumen {
         switch(event.type) {
 
             case SDL_TEXTEDITING:{
-                
+
                 new_event.timestamp = event.edit.timestamp/1000.0;
                 new_event.window_id = event.edit.windowID;
 
@@ -169,7 +169,7 @@ namespace lumen {
             } //edit
 
             case SDL_TEXTINPUT:{
-                
+
                 new_event.timestamp = event.text.timestamp/1000.0;
                 new_event.window_id = event.text.windowID;
 
@@ -191,7 +191,7 @@ namespace lumen {
     value sdl2_joystick_event_to_hx( InputEvent &new_event, SDL_Event &event ) {
 
         value _object = alloc_empty_object();
-                
+
             //joystick events have no window id because joystick is not window based
         new_event.window_id = 0;
 
@@ -207,7 +207,7 @@ namespace lumen {
                 alloc_field( _object, id_axis, alloc_int(event.jaxis.axis) );
                     //(range: -32768 to 32767)
                 alloc_field( _object, id_value, alloc_int(event.jaxis.value) );
-            
+
                 break;
 
             } //axis motion
@@ -241,8 +241,8 @@ namespace lumen {
 
             } //hat motion
 
-            case SDL_JOYBUTTONDOWN: 
-            case SDL_JOYBUTTONUP: 
+            case SDL_JOYBUTTONDOWN:
+            case SDL_JOYBUTTONUP:
             {
 
                 new_event.timestamp = event.jbutton.timestamp/1000.0;
@@ -257,8 +257,8 @@ namespace lumen {
 
             } //button up/down
 
-            case SDL_JOYDEVICEADDED: 
-            case SDL_JOYDEVICEREMOVED: 
+            case SDL_JOYDEVICEADDED:
+            case SDL_JOYDEVICEREMOVED:
             {
 
                 new_event.timestamp = event.jdevice.timestamp/1000.0;
@@ -281,7 +281,7 @@ namespace lumen {
     value sdl2_controller_event_to_hx( InputEvent &new_event, SDL_Event &event ) {
 
         value _object = alloc_empty_object();
-                
+
             //controller events have no window id because controllers are not window based
         new_event.window_id = 0;
 
@@ -298,13 +298,13 @@ namespace lumen {
                 alloc_field( _object, id_axis, alloc_int(event.caxis.axis) );
                     // (range: -32768 to 32767)
                 alloc_field( _object, id_value, alloc_int(event.caxis.value) );
-            
+
                 break;
 
             } //axis motion
 
-            case SDL_CONTROLLERBUTTONDOWN: 
-            case SDL_CONTROLLERBUTTONUP: 
+            case SDL_CONTROLLERBUTTONDOWN:
+            case SDL_CONTROLLERBUTTONUP:
             {
 
                 new_event.timestamp = event.cbutton.timestamp/1000.0;
@@ -395,7 +395,7 @@ namespace lumen {
                 case SDL_JOYBUTTONDOWN:
                 case SDL_JOYBUTTONUP:
                 case SDL_JOYDEVICEADDED:
-                case SDL_JOYDEVICEREMOVED: 
+                case SDL_JOYDEVICEREMOVED:
                 {
                     new_event.type = ie_joystick;
                     new_event.event = sdl2_joystick_event_to_hx(new_event, event);
@@ -404,12 +404,12 @@ namespace lumen {
 
             //controller
 
-                case SDL_CONTROLLERAXISMOTION: 
+                case SDL_CONTROLLERAXISMOTION:
                 case SDL_CONTROLLERBUTTONDOWN:
                 case SDL_CONTROLLERBUTTONUP:
-                case SDL_CONTROLLERDEVICEADDED: 
-                case SDL_CONTROLLERDEVICEREMOVED: 
-                case SDL_CONTROLLERDEVICEREMAPPED: 
+                case SDL_CONTROLLERDEVICEADDED:
+                case SDL_CONTROLLERDEVICEREMOVED:
+                case SDL_CONTROLLERDEVICEREMAPPED:
                 {
                     new_event.type = ie_controller;
                     new_event.event = sdl2_controller_event_to_hx(new_event, event);
@@ -443,7 +443,7 @@ namespace lumen {
     void input_gamepad_close( int id ) {
 
         SDL_GameController* _gamepad = gamepad_list[id];
-        
+
         if(_gamepad) {
 
             SDL_GameControllerClose( _gamepad );
@@ -456,7 +456,7 @@ namespace lumen {
 //Helpers
 
     void init_input_sdl() {
-        
+
         if(input_sdl_inited) {
             return;
         }
@@ -466,19 +466,19 @@ namespace lumen {
         int err = SDL_InitSubSystem(SDL_INIT_GAMECONTROLLER);
         if (err == -1) {
             fprintf(stderr,"/ lumen / Could not initialize controller for SDL : %s\n", SDL_GetError());
-        } 
+        }
 
         err = SDL_InitSubSystem(SDL_INIT_JOYSTICK);
         if (err == -1) {
             fprintf(stderr,"/ lumen / Could not initialize joystick for SDL : %s\n", SDL_GetError());
-        } 
+        }
 
         err = SDL_InitSubSystem(SDL_INIT_HAPTIC);
         if (err == -1) {
             fprintf(stderr,"/ lumen / warning only / Could not initialize haptic feedback for SDL. This is not critical. : %s\n", SDL_GetError());
-        } 
+        }
 
-    } //init_input_sdl   
+    } //init_input_sdl
 
 
 } //namespace lumen
