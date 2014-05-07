@@ -114,7 +114,7 @@
         <compilerflag value="-I${SRC_DIR}/libs/curl/"/>
         <compilerflag value="-DCURL_STATICLIB" />
         <compilerflag value="-DUSE_AXTLS=1" if="LUMEN_CURL_SSL" />
-        <compilerflag value="-DHAVE_CONFIG_H" />
+        <compilerflag value="-DHAVE_CONFIG_H" unless="windows"/>
 
         <compilerflag value="-DALLOW_MSVC6_WITHOUT_PSDK" if="windows"/>
 
