@@ -24,7 +24,7 @@ namespace lumen {
 
             ~ALHX_ALDevice() {
                 if(al_device) {
-                    alcCloseDevice(al_device);                
+                    alcCloseDevice(al_device);
                 }
             }
     };
@@ -39,14 +39,14 @@ namespace lumen {
 
             ~ALHX_ALContext() {
                 if(al_context) {
-                    alcDestroyContext(al_context);                
+                    alcDestroyContext(al_context);
                 }
             }
     };
 
 
     value alhx_DopplerFactor(value _value) {
-        
+
         alDopplerFactor(val_float(_value));
 
         return alloc_null();
@@ -54,7 +54,7 @@ namespace lumen {
     } DEFINE_PRIM(alhx_DopplerFactor, 1);
 
     value alhx_DopplerVelocity(value _value) {
-        
+
         alDopplerVelocity(val_float(_value));
 
         return alloc_null();
@@ -62,7 +62,7 @@ namespace lumen {
     } DEFINE_PRIM(alhx_DopplerVelocity, 1);
 
     value alhx_SpeedOfSound(value _value) {
-        
+
         alSpeedOfSound(val_float(_value));
 
         return alloc_null();
@@ -112,7 +112,7 @@ namespace lumen {
         ALboolean* vals = new ALboolean[count];
 
         alGetBooleanv( val_int(_param), vals );
-        
+
         value result = alloc_array(count);
 
         for( int i = 0; i < count; ++i ) {
@@ -124,12 +124,12 @@ namespace lumen {
     } DEFINE_PRIM(alhx_GetBooleanv, 2);
 
     value alhx_GetIntegerv(value _param, value _count) {
-        
+
         int count = val_int(_count);
         ALint* vals = new ALint[count];
 
         alGetIntegerv( val_int(_param), vals );
-        
+
         value result = alloc_array(count);
 
         for( int i = 0; i < count; ++i ) {
@@ -146,7 +146,7 @@ namespace lumen {
         ALfloat* vals = new ALfloat[count];
 
         alGetFloatv( val_int(_param), vals );
-        
+
         value result = alloc_array(count);
 
         for( int i = 0; i < count; ++i ) {
@@ -158,12 +158,12 @@ namespace lumen {
     } DEFINE_PRIM(alhx_GetFloatv, 2);
 
     value alhx_GetDoublev(value _param, value _count) {
-        
+
         int count = val_int(_count);
         ALdouble* vals = new ALdouble[count];
 
         alGetDoublev( val_int(_param), vals );
-        
+
         value result = alloc_array(count);
 
         for( int i = 0; i < count; ++i ) {
@@ -189,7 +189,7 @@ namespace lumen {
     value alhx_GetDouble(value _param) {
         return alloc_float( (float)alGetDouble(val_int(_param)) );
     } DEFINE_PRIM(alhx_GetDouble, 1);
-    
+
 
     value alhx_GetError() {
         return alloc_int( alGetError() );
@@ -225,7 +225,7 @@ namespace lumen {
     } DEFINE_PRIM(alhx_Listener3f, 4);
 
     value alhx_Listenerfv(value _param, value _values) {
-        
+
         float* vals = val_array_float(_values);
 
         if(vals) {
@@ -257,8 +257,8 @@ namespace lumen {
     value alhx_Listeneriv(value _param, value _values) {
 
         int *vals = val_array_int(_values);
-        
-        if(vals) {            
+
+        if(vals) {
             alListeneriv( val_int(_param), vals );
         } else {
             //warn: try val_array normal approach?
@@ -283,7 +283,7 @@ namespace lumen {
         ALfloat val1, val2, val3;
 
         alGetListener3f( val_int(_param), &val1, &val2, &val3 );
-        
+
         value result = alloc_array(3);
 
             val_array_set_i(result, 0, alloc_float(val1) );
@@ -300,7 +300,7 @@ namespace lumen {
         ALfloat* vals = new ALfloat[count];
 
         alGetListenerfv( val_int(_param), vals );
-        
+
         value result = alloc_array(count);
 
         for( int i = 0; i < count; ++i ) {
@@ -326,7 +326,7 @@ namespace lumen {
         ALint val1, val2, val3;
 
         alGetListener3i( val_int(_param), &val1, &val2, &val3 );
-        
+
         value result = alloc_array(3);
 
             val_array_set_i(result, 0, alloc_int(val1) );
@@ -338,12 +338,12 @@ namespace lumen {
     } DEFINE_PRIM(alhx_GetListener3i, 1);
 
     value alhx_GetListeneriv(value _param, value _count) {
-        
+
         int count = val_int(_count);
         ALint* vals = new ALint[count];
 
         alGetListeneriv( val_int(_param), vals );
-        
+
         value result = alloc_array(count);
 
         for( int i = 0; i < count; ++i ) {
@@ -367,24 +367,24 @@ namespace lumen {
     } DEFINE_PRIM(alhx_GenSource, 0);
 
     value alhx_DeleteSource(value _source) {
-        
+
         ALuint source = val_int(_source);
-        
+
         alDeleteSources(1, &source);
 
         return alloc_null();
 
     } DEFINE_PRIM(alhx_DeleteSource, 1);
 
-// --- > 
+// --- >
 
     value alhx_GenSources(value _n) {
-            
+
         int count = val_int(_n);
         ALuint* sources = new ALuint[count];
 
         alGenSources( count, sources );
-        
+
         value result = alloc_array(count);
 
         for( int i = 0; i < count; ++i ) {
@@ -396,9 +396,9 @@ namespace lumen {
     } DEFINE_PRIM(alhx_GenSources, 1);
 
     value alhx_DeleteSources(value _n, value _sources) {
-        
+
         int *sources = val_array_int(_sources);
-        
+
         if(sources) {
             alDeleteSources( val_int(_n), (ALuint*)sources );
         } else {
@@ -435,7 +435,7 @@ namespace lumen {
     value alhx_Sourcefv(value _source, value _param, value _values) {
 
         float *vals = val_array_float(_values);
-        
+
         if(vals) {
             alSourcefv( val_int(_source), val_int(_param), vals );
         } else {
@@ -465,7 +465,7 @@ namespace lumen {
     value alhx_Sourceiv(value _source, value _param, value _values) {
 
         int *vals = val_array_int(_values);
-        
+
         if(vals) {
             alSourceiv( val_int(_source), val_int(_param), vals );
         } else {
@@ -491,7 +491,7 @@ namespace lumen {
         ALfloat val1, val2, val3;
 
         alGetBuffer3f( val_int(_source), val_int(_param), &val1, &val2, &val3 );
-        
+
         value result = alloc_array(3);
 
             val_array_set_i(result, 0, alloc_float( val1 ) );
@@ -503,12 +503,12 @@ namespace lumen {
     } DEFINE_PRIM(alhx_GetSource3f, 2);
 
     value alhx_GetSourcefv(value _source, value _param, value _count) {
-    
+
         int count = val_int(_count);
         ALfloat* vals = new ALfloat[count];
 
         alGetSourcefv( val_int(_source), val_int(_param), vals );
-        
+
         value result = alloc_array(count);
 
         for( int i = 0; i < count; ++i ) {
@@ -530,11 +530,11 @@ namespace lumen {
     } DEFINE_PRIM(alhx_GetSourcei, 2);
 
     value alhx_GetSource3i(value _source, value _param) {
-        
+
         ALint val1, val2, val3;
 
         alGetSource3i( val_int(_source), val_int(_param), &val1, &val2, &val3 );
-        
+
         value result = alloc_array(3);
 
             val_array_set_i(result, 1, alloc_int( val1 ) );
@@ -542,16 +542,16 @@ namespace lumen {
             val_array_set_i(result, 3, alloc_int( val3 ) );
 
         return result;
-        
+
     } DEFINE_PRIM(alhx_GetSource3i, 2);
 
     value alhx_GetSourceiv(value _source, value _param, value _count) {
-        
+
         int count = val_int(_count);
         ALint* vals = new ALint[count];
 
         alGetSourceiv( val_int(_source), val_int(_param), vals );
-        
+
         value result = alloc_array(count);
 
         for( int i = 0; i < count; ++i ) {
@@ -566,7 +566,7 @@ namespace lumen {
     value alhx_SourcePlayv(value _n, value _sources) {
 
         int *vals = val_array_int(_sources);
-        
+
         if(vals) {
             alSourcePlayv( val_int(_n), (ALuint*)vals );
         } else {
@@ -578,9 +578,9 @@ namespace lumen {
     } DEFINE_PRIM(alhx_SourcePlayv, 2);
 
     value alhx_SourceStopv(value _n, value _sources) {
-        
+
         int *vals = val_array_int(_sources);
-        
+
         if(vals) {
             alSourceStopv( val_int(_n), (ALuint*)vals );
         } else {
@@ -594,21 +594,21 @@ namespace lumen {
     value alhx_SourceRewindv(value _n, value _sources) {
 
         int *vals = val_array_int(_sources);
-        
+
         if(vals) {
             alSourceRewindv( val_int(_n), (ALuint*)vals );
         } else {
             //warn: try val_array normal approach?
         }
 
-        return alloc_null(); 
+        return alloc_null();
 
     } DEFINE_PRIM(alhx_SourceRewindv, 2);
 
     value alhx_SourcePausev(value _n, value _sources) {
-        
+
         int *vals = val_array_int(_sources);
-        
+
         if(vals) {
             alSourcePausev( val_int(_n), (ALuint*)vals );
         } else {
@@ -668,7 +668,7 @@ namespace lumen {
     } DEFINE_PRIM(alhx_SourceQueueBuffers, 3);
 
     value alhx_SourceUnqueueBuffers(value _source, value _nb, value _buffers) {
-        
+
         int* buffers = val_array_int(_buffers);
 
         if(buffers) {
@@ -688,7 +688,7 @@ namespace lumen {
         ALuint* buffers = new ALuint[count];
 
         alGenBuffers( count, buffers );
-        
+
         value result = alloc_array(count);
 
         for( int i = 0; i < count; ++i ) {
@@ -700,9 +700,9 @@ namespace lumen {
     } DEFINE_PRIM(alhx_GenBuffers, 1);
 
     value alhx_DeleteBuffers(value _n, value _buffers) {
-        
+
         int *buffers = val_array_int(_buffers);
-        
+
         if(buffers) {
             alDeleteBuffers( val_int(_n), (ALuint*)buffers );
         } else {
@@ -719,7 +719,7 @@ namespace lumen {
 
     } DEFINE_PRIM(alhx_IsBuffer, 1);
 
-//unofficial api 
+//unofficial api
 
     value alhx_GenBuffer() {
 
@@ -741,7 +741,7 @@ namespace lumen {
 
     } DEFINE_PRIM(alhx_DeleteBuffer, 1);
 
-// // end unofficial api 
+// // end unofficial api
 
     value alhx_BufferData(value _buffer, value _format, value _data, value _size, value _freq) {
 
@@ -750,10 +750,10 @@ namespace lumen {
 
         const float *data = (float *)bytes.Bytes();
         int n_elems = bytesize / sizeof(float);
-            
+
             //since size is explicitly passed in,
             //we are going to use that, but the calculated count is n_elems>>2;
-        int count = val_int(_size); 
+        int count = val_int(_size);
 
         alBufferData( val_int(_buffer), val_int(_format), data, count, val_int(_freq) );
 
@@ -771,7 +771,7 @@ namespace lumen {
     } DEFINE_PRIM(alhx_Bufferf, 3);
 
     value alhx_Buffer3f(value _buffer, value _param, value _value1, value _value2, value _value3) {
-        
+
         alBuffer3f(val_int(_buffer), val_int(_param), val_float(_value1),val_float(_value2),val_float(_value3) );
 
         return alloc_null();
@@ -779,9 +779,9 @@ namespace lumen {
     } DEFINE_PRIM(alhx_Buffer3f, 5);
 
     value alhx_Bufferfv(value _buffer, value _param, value _values) {
-        
+
         float *vals = val_array_float(_values);
-        
+
         if(vals) {
             alBufferfv( val_int(_buffer), val_int(_param), vals );
         } else {
@@ -809,9 +809,9 @@ namespace lumen {
     } DEFINE_PRIM(alhx_Buffer3i, 5);
 
     value alhx_Bufferiv(value _buffer, value _param, value _values) {
-            
+
         int *vals = val_array_int(_values);
-        
+
         if(vals) {
             alBufferiv( val_int(_buffer), val_int(_param), vals );
         } else {
@@ -825,7 +825,7 @@ namespace lumen {
     value alhx_GetBufferf(value _buffer, value _param) {
 
         float the_value;
-        
+
         alGetBufferf( val_int(_buffer), val_int(_param), &the_value );
 
         return alloc_float(the_value);
@@ -837,7 +837,7 @@ namespace lumen {
         ALfloat val1, val2, val3;
 
         alGetBuffer3f( val_int(_buffer), val_int(_param), &val1, &val2, &val3 );
-        
+
         value result = alloc_array(3);
 
             val_array_set_i(result, 0, alloc_float( val1 ) );
@@ -845,16 +845,16 @@ namespace lumen {
             val_array_set_i(result, 2, alloc_float( val3 ) );
 
         return result;
-        
+
     } DEFINE_PRIM(alhx_GetBuffer3f, 2);
 
     value alhx_GetBufferfv(value _buffer, value _param, value _count) {
-        
+
         int count = val_int(_count);
         ALfloat* vals = new ALfloat[count];
 
         alGetBufferfv( val_int(_buffer), val_int(_param), vals );
-        
+
         value result = alloc_array(count);
 
         for( int i = 0; i < count; ++i ) {
@@ -866,9 +866,9 @@ namespace lumen {
     } DEFINE_PRIM(alhx_GetBufferfv, 3);
 
     value alhx_GetBufferi(value _buffer, value _param) {
-        
+
         int the_value;
-        
+
         alGetBufferi( val_int(_buffer), val_int(_param), &the_value );
 
         return alloc_int(the_value);
@@ -876,11 +876,11 @@ namespace lumen {
     } DEFINE_PRIM(alhx_GetBufferi, 2);
 
     value alhx_GetBuffer3i(value _buffer, value _param) {
-        
+
         ALint val1, val2, val3;
 
         alGetBuffer3i( val_int(_buffer), val_int(_param), &val1, &val2, &val3 );
-        
+
         value result = alloc_array(3);
 
             val_array_set_i(result, 0, alloc_int( val1 ) );
@@ -892,12 +892,12 @@ namespace lumen {
     } DEFINE_PRIM(alhx_GetBuffer3i, 2);
 
     value alhx_GetBufferiv(value _buffer, value _param, value _count) {
-        
+
         int count = val_int(_count);
         ALint* vals = new ALint[count];
 
         alGetBufferiv( val_int(_buffer), val_int(_param), vals );
-        
+
         value result = alloc_array(count);
 
         for( int i = 0; i < count; ++i ) {
@@ -912,7 +912,7 @@ namespace lumen {
 //ALC
 
     value alhx_alcCreateContext(value _device, value _attrlist) {
-        
+
         ALHX_ALDevice* device;
 
         if( Object_from_hx(_device, device) ) {
@@ -1009,7 +1009,7 @@ namespace lumen {
         if( Object_from_hx(_context, context) ) {
 
             ALCdevice* _al_device = alcGetContextsDevice( context->al_context );
-            
+
             ALHX_ALDevice* device = new ALHX_ALDevice(_al_device);
 
             return Object_to_hx(device);
@@ -1021,10 +1021,10 @@ namespace lumen {
     } DEFINE_PRIM(alhx_alcGetContextsDevice, 1);
 
 
-    value alhx_alcOpenDevice(value _devicename) {        
+    value alhx_alcOpenDevice(value _devicename) {
 
         ALCdevice* _al_device = alcOpenDevice( _devicename == val_null ? 0 : val_string(_devicename) );
-        
+
         if(!_al_device) {
             printf("/ lumen / failed to create AL device. \n");
             return alloc_null();
@@ -1037,7 +1037,7 @@ namespace lumen {
     } DEFINE_PRIM(alhx_alcOpenDevice, 1);
 
     value alhx_alcCloseDevice(value _device) {
-        
+
         ALHX_ALDevice* device;
 
         if( Object_from_hx(_device, device) ) {
@@ -1089,7 +1089,7 @@ namespace lumen {
             ALint* vals = new ALint[count];
 
             alcGetIntegerv( device->al_device, val_int(_param), count, vals );
-            
+
             value result = alloc_array(count);
 
             for( int i = 0; i < count; ++i ) {
@@ -1107,6 +1107,6 @@ namespace lumen {
 
 } //namespace lumen
 
-extern "C" int lumen_audio_openal_register_prims() { 
+extern "C" int lumen_audio_openal_register_prims() {
     return 0;
 }
