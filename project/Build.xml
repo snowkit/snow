@@ -66,6 +66,9 @@
       <compilerflag value="-I${INC_DIR}"/>
       <compilerflag value="-DHX_LUMEN"  />
 
+      <compilerflag value="-DGLEW_STATIC"/>
+      <compilerflag value="-D_7ZIP_ST" unless="windows"/>
+
       <compilerflag value="-I${NME_DEV}/include" />
 
    <!-- Common sources -->
@@ -145,7 +148,7 @@
       </section>
 
       <section if="LUMEN_OPENAL">
-         <compilerflag value="-DAL_LIBTYPE_STATIC=1" if="windows || mac || linux" />
+         <compilerflag value="-DAL_LIBTYPE_STATIC=1" />
          <file name="${SRC_DIR}/audio/openal/lumen_audio_openal.cpp" />
       </section>
 
