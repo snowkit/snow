@@ -115,6 +115,7 @@
         <compilerflag value="-DCURL_STATICLIB" />
         <compilerflag value="-DUSE_AXTLS=1" if="LUMEN_CURL_SSL" />
         <compilerflag value="-DHAVE_CONFIG_H" unless="windows"/>
+        <compilerflag value="-DWIN32" if="windows"/>
 
         <compilerflag value="-DALLOW_MSVC6_WITHOUT_PSDK" if="windows"/>
 
