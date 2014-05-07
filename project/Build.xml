@@ -13,31 +13,32 @@
          -Ddebug                  -> Used in combination with above for debug
    -->
 
-   <!-- Require Android 2.3+ -->
-   <set name="PLATFORM" value="android-9" if="android" />
-   <set name="PLATFORM" value="android-14" if="HXCPP_X86" />
-   <set name="HXCPP_CPP11" value="1" />
-   <set name="debug" value="debug"  />
 
 <!-- Build set up -->
 
    <include name="${HXCPP}/build-tool/BuildCommon.xml"/>
 
-   <!-- where to build from -->
+      <!-- where to build from -->
    <set name="LUMEN_ROOT" value="" />
-
+      <!-- paths -->
    <set name="SRC_DIR" value="${LUMEN_ROOT}src" />
    <set name="INC_DIR" value="${LUMEN_ROOT}include" />
    <set name="LUMEN_INC_DIR" value="${LUMEN_ROOT}../include" />
    <set name="OUT_DIR" value="../ndll" />
-
+      <!-- lib values -->
    <set name="SLIBEXT" value=".lib" if="windows"/>
    <set name="SLIBEXT" value=".a" unless="windows"/>
    <set name="PRELIB" value="lib/${BINDIR}/${LIBPREFIX}" />
    <set name="POSTLIB" value="${LIBEXTRA}${SLIBEXT}" />
-
    <set name="LIBNAME" value="lumen" />
-   <set name="DEBUGEXTRA" value="-debug" if="lumen fulldebug" />
+   <set name="DEBUGEXTRA" value="-debug" if="debug" />
+
+      <!-- Require Android 2.3+ -->
+   <set name="PLATFORM" value="android-10" if="android" />
+   <set name="PLATFORM" value="android-14" if="HXCPP_X86" />
+
+   <set name="HXCPP_CPP11" value="1" />
+   <set name="debug" value="debug"  />
 
 <!-- Build configs -->
 
