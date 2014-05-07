@@ -29,7 +29,7 @@
     <files id="libs-zlib">
 
         <compilerflag value="-I${INC_DIR}"/>
-        <compilerflag value="-I${SRC_DIR}/libs/zlib/"/>
+        <compilerflag value="-I${INC_DIR}/libs/zlib/"/>
 
         <file name="${SRC_DIR}/libs/zlib/adler32.c"/>
         <file name="${SRC_DIR}/libs/zlib/crc32.c"/>
