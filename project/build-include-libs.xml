@@ -147,8 +147,7 @@
         <file name="${SRC_DIR}/libs/openal/Alc/backends/null.c"/>
 
         <section if="linux">
-            <compilerflag value="-I${INC_DIR}/libs/openal/pulse/"/>
-            <compilerflag value="-I${INC_DIR}/libs/openal/alsa/"/>
+            <compilerflag value="-I${INC_DIR}/libs/support/linux/" />
             <compilerflag value="-DLIBTYPE=STATIC" />
             <compilerflag value="-DREQUIRE_PULSEAUDIO=ON" />
             <compilerflag value="-DREQUIRE_ALSA=ON" />
