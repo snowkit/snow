@@ -143,15 +143,14 @@
 
         <compilerflag value="-DSDL_OGL" />
         <compilerflag value="-DLUMEN_SDL2" />
-        <compilerflag value="-DHAVE_LIBC" unless="LUMEN_SDL_STATIC_EXTERNAL" />
+        <compilerflag value="-DHAVE_LIBC" />
 
             <!-- per platform configs preconfigured -->
         <compilerflag value="-I${INC_DIR}/libs/sdl/"/>
-        <compilerflag value="-I${INC_DIR}/libs/sdl/configs/default/" unless="windows || mac || linux || android"/>
-        <compilerflag value="-I${INC_DIR}/libs/sdl/configs/windows/" if="windows"/>
+        <compilerflag value="-I${INC_DIR}/libs/sdl/configs/default/" unless="windows || mac || linux"/>
         <compilerflag value="-I${INC_DIR}/libs/sdl/configs/linux/" if="linux"/>
+        <compilerflag value="-I${INC_DIR}/libs/sdl/configs/windows/" if="windows"/>
         <compilerflag value="-I${INC_DIR}/libs/sdl/configs/mac/" if="mac"/>
-        <compilerflag value="-I${INC_DIR}/libs/sdl/configs/android/" if="android"/>
 
         <file name="${SRC_DIR}/lumen/sdl2/lumen_core_sdl2.cpp" />
         <file name="${SRC_DIR}/window/sdl2/lumen_window_sdl2.cpp"/>
