@@ -92,7 +92,6 @@
         <file name="${SRC_DIR}/libs/sdl/src/stdlib/SDL_stdlib.c" />
         <file name="${SRC_DIR}/libs/sdl/src/stdlib/SDL_string.c" />
         <file name="${SRC_DIR}/libs/sdl/src/thread/SDL_thread.c" />
-        <file name="${SRC_DIR}/libs/sdl/src/thread/generic/SDL_syscond.c" />
         <file name="${SRC_DIR}/libs/sdl/src/timer/SDL_timer.c" />
         <file name="${SRC_DIR}/libs/sdl/src/video/SDL_RLEaccel.c" />
         <file name="${SRC_DIR}/libs/sdl/src/video/SDL_blit.c" />
@@ -125,6 +124,7 @@
         <file name="${SRC_DIR}/libs/sdl/src/render/software/SDL_render_sw.c" />
         <file name="${SRC_DIR}/libs/sdl/src/render/software/SDL_rotate.c" />
 
+        <!-- NOT WINDOWS , the unless is tricky to spot -->
         <section unless="windows">
             <file name="${SRC_DIR}/libs/sdl/src/thread/pthread/SDL_syscond.c" />
             <file name="${SRC_DIR}/libs/sdl/src/thread/pthread/SDL_sysmutex.c" />
@@ -266,6 +266,7 @@
         </section>
 
         <section if="windows">
+            <file name="${SRC_DIR}/libs/sdl/src/thread/generic/SDL_syscond.c" />
             <file name="${SRC_DIR}/libs/sdl/src/audio/directsound/SDL_directsound.c" />
             <file name="${SRC_DIR}/libs/sdl/src/audio/winmm/SDL_winmm.c" />
             <file name="${SRC_DIR}/libs/sdl/src/audio/xaudio2/SDL_xaudio2.c"/>
