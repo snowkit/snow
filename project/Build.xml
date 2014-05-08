@@ -28,8 +28,12 @@
       <!-- lib values -->
    <set name="SLIBEXT" value=".lib" if="windows"/>
    <set name="SLIBEXT" value=".a" unless="windows"/>
+   <set name="SHLIBEXT" value=".dll" if="windows"/>
+   <set name="SHLIBEXT" value=".so" unless="windows"/>
+   <set name="SHLIBEXT" value=".dylib" if="mac || ios"/>
    <set name="PRELIB" value="lib/${BINDIR}/${LIBPREFIX}" />
    <set name="POSTLIB" value="${LIBEXTRA}${SLIBEXT}" />
+   <set name="POSTSHAREDLIB" value="${LIBEXTRA}${SHLIBEXT}" />
    <set name="LIBNAME" value="lumen" />
    <set name="DEBUGEXTRA" value="-debug" if="fulldebug" />
 
@@ -46,6 +50,8 @@
    <set name="LUMEN_SDL2" value="1"/>
    <!-- enable this to build sdl as a .a file, and then link it (instead of embedded in the core code) -->
    <!-- <set name="LUMEN_SDL_STATIC_EXTERNAL" value="1" /> -->
+   <!-- enable this to build sdl as a .so/.dll file, and then link it (instead of embedded in the core code) -->
+   <!-- <set name="LUMEN_SDL_SHARED_EXTERNAL" value="1" /> -->
    <!-- always using OpenAL for main platforms -->
    <set name="LUMEN_OPENAL" value="1"/>
    <!-- always using stb_image for main platforms  -->
@@ -139,6 +145,14 @@
         <compilerflag value="-DLUMEN_SDL2" />
         <compilerflag value="-DHAVE_LIBC" unless="LUMEN_SDL_STATIC_EXTERNAL" />
 
+            <!-- per platform configs preconfigured -->
+        <compilerflag value="-I${INC_DIR}/libs/sdl/"/>
+        <compilerflag value="-I${INC_DIR}/libs/sdl/configs/default/" unless="windows || mac || linux || android"/>
+        <compilerflag value="-I${INC_DIR}/libs/sdl/configs/windows/" if="windows"/>
+        <compilerflag value="-I${INC_DIR}/libs/sdl/configs/linux/" if="linux"/>
+        <compilerflag value="-I${INC_DIR}/libs/sdl/configs/mac/" if="mac"/>
+        <compilerflag value="-I${INC_DIR}/libs/sdl/configs/android/" if="android"/>
+
         <file name="${SRC_DIR}/lumen/sdl2/lumen_core_sdl2.cpp" />
         <file name="${SRC_DIR}/window/sdl2/lumen_window_sdl2.cpp"/>
         <file name="${SRC_DIR}/input/sdl2/lumen_input_sdl2.cpp"/>
@@ -172,7 +186,7 @@
       <files id="libs-zlib"/>
       <files id="libs-media"/>
       <files id="libs-curl" if="LUMEN_CURL"/>
-      <files id="libs-sdl" unless="LUMEN_SDL_STATIC_EXTERNAL"/>
+      <files id="libs-sdl" unless="LUMEN_SDL_STATIC_EXTERNAL || LUMEN_SDL_SHARED_EXTERNAL"/>
          <!-- mac and iOS have OpenAL.framework, and rather rely on system version than statically linked one -->
       <files id="libs-openal" if="LUMEN_OPENAL" unless="mac || iphone"/>
 
@@ -180,6 +194,7 @@
 
          <section if="LUMEN_SDL2">
             <lib name="${PRELIB}SDL2${POSTLIB}" if="LUMEN_SDL_STATIC_EXTERNAL"/>
+            <lib name="${PRELIB}SDL2${POSTSHAREDLIB}" if="LUMEN_SDL_SHARED_EXTERNAL"/>
          </section>
 
       <section unless="static_link">
@@ -213,15 +228,16 @@
          </section>
 
          <section if="macos">
+            <vflag name="-l" value="iconv"/>
             <vflag name="-framework" value="IOKit" />
             <vflag name="-framework" value="Foundation" />
             <vflag name="-framework" value="CoreAudio" />
+            <vflag name="-framework" value="Cocoa" />
+            <vflag name="-framework" value="OpenGL" />
             <vflag name="-framework" value="AudioToolbox" />
             <vflag name="-framework" value="AudioUnit" />
             <vflag name="-framework" value="ForceFeedback" />
             <vflag name="-framework" value="Carbon" />
-            <vflag name="-framework" value="Cocoa" />
-            <vflag name="-framework" value="OpenGL" />
             <vflag name="-framework" value="AppKit" />
             <vflag name="-framework" value="OpenAL"/>
          </section>
@@ -244,7 +260,8 @@
 
    <target id="default">
      <target id="libs-sdl" if="LUMEN_SDL_STATIC_EXTERNAL"/>
-     <target id="NDLL"/>
+     <target id="libs-sdl-shared" if="LUMEN_SDL_SHARED_EXTERNAL"/>
+     <target id="NDLL" unless="no_lumen"/>
    </target>
 
 </xml>

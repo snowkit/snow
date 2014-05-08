@@ -34,6 +34,9 @@
 
         <dependency name="extension-api" path="dependencies/extension-api" if="android" />
 
+        <android minimumSDKVersion="12"/>
+        <android targetSDKVersion=""/>
+
         <include haxelib="lime-tools" />
 
     </section>
