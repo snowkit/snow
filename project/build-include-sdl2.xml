@@ -7,14 +7,18 @@
         <compilerflag value="-I${SRC_DIR}/libs/sdl/include/"/>
         <compilerflag value="-I${SRC_DIR}/libs/sdl/src/"/>
 
-        <compilerflag value="-I${INC_DIR}/libs/sdl/configs/default/" unless="windows || mac || linux || android"/>
-        <compilerflag value="-I${INC_DIR}/libs/sdl/configs/windows/" if="windows"/>
+        <compilerflag value="-I${INC_DIR}/libs/sdl/configs/default/" unless="windows || mac || linux"/>
         <compilerflag value="-I${INC_DIR}/libs/sdl/configs/linux/" if="linux"/>
+        <compilerflag value="-I${INC_DIR}/libs/sdl/configs/windows/" if="windows"/>
         <compilerflag value="-I${INC_DIR}/libs/sdl/configs/mac/" if="mac"/>
-        <compilerflag value="-I${INC_DIR}/libs/sdl/configs/android/" if="android"/>
 
         <compilerflag value="-DGL_GLEXT_PROTOTYPES" if="android"/>
+        <compilerflag value="-DHAVE_LIBC"/>
 
+        <section if="windows">
+             <compilerflag value="-DUSING_GENERATED_CONFIG_H"/>
+        </section>
+        
         <section if="linux">
             <compilerflag value="-DUSING_GENERATED_CONFIG_H"/>
             <compilerflag value="-DHAVE_LINUX_VERSION_H"/>
@@ -88,6 +92,7 @@
         <file name="${SRC_DIR}/libs/sdl/src/stdlib/SDL_stdlib.c" />
         <file name="${SRC_DIR}/libs/sdl/src/stdlib/SDL_string.c" />
         <file name="${SRC_DIR}/libs/sdl/src/thread/SDL_thread.c" />
+        <file name="${SRC_DIR}/libs/sdl/src/thread/generic/SDL_syscond.c" />
         <file name="${SRC_DIR}/libs/sdl/src/timer/SDL_timer.c" />
         <file name="${SRC_DIR}/libs/sdl/src/video/SDL_RLEaccel.c" />
         <file name="${SRC_DIR}/libs/sdl/src/video/SDL_blit.c" />
@@ -120,19 +125,21 @@
         <file name="${SRC_DIR}/libs/sdl/src/render/software/SDL_render_sw.c" />
         <file name="${SRC_DIR}/libs/sdl/src/render/software/SDL_rotate.c" />
 
-        <file name="${SRC_DIR}/libs/sdl/src/thread/pthread/SDL_syscond.c" />
-        <file name="${SRC_DIR}/libs/sdl/src/thread/pthread/SDL_sysmutex.c" />
-        <file name="${SRC_DIR}/libs/sdl/src/thread/pthread/SDL_syssem.c" />
-        <file name="${SRC_DIR}/libs/sdl/src/thread/pthread/SDL_systhread.c" />
-        <file name="${SRC_DIR}/libs/sdl/src/thread/pthread/SDL_systls.c" />
-        <file name="${SRC_DIR}/libs/sdl/src/timer/unix/SDL_systimer.c" />
+        <section unless="windows">
+            <file name="${SRC_DIR}/libs/sdl/src/thread/pthread/SDL_syscond.c" />
+            <file name="${SRC_DIR}/libs/sdl/src/thread/pthread/SDL_sysmutex.c" />
+            <file name="${SRC_DIR}/libs/sdl/src/thread/pthread/SDL_syssem.c" />
+            <file name="${SRC_DIR}/libs/sdl/src/thread/pthread/SDL_systhread.c" />
+            <file name="${SRC_DIR}/libs/sdl/src/thread/pthread/SDL_systls.c" />
+            <file name="${SRC_DIR}/libs/sdl/src/timer/unix/SDL_systimer.c" />
+        </section>
 
         <file name="${SRC_DIR}/libs/sdl/src/video/dummy/SDL_nullevents.c" />
         <file name="${SRC_DIR}/libs/sdl/src/video/dummy/SDL_nullframebuffer.c" />
         <file name="${SRC_DIR}/libs/sdl/src/video/dummy/SDL_nullvideo.c" />
         <file name="${SRC_DIR}/libs/sdl/src/audio/dummy/SDL_dummyaudio.c" />
 
-        <section if="android || ios || LUMEN_SDL_GLES" >
+        <section if="android || ios || windows" >
             <file name="${SRC_DIR}/libs/sdl/src/video/SDL_egl.c" />
             <file name="${SRC_DIR}/libs/sdl/src/render/opengles/SDL_render_gles.c" />
             <file name="${SRC_DIR}/libs/sdl/src/render/opengles2/SDL_render_gles2.c" />
@@ -150,12 +157,6 @@
             <file name="${SRC_DIR}/libs/sdl/src/video/directfb/SDL_DirectFB_shape.c" />
             <file name="${SRC_DIR}/libs/sdl/src/video/directfb/SDL_DirectFB_video.c" />
             <file name="${SRC_DIR}/libs/sdl/src/video/directfb/SDL_DirectFB_window.c" />
-        </section>
-
-        <section if="LUMEN_SDL_D3D">
-            <file name="${SRC_DIR}/libs/sdl/src/render/SDL_d3dmath.c" />
-            <file name="${SRC_DIR}/libs/sdl/src/render/direct3d/SDL_render_d3d.c" />
-            <file name="${SRC_DIR}/libs/sdl/src/render/direct3d11/SDL_render_d3d11.c" />
         </section>
 
         <section if="LUMEN_SDL_WAYLAND">
@@ -217,7 +218,6 @@
         <file name="${SRC_DIR}/libs/sdl/src/main/dummy/SDL_dummy_main.c" />
         <file name="${SRC_DIR}/libs/sdl/src/timer/dummy/SDL_systimer.c" />
 
-        <file name="${SRC_DIR}/libs/sdl/src/thread/generic/SDL_syscond.c" />
         <file name="${SRC_DIR}/libs/sdl/src/thread/generic/SDL_sysmutex.c" />
         <file name="${SRC_DIR}/libs/sdl/src/thread/generic/SDL_syssem.c" />
         <file name="${SRC_DIR}/libs/sdl/src/thread/generic/SDL_systhread.c" />
@@ -268,13 +268,13 @@
         <section if="windows">
             <file name="${SRC_DIR}/libs/sdl/src/audio/directsound/SDL_directsound.c" />
             <file name="${SRC_DIR}/libs/sdl/src/audio/winmm/SDL_winmm.c" />
-            <file name="${SRC_DIR}/libs/sdl/src/audio/xaudio2/SDL_xaudio2.c" />
+            <file name="${SRC_DIR}/libs/sdl/src/audio/xaudio2/SDL_xaudio2.c"/>
             <file name="${SRC_DIR}/libs/sdl/src/core/windows/SDL_windows.c" />
             <file name="${SRC_DIR}/libs/sdl/src/filesystem/windows/SDL_sysfilesystem.c" />
             <file name="${SRC_DIR}/libs/sdl/src/joystick/windows/SDL_dxjoystick.c" />
             <file name="${SRC_DIR}/libs/sdl/src/joystick/windows/SDL_mmjoystick.c" />
             <file name="${SRC_DIR}/libs/sdl/src/joystick/winrt/SDL_xinputjoystick.c" />
-            <file name="${SRC_DIR}/libs/sdl/src/main/windows/SDL_windows_main.c" />
+            <!-- <file name="${SRC_DIR}/libs/sdl/src/main/windows/SDL_windows_main.c" /> -->
             <file name="${SRC_DIR}/libs/sdl/src/haptic/windows/SDL_syshaptic.c" />
             <file name="${SRC_DIR}/libs/sdl/src/loadso/windows/SDL_sysloadso.c" />
             <file name="${SRC_DIR}/libs/sdl/src/power/windows/SDL_syspower.c" />
@@ -295,6 +295,9 @@
             <file name="${SRC_DIR}/libs/sdl/src/video/windows/SDL_windowsshape.c" />
             <file name="${SRC_DIR}/libs/sdl/src/video/windows/SDL_windowsvideo.c" />
             <file name="${SRC_DIR}/libs/sdl/src/video/windows/SDL_windowswindow.c" />
+            <file name="${SRC_DIR}/libs/sdl/src/render/SDL_d3dmath.c" />
+            <file name="${SRC_DIR}/libs/sdl/src/render/direct3d/SDL_render_d3d.c" />
+            <file name="${SRC_DIR}/libs/sdl/src/render/direct3d11/SDL_render_d3d11.c" />
         </section>
 
         <section if="mac">
