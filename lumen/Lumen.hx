@@ -14,7 +14,7 @@ import lumen.window.Window;
 
 
 class Lumen {
-    
+
     public var time (get,never) : Float;
 
     public var host : App;
@@ -31,20 +31,20 @@ class Lumen {
 
     var was_ready : Bool = false;
     var is_ready : Bool = false;
-    
+
     public function new() {
-        
+
     } //new
 
 //Internal API
 
     @:noCompletion public function init( _host:App, _config : LumenConfig ) {
-        
+
         host = _host;
         host.app = this;
         config = _config;
 
-        lumen_init( on_event );        
+        lumen_init( on_event );
 
     } //init
 
@@ -74,18 +74,27 @@ class Lumen {
 
             //ensure that we are in the correct location for asset loading
 
-        #if lumen_native 
+        #if lumen_native
 
-            Sys.setCwd( lumen_app_path() );
-            
-            lumen_pref_path('lumen','default');
+            #if !mobile
+                _debug('/ lumen / setting up app path', true);
+                Sys.setCwd( lumen_app_path() );
+
+                _debug('/ lumen / setting up pref path', true);
+                lumen_pref_path('lumen','default');
+            #end
 
         #end //lumen_native
+
+        _debug('/ lumen / fetching runtime config', true);
 
             //fetch runtime config before we actually tell them to pre-ready init
         config.runtime_config = host.get_runtime_config();
 
-            //any app pre ready init can be handled in here 
+            //preready init the host etc
+        _debug('/ lumen / pre ready, init host', true);
+
+            //any app pre ready init can be handled in here
         host.on_lumen_init();
 
     } //on_lumen_init
@@ -99,10 +108,10 @@ class Lumen {
 
         _debug('/ lumen / ready, setting up additional systems...');
 
-            //create the sub systems 
+            //create the sub systems
         window = new Windowing( this );
         input = new Input( this );
-        audio = new Audio( this );        
+        audio = new Audio( this );
 
             //disllow re-entry
         was_ready = true;
@@ -122,15 +131,15 @@ class Lumen {
 
             //now if they requested a window, let's open one
         main_window = window.create( config.window_config );
-            
-            //and track the main window only for now 
+
+            //and track the main window only for now
         main_window.window_event_handler = on_main_window_event;
 
             //now ready
         is_ready = true;
-        
+
             //tell the host app we are done
-        host.ready();        
+        host.ready();
 
     } //on_lumen_ready
 
@@ -156,13 +165,13 @@ class Lumen {
     } //on_lumen_update
 
     function on_event( _event:SystemEvent ) {
-            
+
         _event.type = SystemEvents.typed( cast _event.type );
 
-        if( _event.type != SystemEventType.update && 
-            _event.type != SystemEventType.unknown && 
+        if( _event.type != SystemEventType.update &&
+            _event.type != SystemEventType.unknown &&
             _event.type != SystemEventType.window &&
-            _event.type != SystemEventType.input 
+            _event.type != SystemEventType.input
 
         ) {
             trace( "/ lumen / system event : " + _event );
@@ -189,7 +198,7 @@ class Lumen {
             case SystemEventType.window: {
                 window.on_event( _event );
             } //window
-            
+
             case SystemEventType.input: {
                 if(is_ready) {
                     input.on_event( _event );

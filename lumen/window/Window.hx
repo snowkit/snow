@@ -81,17 +81,17 @@ class Window {
             event : {}
         });
 
-        // trace("/ lumen / created window with id: " + id);
-        // trace('/ lumen / updating real window config for $id is ' + _config);
+        trace("/ lumen / created window with id: " + id);
+        trace('/ lumen / updating real window config for $id is ' + _config);
 
     } //on_window_created
 
     @:noCompletion public function on_event( _event:WindowEvent ) {
 
-        // trace("/ lumen / window event " + id + " / " + _event.type + " / " + _event.event );
+        trace("/ lumen / window event " + id + " / " + _event.type + " / " + _event.event );
 
         switch(_event.type) {
-            
+
             case window_moved : {
                 internal_position = true;
                 position = { x:_event.event.data1, y:_event.event.data2 };

@@ -278,14 +278,13 @@ class ByteArray extends Bytes #if !haxe3 , #end implements ArrayAccess<Int> #if 
    }
 
    #if !no_lumen_io
-   static public function readFile(inString:String):ByteArray 
-   {
+   static public function readFile(inString:String):ByteArray {
       return lumen_byte_array_read_file(inString);
    }
    #end
 
-   public function readFloat():Float 
-   {  
+   public function readFloat():Float
+   {
       #if !lumen_html5
 
          if (position + 4 > length)

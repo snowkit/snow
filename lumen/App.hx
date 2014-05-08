@@ -8,17 +8,17 @@ import lumen.input.Input;
 
 class App {
 
-//Access to the lumen API 
+//Access to the lumen API
 
-    public var app : Lumen;    
-    
+    public var app : Lumen;
+
 //Configurable values
 
         //the scale of time
-    public var timescale : Float = 1;  
+    public var timescale : Float = 1;
              //if this is non zero this will be passed in
     public var fixed_delta : Float = 0;
-        //if this is non zero, updates will be forced to this rate 
+        //if this is non zero, updates will be forced to this rate
     public var fixed_rate : Float = 0;
         //the maximum frame time
     public var max_frame_time : Float = 0.25;
@@ -45,7 +45,7 @@ class App {
     public function new() {}
     public function ready() {}
     public function update(dt:Float) {}
-    
+
     public function onkeydown( _event : KeyEvent ) {}
     public function onkeyup( _event : KeyEvent ) {}
     public function ontextinput( _event : TextEvent ) {}
@@ -68,8 +68,8 @@ class App {
 
     public function get_runtime_config() : Dynamic {
 
-        //we want to load the runtime config from a json file by default
-        //:todo: this config name will be settable from project config
+            //we want to load the runtime config from a json file by default
+            //:todo: this config name will be settable from project config
         var config_data = ByteArray.readFile('config.json');
 
             //only care if there is a config
@@ -109,7 +109,7 @@ class App {
             //the start of this frame is now
         cur_frame_start = app.time;
             //delta is time since the last frame start
-        delta_time = (cur_frame_start - last_frame_start);        
+        delta_time = (cur_frame_start - last_frame_start);
             //last frame start is updated to now
         last_frame_start = cur_frame_start;
 
@@ -117,7 +117,7 @@ class App {
         var used_delta = (fixed_delta == 0) ? delta_time : fixed_delta;
             //timescale the delta to the given scale
         used_delta *= timescale;
-        
+
             //update the internal "time" counter
         current_time += used_delta;
             //do the internal systems update
@@ -132,14 +132,14 @@ class App {
 
 } //App
 
-    
+
 
     //For more information see : http://gafferongames.com/game-physics/fix-your-timestep/
     //this stores and calculates a fixed game update loop, and rendering interpolation is required
-    //for smooth updates between frames. 
+    //for smooth updates between frames.
 class AppFixedTimestep extends App {
 
-        //fixed simulation update speed    
+        //fixed simulation update speed
     public var mspf : Float = 0.0167;
         //the overflow of the updates
     public var overflow : Float = 0.0;
@@ -167,7 +167,7 @@ class AppFixedTimestep extends App {
         overflow += delta_time;
 
         while(overflow >= mspf) {
-            
+
             app.do_internal_update(mspf * timescale);
 
             current_time += mspf * timescale;

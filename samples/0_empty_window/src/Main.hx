@@ -72,8 +72,10 @@ class Main extends lumen.AppFixedTimestep {
 
         trace("desktop native resolution of primary display : " + app.window.desktop_get_display_native_mode(0) );
 
-        initializeShaders();
-        createBuffers();
+        trace("OpenGL reports version " + GL.versionString());
+
+        // initializeShaders();
+        // createBuffers();
 
         textures = [];
 
@@ -109,6 +111,10 @@ class Main extends lumen.AppFixedTimestep {
         trace("sound2 : " + sound2.name);
         trace("sound3 : " + sound3.name);
 
+        sound1.play();
+        sound2.play();
+        sound3.play();
+
     } //ready
 
 
@@ -119,11 +125,11 @@ class Main extends lumen.AppFixedTimestep {
     var left : Bool = false;
 
     override function onkeydown( event:KeyEvent ) {
-        
+
         // trace("key down : " + event);
 
             //console scan code should be universally next to 1
-        if(event.keycode == Key.KEY_e) {            
+        if(event.keycode == Key.KEY_e) {
             sound1.play();
         }
 
@@ -140,7 +146,7 @@ class Main extends lumen.AppFixedTimestep {
 
         if(event.scancode == Scan.GRAVE) {
             app.audio.pitch('three', 0.5);
-            sound3.play();            
+            sound3.play();
         }
 
     } //onkeydown
@@ -220,7 +226,7 @@ class Main extends lumen.AppFixedTimestep {
             }
 
             current_texture = textures[tex_index];
-            
+
         }
 
         if(app.input.keyreleased(Key.SPACE)) {
@@ -277,44 +283,49 @@ class Main extends lumen.AppFixedTimestep {
             GL.bindTexture (GL.TEXTURE_2D, null);
 
         return texture;
-        
+
     } //createTexture
-    
+
     function initializeShaders ():Void {
-        
+
         var vertexShaderSource = 
-            
-            "attribute vec3 aVertexPosition;
+
+            "precision mediump float;
+            attribute vec3 aVertexPosition;
             attribute vec2 aTexCoord;
             varying vec2 vTexCoord;
-            
+
             uniform mat4 uModelViewMatrix;
             uniform mat4 uProjectionMatrix;
-            
+
             void main(void) {
                 vTexCoord = aTexCoord;
                 gl_Position = uProjectionMatrix * uModelViewMatrix * vec4 (aVertexPosition, 1.0);
             }";
-        
+
+        trace("DERPDERPDERP");
         var vertexShader = GL.createShader (GL.VERTEX_SHADER);
+        trace("DERPDERPDERP");
+
             GL.shaderSource (vertexShader, vertexShaderSource);
             GL.compileShader (vertexShader);
-        
+
         if (GL.getShaderParameter (vertexShader, GL.COMPILE_STATUS) == 0) {
-            
+
             throw "Error compiling vertex shader";
-            
+
         }
-        
-        var fragmentShaderSource = 
-            
-            "varying vec2 vTexCoord;
+
+        var fragmentShaderSource =
+
+            "precision mediump float;
+            varying vec2 vTexCoord;
             uniform sampler2D uImage0;
-            
+
             void main(void) {
                 gl_FragColor = texture2D (uImage0, vTexCoord);
             }";
-        
+
         var fragmentShader = GL.createShader (GL.FRAGMENT_SHADER);
             GL.shaderSource (fragmentShader, fragmentShaderSource);
             GL.compileShader (fragmentShader);
@@ -381,9 +392,10 @@ class Main extends lumen.AppFixedTimestep {
         
         GL.viewport (0, 0, app.main_window.size.w, app.main_window.size.h);
         
-        GL.clearColor (1.0, 0.5, 0.2, 1.0);
+        GL.clearColor (Math.random(), 0.5, 0.2, 1.0);
         GL.clear (GL.COLOR_BUFFER_BIT);
-        
+            
+            return;
         // var positionX = (app.main_window.size.w - size) / 2;
         // var positionY = (app.main_window.size.h - size) / 2;
         

@@ -2,6 +2,7 @@
 #include "common/ByteArray.h"
 #include "common/QuickVec.h"
 #include "common/Object.h"
+#include "lumen_core.h"
 
 #include "libs/vorbis/vorbisfile.h"
 
@@ -15,7 +16,6 @@ namespace lumen {
         static int ogg_seek_func(void* datasource, ogg_int64_t offset, int whence);
         static int ogg_close_func(void* datasource);
         static long ogg_tell_func(void* datasource);
-
 
         class OGG_file_source : public Object {
 
@@ -95,7 +95,7 @@ namespace lumen {
 
             ogg_source->file_source = fopen(_id, "rb");
             if(!ogg_source->file_source) {
-                printf("%s %s\n", "error opening file:", _id);
+                lumen::log("%s %s\n", "error opening file:", _id);
                 return false;
             }
             
@@ -111,7 +111,7 @@ namespace lumen {
                 delete ogg_source;
                 
                 std::string s = ogg_error_string(result);
-                printf("%s result:%d   code:%s \n", "ogg file failed to open!?", result, s.c_str());
+                lumen::log("%s result:%d   code:%s \n", "ogg file failed to open!?", result, s.c_str());
                 
                 return false;
 
@@ -122,19 +122,19 @@ namespace lumen {
 
             ogg_int64_t total_length = ov_pcm_total( ogg_source->ogg_file, -1 ) * ogg_source->info->channels * (2);
 
-                // printf("version         %d \n",     ogg_source->info->version);
-                // printf("channels        %d \n",     ogg_source->info->channels);
-                // printf("rate (hz)       %lu \n",    ogg_source->info->rate);
-                // printf("bitrate         %lu \n",    ogg_source->info->bitrate_nominal);
-                // printf("bitrate upper   %lu \n",    ogg_source->info->bitrate_upper);
-                // printf("bitrate lower   %lu \n",    ogg_source->info->bitrate_lower);
-                // printf("bitrate window  %lu \n",    ogg_source->info->bitrate_window);
-                // printf("vendor          %s \n",     ogg_source->comments->vendor);
-                // printf("length          %lld \n",   (long long)ogg_source->length);
-                // printf("uncompressed    %lld \n",   (long long)total_length);
+                // lumen::log("version         %d \n",     ogg_source->info->version);
+                // lumen::log("channels        %d \n",     ogg_source->info->channels);
+                // lumen::log("rate (hz)       %lu \n",    ogg_source->info->rate);
+                // lumen::log("bitrate         %lu \n",    ogg_source->info->bitrate_nominal);
+                // lumen::log("bitrate upper   %lu \n",    ogg_source->info->bitrate_upper);
+                // lumen::log("bitrate lower   %lu \n",    ogg_source->info->bitrate_lower);
+                // lumen::log("bitrate window  %lu \n",    ogg_source->info->bitrate_window);
+                // lumen::log("vendor          %s \n",     ogg_source->comments->vendor);
+                // lumen::log("length          %lld \n",   (long long)ogg_source->length);
+                // lumen::log("uncompressed    %lld \n",   (long long)total_length);
                 
             // for(int i = 0; i < ogg_source->comments->comments; i++) {
-            //     printf("\t%s\n",  ogg_source->comments->user_comments[i]);
+            //     lumen::log("\t%s\n",  ogg_source->comments->user_comments[i]);
             // }
 
             *rate               = ogg_source->info->rate;
@@ -176,7 +176,7 @@ namespace lumen {
 
             OGG_file_source *source = (OGG_file_source*)datasource;
 
-            // printf("\t read  : %s, filelen:%lld amount:%lu\n", source->source_name.c_str(),source->length, size * nmemb);
+            // lumen::log("\t read  : %s, filelen:%lld amount:%lu\n", source->source_name.c_str(),source->length, size * nmemb);
 
             return fread(ptr, size, nmemb, source->file_source);;
 
@@ -186,7 +186,7 @@ namespace lumen {
 
             OGG_file_source *source = (OGG_file_source*)datasource;
 
-            // printf("\t seek  : %s, offset:%lld whence:%d \n", source->source_name.c_str(), offset, whence);
+            // lumen::log("\t seek  : %s, offset:%lld whence:%d \n", source->source_name.c_str(), offset, whence);
 
             long pos = 0;
            
@@ -272,7 +272,7 @@ namespace lumen {
             // #endif
             
             if (!f) {
-                printf("%s : %s\n", _id, "failed to open sound file, does this file exist?\n");
+                lumen::log("%s : %s\n", _id, "failed to open sound file, does this file exist?\n");
                 return false;
             }
             
@@ -292,7 +292,7 @@ namespace lumen {
                 riff_header.format[2]   != 'V'  ||
                 riff_header.format[3]   != 'E'  )
             ) {
-                printf("%s : %s\n", _id, "Invalid RIFF or WAVE header");
+                lumen::log("%s : %s\n", _id, "Invalid RIFF or WAVE header");
                 return false;
             }
             
@@ -308,7 +308,7 @@ namespace lumen {
                 result = fread(&wave_format, sizeof(WAVE_Format), 1, f);
                 
                 if (result != 1) {
-                    printf("%s : %s\n", _id, "Invalid WAV format!");
+                    lumen::log("%s : %s\n", _id, "Invalid WAV format!");
                     return false;
                 }
                 
@@ -339,7 +339,7 @@ namespace lumen {
                 result = fread(&wave_data, sizeof(WAVE_Data), 1, f);
                 
                 if (result != 1) {
-                    printf("%s : %s\n", _id, "Invalid WAV data header");
+                    lumen::log("%s : %s\n", _id, "Invalid WAV data header");
                     return false;
                 }
                 
@@ -362,7 +362,7 @@ namespace lumen {
             
                 // Read in the sound data into the soundData variable
             if (!fread(data, wave_data.subChunkSize, 1, f)) {
-                printf("%s : %s\n", _id, "Error loading WAV data into struct");
+                lumen::log("%s : %s\n", _id, "Error loading WAV data into struct");
                 return false;
             }   
             

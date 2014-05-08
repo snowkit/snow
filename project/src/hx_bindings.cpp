@@ -64,7 +64,7 @@ extern double timestamp();
         lumen_core_init();
 
         return alloc_null();
-    
+
     } DEFINE_PRIM(lumen_init, 1);
 
 
@@ -74,7 +74,7 @@ extern double timestamp();
         lumen_core_shutdown();
 
         return alloc_null();
-    
+
     } DEFINE_PRIM(lumen_shutdown, 0);
 
 
@@ -97,7 +97,7 @@ extern double timestamp();
     value lumen_app_path() {
 
         return alloc_string( core_app_path() );
-    
+
     } DEFINE_PRIM(lumen_app_path, 0);
 
 
@@ -145,7 +145,7 @@ extern const char*  desktop_get_display_name(int display);
         return alloc_int(desktop_get_display_count());
 
     } DEFINE_PRIM(lumen_desktop_get_display_count, 0);
-    
+
 
     value lumen_desktop_get_display_mode_count(value _display) {
 
@@ -453,8 +453,8 @@ extern void window_show_cursor(bool enable);
 
 
 
-extern bool audio_load_ogg_bytes( QuickVec<unsigned char> &out_buffer, const char* _id, 
-                int* channels, long* rate, long* bitrate_upper, long* bitrate, 
+extern bool audio_load_ogg_bytes( QuickVec<unsigned char> &out_buffer, const char* _id,
+                int* channels, long* rate, long* bitrate_upper, long* bitrate,
                 long* bitrate_lower, long* bitrate_window,  int *bits_per_sample );
 
 extern bool audio_load_wav_bytes( QuickVec<unsigned char> &out_buffer, const char *_id,  int *channels, int* rate, int *bitrate, int *bits_per_sample);
@@ -462,8 +462,8 @@ extern bool audio_load_wav_bytes( QuickVec<unsigned char> &out_buffer, const cha
     value lumen_audio_load_ogg_bytes( value _id ) {
 
         QuickVec<unsigned char> buffer;
-        int ch; 
-        long rate;        
+        int ch;
+        long rate;
         long bitrate;
         int bits_per_sample;
 
@@ -493,13 +493,13 @@ extern bool audio_load_wav_bytes( QuickVec<unsigned char> &out_buffer, const cha
     value lumen_audio_load_wav_bytes( value _id ) {
 
         QuickVec<unsigned char> buffer;
-        int ch; 
+        int ch;
         int rate;
         int bitrate;
         int bits_per_sample;
 
         bool success = audio_load_wav_bytes( buffer, val_string(_id), &ch, &rate, &bitrate, &bits_per_sample );
-        
+
         if(!success) {
             return alloc_null();
         } //!success
@@ -624,7 +624,7 @@ extern void image_load_bytes( QuickVec<unsigned char> &out_buffer, const char* _
     value lumen_byte_array_read_file(value inFilename) {
 
         ByteArray result = ByteArray::FromFile(val_os_string(inFilename));
-       
+
         return result.mValue;
 
     } DEFINE_PRIM(lumen_byte_array_read_file,1);
@@ -633,7 +633,7 @@ extern void image_load_bytes( QuickVec<unsigned char> &out_buffer, const char* _
     value lumen_byte_array_get_native_pointer(value inByteArray) {
 
         ByteArray bytes (inByteArray);
-        
+
         if (!val_is_null (bytes.mValue)) {
             return alloc_int((intptr_t)bytes.Bytes ());
         }
@@ -661,7 +661,7 @@ extern void image_load_bytes( QuickVec<unsigned char> &out_buffer, const char* _
 
     int id_window;
     int id_window_id;
-    int id_timestamp;    
+    int id_timestamp;
     int id_data1;
     int id_data2;
 
@@ -727,7 +727,7 @@ extern void image_load_bytes( QuickVec<unsigned char> &out_buffer, const char* _
                 lumen_opengl_sdl2_register_prims();
                 lumen_audio_openal_register_prims();
             #endif
-       
+
         return 0;
 
     } //lumen_register_prims

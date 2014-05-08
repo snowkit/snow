@@ -465,17 +465,17 @@ namespace lumen {
 
         int err = SDL_InitSubSystem(SDL_INIT_GAMECONTROLLER);
         if (err == -1) {
-            fprintf(stderr,"/ lumen / Could not initialize controller for SDL : %s\n", SDL_GetError());
+            lumen::log("/ lumen / Could not initialize controller for SDL : %s\n", SDL_GetError());
         }
 
         err = SDL_InitSubSystem(SDL_INIT_JOYSTICK);
         if (err == -1) {
-            fprintf(stderr,"/ lumen / Could not initialize joystick for SDL : %s\n", SDL_GetError());
+            lumen::log("/ lumen / Could not initialize joystick for SDL : %s\n", SDL_GetError());
         }
 
         err = SDL_InitSubSystem(SDL_INIT_HAPTIC);
         if (err == -1) {
-            fprintf(stderr,"/ lumen / warning only / Could not initialize haptic feedback for SDL. This is not critical. : %s\n", SDL_GetError());
+            lumen::log("/ lumen / warning only / Could not initialize haptic feedback for SDL. This is not critical. : %s\n", SDL_GetError());
         }
 
     } //init_input_sdl

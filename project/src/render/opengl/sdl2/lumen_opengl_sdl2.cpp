@@ -11,12 +11,12 @@
 
 #include "hx_bindings.h"
 #include "common/ByteArray.h"
+#include "lumen_core.h"
 
   //glew first, before any gl.h (important)
 #include "libs/glew/GL/glew.h"
-#include "libs/sdl/SDL.h"
-#include "libs/sdl/SDL_opengl.h"
-
+#include "render/opengl/lumen_opengl.h"
+#include <string>
 
 namespace lumen {
 
@@ -54,7 +54,12 @@ namespace lumen {
 
     value lumen_gl_version() {
 
-        return alloc_int( 2 ); //:todo:
+        std::string glslver((const char*)glGetString(GL_SHADING_LANGUAGE_VERSION));
+        std::string glver((const char*)glGetString(GL_VERSION));
+        std::string glren((const char*)glGetString(GL_RENDERER));
+        std::string glven((const char*)glGetString(GL_VENDOR));
+        std::string res = glver + " / " + glslver + " (" + glren + " / " + glven + ")";
+        return alloc_string(res.c_str()); //:todo:
 
     } DEFINE_PRIM(lumen_gl_version,0);
 
@@ -107,7 +112,7 @@ namespace lumen {
            alloc_field(result,val_id("depth"),alloc_bool(true));
            alloc_field(result,val_id("stencil"),alloc_bool(true));
            alloc_field(result,val_id("antialias"),alloc_bool(true));
-       
+
         return result;
 
     } DEFINE_PRIM(lumen_gl_get_context_attributes,0);
@@ -1019,16 +1024,20 @@ namespace lumen {
 
 
     value lumen_gl_create_shader(value inType) {
-        
-        return alloc_int(glCreateShader(val_int(inType)));
+
+        int type = val_int(inType);
+        lumen::log("shader type %d", type);
+        int res = glCreateShader(type);
+        lumen::log("shader res %d", res);
+        return alloc_int(res);
 
     } DEFINE_PRIM(lumen_gl_create_shader,1);
 
 
     value lumen_gl_delete_shader(value inId) {
-        
+
         int id = val_int(inId);
-        
+
         glDeleteShader(id);
 
         return alloc_null();
@@ -1037,7 +1046,7 @@ namespace lumen {
 
 
     value lumen_gl_shader_source(value inId,value inSource) {
-       
+
         int id = val_int(inId);
         const char *source = val_string(inSource);
 
@@ -1561,7 +1570,7 @@ namespace lumen {
 
 
     value lumen_gl_depth_range(value inNear, value inFar) {
-       
+
         #ifdef LUMEN_GLES
             glDepthRangef(val_number(inNear), val_number(inFar));
         #else
