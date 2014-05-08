@@ -21,9 +21,8 @@
         <ndll name="regexp" haxelib="hxcpp" if="cpp" unless="static_link"/>
         <ndll name="zlib" haxelib="hxcpp" if="cpp" unless="static_link"/>
 
-        <ndll name="lumen" />
+        <ndll name="lumen"/>
 
-        <ndll name="openal" register="false" if="android" />
         <architecture name="armv7" if="android" />
 
         <ndll name="curl_ssl" register="false" if="ios" />
@@ -33,7 +32,7 @@
         <ndll name="ogg" register="false" if="ios" />
         <ndll name="vorbis" register="false" if="ios" />
 
-        <!-- <dependency name="extension-api" path="dependencies/extension-api" if="android" /> -->
+        <dependency name="extension-api" path="dependencies/extension-api" if="android" />
 
         <include haxelib="lime-tools" />
 

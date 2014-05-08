@@ -35,14 +35,14 @@ namespace lumen {
          extern "C" FILE *OpenRead(const char *inName);
          extern "C" bool GetBundleFilename(const char *inName, char *outBuffer,int inBufSize);
          extern "C" FILE *OpenOverwrite(const char *inName);
-         
+
          namespace lumen {
 
       #endif
-         
+
          #define OpenRead(x) fopen(x,"rb")
          #define OpenOverwrite(x) fopen(x,"wb") // [ddc]
-      
+
    #endif
 
    // If you put this structure on the stack, then you do not have to worry about GC.
@@ -65,7 +65,7 @@ namespace lumen {
       struct _value *mValue;
 
       static ByteArray FromFile(const OSChar *inFilename);
-      
+
       #ifdef HX_WINDOWS
          static ByteArray FromFile(const char *inFilename);
       #endif
@@ -73,6 +73,7 @@ namespace lumen {
    }; //ByteArray
 
    #ifdef ANDROID
+
       ByteArray AndroidGetAssetBytes(const char *);
 
       struct FileInfo
@@ -83,6 +84,7 @@ namespace lumen {
       };
 
       FileInfo AndroidGetAssetFD(const char *);
+
    #endif //ANDROID
 
 } //namespace lumen

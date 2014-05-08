@@ -5,8 +5,17 @@
 
 #include "libs/sdl/SDL.h"
 
+#include <stdarg.h>
+
 namespace lumen {
 
+    void log(const char *fmt, ...) {
+        va_list ap;
+
+        va_start(ap, fmt);
+        SDL_LogMessageV(SDL_LOG_CATEGORY_APPLICATION, SDL_LOG_PRIORITY_ERROR, fmt, ap);
+        va_end(ap);
+    }
 
         //forward
     int init_core_sdl();
@@ -30,7 +39,7 @@ namespace lumen {
     const char* base_path = "./";
     const char* pref_path = NULL;
 
-        //general handler for lumen auxiliary 
+        //general handler for lumen auxiliary
         //stuff, like SDL core systems
     int init_core_aux() {
 
@@ -38,14 +47,18 @@ namespace lumen {
         if (_base_path) {
             base_path = SDL_strdup(_base_path);
             SDL_free( _base_path );
-        }        
+        }
 
-        init_core_sdl();
+        int res = init_core_sdl();
+
+        if(res != 0) {
+            return res;
+        }
+
         init_input_sdl();
 
         return 0;
-
-    }    
+    }
 
     int shutdown_core_aux() {
 
@@ -56,20 +69,20 @@ namespace lumen {
     } //shutdown_core_aux
 
     const char* core_app_path() {
-        
+
         return base_path;
 
     } //core_app_path
 
-    const char* core_pref_path( const char* org, const char* app ) {        
+    const char* core_pref_path( const char* org, const char* app ) {
 
         if(pref_path == NULL) {
 
             char *_pref_path = SDL_GetPrefPath(org, app);
-            if (_pref_path) {                
+            if (_pref_path) {
                 pref_path = SDL_strdup(_pref_path);
                 SDL_free(_pref_path);
-            }            
+            }
 
         } //pref_path
 
@@ -101,16 +114,22 @@ namespace lumen {
 //Helpers
 
     int init_core_sdl() {
-        
+
         if(core_sdl_inited) {
             return 0;
         }
 
         core_sdl_inited = true;
 
-        return SDL_Init(SDL_INIT_TIMER);
+        int res = SDL_Init(SDL_INIT_TIMER);
 
-    } //init_core_sdl   
+        if(res != 0) {
+            lumen::log("/ lumen / failed to initialize SDL at all : %d %s", res, SDL_GetError());
+        }
+
+        return res;
+
+    } //init_core_sdl
 
     int shutdown_core_sdl() {
 
@@ -161,6 +180,5 @@ namespace lumen {
 
     } //handle_system_event
 
-    
 
 } //namespace lumen

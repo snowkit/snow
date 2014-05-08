@@ -9,6 +9,7 @@
 #endif
 
 #include "hx_bindings.h"
+#include "lumen_core.h"
 #include "common/Object.h"
 #include "common/ByteArray.h"
 
@@ -922,7 +923,7 @@ namespace lumen {
             ALCcontext *_al_context = alcCreateContext( device->al_device, attrlist );
 
             if(!_al_context) {
-                printf("/ lumen / failed to create AL context\n");
+                lumen::log("/ lumen / failed to create AL context\n");
                 return alloc_null();
             }
 
@@ -1026,7 +1027,7 @@ namespace lumen {
         ALCdevice* _al_device = alcOpenDevice( _devicename == val_null ? 0 : val_string(_devicename) );
 
         if(!_al_device) {
-            printf("/ lumen / failed to create AL device. \n");
+            lumen::log("/ lumen / failed to create AL device. \n");
             return alloc_null();
         }
 

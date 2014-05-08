@@ -6,6 +6,7 @@
 
         <compilerflag value="-I${INC_DIR}"/>
         <compilerflag value="-DGLEW_STATIC"/>
+        <compilerflag value="-DGLEW_NO_GLU" if="android"/>
 
         <file name="${SRC_DIR}/libs/glew/glew.c" />
 
@@ -140,7 +141,7 @@
         <file name="${SRC_DIR}/libs/openal/Alc/hrtf.c"/>
         <file name="${SRC_DIR}/libs/openal/Alc/mixer.c"/>
         <file name="${SRC_DIR}/libs/openal/Alc/mixer_c.c"/>
-        <file name="${SRC_DIR}/libs/openal/Alc/mixer_sse.c"/>
+        <file name="${SRC_DIR}/libs/openal/Alc/mixer_sse.c" unless="android"/>
 
         <file name="${SRC_DIR}/libs/openal/Alc/backends/loopback.c"/>
         <file name="${SRC_DIR}/libs/openal/Alc/backends/wave.c" />

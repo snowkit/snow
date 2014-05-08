@@ -7,10 +7,10 @@
         <compilerflag value="-DHAVE_LIBC" />
         <compilerflag value="-I${SRC_DIR}/libs/sdl/include/"/>
         <compilerflag value="-I${SRC_DIR}/libs/sdl/src/"/>
+        <compilerflag value="-DGL_GLEXT_PROTOTYPES" if="android"/>
 
         <section if="linux">
 
-            <!-- <compilerflag value="-I../../../include/xcompile" /> -->
             <compilerflag value="-I${INC_DIR}/libs/support/linux/" />
 
             <file name="${SRC_DIR}/libs/sdl/src/joystick/linux/SDL_sysjoystick.c" />
@@ -111,6 +111,27 @@
 
         </section>
 
+        <section if="android">
+            <file name="${SRC_DIR}/libs/sdl/src/audio/android/SDL_androidaudio.c"/>
+            <file name="${SRC_DIR}/libs/sdl/src/haptic/dummy/SDL_syshaptic.c"/>
+            <file name="${SRC_DIR}/libs/sdl/src/core/android/SDL_android.c"/>
+            <file name="${SRC_DIR}/libs/sdl/src/joystick/android/SDL_sysjoystick.c"/>
+            <file name="${SRC_DIR}/libs/sdl/src/power/android/SDL_syspower.c"/>
+            <file name="${SRC_DIR}/libs/sdl/src/video/android/SDL_androidclipboard.c"/>
+            <file name="${SRC_DIR}/libs/sdl/src/video/android/SDL_androidevents.c"/>
+            <file name="${SRC_DIR}/libs/sdl/src/video/android/SDL_androidgl.c"/>
+            <file name="${SRC_DIR}/libs/sdl/src/video/android/SDL_androidkeyboard.c"/>
+            <file name="${SRC_DIR}/libs/sdl/src/video/android/SDL_androidtouch.c"/>
+            <file name="${SRC_DIR}/libs/sdl/src/video/android/SDL_androidvideo.c"/>
+            <file name="${SRC_DIR}/libs/sdl/src/video/android/SDL_androidwindow.c"/>
+            <file name="${SRC_DIR}/libs/sdl/src/video/SDL_egl.c"/>
+            <file name="${SRC_DIR}/libs/sdl/src/render/opengles/SDL_render_gles.c"/>
+            <file name="${SRC_DIR}/libs/sdl/src/render/opengles2/SDL_render_gles2.c"/>
+            <file name="${SRC_DIR}/libs/sdl/src/render/opengles2/SDL_shaders_gles2.c"/>
+            <file name="${SRC_DIR}/libs/sdl/src/filesystem/dummy/SDL_sysfilesystem.c"/>
+            <file name="${SRC_DIR}/libs/sdl/src/main/android/SDL_android_main.c"/>
+        </section>
+
         <file name="${SRC_DIR}/libs/sdl/src/libm/e_atan2.c"/>
         <file name="${SRC_DIR}/libs/sdl/src/libm/e_log.c"/>
         <file name="${SRC_DIR}/libs/sdl/src/libm/e_pow.c"/>
@@ -197,6 +218,7 @@
         <file name="${SRC_DIR}/libs/sdl/src/render/SDL_yuv_sw.c"/>
         <file name="${SRC_DIR}/libs/sdl/src/joystick/SDL_gamecontroller.c" />
         <file name="${SRC_DIR}/libs/sdl/src/joystick/SDL_joystick.c" />
+        <file name="${SRC_DIR}/libs/sdl/src/dynapi/SDL_dynapi.c" />
 
     </files>
 

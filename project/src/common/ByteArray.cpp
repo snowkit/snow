@@ -63,7 +63,7 @@ namespace lumen {
         }
 
         buffer buf = val_to_buffer(bytes);
-        
+
         if (buf==0) {
             val_throw(alloc_string("Bad ByteArray"));
         }
@@ -82,13 +82,13 @@ namespace lumen {
         }
 
         buffer buf = val_to_buffer(bytes);
-        
+
         if (buf == 0) {
             val_throw(alloc_string("Bad ByteArray"));
         }
 
         return (unsigned char *)buffer_data(buf);
-        
+
     }
 
     // --------------------

@@ -428,6 +428,10 @@ class GL {
 
     public static var version(get_version, null):Int;
 
+    public static function versionString():String {
+        return lumen_gl_version();
+    }
+
     public static function activeTexture(texture:Int):Void
     {
         lumen_gl_active_texture(texture);
@@ -1145,7 +1149,7 @@ class GL {
 
     
     
-    static function get_version():Int { return lumen_gl_version(); }
+    static function get_version():Int { return 2; }
     
     
     
