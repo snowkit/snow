@@ -8,7 +8,7 @@ class ApplicationMain {
     public static var _host : ::APP_MAIN::;
     public static var _lumen : Lumen;
 
-    public static function main () {        
+    public static function main () {
 
             //Create the runtime
         _lumen = new Lumen();
@@ -26,7 +26,7 @@ class ApplicationMain {
             // _params.x = 0x2FFF0000;
             // _params.y = 0x2FFF0000;
 
-            //Create the window config 
+            //Create the window config
         var _window_config = {
 
             fullscreen      : ::WIN_FULLSCREEN::,
@@ -57,10 +57,9 @@ class ApplicationMain {
 
         };
 
-
             //Start up
         _lumen.init( _host, _config );
 
     } //main
-    
+
 } //ApplicationMain

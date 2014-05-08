@@ -9,6 +9,7 @@
 
 		<!-- / temp / add this to use for fixed window pos, (currently main display only) parameters="{ x:100, y:100 }" -->
 	<window  width="320" height="200" orientation="landscape" fps="60" vsync="true" resizable="true" />
+	<window fullscreen="true" borderless="true" if="mobile"/>
 
 	<assets path="assets" rename="assets" exclude="*.svg" />
 	<assets path="config.json" />

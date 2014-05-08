@@ -4,7 +4,7 @@
 //glew first, before any gl.h (important)
 #include "libs/glew/GL/glew.h"
 #include "libs/sdl/SDL.h"
-#include "libs/sdl/SDL_opengl.h"
+#include "render/opengl/lumen_opengl.h"
 
 #include <cstdlib>
 
@@ -106,7 +106,7 @@ namespace lumen {
 
         int err = init_window_sdl();
         if (err == -1) {
-            fprintf(stderr,"/ lumen / Could not initialize Video for SDL : %s\n", SDL_GetError());
+            lumen::log("/ lumen / Could not initialize Video for SDL : %s\n", SDL_GetError());
             on_created();
             return;
         }
@@ -143,6 +143,13 @@ namespace lumen {
             SDL_GL_SetAttribute(SDL_GL_MULTISAMPLESAMPLES, _config.antialiasing );
         }
 
+        #ifdef ANDROID
+            SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION,2);
+            SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION,0);
+        #endif
+
+        lumen::log( "/ lumen / pre window create : %s\n", SDL_GetError());
+
             //now actually try and create a window
         window = SDL_CreateWindow( _config.title.c_str(), _config.x, _config.y, _config.width, _config.height, request_flags );
 
@@ -150,10 +157,12 @@ namespace lumen {
         // real_flags = SDL_GetWindowFlags( window );
 
         if( !window ) {
-            fprintf(stderr, "/ lumen / Failed to create SDL window: %s\n", SDL_GetError());
+            lumen::log( "/ lumen / Failed to create SDL window: %s\n", SDL_GetError());
             on_created();
             return;
-        } //!window
+        } else {//!window
+            lumen::log( "/ lumen / window created : %s\n", SDL_GetError());
+        }
 
         SDL_GetWindowPosition( window, &config.x, &config.y );
         SDL_GetWindowSize( window, &config.width, &config.height );
@@ -164,15 +173,17 @@ namespace lumen {
             //now try creating the GL context
         if(!lumen_gl_context) {
 
+            lumen::log("/ lumen / Creating a GL context");
             lumen_gl_context = SDL_GL_CreateContext(window);
 
             int err = glewInit();
             if(err != 0) {
-                fprintf(stderr, "/ lumen / Failed to init glew?! %s\n", glewGetErrorString(err));
+                lumen::log("/ lumen / Failed to init glew?! %s\n", glewGetErrorString(err));
                 on_created();
                 return;
+            } else {
+                lumen::log("/ lumen / GLEW init ok");
             }
-
         }
 
         int res = 0;
@@ -184,10 +195,12 @@ namespace lumen {
         }
 
         if( !lumen_gl_context ) {
-            fprintf(stderr, "/ lumen / Failed to create GL context for window %d : %s\n", id, SDL_GetError() );
+            lumen::log("/ lumen / Failed to create GL context for window %d : %s\n", id, SDL_GetError() );
             on_created();
             return;
-        } //!window
+        } else { //!window
+            lumen::log("/ lumen / success in creating GL context for window %d : \n", id);
+        }
 
         on_created();
 
@@ -199,7 +212,7 @@ namespace lumen {
 
         SDL_GL_MakeCurrent(window, lumen_gl_context);
 
-        glClearColor( r, 0.4f, 0.1f, 1.0f );
+        glClearColor( 1.0f, 0.4f, 0.1f, 1.0f );
         glClear( GL_COLOR_BUFFER_BIT );
 
     }

@@ -440,6 +440,10 @@ class GL {
 	public static var lumenContext:RenderingContext;
 	
 	
+    public static function versionString():String {
+        return "webGL"; //:todo:
+    }
+
 	
 	public static function activeTexture(texture:Int):Void {
 		

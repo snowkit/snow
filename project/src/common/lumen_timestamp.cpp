@@ -9,12 +9,12 @@
 
     #include <sys/time.h>
     #include <stdint.h>
-    
+
     #ifdef HX_LINUX
         #include<unistd.h>
         #include<stdio.h>
     #endif
-    
+
     #ifndef EMSCRIPTEN
         typedef uint64_t __int64;
     #endif
@@ -22,7 +22,7 @@
 #endif
 
 #ifdef HX_MACOS
-    #include <mach/mach_time.h>  
+    #include <mach/mach_time.h>
     #include <mach-o/dyld.h>
     #include <CoreServices/CoreServices.h>
 #endif
@@ -30,7 +30,10 @@
 #ifdef IPHONE
     #include <QuartzCore/QuartzCore.h>
 #endif
-    
+
+#ifdef ANDROID
+    #include <time.h>
+#endif
 
 namespace lumen {
 
@@ -47,12 +50,12 @@ namespace lumen {
             if( QueryPerformanceCounter((LARGE_INTEGER*)&now) ) {
 
                 if(t0 == 0) {
-                    
+
                     t0 = now;
-                    
+
                     __int64 freq;
                     QueryPerformanceFrequency((LARGE_INTEGER*)&freq);
-                    
+
                     if(freq != 0) {
                         period = 1.0/freq;
                     }

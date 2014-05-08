@@ -31,7 +31,7 @@
    <set name="PRELIB" value="lib/${BINDIR}/${LIBPREFIX}" />
    <set name="POSTLIB" value="${LIBEXTRA}${SLIBEXT}" />
    <set name="LIBNAME" value="lumen" />
-   <set name="DEBUGEXTRA" value="-debug" if="debug" />
+   <set name="DEBUGEXTRA" value="-debug" if="fulldebug" />
 
       <!-- Require Android 2.3+ -->
    <set name="PLATFORM" value="android-10" if="android" />
@@ -69,7 +69,10 @@
       <compilerflag value="-DHX_LUMEN"  />
 
       <compilerflag value="-DGLEW_STATIC"/>
+      <compilerflag value="-DGLEW_NO_GLU" if="android"/>
+      <compilerflag value="-DGL_GLEXT_PROTOTYPES" if="android"/>
       <compilerflag value="-D_7ZIP_ST" unless="windows"/>
+      <compilerflag value="-DLUMEN_GLES" if="android"/>
 
    <!-- Common sources -->
 
@@ -225,8 +228,11 @@
 
          <section if="android">
             <lib name="-ldl" />
+            <lib name="-llog" />
             <lib name="-landroid" />
             <lib name="-lGLESv2" />
+            <lib name="-lGLESv1_CM" />
+            <lib name="-lOpenSLES" />
 
             <!-- <lib name="-L../ndll/Android" if="LUMEN_OPsNAL"/> -->
             <!-- <lib name="-lopenal" if="LUMEN_OPENAL"/> -->
