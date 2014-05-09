@@ -111,10 +111,6 @@ class Main extends lumen.AppFixedTimestep {
         trace("sound2 : " + sound2.name);
         trace("sound3 : " + sound3.name);
 
-        sound1.play();
-        sound2.play();
-        sound3.play();
-
     } //ready
 
 
