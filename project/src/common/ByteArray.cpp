@@ -93,6 +93,18 @@ namespace lumen {
 
     // --------------------
 
+    int ByteArray::ToFile(const OSChar *inFilename, const ByteArray array) {
+
+        lumen_iosrc* file = lumen::iosrc_fromfile(inFilename, "wb");
+
+        int res = lumen::iowrite( file, array.Bytes() , 1, array.Size() );
+
+        lumen::ioclose(file);
+
+        return res;
+
+    } //ToFile
+
     ByteArray ByteArray::FromFile(const OSChar *inFilename) {
 
         lumen_iosrc* file = lumen::iosrc_fromfile(inFilename, "rb");
