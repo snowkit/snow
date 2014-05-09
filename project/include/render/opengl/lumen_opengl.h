@@ -8,7 +8,7 @@
 
 
 		//Then the appropriate headers.
-	#ifdef ANDROID
+	#ifdef LUMEN_GLES
 		#include "libs/sdl/SDL_opengles2.h"
 	#else
 		#include "libs/sdl/SDL_opengl.h"

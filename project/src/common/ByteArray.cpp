@@ -2,7 +2,11 @@
 #include <hx/CFFI.h>
 
 #include "common/ByteArray.h"
+
+#include "lumen_core.h"
 #include "lumen_io.h"
+
+#include <string>
 
 namespace lumen {
 
@@ -97,6 +101,12 @@ namespace lumen {
 
         lumen_iosrc* file = lumen::iosrc_fromfile(inFilename, "wb");
 
+        if(!file) {
+            lumen::log("/ lumen / ByteArray::ToFile cannot open file for writing %s", inFilename );
+                //0 means nothing was written
+            return 0;
+        }
+
         int res = lumen::iowrite( file, array.Bytes() , 1, array.Size() );
 
         lumen::ioclose(file);
@@ -108,6 +118,11 @@ namespace lumen {
     ByteArray ByteArray::FromFile(const OSChar *inFilename) {
 
         lumen_iosrc* file = lumen::iosrc_fromfile(inFilename, "rb");
+
+        if(!file) {
+            lumen::log("/ lumen / ByteArray::FromFile cannot open file for reading %s", inFilename );
+            return ByteArray();
+        }
 
             //determine the length
         lumen::ioseek(file, 0, lumen_seek_end);

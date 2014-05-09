@@ -129,6 +129,13 @@ namespace lumen {
 
     } //lumen_core_shutdown
 
+    inline void lumen_core_loop(void*) {
+
+        update_core();
+        dispatch_system_event_type( se_update );
+
+    } //lumen_core_loop
+
         //this will start a main loop and start pumping events
     inline void lumen_core_init() {
 
@@ -141,16 +148,17 @@ namespace lumen {
             //tell haxe side we are ready
         dispatch_system_event_type( se_ready );
 
-            //run the main loop
-        while( !shutdown ) {
+            //run the main loop, if requested (should come from config, but that requires tools)
+        #ifdef LUMEN_CORE_LOOP
 
-            update_core();
+            while( !shutdown ) {
+                lumen_core_loop(NULL);
+            } //!shutdown
 
-            dispatch_system_event_type( se_update );
-
-        } //!shutdown
-
-        shutdown_core();
+            shutdown_core();
+        #else
+            lumen::log("/ lumen / no main loop requested");
+        #endif
 
     } //lumen_core_init
 

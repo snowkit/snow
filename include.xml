@@ -25,13 +25,6 @@
 
         <architecture name="armv7" if="android" />
 
-        <ndll name="curl_ssl" register="false" if="ios" />
-        <ndll name="png" register="false" if="ios" />
-        <ndll name="jpeg" register="false" if="ios" />
-        <ndll name="freetype" register="false" if="ios" />
-        <ndll name="ogg" register="false" if="ios" />
-        <ndll name="vorbis" register="false" if="ios" />
-
         <dependency name="extension-api" path="dependencies/extension-api" if="android" />
 
         <include haxelib="lime-tools" />

@@ -47,11 +47,10 @@ class Main extends lumen.AppFixedTimestep {
 
         trace("app config is loaded as : " + app.config.runtime_config );
 
-        size = app.config.runtime_config.size;
-        speed = app.config.runtime_config.movespeed;
-        texture_time = app.config.runtime_config.texture_time;
-        timescale = app.config.runtime_config.timescale;
-
+        if(app.config.runtime_config.size != null) size = app.config.runtime_config.size;
+        if(app.config.runtime_config.speed != null) speed = app.config.runtime_config.movespeed;
+        if(app.config.runtime_config.texture_time != null) texture_time = app.config.runtime_config.texture_time;
+        if(app.config.runtime_config.timescale != null) timescale = app.config.runtime_config.timescale;
 
         var dcount : Int = app.window.desktop_get_display_count();
         trace('A total of ${dcount} displays were found');
@@ -90,8 +89,12 @@ class Main extends lumen.AppFixedTimestep {
 
         for(f in files) {
             var info : ImageInfo = app.loadimage(f);
-            trace('loaded $f with ${info.width}x${info.height}x${info.bpp} (source bpp:${info.bpp_source}) mem:${info.data.byteLength}');
-            textures.push( createTexture( info ) );
+            if(info != null) {
+                trace('loaded $f with ${info.width}x${info.height}x${info.bpp} (source bpp:${info.bpp_source}) mem:${info.data.byteLength}');
+                textures.push( createTexture( info ) );
+            } else {
+                trace("file was not found : " + f);
+            }
         }
 
         //this is temp testing, just hook into the window render directly
@@ -166,9 +169,7 @@ class Main extends lumen.AppFixedTimestep {
 
 
     override function ontouchdown( event:TouchEvent ) {
-        if(event.touch_id == 1) {
-            sound1.play();
-        }
+        sound1.play();
     }
 
     override function onmousemove( event:MouseEvent ) {
@@ -292,7 +293,7 @@ class Main extends lumen.AppFixedTimestep {
 
         var vertexShaderSource = "";
 
-        #if (mobile || lumen_html5)
+        #if (android || lumen_html5)
             vertexShaderSource += "precision mediump float;";
         #end
 
@@ -316,7 +317,8 @@ class Main extends lumen.AppFixedTimestep {
 
         if (GL.getShaderParameter (vertexShader, GL.COMPILE_STATUS) == 0) {
 
-            throw "Error compiling vertex shader";
+            var shader_log = GL.getShaderInfoLog(vertexShader);
+            throw "Error compiling vertex shader" + shader_log;
 
         }
 
@@ -340,7 +342,8 @@ class Main extends lumen.AppFixedTimestep {
 
         if (GL.getShaderParameter (fragmentShader, GL.COMPILE_STATUS) == 0) {
 
-            throw "Error compiling fragment shader";
+            var shader_log = GL.getShaderInfoLog(fragmentShader);
+            throw "Error compiling fragment shader" + shader_log;
 
         }
 
@@ -415,7 +418,6 @@ class Main extends lumen.AppFixedTimestep {
 
         GL.activeTexture (GL.TEXTURE0);
         GL.bindTexture (GL.TEXTURE_2D, current_texture);
-        GL.enable (GL.TEXTURE_2D);
 
         GL.bindBuffer (GL.ARRAY_BUFFER, vertexBuffer);
         GL.vertexAttribPointer (vertexAttribute, 3, GL.FLOAT, false, 0, 0);
@@ -429,7 +431,6 @@ class Main extends lumen.AppFixedTimestep {
         GL.drawArrays (GL.TRIANGLE_STRIP, 0, 4);
 
         GL.bindBuffer (GL.ARRAY_BUFFER, null);
-        GL.disable (GL.TEXTURE_2D);
         GL.bindTexture (GL.TEXTURE_2D, null);
 
         GL.disableVertexAttribArray (vertexAttribute);

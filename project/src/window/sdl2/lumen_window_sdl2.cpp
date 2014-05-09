@@ -6,6 +6,7 @@
 #include "libs/sdl/SDL.h"
 #include "render/opengl/lumen_opengl.h"
 
+#include "lumen_core.h"
 #include <cstdlib>
 
 namespace lumen {
@@ -138,6 +139,12 @@ namespace lumen {
 
         SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
 
+        #ifdef LUMEN_GLES
+            SDL_GL_SetAttribute(SDL_GL_RETAINED_BACKING, 1);
+            SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 2);
+            SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 0);
+        #endif
+
         if(_config.antialiasing != 0) {
             SDL_GL_SetAttribute(SDL_GL_MULTISAMPLEBUFFERS, true );
             SDL_GL_SetAttribute(SDL_GL_MULTISAMPLESAMPLES, _config.antialiasing );
@@ -188,6 +195,13 @@ namespace lumen {
             res = SDL_GL_SetSwapInterval(0);
         }
 
+            //on iOS we need to intercept the loop
+        #ifdef IPHONE
+            lumen::log("/ lumen / requesting main loop for iOS");
+            SDL_iPhoneSetAnimationCallback(window, 1, lumen_core_loop, NULL);
+        #endif //IPHONE
+
+
         if( !lumen_gl_context ) {
             lumen::log("/ lumen / Failed to create GL context for window %d : %s\n", id, SDL_GetError() );
             on_created();
@@ -205,9 +219,6 @@ namespace lumen {
         if(closed) return;
 
         SDL_GL_MakeCurrent(window, lumen_gl_context);
-
-        glClearColor( 1.0f, 0.4f, 0.1f, 1.0f );
-        glClear( GL_COLOR_BUFFER_BIT );
 
     }
 
