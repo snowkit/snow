@@ -167,7 +167,6 @@ class Main extends lumen.AppFixedTimestep {
 
     override function ontouchdown( event:TouchEvent ) {
         if(event.touch_id == 1) {
-            trace("playing sound!");
             sound1.play();
         }
     }
