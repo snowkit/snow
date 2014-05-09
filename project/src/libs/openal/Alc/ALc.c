@@ -631,9 +631,9 @@ ALint RTPrioLevel;
 
 FILE *LogFile;
 #ifdef _DEBUG
-enum LogLevel LogLevel = LogWarning;
+enum LogLevel LogLevel = LogTrace;
 #else
-enum LogLevel LogLevel = LogError;
+enum LogLevel LogLevel = LogTrace;
 #endif
 
 /* Flag to trap ALC device errors */

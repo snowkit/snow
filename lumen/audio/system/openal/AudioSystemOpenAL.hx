@@ -19,6 +19,8 @@ import lumen.audio.al.AL.Device;
 
         override public function init() {
 
+                trace('/ lumen / audio / init ');
+
             device = ALC.openDevice();
 
                 trace('/ lumen / audio / created device / ${device} / ${ AL.getErrorMeaning(AL.getError()) }');

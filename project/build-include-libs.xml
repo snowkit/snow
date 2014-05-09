@@ -124,66 +124,112 @@
 
     <files id="libs-openal">
 
-        <compilerflag value="-I${INC_DIR}"/>
-        <compilerflag value="-I${INC_DIR}/libs/openal/"/>
-        <compilerflag value="-I${SRC_DIR}/libs/openal/OpenAL32/include/"/>
-        <compilerflag value="-DAL_LIBTYPE_STATIC" />
+        <section unless="android">
 
-        <file name="${SRC_DIR}/libs/openal/OpenAL32/alAuxEffectSlot.c"/>
-        <file name="${SRC_DIR}/libs/openal/OpenAL32/alBuffer.c"/>
-        <file name="${SRC_DIR}/libs/openal/OpenAL32/alEffect.c"/>
-        <file name="${SRC_DIR}/libs/openal/OpenAL32/alError.c"/>
-        <file name="${SRC_DIR}/libs/openal/OpenAL32/alExtension.c"/>
-        <file name="${SRC_DIR}/libs/openal/OpenAL32/alFilter.c"/>
-        <file name="${SRC_DIR}/libs/openal/OpenAL32/alListener.c"/>
-        <file name="${SRC_DIR}/libs/openal/OpenAL32/alSource.c"/>
-        <file name="${SRC_DIR}/libs/openal/OpenAL32/alState.c"/>
-        <file name="${SRC_DIR}/libs/openal/OpenAL32/alThunk.c"/>
-        <file name="${SRC_DIR}/libs/openal/Alc/ALc.c"/>
-        <file name="${SRC_DIR}/libs/openal/Alc/ALu.c"/>
-        <file name="${SRC_DIR}/libs/openal/Alc/alcConfig.c"/>
-        <file name="${SRC_DIR}/libs/openal/Alc/alcDedicated.c"/>
-        <file name="${SRC_DIR}/libs/openal/Alc/alcEcho.c"/>
-        <file name="${SRC_DIR}/libs/openal/Alc/alcModulator.c"/>
-        <file name="${SRC_DIR}/libs/openal/Alc/alcReverb.c"/>
-        <file name="${SRC_DIR}/libs/openal/Alc/alcRing.c"/>
-        <file name="${SRC_DIR}/libs/openal/Alc/alcThread.c"/>
-        <file name="${SRC_DIR}/libs/openal/Alc/bs2b.c"/>
-        <file name="${SRC_DIR}/libs/openal/Alc/helpers.c"/>
-        <file name="${SRC_DIR}/libs/openal/Alc/panning.c"/>
-        <file name="${SRC_DIR}/libs/openal/Alc/hrtf.c"/>
-        <file name="${SRC_DIR}/libs/openal/Alc/mixer.c"/>
-        <file name="${SRC_DIR}/libs/openal/Alc/mixer_c.c"/>
-        <file name="${SRC_DIR}/libs/openal/Alc/mixer_sse.c" unless="android"/>
+            <compilerflag value="-I${INC_DIR}"/>
+            <compilerflag value="-I${INC_DIR}/libs/openal/"/>
+            <compilerflag value="-I${SRC_DIR}/libs/openal/OpenAL32/include/"/>
+            <compilerflag value="-DAL_LIBTYPE_STATIC" />
 
-        <file name="${SRC_DIR}/libs/openal/Alc/backends/loopback.c"/>
-        <file name="${SRC_DIR}/libs/openal/Alc/backends/wave.c" />
-        <file name="${SRC_DIR}/libs/openal/Alc/backends/null.c"/>
+            <file name="${SRC_DIR}/libs/openal/OpenAL32/alAuxEffectSlot.c"/>
+            <file name="${SRC_DIR}/libs/openal/OpenAL32/alBuffer.c"/>
+            <file name="${SRC_DIR}/libs/openal/OpenAL32/alEffect.c"/>
+            <file name="${SRC_DIR}/libs/openal/OpenAL32/alError.c"/>
+            <file name="${SRC_DIR}/libs/openal/OpenAL32/alExtension.c"/>
+            <file name="${SRC_DIR}/libs/openal/OpenAL32/alFilter.c"/>
+            <file name="${SRC_DIR}/libs/openal/OpenAL32/alListener.c"/>
+            <file name="${SRC_DIR}/libs/openal/OpenAL32/alSource.c"/>
+            <file name="${SRC_DIR}/libs/openal/OpenAL32/alState.c"/>
+            <file name="${SRC_DIR}/libs/openal/OpenAL32/alThunk.c"/>
+            <file name="${SRC_DIR}/libs/openal/Alc/ALc.c"/>
+            <file name="${SRC_DIR}/libs/openal/Alc/ALu.c"/>
+            <file name="${SRC_DIR}/libs/openal/Alc/alcConfig.c"/>
+            <file name="${SRC_DIR}/libs/openal/Alc/alcDedicated.c"/>
+            <file name="${SRC_DIR}/libs/openal/Alc/alcEcho.c"/>
+            <file name="${SRC_DIR}/libs/openal/Alc/alcModulator.c"/>
+            <file name="${SRC_DIR}/libs/openal/Alc/alcReverb.c"/>
+            <file name="${SRC_DIR}/libs/openal/Alc/alcRing.c"/>
+            <file name="${SRC_DIR}/libs/openal/Alc/alcThread.c"/>
+            <file name="${SRC_DIR}/libs/openal/Alc/bs2b.c"/>
+            <file name="${SRC_DIR}/libs/openal/Alc/helpers.c"/>
+            <file name="${SRC_DIR}/libs/openal/Alc/panning.c"/>
+            <file name="${SRC_DIR}/libs/openal/Alc/hrtf.c"/>
+            <file name="${SRC_DIR}/libs/openal/Alc/mixer.c"/>
+            <file name="${SRC_DIR}/libs/openal/Alc/mixer_c.c"/>
+            <file name="${SRC_DIR}/libs/openal/Alc/mixer_sse.c"/>
 
-        <section if="linux">
-            <compilerflag value="-I${INC_DIR}/libs/support/linux/" />
-            <compilerflag value="-DLIBTYPE=STATIC" />
-            <compilerflag value="-DREQUIRE_PULSEAUDIO=ON" />
-            <compilerflag value="-DREQUIRE_ALSA=ON" />
-            <compilerflag value="-msse" />
-            <file name="${SRC_DIR}/libs/openal/Alc/backends/pulseaudio.c" />
-            <file name="${SRC_DIR}/libs/openal/Alc/backends/alsa.c" />
-            <file name="${SRC_DIR}/libs/openal/Alc/backends/oss.c" />
-        </section>
+            <file name="${SRC_DIR}/libs/openal/Alc/backends/loopback.c"/>
+            <file name="${SRC_DIR}/libs/openal/Alc/backends/wave.c" />
+            <file name="${SRC_DIR}/libs/openal/Alc/backends/null.c"/>
+
+            <section if="linux">
+                <compilerflag value="-I${INC_DIR}/libs/support/linux/" />
+                <compilerflag value="-DLIBTYPE=STATIC" />
+                <compilerflag value="-DREQUIRE_PULSEAUDIO=ON" />
+                <compilerflag value="-DREQUIRE_ALSA=ON" />
+                <compilerflag value="-msse" />
+                <file name="${SRC_DIR}/libs/openal/Alc/backends/pulseaudio.c" />
+                <file name="${SRC_DIR}/libs/openal/Alc/backends/alsa.c" />
+                <file name="${SRC_DIR}/libs/openal/Alc/backends/oss.c" />
+            </section>
+
+            <section if="mac">
+                <file name="${SRC_DIR}/libs/openal/Alc/backends/coreaudio.c" />
+            </section>
+
+            <section if="windows">
+                <file name="${SRC_DIR}/libs/openal/Alc/backends/winmm.c" />
+                <file name="${SRC_DIR}/libs/openal/Alc/backends/dsound.c" />
+                <file name="${SRC_DIR}/libs/openal/Alc/backends/mmdevapi.c" />
+            </section>
+
+        </section> <!-- unless android -->
 
         <section if="android">
-            <compilerflag value="-DOPENSL=1" />
-            <file name="${SRC_DIR}/libs/openal/Alc/backends/opensl.c" />
-        </section>
+            <compilerflag value="-I${INC_DIR}"/>
+            <compilerflag value="-I${SRC_DIR}/libs/openal/android/"/>
+            <compilerflag value="-I${SRC_DIR}/libs/openal/android/include"/>
+            <compilerflag value="-I${SRC_DIR}/libs/openal/android/OpenAL32/include/"/>
+            <compilerflag value="-DAL_LIBTYPE_STATIC" />
+            <compilerflag value="-DAL_ALEXT_PROTOTYPES" />
 
-        <section if="mac">
-            <file name="${SRC_DIR}/libs/openal/Alc/backends/coreaudio.c" />
-        </section>
+            <file name="${SRC_DIR}/libs/openal/android/Alc/ALc.c"/>
+            <file name="${SRC_DIR}/libs/openal/android/Alc/ALu.c"/>
+            <file name="${SRC_DIR}/libs/openal/android/Alc/alcConfig.c"/>
+            <file name="${SRC_DIR}/libs/openal/android/Alc/alcEcho.c"/>
+            <file name="${SRC_DIR}/libs/openal/android/Alc/alcModulator.c"/>
+            <file name="${SRC_DIR}/libs/openal/android/Alc/alcReverb.c"/>
+            <file name="${SRC_DIR}/libs/openal/android/Alc/alcRing.c"/>
+            <file name="${SRC_DIR}/libs/openal/android/Alc/alcThread.c"/>
+            <file name="${SRC_DIR}/libs/openal/android/Alc/alcandroid.c"/>
+            <file name="${SRC_DIR}/libs/openal/android/Alc/audiotrack.c"/>
+            <file name="${SRC_DIR}/libs/openal/android/Alc/mixer.c"/>
+            <file name="${SRC_DIR}/libs/openal/android/Alc/null.c"/>
+            <file name="${SRC_DIR}/libs/openal/android/Alc/opensles.c"/>
+            <file name="${SRC_DIR}/libs/openal/android/Alc/panning.c"/>
+            <file name="${SRC_DIR}/libs/openal/android/Alc/bs2b.c"/>
+<!--
+            <file name="${SRC_DIR}/libs/openal/android/Alc/alsa.c"/>
+            <file name="${SRC_DIR}/libs/openal/android/Alc/oss.c"/>
+            <file name="${SRC_DIR}/libs/openal/android/Alc/dsound.c"/>
+            <file name="${SRC_DIR}/libs/openal/android/Alc/portaudio.c"/>
+            <file name="${SRC_DIR}/libs/openal/android/Alc/pulseaudio.c"/>
+            <file name="${SRC_DIR}/libs/openal/android/Alc/solaris.c"/>
+            <file name="${SRC_DIR}/libs/openal/android/Alc/wave.c"/>
+            <file name="${SRC_DIR}/libs/openal/android/Alc/winmm.c"/>
+ -->
+            <file name="${SRC_DIR}/libs/openal/android/OpenAL32/alAuxEffectSlot.c"/>
+            <file name="${SRC_DIR}/libs/openal/android/OpenAL32/alBuffer.c"/>
+            <file name="${SRC_DIR}/libs/openal/android/OpenAL32/alDatabuffer.c"/>
+            <file name="${SRC_DIR}/libs/openal/android/OpenAL32/alEffect.c"/>
+            <file name="${SRC_DIR}/libs/openal/android/OpenAL32/alError.c"/>
+            <file name="${SRC_DIR}/libs/openal/android/OpenAL32/alExtension.c"/>
+            <file name="${SRC_DIR}/libs/openal/android/OpenAL32/alFilter.c"/>
+            <file name="${SRC_DIR}/libs/openal/android/OpenAL32/alListener.c"/>
+            <file name="${SRC_DIR}/libs/openal/android/OpenAL32/alSource.c"/>
+            <file name="${SRC_DIR}/libs/openal/android/OpenAL32/alState.c"/>
+            <file name="${SRC_DIR}/libs/openal/android/OpenAL32/alThunk.c"/>
 
-        <section if="windows">
-            <file name="${SRC_DIR}/libs/openal/Alc/backends/winmm.c" />
-            <file name="${SRC_DIR}/libs/openal/Alc/backends/dsound.c" />
-            <file name="${SRC_DIR}/libs/openal/Alc/backends/mmdevapi.c" />
         </section>
 
     </files>
