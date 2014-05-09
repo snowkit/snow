@@ -595,26 +595,8 @@ extern void image_load_bytes( QuickVec<unsigned char> &out_buffer, const char* _
 
 
     value lumen_byte_array_overwrite_file(value inFilename, value inBytes) {
-            // file is created if it doesn't exist,
-            // if it exists, it is truncated to zero
-        FILE *file = OpenOverwrite(val_os_string(inFilename));
-        if (!file) {
 
-            #ifdef ANDROID
-                // [todo]
-            #endif
-
-            return alloc_null();
-       }
-
-        ByteArray array(inBytes);
-
-            // The function fwrite() writes nitems objects, each size bytes long, to the
-            // stream pointed to by stream, obtaining them from the location given by
-            // ptr.  fwrite(const void *restrict ptr, size_t size, size_t nitems, FILE *restrict stream);
-        fwrite( array.Bytes() , 1, array.Size() , file);
-
-        fclose(file);
+        ByteArray::ToFile(val_os_string(inFilename), ByteArray(inBytes));
 
         return alloc_null();
 
@@ -632,7 +614,7 @@ extern void image_load_bytes( QuickVec<unsigned char> &out_buffer, const char* _
 
     value lumen_byte_array_get_native_pointer(value inByteArray) {
 
-        ByteArray bytes (inByteArray);
+        ByteArray bytes(inByteArray);
 
         if (!val_is_null (bytes.mValue)) {
             return alloc_int((intptr_t)bytes.Bytes ());
