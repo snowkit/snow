@@ -11,37 +11,18 @@ namespace lumen {
 
    typedef unsigned char uint8;
 
-   #ifdef HX_WINDOWS
+      //this was //HX_WINDOWS,
+      //but we aren't using _wfopen by
+      //default anymore
+   #if 0
 
-      typedef wchar_t OSChar;
-      #define val_os_string val_wstring
-      #define OpenRead(x) _wfopen(x,L"rb")
-      #define OpenOverwrite(x) _wfopen(x,L"wb") // [ddc]
+         typedef wchar_t OSChar;
+         #define val_os_string val_wstring
 
    #else
 
-      typedef char OSChar;
-      #define val_os_string val_string
-
-      #ifdef IPHONE
-
-         FILE *OpenRead(const char *inName);
-         FILE *OpenOverwrite(const char *inName); // [ddc]
-
-      #elif defined(HX_MACOS)
-
-         } // close namespace lumen
-
-         extern "C" FILE *OpenRead(const char *inName);
-         extern "C" bool GetBundleFilename(const char *inName, char *outBuffer,int inBufSize);
-         extern "C" FILE *OpenOverwrite(const char *inName);
-
-         namespace lumen {
-
-      #endif
-
-         #define OpenRead(x) fopen(x,"rb")
-         #define OpenOverwrite(x) fopen(x,"wb") // [ddc]
+         typedef char OSChar;
+         #define val_os_string val_string
 
    #endif
 
@@ -65,27 +46,9 @@ namespace lumen {
       struct _value *mValue;
 
       static ByteArray FromFile(const OSChar *inFilename);
-
-      #ifdef HX_WINDOWS
-         static ByteArray FromFile(const char *inFilename);
-      #endif
+      static int ToFile(const OSChar *inFilename, const ByteArray array);
 
    }; //ByteArray
-
-   #ifdef ANDROID
-
-      ByteArray AndroidGetAssetBytes(const char *);
-
-      struct FileInfo
-      {
-         int fd;
-         off_t offset;
-         off_t length;
-      };
-
-      FileInfo AndroidGetAssetFD(const char *);
-
-   #endif //ANDROID
 
 } //namespace lumen
 
