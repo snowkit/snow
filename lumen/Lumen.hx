@@ -207,6 +207,9 @@ class Lumen {
 
             case SystemEventType.shutdown: {
                 _debug('/ lumen / Goodbye.');
+                    //:todo: this is temporary, 
+                    //due to sdl repo having newer fixes than 2.0.3 stable
+                #if android Sys.exit(0); #end
             } //shutdown
 
             default: {

@@ -2,7 +2,9 @@
 #include "common/ByteArray.h"
 #include "common/QuickVec.h"
 #include "common/Object.h"
+
 #include "lumen_core.h"
+#include "lumen_io.h"
 
 #include "libs/vorbis/vorbisfile.h"
 
@@ -20,7 +22,7 @@ namespace lumen {
         class OGG_file_source : public Object {
 
             public:
-                FILE*               file_source;
+                lumen_iosrc*        file_source;
                 std::string         source_name;
                 OggVorbis_File*     ogg_file;
                 vorbis_info*        info;
@@ -80,35 +82,26 @@ namespace lumen {
             OGG_file_source* ogg_source = new OGG_file_source();
             ogg_source->source_name = std::string(_id);
 
-            #ifdef ANDROID
-                //this fopen stuff needs to be replaced by a common lumen::
-                //file handler that can avoid the pitfalls of porting spidercode.
-
-                //mInfo = AndroidGetAssetFD(path.c_str());
-                //oggFile = fdopen(mInfo.fd, "rb");
-                //fseek(oggFile, mInfo.offset, 0);
-            #endif
-
             open_callbacks.read_func =  &lumen::ogg_read_func;
             open_callbacks.seek_func =  &lumen::ogg_seek_func;
             open_callbacks.close_func = &lumen::ogg_close_func;
             open_callbacks.tell_func =  &lumen::ogg_tell_func;
 
-            ogg_source->file_source = fopen(_id, "rb");
+            ogg_source->file_source = lumen::iosrc_fromfile(_id, "rb");
             if(!ogg_source->file_source) {
                 lumen::log("%s %s\n", "error opening file:", _id);
                 return false;
             }
 
-            fseek(ogg_source->file_source, 0, SEEK_END);
-            ogg_source->length = ftell(ogg_source->file_source);
-            fseek(ogg_source->file_source, 0, SEEK_SET);
+            lumen::ioseek(ogg_source->file_source, 0, lumen_seek_end);
+            ogg_source->length = lumen::iotell(ogg_source->file_source);
+            lumen::ioseek(ogg_source->file_source, 0, lumen_seek_set);
 
             int result = ov_open_callbacks(ogg_source, ogg_source->ogg_file, NULL, 0, open_callbacks);
 
             if(result < 0) {
 
-                fclose(ogg_source->file_source);
+                lumen::ioclose(ogg_source->file_source);
                 delete ogg_source;
 
                 std::string s = ogg_error_string(result);
@@ -179,7 +172,7 @@ namespace lumen {
 
             // lumen::log("\t read  : %s, filelen:%lld amount:%lu\n", source->source_name.c_str(),source->length, size * nmemb);
 
-            return fread(ptr, size, nmemb, source->file_source);;
+            return lumen::ioread(source->file_source, ptr, size, nmemb);
 
         } //read_func
 
@@ -194,7 +187,7 @@ namespace lumen {
             if (whence == SEEK_SET) {
                pos = source->offset + (unsigned int)offset;
             } else if (whence == SEEK_CUR) {
-               pos = ftell(source->file_source) + (unsigned int)offset;
+               pos = lumen::iotell(source->file_source) + (unsigned int)offset;
             } else if (whence == SEEK_END) {
                pos = source->offset + source->length;
             }
@@ -205,7 +198,7 @@ namespace lumen {
                 pos = 0;
             }
 
-            return fseek(source->file_source, pos, 0);
+            return lumen::ioseek(source->file_source, pos, lumen_seek_set);
 
         } //seek_func
 
@@ -213,7 +206,7 @@ namespace lumen {
 
             OGG_file_source *source = (OGG_file_source*)datasource;
 
-            return fclose(source->file_source);
+            return lumen::ioclose(source->file_source);
 
         } //close_func
 
@@ -221,7 +214,7 @@ namespace lumen {
 
             OGG_file_source *source = (OGG_file_source*)datasource;
 
-            return (long)ftell(source->file_source) - source->offset;
+            return (long)lumen::iotell(source->file_source) - source->offset;
 
         } //tell_func
 
@@ -261,16 +254,10 @@ namespace lumen {
             RIFF_Header riff_header;
             WAVE_Data wave_data;
 
-            FILE* f = NULL;
+            lumen_iosrc* f = NULL;
             unsigned char* data;
 
-            #ifdef ANDROID
-                FileInfo info = AndroidGetAssetFD(_id);
-                f = fdopen(info.fd, "rb");
-                fseek(f, info.offset, 0);
-            #else
-                f = fopen(_id, "rb");
-            #endif
+            f = lumen::iosrc_fromfile(_id, "rb");
 
             if (!f) {
                 lumen::log("%s : %s\n", _id, "failed to open sound file, does this file exist?\n");
@@ -278,7 +265,7 @@ namespace lumen {
             }
 
             // Read in the first chunk into the struct
-            int result = fread(&riff_header, sizeof(RIFF_Header), 1, f);
+            int result = lumen::ioread(f, &riff_header, sizeof(RIFF_Header), 1);
 
             //check for RIFF and WAVE tag in memory
 
@@ -303,12 +290,12 @@ namespace lumen {
             while (!found_format) {
 
                 // Save the current position indicator of the stream
-                current_head = ftell(f);
+                current_head = lumen::iotell(f);
 
                     //Read in the 2nd chunk for the wave info
-                result = fread(&wave_format, sizeof(WAVE_Format), 1, f);
+                result = lumen::ioread(f, &wave_format, sizeof(WAVE_Format), 1);
 
-                if (result != 1) {
+                if (result == 0) {
                     lumen::log("%s : %s\n", _id, "Invalid WAV format!");
                     return false;
                 }
@@ -320,7 +307,7 @@ namespace lumen {
                     wave_format.subChunkID[2] != 't' ||
                     wave_format.subChunkID[3] != ' '
                 ) {
-                    fseek(f, wave_format.subChunkSize, SEEK_CUR);
+                    lumen::ioseek(f, wave_format.subChunkSize, lumen_seek_cur);
                 } else {
                     found_format = true;
                 }
@@ -329,7 +316,7 @@ namespace lumen {
 
                 //check for extra parameters;
             if (wave_format.subChunkSize > 16) {
-                fseek(f, sizeof(short), SEEK_CUR);
+                lumen::ioseek(f, sizeof(short), lumen_seek_cur);
             }
 
             bool found_data = false;
@@ -337,9 +324,9 @@ namespace lumen {
             while (!found_data) {
 
                 //Read in the the last byte of data before the sound file
-                result = fread(&wave_data, sizeof(WAVE_Data), 1, f);
+                result = lumen::ioread(f, &wave_data, sizeof(WAVE_Data), 1);
 
-                if (result != 1) {
+                if (result == 0) {
                     lumen::log("%s : %s\n", _id, "Invalid WAV data header");
                     return false;
                 }
@@ -351,7 +338,7 @@ namespace lumen {
                     wave_data.subChunkID[3] != 'a'
                 ) {
                         // Goto next chunk.
-                    fseek(f, current_head + sizeof(WAVE_Data) + wave_format.subChunkSize, SEEK_SET);
+                    lumen::ioseek(f, current_head + sizeof(WAVE_Data) + wave_format.subChunkSize, lumen_seek_set);
                 } else {
                     found_data = true;
                 }
@@ -362,7 +349,7 @@ namespace lumen {
             data = new unsigned char[wave_data.subChunkSize];
 
                 // Read in the sound data into the soundData variable
-            if (!fread(data, wave_data.subChunkSize, 1, f)) {
+            if (!lumen::ioread(f, data, wave_data.subChunkSize, 1)) {
                 lumen::log("%s : %s\n", _id, "Error loading WAV data into struct");
                 return false;
             }
@@ -377,7 +364,7 @@ namespace lumen {
             *bits_per_sample = wave_format.bitsPerSample;
 
                 //clean up and return true if successful
-            fclose(f);
+            lumen::ioclose(f);
             delete[] data;
 
             return true;

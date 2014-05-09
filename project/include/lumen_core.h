@@ -26,6 +26,7 @@ namespace lumen {
     void shutdown_core_platform();
     void update_core_platform();
 
+
     extern int id_type;
 
 //core event handling
@@ -59,7 +60,7 @@ namespace lumen {
         public:
             SystemEventType type;
 
-        SystemEvent( SystemEventType _type = se_unknown ) 
+        SystemEvent( SystemEventType _type = se_unknown )
             : type(_type)
                 {}
 
