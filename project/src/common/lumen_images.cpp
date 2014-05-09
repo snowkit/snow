@@ -29,7 +29,7 @@ namespace lumen {
             *bpp = _bpp;
                 //work out the total length of the buffer
             unsigned int length = _w * _h * _bpp;
-                //store it 
+                //store it
             out_buffer.Set(data, length);
                 //clean up used memory
             stbi_image_free(data);
@@ -38,4 +38,4 @@ namespace lumen {
 
     } //derp
 
-} 
+}
