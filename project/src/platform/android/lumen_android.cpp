@@ -9,20 +9,33 @@
 #include <map>
 #include <string>
 
+#include "lumen_core.h"
 #include "common/ByteArray.h"
 #include "platform/android/lumen_android.h"
-
+#include "lumen_io.h"
 #include "libs/sdl/SDL.h"
 
 #define LOG(...) ((void)__android_log_print(ANDROID_LOG_ERROR, "/ lumen /", __VA_ARGS__))
 
-int SDL_main(int argc, char *argv[]) {
-  LOG("/ lumen / SDL MAIN OH NO");
-  return 0;
-}
+
+static JavaVM* java_vm;
+
+#ifdef LUMEN_LIB_OPENAL
+    void alcandroid_OnLoad( JavaVM *vm );
+    void alcandroid_OnUnload( JavaVM *vm );
+#endif //LUMEN_LIB_OPENAL
+
+  //This is called after SDL gets inited and passes
+#ifdef LUMEN_LIB_SDL
+
+    int SDL_main(int argc, char *argv[]) {
+        LOG("/ lumen / android post init SDL_main");
+        return 0;
+    }
+
+#endif
 
 namespace lumen {
-
 
     std::map<std::string, jclass> jClassCache;
 
@@ -31,11 +44,23 @@ namespace lumen {
 
     void init_core_platform() {
 
-      jClassCache = std::map<std::string, jclass>();
+        lumen::log("/ lumen / android core platform init");
+        jClassCache = std::map<std::string, jclass>();
+
+        JNIEnv *env = GetEnv();
+        env->GetJavaVM( &java_vm );
+
+        #ifdef LUMEN_LIB_OPENAL
+            alcandroid_OnLoad( java_vm );
+        #endif
 
     } //init_core_platform
 
     void shutdown_core_platform() {
+
+        #ifdef LUMEN_LIB_OPENAL
+            alcandroid_OnLoad( java_vm );
+        #endif
 
     } //shutdown_core_platform
 
@@ -82,40 +107,22 @@ namespace lumen {
 
        AAsset *asset = AndroidGetAsset(inResource);
 
-       if (asset) {
-          long size = AAsset_getLength(asset);
-          ByteArray result(size);
-          AAsset_read(asset, result.Bytes(), size);
-          AAsset_close(asset);
-          return result;
-       }
+        if (asset) {
 
-       return 0;
+            long size = AAsset_getLength(asset);
+            ByteArray result(size);
+            AAsset_read(asset, result.Bytes(), size);
+            AAsset_close(asset);
 
-       /*JNIEnv *env = GetEnv();
+            return result;
+        }
 
-       jclass cls = FindClass("lumen/GameActivity");
-       jmethodID mid = env->GetStaticMethodID(cls, "getResource", "(Ljava/lang/String;)[B");
-       if (mid == 0)
-          return 0;
-
-       jstring str = env->NewStringUTF( inResource );
-       jbyteArray bytes = (jbyteArray)env->CallStaticObjectMethod(cls, mid, str);
-       env->DeleteLocalRef(str);
-       if (bytes==0)
-       {
-          return 0;
-       }
-
-       jint len = env->GetArrayLength(bytes);
-       ByteArray result(len);
-       env->GetByteArrayRegion(bytes, (jint)0, (jint)len, (jbyte*)result.Bytes());
-       return result;*/
+        return 0;
     }
 
-    FileInfo AndroidGetAssetFD(const char *inResource) {
+    AndroidFileInfo AndroidGetAssetFD(const char *inResource) {
 
-        FileInfo info;
+        AndroidFileInfo info;
         info.fd = 0;
         info.offset = 0;
         info.length = 0;
