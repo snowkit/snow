@@ -2,7 +2,7 @@
 #include <hx/CFFI.h>
 
 #include "common/ByteArray.h"
-
+#include "lumen_io.h"
 
 namespace lumen {
 
@@ -70,7 +70,7 @@ namespace lumen {
 
         return (unsigned char *)buffer_data(buf);
 
-    } 
+    }
 
 
     unsigned char *ByteArray::Bytes() {
@@ -95,52 +95,22 @@ namespace lumen {
 
     ByteArray ByteArray::FromFile(const OSChar *inFilename) {
 
-        FILE *file = OpenRead(inFilename);
+        lumen_iosrc* file = lumen::iosrc_fromfile(inFilename, "rb");
 
-        if (!file) {
+            //determine the length
+        lumen::ioseek(file, 0, lumen_seek_end);
+        int len = lumen::iotell(file);
+        lumen::ioseek(file, 0, lumen_seek_set);
 
-            #ifdef ANDROID
-                return AndroidGetAssetBytes(inFilename);
-            #endif
-
-            return ByteArray();
-        }
-
-        fseek(file,0,SEEK_END);
-        int len = ftell(file);
-        fseek(file,0,SEEK_SET);
-
+            //create a bytearray of the file size
         ByteArray result(len);
-        int status = fread(result.Bytes(),len,1,file);
-        fclose(file);
+            //read the data into the buffer
+        int status = lumen::ioread(file, result.Bytes(), len, 1);
+            //close the file
+        lumen::ioclose(file);
 
         return result;
-    }
 
+    } //FromFile
 
-    #ifdef HX_WINDOWS
-
-        ByteArray ByteArray::FromFile(const char *inFilename) {
-
-            FILE *file = fopen(inFilename,"rb");
-
-            if (!file) {
-                return ByteArray();
-            }
-
-            fseek(file,0,SEEK_END);
-            int len = ftell(file);
-            fseek(file,0,SEEK_SET);
-
-            ByteArray result(len);
-
-            fread(result.Bytes(),len,1,file);
-            fclose(file);
-
-            return result;
-
-        } //FromFile
-
-    #endif //HX_WINDOWS
-
-} //namespace lumen 
+} //namespace lumen

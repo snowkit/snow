@@ -41,7 +41,7 @@ import lumen.audio.al.AL.Device;
 
             ALC.closeDevice( device );
 
-                trace("/ lumen / audio / destroying device / ${ AL.getErrorMeaning(AL.getError()) }");
+                trace('/ lumen / audio / destroying device / ${ AL.getErrorMeaning(AL.getError()) }');
         }
 
     } //AudioSystemOpenAL
