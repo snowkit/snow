@@ -295,7 +295,7 @@ namespace lumen {
                     //Read in the 2nd chunk for the wave info
                 result = lumen::ioread(f, &wave_format, sizeof(WAVE_Format), 1);
 
-                if (result == 0) {
+                if (result != 1) {
                     lumen::log("%s : %s\n", _id, "Invalid WAV format!");
                     return false;
                 }
@@ -326,7 +326,7 @@ namespace lumen {
                 //Read in the the last byte of data before the sound file
                 result = lumen::ioread(f, &wave_data, sizeof(WAVE_Data), 1);
 
-                if (result == 0) {
+                if (result != 1) {
                     lumen::log("%s : %s\n", _id, "Invalid WAV data header");
                     return false;
                 }
