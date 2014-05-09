@@ -24,18 +24,7 @@ namespace lumen {
 
 
 	size_t ioread(lumen_iosrc* src, void* ptr, size_t size, size_t maxnum) {
-
-		int status = SDL_RWread(src, ptr, size, maxnum);
-
-			//SDL_RWread isn't the same as fread, but consistency across implementations is nicer
-			//that means : when sdl reads ok, return size amounts * maxnum, effectively what fread returns
-			//and any errors are probably unrecoverable either way?
-		if(status > 0) {
-			return size * maxnum;
-		} else {
-			return status;
-		}
-
+		return SDL_RWread(src, ptr, size, maxnum);
 	} //ioread
 
 	size_t iowrite(lumen_iosrc* src, const void* ptr, size_t size, size_t num) {
