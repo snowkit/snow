@@ -107,7 +107,7 @@ void Java_org_libsdl_app_SDLInputConnection_nativeCommitText(JNIEnv* env, jclass
 void Java_org_libsdl_app_SDLInputConnection_nativeSetComposingText(JNIEnv* env, jclass cls,jstring text, jint newCursorPosition);
 extern void Java_org_libsdl_app_SDLActivity_nativeInit(JNIEnv* env, jclass cls, jobject obj);
 
-static JNINativeMethod methods[] = {
+static JNINativeMethod native_methods[] = {
     {"onNativeResize",              "(III)V",       (void*) &Java_org_libsdl_app_SDLActivity_onNativeResize },
     // {"onNativePadDown",             "(II)I",        (void*) &Java_org_libsdl_app_SDLActivity_onNativePadDown },
     // {"onNativePadUp",               "(II)I",        (void*) &Java_org_libsdl_app_SDLActivity_onNativePadUp },
@@ -127,9 +127,9 @@ static JNINativeMethod methods[] = {
     {"nativeQuit",                  "()V",          (void*) &Java_org_libsdl_app_SDLActivity_nativeQuit },
     {"nativePause",                 "()V",          (void*) &Java_org_libsdl_app_SDLActivity_nativePause },
     {"nativeResume",                "()V",          (void*) &Java_org_libsdl_app_SDLActivity_nativeResume },
-    {"nativeInit",                  "()V",          (void*) &Java_org_libsdl_app_SDLActivity_nativeInit }
-    // {"nativeCommitText",            "(Ljava/lang/String;I)V", (void*) &Java_org_libsdl_app_SDLInputConnection_nativeCommitText },
-    // {"nativeSetComposingText",      "(Ljava/lang/String;I)V", (void*) &Java_org_libsdl_app_SDLInputConnection_nativeSetComposingText }
+    {"nativeInit",                  "()V",          (void*) &Java_org_libsdl_app_SDLActivity_nativeInit },
+    {"nativeCommitText",            "(Ljava/lang/String;I)V", (void*) &Java_org_libsdl_app_SDLInputConnection_nativeCommitText },
+    {"nativeSetComposingText",      "(Ljava/lang/String;I)V", (void*) &Java_org_libsdl_app_SDLInputConnection_nativeSetComposingText }
 };
 
 /* Library init */
@@ -145,7 +145,7 @@ jint JNI_OnLoad(JavaVM* vm, void* reserved)
 
         //lumen:manually add these because we are linking into our application
     jclass cls = (*env)->FindClass(env, "org/libsdl/app/SDLActivity");
-    (*env)->RegisterNatives(env, cls, methods, sizeof(methods)/sizeof(methods[0]));
+    (*env)->RegisterNatives(env, cls, native_methods, sizeof(native_methods)/sizeof(native_methods[0]));
 
     /*
      * Create mThreadKey so we can keep track of the JNIEnv assigned to each thread

@@ -298,6 +298,8 @@ public class SDLActivity extends Activity {
     public static native void onNativeSurfaceChanged();
     public static native void onNativeSurfaceDestroyed();
     public static native void nativeFlipBuffers();
+    public static native void nativeCommitText(String text, int newCursorPosition);
+    public static native void nativeSetComposingText(String text, int newCursorPosition);
 
     public static void flipBuffers() {
         SDLActivity.nativeFlipBuffers();
@@ -808,7 +810,7 @@ class SDLInputConnection extends BaseInputConnection {
     @Override
     public boolean commitText(CharSequence text, int newCursorPosition) {
 
-        nativeCommitText(text.toString(), newCursorPosition);
+        SDLActivity.nativeCommitText(text.toString(), newCursorPosition);
 
         return super.commitText(text, newCursorPosition);
     }
@@ -816,14 +818,10 @@ class SDLInputConnection extends BaseInputConnection {
     @Override
     public boolean setComposingText(CharSequence text, int newCursorPosition) {
 
-        nativeSetComposingText(text.toString(), newCursorPosition);
+        SDLActivity.nativeSetComposingText(text.toString(), newCursorPosition);
 
         return super.setComposingText(text, newCursorPosition);
     }
-
-    public native void nativeCommitText(String text, int newCursorPosition);
-
-    public native void nativeSetComposingText(String text, int newCursorPosition);
 
 }
 
