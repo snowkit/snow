@@ -71,9 +71,9 @@ namespace lumen {
         #endif
 
         bool audio_load_ogg_bytes(
-            QuickVec<unsigned char> &out_buffer, const char* _id, 
-            int* channels, long* rate, long* bitrate_upper, long* bitrate, 
-            long* bitrate_lower, long* bitrate_window, int *bits_per_sample 
+            QuickVec<unsigned char> &out_buffer, const char* _id,
+            int* channels, long* rate, long* bitrate_upper, long* bitrate,
+            long* bitrate_lower, long* bitrate_window, int *bits_per_sample
         ) {
 
             ov_callbacks open_callbacks;
@@ -81,11 +81,12 @@ namespace lumen {
             ogg_source->source_name = std::string(_id);
 
             #ifdef ANDROID
-        
+                //this fopen stuff needs to be replaced by a common lumen::
+                //file handler that can avoid the pitfalls of porting spidercode.
+
                 //mInfo = AndroidGetAssetFD(path.c_str());
                 //oggFile = fdopen(mInfo.fd, "rb");
                 //fseek(oggFile, mInfo.offset, 0);
-
             #endif
 
             open_callbacks.read_func =  &lumen::ogg_read_func;
@@ -98,7 +99,7 @@ namespace lumen {
                 lumen::log("%s %s\n", "error opening file:", _id);
                 return false;
             }
-            
+
             fseek(ogg_source->file_source, 0, SEEK_END);
             ogg_source->length = ftell(ogg_source->file_source);
             fseek(ogg_source->file_source, 0, SEEK_SET);
@@ -106,13 +107,13 @@ namespace lumen {
             int result = ov_open_callbacks(ogg_source, ogg_source->ogg_file, NULL, 0, open_callbacks);
 
             if(result < 0) {
-            
+
                 fclose(ogg_source->file_source);
                 delete ogg_source;
-                
+
                 std::string s = ogg_error_string(result);
                 lumen::log("%s result:%d   code:%s \n", "ogg file failed to open!?", result, s.c_str());
-                
+
                 return false;
 
             } //result < 0
@@ -132,7 +133,7 @@ namespace lumen {
                 // lumen::log("vendor          %s \n",     ogg_source->comments->vendor);
                 // lumen::log("length          %lld \n",   (long long)ogg_source->length);
                 // lumen::log("uncompressed    %lld \n",   (long long)total_length);
-                
+
             // for(int i = 0; i < ogg_source->comments->comments; i++) {
             //     lumen::log("\t%s\n",  ogg_source->comments->user_comments[i]);
             // }
@@ -148,7 +149,7 @@ namespace lumen {
 
 
                 //(2) here is bytes per sample in file
-            
+
             long bytes_read = -1;
             long total_bytes = 0;
             int bit_stream = 1;
@@ -189,7 +190,7 @@ namespace lumen {
             // lumen::log("\t seek  : %s, offset:%lld whence:%d \n", source->source_name.c_str(), offset, whence);
 
             long pos = 0;
-           
+
             if (whence == SEEK_SET) {
                pos = source->offset + (unsigned int)offset;
             } else if (whence == SEEK_CUR) {
@@ -197,7 +198,7 @@ namespace lumen {
             } else if (whence == SEEK_END) {
                pos = source->offset + source->length;
             }
-            
+
             if (pos > source->offset + source->length) {
                 pos = source->offset + source->length;
             } else if(pos < 0) {
@@ -234,7 +235,7 @@ namespace lumen {
             unsigned int chunkSize; //size not including chunkSize or chunkID
             char format[4];
         };
-        
+
         struct WAVE_Format {
             char subChunkID[4];
             unsigned int subChunkSize;
@@ -245,7 +246,7 @@ namespace lumen {
             short blockAlign;
             short bitsPerSample;
         };
-        
+
         struct WAVE_Data {
             char subChunkID[4]; //should contain the word data
             unsigned int subChunkSize; //Stores the size of the data block
@@ -253,7 +254,7 @@ namespace lumen {
 
 
         bool audio_load_wav_bytes( QuickVec<unsigned char> &out_buffer, const char *_id,  int *channels, int* rate, int *bitrate, int *bits_per_sample) {
-            
+
             //http://www.dunsanyinteractive.com/blogs/oliver/?p=72
 
             WAVE_Format wave_format;
@@ -262,20 +263,20 @@ namespace lumen {
 
             FILE* f = NULL;
             unsigned char* data;
-            
-            // #ifdef ANDROID
-                // FileInfo info = AndroidGetAssetFD(_id);
-                // f = fdopen(info.fd, "rb");
-                // fseek(f, info.offset, 0);
-            // #else
+
+            #ifdef ANDROID
+                FileInfo info = AndroidGetAssetFD(_id);
+                f = fdopen(info.fd, "rb");
+                fseek(f, info.offset, 0);
+            #else
                 f = fopen(_id, "rb");
-            // #endif
-            
+            #endif
+
             if (!f) {
                 lumen::log("%s : %s\n", _id, "failed to open sound file, does this file exist?\n");
                 return false;
             }
-            
+
             // Read in the first chunk into the struct
             int result = fread(&riff_header, sizeof(RIFF_Header), 1, f);
 
@@ -286,7 +287,7 @@ namespace lumen {
                 riff_header.chunkID[1]  != 'I'  ||
                 riff_header.chunkID[2]  != 'F'  ||
                 riff_header.chunkID[3]  != 'F') ||
-                
+
                 (riff_header.format[0]  != 'W'  ||
                 riff_header.format[1]   != 'A'  ||
                 riff_header.format[2]   != 'V'  ||
@@ -295,7 +296,7 @@ namespace lumen {
                 lumen::log("%s : %s\n", _id, "Invalid RIFF or WAVE header");
                 return false;
             }
-            
+
             long int current_head = 0;
             bool found_format = false;
 
@@ -303,15 +304,15 @@ namespace lumen {
 
                 // Save the current position indicator of the stream
                 current_head = ftell(f);
-                
+
                     //Read in the 2nd chunk for the wave info
                 result = fread(&wave_format, sizeof(WAVE_Format), 1, f);
-                
+
                 if (result != 1) {
                     lumen::log("%s : %s\n", _id, "Invalid WAV format!");
                     return false;
                 }
-                
+
                 //check for fmt tag in memory
                 if(
                     wave_format.subChunkID[0] != 'f' ||
@@ -325,24 +326,24 @@ namespace lumen {
                 }
 
             } //while !found_format
-            
+
                 //check for extra parameters;
             if (wave_format.subChunkSize > 16) {
                 fseek(f, sizeof(short), SEEK_CUR);
             }
-            
+
             bool found_data = false;
 
             while (!found_data) {
 
                 //Read in the the last byte of data before the sound file
                 result = fread(&wave_data, sizeof(WAVE_Data), 1, f);
-                
+
                 if (result != 1) {
                     lumen::log("%s : %s\n", _id, "Invalid WAV data header");
                     return false;
                 }
-                
+
                 if(
                     wave_data.subChunkID[0] != 'd' ||
                     wave_data.subChunkID[1] != 'a' ||
@@ -356,32 +357,32 @@ namespace lumen {
                 }
 
             } //!found_data
-            
+
                 //Allocate memory for data
             data = new unsigned char[wave_data.subChunkSize];
-            
+
                 // Read in the sound data into the soundData variable
             if (!fread(data, wave_data.subChunkSize, 1, f)) {
                 lumen::log("%s : %s\n", _id, "Error loading WAV data into struct");
                 return false;
-            }   
-            
+            }
+
                 //Store in the out_buffer
             out_buffer.Set(data, wave_data.subChunkSize);
-            
+
                 //Now we set the variables that we passed in with the data from the structs
             *rate = wave_format.sampleRate;
             *bitrate = (int)wave_format.byteRate;
             *channels = wave_format.numChannels;
             *bits_per_sample = wave_format.bitsPerSample;
-            
+
                 //clean up and return true if successful
             fclose(f);
             delete[] data;
-            
+
             return true;
 
-        } // audio_load_wav_bytes    
+        } // audio_load_wav_bytes
 
 } //namespace lumen
 

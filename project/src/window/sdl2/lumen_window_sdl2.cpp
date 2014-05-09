@@ -2,7 +2,7 @@
 #include "lumen_window.h"
 
 //glew first, before any gl.h (important)
-#include "libs/glew/GL/glew.h"
+// #include "libs/glew/GL/glew.h"
 #include "libs/sdl/SDL.h"
 #include "render/opengl/lumen_opengl.h"
 
@@ -143,13 +143,6 @@ namespace lumen {
             SDL_GL_SetAttribute(SDL_GL_MULTISAMPLESAMPLES, _config.antialiasing );
         }
 
-        #ifdef ANDROID
-            SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION,2);
-            SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION,0);
-        #endif
-
-        lumen::log( "/ lumen / pre window create : %s\n", SDL_GetError());
-
             //now actually try and create a window
         window = SDL_CreateWindow( _config.title.c_str(), _config.x, _config.y, _config.width, _config.height, request_flags );
 
@@ -160,9 +153,7 @@ namespace lumen {
             lumen::log( "/ lumen / Failed to create SDL window: %s\n", SDL_GetError());
             on_created();
             return;
-        } else {//!window
-            lumen::log( "/ lumen / window created : %s\n", SDL_GetError());
-        }
+        } //!window
 
         SDL_GetWindowPosition( window, &config.x, &config.y );
         SDL_GetWindowSize( window, &config.width, &config.height );
@@ -176,14 +167,17 @@ namespace lumen {
             lumen::log("/ lumen / Creating a GL context");
             lumen_gl_context = SDL_GL_CreateContext(window);
 
-            int err = glewInit();
-            if(err != 0) {
-                lumen::log("/ lumen / Failed to init glew?! %s\n", glewGetErrorString(err));
-                on_created();
-                return;
-            } else {
-                lumen::log("/ lumen / GLEW init ok");
-            }
+            #ifdef LUMEN_LIB_GLEW
+                int err = glewInit();
+                if(err != 0) {
+                    lumen::log("/ lumen / Failed to init glew?! %s\n", glewGetErrorString(err));
+                    on_created();
+                    return;
+                } else {
+                    lumen::log("/ lumen / GLEW init ok");
+                }
+            #endif //LUMEN_GLEW
+
         }
 
         int res = 0;
