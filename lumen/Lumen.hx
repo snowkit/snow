@@ -76,13 +76,13 @@ class Lumen {
 
         #if lumen_native
 
-            #if !mobile
-                _debug('/ lumen / setting up app path', true);
-                Sys.setCwd( lumen_app_path() );
+            _debug('/ lumen / setting up app path', true);
+            Sys.setCwd( lumen_app_path() );
 
+            #if !mobile
                 _debug('/ lumen / setting up pref path', true);
                 lumen_pref_path('lumen','default');
-            #end
+            #end //mobile
 
         #end //lumen_native
 
@@ -207,7 +207,7 @@ class Lumen {
 
             case SystemEventType.shutdown: {
                 _debug('/ lumen / Goodbye.');
-                    //:todo: this is temporary, 
+                    //:todo: this is temporary,
                     //due to sdl repo having newer fixes than 2.0.3 stable
                 #if android Sys.exit(0); #end
             } //shutdown

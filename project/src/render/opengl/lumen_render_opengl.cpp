@@ -53,12 +53,19 @@ namespace lumen {
 
     value lumen_gl_version() {
 
-        std::string glslver((const char*)glGetString(GL_SHADING_LANGUAGE_VERSION));
-        std::string glver((const char*)glGetString(GL_VERSION));
-        std::string glren((const char*)glGetString(GL_RENDERER));
-        std::string glven((const char*)glGetString(GL_VENDOR));
+        const char* gl_ver = (const char*)glGetString(GL_VERSION);
+        const char* gl_sl  = (const char*)glGetString(GL_SHADING_LANGUAGE_VERSION);
+        const char* gl_ren = (const char*)glGetString(GL_RENDERER);
+        const char* gl_ven = (const char*)glGetString(GL_VENDOR);
+
+        std::string glver   ( gl_ver ? gl_ver   : "GL version null" );
+        std::string glslver ( gl_sl ? gl_sl     : "GL SL version null" );
+        std::string glren   ( gl_ren ? gl_ren   : "GL renderer version null" );
+        std::string glven   ( gl_ven ? gl_ven   : "GL vendor version null" );
+
         std::string res = glver + " / " + glslver + " (" + glren + " / " + glven + ")";
-        return alloc_string(res.c_str()); //:todo:
+
+        return alloc_string( res.c_str() );
 
     } DEFINE_PRIM(lumen_gl_version,0);
 
@@ -1079,7 +1086,7 @@ namespace lumen {
         int id = val_int(inId);
 
         glCompileShader(id);
-
+        
         return alloc_null();
 
     } DEFINE_PRIM(lumen_gl_compile_shader,1);

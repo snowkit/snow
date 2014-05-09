@@ -24,6 +24,8 @@
 
       <!-- included to import existing defines and built in defined values -->
    <include name="${HXCPP}/build-tool/BuildCommon.xml"/>
+      <!-- consistency, ios is a better define than iphone and should always be used in lumen instead -->
+   <set name="ios" value="1" if="iphone" />
 
       <!-- where to build from -->
    <set name="LUMEN_ROOT" value="" />
@@ -39,19 +41,17 @@
    <set name="SHLIBEXT" value=".dll" if="windows"/>
    <set name="SHLIBEXT" value=".so" unless="windows"/>
    <set name="SHLIBEXT" value=".dylib" if="mac || ios"/>
-   <set name="DEBUGEXTRA" value="-debug" if="fulldebug" />
+   <set name="DEBUGEXTRA" value="" />
 
    <set name="PRELIB" value="lib/${BINDIR}/${LIBPREFIX}" />
    <set name="POSTLIB" value="${LIBEXTRA}${SLIBEXT}" />
    <set name="POSTSHAREDLIB" value="${LIBEXTRA}${SHLIBEXT}" />
 
-      <!-- consistency, ios is a better define than iphone and should always be used in lumen instead -->
-   <set name="ios" if="iphone" />
-
 <!-- Build configs -->
 
    <!-- Ideally, I want to enclose these in an "unless" section as well, so you can use command line/builds to disable them -->
 
+   <set name="LUMEN_CORE_LOOP" value="1"              unless="ios"/>
    <!-- always using SDL2 for main platforms -->
    <set name="LUMEN_LIB_SDL" value="1"/>
    <!-- enable this to build sdl as a .a file, and then link it (instead of embedded in the core code) -->
@@ -91,8 +91,10 @@
 
          <!-- c++ defines -->
       <compilerflag value="-DHX_LUMEN"  />
+      <compilerflag value="-DLUMEN_CORE_LOOP"         if="LUMEN_CORE_LOOP"/>
       <compilerflag value="-DGL_GLEXT_PROTOTYPES"     if="android"/>
-      <compilerflag value="-DLUMEN_GLES"              if="android"/>
+      <compilerflag value="-DLUMEN_GLES"              if="android || ios"/>
+      <compilerflag value="-D__IPHONEOS__"            if="ios"/>
       <compilerflag value="-Wno-conversion"           if="linux"/>
 
          <!-- lib specific flags -->
@@ -244,6 +246,10 @@
             <vflag name="-framework" value="AppKit" />
             <vflag name="-framework" value="OpenAL"/>
          </section> <!-- mac -->
+
+         <section if="ios">
+
+         </section>
 
          <section if="android">
             <lib name="-Wl,--undefined=Java_org_libsdl_app_SDLActivity_nativeInit" if="LUMEN_LIB_SDL"/>
