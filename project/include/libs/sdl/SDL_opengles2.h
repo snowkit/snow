@@ -24,13 +24,11 @@
  *
  *  This is a simple file to encapsulate the OpenGL ES 2.0 API headers.
  */
-
 #ifndef _MSC_VER
 #ifdef __IPHONEOS__
 #include <OpenGLES/ES2/gl.h>
 #include <OpenGLES/ES2/glext.h>
 #else
-#include <GLES2/gl2platform.h>
 #include <GLES2/gl2.h>
 #include <GLES2/gl2ext.h>
 #endif

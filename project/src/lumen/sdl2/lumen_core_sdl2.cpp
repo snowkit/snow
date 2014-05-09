@@ -13,7 +13,14 @@ namespace lumen {
         va_list ap;
 
         va_start(ap, fmt);
-        SDL_LogMessageV(SDL_LOG_CATEGORY_APPLICATION, SDL_LOG_PRIORITY_ERROR, fmt, ap);
+
+            //by using ERROR on android, our logs will show up to normal -debug builds
+        #ifdef ANDROID
+            SDL_LogMessageV(SDL_LOG_CATEGORY_APPLICATION, SDL_LOG_PRIORITY_ERROR, fmt, ap);
+        #else
+            SDL_LogMessageV(SDL_LOG_CATEGORY_APPLICATION, SDL_LOG_PRIORITY_DEBUG, fmt, ap);
+        #endif
+
         va_end(ap);
     }
 

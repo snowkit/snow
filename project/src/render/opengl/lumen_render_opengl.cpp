@@ -13,9 +13,8 @@
 #include "common/ByteArray.h"
 #include "lumen_core.h"
 
-  //glew first, before any gl.h (important)
-#include "libs/glew/GL/glew.h"
 #include "render/opengl/lumen_opengl.h"
+
 #include <string>
 
 namespace lumen {
@@ -131,7 +130,7 @@ namespace lumen {
                 while(*next && *next!=' ') {
                     next++;
                 }
-                
+
                 val_array_push( ioList, alloc_string_len(ext, next-ext) );
 
                 if (!*next || !next[1]) {
@@ -154,7 +153,7 @@ namespace lumen {
         glFrontFace(val_int(inFace));
 
         return alloc_null();
-    
+
     } DEFINE_PRIM(lumen_gl_front_face,1);
 
 
@@ -334,6 +333,11 @@ namespace lumen {
 
 // --- Is -------------------------------------------
 
+#ifdef LUMEN_LIB_GLEW
+    #define HAS_EXT_framebuffer_object GLEW_EXT_framebuffer_object
+#else
+    #define HAS_EXT_framebuffer_object true
+#endif
 
     #define GL_IS(name,Name) \
         value lumen_gl_is_##name(value val) { return alloc_bool(glIs##Name(val_int(val))); } \
@@ -345,14 +349,13 @@ namespace lumen {
     GL_IS(shader,Shader)
     GL_IS(texture,Texture)
 
-        //since these are plausibly unsupported and need glew checks,
-        // they are manually defined below
+        //since these are plausibly unsupported and need checks, they are done below
     // GL_IS(framebuffer,Framebuffer)
     // GL_IS(renderbuffer,Renderbuffer)
 
-    value lumen_gl_is_framebuffer(value val) { 
-        
-        if (GLEW_EXT_framebuffer_object) {
+    value lumen_gl_is_framebuffer(value val) {
+
+        if (HAS_EXT_framebuffer_object) {
             return alloc_bool(glIsFramebuffer(val_int(val)));
         }
 
@@ -362,8 +365,8 @@ namespace lumen {
 
 
     value lumen_gl_is_renderbuffer(value val) {
-        
-        if (GLEW_EXT_framebuffer_object) {
+
+        if (HAS_EXT_framebuffer_object) {
             return alloc_bool( glIsRenderbuffer(val_int(val)) );
         }
 
@@ -376,54 +379,54 @@ namespace lumen {
 
 
     value lumen_gl_stencil_func(value func, value ref, value mask) {
-        
+
         glStencilFunc(val_int(func),val_int(ref),val_int(mask));
-        
+
         return alloc_null();
 
     } DEFINE_PRIM(lumen_gl_stencil_func,3);
 
 
     value lumen_gl_stencil_func_separate(value face,value func, value ref, value mask) {
-        
+
         glStencilFuncSeparate(val_int(face),val_int(func),val_int(ref),val_int(mask));
-        
+
         return alloc_null();
 
     } DEFINE_PRIM(lumen_gl_stencil_func_separate,4);
 
 
     value lumen_gl_stencil_mask(value mask) {
-        
+
         glStencilMask(val_int(mask));
-        
+
         return alloc_null();
 
     } DEFINE_PRIM(lumen_gl_stencil_mask,1);
 
 
     value lumen_gl_stencil_mask_separate(value face,value mask) {
-        
+
         glStencilMaskSeparate(val_int(face),val_int(mask));
-        
+
         return alloc_null();
 
     } DEFINE_PRIM(lumen_gl_stencil_mask_separate,2);
 
 
     value lumen_gl_stencil_op(value fail,value zfail, value zpass) {
-        
+
         glStencilOp(val_int(fail),val_int(zfail),val_int(zpass));
-        
+
         return alloc_null();
 
     } DEFINE_PRIM(lumen_gl_stencil_op,3);
 
 
     value lumen_gl_stencil_op_separate(value face,value fail,value zfail, value zpass) {
-        
+
         glStencilOpSeparate(val_int(face),val_int(fail),val_int(zfail),val_int(zpass));
-        
+
         return alloc_null();
 
     } DEFINE_PRIM(lumen_gl_stencil_op_separate,4);
@@ -433,45 +436,45 @@ namespace lumen {
 
 
     value lumen_gl_blend_color(value r, value g, value b, value a) {
-        
+
         glBlendColor(val_number(r),val_number(g),val_number(b), val_number(a));
-        
+
         return alloc_null();
 
     } DEFINE_PRIM(lumen_gl_blend_color,4);
 
 
     value lumen_gl_blend_equation(value mode) {
-        
+
         glBlendEquation(val_int(mode));
-        
+
         return alloc_null();
 
     } DEFINE_PRIM(lumen_gl_blend_equation,1);
 
 
     value lumen_gl_blend_equation_separate(value rgb, value a) {
-        
+
         glBlendEquationSeparate(val_int(rgb), val_int(a));
-        
+
         return alloc_null();
 
     } DEFINE_PRIM(lumen_gl_blend_equation_separate,2);
 
 
     value lumen_gl_blend_func(value s, value d) {
-        
+
         glBlendFunc(val_int(s), val_int(d));
-        
+
         return alloc_null();
 
     } DEFINE_PRIM(lumen_gl_blend_func,2);
 
 
     value lumen_gl_blend_func_separate(value srgb, value drgb, value sa, value da) {
-        
+
         glBlendFuncSeparate(val_int(srgb), val_int(drgb), val_int(sa), val_int(da) );
-        
+
         return alloc_null();
 
     } DEFINE_PRIM(lumen_gl_blend_func_separate,4);
@@ -481,7 +484,7 @@ namespace lumen {
 
 
     value lumen_gl_create_program() {
-        
+
         int result = glCreateProgram();
 
         return alloc_int(result);
@@ -490,9 +493,9 @@ namespace lumen {
 
 
     value lumen_gl_link_program(value inId) {
-        
+
         int id = val_int(inId);
-        
+
         glLinkProgram(id);
 
         return alloc_null();
@@ -501,7 +504,7 @@ namespace lumen {
 
 
     value lumen_gl_validate_program(value inId) {
-        
+
         int id = val_int(inId);
 
         glValidateProgram(id);
@@ -524,9 +527,9 @@ namespace lumen {
 
 
     value lumen_gl_delete_program(value inId) {
-        
+
         int id = val_int(inId);
-        
+
         glDeleteProgram(id);
 
         return alloc_null();
@@ -535,18 +538,18 @@ namespace lumen {
 
 
     value lumen_gl_bind_attrib_location(value inId,value inSlot,value inName) {
-        
+
         int id = val_int(inId);
-        
+
         glBindAttribLocation(id,val_int(inSlot),val_string(inName));
-        
+
         return alloc_null();
 
     } DEFINE_PRIM(lumen_gl_bind_attrib_location,3);
 
 
     value lumen_gl_get_attrib_location(value inId,value inName) {
-        
+
         int id = val_int(inId);
 
         return alloc_int(glGetAttribLocation(id,val_string(inName)));
@@ -555,9 +558,9 @@ namespace lumen {
 
 
     value lumen_gl_get_uniform_location(value inId,value inName) {
-       
+
         int id = val_int(inId);
-       
+
         return alloc_int(glGetUniformLocation(id,val_string(inName)));
 
     } DEFINE_PRIM(lumen_gl_get_uniform_location,2);
@@ -566,18 +569,18 @@ namespace lumen {
     value lumen_gl_get_uniform(value inId,value inLocation) {
 
         int id = val_int(inId);
-        int loc = val_int(inLocation); 
+        int loc = val_int(inLocation);
 
         char buf[1];
         GLsizei outLen = 1;
         GLsizei size = 0;
         GLenum  type = 0;
-       
+
         glGetActiveUniform(id, loc, 1, &outLen, &size, &type, buf);
         int ints = 0;
         int floats = 0;
         int bools = 0;
-        
+
         switch(type) {
 
             case  GL_FLOAT: {
@@ -586,7 +589,7 @@ namespace lumen {
 
                 return alloc_float(result);
             }
-     
+
             case  GL_FLOAT_VEC2: floats=2;
             case  GL_FLOAT_VEC3: floats++;
             case  GL_FLOAT_VEC4: floats++;
@@ -605,7 +608,7 @@ namespace lumen {
             case  GL_FLOAT_MAT2: floats = 4; break;
             case  GL_FLOAT_MAT3: floats = 9; break;
             case  GL_FLOAT_MAT4: floats = 16; break;
-            
+
             #ifdef HX_MACOS
                 case  GL_FLOAT_MAT2x3: floats = 4*3; break;
                 case  GL_FLOAT_MAT2x4: floats = 4*4; break;
@@ -638,9 +641,9 @@ namespace lumen {
 
             int buffer[4];
             glGetUniformiv(id,loc,buffer);
-            
+
             value result = alloc_array( ints+bools );
-            
+
             for(int i=0;i<ints+bools;i++) {
                 val_array_set_i(result,i,alloc_int(buffer[i]));
             }
@@ -661,7 +664,7 @@ namespace lumen {
 
             return result;
         }
-     
+
         return alloc_null();
 
     } DEFINE_PRIM(lumen_gl_get_uniform,2);
@@ -691,7 +694,7 @@ namespace lumen {
 
 
     value lumen_gl_get_active_attrib(value inProg, value inIndex) {
-        
+
         int id = val_int(inProg);
         value result = alloc_empty_object( );
 
@@ -699,9 +702,9 @@ namespace lumen {
         GLsizei outLen = 1024;
         GLsizei size = 0;
         GLenum  type = 0;
-       
+
         glGetActiveAttrib(id, val_int(inIndex), 1024, &outLen, &size, &type, buf);
-       
+
         alloc_field(result,val_id("size"),alloc_int(size));
         alloc_field(result,val_id("type"),alloc_int(type));
         alloc_field(result,val_id("name"),alloc_string(buf));
@@ -712,16 +715,16 @@ namespace lumen {
 
 
     value lumen_gl_get_active_uniform(value inProg, value inIndex) {
-       
+
         int id = val_int(inProg);
 
         char buf[1024];
         GLsizei outLen = 1024;
         GLsizei size = 0;
         GLenum  type = 0;
-       
+
         glGetActiveUniform(id, val_int(inIndex), 1024, &outLen, &size, &type, buf);
-       
+
         value result = alloc_empty_object( );
         alloc_field(result,val_id("size"),alloc_int(size));
         alloc_field(result,val_id("type"),alloc_int(type));
@@ -737,10 +740,10 @@ namespace lumen {
         //if double should be accepted, it is highly important that whole arrays are passed
         // inTranspose = true crashes on mobile and_eq should be adequately forbidden by haxe headers
     value lumen_gl_uniform_matrix(value inLocation, value inTranspose, value inBytes,value inCount){
-        
+
         int loc = val_int(inLocation);
         int count = val_int(inCount);
-        
+
         bool trans = val_bool(inTranspose);
 
         ByteArray bytes(inBytes);
@@ -796,7 +799,7 @@ namespace lumen {
     GL_UNFORM_4(f,val_number)
 
     value lumen_gl_uniform1iv(value inLocation,value inByteBuffer) {
-       
+
         int loc = val_int(inLocation);
 
         ByteArray bytes(inByteBuffer);
@@ -812,7 +815,7 @@ namespace lumen {
 
 
     value lumen_gl_uniform2iv(value inLocation,value inByteBuffer) {
-       
+
         int loc = val_int(inLocation);
 
         ByteArray bytes(inByteBuffer);
@@ -828,7 +831,7 @@ namespace lumen {
 
 
     value lumen_gl_uniform3iv(value inLocation,value inByteBuffer) {
-       
+
         int loc = val_int(inLocation);
 
         ByteArray bytes(inByteBuffer);
@@ -943,7 +946,7 @@ namespace lumen {
 
 
     value lumen_gl_vertex_attrib3f(value inLocation, value inV0,value inV1,value inV2) {
-        
+
         glVertexAttrib3f(val_int(inLocation),val_number(inV0),val_number(inV1),val_number(inV2));
 
         return alloc_null();
@@ -952,7 +955,7 @@ namespace lumen {
 
 
     value lumen_gl_vertex_attrib4f(value inLocation, value inV0,value inV1,value inV2, value inV3) {
-        
+
         glVertexAttrib4f(val_int(inLocation),val_number(inV0),val_number(inV1),val_number(inV2),val_number(inV3));
 
         return alloc_null();
@@ -963,13 +966,13 @@ namespace lumen {
     value lumen_gl_vertex_attrib1fv(value inLocation,value inByteBuffer) {
 
         int loc = val_int(inLocation);
-        
+
         ByteArray bytes(inByteBuffer);
         int size = bytes.Size();
         const float *data = (float *)bytes.Bytes();
-        
+
         glVertexAttrib1fv(loc,data);
-        
+
         return alloc_null();
 
     } DEFINE_PRIM(lumen_gl_vertex_attrib1fv,2);
@@ -991,13 +994,13 @@ namespace lumen {
 
 
     value lumen_gl_vertex_attrib3fv(value inLocation,value inByteBuffer) {
-        
+
         int loc = val_int(inLocation);
-        
+
         ByteArray bytes(inByteBuffer);
         int size = bytes.Size();
         const float *data = (float *)bytes.Bytes();
-        
+
         glVertexAttrib3fv(loc,data);
 
         return alloc_null();
@@ -1006,13 +1009,13 @@ namespace lumen {
 
 
     value lumen_gl_vertex_attrib4fv(value inLocation,value inByteBuffer) {
-       
+
         int loc = val_int(inLocation);
-        
+
         ByteArray bytes(inByteBuffer);
         int size = bytes.Size();
         const float *data = (float *)bytes.Bytes();
-        
+
         glVertexAttrib4fv(loc,data);
 
         return alloc_null();
@@ -1025,11 +1028,7 @@ namespace lumen {
 
     value lumen_gl_create_shader(value inType) {
 
-        int type = val_int(inType);
-        lumen::log("shader type %d", type);
-        int res = glCreateShader(type);
-        lumen::log("shader res %d", res);
-        return alloc_int(res);
+        return alloc_int(glCreateShader(val_int(inType)));
 
     } DEFINE_PRIM(lumen_gl_create_shader,1);
 
@@ -1076,7 +1075,7 @@ namespace lumen {
 
 
     value lumen_gl_compile_shader(value inId) {
-        
+
         int id = val_int(inId);
 
         glCompileShader(id);
@@ -1087,7 +1086,7 @@ namespace lumen {
 
 
     value lumen_gl_get_shader_parameter(value inId,value inName) {
-        
+
         int id = val_int(inId);
         int result = 0;
 
@@ -1099,10 +1098,10 @@ namespace lumen {
 
 
     value lumen_gl_get_shader_info_log(value inId) {
-        
+
         int id = val_int(inId);
         char buf[1024] = "";
-        
+
         glGetShaderInfoLog(id,1024,0,buf);
 
         return alloc_string(buf);
@@ -1111,7 +1110,7 @@ namespace lumen {
 
 
     value lumen_gl_get_shader_source(value inId) {
-       
+
         int id = val_int(inId);
 
         int len = 0;
@@ -1234,13 +1233,13 @@ namespace lumen {
 
 
     value lumen_gl_get_vertex_attrib_offset(value index, value name) {
-       
+
         int result = 0;
-       
+
         glGetVertexAttribPointerv(val_int(index), val_int(name), (void **)&result);
-       
+
         return alloc_int(result);
-    
+
     } DEFINE_PRIM(lumen_gl_get_vertex_attrib_offset,2);
 
 
@@ -1272,40 +1271,40 @@ namespace lumen {
 
 
     value lumen_gl_enable_vertex_attrib_array(value inIndex) {
-       
+
         glEnableVertexAttribArray(val_int(inIndex));
-       
+
         return alloc_null();
-    
+
     } DEFINE_PRIM(lumen_gl_enable_vertex_attrib_array,1);
 
 
     value lumen_gl_disable_vertex_attrib_array(value inIndex) {
-       
+
         glDisableVertexAttribArray(val_int(inIndex));
-       
+
         return alloc_null();
-    
+
     } DEFINE_PRIM(lumen_gl_disable_vertex_attrib_array,1);
 
 
     value lumen_gl_get_buffer_paramerter(value inTarget, value inPname) {
-        
+
         int result = 0;
-        
+
         glGetBufferParameteriv(val_int(inTarget), val_int(inPname),&result);
-        
+
         return alloc_int(result);
 
     } DEFINE_PRIM(lumen_gl_get_buffer_paramerter,2);
 
 
     value lumen_gl_get_buffer_parameter(value inTarget, value inIndex) {
-       
+
         GLint data = 0;
-       
+
         glGetBufferParameteriv(val_int(inTarget), val_int(inIndex), &data);
-      
+
         return alloc_int(data);
 
     } DEFINE_PRIM(lumen_gl_get_buffer_parameter,2);
@@ -1315,8 +1314,8 @@ namespace lumen {
 
 
     value lumen_gl_bind_framebuffer(value target, value framebuffer) {
-        
-        if (GLEW_EXT_framebuffer_object) {
+
+        if (HAS_EXT_framebuffer_object) {
             glBindFramebuffer(val_int(target), val_int(framebuffer) );
         }
 
@@ -1327,7 +1326,7 @@ namespace lumen {
 
     value lumen_gl_bind_renderbuffer(value target, value renderbuffer) {
 
-        if( GLEW_EXT_framebuffer_object ) {
+        if( HAS_EXT_framebuffer_object ) {
             glBindRenderbuffer(val_int(target),val_int(renderbuffer));
         }
 
@@ -1337,10 +1336,10 @@ namespace lumen {
 
 
     value lumen_gl_create_framebuffer() {
-       
+
         GLuint id = 0;
 
-        if( GLEW_EXT_framebuffer_object ) {
+        if( HAS_EXT_framebuffer_object ) {
             glGenFramebuffers( 1, &id );
         }
 
@@ -1353,7 +1352,7 @@ namespace lumen {
 
         GLuint id = val_int(target);
 
-        if (GLEW_EXT_framebuffer_object) {
+        if (HAS_EXT_framebuffer_object) {
             glDeleteFramebuffers(1, &id);
         }
 
@@ -1363,10 +1362,10 @@ namespace lumen {
 
 
     value lumen_gl_create_render_buffer( ) {
-        
+
         GLuint id = 0;
 
-        if( GLEW_EXT_framebuffer_object ) {
+        if( HAS_EXT_framebuffer_object ) {
             glGenRenderbuffers(1,&id);
         }
 
@@ -1379,7 +1378,7 @@ namespace lumen {
 
         GLuint id = val_int(target);
 
-        if( GLEW_EXT_framebuffer_object ) {
+        if( HAS_EXT_framebuffer_object ) {
             glDeleteRenderbuffers(1, &id);
         }
 
@@ -1390,7 +1389,7 @@ namespace lumen {
 
     value lumen_gl_framebuffer_renderbuffer(value target, value attachment, value renderbuffertarget, value renderbuffer) {
 
-        if( GLEW_EXT_framebuffer_object ) {
+        if( HAS_EXT_framebuffer_object ) {
             glFramebufferRenderbuffer(val_int(target), val_int(attachment), val_int(renderbuffertarget), val_int(renderbuffer) );
         }
 
@@ -1401,7 +1400,7 @@ namespace lumen {
 
     value lumen_gl_framebuffer_texture2D(value target, value attachment, value textarget, value texture, value level) {
 
-        if( GLEW_EXT_framebuffer_object ) {
+        if( HAS_EXT_framebuffer_object ) {
             glFramebufferTexture2D( val_int(target), val_int(attachment), val_int(textarget), val_int(texture), val_int(level) );
         }
 
@@ -1412,7 +1411,7 @@ namespace lumen {
 
     value lumen_gl_renderbuffer_storage(value target, value internalFormat, value width, value height) {
 
-        if( GLEW_EXT_framebuffer_object ) {
+        if( HAS_EXT_framebuffer_object ) {
             glRenderbufferStorage( val_int(target), val_int(internalFormat), val_int(width), val_int(height) );
         }
 
@@ -1423,7 +1422,7 @@ namespace lumen {
 
     value lumen_gl_check_framebuffer_status(value inTarget) {
 
-        if( GLEW_EXT_framebuffer_object ) {
+        if( HAS_EXT_framebuffer_object ) {
             return alloc_int( glCheckFramebufferStatus(val_int(inTarget)) );
         }
 
@@ -1433,10 +1432,10 @@ namespace lumen {
 
 
     value lumen_gl_get_framebuffer_attachment_parameter(value target, value attachment, value pname) {
-        
+
         GLint result = 0;
 
-        if( GLEW_EXT_framebuffer_object ) {
+        if( HAS_EXT_framebuffer_object ) {
             glGetFramebufferAttachmentParameteriv( val_int(target), val_int(attachment), val_int(pname), &result);
         }
 
@@ -1446,10 +1445,10 @@ namespace lumen {
 
 
     value lumen_gl_get_render_buffer_parameter(value target, value pname) {
-        
+
         int result = 0;
 
-        if( GLEW_EXT_framebuffer_object ) {
+        if( HAS_EXT_framebuffer_object ) {
             glGetRenderbufferParameteriv(val_int(target), val_int(pname), &result);
         }
 
@@ -1462,20 +1461,20 @@ namespace lumen {
 
 
     value lumen_gl_draw_arrays(value inMode, value inFirst, value inCount) {
-        
+
         glDrawArrays( val_int(inMode), val_int(inFirst), val_int(inCount) );
-        
+
         return alloc_null();
-    
+
     } DEFINE_PRIM(lumen_gl_draw_arrays,3);
 
 
     value lumen_gl_draw_elements(value inMode, value inCount, value inType, value inOffset) {
-        
+
         glDrawElements( val_int(inMode), val_int(inCount), val_int(inType), (void *)(intptr_t)val_int(inOffset) );
-        
+
         return alloc_null();
-    
+
     } DEFINE_PRIM(lumen_gl_draw_elements,4);
 
 
@@ -1521,13 +1520,13 @@ namespace lumen {
 
 
     value lumen_gl_clear_depth(value depth) {
-        
+
         #ifdef LUMEN_GLES
             glClearDepthf(val_number(depth));
         #else
             glClearDepth(val_number(depth));
         #endif
-       
+
         return alloc_null();
 
     } DEFINE_PRIM(lumen_gl_clear_depth,1);
@@ -1606,7 +1605,7 @@ namespace lumen {
 
         unsigned char *data = 0;
         ByteArray bytes( arg[aBuffer] );
-       
+
         if (bytes.mValue) {
             data = bytes.Bytes() + val_int(arg[aOffset]);
         }

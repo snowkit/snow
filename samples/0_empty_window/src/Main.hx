@@ -33,7 +33,7 @@ class Main extends lumen.AppFixedTimestep {
     var current_texture : GLTexture;
     var tex_index : Int = 0;
     var files : Array<String>;
-    
+
     var size : Int = 128;
     var texture_time : Float = 1.0;
     var positionX : Float = 0;
@@ -74,20 +74,20 @@ class Main extends lumen.AppFixedTimestep {
 
         trace("OpenGL reports version " + GL.versionString());
 
-        // initializeShaders();
-        // createBuffers();
+        initializeShaders();
+        createBuffers();
 
         textures = [];
 
-        files = [ 
+        files = [
             'assets/test.bmp',
-            'assets/test.gif', 
-            'assets/test.jpg', 
-            'assets/test.png', 
-            'assets/test.psd', 
-            'assets/test.tga', 
+            'assets/test.gif',
+            'assets/test.jpg',
+            'assets/test.png',
+            'assets/test.psd',
+            'assets/test.tga',
         ];
-        
+
         for(f in files) {
             var info : ImageInfo = app.loadimage(f);
             trace('loaded $f with ${info.width}x${info.height}x${info.bpp} (source bpp:${info.bpp_source}) mem:${info.data.byteLength}');
@@ -98,7 +98,7 @@ class Main extends lumen.AppFixedTimestep {
         current_texture = textures[0];
 
         app.main_window.window_render_handler = onrender;
-       
+
         next_tex_tick = haxe.Timer.stamp() + texture_time;
 
         positionY = (app.main_window.size.h - size) / 2;
@@ -168,6 +168,13 @@ class Main extends lumen.AppFixedTimestep {
         // trace("text input : " + event);
     } //ontextinput
 
+
+    override function ontouchdown( event:TouchEvent ) {
+        if(event.touch_id == 1) {
+            trace("playing sound!");
+            sound1.play();
+        }
+    }
 
     override function onmousemove( event:MouseEvent ) {
         // trace("move " + event);
@@ -248,7 +255,7 @@ class Main extends lumen.AppFixedTimestep {
 
         //"update"
         //this is to test the fix-your-timestep thing
-        //essentially app.mspf is a fixed timestep, alpha time is how far we are into one...        
+        //essentially app.mspf is a fixed timestep, alpha time is how far we are into one...
 
         var prevx = positionX;
         var alpha_time : Float = overflow / mspf;
@@ -256,7 +263,7 @@ class Main extends lumen.AppFixedTimestep {
 
         positionX = (phys_posx * alpha_time) + prevx * ( 1.0 - alpha_time );
 
-        if(positionX >= (app.main_window.size.w - size)) {            
+        if(positionX >= (app.main_window.size.w - size)) {
             positionX = (app.main_window.size.w - size);
             dirX = -1;
         } else if(positionX <= 0) {
@@ -273,7 +280,7 @@ class Main extends lumen.AppFixedTimestep {
     } //onrender hook
 
     function createTexture( info:ImageInfo ):GLTexture {
-        
+
         var texture = GL.createTexture();
 
             GL.bindTexture (GL.TEXTURE_2D, texture);
@@ -288,10 +295,14 @@ class Main extends lumen.AppFixedTimestep {
 
     function initializeShaders ():Void {
 
-        var vertexShaderSource = 
+        var vertexShaderSource = "";
 
-            "precision mediump float;
-            attribute vec3 aVertexPosition;
+        #if (mobile || lumen_html5)
+            vertexShaderSource += "precision mediump float;";
+        #end
+
+        vertexShaderSource +=
+            "attribute vec3 aVertexPosition;
             attribute vec2 aTexCoord;
             varying vec2 vTexCoord;
 
@@ -303,9 +314,7 @@ class Main extends lumen.AppFixedTimestep {
                 gl_Position = uProjectionMatrix * uModelViewMatrix * vec4 (aVertexPosition, 1.0);
             }";
 
-        trace("DERPDERPDERP");
         var vertexShader = GL.createShader (GL.VERTEX_SHADER);
-        trace("DERPDERPDERP");
 
             GL.shaderSource (vertexShader, vertexShaderSource);
             GL.compileShader (vertexShader);
@@ -316,10 +325,14 @@ class Main extends lumen.AppFixedTimestep {
 
         }
 
-        var fragmentShaderSource =
+        var fragmentShaderSource = "";
 
-            "precision mediump float;
-            varying vec2 vTexCoord;
+        #if (mobile || lumen_html5)
+            fragmentShaderSource += "precision mediump float;";
+        #end
+
+        fragmentShaderSource +=
+            "varying vec2 vTexCoord;
             uniform sampler2D uImage0;
 
             void main(void) {
@@ -329,106 +342,105 @@ class Main extends lumen.AppFixedTimestep {
         var fragmentShader = GL.createShader (GL.FRAGMENT_SHADER);
             GL.shaderSource (fragmentShader, fragmentShaderSource);
             GL.compileShader (fragmentShader);
-        
+
         if (GL.getShaderParameter (fragmentShader, GL.COMPILE_STATUS) == 0) {
-            
+
             throw "Error compiling fragment shader";
-            
+
         }
-        
+
         shaderProgram = GL.createProgram ();
 
         GL.attachShader (shaderProgram, vertexShader);
         GL.attachShader (shaderProgram, fragmentShader);
         GL.linkProgram (shaderProgram);
-        
+
         if (GL.getProgramParameter (shaderProgram, GL.LINK_STATUS) == 0) {
-            
+
             throw "Unable to initialize the shader program.";
-            
+
         }
-        
+
         vertexAttribute = GL.getAttribLocation (shaderProgram, "aVertexPosition");
         texCoordAttribute = GL.getAttribLocation (shaderProgram, "aTexCoord");
         projectionMatrixUniform = GL.getUniformLocation (shaderProgram, "uProjectionMatrix");
         modelViewMatrixUniform = GL.getUniformLocation (shaderProgram, "uModelViewMatrix");
         imageUniform = GL.getUniformLocation (shaderProgram, "uImage0");
-        
+
     } //initializeShaders
 
     function createBuffers ():Void {
-        
+
         var vertices = [
-            
+
             size, size, 0,
             0, size, 0,
             size, 0, 0,
             0, 0, 0
-            
+
         ];
-        
+
         vertexBuffer = GL.createBuffer ();
         GL.bindBuffer (GL.ARRAY_BUFFER, vertexBuffer);
         GL.bufferData (GL.ARRAY_BUFFER, new Float32Array (cast vertices), GL.STATIC_DRAW);
         GL.bindBuffer (GL.ARRAY_BUFFER, null);
-        
+
         var texCoords = [
-            
-            1, 1, 
-            0, 1, 
-            1, 0, 
-            0, 0, 
-            
+
+            1, 1,
+            0, 1,
+            1, 0,
+            0, 0,
+
         ];
-        
+
         texCoordBuffer = GL.createBuffer ();
-        GL.bindBuffer (GL.ARRAY_BUFFER, texCoordBuffer);    
+        GL.bindBuffer (GL.ARRAY_BUFFER, texCoordBuffer);
         GL.bufferData (GL.ARRAY_BUFFER, new Float32Array (cast texCoords), GL.STATIC_DRAW);
         GL.bindBuffer (GL.ARRAY_BUFFER, null);
-        
+
     } //createBuffers
 
     function render(){
-        
+
         GL.viewport (0, 0, app.main_window.size.w, app.main_window.size.h);
-        
-        GL.clearColor (Math.random(), 0.5, 0.2, 1.0);
+
+        GL.clearColor(1.0, 0.5, 0.2, 1.0);
         GL.clear (GL.COLOR_BUFFER_BIT);
-            
-            return;
+
         // var positionX = (app.main_window.size.w - size) / 2;
         // var positionY = (app.main_window.size.h - size) / 2;
-        
+
         var projectionMatrix = Matrix3D.createOrtho (0, app.main_window.size.w, app.main_window.size.h, 0, 1000, -1000);
         var modelViewMatrix = Matrix3D.create2D (positionX, positionY, 1, 0);
-        
+
         GL.useProgram (shaderProgram);
         GL.enableVertexAttribArray (vertexAttribute);
         GL.enableVertexAttribArray (texCoordAttribute);
-        
+
         GL.activeTexture (GL.TEXTURE0);
         GL.bindTexture (GL.TEXTURE_2D, current_texture);
         GL.enable (GL.TEXTURE_2D);
-        
+
         GL.bindBuffer (GL.ARRAY_BUFFER, vertexBuffer);
         GL.vertexAttribPointer (vertexAttribute, 3, GL.FLOAT, false, 0, 0);
         GL.bindBuffer (GL.ARRAY_BUFFER, texCoordBuffer);
         GL.vertexAttribPointer (texCoordAttribute, 2, GL.FLOAT, false, 0, 0);
-        
+
         GL.uniformMatrix3D (projectionMatrixUniform, false, projectionMatrix);
         GL.uniformMatrix3D (modelViewMatrixUniform, false, modelViewMatrix);
         GL.uniform1i (imageUniform, 0);
-        
+
         GL.drawArrays (GL.TRIANGLE_STRIP, 0, 4);
-        
+
         GL.bindBuffer (GL.ARRAY_BUFFER, null);
         GL.disable (GL.TEXTURE_2D);
         GL.bindTexture (GL.TEXTURE_2D, null);
-        
+
         GL.disableVertexAttribArray (vertexAttribute);
         GL.disableVertexAttribArray (texCoordAttribute);
         GL.useProgram (null);
-    
+
     } //render
 
 } //Main

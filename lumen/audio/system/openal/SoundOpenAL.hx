@@ -12,7 +12,7 @@ import lumen.utils.Float32Array;
 import lumen.audio.al.AL;
 
 class SoundOpenAL extends Sound {
-    
+
     public var source : Int;
     public var buffer : Int;
     var playing : Bool = false;
@@ -36,9 +36,11 @@ class SoundOpenAL extends Sound {
             trace("\t > bitrate : " + info.bitrate);
             trace("\t > bits_per_sample : " + info.bits_per_sample);
 
-        } 
+        }
 
         source = AL.genSource();
+
+        trace('lumen / audio / ${name} generating source for sound / ${AL.getErrorMeaning(AL.getError())} ');
 
             //default to 1 pitch
         AL.sourcef( source, AL.PITCH, 1.0 );
@@ -53,10 +55,12 @@ class SoundOpenAL extends Sound {
             //generate a buffer for this sound
         buffer = AL.genBuffer();
 
+        trace('lumen / audio / ${name} generating buffer for sound / ${AL.getErrorMeaning(AL.getError())} ');
+
             //default format is mono 16
         var format = AL.FORMAT_MONO16;
 
-                //if 2+ channels, it's stereo 
+                //if 2+ channels, it's stereo
             if(info.channels > 1) {
                 if(info.bits_per_sample == 8) {
                     format = AL.FORMAT_STEREO8;
@@ -65,7 +69,7 @@ class SoundOpenAL extends Sound {
                     format = AL.FORMAT_STEREO16;
                     trace("\t format : STEREO 16");
                 }
-            } else { //mono 
+            } else { //mono
                 if(info.bits_per_sample == 8) {
                     format = AL.FORMAT_MONO8;
                     trace("\t format : MONO 8");
@@ -73,12 +77,17 @@ class SoundOpenAL extends Sound {
                     format = AL.FORMAT_MONO16;
                     trace("\t format : MONO 16");
                 }
-            } 
+            }
 
             //give the data from the sound info to the buffer
         AL.bufferData(buffer, format, new Float32Array(info.data), info.data.byteLength, info.rate );
+
+        trace('lumen / audio / ${name} buffered data / ${AL.getErrorMeaning(AL.getError())} ');
+
             //give the buffer to the source
         AL.sourcei(source, AL.BUFFER, buffer);
+
+        trace('lumen / audio / ${name} assigning buffer to source / ${AL.getErrorMeaning(AL.getError())} ');
 
     } //new
 
@@ -87,6 +96,8 @@ class SoundOpenAL extends Sound {
     override public function play() {
         playing = true;
         AL.sourcePlay(source);
+
+        trace('lumen / audio / ${name} playing sound / ${AL.getErrorMeaning(AL.getError())} ');
     } //play
 
     override public function pause() {

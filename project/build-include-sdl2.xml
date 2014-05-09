@@ -18,7 +18,7 @@
         <section if="windows">
              <compilerflag value="-DUSING_GENERATED_CONFIG_H"/>
         </section>
-        
+
         <section if="linux">
             <compilerflag value="-DUSING_GENERATED_CONFIG_H"/>
             <compilerflag value="-DHAVE_LINUX_VERSION_H"/>
@@ -124,6 +124,11 @@
         <file name="${SRC_DIR}/libs/sdl/src/render/software/SDL_render_sw.c" />
         <file name="${SRC_DIR}/libs/sdl/src/render/software/SDL_rotate.c" />
 
+        <file name="${SRC_DIR}/libs/sdl/src/video/dummy/SDL_nullevents.c" />
+        <file name="${SRC_DIR}/libs/sdl/src/video/dummy/SDL_nullframebuffer.c" />
+        <file name="${SRC_DIR}/libs/sdl/src/video/dummy/SDL_nullvideo.c" />
+        <file name="${SRC_DIR}/libs/sdl/src/audio/dummy/SDL_dummyaudio.c" />
+
         <!-- NOT WINDOWS , the unless is tricky to spot -->
         <section unless="windows">
             <file name="${SRC_DIR}/libs/sdl/src/thread/pthread/SDL_syscond.c" />
@@ -134,11 +139,6 @@
             <file name="${SRC_DIR}/libs/sdl/src/timer/unix/SDL_systimer.c" />
         </section>
 
-        <file name="${SRC_DIR}/libs/sdl/src/video/dummy/SDL_nullevents.c" />
-        <file name="${SRC_DIR}/libs/sdl/src/video/dummy/SDL_nullframebuffer.c" />
-        <file name="${SRC_DIR}/libs/sdl/src/video/dummy/SDL_nullvideo.c" />
-        <file name="${SRC_DIR}/libs/sdl/src/audio/dummy/SDL_dummyaudio.c" />
-
         <section if="android || ios || windows" >
             <file name="${SRC_DIR}/libs/sdl/src/video/SDL_egl.c" />
             <file name="${SRC_DIR}/libs/sdl/src/render/opengles/SDL_render_gles.c" />
@@ -146,7 +146,7 @@
             <file name="${SRC_DIR}/libs/sdl/src/render/opengles2/SDL_shaders_gles2.c" />
         </section>
 
-        <section if="LUMEN_SDL_DIRECTFB">
+        <section if="LUMEN_LIB_SDL_DIRECTFB">
             <file name="${SRC_DIR}/libs/sdl/src/video/directfb/SDL_DirectFB_WM.c" />
             <file name="${SRC_DIR}/libs/sdl/src/video/directfb/SDL_DirectFB_dyn.c" />
             <file name="${SRC_DIR}/libs/sdl/src/video/directfb/SDL_DirectFB_events.c" />
@@ -159,7 +159,7 @@
             <file name="${SRC_DIR}/libs/sdl/src/video/directfb/SDL_DirectFB_window.c" />
         </section>
 
-        <section if="LUMEN_SDL_WAYLAND">
+        <section if="LUMEN_LIB_SDL_WAYLAND">
             <file name="${SRC_DIR}/libs/sdl/src/video/wayland/SDL_waylanddyn.c" />
             <file name="${SRC_DIR}/libs/sdl/src/video/wayland/SDL_waylandevents.c" />
             <file name="${SRC_DIR}/libs/sdl/src/video/wayland/SDL_waylandmouse.c" />
@@ -169,12 +169,12 @@
             <file name="${SRC_DIR}/libs/sdl/src/video/wayland/SDL_waylandwindow.c" />
         </section>
 
-        <section if="LUMEN_SDL_PANDORA">
+        <section if="LUMEN_LIB_SDL_PANDORA">
             <file name="${SRC_DIR}/libs/sdl/src/video/pandora/SDL_pandora.c" />
             <file name="${SRC_DIR}/libs/sdl/src/video/pandora/SDL_pandora_events.c" />
         </section>
 
-        <section if="LUMEN_SDL_MIR">
+        <section if="LUMEN_LIB_SDL_MIR">
             <file name="${SRC_DIR}/libs/sdl/src/video/mir/SDL_mirdyn.c" />
             <file name="${SRC_DIR}/libs/sdl/src/video/mir/SDL_mirevents.c" />
             <file name="${SRC_DIR}/libs/sdl/src/video/mir/SDL_mirframebuffer.c" />
@@ -184,14 +184,14 @@
             <file name="${SRC_DIR}/libs/sdl/src/video/mir/SDL_mirwindow.c" />
         </section>
 
-        <section if="LUMEN_SDL_RPI">
+        <section if="LUMEN_LIB_SDL_RPI">
             <file name="${SRC_DIR}/libs/sdl/src/video/raspberry/SDL_rpievents.c" />
             <file name="${SRC_DIR}/libs/sdl/src/video/raspberry/SDL_rpimouse.c" />
             <file name="${SRC_DIR}/libs/sdl/src/video/raspberry/SDL_rpiopengles.c" />
             <file name="${SRC_DIR}/libs/sdl/src/video/raspberry/SDL_rpivideo.c" />
         </section>
 
-        <section if="LUMEN_SDL_PSP">
+        <section if="LUMEN_LIB_SDL_PSP">
             <file name="${SRC_DIR}/libs/sdl/src/audio/psp/SDL_pspaudio.c" />
             <file name="${SRC_DIR}/libs/sdl/src/joystick/psp/SDL_sysjoystick.c" />
             <file name="${SRC_DIR}/libs/sdl/src/main/psp/SDL_psp_main.c" />
@@ -210,9 +210,8 @@
 
         <!--  -->
 
+
 <!--
-        <file name="${SRC_DIR}/libs/sdl/src/filesystem/dummy/SDL_sysfilesystem.c" />
-        <file name="${SRC_DIR}/libs/sdl/src/haptic/dummy/SDL_syshaptic.c" />
         <file name="${SRC_DIR}/libs/sdl/src/joystick/dummy/SDL_sysjoystick.c" />
         <file name="${SRC_DIR}/libs/sdl/src/loadso/dummy/SDL_sysloadso.c" />
         <file name="${SRC_DIR}/libs/sdl/src/main/dummy/SDL_dummy_main.c" />
@@ -227,7 +226,6 @@
         <section if="linux">
             <file name="${SRC_DIR}/libs/sdl/src/audio/SDL_audiodev.c" />
             <file name="${SRC_DIR}/libs/sdl/src/audio/alsa/SDL_alsa_audio.c" />
-            <file name="${SRC_DIR}/libs/sdl/src/audio/android/SDL_androidaudio.c" />
             <file name="${SRC_DIR}/libs/sdl/src/audio/arts/SDL_artsaudio.c" />
             <file name="${SRC_DIR}/libs/sdl/src/audio/bsd/SDL_bsdaudio.c" />
             <file name="${SRC_DIR}/libs/sdl/src/audio/esd/SDL_esdaudio.c" />
@@ -338,6 +336,7 @@
         </section>
 
         <section if="android">
+            <file name="${SRC_DIR}/libs/sdl/src/audio/android/SDL_androidaudio.c" />
             <file name="${SRC_DIR}/libs/sdl/src/core/android/SDL_android.c" />
             <file name="${SRC_DIR}/libs/sdl/src/joystick/android/SDL_sysjoystick.c" />
             <file name="${SRC_DIR}/libs/sdl/src/main/android/SDL_android_main.c" />
@@ -349,6 +348,8 @@
             <file name="${SRC_DIR}/libs/sdl/src/video/android/SDL_androidtouch.c" />
             <file name="${SRC_DIR}/libs/sdl/src/video/android/SDL_androidvideo.c" />
             <file name="${SRC_DIR}/libs/sdl/src/video/android/SDL_androidwindow.c" />
+            <file name="${SRC_DIR}/libs/sdl/src/haptic/dummy/SDL_syshaptic.c" />
+            <file name="${SRC_DIR}/libs/sdl/src/filesystem/dummy/SDL_sysfilesystem.c" />
         </section>
 
     </files>
@@ -356,7 +357,7 @@
 
 <!-- Static library version of SDL -->
 
-    <target id="libs-sdl" output="${LIBPREFIX}SDL2${DBG}${LIBEXTRA}" tool="linker" toolid="static_link" if="LUMEN_SDL_STATIC_EXTERNAL">
+    <target id="libs-sdl" output="${LIBPREFIX}SDL2${DBG}${LIBEXTRA}" tool="linker" toolid="static_link" if="LUMEN_LIB_SDL_STATIC_EXTERNAL">
         <files id="libs-sdl"/>
         <outdir name="lib/${BINDIR}"/>
     </target>
@@ -364,7 +365,7 @@
 
 <!-- Shared library version of SDL -->
 
-    <target id="libs-sdl-shared" output="${LIBPREFIX}SDL2${DBG}${LIBEXTRA}" tool="linker" toolid="${STD_MODULE_LINK}">
+    <target id="libs-sdl-shared" output="${LIBPREFIX}SDL2${DBG}${LIBEXTRA}" tool="linker" toolid="${STD_MODULE_LINK}" if="LUMEN_LIB_SDL_SHARED_EXTERNAL">
 
         <section if="mac">
             <vflag name="-l" value="iconv"/>
