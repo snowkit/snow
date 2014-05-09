@@ -528,7 +528,7 @@ extern bool audio_load_wav_bytes( QuickVec<unsigned char> &out_buffer, const cha
 
 
 
-extern void image_load_bytes( QuickVec<unsigned char> &out_buffer, const char* _id, int* w, int* h, int* bpp, int* bpp_source, int req_bpp );
+extern bool image_load_bytes( QuickVec<unsigned char> &out_buffer, const char* _id, int* w, int* h, int* bpp, int* bpp_source, int req_bpp );
 
     value lumen_image_load_bytes( value _id, value _req_bpp ) {
 
@@ -537,7 +537,11 @@ extern void image_load_bytes( QuickVec<unsigned char> &out_buffer, const char* _
         int w = 0, h = 0, bpp = 0, bpp_source = 0;
         int req_bpp = val_int(_req_bpp);
 
-        image_load_bytes( buffer, val_string(_id), &w, &h, &bpp, &bpp_source, req_bpp );
+        bool success = image_load_bytes( buffer, val_string(_id), &w, &h, &bpp, &bpp_source, req_bpp );
+
+        if(!success) {
+            return alloc_null();
+        }
 
         value _object = alloc_empty_object();
 

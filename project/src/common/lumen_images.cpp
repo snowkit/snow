@@ -62,7 +62,15 @@ namespace lumen {
         //bpp == the resulting bits per pixel
         //bpp == the source image bits per pixel
         //req_bpp == use this instead of the source
-    void image_load_bytes( QuickVec<unsigned char> &out_buffer, const char* _id, int* w, int* h, int* bpp, int* bpp_source, int req_bpp = 4 ) {
+    bool image_load_bytes( QuickVec<unsigned char> &out_buffer, const char* _id, int* w, int* h, int* bpp, int* bpp_source, int req_bpp = 4 ) {
+
+            //get a io file pointer to the image
+        lumen_iosrc* src = lumen::iosrc_fromfile(_id, "rb");
+
+        if(!src) {
+            lumen::log("/ lumen / cannot open image file from %s", _id);
+            return false;
+        }
 
             //always use callbacks because we use lumen abstracted IO
         stbi_io_callbacks stbi_lumen_callbacks = {
@@ -70,9 +78,6 @@ namespace lumen {
            lumen_stbi_skip,
            lumen_stbi_eof
         };
-
-            //get a io file pointer to the image
-        lumen_iosrc* src = lumen::iosrc_fromfile(_id, "rb");
 
         unsigned char *data = stbi_load_from_callbacks(&stbi_lumen_callbacks, src, w, h, bpp_source, req_bpp);
 
@@ -101,6 +106,8 @@ namespace lumen {
             stbi_image_free(data);
 
         } //data != NULL
+
+        return true;
 
     } //derp
 

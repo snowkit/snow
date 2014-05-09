@@ -473,10 +473,12 @@ namespace lumen {
             lumen::log("/ lumen / Could not initialize joystick for SDL : %s\n", SDL_GetError());
         }
 
-        err = SDL_InitSubSystem(SDL_INIT_HAPTIC);
-        if (err == -1) {
-            lumen::log("/ lumen / warning only / Could not initialize haptic feedback for SDL. This is not critical. : %s\n", SDL_GetError());
-        }
+        #ifndef SDL_HAPTIC_DISABLED
+            err = SDL_InitSubSystem(SDL_INIT_HAPTIC);
+            if (err == -1) {
+                lumen::log("/ lumen / warning only / Could not initialize haptic feedback for SDL. This is not critical. : %s\n", SDL_GetError());
+            }
+        #endif //SDL_HAPTIC_DISABLED
 
     } //init_input_sdl
 

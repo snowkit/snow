@@ -39,6 +39,7 @@ namespace lumen {
             ~OGG_file_source() {
 
                 ov_clear(ogg_file);
+                delete ogg_file;
 
             } //~
 
@@ -89,7 +90,8 @@ namespace lumen {
 
             ogg_source->file_source = lumen::iosrc_fromfile(_id, "rb");
             if(!ogg_source->file_source) {
-                lumen::log("%s %s\n", "error opening file:", _id);
+                lumen::log("/ lumen / cannot open ogg file from %s", _id);
+                delete ogg_source;
                 return false;
             }
 
@@ -260,7 +262,7 @@ namespace lumen {
             f = lumen::iosrc_fromfile(_id, "rb");
 
             if (!f) {
-                lumen::log("%s : %s\n", _id, "failed to open sound file, does this file exist?\n");
+                lumen::log("/ lumen / cannot open wav file from %s", _id);
                 return false;
             }
 

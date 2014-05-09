@@ -15,6 +15,8 @@
         <compilerflag value="-DGL_GLEXT_PROTOTYPES" if="android"/>
         <compilerflag value="-DHAVE_LIBC"/>
 
+        <compilerflag value="-D__IPHONEOS__" if="ios"/>
+
         <section if="windows">
              <compilerflag value="-DUSING_GENERATED_CONFIG_H"/>
         </section>
@@ -320,9 +322,13 @@
         </section>
 
         <section if="ios">
-            <file name="${SRC_DIR}/libs/sdl/src/power/uikit/SDL_syspower.m" />
+            <!-- <file name="${SRC_DIR}/libs/sdl/src/main/dummy/SDL_dummy_main.c" /> -->
+            <file name="${SRC_DIR}/libs/sdl/src/audio/coreaudio/SDL_coreaudio.c" />
+            <file name="${SRC_DIR}/libs/sdl/src/file/cocoa/SDL_rwopsbundlesupport.m" />
+            <file name="${SRC_DIR}/libs/sdl/src/filesystem/cocoa/SDL_sysfilesystem.m" />
             <file name="${SRC_DIR}/libs/sdl/src/joystick/iphoneos/SDLUIAccelerationDelegate.m" />
             <file name="${SRC_DIR}/libs/sdl/src/joystick/iphoneos/SDL_sysjoystick.m" />
+            <file name="${SRC_DIR}/libs/sdl/src/power/uikit/SDL_syspower.m" />
             <file name="${SRC_DIR}/libs/sdl/src/video/uikit/SDL_uikitappdelegate.m" />
             <file name="${SRC_DIR}/libs/sdl/src/video/uikit/SDL_uikitevents.m" />
             <file name="${SRC_DIR}/libs/sdl/src/video/uikit/SDL_uikitmessagebox.m" />

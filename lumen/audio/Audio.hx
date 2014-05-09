@@ -28,7 +28,7 @@ class Audio {
     } //new
 
     public function create( _id:String, ?_name:String = '' ) : LumenSound {
-        
+
         if(_name == '') {
             _name = uniqueid();
         } //_name
@@ -38,7 +38,7 @@ class Audio {
         var info : AudioInfo = null;
 
         switch(ext) {
-            
+
             case 'wav' : {
                 info = load_audio_wav(_id);
             }
@@ -57,7 +57,7 @@ class Audio {
         }
 
         var sound : LumenSound = new LumenSound(this, info);
-            
+
             sound.name = _name;
 
             //store for later
@@ -68,7 +68,7 @@ class Audio {
     } //create
 
     public function get( _name:String ) : LumenSound {
-        
+
         var _sound = sound_list.get(_name);
 
         if(_sound == null) {
@@ -152,13 +152,17 @@ class Audio {
 
         var data = ByteArray.readFile( path );
 
+        if(data == null) {
+            return null;
+        }
+
             //hmm, need to investigate these flags here
         return {
 
             id : path,                      //file source
             format : AudioFormatType.pcm,   //format
             channels : 1,                   //number of channels
-            rate : 44100,                   //hz rate 
+            rate : 44100,                   //hz rate
             bitrate : 88200,                //sound bitrate
             bits_per_sample : 16,           //bits per sample, 8 / 16
             data : data                     //sound raw data
@@ -167,11 +171,11 @@ class Audio {
 
     } //load_audio_pcm
 
-#if lumen_native 
-        
+#if lumen_native
+
     static var lumen_audio_load_ogg_bytes = Libs.load( "lumen", "lumen_audio_load_ogg_bytes", 1 );
     static var lumen_audio_load_wav_bytes = Libs.load( "lumen", "lumen_audio_load_wav_bytes", 1 );
 
-#end     
+#end
 
 } //Audio
