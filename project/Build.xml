@@ -245,6 +245,7 @@
          </section> <!-- mac -->
 
          <section if="android">
+            <lib name="-Wl,--undefined=Java_org_libsdl_app_SDLActivity_nativeInit" if="LUMEN_LIB_SDL"/>
             <lib name="-ldl" />
             <lib name="-llog" />
             <lib name="-landroid" />
