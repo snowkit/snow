@@ -76,8 +76,19 @@ class Lumen {
 
         #if lumen_native
 
-            _debug('/ lumen / setting up app path', true);
-            Sys.setCwd( lumen_app_path() );
+            var app_path = lumen_app_path();
+
+                //This is because of how lime-tools packages assets
+                //into the iOS builds, it stores it inside of /assets to avoid
+                //including the root in the project recursively, so we start inside
+                //that path instead of the root folder, because any files copied are in there.
+            #if ios
+                app_path += "assets/";
+            #end
+
+            _debug('/ lumen / setting up app path ${app_path}', true);
+
+            Sys.setCwd( app_path );
 
             #if !mobile
                 _debug('/ lumen / setting up pref path', true);
