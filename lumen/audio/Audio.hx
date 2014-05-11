@@ -5,7 +5,7 @@ import lumen.audio.system.AudioSystem;
 import lumen.audio.system.AudioSystem.LumenAudioSystem;
 import lumen.audio.system.AudioSystem.LumenSound;
 
-import lumen.utils.Libs;
+import lumen.assets.Assets;
 import lumen.utils.ByteArray;
 
 class Audio {
@@ -34,36 +34,21 @@ class Audio {
         } //_name
 
             //try loading the sound asset
-        var ext : String = haxe.io.Path.extension(_id);
-        var path : String = lib.assets.path(_id);
-
+        var asset : AssetAudio = lib.assets.get_audio(_id);
+            //but we always return a valid sound object, so code will be reliable
+            //even if the sound is unable to play etc.
         var info : AudioInfo = null;
 
-        switch(ext) {
-
-            case 'wav' : {
-                info = load_audio_wav(path);
-            }
-
-            case 'ogg' : {
-                info = load_audio_ogg(path);
-            }
-
-            case 'pcm' : {
-                info = load_audio_pcm(path);
-            }
-
-            default : {
-                trace('/ lumen / audio file format unknown!? extension:${ext} / ${_id}');
-            }
+        if(asset != null) {
+            info = asset.data;
         }
 
+            //create and reeturn the sound object
         var sound : LumenSound = new LumenSound(this, info);
-
+                //update name
             sound.name = _name;
-
-            //store for later
-        sound_list.set(_name, sound);
+                //store for later
+            sound_list.set(_name, sound);
 
         return sound;
 
@@ -141,43 +126,5 @@ class Audio {
     public function update() {
         system.update();
     } //update
-
-    public function load_audio_ogg( path:String ) : AudioInfo {
-        return lumen_audio_load_ogg_bytes( path );
-    } //load_audio_ogg
-
-    public function load_audio_wav( path:String ) : AudioInfo {
-        return lumen_audio_load_wav_bytes( path );
-    } //load_audio_wav
-
-    public function load_audio_pcm( path:String ) : AudioInfo {
-
-        var data = ByteArray.readFile( path );
-
-        if(data == null) {
-            return null;
-        }
-
-            //hmm, need to investigate these flags here
-        return {
-
-            id : path,                      //file source
-            format : AudioFormatType.pcm,   //format
-            channels : 1,                   //number of channels
-            rate : 44100,                   //hz rate
-            bitrate : 88200,                //sound bitrate
-            bits_per_sample : 16,           //bits per sample, 8 / 16
-            data : data                     //sound raw data
-
-        }; //AudioInfo
-
-    } //load_audio_pcm
-
-#if lumen_native
-
-    static var lumen_audio_load_ogg_bytes = Libs.load( "lumen", "lumen_audio_load_ogg_bytes", 1 );
-    static var lumen_audio_load_wav_bytes = Libs.load( "lumen", "lumen_audio_load_wav_bytes", 1 );
-
-#end
 
 } //Audio
