@@ -3,15 +3,15 @@
 
 #include <stdio.h>
 
-#ifdef LUMEN_LIB_SDL
+#ifdef LUMEN_USE_SDL
     #include "libs/sdl/SDL.h"
-#endif //LUMEN_LIB_SDL
+#endif //LUMEN_USE_SDL
 
 #include "common/ByteArray.h"
 
 namespace lumen {
 
-    #ifdef LUMEN_LIB_SDL
+    #ifdef LUMEN_USE_SDL
 
         #define lumen_iosrc SDL_RWops
 
@@ -27,7 +27,7 @@ namespace lumen {
         #define lumen_seek_cur SEEK_CUR
         #define lumen_seek_end SEEK_END
 
-    #endif
+    #endif //LUMEN_USE_SDL
 
     lumen_iosrc* iosrc_fromfile(const char *file, const char *mode);
     lumen_iosrc* iosrc_frommem(void *mem, int size);

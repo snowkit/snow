@@ -6,12 +6,11 @@ import lumen.App;
 import lumen.LumenTypes;
 import lumen.utils.ByteArray;
 
+import lumen.assets.Assets;
 import lumen.input.Input;
 import lumen.audio.Audio;
 import lumen.window.Windowing;
-
 import lumen.window.Window;
-
 
 class Lumen {
 
@@ -23,6 +22,7 @@ class Lumen {
     public var window : Windowing;
     public var input : Input;
     public var audio : Audio;
+    public var assets : Assets;
 
     public var shutting_down : Bool = false;
     public var has_shutdown : Bool = false;
@@ -78,14 +78,6 @@ class Lumen {
 
             var app_path = lumen_app_path();
 
-                //This is because of how lime-tools packages assets
-                //into the iOS builds, it stores it inside of /assets to avoid
-                //including the root in the project recursively, so we start inside
-                //that path instead of the root folder, because any files copied are in there.
-            #if ios
-                app_path += "assets/";
-            #end
-
             _debug('/ lumen / setting up app path ${app_path}', true);
 
             Sys.setCwd( app_path );
@@ -97,12 +89,6 @@ class Lumen {
 
         #end //lumen_native
 
-        _debug('/ lumen / fetching runtime config', true);
-
-            //fetch runtime config before we actually tell them to pre-ready init
-        config.runtime_config = host.get_runtime_config();
-
-            //preready init the host etc
         _debug('/ lumen / pre ready, init host', true);
 
             //any app pre ready init can be handled in here
@@ -117,17 +103,37 @@ class Lumen {
             return;
         }
 
+
         _debug('/ lumen / ready, setting up additional systems...');
 
-            //create the sub systems
-        window = new Windowing( this );
-        input = new Input( this );
-        audio = new Audio( this );
+
+                //create the sub systems
+            window = new Windowing( this );
+            input = new Input( this );
+            audio = new Audio( this );
+            assets = new Assets( this );
+
+
+        _debug('/ lumen / fetching asset list "${assets.manifest_path}"' , true);
+
+
+                //we fetch the a list from the host so they can override it
+            config.asset_data = host.get_asset_list();
+                //then we add the list for the asset manager
+            assets.add( config.asset_data );
+
+
+        _debug('/ lumen / fetching runtime config', true);
+
+
+            //fetch runtime config before we actually tell them to pre-ready init
+        config.runtime_config = host.get_runtime_config();
 
             //disllow re-entry
         was_ready = true;
 
-            //for now, load in the window size from the runtime config
+            //:todo: this should be abstracted to the host in some way
+            //load in the window size from the runtime config
         if(config.runtime_config.window != null) {
 
             if(config.runtime_config.window.width != null) {
@@ -231,8 +237,10 @@ class Lumen {
 
     } //on_event
 
-    public function loadimage( path:String, ?components:Int = 4 ) : ImageInfo {
-        return lumen_image_load_bytes( path, components );
+    public function loadimage( _id:String, ?components:Int = 4 ) : ImageInfo {
+
+        return lumen_image_load_bytes( assets.path(_id), components );
+
     }
 
     function on_main_window_event( _event:WindowEvent ) {
@@ -246,7 +254,7 @@ class Lumen {
 
 //Helpers
 
-       //Loads a function out of a dynamic haxe library
+       //Loads a function out of a library
     public static function load( library:String, method:String, args:Int = 0 ) : Dynamic {
 
         return lumen.utils.Libs.load( library, method, args );
@@ -276,11 +284,11 @@ class Lumen {
         public var log : Bool = true;
         public var verbose : Bool = true;
         public var more_verbose : Bool = false;
-        public function _debug(value:Dynamic, _verbose:Bool = false, _more_verbose:Bool = false) { 
+        public function _debug(value:Dynamic, _verbose:Bool = false, _more_verbose:Bool = false) {
             if(log) {
                 if(verbose && _verbose && !_more_verbose) {
                     trace(value);
-                } else 
+                } else
                 if(more_verbose && _more_verbose) {
                     trace(value);
                 } else {

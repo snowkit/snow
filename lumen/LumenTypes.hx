@@ -3,12 +3,22 @@ package lumen;
 import lumen.Lumen;
 import lumen.utils.ByteArray;
 
+
+typedef AssetInfo = {
+
+    id : String,            //the asset id
+    path : String,          //the asset actual path
+    type : String           //a type indicator
+
+}
+
 typedef LumenConfig = {
 
     ? host                  : App,              //the bootstrapped application
     ? window_config         : WindowConfig,     //the window config for a default window, if any
     ? run_loop              : Bool,             //whether or not the core should run a loop at all
-    ? runtime_config        : Dynamic           //the user specific config read from json at runtime
+    ? runtime_config        : Dynamic,          //the user specific config read from json at runtime
+    ? asset_data            : Array<AssetInfo>  //the raw list of assets. use the app.assets from Lumen for access
 
 } //LumenConfig
 
