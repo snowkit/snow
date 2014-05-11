@@ -15,8 +15,9 @@ class Sound {
     @:isVar public var volume   (get,set) : Float = 1.0;
     @:isVar public var pan      (get,set) : Float = 0.0;
 
-    public function new( _manager:Audio, _audio_info : AudioInfo ) {
+    public function new( _manager:Audio, _name:String, _audio_info : AudioInfo ) {
 
+        name = _name;
         manager = _manager;
         info = _audio_info;
 

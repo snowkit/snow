@@ -29,6 +29,8 @@ class Lumen {
 
     public var main_window : Window;
 
+    public var uniqueid (get,never) : String;
+
     var was_ready : Bool = false;
     var is_ready : Bool = false;
 
@@ -247,6 +249,10 @@ class Lumen {
 
 
 //Helpers
+
+    function get_uniqueid() : String {
+        return haxe.crypto.Md5.encode(Std.string( time * Math.random() ));
+    } //uniqueid
 
        //Loads a function out of a library
     public static function load( library:String, method:String, args:Int = 0 ) : Dynamic {

@@ -116,8 +116,8 @@
          <!-- bindings -->
       <file name="${SRC_DIR}/hx_bindings.cpp" />
          <!-- assets -->
-      <file name="${SRC_DIR}/assets/lumen_image_assets.cpp" />
-      <file name="${SRC_DIR}/assets/lumen_audio_assets.cpp" />
+      <file name="${SRC_DIR}/assets/lumen_assets_image.cpp" />
+      <file name="${SRC_DIR}/assets/lumen_assets_audio.cpp" />
          <!-- common utils -->
       <file name="${SRC_DIR}/common/ByteArray.cpp" />
          <!-- lumen core -->

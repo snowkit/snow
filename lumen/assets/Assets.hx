@@ -221,6 +221,17 @@ class Assets {
 
     } //get_image
 
+    function audio_format( _int:Int ) : AudioFormatType {
+        
+        switch(_int) {
+            case 1: return AudioFormatType.ogg;
+            case 2: return AudioFormatType.wav;
+            case 3: return AudioFormatType.pcm;
+            default: return AudioFormatType.unknown;        
+        }
+
+    } //audio_format
+
     public function get_audio( _id:String, ?options:AssetAudioOptions ) : AssetAudio {
 
         if(exists(_id)) {
@@ -261,6 +272,9 @@ class Assets {
                 return null;
             }
 
+                //transform the format
+            _audio_info.format = audio_format(cast _audio_info.format);
+
                 //with images the bytes data could be null too, this is also an invalid asset
             if(_audio_info.data == null) {
                 load_error(_id, "audio info data was null");
@@ -281,12 +295,16 @@ class Assets {
         //:todo: these are abstracted to allow for html5 building 
         //since these are currently talking to native only 
     @:noCompletion public function load_audio_ogg( asset:AssetInfo ) : AudioInfo {
-        return lumen_assets_load_audioinfo_ogg( _path(asset) );
+        return lumen_assets_load_audioinfo_ogg( _path(asset), true );
     } //load_audio_ogg
 
     @:noCompletion public function load_audio_wav( asset:AssetInfo ) : AudioInfo {
         return lumen_assets_load_audioinfo_wav( _path(asset) );
     } //load_audio_wav
+
+    @:noCompletion public function load_audio_portion_ogg( _info:AudioInfo, _start:Int, _len:Int ) : ByteArray {
+        return lumen_assets_audio_ogg_read_bytes( _info, _start, _len );
+    } //load_audio_portion_ogg
 
     @:noCompletion public function load_audio_pcm( asset:AssetInfo ) : AudioInfo {
 
@@ -307,7 +325,10 @@ class Assets {
             rate : 44100,                   //hz rate
             bitrate : 88200,                //sound bitrate
             bits_per_sample : 16,           //bits per sample, 8 / 16
-            data : data                     //sound raw data
+            data : data,                    //sound raw data
+            length : data.byteLength,       //length of the data
+            length_pcm : data.byteLength,   //length is the same, uncompressed
+            handle : null                   //this isn't used 
 
         } //new AudioInfo
 
@@ -315,9 +336,10 @@ class Assets {
 
 #if lumen_native
     
-    static var lumen_assets_load_imageinfo      = Libs.load( "lumen", "lumen_assets_load_imageinfo", 2 );
-    static var lumen_assets_load_audioinfo_ogg  = Libs.load( "lumen", "lumen_assets_load_audioinfo_ogg", 1 );
-    static var lumen_assets_load_audioinfo_wav  = Libs.load( "lumen", "lumen_assets_load_audioinfo_wav", 1 );
+    static var lumen_assets_load_imageinfo       = Libs.load( "lumen", "lumen_assets_load_imageinfo", 2 );
+    static var lumen_assets_load_audioinfo_ogg   = Libs.load( "lumen", "lumen_assets_load_audioinfo_ogg", 2 );
+    static var lumen_assets_audio_ogg_read_bytes = Libs.load( "lumen", "lumen_assets_audio_ogg_read_bytes", 3 );
+    static var lumen_assets_load_audioinfo_wav   = Libs.load( "lumen", "lumen_assets_load_audioinfo_wav", 1 );
 
 #end //lumen_native
 

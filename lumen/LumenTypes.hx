@@ -51,7 +51,10 @@ typedef AudioInfo = {
     rate : Int,                 //hz rate 
     bitrate : Int,              //sound bitrate
     bits_per_sample : Int,      //bits per sample, 8 / 16
-    data : ByteArray            //sound raw data
+    data : ByteArray,           //sound raw data,
+    length : Int,               //the file length in bytes
+    length_pcm : Int,           //the pcm uncompressed raw length in bytes
+    handle : Dynamic            //the native audio handle for later manipulation
 
 } //AudioInfo
 
