@@ -15,6 +15,7 @@ import lumen.window.Window;
 import lumen.input.Input;
 
 import lumen.LumenTypes.ImageInfo;
+import lumen.assets.Assets;
 import lumen.App;
 
 import lumen.audio.system.AudioSystem.LumenSound;
@@ -88,12 +89,10 @@ class Main extends lumen.AppFixedTimestep {
         ];
 
         for(f in files) {
-            var info : ImageInfo = app.loadimage(f);
-            if(info != null) {
-                trace('loaded $f with ${info.width}x${info.height}x${info.bpp} (source bpp:${info.bpp_source}) mem:${info.data.byteLength}');
-                textures.push( createTexture( info ) );
-            } else {
-                trace("file was not found : " + f);
+            var image : AssetImage = app.assets.get_image( f );
+            if(image != null) {
+                trace('loaded $f with ${image.data.width}x${image.data.height}x${image.data.bpp} (source bpp:${image.data.bpp_source}) mem:${image.data.data.byteLength}');
+                textures.push( createTexture( image ) );
             }
         }
 
@@ -275,12 +274,12 @@ class Main extends lumen.AppFixedTimestep {
 
     } //onrender hook
 
-    function createTexture( info:ImageInfo ):GLTexture {
+    function createTexture( image:AssetImage ):GLTexture {
 
         var texture = GL.createTexture();
 
             GL.bindTexture (GL.TEXTURE_2D, texture);
-            GL.texImage2D (GL.TEXTURE_2D, 0, GL.RGBA, info.width, info.height, 0, GL.RGBA, GL.UNSIGNED_BYTE, new UInt8Array( cast info.data ) );
+            GL.texImage2D (GL.TEXTURE_2D, 0, GL.RGBA, image.data.width, image.data.height, 0, GL.RGBA, GL.UNSIGNED_BYTE, new UInt8Array( cast image.data.data ) );
             GL.texParameteri (GL.TEXTURE_2D, GL.TEXTURE_MAG_FILTER, GL.NEAREST);
             GL.texParameteri (GL.TEXTURE_2D, GL.TEXTURE_MIN_FILTER, GL.NEAREST);
             GL.bindTexture (GL.TEXTURE_2D, null);

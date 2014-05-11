@@ -459,7 +459,7 @@ extern bool audio_load_ogg_bytes( QuickVec<unsigned char> &out_buffer, const cha
 
 extern bool audio_load_wav_bytes( QuickVec<unsigned char> &out_buffer, const char *_id,  int *channels, int* rate, int *bitrate, int *bits_per_sample);
 
-    value lumen_audio_load_ogg_bytes( value _id ) {
+    value lumen_assets_load_audioinfo_ogg( value _id ) {
 
         QuickVec<unsigned char> buffer;
         int ch;
@@ -487,10 +487,10 @@ extern bool audio_load_wav_bytes( QuickVec<unsigned char> &out_buffer, const cha
 
         return _object;
 
-    } DEFINE_PRIM(lumen_audio_load_ogg_bytes, 1);
+    } DEFINE_PRIM(lumen_assets_load_audioinfo_ogg, 1);
 
 
-    value lumen_audio_load_wav_bytes( value _id ) {
+    value lumen_assets_load_audioinfo_wav( value _id ) {
 
         QuickVec<unsigned char> buffer;
         int ch;
@@ -516,7 +516,7 @@ extern bool audio_load_wav_bytes( QuickVec<unsigned char> &out_buffer, const cha
 
         return _object;
 
-    } DEFINE_PRIM(lumen_audio_load_wav_bytes, 1);
+    } DEFINE_PRIM(lumen_assets_load_audioinfo_wav, 1);
 
 
 
@@ -530,7 +530,7 @@ extern bool audio_load_wav_bytes( QuickVec<unsigned char> &out_buffer, const cha
 
 extern bool image_load_bytes( QuickVec<unsigned char> &out_buffer, const char* _id, int* w, int* h, int* bpp, int* bpp_source, int req_bpp );
 
-    value lumen_image_load_bytes( value _id, value _req_bpp ) {
+    value lumen_assets_load_imageinfo( value _id, value _req_bpp ) {
 
         QuickVec<unsigned char> buffer;
 
@@ -554,7 +554,7 @@ extern bool image_load_bytes( QuickVec<unsigned char> &out_buffer, const char* _
 
         return _object;
 
-    } DEFINE_PRIM(lumen_image_load_bytes, 2);
+    } DEFINE_PRIM(lumen_assets_load_imageinfo, 2);
 
 
 

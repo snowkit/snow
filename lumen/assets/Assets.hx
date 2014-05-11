@@ -2,6 +2,7 @@ package lumen.assets;
 
 import lumen.LumenTypes;
 import lumen.utils.ByteArray;
+import lumen.utils.Libs;
 
 class Asset {
     public var id : String;
@@ -15,10 +16,10 @@ class Asset {
 
 class AssetBytes extends Asset {
 
-    public var bytes : ByteArray;
+    public var data : ByteArray;
     public function new( _info:AssetInfo, _data:ByteArray ) {
         super( _info );
-        bytes = _data;
+        data = _data;
     }
 
 } //AssetBytes
@@ -33,11 +34,39 @@ class AssetText extends Asset {
 
 } //AssetText
 
+typedef AssetImageOptions = {
+    components : Int
+} //AssetImageOptions
+
+class AssetImage extends Asset {
+
+    public var data : ImageInfo;
+    public function new( _info:AssetInfo, _data:ImageInfo ) {
+        super( _info );
+        data = _data;
+    }
+
+} //AssetImage
+
+typedef AssetAudioOptions = {
+    type : String
+} //AssetAudioOptions
+
+class AssetAudio extends Asset {
+
+    public var data : AudioInfo;
+    public function new( _info:AssetInfo, _data:AudioInfo ) {
+        super( _info );
+        data = _data;
+    }
+
+} //AssetAudio
+
 
 class Assets {
 
     public var list : Map<String, AssetInfo>;
-    public var asset_path : String = '';
+    public var assets_root : String = '';
     public var manifest_path : String = 'manifest';
 
     var lib : Lumen;
@@ -48,7 +77,7 @@ class Assets {
                 //This is because of how the files are put into the xcode project
                 //for the iOS builds, it stores them inside of /assets to avoid
                 //including the root in the project in the Resources/ folder
-            asset_path = 'assets/';
+            assets_root = 'assets/';
         #end 
 
         lib = _lib;
@@ -67,11 +96,9 @@ class Assets {
             var images = ["psd", "bmp", "tga", "gif", "jpg", "png"];
             var sounds = ["pcm", "ogg", "wav"];
 
-            var ext = haxe.io.Path.extension( _asset.id );
-
-            if( Lambda.has(images, ext) ) {
+            if( Lambda.has(images, _asset.ext) ) {
                 _asset.type = 'image';
-            } else if(Lambda.has(sounds, ext)) {
+            } else if(Lambda.has(sounds, _asset.ext)) {
                 _asset.type = 'sound';
             }
 
@@ -98,12 +125,19 @@ class Assets {
     public function path( _id:String ) : String {
 
         if( exists(_id) ) {
-            return asset_path + get(_id).path;
+            return assets_root + get(_id).path;
         }
 
         return "";
 
     } //path
+
+        //a helper to get the full path without overhead,
+        //and to centralise this so that the root is always 
+        //included in the requested path
+    function _path( _asset:AssetInfo ) : String {
+        return assets_root + _asset.path;
+    }
 
         //this is separate so we can defer the behavior later
     function exists_error( _id:String ) {
@@ -112,12 +146,18 @@ class Assets {
 
     } //exists_error
 
+    function load_error( _id:String, ?reason:String = "unknown" ) {
+
+        trace('/ lumen / asset / found "$_id" but it failed to load ($reason)' );
+
+    } //load_error
+
     public function get_bytes( _id:String ) : AssetBytes {
 
         if(exists(_id)) {
 
             var asset = get(_id);
-            var bytes_data = ByteArray.readFile( asset_path + asset.path );
+            var bytes_data = ByteArray.readFile( _path(asset) );
 
             return new AssetBytes( asset, bytes_data );
 
@@ -131,16 +171,154 @@ class Assets {
 
     public function get_text( _id:String ) : AssetText {
 
-        //bytes will complain if it's missing
-        var bytedata = get_bytes( _id );
+        //get_bytes will complain if it's missing
+        var bytes = get_bytes( _id );
 
-        if(bytedata != null) {
-            var bytes = bytedata.bytes;
-            return new AssetText( bytedata.info, bytes == null ? "" : bytes.toString() );
+        if(bytes != null) {
+
+                //if the bytes are null it failed and isn't a valid asset, so we return null
+            if(bytes.data == null) {
+                load_error(_id, "byte data was null");
+                return null;
+            }
+
+            return new AssetText( bytes.info, bytes.data.toString() );
         }
 
         return null;
 
     } //get_text
+
+    public function get_image( _id:String, ?options:AssetImageOptions ) : AssetImage {
+
+        if(exists(_id)) {
+    
+            if(options == null) {
+                options = { components : 4 };
+            }   
+
+            var asset = get(_id);
+            var _image_info = lumen_assets_load_imageinfo( _path(asset), options.components );
+
+            if(_image_info == null) {
+                load_error(_id, "image info returned null");
+                return null;
+            }
+
+                //with images the bytes data could be null too, this is also an invalid asset
+            if(_image_info.data == null) {
+                load_error(_id, "image info data was null");
+                return null;
+            }
+
+            return new AssetImage( asset, _image_info );
+
+        } else {
+            exists_error(_id);
+        }
+
+        return null;
+
+    } //get_image
+
+    public function get_audio( _id:String, ?options:AssetAudioOptions ) : AssetAudio {
+
+        if(exists(_id)) {
+
+            var asset = get(_id);
+            var _audio_info : AudioInfo = null;
+
+            if(options == null) {
+                options = { type:asset.ext }
+            } else {
+                if(options.type == null || options.type == "") {
+                    options.type = asset.ext;
+                }
+            }
+
+            switch(options.type) {
+
+                case 'wav' : {
+                    _audio_info = load_audio_wav( asset );
+                }
+
+                case 'ogg' : {
+                    _audio_info = load_audio_ogg( asset );
+                }
+
+                case 'pcm' : {
+                    _audio_info = load_audio_pcm( asset );
+                }
+
+                default : {
+                    load_error(_id, "unrecognised audio type (" + options.type + ")");
+                }
+
+            } //switch options.type
+
+            if(_audio_info == null) {
+                load_error(_id, "audio info returned null");
+                return null;
+            }
+
+                //with images the bytes data could be null too, this is also an invalid asset
+            if(_audio_info.data == null) {
+                load_error(_id, "audio info data was null");
+                return null;
+            }
+
+            return new AssetAudio( asset, _audio_info );
+
+        } else {
+            exists_error(_id);
+        }
+
+        return null;
+
+    } //get_audio
+
+
+        //:todo: these are abstracted to allow for html5 building 
+        //since these are currently talking to native only 
+    @:noCompletion public function load_audio_ogg( asset:AssetInfo ) : AudioInfo {
+        return lumen_assets_load_audioinfo_ogg( _path(asset) );
+    } //load_audio_ogg
+
+    @:noCompletion public function load_audio_wav( asset:AssetInfo ) : AudioInfo {
+        return lumen_assets_load_audioinfo_wav( _path(asset) );
+    } //load_audio_wav
+
+    @:noCompletion public function load_audio_pcm( asset:AssetInfo ) : AudioInfo {
+
+        var data = ByteArray.readFile( _path(asset) );
+
+        if(data == null) {
+            return null;
+        }
+
+            //hmm, need to :investigate: these flags here,
+            //but basically this is the format requested to be played
+            //at so we can play at this format for PCM without problems
+        return {
+
+            id : asset.id,                  //source asset id
+            format : AudioFormatType.pcm,   //format
+            channels : 1,                   //number of channels
+            rate : 44100,                   //hz rate
+            bitrate : 88200,                //sound bitrate
+            bits_per_sample : 16,           //bits per sample, 8 / 16
+            data : data                     //sound raw data
+
+        } //new AudioInfo
+
+    } //load_audio_pcm    
+
+#if lumen_native
+    
+    static var lumen_assets_load_imageinfo      = Libs.load( "lumen", "lumen_assets_load_imageinfo", 2 );
+    static var lumen_assets_load_audioinfo_ogg  = Libs.load( "lumen", "lumen_assets_load_audioinfo_ogg", 1 );
+    static var lumen_assets_load_audioinfo_wav  = Libs.load( "lumen", "lumen_assets_load_audioinfo_wav", 1 );
+
+#end //lumen_native
 
 } //Assets

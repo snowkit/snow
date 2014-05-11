@@ -87,7 +87,7 @@ class App {
     public function get_asset_list() : Array<AssetInfo> {
 
         var asset_list : Array<AssetInfo> = [];
-        var manifest_data = ByteArray.readFile( app.assets.asset_path + app.assets.manifest_path );
+        var manifest_data = ByteArray.readFile( app.assets.assets_root + app.assets.manifest_path );
 
         if(manifest_data != null) {
 
@@ -98,7 +98,8 @@ class App {
                 asset_list.push({
                     id : asset.id,
                     path : asset.path,
-                    type : Std.string(asset.type).toLowerCase()
+                    type : Std.string(asset.type).toLowerCase(),
+                    ext : haxe.io.Path.extension(asset.path)
                 });
 
             } //for each asset
