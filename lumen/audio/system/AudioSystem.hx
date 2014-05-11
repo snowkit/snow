@@ -19,8 +19,8 @@ import lumen.Lumen;
 
 class AudioSystem {
 
-    var manager : Audio;
-    var lib : Lumen;
+    public var manager : Audio;
+    public var lib : Lumen;
 
     public function new( _manager:Audio, _lib:Lumen ) {
 

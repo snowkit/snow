@@ -1,113 +1,62 @@
 
-#include "common/ByteArray.h"
-#include "common/QuickVec.h"
-#include "common/Object.h"
+#include "assets/lumen_assets_audio.h"
 
 #include "lumen_core.h"
-#include "lumen_io.h"
-
-#include "libs/vorbis/vorbisfile.h"
 
 #include <string>
 
 
 namespace lumen {
 
+            //forward
+        static size_t   ogg_read_func(void* ptr, size_t size, size_t nmemb, void* datasource);
+        static int      ogg_seek_func(void* datasource, ogg_int64_t offset, int whence);
+        static int      ogg_close_func(void* datasource);
+        static long     ogg_tell_func(void* datasource);
+    
 
-        static size_t ogg_read_func(void* ptr, size_t size, size_t nmemb, void* datasource);
-        static int ogg_seek_func(void* datasource, ogg_int64_t offset, int whence);
-        static int ogg_close_func(void* datasource);
-        static long ogg_tell_func(void* datasource);
-
-        class OGG_file_source : public Object {
-
-            public:
-                lumen_iosrc*        file_source;
-                std::string         source_name;
-                OggVorbis_File*     ogg_file;
-                vorbis_info*        info;
-                vorbis_comment*     comments;
-                off_t               offset;
-                off_t               length;
-
-            OGG_file_source() : offset(0), length(0) {
-
-                ogg_file = new OggVorbis_File();
-
-            } //OGG_file_source
-
-            ~OGG_file_source() {
-
-                ov_clear(ogg_file);
-                delete ogg_file;
-
-            } //~
-
-        }; //OGG_file_source
-
-
-
-        std::string ogg_error_string(int code) {
-            switch(code)
-            {
-                case OV_EREAD:
-                    return std::string("failed to read from media");
-                case OV_ENOTVORBIS:
-                    return std::string("not vorbis data");
-                case OV_EVERSION:
-                    return std::string("vorbis version mismatch");
-                case OV_EBADHEADER:
-                    return std::string("invalid vorbis header");
-                case OV_EFAULT:
-                    return std::string("internal logic fault (bug or heap/stack corruption.");
-                default:
-                    return std::string("unknown ogg error");
-            }
-        }
-
-        #define OGG_BUFFER_LENGTH 4096
-            // 0 for Little-Endian, 1 for Big-Endian
-        #ifdef HXCPP_BIG_ENDIAN
-            #define OGG_BUFFER_READ_TYPE 1
-        #else
-            #define OGG_BUFFER_READ_TYPE 0
-        #endif
-
-        bool audio_load_ogg_bytes(
-            QuickVec<unsigned char> &out_buffer, const char* _id,
-            int* channels, long* rate, long* bitrate_upper, long* bitrate,
-            long* bitrate_lower, long* bitrate_window, int *bits_per_sample
-        ) {
-
-            ov_callbacks open_callbacks;
-            OGG_file_source* ogg_source = new OGG_file_source();
+            //load an ogg info object, if read is false it will not read any data from the file, just open and setup the info/comments
+        bool audio_load_ogg_info( QuickVec<unsigned char> &out_buffer, const char* _id, OGG_file_source*& ogg_source, bool read = true ) {
+            
+            ogg_source = new OGG_file_source();
             ogg_source->source_name = std::string(_id);
 
-            open_callbacks.read_func =  &lumen::ogg_read_func;
-            open_callbacks.seek_func =  &lumen::ogg_seek_func;
-            open_callbacks.close_func = &lumen::ogg_close_func;
-            open_callbacks.tell_func =  &lumen::ogg_tell_func;
+            ogg_source->callbacks = ov_callbacks();
+
+                ogg_source->callbacks.read_func = &lumen::ogg_read_func;
+                ogg_source->callbacks.seek_func = &lumen::ogg_seek_func;
+                ogg_source->callbacks.close_func = &lumen::ogg_close_func;
+                ogg_source->callbacks.tell_func = &lumen::ogg_tell_func;
 
             ogg_source->file_source = lumen::iosrc_fromfile(_id, "rb");
+
             if(!ogg_source->file_source) {
+
                 lumen::log("/ lumen / cannot open ogg file from %s", _id);
                 delete ogg_source;
+                ogg_source = NULL;
+                
                 return false;
-            }
+
+            } //file source isn't valid
 
             lumen::ioseek(ogg_source->file_source, 0, lumen_seek_end);
-            ogg_source->length = lumen::iotell(ogg_source->file_source);
+
+                ogg_source->length = lumen::iotell(ogg_source->file_source);
+
             lumen::ioseek(ogg_source->file_source, 0, lumen_seek_set);
 
-            int result = ov_open_callbacks(ogg_source, ogg_source->ogg_file, NULL, 0, open_callbacks);
+                //open the file with the callbacks
+            int result = ov_open_callbacks(ogg_source, ogg_source->ogg_file, NULL, 0, ogg_source->callbacks );
 
             if(result < 0) {
 
                 lumen::ioclose(ogg_source->file_source);
                 delete ogg_source;
+                ogg_source = NULL;
 
                 std::string s = ogg_error_string(result);
-                lumen::log("%s result:%d   code:%s \n", "ogg file failed to open!?", result, s.c_str());
+                lumen::log("/ lumen / %s result:%d   code:%s \n", "ogg file failed to open!?", result, s.c_str());
 
                 return false;
 
@@ -117,6 +66,8 @@ namespace lumen {
             ogg_source->comments = ov_comment(ogg_source->ogg_file, -1);
 
             ogg_int64_t total_length = ov_pcm_total( ogg_source->ogg_file, -1 ) * ogg_source->info->channels * (2);
+
+            ogg_source->length_pcm = total_length;
 
                 // lumen::log("version         %d \n",     ogg_source->info->version);
                 // lumen::log("channels        %d \n",     ogg_source->info->channels);
@@ -133,23 +84,30 @@ namespace lumen {
             //     lumen::log("\t%s\n",  ogg_source->comments->user_comments[i]);
             // }
 
-            *rate               = ogg_source->info->rate;
-            *channels           = ogg_source->info->channels;
-            *bitrate            = ogg_source->info->bitrate_nominal;
-            *bits_per_sample    = 16;
+                //use the reader to read it, if requested
+            if(read) {
+                audio_read_ogg_data( ogg_source, out_buffer, 0, total_length );
+            }
 
-            *bitrate_upper      = ogg_source->info->bitrate_upper;
-            *bitrate_lower      = ogg_source->info->bitrate_lower;
-            *bitrate_window     = ogg_source->info->bitrate_window;
+                //yay.
+            return true;
 
+        } //audio_load_ogg_bytes
 
-                //(2) here is bytes per sample in file
+            //this reads a portion of an already opened ogg source into the buffer from start, for len 
+        long audio_read_ogg_data( OGG_file_source* ogg_source, QuickVec<unsigned char> &out_buffer, long start, long len ) {
+
+            //it is assumed here that ogg_source is opened. Maybe we can ask the file if it is open and if not reopen it?
+            //(2) here is bytes per sample in file, 1 is how many to read
 
             long bytes_read = -1;
             long total_bytes = 0;
             int bit_stream = 1;
 
-            out_buffer.resize(total_length);
+            out_buffer.resize(len);
+
+                //first seek to the right position
+            ov_raw_seek( ogg_source->ogg_file, start );
 
             while (bytes_read != 0) {
 
@@ -160,13 +118,17 @@ namespace lumen {
 
             } //while
 
-                //clean up
-            delete ogg_source;
+                //we need the buffer length to reflect the real size, 
+                //because it might read less than asked for (like streaming requesting
+                //4k bytes but only 1k are left in the stream)
+            if(total_bytes != len) {
+                out_buffer.resize(total_bytes);
+            }
 
-                //yay.
-            return true;
+            return total_bytes;
 
-        } //audio_load_ogg_bytes
+        } //audio_read_ogg_bytes
+
 
         static size_t ogg_read_func(void* ptr, size_t size, size_t nmemb, void* datasource) {
 
@@ -220,7 +182,23 @@ namespace lumen {
 
         } //tell_func
 
-
+        std::string ogg_error_string(int code) {
+            switch(code)
+            {
+                case OV_EREAD:
+                    return std::string("failed to read from media");
+                case OV_ENOTVORBIS:
+                    return std::string("not vorbis data");
+                case OV_EVERSION:
+                    return std::string("vorbis version mismatch");
+                case OV_EBADHEADER:
+                    return std::string("invalid vorbis header");
+                case OV_EFAULT:
+                    return std::string("internal logic fault (bug or heap/stack corruption.");
+                default:
+                    return std::string("unknown ogg error");
+            }
+        }
 
 
 //WAV files

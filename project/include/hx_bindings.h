@@ -22,6 +22,7 @@ namespace lumen {
     extern int id_text;
     extern int id_length;
     extern int id_data;
+    extern int id_handle;
 
         //window related
 
@@ -67,6 +68,7 @@ namespace lumen {
         //audio related
 
     extern int id_format;
+    extern int id_length_pcm;
     extern int id_channels;
     extern int id_rate;
     extern int id_bitrate;
@@ -106,6 +108,7 @@ namespace lumen {
         id_text                 = val_id("text");
         id_length               = val_id("length");
         id_data                 = val_id("data");
+        id_handle               = val_id("handle");
         
             //window related flags
 
@@ -151,6 +154,7 @@ namespace lumen {
             //audio related
 
         id_format               = val_id("format");
+        id_length_pcm           = val_id("length_pcm");
         id_channels             = val_id("channels");
         id_rate                 = val_id("rate");
         id_bitrate              = val_id("bitrate");
@@ -266,6 +270,12 @@ namespace lumen {
        return val_string( field );
 
     } //property_string
+
+    inline const value property_value(value _object, int _val_id) {
+
+        return val_field(_object,_val_id);
+
+    } //property_value
 
 
 //// property conversion tools

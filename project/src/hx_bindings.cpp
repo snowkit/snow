@@ -19,6 +19,8 @@
 #include "lumen_window.h"
 #include "lumen_input.h"
 
+#include "assets/lumen_assets_audio.h"
+
 #include "common/ByteArray.h"
 #include "libs/lzma/lzma.h"
 
@@ -450,26 +452,27 @@ extern void window_show_cursor(bool enable);
 
 
 
+// *rate               = ogg_source->info->rate;
+// *channels           = ogg_source->info->channels;
+// *bitrate            = ogg_source->info->bitrate_nominal;
+// *bits_per_sample    = 16;
+
+// *bitrate_upper      = ogg_source->info->bitrate_upper;
+// *bitrate_lower      = ogg_source->info->bitrate_lower;
+// *bitrate_window     = ogg_source->info->bitrate_window;
 
 
+    value lumen_assets_load_audioinfo_ogg( value _id, value _do_read ) {
 
-extern bool audio_load_ogg_bytes( QuickVec<unsigned char> &out_buffer, const char* _id,
-                int* channels, long* rate, long* bitrate_upper, long* bitrate,
-                long* bitrate_lower, long* bitrate_window,  int *bits_per_sample );
+            //whether or not we should read the whole file now
+        bool do_read = val_bool(_do_read);
 
-extern bool audio_load_wav_bytes( QuickVec<unsigned char> &out_buffer, const char *_id,  int *channels, int* rate, int *bitrate, int *bits_per_sample);
-
-    value lumen_assets_load_audioinfo_ogg( value _id ) {
-
+            //the destination for the read, if any
         QuickVec<unsigned char> buffer;
-        int ch;
-        long rate;
-        long bitrate;
-        int bits_per_sample;
+            //the source data ogg info 
+        OGG_file_source* ogg_source = NULL;
 
-        long br_u; long br_w; long br_l;
-
-        bool success = audio_load_ogg_bytes( buffer, val_string(_id), &ch, &rate, &br_u, &bitrate, &br_l, &br_w, &bits_per_sample );
+        bool success = audio_load_ogg_info( buffer, val_string(_id), ogg_source, do_read );
 
         if(!success) {
             return alloc_null();
@@ -478,16 +481,41 @@ extern bool audio_load_wav_bytes( QuickVec<unsigned char> &out_buffer, const cha
         value _object = alloc_empty_object();
 
             alloc_field( _object, id_id, _id );
-            alloc_field( _object, id_channels, alloc_int(ch) );
-            alloc_field( _object, id_rate, alloc_int(rate) );
-            alloc_field( _object, id_format, alloc_int(1) ); //1 here is ogg
-            alloc_field( _object, id_bitrate, alloc_int(bitrate) );
-            alloc_field( _object, id_bits_per_sample, alloc_int(bits_per_sample) );
+            alloc_field( _object, id_format, alloc_int( 1 )); //1 here is ogg
+            alloc_field( _object, id_channels, alloc_int( ogg_source->info->channels ));
+            alloc_field( _object, id_rate, alloc_int( ogg_source->info->rate ));
+            alloc_field( _object, id_bitrate, alloc_int( ogg_source->info->bitrate_nominal ));
+            alloc_field( _object, id_bits_per_sample, alloc_int( 16 ) ); //:todo: optionize?
             alloc_field( _object, id_data, ByteArray(buffer).mValue );
+            alloc_field( _object, id_length, alloc_int(ogg_source->length) );
+            alloc_field( _object, id_length_pcm, alloc_int(ogg_source->length_pcm) );            
+            alloc_field( _object, id_handle, Object_to_hx(ogg_source) );
 
         return _object;
 
-    } DEFINE_PRIM(lumen_assets_load_audioinfo_ogg, 1);
+    } DEFINE_PRIM(lumen_assets_load_audioinfo_ogg, 2);
+
+    value lumen_assets_audio_ogg_read_bytes( value _info, value _start, value _len ) {
+
+        QuickVec<unsigned char> buffer;
+
+        value _handle = property_value(_info, id_handle);
+
+        OGG_file_source* ogg_source = NULL;
+
+        if( !val_is_null(_handle) && Object_from_hx(_handle, ogg_source) ) {
+
+            audio_read_ogg_data( ogg_source, buffer, val_int(_start), val_int(_len) );
+
+            return ByteArray(buffer).mValue;
+
+        } else {
+
+            return alloc_null();
+
+        }
+
+    } DEFINE_PRIM(lumen_assets_audio_ogg_read_bytes, 3);
 
 
     value lumen_assets_load_audioinfo_wav( value _id ) {
@@ -513,6 +541,9 @@ extern bool audio_load_wav_bytes( QuickVec<unsigned char> &out_buffer, const cha
             alloc_field( _object, id_bitrate, alloc_int(bitrate) );
             alloc_field( _object, id_bits_per_sample, alloc_int(bits_per_sample) );
             alloc_field( _object, id_data, ByteArray(buffer).mValue );
+            alloc_field( _object, id_length, alloc_int(0) );
+            alloc_field( _object, id_length_pcm, alloc_int(0) );
+            alloc_field( _object, id_handle, alloc_null() );
 
         return _object;
 
@@ -644,6 +675,7 @@ extern bool image_load_bytes( QuickVec<unsigned char> &out_buffer, const char* _
     int id_text;
     int id_length;
     int id_data;
+    int id_handle;
 
     int id_window;
     int id_window_id;
@@ -679,6 +711,7 @@ extern bool image_load_bytes( QuickVec<unsigned char> &out_buffer, const char* _
     int id_bpp_source;
 
     int id_format;
+    int id_length_pcm;
     int id_channels;
     int id_rate;
     int id_bitrate;
