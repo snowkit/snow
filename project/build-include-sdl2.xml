@@ -4,7 +4,7 @@
 
     <files id="libs-sdl" >
 
-        <compilerflag value="-I${SRC_DIR}/libs/sdl/include/"/>
+        <compilerflag value="-I${INC_DIR}/libs/sdl"/>
         <compilerflag value="-I${SRC_DIR}/libs/sdl/src/"/>
 
         <compilerflag value="-I${INC_DIR}/libs/sdl/configs/default/" unless="windows || mac || linux"/>

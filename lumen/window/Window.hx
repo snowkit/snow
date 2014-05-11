@@ -45,6 +45,8 @@ class Window {
         //set this for fullscreen desktop mode, instead of fullscreen mode
     public var fullscreen_desktop : Bool = true;
 
+    var minimized : Bool = false;
+
     public function new( _manager:Windowing, _config:WindowConfig ) {
 
         position    = { x:0, y:0 };
@@ -110,6 +112,14 @@ class Window {
                 internal_resize = false;
             }
 
+            case window_minimized : {
+                minimized = true;
+            }
+
+            case window_restored : {
+                minimized = false;
+            }
+
             default: {}
 
         } //switch
@@ -129,9 +139,10 @@ class Window {
 
     public function render() {
 
-            //:todo: this calls makeCurrent (good) and does fake drawing (bad)
-            //either make current should exist here, instead, or render is renamed cos internal does
-            //no "rendering" and only sets the window for rendering ready.
+        if(minimized) {
+            return;
+        }
+
         lumen_window_render( handle );
 
         if(window_render_handler != null) {

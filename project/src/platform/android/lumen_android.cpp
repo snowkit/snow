@@ -26,14 +26,14 @@ static JavaVM* java_vm;
 #endif //LUMEN_LIB_OPENAL
 
   //This is called after SDL gets inited and passes
-#ifdef LUMEN_LIB_SDL
+#ifdef LUMEN_USE_SDL
 
     int SDL_main(int argc, char *argv[]) {
         LOG("/ lumen / android post init SDL_main");
         return 0;
     }
 
-#endif
+#endif //LUMEN_USE_SDL
 
 namespace lumen {
 

@@ -35,20 +35,22 @@ class Audio {
 
             //try loading the sound asset
         var ext : String = haxe.io.Path.extension(_id);
+        var path : String = lib.assets.path(_id);
+
         var info : AudioInfo = null;
 
         switch(ext) {
 
             case 'wav' : {
-                info = load_audio_wav(_id);
+                info = load_audio_wav(path);
             }
 
             case 'ogg' : {
-                info = load_audio_ogg(_id);
+                info = load_audio_ogg(path);
             }
 
             case 'pcm' : {
-                info = load_audio_pcm(_id);
+                info = load_audio_pcm(path);
             }
 
             default : {
