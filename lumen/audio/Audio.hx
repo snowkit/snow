@@ -10,8 +10,8 @@ import lumen.utils.ByteArray;
 
 class Audio {
 
-    var lib : Lumen;    
-    var system : LumenAudioSystem;
+    public var lib : Lumen;    
+    public var system : LumenAudioSystem;
 
     var sound_list : Map<String, LumenSound>;
 
@@ -30,7 +30,7 @@ class Audio {
     public function create( _id:String, ?_name:String = '' ) : LumenSound {
 
         if(_name == '') {
-            _name = uniqueid();
+            _name = lib.uniqueid;
         } //_name
 
             //try loading the sound asset
@@ -44,9 +44,7 @@ class Audio {
         }
 
             //create and reeturn the sound object
-        var sound : LumenSound = new LumenSound(this, info);
-                //update name
-            sound.name = _name;
+        var sound : LumenSound = new LumenSound(this, _name, info);
                 //store for later
             sound_list.set(_name, sound);
 
@@ -113,11 +111,7 @@ class Audio {
         if(sound != null) {
             sound.toggle();
         }
-    } //toggle
-
-    function uniqueid() : String {
-        return haxe.crypto.Md5.encode(Std.string(lib.time*Math.random()));
-    } //uniqueid
+    } //toggle    
 
     public function destroy() {
         system.destroy();
