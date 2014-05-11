@@ -181,6 +181,10 @@ namespace lumen {
                 break;
             }
 
+            default: {
+                return;
+            }
+
         } //switch event.type
 
         dispatch_system_event( new_event );
