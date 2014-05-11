@@ -8,6 +8,7 @@ typedef AssetInfo = {
 
     id : String,            //the asset id
     path : String,          //the asset actual path
+    ext : String,           //the asset extension
     type : String           //a type indicator
 
 }

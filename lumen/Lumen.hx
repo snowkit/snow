@@ -237,12 +237,6 @@ class Lumen {
 
     } //on_event
 
-    public function loadimage( _id:String, ?components:Int = 4 ) : ImageInfo {
-
-        return lumen_image_load_bytes( assets.path(_id), components );
-
-    }
-
     function on_main_window_event( _event:WindowEvent ) {
 
         if(_event.type == window_close) {
@@ -272,8 +266,6 @@ class Lumen {
         static var lumen_pref_path = load( "lumen", "lumen_pref_path", 2 );
         static var lumen_render_enable_vsync = load( "lumen", "lumen_render_enable_vsync", 1 );
         static var lumen_window_show_cursor = load( "lumen", "lumen_window_show_cursor", 1 );
-
-        static var lumen_image_load_bytes = load( "lumen", "lumen_image_load_bytes", 2 );
 
     #end //lumen_native
 
