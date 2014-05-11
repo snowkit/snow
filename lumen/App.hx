@@ -2,6 +2,7 @@ package lumen;
 
 import lumen.utils.ByteArray;
 import lumen.input.Input;
+import lumen.LumenTypes;
 
     //Note all times in lumen are in seconds.
     //The default type of application, with variable delta time, or fixed delta time, or a fixed frame rate
@@ -70,16 +71,43 @@ class App {
 
             //we want to load the runtime config from a json file by default
             //:todo: this config name will be settable from project config
-        var config_data = ByteArray.readFile('config.json');
+        var config_data = app.assets.get_text('config.json');
 
             //only care if there is a config
         if(config_data != null) {
-            return haxe.Json.parse( config_data.toString() );
+            return haxe.Json.parse( config_data.text );
         }
 
         return {};
 
     } //get_runtime_config
+
+//overide this if you want to change how the asset config is loaded/handled 
+
+    public function get_asset_list() : Array<AssetInfo> {
+
+        var asset_list : Array<AssetInfo> = [];
+        var manifest_data = ByteArray.readFile( app.assets.asset_path + app.assets.manifest_path );
+
+        if(manifest_data != null) {
+
+            var _list:Array<Dynamic> = haxe.Unserializer.run(manifest_data.toString());
+
+            for(asset in _list) {
+
+                asset_list.push({
+                    id : asset.id,
+                    path : asset.path,
+                    type : Std.string(asset.type).toLowerCase()
+                });
+
+            } //for each asset
+
+        } //manifest_data != null
+
+        return asset_list;
+
+    } //get_asset_list
 
 //No need to interact with these, unless you want pre-ready init, just call super.on_lumen_init() etc
 //to maintain expected App behavior. You can override behavior in the base class, like AppFixedTimestep
