@@ -671,7 +671,7 @@ namespace lumen {
     value alhx_SourceUnqueueBuffers(value _source, value _nb) {
 
         int count = val_int(_nb);
-        ALuint buffers[count];
+        ALuint* buffers = new ALuint[count];
 
         alSourceUnqueueBuffers( val_int(_source), val_int(_nb), buffers );
 
@@ -680,6 +680,8 @@ namespace lumen {
         for( int i = 0; i < count; ++i ) {
             val_array_set_i(result, i, alloc_int(buffers[i]) );
         }
+
+        delete [] buffers;
 
         return result;
 
