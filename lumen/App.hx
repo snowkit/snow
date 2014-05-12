@@ -26,8 +26,10 @@ class App {
 
 //Timing information
 
-        //the time the last from took to render
+        //the time the last frame took to run
     public var delta_time : Float = 0.016;
+        //the time the last frame took to run
+    public var delta_sim : Float = 0.016;
         //the start time of the last frame
     public var last_frame_start : Float = 0.0;
         //the current simulation time
@@ -146,6 +148,8 @@ class App {
         var used_delta = (fixed_delta == 0) ? delta_time : fixed_delta;
             //timescale the delta to the given scale
         used_delta *= timescale;
+            //update the simulated delta value
+        delta_sim = used_delta;
 
             //update the internal "time" counter
         current_time += used_delta;

@@ -6,14 +6,20 @@ import lumen.LumenTypes;
 //The base class for a sound instance
 
 class Sound {
-    
+
+
     public var manager : Audio;
     public var info : AudioInfo;
     public var name : String = '';
 
+    public var playing : Bool = false;
+    public var is_stream : Bool = false;
+
     @:isVar public var pitch    (get,set) : Float = 1.0;
     @:isVar public var volume   (get,set) : Float = 1.0;
     @:isVar public var pan      (get,set) : Float = 0.0;
+    @:isVar public var looping  (get,set) : Bool = false;
+
 
     public function new( _manager:Audio, _name:String, _audio_info : AudioInfo ) {
 
@@ -24,9 +30,17 @@ class Sound {
     } //new
 
     public function play() {}
+    public function loop() {}
     public function stop() {}
     public function pause() {}
     public function toggle() {}
+        //used for streaming, hidden from user
+    @:noCompletion public function internal_update() {}
+
+
+    function get_pan() : Float {
+        return pan;
+    } //get_pan
 
     function get_pitch() : Float {
         return pitch;
@@ -36,9 +50,10 @@ class Sound {
         return volume;
     } //get_volume
 
-    function get_pan() : Float {
-        return pan;
-    } //get_pan
+    function get_looping() : Bool {
+        return looping;
+    } //get_looping
+
 
     function set_pan( _pan:Float ) : Float {
         return pan = _pan;
@@ -52,4 +67,9 @@ class Sound {
         return volume = _volume;
     } //set_volume
 
-}
+    function set_looping( _looping:Bool ) : Bool {
+        return looping = _looping;
+    } //set_looping
+
+
+} //Sound

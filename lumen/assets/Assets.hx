@@ -49,7 +49,8 @@ class AssetImage extends Asset {
 } //AssetImage
 
 typedef AssetAudioOptions = {
-    type : String
+    ? type : String,
+    ? load : Bool
 } //AssetAudioOptions
 
 class AssetAudio extends Asset {
@@ -78,7 +79,7 @@ class Assets {
                 //for the iOS builds, it stores them inside of /assets to avoid
                 //including the root in the project in the Resources/ folder
             assets_root = 'assets/';
-        #end 
+        #end
 
         lib = _lib;
         list = new Map();
@@ -105,7 +106,7 @@ class Assets {
             lib._debug('/ lumen /    added asset ${_asset.id} at ${_asset.path} (${_asset.type}) ');
 
             list.set(_asset.id, _asset);
-        
+
         } //for each
 
     } //add
@@ -133,7 +134,7 @@ class Assets {
     } //path
 
         //a helper to get the full path without overhead,
-        //and to centralise this so that the root is always 
+        //and to centralise this so that the root is always
         //included in the requested path
     function _path( _asset:AssetInfo ) : String {
         return assets_root + _asset.path;
@@ -192,10 +193,10 @@ class Assets {
     public function get_image( _id:String, ?options:AssetImageOptions ) : AssetImage {
 
         if(exists(_id)) {
-    
+
             if(options == null) {
                 options = { components : 4 };
-            }   
+            }
 
             var asset = get(_id);
             var _image_info = lumen_assets_load_imageinfo( _path(asset), options.components );
@@ -222,12 +223,12 @@ class Assets {
     } //get_image
 
     function audio_format( _int:Int ) : AudioFormatType {
-        
+
         switch(_int) {
             case 1: return AudioFormatType.ogg;
             case 2: return AudioFormatType.wav;
             case 3: return AudioFormatType.pcm;
-            default: return AudioFormatType.unknown;        
+            default: return AudioFormatType.unknown;
         }
 
     } //audio_format
@@ -239,26 +240,33 @@ class Assets {
             var asset = get(_id);
             var _audio_info : AudioInfo = null;
 
+                //handle default options.
+                //type defaults to extension and
+                //load is true for loading the whole now,
+                //streaming sounds request false etc.
             if(options == null) {
-                options = { type:asset.ext }
+                options = { type:asset.ext, load:true }
             } else {
                 if(options.type == null || options.type == "") {
                     options.type = asset.ext;
+                }
+                if(options.load == null) {
+                    options.load = true;
                 }
             }
 
             switch(options.type) {
 
                 case 'wav' : {
-                    _audio_info = load_audio_wav( asset );
+                    _audio_info = load_audio_wav( asset, options.load );
                 }
 
                 case 'ogg' : {
-                    _audio_info = load_audio_ogg( asset );
+                    _audio_info = load_audio_ogg( asset, options.load );
                 }
 
                 case 'pcm' : {
-                    _audio_info = load_audio_pcm( asset );
+                    _audio_info = load_audio_pcm( asset, options.load );
                 }
 
                 default : {
@@ -292,13 +300,13 @@ class Assets {
     } //get_audio
 
 
-        //:todo: these are abstracted to allow for html5 building 
-        //since these are currently talking to native only 
-    @:noCompletion public function load_audio_ogg( asset:AssetInfo ) : AudioInfo {
-        return lumen_assets_load_audioinfo_ogg( _path(asset), true );
+        //:todo: these are abstracted to allow for html5 building
+        //since these are currently talking to native only
+    @:noCompletion public function load_audio_ogg( asset:AssetInfo, ?load:Bool=true ) : AudioInfo {
+        return lumen_assets_load_audioinfo_ogg( _path(asset), load );
     } //load_audio_ogg
 
-    @:noCompletion public function load_audio_wav( asset:AssetInfo ) : AudioInfo {
+    @:noCompletion public function load_audio_wav( asset:AssetInfo, ?load:Bool=true ) : AudioInfo {
         return lumen_assets_load_audioinfo_wav( _path(asset) );
     } //load_audio_wav
 
@@ -306,7 +314,24 @@ class Assets {
         return lumen_assets_audio_ogg_read_bytes( _info, _start, _len );
     } //load_audio_portion_ogg
 
-    @:noCompletion public function load_audio_pcm( asset:AssetInfo ) : AudioInfo {
+    @:noCompletion public function load_audio_portion( _info:AudioInfo, _start:Int, _len:Int ) : ByteArray {
+
+        switch(_info.format) {
+            case AudioFormatType.ogg:
+                return load_audio_portion_ogg(_info, _start, _len);
+            case AudioFormatType.wav:
+                return null; //:todo:
+            case AudioFormatType.pcm:
+                return null; //:todo:
+            default:
+                return null;
+        }
+
+        return null;
+
+    } //load_audio_portion_ogg
+
+    @:noCompletion public function load_audio_pcm( asset:AssetInfo, ?load:Bool=true ) : AudioInfo {
 
         var data = ByteArray.readFile( _path(asset) );
 
@@ -328,14 +353,14 @@ class Assets {
             data : data,                    //sound raw data
             length : data.byteLength,       //length of the data
             length_pcm : data.byteLength,   //length is the same, uncompressed
-            handle : null                   //this isn't used 
+            handle : null                   //this isn't used
 
         } //new AudioInfo
 
-    } //load_audio_pcm    
+    } //load_audio_pcm
 
 #if lumen_native
-    
+
     static var lumen_assets_load_imageinfo       = Libs.load( "lumen", "lumen_assets_load_imageinfo", 2 );
     static var lumen_assets_load_audioinfo_ogg   = Libs.load( "lumen", "lumen_assets_load_audioinfo_ogg", 2 );
     static var lumen_assets_audio_ogg_read_bytes = Libs.load( "lumen", "lumen_assets_audio_ogg_read_bytes", 3 );

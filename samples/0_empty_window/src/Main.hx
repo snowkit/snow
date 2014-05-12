@@ -18,7 +18,7 @@ import lumen.LumenTypes.ImageInfo;
 import lumen.assets.Assets;
 import lumen.App;
 
-import lumen.audio.system.AudioSystem.LumenSound;
+import lumen.audio.system.Sound;
 
 class Main extends lumen.AppFixedTimestep {
 
@@ -41,6 +41,18 @@ class Main extends lumen.AppFixedTimestep {
     var positionY : Float = 0;
     var dirX : Float = 1;
     var speed : Float = 100;
+
+        //sound instances.
+        //no need to track these,
+        //just testing.
+    var sound1 : Sound;
+    var sound2 : Sound;
+    var sound3 : Sound;
+    var sound4 : Sound;
+
+        //left or right pan?
+    var left : Bool = false;
+
 
     override public function ready() {
 
@@ -105,22 +117,20 @@ class Main extends lumen.AppFixedTimestep {
 
         positionY = (app.main_window.size.h - size) / 2;
 
-        sound1 = app.audio.create("assets/sound.pcm", 'one');
-        sound2 = app.audio.create("assets/sound.ogg");
-        sound3 = app.audio.create("assets/sound.wav", 'three');
+        sound1 = app.audio.create("assets/sound.pcm");
+        sound2 = app.audio.create("assets/sound.ogg", 'ogg');
+        sound3 = app.audio.create("assets/sound.wav", 'wav');
+        sound4 = app.audio.create("assets/music.ogg", 'ogg_stream', true);
 
         trace("sound1 : " + sound1.name);
         trace("sound2 : " + sound2.name);
         trace("sound3 : " + sound3.name);
 
+        sound4.loop();
+
     } //ready
 
 
-    var sound1 : LumenSound;
-    var sound2 : LumenSound;
-    var sound3 : LumenSound;
-
-    var left : Bool = false;
 
     override function onkeydown( event:KeyEvent ) {
 
@@ -138,12 +148,12 @@ class Main extends lumen.AppFixedTimestep {
         }
 
         if(event.keycode == Key.KEY_w) {
-            app.audio.pitch('three', 1.5);
+            app.audio.pitch('wav', 1.5);
             sound3.play();
         }
 
         if(event.scancode == Scan.GRAVE) {
-            app.audio.pitch('three', 0.5);
+            app.audio.pitch('wav', 0.5);
             sound3.play();
         }
 

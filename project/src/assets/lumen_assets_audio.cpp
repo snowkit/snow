@@ -13,11 +13,11 @@ namespace lumen {
         static int      ogg_seek_func(void* datasource, ogg_int64_t offset, int whence);
         static int      ogg_close_func(void* datasource);
         static long     ogg_tell_func(void* datasource);
-    
+
 
             //load an ogg info object, if read is false it will not read any data from the file, just open and setup the info/comments
         bool audio_load_ogg_info( QuickVec<unsigned char> &out_buffer, const char* _id, OGG_file_source*& ogg_source, bool read = true ) {
-            
+
             ogg_source = new OGG_file_source();
             ogg_source->source_name = std::string(_id);
 
@@ -35,7 +35,7 @@ namespace lumen {
                 lumen::log("/ lumen / cannot open ogg file from %s", _id);
                 delete ogg_source;
                 ogg_source = NULL;
-                
+
                 return false;
 
             } //file source isn't valid
@@ -65,6 +65,7 @@ namespace lumen {
             ogg_source->info = ov_info(ogg_source->ogg_file, -1);
             ogg_source->comments = ov_comment(ogg_source->ogg_file, -1);
 
+                //(2) here is word size, 16 bit is 2, 8 bit is 1
             ogg_int64_t total_length = ov_pcm_total( ogg_source->ogg_file, -1 ) * ogg_source->info->channels * (2);
 
             ogg_source->length_pcm = total_length;
@@ -94,38 +95,76 @@ namespace lumen {
 
         } //audio_load_ogg_bytes
 
-            //this reads a portion of an already opened ogg source into the buffer from start, for len 
+            //this reads a portion of an already opened ogg source into the buffer from start, for len
         long audio_read_ogg_data( OGG_file_source* ogg_source, QuickVec<unsigned char> &out_buffer, long start, long len ) {
 
             //it is assumed here that ogg_source is opened. Maybe we can ask the file if it is open and if not reopen it?
-            //(2) here is bytes per sample in file, 1 is how many to read
 
-            long bytes_read = -1;
-            long total_bytes = 0;
+            int word = 2; //1 for 8 bit, 2 for 16 bit. 2 is typical
+            int sgned = 1; //0 for unsigned, 1 is typical
             int bit_stream = 1;
 
-            out_buffer.resize(len);
+                //if the start position is -1, it means to use the current position
+            if(start == -1) {
 
-                //first seek to the right position
-            ov_raw_seek( ogg_source->ogg_file, start );
+                start = ov_pcm_tell( ogg_source->ogg_file );
 
-            while (bytes_read != 0) {
+            } else {
+                    //first seek to the right position
+                ov_pcm_seek( ogg_source->ogg_file, start );
+            }
 
-                    // Read up to a buffer's worth of decoded sound data
-                bytes_read = ov_read( ogg_source->ogg_file, (char*)out_buffer.begin() + total_bytes, OGG_BUFFER_LENGTH, OGG_BUFFER_READ_TYPE, 2, 1, &bit_stream);
+            long _read_len = len;
 
-                total_bytes += bytes_read;
+                //the requested size might reach past the size of the data, so we cap it
+            if((start + _read_len) > ogg_source->length_pcm) {
+                _read_len = (ogg_source->length_pcm - start);
+                    //aaand no negative reads either.
+                if(_read_len < 0) {
+                    _read_len = 0;
+                }
+            }
+
+                //resize to fit the requested length
+            out_buffer.resize(_read_len);
+
+            bool reading = true;
+            long bytes_left = _read_len;
+            long total_read = 0;
+            long bytes_read = 0;
+
+            while(reading) {
+
+                long _read_max = OGG_BUFFER_LENGTH;
+
+                if(bytes_left < _read_max) {
+                    _read_max = bytes_left;
+                }
+
+                    // Read the decoded sound data
+                bytes_read = ov_read( ogg_source->ogg_file, (char*)out_buffer.begin() + total_read, _read_max, OGG_BUFFER_READ_TYPE, word, sgned, &bit_stream);
+
+                total_read += bytes_read;
+                bytes_left -= bytes_read;
+
+                    //at the end?
+                if(bytes_read == 0) {
+                    reading = false;
+                }
+
+                if(total_read >= _read_len) {
+                    reading = false;
+                }
 
             } //while
 
-                //we need the buffer length to reflect the real size, 
-                //because it might read less than asked for (like streaming requesting
-                //4k bytes but only 1k are left in the stream)
-            if(total_bytes != len) {
-                out_buffer.resize(total_bytes);
+                //we need the buffer length to reflect the real size,
+                //just in case too
+            if(total_read != _read_len) {
+                out_buffer.resize(total_read);
             }
 
-            return total_bytes;
+            return total_read;
 
         } //audio_read_ogg_bytes
 
