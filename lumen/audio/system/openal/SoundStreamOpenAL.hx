@@ -24,7 +24,8 @@ class SoundStreamOpenAL extends SoundStream {
         //mono8? stereo16?
     public var format : Int;
         //the length of bytes for a single buffer
-    public static var buffer_length : Int = 48000; //:todo: optionize.
+        //:todo: making it a bit bigger to slow down debug printing
+    public static var buffer_length : Int = 48000*4; //:todo: optionize.
         //buffer count
     public var buffer_count : Int = 4; //:todo: optionize.
 
@@ -139,14 +140,17 @@ class SoundStreamOpenAL extends SoundStream {
         var still_busy = true;
         var processed_buffers : Int = AL.getSourcei(source, AL.BUFFERS_PROCESSED );
 
-        //for each buffer that was already processed, unqueue it
-        //which returns the buffer id, so it can be refilled
+            //disallow large or invalid values since we are using a while loop
+        if(processed_buffers > buffer_count) {
+            processed_buffers = buffer_count;
+        }
 
-        // return true;
-
+            //for each buffer that was already processed, unqueue it
+            //which returns the buffer id, so it can be refilled
         while(processed_buffers > 0) {
 
             var _buffer:Int = AL.sourceUnqueueBuffer( source );
+
             trace("    > processed_buffers : " + processed_buffers + " buffer was " + _buffer);
 
                 //repopulate this empty buffer,
