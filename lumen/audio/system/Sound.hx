@@ -13,6 +13,7 @@ class Sound {
     public var name : String = '';
 
     public var playing : Bool = false;
+    public var paused : Bool = false;
     public var is_stream : Bool = false;
 
     @:isVar public var pitch    (get,set) : Float = 1.0;
