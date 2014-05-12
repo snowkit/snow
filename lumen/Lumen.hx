@@ -196,6 +196,12 @@ class Lumen {
             trace( "/ lumen / system event : " + _event );
         }
 
+            //all systems should get these basically...
+            //cos of app lifecycles etc being here.
+        if(is_ready) {
+            audio.on_event( _event );
+        }
+
         switch(_event.type) {
 
             case SystemEventType.init: {
