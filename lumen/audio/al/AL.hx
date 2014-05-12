@@ -318,8 +318,8 @@ class AL {
         alhx_SourceQueueBuffers(source, nb, buffers);
     }
 
-    public static function sourceUnqueueBuffers(source:Int, nb:Int, buffers:Array<Int> ) : Void {
-        alhx_SourceUnqueueBuffers(source, nb, buffers);
+    public static function sourceUnqueueBuffers(source:Int, nb:Int ) : Array<Int> {
+        return alhx_SourceUnqueueBuffers(source, nb);
     }
 
 //buffer management
@@ -409,6 +409,15 @@ class AL {
         alhx_DeleteBuffer(buffer);
     }
 
+    public static function sourceQueueBuffer(source:Int, buffer:Int) : Void {
+        alhx_SourceQueueBuffers(source, 1, [buffer]);
+    }
+
+    public static function sourceUnqueueBuffer(source:Int) : Int {
+        var res = alhx_SourceUnqueueBuffers(source, 1);
+        return res[0];
+    }
+
     public static var INVALID_NAME_MEANING : String             = "AL.INVALID_NAME: Invalid parameter name";
     public static var INVALID_ENUM_MEANING : String             = "AL.INVALID_ENUM: Invalid enum value";
     public static var INVALID_VALUE_MEANING : String            = "AL.INVALID_VALUE: Invalid parameter value";
@@ -490,7 +499,7 @@ class AL {
     static var alhx_SourcePausev            = Libs.load("lumen", "alhx_SourcePausev", 2);
 
     static var alhx_SourceQueueBuffers      = Libs.load("lumen", "alhx_SourceQueueBuffers", 3);
-    static var alhx_SourceUnqueueBuffers    = Libs.load("lumen", "alhx_SourceUnqueueBuffers", 3);
+    static var alhx_SourceUnqueueBuffers    = Libs.load("lumen", "alhx_SourceUnqueueBuffers", 2);
 
     static var alhx_SourcePlay              = Libs.load("lumen", "alhx_SourcePlay", 1);
     static var alhx_SourceStop              = Libs.load("lumen", "alhx_SourceStop", 1);
@@ -500,7 +509,7 @@ class AL {
     static var alhx_GenBuffers              = Libs.load("lumen", "alhx_GenBuffers", 1);
     static var alhx_DeleteBuffers           = Libs.load("lumen", "alhx_DeleteBuffers", 2);
     static var alhx_IsBuffer                = Libs.load("lumen", "alhx_IsBuffer", 1);
- 
+
     static var alhx_BufferData              = Libs.load("lumen", "alhx_BufferData", 5);
 
     static var alhx_Bufferf                 = Libs.load("lumen", "alhx_Bufferf", 3);
