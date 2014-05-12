@@ -116,8 +116,8 @@ enum SystemEventType {
 
     unknown;
 
-    init;    
-    ready;    
+    init;
+    ready;
     update;
     shutdown;
     window;
@@ -154,7 +154,7 @@ enum WindowEventType {
     window_focus_gained;
     window_focus_lost;
     window_close;
-    
+
 } //WindowEventType
 
 

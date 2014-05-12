@@ -162,6 +162,22 @@ class Audio {
         }
     } //toggle
 
+    public function on_event( _event:SystemEvent ) {
+        if(_event.type == SystemEventType.app_willenterbackground) {
+            active = false;
+        } else if(_event.type == SystemEventType.app_willenterforeground) {
+            active = true;
+            for(sound in stream_list) {
+                //was it playing already? play it again
+                if(sound.looping && sound.playing) {
+                    sound.loop();
+                } else if (sound.playing) {
+                    sound.play();
+                }
+            }
+        }
+    }
+
     public function destroy() {
         active = false;
         system.destroy();

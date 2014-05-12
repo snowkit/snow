@@ -190,11 +190,8 @@ class SoundStreamOpenAL extends SoundStream {
 
     override public function play() {
 
-        if(playing) {
-            return;
-        }
-
         playing = true;
+        paused = false;
 
             //play() is explicitly not looping
         if(looping) {
@@ -210,6 +207,7 @@ class SoundStreamOpenAL extends SoundStream {
     override public function loop() {
 
         playing = true;
+        paused = false;
 
         if(!looping) {
             // looping = true;
@@ -224,6 +222,7 @@ class SoundStreamOpenAL extends SoundStream {
     override public function pause() {
 
         playing = false;
+        paused = true;
 
         AL.sourcePause(source);
 
