@@ -668,19 +668,22 @@ namespace lumen {
 
     } DEFINE_PRIM(alhx_SourceQueueBuffers, 3);
 
-    value alhx_SourceUnqueueBuffers(value _source, value _nb, value _buffers) {
+    value alhx_SourceUnqueueBuffers(value _source, value _nb) {
 
-        int* buffers = val_array_int(_buffers);
+        int count = val_int(_nb);
+        ALuint buffers[count];
 
-        if(buffers) {
-            alSourceUnqueueBuffers( val_int(_source), val_int(_nb), (ALuint*)buffers );
-        } else {
-            //warn: try val_array normal approach?
+        alSourceUnqueueBuffers( val_int(_source), val_int(_nb), buffers );
+
+        value result = alloc_array(count);
+
+        for( int i = 0; i < count; ++i ) {
+            val_array_set_i(result, i, alloc_int(buffers[i]) );
         }
 
-        return alloc_null();
+        return result;
 
-    } DEFINE_PRIM(alhx_SourceUnqueueBuffers, 3);
+    } DEFINE_PRIM(alhx_SourceUnqueueBuffers, 2);
 
 
     value alhx_GenBuffers(value _n) {
@@ -695,6 +698,8 @@ namespace lumen {
         for( int i = 0; i < count; ++i ) {
             val_array_set_i(result, i, alloc_int(buffers[i]) );
         }
+
+        delete [] buffers;
 
         return result;
 

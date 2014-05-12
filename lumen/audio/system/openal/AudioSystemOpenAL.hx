@@ -35,10 +35,6 @@ import lumen.audio.al.AL.Device;
 
         } //init
 
-        override public function update() {
-
-        }
-
         override public function destroy() {
 
             ALC.closeDevice( device );

@@ -469,7 +469,7 @@ extern void window_show_cursor(bool enable);
 
             //the destination for the read, if any
         QuickVec<unsigned char> buffer;
-            //the source data ogg info 
+            //the source data ogg info
         OGG_file_source* ogg_source = NULL;
 
         bool success = audio_load_ogg_info( buffer, val_string(_id), ogg_source, do_read );
@@ -488,7 +488,7 @@ extern void window_show_cursor(bool enable);
             alloc_field( _object, id_bits_per_sample, alloc_int( 16 ) ); //:todo: optionize?
             alloc_field( _object, id_data, ByteArray(buffer).mValue );
             alloc_field( _object, id_length, alloc_int(ogg_source->length) );
-            alloc_field( _object, id_length_pcm, alloc_int(ogg_source->length_pcm) );            
+            alloc_field( _object, id_length_pcm, alloc_int(ogg_source->length_pcm) );
             alloc_field( _object, id_handle, Object_to_hx(ogg_source) );
 
         return _object;
