@@ -22,6 +22,8 @@ class Audio {
     var sound_list : Map<String, Sound>;
     var stream_list : Map<String, SoundStream>;
 
+    public var active : Bool = false;
+
     public function new( _lib:Lumen ) {
 
         lib = _lib;
@@ -32,6 +34,8 @@ class Audio {
 
         sound_list = new Map();
         stream_list = new Map();
+
+        active = true;
 
     } //new
 
@@ -111,6 +115,11 @@ class Audio {
     } //pitch
 
     public function play(_name:String) {
+
+        if(!active) {
+            return;
+        }
+
         var sound = get(_name);
         if(sound != null) {
             sound.play();
@@ -118,6 +127,11 @@ class Audio {
     } //play
 
     public function pause(_name:String) {
+
+        if(!active) {
+            return;
+        }
+
         var sound = get(_name);
         if(sound != null) {
             sound.pause();
@@ -125,6 +139,11 @@ class Audio {
     } //pause
 
     public function stop(_name:String) {
+
+        if(!active) {
+            return;
+        }
+
         var sound = get(_name);
         if(sound != null) {
             sound.stop();
@@ -132,6 +151,11 @@ class Audio {
     } //stop
 
     public function toggle(_name:String) {
+
+        if(!active) {
+            return;
+        }
+
         var sound = get(_name);
         if(sound != null) {
             sound.toggle();
@@ -139,10 +163,15 @@ class Audio {
     } //toggle
 
     public function destroy() {
+        active = false;
         system.destroy();
     } //destroy
 
     public function update() {
+
+        if(!active) {
+            return;
+        }
 
             //update the streaming sounds
             //they may or may not do anything
