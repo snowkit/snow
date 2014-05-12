@@ -394,8 +394,8 @@ typedef enum {
 #if __WINRT__
 #include <Unknwn.h>
 typedef IUnknown * EGLNativeWindowType;
-typedef int EGLNativeDisplayType;
-typedef HBITMAP EGLNativePixmapType;
+typedef IUnknown * EGLNativePixmapType;
+typedef IUnknown * EGLNativeDisplayType;
 #else
 typedef HDC     EGLNativeDisplayType;
 typedef HBITMAP EGLNativePixmapType;
@@ -420,7 +420,7 @@ typedef struct gbm_device  *EGLNativeDisplayType;
 typedef struct gbm_bo      *EGLNativePixmapType;
 typedef void               *EGLNativeWindowType;
 
-#elif defined(ANDROID) /* Android */
+#elif defined(__ANDROID__) /* Android */
 
 struct ANativeWindow;
 struct egl_native_pixmap_t;

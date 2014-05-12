@@ -24,6 +24,7 @@
 
 #include "SDL_hints.h"
 #include "SDL_log.h"
+#include "SDL_assert.h"
 #include "SDL_opengl.h"
 #include "../SDL_sysrender.h"
 #include "SDL_shaders_gl.h"
@@ -798,14 +799,16 @@ GL_UpdateTexture(SDL_Renderer * renderer, SDL_Texture * texture,
 {
     GL_RenderData *renderdata = (GL_RenderData *) renderer->driverdata;
     GL_TextureData *data = (GL_TextureData *) texture->driverdata;
+    const int texturebpp = SDL_BYTESPERPIXEL(texture->format);
+
+    SDL_assert(texturebpp != 0);  /* otherwise, division by zero later. */
 
     GL_ActivateRenderer(renderer);
 
     renderdata->glEnable(data->type);
     renderdata->glBindTexture(data->type, data->texture);
     renderdata->glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
-    renderdata->glPixelStorei(GL_UNPACK_ROW_LENGTH,
-                              (pitch / SDL_BYTESPERPIXEL(texture->format)));
+    renderdata->glPixelStorei(GL_UNPACK_ROW_LENGTH, (pitch / texturebpp));
     renderdata->glTexSubImage2D(data->type, 0, rect->x, rect->y, rect->w,
                                 rect->h, data->format, data->formattype,
                                 pixels);
@@ -973,10 +976,10 @@ GL_UpdateViewport(SDL_Renderer * renderer)
 static int
 GL_UpdateClipRect(SDL_Renderer * renderer)
 {
-    const SDL_Rect *rect = &renderer->clip_rect;
     GL_RenderData *data = (GL_RenderData *) renderer->driverdata;
 
-    if (!SDL_RectEmpty(rect)) {
+    if (renderer->clipping_enabled) {
+        const SDL_Rect *rect = &renderer->clip_rect;
         data->glEnable(GL_SCISSOR_TEST);
         data->glScissor(rect->x, renderer->viewport.h - rect->y - rect->h, rect->w, rect->h);
     } else {

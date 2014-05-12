@@ -30,6 +30,7 @@
 
 /* Windows includes */
 #include <agile.h>
+#include <wrl/client.h>
 using namespace Windows::UI::Core;
 
 
@@ -52,6 +53,7 @@ extern "C" {
 #include "SDL_winrtmouse_c.h"
 #include "SDL_main.h"
 #include "SDL_system.h"
+//#include "SDL_log.h"
 
 
 /* Initialization/Query functions */
@@ -69,7 +71,6 @@ static SDL_bool WINRT_GetWindowWMInfo(_THIS, SDL_Window * window, SDL_SysWMinfo 
 
 /* SDL-internal globals: */
 SDL_Window * WINRT_GlobalSDLWindow = NULL;
-SDL_VideoDevice * WINRT_GlobalSDLVideoDevice = NULL;
 
 
 /* WinRT driver bootstrap functions */
@@ -83,9 +84,14 @@ WINRT_Available(void)
 static void
 WINRT_DeleteDevice(SDL_VideoDevice * device)
 {
-    if (device == WINRT_GlobalSDLVideoDevice) {
-        WINRT_GlobalSDLVideoDevice = NULL;
+    if (device->driverdata) {
+        SDL_VideoData * video_data = (SDL_VideoData *)device->driverdata;
+        if (video_data->winrtEglWindow) {
+            video_data->winrtEglWindow->Release();
+        }
+        SDL_free(video_data);
     }
+
     SDL_free(device);
 }
 
@@ -93,6 +99,7 @@ static SDL_VideoDevice *
 WINRT_CreateDevice(int devindex)
 {
     SDL_VideoDevice *device;
+    SDL_VideoData *data;
 
     /* Initialize all variables that we clean on shutdown */
     device = (SDL_VideoDevice *) SDL_calloc(1, sizeof(SDL_VideoDevice));
@@ -103,6 +110,14 @@ WINRT_CreateDevice(int devindex)
         }
         return (0);
     }
+
+    data = (SDL_VideoData *) SDL_calloc(1, sizeof(SDL_VideoData));
+    if (!data) {
+        SDL_OutOfMemory();
+        return (0);
+    }
+    SDL_zerop(data);
+    device->driverdata = data;
 
     /* Set the function pointers */
     device->VideoInit = WINRT_VideoInit;
@@ -124,7 +139,6 @@ WINRT_CreateDevice(int devindex)
     device->GL_DeleteContext = WINRT_GLES_DeleteContext;
 #endif
     device->free = WINRT_DeleteDevice;
-    WINRT_GlobalSDLVideoDevice = device;
 
     return device;
 }
@@ -161,13 +175,17 @@ WINRT_CalcDisplayModeUsingNativeWindow(SDL_DisplayMode * mode)
         return SDL_SetError("SDL/WinRT display modes cannot be calculated outside of the main thread, such as in SDL's XAML thread");
     }
 
+    //SDL_Log("%s, size={%f,%f}, current orientation=%d, native orientation=%d, auto rot. pref=%d, DPI = %f\n",
+    //    __FUNCTION__,
+    //    CoreWindow::GetForCurrentThread()->Bounds.Width, CoreWindow::GetForCurrentThread()->Bounds.Height,
+    //    WINRT_DISPLAY_PROPERTY(CurrentOrientation),
+    //    WINRT_DISPLAY_PROPERTY(NativeOrientation),
+    //    WINRT_DISPLAY_PROPERTY(AutoRotationPreferences),
+    //    WINRT_DISPLAY_PROPERTY(LogicalDpi));
+
     // Calculate the display size given the window size, taking into account
     // the current display's DPI:
-#if NTDDI_VERSION > NTDDI_WIN8
-    const float currentDPI = DisplayInformation::GetForCurrentView()->LogicalDpi;
-#else
-    const float currentDPI = Windows::Graphics::Display::DisplayProperties::LogicalDpi;
-#endif
+    const float currentDPI = WINRT_DISPLAY_PROPERTY(LogicalDpi);
     const float dipsPerInch = 96.0f;
     const int w = (int) ((CoreWindow::GetForCurrentThread()->Bounds.Width * currentDPI) / dipsPerInch);
     const int h = (int) ((CoreWindow::GetForCurrentThread()->Bounds.Height * currentDPI) / dipsPerInch);
@@ -189,20 +207,16 @@ WINRT_CalcDisplayModeUsingNativeWindow(SDL_DisplayMode * mode)
     mode->w = w;
     mode->h = h;
     mode->driverdata = driverdata;
-#if NTDDI_VERSION > NTDDI_WIN8
-    driverdata->currentOrientation = DisplayInformation::GetForCurrentView()->CurrentOrientation;
-#else
-    driverdata->currentOrientation = DisplayProperties::CurrentOrientation;
-#endif
+    driverdata->currentOrientation = WINRT_DISPLAY_PROPERTY(CurrentOrientation);
 
-#if WINAPI_FAMILY == WINAPI_FAMILY_PHONE_APP
-    // On Windows Phone, the native window's size is always in portrait,
+#if (WINAPI_FAMILY == WINAPI_FAMILY_PHONE_APP) && (NTDDI_VERSION == NTDDI_WIN8)
+    // On Windows Phone 8.0, the native window's size is always in portrait,
     // regardless of the device's orientation.  This is in contrast to
-    // Windows 8/RT, which will resize the native window as the device's
+    // Windows 8.x/RT and Windows Phone 8.1, which will resize the native window as the device's
     // orientation changes.  In order to compensate for this behavior,
     // on Windows Phone, the mode's width and height will be swapped when
     // the device is in a landscape (non-portrait) mode.
-    switch (DisplayProperties::CurrentOrientation) {
+    switch (driverdata->currentOrientation) {
         case DisplayOrientations::Landscape:
         case DisplayOrientations::LandscapeFlipped:
         {
@@ -301,29 +315,25 @@ WINRT_CreateWindow(_THIS, SDL_Window * window)
         data->egl_surface = EGL_NO_SURFACE;
     } else {
         /* OpenGL ES 2 was reuqested.  Set up an EGL surface. */
+        SDL_VideoData * video_data = (SDL_VideoData *)_this->driverdata;
 
-        /* HACK: ANGLE/WinRT currently uses non-pointer, C++ objects to represent
-           native windows.  The object only contains a single pointer to a COM
-           interface pointer, which on x86 appears to be castable to the object
-           without apparant problems.  On other platforms, notable ARM and x64,
-           doing so will cause a crash.  To avoid this crash, we'll bypass
-           SDL's normal call to eglCreateWindowSurface, which is invoked from C
-           code, and call it here, where an appropriate C++ object may be
-           passed in.
+        /* Call SDL_EGL_ChooseConfig and eglCreateWindowSurface directly,
+         * rather than via SDL_EGL_CreateSurface, as ANGLE/WinRT requires
+         * a C++ object, ComPtr<IUnknown>, to be passed into
+         * eglCreateWindowSurface.
          */
-        typedef EGLSurface (*eglCreateWindowSurfaceFunction)(EGLDisplay dpy, EGLConfig config,
-            Microsoft::WRL::ComPtr<IUnknown> win,
-            const EGLint *attrib_list);
-        eglCreateWindowSurfaceFunction WINRT_eglCreateWindowSurface =
-            (eglCreateWindowSurfaceFunction) _this->egl_data->eglCreateWindowSurface;
+        if (SDL_EGL_ChooseConfig(_this) != 0) {
+            char buf[512];
+            SDL_snprintf(buf, sizeof(buf), "SDL_EGL_ChooseConfig failed: %s", SDL_GetError());
+            return SDL_SetError(buf);
+        }
 
-        Microsoft::WRL::ComPtr<IUnknown> nativeWindow = reinterpret_cast<IUnknown *>(data->coreWindow.Get());
-        data->egl_surface = WINRT_eglCreateWindowSurface(
+        Microsoft::WRL::ComPtr<IUnknown> cpp_winrtEglWindow = video_data->winrtEglWindow;
+        data->egl_surface = ((eglCreateWindowSurface_Function)_this->egl_data->eglCreateWindowSurface)(
             _this->egl_data->egl_display,
             _this->egl_data->egl_config,
-            nativeWindow, NULL);
+            cpp_winrtEglWindow, NULL);
         if (data->egl_surface == NULL) {
-            // TODO, WinRT: see if eglCreateWindowSurface, or its callee(s), sets an error message.  If so, attach it to the SDL error.
             return SDL_SetError("eglCreateWindowSurface failed");
         }
     }

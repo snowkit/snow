@@ -41,10 +41,10 @@
 #include <sys/types.h>
 #include <unistd.h>
 #define LOG_TAG "SDL_android"
- #define LOGI(...)  __android_log_print(ANDROID_LOG_INFO,LOG_TAG,__VA_ARGS__) 
- #define LOGE(...)  __android_log_print(ANDROID_LOG_ERROR,LOG_TAG,__VA_ARGS__) 
-// #define LOGI(...) do {} while (false)
-// #define LOGE(...) do {} while (false)
+/* #define LOGI(...)  __android_log_print(ANDROID_LOG_INFO,LOG_TAG,__VA_ARGS__) */
+/* #define LOGE(...)  __android_log_print(ANDROID_LOG_ERROR,LOG_TAG,__VA_ARGS__) */
+#define LOGI(...) do {} while (false)
+#define LOGE(...) do {} while (false)
 
 /* Uncomment this to log messages entering and exiting methods in this file */
 /* #define DEBUG_JNI */
@@ -95,7 +95,6 @@ JNIEXPORT jint JNICALL JNI_OnLoad(JavaVM* vm, void* reserved)
         LOGE("Failed to get the environment using GetEnv()");
         return -1;
     }
-
     /*
      * Create mThreadKey so we can keep track of the JNIEnv assigned to each thread
      * Refer to http://developer.android.com/guide/practices/design/jni.html for the rationale behind this
@@ -129,8 +128,8 @@ JNIEXPORT void JNICALL SDL_Android_Init(JNIEnv* mEnv, jclass cls)
                                 "audioWriteByteBuffer", "([B)V");
     midAudioQuit = (*mEnv)->GetStaticMethodID(mEnv, mActivityClass,
                                 "audioQuit", "()V");
-    // midPollInputDevices = (*mEnv)->GetStaticMethodID(mEnv, mActivityClass,
-    //                             "pollInputDevices", "()V");
+    midPollInputDevices = (*mEnv)->GetStaticMethodID(mEnv, mActivityClass,
+                                "pollInputDevices", "()V");
 
     bHasNewData = false;
 
@@ -1283,10 +1282,8 @@ int Android_JNI_GetTouchDeviceIds(int **ids) {
 
 void Android_JNI_PollInputDevices()
 {
-    if(midPollInputDevices) {
-        JNIEnv *env = Android_JNI_GetEnv();
-        (*env)->CallStaticVoidMethod(env, mActivityClass, midPollInputDevices);    
-    }
+    JNIEnv *env = Android_JNI_GetEnv();
+    (*env)->CallStaticVoidMethod(env, mActivityClass, midPollInputDevices);    
 }
 
 /* sends message to be handled on the UI event dispatch thread */

@@ -886,7 +886,7 @@ SDLTest_CommonInit(SDLTest_CommonState * state)
                             break;
                         }
                     }
-                    if (m == n) {
+                    if (m == -1) {
                         fprintf(stderr,
                                 "Couldn't find render driver named %s",
                                 state->renderdriver);
@@ -1196,6 +1196,13 @@ SDLTest_PrintEvent(SDL_Event * event)
                 (long) event->tfinger.fingerId,
                 event->tfinger.x, event->tfinger.y,
                 event->tfinger.dx, event->tfinger.dy, event->tfinger.pressure);
+        break;
+
+    case SDL_RENDER_DEVICE_RESET:
+        SDL_Log("SDL EVENT: render device reset");
+        break;
+    case SDL_RENDER_TARGETS_RESET:
+        SDL_Log("SDL EVENT: render targets reset");
         break;
 
     case SDL_QUIT:

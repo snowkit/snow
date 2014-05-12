@@ -22,6 +22,10 @@
 
 #if SDL_VIDEO_OPENGL_EGL
 
+#if SDL_VIDEO_DRIVER_WINDOWS || SDL_VIDEO_DRIVER_WINRT
+#include "../core/windows/SDL_windows.h"
+#endif
+
 #include "SDL_sysvideo.h"
 #include "SDL_egl_c.h"
 #include "SDL_loadso.h"
@@ -73,7 +77,7 @@ SDL_EGL_GetProcAddress(_THIS, const char *proc)
     void *retval;
     
     /* eglGetProcAddress is busted on Android http://code.google.com/p/android/issues/detail?id=7681 */
-#if !defined(SDL_VIDEO_DRIVER_ANDROID) 
+#if !defined(SDL_VIDEO_DRIVER_ANDROID) && !defined(SDL_VIDEO_DRIVER_MIR) 
     if (_this->egl_data->eglGetProcAddress) {
         retval = _this->egl_data->eglGetProcAddress(proc);
         if (retval) {
@@ -135,8 +139,11 @@ SDL_EGL_LoadLibrary(_THIS, const char *egl_path, NativeDisplayType native_displa
 #if SDL_VIDEO_DRIVER_WINDOWS || SDL_VIDEO_DRIVER_WINRT
     d3dcompiler = SDL_GetHint(SDL_HINT_VIDEO_WIN_D3DCOMPILER);
     if (!d3dcompiler) {
-        /* By default we load the Vista+ compatible compiler */
-        d3dcompiler = "d3dcompiler_46.dll";
+        if (WIN_IsWindowsVistaOrGreater()) {
+            d3dcompiler = "d3dcompiler_46.dll";
+        } else {
+            d3dcompiler = "d3dcompiler_43.dll";
+        }
     }
     if (SDL_strcasecmp(d3dcompiler, "none") != 0) {
         SDL_LoadObject(d3dcompiler);
@@ -194,6 +201,7 @@ SDL_EGL_LoadLibrary(_THIS, const char *egl_path, NativeDisplayType native_displa
         if (dll_handle == NULL) {
             return SDL_SetError("Could not load EGL library");
         }
+        SDL_ClearError();
     }
 
     _this->egl_data->dll_handle = dll_handle;
@@ -216,6 +224,7 @@ SDL_EGL_LoadLibrary(_THIS, const char *egl_path, NativeDisplayType native_displa
     LOAD_FUNC(eglWaitGL);
     LOAD_FUNC(eglBindAPI);
     
+#if !defined(__WINRT__)
     _this->egl_data->egl_display = _this->egl_data->eglGetDisplay(native_display);
     if (!_this->egl_data->egl_display) {
         return SDL_SetError("Could not get EGL display");
@@ -224,6 +233,7 @@ SDL_EGL_LoadLibrary(_THIS, const char *egl_path, NativeDisplayType native_displa
     if (_this->egl_data->eglInitialize(_this->egl_data->egl_display, NULL, NULL) != EGL_TRUE) {
         return SDL_SetError("Could not initialize EGL");
     }
+#endif
 
     _this->egl_data->dll_handle = dll_handle;
     _this->egl_data->egl_dll_handle = egl_dll_handle;

@@ -560,26 +560,23 @@ X11_DispatchEvent(_THIS)
                    xevent.xconfigure.width, xevent.xconfigure.height);
 #endif
             long border_left = 0;
-            long border_right = 0;
             long border_top = 0;
-            long border_bottom = 0;
             if (data->xwindow) {
                 Atom _net_frame_extents = X11_XInternAtom(display, "_NET_FRAME_EXTENTS", 0);
-                Atom type = None;
+                Atom type;
                 int format;
-                unsigned long nitems = 0, bytes_after;
+                unsigned long nitems, bytes_after;
                 unsigned char *property;
-                X11_XGetWindowProperty(display, data->xwindow,
-                    _net_frame_extents, 0, 16, 0,
-                    XA_CARDINAL, &type, &format,
-                    &nitems, &bytes_after, &property);
-
-                if (type != None && nitems == 4)
-                {
-                    border_left = ((long*)property)[0];
-                    border_right = ((long*)property)[1];
-                    border_top = ((long*)property)[2];
-                    border_bottom = ((long*)property)[3];
+                if (X11_XGetWindowProperty(display, data->xwindow,
+                        _net_frame_extents, 0, 16, 0,
+                        XA_CARDINAL, &type, &format,
+                        &nitems, &bytes_after, &property) == Success) {
+                    if (type != None && nitems == 4)
+                    {
+                        border_left = ((long*)property)[0];
+                        border_top = ((long*)property)[2];
+                    }
+                    X11_XFree(property);
                 }
             }
 
