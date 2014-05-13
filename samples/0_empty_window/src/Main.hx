@@ -152,6 +152,10 @@ class Main extends lumen.AppFixedTimestep {
             sound3.play();
         }
 
+        if(event.keycode == Key.SPACE) {
+            sound4.toggle();
+        }
+
         if(event.scancode == Scan.GRAVE) {
             app.audio.pitch('wav', 0.5);
             sound3.play();

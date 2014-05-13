@@ -162,20 +162,23 @@ class Audio {
         }
     } //toggle
 
+        //system events
     public function on_event( _event:SystemEvent ) {
+
         if(_event.type == SystemEventType.app_willenterbackground) {
+
             active = false;
+            for(sound in stream_list) {
+                sound.internal_pause();
+            }
+
         } else if(_event.type == SystemEventType.app_willenterforeground) {
             active = true;
             for(sound in stream_list) {
-                //was it playing already? play it again
-                if(sound.looping && sound.playing) {
-                    sound.loop();
-                } else if (sound.playing) {
-                    sound.play();
-                }
+                sound.internal_play();
             }
         }
+
     }
 
     public function destroy() {
