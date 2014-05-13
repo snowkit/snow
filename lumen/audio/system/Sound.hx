@@ -35,9 +35,13 @@ class Sound {
     public function stop() {}
     public function pause() {}
     public function toggle() {}
-        //used for streaming, hidden from user
-    @:noCompletion public function internal_update() {}
 
+        //used for system events, hidden from user
+    @:noCompletion public function internal_update() {}
+    @:noCompletion public function internal_play() {}
+    @:noCompletion public function internal_loop() {}
+    @:noCompletion public function internal_stop() {}
+    @:noCompletion public function internal_pause() {}
 
     function get_pan() : Float {
         return pan;

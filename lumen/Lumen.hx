@@ -200,6 +200,8 @@ class Lumen {
             //cos of app lifecycles etc being here.
         if(is_ready) {
             audio.on_event( _event );
+            window.on_event( _event );
+            input.on_event( _event );
         }
 
         switch(_event.type) {
@@ -220,21 +222,8 @@ class Lumen {
                 shutdown();
             } //quit
 
-            case SystemEventType.window: {
-                window.on_event( _event );
-            } //window
-
-            case SystemEventType.input: {
-                if(is_ready) {
-                    input.on_event( _event );
-                }
-            } //input
-
             case SystemEventType.shutdown: {
                 _debug('/ lumen / Goodbye.');
-                    //:todo: this is temporary,
-                    //due to sdl repo having newer fixes than 2.0.3 stable
-                #if android Sys.exit(0); #end
             } //shutdown
 
             default: {

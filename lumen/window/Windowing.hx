@@ -91,13 +91,17 @@ class Windowing {
 
     @:noCompletion public function on_event( _event:SystemEvent ) {
 
-        var _window_event = _event.window;
-        _window_event.type = WindowEvents.typed( cast _window_event.type );
+        if(_event.type == SystemEventType.window) {
 
-        var _window = window_list.get(_window_event.window_id);
-        if(_window != null) {
-            _window.on_event( _window_event );
-        }
+            var _window_event = _event.window;
+            _window_event.type = WindowEvents.typed( cast _window_event.type );
+
+            var _window = window_list.get(_window_event.window_id);
+            if(_window != null) {
+                _window.on_event( _window_event );
+            }
+
+        } //only window events
 
     } //on_event
 
@@ -112,13 +116,13 @@ class Windowing {
         for(window in window_list) {
             window.render();
         }
-        
+
     } //update
 
     @:noCompletion public function destroy() {
-        
+
         system.destroy();
-        
+
     } //destroy
 
 #if lumen_native

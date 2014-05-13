@@ -427,6 +427,10 @@ namespace lumen {
 
             } //SDL_WINDOWEVENT
 
+            default: {
+                return;
+            }
+
         } //switch event.type
 
             //populate it's event structure first
