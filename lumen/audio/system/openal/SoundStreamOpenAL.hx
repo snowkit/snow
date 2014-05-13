@@ -268,7 +268,7 @@ class SoundStreamOpenAL extends SoundStream {
 
         flush_queue();
 
-    }
+    } //internal_pause
 
     override function internal_play() {
 
@@ -276,7 +276,7 @@ class SoundStreamOpenAL extends SoundStream {
             AL.sourcePlay(source);
         }
 
-    }
+    } //internal_play
 
     override public function stop() {
 
