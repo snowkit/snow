@@ -18,7 +18,7 @@
                   android:launchMode="singleTask"
                   ::if (WIN_ORIENTATION=="portrait"):: android:screenOrientation="sensorPortrait"::end::
                   ::if (WIN_ORIENTATION=="landscape"):: android:screenOrientation="sensorLandscape"::end::
-                  android:configChanges="keyboardHidden|orientation"
+                  android:configChanges="keyboardHidden|orientation|screenSize|screenLayout"
                   >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

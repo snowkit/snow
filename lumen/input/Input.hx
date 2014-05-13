@@ -30,14 +30,14 @@ class Input {
 
         system.init();
 
-        key_code_pressed = new Map();        
+        key_code_pressed = new Map();
         key_code_down = new Map();
         key_code_released = new Map();
 
-    } //new    
+    } //new
 
 //Public facing API
-    
+
         //these use Key.* values, not Scan.*
     public function keypressed( _code:Int ) {
         return key_code_pressed.exists(_code);
@@ -54,12 +54,14 @@ class Input {
 
     public function on_event( _event:SystemEvent ) {
 
-        system.on_event( _event.input );
+        if(_event.type == SystemEventType.input) {
+            system.on_event( _event.input );
+        } //only input events
 
     } //on_event
 
     public function dispatch_key_event( _event:KeyEvent ) {
-            
+
         if(_event.state == PressedState.up) {
 
                 //flag it as released but unprocessed

@@ -74,25 +74,8 @@ class SoundStreamOpenAL extends SoundStream {
 
         format = OpenALHelper.determine_format( info );
 
-            //when setting up a stream we buffer the first bit ahead
-        var _buffer_start : Int = 0; //optionize so sounds can start streaming from later in the data
-        var _first_buffer : ByteArray = manager.lib.assets.load_audio_portion( info, _buffer_start, buffer_length );
-
-        if(_first_buffer == null) {
-            trace('/ lumen / audio / ${name} failed to buffer the first buffer for streaming (buffer was null)');
-            return;
-        }
-
-            //submit the data into the first named buffer, that will initialize the other two from this one
-        AL.bufferData( buffers[0], format, new Float32Array(_first_buffer), _first_buffer.byteLength, info.rate );
-            //give the first buffer to the source only
-        AL.sourceQueueBuffer(source, buffers[0]);
-
-            //now lets queue the other two
-        for(i in 1 ... buffer_count) {
-            fill_buffer( buffers[i] );
-            AL.sourceQueueBuffer(source, buffers[i]);
-        }
+            //fill the first set of buffers up
+        start_queue();
 
         trace('/ lumen / audio / ${name} buffered data / ${AL.getErrorMeaning(AL.getError())} ');
 
@@ -134,10 +117,55 @@ class SoundStreamOpenAL extends SoundStream {
 
     }
 
+        //this function takes the start of a buffer to allow streaming a section of a buffer
+        //but it has to submit the first buffer separately, which handles the seeking to the first slot
+        //and subsequent fill_buffers continue from that point onward.
+    function start_queue( ?_buffer_start:Int=0 ) {
+
+            //when setting up a stream we buffer the first bit ahead
+        var _first_buffer : ByteArray = manager.lib.assets.load_audio_portion( info, _buffer_start, buffer_length );
+
+        if(_first_buffer != null) {
+
+            AL.bufferData( buffers[0], format, new Float32Array(_first_buffer), _first_buffer.byteLength, info.rate );
+                //give the first buffer to the source only
+            AL.sourceQueueBuffer(source, buffers[0]);
+
+                //now lets queue the others as well
+            for(i in 1 ... buffer_count) {
+                fill_buffer( buffers[i] );
+                AL.sourceQueueBuffer(source, buffers[i]);
+            }
+
+        } //first_buffer != null
+
+    } //start_queue
+
+
+        //when pausing or stopping the sound you want to flush
+        //the buffers sometimes because otherwise the remaining queue will
+        //continue to play until it consumes them up.
+    function flush_queue() {
+
+        var queued = AL.getSourcei(source, AL.BUFFERS_QUEUED);
+
+        for(i in 0 ... queued) {
+            AL.sourceUnqueueBuffer( source );
+        }
+
+    } //flush_queue
+
         //this is to check the stream state and flag any changes
-    function should_update() : Bool {
+    function update_stream() : Bool {
 
         var still_busy = true;
+
+            //we disallow queuing buffers for stopped sounds
+        var _al_play_state = AL.getSourcei(source, AL.SOURCE_STATE);
+        if(_al_play_state != AL.PLAYING) {
+            return false;
+        }
+
         var processed_buffers : Int = AL.getSourcei(source, AL.BUFFERS_PROCESSED );
 
             //disallow large or invalid values since we are using a while loop
@@ -181,7 +209,7 @@ class SoundStreamOpenAL extends SoundStream {
         }
 
         //check if we are still playing by asking openal
-        var _still_busy = should_update();
+        var _still_busy = update_stream();
 
         if(!_still_busy) {
             trace("streaming sound complete / " + _still_busy);
@@ -230,13 +258,33 @@ class SoundStreamOpenAL extends SoundStream {
 
         AL.sourcePause(source);
 
+        flush_queue();
+
     } //pause
+
+    override function internal_pause() {
+
+        AL.sourcePause(source);
+
+        flush_queue();
+
+    }
+
+    override function internal_play() {
+
+        if(playing) {
+            AL.sourcePlay(source);
+        }
+
+    }
 
     override public function stop() {
 
         playing = false;
 
         AL.sourceStop(source);
+
+        flush_queue();
 
     } //stop
 

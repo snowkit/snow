@@ -28,6 +28,7 @@ namespace lumen {
     int init_core_sdl();
     int shutdown_core_sdl();
     void handle_system_event( SDL_Event &event );
+    int SDLCALL system_event_watch(void *userdata, SDL_Event* event);
 
     const char* core_app_path();
     const char* core_pref_path(const char* org, const char* app);
@@ -134,6 +135,10 @@ namespace lumen {
             lumen::log("/ lumen / failed to initialize SDL at all : %d %s", res, SDL_GetError());
         }
 
+            //add a listener for the core events that the system (iOS/Android for example)
+            //might want handled immediately, the NULL is no user data passed in (not needed)
+        SDL_AddEventWatch(system_event_watch, NULL);
+
         return res;
 
     } //init_core_sdl
@@ -141,43 +146,67 @@ namespace lumen {
     int shutdown_core_sdl() {
 
         core_sdl_inited = false;
+
         SDL_Quit();
+            //after quit, maybe it pumps messages still?
+        SDL_DelEventWatch(system_event_watch, NULL);
 
         return 0;
     }
 
-    void handle_system_event( SDL_Event &event ) {
+    int SDLCALL system_event_watch(void *userdata, SDL_Event* event) {
+
+        SystemEventType new_event_type = se_unknown;
+
+        switch(event->type) {
+
+            case SDL_APP_TERMINATING: {
+                new_event_type = se_app_terminating;
+                break;
+            }
+            case SDL_APP_LOWMEMORY: {
+                new_event_type = se_app_lowmemory;
+                break;
+            }
+            case SDL_APP_WILLENTERBACKGROUND: {
+                new_event_type = se_app_willenterbackground;
+                break;
+            }
+            case SDL_APP_DIDENTERBACKGROUND: {
+                new_event_type = se_app_didenterbackground;
+                break;
+            }
+            case SDL_APP_WILLENTERFOREGROUND: {
+                new_event_type = se_app_willenterforeground;
+                break;
+            }
+            case SDL_APP_DIDENTERFOREGROUND: {
+                new_event_type = se_app_didenterforeground;
+                break;
+            }
+            default: {
+                return 0;
+            }
+
+        } //switch event.type
 
         SystemEvent new_event;
+        new_event.type = new_event_type;
+
+        dispatch_system_event( new_event );
+
+        return 1;
+
+    } //watch
+
+    void handle_system_event( SDL_Event &event ) {
+
+        SystemEventType new_event_type = se_unknown;
 
         switch(event.type) {
 
             case SDL_QUIT: {
-                new_event.type = se_quit;
-                break;
-            }
-            case SDL_APP_TERMINATING: {
-                new_event.type = se_app_terminating;
-                break;
-            }
-            case SDL_APP_LOWMEMORY: {
-                new_event.type = se_app_lowmemory;
-                break;
-            }
-            case SDL_APP_WILLENTERBACKGROUND: {
-                new_event.type = se_app_willenterbackground;
-                break;
-            }
-            case SDL_APP_DIDENTERBACKGROUND: {
-                new_event.type = se_app_didenterbackground;
-                break;
-            }
-            case SDL_APP_WILLENTERFOREGROUND: {
-                new_event.type = se_app_willenterforeground;
-                break;
-            }
-            case SDL_APP_DIDENTERFOREGROUND: {
-                new_event.type = se_app_didenterforeground;
+                new_event_type = se_quit;
                 break;
             }
 
@@ -186,6 +215,9 @@ namespace lumen {
             }
 
         } //switch event.type
+
+        SystemEvent new_event;
+        new_event.type = new_event_type;
 
         dispatch_system_event( new_event );
 
