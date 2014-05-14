@@ -18,8 +18,7 @@ class Run {
 
     static function main() {
 
-        lumen_lib = new Haxelib('lumen');
-        lumen_path = PathHelper.getHaxelib( lumen_lib );
+        lumen_lib = new Haxelib('lumen');        
         haxe_path = Sys.getEnv("HAXEPATH");
 
         if(haxe_path != null) {
@@ -33,14 +32,23 @@ class Run {
             //remove cwd
         run_path = sys_arg_list.pop();
 
-            //now we have to be wary because haxelib lumen might not be set
-        if(lumen_path == '' || lumen_path == null) {
-            Run._trace('WARNING : lumen haxelib path was not found, setting it to ${run_path} for you but take note.');
-            Helper.haxelib_dev('lumen', run_path);
-            lumen_path = run_path;
+        if(args.has('lumen')) {
+            lumen_path = args.get('lumen').value;
+            if(lumen_path == '') {
+                Run._trace('error : -lumen requires a path, `-lumen /path/to/lumen/root`');
+                return;
+            }
+        } else {
+                //if an explicit lumen path was not set we ask haxelib for the path
+            lumen_path = PathHelper.getHaxelib( lumen_lib );
+            if(lumen_path == '') {
+                Run._trace('error : lumen path cannot be found from haxelib and no path was given. Use `haxelib [install|dev|git] lumen`, or pass the path with -lumen');
+                throw "config error";
+            }
         }
 
-        lumen_path = haxe.io.Path.addTrailingSlash(lumen_path);
+            //make sure it has a trailing slash
+        lumen_path = haxe.io.Path.addTrailingSlash(lumen_path);        
 
         ArgParser.delimeter = '-';
         args = ArgParser.parse( sys_arg_list );
