@@ -171,7 +171,7 @@ enum InputEventType {
 } //InputEventType
 
 class SystemEvents {
-        
+
         //lumen core events
 
     public static var se_unknown                    = 0;
@@ -195,7 +195,7 @@ class SystemEvents {
 //Helpers
 
     public static function typed(type:Int) : SystemEventType {
-        
+
             if(type == se_init)                         return SystemEventType.init;
             if(type == se_ready)                        return SystemEventType.ready;
             if(type == se_update)                       return SystemEventType.update;
@@ -218,7 +218,7 @@ class SystemEvents {
 } //SystemEvents
 
 class WindowEvents {
-    
+
 //window events
 
     public static var we_unknown          = 0;

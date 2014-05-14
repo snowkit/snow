@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <project library="lumen">
-	
-	<app main="Main" path="bin" file="lumen_empty" />
-	<source path="src" />
-	
-	<meta title="lumen empty" package="com.lumenframework.samples" version="1.0.0" company="lumenframework" />
 
-		<!-- / temp / add this to use for fixed window pos, (currently main display only) parameters="{ x:100, y:100 }" -->
-	<window  width="320" height="200" orientation="landscape" fps="60" vsync="true" resizable="true" />
-	<window fullscreen="true" borderless="true" if="mobile"/>
+    <app main="Main" path="bin" file="lumen_empty" />
+    <source path="src" />
 
-	<assets path="assets" rename="assets" exclude="*.svg" />
-	<assets path="config.json" />
-	<!-- <icon path="Assets/lumen.svg" /> -->
+    <meta title="lumen empty" package="com.lumenframework.samples" version="1.0.0" company="lumenframework" />
 
-	<haxelib name="lumen" />
-	
+        <!-- / temp / add this to use for fixed window pos, (currently main display only) parameters="{ x:100, y:100 }" -->
+    <window  width="320" height="200" orientation="landscape" fps="60" vsync="true" resizable="true" />
+    <window fullscreen="true" borderless="true" if="mobile"/>
+
+    <assets path="assets" rename="assets" exclude="*.svg" />
+    <assets path="config.json" />
+    <!-- <icon path="Assets/lumen.svg" /> -->
+
+    <haxelib name="lumen" />
+
 </project>

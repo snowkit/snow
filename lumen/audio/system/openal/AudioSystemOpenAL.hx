@@ -17,7 +17,7 @@ import lumen.audio.al.AL.Device;
         var device : Device;
         var context : Context;
 
-        override public function init() {
+        override function init() {
 
                 trace('/ lumen / audio / init ');
 
@@ -35,12 +35,33 @@ import lumen.audio.al.AL.Device;
 
         } //init
 
-        override public function destroy() {
+        override function destroy() {
 
+            ALC.makeContextCurrent( null );
+            ALC.destroyContext( context );
             ALC.closeDevice( device );
 
                 trace('/ lumen / audio / destroying device / ${ AL.getErrorMeaning(AL.getError()) }');
-        }
+
+        } //destroy
+
+        override function suspend() {
+
+                trace('/ lumen / audio / suspending context ');
+
+            ALC.suspendContext( context );
+            ALC.makeContextCurrent( null );
+
+        } //suspend
+
+        override function resume() {
+
+                trace('/ lumen / audio / resuming context ');
+
+            ALC.processContext( context );
+            ALC.makeContextCurrent( context );
+
+        } //resume
 
     } //AudioSystemOpenAL
 

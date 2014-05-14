@@ -7,6 +7,8 @@
 
 namespace lumen {
 
+    struct SystemEvent;
+
 //core init systems
 
     void init_core();
@@ -25,6 +27,7 @@ namespace lumen {
     void init_core_platform();
     void shutdown_core_platform();
     void update_core_platform();
+    void on_system_event_platform( const SystemEvent &event );
 
 
     extern int id_type;
@@ -171,6 +174,9 @@ namespace lumen {
     } //dispatch_system_event_type
 
     inline void dispatch_system_event( const SystemEvent &event ) {
+
+            //tell the platform
+        on_system_event_platform(event);
 
         core_event_handler(event);
 
