@@ -105,7 +105,10 @@ class Helper {
     
     public static function git_status() {
         var _command = "git";
-        var _args = ["status"];
+        var _args = ["log", "--oneline", "-4"];
+        
+        ProcessHelper.runCommand( Run.lumen_path, _command, _args );
+         _args = ["status"];
         return ProcessHelper.runCommand( Run.lumen_path, _command, _args );
     }
 
