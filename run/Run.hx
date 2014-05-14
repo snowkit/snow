@@ -32,9 +32,10 @@ class Run {
 
             //arg list from system needs filtering
         sys_arg_list = Sys.args();
-        trace(sys_arg_list);
                 //remove wd
         run_path = sys_arg_list.pop();
+
+        Run._trace('    running from ${run_path}');
 
         ArgParser.delimeter = '-';
         args = ArgParser.parse( sys_arg_list );
@@ -78,8 +79,7 @@ class Run {
 
         var _command = ['run', 'lime-tools'].concat( sys_arg_list );
         
-        Run._trace('running tools command from ${run_path}'); 
-        Run._trace('   haxelib ${_command.join(" ")}');
+        Run._trace('running tools command haxelib ${_command.join(" ")}'); 
 
         ProcessHelper.runCommand( run_path, 'haxelib', _command );
 
