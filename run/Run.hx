@@ -38,6 +38,8 @@ class Run {
 
         if(args.has('lumen')) {
             lumen_path = args.get('lumen').value;
+            sys_arg_list.remove('-lumen');
+            sys_arg_list.remove(lumen_path);
             if(lumen_path == '') {
                 Run._trace('error : -lumen requires a path, `-lumen /path/to/lumen/root`');
                 return;
