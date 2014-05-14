@@ -11,6 +11,7 @@ class Run {
     public static var sys_arg_list : Array<String>;
 
     public static var lumen_lib : Haxelib;
+    public static var run_path : String;
     public static var lumen_path : String;
     public static var lumen_repo : String = 'https://github.com/underscorediscovery/lumen.git';
     public static var haxe_path : String;
@@ -32,7 +33,7 @@ class Run {
             //arg list from system needs filtering
         sys_arg_list = Sys.args();
                 //remove wd
-        var _cwd = sys_arg_list.pop();
+        run_path = sys_arg_list.pop();
 
         ArgParser.delimeter = '-';
         args = ArgParser.parse( sys_arg_list );
@@ -73,8 +74,16 @@ class Run {
     } //handled_internally
 
     static function pass_to_tools() : Bool {
-        ProcessHelper.runCommand('.', 'haxelib', ['run', 'lime-tools'].concat( sys_arg_list ) );
+
+        var _command = ['run', 'lime-tools'].concat( sys_arg_list );
+        
+        Run._trace('running tools command from ${run_path}'); 
+        Run._trace('   haxelib ${_command.join(" ")}');
+
+        ProcessHelper.runCommand( run_path, 'haxelib', _command );
+
         return true;
+
     } //pass_to_tools
 
     static function print_usage() {
