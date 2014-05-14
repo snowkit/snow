@@ -178,7 +178,7 @@ namespace lumen {
             #ifdef LUMEN_LIB_GLEW
                 int err = glewInit();
                 if(err != 0) {
-                    lumen::log("/ lumen / Failed to init glew?! %s\n", glewGetErrorString(err));
+                    lumen::log("/ lumen / failed to init glew?! %s\n", glewGetErrorString(err));
                     on_created();
                     return;
                 } else {
