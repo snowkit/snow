@@ -158,7 +158,7 @@ namespace lumen {
         // real_flags = SDL_GetWindowFlags( window );
 
         if( !window ) {
-            lumen::log( "/ lumen / Failed to create SDL window: %s\n", SDL_GetError());
+            lumen::log( "/ lumen / failed to create SDL window: %s\n", SDL_GetError());
             on_created();
             return;
         } //!window
