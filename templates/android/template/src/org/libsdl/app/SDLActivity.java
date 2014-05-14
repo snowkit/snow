@@ -78,7 +78,7 @@ public class SDLActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         Log.v("SDL", "onCreate():" + mSingleton);
         super.onCreate(savedInstanceState);
-        
+
         SDLActivity.initialize();
         // So we can call stuff from static callbacks
         mSingleton = this;
@@ -94,11 +94,13 @@ public class SDLActivity extends Activity {
                 ::end::
             ::end::
 
+            setVolumeControlStream(AudioManager.STREAM_MUSIC);
+
         //:lumen:end
 
         // Set up the surface
         mSurface = new SDLSurface(getApplication());
-        
+
         if(Build.VERSION.SDK_INT >= 12) {
             mJoystickHandler = new SDLJoystickHandler_API12();
         }

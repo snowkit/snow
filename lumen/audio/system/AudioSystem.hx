@@ -43,5 +43,11 @@ class AudioSystem {
     public function toggle() {
     } //toggle
 
+    public function suspend() {
+    } //suspend
+
+    public function resume() {
+    } //resume
+
 
 } //AudioSystem

@@ -3,8 +3,6 @@
 
 #include <jni.h>
 #include <android/log.h>
-#include <android/asset_manager.h>
-#include <android/asset_manager_jni.h>
 
 #include <map>
 #include <string>
@@ -20,10 +18,14 @@
 
 static JavaVM* java_vm;
 
-#ifdef LUMEN_LIB_OPENAL
-    void alcandroid_OnLoad( JavaVM *vm );
-    void alcandroid_OnUnload( JavaVM *vm );
-#endif //LUMEN_LIB_OPENAL
+#ifdef LUMEN_USE_OPENAL
+    extern "C" {
+        void alcandroid_OnLoad( JavaVM *vm );
+        void alcandroid_OnUnload( JavaVM *vm );
+        void alcandroid_Resume();
+        void alcandroid_Suspend();
+    }
+#endif //LUMEN_USE_OPENAL
 
   //This is called after SDL gets inited and passes
 #ifdef LUMEN_USE_SDL
@@ -39,9 +41,6 @@ namespace lumen {
 
     std::map<std::string, jclass> jClassCache;
 
-    AAssetManager* androidAssetManager = 0;
-    jclass androidAssetManagerRef = 0;
-
     void init_core_platform() {
 
         lumen::log("/ lumen / android core platform init");
@@ -50,7 +49,7 @@ namespace lumen {
         JNIEnv *env = GetEnv();
         env->GetJavaVM( &java_vm );
 
-        #ifdef LUMEN_LIB_OPENAL
+        #ifdef LUMEN_USE_OPENAL
             alcandroid_OnLoad( java_vm );
         #endif
 
@@ -58,8 +57,8 @@ namespace lumen {
 
     void shutdown_core_platform() {
 
-        #ifdef LUMEN_LIB_OPENAL
-            alcandroid_OnLoad( java_vm );
+        #ifdef LUMEN_USE_OPENAL
+            alcandroid_OnUnload( java_vm );
         #endif
 
     } //shutdown_core_platform
@@ -68,78 +67,26 @@ namespace lumen {
 
     } //update_core_platform
 
-    AAsset *AndroidGetAsset(const char *inResource) {
+    void on_system_event_platform( const SystemEvent &event ) {
 
-        if (!androidAssetManager) {
+        switch( event.type ) {
 
-            JNIEnv *env = GetEnv();
-
-            jclass cls = FindClass("org/libsdl/app/SDLActivity");
-
-            jmethodID mid = env->GetStaticMethodID(cls, "getAssetManager", "()Landroid/content/res/AssetManager;");
-
-            if (mid == 0) {
-                return 0;
+            case se_app_didenterbackground: {
+                alcandroid_Suspend();
+                break;
             }
 
-            jobject assetManager = (jobject)env->CallStaticObjectMethod(cls, mid);
-
-            if (assetManager==0) {
-                LOG("Could not find assetManager for asset %s", inResource);
-                return 0;
+            case se_app_didenterforeground: {
+                alcandroid_Resume();
+                break;
             }
 
-            androidAssetManager = AAssetManager_fromJava(env, assetManager);
-            if (androidAssetManager==0) {
-                LOG("Could not create assetManager for asset %s", inResource);
-                return 0;
+            default :{
+                return;
             }
-
-            androidAssetManagerRef = (jclass)env->NewGlobalRef(assetManager);
-            env->DeleteLocalRef(assetManager);
         }
 
-        return AAssetManager_open(androidAssetManager, inResource, AASSET_MODE_UNKNOWN);
-
-    } //AndroidGetAsset
-
-    ByteArray AndroidGetAssetBytes(const char *inResource) {
-
-       AAsset *asset = AndroidGetAsset(inResource);
-
-        if (asset) {
-
-            long size = AAsset_getLength(asset);
-            ByteArray result(size);
-            AAsset_read(asset, result.Bytes(), size);
-            AAsset_close(asset);
-
-            return result;
-        }
-
-        return 0;
-    }
-
-    AndroidFileInfo AndroidGetAssetFD(const char *inResource) {
-
-        AndroidFileInfo info;
-        info.fd = 0;
-        info.offset = 0;
-        info.length = 0;
-
-        AAsset *asset = AndroidGetAsset(inResource);
-
-        if( asset ) {
-            info.fd = AAsset_openFileDescriptor(asset, &info.offset, &info.length);
-            if (info.fd <= 0) {
-                LOG("Bad asset : %s", inResource);
-            }
-            AAsset_close(asset);
-        } //if(asset)
-
-       return info;
-    }
-
+    } //on_system_event
 
     JNIEnv *GetEnv() {
 

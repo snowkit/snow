@@ -1,7 +1,11 @@
-#ifdef ANDROID
+#ifdef __ANDROID__
 #include <jni.h>
 #include "alMain.h"
 #include "apportable_openal_funcs.h"
+#include <android/log.h>
+
+#define LOG_TAG "OpenAL_SLES"
+#define LOGV(...) __android_log_print(ANDROID_LOG_ERROR, LOG_TAG, __VA_ARGS__)
 
 static JavaVM *javaVM = NULL;
 JavaVM *alcGetJavaVM(void) {
@@ -12,12 +16,12 @@ JavaVM *alcGetJavaVM(void) {
 	//but when embedding it that will be an error
 #ifdef LUMEN_LIB_OPENAL_ANDROID_SHARED
 
-	jint JNI_OnLoad(JavaVM *vm, void *reserved) {
+	JNIEXPORT jint JNICALL JNI_OnLoad(JavaVM *vm, void *reserved) {
 		alcandroid_OnLoad(vm);
 		return JNI_VERSION_1_4;
 	}
 
-	void JNICALL JNI_OnUnload (JavaVM *vm, void *reserved) {
+	JNIEXPORT void JNICALL JNI_OnUnload (JavaVM *vm, void *reserved) {
 		alcandroid_OnUnload(vm);
 	}
 
@@ -38,13 +42,15 @@ void alcandroid_OnUnload( JavaVM *vm ) {
 	}
 }
 
-ALC_API void ALC_APIENTRY alcSuspend(void) {
+void alcandroid_Suspend() {
+	LOGV("openal suspend");
 	if (apportableOpenALFuncs.alc_android_suspend) {
 		apportableOpenALFuncs.alc_android_suspend();
 	}
 }
 
-ALC_API void ALC_APIENTRY alcResume(void) {
+void alcandroid_Resume() {
+	LOGV("openal resume");
 	if (apportableOpenALFuncs.alc_android_resume) {
 		apportableOpenALFuncs.alc_android_resume();
 	}
