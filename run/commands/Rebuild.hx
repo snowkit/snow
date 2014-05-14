@@ -107,6 +107,10 @@ class Rebuild {
                     if(_target == "mac") {
                         do_32bit = false;
                     }
+                    
+                    if(_target == "windows") {
+                        do_64bit = false;
+                    }
 
                         //32 bit asked, but not 64?
                     if(arch('32bit') && !arch('64bit')) {
