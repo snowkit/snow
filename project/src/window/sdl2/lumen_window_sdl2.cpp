@@ -172,7 +172,7 @@ namespace lumen {
             //now try creating the GL context
         if(!lumen_gl_context) {
 
-            lumen::log("/ lumen / Creating a GL context");
+            lumen::log("/ lumen / creating a GL context");
             lumen_gl_context = SDL_GL_CreateContext(window);
 
             #ifdef LUMEN_LIB_GLEW
