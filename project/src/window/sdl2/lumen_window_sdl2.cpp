@@ -108,7 +108,7 @@ namespace lumen {
 
         int err = init_window_sdl();
         if (err == -1) {
-            lumen::log("/ lumen / Could not initialize Video for SDL : %s\n", SDL_GetError());
+            lumen::log("/ lumen / could not initialize Video for SDL : %s\n", SDL_GetError());
             on_created();
             return;
         }
