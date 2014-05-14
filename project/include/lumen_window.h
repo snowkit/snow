@@ -41,7 +41,7 @@ namespace lumen {
         int height;
     };
 
-        //window configuration 
+        //window configuration
     struct window_config {
 
         std::string title;

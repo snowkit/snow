@@ -19,6 +19,7 @@ namespace lumen {
     static bool window_sdl_inited = false;
 
     static SDL_GLContext lumen_gl_context;
+    static LumenWindowSDL2* current_gl_window;
 
 //LumenWindow
 //LumenWindowSDL2 declaration
@@ -218,7 +219,10 @@ namespace lumen {
 
         if(closed) return;
 
-        SDL_GL_MakeCurrent(window, lumen_gl_context);
+        if(this != current_gl_window) {
+            current_gl_window = this;
+            SDL_GL_MakeCurrent(window, lumen_gl_context);
+        }
 
     }
 

@@ -948,11 +948,19 @@ namespace lumen {
 
         ALHX_ALContext* context;
 
-        if( Object_from_hx(_context, context) ) {
+        if(val_is_null(_context)) {
 
-            alcMakeContextCurrent( context->al_context );
+            alcMakeContextCurrent( NULL );
 
-        } //fetch context
+        } else {
+
+            if( Object_from_hx(_context, context) ) {
+
+                alcMakeContextCurrent( context->al_context );
+
+            } 
+
+        } //null passed in
 
         return alloc_null();
 

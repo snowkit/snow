@@ -1,5 +1,7 @@
 #ifdef HX_LINUX
 
+#include "lumen_core.h"
+
 namespace lumen {
 
     void init_core_platform() {
@@ -14,6 +16,9 @@ namespace lumen {
 
     } //update_core_platform
 
+    void on_system_event_platform( const SystemEvent &event ) {
+
+    } //on_system_event_platform
 
 } //namespace lumen
 

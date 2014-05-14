@@ -168,18 +168,26 @@ class Audio {
         if(_event.type == SystemEventType.app_willenterbackground) {
 
             active = false;
+
             for(sound in stream_list) {
                 sound.internal_pause();
             }
 
+            system.suspend();
+
         } else if(_event.type == SystemEventType.app_willenterforeground) {
+
             active = true;
+
+            system.resume();
+
             for(sound in stream_list) {
                 sound.internal_play();
             }
-        }
 
-    }
+        } //willenterforeground
+
+    } //on_event
 
     public function destroy() {
         active = false;

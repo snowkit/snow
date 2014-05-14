@@ -218,7 +218,7 @@ class Lumen {
                 on_lumen_update();
             } //update
 
-            case SystemEventType.quit: {
+            case SystemEventType.quit, SystemEventType.app_terminating: {
                 shutdown();
             } //quit
 
