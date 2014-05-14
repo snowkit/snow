@@ -95,28 +95,31 @@ class Helper {
         var _command = "git";
         var _args = ["push"];
         return ProcessHelper.runCommand( Run.lumen_path, _command, _args, false );
-    }
+    } //git_push
 
     public static function git_pull() {
         var _command = "git";
         var _args = ["pull"];
         return ProcessHelper.runCommand( Run.lumen_path, _command, _args, false );
-    }
+    } //git_pull
     
+    public static function git_log( ?_lines:Int=4 ) : String {
+        var _command = "git";
+        var _args = ["log", "--oneline", '${_lines}'];
+        return ProcessHelper.runProcess( Run.lumen_path, _command, _args );
+    } //git_log
+
     public static function git_status() {
         var _command = "git";
-        var _args = ["log", "--oneline", "-4"];
-        
-        ProcessHelper.runCommand( Run.lumen_path, _command, _args );
-         _args = ["status"];
+        var _args = ["status"];
         return ProcessHelper.runCommand( Run.lumen_path, _command, _args );
-    }
+    } //git_status
 
     public static function git_commit( _message:String, _path:String ) {
         var _command = "git";
         var _args = ["commit", "-m"].concat(['"${_message}"', _path]);
         return ProcessHelper.runCommand( Run.lumen_path, _command, _args, false );
-    }
+    } //git_commit
 
     public static function download_file( remotePath:String, localPath:String = "", followingLocation:Bool = false) : String {
         
