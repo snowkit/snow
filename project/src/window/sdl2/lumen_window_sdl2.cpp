@@ -26,7 +26,7 @@ namespace lumen {
 
     class LumenWindowSDL2 : public LumenWindow {
 
-        public:
+        public: 
 
             SDL_Window* window;
             SDL_Event window_event;
