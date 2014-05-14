@@ -204,7 +204,7 @@ namespace lumen {
 
 
         if( !lumen_gl_context ) {
-            lumen::log("/ lumen / Failed to create GL context for window %d : %s\n", id, SDL_GetError() );
+            lumen::log("/ lumen / failed to create GL context for window %d : %s\n", id, SDL_GetError() );
             on_created();
             return;
         } else { //!window
