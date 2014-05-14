@@ -11,7 +11,11 @@ options :
       displays the version number plainly for tools
 
   -usage / -help
-      displays the usage information
+      displays the lumen tool usage information
+
+  help
+      displays the lime-tools backend usage information, for commands that this tool
+      forwards to the build tools for you when calling with any of the commands not listed
 
   -install / -update [dev|edge] [-force]
       To setup lumen for first use, run this again with -install
