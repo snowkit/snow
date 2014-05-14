@@ -102,6 +102,12 @@ class Helper {
         var _args = ["pull"];
         return ProcessHelper.runCommand( Run.lumen_path, _command, _args, false );
     }
+    
+    public static function git_status() {
+        var _command = "git";
+        var _args = ["status"];
+        return ProcessHelper.runCommand( Run.lumen_path, _command, _args );
+    }
 
     public static function git_commit( _message:String, _path:String ) {
         var _command = "git";
