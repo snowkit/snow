@@ -31,6 +31,10 @@ class Run {
         sys_arg_list = Sys.args();
             //remove cwd
         run_path = sys_arg_list.pop();
+            //parse commands
+        ArgParser.delimeter = '-';
+        args = ArgParser.parse( sys_arg_list );
+
 
         if(args.has('lumen')) {
             lumen_path = args.get('lumen').value;
@@ -49,9 +53,6 @@ class Run {
 
             //make sure it has a trailing slash
         lumen_path = haxe.io.Path.addTrailingSlash(lumen_path);        
-
-        ArgParser.delimeter = '-';
-        args = ArgParser.parse( sys_arg_list );
 
         if(!args.any || args.has('help') || args.has('usage')) {
             print_usage();
