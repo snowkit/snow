@@ -37,6 +37,7 @@ class Run {
         if(lumen_path == '' || lumen_path == null) {
             Run._trace('WARNING : lumen haxelib path was not found, setting it to ${run_path} for you but take note.');
             Helper.haxelib_dev('lumen', run_path);
+            lumen_path = run_path;
         }
 
         lumen_path = haxe.io.Path.addTrailingSlash(lumen_path);
