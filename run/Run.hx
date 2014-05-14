@@ -32,6 +32,7 @@ class Run {
 
             //arg list from system needs filtering
         sys_arg_list = Sys.args();
+        trace(sys_arg_list);
                 //remove wd
         run_path = sys_arg_list.pop();
 
