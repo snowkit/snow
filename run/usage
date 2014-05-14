@@ -26,7 +26,7 @@ options :
       Some options might require force to protect your changes (if any).
 
   -lumen path
-      An explicit path for lumen sources (otherwise fetched from haxelib). 
+      An explicit path for lumen sources (otherwise fetched from haxelib path). 
       Used mainly for server automated builds.
 
   -rebuild [target] [-clean] [-arch value]
