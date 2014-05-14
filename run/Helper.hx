@@ -86,6 +86,29 @@ class Helper {
         return null;
     } //ask
 
+    public static function git_push( pull_first:Bool=false ) {
+
+        if(pull_first) {
+            git_pull();
+        }
+
+        var _command = "git";
+        var _args = ["push"];
+        return ProcessHelper.runCommand( Run.lumen_path, _command, _args, false );
+    }
+
+    public static function git_pull() {
+        var _command = "git";
+        var _args = ["pull"];
+        return ProcessHelper.runCommand( Run.lumen_path, _command, _args, false );
+    }
+
+    public static function git_commit( _message:String, _path:String ) {
+        var _command = "git";
+        var _args = ["commit", "-m"].concat(['"${_message}"', _path]);
+        return ProcessHelper.runCommand( Run.lumen_path, _command, _args, false );
+    }
+
     public static function download_file( remotePath:String, localPath:String = "", followingLocation:Bool = false) : String {
         
         if (localPath == "") {
