@@ -22,8 +22,6 @@ class Run {
         lumen_path = PathHelper.getHaxelib( lumen_lib );
         haxe_path = Sys.getEnv("HAXEPATH");
 
-        lumen_path = haxe.io.Path.addTrailingSlash(lumen_path);
-
         if(haxe_path != null) {
             haxe_path = haxe.io.Path.addTrailingSlash(haxe_path);
         } else { 
@@ -32,10 +30,16 @@ class Run {
 
             //arg list from system needs filtering
         sys_arg_list = Sys.args();
-                //remove wd
+            //remove cwd
         run_path = sys_arg_list.pop();
 
-        Run._trace('    running from ${run_path}');
+            //now we have to be wary because haxelib lumen might not be set
+        if(lumen_path == '' || lumen_path == null) {
+            Run._trace('WARNING : lumen haxelib path was not found, setting it to ${run_path} for you but take note.');
+            Helper.haxelib_dev('lumen', run_path);
+        }
+
+        lumen_path = haxe.io.Path.addTrailingSlash(lumen_path);
 
         ArgParser.delimeter = '-';
         args = ArgParser.parse( sys_arg_list );
@@ -49,6 +53,9 @@ class Run {
             print_version(false);
             return;
         }
+
+        Run._trace('using lumen from ${lumen_path}');
+        Run._trace('    running from ${run_path}');
 
             //now handle internal commands
         if(handled_internally()) {
