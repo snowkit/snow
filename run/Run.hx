@@ -85,6 +85,11 @@ class Run {
             return true;
         }
 
+        if(args.has('push')) {
+            commands.PushBinaries.run();
+            return true;
+        }
+
         if(args.has('install') || args.has('update')) {
             commands.Install.run();
             return true;
