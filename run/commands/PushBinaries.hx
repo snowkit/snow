@@ -21,6 +21,7 @@ class PushBinaries {
     	}
 
     	Run._trace('attemping to push updated binaries to git repo...');
+    	Helper.git_status();
     	Run._trace(' running git commit -m "${_message_value}" ${_path} && git push' );
 
     	var commit_worked = true;
