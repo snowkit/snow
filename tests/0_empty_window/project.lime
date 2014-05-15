@@ -14,7 +14,6 @@
     <assets path="assets" rename="assets" exclude="*.svg" />
     <assets path="config.json" />
 
-        <!-- ::temp:: -->
         <!-- This is ONLY required for the tests to build on the automated server -->
         <!-- usually, you just <haxelib name="lumen" /> and that's it -->
     <include name="../../"/>

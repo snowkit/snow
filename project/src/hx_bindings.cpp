@@ -495,7 +495,7 @@ extern void window_show_cursor(bool enable);
 
     } DEFINE_PRIM(lumen_assets_load_audioinfo_ogg, 2);
 
-    value lumen_assets_audio_ogg_read_bytes( value _info, value _start, value _len ) {
+    value lumen_assets_audio_ogg_read_bytes( value _info, value _start, value _len, value _loop ) {
 
         QuickVec<unsigned char> buffer;
 
@@ -505,7 +505,7 @@ extern void window_show_cursor(bool enable);
 
         if( !val_is_null(_handle) && Object_from_hx(_handle, ogg_source) ) {
 
-            audio_read_ogg_data( ogg_source, buffer, val_int(_start), val_int(_len) );
+            audio_read_ogg_data( ogg_source, buffer, val_int(_start), val_int(_len), val_bool(_loop) );
 
             return ByteArray(buffer).mValue;
 
@@ -515,7 +515,7 @@ extern void window_show_cursor(bool enable);
 
         }
 
-    } DEFINE_PRIM(lumen_assets_audio_ogg_read_bytes, 3);
+    } DEFINE_PRIM(lumen_assets_audio_ogg_read_bytes, 4);
 
 
     value lumen_assets_load_audioinfo_wav( value _id ) {
