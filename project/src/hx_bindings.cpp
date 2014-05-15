@@ -532,6 +532,8 @@ extern void window_show_cursor(bool enable);
             return alloc_null();
         } //!success
 
+        ByteArray data(buffer);
+
         value _object = alloc_empty_object();
 
             alloc_field( _object, id_id, _id );
@@ -540,9 +542,9 @@ extern void window_show_cursor(bool enable);
             alloc_field( _object, id_format, alloc_int(2) ); //2 here is wav
             alloc_field( _object, id_bitrate, alloc_int(bitrate) );
             alloc_field( _object, id_bits_per_sample, alloc_int(bits_per_sample) );
-            alloc_field( _object, id_data, ByteArray(buffer).mValue );
-            alloc_field( _object, id_length, alloc_int(0) );
-            alloc_field( _object, id_length_pcm, alloc_int(0) );
+            alloc_field( _object, id_data, data.mValue );
+            alloc_field( _object, id_length, alloc_int(data.Size()) );
+            alloc_field( _object, id_length_pcm, alloc_int(data.Size()) );
             alloc_field( _object, id_handle, alloc_null() );
 
         return _object;
