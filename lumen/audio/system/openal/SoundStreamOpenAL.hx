@@ -23,9 +23,6 @@ class SoundStreamOpenAL extends SoundStream {
     public var buffers : Array<Int>;
         //mono8? stereo16?
     public var format : Int;
-        //the length of bytes for a single buffer
-        //:todo: making it a bit bigger to slow down debug printing
-    public static var buffer_length : Int = 48000*2; //:todo: optionize.
         //buffer count
     public var buffer_count : Int = 4; //:todo: optionize.
 
@@ -89,7 +86,7 @@ class SoundStreamOpenAL extends SoundStream {
     function fill_buffer(_buffer:Int) : Bool {
 
             //try to read the data into the buffer, the -1 means "from current"
-        var _data : ByteArray = manager.lib.assets.load_audio_portion( info, -1, buffer_length, looping );
+        var _data : ByteArray = data_get( -1, buffer_length );
 
             //checks
         if(_data != null) {
@@ -124,7 +121,7 @@ class SoundStreamOpenAL extends SoundStream {
     function start_queue( ?_buffer_start:Int=0 ) {
 
             //when setting up a stream we buffer the first bit ahead
-        var _first_buffer : ByteArray = manager.lib.assets.load_audio_portion( info, _buffer_start, buffer_length, looping );
+        var _first_buffer : ByteArray = data_get( _buffer_start, buffer_length );
 
         if(_first_buffer != null) {
 
@@ -150,6 +147,8 @@ class SoundStreamOpenAL extends SoundStream {
 
         var queued = AL.getSourcei(source, AL.BUFFERS_QUEUED);
 
+        trace('flushing queued buffers ' + queued);
+
         for(i in 0 ... queued) {
             AL.sourceUnqueueBuffer( source );
         }
@@ -164,6 +163,7 @@ class SoundStreamOpenAL extends SoundStream {
             //we disallow queuing buffers for stopped sounds
         var _al_play_state = AL.getSourcei(source, AL.SOURCE_STATE);
         if(_al_play_state != AL.PLAYING) {
+            trace("/ lumen / update stream not needed, sound is not playing");
             return false;
         }
 
@@ -296,19 +296,6 @@ class SoundStreamOpenAL extends SoundStream {
         flush_queue();
 
     } //stop
-
-    override public function toggle() {
-
-        playing = !playing;
-
-        if(playing) {
-            play();
-        } else {
-            pause();
-        }
-
-    } //toggle
-
     
     override function destroy() {
 
@@ -333,7 +320,7 @@ class SoundStreamOpenAL extends SoundStream {
         var _position : Int = Std.int(pos + offset);
         var _seconds : Float = bytes_to_seconds(_position);
 
-        trace('    > position: ${_position} / ${info.length_pcm}  |  ${_seconds}s  |  ${seconds_to_bytes(_seconds)}  |  ${Math.round((_position/info.length_pcm)*100)}%');
+        // trace('    > position: ${_position} / ${info.length_pcm}  |  ${_seconds}s  |  ${seconds_to_bytes(_seconds)}  |  ${Math.round((_position/info.length_pcm)*100)}%');
 
         return _position;
 
@@ -371,7 +358,44 @@ class SoundStreamOpenAL extends SoundStream {
 
     override function set_position( _position:Int ) : Int {
 
-        AL.sourcef(source, AL.SAMPLE_OFFSET, _position);
+            //stop source so it lets go of buffers
+        AL.sourceStop(source);
+            //clear queue
+        flush_queue();
+
+
+            //sanity checks
+        if(_position < 0) {
+            _position = 0;
+        }
+
+        if(_position > info.length_pcm) {
+            _position = info.length_pcm;
+        }
+
+        var percent = _position/info.length_pcm;
+        completed_buffers = Math.floor(buffer_length*percent);
+        
+        trace("seek to :" + _position + ' buffers :' + completed_buffers);
+
+            //seek the data itself so subsequent
+            //data buffer requests start in the place expected
+        data_seek(_position);
+
+            //we have to fill the buffers with new data,
+            //otherwise they play old data instead
+        for(i in 0...buffer_count) {
+            fill_buffer(buffers[i]);
+            AL.sourceQueueBuffer(source, buffers[i]);
+        }
+
+            //reset the buffer *queue* start position
+        AL.sourcef(source, AL.SAMPLE_OFFSET, 0);
+
+            //and, if it was playing, play it
+        if(playing) {
+            AL.sourcePlay(source);
+        }
 
         return position = Std.int(_position);
 
@@ -388,6 +412,9 @@ class SoundStreamOpenAL extends SoundStream {
         var _bytes = seconds_to_bytes(_time);
 
             position = _bytes;
+
+        trace("time: " +_time);
+        trace("bytes: " +_bytes);            
 
         return time = _time;
 

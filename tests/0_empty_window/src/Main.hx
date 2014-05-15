@@ -156,6 +156,17 @@ class Main extends lumen.AppFixedTimestep {
             sound4.toggle();
         }
 
+        if(event.keycode == Key.KEY_r) {
+            sound4.position = 0;
+            trace('music reset');
+        }
+
+        if(event.keycode == Key.KEY_t) {
+            var t = (sound4.duration/2);
+            sound4.time = t;
+            trace('set to ${sound4.duration}/2 | music middle ' + t);
+        }
+
         if(event.scancode == Scan.GRAVE) {
             app.audio.pitch('wav', 0.5);
             sound3.play();
@@ -183,6 +194,7 @@ class Main extends lumen.AppFixedTimestep {
 
     override function ontouchdown( event:TouchEvent ) {
         sound1.play();
+        sound4.position = 0;
     }
 
     override function onmousemove( event:MouseEvent ) {
