@@ -17,7 +17,8 @@ namespace lumen {
 
 		//function declarations
 	bool audio_load_ogg_info( QuickVec<unsigned char> &out_buffer, const char* _id, OGG_file_source*& ogg_source, bool read );
-	long audio_read_ogg_data( OGG_file_source* ogg_source, QuickVec<unsigned char> &out_buffer, long start, long len, bool loop );
+    long audio_read_ogg_data( OGG_file_source* ogg_source, QuickVec<unsigned char> &out_buffer, long start, long len, bool loop );
+	bool audio_seek_ogg_data( OGG_file_source* ogg_source, long to );
 	bool audio_load_wav_bytes( QuickVec<unsigned char> &out_buffer, const char *_id,  int *channels, int* rate, int *bitrate, int *bits_per_sample );
 
 	std::string ogg_error_string(int code);

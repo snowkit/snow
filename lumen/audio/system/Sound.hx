@@ -56,7 +56,23 @@ class Sound {
     public function loop() {}
     public function stop() {}
     public function pause() {}
-    public function toggle() {}
+
+    public function toggle() {
+        
+        playing = !playing;
+
+        if(playing) {
+            if(looping) {
+                loop();
+            } else {
+                play();
+            }
+        } else {
+            pause();
+        }
+
+    } //toggle
+
     public function destroy() {}
 
         //used for system events, hidden from user

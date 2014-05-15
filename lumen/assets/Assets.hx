@@ -258,15 +258,15 @@ class Assets {
             switch(options.type) {
 
                 case 'wav' : {
-                    _audio_info = load_audio_wav( asset, options.load );
+                    _audio_info = audio_load_wav( asset, options.load );
                 }
 
                 case 'ogg' : {
-                    _audio_info = load_audio_ogg( asset, options.load );
+                    _audio_info = audio_load_ogg( asset, options.load );
                 }
 
                 case 'pcm' : {
-                    _audio_info = load_audio_pcm( asset, options.load );
+                    _audio_info = audio_load_pcm( asset, options.load );
                 }
 
                 default : {
@@ -302,23 +302,44 @@ class Assets {
 
         //:todo: these are abstracted to allow for html5 building
         //since these are currently talking to native only
-    @:noCompletion public function load_audio_ogg( asset:AssetInfo, ?load:Bool=true ) : AudioInfo {
+    @:noCompletion public function audio_load_ogg( asset:AssetInfo, ?load:Bool=true ) : AudioInfo {
         return lumen_assets_load_audioinfo_ogg( _path(asset), load );
-    } //load_audio_ogg
+    } //audio_load_ogg
 
-    @:noCompletion public function load_audio_wav( asset:AssetInfo, ?load:Bool=true ) : AudioInfo {
+    @:noCompletion public function audio_load_wav( asset:AssetInfo, ?load:Bool=true ) : AudioInfo {
         return lumen_assets_load_audioinfo_wav( _path(asset) );
-    } //load_audio_wav
+    } //audio_load_wav
 
-    @:noCompletion public function load_audio_portion_ogg( _info:AudioInfo, _start:Int, _len:Int, ?_looping:Bool=false ) : ByteArray {
+    @:noCompletion public function audio_load_portion_ogg( _info:AudioInfo, _start:Int, _len:Int, ?_looping:Bool=false ) : ByteArray {
         return lumen_assets_audio_ogg_read_bytes( _info, _start, _len, _looping );
     } //load_audio_portion_ogg
 
-    @:noCompletion public function load_audio_portion( _info:AudioInfo, _start:Int, _len:Int, ?_looping:Bool=false ) : ByteArray {
+    @:noCompletion public function audio_seek_source_ogg( _info:AudioInfo, _to:Int ) : Bool {
+        return lumen_assets_audio_ogg_seek_bytes( _info, _to );
+    } //audio_seek_source_ogg
+
+    @:noCompletion public function audio_seek_source( _info:AudioInfo, _to:Int ) : Bool {
+        
+        switch(_info.format) {
+            case AudioFormatType.ogg:
+                return audio_seek_source_ogg(_info, _to);
+            case AudioFormatType.wav:
+                return false; //:todo:
+            case AudioFormatType.pcm:
+                return false; //:todo:
+            default:
+                return false;
+        }
+
+        return false;
+
+    } //audio_seek_portion
+
+    @:noCompletion public function audio_load_portion( _info:AudioInfo, _start:Int, _len:Int, ?_looping:Bool=false ) : ByteArray {
 
         switch(_info.format) {
             case AudioFormatType.ogg:
-                return load_audio_portion_ogg(_info, _start, _len, _looping);
+                return audio_load_portion_ogg(_info, _start, _len, _looping);
             case AudioFormatType.wav:
                 return null; //:todo:
             case AudioFormatType.pcm:
@@ -331,7 +352,7 @@ class Assets {
 
     } //load_audio_portion_ogg
 
-    @:noCompletion public function load_audio_pcm( asset:AssetInfo, ?load:Bool=true ) : AudioInfo {
+    @:noCompletion public function audio_load_pcm( asset:AssetInfo, ?load:Bool=true ) : AudioInfo {
 
         var data = ByteArray.readFile( _path(asset) );
 
@@ -357,13 +378,14 @@ class Assets {
 
         } //new AudioInfo
 
-    } //load_audio_pcm
+    } //audio_load_pcm
 
 #if lumen_native
 
     static var lumen_assets_load_imageinfo       = Libs.load( "lumen", "lumen_assets_load_imageinfo", 2 );
     static var lumen_assets_load_audioinfo_ogg   = Libs.load( "lumen", "lumen_assets_load_audioinfo_ogg", 2 );
     static var lumen_assets_audio_ogg_read_bytes = Libs.load( "lumen", "lumen_assets_audio_ogg_read_bytes", 4 );
+    static var lumen_assets_audio_ogg_seek_bytes = Libs.load( "lumen", "lumen_assets_audio_ogg_seek_bytes", 2 );
     static var lumen_assets_load_audioinfo_wav   = Libs.load( "lumen", "lumen_assets_load_audioinfo_wav", 1 );
 
 #end //lumen_native

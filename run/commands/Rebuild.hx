@@ -50,11 +50,18 @@ class Rebuild {
             //for now we only rebuild lumen target,
             //but this will be configured for stuff later
         var _path = Run.lumen_path + 'project/';
+        var _debug = false;
 
             //run a clean up if requested
         if(Run.args.has('clean')) {
             _args.remove('-clean');
             clean_hxcpp_build(_path);
+        }
+
+        if(Run.args.has('debug')) {
+            _args.remove('-debug');
+            _args.push('-Ddebug');
+            _debug = true;
         }
 
         if(Run.args.has('arch')) {

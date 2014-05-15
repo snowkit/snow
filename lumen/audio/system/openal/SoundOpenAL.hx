@@ -120,18 +120,6 @@ class SoundOpenAL extends Sound {
 
     } //stop
 
-    override public function toggle() {
-
-        playing = !playing;
-
-        if(playing) {
-            play();
-        } else {
-            pause();
-        }
-
-    } //toggle
-    
     override function destroy() {
 
         stop();
