@@ -90,7 +90,6 @@ class Helper {
 
         if(pull_first) {
             git_pull();
-            git_rebase();
         }
 
         var _command = "git";
