@@ -144,6 +144,18 @@ class SoundOpenAL extends Sound {
 
     static var half_pi : Float = 1.5707;
 
+    override function get_position() : Int {
+
+        return Std.int(AL.getSourcef(source, AL.SAMPLE_OFFSET));
+
+    } //get_position
+
+    override function get_time() : Float {
+        
+        return AL.getSourcef(source, AL.SEC_OFFSET);
+
+    } //get_position
+
     override function set_pan( _pan:Float ) : Float {
 
         AL.source3f(source, AL.POSITION, Math.cos((_pan - 1) * (half_pi)), 0, Math.sin((_pan + 1) * (half_pi)));
@@ -175,6 +187,22 @@ class SoundOpenAL extends Sound {
         return looping = _looping;
 
     } //set_looping
+
+    override function set_position( _position:Int ) : Int {
+        
+        AL.sourcef(source, AL.SAMPLE_OFFSET, _position);
+
+        return position = _position;
+
+    } //set_position
+
+    override function set_time( _time:Float ) : Float {
+        
+        AL.sourcef(source, AL.SEC_OFFSET, _time);
+
+        return time = _time;
+
+    } //set_time
 
 } //SoundOpenAL
 

@@ -25,7 +25,7 @@ class SoundStreamOpenAL extends SoundStream {
     public var format : Int;
         //the length of bytes for a single buffer
         //:todo: making it a bit bigger to slow down debug printing
-    public static var buffer_length : Int = 48000*4; //:todo: optionize.
+    public static var buffer_length : Int = 48000*2; //:todo: optionize.
         //buffer count
     public var buffer_count : Int = 4; //:todo: optionize.
 
@@ -88,12 +88,12 @@ class SoundStreamOpenAL extends SoundStream {
     function fill_buffer(_buffer:Int) : Bool {
 
             //try to read the data into the buffer, the -1 means "from current"
-        var _data : ByteArray = manager.lib.assets.load_audio_portion( info, -1, buffer_length );
+        var _data : ByteArray = manager.lib.assets.load_audio_portion( info, -1, buffer_length, looping );
 
             //checks
         if(_data != null) {
 
-            trace('    > data for buffer:${_buffer} / length was ${_data.byteLength}');
+            trace('    > data for buffer:${_buffer} / length was ${_data.byteLength}/${info.length_pcm}');
 
             if(_data.byteLength != 0) {
 
@@ -115,7 +115,7 @@ class SoundStreamOpenAL extends SoundStream {
             //default to "done playing"
         return false;
 
-    }
+    } //fill_buffer
 
         //this function takes the start of a buffer to allow streaming a section of a buffer
         //but it has to submit the first buffer separately, which handles the seeking to the first slot
@@ -123,7 +123,7 @@ class SoundStreamOpenAL extends SoundStream {
     function start_queue( ?_buffer_start:Int=0 ) {
 
             //when setting up a stream we buffer the first bit ahead
-        var _first_buffer : ByteArray = manager.lib.assets.load_audio_portion( info, _buffer_start, buffer_length );
+        var _first_buffer : ByteArray = manager.lib.assets.load_audio_portion( info, _buffer_start, buffer_length, looping );
 
         if(_first_buffer != null) {
 
@@ -179,6 +179,12 @@ class SoundStreamOpenAL extends SoundStream {
 
             var _buffer:Int = AL.sourceUnqueueBuffer( source );
 
+                completed_buffers++;
+
+            if(position >= info.length_pcm && looping) {
+                completed_buffers = 0;
+            }
+
             trace("    > processed_buffers : " + processed_buffers + " buffer was " + _buffer);
 
                 //repopulate this empty buffer,
@@ -210,6 +216,8 @@ class SoundStreamOpenAL extends SoundStream {
 
         //check if we are still playing by asking openal
         var _still_busy = update_stream();
+
+        var f = position;
 
         if(!_still_busy) {
             trace("streaming sound complete / " + _still_busy);
@@ -258,7 +266,7 @@ class SoundStreamOpenAL extends SoundStream {
         paused = false;
 
         if(!looping) {
-            // looping = true;
+            looping = true;
         }
 
         AL.sourcePlay(source);
@@ -315,6 +323,27 @@ class SoundStreamOpenAL extends SoundStream {
 
     static var half_pi : Float = 1.5707;
 
+    var completed_buffers : Int = 0;
+
+    override function get_position() : Int {
+
+        var pos : Float = AL.getSourcef(source, AL.SAMPLE_OFFSET);
+        var offset : Int = Std.int(completed_buffers * buffer_length);
+        var _position : Int = Std.int(pos + offset);
+        var _seconds : Float = bytes_to_seconds(_position);
+
+        trace('    > position: ${_position} / ${info.length_pcm}  |  ${_seconds}s  |  ${seconds_to_bytes(_seconds)}  |  ${Math.round((_position/info.length_pcm)*100)}%');
+
+        return _position;
+
+    } //get_position
+
+    override function get_time() : Float {
+
+        return bytes_to_seconds(position);
+
+    } //get_time
+
     override function set_pan( _pan:Float ) : Float {
 
         AL.source3f(source, AL.POSITION, Math.cos((_pan - 1) * (half_pi)), 0, Math.sin((_pan + 1) * (half_pi)));
@@ -339,15 +368,29 @@ class SoundStreamOpenAL extends SoundStream {
 
     } //set_volume
 
+    override function set_position( _position:Int ) : Int {
+
+        AL.sourcef(source, AL.SAMPLE_OFFSET, _position);
+
+        return position = Std.int(_position);
+
+    } //set_position
+
     override function set_looping( _looping:Bool ) : Bool {
-
-        trace(name + " / set looping " + _looping);
-
-        AL.sourcei( source, AL.LOOPING, _looping ? AL.TRUE : AL.FALSE );
 
         return looping = _looping;
 
     } //set_looping
+
+    override function set_time( _time:Float ) : Float {
+
+        var _bytes = seconds_to_bytes(_time);
+
+            position = _bytes;
+
+        return time = _time;
+
+    } //set_time
 
 
 } //SoundStreamOpenAL
