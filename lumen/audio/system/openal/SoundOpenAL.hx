@@ -130,6 +130,14 @@ class SoundOpenAL extends Sound {
         }
 
     } //toggle
+    
+    override function destroy() {
+
+        stop();
+        AL.deleteBuffer(buffer);
+        AL.deleteSource(source);
+
+    } //destroy
 
 
 //getters / setters

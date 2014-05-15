@@ -190,8 +190,16 @@ class Audio {
     } //on_event
 
     public function destroy() {
+        
         active = false;
+        system.suspend();
+
+        for(sound in sound_list) {
+            sound.destroy();
+        }
+
         system.destroy();
+        
     } //destroy
 
     public function update() {
