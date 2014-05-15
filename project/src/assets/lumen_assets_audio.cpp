@@ -87,7 +87,7 @@ namespace lumen {
 
                 //use the reader to read it, if requested
             if(read) {
-                audio_read_ogg_data( ogg_source, out_buffer, 0, total_length );
+                audio_read_ogg_data( ogg_source, out_buffer, 0, total_length, false );
             }
 
                 //yay.
@@ -96,7 +96,7 @@ namespace lumen {
         } //audio_load_ogg_bytes
 
             //this reads a portion of an already opened ogg source into the buffer from start, for len
-        long audio_read_ogg_data( OGG_file_source* ogg_source, QuickVec<unsigned char> &out_buffer, long start, long len ) {
+        long audio_read_ogg_data( OGG_file_source* ogg_source, QuickVec<unsigned char> &out_buffer, long start, long len, bool loop = false ) {
 
             //it is assumed here that ogg_source is opened. Maybe we can ask the file if it is open and if not reopen it?
 
@@ -149,7 +149,12 @@ namespace lumen {
 
                     //at the end?
                 if(bytes_read == 0) {
-                    reading = false;
+                    if(loop) {
+                            //reset the stream for continued looping
+                        ov_pcm_seek( ogg_source->ogg_file, 0 );
+                    } else {
+                        reading = false;
+                    }
                 }
 
                 if(total_read >= _read_len) {

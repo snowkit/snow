@@ -20,6 +20,8 @@ class Sound {
     @:isVar public var volume   (get,set) : Float = 1.0;
     @:isVar public var pan      (get,set) : Float = 0.0;
     @:isVar public var looping  (get,set) : Bool = false;
+    @:isVar public var position (get,set) : Int = 0;
+    @:isVar public var time     (get,set) : Float = 0.0;
 
 
     public function new( _manager:Audio, _name:String, _audio_info : AudioInfo ) {
@@ -29,6 +31,24 @@ class Sound {
         info = _audio_info;
 
     } //new
+
+    public function bytes_to_seconds( _bytes:Int ) : Float {
+
+        var word = info.bits_per_sample == 16 ? 2 : 1;
+        var sample_frames = (info.rate * info.channels * word);
+
+        return _bytes / sample_frames;
+
+    } //bytes_to_seconds
+
+    public function seconds_to_bytes( _seconds:Float ) : Int {
+        
+        var word = info.bits_per_sample == 16 ? 2 : 1;
+        var sample_frames = (info.rate * info.channels * word);
+
+        return Std.int(_seconds * sample_frames);
+    
+    } //seconds_to_bytes
 
     public function play() {}
     public function loop() {}
@@ -60,6 +80,14 @@ class Sound {
         return looping;
     } //get_looping
 
+    function get_position() : Int {
+        return position;
+    } //get_position
+
+    function get_time() : Float {
+        return time;
+    } //get_time
+
 
     function set_pan( _pan:Float ) : Float {
         return pan = _pan;
@@ -72,6 +100,14 @@ class Sound {
     function set_volume( _volume:Float ) : Float {
         return volume = _volume;
     } //set_volume
+
+    function set_position( _position:Int ) : Int {
+        return position = _position;
+    } //set_position
+
+    function set_time( _time:Float ) : Float {
+        return time = _time;
+    } //set_time
 
     function set_looping( _looping:Bool ) : Bool {
         return looping = _looping;
