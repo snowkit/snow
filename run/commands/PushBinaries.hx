@@ -21,12 +21,15 @@ class PushBinaries {
     	}
 
     	Run._trace('attemping to push updated binaries to git repo...');
-    	Run._trace(' running git commit -m "${_message_value}" ${_path} && git push' );
 
-    	var commit_worked = true;
+            Run._trace(' running git pull to avoid git rebase needs' );
 
             //update in case other builds have affected the tree
         Helper.git_pull();
+
+            Run._trace(' running git commit -m "${_message_value}" ${_path} && git push' );
+
+    	var commit_worked = true;
 
     	try {
     		Helper.git_commit(_message, _path); 
@@ -44,6 +47,8 @@ class PushBinaries {
     			Run._trace('push / FAILED TO PUSH. see log for details');
     		}
     	}
+
+        Run._trace('push / done');
 
     } //run
 
