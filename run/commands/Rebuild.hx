@@ -140,6 +140,8 @@ class Rebuild {
             run_hxcpp_build( _path, _target, build );
         }
 
+        Run._trace('done');
+
     } //rebuild_target
 
 

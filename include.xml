@@ -13,6 +13,7 @@
     <haxedef name="lumen_input_sdl" if="native" />
     <haxedef name="lumen_window_sdl" if="native" />
 
+
     <section unless="display">
 
         <haxelib name="hxcpp" if="cpp" />
@@ -26,8 +27,6 @@
         <architecture name="armv7" if="android" />
 
         <dependency name="extension-api" path="dependencies/extension-api" if="android" />
-
-        <include haxelib="lime-tools" />
 
     </section>
 
