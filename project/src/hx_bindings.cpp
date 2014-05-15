@@ -518,6 +518,24 @@ extern void window_show_cursor(bool enable);
     } DEFINE_PRIM(lumen_assets_audio_ogg_read_bytes, 4);
 
 
+    value lumen_assets_audio_ogg_seek_bytes( value _info, value _to ) {
+
+        value _handle = property_value(_info, id_handle);
+        
+        OGG_file_source* ogg_source = NULL;
+
+        if( !val_is_null(_handle) && Object_from_hx(_handle, ogg_source) ) {
+
+            return alloc_bool(audio_seek_ogg_data( ogg_source, val_int(_to) )); 
+        
+        } 
+
+        return alloc_bool(false);
+
+
+    } DEFINE_PRIM(lumen_assets_audio_ogg_seek_bytes, 2);
+
+
     value lumen_assets_load_audioinfo_wav( value _id ) {
 
         QuickVec<unsigned char> buffer;

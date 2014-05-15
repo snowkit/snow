@@ -14,6 +14,8 @@ namespace lumen {
         static int      ogg_close_func(void* datasource);
         static long     ogg_tell_func(void* datasource);
 
+        bool audio_seek_ogg_data( OGG_file_source* ogg_source, long to );
+
 
             //load an ogg info object, if read is false it will not read any data from the file, just open and setup the info/comments
         bool audio_load_ogg_info( QuickVec<unsigned char> &out_buffer, const char* _id, OGG_file_source*& ogg_source, bool read = true ) {
@@ -70,6 +72,8 @@ namespace lumen {
 
             ogg_source->length_pcm = total_length;
 
+            audio_seek_ogg_data(ogg_source, 0);
+
                 // lumen::log("version         %d \n",     ogg_source->info->version);
                 // lumen::log("channels        %d \n",     ogg_source->info->channels);
                 // lumen::log("rate (hz)       %lu \n",    ogg_source->info->rate);
@@ -95,6 +99,48 @@ namespace lumen {
 
         } //audio_load_ogg_bytes
 
+        bool audio_seek_ogg_data( OGG_file_source* ogg_source, long to ) {
+
+            if(ogg_source) {
+
+                // lumen::log("seeking in %s ogg source to %d/%d (%f)", ogg_source->source_name.c_str(), to, ogg_source->length_pcm, (float)to / (float)ogg_source->length_pcm);
+
+                    //:todo: ogg is always 16?
+                long to_samples = to/16;
+
+                    //pcm seek is in samples, not bytes
+                int res = ov_pcm_seek( ogg_source->ogg_file, to_samples );
+                
+                if(res != 0) {
+
+                    if(res == OV_ENOSEEK) {
+                        lumen::log("/ lumen / audio / ogg seek error %s", "OV_ENOSEEK");
+                    }
+                    if(res == OV_EINVAL) {
+                        lumen::log("/ lumen / audio / ogg seek error %s", "OV_EINVAL");
+                    }
+                    if(res == OV_EREAD) {
+                        lumen::log("/ lumen / audio / ogg seek error %s", "OV_EREAD");
+                    }
+                    if(res == OV_EFAULT) {
+                        lumen::log("/ lumen / audio / ogg seek error %s", "OV_EFAULT");
+                    }
+                    if(res == OV_EBADLINK) {
+                        lumen::log("/ lumen / audio / ogg seek error %s", "OV_EBADLINK");
+                    }
+
+                    return false;
+                }
+
+                // lumen::log("seeking ogg_source %d res:%d", to, res);
+                // lumen::log("pos in ogg_source %d", ov_pcm_tell(ogg_source->ogg_file));
+                return true;
+            }
+
+            return false;
+
+        } //audio_seek_ogg_data
+
             //this reads a portion of an already opened ogg source into the buffer from start, for len
         long audio_read_ogg_data( OGG_file_source* ogg_source, QuickVec<unsigned char> &out_buffer, long start, long len, bool loop = false ) {
 
@@ -104,25 +150,11 @@ namespace lumen {
             int sgned = 1; //0 for unsigned, 1 is typical
             int bit_stream = 1;
 
-                //if the start position is -1, it means to use the current position
-            if(start == -1) {
-
-                start = ov_pcm_tell( ogg_source->ogg_file );
-
-            } else {
-                    //first seek to the right position
-                ov_pcm_seek( ogg_source->ogg_file, start );
-            }
-
             long _read_len = len;
 
-                //the requested size might reach past the size of the data, so we cap it
-            if((start + _read_len) > ogg_source->length_pcm) {
-                _read_len = (ogg_source->length_pcm - start);
-                    //aaand no negative reads either.
-                if(_read_len < 0) {
-                    _read_len = 0;
-                }
+            if(start != -1) {
+                // lumen::log("start was %d, skipping there first", start);
+                audio_seek_ogg_data( ogg_source, start );
             }
 
                 //resize to fit the requested length
@@ -151,7 +183,7 @@ namespace lumen {
                 if(bytes_read == 0) {
                     if(loop) {
                             //reset the stream for continued looping
-                        ov_pcm_seek( ogg_source->ogg_file, 0 );
+                        audio_seek_ogg_data( ogg_source, 0 );
                     } else {
                         reading = false;
                     }
@@ -188,31 +220,36 @@ namespace lumen {
 
             OGG_file_source *source = (OGG_file_source*)datasource;
 
-            // lumen::log("\t seek  : %s, offset:%lld whence:%d \n", source->source_name.c_str(), offset, whence);
+            int _type = whence;
 
-            long pos = 0;
+            switch (whence) {
 
-            if (whence == SEEK_SET) {
-               pos = source->offset + (unsigned int)offset;
-            } else if (whence == SEEK_CUR) {
-               pos = lumen::iotell(source->file_source) + (unsigned int)offset;
-            } else if (whence == SEEK_END) {
-               pos = source->offset + source->length;
-            }
+                case SEEK_SET: {
+                    _type = lumen_seek_set;
+                    break;
+                }
+                case SEEK_CUR: {
+                    _type = lumen_seek_cur;
+                    break;
+                }
+                case SEEK_END: {
+                    _type = lumen_seek_end;
+                    break;
+                }
 
-            if (pos > source->offset + source->length) {
-                pos = source->offset + source->length;
-            } else if(pos < 0) {
-                pos = 0;
-            }
+            } //switch(whence)
 
-            return lumen::ioseek(source->file_source, pos, lumen_seek_set);
+            // lumen::log("\t seek  : %s, offset:%lld whence:%d \n", source->source_name.c_str(), offset, _type);
+            
+            return lumen::ioseek(source->file_source, offset, _type);
 
         } //seek_func
 
         static int ogg_close_func(void* datasource) {
 
             OGG_file_source *source = (OGG_file_source*)datasource;
+
+            // lumen::log("ogg closing the file source for %s", source->source_name.c_str());
 
             return lumen::ioclose(source->file_source);
 

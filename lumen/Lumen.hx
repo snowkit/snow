@@ -236,9 +236,6 @@ class Lumen {
 
     function on_main_window_event( _event:WindowEvent ) {
 
-        if(_event.type == window_close) {
-            shutdown();
-        }
 
     } //main_window_events
 
