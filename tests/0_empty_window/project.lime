@@ -15,7 +15,7 @@
     <assets path="config.json" />
 
         <!-- This is ONLY required for the tests to build on the automated server -->
-        <!-- usually, you just <haxelib name="lumen" /> and that's it -->
+        <!-- usually, you just <haxelib name="lumen" /> and that's all -->
     <include name="../../"/>
 
 </project>
