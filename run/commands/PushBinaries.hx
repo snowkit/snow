@@ -25,7 +25,10 @@ class PushBinaries {
 
     	var commit_worked = true;
 
-    	try { 
+            //update in case other builds have affected the tree
+        Helper.git_pull();
+
+    	try {
     		Helper.git_commit(_message, _path); 
     		Run._trace('push / commit done');
     	} catch(e:Dynamic) {
@@ -35,7 +38,7 @@ class PushBinaries {
 
     	if(commit_worked) {
     		try{ 
-    			Helper.git_push(true);
+    			Helper.git_push();
     			Run._trace('push / push done');
     		} catch(e:Dynamic) {
     			Run._trace('push / FAILED TO PUSH. see log for details');
