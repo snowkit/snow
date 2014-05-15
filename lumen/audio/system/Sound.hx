@@ -35,6 +35,7 @@ class Sound {
     public function stop() {}
     public function pause() {}
     public function toggle() {}
+    public function destroy() {}
 
         //used for system events, hidden from user
     @:noCompletion public function internal_update() {}

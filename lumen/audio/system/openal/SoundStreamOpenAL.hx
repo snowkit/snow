@@ -218,6 +218,22 @@ class SoundStreamOpenAL extends SoundStream {
 
     } //internal_update
 
+    override function internal_pause() {
+
+        AL.sourcePause(source);
+
+        flush_queue();
+
+    } //internal_pause
+
+    override function internal_play() {
+
+        if(playing) {
+            AL.sourcePlay(source);
+        }
+
+    } //internal_play
+
 //API
 
     override public function play() {
@@ -262,22 +278,6 @@ class SoundStreamOpenAL extends SoundStream {
 
     } //pause
 
-    override function internal_pause() {
-
-        AL.sourcePause(source);
-
-        flush_queue();
-
-    } //internal_pause
-
-    override function internal_play() {
-
-        if(playing) {
-            AL.sourcePlay(source);
-        }
-
-    } //internal_play
-
     override public function stop() {
 
         playing = false;
@@ -300,6 +300,16 @@ class SoundStreamOpenAL extends SoundStream {
 
     } //toggle
 
+    
+    override function destroy() {
+
+            //calls flush for us
+        stop();
+
+        AL.deleteBuffers(buffers);
+        AL.deleteSource(source);
+
+    } //destroy
 
 //getters / setters
 

@@ -1000,7 +1000,9 @@ namespace lumen {
 
         if( Object_from_hx(_context, context) ) {
 
-            alcDestroyContext( context->al_context );
+            if(context && context->al_context) {
+                alcDestroyContext( context->al_context );
+            }
 
         } //fetch context
 

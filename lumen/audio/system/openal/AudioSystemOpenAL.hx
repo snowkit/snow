@@ -38,7 +38,8 @@ import lumen.audio.al.AL.Device;
         override function destroy() {
 
             ALC.makeContextCurrent( null );
-            ALC.destroyContext( context );
+                //for some reason this is crashing on mac, but the device close will kill it
+            // ALC.destroyContext( context );
             ALC.closeDevice( device );
 
                 trace('/ lumen / audio / destroying device / ${ AL.getErrorMeaning(AL.getError()) }');
