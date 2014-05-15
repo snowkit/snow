@@ -40,8 +40,9 @@ class SoundOpenAL extends Sound {
             trace("/ lumen /\t > channels : " + info.channels);
             trace("/ lumen /\t > bitrate : " + info.bitrate);
             trace("/ lumen /\t > bits_per_sample : " + info.bits_per_sample);
-            trace("/ lumen /\t > length : " + info.length);
-            trace("/ lumen /\t > length uncompressed: " + info.length_pcm);
+            trace("/ lumen /\t > file length : " + info.length);
+            trace("/ lumen /\t > byte length: " + info.length_pcm);
+            trace("/ lumen /\t > duration : " + duration);
 
         }
 

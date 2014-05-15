@@ -22,6 +22,8 @@ class Sound {
     @:isVar public var looping  (get,set) : Bool = false;
     @:isVar public var position (get,set) : Int = 0;
     @:isVar public var time     (get,set) : Float = 0.0;
+    @:isVar public var length   (get,never) : Int = 0;
+    @:isVar public var duration (get,never) : Float = 0.0;
 
 
     public function new( _manager:Audio, _name:String, _audio_info : AudioInfo ) {
@@ -64,6 +66,7 @@ class Sound {
     @:noCompletion public function internal_stop() {}
     @:noCompletion public function internal_pause() {}
 
+
     function get_pan() : Float {
         return pan;
     } //get_pan
@@ -87,6 +90,14 @@ class Sound {
     function get_time() : Float {
         return time;
     } //get_time
+
+    function get_length() : Int {
+        return info.length_pcm;
+    } //get_length
+
+    function get_duration() : Float {
+        return bytes_to_seconds(length);
+    } //get_duration
 
 
     function set_pan( _pan:Float ) : Float {
