@@ -35,7 +35,7 @@ class PushBinaries {
 
     	if(commit_worked) {
     		try{ 
-    			Helper.git_push();
+    			Helper.git_push(true);
     			Run._trace('push / push done');
     		} catch(e:Dynamic) {
     			Run._trace('push / FAILED TO PUSH. see log for details');
