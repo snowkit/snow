@@ -90,6 +90,7 @@ class Helper {
 
         if(pull_first) {
             git_pull();
+            git_rebase();
         }
 
         var _command = "git";
@@ -102,6 +103,12 @@ class Helper {
         var _args = ["pull"];
         return ProcessHelper.runCommand( Run.lumen_path, _command, _args, false );
     } //git_pull
+    
+    public static function git_rebase() {
+        var _command = "git";
+        var _args = ["rebase"];
+        return ProcessHelper.runCommand( Run.lumen_path, _command, _args, false );
+    } //git_rebase
     
     public static function git_log( ?_lines:Int=4 ) : String {
         var _command = "git";
