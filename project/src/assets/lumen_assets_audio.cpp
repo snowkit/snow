@@ -133,7 +133,7 @@ namespace lumen {
                 }
 
                 // lumen::log("seeking ogg_source %d res:%d", to, res);
-                // lumen::log("pos in ogg_source %d", ov_pcm_tell(ogg_source->ogg_file));
+                
                 return true;
             }
 
