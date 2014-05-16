@@ -452,21 +452,14 @@ extern void window_show_cursor(bool enable);
 
 
 
-// *rate               = ogg_source->info->rate;
-// *channels           = ogg_source->info->channels;
-// *bitrate            = ogg_source->info->bitrate_nominal;
-// *bits_per_sample    = 16;
 
-// *bitrate_upper      = ogg_source->info->bitrate_upper;
-// *bitrate_lower      = ogg_source->info->bitrate_lower;
-// *bitrate_window     = ogg_source->info->bitrate_window;
 
+//ogg
 
     value lumen_assets_load_audioinfo_ogg( value _id, value _do_read ) {
 
-            //whether or not we should read the whole file now
+        //whether or not we should read the whole file now
         bool do_read = val_bool(_do_read);
-
             //the destination for the read, if any
         QuickVec<unsigned char> buffer;
             //the source data ogg info
@@ -517,7 +510,6 @@ extern void window_show_cursor(bool enable);
 
     } DEFINE_PRIM(lumen_assets_audio_ogg_read_bytes, 4);
 
-
     value lumen_assets_audio_ogg_seek_bytes( value _info, value _to ) {
 
         value _handle = property_value(_info, id_handle);
@@ -532,19 +524,21 @@ extern void window_show_cursor(bool enable);
 
         return alloc_bool(false);
 
-
     } DEFINE_PRIM(lumen_assets_audio_ogg_seek_bytes, 2);
 
+//wav
 
-    value lumen_assets_load_audioinfo_wav( value _id ) {
+    value lumen_assets_load_audioinfo_wav( value _id, value _do_read ) {
 
+
+            //whether or not we should read the whole file now
+        bool do_read = val_bool(_do_read);
+            //the destination for the read, if any
         QuickVec<unsigned char> buffer;
-        int ch;
-        int rate;
-        int bitrate;
-        int bits_per_sample;
+            //the source information for the wav file
+        WAV_file_source* wav_source = NULL;
 
-        bool success = audio_load_wav_bytes( buffer, val_string(_id), &ch, &rate, &bitrate, &bits_per_sample );
+        bool success = audio_load_wav_info( buffer, val_string(_id), wav_source, do_read );
 
         if(!success) {
             return alloc_null();
@@ -555,20 +549,59 @@ extern void window_show_cursor(bool enable);
         value _object = alloc_empty_object();
 
             alloc_field( _object, id_id, _id );
-            alloc_field( _object, id_channels, alloc_int(ch) );
-            alloc_field( _object, id_rate, alloc_int(rate) );
+            alloc_field( _object, id_channels, alloc_int(wav_source->channels) );
+            alloc_field( _object, id_rate, alloc_int(wav_source->rate) );
             alloc_field( _object, id_format, alloc_int(2) ); //2 here is wav
-            alloc_field( _object, id_bitrate, alloc_int(bitrate) );
-            alloc_field( _object, id_bits_per_sample, alloc_int(bits_per_sample) );
+            alloc_field( _object, id_bitrate, alloc_int(wav_source->bitrate) );
+            alloc_field( _object, id_bits_per_sample, alloc_int(wav_source->bits_per_sample) );
             alloc_field( _object, id_data, data.mValue );
-            alloc_field( _object, id_length, alloc_int(data.Size()) );
-            alloc_field( _object, id_length_pcm, alloc_int(data.Size()) );
-            alloc_field( _object, id_handle, alloc_null() );
+            alloc_field( _object, id_length, alloc_int(wav_source->length) );
+            alloc_field( _object, id_length_pcm, alloc_int(wav_source->length_pcm) );
+            alloc_field( _object, id_handle, Object_to_hx(wav_source) );
 
         return _object;
 
-    } DEFINE_PRIM(lumen_assets_load_audioinfo_wav, 1);
+    } DEFINE_PRIM(lumen_assets_load_audioinfo_wav, 2);
 
+
+    value lumen_assets_audio_wav_read_bytes( value _info, value _start, value _len, value _loop ) {
+
+        QuickVec<unsigned char> buffer;
+
+        value _handle = property_value(_info, id_handle);
+
+        WAV_file_source* wav_source = NULL;
+
+        if( !val_is_null(_handle) && Object_from_hx(_handle, wav_source) ) {
+
+            audio_read_wav_data( wav_source, buffer, val_int(_start), val_int(_len), val_bool(_loop) );
+
+            return ByteArray(buffer).mValue;
+
+        } else {
+
+            return alloc_null();
+
+        }
+
+    } DEFINE_PRIM(lumen_assets_audio_wav_read_bytes, 4);
+
+
+    value lumen_assets_audio_wav_seek_bytes( value _info, value _to ) {
+
+        value _handle = property_value(_info, id_handle);
+        
+        WAV_file_source* wav_source = NULL;
+
+        if( !val_is_null(_handle) && Object_from_hx(_handle, wav_source) ) {
+
+            return alloc_bool(audio_seek_wav_data( wav_source, val_int(_to) )); 
+        
+        } 
+
+        return alloc_bool(false);
+
+    } DEFINE_PRIM(lumen_assets_audio_wav_seek_bytes, 2);
 
 
 

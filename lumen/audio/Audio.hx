@@ -192,7 +192,6 @@ class Audio {
     public function destroy() {
         
         active = false;
-        system.suspend();
 
         for(sound in sound_list) {
             sound.destroy();
