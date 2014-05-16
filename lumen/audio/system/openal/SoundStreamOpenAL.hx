@@ -83,35 +83,28 @@ class SoundStreamOpenAL extends SoundStream {
 
         //will try and fill the buffer, will return false if there
         //was no data to get (i.e end of file )
-    function fill_buffer(_buffer:Int) : Bool {
+    function fill_buffer(_buffer:Int) : Int {
 
             //try to read the data into the buffer, the -1 means "from current"
         var _data : ByteArray = data_get( -1, buffer_length );
 
             //checks
         if(_data != null) {
-
-            trace('    > data for buffer:${_buffer} / length was ${_data.byteLength}/${info.length_pcm}');
-
-            if(_data.byteLength != 0) {
-
-                AL.bufferData( _buffer, format, new Float32Array(_data), _data.byteLength, info.rate );
-
-                trace('    > errors? ${AL.getErrorMeaning(AL.getError())}');
-
-                return true;
-
+                trace('    > data for buffer:${_buffer} / length was ${_data.length}/${info.length_pcm}');
+            if(_data.length != 0) {
+                AL.bufferData( _buffer, format, new Float32Array(_data), _data.length, info.rate );
+                    trace('    > errors? ${AL.getErrorMeaning(AL.getError())}');
+                return _data.length;
             } else {
-
-                trace('    > data length was null');
-                return false;
+                    trace('    > data length was null');
+                return 0;
             }
         } else {
             trace('    > data was null');
         }
 
             //default to "done playing"
-        return false;
+        return 0;
 
     } //fill_buffer
 
@@ -147,7 +140,7 @@ class SoundStreamOpenAL extends SoundStream {
 
         var queued = AL.getSourcei(source, AL.BUFFERS_QUEUED);
 
-        trace('flushing queued buffers ' + queued);
+        trace('/ lumen / audio / ${name} flushing queued buffers ' + queued);
 
         for(i in 0 ... queued) {
             AL.sourceUnqueueBuffer( source );
@@ -163,7 +156,7 @@ class SoundStreamOpenAL extends SoundStream {
             //we disallow queuing buffers for stopped sounds
         var _al_play_state = AL.getSourcei(source, AL.SOURCE_STATE);
         if(_al_play_state != AL.PLAYING) {
-            trace("/ lumen / update stream not needed, sound is not playing");
+            trace("/ lumen / ${name} update stream not needed, sound is not playing");
             return false;
         }
 
@@ -180,21 +173,20 @@ class SoundStreamOpenAL extends SoundStream {
 
             var _buffer:Int = AL.sourceUnqueueBuffer( source );
 
-                completed_buffers++;
-
             if(position >= info.length_pcm && looping) {
-                completed_buffers = 0;
-            }
+                total_bytes = 0;
+            } 
 
             trace("    > processed_buffers : " + processed_buffers + " buffer was " + _buffer);
 
                 //repopulate this empty buffer,
                 //if it succeeds, then throw it back at the end of
                 //the queue list to keep playing.
-            if(fill_buffer(_buffer)) {
-                trace("    > fill is ok");
+            var fill_amount = fill_buffer(_buffer); 
+            if(fill_amount > 0) {
+                total_bytes += fill_amount;
+                trace('    > fill is ok ${fill_amount} total_bytes: ${total_bytes}');
                 AL.sourceQueueBuffer(source, _buffer);
-
             } else {
                     //the buffer said it was done,
                     //so we can mark the stream as done
@@ -221,7 +213,7 @@ class SoundStreamOpenAL extends SoundStream {
         var f = position;
 
         if(!_still_busy) {
-            trace("streaming sound complete / " + _still_busy);
+            trace("/ lumen / audio / ${name} streaming sound complete / " + _still_busy);
             stop();
         }
 
@@ -283,6 +275,8 @@ class SoundStreamOpenAL extends SoundStream {
 
         AL.sourcePause(source);
 
+        trace('/ lumen / audio / ${name} pausing sound / ${AL.getErrorMeaning(AL.getError())} ');
+
         flush_queue();
 
     } //pause
@@ -295,6 +289,8 @@ class SoundStreamOpenAL extends SoundStream {
 
         flush_queue();
 
+        trace('/ lumen / audio / ${name} stopping stream / ${AL.getErrorMeaning(AL.getError())} ');
+
     } //stop
     
     override function destroy() {
@@ -302,8 +298,14 @@ class SoundStreamOpenAL extends SoundStream {
             //calls flush for us
         stop();
 
-        AL.deleteBuffers(buffers);
         AL.deleteSource(source);
+
+        trace('/ lumen / audio / ${name} destroying stream source / ${AL.getErrorMeaning(AL.getError())} ');
+
+        AL.deleteBuffers(buffers);
+
+        trace('/ lumen / audio / ${name} destroying stream buffers / ${AL.getErrorMeaning(AL.getError())} ');
+
 
     } //destroy
 
@@ -312,15 +314,15 @@ class SoundStreamOpenAL extends SoundStream {
     static var half_pi : Float = 1.5707;
 
     var completed_buffers : Int = 0;
+    var total_bytes : Int = 0;
 
     override function get_position() : Int {
 
-        var pos : Float = AL.getSourcef(source, AL.SAMPLE_OFFSET);
-        var offset : Int = Std.int(completed_buffers * buffer_length);
-        var _position : Int = Std.int(pos + offset);
+        var _exact_pos_in_queue : Float = AL.getSourcef(source, AL.SAMPLE_OFFSET);
+        var _position : Int = total_bytes + Std.int(_exact_pos_in_queue);
         var _seconds : Float = bytes_to_seconds(_position);
 
-        // trace('    > position: ${_position} / ${info.length_pcm}  |  ${_seconds}s  |  ${seconds_to_bytes(_seconds)}  |  ${Math.round((_position/info.length_pcm)*100)}%');
+        trace('    > position: ${_position} / ${info.length_pcm}  |  ${_seconds}s  |  ${seconds_to_bytes(_seconds)}  |  ${Math.round((_position/info.length_pcm)*100)}%');
 
         return _position;
 
@@ -363,7 +365,6 @@ class SoundStreamOpenAL extends SoundStream {
             //clear queue
         flush_queue();
 
-
             //sanity checks
         if(_position < 0) {
             _position = 0;
@@ -373,10 +374,8 @@ class SoundStreamOpenAL extends SoundStream {
             _position = info.length_pcm;
         }
 
-        var percent = _position/info.length_pcm;
-        completed_buffers = Math.floor(buffer_length*percent);
-        
-        trace("seek to :" + _position + ' buffers :' + completed_buffers);
+            //update the position in bytes we are at
+        total_bytes = _position;
 
             //seek the data itself so subsequent
             //data buffer requests start in the place expected
@@ -412,9 +411,6 @@ class SoundStreamOpenAL extends SoundStream {
         var _bytes = seconds_to_bytes(_time);
 
             position = _bytes;
-
-        trace("time: " +_time);
-        trace("bytes: " +_bytes);            
 
         return time = _time;
 

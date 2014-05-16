@@ -61,6 +61,14 @@ class SoundOpenAL extends Sound {
             //ask the helper to determine the format
         format = OpenALHelper.determine_format( info );
 
+            //check that we have valid data info
+        trace(info.data);
+        trace(info.data.length);
+        if(info.data == null || info.data.length == 0) {
+            trace('/ lumen / audio / ${name} cannot create sound, empty/null data provided!');
+            return;            
+        }
+
             //give the data from the sound info to the buffer
         AL.bufferData(buffer, format, new Float32Array(info.data), info.data.length, info.rate );
 
@@ -110,6 +118,8 @@ class SoundOpenAL extends Sound {
 
         AL.sourcePause(source);
 
+        trace('/ lumen / audio / ${name} pausing sound / ${AL.getErrorMeaning(AL.getError())} ');
+
     } //pause
 
     override public function stop() {
@@ -118,13 +128,16 @@ class SoundOpenAL extends Sound {
 
         AL.sourceStop(source);
 
+        trace('/ lumen / audio / ${name} stopping sound / ${AL.getErrorMeaning(AL.getError())} ');
+
     } //stop
 
     override function destroy() {
 
         stop();
-        AL.deleteBuffer(buffer);
+        
         AL.deleteSource(source);
+        AL.deleteBuffer(buffer);
 
     } //destroy
 
