@@ -49,6 +49,7 @@ class Main extends lumen.AppFixedTimestep {
     var sound2 : Sound;
     var sound3 : Sound;
     var sound4 : Sound;
+    var sound5 : Sound;
 
         //left or right pan?
     var left : Bool = false;
@@ -120,16 +121,19 @@ class Main extends lumen.AppFixedTimestep {
         sound1 = app.audio.create("assets/sound.pcm");
         sound2 = app.audio.create("assets/sound.ogg", 'ogg');
         sound3 = app.audio.create("assets/sound.wav", 'wav');
-        sound4 = app.audio.create("assets/music.ogg", 'ogg_stream', true);
+        sound4 = app.audio.create("assets/music.wav", 'wav_stream', true);
+        sound5 = app.audio.create("assets/music.ogg", 'ogg_stream', true);
 
         trace("sound1 : " + sound1.name);
         trace("sound2 : " + sound2.name);
         trace("sound3 : " + sound3.name);
+        trace("sound4 : " + sound4.name);
+        trace("sound5 : " + sound5.name);
 
-        sound4.loop();
+        // sound4.loop();
+        sound5.loop();
 
     } //ready
-
 
 
     override function onkeydown( event:KeyEvent ) {
@@ -153,18 +157,18 @@ class Main extends lumen.AppFixedTimestep {
         }
 
         if(event.keycode == Key.SPACE) {
-            sound4.toggle();
+            sound5.toggle();
         }
 
         if(event.keycode == Key.KEY_r) {
-            sound4.position = 0;
+            sound5.position = 0;
             trace('music reset');
         }
 
         if(event.keycode == Key.KEY_t) {
-            var t = (sound4.duration/2);
-            sound4.time = t;
-            trace('set to ${sound4.duration}/2 | music middle ' + t);
+            var t = (sound5.duration*0.75);
+            sound5.time = t;
+            trace('set to ${sound5.duration}*0.75 | music 75% ' + t);
         }
 
         if(event.scancode == Scan.GRAVE) {
@@ -194,7 +198,7 @@ class Main extends lumen.AppFixedTimestep {
 
     override function ontouchdown( event:TouchEvent ) {
         sound1.play();
-        sound4.position = 0;
+        sound5.position = 0;
     }
 
     override function onmousemove( event:MouseEvent ) {

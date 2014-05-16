@@ -18,4 +18,8 @@
         <!-- usually, you just <haxelib name="lumen" /> and that's all -->
     <include name="../../"/>
 
+    <config:lumen>
+        <window width="20"/>
+    </config:lumen>
+
 </project>
