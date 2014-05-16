@@ -88,8 +88,9 @@ class Helper {
 
     public static function git_push( pull_first:Bool=false ) {
 
-        if(pull_first) {
+        if(pull_first) {            
             git_pull();
+            git_rebase();
         }
 
         var _command = "git";
