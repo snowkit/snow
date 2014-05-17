@@ -427,9 +427,7 @@ namespace lumen {
             wav_source->bits_per_sample = wave_format.bitsPerSample;
 
             if(read) {
-                    //the -1 here : since the file is already seeked to the point of the start of the data,
-                    //we simply need to read from the current  position 
-                audio_read_wav_data( wav_source, out_buffer, 0, wav_source->length_pcm );
+                audio_read_wav_data( wav_source, out_buffer, -1, wav_source->length_pcm );
             }
 
             return true;
@@ -464,7 +462,7 @@ namespace lumen {
 
                 //read the data into the given buffer
             int n_elements = 1;
-            long current_pos = lumen::iotell( wav_source->file_source );
+            long current_pos = (lumen::iotell( wav_source->file_source ) - wav_source->data_start);
             long distance_to_end = wav_source->length_pcm - current_pos;
 
                 //if we are reading near the end of the file,
