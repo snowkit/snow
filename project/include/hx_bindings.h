@@ -23,6 +23,7 @@ namespace lumen {
     extern int id_length;
     extern int id_data;
     extern int id_handle;
+    extern int id_complete;
 
         //window related
 
@@ -109,6 +110,7 @@ namespace lumen {
         id_length               = val_id("length");
         id_data                 = val_id("data");
         id_handle               = val_id("handle");
+        id_complete             = val_id("complete");
         
             //window related flags
 

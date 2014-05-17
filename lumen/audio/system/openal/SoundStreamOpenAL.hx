@@ -44,12 +44,12 @@ class SoundStreamOpenAL extends SoundStream {
 
             trace('/ lumen / creating sound / ${name} / ${info.id} / ${info.format}');
 
-            trace('/ lumen /\t > rate : $info.rate');
-            trace('/ lumen /\t > channels : $info.channels');
-            trace('/ lumen /\t > bitrate : $info.bitrate');
-            trace('/ lumen /\t > bits_per_sample : $info.bits_per_sample');
-            trace('/ lumen /\t > file length : $info.length');
-            trace('/ lumen /\t > byte length: $info.length_pcm');
+            trace('/ lumen /\t > rate : ${info.rate}');
+            trace('/ lumen /\t > channels : ${info.channels}');
+            trace('/ lumen /\t > bitrate : ${info.bitrate}');
+            trace('/ lumen /\t > bits_per_sample : ${info.bits_per_sample}');
+            trace('/ lumen /\t > file length : ${info.length}');
+            trace('/ lumen /\t > byte length: ${info.length_pcm}');
             trace('/ lumen /\t > duration : $duration');
 
         }
@@ -84,22 +84,16 @@ class SoundStreamOpenAL extends SoundStream {
 
         //will try and fill the buffer, will return false if there
         //was no data to get (i.e end of file )
-    function fill_buffer(_buffer:Int) : Int {
+    function fill_buffer(_buffer:Int) : AudioDataBlob {
 
             //try to read the data into the buffer, the -1 means "from current"
-        var _data : ByteArray = data_get( -1, buffer_length );
+        var _blob : AudioDataBlob = data_get( -1, buffer_length );
 
-            //checks
-        if(_data != null) {
-            if(_data.length != 0) {
-                AL.bufferData( _buffer, format, new Float32Array(_data), _data.length, info.rate );
-                AL.getError();
-                return _data.length;
-            }
+        if(_blob != null && _blob.data != null && _blob.data.length != 0) {
+            AL.bufferData( _buffer, format, new Float32Array(_blob.data), _blob.data.length, info.rate ); AL.getError();
         } 
 
-            //default to "done playing"
-        return 0;
+        return _blob;
 
     } //fill_buffer
 
@@ -142,18 +136,8 @@ class SoundStreamOpenAL extends SoundStream {
 
         var still_busy = true;
 
-            //we disallow queuing buffers for stopped sounds
-        var _al_play_state = AL.getSourcei(source, AL.SOURCE_STATE);
-        if(_al_play_state != AL.PLAYING) {
-            trace("/ lumen / ${name} update stream not needed, sound is not playing");
-            return false;
-        }
-
         trace(' ${time}/${duration} | ${position}/${length} | ${buffers_left} ');
 
-        // if(position >= info.length_pcm && looping) {
-            // total_bytes = 0;
-        // }
 
         var processed_buffers : Int = AL.getSourcei(source, AL.BUFFERS_PROCESSED );
 
@@ -171,33 +155,52 @@ class SoundStreamOpenAL extends SoundStream {
 
             current_time += bytes_to_seconds( _buffer_size );
 
-            if(looping) {
-                if(current_time >= duration) {
-                    current_time = 0 + AL.getBufferi(_buffer, AL.SEC_OFFSET);
-                }
-            }
-
-            trace('    > buffer was done / ${_buffer} / size / ${_buffer_size} / current_time / ${current_time}');
+            trace('    > buffer was done / ${_buffer} / size / ${_buffer_size} / current_time / ${current_time} / time / ${time}');
 
                 //repopulate this empty buffer,
                 //if it succeeds, then throw it back at the end of
                 //the queue list to keep playing.
-            var fill_amount = fill_buffer(_buffer);
+            var blob = fill_buffer(_buffer);
+                //we shouldn't queue if complete and not looping, or if the data length was 0
+            var skip_queue = (!looping && blob.complete);
 
-            if(fill_amount > 0) {
-                AL.sourceQueueBuffer(source, _buffer);
-            } else {
-                if(!looping) {
+                //make sure the time resets correctly when looping
+            if(time >= duration && looping) {
+                current_time = 0;
+            }
+
+            if(blob.complete) {
+
+                if(looping) {
+                        //if we are looping, we must seek to the beginning again
+                    data_seek(0);
+                   
+                } else {
                     buffers_left--;
+                    trace('another buffer down ${buffers_left}');
                     if(buffers_left < 0) {
                         still_busy = false;
+                    } else {
+                        skip_queue = false;
                     }
-                } 
+                }
+
+            } //complete
+
+            if(!skip_queue && blob.data.length != 0) {
+                AL.sourceQueueBuffer(source, _buffer);
+                trace("requeue buffer ");
             }
 
             processed_buffers--;
         
         } //while
+
+        var _al_play_state = AL.getSourcei(source, AL.SOURCE_STATE);
+        if(_al_play_state != AL.PLAYING) {
+            trace("/ lumen / ${name} update stream not needed, sound is not playing");
+            still_busy = false;
+        }        
 
         return still_busy;
 

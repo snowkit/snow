@@ -488,7 +488,7 @@ extern void window_show_cursor(bool enable);
 
     } DEFINE_PRIM(lumen_assets_load_audioinfo_ogg, 2);
 
-    value lumen_assets_audio_ogg_read_bytes( value _info, value _start, value _len, value _loop ) {
+    value lumen_assets_audio_ogg_read_bytes( value _info, value _start, value _len ) {
 
         QuickVec<unsigned char> buffer;
 
@@ -498,7 +498,16 @@ extern void window_show_cursor(bool enable);
 
         if( !val_is_null(_handle) && Object_from_hx(_handle, ogg_source) ) {
 
-            audio_read_ogg_data( ogg_source, buffer, val_int(_start), val_int(_len), val_bool(_loop) );
+            bool complete = audio_read_ogg_data( ogg_source, buffer, val_int(_start), val_int(_len) );
+
+            ByteArray data(buffer);
+
+            value _object = alloc_empty_object();
+
+                alloc_field( _object, id_data, data.mValue );
+                alloc_field( _object, id_complete, alloc_bool(complete) );
+
+            return _object;
 
             return ByteArray(buffer).mValue;
 
@@ -508,7 +517,7 @@ extern void window_show_cursor(bool enable);
 
         }
 
-    } DEFINE_PRIM(lumen_assets_audio_ogg_read_bytes, 4);
+    } DEFINE_PRIM(lumen_assets_audio_ogg_read_bytes, 3);
 
     value lumen_assets_audio_ogg_seek_bytes( value _info, value _to ) {
 
@@ -529,7 +538,6 @@ extern void window_show_cursor(bool enable);
 //wav
 
     value lumen_assets_load_audioinfo_wav( value _id, value _do_read ) {
-
 
             //whether or not we should read the whole file now
         bool do_read = val_bool(_do_read);
@@ -564,7 +572,7 @@ extern void window_show_cursor(bool enable);
     } DEFINE_PRIM(lumen_assets_load_audioinfo_wav, 2);
 
 
-    value lumen_assets_audio_wav_read_bytes( value _info, value _start, value _len, value _loop ) {
+    value lumen_assets_audio_wav_read_bytes( value _info, value _start, value _len ) {
 
         QuickVec<unsigned char> buffer;
 
@@ -574,9 +582,16 @@ extern void window_show_cursor(bool enable);
 
         if( !val_is_null(_handle) && Object_from_hx(_handle, wav_source) ) {
 
-            audio_read_wav_data( wav_source, buffer, val_int(_start), val_int(_len), val_bool(_loop) );
+            bool complete = audio_read_wav_data( wav_source, buffer, val_int(_start), val_int(_len) );
 
-            return ByteArray(buffer).mValue;
+            ByteArray data(buffer);
+
+            value _object = alloc_empty_object();
+
+                alloc_field( _object, id_data, data.mValue );
+                alloc_field( _object, id_complete, alloc_bool(complete) );
+
+            return _object;
 
         } else {
 
@@ -584,7 +599,7 @@ extern void window_show_cursor(bool enable);
 
         }
 
-    } DEFINE_PRIM(lumen_assets_audio_wav_read_bytes, 4);
+    } DEFINE_PRIM(lumen_assets_audio_wav_read_bytes, 3);
 
 
     value lumen_assets_audio_wav_seek_bytes( value _info, value _to ) {
@@ -729,6 +744,7 @@ extern bool image_load_bytes( QuickVec<unsigned char> &out_buffer, const char* _
     int id_length;
     int id_data;
     int id_handle;
+    int id_complete;
 
     int id_window;
     int id_window_id;
