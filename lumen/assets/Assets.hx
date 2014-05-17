@@ -281,7 +281,9 @@ class Assets {
             }
 
                 //transform the format
-            _audio_info.format = audio_format(cast _audio_info.format);
+            if(Std.is(_audio_info.format, Int)) {
+                _audio_info.format = audio_format(cast _audio_info.format);
+            }
 
                 //with images the bytes data could be null too, this is also an invalid asset
             if(_audio_info.data == null) {
