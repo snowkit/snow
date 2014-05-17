@@ -58,6 +58,13 @@ typedef AudioInfo = {
 
 } //AudioInfo
 
+typedef AudioDataBlob = {
+
+    data : ByteArray,
+    complete : Bool
+    
+} //AudioDataBlob
+
 typedef WindowConfig = {
 
     ? fullscreen            : Bool,

@@ -90,7 +90,7 @@ namespace lumen {
 
                 //use the reader to read it, if requested
             if(read) {
-                audio_read_ogg_data( ogg_source, out_buffer, 0, total_length, false );
+                audio_read_ogg_data( ogg_source, out_buffer, 0, total_length );
             }
 
                 //yay.
@@ -141,10 +141,11 @@ namespace lumen {
         } //audio_seek_ogg_data
 
             //this reads a portion of an already opened ogg source into the buffer from start, for len
-        long audio_read_ogg_data( OGG_file_source* ogg_source, QuickVec<unsigned char> &out_buffer, long start, long len, bool loop ) {
+        bool audio_read_ogg_data( OGG_file_source* ogg_source, QuickVec<unsigned char> &out_buffer, long start, long len ) {
 
             //it is assumed here that ogg_source is opened. Maybe we can ask the file if it is open and if not reopen it?
 
+            bool complete = false;
             int word = 2; //1 for 8 bit, 2 for 16 bit. 2 is typical
             int sgned = 1; //0 for unsigned, 1 is typical
             int bit_stream = 1;
@@ -180,12 +181,8 @@ namespace lumen {
 
                     //at the end?
                 if(bytes_read == 0) {
-                    if(loop) {
-                            //reset the stream for continued looping
-                        audio_seek_ogg_data( ogg_source, 0 );
-                    } else {
-                        reading = false;
-                    }
+                    reading = false;
+                    complete = true;
                 }
 
                 if(total_read >= _read_len) {
@@ -200,7 +197,7 @@ namespace lumen {
                 out_buffer.resize(total_read);
             }
 
-            return total_read;
+            return complete;
 
         } //audio_read_ogg_bytes
 
@@ -444,7 +441,7 @@ namespace lumen {
             if(wav_source) {
 
                     //start at the wav data for seeking, ignoring the header stuff now
-                lumen::log("jumping to %d, %d/%d", wav_source->data_start, to, wav_source->length_pcm);
+                lumen::log("jumping to %d+%d/%d", wav_source->data_start, to, wav_source->length_pcm);
                 lumen::ioseek(wav_source->file_source, wav_source->data_start + to, lumen_seek_set);
 
                 return true;
@@ -455,9 +452,10 @@ namespace lumen {
 
         } //audio_seek_wav_data
 
-        long audio_read_wav_data( WAV_file_source* wav_source, QuickVec<unsigned char> &out_buffer, long start, long len, bool loop ) {
+        bool audio_read_wav_data( WAV_file_source* wav_source, QuickVec<unsigned char> &out_buffer, long start, long len ) {
 
             long _read_len = len;
+            bool complete = false;
 
             if(start != -1) {
                 lumen::log("/ lumen / wav / start was %d, skipping there first", start);
@@ -466,39 +464,38 @@ namespace lumen {
 
                 //read the data into the given buffer
             int n_elements = 1;
-            long total_read = 0;
-            
             long current_pos = lumen::iotell( wav_source->file_source );
             long distance_to_end = wav_source->length_pcm - current_pos;
 
-            if(distance_to_end < _read_len && distance_to_end != 0) {
+                //if we are reading near the end of the file,
+                //mark complete as true because there is no more data
+            if(distance_to_end <= _read_len) {
                 _read_len = distance_to_end;
+                complete = true;
             }
 
-                //already at the end of the tile?
-            if(distance_to_end == 0 && loop) {
-                lumen::log("looping is true, and we are at end of the file, so seeking back to 0", _read_len);
-                audio_seek_wav_data( wav_source, 0 );
-            }
+        
+            if(_read_len > 0) {
 
-            lumen::log("/ lumen / wav / reading %d bytes from %d", _read_len, start);
+                lumen::log("/ lumen / wav / reading %d bytes from %d", _read_len, start);
 
-                //resize to fit the requested/remaining length
-            out_buffer.resize(_read_len);
+                    //resize to fit the requested/remaining length
+                out_buffer.resize(_read_len);
 
-                //read from the wav source
-            long elements_read = lumen::ioread( wav_source->file_source, (char*)out_buffer.begin(), _read_len, n_elements);
+                    //read from the wav source
+                long elements_read = lumen::ioread( wav_source->file_source, (char*)out_buffer.begin(), _read_len, n_elements);
 
-                //since we always use n_elements as a constant value of 1
-                //the read length will always be = 1 * _read_len
-                //and this can't use elements_read because then the 
-                //incomplete reads (near the end of the file when streaming, for example)
-                //wouldn't reflect the actual value read into the buffer
-            total_read = _read_len;
+                    //if no elements were read, it was an error
+                    //or end of file so either way it's complete.
+                if(elements_read == 0) {
+                    complete = true;
+                } //elements_read == 0
 
-            lumen::log("/ lumen / wav / total read %d bytes", total_read);
+                lumen::log("/ lumen / wav / total read %d bytes, complete? %d", _read_len, complete);
 
-            return total_read;
+            } //_read_len > 0
+
+            return complete;
 
         } //audio_read_wav_data
 
