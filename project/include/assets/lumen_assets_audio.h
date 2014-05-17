@@ -18,11 +18,11 @@ namespace lumen {
 
 		//function declarations
 	bool audio_load_ogg_info( QuickVec<unsigned char> &out_buffer, const char* _id, OGG_file_source*& ogg_source, bool read = true );
-    long audio_read_ogg_data( OGG_file_source* ogg_source, QuickVec<unsigned char> &out_buffer, long start, long len, bool loop = false );
+    bool audio_read_ogg_data( OGG_file_source* ogg_source, QuickVec<unsigned char> &out_buffer, long start, long len );
 	bool audio_seek_ogg_data( OGG_file_source* ogg_source, long to );
 	
     bool audio_load_wav_info( QuickVec<unsigned char> &out_buffer, const char *_id, WAV_file_source*& wav_source, bool read = true );
-    long audio_read_wav_data( WAV_file_source* wav_source, QuickVec<unsigned char> &out_buffer, long start, long len, bool loop = false );
+    bool audio_read_wav_data( WAV_file_source* wav_source, QuickVec<unsigned char> &out_buffer, long start, long len );
     bool audio_seek_wav_data( WAV_file_source* wav_source, long to );
 
 

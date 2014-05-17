@@ -8,14 +8,15 @@ import lumen.utils.ByteArray;
 
 //The base class for a streaming sound instance
 
+
 class SoundStream extends Sound {
 
         //the length of bytes for a single buffer
         //:todo: making it a bit bigger to slow down debug printing
-    public var buffer_length : Int = 48000*8; //:todo: optionize.
+    public var buffer_length : Int = 176400; //testing against 1 second //:todo: optionize.
 
         //assign this to handle streaming bytes yourself
-    public var data_get : Int->Int->ByteArray;
+    public var data_get : Int->Int->AudioDataBlob;
     public var data_seek : Int->Bool;
 
     public function new( _manager:Audio, _name:String, _audio_info : AudioInfo ) {
@@ -36,9 +37,9 @@ class SoundStream extends Sound {
 
     } //default_data_seek
 
-    public function default_data_get( _start:Int, _length:Int ) : ByteArray {
+    public function default_data_get( _start:Int, _length:Int ) : AudioDataBlob {
 
-        return manager.lib.assets.audio_load_portion( info, _start, _length, looping );
+        return manager.lib.assets.audio_load_portion( info, _start, _length );
 
     } //default_data_get
 
