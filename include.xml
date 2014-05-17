@@ -28,6 +28,9 @@
 
         <dependency name="extension-api" path="dependencies/extension-api" if="android" />
 
+            <!-- for the bin template files -->
+        <haxelib name="lime-tools"/>
+
     </section>
 
 </extension>
