@@ -25,7 +25,8 @@ class SoundStreamOpenAL extends SoundStream {
     public var format : Int;
         //buffer count
     public var buffer_count : Int = 4; //:todo: optionize.
-
+        //remaining buffers to play
+    public var buffers_left : Int = 0;
 
     public function new( _manager:Audio, _name:String, _audio_info : AudioInfo ) {
 
@@ -35,7 +36,7 @@ class SoundStreamOpenAL extends SoundStream {
 
         if(info == null) {
 
-            trace("/ lumen / not creating sound, _audio_info was null");
+            trace('/ lumen / not creating sound, _audio_info was null');
 
             return;
 
@@ -43,13 +44,13 @@ class SoundStreamOpenAL extends SoundStream {
 
             trace('/ lumen / creating sound / ${name} / ${info.id} / ${info.format}');
 
-            trace("/ lumen /\t > rate : " + info.rate);
-            trace("/ lumen /\t > channels : " + info.channels);
-            trace("/ lumen /\t > bitrate : " + info.bitrate);
-            trace("/ lumen /\t > bits_per_sample : " + info.bits_per_sample);
-            trace("/ lumen /\t > file length : " + info.length);
-            trace("/ lumen /\t > byte length: " + info.length_pcm);
-            trace("/ lumen /\t > duration : " + duration);
+            trace('/ lumen /\t > rate : $info.rate');
+            trace('/ lumen /\t > channels : $info.channels');
+            trace('/ lumen /\t > bitrate : $info.bitrate');
+            trace('/ lumen /\t > bits_per_sample : $info.bits_per_sample');
+            trace('/ lumen /\t > file length : $info.length');
+            trace('/ lumen /\t > byte length: $info.length_pcm');
+            trace('/ lumen /\t > duration : $duration');
 
         }
 
@@ -73,7 +74,7 @@ class SoundStreamOpenAL extends SoundStream {
         format = OpenALHelper.determine_format( info );
 
             //fill the first set of buffers up
-        start_queue();
+        init_queue();
 
         trace('/ lumen / audio / ${name} buffered data / ${AL.getErrorMeaning(AL.getError())} ');
 
@@ -90,18 +91,12 @@ class SoundStreamOpenAL extends SoundStream {
 
             //checks
         if(_data != null) {
-                trace('    > data for buffer:${_buffer} / length was ${_data.length}/${info.length_pcm}');
             if(_data.length != 0) {
                 AL.bufferData( _buffer, format, new Float32Array(_data), _data.length, info.rate );
-                    trace('    > errors? ${AL.getErrorMeaning(AL.getError())}');
+                AL.getError();
                 return _data.length;
-            } else {
-                    trace('    > data length was null');
-                return 0;
             }
-        } else {
-            trace('    > data was null');
-        }
+        } 
 
             //default to "done playing"
         return 0;
@@ -111,26 +106,20 @@ class SoundStreamOpenAL extends SoundStream {
         //this function takes the start of a buffer to allow streaming a section of a buffer
         //but it has to submit the first buffer separately, which handles the seeking to the first slot
         //and subsequent fill_buffers continue from that point onward.
-    function start_queue( ?_buffer_start:Int=0 ) {
+    function init_queue( ?_buffer_start:Int=-1 ) {
 
-            //when setting up a stream we buffer the first bit ahead
-        var _first_buffer : ByteArray = data_get( _buffer_start, buffer_length );
+        if(_buffer_start != -1) {
+            data_seek(_buffer_start);
+        }
 
-        if(_first_buffer != null) {
+        for(i in 0...buffer_count) {
+            fill_buffer(buffers[i]);
+            AL.sourceQueueBuffer(source, buffers[i]);
+        }
 
-            AL.bufferData( buffers[0], format, new Float32Array(_first_buffer), _first_buffer.byteLength, info.rate );
-                //give the first buffer to the source only
-            AL.sourceQueueBuffer(source, buffers[0]);
+        buffers_left = buffer_count;
 
-                //now lets queue the others as well
-            for(i in 1 ... buffer_count) {
-                fill_buffer( buffers[i] );
-                AL.sourceQueueBuffer(source, buffers[i]);
-            }
-
-        } //first_buffer != null
-
-    } //start_queue
+    } //init_queue
 
 
         //when pausing or stopping the sound you want to flush
@@ -160,6 +149,12 @@ class SoundStreamOpenAL extends SoundStream {
             return false;
         }
 
+        trace(' ${time}/${duration} | ${position}/${length} | ${buffers_left} ');
+
+        // if(position >= info.length_pcm && looping) {
+            // total_bytes = 0;
+        // }
+
         var processed_buffers : Int = AL.getSourcei(source, AL.BUFFERS_PROCESSED );
 
             //disallow large or invalid values since we are using a while loop
@@ -172,30 +167,37 @@ class SoundStreamOpenAL extends SoundStream {
         while(processed_buffers > 0) {
 
             var _buffer:Int = AL.sourceUnqueueBuffer( source );
+            var _buffer_size = AL.getBufferi(_buffer, AL.SIZE);
 
-            if(position >= info.length_pcm && looping) {
-                total_bytes = 0;
-            } 
+            current_time += bytes_to_seconds( _buffer_size );
 
-            trace("    > processed_buffers : " + processed_buffers + " buffer was " + _buffer);
+            if(looping) {
+                if(current_time >= duration) {
+                    current_time = 0 + AL.getBufferi(_buffer, AL.SEC_OFFSET);
+                }
+            }
+
+            trace('    > buffer was done / ${_buffer} / size / ${_buffer_size} / current_time / ${current_time}');
 
                 //repopulate this empty buffer,
                 //if it succeeds, then throw it back at the end of
                 //the queue list to keep playing.
-            var fill_amount = fill_buffer(_buffer); 
+            var fill_amount = fill_buffer(_buffer);
+
             if(fill_amount > 0) {
-                total_bytes += fill_amount;
-                trace('    > fill is ok ${fill_amount} total_bytes: ${total_bytes}');
                 AL.sourceQueueBuffer(source, _buffer);
             } else {
-                    //the buffer said it was done,
-                    //so we can mark the stream as done
-                still_busy = false;
-                trace("    > fill was done");
+                if(!looping) {
+                    buffers_left--;
+                    if(buffers_left < 0) {
+                        still_busy = false;
+                    }
+                } 
             }
 
             processed_buffers--;
-        }
+        
+        } //while
 
         return still_busy;
 
@@ -207,13 +209,8 @@ class SoundStreamOpenAL extends SoundStream {
             return;
         }
 
-        //check if we are still playing by asking openal
-        var _still_busy = update_stream();
-
-        var f = position;
-
-        if(!_still_busy) {
-            trace("/ lumen / audio / ${name} streaming sound complete / " + _still_busy);
+        if(!update_stream()) {
+            trace('/ lumen / audio / ${name} streaming sound complete');
             stop();
         }
 
@@ -313,24 +310,20 @@ class SoundStreamOpenAL extends SoundStream {
 
     static var half_pi : Float = 1.5707;
 
-    var completed_buffers : Int = 0;
-    var total_bytes : Int = 0;
+    var current_time : Float = 0;
 
     override function get_position() : Int {
 
-        var _exact_pos_in_queue : Float = AL.getSourcef(source, AL.SAMPLE_OFFSET);
-        var _position : Int = total_bytes + Std.int(_exact_pos_in_queue);
-        var _seconds : Float = bytes_to_seconds(_position);
-
-        trace('    > position: ${_position} / ${info.length_pcm}  |  ${_seconds}s  |  ${seconds_to_bytes(_seconds)}  |  ${Math.round((_position/info.length_pcm)*100)}%');
-
-        return _position;
+        return seconds_to_bytes(time);
 
     } //get_position
 
     override function get_time() : Float {
 
-        return bytes_to_seconds(position);
+        // return bytes_to_seconds(position);
+        var _pos_sec : Float = AL.getSourcef(source, AL.SEC_OFFSET);
+
+        return current_time + _pos_sec;
 
     } //get_time
 
@@ -360,43 +353,9 @@ class SoundStreamOpenAL extends SoundStream {
 
     override function set_position( _position:Int ) : Int {
 
-            //stop source so it lets go of buffers
-        AL.sourceStop(source);
-            //clear queue
-        flush_queue();
+        time = bytes_to_seconds(_position);
 
-            //sanity checks
-        if(_position < 0) {
-            _position = 0;
-        }
-
-        if(_position > info.length_pcm) {
-            _position = info.length_pcm;
-        }
-
-            //update the position in bytes we are at
-        total_bytes = _position;
-
-            //seek the data itself so subsequent
-            //data buffer requests start in the place expected
-        data_seek(_position);
-
-            //we have to fill the buffers with new data,
-            //otherwise they play old data instead
-        for(i in 0...buffer_count) {
-            fill_buffer(buffers[i]);
-            AL.sourceQueueBuffer(source, buffers[i]);
-        }
-
-            //reset the buffer *queue* start position
-        AL.sourcef(source, AL.SAMPLE_OFFSET, 0);
-
-            //and, if it was playing, play it
-        if(playing) {
-            AL.sourcePlay(source);
-        }
-
-        return position = Std.int(_position);
+        return position = _position;
 
     } //set_position
 
@@ -408,9 +367,24 @@ class SoundStreamOpenAL extends SoundStream {
 
     override function set_time( _time:Float ) : Float {
 
-        var _bytes = seconds_to_bytes(_time);
+            //stop source so it lets go of buffers
+        AL.sourceStop(source);
+            //clear queue
+        flush_queue();
 
-            position = _bytes;
+            //sanity checks
+        if(_time < 0) { _time = 0; }
+        if(_time > duration) { _time = duration; }
+
+        current_time = _time;
+
+            //fill up the first buffers again, seeking there first
+        init_queue( seconds_to_bytes(_time) );
+
+            //and, if it was playing, play it
+        if(playing) {
+            AL.sourcePlay(source);
+        }
 
         return time = _time;
 
