@@ -366,7 +366,7 @@ class AL {
         alhx_Bufferiv(buffer, param, values);
     }
 
-    public static function getBufferf(buffer:Int, param:Int) : Array<Float> {
+    public static function getBufferf(buffer:Int, param:Int) : Float {
         return alhx_GetBufferf(buffer, param);
     }
 
@@ -378,7 +378,7 @@ class AL {
         return alhx_GetBufferfv(buffer, param, count);
     }
 
-    public static function getBufferi(buffer:Int, param:Int) : Array<Int> {
+    public static function getBufferi(buffer:Int, param:Int) : Int {
         return alhx_GetBufferi(buffer, param);
     }
 
