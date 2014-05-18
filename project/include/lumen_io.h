@@ -2,6 +2,7 @@
 #define LUMEN_LUMEN_IO_H
 
 #include <stdio.h>
+#include <string>
 
 #ifdef LUMEN_USE_SDL
     #include "libs/sdl/SDL.h"
@@ -29,29 +30,45 @@ namespace lumen {
 
     #endif //LUMEN_USE_SDL
 
+
     lumen_iosrc* iosrc_fromfile(const char *file, const char *mode);
     lumen_iosrc* iosrc_frommem(void *mem, int size);
     lumen_iosrc* iosrc_fromconstmem(const void *mem, int size);
     lumen_iosrc* iosrc_fromfp(FILE * fp, bool autoclose);
 
-    size_t   ioread(lumen_iosrc* src, void* ptr, size_t size, size_t maxnum);
-    size_t   iowrite(lumen_iosrc* src, const void* ptr, size_t size, size_t num);
+
+    size_t   ioread(lumen_iosrc* src, void* dest, size_t size, size_t maxnum);
+    size_t   iowrite(lumen_iosrc* dest, const void* data, size_t size, size_t num);
     size_t   ioseek(lumen_iosrc* src, long int offset, int whence);
     long int iotell(lumen_iosrc* src);
     long int ioclose(lumen_iosrc* src);
 
-    #ifdef ANDROID
 
-        struct AndroidFileInfo {
-            int fd;
-            off_t offset;
-            off_t length;
-        };
+    class iosrc_file : public Object {
 
-        ByteArray AndroidGetAssetBytes(const char *);
-        AndroidFileInfo AndroidGetAssetFD(const char *);
+        public:
+            lumen_iosrc*        file_source;
+            std::string         source_name;
+            off_t               offset;
+            off_t               length;
 
-   #endif //ANDROID
+        iosrc_file() : offset(0), length(0) {
+
+        } //iosrc_file
+
+        ~iosrc_file() {
+
+                //ensure the file is closed
+            if(file_source) {
+                lumen::ioclose( file_source );
+            }
+
+            file_source = NULL;
+
+        } //~
+
+    }; //iosrc_file
+
 
 } //namespace lumen
 

@@ -422,8 +422,10 @@ extern void window_show_cursor(bool enable);
 
     } DEFINE_PRIM(lumen_window_show_cursor, 1);
 
-// input bindings
 
+
+
+// input bindings
 
 
 
@@ -738,6 +740,125 @@ extern void window_show_cursor(bool enable);
     } DEFINE_PRIM(lumen_assets_image_load_info, 2);
 
 
+
+
+//io bindings
+
+
+    value lumen_iosrc_from_file(value _id, value _mode) {
+
+        iosrc_file* iosrc = new iosrc_file();
+
+        iosrc->file_source = lumen::iosrc_fromfile( val_string(_id), val_string(_mode) );
+
+        return Object_to_hx(iosrc);
+
+    } DEFINE_PRIM(lumen_iosrc_from_file, 2);
+
+
+    value lumen_iosrc_file_read(value _handle, value _dest, value _size, value _maxnum) {
+
+        iosrc_file* iosrc = NULL;
+        QuickVec<unsigned char> buffer;
+
+        if( Object_from_hx(_handle, iosrc) ) {
+
+            if(!val_is_null(_dest)) {
+
+                ByteArray dest(_dest);
+
+                int res = lumen::ioread(iosrc->file_source, dest.Bytes(), val_int(_size), val_int(_maxnum));
+
+                return alloc_int(res);
+            }
+
+        } //object from hx
+
+        return alloc_int(-1);
+
+    } DEFINE_PRIM(lumen_iosrc_file_read, 4);
+
+
+    value lumen_iosrc_file_write(value _handle, value _data, value _size, value _num) {
+        
+        iosrc_file* iosrc = NULL;
+
+        if( Object_from_hx(_handle, iosrc) ) {
+
+            if(!val_is_null(_data)) {
+
+                ByteArray data(_data);
+
+                long size = val_int(_size);
+                long num = val_int(_num);
+                long len = size * num;
+
+                if(data.Size() != len) {
+                    data.Resize(len);
+                }
+
+                int res = lumen::iowrite(iosrc->file_source, data.Bytes(), size, num);
+
+                return alloc_int(res);
+
+            } //data != null
+
+        } //object from hx
+
+        return alloc_int(-1);
+
+    } DEFINE_PRIM(lumen_iosrc_file_write, 4);
+
+
+    value lumen_iosrc_file_seek(value _handle, value _offset, value _whence) {
+        
+        iosrc_file* iosrc = NULL;
+
+        if( Object_from_hx(_handle, iosrc) ) {
+            
+            int res = lumen::ioseek(iosrc->file_source, val_int(_offset), val_int(_whence));
+
+            return alloc_int(res);
+
+        } //object from hx
+
+        return alloc_int(-1);
+
+    } DEFINE_PRIM(lumen_iosrc_file_seek, 3);
+
+
+    value lumen_iosrc_file_tell(value _handle) {
+        
+        iosrc_file* iosrc = NULL;
+
+        if( Object_from_hx(_handle, iosrc) ) {
+            
+            int res = lumen::iotell(iosrc->file_source);
+
+            return alloc_int(res);
+
+        } //object from hx
+
+        return alloc_int(-1);
+
+    } DEFINE_PRIM(lumen_iosrc_file_tell, 1);
+
+
+    value lumen_iosrc_file_close(value _handle) {
+                
+        iosrc_file* iosrc = NULL;
+
+        if( Object_from_hx(_handle, iosrc) ) {
+            
+            int res = lumen::ioclose(iosrc->file_source);
+
+            return alloc_int(res);
+
+        } //object from hx
+
+        return alloc_int(-1);
+
+    } DEFINE_PRIM(lumen_iosrc_file_close, 1);    
 
 
 
