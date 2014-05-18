@@ -5,9 +5,11 @@ access to native windowing, audio, rendering and input
 
 ###latest binary builds
 
-New binary builds are pushed to the repo once or twice a day.
+New binary builds are pushed to the repo only once or twice a day.
 
-**BUT** new builds are done on every commit, and are available as soon as the build is complete and can be used directly, provided the build succeeded. The format is `lumen_%target%_%ver%_%git_commit%.zip`, for example : `lumen_linux64_1.0.0-alpha.0_bfe3e076f8e475f2dacef56ce3899f506ab00e03.zip`
+**BUT** new builds are done on every commit, and are available as soon as the build is complete and can be used directly, provided the build succeeded. 
+
+The format inside the artifact downloads is `lumen_%target%_%ver%_%git_commit%.zip`, for example : `lumen_linux64_1.0.0-alpha.0_bfe3e076f8e475f2dacef56ce3899f506ab00e03.zip`
 
 Edge binary builds : 
 
