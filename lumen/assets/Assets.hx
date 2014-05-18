@@ -1,6 +1,6 @@
 package lumen.assets;
 
-
+import lumen.io.IO;
 import lumen.LumenTypes;
 import lumen.utils.ByteArray;
 import lumen.utils.Libs;

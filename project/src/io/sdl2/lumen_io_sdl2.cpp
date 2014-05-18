@@ -1,5 +1,4 @@
 
-#include <stdio.h>
 
 #include "lumen_io.h"
 #include "libs/sdl/SDL.h"
@@ -23,12 +22,12 @@ namespace lumen {
 	} //iofromfp
 
 
-	size_t ioread(lumen_iosrc* src, void* ptr, size_t size, size_t maxnum) {
-		return SDL_RWread(src, ptr, size, maxnum);
+	size_t ioread(lumen_iosrc* src, void* dest, size_t size, size_t maxnum) {
+		return SDL_RWread(src, dest, size, maxnum);
 	} //ioread
 
-	size_t iowrite(lumen_iosrc* src, const void* ptr, size_t size, size_t num) {
-		return SDL_RWwrite(src, ptr, size, num);
+	size_t iowrite(lumen_iosrc* src, const void* data, size_t size, size_t num) {
+		return SDL_RWwrite(src, data, size, num);
 	} //iowrite
 
 	size_t ioseek(lumen_iosrc* src, long int offset, int whence) {
