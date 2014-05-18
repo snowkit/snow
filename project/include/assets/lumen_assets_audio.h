@@ -14,16 +14,21 @@ namespace lumen {
 
 		//forward
     class OGG_file_source;
-	class WAV_file_source;
+    class WAV_file_source;
+	class PCM_file_source;
 
 		//function declarations
-	bool audio_load_ogg_info( QuickVec<unsigned char> &out_buffer, const char* _id, OGG_file_source*& ogg_source, bool read = true );
-    bool audio_read_ogg_data( OGG_file_source* ogg_source, QuickVec<unsigned char> &out_buffer, long start, long len );
-	bool audio_seek_ogg_data( OGG_file_source* ogg_source, long to );
+	bool audio_load_info_ogg( QuickVec<unsigned char> &out_buffer, const char* _id, OGG_file_source*& ogg_source, bool read = true );
+    bool audio_read_bytes_ogg( OGG_file_source* ogg_source, QuickVec<unsigned char> &out_buffer, long start, long len );
+	bool audio_seek_bytes_ogg( OGG_file_source* ogg_source, long to );
 	
-    bool audio_load_wav_info( QuickVec<unsigned char> &out_buffer, const char *_id, WAV_file_source*& wav_source, bool read = true );
-    bool audio_read_wav_data( WAV_file_source* wav_source, QuickVec<unsigned char> &out_buffer, long start, long len );
-    bool audio_seek_wav_data( WAV_file_source* wav_source, long to );
+    bool audio_load_info_wav( QuickVec<unsigned char> &out_buffer, const char *_id, WAV_file_source*& wav_source, bool read = true );
+    bool audio_read_bytes_wav( WAV_file_source* wav_source, QuickVec<unsigned char> &out_buffer, long start, long len );
+    bool audio_seek_bytes_wav( WAV_file_source* wav_source, long to );
+
+    bool audio_load_info_pcm( QuickVec<unsigned char> &out_buffer, const char *_id, PCM_file_source*& pcm_source, bool read = true );
+    bool audio_read_bytes_pcm( PCM_file_source* pcm_source, QuickVec<unsigned char> &out_buffer, long start, long len );
+    bool audio_seek_bytes_pcm( PCM_file_source* pcm_source, long to );
 
 
 	std::string ogg_error_string(int code);
@@ -36,7 +41,6 @@ namespace lumen {
     #else
         #define OGG_BUFFER_READ_TYPE 0
     #endif
-
 
 
 //OGG file source
@@ -69,7 +73,7 @@ namespace lumen {
 
     }; //OGG_file_source
 
-//Wav file source
+//WAV file source
 
     class WAV_file_source : public Object {
 
@@ -101,6 +105,38 @@ namespace lumen {
         } //~
 
     }; //WAV_file_source
+
+//PCM file source
+
+    class PCM_file_source : public Object {
+
+        public:
+            lumen_iosrc*        file_source;
+            std::string         source_name;
+            int                 channels;
+            int                 rate;
+            int                 bitrate; 
+            int                 bits_per_sample;
+            off_t               offset;
+            off_t               length;
+            off_t               length_pcm;
+
+        PCM_file_source() : offset(0), length(0), length_pcm(0) {
+
+        } //PCM_file_source
+
+        ~PCM_file_source() {
+
+                //ensure the file is closed
+            if(file_source) {
+                lumen::ioclose( file_source );
+            }
+
+            file_source = NULL;
+
+        } //~
+
+    }; //PCM_file_source
 
 
 
