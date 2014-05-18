@@ -5,6 +5,9 @@
 #include "lumen_core.h"
 #include "lumen_io.h"
 
+#include "assets/lumen_assets_image.h"
+
+
 namespace lumen {
 
     int lumen_stbi_read(void *user, char *data, int size) {
@@ -62,7 +65,7 @@ namespace lumen {
         //bpp == the resulting bits per pixel
         //bpp == the source image bits per pixel
         //req_bpp == use this instead of the source
-    bool image_load_bytes( QuickVec<unsigned char> &out_buffer, const char* _id, int* w, int* h, int* bpp, int* bpp_source, int req_bpp = 4 ) {
+    bool image_load_info( QuickVec<unsigned char> &out_buffer, const char* _id, int* w, int* h, int* bpp, int* bpp_source, int req_bpp = 4 ) {
 
             //get a io file pointer to the image
         lumen_iosrc* src = lumen::iosrc_fromfile(_id, "rb");
