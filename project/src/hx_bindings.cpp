@@ -758,7 +758,7 @@ extern void window_show_cursor(bool enable);
 
     value lumen_iosrc_file_read(value _handle, value _dest, value _size, value _maxnum) {
 
-        iosrc_file* iosrc = NULL;
+        iosrc_file* iosrc = NULL; 
         QuickVec<unsigned char> buffer;
 
         if( Object_from_hx(_handle, iosrc) ) {
