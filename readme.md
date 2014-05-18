@@ -3,6 +3,21 @@
 
 access to native windowing, audio, rendering and input
 
+###latest binary builds
+
+New binary builds are pushed to the repo once or twice a day.
+
+**BUT** new builds are done on every commit, and are available as soon as the build is complete and can be used directly, provided the build succeeded. 
+
+Edge build : 
+
+[http://build.luxeengine.com:8111//repository/downloadAll/lumen_core_ios/latest.lastSuccessful](iOS)   
+[http://build.luxeengine.com:8111//repository/downloadAll/lumen_core_android/latest.lastSuccessful](Android)   
+[http://build.luxeengine.com:8111//repository/downloadAll/lumen_core_mac/latest.lastSuccessful](Mac)   
+[http://build.luxeengine.com:8111//repository/downloadAll/lumen_core_linux/latest.lastSuccessful](Linux)   
+[http://build.luxeengine.com:8111//repository/downloadAll/lumen_core_windows/latest.lastSuccessful](Windows)   
+
+
 ###core build status
 ---
 
