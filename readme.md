@@ -11,11 +11,11 @@ New binary builds are pushed to the repo once or twice a day.
 
 Edge build : 
 
-[http://build.luxeengine.com:8111//repository/downloadAll/lumen_core_ios/latest.lastSuccessful](iOS)   
-[http://build.luxeengine.com:8111//repository/downloadAll/lumen_core_android/latest.lastSuccessful](Android)   
-[http://build.luxeengine.com:8111//repository/downloadAll/lumen_core_mac/latest.lastSuccessful](Mac)   
-[http://build.luxeengine.com:8111//repository/downloadAll/lumen_core_linux/latest.lastSuccessful](Linux)   
-[http://build.luxeengine.com:8111//repository/downloadAll/lumen_core_windows/latest.lastSuccessful](Windows)   
+[iOS](http://build.luxeengine.com:8111//repository/downloadAll/lumen_core_ios/latest.lastSuccessful)   
+[Android](http://build.luxeengine.com:8111//repository/downloadAll/lumen_core_android/latest.lastSuccessful)   
+[Mac](http://build.luxeengine.com:8111//repository/downloadAll/lumen_core_mac/latest.lastSuccessful)   
+[Linux](http://build.luxeengine.com:8111//repository/downloadAll/lumen_core_linux/latest.lastSuccessful)   
+[Windows](http://build.luxeengine.com:8111//repository/downloadAll/lumen_core_windows/latest.lastSuccessful)   
 
 
 ###core build status
