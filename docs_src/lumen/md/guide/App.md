@@ -1,13 +1,16 @@
+
+[![Logo]({{{rel_path}}}images/logo.png)]({{{rel_path}}}index.html)
+
 ##The lumen App 
 This is the base class for a basic lumen host application. This is what your game/app extends from. The most basic empty lumen application looks like this : 
 
 ```
 class MyGame extends lumen.App {
-	
-	override public function ready() {
-		trace("initialize game here");
-	}
-	
+    
+    override public function ready() {
+        trace("initialize game here");
+    }
+    
 }
 ```
 
@@ -47,15 +50,15 @@ When you work on your game/app, you simply utilise the delta time passed into th
 
 ```
 override public function update(delta:Float) {
-	position.x += speed * delta;
+    position.x += speed * delta;
 }
 ```
 
 If you were to change the timescale, the object would slow down automatically, or speed up. 
 
-`app.timescale = 0.5;     //slow down time to 50%`   
-`app.timescale = 2; 	   //fast forward time`   
-`app.timescale = -1; 	   //rewind time`   
+    app.timescale = 0.5;        //slow down time to 50%   
+    app.timescale = 2;          //fast forward time   
+    app.timescale = -1;         //rewind time   
 
 Take note that rewinding and fast forwarding an entire game/app is up to you to implement, but the timing values will allow you to base your calculations of the same values for fixed delta, variable delta, or fixed time step without changing your code.
 
@@ -73,4 +76,8 @@ And then rendering with interpolated values, where `alpha_time` is the current %
 
 
 ##Todo 
-tests / examples
+tests / examples 
+
+
+&nbsp;
+&nbsp;
