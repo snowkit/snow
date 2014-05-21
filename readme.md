@@ -3,6 +3,10 @@
 
 access to native windowing, audio, rendering and input
 
+###Docs
+
+http://underscorediscovery.github.io/lumen
+
 ###latest binary builds
 
 New binary builds are pushed to the repo only once or twice a day.
