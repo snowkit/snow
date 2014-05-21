@@ -26,7 +26,7 @@
 
         <architecture name="armv7" if="android" />
 
-        <dependency name="extension-api" path="dependencies/extension-api" if="android" />
+        <dependency name="extension-api" path="templates/dependencies/extension-api" if="android" />
 
             <!-- for the bin template files -->
         <haxelib name="lime-tools"/>
