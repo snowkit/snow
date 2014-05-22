@@ -142,7 +142,7 @@
 
             var _api_details = helper.json( _list[i] );
 
-            if(_api_details && _api_details.source && _api_details.sections) {                
+            if(_api_details && _api_details.source && _api_details.sections) {
 
                 var _link_dest = _api_details.source.replace(/\./gi,'/')+'.html';
                 var _name_dest = _api_details.source;
