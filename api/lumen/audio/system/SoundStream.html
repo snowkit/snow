@@ -47,7 +47,8 @@
             <p><a href="../../../../index.html"><img src="../../../../images/logo.png" alt="Logo"></a></p>
 <hr>
 <h1 id="soundstream">SoundStream</h1>
-<p>&emsp;&emsp;&emsp;home<br><a href="../../../../api/index.html#lumen.audio">API Index</a><br>&emsp;&emsp;&emsp;parent<br><a href="../">lumen.audio</a><br>&emsp;&emsp;&emsp;current<br><a href="./">lumen.audio.system</a> / SoundStream</p>
+<h2 id="-api-index-api-index-html-lumen-audio-"><a href="../../../../api/index.html#lumen.audio">API Index</a></h2>
+<p>&emsp;&emsp;&emsp;parent<br><a href="../">lumen.audio</a><br>&emsp;&emsp;&emsp;current<br><a href="./">lumen.audio.system</a> / SoundStream</p>
 <p><br/></p>
 <hr>
 <p><a href="#Extends">Extends</a><br><a href="#Members">Members</a><br><a href="#Methods">Methods</a>   </p>
@@ -61,27 +62,31 @@
 <p><a class="lift" name="Members" ></a></p>
 <h3 id="members">Members</h3>
 <hr>
+<p><a class="lift" name="buffer_count" href="#buffer_count">buffer_count</a></p>
+<p><code>buffer_count : Int</code></p>
+<p><span class="small_desc_flat"> The number of buffers to use in the queue for streaming. Default is <code>4</code> <code>todo</code> optionize </span>   </p>
 <p><a class="lift" name="buffer_length" href="#buffer_length">buffer_length</a></p>
 <p><code>buffer_length : Int</code></p>
-<p><span class="small_desc_flat"> no description </span>   </p>
+<p><span class="small_desc_flat"> The length of bytes for a single buffer to queue up to stream. Default is <code>176400</code>, about 1 second in 16 bit mono. <code>todo</code> optionize </span>   </p>
 <p><a class="lift" name="data_get" href="#data_get">data_get</a></p>
 <p><code>data_get : Dynamic</code></p>
-<p><span class="small_desc_flat"> no description </span>   </p>
+<p><span class="small_desc_flat"> The get function, assign a function here if you want to stream data to the source manually, like generative sound. </span>   </p>
 <p><a class="lift" name="data_seek" href="#data_seek">data_seek</a></p>
 <p><code>data_seek : Dynamic</code></p>
-<p><span class="small_desc_flat"> no description </span>   </p>
+<p><span class="small_desc_flat"> The seek function, assign a function here if you want to stream data to the source manually, like generative sound. </span>   </p>
+<p>&nbsp;   </p>
 <p>&nbsp;   </p>
 <p><a class="lift" name="Methods" ></a></p>
 <h3 id="methods">Methods</h3>
 <hr>
 <p><a class="lift" name="default_data_get" href="#default_data_get">default_data_get</a></p>
-<p><code>default_data_get(_start:Int, _length:Int) : lumen.AudioDataBlob</code></p>
-<p><span class="small_desc_flat"> no description </span>   </p>
+<p><code>default_data_get(_start:Int, _length:Int) : lumen.types.AudioDataBlob</code></p>
+<p><span class="small_desc_flat"> Default data get implementation uses <code>assets.audio_load_portion</code> </span>   </p>
 <p><a class="lift" name="default_data_seek" href="#default_data_seek">default_data_seek</a></p>
 <p><code>default_data_seek(_to:Int) : Bool</code></p>
-<p><span class="small_desc_flat"> no description </span>   </p>
+<p><span class="small_desc_flat"> Default data seek implementation uses <code>assets.audio_seek_source</code> </span>   </p>
 <p><a class="lift" name="new" href="#new">new</a></p>
-<p><code>new(_manager:lumen.audio.Audio, _name:String, _audio_info:lumen.AudioInfo)</code></p>
+<p><code>new(_manager:lumen.audio.Audio, _name:String, _audio_info:lumen.types.AudioInfo)</code></p>
 <p><span class="small_desc_flat"> no description </span>   </p>
 <p>&nbsp;
 &nbsp;

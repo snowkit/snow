@@ -47,7 +47,13 @@
             <p><a href="../../../index.html"><img src="../../../images/logo.png" alt="Logo"></a></p>
 <hr>
 <h1 id="assets">Assets</h1>
-<p>&emsp;&emsp;&emsp;home<br><a href="../../../api/index.html#lumen.assets">API Index</a><br>&emsp;&emsp;&emsp;parent<br><a href="../">lumen</a><br>&emsp;&emsp;&emsp;current<br><a href="./">lumen.assets</a> / Assets</p>
+<hr>
+<p>The asset system class gives you access to fetching and manipulating assets, 
+    caching/uncaching assets, and handles loading files and data cross platform</p>
+<hr>
+<p><br/></p>
+<h2 id="-api-index-api-index-html-lumen-assets-"><a href="../../../api/index.html#lumen.assets">API Index</a></h2>
+<p>&emsp;&emsp;&emsp;parent<br><a href="../">lumen</a><br>&emsp;&emsp;&emsp;current<br><a href="./">lumen.assets</a> / Assets</p>
 <p><br/></p>
 <hr>
 <p><a href="#Members">Members</a><br><a href="#Methods">Methods</a>   </p>
@@ -58,44 +64,45 @@
 <hr>
 <p><a class="lift" name="assets_root" href="#assets_root">assets_root</a></p>
 <p><code>assets_root : String</code></p>
-<p><span class="small_desc_flat"> no description </span>   </p>
+<p><span class="small_desc_flat"> If the assets are not relative to the runtime root path, this value can adjust all asset paths. This is automatically handled and exists to allow control. </span>   </p>
 <p><a class="lift" name="list" href="#list">list</a></p>
-<p><code>list : Map&lt;String,lumen.AssetInfo&gt;</code></p>
-<p><span class="small_desc_flat"> no description </span>   </p>
+<p><code>list : Map&lt;String,lumen.types.AssetInfo&gt;</code></p>
+<p><span class="small_desc_flat"> The list of assets in the system, added at startup by the <code>App</code> class, in the <code>get_asset_list</code> function </span>   </p>
 <p><a class="lift" name="manifest_path" href="#manifest_path">manifest_path</a></p>
 <p><code>manifest_path : String</code></p>
-<p><span class="small_desc_flat"> no description </span>   </p>
+<p><span class="small_desc_flat"> The manifest file to parse for the asset list. By default, this is set to <code>manifest</code> from the build tools but the <code>App</code> class can have a custom <code>get_asset_list</code> handler use this value. </span>   </p>
+<p>&nbsp;   </p>
 <p>&nbsp;   </p>
 <p><a class="lift" name="Methods" ></a></p>
 <h3 id="methods">Methods</h3>
 <hr>
 <p><a class="lift" name="add" href="#add">add</a></p>
-<p><code>add(_list:Array&lt;lumen.AssetInfo&gt;) : Void</code></p>
-<p><span class="small_desc_flat"> no description </span>   </p>
+<p><code>add(_list:Array&lt;lumen.types.AssetInfo&gt;) : Void</code></p>
+<p><span class="small_desc_flat"> Add an asset list to the system </span>   </p>
 <p><a class="lift" name="exists" href="#exists">exists</a></p>
 <p><code>exists(_id:String) : Bool</code></p>
-<p><span class="small_desc_flat"> no description </span>   </p>
+<p><span class="small_desc_flat"> Check if an asset exists in the system </span>   </p>
 <p><a class="lift" name="get" href="#get">get</a></p>
-<p><code>get(_id:String) : lumen.AssetInfo</code></p>
-<p><span class="small_desc_flat"> no description </span>   </p>
+<p><code>get(_id:String) : lumen.types.AssetInfo</code></p>
+<p><span class="small_desc_flat"> Get an asset from the system </span>   </p>
 <p><a class="lift" name="get_audio" href="#get_audio">get_audio</a></p>
 <p><code>get_audio(_id:String, ?options:lumen.assets.AssetAudioOptions) : lumen.assets.AssetAudio</code></p>
-<p><span class="small_desc_flat"> no description </span>   </p>
+<p><span class="small_desc_flat"> Get an asset as a <code>AssetAudio</code>, used for audio files </span>   </p>
 <p><a class="lift" name="get_bytes" href="#get_bytes">get_bytes</a></p>
 <p><code>get_bytes(_id:String) : lumen.assets.AssetBytes</code></p>
-<p><span class="small_desc_flat"> no description </span>   </p>
+<p><span class="small_desc_flat"> Get an asset as a <code>ByteArray</code>, used for binary assets </span>   </p>
 <p><a class="lift" name="get_image" href="#get_image">get_image</a></p>
 <p><code>get_image(_id:String, ?options:lumen.assets.AssetImageOptions) : lumen.assets.AssetImage</code></p>
-<p><span class="small_desc_flat"> no description </span>   </p>
+<p><span class="small_desc_flat"> Get an asset as a <code>AssetImage</code>, used for image files </span>   </p>
 <p><a class="lift" name="get_text" href="#get_text">get_text</a></p>
 <p><code>get_text(_id:String) : lumen.assets.AssetText</code></p>
-<p><span class="small_desc_flat"> no description </span>   </p>
+<p><span class="small_desc_flat"> Get an asset as a <code>String</code>, used for text based assets </span>   </p>
 <p><a class="lift" name="new" href="#new">new</a></p>
 <p><code>new(_lib:lumen.Lumen)</code></p>
 <p><span class="small_desc_flat"> no description </span>   </p>
 <p><a class="lift" name="path" href="#path">path</a></p>
 <p><code>path(_id:String) : String</code></p>
-<p><span class="small_desc_flat"> no description </span>   </p>
+<p><span class="small_desc_flat"> Get the asset path for an asset, adjusted by platform, root etc. </span>   </p>
 <p>&nbsp;
 &nbsp;
 &nbsp;</p>
