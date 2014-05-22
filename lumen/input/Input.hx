@@ -241,10 +241,15 @@ enum GamepadEventType {
     device_remapped;
 }
 
+/** The states a touch can be in */
 enum TouchState {
+        /** an unknown state */
     unknown;
+        /** touch is down */
     down;
+        /** touch is up */
     up;
+        /** touch is moving */
     move; 
 }
 

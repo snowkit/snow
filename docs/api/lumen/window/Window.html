@@ -59,56 +59,56 @@
 <hr>
 <p><a class="lift" name="asked_config" href="#asked_config">asked_config</a></p>
 <p><code>asked_config : lumen.types.WindowConfig</code></p>
-<p><span class="small_desc_flat"> no description </span>   </p>
+<p><span class="small_desc_flat"> the requested window config </span>   </p>
 <p><a class="lift" name="config" href="#config">config</a></p>
 <p><code>config : lumen.types.WindowConfig</code></p>
-<p><span class="small_desc_flat"> no description </span>   </p>
+<p><span class="small_desc_flat"> the actual returned window config </span>   </p>
 <p><a class="lift" name="fullscreen_desktop" href="#fullscreen_desktop">fullscreen_desktop</a></p>
 <p><code>fullscreen_desktop : Bool</code></p>
-<p><span class="small_desc_flat"> no description </span>   </p>
+<p><span class="small_desc_flat"> set this for fullscreen desktop mode, instead of fullscreen mode </span>   </p>
 <p><a class="lift" name="handle" href="#handle">handle</a></p>
 <p><code>handle : Dynamic</code></p>
-<p><span class="small_desc_flat"> no description </span>   </p>
+<p><span class="small_desc_flat"> the native window handle </span>   </p>
 <p><a class="lift" name="id" href="#id">id</a></p>
 <p><code>id : Int</code></p>
-<p><span class="small_desc_flat"> no description </span>   </p>
+<p><span class="small_desc_flat"> the window id, for tracking events to each window </span>   </p>
 <p><a class="lift" name="manager" href="#manager">manager</a></p>
 <p><code>manager : lumen.window.Windowing</code></p>
-<p><span class="small_desc_flat"> no description </span>   </p>
+<p><span class="small_desc_flat"> the manager this window belongs to </span>   </p>
 <p><a class="lift" name="window_event_handler" href="#window_event_handler">window_event_handler</a></p>
-<p><code>window_event_handler : Dynamic</code></p>
-<p><span class="small_desc_flat"> no description </span>   </p>
+<p><code>window_event_handler : lumen.types.WindowEvent-&gt;Void</code></p>
+<p><span class="small_desc_flat"> the window event handler callback </span>   </p>
 <p><a class="lift" name="window_render_handler" href="#window_render_handler">window_render_handler</a></p>
-<p><code>window_render_handler : Dynamic</code></p>
-<p><span class="small_desc_flat"> no description </span>   </p>
+<p><code>window_render_handler : lumen.window.Window-&gt;Void</code></p>
+<p><span class="small_desc_flat"> the window render handler callback </span>   </p>
 <p>&nbsp;   </p>
 <p><a class="lift" name="Properties" ></a></p>
 <h3 id="properties">Properties</h3>
 <hr>
 <p><a class="lift" name="bordered" href="#bordered">bordered</a></p>
 <p><code>bordered : Bool</code></p>
-<p><span class="small_desc_flat"> no description </span>   </p>
+<p><span class="small_desc_flat"> The window bordered state <code>(read/write)</code> </span>   </p>
 <p><a class="lift" name="fullscreen" href="#fullscreen">fullscreen</a></p>
 <p><code>fullscreen : Bool</code></p>
-<p><span class="small_desc_flat"> no description </span>   </p>
+<p><span class="small_desc_flat"> The window fullscreen state <code>(read/write)</code> </span>   </p>
 <p><a class="lift" name="grab" href="#grab">grab</a></p>
 <p><code>grab : Bool</code></p>
-<p><span class="small_desc_flat"> no description </span>   </p>
+<p><span class="small_desc_flat"> The window grab state <code>(read/write)</code> </span>   </p>
 <p><a class="lift" name="max_size" href="#max_size">max_size</a></p>
 <p><code>max_size : lumen.window.WindowSize</code></p>
-<p><span class="small_desc_flat"> no description </span>   </p>
+<p><span class="small_desc_flat"> The window maximum size <code>(read/write)</code> </span>   </p>
 <p><a class="lift" name="min_size" href="#min_size">min_size</a></p>
 <p><code>min_size : lumen.window.WindowSize</code></p>
-<p><span class="small_desc_flat"> no description </span>   </p>
+<p><span class="small_desc_flat"> The window minimum size <code>(read/write)</code> </span>   </p>
 <p><a class="lift" name="position" href="#position">position</a></p>
 <p><code>position : lumen.window.WindowPosition</code></p>
-<p><span class="small_desc_flat"> no description </span>   </p>
+<p><span class="small_desc_flat"> The window position <code>(read/write)</code> </span>   </p>
 <p><a class="lift" name="size" href="#size">size</a></p>
 <p><code>size : lumen.window.WindowSize</code></p>
-<p><span class="small_desc_flat"> no description </span>   </p>
+<p><span class="small_desc_flat"> The window size <code>(read/write)</code> </span>   </p>
 <p><a class="lift" name="title" href="#title">title</a></p>
 <p><code>title : String</code></p>
-<p><span class="small_desc_flat"> no description </span>   </p>
+<p><span class="small_desc_flat"> The window title <code>(read/write)</code> </span>   </p>
 <p>&nbsp;   </p>
 <p>&nbsp;   </p>
 <p><a class="lift" name="Methods" ></a></p>
@@ -116,40 +116,16 @@
 <hr>
 <p><a class="lift" name="close" href="#close">close</a></p>
 <p><code>close() : Void</code></p>
-<p><span class="small_desc_flat"> no description </span>   </p>
-<p><a class="lift" name="get_bordered" href="#get_bordered">get_bordered</a></p>
-<p><code>get_bordered() : Bool</code></p>
-<p><span class="small_desc_flat"> no description </span>   </p>
-<p><a class="lift" name="get_fullscreen" href="#get_fullscreen">get_fullscreen</a></p>
-<p><code>get_fullscreen() : Bool</code></p>
-<p><span class="small_desc_flat"> no description </span>   </p>
-<p><a class="lift" name="get_grab" href="#get_grab">get_grab</a></p>
-<p><code>get_grab() : Bool</code></p>
-<p><span class="small_desc_flat"> no description </span>   </p>
+<p><span class="small_desc_flat"> Close the window </span>   </p>
 <p><a class="lift" name="new" href="#new">new</a></p>
 <p><code>new(_manager:lumen.window.Windowing, _config:lumen.types.WindowConfig)</code></p>
 <p><span class="small_desc_flat"> no description </span>   </p>
-<p><a class="lift" name="render" href="#render">render</a></p>
-<p><code>render() : Void</code></p>
-<p><span class="small_desc_flat"> no description </span>   </p>
-<p><a class="lift" name="set_bordered" href="#set_bordered">set_bordered</a></p>
-<p><code>set_bordered(_bordered:Bool) : Bool</code></p>
-<p><span class="small_desc_flat"> no description </span>   </p>
-<p><a class="lift" name="set_fullscreen" href="#set_fullscreen">set_fullscreen</a></p>
-<p><code>set_fullscreen(_enable:Bool) : Bool</code></p>
-<p><span class="small_desc_flat"> no description </span>   </p>
-<p><a class="lift" name="set_grab" href="#set_grab">set_grab</a></p>
-<p><code>set_grab(_grab:Bool) : Bool</code></p>
-<p><span class="small_desc_flat"> no description </span>   </p>
 <p><a class="lift" name="simple_message" href="#simple_message">simple_message</a></p>
-<p><code>simple_message(message:String, ?title:String) : Void</code></p>
-<p><span class="small_desc_flat"> no description </span>   </p>
+<p><code>simple_message(message:String, ?title:String=&#39;&#39;) : Void</code></p>
+<p><span class="small_desc_flat"> Display a cross platform message on this window </span>   </p>
 <p><a class="lift" name="swap" href="#swap">swap</a></p>
 <p><code>swap() : Void</code></p>
-<p><span class="small_desc_flat"> no description </span>   </p>
-<p><a class="lift" name="update" href="#update">update</a></p>
-<p><code>update() : Void</code></p>
-<p><span class="small_desc_flat"> no description </span>   </p>
+<p><span class="small_desc_flat"> Swap the back buffer of the window, call after rendering to update the window view </span>   </p>
 <p>&nbsp;
 &nbsp;
 &nbsp;</p>
