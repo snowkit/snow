@@ -47,7 +47,8 @@
             <p><a href="../../../index.html"><img src="../../../images/logo.png" alt="Logo"></a></p>
 <hr>
 <h1 id="audio">Audio</h1>
-<p>&emsp;&emsp;&emsp;home<br><a href="../../../api/index.html#lumen.audio">API Index</a><br>&emsp;&emsp;&emsp;parent<br><a href="../">lumen</a><br>&emsp;&emsp;&emsp;current<br><a href="./">lumen.audio</a> / Audio</p>
+<h2 id="-api-index-api-index-html-lumen-audio-"><a href="../../../api/index.html#lumen.audio">API Index</a></h2>
+<p>&emsp;&emsp;&emsp;parent<br><a href="../">lumen</a><br>&emsp;&emsp;&emsp;current<br><a href="./">lumen.audio</a> / Audio</p>
 <p><br/></p>
 <hr>
 <p><a href="#Members">Members</a><br><a href="#Methods">Methods</a>   </p>
@@ -58,56 +59,42 @@
 <hr>
 <p><a class="lift" name="active" href="#active">active</a></p>
 <p><code>active : Bool</code></p>
-<p><span class="small_desc_flat"> no description </span>   </p>
-<p><a class="lift" name="lib" href="#lib">lib</a></p>
-<p><code>lib : lumen.Lumen</code></p>
-<p><span class="small_desc_flat"> no description </span>   </p>
+<p><span class="small_desc_flat"> Set to false to stop any and all processing in the audio system </span>   </p>
 <p><a class="lift" name="system" href="#system">system</a></p>
 <p><code>system : lumen.audio.system.LumenAudioSystem</code></p>
-<p><span class="small_desc_flat"> no description </span>   </p>
+<p><span class="small_desc_flat"> The implementation of the current audio system </span>   </p>
+<p>&nbsp;   </p>
 <p>&nbsp;   </p>
 <p><a class="lift" name="Methods" ></a></p>
 <h3 id="methods">Methods</h3>
 <hr>
 <p><a class="lift" name="create" href="#create">create</a></p>
 <p><code>create(_id:String, ?_name:String, ?streaming:Bool) : lumen.audio.system.Sound</code></p>
-<p><span class="small_desc_flat"> no description </span>   </p>
-<p><a class="lift" name="destroy" href="#destroy">destroy</a></p>
-<p><code>destroy() : Void</code></p>
-<p><span class="small_desc_flat"> no description </span>   </p>
+<p><span class="small_desc_flat"> Create a sound for playing. If no name is given, a unique id is assigned. Use the sound instance or the public api by name. </span>   </p>
 <p><a class="lift" name="get" href="#get">get</a></p>
 <p><code>get(_name:String) : lumen.audio.system.Sound</code></p>
-<p><span class="small_desc_flat"> no description </span>   </p>
-<p><a class="lift" name="new" href="#new">new</a></p>
-<p><code>new(_lib:lumen.Lumen)</code></p>
-<p><span class="small_desc_flat"> no description </span>   </p>
-<p><a class="lift" name="on_event" href="#on_event">on_event</a></p>
-<p><code>on_event(_event:lumen.SystemEvent) : Void</code></p>
-<p><span class="small_desc_flat"> no description </span>   </p>
+<p><span class="small_desc_flat"> Get a sound instance by name </span>   </p>
 <p><a class="lift" name="pan" href="#pan">pan</a></p>
 <p><code>pan(_name:String, _pan:Float) : Void</code></p>
-<p><span class="small_desc_flat"> no description </span>   </p>
+<p><span class="small_desc_flat"> Set the pan of a sound instance by name </span>   </p>
 <p><a class="lift" name="pause" href="#pause">pause</a></p>
 <p><code>pause(_name:String) : Void</code></p>
-<p><span class="small_desc_flat"> no description </span>   </p>
+<p><span class="small_desc_flat"> Pause a sound instance by name </span>   </p>
 <p><a class="lift" name="pitch" href="#pitch">pitch</a></p>
 <p><code>pitch(_name:String, _pitch:Float) : Void</code></p>
-<p><span class="small_desc_flat"> no description </span>   </p>
+<p><span class="small_desc_flat"> Set the pitch of a sound instance by name </span>   </p>
 <p><a class="lift" name="play" href="#play">play</a></p>
 <p><code>play(_name:String) : Void</code></p>
-<p><span class="small_desc_flat"> no description </span>   </p>
+<p><span class="small_desc_flat"> Play a sound instance by name </span>   </p>
 <p><a class="lift" name="stop" href="#stop">stop</a></p>
 <p><code>stop(_name:String) : Void</code></p>
-<p><span class="small_desc_flat"> no description </span>   </p>
+<p><span class="small_desc_flat"> Stop a sound instance by name </span>   </p>
 <p><a class="lift" name="toggle" href="#toggle">toggle</a></p>
 <p><code>toggle(_name:String) : Void</code></p>
-<p><span class="small_desc_flat"> no description </span>   </p>
-<p><a class="lift" name="update" href="#update">update</a></p>
-<p><code>update() : Void</code></p>
-<p><span class="small_desc_flat"> no description </span>   </p>
+<p><span class="small_desc_flat"> Toggle a sound instance by name, pausing the sound </span>   </p>
 <p><a class="lift" name="volume" href="#volume">volume</a></p>
 <p><code>volume(_name:String, _volume:Float) : Void</code></p>
-<p><span class="small_desc_flat"> no description </span>   </p>
+<p><span class="small_desc_flat"> Set the volume of a sound instance by name </span>   </p>
 <p>&nbsp;
 &nbsp;
 &nbsp;</p>

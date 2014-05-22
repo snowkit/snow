@@ -47,7 +47,12 @@
             <p><a href="../../../../../index.html"><img src="../../../../../images/logo.png" alt="Logo"></a></p>
 <hr>
 <h1 id="soundstreamopenal">SoundStreamOpenAL</h1>
-<p>&emsp;&emsp;&emsp;home<br><a href="../../../../../api/index.html#lumen.audio">API Index</a><br>&emsp;&emsp;&emsp;parent<br><a href="../">lumen.audio.system</a><br>&emsp;&emsp;&emsp;current<br><a href="./">lumen.audio.system.openal</a> / SoundStreamOpenAL</p>
+<hr>
+<p>The openal specific implementation of SoundStream</p>
+<hr>
+<p><br/></p>
+<h2 id="-api-index-api-index-html-lumen-audio-"><a href="../../../../../api/index.html#lumen.audio">API Index</a></h2>
+<p>&emsp;&emsp;&emsp;parent<br><a href="../">lumen.audio.system</a><br>&emsp;&emsp;&emsp;current<br><a href="./">lumen.audio.system.openal</a> / SoundStreamOpenAL</p>
 <p><br/></p>
 <hr>
 <p><a href="#Extends">Extends</a><br><a href="#Members">Members</a><br><a href="#Methods">Methods</a>   </p>
@@ -61,21 +66,20 @@
 <p><a class="lift" name="Members" ></a></p>
 <h3 id="members">Members</h3>
 <hr>
-<p><a class="lift" name="buffer_count" href="#buffer_count">buffer_count</a></p>
-<p><code>buffer_count : Int</code></p>
-<p><span class="small_desc_flat"> no description </span>   </p>
 <p><a class="lift" name="buffers" href="#buffers">buffers</a></p>
 <p><code>buffers : Array&lt;Int&gt;</code></p>
-<p><span class="small_desc_flat"> no description </span>   </p>
+<p><span class="small_desc_flat"> the sound buffer names </span>   </p>
 <p><a class="lift" name="buffers_left" href="#buffers_left">buffers_left</a></p>
 <p><code>buffers_left : Int</code></p>
-<p><span class="small_desc_flat"> no description </span>   </p>
+<p><span class="small_desc_flat"> remaining buffers to play </span>   </p>
 <p><a class="lift" name="format" href="#format">format</a></p>
 <p><code>format : Int</code></p>
-<p><span class="small_desc_flat"> no description </span>   </p>
+<p><span class="small_desc_flat"> mono8? stereo16? </span>   </p>
 <p><a class="lift" name="source" href="#source">source</a></p>
 <p><code>source : Int</code></p>
-<p><span class="small_desc_flat"> no description </span>   </p>
+<p><span class="small_desc_flat"> the sound source name </span>   </p>
+<p>&nbsp;   </p>
+<p>&nbsp;   </p>
 <p>&nbsp;   </p>
 <p><a class="lift" name="Methods" ></a></p>
 <h3 id="methods">Methods</h3>
@@ -96,7 +100,7 @@
 <p><code>loop() : Void</code></p>
 <p><span class="small_desc_flat"> no description </span>   </p>
 <p><a class="lift" name="new" href="#new">new</a></p>
-<p><code>new(_manager:lumen.audio.Audio, _name:String, _audio_info:lumen.AudioInfo)</code></p>
+<p><code>new(_manager:lumen.audio.Audio, _name:String, _audio_info:lumen.types.AudioInfo)</code></p>
 <p><span class="small_desc_flat"> no description </span>   </p>
 <p><a class="lift" name="pause" href="#pause">pause</a></p>
 <p><code>pause() : Void</code></p>
