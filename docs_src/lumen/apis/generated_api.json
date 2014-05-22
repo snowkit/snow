@@ -13,6 +13,7 @@
       ],
       "methods":[
       ],
+      "ispublic":true,
       "doc":""
     },
     { "name": "lumen.audio.al._AL.Device_Impl_",
@@ -28,6 +29,7 @@
       ],
       "methods":[
       ],
+      "ispublic":false,
       "doc":""
     },
     { "name": "lumen.utils.Float32Array",
@@ -104,6 +106,7 @@
             ]
           }
       ],
+      "ispublic":true,
       "doc":""
     },
     { "name": "lumen.utils.native.ByteArray",
@@ -813,6 +816,7 @@
             ]
           }
       ],
+      "ispublic":true,
       "doc":""
     },
     { "name": "lumen.render.gl.GLRenderbuffer",
@@ -857,6 +861,7 @@
             ]
           }
       ],
+      "ispublic":true,
       "doc":""
     },
     { "name": "lumen.window.system.sdl.WindowSystemSDL",
@@ -927,6 +932,7 @@
             ]
           }
       ],
+      "ispublic":true,
       "doc":""
     },
     { "name": "lumen.render.gl.native.GL",
@@ -4527,6 +4533,7 @@
             ]
           }
       ],
+      "ispublic":true,
       "doc":""
     },
     { "name": "lumen.assets.AssetBytes",
@@ -4569,6 +4576,7 @@
             ]
           }
       ],
+      "ispublic":true,
       "doc":""
     },
     { "name": "lumen.assets.Assets",
@@ -5103,6 +5111,7 @@
             ]
           }
       ],
+      "ispublic":true,
       "doc":""
     },
     { "name": "lumen.input.system.sdl.ModValue",
@@ -5250,6 +5259,7 @@
       ],
       "methods":[
       ],
+      "ispublic":true,
       "doc":""
     },
     { "name": "lumen.render.gl.GLTexture",
@@ -5294,6 +5304,7 @@
             ]
           }
       ],
+      "ispublic":true,
       "doc":""
     },
     { "name": "lumen.input.system.sdl.TouchEventTypes",
@@ -5356,6 +5367,7 @@
             ]
           }
       ],
+      "ispublic":true,
       "doc":""
     },
     { "name": "lumen.utils.IDataInput",
@@ -5593,6 +5605,7 @@
             ]
           }
       ],
+      "ispublic":true,
       "doc":""
     },
     { "name": "lumen.io.IO",
@@ -5634,6 +5647,7 @@
             ]
           }
       ],
+      "ispublic":true,
       "doc":""
     },
     { "name": "lumen.utils.Libs",
@@ -5735,6 +5749,7 @@
             ]
           }
       ],
+      "ispublic":true,
       "doc":""
     },
     { "name": "lumen.Lumen",
@@ -6199,6 +6214,7 @@
             ]
           }
       ],
+      "ispublic":true,
       "doc":""
     },
     { "name": "lumen.utils.ArrayBufferView",
@@ -6281,6 +6297,7 @@
             ]
           }
       ],
+      "ispublic":true,
       "doc":""
     },
     { "name": "lumen.AppFixedTimestep",
@@ -6371,6 +6388,7 @@
             ]
           }
       ],
+      "ispublic":true,
       "doc":"Read the App Guide for full info, and for even more information see : http://gafferongames.com/game-physics/fix-your-timestep/\n    this stores and calculates a fixed game update loop, and rendering interpolation is required\n    for smooth updates between frames."
     },
     { "name": "lumen.window.Windowing",
@@ -6676,6 +6694,7 @@
             ]
           }
       ],
+      "ispublic":true,
       "doc":""
     },
     { "name": "lumen.window.system.WindowSystem",
@@ -6767,6 +6786,7 @@
             ]
           }
       ],
+      "ispublic":true,
       "doc":""
     },
     { "name": "lumen.assets.AssetImage",
@@ -6809,6 +6829,7 @@
             ]
           }
       ],
+      "ispublic":true,
       "doc":""
     },
     { "name": "lumen.input.system.InputSystem",
@@ -6928,6 +6949,7 @@
             ]
           }
       ],
+      "ispublic":true,
       "doc":""
     },
     { "name": "lumen.io.IOFile",
@@ -7096,6 +7118,7 @@
             ]
           }
       ],
+      "ispublic":true,
       "doc":""
     },
     { "name": "lumen.audio.system.SoundStream",
@@ -7190,6 +7213,7 @@
             ]
           }
       ],
+      "ispublic":true,
       "doc":""
     },
     { "name": "lumen.assets.AssetText",
@@ -7232,6 +7256,7 @@
             ]
           }
       ],
+      "ispublic":true,
       "doc":""
     },
     { "name": "lumen.input.Keycodes",
@@ -9857,6 +9882,7 @@
             ]
           }
       ],
+      "ispublic":true,
       "doc":""
     },
     { "name": "lumen.input.system.sdl.GamepadEventTypes",
@@ -9952,6 +9978,7 @@
             ]
           }
       ],
+      "ispublic":true,
       "doc":""
     },
     { "name": "lumen.App",
@@ -10389,6 +10416,7 @@
             ]
           }
       ],
+      "ispublic":true,
       "doc":"The default type of application, with variable delta time, or fixed delta time, or a fixed frame rate. See the App guide for complete details."
     },
     { "name": "lumen.input.Input",
@@ -10689,6 +10717,7 @@
             ]
           }
       ],
+      "ispublic":true,
       "doc":""
     },
     { "name": "lumen.render.gl.GLShader",
@@ -10733,6 +10762,7 @@
             ]
           }
       ],
+      "ispublic":true,
       "doc":""
     },
     { "name": "lumen.render.gl.native.Ext",
@@ -10778,6 +10808,7 @@
             ]
           }
       ],
+      "ispublic":true,
       "doc":""
     },
     { "name": "lumen.input.system.sdl.KeyEventTypes",
@@ -10851,6 +10882,7 @@
             ]
           }
       ],
+      "ispublic":true,
       "doc":""
     },
     { "name": "lumen.utils.IMemoryRange",
@@ -10905,6 +10937,7 @@
             ]
           }
       ],
+      "ispublic":true,
       "doc":""
     },
     { "name": "lumen.utils.compat.Vector3D",
@@ -11036,6 +11069,7 @@
             ]
           }
       ],
+      "ispublic":true,
       "doc":""
     },
     { "name": "lumen.audio.system.AudioSystem",
@@ -11166,6 +11200,7 @@
             ]
           }
       ],
+      "ispublic":true,
       "doc":""
     },
     { "name": "lumen.InputEvents",
@@ -11261,6 +11296,7 @@
             ]
           }
       ],
+      "ispublic":true,
       "doc":""
     },
     { "name": "lumen.audio.system.openal.SoundOpenAL",
@@ -11512,6 +11548,7 @@
             ]
           }
       ],
+      "ispublic":true,
       "doc":""
     },
     { "name": "lumen.audio.system.openal.AudioSystemOpenAL",
@@ -11617,6 +11654,7 @@
             ]
           }
       ],
+      "ispublic":true,
       "doc":""
     },
     { "name": "lumen.audio.al.ALC",
@@ -12235,6 +12273,7 @@
             ]
           }
       ],
+      "ispublic":true,
       "doc":""
     },
     { "name": "lumen.utils.compat._Vector.Vector_Impl_",
@@ -12590,6 +12629,7 @@
             ]
           }
       ],
+      "ispublic":false,
       "doc":""
     },
     { "name": "lumen.audio.system.Sound",
@@ -13147,6 +13187,7 @@
             ]
           }
       ],
+      "ispublic":true,
       "doc":""
     },
     { "name": "lumen.assets.Asset",
@@ -13198,6 +13239,7 @@
             ]
           }
       ],
+      "ispublic":true,
       "doc":""
     },
     { "name": "lumen.render.gl.GLObject",
@@ -13352,6 +13394,7 @@
             ]
           }
       ],
+      "ispublic":true,
       "doc":""
     },
     { "name": "lumen.audio.system.openal.SoundStreamOpenAL",
@@ -13729,6 +13772,7 @@
             ]
           }
       ],
+      "ispublic":true,
       "doc":""
     },
     { "name": "lumen.render.gl.GLBuffer",
@@ -13773,6 +13817,7 @@
             ]
           }
       ],
+      "ispublic":true,
       "doc":""
     },
     { "name": "lumen.render.gl.GLProgram",
@@ -13855,6 +13900,7 @@
             ]
           }
       ],
+      "ispublic":true,
       "doc":""
     },
     { "name": "lumen.assets.AssetAudio",
@@ -13897,6 +13943,7 @@
             ]
           }
       ],
+      "ispublic":true,
       "doc":""
     },
     { "name": "lumen.input.Scancodes",
@@ -16563,6 +16610,7 @@
       ],
       "methods":[
       ],
+      "ispublic":true,
       "doc":""
     },
     { "name": "lumen.SystemEvents",
@@ -16746,6 +16794,7 @@
             ]
           }
       ],
+      "ispublic":true,
       "doc":""
     },
     { "name": "lumen.audio.al._AL.Context_Impl_",
@@ -16761,6 +16810,7 @@
       ],
       "methods":[
       ],
+      "ispublic":false,
       "doc":""
     },
     { "name": "lumen.input.system.sdl.InputSystemSDL",
@@ -16887,6 +16937,7 @@
             ]
           }
       ],
+      "ispublic":true,
       "doc":""
     },
     { "name": "lumen.utils.UInt8Array",
@@ -16949,6 +17000,7 @@
             ]
           }
       ],
+      "ispublic":true,
       "doc":""
     },
     { "name": "lumen.WindowEvents",
@@ -17154,6 +17206,7 @@
             ]
           }
       ],
+      "ispublic":true,
       "doc":""
     },
     { "name": "lumen.audio.system.openal.OpenALHelper",
@@ -17197,6 +17250,7 @@
             ]
           }
       ],
+      "ispublic":true,
       "doc":""
     },
     { "name": "lumen.audio.al.AL",
@@ -19984,6 +20038,7 @@
             ]
           }
       ],
+      "ispublic":true,
       "doc":""
     },
     { "name": "lumen.input.system.sdl.MouseEventTypes",
@@ -20057,6 +20112,7 @@
             ]
           }
       ],
+      "ispublic":true,
       "doc":""
     },
     { "name": "lumen.utils.compat.Matrix3D",
@@ -20246,6 +20302,7 @@
             ]
           }
       ],
+      "ispublic":true,
       "doc":""
     },
     { "name": "lumen.render.gl.GLFramebuffer",
@@ -20290,6 +20347,7 @@
             ]
           }
       ],
+      "ispublic":true,
       "doc":""
     },
     { "name": "lumen.audio.Audio",
@@ -20545,6 +20603,7 @@
             ]
           }
       ],
+      "ispublic":true,
       "doc":""
     },
     { "name": "lumen.window.Window",
@@ -21260,6 +21319,7 @@
             ]
           }
       ],
+      "ispublic":true,
       "doc":""
     },
     { "name": "lumen.utils.Int32Array",
@@ -21322,6 +21382,7 @@
             ]
           }
       ],
+      "ispublic":true,
       "doc":""
     }
   ]

@@ -34,8 +34,6 @@
 <a href="lumen/audio/Audio.html">Audio</a> <br/>
 <a href="lumen/audio/al/AL.html">al.AL</a> <br/>
 <a href="lumen/audio/al/ALC.html">al.ALC</a> <br/>
-<a href="lumen/audio/al/_AL/Context_Impl_.html">al._AL.Context_Impl_</a> <br/>
-<a href="lumen/audio/al/_AL/Device_Impl_.html">al._AL.Device_Impl_</a> <br/>
 <a href="lumen/audio/system/AudioSystem.html">system.AudioSystem</a> <br/>
 <a href="lumen/audio/system/Sound.html">system.Sound</a> <br/>
 <a href="lumen/audio/system/SoundStream.html">system.SoundStream</a> <br/>
@@ -94,7 +92,6 @@
 <a href="lumen/utils/compat/Endian.html">compat.Endian</a> <br/>
 <a href="lumen/utils/compat/Matrix3D.html">compat.Matrix3D</a> <br/>
 <a href="lumen/utils/compat/Vector3D.html">compat.Vector3D</a> <br/>
-<a href="lumen/utils/compat/_Vector/Vector_Impl_.html">compat._Vector.Vector_Impl_</a> <br/>
 <a href="lumen/utils/native/ByteArray.html">native.ByteArray</a> <br/>
 
 <a name="lumen.window"/>

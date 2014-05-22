@@ -1,6 +1,34 @@
 &nbsp;   
 <div class="commit_info">
 
+commit [366f40d3f2](http://github.com/underscorediscovery/lumen/commit/366f40d3f22ed8f42dacf465acab92f571dd6ed0)   
+author: underscorediscovery   
+date: Thu May 22 2014 00:49:33 GMT-0230 (NDT)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>not sure why the hell this wants me to commit twice</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [7d6fed4d75](http://github.com/underscorediscovery/lumen/commit/7d6fed4d752094526ffeed8b2114bda68534efcb)   
+author: underscorediscovery   
+date: Thu May 22 2014 00:49:19 GMT-0230 (NDT)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Cleaning up docs and removing dependency on pygments so docs generator can be more standalone</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
 commit [6363836cc0](http://github.com/underscorediscovery/lumen/commit/6363836cc035c3f2a9015c9238ca7730b160f95f)   
 author: underscorediscovery   
 date: Wed May 21 2014 04:20:57 GMT-0230 (NDT)   
