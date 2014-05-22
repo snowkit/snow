@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+    
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <link rel="shortcut icon" href="../../images/favicon.png" />
+
+        <link rel="stylesheet" type="text/css" href="../../css/style.css" media="all">
+        <link rel="stylesheet" type="text/css" href="../../css/code.css" media="all">
+        <link rel="stylesheet" type="text/css" href="../../css/font.css" media="all">
+        
+        <script src="../../js/jquery-2.0.3.min.js"> </script>
+
+        <script>
+
+            $(document).ready(function() {
+
+                $('.section').css('display','none');
+                $('.readmore').click(function(e){
+                    var _child = $(this).parent().find('.section').first();
+                    var _opp = 'block';
+                    if( _child.css('display') == 'block' ) {
+                        _opp = 'none';
+                        $(this).text('more ...');
+                    } else {
+                        $(this).text('less ...');
+                    }
+                    _child.css('display', _opp);
+                });
+
+                $('div.sample').on('click', function(e){
+                        //get the data tag
+                    var content = $(this).attr('data-content');
+                        //remove clicking handler
+                    $(this).off('click');
+                        //replace the content!
+                    $(this).html('<iframe src="'+content+'" sandbox="allow-same-origin allow-scripts" style="overflow:hidden; scrollbar:none; border: 0; width:645px; height:450px;"></iframe> ')
+                });
+
+            }); //document.ready
+
+        </script>
+    </head>
+
+    <body>
+        <div class="content">
+            <p><a href="../../index.html"><img src="../../images/logo.png" alt="Logo"></a></p>
+<hr>
+<h1 id="windowevents">WindowEvents</h1>
+<p>&emsp;&emsp;&emsp;home<br><a href="../../api/index.html#lumen">API Index</a><br>&emsp;&emsp;&emsp;parent<br><em>none</em><br>&emsp;&emsp;&emsp;current<br><a href="./">lumen</a> / WindowEvents</p>
+<p><br/></p>
+<hr>
+<p><a href="#Members">Members</a><br><a href="#Methods">Methods</a>   </p>
+<hr>
+<p>&nbsp;   </p>
+<p><a class="lift" name="Members" ></a></p>
+<h3 id="members">Members</h3>
+<hr>
+<p><a class="lift" name="we_close" href="#we_close">we_close</a></p>
+<p><code>we_close : Int</code></p>
+<p><span class="small_desc_flat"> A window is being closed </span>   </p>
+<p><a class="lift" name="we_created" href="#we_created">we_created</a></p>
+<p><code>we_created : Int</code></p>
+<p><span class="small_desc_flat"> A window is created </span>   </p>
+<p><a class="lift" name="we_enter" href="#we_enter">we_enter</a></p>
+<p><code>we_enter : Int</code></p>
+<p><span class="small_desc_flat"> A window is entered by a mouse </span>   </p>
+<p><a class="lift" name="we_exposed" href="#we_exposed">we_exposed</a></p>
+<p><code>we_exposed : Int</code></p>
+<p><span class="small_desc_flat"> A window is exposed </span>   </p>
+<p><a class="lift" name="we_focus_gained" href="#we_focus_gained">we_focus_gained</a></p>
+<p><code>we_focus_gained : Int</code></p>
+<p><span class="small_desc_flat"> A window has gained focus </span>   </p>
+<p><a class="lift" name="we_focus_lost" href="#we_focus_lost">we_focus_lost</a></p>
+<p><code>we_focus_lost : Int</code></p>
+<p><span class="small_desc_flat"> A window has lost focus </span>   </p>
+<p><a class="lift" name="we_hidden" href="#we_hidden">we_hidden</a></p>
+<p><code>we_hidden : Int</code></p>
+<p><span class="small_desc_flat"> A window is hidden </span>   </p>
+<p><a class="lift" name="we_leave" href="#we_leave">we_leave</a></p>
+<p><code>we_leave : Int</code></p>
+<p><span class="small_desc_flat"> A window is left by a mouse </span>   </p>
+<p><a class="lift" name="we_maximized" href="#we_maximized">we_maximized</a></p>
+<p><code>we_maximized : Int</code></p>
+<p><span class="small_desc_flat"> A window is maximized </span>   </p>
+<p><a class="lift" name="we_minimized" href="#we_minimized">we_minimized</a></p>
+<p><code>we_minimized : Int</code></p>
+<p><span class="small_desc_flat"> A window is minimized </span>   </p>
+<p><a class="lift" name="we_moved" href="#we_moved">we_moved</a></p>
+<p><code>we_moved : Int</code></p>
+<p><span class="small_desc_flat"> A window is moved </span>   </p>
+<p><a class="lift" name="we_resized" href="#we_resized">we_resized</a></p>
+<p><code>we_resized : Int</code></p>
+<p><span class="small_desc_flat"> A window is resized, by the user or code. </span>   </p>
+<p><a class="lift" name="we_restored" href="#we_restored">we_restored</a></p>
+<p><code>we_restored : Int</code></p>
+<p><span class="small_desc_flat"> A window is restored </span>   </p>
+<p><a class="lift" name="we_shown" href="#we_shown">we_shown</a></p>
+<p><code>we_shown : Int</code></p>
+<p><span class="small_desc_flat"> A window is shown </span>   </p>
+<p><a class="lift" name="we_size_changed" href="#we_size_changed">we_size_changed</a></p>
+<p><code>we_size_changed : Int</code></p>
+<p><span class="small_desc_flat"> A window is resized, by the OS or internals. </span>   </p>
+<p><a class="lift" name="we_unknown" href="#we_unknown">we_unknown</a></p>
+<p><code>we_unknown : Int</code></p>
+<p><span class="small_desc_flat"> An unknown window event </span>   </p>
+<p>&nbsp;   </p>
+<p><a class="lift" name="Methods" ></a></p>
+<h3 id="methods">Methods</h3>
+<hr>
+<p><a class="lift" name="typed" href="#typed">typed</a></p>
+<p><code>typed(type:Int) : lumen.WindowEventType</code></p>
+<p><span class="small_desc_flat"> returns a typed <code>WindowEventType</code> from an integer ID, for communication between internal native + haxe code </span>   </p>
+<p>&nbsp;
+&nbsp;
+&nbsp;</p>
+<hr>
+<p>&nbsp;<br>&nbsp;   </p>
+
+        </div>
+    </body>
+
+</html>

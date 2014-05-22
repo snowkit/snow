@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html>
+    
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <link rel="shortcut icon" href="../../../../../images/favicon.png" />
+
+        <link rel="stylesheet" type="text/css" href="../../../../../css/style.css" media="all">
+        <link rel="stylesheet" type="text/css" href="../../../../../css/code.css" media="all">
+        <link rel="stylesheet" type="text/css" href="../../../../../css/font.css" media="all">
+        
+        <script src="../../../../../js/jquery-2.0.3.min.js"> </script>
+
+        <script>
+
+            $(document).ready(function() {
+
+                $('.section').css('display','none');
+                $('.readmore').click(function(e){
+                    var _child = $(this).parent().find('.section').first();
+                    var _opp = 'block';
+                    if( _child.css('display') == 'block' ) {
+                        _opp = 'none';
+                        $(this).text('more ...');
+                    } else {
+                        $(this).text('less ...');
+                    }
+                    _child.css('display', _opp);
+                });
+
+                $('div.sample').on('click', function(e){
+                        //get the data tag
+                    var content = $(this).attr('data-content');
+                        //remove clicking handler
+                    $(this).off('click');
+                        //replace the content!
+                    $(this).html('<iframe src="'+content+'" sandbox="allow-same-origin allow-scripts" style="overflow:hidden; scrollbar:none; border: 0; width:645px; height:450px;"></iframe> ')
+                });
+
+            }); //document.ready
+
+        </script>
+    </head>
+
+    <body>
+        <div class="content">
+            <p><a href="../../../../../index.html"><img src="../../../../../images/logo.png" alt="Logo"></a></p>
+<hr>
+<h1 id="gl">GL</h1>
+<p>&emsp;&emsp;&emsp;home<br><a href="../../../../../api/index.html#lumen.render">API Index</a><br>&emsp;&emsp;&emsp;parent<br><a href="../">lumen.render.gl</a><br>&emsp;&emsp;&emsp;current<br><a href="./">lumen.render.gl.native</a> / GL</p>
+<p><br/></p>
+<hr>
+<p><a href="#Properties">Properties</a><br><a href="#Methods">Methods</a>   </p>
+<hr>
+<p>&nbsp;   </p>
+<p>&nbsp;   </p>
+<p><a class="lift" name="Properties" ></a></p>
+<h3 id="properties">Properties</h3>
+<hr>
+<p><a class="lift" name="version" href="#version">version</a></p>
+<p><code>version : Int</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p>&nbsp;   </p>
+<p><a class="lift" name="Methods" ></a></p>
+<h3 id="methods">Methods</h3>
+<hr>
+<p><a class="lift" name="activeTexture" href="#activeTexture">activeTexture</a></p>
+<p><code>activeTexture(texture:Int) : Void</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="attachShader" href="#attachShader">attachShader</a></p>
+<p><code>attachShader(program:lumen.render.gl.GLProgram, shader:lumen.render.gl.GLShader) : Void</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="bindAttribLocation" href="#bindAttribLocation">bindAttribLocation</a></p>
+<p><code>bindAttribLocation(program:lumen.render.gl.GLProgram, index:Int, name:String) : Void</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="bindBuffer" href="#bindBuffer">bindBuffer</a></p>
+<p><code>bindBuffer(target:Int, buffer:lumen.render.gl.GLBuffer) : Void</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="bindFramebuffer" href="#bindFramebuffer">bindFramebuffer</a></p>
+<p><code>bindFramebuffer(target:Int, framebuffer:lumen.render.gl.GLFramebuffer) : Void</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="bindRenderbuffer" href="#bindRenderbuffer">bindRenderbuffer</a></p>
+<p><code>bindRenderbuffer(target:Int, renderbuffer:lumen.render.gl.GLRenderbuffer) : Void</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="bindTexture" href="#bindTexture">bindTexture</a></p>
+<p><code>bindTexture(target:Int, texture:lumen.render.gl.GLTexture) : Void</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="blendColor" href="#blendColor">blendColor</a></p>
+<p><code>blendColor(red:Float, green:Float, blue:Float, alpha:Float) : Void</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="blendEquation" href="#blendEquation">blendEquation</a></p>
+<p><code>blendEquation(mode:Int) : Void</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="blendEquationSeparate" href="#blendEquationSeparate">blendEquationSeparate</a></p>
+<p><code>blendEquationSeparate(modeRGB:Int, modeAlpha:Int) : Void</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="blendFunc" href="#blendFunc">blendFunc</a></p>
+<p><code>blendFunc(sfactor:Int, dfactor:Int) : Void</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="blendFuncSeparate" href="#blendFuncSeparate">blendFuncSeparate</a></p>
+<p><code>blendFuncSeparate(srcRGB:Int, dstRGB:Int, srcAlpha:Int, dstAlpha:Int) : Void</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="bufferData" href="#bufferData">bufferData</a></p>
+<p><code>bufferData(target:Int, data:lumen.utils.IMemoryRange, usage:Int) : Void</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="bufferSubData" href="#bufferSubData">bufferSubData</a></p>
+<p><code>bufferSubData(target:Int, offset:Int, data:lumen.utils.IMemoryRange) : Void</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="checkFramebufferStatus" href="#checkFramebufferStatus">checkFramebufferStatus</a></p>
+<p><code>checkFramebufferStatus(target:Int) : Int</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="clear" href="#clear">clear</a></p>
+<p><code>clear(mask:Int) : Void</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="clearColor" href="#clearColor">clearColor</a></p>
+<p><code>clearColor(red:Float, green:Float, blue:Float, alpha:Float) : Void</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="clearDepth" href="#clearDepth">clearDepth</a></p>
+<p><code>clearDepth(depth:Float) : Void</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="clearStencil" href="#clearStencil">clearStencil</a></p>
+<p><code>clearStencil(s:Int) : Void</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="colorMask" href="#colorMask">colorMask</a></p>
+<p><code>colorMask(red:Bool, green:Bool, blue:Bool, alpha:Bool) : Void</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="compileShader" href="#compileShader">compileShader</a></p>
+<p><code>compileShader(shader:lumen.render.gl.GLShader) : Void</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="compressedTexImage2D" href="#compressedTexImage2D">compressedTexImage2D</a></p>
+<p><code>compressedTexImage2D(target:Int, level:Int, internalformat:Int, width:Int, height:Int, border:Int, data:lumen.utils.IMemoryRange) : Void</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="compressedTexSubImage2D" href="#compressedTexSubImage2D">compressedTexSubImage2D</a></p>
+<p><code>compressedTexSubImage2D(target:Int, level:Int, xoffset:Int, yoffset:Int, width:Int, height:Int, format:Int, data:lumen.utils.IMemoryRange) : Void</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="copyTexImage2D" href="#copyTexImage2D">copyTexImage2D</a></p>
+<p><code>copyTexImage2D(target:Int, level:Int, internalformat:Int, x:Int, y:Int, width:Int, height:Int, border:Int) : Void</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="copyTexSubImage2D" href="#copyTexSubImage2D">copyTexSubImage2D</a></p>
+<p><code>copyTexSubImage2D(target:Int, level:Int, xoffset:Int, yoffset:Int, x:Int, y:Int, width:Int, height:Int) : Void</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="createBuffer" href="#createBuffer">createBuffer</a></p>
+<p><code>createBuffer() : lumen.render.gl.GLBuffer</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="createFramebuffer" href="#createFramebuffer">createFramebuffer</a></p>
+<p><code>createFramebuffer() : lumen.render.gl.GLFramebuffer</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="createProgram" href="#createProgram">createProgram</a></p>
+<p><code>createProgram() : lumen.render.gl.GLProgram</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="createRenderbuffer" href="#createRenderbuffer">createRenderbuffer</a></p>
+<p><code>createRenderbuffer() : lumen.render.gl.GLRenderbuffer</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="createShader" href="#createShader">createShader</a></p>
+<p><code>createShader(type:Int) : lumen.render.gl.GLShader</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="createTexture" href="#createTexture">createTexture</a></p>
+<p><code>createTexture() : lumen.render.gl.GLTexture</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="cullFace" href="#cullFace">cullFace</a></p>
+<p><code>cullFace(mode:Int) : Void</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="deleteBuffer" href="#deleteBuffer">deleteBuffer</a></p>
+<p><code>deleteBuffer(buffer:lumen.render.gl.GLBuffer) : Void</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="deleteFramebuffer" href="#deleteFramebuffer">deleteFramebuffer</a></p>
+<p><code>deleteFramebuffer(framebuffer:lumen.render.gl.GLFramebuffer) : Void</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="deleteProgram" href="#deleteProgram">deleteProgram</a></p>
+<p><code>deleteProgram(program:lumen.render.gl.GLProgram) : Void</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="deleteRenderbuffer" href="#deleteRenderbuffer">deleteRenderbuffer</a></p>
+<p><code>deleteRenderbuffer(renderbuffer:lumen.render.gl.GLRenderbuffer) : Void</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="deleteShader" href="#deleteShader">deleteShader</a></p>
+<p><code>deleteShader(shader:lumen.render.gl.GLShader) : Void</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="deleteTexture" href="#deleteTexture">deleteTexture</a></p>
+<p><code>deleteTexture(texture:lumen.render.gl.GLTexture) : Void</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="depthFunc" href="#depthFunc">depthFunc</a></p>
+<p><code>depthFunc(func:Int) : Void</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="depthMask" href="#depthMask">depthMask</a></p>
+<p><code>depthMask(flag:Bool) : Void</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="depthRange" href="#depthRange">depthRange</a></p>
+<p><code>depthRange(zNear:Float, zFar:Float) : Void</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="detachShader" href="#detachShader">detachShader</a></p>
+<p><code>detachShader(program:lumen.render.gl.GLProgram, shader:lumen.render.gl.GLShader) : Void</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="disable" href="#disable">disable</a></p>
+<p><code>disable(cap:Int) : Void</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="disableVertexAttribArray" href="#disableVertexAttribArray">disableVertexAttribArray</a></p>
+<p><code>disableVertexAttribArray(index:Int) : Void</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="drawArrays" href="#drawArrays">drawArrays</a></p>
+<p><code>drawArrays(mode:Int, first:Int, count:Int) : Void</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="drawElements" href="#drawElements">drawElements</a></p>
+<p><code>drawElements(mode:Int, count:Int, type:Int, offset:Int) : Void</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="enable" href="#enable">enable</a></p>
+<p><code>enable(cap:Int) : Void</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="enableVertexAttribArray" href="#enableVertexAttribArray">enableVertexAttribArray</a></p>
+<p><code>enableVertexAttribArray(index:Int) : Void</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="finish" href="#finish">finish</a></p>
+<p><code>finish() : Void</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="flush" href="#flush">flush</a></p>
+<p><code>flush() : Void</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="framebufferRenderbuffer" href="#framebufferRenderbuffer">framebufferRenderbuffer</a></p>
+<p><code>framebufferRenderbuffer(target:Int, attachment:Int, renderbuffertarget:Int, renderbuffer:lumen.render.gl.GLRenderbuffer) : Void</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="framebufferTexture2D" href="#framebufferTexture2D">framebufferTexture2D</a></p>
+<p><code>framebufferTexture2D(target:Int, attachment:Int, textarget:Int, texture:lumen.render.gl.GLTexture, level:Int) : Void</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="frontFace" href="#frontFace">frontFace</a></p>
+<p><code>frontFace(mode:Int) : Void</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="generateMipmap" href="#generateMipmap">generateMipmap</a></p>
+<p><code>generateMipmap(target:Int) : Void</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="getActiveAttrib" href="#getActiveAttrib">getActiveAttrib</a></p>
+<p><code>getActiveAttrib(program:lumen.render.gl.GLProgram, index:Int) : lumen.render.gl.GLActiveInfo</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="getActiveUniform" href="#getActiveUniform">getActiveUniform</a></p>
+<p><code>getActiveUniform(program:lumen.render.gl.GLProgram, index:Int) : lumen.render.gl.GLActiveInfo</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="getAttachedShaders" href="#getAttachedShaders">getAttachedShaders</a></p>
+<p><code>getAttachedShaders(program:lumen.render.gl.GLProgram) : Array&lt;lumen.render.gl.GLShader&gt;</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="getAttribLocation" href="#getAttribLocation">getAttribLocation</a></p>
+<p><code>getAttribLocation(program:lumen.render.gl.GLProgram, name:String) : Int</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="getBufferParameter" href="#getBufferParameter">getBufferParameter</a></p>
+<p><code>getBufferParameter(target:Int, pname:Int) : Dynamic</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="getContextAttributes" href="#getContextAttributes">getContextAttributes</a></p>
+<p><code>getContextAttributes() : lumen.render.gl.GLContextAttributes</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="getError" href="#getError">getError</a></p>
+<p><code>getError() : Int</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="getExtension" href="#getExtension">getExtension</a></p>
+<p><code>getExtension(name:String) : Dynamic</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="getFramebufferAttachmentParameter" href="#getFramebufferAttachmentParameter">getFramebufferAttachmentParameter</a></p>
+<p><code>getFramebufferAttachmentParameter(target:Int, attachment:Int, pname:Int) : Dynamic</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="getParameter" href="#getParameter">getParameter</a></p>
+<p><code>getParameter(pname:Int) : Dynamic</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="getProgramInfoLog" href="#getProgramInfoLog">getProgramInfoLog</a></p>
+<p><code>getProgramInfoLog(program:lumen.render.gl.GLProgram) : String</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="getProgramParameter" href="#getProgramParameter">getProgramParameter</a></p>
+<p><code>getProgramParameter(program:lumen.render.gl.GLProgram, pname:Int) : Int</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="getRenderbufferParameter" href="#getRenderbufferParameter">getRenderbufferParameter</a></p>
+<p><code>getRenderbufferParameter(target:Int, pname:Int) : Dynamic</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="getShaderInfoLog" href="#getShaderInfoLog">getShaderInfoLog</a></p>
+<p><code>getShaderInfoLog(shader:lumen.render.gl.GLShader) : String</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="getShaderParameter" href="#getShaderParameter">getShaderParameter</a></p>
+<p><code>getShaderParameter(shader:lumen.render.gl.GLShader, pname:Int) : Int</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="getShaderPrecisionFormat" href="#getShaderPrecisionFormat">getShaderPrecisionFormat</a></p>
+<p><code>getShaderPrecisionFormat(shadertype:Int, precisiontype:Int) : lumen.render.gl.native.ShaderPrecisionFormat</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="getShaderSource" href="#getShaderSource">getShaderSource</a></p>
+<p><code>getShaderSource(shader:lumen.render.gl.GLShader) : String</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="getSupportedExtensions" href="#getSupportedExtensions">getSupportedExtensions</a></p>
+<p><code>getSupportedExtensions() : Array&lt;String&gt;</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="getTexParameter" href="#getTexParameter">getTexParameter</a></p>
+<p><code>getTexParameter(target:Int, pname:Int) : Dynamic</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="getUniform" href="#getUniform">getUniform</a></p>
+<p><code>getUniform(program:lumen.render.gl.GLProgram, location:lumen.render.gl.GLUniformLocation) : Dynamic</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="getUniformLocation" href="#getUniformLocation">getUniformLocation</a></p>
+<p><code>getUniformLocation(program:lumen.render.gl.GLProgram, name:String) : Dynamic</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="getVertexAttrib" href="#getVertexAttrib">getVertexAttrib</a></p>
+<p><code>getVertexAttrib(index:Int, pname:Int) : Dynamic</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="getVertexAttribOffset" href="#getVertexAttribOffset">getVertexAttribOffset</a></p>
+<p><code>getVertexAttribOffset(index:Int, pname:Int) : Int</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="hint" href="#hint">hint</a></p>
+<p><code>hint(target:Int, mode:Int) : Void</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="isBuffer" href="#isBuffer">isBuffer</a></p>
+<p><code>isBuffer(buffer:lumen.render.gl.GLBuffer) : Bool</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="isEnabled" href="#isEnabled">isEnabled</a></p>
+<p><code>isEnabled(cap:Int) : Bool</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="isFramebuffer" href="#isFramebuffer">isFramebuffer</a></p>
+<p><code>isFramebuffer(framebuffer:lumen.render.gl.GLFramebuffer) : Bool</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="isProgram" href="#isProgram">isProgram</a></p>
+<p><code>isProgram(program:lumen.render.gl.GLProgram) : Bool</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="isRenderbuffer" href="#isRenderbuffer">isRenderbuffer</a></p>
+<p><code>isRenderbuffer(renderbuffer:lumen.render.gl.GLRenderbuffer) : Bool</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="isShader" href="#isShader">isShader</a></p>
+<p><code>isShader(shader:lumen.render.gl.GLShader) : Bool</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="isTexture" href="#isTexture">isTexture</a></p>
+<p><code>isTexture(texture:lumen.render.gl.GLTexture) : Bool</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="lineWidth" href="#lineWidth">lineWidth</a></p>
+<p><code>lineWidth(width:Float) : Void</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="linkProgram" href="#linkProgram">linkProgram</a></p>
+<p><code>linkProgram(program:lumen.render.gl.GLProgram) : Void</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="pixelStorei" href="#pixelStorei">pixelStorei</a></p>
+<p><code>pixelStorei(pname:Int, param:Int) : Void</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="polygonOffset" href="#polygonOffset">polygonOffset</a></p>
+<p><code>polygonOffset(factor:Float, units:Float) : Void</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="readPixels" href="#readPixels">readPixels</a></p>
+<p><code>readPixels(x:Int, y:Int, width:Int, height:Int, format:Int, type:Int, pixels:lumen.utils.ArrayBufferView) : Void</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="renderbufferStorage" href="#renderbufferStorage">renderbufferStorage</a></p>
+<p><code>renderbufferStorage(target:Int, internalformat:Int, width:Int, height:Int) : Void</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="sampleCoverage" href="#sampleCoverage">sampleCoverage</a></p>
+<p><code>sampleCoverage(value:Float, invert:Bool) : Void</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="scissor" href="#scissor">scissor</a></p>
+<p><code>scissor(x:Int, y:Int, width:Int, height:Int) : Void</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="shaderSource" href="#shaderSource">shaderSource</a></p>
+<p><code>shaderSource(shader:lumen.render.gl.GLShader, source:String) : Void</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="stencilFunc" href="#stencilFunc">stencilFunc</a></p>
+<p><code>stencilFunc(func:Int, ref:Int, mask:Int) : Void</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="stencilFuncSeparate" href="#stencilFuncSeparate">stencilFuncSeparate</a></p>
+<p><code>stencilFuncSeparate(face:Int, func:Int, ref:Int, mask:Int) : Void</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="stencilMask" href="#stencilMask">stencilMask</a></p>
+<p><code>stencilMask(mask:Int) : Void</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="stencilMaskSeparate" href="#stencilMaskSeparate">stencilMaskSeparate</a></p>
+<p><code>stencilMaskSeparate(face:Int, mask:Int) : Void</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="stencilOp" href="#stencilOp">stencilOp</a></p>
+<p><code>stencilOp(fail:Int, zfail:Int, zpass:Int) : Void</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="stencilOpSeparate" href="#stencilOpSeparate">stencilOpSeparate</a></p>
+<p><code>stencilOpSeparate(face:Int, fail:Int, zfail:Int, zpass:Int) : Void</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="texImage2D" href="#texImage2D">texImage2D</a></p>
+<p><code>texImage2D(target:Int, level:Int, internalformat:Int, width:Int, height:Int, border:Int, format:Int, type:Int, pixels:lumen.utils.ArrayBufferView) : Void</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="texParameterf" href="#texParameterf">texParameterf</a></p>
+<p><code>texParameterf(target:Int, pname:Int, param:Float) : Void</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="texParameteri" href="#texParameteri">texParameteri</a></p>
+<p><code>texParameteri(target:Int, pname:Int, param:Int) : Void</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="texSubImage2D" href="#texSubImage2D">texSubImage2D</a></p>
+<p><code>texSubImage2D(target:Int, level:Int, xoffset:Int, yoffset:Int, width:Int, height:Int, format:Int, type:Int, pixels:lumen.utils.ArrayBufferView) : Void</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="uniform1f" href="#uniform1f">uniform1f</a></p>
+<p><code>uniform1f(location:lumen.render.gl.GLUniformLocation, x:Float) : Void</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="uniform1fv" href="#uniform1fv">uniform1fv</a></p>
+<p><code>uniform1fv(location:lumen.render.gl.GLUniformLocation, x:lumen.utils.Float32Array) : Void</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="uniform1i" href="#uniform1i">uniform1i</a></p>
+<p><code>uniform1i(location:lumen.render.gl.GLUniformLocation, x:Int) : Void</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="uniform1iv" href="#uniform1iv">uniform1iv</a></p>
+<p><code>uniform1iv(location:lumen.render.gl.GLUniformLocation, v:lumen.utils.Int32Array) : Void</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="uniform2f" href="#uniform2f">uniform2f</a></p>
+<p><code>uniform2f(location:lumen.render.gl.GLUniformLocation, x:Float, y:Float) : Void</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="uniform2fv" href="#uniform2fv">uniform2fv</a></p>
+<p><code>uniform2fv(location:lumen.render.gl.GLUniformLocation, v:lumen.utils.Float32Array) : Void</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="uniform2i" href="#uniform2i">uniform2i</a></p>
+<p><code>uniform2i(location:lumen.render.gl.GLUniformLocation, x:Int, y:Int) : Void</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="uniform2iv" href="#uniform2iv">uniform2iv</a></p>
+<p><code>uniform2iv(location:lumen.render.gl.GLUniformLocation, v:lumen.utils.Int32Array) : Void</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="uniform3f" href="#uniform3f">uniform3f</a></p>
+<p><code>uniform3f(location:lumen.render.gl.GLUniformLocation, x:Float, y:Float, z:Float) : Void</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="uniform3fv" href="#uniform3fv">uniform3fv</a></p>
+<p><code>uniform3fv(location:lumen.render.gl.GLUniformLocation, v:lumen.utils.Float32Array) : Void</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="uniform3i" href="#uniform3i">uniform3i</a></p>
+<p><code>uniform3i(location:lumen.render.gl.GLUniformLocation, x:Int, y:Int, z:Int) : Void</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="uniform3iv" href="#uniform3iv">uniform3iv</a></p>
+<p><code>uniform3iv(location:lumen.render.gl.GLUniformLocation, v:lumen.utils.Int32Array) : Void</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="uniform4f" href="#uniform4f">uniform4f</a></p>
+<p><code>uniform4f(location:lumen.render.gl.GLUniformLocation, x:Float, y:Float, z:Float, w:Float) : Void</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="uniform4fv" href="#uniform4fv">uniform4fv</a></p>
+<p><code>uniform4fv(location:lumen.render.gl.GLUniformLocation, v:lumen.utils.Float32Array) : Void</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="uniform4i" href="#uniform4i">uniform4i</a></p>
+<p><code>uniform4i(location:lumen.render.gl.GLUniformLocation, x:Int, y:Int, z:Int, w:Int) : Void</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="uniform4iv" href="#uniform4iv">uniform4iv</a></p>
+<p><code>uniform4iv(location:lumen.render.gl.GLUniformLocation, v:lumen.utils.Int32Array) : Void</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="uniformMatrix2fv" href="#uniformMatrix2fv">uniformMatrix2fv</a></p>
+<p><code>uniformMatrix2fv(location:lumen.render.gl.GLUniformLocation, transpose:Bool, v:lumen.utils.Float32Array) : Void</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="uniformMatrix3D" href="#uniformMatrix3D">uniformMatrix3D</a></p>
+<p><code>uniformMatrix3D(location:lumen.render.gl.GLUniformLocation, transpose:Bool, matrix:lumen.utils.compat.Matrix3D) : Void</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="uniformMatrix3fv" href="#uniformMatrix3fv">uniformMatrix3fv</a></p>
+<p><code>uniformMatrix3fv(location:lumen.render.gl.GLUniformLocation, transpose:Bool, v:lumen.utils.Float32Array) : Void</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="uniformMatrix4fv" href="#uniformMatrix4fv">uniformMatrix4fv</a></p>
+<p><code>uniformMatrix4fv(location:lumen.render.gl.GLUniformLocation, transpose:Bool, v:lumen.utils.Float32Array) : Void</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="useProgram" href="#useProgram">useProgram</a></p>
+<p><code>useProgram(program:lumen.render.gl.GLProgram) : Void</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="validateProgram" href="#validateProgram">validateProgram</a></p>
+<p><code>validateProgram(program:lumen.render.gl.GLProgram) : Void</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="versionString" href="#versionString">versionString</a></p>
+<p><code>versionString() : String</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="vertexAttrib1f" href="#vertexAttrib1f">vertexAttrib1f</a></p>
+<p><code>vertexAttrib1f(indx:Int, x:Float) : Void</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="vertexAttrib1fv" href="#vertexAttrib1fv">vertexAttrib1fv</a></p>
+<p><code>vertexAttrib1fv(indx:Int, values:lumen.utils.Float32Array) : Void</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="vertexAttrib2f" href="#vertexAttrib2f">vertexAttrib2f</a></p>
+<p><code>vertexAttrib2f(indx:Int, x:Float, y:Float) : Void</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="vertexAttrib2fv" href="#vertexAttrib2fv">vertexAttrib2fv</a></p>
+<p><code>vertexAttrib2fv(indx:Int, values:lumen.utils.Float32Array) : Void</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="vertexAttrib3f" href="#vertexAttrib3f">vertexAttrib3f</a></p>
+<p><code>vertexAttrib3f(indx:Int, x:Float, y:Float, z:Float) : Void</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="vertexAttrib3fv" href="#vertexAttrib3fv">vertexAttrib3fv</a></p>
+<p><code>vertexAttrib3fv(indx:Int, values:lumen.utils.Float32Array) : Void</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="vertexAttrib4f" href="#vertexAttrib4f">vertexAttrib4f</a></p>
+<p><code>vertexAttrib4f(indx:Int, x:Float, y:Float, z:Float, w:Float) : Void</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="vertexAttrib4fv" href="#vertexAttrib4fv">vertexAttrib4fv</a></p>
+<p><code>vertexAttrib4fv(indx:Int, values:lumen.utils.Float32Array) : Void</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="vertexAttribPointer" href="#vertexAttribPointer">vertexAttribPointer</a></p>
+<p><code>vertexAttribPointer(indx:Int, size:Int, type:Int, normalized:Bool, stride:Int, offset:Int) : Void</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="viewport" href="#viewport">viewport</a></p>
+<p><code>viewport(x:Int, y:Int, width:Int, height:Int) : Void</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p>&nbsp;
+&nbsp;
+&nbsp;</p>
+<hr>
+<p>&nbsp;<br>&nbsp;   </p>
+
+        </div>
+    </body>
+
+</html>
