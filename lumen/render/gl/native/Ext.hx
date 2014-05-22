@@ -2,7 +2,7 @@ package lumen.render.gl.native;
 
 import lumen.utils.Libs;
 
-class Ext {
+@:noCompletion class Ext {
 
     public static function drawBuffers( n:Int, buffers:Int ){ 
         #if luxe_gl_extensions

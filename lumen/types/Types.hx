@@ -4,36 +4,67 @@ import lumen.Lumen;
 import lumen.utils.ByteArray;
 
 
+/** 
+Information for a single asset 
+
+`id` : the asset id   
+`path` : the location of the asset   
+`ext` : the asset extension, if any   
+`type` : a convenience type indicator   
+
+*/
 typedef AssetInfo = {
 
-    id : String,            //the asset id
-    path : String,          //the asset actual path
-    ext : String,           //the asset extension
-    type : String           //a type indicator
+    id : String,
+    path : String,
+    ext : String,
+    type : String
 
 }
 
+/** 
+The lumen core configuration information
+
+`? host` : the bootstrapped application   
+`? window_config` : the window config for a default window, if any   
+`? run_loop` : whether or not the core should run a loop at all   
+`? runtime_config` : the user specific config read from json at runtime   
+`? asset_data` : the raw list of assets. use the app.assets from Lumen for access   
+
+*/
 typedef LumenConfig = {
 
-    ? host                  : App,              //the bootstrapped application
-    ? window_config         : WindowConfig,     //the window config for a default window, if any
-    ? run_loop              : Bool,             //whether or not the core should run a loop at all
-    ? runtime_config        : Dynamic,          //the user specific config read from json at runtime
-    ? asset_data            : Array<AssetInfo>  //the raw list of assets. use the app.assets from Lumen for access
+    ? host                  : App, 
+    ? window_config         : WindowConfig, 
+    ? run_loop              : Bool, 
+    ? runtime_config        : Dynamic, 
+    ? asset_data            : Array<AssetInfo>
 
 } //LumenConfig
 
+/**
+Information about an image file/data
+
+`id` : source asset id   
+`bpp` : used bits per pixel   
+`width` : image width   
+`height` : image height   
+`bpp_source` : source bits per pixel   
+`data` : image data   
+
+*/
 typedef ImageInfo = {
 
-    id : String,        //source asset id
-    bpp : Int,          //used bits per pixel
-    width : Int,        //image width
-    height : Int,       //image height
-    bpp_source : Int,   //source bits per pixel
-    data : ByteArray    //image data
+    id : String,
+    bpp : Int,
+    width : Int,
+    height : Int,
+    bpp_source : Int,
+    data : ByteArray 
 
 } //ImageInfo
 
+/** The type of audio format */
 enum AudioFormatType {
 
     unknown;
@@ -43,21 +74,43 @@ enum AudioFormatType {
 
 } //AudioFormatType
 
+/** 
+Information about an audio file/data
+
+`id` : file source   
+`format` : format   
+`channels` : number of channels   
+`rate` : hz rate    
+`bitrate` : sound bitrate   
+`bits_per_sample` : bits per sample, 8 / 16   
+`data` : sound raw data,   
+`length` : the file length in bytes   
+`length_pcm` : the pcm uncompressed raw length in bytes   
+`handle` : the native audio handle for later manipulation   
+
+*/
 typedef AudioInfo = {
 
-    id : String,                //file source
-    format : AudioFormatType,   //format
-    channels : Int,             //number of channels
-    rate : Int,                 //hz rate 
-    bitrate : Int,              //sound bitrate
-    bits_per_sample : Int,      //bits per sample, 8 / 16
-    data : ByteArray,           //sound raw data,
-    length : Int,               //the file length in bytes
-    length_pcm : Int,           //the pcm uncompressed raw length in bytes
-    handle : Dynamic            //the native audio handle for later manipulation
+    id : String,
+    format : AudioFormatType,
+    channels : Int,
+    rate : Int,
+    bitrate : Int,
+    bits_per_sample : Int,
+    data : ByteArray,
+    length : Int,
+    length_pcm : Int,
+    handle : Dynamic 
 
 } //AudioInfo
 
+/** 
+Information about an audio portion requested via assets
+
+`complete` : True if the file has reached the end in this blob   
+`data` : The data stored in this blob   
+
+*/
 typedef AudioDataBlob = {
 
     data : ByteArray,
@@ -65,6 +118,25 @@ typedef AudioDataBlob = {
     
 } //AudioDataBlob
 
+/** 
+Window configuration information for creating windows
+
+`? fullscreen` : create in fullscreen   
+`? resizable` : allow the window to be resized   
+`? borderless` : create as a borderless window   
+`? antialiasing` : a value of `2`, `4`, `8` or other valid antialiasing flags   
+`? stencil_buffer` : create a stencil buffer (not per window)   
+`? depth_buffer` : create a depth buffer (not per window)   
+`? vsync` : enable vsync (not per window)   
+`? fps` : window max fps if any   
+`? x` : window y at creation   
+`? y` : window x at creation   
+`? width` : window height at creation   
+`? height` : window width at creation   
+`? title` : window title   
+`? orientation` : `Mobile specific` - window orientation setting   
+
+*/
 typedef WindowConfig = {
 
     ? fullscreen            : Bool,
@@ -87,19 +159,26 @@ typedef WindowConfig = {
 
 } //WindowConfig
 
+/** 
+A system event. 
+Values below are null unless the event `type` matches. _i.e_ if type is `window`, the `window` value is not null, and so on */
 typedef SystemEvent = {
 
     ? type : SystemEventType,
-
-        //certain events have data structures passed in
-        //which are null if that event is not of the right type
-        //so, if this event.type == se_window, window should be non-null
-        //and populated with the specifics to that event
     ? window : WindowEvent,
     ? input : InputEvent
 
 } //SystemEvent
 
+/** 
+A system window event 
+
+`? type` : The type of window event this was   
+`? timestamp` : The time in seconds that this event occured, useful for deltas   
+`? window_id` : The window id from which this event originated   
+`? event` : The raw platform event data   
+
+*/
 typedef WindowEvent = {
 
     ? type : WindowEventType,
@@ -109,6 +188,15 @@ typedef WindowEvent = {
 
 } //WindowEvent
 
+/** 
+A system input event 
+   
+`? type` : The type of input event this was   
+`? timestamp` : The time in seconds that this event occured, useful for deltas   
+`? window_id` : The window id from which this event originated   
+`? event` : The raw platform event data   
+
+*/
 typedef InputEvent = {
 
     ? type : InputEventType,
@@ -119,103 +207,123 @@ typedef InputEvent = {
 } //InputEvent
 
 
+/** A typed system event */
 enum SystemEventType {
 
+/** An unknown system event */
     unknown;
-
+/** An internal system init event */
     init;
+/** An internal system ready event */
     ready;
+/** An internal system update event */
     update;
+/** An system shutdown event */
     shutdown;
+/** An system window event */
     window;
+/** An system input event */
     input;
-
+/** An system quit event. Initiated by user, can be cancelled/ignored */
     quit;
+/** An system terminating event, called by the OS (mobile specific) */
     app_terminating;
+/** An system low memory event, clear memory if you can. Called by the OS (mobile specific) */
     app_lowmemory;
+/** An event for just before the app enters the background, called by the OS (mobile specific) */
     app_willenterbackground;
+/** An event for when the app enters the background, called by the OS (mobile specific) */
     app_didenterbackground;
+/** An event for just before the app enters the foreground, called by the OS (mobile specific) */
     app_willenterforeground;
+/** An event for when the app enters the foreground, called by the OS (mobile specific) */
     app_didenterforeground;
+
 
 } //SystemEventType
 
 //Window stuff
 
+/** A typed window event */
 enum WindowEventType {
 
+/** An unknown window event */
     unknown;
-
+/** A window is created */
     window_created;
+/** A window is shown */
     window_shown;
+/** A window is hidden */
     window_hidden;
+/** A window is exposed */
     window_exposed;
+/** A window is moved */
     window_moved;
+/** A window is resized, by the user or code. */
     window_resized;
+/** A window is resized, by the OS or internals. */
     window_size_changed;
+/** A window is minimized */
     window_minimized;
+/** A window is maximized */
     window_maximized;
+/** A window is restored */
     window_restored;
+/** A window is entered by a mouse */
     window_enter;
+/** A window is left by a mouse */
     window_leave;
+/** A window has gained focus */
     window_focus_gained;
+/** A window has lost focus */
     window_focus_lost;
+/** A window is being closed */
     window_close;
 
 } //WindowEventType
 
-
+/** A typed input event */
 enum InputEventType {
 
+/** An unknown input event */
     unknown;
-
+/** An keyboard input event */
     key;
+/** An mouse input event */    
     mouse;
+/** An touch input event */    
     touch;
+/** An joystick input event. On mobile, accellerometer is a joystick (for now) */    
     joystick;
+/** An controller input event. Use these instead of joystick on desktop. */    
     controller;
 
 } //InputEventType
 
-class SystemEvents {
+@:noCompletion class SystemEvents {
 
         //lumen core events
 
-        /** An unknown system event */
     public static var se_unknown                    = 0;
-        /** An internal system init event */
     public static var se_init                       = 1;
-        /** An internal system ready event */
     public static var se_ready                      = 2;
-        /** An internal system update event */
     public static var se_update                     = 3;
-        /** An system shutdown event */
     public static var se_shutdown                   = 4;
-        /** An system window event */
     public static var se_window                     = 5;
-        /** An system input event */
     public static var se_input                      = 6;
 
         //lumen application events
 
-        /** An system quit event. Initiated by user, can be cancelled/ignored */
     public static var se_quit                       = 7;
-        /** An system terminating event, called by the OS (mobile specific) */
     public static var se_app_terminating            = 8;
-        /** An system low memory event, clear memory if you can. Called by the OS (mobile specific) */
     public static var se_app_lowmemory              = 9;
-        /** An event for just before the app enters the background, called by the OS (mobile specific) */
     public static var se_app_willenterbackground    = 10;
-        /** An event for when the app enters the background, called by the OS (mobile specific) */
     public static var se_app_didenterbackground     = 11;
-        /** An event for just before the app enters the foreground, called by the OS (mobile specific) */
     public static var se_app_willenterforeground    = 12;
-        /** An event for when the app enters the foreground, called by the OS (mobile specific) */
     public static var se_app_didenterforeground     = 13;
 
 //Helpers
     
-        /** returns a typed `SystemEventType` from an integer ID, for communication between internal native + haxe code */
     public static function typed(type:Int) : SystemEventType {
 
             if(type == se_init)                         return SystemEventType.init;
@@ -239,41 +347,25 @@ class SystemEvents {
 
 } //SystemEvents
 
-class WindowEvents {
+@:noCompletion class WindowEvents {
 
 //window events
     
-        /** An unknown window event */
     public static var we_unknown          = 0;
-        /** A window is created */
     public static var we_created          = 1;
-        /** A window is shown */
     public static var we_shown            = 2;
-        /** A window is hidden */
     public static var we_hidden           = 3;
-        /** A window is exposed */
     public static var we_exposed          = 4;
-        /** A window is moved */
     public static var we_moved            = 5;
-        /** A window is resized, by the user or code. */
     public static var we_resized          = 6;
-        /** A window is resized, by the OS or internals. */
     public static var we_size_changed     = 7;
-        /** A window is minimized */
     public static var we_minimized        = 8;
-        /** A window is maximized */
     public static var we_maximized        = 9;
-        /** A window is restored */
     public static var we_restored         = 10;
-        /** A window is entered by a mouse */
     public static var we_enter            = 11;
-        /** A window is left by a mouse */
     public static var we_leave            = 12;
-        /** A window has gained focus */        
     public static var we_focus_gained     = 13;
-        /** A window has lost focus */        
     public static var we_focus_lost       = 14;
-        /** A window is being closed */        
     public static var we_close            = 15;
 
 //Helpers
@@ -303,22 +395,15 @@ class WindowEvents {
 
 } //WindowEvents
 
-class InputEvents {
+@:noCompletion class InputEvents {
     
 //Input events
 
-            /** An unknown input event */
         public static var ie_unknown                    = 0;
-
-            /** An keyboard input event */
         public static var ie_key                        = 1;
-            /** An mouse input event */
         public static var ie_mouse                      = 2;
-            /** An touch input event */
         public static var ie_touch                      = 3;
-            /** An joystick input event. On mobile, accellerometer is a joystick (for now) */
         public static var ie_joystick                   = 4;
-            /** An controller input event. Use these instead of joystick on desktop. */
         public static var ie_controller                 = 5;
 
 //Helpers

@@ -46,14 +46,11 @@
         <div class="content">
             <p><a href="../../index.html"><img src="../../images/logo.png" alt="Logo"></a></p>
 <hr>
-<h1 id="app">App</h1>
-<hr>
-<p>The default type of application, with variable delta time, or fixed delta time, or a fixed frame rate. See the App guide for complete details.</p>
-<hr>
-<p><br/></p>
 <h2 id="-api-index-api-index-html-lumen-"><a href="../../api/index.html#lumen">API Index</a></h2>
-<p>&emsp;&emsp;&emsp;parent<br><em>none</em><br>&emsp;&emsp;&emsp;current<br><a href="./">lumen</a> / App</p>
-<p><br/></p>
+<p>&emsp;&emsp;&emsp;<a href="./">lumen</a><br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;App</p>
+<hr>
+<h1 id="app">App</h1>
+<p>The default type of application, with variable delta time, or fixed delta time, or a fixed frame rate. See the App guide for complete details.</p>
 <hr>
 <p><a href="#Members">Members</a><br><a href="#Methods">Methods</a>   </p>
 <hr>
@@ -104,7 +101,7 @@
 <p><span class="small_desc_flat"> override this if you want to change how the runtime config is loaded/handled </span>   </p>
 <p><a class="lift" name="new" href="#new">new</a></p>
 <p><code>new()</code></p>
-<p><span class="small_desc_flat"> no description </span>   </p>
+<p><span class="small_desc_flat"> The default constructor of an App is empty, so you can override it if you want, but take note that this happens way before lumen is ready for use. </span>   </p>
 <p><a class="lift" name="ongamepadaxis" href="#ongamepadaxis">ongamepadaxis</a></p>
 <p><code>ongamepadaxis(_event:lumen.input.GamepadEvent) : Void</code></p>
 <p><span class="small_desc_flat"> Called when a connected gamepad axis moves, use <code>which</code> to determine gamepad id </span>   </p>

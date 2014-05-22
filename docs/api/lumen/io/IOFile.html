@@ -46,10 +46,12 @@
         <div class="content">
             <p><a href="../../../index.html"><img src="../../../images/logo.png" alt="Logo"></a></p>
 <hr>
-<h1 id="iofile">IOFile</h1>
 <h2 id="-api-index-api-index-html-lumen-io-"><a href="../../../api/index.html#lumen.io">API Index</a></h2>
-<p>&emsp;&emsp;&emsp;parent<br><a href="../">lumen</a><br>&emsp;&emsp;&emsp;current<br><a href="./">lumen.io</a> / IOFile</p>
-<p><br/></p>
+<p><a href="../">lumen</a><br>&emsp;&emsp;&emsp;<a href="./">lumen.io</a><br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;IOFile</p>
+<hr>
+<h1 id="iofile">IOFile</h1>
+<p>This class is a low level cross platform file access helper, that handles in bundle assets etc. 
+    If you want a file, use <code>Assets</code> instead, unless really required.</p>
 <hr>
 <p><a href="#Members">Members</a><br><a href="#Methods">Methods</a>   </p>
 <hr>
@@ -59,7 +61,7 @@
 <hr>
 <p><a class="lift" name="handle" href="#handle">handle</a></p>
 <p><code>handle : Dynamic</code></p>
-<p><span class="small_desc_flat"> no description </span>   </p>
+<p><span class="small_desc_flat"> The internal native file handle </span>   </p>
 <p>&nbsp;   </p>
 <p>&nbsp;   </p>
 <p><a class="lift" name="Methods" ></a></p>
@@ -67,22 +69,19 @@
 <hr>
 <p><a class="lift" name="close" href="#close">close</a></p>
 <p><code>close() : Dynamic</code></p>
-<p><span class="small_desc_flat"> no description </span>   </p>
-<p><a class="lift" name="new" href="#new">new</a></p>
-<p><code>new(_handle:Dynamic)</code></p>
-<p><span class="small_desc_flat"> no description </span>   </p>
+<p><span class="small_desc_flat"> Close the file </span>   </p>
 <p><a class="lift" name="read" href="#read">read</a></p>
 <p><code>read(dest:lumen.utils.ByteArray, size:Int, maxnum:Int) : Dynamic</code></p>
-<p><span class="small_desc_flat"> no description </span>   </p>
+<p><span class="small_desc_flat"> Read a <code>maxnum</code> of items of <code>size</code> in bytes, into <code>dest</code>. Same signature/returns as <code>fread</code> </span>   </p>
 <p><a class="lift" name="seek" href="#seek">seek</a></p>
 <p><code>seek(offset:Int, whence:Int) : Dynamic</code></p>
-<p><span class="small_desc_flat"> no description </span>   </p>
+<p><span class="small_desc_flat"> Seek <code>offset</code> from <code>whence</code>, where whence is an int matching <code>set=0</code>, <code>cur=1</code>, <code>end=2</code>. Same signature/returns as <code>fseek</code> </span>   </p>
 <p><a class="lift" name="tell" href="#tell">tell</a></p>
 <p><code>tell() : Dynamic</code></p>
-<p><span class="small_desc_flat"> no description </span>   </p>
+<p><span class="small_desc_flat"> Tell the current position in the file, in bytes </span>   </p>
 <p><a class="lift" name="write" href="#write">write</a></p>
 <p><code>write(src:lumen.utils.ByteArray, size:Int, num:Int) : Dynamic</code></p>
-<p><span class="small_desc_flat"> no description </span>   </p>
+<p><span class="small_desc_flat"> Write <code>num</code> of items of <code>size</code> in bytes, from <code>src</code> into this file. Same signature/returns as <code>fwrite</code> </span>   </p>
 <p>&nbsp;
 &nbsp;
 &nbsp;</p>

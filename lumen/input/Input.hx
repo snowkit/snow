@@ -21,7 +21,7 @@ class Input {
     var key_code_pressed : Map<Int, Bool>;
     var key_code_released : Map<Int, Bool>;
 
-    public function new( _lib:Lumen ) {
+    @:noCompletion public function new( _lib:Lumen ) {
 
         lib = _lib;
 
@@ -35,30 +35,26 @@ class Input {
 
     } //new
 
+
 //Public facing API
 
-        //these use Key.* values, not Scan.*
+
+        /** returns true if the `Key` value was pressed in the latest frame */
     public function keypressed( _code:Int ) {
         return key_code_pressed.exists(_code);
     } //keypressed
 
+        /** returns true if the `Key` value was released in the latest frame */
     public function keyreleased( _code:Int ) {
         return key_code_released.exists(_code);
     } //keyreleased
 
+        /** returns true if the `Key` value is down at the time of calling this */
     public function keydown( _code:Int ) {
        return key_code_down.exists(_code);
     } //keydown
 
-
-    public function on_event( _event:SystemEvent ) {
-
-        if(_event.type == SystemEventType.input) {
-            system.on_event( _event.input );
-        } //only input events
-
-    } //on_event
-
+        /** manually dispatch a keyboard event through the system, delivered to the app handlers, internal and external */
     public function dispatch_key_event( _event:KeyEvent ) {
 
         if(_event.state == PressedState.up) {
@@ -86,12 +82,14 @@ class Input {
 
     } //dispatch_key_event
 
+        /** manually dispatch a text event through the system, delivered to the app handlers, internal and external */
     public function dispatch_text_event( _event:TextEvent ) {
             
         lib.host.ontextinput(_event);
 
     } //dispatch_text_event
 
+        /** manually dispatch a mouse event through the system, delivered to the app handlers, internal and external */
     public function dispatch_mouse_event( _event:MouseEvent ) {
 
         if(_event.state == MouseState.down) {
@@ -106,6 +104,7 @@ class Input {
 
     } //dispatch_mouse_event
 
+        /** manually dispatch a touch event through the system, delivered to the app handlers, internal and external */
     public function dispatch_touch_event( _event:TouchEvent ) {
 
         if(_event.state == TouchState.down) {
@@ -118,6 +117,7 @@ class Input {
 
     } //dispatch_touch_event
 
+        /** manually dispatch a gamepad event through the system, delivered to the app handlers, internal and external */
     public function dispatch_gamepad_event( _event:GamepadEvent ) {
 
         if(_event.type == GamepadEventType.axis) {
@@ -140,19 +140,37 @@ class Input {
 
     } //dispatch_gamepad_event
 
-    public function on_gamepad_added( _event:Dynamic ) {
+        /** Helper to return a `ModState` (shift, ctrl etc) from a given `InputEvent` */
+    public function mod_state_from_event( event:InputEvent ) {
+
+        return system.mod_state_from_event( event );
+
+    } //mod_state_from_event
+    
+//Interal API
+
+
+    @:noCompletion public function on_event( _event:SystemEvent ) {
+
+        if(_event.type == SystemEventType.input) {
+            system.on_event( _event.input );
+        } //only input events
+
+    } //on_event
+
+    @:noCompletion public function on_gamepad_added( _event:Dynamic ) {
         
         lumen_gamepad_open( _event.which );
 
     } //on_gamepad_added
     
-    public function on_gamepad_removed( _event:Dynamic ) {
+    @:noCompletion public function on_gamepad_removed( _event:Dynamic ) {
         
         lumen_gamepad_close( _event.which );
 
     } //on_gamepad_removed
 
-    public function update() {
+    @:noCompletion public function update() {
 
         system.update();
 
@@ -186,75 +204,131 @@ class Input {
 
     } //update
 
-    public function destroy() {
+    @:noCompletion public function destroy() {
 
         system.destroy();
 
     } //destroy
 
-    public function mod_state_from_event( event:InputEvent ) {
-
-        return system.mod_state_from_event( event );
-
-    } //mod_state_from_event
 
     static var lumen_gamepad_open = Lumen.load( "lumen", "lumen_gamepad_open", 1 );
     static var lumen_gamepad_close = Lumen.load( "lumen", "lumen_gamepad_close", 1 );
 
 } //Input
 
+/** A typed state for buttons or similar */
 enum PressedState {
-    unknown;
-    down;
-    up;
-}
 
+/** An unknown state */
+    unknown;
+/** In a pressed state */
+    down;
+/** In a released state */
+    up;
+
+} //PressedState
+
+/** A typed mouse state */
 enum MouseState {
+
+/** An unknown state */
     unknown;
+/** In a pressed state */
     down;
+/** In a released state */
     up;
+/** In a moving state */
     move;
+/** A mouse wheel state */
     wheel;
-}
 
+} //MouseState
+
+/** A typed mouse button id */
 enum MouseButton {
+
+/** no mouse buttons */
     none;
+/** left mouse button */
     left;
+/** middle mouse button */
     middle;
+/** right mouse button */
     right;
+/** extra button pressed (4) */
     extra1;
+/** extra button pressed (5) */
     extra2;
-}   
 
+} //MouseButton
+
+/** A typed text event type */
 enum TextEventType {
-    unknown;
-    edit;
-    input;
-}
 
-enum GamepadEventType {
+/** An unknown event */
     unknown;
+/** An edit text typing event */
+    edit;
+/** An input text typing event */
+    input;
+
+} //TextEventType
+
+/** A typed gamepad event type */
+enum GamepadEventType {
+
+/** An unknown event */
+    unknown;
+/** An axis change event */    
     axis;
+/** A button event */    
     button;
+/** A device added event */    
     device_added;
+/** A device removed event */    
     device_removed;
+/** A device was remapped */    
     device_remapped;
-}
+
+} //GamepadEventType
 
 /** The states a touch can be in */
 enum TouchState {
-        /** an unknown state */
-    unknown;
-        /** touch is down */
-    down;
-        /** touch is up */
-    up;
-        /** touch is moving */
-    move; 
-}
 
-/** Input modifier state */
+/** an unknown state */
+    unknown;
+/** touch is down */
+    down;
+/** touch is up */
+    up;
+/** touch is moving */
+    move; 
+
+} //TouchState
+
+/** 
+Input modifier state 
+
+`none` : no modifiers are down   
+`lshift` : left shift key is down   
+`rshift` : right shift key is down   
+`lctrl` : left ctrl key is down   
+`rctrl` : right ctrl key is down   
+`lalt` : left alt/option key is down   
+`ralt` : right alt/option key is down   
+`lmeta` : left windows/command key is down   
+`rmeta` : right windows/command key is down   
+`num` : numlock is enabled   
+`caps` : capslock is enabled   
+`mode` : mode key is down   
+`ctrl` : left or right ctrl key is down   
+`shift` : left or right shift key is down   
+`alt` : left or right alt/option key is down   
+`meta` : left or right windows/command key is down   
+
+*/
 typedef ModState = {
+
     none : Bool,
     lshift : Bool,
     rshift : Bool,
@@ -271,9 +345,26 @@ typedef ModState = {
     shift : Bool,
     alt : Bool,
     meta : Bool
+
 } //ModState
 
+/** 
+Information about a mouse event 
+
+`raw` : The raw event from the system, unmodified   
+`timestamp` : The time in seconds when this touch event occurred, use for deltas   
+`window_id` : The window id this event originated from    
+`which` : Which mouse this event originated from (usually 0)   
+`state` : The state this event is in   
+`button` : The button id, if the event `state` is `down` or `up`   
+`x` : The x position in the window of the mouse event   
+`y` : The y position in the window of the mouse event   
+`xrel` : The relative x position if `state` is `move` or a window has grabbed state   
+`yrel` : The relative y position if `state` is `move` or a window has grabbed state   
+
+*/
 typedef MouseEvent = {
+
     raw : InputEvent,
     timestamp : Float,
     window_id : Int,
@@ -283,21 +374,50 @@ typedef MouseEvent = {
     x : Int,
     y : Int,
     xrel : Int,
-    yrel : Int,
+    yrel : Int
+
 } //MouseEvent
 
+/** 
+Information about a keyboard event
+
+`raw` : The raw event from the system, unmodified   
+`scancode` : The `lumen.input.Scan` code value for this event   
+`keycode` : The `lumen.input.Key` code value for this event   
+`state` : The state of the key in this event   
+`mod` : The modifier state of this event   
+`repeat` : If this value is bigger than 0 this is a key repeat event of a key held down   
+`timestamp` : The time in seconds when this touch event occurred, use for deltas   
+`window_id` : The window id this event originated from   
+
+*/
 typedef KeyEvent = {
+
     raw : InputEvent,
     scancode : Int,
-    keycode : Int,
-    state : PressedState,
+    keycode : Int,    
+    state : PressedState,    
     mod : ModState,
-    repeat : Bool,
-    timestamp : Float,
+    repeat : Bool,    
+    timestamp : Float,    
     window_id : Int
+
 } //KeyEvent
 
+/** 
+Information about a text input event
+
+`raw` : The raw event from the system, unmodified   
+`text` : The text that this event has generated   
+`type` : The type of text event   
+`timestamp` : The time in seconds when this touch event occurred, use for deltas   
+`window_id` : The window id this event originated from   
+`start` : The start position, if the `type` is `edit`   
+`length` : The length position, if the `type` is `edit`   
+
+*/
 typedef TextEvent = {
+
     raw : InputEvent,
     text : String,
     type : TextEventType,
@@ -305,9 +425,24 @@ typedef TextEvent = {
     window_id : Int,
     start : Int,
     length : Int
+
 } //TextEvent
 
+/** 
+Information about a gamepad event
+
+`raw` : The raw event from the system, unmodified   
+`timestamp` : The time in seconds when this touch event occurred, use for deltas   
+`type` : The button id, if the event `type` is `button`   
+`state` : The state this event is in   
+`which` : The id of the gamepad this event comes from   
+`button` : The button id, if the event `type` is `button`   
+`axis` : The axis id, if the event `type` is `button`   
+`value` : The axis value, if the event `type` is `axis`   
+
+*/
 typedef GamepadEvent = {
+
     raw : InputEvent,
     timestamp : Float,
     type : GamepadEventType,
@@ -316,9 +451,26 @@ typedef GamepadEvent = {
     button : Int,
     axis : Int,
     value : Int
+
 } //GamepadEvent
 
+/** 
+Information about a touch event
+
+`raw` : The raw event from the system, unmodified   
+`state` : The state this touch event is in   
+`timestamp` : The time in seconds when this touch event occurred, use for deltas   
+`touch_id` : The id of the touch that this event comes from, a finger id   
+`device_id` : The device id this touch comes from   
+`x` : The x position in the window of the touch event   
+`y` : The x position in the window of the touch event   
+`dx` : The delta x value of the touch event, if the state is `moving`   
+`dy` : The delta y value of the touch event, if the state is `moving`   
+`pressure` : The pressure value of the touch event, where available   
+
+*/
 typedef TouchEvent = {
+
     raw : InputEvent,
     state : TouchState,
     timestamp : Float,
@@ -329,6 +481,7 @@ typedef TouchEvent = {
     dx : Float, 
     dy : Float,
     pressure : Float
-}
+
+} //TouchEvent
 
 

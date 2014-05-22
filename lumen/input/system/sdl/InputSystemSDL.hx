@@ -7,7 +7,7 @@ import lumen.input.Input;
 
 #if lumen_input_sdl
     
-    enum KeyEventType {
+    @:noCompletion enum KeyEventType {
         unknown;
         down;
         up;
@@ -15,7 +15,7 @@ import lumen.input.Input;
         textinput;
     }
 
-    enum MouseEventType { 
+    @:noCompletion enum MouseEventType { 
         unknown;
         move;
         down;
@@ -23,7 +23,7 @@ import lumen.input.Input;
         wheel;
     }
 
-    enum ControllerEventType {
+    @:noCompletion enum ControllerEventType {
         unknown;
         button_up;
         button_down;
@@ -33,7 +33,7 @@ import lumen.input.Input;
         remapped;
     }
 
-    class KeyEventTypes {
+    @:noCompletion class KeyEventTypes {
 
         static var ke_down : Int        = 768;
         static var ke_up : Int          = 769;
@@ -53,7 +53,7 @@ import lumen.input.Input;
 
     } //KeyEventTypes
 
-    class GamepadEventTypes {
+    @:noCompletion class GamepadEventTypes {
 
         static var ge_axis : Int            = 1616;
         static var ge_button_down : Int     = 1617;
@@ -77,7 +77,7 @@ import lumen.input.Input;
 
     } //GamepadEventTypes
 
-    class TouchEventTypes {
+    @:noCompletion class TouchEventTypes {
         static var te_down      : Int = 1792;
         static var te_up        : Int = 1793;
         static var te_move      : Int = 1794;
@@ -93,7 +93,7 @@ import lumen.input.Input;
 
     } //TouchEventTypes
 
-    class MouseEventTypes {
+    @:noCompletion class MouseEventTypes {
 
         static var me_move  : Int     = 1024;
         static var me_down  : Int     = 1025;
@@ -113,7 +113,7 @@ import lumen.input.Input;
 
     } //MouseEventTypes
 
-class ModValue {
+@:noCompletion class ModValue {
 
     public static var NONE         = 0x0000;
     public static var LSHIFT       = 0x0001;
@@ -131,7 +131,7 @@ class ModValue {
 } 
 
 /** Internal input system, concrete SDL implementation. Accessed through `lumen.Input`, not directly */
-    class InputSystemSDL extends InputSystem {
+    @:noCompletion class InputSystemSDL extends InputSystem {
 
         @:noCompletion override public function init() {
         } //init

@@ -5,16 +5,16 @@ import lumen.window.Windowing;
 
 #if lumen_window_sdl
 
-    typedef LumenWindowSystem = lumen.window.system.sdl.WindowSystemSDL;
+    @:noCompletion typedef LumenWindowSystem = lumen.window.system.sdl.WindowSystemSDL;
 
 #else
 
-    typedef LumenWindowSystem = lumen.input.system.WindowSystem;
+    @:noCompletion typedef LumenWindowSystem = lumen.input.system.WindowSystem;
 
 #end //lumen_window_sdl
 
-
-class WindowSystem {
+    //Internal class handled by Windowing, a less concrete implementation of the window system 
+@:noCompletion class WindowSystem {
 
     var manager : Windowing;
     var lib : Lumen;

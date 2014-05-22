@@ -6,7 +6,7 @@ import lumen.utils.ByteArray;
 import lumen.utils.Libs;
 
 
-/**  An asset base class */
+/**  An asset base class. Get assets from the `Assets` class, via `app.assets` */
 class Asset {
         /** The id of this asset like `assets/image.png` */
     public var id : String;
@@ -21,7 +21,7 @@ class Asset {
 } //Asset
 
 
-/**  An asset that contains byte `data` as a `ByteArray` */
+/**  An asset that contains byte `data` as a `ByteArray`. Get assets from the `Assets` class, via `app.assets` */
 class AssetBytes extends Asset {
 
         /** The `ByteArray` this asset contains */
@@ -33,7 +33,7 @@ class AssetBytes extends Asset {
 
 } //AssetBytes
 
-/**  An asset that contains `text` as a `String` */
+/**  An asset that contains `text` as a `String`. Get assets from the `Assets` class, via `app.assets` */
 class AssetText extends Asset {
 
         /** The `String` this asset contains */
@@ -45,12 +45,12 @@ class AssetText extends Asset {
 
 } //AssetText
 
-/**  The options for an `AssetImage` asset */
+/**  The options for an `AssetImage` asset. Get assets from the `Assets` class, via `app.assets` */
 typedef AssetImageOptions = {
     components : Int
 } //AssetImageOptions
 
-/**  An asset that contains image file `data` as an `ImageInfo` */
+/**  An asset that contains image file `data` as an `ImageInfo`. Get assets from the `Assets` class, via `app.assets` */
 class AssetImage extends Asset {
 
         /** The `ImageInfo` this asset contains */
@@ -69,7 +69,7 @@ typedef AssetAudioOptions = {
     ? load : Bool
 } //AssetAudioOptions
 
-/**  An asset that contains audio file `data` as an `AudioInfo` */
+/**  An asset that contains audio file `data` as an `AudioInfo`. Get assets from the `Assets` class, via `app.assets` */
 class AssetAudio extends Asset {
 
         /** The `AudioInfo` this asset contains */
