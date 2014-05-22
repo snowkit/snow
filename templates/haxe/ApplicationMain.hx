@@ -1,7 +1,7 @@
 import ::APP_MAIN::;
 
 import lumen.Lumen;
-import lumen.LumenTypes;
+import lumen.types.Types;
 
 class ApplicationMain {
 

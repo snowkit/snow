@@ -1,4 +1,4 @@
-package lumen;
+package lumen.types;
 
 import lumen.Lumen;
 import lumen.utils.ByteArray;

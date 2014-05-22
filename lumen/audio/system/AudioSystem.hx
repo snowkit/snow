@@ -18,7 +18,7 @@ import lumen.Lumen;
 
 #end //lumen_audio_openal
 
-
+/** Internal audio system definition, interact with this system through `lumen.Audio`, not directly */
 class AudioSystem {
 
     public var manager : Audio;

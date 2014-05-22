@@ -1,12 +1,12 @@
 package lumen.audio;
 
-import lumen.LumenTypes;
+import lumen.types.Types;
 
     //the generic versions of the sound info
 import lumen.audio.system.Sound;
 import lumen.audio.system.SoundStream;
 import lumen.audio.system.AudioSystem;
-    //the specific adapter of the sound types
+    //the specific adapter implementation of the sound classes
 import lumen.audio.system.AudioSystem.LumenAudioSystem;
 import lumen.audio.system.AudioSystem.LumenSound;
 import lumen.audio.system.AudioSystem.LumenSoundStream;
@@ -16,15 +16,17 @@ import lumen.utils.ByteArray;
 
 class Audio {
 
-    public var lib : Lumen;
+        /** The implementation of the current audio system */
     public var system : LumenAudioSystem;
+        /** Set to false to stop any and all processing in the audio system */
+    public var active : Bool = false;
+        //for external access to the library by the systems
+    @:noCompletion public var lib : Lumen;
 
     var sound_list : Map<String, Sound>;
     var stream_list : Map<String, SoundStream>;
 
-    public var active : Bool = false;
-
-    public function new( _lib:Lumen ) {
+    @:noCompletion public function new( _lib:Lumen ) {
 
         lib = _lib;
 
@@ -39,6 +41,11 @@ class Audio {
 
     } //new
 
+
+//Public API
+
+
+        /** Create a sound for playing. If no name is given, a unique id is assigned. Use the sound instance or the public api by name. */
     public function create( _id:String, ?_name:String = '', ?streaming:Bool = false ) : Sound {
 
         if(_name == '') {
@@ -81,6 +88,7 @@ class Audio {
 
     } //create
 
+        /** Get a sound instance by name */
     public function get( _name:String ) : Sound {
 
         var _sound = sound_list.get(_name);
@@ -93,6 +101,7 @@ class Audio {
 
     } //get
 
+        /** Set the volume of a sound instance by name */
     public function volume( _name:String, _volume:Float ) {
         var sound = get(_name);
         if(sound != null) {
@@ -100,6 +109,7 @@ class Audio {
         }
     } //volume
 
+        /** Set the pan of a sound instance by name */
     public function pan( _name:String, _pan:Float ) {
         var sound = get(_name);
         if(sound != null) {
@@ -107,6 +117,7 @@ class Audio {
         }
     } //pan
 
+        /** Set the pitch of a sound instance by name */
     public function pitch( _name:String, _pitch:Float ) {
         var sound = get(_name);
         if(sound != null) {
@@ -114,6 +125,7 @@ class Audio {
         }
     } //pitch
 
+        /** Play a sound instance by name */
     public function play(_name:String) {
 
         if(!active) {
@@ -126,6 +138,7 @@ class Audio {
         }
     } //play
 
+        /** Pause a sound instance by name */
     public function pause(_name:String) {
 
         if(!active) {
@@ -138,6 +151,7 @@ class Audio {
         }
     } //pause
 
+        /** Stop a sound instance by name */
     public function stop(_name:String) {
 
         if(!active) {
@@ -150,6 +164,7 @@ class Audio {
         }
     } //stop
 
+        /** Toggle a sound instance by name, pausing the sound */
     public function toggle(_name:String) {
 
         if(!active) {
@@ -162,8 +177,12 @@ class Audio {
         }
     } //toggle
 
+
+//Internal API
+
+
         //system events
-    public function on_event( _event:SystemEvent ) {
+    @:noCompletion public function on_event( _event:SystemEvent ) {
 
         if(_event.type == SystemEventType.app_willenterbackground) {
 
@@ -189,7 +208,7 @@ class Audio {
 
     } //on_event
 
-    public function destroy() {
+    @:noCompletion public function destroy() {
         
         active = false;
 
@@ -201,7 +220,7 @@ class Audio {
         
     } //destroy
 
-    public function update() {
+    @:noCompletion public function update() {
 
         if(!active) {
             return;

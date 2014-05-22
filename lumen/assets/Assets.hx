@@ -1,23 +1,30 @@
 package lumen.assets;
 
 import lumen.io.IO;
-import lumen.LumenTypes;
+import lumen.types.Types;
 import lumen.utils.ByteArray;
 import lumen.utils.Libs;
 
 
+/**  An asset base class */
 class Asset {
+        /** The id of this asset like `assets/image.png` */
     public var id : String;
+        /** The `AssetInfo` of this asset */
     public var info : AssetInfo;
+
     public function new( _info:AssetInfo ) {
         info = _info;
         id = info.id;
-    }
+    } //new
+
 } //Asset
 
 
+/**  An asset that contains byte `data` as a `ByteArray` */
 class AssetBytes extends Asset {
 
+        /** The `ByteArray` this asset contains */
     public var data : ByteArray;
     public function new( _info:AssetInfo, _data:ByteArray ) {
         super( _info );
@@ -26,8 +33,10 @@ class AssetBytes extends Asset {
 
 } //AssetBytes
 
+/**  An asset that contains `text` as a `String` */
 class AssetText extends Asset {
 
+        /** The `String` this asset contains */
     public var text : String;
     public function new( _info:AssetInfo, _data:String ) {
         super( _info );
@@ -36,13 +45,17 @@ class AssetText extends Asset {
 
 } //AssetText
 
+/**  The options for an `AssetImage` asset */
 typedef AssetImageOptions = {
     components : Int
 } //AssetImageOptions
 
+/**  An asset that contains image file `data` as an `ImageInfo` */
 class AssetImage extends Asset {
 
+        /** The `ImageInfo` this asset contains */
     public var data : ImageInfo;
+
     public function new( _info:AssetInfo, _data:ImageInfo ) {
         super( _info );
         data = _data;
@@ -50,13 +63,16 @@ class AssetImage extends Asset {
 
 } //AssetImage
 
+/**  The options for an `AssetAudio` asset */
 typedef AssetAudioOptions = {
     ? type : String,
     ? load : Bool
 } //AssetAudioOptions
 
+/**  An asset that contains audio file `data` as an `AudioInfo` */
 class AssetAudio extends Asset {
 
+        /** The `AudioInfo` this asset contains */
     public var data : AudioInfo;
     public function new( _info:AssetInfo, _data:AudioInfo ) {
         super( _info );
@@ -65,11 +81,15 @@ class AssetAudio extends Asset {
 
 } //AssetAudio
 
-
+/** The asset system class gives you access to fetching and manipulating assets, 
+    caching/uncaching assets, and handles loading files and data cross platform */
 class Assets {
 
+        /** The list of assets in the system, added at startup by the `App` class, in the `get_asset_list` function */
     public var list : Map<String, AssetInfo>;
+        /** If the assets are not relative to the runtime root path, this value can adjust all asset paths. This is automatically handled and exists to allow control. */
     public var assets_root : String = '';
+        /** The manifest file to parse for the asset list. By default, this is set to `manifest` from the build tools but the `App` class can have a custom `get_asset_list` handler use this value. */
     public var manifest_path : String = 'manifest';
 
     var lib : Lumen;
@@ -88,6 +108,7 @@ class Assets {
 
     } //new
 
+        /** Add an asset list to the system */
     public function add( _list:Array<AssetInfo> ) {
 
         for(_asset in _list) {
@@ -113,18 +134,21 @@ class Assets {
 
     } //add
 
+        /** Get an asset from the system */
     public function get( _id:String ) : AssetInfo {
 
         return list.get(_id);
 
     } //get
 
+        /** Check if an asset exists in the system */
     public function exists( _id:String ) : Bool {
 
         return list.exists(_id);
 
     } //exists
 
+        /** Get the asset path for an asset, adjusted by platform, root etc. */
     public function path( _id:String ) : String {
 
         if( exists(_id) ) {
@@ -135,6 +159,7 @@ class Assets {
 
     } //path
 
+        /** Get an asset as a `ByteArray`, used for binary assets */
     public function get_bytes( _id:String ) : AssetBytes {
 
         if(exists(_id)) {
@@ -152,6 +177,7 @@ class Assets {
 
     } //get_bytes
 
+        /** Get an asset as a `String`, used for text based assets */
     public function get_text( _id:String ) : AssetText {
 
         //get_bytes will complain if it's missing
@@ -172,6 +198,7 @@ class Assets {
 
     } //get_text
 
+        /** Get an asset as a `AssetImage`, used for image files */
     public function get_image( _id:String, ?options:AssetImageOptions ) : AssetImage {
 
         if(exists(_id)) {
@@ -204,6 +231,7 @@ class Assets {
 
     } //get_image
 
+        /** Get an asset as a `AssetAudio`, used for audio files */
     public function get_audio( _id:String, ?options:AssetAudioOptions ) : AssetAudio {
 
         if(exists(_id)) {

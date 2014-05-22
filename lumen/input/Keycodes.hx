@@ -1,14 +1,14 @@
 package lumen.input;
 
 
-// The values below come directly from SDL header include files,
-// but they aren't really specific to SDL so they are used generically
-
+/** The keycode class, with conversion helpers for scancodes. The values below come directly from SDL header include files,
+but they aren't specific to SDL so they are used generically */
 class Keycodes {
 
+        /** Convert a scancode to a keycode for comparison */
     public static function from_scan( scancode : Int ) : Int {
         return (scancode | (1<<30));
-    }
+    } //from_scan
 
     public static var UNKNOWN : Int                     = 0;
 
@@ -264,16 +264,15 @@ class Keycodes {
 
 } //Keycodes
 
+
+/** The scancode class. The values below come directly from SDL header include files,
+but they aren't specific to SDL so they are used generically */
 class Scancodes {
 
     public static var UNKNOWN : Int                 = 0;
 
-    /**
-     *  \name Usage page 0x07
-     *
-     *  These values are from usage page 0x07 (USB keyboard page).
-     */
-    /* @{ */
+       // Usage page 0x07
+       // These values are from usage page 0x07 (USB keyboard page).
 
     public static var KEY_A : Int                   = 4;
     public static var KEY_B : Int                   = 5;
@@ -323,60 +322,57 @@ class Scancodes {
     public static var EQUALS : Int                  = 46;
     public static var LEFTBRACKET : Int             = 47;
     public static var RIGHTBRACKET : Int            = 48;
-    public static var BACKSLASH : Int               = 49; 
 
-                                 /**< Located at the lower left of the return
-                                  *   key on ISO keyboards and at the right end
-                                  *   of the QWERTY row on ANSI keyboards.
-                                  *   Produces REVERSE SOLIDUS (backslash) and
-                                  *   VERTICAL LINE in a US layout, REVERSE
-                                  *   SOLIDUS and VERTICAL LINE in a UK Mac
-                                  *   layout, NUMBER SIGN and TILDE in a UK
-                                  *   Windows layout, DOLLAR SIGN and POUND SIGN
-                                  *   in a Swiss German layout, NUMBER SIGN and
-                                  *   APOSTROPHE in a German layout, GRAVE
-                                  *   ACCENT and POUND SIGN in a French Mac
-                                  *   layout, and ASTERISK and MICRO SIGN in a
-                                  *   French Windows layout.
-                                  */
+/** Located at the lower left of the return
+    key on ISO keyboards and at the right end
+    of the QWERTY row on ANSI keyboards.
+    Produces REVERSE SOLIDUS (backslash) and
+    VERTICAL LINE in a US layout, REVERSE
+    SOLIDUS and VERTICAL LINE in a UK Mac
+    layout, NUMBER SIGN and TILDE in a UK
+    Windows layout, DOLLAR SIGN and POUND SIGN
+    in a Swiss German layout, NUMBER SIGN and
+    APOSTROPHE in a German layout, GRAVE
+    ACCENT and POUND SIGN in a French Mac
+    layout, and ASTERISK and MICRO SIGN in a
+    French Windows layout.
+*/
+    public static var BACKSLASH : Int               = 49;
 
+/** ISO USB keyboards actually use this code
+    instead of 49 for the same key, but all
+    OSes I've seen treat the two codes
+    identically. So, as an implementor, unless
+    your keyboard generates both of those
+    codes and your OS treats them differently,
+    you should generate public static var BACKSLASH
+    instead of this code. As a user, you
+    should not rely on this code because SDL
+    will never generate it with most (all?)
+    keyboards.
+*/
     public static var NONUSHASH : Int          = 50; 
-
-                                 /**< ISO USB keyboards actually use this code
-                                  *   instead of 49 for the same key, but all
-                                  *   OSes I've seen treat the two codes
-                                  *   identically. So, as an implementor, unless
-                                  *   your keyboard generates both of those
-                                  *   codes and your OS treats them differently,
-                                  *   you should generate public static var BACKSLASH
-                                  *   instead of this code. As a user, you
-                                  *   should not rely on this code because SDL
-                                  *   will never generate it with most (all?)
-                                  *   keyboards.
-                                  */
-
     public static var SEMICOLON : Int          = 51;
     public static var APOSTROPHE : Int         = 52;
+
+/** Located in the top left corner (on both ANSI
+    and ISO keyboards). Produces GRAVE ACCENT and
+    TILDE in a US Windows layout and in US and UK
+    Mac layouts on ANSI keyboards, GRAVE ACCENT
+    and NOT SIGN in a UK Windows layout, SECTION
+    SIGN and PLUS-MINUS SIGN in US and UK Mac
+    layouts on ISO keyboards, SECTION SIGN and
+    DEGREE SIGN in a Swiss German layout (Mac:
+    only on ISO keyboards); CIRCUMFLEX ACCENT and
+    DEGREE SIGN in a German layout (Mac: only on
+    ISO keyboards), SUPERSCRIPT TWO and TILDE in a
+    French Windows layout, COMMERCIAL AT and
+    NUMBER SIGN in a French Mac layout on ISO
+    keyboards, and LESS-THAN SIGN and GREATER-THAN
+    SIGN in a Swiss German, German, or French Mac
+    layout on ANSI keyboards.
+*/    
     public static var GRAVE : Int              = 53; 
-
-                                  /**< Located in the top left corner (on both ANSI
-                                  *   and ISO keyboards). Produces GRAVE ACCENT and
-                                  *   TILDE in a US Windows layout and in US and UK
-                                  *   Mac layouts on ANSI keyboards, GRAVE ACCENT
-                                  *   and NOT SIGN in a UK Windows layout, SECTION
-                                  *   SIGN and PLUS-MINUS SIGN in US and UK Mac
-                                  *   layouts on ISO keyboards, SECTION SIGN and
-                                  *   DEGREE SIGN in a Swiss German layout (Mac:
-                                  *   only on ISO keyboards); CIRCUMFLEX ACCENT and
-                                  *   DEGREE SIGN in a German layout (Mac: only on
-                                  *   ISO keyboards), SUPERSCRIPT TWO and TILDE in a
-                                  *   French Windows layout, COMMERCIAL AT and
-                                  *   NUMBER SIGN in a French Mac layout on ISO
-                                  *   keyboards, and LESS-THAN SIGN and GREATER-THAN
-                                  *   SIGN in a Swiss German, German, or French Mac
-                                  *   layout on ANSI keyboards.
-                                  */
-
     public static var COMMA : Int              = 54;
     public static var PERIOD : Int             = 55;
     public static var SLASH : Int              = 56;
@@ -399,11 +395,9 @@ class Scancodes {
     public static var PRINTSCREEN : Int        = 70;
     public static var SCROLLLOCK : Int         = 71;
     public static var PAUSE : Int              = 72;
+
+/** insert on PC, help on some Mac keyboards (but does send code 73, not 117) */
     public static var INSERT : Int             = 73; 
-
-                                  /**< insert on PC, help on some Mac keyboards (but
-                                   does send code 73, not 117) */
-
     public static var HOME : Int               = 74;
     public static var PAGEUP : Int             = 75;
     public static var DELETE : Int             = 76;
@@ -414,8 +408,8 @@ class Scancodes {
     public static var DOWN : Int               = 81;
     public static var UP : Int                 = 82;
 
-    public static var NUMLOCKCLEAR : Int       = 83; /**< num lock on PC, clear on Mac keyboards
-                                     */
+/** num lock on PC, clear on Mac keyboards */
+    public static var NUMLOCKCLEAR : Int       = 83; 
     public static var KP_DIVIDE : Int          = 84;
     public static var KP_MULTIPLY : Int        = 85;
     public static var KP_MINUS : Int           = 86;
@@ -433,27 +427,26 @@ class Scancodes {
     public static var KP_0 : Int               = 98;
     public static var KP_PERIOD : Int          = 99;
 
+
+/** This is the additional key that ISO
+    keyboards have over ANSI ones,
+    located between left shift and Y.
+    Produces GRAVE ACCENT and TILDE in a
+    US or UK Mac layout, REVERSE SOLIDUS
+    (backslash) and VERTICAL LINE in a
+    US or UK Windows layout, and
+    LESS-THAN SIGN and GREATER-THAN SIGN
+    in a Swiss German, German, or French
+    layout. */
     public static var NONUSBACKSLASH : Int     = 100; 
 
-                                        /**< This is the additional key that ISO
-                                        *   keyboards have over ANSI ones,
-                                        *   located between left shift and Y.
-                                        *   Produces GRAVE ACCENT and TILDE in a
-                                        *   US or UK Mac layout, REVERSE SOLIDUS
-                                        *   (backslash) and VERTICAL LINE in a
-                                        *   US or UK Windows layout, and
-                                        *   LESS-THAN SIGN and GREATER-THAN SIGN
-                                        *   in a Swiss German, German, or French
-                                        *   layout. */
-
+/** windows contextual menu, compose */
     public static var APPLICATION : Int        = 101; 
-                                        /**< windows contextual menu, compose */
+
+/** The USB document says this is a status flag,
+    not a physical key - but some Mac keyboards
+    do have a power key. */
     public static var POWER : Int              = 102; 
-
-                                      /**< The USB document says this is a status flag,
-                                       *   not a physical key - but some Mac keyboards
-                                       *   do have a power key. */
-
     public static var KP_EQUALS : Int          = 103;
     public static var F13 : Int                = 104;
     public static var F14 : Int                = 105;
@@ -472,7 +465,9 @@ class Scancodes {
     public static var MENU : Int               = 118;
     public static var SELECT : Int             = 119;
     public static var STOP : Int               = 120;
-    public static var AGAIN : Int              = 121; /**< redo */
+
+/** redo */    
+    public static var AGAIN : Int              = 121;
     public static var UNDO : Int               = 122;
     public static var CUT : Int                = 123;
     public static var COPY : Int               = 124;
@@ -482,35 +477,46 @@ class Scancodes {
     public static var VOLUMEUP : Int           = 128;
     public static var VOLUMEDOWN : Int         = 129;
 
-/* not sure whether there's a reason to enable these */
-/*     public static var LOCKINGCAPSLOCK = 130,  */
-/*     public static var LOCKINGNUMLOCK = 131, */
-/*     public static var LOCKINGSCROLLLOCK = 132, */
+// not sure whether there's a reason to enable these 
+//     public static var LOCKINGCAPSLOCK = 130,  
+//     public static var LOCKINGNUMLOCK = 131, 
+//     public static var LOCKINGSCROLLLOCK = 132, 
 
     public static var KP_COMMA : Int           = 133;
     public static var KP_EQUALSAS400 : Int     = 134;
 
-    public static var INTERNATIONAL1 : Int     = 135;   /**< used on Asian keyboards; see
-                                                        footnotes in USB doc */
+/** used on Asian keyboards; see footnotes in USB doc */
+    public static var INTERNATIONAL1 : Int     = 135;
     public static var INTERNATIONAL2 : Int     = 136;
-    public static var INTERNATIONAL3 : Int     = 137;   /**< Yen */
+
+/** Yen */    
+    public static var INTERNATIONAL3 : Int     = 137; 
     public static var INTERNATIONAL4 : Int     = 138;
     public static var INTERNATIONAL5 : Int     = 139;
     public static var INTERNATIONAL6 : Int     = 140;
     public static var INTERNATIONAL7 : Int     = 141;
     public static var INTERNATIONAL8 : Int     = 142;
     public static var INTERNATIONAL9 : Int     = 143;
-    public static var LANG1 : Int              = 144; /**< Hangul/English toggle */
-    public static var LANG2 : Int              = 145; /**< Hanja conversion */
-    public static var LANG3 : Int              = 146; /**< Katakana */
-    public static var LANG4 : Int              = 147; /**< Hiragana */
-    public static var LANG5 : Int              = 148; /**< Zenkaku/Hankaku */
-    public static var LANG6 : Int              = 149; /**< reserved */
-    public static var LANG7 : Int              = 150; /**< reserved */
-    public static var LANG8 : Int              = 151; /**< reserved */
-    public static var LANG9 : Int              = 152; /**< reserved */
-
-    public static var ALTERASE : Int           = 153; /**< Erase-Eaze */
+/** Hangul/English toggle */    
+    public static var LANG1 : Int              = 144; 
+/** Hanja conversion */    
+    public static var LANG2 : Int              = 145; 
+/** Katakana */    
+    public static var LANG3 : Int              = 146; 
+/** Hiragana */    
+    public static var LANG4 : Int              = 147; 
+/** Zenkaku/Hankaku */    
+    public static var LANG5 : Int              = 148; 
+/** reserved */    
+    public static var LANG6 : Int              = 149; 
+/** reserved */    
+    public static var LANG7 : Int              = 150; 
+/** reserved */    
+    public static var LANG8 : Int              = 151; 
+/** reserved */    
+    public static var LANG9 : Int              = 152; 
+/** Erase-Eaze */
+    public static var ALTERASE : Int           = 153; 
     public static var SYSREQ : Int             = 154;
     public static var CANCEL : Int             = 155;
     public static var CLEAR : Int              = 156;
@@ -572,28 +578,26 @@ class Scancodes {
 
     public static var LCTRL : Int              = 224;
     public static var LSHIFT : Int             = 225;
-    public static var LALT : Int               = 226; /**< alt, option */
-    public static var LMETA : Int              = 227; /**< windows, command (apple), meta */
+/** alt, option */    
+    public static var LALT : Int               = 226; 
+/** windows, command (apple), meta */    
+    public static var LMETA : Int              = 227; 
     public static var RCTRL : Int              = 228;
     public static var RSHIFT : Int             = 229;
-    public static var RALT : Int               = 230; /**< alt gr, option */
-    public static var RMETA : Int              = 231; /**< windows, command (apple), meta */
+/** alt gr, option */    
+    public static var RALT : Int               = 230; 
+/** windows, command (apple), meta */    
+    public static var RMETA : Int              = 231; 
 
+/** Not sure if this is really not covered
+    by any of the above, but since there's a
+    special KMOD_MODE for it I'm adding it here */
     public static var MODE : Int               = 257;
 
-                                /**< I'm not sure if this is really not covered
-                                 *   by any of the above, but since there's a
-                                 *   special KMOD_MODE for it I'm adding it here
-                                 */
 
-    /* @} *//* Usage page 0x07 */
-
-    /**
-     *  \name Usage page 0x0C
-     *
-     *  These values are mapped from usage page 0x0C (USB consumer page).
-     */
-    /* @{ */
+    // 
+    //    Usage page 0x0C
+    //    These values are mapped from usage page 0x0C (USB consumer page).
 
     public static var AUDIONEXT : Int          = 258;
     public static var AUDIOPREV : Int          = 259;
@@ -613,21 +617,14 @@ class Scancodes {
     public static var AC_REFRESH : Int         = 273;
     public static var AC_BOOKMARKS : Int       = 274;
 
-    /* @} *//* Usage page 0x0C */
-
-    /**
-     *  \name Walther keys
-     *
-     *  These are values that Christian Walther added (for mac keyboard?).
-     */
-    /* @{ */
+      // Walther keys
+      // These are values that Christian Walther added (for mac keyboard?).
 
     public static var BRIGHTNESSDOWN : Int     = 275;
     public static var BRIGHTNESSUP : Int       = 276;
-    public static var DISPLAYSWITCH : Int      = 277; 
 
-                                        /**< display mirroring/dual display
-                                           switch, video mode switch */
+/** display mirroring/dual display switch, video mode switch */    
+    public static var DISPLAYSWITCH : Int      = 277; 
 
     public static var KBDILLUMTOGGLE : Int     = 278;
     public static var KBDILLUMDOWN : Int       = 279;

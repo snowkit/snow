@@ -4,7 +4,7 @@ import lumen.audio.Audio;
 import lumen.audio.system.SoundStream;
 import lumen.audio.system.openal.OpenALHelper;
 
-import lumen.LumenTypes;
+import lumen.types.Types;
 import lumen.utils.ByteArray;
 import lumen.utils.Float32Array;
 
@@ -13,19 +13,16 @@ import lumen.utils.Float32Array;
 import lumen.audio.al.AL;
 
 
-    //The openal specific implementation of SoundStream
-class SoundStreamOpenAL extends SoundStream {
+/** The openal specific implementation of SoundStream */
+@:noCompletion class SoundStreamOpenAL extends SoundStream {
 
-
-        //the sound source name
+        /** the sound source name */
     public var source : Int;
-        //the sound buffer names
+        /** the sound buffer names */
     public var buffers : Array<Int>;
-        //mono8? stereo16?
+        /** mono8? stereo16? */
     public var format : Int;
-        //buffer count
-    public var buffer_count : Int = 4; //:todo: optionize.
-        //remaining buffers to play
+        /** remaining buffers to play */
     public var buffers_left : Int = 0;
 
     public function new( _manager:Audio, _name:String, _audio_info : AudioInfo ) {

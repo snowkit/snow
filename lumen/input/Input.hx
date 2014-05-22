@@ -1,17 +1,16 @@
 package lumen.input;
 
-import lumen.LumenTypes;
+import lumen.types.Types;
 
 import lumen.input.system.InputSystem;
 import lumen.input.system.InputSystem.LumenInputSystem;
 
 
-// import lumen.input.Keycodes;
-
-    //convenience
+    //API usage clarity
 typedef Key = lumen.input.Keycodes.Keycodes;
 typedef Scan = lumen.input.Keycodes.Scancodes;
 
+/** Internal input system, accessed via `app.input` */
 class Input {
 
     var lib : Lumen;
@@ -249,6 +248,7 @@ enum TouchState {
     move; 
 }
 
+/** Input modifier state */
 typedef ModState = {
     none : Bool,
     lshift : Bool,

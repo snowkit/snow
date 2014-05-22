@@ -14,7 +14,7 @@ import lumen.utils.compat.Matrix3D;
 import lumen.window.Window;
 import lumen.input.Input;
 
-import lumen.LumenTypes.ImageInfo;
+import lumen.types.Types.ImageInfo;
 import lumen.assets.Assets;
 import lumen.App;
 

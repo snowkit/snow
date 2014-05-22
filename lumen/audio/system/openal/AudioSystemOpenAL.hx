@@ -1,6 +1,6 @@
 package lumen.audio.system.openal;
 
-import lumen.LumenTypes;
+import lumen.types.Types;
 import lumen.audio.system.AudioSystem;
 
 import lumen.utils.ByteArray;
@@ -12,6 +12,7 @@ import lumen.audio.al.AL;
 import lumen.audio.al.AL.Context;
 import lumen.audio.al.AL.Device;
 
+        /** Internal audio system implementation for OpenAL, interact with this system through `lumen.Audio`, not directly */
     class AudioSystemOpenAL extends AudioSystem {
 
         var device : Device;

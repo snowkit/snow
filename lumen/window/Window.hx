@@ -1,6 +1,6 @@
 package lumen.window;
 
-import lumen.LumenTypes;
+import lumen.types.Types;
 import lumen.window.Windowing;
 
 import lumen.render.gl.GL;
