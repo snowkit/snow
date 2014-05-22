@@ -5,7 +5,7 @@ access to native windowing, audio, rendering and input
 
 ###Documentation
 
-<a target="_blank" href="http://underscorediscovery.github.io/lumen"> Read them here </a>
+<a target="_blank" href="http://underscorediscovery.github.io/lumen"> Read them </a>
 
 ###latest binary builds
 
