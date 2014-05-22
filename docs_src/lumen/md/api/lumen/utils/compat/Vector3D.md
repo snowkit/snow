@@ -117,7 +117,7 @@
 
 
 
-`new(?x:Float, ?y:Float, ?z:Float, ?w:Float) `
+`new(?x:Float=00, ?y:Float=00, ?z:Float=00, ?w:Float=00) `
 
 <span class="small_desc_flat"> no description </span>   
 

@@ -81,20 +81,23 @@
           "isstatic": false,
           "isinline": false,
           "doc": "Create a sound for playing. If no name is given, a unique id is assigned. Use the sound instance or the public api by name.",
-          "signature": "create(_id:String, ?_name:String, ?streaming:Bool) : lumen.audio.system.Sound",
+          "signature": "create(_id:String, ?_name:String='', ?streaming:Bool=false) : lumen.audio.system.Sound",
           "return": ": lumen.audio.system.Sound",
           "args": [
             {
               "name": "_id",
-              "type": "String"
+              "type": "String",
+              "value": ""
             },
             {
               "name": "?_name",
-              "type": "String"
+              "type": "String",
+              "value": "''"
             },
             {
               "name": "?streaming",
-              "type": "Bool"
+              "type": "Bool",
+              "value": "false"
             }
           ]
         },
@@ -110,11 +113,13 @@
           "args": [
             {
               "name": "_name",
-              "type": "String"
+              "type": "String",
+              "value": "null"
             },
             {
               "name": "_pitch",
-              "type": "Float"
+              "type": "Float",
+              "value": "null"
             }
           ]
         },
@@ -135,7 +140,8 @@
           "args": [
             {
               "name": "_lib",
-              "type": "lumen.Lumen"
+              "type": "lumen.Lumen",
+              "value": "null"
             }
           ]
         },
@@ -151,7 +157,8 @@
           "args": [
             {
               "name": "_name",
-              "type": "String"
+              "type": "String",
+              "value": "null"
             }
           ]
         },
@@ -167,11 +174,13 @@
           "args": [
             {
               "name": "_name",
-              "type": "String"
+              "type": "String",
+              "value": "null"
             },
             {
               "name": "_volume",
-              "type": "Float"
+              "type": "Float",
+              "value": "null"
             }
           ]
         },
@@ -187,7 +196,8 @@
           "args": [
             {
               "name": "_name",
-              "type": "String"
+              "type": "String",
+              "value": "null"
             }
           ]
         },
@@ -208,7 +218,8 @@
           "args": [
             {
               "name": "_event",
-              "type": "lumen.types.SystemEvent"
+              "type": "lumen.types.SystemEvent",
+              "value": "null"
             }
           ]
         },
@@ -240,7 +251,8 @@
           "args": [
             {
               "name": "_name",
-              "type": "String"
+              "type": "String",
+              "value": "null"
             }
           ]
         },
@@ -272,7 +284,8 @@
           "args": [
             {
               "name": "_name",
-              "type": "String"
+              "type": "String",
+              "value": "null"
             }
           ]
         },
@@ -288,11 +301,13 @@
           "args": [
             {
               "name": "_name",
-              "type": "String"
+              "type": "String",
+              "value": "null"
             },
             {
               "name": "_pan",
-              "type": "Float"
+              "type": "Float",
+              "value": "null"
             }
           ]
         },
@@ -308,7 +323,8 @@
           "args": [
             {
               "name": "_name",
-              "type": "String"
+              "type": "String",
+              "value": "null"
             }
           ]
         }

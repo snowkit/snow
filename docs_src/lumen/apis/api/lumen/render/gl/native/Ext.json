@@ -20,11 +20,13 @@
           "args": [
             {
               "name": "inName",
-              "type": "String"
+              "type": "String",
+              "value": "null"
             },
             {
               "name": "inArgCount",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             }
           ]
         },
@@ -40,11 +42,13 @@
           "args": [
             {
               "name": "n",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "buffers",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             }
           ]
         }

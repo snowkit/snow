@@ -5,6 +5,12 @@
 
 #AssetImageOptions
 
+--- 
+
+The options for an `AssetImage` asset
+
+---
+<br/>
 
 ##[API Index](../../../api/index.html#lumen.assets)   
 &emsp;&emsp;&emsp;parent    

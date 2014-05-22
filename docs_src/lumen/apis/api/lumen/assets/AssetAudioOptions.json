@@ -1,6 +1,6 @@
 {
   "source": "lumen.assets.AssetAudioOptions",
-  "doc": "",
+  "doc": "The options for an `AssetAudio` asset",
   "links": [],
   "toplinks": [],
   "sections": [

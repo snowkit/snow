@@ -78,11 +78,13 @@
           "args": [
             {
               "name": "version",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "id",
-              "type": "Dynamic"
+              "type": "Dynamic",
+              "value": "null"
             }
           ]
         },

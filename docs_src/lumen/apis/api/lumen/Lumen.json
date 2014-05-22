@@ -49,8 +49,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "lumen_app_path : Dynamic",
-          "type": "Dynamic",
+          "signature": "lumen_app_path : String",
+          "type": "String",
           "doc": ""
         },
         {
@@ -69,8 +69,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "lumen_init : Dynamic",
-          "type": "Dynamic",
+          "signature": "lumen_init : Dynamic->Dynamic",
+          "type": "Dynamic->Dynamic",
           "doc": ""
         },
         {
@@ -134,8 +134,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "lumen_timestamp : Dynamic",
-          "type": "Dynamic",
+          "signature": "lumen_timestamp : Float",
+          "type": "Float",
           "doc": ""
         },
         {
@@ -184,8 +184,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "lumen_pref_path : Dynamic",
-          "type": "Dynamic",
+          "signature": "lumen_pref_path : String->String->Dynamic",
+          "type": "String->String->Dynamic",
           "doc": ""
         },
         {
@@ -272,20 +272,23 @@
           "isstatic": true,
           "isinline": false,
           "doc": "Loads a function out of a library",
-          "signature": "load(library:String, method:String, ?args:Int) : Dynamic",
+          "signature": "load(library:String, method:String, ?args:Int=0) : Dynamic",
           "return": ": Dynamic",
           "args": [
             {
               "name": "library",
-              "type": "String"
+              "type": "String",
+              "value": ""
             },
             {
               "name": "method",
-              "type": "String"
+              "type": "String",
+              "value": ""
             },
             {
               "name": "?args",
-              "type": "Int"
+              "type": "Int",
+              "value": "0"
             }
           ]
         }
@@ -367,7 +370,8 @@
           "args": [
             {
               "name": "_event",
-              "type": "lumen.types.WindowEvent"
+              "type": "lumen.types.WindowEvent",
+              "value": "null"
             }
           ]
         },
@@ -388,7 +392,8 @@
           "args": [
             {
               "name": "dt",
-              "type": "Float"
+              "type": "Float",
+              "value": "null"
             }
           ]
         },
@@ -420,7 +425,8 @@
           "args": [
             {
               "name": "_event",
-              "type": "lumen.types.SystemEvent"
+              "type": "lumen.types.SystemEvent",
+              "value": "null"
             }
           ]
         },
@@ -447,20 +453,23 @@
           "isstatic": false,
           "isinline": false,
           "doc": "",
-          "signature": "_debug(value:Dynamic, ?_verbose:Bool, ?_more_verbose:Bool) : Void",
+          "signature": "_debug(value:Dynamic, ?_verbose:Bool=false, ?_more_verbose:Bool=false) : Void",
           "return": ": Void",
           "args": [
             {
               "name": "value",
-              "type": "Dynamic"
+              "type": "Dynamic",
+              "value": ""
             },
             {
               "name": "?_verbose",
-              "type": "Bool"
+              "type": "Bool",
+              "value": "false"
             },
             {
               "name": "?_more_verbose",
-              "type": "Bool"
+              "type": "Bool",
+              "value": "false"
             }
           ]
         },
@@ -481,11 +490,13 @@
           "args": [
             {
               "name": "_host",
-              "type": "lumen.App"
+              "type": "lumen.App",
+              "value": "null"
             },
             {
               "name": "_config",
-              "type": "lumen.types.LumenConfig"
+              "type": "lumen.types.LumenConfig",
+              "value": "null"
             }
           ]
         },

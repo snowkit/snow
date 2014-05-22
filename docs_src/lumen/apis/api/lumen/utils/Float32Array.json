@@ -29,7 +29,8 @@
           "args": [
             {
               "name": "matrix",
-              "type": "lumen.utils.compat.Matrix3D"
+              "type": "lumen.utils.compat.Matrix3D",
+              "value": "null"
             }
           ]
         }
@@ -46,16 +47,18 @@
           "isstatic": false,
           "isinline": false,
           "doc": "",
-          "signature": "set(bufferOrArray:Dynamic, ?offset:Int) : Void",
+          "signature": "set(bufferOrArray:Dynamic, ?offset:Int=0) : Void",
           "return": ": Void",
           "args": [
             {
               "name": "bufferOrArray",
-              "type": "Dynamic"
+              "type": "Dynamic",
+              "value": ""
             },
             {
               "name": "?offset",
-              "type": "Int"
+              "type": "Int",
+              "value": "0"
             }
           ]
         },
@@ -71,11 +74,13 @@
           "args": [
             {
               "name": "start",
-              "type": "Int"
+              "type": "Int",
+              "value": ""
             },
             {
               "name": "?end",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             }
           ]
         },
@@ -86,20 +91,23 @@
           "isstatic": false,
           "isinline": false,
           "doc": "",
-          "signature": "new(bufferOrArray:Dynamic, ?start:Int, ?length:Int) ",
+          "signature": "new(bufferOrArray:Dynamic, ?start:Int=0, ?length:Int) ",
           "return": "",
           "args": [
             {
               "name": "bufferOrArray",
-              "type": "Dynamic"
+              "type": "Dynamic",
+              "value": ""
             },
             {
               "name": "?start",
-              "type": "Int"
+              "type": "Int",
+              "value": "0"
             },
             {
               "name": "?length",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             }
           ]
         }

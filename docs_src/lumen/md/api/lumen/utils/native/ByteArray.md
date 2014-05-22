@@ -207,7 +207,7 @@
 
 
 
-`new(?inSize:Int) `
+`new(?inSize:Int=0) `
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -215,7 +215,7 @@
 
 
 
-`readBytes(outData:lumen.utils.native.ByteArray, ?inOffset:Int, ?inLen:Int) : Void`
+`readBytes(outData:lumen.utils.native.ByteArray, ?inOffset:Int=0, ?inLen:Int=0) : Void`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -319,7 +319,7 @@
 
 
 
-`writeBytes(bytes:haxe.io.Bytes, ?inOffset:Int, ?inLength:Int) : Void`
+`writeBytes(bytes:haxe.io.Bytes, ?inOffset:Int=0, ?inLength:Int=0) : Void`
 
 <span class="small_desc_flat"> no description </span>   
 

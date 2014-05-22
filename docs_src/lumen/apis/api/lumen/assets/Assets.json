@@ -14,8 +14,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "lumen_assets_audio_read_bytes_ogg : Dynamic",
-          "type": "Dynamic",
+          "signature": "lumen_assets_audio_read_bytes_ogg : lumen.types.AudioInfo->Int->Int->lumen.types.AudioDataBlob",
+          "type": "lumen.types.AudioInfo->Int->Int->lumen.types.AudioDataBlob",
           "doc": ""
         },
         {
@@ -24,8 +24,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "lumen_assets_audio_load_info_ogg : Dynamic",
-          "type": "Dynamic",
+          "signature": "lumen_assets_audio_load_info_ogg : String->Null->lumen.types.AudioInfo",
+          "type": "String->Null->lumen.types.AudioInfo",
           "doc": ""
         },
         {
@@ -34,8 +34,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "lumen_assets_image_load_info : Dynamic",
-          "type": "Dynamic",
+          "signature": "lumen_assets_image_load_info : String->Int->Dynamic",
+          "type": "String->Int->Dynamic",
           "doc": ""
         },
         {
@@ -44,8 +44,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "lumen_assets_audio_seek_bytes_ogg : Dynamic",
-          "type": "Dynamic",
+          "signature": "lumen_assets_audio_seek_bytes_ogg : lumen.types.AudioInfo->Int->Bool",
+          "type": "lumen.types.AudioInfo->Int->Bool",
           "doc": ""
         },
         {
@@ -64,8 +64,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "lumen_assets_audio_load_info_pcm : Dynamic",
-          "type": "Dynamic",
+          "signature": "lumen_assets_audio_load_info_pcm : String->Null->lumen.types.AudioInfo",
+          "type": "String->Null->lumen.types.AudioInfo",
           "doc": ""
         },
         {
@@ -74,8 +74,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "lumen_assets_audio_seek_bytes_wav : Dynamic",
-          "type": "Dynamic",
+          "signature": "lumen_assets_audio_seek_bytes_wav : lumen.types.AudioInfo->Int->Bool",
+          "type": "lumen.types.AudioInfo->Int->Bool",
           "doc": ""
         },
         {
@@ -84,8 +84,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "lumen_assets_audio_read_bytes_pcm : Dynamic",
-          "type": "Dynamic",
+          "signature": "lumen_assets_audio_read_bytes_pcm : lumen.types.AudioInfo->Int->Int->lumen.types.AudioDataBlob",
+          "type": "lumen.types.AudioInfo->Int->Int->lumen.types.AudioDataBlob",
           "doc": ""
         },
         {
@@ -134,8 +134,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "lumen_assets_audio_seek_bytes_pcm : Dynamic",
-          "type": "Dynamic",
+          "signature": "lumen_assets_audio_seek_bytes_pcm : lumen.types.AudioInfo->Int->Bool",
+          "type": "lumen.types.AudioInfo->Int->Bool",
           "doc": ""
         },
         {
@@ -144,8 +144,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "lumen_assets_audio_load_info_wav : Dynamic",
-          "type": "Dynamic",
+          "signature": "lumen_assets_audio_load_info_wav : String->Null->lumen.types.AudioInfo",
+          "type": "String->Null->lumen.types.AudioInfo",
           "doc": ""
         },
         {
@@ -154,8 +154,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "lumen_assets_audio_read_bytes_wav : Dynamic",
-          "type": "Dynamic",
+          "signature": "lumen_assets_audio_read_bytes_wav : lumen.types.AudioInfo->Int->Int->lumen.types.AudioDataBlob",
+          "type": "lumen.types.AudioInfo->Int->Int->lumen.types.AudioDataBlob",
           "doc": ""
         }
       ]
@@ -186,15 +186,18 @@
           "args": [
             {
               "name": "_info",
-              "type": "lumen.types.AudioInfo"
+              "type": "lumen.types.AudioInfo",
+              "value": "null"
             },
             {
               "name": "_start",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "_len",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             }
           ]
         },
@@ -215,11 +218,13 @@
           "args": [
             {
               "name": "_info",
-              "type": "lumen.types.AudioInfo"
+              "type": "lumen.types.AudioInfo",
+              "value": "null"
             },
             {
               "name": "_to",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             }
           ]
         },
@@ -230,16 +235,18 @@
           "isstatic": false,
           "isinline": false,
           "doc": "",
-          "signature": "load_error(_id:String, ?reason:String) : Void",
+          "signature": "load_error(_id:String, ?reason:String='unknown') : Void",
           "return": ": Void",
           "args": [
             {
               "name": "_id",
-              "type": "String"
+              "type": "String",
+              "value": ""
             },
             {
               "name": "?reason",
-              "type": "String"
+              "type": "String",
+              "value": "'unknown'"
             }
           ]
         },
@@ -255,7 +262,8 @@
           "args": [
             {
               "name": "_id",
-              "type": "String"
+              "type": "String",
+              "value": "null"
             }
           ]
         },
@@ -271,11 +279,13 @@
           "args": [
             {
               "name": "_id",
-              "type": "String"
+              "type": "String",
+              "value": ""
             },
             {
               "name": "?options",
-              "type": "lumen.assets.AssetImageOptions"
+              "type": "lumen.assets.AssetImageOptions",
+              "value": "null"
             }
           ]
         },
@@ -291,11 +301,13 @@
           "args": [
             {
               "name": "_id",
-              "type": "String"
+              "type": "String",
+              "value": ""
             },
             {
               "name": "?options",
-              "type": "lumen.assets.AssetAudioOptions"
+              "type": "lumen.assets.AssetAudioOptions",
+              "value": "null"
             }
           ]
         },
@@ -316,15 +328,18 @@
           "args": [
             {
               "name": "_info",
-              "type": "lumen.types.AudioInfo"
+              "type": "lumen.types.AudioInfo",
+              "value": "null"
             },
             {
               "name": "_start",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "_len",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             }
           ]
         },
@@ -340,7 +355,8 @@
           "args": [
             {
               "name": "_id",
-              "type": "String"
+              "type": "String",
+              "value": "null"
             }
           ]
         },
@@ -356,7 +372,8 @@
           "args": [
             {
               "name": "_id",
-              "type": "String"
+              "type": "String",
+              "value": "null"
             }
           ]
         },
@@ -372,7 +389,8 @@
           "args": [
             {
               "name": "_id",
-              "type": "String"
+              "type": "String",
+              "value": "null"
             }
           ]
         },
@@ -388,7 +406,8 @@
           "args": [
             {
               "name": "_asset",
-              "type": "lumen.types.AssetInfo"
+              "type": "lumen.types.AssetInfo",
+              "value": "null"
             }
           ]
         },
@@ -409,11 +428,13 @@
           "args": [
             {
               "name": "_info",
-              "type": "lumen.types.AudioInfo"
+              "type": "lumen.types.AudioInfo",
+              "value": "null"
             },
             {
               "name": "_to",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             }
           ]
         },
@@ -429,7 +450,8 @@
           "args": [
             {
               "name": "_lib",
-              "type": "lumen.Lumen"
+              "type": "lumen.Lumen",
+              "value": "null"
             }
           ]
         },
@@ -445,7 +467,8 @@
           "args": [
             {
               "name": "_id",
-              "type": "String"
+              "type": "String",
+              "value": "null"
             }
           ]
         },
@@ -461,16 +484,18 @@
           "isstatic": false,
           "isinline": false,
           "doc": "",
-          "signature": "audio_load_ogg(asset:lumen.types.AssetInfo, ?load:Bool) : lumen.types.AudioInfo",
+          "signature": "audio_load_ogg(asset:lumen.types.AssetInfo, ?load:Bool=true) : lumen.types.AudioInfo",
           "return": ": lumen.types.AudioInfo",
           "args": [
             {
               "name": "asset",
-              "type": "lumen.types.AssetInfo"
+              "type": "lumen.types.AssetInfo",
+              "value": ""
             },
             {
               "name": "?load",
-              "type": "Bool"
+              "type": "Bool",
+              "value": "true"
             }
           ]
         },
@@ -486,7 +511,8 @@
           "args": [
             {
               "name": "_int",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             }
           ]
         },
@@ -507,11 +533,13 @@
           "args": [
             {
               "name": "_info",
-              "type": "lumen.types.AudioInfo"
+              "type": "lumen.types.AudioInfo",
+              "value": "null"
             },
             {
               "name": "_to",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             }
           ]
         },
@@ -527,16 +555,18 @@
           "isstatic": false,
           "isinline": false,
           "doc": "",
-          "signature": "audio_load_pcm(asset:lumen.types.AssetInfo, ?load:Bool) : lumen.types.AudioInfo",
+          "signature": "audio_load_pcm(asset:lumen.types.AssetInfo, ?load:Bool=true) : lumen.types.AudioInfo",
           "return": ": lumen.types.AudioInfo",
           "args": [
             {
               "name": "asset",
-              "type": "lumen.types.AssetInfo"
+              "type": "lumen.types.AssetInfo",
+              "value": ""
             },
             {
               "name": "?load",
-              "type": "Bool"
+              "type": "Bool",
+              "value": "true"
             }
           ]
         },
@@ -557,15 +587,18 @@
           "args": [
             {
               "name": "_info",
-              "type": "lumen.types.AudioInfo"
+              "type": "lumen.types.AudioInfo",
+              "value": "null"
             },
             {
               "name": "_start",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "_len",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             }
           ]
         },
@@ -581,7 +614,8 @@
           "args": [
             {
               "name": "_list",
-              "type": "Array<lumen.types.AssetInfo>"
+              "type": "Array<lumen.types.AssetInfo>",
+              "value": "null"
             }
           ]
         },
@@ -597,7 +631,8 @@
           "args": [
             {
               "name": "_id",
-              "type": "String"
+              "type": "String",
+              "value": "null"
             }
           ]
         },
@@ -613,16 +648,18 @@
           "isstatic": false,
           "isinline": false,
           "doc": "",
-          "signature": "audio_load_wav(asset:lumen.types.AssetInfo, ?load:Bool) : lumen.types.AudioInfo",
+          "signature": "audio_load_wav(asset:lumen.types.AssetInfo, ?load:Bool=true) : lumen.types.AudioInfo",
           "return": ": lumen.types.AudioInfo",
           "args": [
             {
               "name": "asset",
-              "type": "lumen.types.AssetInfo"
+              "type": "lumen.types.AssetInfo",
+              "value": ""
             },
             {
               "name": "?load",
-              "type": "Bool"
+              "type": "Bool",
+              "value": "true"
             }
           ]
         },
@@ -643,15 +680,18 @@
           "args": [
             {
               "name": "_info",
-              "type": "lumen.types.AudioInfo"
+              "type": "lumen.types.AudioInfo",
+              "value": "null"
             },
             {
               "name": "_start",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "_len",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             }
           ]
         },
@@ -672,11 +712,13 @@
           "args": [
             {
               "name": "_info",
-              "type": "lumen.types.AudioInfo"
+              "type": "lumen.types.AudioInfo",
+              "value": "null"
             },
             {
               "name": "_to",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             }
           ]
         }

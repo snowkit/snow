@@ -33,7 +33,7 @@
 
 
 
-`from_file(_id:String, ?_mode:String) : lumen.io.IOFile`
+`from_file(_id:String, ?_mode:String='rb') : lumen.io.IOFile`
 
 <span class="small_desc_flat"> no description </span>   
 

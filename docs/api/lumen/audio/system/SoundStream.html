@@ -69,10 +69,10 @@
 <p><code>buffer_length : Int</code></p>
 <p><span class="small_desc_flat"> The length of bytes for a single buffer to queue up to stream. Default is <code>176400</code>, about 1 second in 16 bit mono. <code>todo</code> optionize </span>   </p>
 <p><a class="lift" name="data_get" href="#data_get">data_get</a></p>
-<p><code>data_get : Dynamic</code></p>
+<p><code>data_get : Int-&gt;Int-&gt;lumen.types.AudioDataBlob</code></p>
 <p><span class="small_desc_flat"> The get function, assign a function here if you want to stream data to the source manually, like generative sound. </span>   </p>
 <p><a class="lift" name="data_seek" href="#data_seek">data_seek</a></p>
-<p><code>data_seek : Dynamic</code></p>
+<p><code>data_seek : Int-&gt;Bool</code></p>
 <p><span class="small_desc_flat"> The seek function, assign a function here if you want to stream data to the source manually, like generative sound. </span>   </p>
 <p>&nbsp;   </p>
 <p>&nbsp;   </p>

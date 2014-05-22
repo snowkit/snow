@@ -1,6 +1,20 @@
 &nbsp;   
 <div class="commit_info">
 
+commit [a8618a9a0d](http://github.com/underscorediscovery/lumen/commit/a8618a9a0dc3168bbc1532931928d1ec30f6665b)   
+author: underscorediscovery   
+date: Thu May 22 2014 06:15:33 GMT-0230 (NDT)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>More documentation, hiding irrelevant internal classes with @:noCompletion</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
 commit [8daffbdfbd](http://github.com/underscorediscovery/lumen/commit/8daffbdfbd60fe89368227d8c3425107f7eb1ecc)   
 author: underscorediscovery   
 date: Thu May 22 2014 05:58:02 GMT-0230 (NDT)   

@@ -33,8 +33,8 @@
           "ispublic": true,
           "isinline": false,
           "isstatic": false,
-          "signature": "data_seek : Dynamic",
-          "type": "Dynamic",
+          "signature": "data_seek : Int->Bool",
+          "type": "Int->Bool",
           "doc": "The seek function, assign a function here if you want to stream data to the source manually, like generative sound."
         },
         {
@@ -53,8 +53,8 @@
           "ispublic": true,
           "isinline": false,
           "isstatic": false,
-          "signature": "data_get : Dynamic",
-          "type": "Dynamic",
+          "signature": "data_get : Int->Int->lumen.types.AudioDataBlob",
+          "type": "Int->Int->lumen.types.AudioDataBlob",
           "doc": "The get function, assign a function here if you want to stream data to the source manually, like generative sound."
         }
       ]
@@ -80,11 +80,13 @@
           "args": [
             {
               "name": "_start",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "_length",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             }
           ]
         },
@@ -100,15 +102,18 @@
           "args": [
             {
               "name": "_manager",
-              "type": "lumen.audio.Audio"
+              "type": "lumen.audio.Audio",
+              "value": "null"
             },
             {
               "name": "_name",
-              "type": "String"
+              "type": "String",
+              "value": "null"
             },
             {
               "name": "_audio_info",
-              "type": "lumen.types.AudioInfo"
+              "type": "lumen.types.AudioInfo",
+              "value": "null"
             }
           ]
         },
@@ -124,7 +129,8 @@
           "args": [
             {
               "name": "_to",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             }
           ]
         }

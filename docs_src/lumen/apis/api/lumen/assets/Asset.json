@@ -61,7 +61,8 @@
           "args": [
             {
               "name": "_info",
-              "type": "lumen.types.AssetInfo"
+              "type": "lumen.types.AssetInfo",
+              "value": "null"
             }
           ]
         }

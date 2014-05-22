@@ -14,8 +14,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "lumen_desktop_get_display_count : Dynamic",
-          "type": "Dynamic",
+          "signature": "lumen_desktop_get_display_count : Int",
+          "type": "Int",
           "doc": ""
         },
         {
@@ -34,8 +34,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "lumen_desktop_get_display_bounds : Dynamic",
-          "type": "Dynamic",
+          "signature": "lumen_desktop_get_display_bounds : Int->lumen.window.DisplayBounds",
+          "type": "Int->lumen.window.DisplayBounds",
           "doc": ""
         },
         {
@@ -54,8 +54,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "lumen_desktop_get_display_native_mode : Dynamic",
-          "type": "Dynamic",
+          "signature": "lumen_desktop_get_display_native_mode : Int->lumen.window.DisplayMode",
+          "type": "Int->lumen.window.DisplayMode",
           "doc": ""
         },
         {
@@ -64,8 +64,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "lumen_desktop_get_display_current_mode : Dynamic",
-          "type": "Dynamic",
+          "signature": "lumen_desktop_get_display_current_mode : Int->lumen.window.DisplayMode",
+          "type": "Int->lumen.window.DisplayMode",
           "doc": ""
         },
         {
@@ -74,8 +74,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "lumen_desktop_get_display_mode : Dynamic",
-          "type": "Dynamic",
+          "signature": "lumen_desktop_get_display_mode : Int->Int->lumen.window.DisplayMode",
+          "type": "Int->Int->lumen.window.DisplayMode",
           "doc": ""
         },
         {
@@ -84,8 +84,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "lumen_desktop_get_display_name : Dynamic",
-          "type": "Dynamic",
+          "signature": "lumen_desktop_get_display_name : Int->String",
+          "type": "Int->String",
           "doc": ""
         },
         {
@@ -104,8 +104,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "lumen_desktop_get_display_mode_count : Dynamic",
-          "type": "Dynamic",
+          "signature": "lumen_desktop_get_display_mode_count : Int->Int",
+          "type": "Int->Int",
           "doc": ""
         },
         {
@@ -141,7 +141,8 @@
           "args": [
             {
               "name": "_config",
-              "type": "lumen.types.WindowConfig"
+              "type": "lumen.types.WindowConfig",
+              "value": "null"
             }
           ]
         },
@@ -157,7 +158,8 @@
           "args": [
             {
               "name": "_lib",
-              "type": "lumen.Lumen"
+              "type": "lumen.Lumen",
+              "value": "null"
             }
           ]
         },
@@ -173,11 +175,13 @@
           "args": [
             {
               "name": "display",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "mode_index",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             }
           ]
         },
@@ -193,7 +197,8 @@
           "args": [
             {
               "name": "display",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             }
           ]
         },
@@ -209,7 +214,8 @@
           "args": [
             {
               "name": "display",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             }
           ]
         },
@@ -225,7 +231,8 @@
           "args": [
             {
               "name": "display",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             }
           ]
         },
@@ -241,7 +248,8 @@
           "args": [
             {
               "name": "display",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             }
           ]
         },
@@ -262,7 +270,8 @@
           "args": [
             {
               "name": "_event",
-              "type": "lumen.types.SystemEvent"
+              "type": "lumen.types.SystemEvent",
+              "value": "null"
             }
           ]
         },
@@ -321,7 +330,8 @@
           "args": [
             {
               "name": "display",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             }
           ]
         }

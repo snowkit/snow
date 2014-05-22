@@ -68,7 +68,7 @@
 
 
 
-`create2D(x:Float, y:Float, ?scale:Float, ?rotation:Float) : lumen.utils.compat.Matrix3D`
+`create2D(x:Float, y:Float, ?scale:Float=1, ?rotation:Float=0) : lumen.utils.compat.Matrix3D`
 
 <span class="small_desc_flat"> no description </span>   
 

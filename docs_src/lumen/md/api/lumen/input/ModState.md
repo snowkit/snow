@@ -5,6 +5,12 @@
 
 #ModState
 
+--- 
+
+Input modifier state
+
+---
+<br/>
 
 ##[API Index](../../../api/index.html#lumen.input)   
 &emsp;&emsp;&emsp;parent    

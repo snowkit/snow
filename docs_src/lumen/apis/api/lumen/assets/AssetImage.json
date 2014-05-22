@@ -60,11 +60,13 @@
           "args": [
             {
               "name": "_info",
-              "type": "lumen.types.AssetInfo"
+              "type": "lumen.types.AssetInfo",
+              "value": "null"
             },
             {
               "name": "_data",
-              "type": "lumen.types.ImageInfo"
+              "type": "lumen.types.ImageInfo",
+              "value": "null"
             }
           ]
         }

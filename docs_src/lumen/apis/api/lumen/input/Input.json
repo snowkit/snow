@@ -54,8 +54,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "lumen_gamepad_close : Dynamic",
-          "type": "Dynamic",
+          "signature": "lumen_gamepad_close : Dynamic->Dynamic",
+          "type": "Dynamic->Dynamic",
           "doc": ""
         },
         {
@@ -84,8 +84,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "lumen_gamepad_open : Dynamic",
-          "type": "Dynamic",
+          "signature": "lumen_gamepad_open : Dynamic->Dynamic",
+          "type": "Dynamic->Dynamic",
           "doc": ""
         }
       ]
@@ -111,7 +111,8 @@
           "args": [
             {
               "name": "_code",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             }
           ]
         },
@@ -127,7 +128,8 @@
           "args": [
             {
               "name": "_code",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             }
           ]
         },
@@ -143,7 +145,8 @@
           "args": [
             {
               "name": "_event",
-              "type": "lumen.types.SystemEvent"
+              "type": "lumen.types.SystemEvent",
+              "value": "null"
             }
           ]
         },
@@ -159,7 +162,8 @@
           "args": [
             {
               "name": "_event",
-              "type": "lumen.input.TouchEvent"
+              "type": "lumen.input.TouchEvent",
+              "value": "null"
             }
           ]
         },
@@ -175,7 +179,8 @@
           "args": [
             {
               "name": "_code",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             }
           ]
         },
@@ -191,7 +196,8 @@
           "args": [
             {
               "name": "_event",
-              "type": "lumen.input.MouseEvent"
+              "type": "lumen.input.MouseEvent",
+              "value": "null"
             }
           ]
         },
@@ -207,7 +213,8 @@
           "args": [
             {
               "name": "event",
-              "type": "lumen.types.InputEvent"
+              "type": "lumen.types.InputEvent",
+              "value": "null"
             }
           ]
         },
@@ -223,7 +230,8 @@
           "args": [
             {
               "name": "_lib",
-              "type": "lumen.Lumen"
+              "type": "lumen.Lumen",
+              "value": "null"
             }
           ]
         },
@@ -239,7 +247,8 @@
           "args": [
             {
               "name": "_event",
-              "type": "lumen.input.TextEvent"
+              "type": "lumen.input.TextEvent",
+              "value": "null"
             }
           ]
         },
@@ -255,7 +264,8 @@
           "args": [
             {
               "name": "_event",
-              "type": "lumen.input.GamepadEvent"
+              "type": "lumen.input.GamepadEvent",
+              "value": "null"
             }
           ]
         },
@@ -282,7 +292,8 @@
           "args": [
             {
               "name": "_event",
-              "type": "Dynamic"
+              "type": "Dynamic",
+              "value": "null"
             }
           ]
         },
@@ -309,7 +320,8 @@
           "args": [
             {
               "name": "_event",
-              "type": "lumen.input.KeyEvent"
+              "type": "lumen.input.KeyEvent",
+              "value": "null"
             }
           ]
         },
@@ -325,7 +337,8 @@
           "args": [
             {
               "name": "_event",
-              "type": "Dynamic"
+              "type": "Dynamic",
+              "value": "null"
             }
           ]
         }

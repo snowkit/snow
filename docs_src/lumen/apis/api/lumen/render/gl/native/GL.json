@@ -14,8 +14,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "lumen_gl_blend_color : Dynamic",
-          "type": "Dynamic",
+          "signature": "lumen_gl_blend_color : Float->Float->Float->Float->Dynamic",
+          "type": "Float->Float->Float->Float->Dynamic",
           "doc": ""
         },
         {
@@ -24,8 +24,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "lumen_gl_line_width : Dynamic",
-          "type": "Dynamic",
+          "signature": "lumen_gl_line_width : Float->Dynamic",
+          "type": "Float->Dynamic",
           "doc": ""
         },
         {
@@ -34,8 +34,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "lumen_gl_disable : Dynamic",
-          "type": "Dynamic",
+          "signature": "lumen_gl_disable : Int->Dynamic",
+          "type": "Int->Dynamic",
           "doc": ""
         },
         {
@@ -44,8 +44,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "lumen_gl_is_enabled : Dynamic",
-          "type": "Dynamic",
+          "signature": "lumen_gl_is_enabled : Int->Bool",
+          "type": "Int->Bool",
           "doc": ""
         },
         {
@@ -64,8 +64,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "lumen_gl_get_buffer_paramerter : Dynamic",
-          "type": "Dynamic",
+          "signature": "lumen_gl_get_buffer_paramerter : Int->Int->Dynamic",
+          "type": "Int->Int->Dynamic",
           "doc": ""
         },
         {
@@ -74,8 +74,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "lumen_gl_uniform4fv : Dynamic",
-          "type": "Dynamic",
+          "signature": "lumen_gl_uniform4fv : lumen.render.gl.GLUniformLocation->lumen.utils.ByteArray->Dynamic",
+          "type": "lumen.render.gl.GLUniformLocation->lumen.utils.ByteArray->Dynamic",
           "doc": ""
         },
         {
@@ -84,8 +84,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "lumen_gl_is_buffer : Dynamic",
-          "type": "Dynamic",
+          "signature": "lumen_gl_is_buffer : Dynamic->Bool",
+          "type": "Dynamic->Bool",
           "doc": ""
         },
         {
@@ -94,8 +94,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "lumen_gl_is_program : Dynamic",
-          "type": "Dynamic",
+          "signature": "lumen_gl_is_program : Dynamic->Bool",
+          "type": "Dynamic->Bool",
           "doc": ""
         },
         {
@@ -104,8 +104,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "lumen_gl_uniform3fv : Dynamic",
-          "type": "Dynamic",
+          "signature": "lumen_gl_uniform3fv : lumen.render.gl.GLUniformLocation->lumen.utils.ByteArray->Dynamic",
+          "type": "lumen.render.gl.GLUniformLocation->lumen.utils.ByteArray->Dynamic",
           "doc": ""
         },
         {
@@ -114,8 +114,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "lumen_gl_vertex_attrib2f : Dynamic",
-          "type": "Dynamic",
+          "signature": "lumen_gl_vertex_attrib2f : Int->Float->Float->Dynamic",
+          "type": "Int->Float->Float->Dynamic",
           "doc": ""
         },
         {
@@ -124,8 +124,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "lumen_gl_uniform2fv : Dynamic",
-          "type": "Dynamic",
+          "signature": "lumen_gl_uniform2fv : lumen.render.gl.GLUniformLocation->lumen.utils.ByteArray->Dynamic",
+          "type": "lumen.render.gl.GLUniformLocation->lumen.utils.ByteArray->Dynamic",
           "doc": ""
         },
         {
@@ -134,8 +134,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "lumen_gl_compressed_tex_sub_image_2d : Dynamic",
-          "type": "Dynamic",
+          "signature": "lumen_gl_compressed_tex_sub_image_2d : Int->Int->Int->Int->Int->Int->Int->Null->Null->Dynamic",
+          "type": "Int->Int->Int->Int->Int->Int->Int->Null->Null->Dynamic",
           "doc": ""
         },
         {
@@ -144,8 +144,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "lumen_gl_bind_renderbuffer : Dynamic",
-          "type": "Dynamic",
+          "signature": "lumen_gl_bind_renderbuffer : Int->Int->Dynamic",
+          "type": "Int->Int->Dynamic",
           "doc": ""
         },
         {
@@ -154,8 +154,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "lumen_gl_create_shader : Dynamic",
-          "type": "Dynamic",
+          "signature": "lumen_gl_create_shader : Int->Dynamic",
+          "type": "Int->Dynamic",
           "doc": ""
         },
         {
@@ -164,8 +164,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "lumen_gl_tex_parameteri : Dynamic",
-          "type": "Dynamic",
+          "signature": "lumen_gl_tex_parameteri : Int->Int->Int->Dynamic",
+          "type": "Int->Int->Int->Dynamic",
           "doc": ""
         },
         {
@@ -174,8 +174,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "lumen_gl_enable_vertex_attrib_array : Dynamic",
-          "type": "Dynamic",
+          "signature": "lumen_gl_enable_vertex_attrib_array : Int->Dynamic",
+          "type": "Int->Dynamic",
           "doc": ""
         },
         {
@@ -184,8 +184,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "lumen_gl_blend_equation : Dynamic",
-          "type": "Dynamic",
+          "signature": "lumen_gl_blend_equation : Int->Dynamic",
+          "type": "Int->Dynamic",
           "doc": ""
         },
         {
@@ -194,8 +194,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "lumen_gl_get_supported_extensions : Dynamic",
-          "type": "Dynamic",
+          "signature": "lumen_gl_get_supported_extensions : Array->Dynamic",
+          "type": "Array->Dynamic",
           "doc": ""
         },
         {
@@ -204,8 +204,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "lumen_gl_uniform3iv : Dynamic",
-          "type": "Dynamic",
+          "signature": "lumen_gl_uniform3iv : lumen.render.gl.GLUniformLocation->lumen.utils.ByteArray->Dynamic",
+          "type": "lumen.render.gl.GLUniformLocation->lumen.utils.ByteArray->Dynamic",
           "doc": ""
         },
         {
@@ -214,8 +214,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "lumen_gl_detach_shader : Dynamic",
-          "type": "Dynamic",
+          "signature": "lumen_gl_detach_shader : Dynamic->Dynamic->Dynamic",
+          "type": "Dynamic->Dynamic->Dynamic",
           "doc": ""
         },
         {
@@ -224,8 +224,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "lumen_gl_hint : Dynamic",
-          "type": "Dynamic",
+          "signature": "lumen_gl_hint : Int->Int->Dynamic",
+          "type": "Int->Int->Dynamic",
           "doc": ""
         },
         {
@@ -234,8 +234,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "lumen_gl_uniform2iv : Dynamic",
-          "type": "Dynamic",
+          "signature": "lumen_gl_uniform2iv : lumen.render.gl.GLUniformLocation->lumen.utils.ByteArray->Dynamic",
+          "type": "lumen.render.gl.GLUniformLocation->lumen.utils.ByteArray->Dynamic",
           "doc": ""
         },
         {
@@ -244,8 +244,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "lumen_gl_attach_shader : Dynamic",
-          "type": "Dynamic",
+          "signature": "lumen_gl_attach_shader : Dynamic->Dynamic->Dynamic",
+          "type": "Dynamic->Dynamic->Dynamic",
           "doc": ""
         },
         {
@@ -254,8 +254,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "lumen_gl_delete_framebuffer : Dynamic",
-          "type": "Dynamic",
+          "signature": "lumen_gl_delete_framebuffer : Dynamic->Dynamic",
+          "type": "Dynamic->Dynamic",
           "doc": ""
         },
         {
@@ -264,8 +264,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "lumen_gl_bind_attrib_location : Dynamic",
-          "type": "Dynamic",
+          "signature": "lumen_gl_bind_attrib_location : Dynamic->Int->String->Dynamic",
+          "type": "Dynamic->Int->String->Dynamic",
           "doc": ""
         },
         {
@@ -274,8 +274,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "lumen_gl_delete_program : Dynamic",
-          "type": "Dynamic",
+          "signature": "lumen_gl_delete_program : Dynamic->Dynamic",
+          "type": "Dynamic->Dynamic",
           "doc": ""
         },
         {
@@ -284,8 +284,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "lumen_gl_uniform_matrix : Dynamic",
-          "type": "Dynamic",
+          "signature": "lumen_gl_uniform_matrix : lumen.render.gl.GLUniformLocation->Bool->lumen.utils.ByteArray->Int->Dynamic",
+          "type": "lumen.render.gl.GLUniformLocation->Bool->lumen.utils.ByteArray->Int->Dynamic",
           "doc": ""
         },
         {
@@ -294,8 +294,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "lumen_gl_renderbuffer_storage : Dynamic",
-          "type": "Dynamic",
+          "signature": "lumen_gl_renderbuffer_storage : Int->Int->Int->Int->Dynamic",
+          "type": "Int->Int->Int->Int->Dynamic",
           "doc": ""
         },
         {
@@ -304,8 +304,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "lumen_gl_viewport : Dynamic",
-          "type": "Dynamic",
+          "signature": "lumen_gl_viewport : Int->Int->Int->Int->Dynamic",
+          "type": "Int->Int->Int->Int->Dynamic",
           "doc": ""
         },
         {
@@ -314,8 +314,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "lumen_gl_vertex_attrib_pointer : Dynamic",
-          "type": "Dynamic",
+          "signature": "lumen_gl_vertex_attrib_pointer : Int->Int->Int->Bool->Int->Int->Dynamic",
+          "type": "Int->Int->Int->Bool->Int->Int->Dynamic",
           "doc": ""
         },
         {
@@ -324,8 +324,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "lumen_gl_get_framebuffer_attachment_parameter : Dynamic",
-          "type": "Dynamic",
+          "signature": "lumen_gl_get_framebuffer_attachment_parameter : Int->Int->Int->Dynamic",
+          "type": "Int->Int->Int->Dynamic",
           "doc": ""
         },
         {
@@ -334,8 +334,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "lumen_gl_scissor : Dynamic",
-          "type": "Dynamic",
+          "signature": "lumen_gl_scissor : Int->Int->Int->Int->Dynamic",
+          "type": "Int->Int->Int->Int->Dynamic",
           "doc": ""
         },
         {
@@ -344,8 +344,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "lumen_gl_sample_coverage : Dynamic",
-          "type": "Dynamic",
+          "signature": "lumen_gl_sample_coverage : Float->Bool->Dynamic",
+          "type": "Float->Bool->Dynamic",
           "doc": ""
         },
         {
@@ -354,8 +354,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "lumen_gl_compile_shader : Dynamic",
-          "type": "Dynamic",
+          "signature": "lumen_gl_compile_shader : Dynamic->Dynamic",
+          "type": "Dynamic->Dynamic",
           "doc": ""
         },
         {
@@ -364,8 +364,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "lumen_gl_stencil_mask_separate : Dynamic",
-          "type": "Dynamic",
+          "signature": "lumen_gl_stencil_mask_separate : Int->Int->Dynamic",
+          "type": "Int->Int->Dynamic",
           "doc": ""
         },
         {
@@ -374,8 +374,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "lumen_gl_get_shader_parameter : Dynamic",
-          "type": "Dynamic",
+          "signature": "lumen_gl_get_shader_parameter : Dynamic->Int->Int",
+          "type": "Dynamic->Int->Int",
           "doc": ""
         },
         {
@@ -384,8 +384,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "lumen_gl_stencil_func : Dynamic",
-          "type": "Dynamic",
+          "signature": "lumen_gl_stencil_func : Int->Int->Int->Dynamic",
+          "type": "Int->Int->Int->Dynamic",
           "doc": ""
         },
         {
@@ -394,8 +394,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "lumen_gl_stencil_mask : Dynamic",
-          "type": "Dynamic",
+          "signature": "lumen_gl_stencil_mask : Int->Dynamic",
+          "type": "Int->Dynamic",
           "doc": ""
         },
         {
@@ -404,8 +404,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "lumen_gl_uniform4f : Dynamic",
-          "type": "Dynamic",
+          "signature": "lumen_gl_uniform4f : lumen.render.gl.GLUniformLocation->Float->Float->Float->Float->Dynamic",
+          "type": "lumen.render.gl.GLUniformLocation->Float->Float->Float->Float->Dynamic",
           "doc": ""
         },
         {
@@ -414,8 +414,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "lumen_gl_blend_func_separate : Dynamic",
-          "type": "Dynamic",
+          "signature": "lumen_gl_blend_func_separate : Int->Int->Int->Int->Dynamic",
+          "type": "Int->Int->Int->Int->Dynamic",
           "doc": ""
         },
         {
@@ -424,8 +424,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "lumen_gl_depth_mask : Dynamic",
-          "type": "Dynamic",
+          "signature": "lumen_gl_depth_mask : Bool->Dynamic",
+          "type": "Bool->Dynamic",
           "doc": ""
         },
         {
@@ -434,8 +434,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "lumen_gl_disable_vertex_attrib_array : Dynamic",
-          "type": "Dynamic",
+          "signature": "lumen_gl_disable_vertex_attrib_array : Int->Dynamic",
+          "type": "Int->Dynamic",
           "doc": ""
         },
         {
@@ -444,8 +444,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "lumen_gl_buffer_data : Dynamic",
-          "type": "Dynamic",
+          "signature": "lumen_gl_buffer_data : Int->lumen.utils.ByteArray->Int->Int->Int->Dynamic",
+          "type": "Int->lumen.utils.ByteArray->Int->Int->Int->Dynamic",
           "doc": ""
         },
         {
@@ -454,8 +454,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "lumen_gl_get_program_info_log : Dynamic",
-          "type": "Dynamic",
+          "signature": "lumen_gl_get_program_info_log : Dynamic->String",
+          "type": "Dynamic->String",
           "doc": ""
         },
         {
@@ -464,8 +464,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "lumen_gl_vertex_attrib4fv : Dynamic",
-          "type": "Dynamic",
+          "signature": "lumen_gl_vertex_attrib4fv : Int->lumen.utils.ByteArray->Dynamic",
+          "type": "Int->lumen.utils.ByteArray->Dynamic",
           "doc": ""
         },
         {
@@ -474,8 +474,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "lumen_gl_blend_func : Dynamic",
-          "type": "Dynamic",
+          "signature": "lumen_gl_blend_func : Int->Int->Dynamic",
+          "type": "Int->Int->Dynamic",
           "doc": ""
         },
         {
@@ -494,8 +494,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "lumen_gl_clear : Dynamic",
-          "type": "Dynamic",
+          "signature": "lumen_gl_clear : Int->Dynamic",
+          "type": "Int->Dynamic",
           "doc": ""
         },
         {
@@ -504,8 +504,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "lumen_gl_uniform4i : Dynamic",
-          "type": "Dynamic",
+          "signature": "lumen_gl_uniform4i : lumen.render.gl.GLUniformLocation->Int->Int->Int->Int->Dynamic",
+          "type": "lumen.render.gl.GLUniformLocation->Int->Int->Int->Int->Dynamic",
           "doc": ""
         },
         {
@@ -514,8 +514,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "lumen_gl_get_vertex_attrib_offset : Dynamic",
-          "type": "Dynamic",
+          "signature": "lumen_gl_get_vertex_attrib_offset : Int->Int->Int",
+          "type": "Int->Int->Int",
           "doc": ""
         },
         {
@@ -534,8 +534,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "lumen_gl_pixel_storei : Dynamic",
-          "type": "Dynamic",
+          "signature": "lumen_gl_pixel_storei : Int->Int->Dynamic",
+          "type": "Int->Int->Dynamic",
           "doc": ""
         },
         {
@@ -544,8 +544,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "lumen_gl_blend_equation_separate : Dynamic",
-          "type": "Dynamic",
+          "signature": "lumen_gl_blend_equation_separate : Int->Int->Dynamic",
+          "type": "Int->Int->Dynamic",
           "doc": ""
         },
         {
@@ -554,8 +554,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "lumen_gl_color_mask : Dynamic",
-          "type": "Dynamic",
+          "signature": "lumen_gl_color_mask : Bool->Bool->Bool->Bool->Dynamic",
+          "type": "Bool->Bool->Bool->Bool->Dynamic",
           "doc": ""
         },
         {
@@ -564,8 +564,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "lumen_gl_vertex_attrib1fv : Dynamic",
-          "type": "Dynamic",
+          "signature": "lumen_gl_vertex_attrib1fv : Int->lumen.utils.ByteArray->Dynamic",
+          "type": "Int->lumen.utils.ByteArray->Dynamic",
           "doc": ""
         },
         {
@@ -574,8 +574,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "lumen_gl_enable : Dynamic",
-          "type": "Dynamic",
+          "signature": "lumen_gl_enable : Int->Dynamic",
+          "type": "Int->Dynamic",
           "doc": ""
         },
         {
@@ -584,8 +584,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "lumen_gl_clear_stencil : Dynamic",
-          "type": "Dynamic",
+          "signature": "lumen_gl_clear_stencil : Int->Dynamic",
+          "type": "Int->Dynamic",
           "doc": ""
         },
         {
@@ -604,8 +604,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "lumen_gl_depth_func : Dynamic",
-          "type": "Dynamic",
+          "signature": "lumen_gl_depth_func : Int->Dynamic",
+          "type": "Int->Dynamic",
           "doc": ""
         },
         {
@@ -614,8 +614,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "lumen_gl_get_shader_info_log : Dynamic",
-          "type": "Dynamic",
+          "signature": "lumen_gl_get_shader_info_log : Dynamic->String",
+          "type": "Dynamic->String",
           "doc": ""
         },
         {
@@ -624,8 +624,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "lumen_gl_get_shader_source : Dynamic",
-          "type": "Dynamic",
+          "signature": "lumen_gl_get_shader_source : Dynamic->String",
+          "type": "Dynamic->String",
           "doc": ""
         },
         {
@@ -634,8 +634,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "lumen_gl_get_vertex_attrib : Dynamic",
-          "type": "Dynamic",
+          "signature": "lumen_gl_get_vertex_attrib : Int->Int->Dynamic",
+          "type": "Int->Int->Dynamic",
           "doc": ""
         },
         {
@@ -644,8 +644,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "lumen_gl_uniform1f : Dynamic",
-          "type": "Dynamic",
+          "signature": "lumen_gl_uniform1f : lumen.render.gl.GLUniformLocation->Float->Dynamic",
+          "type": "lumen.render.gl.GLUniformLocation->Float->Dynamic",
           "doc": ""
         },
         {
@@ -654,8 +654,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "lumen_gl_active_texture : Dynamic",
-          "type": "Dynamic",
+          "signature": "lumen_gl_active_texture : Int->Dynamic",
+          "type": "Int->Dynamic",
           "doc": ""
         },
         {
@@ -664,8 +664,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "lumen_gl_bind_buffer : Dynamic",
-          "type": "Dynamic",
+          "signature": "lumen_gl_bind_buffer : Int->Int->Dynamic",
+          "type": "Int->Int->Dynamic",
           "doc": ""
         },
         {
@@ -684,8 +684,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "lumen_gl_cull_face : Dynamic",
-          "type": "Dynamic",
+          "signature": "lumen_gl_cull_face : Int->Dynamic",
+          "type": "Int->Dynamic",
           "doc": ""
         },
         {
@@ -694,8 +694,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "lumen_gl_is_shader : Dynamic",
-          "type": "Dynamic",
+          "signature": "lumen_gl_is_shader : Dynamic->Bool",
+          "type": "Dynamic->Bool",
           "doc": ""
         },
         {
@@ -714,8 +714,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "lumen_gl_version : Dynamic",
-          "type": "Dynamic",
+          "signature": "lumen_gl_version : String",
+          "type": "String",
           "doc": ""
         },
         {
@@ -724,8 +724,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "lumen_gl_depth_range : Dynamic",
-          "type": "Dynamic",
+          "signature": "lumen_gl_depth_range : Float->Float->Dynamic",
+          "type": "Float->Float->Dynamic",
           "doc": ""
         },
         {
@@ -734,8 +734,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "lumen_gl_get_uniform : Dynamic",
-          "type": "Dynamic",
+          "signature": "lumen_gl_get_uniform : Dynamic->lumen.render.gl.GLUniformLocation->Dynamic",
+          "type": "Dynamic->lumen.render.gl.GLUniformLocation->Dynamic",
           "doc": ""
         },
         {
@@ -744,8 +744,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "lumen_gl_uniform1i : Dynamic",
-          "type": "Dynamic",
+          "signature": "lumen_gl_uniform1i : lumen.render.gl.GLUniformLocation->Int->Dynamic",
+          "type": "lumen.render.gl.GLUniformLocation->Int->Dynamic",
           "doc": ""
         },
         {
@@ -754,8 +754,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "lumen_gl_delete_texture : Dynamic",
-          "type": "Dynamic",
+          "signature": "lumen_gl_delete_texture : Dynamic->Dynamic",
+          "type": "Dynamic->Dynamic",
           "doc": ""
         },
         {
@@ -764,8 +764,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "lumen_gl_draw_elements : Dynamic",
-          "type": "Dynamic",
+          "signature": "lumen_gl_draw_elements : Int->Int->Int->Int->Dynamic",
+          "type": "Int->Int->Int->Int->Dynamic",
           "doc": ""
         },
         {
@@ -774,8 +774,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "lumen_gl_stencil_op_separate : Dynamic",
-          "type": "Dynamic",
+          "signature": "lumen_gl_stencil_op_separate : Int->Int->Int->Int->Dynamic",
+          "type": "Int->Int->Int->Int->Dynamic",
           "doc": ""
         },
         {
@@ -784,8 +784,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "lumen_gl_vertex_attrib3fv : Dynamic",
-          "type": "Dynamic",
+          "signature": "lumen_gl_vertex_attrib3fv : Int->lumen.utils.ByteArray->Dynamic",
+          "type": "Int->lumen.utils.ByteArray->Dynamic",
           "doc": ""
         },
         {
@@ -794,8 +794,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "lumen_gl_tex_sub_image_2d : Dynamic",
-          "type": "Dynamic",
+          "signature": "lumen_gl_tex_sub_image_2d : Int->Int->Int->Int->Int->Int->Int->Int->Null->Null->Dynamic",
+          "type": "Int->Int->Int->Int->Int->Int->Int->Int->Null->Null->Dynamic",
           "doc": ""
         },
         {
@@ -804,8 +804,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "lumen_gl_framebuffer_renderbuffer : Dynamic",
-          "type": "Dynamic",
+          "signature": "lumen_gl_framebuffer_renderbuffer : Int->Int->Int->Dynamic->Dynamic",
+          "type": "Int->Int->Int->Dynamic->Dynamic",
           "doc": ""
         },
         {
@@ -814,8 +814,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "lumen_gl_clear_color : Dynamic",
-          "type": "Dynamic",
+          "signature": "lumen_gl_clear_color : Float->Float->Float->Float->Dynamic",
+          "type": "Float->Float->Float->Float->Dynamic",
           "doc": ""
         },
         {
@@ -824,8 +824,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "lumen_gl_link_program : Dynamic",
-          "type": "Dynamic",
+          "signature": "lumen_gl_link_program : Dynamic->Dynamic",
+          "type": "Dynamic->Dynamic",
           "doc": ""
         },
         {
@@ -834,8 +834,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "lumen_gl_bind_texture : Dynamic",
-          "type": "Dynamic",
+          "signature": "lumen_gl_bind_texture : Int->Int->Dynamic",
+          "type": "Int->Int->Dynamic",
           "doc": ""
         },
         {
@@ -844,8 +844,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "lumen_gl_delete_render_buffer : Dynamic",
-          "type": "Dynamic",
+          "signature": "lumen_gl_delete_render_buffer : Dynamic->Dynamic",
+          "type": "Dynamic->Dynamic",
           "doc": ""
         },
         {
@@ -854,8 +854,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "lumen_gl_uniform4iv : Dynamic",
-          "type": "Dynamic",
+          "signature": "lumen_gl_uniform4iv : lumen.render.gl.GLUniformLocation->lumen.utils.ByteArray->Dynamic",
+          "type": "lumen.render.gl.GLUniformLocation->lumen.utils.ByteArray->Dynamic",
           "doc": ""
         },
         {
@@ -864,8 +864,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "lumen_gl_get_parameter : Dynamic",
-          "type": "Dynamic",
+          "signature": "lumen_gl_get_parameter : Int->Dynamic",
+          "type": "Int->Dynamic",
           "doc": ""
         },
         {
@@ -874,8 +874,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "lumen_gl_check_framebuffer_status : Dynamic",
-          "type": "Dynamic",
+          "signature": "lumen_gl_check_framebuffer_status : Int->Int",
+          "type": "Int->Int",
           "doc": ""
         },
         {
@@ -884,8 +884,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "lumen_gl_is_renderbuffer : Dynamic",
-          "type": "Dynamic",
+          "signature": "lumen_gl_is_renderbuffer : Dynamic->Bool",
+          "type": "Dynamic->Bool",
           "doc": ""
         },
         {
@@ -894,8 +894,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "lumen_gl_compressed_tex_image_2d : Dynamic",
-          "type": "Dynamic",
+          "signature": "lumen_gl_compressed_tex_image_2d : Int->Int->Int->Int->Int->Int->Null->Null->Dynamic",
+          "type": "Int->Int->Int->Int->Int->Int->Null->Null->Dynamic",
           "doc": ""
         },
         {
@@ -904,8 +904,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "lumen_gl_delete_buffer : Dynamic",
-          "type": "Dynamic",
+          "signature": "lumen_gl_delete_buffer : Dynamic->Dynamic",
+          "type": "Dynamic->Dynamic",
           "doc": ""
         },
         {
@@ -914,8 +914,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "lumen_gl_polygon_offset : Dynamic",
-          "type": "Dynamic",
+          "signature": "lumen_gl_polygon_offset : Float->Float->Dynamic",
+          "type": "Float->Float->Dynamic",
           "doc": ""
         },
         {
@@ -924,8 +924,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "lumen_gl_front_face : Dynamic",
-          "type": "Dynamic",
+          "signature": "lumen_gl_front_face : Int->Dynamic",
+          "type": "Int->Dynamic",
           "doc": ""
         },
         {
@@ -934,8 +934,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "lumen_gl_tex_image_2d : Dynamic",
-          "type": "Dynamic",
+          "signature": "lumen_gl_tex_image_2d : Int->Int->Int->Int->Int->Int->Int->Int->Null->Null->Dynamic",
+          "type": "Int->Int->Int->Int->Int->Int->Int->Int->Null->Null->Dynamic",
           "doc": ""
         },
         {
@@ -944,8 +944,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "lumen_gl_vertex_attrib4f : Dynamic",
-          "type": "Dynamic",
+          "signature": "lumen_gl_vertex_attrib4f : Int->Float->Float->Float->Float->Dynamic",
+          "type": "Int->Float->Float->Float->Float->Dynamic",
           "doc": ""
         },
         {
@@ -964,8 +964,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "lumen_gl_get_active_uniform : Dynamic",
-          "type": "Dynamic",
+          "signature": "lumen_gl_get_active_uniform : Dynamic->Int->lumen.render.gl.GLActiveInfo",
+          "type": "Dynamic->Int->lumen.render.gl.GLActiveInfo",
           "doc": ""
         },
         {
@@ -974,8 +974,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "lumen_gl_stencil_func_separate : Dynamic",
-          "type": "Dynamic",
+          "signature": "lumen_gl_stencil_func_separate : Int->Int->Int->Int->Dynamic",
+          "type": "Int->Int->Int->Int->Dynamic",
           "doc": ""
         },
         {
@@ -984,8 +984,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "lumen_gl_uniform1fv : Dynamic",
-          "type": "Dynamic",
+          "signature": "lumen_gl_uniform1fv : lumen.render.gl.GLUniformLocation->lumen.utils.ByteArray->Dynamic",
+          "type": "lumen.render.gl.GLUniformLocation->lumen.utils.ByteArray->Dynamic",
           "doc": ""
         },
         {
@@ -994,8 +994,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "lumen_gl_use_program : Dynamic",
-          "type": "Dynamic",
+          "signature": "lumen_gl_use_program : Int->Dynamic",
+          "type": "Int->Dynamic",
           "doc": ""
         },
         {
@@ -1004,8 +1004,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "lumen_gl_get_active_attrib : Dynamic",
-          "type": "Dynamic",
+          "signature": "lumen_gl_get_active_attrib : Dynamic->Int->lumen.render.gl.GLActiveInfo",
+          "type": "Dynamic->Int->lumen.render.gl.GLActiveInfo",
           "doc": ""
         },
         {
@@ -1014,8 +1014,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "lumen_gl_is_texture : Dynamic",
-          "type": "Dynamic",
+          "signature": "lumen_gl_is_texture : Dynamic->Bool",
+          "type": "Dynamic->Bool",
           "doc": ""
         },
         {
@@ -1024,8 +1024,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "lumen_gl_get_error : Dynamic",
-          "type": "Dynamic",
+          "signature": "lumen_gl_get_error : Int",
+          "type": "Int",
           "doc": ""
         },
         {
@@ -1034,8 +1034,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "lumen_gl_uniform1iv : Dynamic",
-          "type": "Dynamic",
+          "signature": "lumen_gl_uniform1iv : lumen.render.gl.GLUniformLocation->lumen.utils.ByteArray->Dynamic",
+          "type": "lumen.render.gl.GLUniformLocation->lumen.utils.ByteArray->Dynamic",
           "doc": ""
         },
         {
@@ -1044,8 +1044,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "lumen_gl_vertex_attrib1f : Dynamic",
-          "type": "Dynamic",
+          "signature": "lumen_gl_vertex_attrib1f : Int->Float->Dynamic",
+          "type": "Int->Float->Dynamic",
           "doc": ""
         },
         {
@@ -1054,8 +1054,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "lumen_gl_vertex_attrib2fv : Dynamic",
-          "type": "Dynamic",
+          "signature": "lumen_gl_vertex_attrib2fv : Int->lumen.utils.ByteArray->Dynamic",
+          "type": "Int->lumen.utils.ByteArray->Dynamic",
           "doc": ""
         },
         {
@@ -1064,8 +1064,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "lumen_gl_draw_arrays : Dynamic",
-          "type": "Dynamic",
+          "signature": "lumen_gl_draw_arrays : Int->Int->Int->Dynamic",
+          "type": "Int->Int->Int->Dynamic",
           "doc": ""
         },
         {
@@ -1074,8 +1074,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "lumen_gl_get_program_parameter : Dynamic",
-          "type": "Dynamic",
+          "signature": "lumen_gl_get_program_parameter : Dynamic->Int->Int",
+          "type": "Dynamic->Int->Int",
           "doc": ""
         },
         {
@@ -1084,8 +1084,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "lumen_gl_get_render_buffer_parameter : Dynamic",
-          "type": "Dynamic",
+          "signature": "lumen_gl_get_render_buffer_parameter : Int->Int->Dynamic",
+          "type": "Int->Int->Dynamic",
           "doc": ""
         },
         {
@@ -1094,8 +1094,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "lumen_gl_tex_parameterf : Dynamic",
-          "type": "Dynamic",
+          "signature": "lumen_gl_tex_parameterf : Int->Int->Float->Dynamic",
+          "type": "Int->Int->Float->Dynamic",
           "doc": ""
         },
         {
@@ -1104,8 +1104,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "lumen_gl_buffer_sub_data : Dynamic",
-          "type": "Dynamic",
+          "signature": "lumen_gl_buffer_sub_data : Int->Int->lumen.utils.ByteArray->Int->Int->Dynamic",
+          "type": "Int->Int->lumen.utils.ByteArray->Int->Int->Dynamic",
           "doc": ""
         },
         {
@@ -1114,8 +1114,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "lumen_gl_is_framebuffer : Dynamic",
-          "type": "Dynamic",
+          "signature": "lumen_gl_is_framebuffer : Dynamic->Bool",
+          "type": "Dynamic->Bool",
           "doc": ""
         },
         {
@@ -1124,8 +1124,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "lumen_gl_validate_program : Dynamic",
-          "type": "Dynamic",
+          "signature": "lumen_gl_validate_program : Dynamic->Dynamic",
+          "type": "Dynamic->Dynamic",
           "doc": ""
         },
         {
@@ -1134,8 +1134,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "lumen_gl_copy_tex_image_2d : Dynamic",
-          "type": "Dynamic",
+          "signature": "lumen_gl_copy_tex_image_2d : Int->Int->Int->Int->Int->Int->Int->Int->Dynamic",
+          "type": "Int->Int->Int->Int->Int->Int->Int->Int->Dynamic",
           "doc": ""
         },
         {
@@ -1144,8 +1144,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "lumen_gl_delete_shader : Dynamic",
-          "type": "Dynamic",
+          "signature": "lumen_gl_delete_shader : Dynamic->Dynamic",
+          "type": "Dynamic->Dynamic",
           "doc": ""
         },
         {
@@ -1154,8 +1154,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "lumen_gl_shader_source : Dynamic",
-          "type": "Dynamic",
+          "signature": "lumen_gl_shader_source : Dynamic->String->Dynamic",
+          "type": "Dynamic->String->Dynamic",
           "doc": ""
         },
         {
@@ -1164,8 +1164,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "lumen_gl_framebuffer_texture2D : Dynamic",
-          "type": "Dynamic",
+          "signature": "lumen_gl_framebuffer_texture2D : Int->Int->Int->Dynamic->Int->Dynamic",
+          "type": "Int->Int->Int->Dynamic->Int->Dynamic",
           "doc": ""
         },
         {
@@ -1174,8 +1174,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "lumen_gl_uniform3f : Dynamic",
-          "type": "Dynamic",
+          "signature": "lumen_gl_uniform3f : lumen.render.gl.GLUniformLocation->Float->Float->Float->Dynamic",
+          "type": "lumen.render.gl.GLUniformLocation->Float->Float->Float->Dynamic",
           "doc": ""
         },
         {
@@ -1184,8 +1184,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "lumen_gl_get_tex_parameter : Dynamic",
-          "type": "Dynamic",
+          "signature": "lumen_gl_get_tex_parameter : Int->Int->Dynamic",
+          "type": "Int->Int->Dynamic",
           "doc": ""
         },
         {
@@ -1194,8 +1194,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "lumen_gl_uniform2f : Dynamic",
-          "type": "Dynamic",
+          "signature": "lumen_gl_uniform2f : lumen.render.gl.GLUniformLocation->Float->Float->Dynamic",
+          "type": "lumen.render.gl.GLUniformLocation->Float->Float->Dynamic",
           "doc": ""
         },
         {
@@ -1204,8 +1204,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "lumen_gl_vertex_attrib3f : Dynamic",
-          "type": "Dynamic",
+          "signature": "lumen_gl_vertex_attrib3f : Int->Float->Float->Float->Dynamic",
+          "type": "Int->Float->Float->Float->Dynamic",
           "doc": ""
         },
         {
@@ -1214,8 +1214,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "lumen_gl_clear_depth : Dynamic",
-          "type": "Dynamic",
+          "signature": "lumen_gl_clear_depth : Float->Dynamic",
+          "type": "Float->Dynamic",
           "doc": ""
         },
         {
@@ -1234,8 +1234,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "lumen_gl_generate_mipmap : Dynamic",
-          "type": "Dynamic",
+          "signature": "lumen_gl_generate_mipmap : Int->Dynamic",
+          "type": "Int->Dynamic",
           "doc": ""
         },
         {
@@ -1244,8 +1244,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "lumen_gl_read_pixels : Dynamic",
-          "type": "Dynamic",
+          "signature": "lumen_gl_read_pixels : Int->Int->Int->Int->Int->Int->Null->Null->Dynamic",
+          "type": "Int->Int->Int->Int->Int->Int->Null->Null->Dynamic",
           "doc": ""
         },
         {
@@ -1254,8 +1254,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "lumen_gl_get_attrib_location : Dynamic",
-          "type": "Dynamic",
+          "signature": "lumen_gl_get_attrib_location : Dynamic->String->Int",
+          "type": "Dynamic->String->Int",
           "doc": ""
         },
         {
@@ -1264,8 +1264,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "lumen_gl_get_shader_precision_format : Dynamic",
-          "type": "Dynamic",
+          "signature": "lumen_gl_get_shader_precision_format : Int->Int->lumen.render.gl.native.ShaderPrecisionFormat",
+          "type": "Int->Int->lumen.render.gl.native.ShaderPrecisionFormat",
           "doc": ""
         },
         {
@@ -1274,8 +1274,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "lumen_gl_uniform3i : Dynamic",
-          "type": "Dynamic",
+          "signature": "lumen_gl_uniform3i : lumen.render.gl.GLUniformLocation->Int->Int->Int->Dynamic",
+          "type": "lumen.render.gl.GLUniformLocation->Int->Int->Int->Dynamic",
           "doc": ""
         },
         {
@@ -1284,8 +1284,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "lumen_gl_uniform2i : Dynamic",
-          "type": "Dynamic",
+          "signature": "lumen_gl_uniform2i : lumen.render.gl.GLUniformLocation->Int->Int->Dynamic",
+          "type": "lumen.render.gl.GLUniformLocation->Int->Int->Dynamic",
           "doc": ""
         },
         {
@@ -1294,8 +1294,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "lumen_gl_bind_framebuffer : Dynamic",
-          "type": "Dynamic",
+          "signature": "lumen_gl_bind_framebuffer : Int->Int->Dynamic",
+          "type": "Int->Int->Dynamic",
           "doc": ""
         },
         {
@@ -1304,8 +1304,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "lumen_gl_copy_tex_sub_image_2d : Dynamic",
-          "type": "Dynamic",
+          "signature": "lumen_gl_copy_tex_sub_image_2d : Int->Int->Int->Int->Int->Int->Int->Int->Dynamic",
+          "type": "Int->Int->Int->Int->Int->Int->Int->Int->Dynamic",
           "doc": ""
         },
         {
@@ -1314,8 +1314,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "lumen_gl_get_uniform_location : Dynamic",
-          "type": "Dynamic",
+          "signature": "lumen_gl_get_uniform_location : Dynamic->String->Dynamic",
+          "type": "Dynamic->String->Dynamic",
           "doc": ""
         },
         {
@@ -1324,8 +1324,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "lumen_gl_stencil_op : Dynamic",
-          "type": "Dynamic",
+          "signature": "lumen_gl_stencil_op : Int->Int->Int->Dynamic",
+          "type": "Int->Int->Int->Dynamic",
           "doc": ""
         }
       ]
@@ -1362,7 +1362,8 @@
           "args": [
             {
               "name": "pname",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             }
           ]
         },
@@ -1378,11 +1379,13 @@
           "args": [
             {
               "name": "target",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "framebuffer",
-              "type": "lumen.render.gl.GLFramebuffer"
+              "type": "lumen.render.gl.GLFramebuffer",
+              "value": "null"
             }
           ]
         },
@@ -1398,7 +1401,8 @@
           "args": [
             {
               "name": "shader",
-              "type": "lumen.render.gl.GLShader"
+              "type": "lumen.render.gl.GLShader",
+              "value": "null"
             }
           ]
         },
@@ -1414,7 +1418,8 @@
           "args": [
             {
               "name": "renderbuffer",
-              "type": "lumen.render.gl.GLRenderbuffer"
+              "type": "lumen.render.gl.GLRenderbuffer",
+              "value": "null"
             }
           ]
         },
@@ -1441,11 +1446,13 @@
           "args": [
             {
               "name": "target",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "pname",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             }
           ]
         },
@@ -1461,19 +1468,23 @@
           "args": [
             {
               "name": "indx",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "x",
-              "type": "Float"
+              "type": "Float",
+              "value": "null"
             },
             {
               "name": "y",
-              "type": "Float"
+              "type": "Float",
+              "value": "null"
             },
             {
               "name": "z",
-              "type": "Float"
+              "type": "Float",
+              "value": "null"
             }
           ]
         },
@@ -1489,11 +1500,13 @@
           "args": [
             {
               "name": "modeRGB",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "modeAlpha",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             }
           ]
         },
@@ -1509,7 +1522,8 @@
           "args": [
             {
               "name": "cap",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             }
           ]
         },
@@ -1525,7 +1539,8 @@
           "args": [
             {
               "name": "shader",
-              "type": "lumen.render.gl.GLShader"
+              "type": "lumen.render.gl.GLShader",
+              "value": "null"
             }
           ]
         },
@@ -1541,19 +1556,23 @@
           "args": [
             {
               "name": "srcRGB",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "dstRGB",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "srcAlpha",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "dstAlpha",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             }
           ]
         },
@@ -1569,11 +1588,13 @@
           "args": [
             {
               "name": "factor",
-              "type": "Float"
+              "type": "Float",
+              "value": "null"
             },
             {
               "name": "units",
-              "type": "Float"
+              "type": "Float",
+              "value": "null"
             }
           ]
         },
@@ -1589,23 +1610,28 @@
           "args": [
             {
               "name": "location",
-              "type": "lumen.render.gl.GLUniformLocation"
+              "type": "lumen.render.gl.GLUniformLocation",
+              "value": "null"
             },
             {
               "name": "x",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "y",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "z",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "w",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             }
           ]
         },
@@ -1621,19 +1647,23 @@
           "args": [
             {
               "name": "x",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "y",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "width",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "height",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             }
           ]
         },
@@ -1649,7 +1679,8 @@
           "args": [
             {
               "name": "texture",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             }
           ]
         },
@@ -1665,7 +1696,8 @@
           "args": [
             {
               "name": "mode",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             }
           ]
         },
@@ -1681,7 +1713,8 @@
           "args": [
             {
               "name": "buffer",
-              "type": "lumen.render.gl.GLBuffer"
+              "type": "lumen.render.gl.GLBuffer",
+              "value": "null"
             }
           ]
         },
@@ -1697,11 +1730,13 @@
           "args": [
             {
               "name": "index",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "pname",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             }
           ]
         },
@@ -1717,15 +1752,18 @@
           "args": [
             {
               "name": "target",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "offset",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "data",
-              "type": "lumen.utils.IMemoryRange"
+              "type": "lumen.utils.IMemoryRange",
+              "value": "null"
             }
           ]
         },
@@ -1741,11 +1779,13 @@
           "args": [
             {
               "name": "location",
-              "type": "lumen.render.gl.GLUniformLocation"
+              "type": "lumen.render.gl.GLUniformLocation",
+              "value": "null"
             },
             {
               "name": "v",
-              "type": "lumen.utils.Float32Array"
+              "type": "lumen.utils.Float32Array",
+              "value": "null"
             }
           ]
         },
@@ -1772,11 +1812,13 @@
           "args": [
             {
               "name": "indx",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "x",
-              "type": "Float"
+              "type": "Float",
+              "value": "null"
             }
           ]
         },
@@ -1803,15 +1845,18 @@
           "args": [
             {
               "name": "target",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "pname",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "param",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             }
           ]
         },
@@ -1827,19 +1872,23 @@
           "args": [
             {
               "name": "location",
-              "type": "lumen.render.gl.GLUniformLocation"
+              "type": "lumen.render.gl.GLUniformLocation",
+              "value": "null"
             },
             {
               "name": "x",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "y",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "z",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             }
           ]
         },
@@ -1855,35 +1904,43 @@
           "args": [
             {
               "name": "target",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "level",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "internalformat",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "x",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "y",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "width",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "height",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "border",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             }
           ]
         },
@@ -1899,7 +1956,8 @@
           "args": [
             {
               "name": "program",
-              "type": "lumen.render.gl.GLProgram"
+              "type": "lumen.render.gl.GLProgram",
+              "value": "null"
             }
           ]
         },
@@ -1915,7 +1973,8 @@
           "args": [
             {
               "name": "s",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             }
           ]
         },
@@ -1931,11 +1990,13 @@
           "args": [
             {
               "name": "target",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "pname",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             }
           ]
         },
@@ -1951,11 +2012,13 @@
           "args": [
             {
               "name": "location",
-              "type": "lumen.render.gl.GLUniformLocation"
+              "type": "lumen.render.gl.GLUniformLocation",
+              "value": "null"
             },
             {
               "name": "x",
-              "type": "lumen.utils.Float32Array"
+              "type": "lumen.utils.Float32Array",
+              "value": "null"
             }
           ]
         },
@@ -1971,15 +2034,18 @@
           "args": [
             {
               "name": "func",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "ref",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "mask",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             }
           ]
         },
@@ -1995,19 +2061,23 @@
           "args": [
             {
               "name": "face",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "func",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "ref",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "mask",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             }
           ]
         },
@@ -2023,15 +2093,18 @@
           "args": [
             {
               "name": "location",
-              "type": "lumen.render.gl.GLUniformLocation"
+              "type": "lumen.render.gl.GLUniformLocation",
+              "value": "null"
             },
             {
               "name": "x",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "y",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             }
           ]
         },
@@ -2047,7 +2120,8 @@
           "args": [
             {
               "name": "cap",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             }
           ]
         },
@@ -2063,23 +2137,28 @@
           "args": [
             {
               "name": "target",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "attachment",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "textarget",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "texture",
-              "type": "lumen.render.gl.GLTexture"
+              "type": "lumen.render.gl.GLTexture",
+              "value": "null"
             },
             {
               "name": "level",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             }
           ]
         },
@@ -2106,7 +2185,8 @@
           "args": [
             {
               "name": "type",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             }
           ]
         },
@@ -2122,11 +2202,13 @@
           "args": [
             {
               "name": "target",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "texture",
-              "type": "lumen.render.gl.GLTexture"
+              "type": "lumen.render.gl.GLTexture",
+              "value": "null"
             }
           ]
         },
@@ -2142,11 +2224,13 @@
           "args": [
             {
               "name": "zNear",
-              "type": "Float"
+              "type": "Float",
+              "value": "null"
             },
             {
               "name": "zFar",
-              "type": "Float"
+              "type": "Float",
+              "value": "null"
             }
           ]
         },
@@ -2162,15 +2246,18 @@
           "args": [
             {
               "name": "mode",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "first",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "count",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             }
           ]
         },
@@ -2186,7 +2273,8 @@
           "args": [
             {
               "name": "target",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             }
           ]
         },
@@ -2202,7 +2290,8 @@
           "args": [
             {
               "name": "index",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             }
           ]
         },
@@ -2218,15 +2307,18 @@
           "args": [
             {
               "name": "target",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "pname",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "param",
-              "type": "Float"
+              "type": "Float",
+              "value": "null"
             }
           ]
         },
@@ -2242,39 +2334,48 @@
           "args": [
             {
               "name": "target",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "level",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "xoffset",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "yoffset",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "width",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "height",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "format",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "type",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "pixels",
-              "type": "lumen.utils.ArrayBufferView"
+              "type": "lumen.utils.ArrayBufferView",
+              "value": "null"
             }
           ]
         },
@@ -2290,7 +2391,8 @@
           "args": [
             {
               "name": "renderbuffer",
-              "type": "lumen.render.gl.GLRenderbuffer"
+              "type": "lumen.render.gl.GLRenderbuffer",
+              "value": "null"
             }
           ]
         },
@@ -2306,19 +2408,23 @@
           "args": [
             {
               "name": "target",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "attachment",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "renderbuffertarget",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "renderbuffer",
-              "type": "lumen.render.gl.GLRenderbuffer"
+              "type": "lumen.render.gl.GLRenderbuffer",
+              "value": "null"
             }
           ]
         },
@@ -2334,11 +2440,13 @@
           "args": [
             {
               "name": "indx",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "values",
-              "type": "lumen.utils.Float32Array"
+              "type": "lumen.utils.Float32Array",
+              "value": "null"
             }
           ]
         },
@@ -2354,11 +2462,13 @@
           "args": [
             {
               "name": "program",
-              "type": "lumen.render.gl.GLProgram"
+              "type": "lumen.render.gl.GLProgram",
+              "value": "null"
             },
             {
               "name": "index",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             }
           ]
         },
@@ -2374,11 +2484,13 @@
           "args": [
             {
               "name": "location",
-              "type": "lumen.render.gl.GLUniformLocation"
+              "type": "lumen.render.gl.GLUniformLocation",
+              "value": "null"
             },
             {
               "name": "x",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             }
           ]
         },
@@ -2394,11 +2506,13 @@
           "args": [
             {
               "name": "location",
-              "type": "lumen.render.gl.GLUniformLocation"
+              "type": "lumen.render.gl.GLUniformLocation",
+              "value": "null"
             },
             {
               "name": "v",
-              "type": "lumen.utils.Float32Array"
+              "type": "lumen.utils.Float32Array",
+              "value": "null"
             }
           ]
         },
@@ -2414,19 +2528,23 @@
           "args": [
             {
               "name": "red",
-              "type": "Bool"
+              "type": "Bool",
+              "value": "null"
             },
             {
               "name": "green",
-              "type": "Bool"
+              "type": "Bool",
+              "value": "null"
             },
             {
               "name": "blue",
-              "type": "Bool"
+              "type": "Bool",
+              "value": "null"
             },
             {
               "name": "alpha",
-              "type": "Bool"
+              "type": "Bool",
+              "value": "null"
             }
           ]
         },
@@ -2442,11 +2560,13 @@
           "args": [
             {
               "name": "index",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "pname",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             }
           ]
         },
@@ -2462,11 +2582,13 @@
           "args": [
             {
               "name": "program",
-              "type": "lumen.render.gl.GLProgram"
+              "type": "lumen.render.gl.GLProgram",
+              "value": "null"
             },
             {
               "name": "location",
-              "type": "lumen.render.gl.GLUniformLocation"
+              "type": "lumen.render.gl.GLUniformLocation",
+              "value": "null"
             }
           ]
         },
@@ -2482,11 +2604,13 @@
           "args": [
             {
               "name": "inName",
-              "type": "String"
+              "type": "String",
+              "value": "null"
             },
             {
               "name": "inArgCount",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             }
           ]
         },
@@ -2502,19 +2626,23 @@
           "args": [
             {
               "name": "face",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "fail",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "zfail",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "zpass",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             }
           ]
         },
@@ -2530,23 +2658,28 @@
           "args": [
             {
               "name": "indx",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "x",
-              "type": "Float"
+              "type": "Float",
+              "value": "null"
             },
             {
               "name": "y",
-              "type": "Float"
+              "type": "Float",
+              "value": "null"
             },
             {
               "name": "z",
-              "type": "Float"
+              "type": "Float",
+              "value": "null"
             },
             {
               "name": "w",
-              "type": "Float"
+              "type": "Float",
+              "value": "null"
             }
           ]
         },
@@ -2562,11 +2695,13 @@
           "args": [
             {
               "name": "program",
-              "type": "lumen.render.gl.GLProgram"
+              "type": "lumen.render.gl.GLProgram",
+              "value": "null"
             },
             {
               "name": "shader",
-              "type": "lumen.render.gl.GLShader"
+              "type": "lumen.render.gl.GLShader",
+              "value": "null"
             }
           ]
         },
@@ -2582,11 +2717,13 @@
           "args": [
             {
               "name": "program",
-              "type": "lumen.render.gl.GLProgram"
+              "type": "lumen.render.gl.GLProgram",
+              "value": "null"
             },
             {
               "name": "name",
-              "type": "String"
+              "type": "String",
+              "value": "null"
             }
           ]
         },
@@ -2602,7 +2739,8 @@
           "args": [
             {
               "name": "texture",
-              "type": "lumen.render.gl.GLTexture"
+              "type": "lumen.render.gl.GLTexture",
+              "value": "null"
             }
           ]
         },
@@ -2629,11 +2767,13 @@
           "args": [
             {
               "name": "shader",
-              "type": "lumen.render.gl.GLShader"
+              "type": "lumen.render.gl.GLShader",
+              "value": "null"
             },
             {
               "name": "source",
-              "type": "String"
+              "type": "String",
+              "value": "null"
             }
           ]
         },
@@ -2649,11 +2789,13 @@
           "args": [
             {
               "name": "program",
-              "type": "lumen.render.gl.GLProgram"
+              "type": "lumen.render.gl.GLProgram",
+              "value": "null"
             },
             {
               "name": "pname",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             }
           ]
         },
@@ -2669,7 +2811,8 @@
           "args": [
             {
               "name": "depth",
-              "type": "Float"
+              "type": "Float",
+              "value": "null"
             }
           ]
         },
@@ -2696,7 +2839,8 @@
           "args": [
             {
               "name": "buffer",
-              "type": "lumen.render.gl.GLBuffer"
+              "type": "lumen.render.gl.GLBuffer",
+              "value": "null"
             }
           ]
         },
@@ -2712,7 +2856,8 @@
           "args": [
             {
               "name": "program",
-              "type": "lumen.render.gl.GLProgram"
+              "type": "lumen.render.gl.GLProgram",
+              "value": "null"
             }
           ]
         },
@@ -2728,15 +2873,18 @@
           "args": [
             {
               "name": "location",
-              "type": "lumen.render.gl.GLUniformLocation"
+              "type": "lumen.render.gl.GLUniformLocation",
+              "value": "null"
             },
             {
               "name": "transpose",
-              "type": "Bool"
+              "type": "Bool",
+              "value": "null"
             },
             {
               "name": "v",
-              "type": "lumen.utils.Float32Array"
+              "type": "lumen.utils.Float32Array",
+              "value": "null"
             }
           ]
         },
@@ -2752,11 +2900,13 @@
           "args": [
             {
               "name": "location",
-              "type": "lumen.render.gl.GLUniformLocation"
+              "type": "lumen.render.gl.GLUniformLocation",
+              "value": "null"
             },
             {
               "name": "v",
-              "type": "lumen.utils.Float32Array"
+              "type": "lumen.utils.Float32Array",
+              "value": "null"
             }
           ]
         },
@@ -2772,15 +2922,18 @@
           "args": [
             {
               "name": "program",
-              "type": "lumen.render.gl.GLProgram"
+              "type": "lumen.render.gl.GLProgram",
+              "value": "null"
             },
             {
               "name": "index",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "name",
-              "type": "String"
+              "type": "String",
+              "value": "null"
             }
           ]
         },
@@ -2796,11 +2949,13 @@
           "args": [
             {
               "name": "target",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "pname",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             }
           ]
         },
@@ -2816,7 +2971,8 @@
           "args": [
             {
               "name": "target",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             }
           ]
         },
@@ -2832,7 +2988,8 @@
           "args": [
             {
               "name": "mode",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             }
           ]
         },
@@ -2859,11 +3016,13 @@
           "args": [
             {
               "name": "indx",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "values",
-              "type": "lumen.utils.Float32Array"
+              "type": "lumen.utils.Float32Array",
+              "value": "null"
             }
           ]
         },
@@ -2879,11 +3038,13 @@
           "args": [
             {
               "name": "value",
-              "type": "Float"
+              "type": "Float",
+              "value": "null"
             },
             {
               "name": "invert",
-              "type": "Bool"
+              "type": "Bool",
+              "value": "null"
             }
           ]
         },
@@ -2899,7 +3060,8 @@
           "args": [
             {
               "name": "program",
-              "type": "lumen.render.gl.GLProgram"
+              "type": "lumen.render.gl.GLProgram",
+              "value": "null"
             }
           ]
         },
@@ -2915,11 +3077,13 @@
           "args": [
             {
               "name": "target",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "buffer",
-              "type": "lumen.render.gl.GLBuffer"
+              "type": "lumen.render.gl.GLBuffer",
+              "value": "null"
             }
           ]
         },
@@ -2935,7 +3099,8 @@
           "args": [
             {
               "name": "name",
-              "type": "String"
+              "type": "String",
+              "value": "null"
             }
           ]
         },
@@ -2951,19 +3116,23 @@
           "args": [
             {
               "name": "red",
-              "type": "Float"
+              "type": "Float",
+              "value": "null"
             },
             {
               "name": "green",
-              "type": "Float"
+              "type": "Float",
+              "value": "null"
             },
             {
               "name": "blue",
-              "type": "Float"
+              "type": "Float",
+              "value": "null"
             },
             {
               "name": "alpha",
-              "type": "Float"
+              "type": "Float",
+              "value": "null"
             }
           ]
         },
@@ -2979,15 +3148,18 @@
           "args": [
             {
               "name": "target",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "data",
-              "type": "lumen.utils.IMemoryRange"
+              "type": "lumen.utils.IMemoryRange",
+              "value": "null"
             },
             {
               "name": "usage",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             }
           ]
         },
@@ -3003,19 +3175,23 @@
           "args": [
             {
               "name": "red",
-              "type": "Float"
+              "type": "Float",
+              "value": "null"
             },
             {
               "name": "green",
-              "type": "Float"
+              "type": "Float",
+              "value": "null"
             },
             {
               "name": "blue",
-              "type": "Float"
+              "type": "Float",
+              "value": "null"
             },
             {
               "name": "alpha",
-              "type": "Float"
+              "type": "Float",
+              "value": "null"
             }
           ]
         },
@@ -3031,11 +3207,13 @@
           "args": [
             {
               "name": "shadertype",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "precisiontype",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             }
           ]
         },
@@ -3051,15 +3229,18 @@
           "args": [
             {
               "name": "indx",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "x",
-              "type": "Float"
+              "type": "Float",
+              "value": "null"
             },
             {
               "name": "y",
-              "type": "Float"
+              "type": "Float",
+              "value": "null"
             }
           ]
         },
@@ -3075,19 +3256,23 @@
           "args": [
             {
               "name": "mode",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "count",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "type",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "offset",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             }
           ]
         },
@@ -3103,19 +3288,23 @@
           "args": [
             {
               "name": "target",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "internalformat",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "width",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "height",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             }
           ]
         },
@@ -3131,15 +3320,18 @@
           "args": [
             {
               "name": "location",
-              "type": "lumen.render.gl.GLUniformLocation"
+              "type": "lumen.render.gl.GLUniformLocation",
+              "value": "null"
             },
             {
               "name": "transpose",
-              "type": "Bool"
+              "type": "Bool",
+              "value": "null"
             },
             {
               "name": "v",
-              "type": "lumen.utils.Float32Array"
+              "type": "lumen.utils.Float32Array",
+              "value": "null"
             }
           ]
         },
@@ -3155,15 +3347,18 @@
           "args": [
             {
               "name": "location",
-              "type": "lumen.render.gl.GLUniformLocation"
+              "type": "lumen.render.gl.GLUniformLocation",
+              "value": "null"
             },
             {
               "name": "x",
-              "type": "Float"
+              "type": "Float",
+              "value": "null"
             },
             {
               "name": "y",
-              "type": "Float"
+              "type": "Float",
+              "value": "null"
             }
           ]
         },
@@ -3179,35 +3374,43 @@
           "args": [
             {
               "name": "target",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "level",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "xoffset",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "yoffset",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "x",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "y",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "width",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "height",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             }
           ]
         },
@@ -3223,7 +3426,8 @@
           "args": [
             {
               "name": "framebuffer",
-              "type": "lumen.render.gl.GLFramebuffer"
+              "type": "lumen.render.gl.GLFramebuffer",
+              "value": "null"
             }
           ]
         },
@@ -3239,11 +3443,13 @@
           "args": [
             {
               "name": "program",
-              "type": "lumen.render.gl.GLProgram"
+              "type": "lumen.render.gl.GLProgram",
+              "value": "null"
             },
             {
               "name": "name",
-              "type": "String"
+              "type": "String",
+              "value": "null"
             }
           ]
         },
@@ -3259,15 +3465,18 @@
           "args": [
             {
               "name": "fail",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "zfail",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "zpass",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             }
           ]
         },
@@ -3283,7 +3492,8 @@
           "args": [
             {
               "name": "func",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             }
           ]
         },
@@ -3299,11 +3509,13 @@
           "args": [
             {
               "name": "location",
-              "type": "lumen.render.gl.GLUniformLocation"
+              "type": "lumen.render.gl.GLUniformLocation",
+              "value": "null"
             },
             {
               "name": "v",
-              "type": "lumen.utils.Int32Array"
+              "type": "lumen.utils.Int32Array",
+              "value": "null"
             }
           ]
         },
@@ -3319,7 +3531,8 @@
           "args": [
             {
               "name": "shader",
-              "type": "lumen.render.gl.GLShader"
+              "type": "lumen.render.gl.GLShader",
+              "value": "null"
             }
           ]
         },
@@ -3335,11 +3548,13 @@
           "args": [
             {
               "name": "target",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "renderbuffer",
-              "type": "lumen.render.gl.GLRenderbuffer"
+              "type": "lumen.render.gl.GLRenderbuffer",
+              "value": "null"
             }
           ]
         },
@@ -3355,7 +3570,8 @@
           "args": [
             {
               "name": "mask",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             }
           ]
         },
@@ -3371,7 +3587,8 @@
           "args": [
             {
               "name": "texture",
-              "type": "lumen.render.gl.GLTexture"
+              "type": "lumen.render.gl.GLTexture",
+              "value": "null"
             }
           ]
         },
@@ -3398,7 +3615,8 @@
           "args": [
             {
               "name": "program",
-              "type": "lumen.render.gl.GLProgram"
+              "type": "lumen.render.gl.GLProgram",
+              "value": "null"
             }
           ]
         },
@@ -3414,11 +3632,13 @@
           "args": [
             {
               "name": "sfactor",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "dfactor",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             }
           ]
         },
@@ -3434,11 +3654,13 @@
           "args": [
             {
               "name": "target",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "mode",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             }
           ]
         },
@@ -3454,11 +3676,13 @@
           "args": [
             {
               "name": "location",
-              "type": "lumen.render.gl.GLUniformLocation"
+              "type": "lumen.render.gl.GLUniformLocation",
+              "value": "null"
             },
             {
               "name": "x",
-              "type": "Float"
+              "type": "Float",
+              "value": "null"
             }
           ]
         },
@@ -3474,7 +3698,8 @@
           "args": [
             {
               "name": "program",
-              "type": "lumen.render.gl.GLProgram"
+              "type": "lumen.render.gl.GLProgram",
+              "value": "null"
             }
           ]
         },
@@ -3490,7 +3715,8 @@
           "args": [
             {
               "name": "mask",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             }
           ]
         },
@@ -3506,11 +3732,13 @@
           "args": [
             {
               "name": "face",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "mask",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             }
           ]
         },
@@ -3537,7 +3765,8 @@
           "args": [
             {
               "name": "index",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             }
           ]
         },
@@ -3553,7 +3782,8 @@
           "args": [
             {
               "name": "cap",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             }
           ]
         },
@@ -3580,11 +3810,13 @@
           "args": [
             {
               "name": "location",
-              "type": "lumen.render.gl.GLUniformLocation"
+              "type": "lumen.render.gl.GLUniformLocation",
+              "value": "null"
             },
             {
               "name": "v",
-              "type": "lumen.utils.Int32Array"
+              "type": "lumen.utils.Int32Array",
+              "value": "null"
             }
           ]
         },
@@ -3600,35 +3832,43 @@
           "args": [
             {
               "name": "target",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "level",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "xoffset",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "yoffset",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "width",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "height",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "format",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "data",
-              "type": "lumen.utils.IMemoryRange"
+              "type": "lumen.utils.IMemoryRange",
+              "value": "null"
             }
           ]
         },
@@ -3644,7 +3884,8 @@
           "args": [
             {
               "name": "program",
-              "type": "lumen.render.gl.GLProgram"
+              "type": "lumen.render.gl.GLProgram",
+              "value": "null"
             }
           ]
         },
@@ -3660,31 +3901,38 @@
           "args": [
             {
               "name": "target",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "level",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "internalformat",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "width",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "height",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "border",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "data",
-              "type": "lumen.utils.IMemoryRange"
+              "type": "lumen.utils.IMemoryRange",
+              "value": "null"
             }
           ]
         },
@@ -3700,7 +3948,8 @@
           "args": [
             {
               "name": "shader",
-              "type": "lumen.render.gl.GLShader"
+              "type": "lumen.render.gl.GLShader",
+              "value": "null"
             }
           ]
         },
@@ -3716,31 +3965,38 @@
           "args": [
             {
               "name": "x",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "y",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "width",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "height",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "format",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "type",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "pixels",
-              "type": "lumen.utils.ArrayBufferView"
+              "type": "lumen.utils.ArrayBufferView",
+              "value": "null"
             }
           ]
         },
@@ -3756,7 +4012,8 @@
           "args": [
             {
               "name": "flag",
-              "type": "Bool"
+              "type": "Bool",
+              "value": "null"
             }
           ]
         },
@@ -3772,15 +4029,18 @@
           "args": [
             {
               "name": "location",
-              "type": "lumen.render.gl.GLUniformLocation"
+              "type": "lumen.render.gl.GLUniformLocation",
+              "value": "null"
             },
             {
               "name": "transpose",
-              "type": "Bool"
+              "type": "Bool",
+              "value": "null"
             },
             {
               "name": "v",
-              "type": "lumen.utils.Float32Array"
+              "type": "lumen.utils.Float32Array",
+              "value": "null"
             }
           ]
         },
@@ -3796,27 +4056,33 @@
           "args": [
             {
               "name": "indx",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "size",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "type",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "normalized",
-              "type": "Bool"
+              "type": "Bool",
+              "value": "null"
             },
             {
               "name": "stride",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "offset",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             }
           ]
         },
@@ -3832,7 +4098,8 @@
           "args": [
             {
               "name": "mode",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             }
           ]
         },
@@ -3848,11 +4115,13 @@
           "args": [
             {
               "name": "indx",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "values",
-              "type": "lumen.utils.Float32Array"
+              "type": "lumen.utils.Float32Array",
+              "value": "null"
             }
           ]
         },
@@ -3868,15 +4137,18 @@
           "args": [
             {
               "name": "target",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "attachment",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "pname",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             }
           ]
         },
@@ -3892,7 +4164,8 @@
           "args": [
             {
               "name": "framebuffer",
-              "type": "lumen.render.gl.GLFramebuffer"
+              "type": "lumen.render.gl.GLFramebuffer",
+              "value": "null"
             }
           ]
         },
@@ -3908,11 +4181,13 @@
           "args": [
             {
               "name": "program",
-              "type": "lumen.render.gl.GLProgram"
+              "type": "lumen.render.gl.GLProgram",
+              "value": "null"
             },
             {
               "name": "index",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             }
           ]
         },
@@ -3928,11 +4203,13 @@
           "args": [
             {
               "name": "shader",
-              "type": "lumen.render.gl.GLShader"
+              "type": "lumen.render.gl.GLShader",
+              "value": "null"
             },
             {
               "name": "pname",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             }
           ]
         },
@@ -3948,23 +4225,28 @@
           "args": [
             {
               "name": "location",
-              "type": "lumen.render.gl.GLUniformLocation"
+              "type": "lumen.render.gl.GLUniformLocation",
+              "value": "null"
             },
             {
               "name": "x",
-              "type": "Float"
+              "type": "Float",
+              "value": "null"
             },
             {
               "name": "y",
-              "type": "Float"
+              "type": "Float",
+              "value": "null"
             },
             {
               "name": "z",
-              "type": "Float"
+              "type": "Float",
+              "value": "null"
             },
             {
               "name": "w",
-              "type": "Float"
+              "type": "Float",
+              "value": "null"
             }
           ]
         },
@@ -3980,7 +4262,8 @@
           "args": [
             {
               "name": "program",
-              "type": "lumen.render.gl.GLProgram"
+              "type": "lumen.render.gl.GLProgram",
+              "value": "null"
             }
           ]
         },
@@ -4007,11 +4290,13 @@
           "args": [
             {
               "name": "location",
-              "type": "lumen.render.gl.GLUniformLocation"
+              "type": "lumen.render.gl.GLUniformLocation",
+              "value": "null"
             },
             {
               "name": "v",
-              "type": "lumen.utils.Int32Array"
+              "type": "lumen.utils.Int32Array",
+              "value": "null"
             }
           ]
         },
@@ -4027,11 +4312,13 @@
           "args": [
             {
               "name": "pname",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "param",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             }
           ]
         },
@@ -4047,7 +4334,8 @@
           "args": [
             {
               "name": "shader",
-              "type": "lumen.render.gl.GLShader"
+              "type": "lumen.render.gl.GLShader",
+              "value": "null"
             }
           ]
         },
@@ -4063,7 +4351,8 @@
           "args": [
             {
               "name": "width",
-              "type": "Float"
+              "type": "Float",
+              "value": "null"
             }
           ]
         },
@@ -4079,19 +4368,23 @@
           "args": [
             {
               "name": "x",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "y",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "width",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "height",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             }
           ]
         },
@@ -4107,19 +4400,23 @@
           "args": [
             {
               "name": "location",
-              "type": "lumen.render.gl.GLUniformLocation"
+              "type": "lumen.render.gl.GLUniformLocation",
+              "value": "null"
             },
             {
               "name": "x",
-              "type": "Float"
+              "type": "Float",
+              "value": "null"
             },
             {
               "name": "y",
-              "type": "Float"
+              "type": "Float",
+              "value": "null"
             },
             {
               "name": "z",
-              "type": "Float"
+              "type": "Float",
+              "value": "null"
             }
           ]
         },
@@ -4135,39 +4432,48 @@
           "args": [
             {
               "name": "target",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "level",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "internalformat",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "width",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "height",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "border",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "format",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "type",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "pixels",
-              "type": "lumen.utils.ArrayBufferView"
+              "type": "lumen.utils.ArrayBufferView",
+              "value": "null"
             }
           ]
         },
@@ -4183,11 +4489,13 @@
           "args": [
             {
               "name": "location",
-              "type": "lumen.render.gl.GLUniformLocation"
+              "type": "lumen.render.gl.GLUniformLocation",
+              "value": "null"
             },
             {
               "name": "v",
-              "type": "lumen.utils.Int32Array"
+              "type": "lumen.utils.Int32Array",
+              "value": "null"
             }
           ]
         },
@@ -4203,15 +4511,18 @@
           "args": [
             {
               "name": "location",
-              "type": "lumen.render.gl.GLUniformLocation"
+              "type": "lumen.render.gl.GLUniformLocation",
+              "value": "null"
             },
             {
               "name": "transpose",
-              "type": "Bool"
+              "type": "Bool",
+              "value": "null"
             },
             {
               "name": "matrix",
-              "type": "lumen.utils.compat.Matrix3D"
+              "type": "lumen.utils.compat.Matrix3D",
+              "value": "null"
             }
           ]
         },
@@ -4238,11 +4549,13 @@
           "args": [
             {
               "name": "program",
-              "type": "lumen.render.gl.GLProgram"
+              "type": "lumen.render.gl.GLProgram",
+              "value": "null"
             },
             {
               "name": "shader",
-              "type": "lumen.render.gl.GLShader"
+              "type": "lumen.render.gl.GLShader",
+              "value": "null"
             }
           ]
         },
@@ -4258,11 +4571,13 @@
           "args": [
             {
               "name": "indx",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "values",
-              "type": "lumen.utils.Float32Array"
+              "type": "lumen.utils.Float32Array",
+              "value": "null"
             }
           ]
         }

@@ -55,7 +55,7 @@
 
 
 
-`create(_id:String, ?_name:String, ?streaming:Bool) : lumen.audio.system.Sound`
+`create(_id:String, ?_name:String='', ?streaming:Bool=false) : lumen.audio.system.Sound`
 
 <span class="small_desc_flat"> Create a sound for playing. If no name is given, a unique id is assigned. Use the sound instance or the public api by name. </span>   
 

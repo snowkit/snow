@@ -61,7 +61,8 @@
           "args": [
             {
               "name": "event",
-              "type": "lumen.types.InputEvent"
+              "type": "lumen.types.InputEvent",
+              "value": "null"
             }
           ]
         },
@@ -82,11 +83,13 @@
           "args": [
             {
               "name": "_manager",
-              "type": "lumen.input.Input"
+              "type": "lumen.input.Input",
+              "value": "null"
             },
             {
               "name": "_lib",
-              "type": "lumen.Lumen"
+              "type": "lumen.Lumen",
+              "value": "null"
             }
           ]
         },
@@ -123,7 +126,8 @@
           "args": [
             {
               "name": "_event",
-              "type": "lumen.types.InputEvent"
+              "type": "lumen.types.InputEvent",
+              "value": "null"
             }
           ]
         },

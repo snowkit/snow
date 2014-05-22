@@ -54,8 +54,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "alhx_alcMakeContextCurrent : Dynamic",
-          "type": "Dynamic",
+          "signature": "alhx_alcMakeContextCurrent : Dynamic->Bool",
+          "type": "Dynamic->Bool",
           "doc": ""
         },
         {
@@ -74,8 +74,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "alhx_alcGetContextsDevice : Dynamic",
-          "type": "Dynamic",
+          "signature": "alhx_alcGetContextsDevice : Dynamic->Dynamic",
+          "type": "Dynamic->Dynamic",
           "doc": ""
         },
         {
@@ -104,8 +104,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "alhx_alcCreateContext : Dynamic",
-          "type": "Dynamic",
+          "signature": "alhx_alcCreateContext : Dynamic->Array->Dynamic",
+          "type": "Dynamic->Array->Dynamic",
           "doc": ""
         },
         {
@@ -164,8 +164,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "alhx_alcProcessContext : Dynamic",
-          "type": "Dynamic",
+          "signature": "alhx_alcProcessContext : Dynamic->Dynamic",
+          "type": "Dynamic->Dynamic",
           "doc": ""
         },
         {
@@ -194,8 +194,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "alhx_alcGetError : Dynamic",
-          "type": "Dynamic",
+          "signature": "alhx_alcGetError : Dynamic->Int",
+          "type": "Dynamic->Int",
           "doc": ""
         },
         {
@@ -224,8 +224,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "alhx_alcDestroyContext : Dynamic",
-          "type": "Dynamic",
+          "signature": "alhx_alcDestroyContext : Dynamic->Dynamic",
+          "type": "Dynamic->Dynamic",
           "doc": ""
         },
         {
@@ -244,8 +244,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "alhx_alcCloseDevice : Dynamic",
-          "type": "Dynamic",
+          "signature": "alhx_alcCloseDevice : Dynamic->Bool",
+          "type": "Dynamic->Bool",
           "doc": ""
         },
         {
@@ -254,8 +254,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "alhx_alcSuspendContext : Dynamic",
-          "type": "Dynamic",
+          "signature": "alhx_alcSuspendContext : Dynamic->Dynamic",
+          "type": "Dynamic->Dynamic",
           "doc": ""
         },
         {
@@ -274,8 +274,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "alhx_alcGetString : Dynamic",
-          "type": "Dynamic",
+          "signature": "alhx_alcGetString : Dynamic->Int->String",
+          "type": "Dynamic->Int->String",
           "doc": ""
         },
         {
@@ -294,8 +294,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "alhx_alcOpenDevice : Dynamic",
-          "type": "Dynamic",
+          "signature": "alhx_alcOpenDevice : String->Dynamic",
+          "type": "String->Dynamic",
           "doc": ""
         },
         {
@@ -314,8 +314,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "alhx_alcGetIntegerv : Dynamic",
-          "type": "Dynamic",
+          "signature": "alhx_alcGetIntegerv : Dynamic->Int->Int->Array",
+          "type": "Dynamic->Int->Int->Array",
           "doc": ""
         },
         {
@@ -406,11 +406,13 @@
           "args": [
             {
               "name": "device",
-              "type": "Dynamic"
+              "type": "Dynamic",
+              "value": ""
             },
             {
               "name": "?attrlist",
-              "type": "Array<Int>"
+              "type": "Array<Int>",
+              "value": "null"
             }
           ]
         },
@@ -426,7 +428,8 @@
           "args": [
             {
               "name": "context",
-              "type": "Dynamic"
+              "type": "Dynamic",
+              "value": "null"
             }
           ]
         },
@@ -442,7 +445,8 @@
           "args": [
             {
               "name": "device",
-              "type": "Dynamic"
+              "type": "Dynamic",
+              "value": "null"
             }
           ]
         },
@@ -458,7 +462,8 @@
           "args": [
             {
               "name": "?devicename",
-              "type": "String"
+              "type": "String",
+              "value": "null"
             }
           ]
         },
@@ -474,7 +479,8 @@
           "args": [
             {
               "name": "device",
-              "type": "Dynamic"
+              "type": "Dynamic",
+              "value": "null"
             }
           ]
         },
@@ -501,7 +507,8 @@
           "args": [
             {
               "name": "context",
-              "type": "Dynamic"
+              "type": "Dynamic",
+              "value": "null"
             }
           ]
         },
@@ -517,11 +524,13 @@
           "args": [
             {
               "name": "device",
-              "type": "Dynamic"
+              "type": "Dynamic",
+              "value": "null"
             },
             {
               "name": "param",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             }
           ]
         },
@@ -537,15 +546,18 @@
           "args": [
             {
               "name": "device",
-              "type": "Dynamic"
+              "type": "Dynamic",
+              "value": "null"
             },
             {
               "name": "param",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "size",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             }
           ]
         },
@@ -561,7 +573,8 @@
           "args": [
             {
               "name": "error",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             }
           ]
         },
@@ -577,7 +590,8 @@
           "args": [
             {
               "name": "context",
-              "type": "Dynamic"
+              "type": "Dynamic",
+              "value": "null"
             }
           ]
         },
@@ -593,7 +607,8 @@
           "args": [
             {
               "name": "context",
-              "type": "Dynamic"
+              "type": "Dynamic",
+              "value": "null"
             }
           ]
         },
@@ -609,7 +624,8 @@
           "args": [
             {
               "name": "context",
-              "type": "Dynamic"
+              "type": "Dynamic",
+              "value": "null"
             }
           ]
         }

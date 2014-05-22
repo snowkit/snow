@@ -62,27 +62,33 @@
           "args": [
             {
               "name": "a",
-              "type": "Float"
+              "type": "Float",
+              "value": "null"
             },
             {
               "name": "b",
-              "type": "Float"
+              "type": "Float",
+              "value": "null"
             },
             {
               "name": "c",
-              "type": "Float"
+              "type": "Float",
+              "value": "null"
             },
             {
               "name": "d",
-              "type": "Float"
+              "type": "Float",
+              "value": "null"
             },
             {
               "name": "tx",
-              "type": "Float"
+              "type": "Float",
+              "value": "null"
             },
             {
               "name": "ty",
-              "type": "Float"
+              "type": "Float",
+              "value": "null"
             }
           ]
         },
@@ -98,27 +104,33 @@
           "args": [
             {
               "name": "x0",
-              "type": "Float"
+              "type": "Float",
+              "value": "null"
             },
             {
               "name": "x1",
-              "type": "Float"
+              "type": "Float",
+              "value": "null"
             },
             {
               "name": "y0",
-              "type": "Float"
+              "type": "Float",
+              "value": "null"
             },
             {
               "name": "y1",
-              "type": "Float"
+              "type": "Float",
+              "value": "null"
             },
             {
               "name": "zNear",
-              "type": "Float"
+              "type": "Float",
+              "value": "null"
             },
             {
               "name": "zFar",
-              "type": "Float"
+              "type": "Float",
+              "value": "null"
             }
           ]
         },
@@ -129,24 +141,28 @@
           "isstatic": true,
           "isinline": false,
           "doc": "",
-          "signature": "create2D(x:Float, y:Float, ?scale:Float, ?rotation:Float) : lumen.utils.compat.Matrix3D",
+          "signature": "create2D(x:Float, y:Float, ?scale:Float=1, ?rotation:Float=0) : lumen.utils.compat.Matrix3D",
           "return": ": lumen.utils.compat.Matrix3D",
           "args": [
             {
               "name": "x",
-              "type": "Float"
+              "type": "Float",
+              "value": ""
             },
             {
               "name": "y",
-              "type": "Float"
+              "type": "Float",
+              "value": ""
             },
             {
               "name": "?scale",
-              "type": "Float"
+              "type": "Float",
+              "value": "1"
             },
             {
               "name": "?rotation",
-              "type": "Float"
+              "type": "Float",
+              "value": "0"
             }
           ]
         }
@@ -168,7 +184,8 @@
           "args": [
             {
               "name": "?v",
-              "type": "lumen.utils.compat.Vector<Float>"
+              "type": "lumen.utils.compat.Vector<Float>",
+              "value": "null"
             }
           ]
         },
@@ -184,7 +201,8 @@
           "args": [
             {
               "name": "lhs",
-              "type": "lumen.utils.compat.Matrix3D"
+              "type": "lumen.utils.compat.Matrix3D",
+              "value": "null"
             }
           ]
         },
@@ -211,7 +229,8 @@
           "args": [
             {
               "name": "components",
-              "type": "lumen.utils.compat.Vector<lumen.utils.compat.Vector3D>"
+              "type": "lumen.utils.compat.Vector<lumen.utils.compat.Vector3D>",
+              "value": "null"
             }
           ]
         },
@@ -227,15 +246,18 @@
           "args": [
             {
               "name": "degrees",
-              "type": "Float"
+              "type": "Float",
+              "value": ""
             },
             {
               "name": "axis",
-              "type": "lumen.utils.compat.Vector3D"
+              "type": "lumen.utils.compat.Vector3D",
+              "value": ""
             },
             {
               "name": "?pivotPoint",
-              "type": "lumen.utils.compat.Vector3D"
+              "type": "lumen.utils.compat.Vector3D",
+              "value": "null"
             }
           ]
         },
@@ -251,11 +273,13 @@
           "args": [
             {
               "name": "vin",
-              "type": "lumen.utils.compat.Vector<Float>"
+              "type": "lumen.utils.compat.Vector<Float>",
+              "value": "null"
             },
             {
               "name": "vout",
-              "type": "lumen.utils.compat.Vector<Float>"
+              "type": "lumen.utils.compat.Vector<Float>",
+              "value": "null"
             }
           ]
         }

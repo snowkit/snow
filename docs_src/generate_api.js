@@ -27,6 +27,9 @@
 
             //we parse each top level object from scribe and spit out a template file for 
             //the documentator to take and run with
+
+        //Classes
+
             if(doc_json) {
                 var classes = doc_json.classes;
                 if(classes) {
@@ -51,7 +54,6 @@
                         }
 
                         if(_skip) {
-                            console.log('skipping ' + theclass.name);
                             continue;
                         }
 
@@ -153,6 +155,8 @@
 
                     } //for each class
                 }
+            
+            //Typedefs
 
                 var typedefs = doc_json.typedefs;
                 if(typedefs) {
@@ -177,7 +181,6 @@
                         }
 
                         if(_skip) {
-                            console.log('skipping ' + thetypedef.name);
                             continue;
                         }
 
@@ -230,7 +233,94 @@
                         helper.write_file( api_file, JSON.stringify(output_json, null, 2) );
 
                     } //for each typedef
-                }
+                }//if typedefs
+
+            //Enums
+
+                var enums = doc_json.enums;
+                if(enums) {
+                    for(var i = 0; i < enums.length; ++i) {
+
+                        var theenum = enums[i];
+                        var filename = theenum.name;
+                        var _skip = false;
+
+                        if(!theenum.ispublic) {
+                            _skip = true;
+                        }
+
+                        if(theenum["meta"]) {
+                            var _metas = theenum["meta"];
+                            for(var j = 0; j < _metas.length; ++j ) {
+                                var _meta = _metas[j];
+                                if(_meta.name == ':noCompletion') {
+                                    _skip = true;
+                                }
+                            }
+                        }
+
+                        if(_skip) {
+                            continue;
+                        }
+
+                        var output_json = {
+                            source : filename,
+                            doc : '',
+                            links : [],
+                            toplinks : [],
+                            sections : []
+                        }
+
+                            //add the docs if any
+                        if(theenum["doc"].length != 0) {
+                            output_json.doc = theenum["doc"];
+                        }
+
+                        var _values = [];
+                        var __values = theenum["values"];
+
+                        for(var j = 0; j < __values.length; ++j) {
+                            var _value = __values[j];
+                            _values.push({ 
+                                name:_value.name, 
+                                signature : theenum["name"] + '.' + _value.name,
+                                doc : _value.doc
+                            });
+                        }
+
+                        if(theenum["values"].length != 0) {
+                             output_json.sections.push({
+                                name : "Values",
+                                link : "#Values",
+                                values : _values
+                            });
+                        }
+                        
+                        if(theenum["meta"].length != 0) {
+                             output_json.sections.push({
+                                name : "Meta",
+                                link : "#Meta",
+                                values : theenum["meta"]
+                            });
+                        }
+
+                            //write out a single file per class, into it's package folder
+                        var packages = theenum.name.split('.');
+                            //remove the class name from the end
+                        var class_name = packages.pop();
+                            //find where this file will end up
+                        var package_path = config.apis_path + packages.join('/') + '/';
+                            //generate the package folders if required
+                        helper.create_folder_path( package_path );
+                            //work out the final file destination
+                        var api_file = package_path + class_name + ".json";
+                            //debugging
+                        helper.verbose("\t- refreshing api file from scribe .. " + api_file);
+                            //write the generated file to the path 
+                        helper.write_file( api_file, JSON.stringify(output_json, null, 2) );
+
+                    } //for each enum
+                }//if enums
 
             } //if doc json
 

@@ -217,7 +217,8 @@
           "args": [
             {
               "name": "_seconds",
-              "type": "Float"
+              "type": "Float",
+              "value": "null"
             }
           ]
         },
@@ -244,7 +245,8 @@
           "args": [
             {
               "name": "_looping",
-              "type": "Bool"
+              "type": "Bool",
+              "value": "null"
             }
           ]
         },
@@ -309,7 +311,8 @@
           "args": [
             {
               "name": "_pitch",
-              "type": "Float"
+              "type": "Float",
+              "value": "null"
             }
           ]
         },
@@ -341,7 +344,8 @@
           "args": [
             {
               "name": "_time",
-              "type": "Float"
+              "type": "Float",
+              "value": "null"
             }
           ]
         },
@@ -390,7 +394,8 @@
           "args": [
             {
               "name": "_bytes",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             }
           ]
         },
@@ -406,7 +411,8 @@
           "args": [
             {
               "name": "_pan",
-              "type": "Float"
+              "type": "Float",
+              "value": "null"
             }
           ]
         },
@@ -422,15 +428,18 @@
           "args": [
             {
               "name": "_manager",
-              "type": "lumen.audio.Audio"
+              "type": "lumen.audio.Audio",
+              "value": "null"
             },
             {
               "name": "_name",
-              "type": "String"
+              "type": "String",
+              "value": "null"
             },
             {
               "name": "_audio_info",
-              "type": "lumen.types.AudioInfo"
+              "type": "lumen.types.AudioInfo",
+              "value": "null"
             }
           ]
         },
@@ -511,7 +520,8 @@
           "args": [
             {
               "name": "_volume",
-              "type": "Float"
+              "type": "Float",
+              "value": "null"
             }
           ]
         },
@@ -587,7 +597,8 @@
           "args": [
             {
               "name": "_position",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             }
           ]
         }

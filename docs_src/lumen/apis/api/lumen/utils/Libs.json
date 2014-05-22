@@ -36,20 +36,23 @@
           "isstatic": true,
           "isinline": false,
           "doc": "",
-          "signature": "load(library:String, method:String, ?args:Int) : Dynamic",
+          "signature": "load(library:String, method:String, ?args:Int=0) : Dynamic",
           "return": ": Dynamic",
           "args": [
             {
               "name": "library",
-              "type": "String"
+              "type": "String",
+              "value": ""
             },
             {
               "name": "method",
-              "type": "String"
+              "type": "String",
+              "value": ""
             },
             {
               "name": "?args",
-              "type": "Int"
+              "type": "Int",
+              "value": "0"
             }
           ]
         },
@@ -65,7 +68,8 @@
           "args": [
             {
               "name": "library",
-              "type": "String"
+              "type": "String",
+              "value": "null"
             }
           ]
         },
@@ -81,7 +85,8 @@
           "args": [
             {
               "name": "message",
-              "type": "String"
+              "type": "String",
+              "value": "null"
             }
           ]
         },
@@ -97,19 +102,23 @@
           "args": [
             {
               "name": "name",
-              "type": "String"
+              "type": "String",
+              "value": "null"
             },
             {
               "name": "library",
-              "type": "String"
+              "type": "String",
+              "value": "null"
             },
             {
               "name": "func",
-              "type": "String"
+              "type": "String",
+              "value": "null"
             },
             {
               "name": "args",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             }
           ]
         },

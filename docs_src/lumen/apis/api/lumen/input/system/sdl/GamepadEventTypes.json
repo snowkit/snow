@@ -86,7 +86,8 @@
           "args": [
             {
               "name": "ge_type",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             }
           ]
         }

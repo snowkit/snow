@@ -5,6 +5,12 @@
 
 #AssetAudioOptions
 
+--- 
+
+The options for an `AssetAudio` asset
+
+---
+<br/>
 
 ##[API Index](../../../api/index.html#lumen.assets)   
 &emsp;&emsp;&emsp;parent    

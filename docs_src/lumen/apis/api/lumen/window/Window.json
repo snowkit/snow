@@ -14,8 +14,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "lumen_window_fullscreen : Dynamic",
-          "type": "Dynamic",
+          "signature": "lumen_window_fullscreen : Dynamic->Bool->Int->Dynamic",
+          "type": "Dynamic->Bool->Int->Dynamic",
           "doc": ""
         },
         {
@@ -26,7 +26,7 @@
           "isstatic": false,
           "signature": "fullscreen_desktop : Bool",
           "type": "Bool",
-          "doc": ""
+          "doc": "set this for fullscreen desktop mode, instead of fullscreen mode"
         },
         {
           "name": "internal_resize",
@@ -44,8 +44,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "lumen_window_create : Dynamic",
-          "type": "Dynamic",
+          "signature": "lumen_window_create : lumen.types.WindowConfig->Dynamic->Dynamic",
+          "type": "lumen.types.WindowConfig->Dynamic->Dynamic",
           "doc": ""
         },
         {
@@ -54,8 +54,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "lumen_window_set_title : Dynamic",
-          "type": "Dynamic",
+          "signature": "lumen_window_set_title : Dynamic->String->Dynamic",
+          "type": "Dynamic->String->Dynamic",
           "doc": ""
         },
         {
@@ -64,8 +64,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "lumen_window_simple_message : Dynamic",
-          "type": "Dynamic",
+          "signature": "lumen_window_simple_message : Dynamic->String->String->Dynamic",
+          "type": "Dynamic->String->String->Dynamic",
           "doc": ""
         },
         {
@@ -74,8 +74,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "lumen_window_set_min_size : Dynamic",
-          "type": "Dynamic",
+          "signature": "lumen_window_set_min_size : Dynamic->Int->Int->Dynamic",
+          "type": "Dynamic->Int->Int->Dynamic",
           "doc": ""
         },
         {
@@ -84,8 +84,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "lumen_window_bordered : Dynamic",
-          "type": "Dynamic",
+          "signature": "lumen_window_bordered : Dynamic->Bool->Dynamic",
+          "type": "Dynamic->Bool->Dynamic",
           "doc": ""
         },
         {
@@ -94,8 +94,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "lumen_window_close : Dynamic",
-          "type": "Dynamic",
+          "signature": "lumen_window_close : Dynamic->Dynamic",
+          "type": "Dynamic->Dynamic",
           "doc": ""
         },
         {
@@ -104,8 +104,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "lumen_window_set_size : Dynamic",
-          "type": "Dynamic",
+          "signature": "lumen_window_set_size : Dynamic->Int->Int->Dynamic",
+          "type": "Dynamic->Int->Int->Dynamic",
           "doc": ""
         },
         {
@@ -114,8 +114,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "lumen_window_grab : Dynamic",
-          "type": "Dynamic",
+          "signature": "lumen_window_grab : Dynamic->Bool->Dynamic",
+          "type": "Dynamic->Bool->Dynamic",
           "doc": ""
         },
         {
@@ -124,8 +124,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "lumen_window_set_max_size : Dynamic",
-          "type": "Dynamic",
+          "signature": "lumen_window_set_max_size : Dynamic->Int->Int->Dynamic",
+          "type": "Dynamic->Int->Int->Dynamic",
           "doc": ""
         },
         {
@@ -136,7 +136,7 @@
           "isstatic": false,
           "signature": "config : lumen.types.WindowConfig",
           "type": "lumen.types.WindowConfig",
-          "doc": ""
+          "doc": "the actual returned window config"
         },
         {
           "name": "handle",
@@ -146,7 +146,7 @@
           "isstatic": false,
           "signature": "handle : Dynamic",
           "type": "Dynamic",
-          "doc": ""
+          "doc": "the native window handle"
         },
         {
           "name": "lumen_window_set_position",
@@ -154,8 +154,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "lumen_window_set_position : Dynamic",
-          "type": "Dynamic",
+          "signature": "lumen_window_set_position : Dynamic->Int->Int->Dynamic",
+          "type": "Dynamic->Int->Int->Dynamic",
           "doc": ""
         },
         {
@@ -164,8 +164,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "lumen_window_swap : Dynamic",
-          "type": "Dynamic",
+          "signature": "lumen_window_swap : Dynamic->Dynamic",
+          "type": "Dynamic->Dynamic",
           "doc": ""
         },
         {
@@ -186,7 +186,7 @@
           "isstatic": false,
           "signature": "id : Int",
           "type": "Int",
-          "doc": ""
+          "doc": "the window id, for tracking events to each window"
         },
         {
           "name": "asked_config",
@@ -196,7 +196,7 @@
           "isstatic": false,
           "signature": "asked_config : lumen.types.WindowConfig",
           "type": "lumen.types.WindowConfig",
-          "doc": ""
+          "doc": "the requested window config"
         },
         {
           "name": "lumen_window_update",
@@ -204,8 +204,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "lumen_window_update : Dynamic",
-          "type": "Dynamic",
+          "signature": "lumen_window_update : Dynamic->Dynamic",
+          "type": "Dynamic->Dynamic",
           "doc": ""
         },
         {
@@ -214,9 +214,9 @@
           "ispublic": true,
           "isinline": false,
           "isstatic": false,
-          "signature": "window_event_handler : Dynamic",
-          "type": "Dynamic",
-          "doc": ""
+          "signature": "window_event_handler : lumen.types.WindowEvent->Void",
+          "type": "lumen.types.WindowEvent->Void",
+          "doc": "the window event handler callback"
         },
         {
           "name": "lumen_window_render",
@@ -224,8 +224,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "lumen_window_render : Dynamic",
-          "type": "Dynamic",
+          "signature": "lumen_window_render : Dynamic->Dynamic",
+          "type": "Dynamic->Dynamic",
           "doc": ""
         },
         {
@@ -236,7 +236,7 @@
           "isstatic": false,
           "signature": "manager : lumen.window.Windowing",
           "type": "lumen.window.Windowing",
-          "doc": ""
+          "doc": "the manager this window belongs to"
         },
         {
           "name": "internal_position",
@@ -254,9 +254,9 @@
           "ispublic": true,
           "isinline": false,
           "isstatic": false,
-          "signature": "window_render_handler : Dynamic",
-          "type": "Dynamic",
-          "doc": ""
+          "signature": "window_render_handler : lumen.window.Window->Void",
+          "type": "lumen.window.Window->Void",
+          "doc": "the window render handler callback"
         }
       ]
     },
@@ -275,7 +275,7 @@
           "get": true,
           "set": true,
           "signature": "position : lumen.window.WindowPosition",
-          "doc": "",
+          "doc": "The window position `(read/write)`",
           "type": "lumen.window.WindowPosition",
           "type_desc": "read/write"
         },
@@ -290,7 +290,7 @@
           "get": true,
           "set": true,
           "signature": "fullscreen : Bool",
-          "doc": "",
+          "doc": "The window fullscreen state `(read/write)`",
           "type": "Bool",
           "type_desc": "read/write"
         },
@@ -305,7 +305,7 @@
           "get": true,
           "set": true,
           "signature": "size : lumen.window.WindowSize",
-          "doc": "",
+          "doc": "The window size `(read/write)`",
           "type": "lumen.window.WindowSize",
           "type_desc": "read/write"
         },
@@ -320,7 +320,7 @@
           "get": true,
           "set": true,
           "signature": "grab : Bool",
-          "doc": "",
+          "doc": "The window grab state `(read/write)`",
           "type": "Bool",
           "type_desc": "read/write"
         },
@@ -335,7 +335,7 @@
           "get": true,
           "set": true,
           "signature": "max_size : lumen.window.WindowSize",
-          "doc": "",
+          "doc": "The window maximum size `(read/write)`",
           "type": "lumen.window.WindowSize",
           "type_desc": "read/write"
         },
@@ -350,7 +350,7 @@
           "get": true,
           "set": true,
           "signature": "min_size : lumen.window.WindowSize",
-          "doc": "",
+          "doc": "The window minimum size `(read/write)`",
           "type": "lumen.window.WindowSize",
           "type_desc": "read/write"
         },
@@ -365,7 +365,7 @@
           "get": true,
           "set": true,
           "signature": "title : String",
-          "doc": "",
+          "doc": "The window title `(read/write)`",
           "type": "String",
           "type_desc": "read/write"
         },
@@ -380,7 +380,7 @@
           "get": true,
           "set": true,
           "signature": "bordered : Bool",
-          "doc": "",
+          "doc": "The window bordered state `(read/write)`",
           "type": "Bool",
           "type_desc": "read/write"
         }
@@ -401,14 +401,19 @@
           "ispublic": true,
           "isstatic": false,
           "isinline": false,
-          "doc": "",
+          "doc": "Swap the back buffer of the window, call after rendering to update the window view",
           "signature": "swap() : Void",
           "return": ": Void",
           "args": []
         },
         {
           "name": "render",
-          "meta": [],
+          "meta": [
+            {
+              "name": ":noCompletion",
+              "value": ""
+            }
+          ],
           "ispublic": true,
           "isstatic": false,
           "isinline": false,
@@ -434,14 +439,15 @@
           "args": [
             {
               "name": "_event",
-              "type": "lumen.types.WindowEvent"
+              "type": "lumen.types.WindowEvent",
+              "value": "null"
             }
           ]
         },
         {
           "name": "get_fullscreen",
           "meta": [],
-          "ispublic": true,
+          "ispublic": false,
           "isstatic": false,
           "isinline": false,
           "doc": "",
@@ -455,7 +461,7 @@
           "ispublic": true,
           "isstatic": false,
           "isinline": false,
-          "doc": "",
+          "doc": "Close the window",
           "signature": "close() : Void",
           "return": ": Void",
           "args": []
@@ -463,7 +469,7 @@
         {
           "name": "set_fullscreen",
           "meta": [],
-          "ispublic": true,
+          "ispublic": false,
           "isstatic": false,
           "isinline": false,
           "doc": "",
@@ -472,7 +478,8 @@
           "args": [
             {
               "name": "_enable",
-              "type": "Bool"
+              "type": "Bool",
+              "value": "null"
             }
           ]
         },
@@ -488,18 +495,20 @@
           "args": [
             {
               "name": "_manager",
-              "type": "lumen.window.Windowing"
+              "type": "lumen.window.Windowing",
+              "value": "null"
             },
             {
               "name": "_config",
-              "type": "lumen.types.WindowConfig"
+              "type": "lumen.types.WindowConfig",
+              "value": "null"
             }
           ]
         },
         {
           "name": "get_bordered",
           "meta": [],
-          "ispublic": true,
+          "ispublic": false,
           "isstatic": false,
           "isinline": false,
           "doc": "",
@@ -509,7 +518,12 @@
         },
         {
           "name": "update",
-          "meta": [],
+          "meta": [
+            {
+              "name": ":noCompletion",
+              "value": ""
+            }
+          ],
           "ispublic": true,
           "isstatic": false,
           "isinline": false,
@@ -521,7 +535,7 @@
         {
           "name": "get_grab",
           "meta": [],
-          "ispublic": true,
+          "ispublic": false,
           "isstatic": false,
           "isinline": false,
           "doc": "",
@@ -587,7 +601,7 @@
         {
           "name": "set_bordered",
           "meta": [],
-          "ispublic": true,
+          "ispublic": false,
           "isstatic": false,
           "isinline": false,
           "doc": "",
@@ -596,7 +610,8 @@
           "args": [
             {
               "name": "_bordered",
-              "type": "Bool"
+              "type": "Bool",
+              "value": "null"
             }
           ]
         },
@@ -612,15 +627,18 @@
           "args": [
             {
               "name": "_handle",
-              "type": "Dynamic"
+              "type": "Dynamic",
+              "value": "null"
             },
             {
               "name": "_id",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "_config",
-              "type": "lumen.types.WindowConfig"
+              "type": "lumen.types.WindowConfig",
+              "value": "null"
             }
           ]
         },
@@ -636,7 +654,8 @@
           "args": [
             {
               "name": "_title",
-              "type": "String"
+              "type": "String",
+              "value": "null"
             }
           ]
         },
@@ -652,7 +671,8 @@
           "args": [
             {
               "name": "_size",
-              "type": "lumen.window.WindowSize"
+              "type": "lumen.window.WindowSize",
+              "value": "null"
             }
           ]
         },
@@ -668,14 +688,15 @@
           "args": [
             {
               "name": "_size",
-              "type": "lumen.window.WindowSize"
+              "type": "lumen.window.WindowSize",
+              "value": "null"
             }
           ]
         },
         {
           "name": "set_grab",
           "meta": [],
-          "ispublic": true,
+          "ispublic": false,
           "isstatic": false,
           "isinline": false,
           "doc": "",
@@ -684,7 +705,8 @@
           "args": [
             {
               "name": "_grab",
-              "type": "Bool"
+              "type": "Bool",
+              "value": "null"
             }
           ]
         },
@@ -694,17 +716,19 @@
           "ispublic": true,
           "isstatic": false,
           "isinline": false,
-          "doc": "",
-          "signature": "simple_message(message:String, ?title:String) : Void",
+          "doc": "Display a cross platform message on this window",
+          "signature": "simple_message(message:String, ?title:String='') : Void",
           "return": ": Void",
           "args": [
             {
               "name": "message",
-              "type": "String"
+              "type": "String",
+              "value": ""
             },
             {
               "name": "?title",
-              "type": "String"
+              "type": "String",
+              "value": "''"
             }
           ]
         },
@@ -720,7 +744,8 @@
           "args": [
             {
               "name": "_pos",
-              "type": "lumen.window.WindowPosition"
+              "type": "lumen.window.WindowPosition",
+              "value": "null"
             }
           ]
         },
@@ -736,7 +761,8 @@
           "args": [
             {
               "name": "_size",
-              "type": "lumen.window.WindowSize"
+              "type": "lumen.window.WindowSize",
+              "value": "null"
             }
           ]
         }

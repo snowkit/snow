@@ -162,7 +162,8 @@
           "args": [
             {
               "name": "_event",
-              "type": "lumen.input.TouchEvent"
+              "type": "lumen.input.TouchEvent",
+              "value": "null"
             }
           ]
         },
@@ -178,7 +179,8 @@
           "args": [
             {
               "name": "_event",
-              "type": "lumen.input.MouseEvent"
+              "type": "lumen.input.MouseEvent",
+              "value": "null"
             }
           ]
         },
@@ -194,7 +196,8 @@
           "args": [
             {
               "name": "_event",
-              "type": "lumen.input.GamepadEvent"
+              "type": "lumen.input.GamepadEvent",
+              "value": "null"
             }
           ]
         },
@@ -210,7 +213,8 @@
           "args": [
             {
               "name": "_event",
-              "type": "lumen.input.MouseEvent"
+              "type": "lumen.input.MouseEvent",
+              "value": "null"
             }
           ]
         },
@@ -226,7 +230,8 @@
           "args": [
             {
               "name": "_event",
-              "type": "lumen.input.TouchEvent"
+              "type": "lumen.input.TouchEvent",
+              "value": "null"
             }
           ]
         },
@@ -242,7 +247,8 @@
           "args": [
             {
               "name": "_event",
-              "type": "lumen.input.MouseEvent"
+              "type": "lumen.input.MouseEvent",
+              "value": "null"
             }
           ]
         },
@@ -258,7 +264,8 @@
           "args": [
             {
               "name": "_event",
-              "type": "lumen.input.GamepadEvent"
+              "type": "lumen.input.GamepadEvent",
+              "value": "null"
             }
           ]
         },
@@ -274,7 +281,8 @@
           "args": [
             {
               "name": "_event",
-              "type": "lumen.input.KeyEvent"
+              "type": "lumen.input.KeyEvent",
+              "value": "null"
             }
           ]
         },
@@ -317,7 +325,8 @@
           "args": [
             {
               "name": "_event",
-              "type": "lumen.input.MouseEvent"
+              "type": "lumen.input.MouseEvent",
+              "value": "null"
             }
           ]
         },
@@ -333,7 +342,8 @@
           "args": [
             {
               "name": "_event",
-              "type": "lumen.input.GamepadEvent"
+              "type": "lumen.input.GamepadEvent",
+              "value": "null"
             }
           ]
         },
@@ -365,7 +375,8 @@
           "args": [
             {
               "name": "_event",
-              "type": "lumen.input.TextEvent"
+              "type": "lumen.input.TextEvent",
+              "value": "null"
             }
           ]
         },
@@ -381,7 +392,8 @@
           "args": [
             {
               "name": "_event",
-              "type": "lumen.input.GamepadEvent"
+              "type": "lumen.input.GamepadEvent",
+              "value": "null"
             }
           ]
         },
@@ -397,7 +409,8 @@
           "args": [
             {
               "name": "dt",
-              "type": "Float"
+              "type": "Float",
+              "value": "null"
             }
           ]
         },
@@ -435,7 +448,8 @@
           "args": [
             {
               "name": "_event",
-              "type": "lumen.input.KeyEvent"
+              "type": "lumen.input.KeyEvent",
+              "value": "null"
             }
           ]
         },
@@ -451,7 +465,8 @@
           "args": [
             {
               "name": "_event",
-              "type": "lumen.input.TouchEvent"
+              "type": "lumen.input.TouchEvent",
+              "value": "null"
             }
           ]
         }

@@ -24,8 +24,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "lumen_iosrc_file_tell : Dynamic",
-          "type": "Dynamic",
+          "signature": "lumen_iosrc_file_tell : Dynamic->Dynamic",
+          "type": "Dynamic->Dynamic",
           "doc": ""
         },
         {
@@ -34,8 +34,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "lumen_iosrc_file_read : Dynamic",
-          "type": "Dynamic",
+          "signature": "lumen_iosrc_file_read : Dynamic->lumen.utils.ByteArray->Int->Int->Dynamic",
+          "type": "Dynamic->lumen.utils.ByteArray->Int->Int->Dynamic",
           "doc": ""
         },
         {
@@ -44,8 +44,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "lumen_iosrc_file_close : Dynamic",
-          "type": "Dynamic",
+          "signature": "lumen_iosrc_file_close : Dynamic->Dynamic",
+          "type": "Dynamic->Dynamic",
           "doc": ""
         },
         {
@@ -54,8 +54,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "lumen_iosrc_file_write : Dynamic",
-          "type": "Dynamic",
+          "signature": "lumen_iosrc_file_write : Dynamic->lumen.utils.ByteArray->Int->Int->Dynamic",
+          "type": "Dynamic->lumen.utils.ByteArray->Int->Int->Dynamic",
           "doc": ""
         },
         {
@@ -64,8 +64,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "lumen_iosrc_file_seek : Dynamic",
-          "type": "Dynamic",
+          "signature": "lumen_iosrc_file_seek : Dynamic->Int->Int->Dynamic",
+          "type": "Dynamic->Int->Int->Dynamic",
           "doc": ""
         }
       ]
@@ -91,7 +91,8 @@
           "args": [
             {
               "name": "_handle",
-              "type": "Dynamic"
+              "type": "Dynamic",
+              "value": "null"
             }
           ]
         },
@@ -107,15 +108,18 @@
           "args": [
             {
               "name": "src",
-              "type": "lumen.utils.ByteArray"
+              "type": "lumen.utils.ByteArray",
+              "value": "null"
             },
             {
               "name": "size",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "num",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             }
           ]
         },
@@ -131,15 +135,18 @@
           "args": [
             {
               "name": "dest",
-              "type": "lumen.utils.ByteArray"
+              "type": "lumen.utils.ByteArray",
+              "value": "null"
             },
             {
               "name": "size",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "maxnum",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             }
           ]
         },
@@ -166,11 +173,13 @@
           "args": [
             {
               "name": "offset",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "whence",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             }
           ]
         },

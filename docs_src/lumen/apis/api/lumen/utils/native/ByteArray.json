@@ -45,8 +45,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "_float_of_bytes : Dynamic",
-          "type": "Dynamic",
+          "signature": "_float_of_bytes : haxe.io.BytesData->Bool->Float",
+          "type": "haxe.io.BytesData->Bool->Float",
           "doc": "@private"
         },
         {
@@ -55,8 +55,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "lumen_byte_array_read_file : Dynamic",
-          "type": "Dynamic",
+          "signature": "lumen_byte_array_read_file : String->lumen.utils.native.ByteArray",
+          "type": "String->lumen.utils.native.ByteArray",
           "doc": ""
         },
         {
@@ -65,8 +65,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "lumen_lzma_encode : Dynamic",
-          "type": "Dynamic",
+          "signature": "lumen_lzma_encode : Dynamic->haxe.io.BytesData",
+          "type": "Dynamic->haxe.io.BytesData",
           "doc": ""
         },
         {
@@ -85,8 +85,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "_double_of_bytes : Dynamic",
-          "type": "Dynamic",
+          "signature": "_double_of_bytes : haxe.io.BytesData->Bool->Float",
+          "type": "haxe.io.BytesData->Bool->Float",
           "doc": "@private"
         },
         {
@@ -95,8 +95,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "lumen_lzma_decode : Dynamic",
-          "type": "Dynamic",
+          "signature": "lumen_lzma_decode : haxe.io.BytesData->haxe.io.BytesData",
+          "type": "haxe.io.BytesData->haxe.io.BytesData",
           "doc": ""
         },
         {
@@ -105,8 +105,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "_float_bytes : Dynamic",
-          "type": "Dynamic",
+          "signature": "_float_bytes : Float->Bool->haxe.io.BytesData",
+          "type": "Float->Bool->haxe.io.BytesData",
           "doc": "@private"
         },
         {
@@ -115,8 +115,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "lumen_byte_array_overwrite_file : Dynamic",
-          "type": "Dynamic",
+          "signature": "lumen_byte_array_overwrite_file : String->lumen.utils.native.ByteArray->Dynamic",
+          "type": "String->lumen.utils.native.ByteArray->Dynamic",
           "doc": ""
         },
         {
@@ -125,8 +125,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "_double_bytes : Dynamic",
-          "type": "Dynamic",
+          "signature": "_double_bytes : Float->Bool->haxe.io.BytesData",
+          "type": "Float->Bool->haxe.io.BytesData",
           "doc": "@private"
         }
       ]
@@ -183,7 +183,8 @@
           "args": [
             {
               "name": "inBytes",
-              "type": "haxe.io.Bytes"
+              "type": "haxe.io.Bytes",
+              "value": "null"
             }
           ]
         },
@@ -199,7 +200,8 @@
           "args": [
             {
               "name": "inString",
-              "type": "String"
+              "type": "String",
+              "value": "null"
             }
           ]
         }
@@ -221,11 +223,13 @@
           "args": [
             {
               "name": "inSize",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "inUpdateLenght",
-              "type": "Bool"
+              "type": "Bool",
+              "value": "null"
             }
           ]
         },
@@ -241,7 +245,8 @@
           "args": [
             {
               "name": "inString",
-              "type": "String"
+              "type": "String",
+              "value": "null"
             }
           ]
         },
@@ -257,7 +262,8 @@
           "args": [
             {
               "name": "?algorithm",
-              "type": "lumen.utils.compat.CompressionAlgorithm"
+              "type": "lumen.utils.compat.CompressionAlgorithm",
+              "value": "null"
             }
           ]
         },
@@ -279,20 +285,23 @@
           "isstatic": false,
           "isinline": false,
           "doc": "",
-          "signature": "writeBytes(bytes:haxe.io.Bytes, ?inOffset:Int, ?inLength:Int) : Void",
+          "signature": "writeBytes(bytes:haxe.io.Bytes, ?inOffset:Int=0, ?inLength:Int=0) : Void",
           "return": ": Void",
           "args": [
             {
               "name": "bytes",
-              "type": "haxe.io.Bytes"
+              "type": "haxe.io.Bytes",
+              "value": ""
             },
             {
               "name": "?inOffset",
-              "type": "Int"
+              "type": "Int",
+              "value": "0"
             },
             {
               "name": "?inLength",
-              "type": "Int"
+              "type": "Int",
+              "value": "0"
             }
           ]
         },
@@ -308,7 +317,8 @@
           "args": [
             {
               "name": "s",
-              "type": "String"
+              "type": "String",
+              "value": "null"
             }
           ]
         },
@@ -357,7 +367,8 @@
           "args": [
             {
               "name": "x",
-              "type": "Float"
+              "type": "Float",
+              "value": "null"
             }
           ]
         },
@@ -368,12 +379,13 @@
           "isstatic": false,
           "isinline": false,
           "doc": "",
-          "signature": "new(?inSize:Int) ",
+          "signature": "new(?inSize:Int=0) ",
           "return": "",
           "args": [
             {
               "name": "?inSize",
-              "type": "Int"
+              "type": "Int",
+              "value": "0"
             }
           ]
         },
@@ -422,7 +434,8 @@
           "args": [
             {
               "name": "value",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             }
           ]
         },
@@ -438,7 +451,8 @@
           "args": [
             {
               "name": "s",
-              "type": "String"
+              "type": "String",
+              "value": "null"
             }
           ]
         },
@@ -454,7 +468,8 @@
           "args": [
             {
               "name": "x",
-              "type": "Float"
+              "type": "Float",
+              "value": "null"
             }
           ]
         },
@@ -558,7 +573,8 @@
           "args": [
             {
               "name": "value",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             }
           ]
         },
@@ -574,7 +590,8 @@
           "args": [
             {
               "name": "value",
-              "type": "Bool"
+              "type": "Bool",
+              "value": "null"
             }
           ]
         },
@@ -590,7 +607,8 @@
           "args": [
             {
               "name": "s",
-              "type": "String"
+              "type": "String",
+              "value": "null"
             }
           ]
         },
@@ -617,7 +635,8 @@
           "args": [
             {
               "name": "inLen",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             }
           ]
         },
@@ -644,7 +663,8 @@
           "args": [
             {
               "name": "inLength",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             }
           ]
         },
@@ -671,7 +691,8 @@
           "args": [
             {
               "name": "value",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             }
           ]
         },
@@ -687,7 +708,8 @@
           "args": [
             {
               "name": "inLength",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             }
           ]
         },
@@ -703,11 +725,13 @@
           "args": [
             {
               "name": "inBegin",
-              "type": "Int"
+              "type": "Int",
+              "value": ""
             },
             {
               "name": "?inEnd",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             }
           ]
         },
@@ -718,20 +742,23 @@
           "isstatic": false,
           "isinline": false,
           "doc": "",
-          "signature": "readBytes(outData:lumen.utils.native.ByteArray, ?inOffset:Int, ?inLen:Int) : Void",
+          "signature": "readBytes(outData:lumen.utils.native.ByteArray, ?inOffset:Int=0, ?inLen:Int=0) : Void",
           "return": ": Void",
           "args": [
             {
               "name": "outData",
-              "type": "lumen.utils.native.ByteArray"
+              "type": "lumen.utils.native.ByteArray",
+              "value": ""
             },
             {
               "name": "?inOffset",
-              "type": "Int"
+              "type": "Int",
+              "value": "0"
             },
             {
               "name": "?inLen",
-              "type": "Int"
+              "type": "Int",
+              "value": "0"
             }
           ]
         },
@@ -747,7 +774,8 @@
           "args": [
             {
               "name": "?algorithm",
-              "type": "lumen.utils.compat.CompressionAlgorithm"
+              "type": "lumen.utils.compat.CompressionAlgorithm",
+              "value": "null"
             }
           ]
         }

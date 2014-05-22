@@ -4625,10 +4625,11 @@
 		<meta><m n=":flatEnum"/></meta>
 	</enum>
 	<enum path="lumen.input.TouchState" params="" file="../../lumen/input/Input.hx" module="lumen.input.Input">
-		<unknown/>
-		<down/>
-		<up/>
-		<move/>
+		<unknown><haxe_doc>an unknown state</haxe_doc></unknown>
+		<down><haxe_doc>touch is down</haxe_doc></down>
+		<up><haxe_doc>touch is up</haxe_doc></up>
+		<move><haxe_doc>touch is moving</haxe_doc></move>
+		<haxe_doc>The states a touch can be in</haxe_doc>
 		<meta><m n=":flatEnum"/></meta>
 	</enum>
 	<typedef path="lumen.input.ModState" params="" file="../../lumen/input/Input.hx" module="lumen.input.Input">
@@ -8895,7 +8896,7 @@ but they aren't specific to SDL so they are used generically</haxe_doc>
 	<h><x path="Int"/></h>
 </a></typedef>
 	<class path="lumen.window.Window" params="" file="../../lumen/window/Window.hx">
-		<lumen_window_create line="310" static="1"><f a=":">
+		<lumen_window_create line="325" static="1"><f a=":">
 	<t path="lumen.types.WindowConfig"/>
 	<f a="_handle:_id:_config">
 		<d/>
@@ -8905,185 +8906,232 @@ but they aren't specific to SDL so they are used generically</haxe_doc>
 	</f>
 	<unknown/>
 </f></lumen_window_create>
-		<lumen_window_close line="311" static="1"><f a="">
+		<lumen_window_close line="326" static="1"><f a="">
 	<d/>
 	<unknown/>
 </f></lumen_window_close>
-		<lumen_window_update line="312" static="1"><f a="">
+		<lumen_window_update line="327" static="1"><f a="">
 	<d/>
 	<unknown/>
 </f></lumen_window_update>
-		<lumen_window_render line="313" static="1"><f a="">
+		<lumen_window_render line="328" static="1"><f a="">
 	<d/>
 	<unknown/>
 </f></lumen_window_render>
-		<lumen_window_swap line="314" static="1"><f a="">
+		<lumen_window_swap line="329" static="1"><f a="">
 	<d/>
 	<unknown/>
 </f></lumen_window_swap>
-		<lumen_window_simple_message line="315" static="1"><f a="::">
+		<lumen_window_simple_message line="330" static="1"><f a="::">
 	<d/>
 	<c path="String"/>
 	<c path="String"/>
 	<unknown/>
 </f></lumen_window_simple_message>
-		<lumen_window_set_size line="316" static="1"><f a="::">
+		<lumen_window_set_size line="331" static="1"><f a="::">
 	<d/>
 	<x path="Int"/>
 	<x path="Int"/>
 	<unknown/>
 </f></lumen_window_set_size>
-		<lumen_window_set_position line="317" static="1"><f a="::">
+		<lumen_window_set_position line="332" static="1"><f a="::">
 	<d/>
 	<x path="Int"/>
 	<x path="Int"/>
 	<unknown/>
 </f></lumen_window_set_position>
-		<lumen_window_set_title line="318" static="1"><f a=":">
+		<lumen_window_set_title line="333" static="1"><f a=":">
 	<d/>
 	<c path="String"/>
 	<unknown/>
 </f></lumen_window_set_title>
-		<lumen_window_set_max_size line="319" static="1"><f a="::">
+		<lumen_window_set_max_size line="334" static="1"><f a="::">
 	<d/>
 	<x path="Int"/>
 	<x path="Int"/>
 	<unknown/>
 </f></lumen_window_set_max_size>
-		<lumen_window_set_min_size line="320" static="1"><f a="::">
+		<lumen_window_set_min_size line="335" static="1"><f a="::">
 	<d/>
 	<x path="Int"/>
 	<x path="Int"/>
 	<unknown/>
 </f></lumen_window_set_min_size>
-		<lumen_window_grab line="321" static="1"><f a=":">
+		<lumen_window_grab line="336" static="1"><f a=":">
 	<d/>
 	<x path="Bool"/>
 	<unknown/>
 </f></lumen_window_grab>
-		<lumen_window_fullscreen line="322" static="1"><f a="::">
+		<lumen_window_fullscreen line="337" static="1"><f a="::">
 	<d/>
 	<x path="Bool"/>
 	<x path="Int"/>
 	<unknown/>
 </f></lumen_window_fullscreen>
-		<lumen_window_bordered line="323" static="1"><f a=":">
+		<lumen_window_bordered line="338" static="1"><f a=":">
 	<d/>
 	<x path="Bool"/>
 	<unknown/>
 </f></lumen_window_bordered>
-		<id public="1"><x path="Int"/></id>
-		<manager public="1"><c path="lumen.window.Windowing"/></manager>
-		<asked_config public="1"><t path="lumen.types.WindowConfig"/></asked_config>
-		<config public="1"><t path="lumen.types.WindowConfig"/></config>
-		<handle public="1"><d/></handle>
-		<window_event_handler public="1"><f a="">
-	<t path="lumen.types.WindowEvent"/>
-	<x path="Void"/>
-</f></window_event_handler>
-		<window_render_handler public="1"><f a="">
-	<c path="lumen.window.Window"/>
-	<x path="Void"/>
-</f></window_render_handler>
+		<id public="1">
+			<x path="Int"/>
+			<haxe_doc>the window id, for tracking events to each window</haxe_doc>
+		</id>
+		<manager public="1">
+			<c path="lumen.window.Windowing"/>
+			<haxe_doc>the manager this window belongs to</haxe_doc>
+		</manager>
+		<asked_config public="1">
+			<t path="lumen.types.WindowConfig"/>
+			<haxe_doc>the requested window config</haxe_doc>
+		</asked_config>
+		<config public="1">
+			<t path="lumen.types.WindowConfig"/>
+			<haxe_doc>the actual returned window config</haxe_doc>
+		</config>
+		<handle public="1">
+			<d/>
+			<haxe_doc>the native window handle</haxe_doc>
+		</handle>
+		<window_event_handler public="1">
+			<f a="">
+				<t path="lumen.types.WindowEvent"/>
+				<x path="Void"/>
+			</f>
+			<haxe_doc>the window event handler callback</haxe_doc>
+		</window_event_handler>
+		<window_render_handler public="1">
+			<f a="">
+				<c path="lumen.window.Window"/>
+				<x path="Void"/>
+			</f>
+			<haxe_doc>the window render handler callback</haxe_doc>
+		</window_render_handler>
 		<title public="1" get="accessor" set="accessor">
 			<c path="String"/>
 			<meta><m n=":isVar"/></meta>
+			<haxe_doc>The window title `(read/write)`</haxe_doc>
 		</title>
 		<bordered public="1" get="accessor" set="accessor">
 			<x path="Bool"/>
 			<meta><m n=":isVar"/></meta>
+			<haxe_doc>The window bordered state `(read/write)`</haxe_doc>
 		</bordered>
 		<grab public="1" get="accessor" set="accessor">
 			<x path="Bool"/>
 			<meta><m n=":isVar"/></meta>
+			<haxe_doc>The window grab state `(read/write)`</haxe_doc>
 		</grab>
 		<fullscreen public="1" get="accessor" set="accessor">
 			<x path="Bool"/>
 			<meta><m n=":isVar"/></meta>
+			<haxe_doc>The window fullscreen state `(read/write)`</haxe_doc>
 		</fullscreen>
 		<position public="1" get="accessor" set="accessor">
 			<t path="lumen.window.WindowPosition"/>
 			<meta><m n=":isVar"/></meta>
+			<haxe_doc>The window position `(read/write)`</haxe_doc>
 		</position>
 		<size public="1" get="accessor" set="accessor">
 			<t path="lumen.window.WindowSize"/>
 			<meta><m n=":isVar"/></meta>
+			<haxe_doc>The window size `(read/write)`</haxe_doc>
 		</size>
 		<max_size public="1" get="accessor" set="accessor">
 			<t path="lumen.window.WindowSize"/>
 			<meta><m n=":isVar"/></meta>
+			<haxe_doc>The window maximum size `(read/write)`</haxe_doc>
 		</max_size>
 		<min_size public="1" get="accessor" set="accessor">
 			<t path="lumen.window.WindowSize"/>
 			<meta><m n=":isVar"/></meta>
+			<haxe_doc>The window minimum size `(read/write)`</haxe_doc>
 		</min_size>
-		<fullscreen_desktop public="1"><x path="Bool"/></fullscreen_desktop>
+		<fullscreen_desktop public="1">
+			<x path="Bool"/>
+			<haxe_doc>set this for fullscreen desktop mode, instead of fullscreen mode</haxe_doc>
+		</fullscreen_desktop>
 		<minimized><x path="Bool"/></minimized>
-		<on_window_created set="method" line="65"><f a="_handle:_id:_config">
+		<on_window_created set="method" line="76"><f a="_handle:_id:_config">
 	<d/>
 	<x path="Int"/>
 	<t path="lumen.types.WindowConfig"/>
 	<x path="Void"/>
 </f></on_window_created>
-		<on_event public="1" set="method" line="91">
+		<on_event public="1" set="method" line="102">
 			<f a="_event">
 				<t path="lumen.types.WindowEvent"/>
 				<x path="Void"/>
 			</f>
 			<meta><m n=":noCompletion"/></meta>
 		</on_event>
-		<update public="1" set="method" line="133"><f a=""><x path="Void"/></f></update>
-		<render public="1" set="method" line="140"><f a=""><x path="Void"/></f></render>
-		<swap public="1" set="method" line="160"><f a=""><x path="Void"/></f></swap>
-		<close public="1" set="method" line="167"><f a=""><x path="Void"/></f></close>
-		<simple_message public="1" set="method" line="173"><f a="message:?title" v=":''">
-	<c path="String"/>
-	<c path="String"/>
-	<x path="Void"/>
-</f></simple_message>
-		<get_fullscreen public="1" set="method" line="179"><f a=""><x path="Bool"/></f></get_fullscreen>
-		<set_fullscreen public="1" set="method" line="186"><f a="_enable">
+		<update public="1" set="method" line="144">
+			<f a=""><x path="Void"/></f>
+			<meta><m n=":noCompletion"/></meta>
+		</update>
+		<render public="1" set="method" line="151">
+			<f a=""><x path="Void"/></f>
+			<meta><m n=":noCompletion"/></meta>
+		</render>
+		<swap public="1" set="method" line="172">
+			<f a=""><f a=""><x path="Void"/></f></f>
+			<haxe_doc>Swap the back buffer of the window, call after rendering to update the window view</haxe_doc>
+		</swap>
+		<close public="1" set="method" line="181">
+			<f a=""><x path="Void"/></f>
+			<haxe_doc>Close the window</haxe_doc>
+		</close>
+		<simple_message public="1" set="method" line="188">
+			<f a="message:?title" v=":''">
+				<c path="String"/>
+				<c path="String"/>
+				<x path="Void"/>
+			</f>
+			<haxe_doc>Display a cross platform message on this window</haxe_doc>
+		</simple_message>
+		<get_fullscreen set="method" line="194"><f a=""><x path="Bool"/></f></get_fullscreen>
+		<set_fullscreen set="method" line="201"><f a="_enable">
 	<x path="Bool"/>
 	<x path="Bool"/>
 </f></set_fullscreen>
-		<get_bordered public="1" set="method" line="196"><f a=""><x path="Bool"/></f></get_bordered>
-		<get_grab public="1" set="method" line="202"><f a=""><x path="Bool"/></f></get_grab>
-		<get_position set="method" line="208"><f a=""><t path="lumen.window.WindowPosition"/></f></get_position>
-		<get_size set="method" line="214"><f a=""><t path="lumen.window.WindowSize"/></f></get_size>
-		<get_max_size set="method" line="220"><f a=""><t path="lumen.window.WindowSize"/></f></get_max_size>
-		<get_min_size set="method" line="226"><f a=""><t path="lumen.window.WindowSize"/></f></get_min_size>
-		<get_title set="method" line="232"><f a=""><c path="String"/></f></get_title>
-		<set_title set="method" line="238"><f a="_title">
+		<get_bordered set="method" line="211"><f a=""><x path="Bool"/></f></get_bordered>
+		<get_grab set="method" line="217"><f a=""><x path="Bool"/></f></get_grab>
+		<get_position set="method" line="223"><f a=""><t path="lumen.window.WindowPosition"/></f></get_position>
+		<get_size set="method" line="229"><f a=""><t path="lumen.window.WindowSize"/></f></get_size>
+		<get_max_size set="method" line="235"><f a=""><t path="lumen.window.WindowSize"/></f></get_max_size>
+		<get_min_size set="method" line="241"><f a=""><t path="lumen.window.WindowSize"/></f></get_min_size>
+		<get_title set="method" line="247"><f a=""><c path="String"/></f></get_title>
+		<set_title set="method" line="253"><f a="_title">
 	<c path="String"/>
 	<c path="String"/>
 </f></set_title>
-		<set_position set="method" line="247"><f a="_pos">
+		<set_position set="method" line="262"><f a="_pos">
 	<t path="lumen.window.WindowPosition"/>
 	<t path="lumen.window.WindowPosition"/>
 </f></set_position>
 		<internal_position><x path="Bool"/></internal_position>
 		<internal_resize><x path="Bool"/></internal_resize>
-		<set_size set="method" line="260"><f a="_size">
+		<set_size set="method" line="275"><f a="_size">
 	<t path="lumen.window.WindowSize"/>
 	<t path="lumen.window.WindowSize"/>
 </f></set_size>
-		<set_max_size set="method" line="270"><f a="_size">
+		<set_max_size set="method" line="285"><f a="_size">
 	<t path="lumen.window.WindowSize"/>
 	<t path="lumen.window.WindowSize"/>
 </f></set_max_size>
-		<set_min_size set="method" line="280"><f a="_size">
+		<set_min_size set="method" line="295"><f a="_size">
 	<t path="lumen.window.WindowSize"/>
 	<t path="lumen.window.WindowSize"/>
 </f></set_min_size>
-		<set_bordered public="1" set="method" line="290"><f a="_bordered">
+		<set_bordered set="method" line="305"><f a="_bordered">
 	<x path="Bool"/>
 	<x path="Bool"/>
 </f></set_bordered>
-		<set_grab public="1" set="method" line="300"><f a="_grab">
+		<set_grab set="method" line="315"><f a="_grab">
 	<x path="Bool"/>
 	<x path="Bool"/>
 </f></set_grab>
-		<new public="1" set="method" line="50"><f a="_manager:_config">
+		<new public="1" set="method" line="61"><f a="_manager:_config">
 	<c path="lumen.window.Windowing"/>
 	<t path="lumen.types.WindowConfig"/>
 	<x path="Void"/>

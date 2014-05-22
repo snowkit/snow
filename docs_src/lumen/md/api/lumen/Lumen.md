@@ -132,7 +132,7 @@ _none_
 
 
 
-`load(library:String, method:String, ?args:Int) : Dynamic`
+`load(library:String, method:String, ?args:Int=0) : Dynamic`
 
 <span class="small_desc_flat"> Loads a function out of a library </span>   
 

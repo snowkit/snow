@@ -56,7 +56,7 @@
 
 
 
-`data_get : Dynamic`
+`data_get : Int->Int->lumen.types.AudioDataBlob`
 
 <span class="small_desc_flat"> The get function, assign a function here if you want to stream data to the source manually, like generative sound. </span>   
 
@@ -64,7 +64,7 @@
 
 
 
-`data_seek : Dynamic`
+`data_seek : Int->Bool`
 
 <span class="small_desc_flat"> The seek function, assign a function here if you want to stream data to the source manually, like generative sound. </span>   
 

@@ -1,6 +1,6 @@
 {
   "source": "lumen.assets.AssetImageOptions",
-  "doc": "",
+  "doc": "The options for an `AssetImage` asset",
   "links": [],
   "toplinks": [],
   "sections": [

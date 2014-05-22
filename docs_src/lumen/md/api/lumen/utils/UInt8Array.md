@@ -41,7 +41,7 @@
 
 
 
-`new(bufferOrArray:Dynamic, ?start:Int, ?length:Int) `
+`new(bufferOrArray:Dynamic, ?start:Int=0, ?length:Int) `
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -49,7 +49,7 @@
 
 
 
-`set(bufferOrArray:Dynamic, ?offset:Int) : Void`
+`set(bufferOrArray:Dynamic, ?offset:Int=0) : Void`
 
 <span class="small_desc_flat"> no description </span>   
 

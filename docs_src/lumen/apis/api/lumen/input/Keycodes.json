@@ -2396,7 +2396,8 @@
           "args": [
             {
               "name": "scancode",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             }
           ]
         }

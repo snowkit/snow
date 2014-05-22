@@ -741,7 +741,7 @@
 
 
 
-`getBooleanv(param:Int, ?count:Int) : Array<Bool>`
+`getBooleanv(param:Int, ?count:Int=1) : Array<Bool>`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -773,7 +773,7 @@
 
 
 
-`getBufferfv(buffer:Int, param:Int, ?count:Int) : Array<Float>`
+`getBufferfv(buffer:Int, param:Int, ?count:Int=1) : Array<Float>`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -789,7 +789,7 @@
 
 
 
-`getBufferiv(buffer:Int, param:Int, ?count:Int) : Array<Int>`
+`getBufferiv(buffer:Int, param:Int, ?count:Int=1) : Array<Int>`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -805,7 +805,7 @@
 
 
 
-`getDoublev(param:Int, ?count:Int) : Array<Float>`
+`getDoublev(param:Int, ?count:Int=1) : Array<Float>`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -845,7 +845,7 @@
 
 
 
-`getFloatv(param:Int, ?count:Int) : Array<Float>`
+`getFloatv(param:Int, ?count:Int=1) : Array<Float>`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -861,7 +861,7 @@
 
 
 
-`getIntegerv(param:Int, ?count:Int) : Array<Int>`
+`getIntegerv(param:Int, ?count:Int=1) : Array<Int>`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -893,7 +893,7 @@
 
 
 
-`getListenerfv(param:Int, ?count:Int) : Array<Float>`
+`getListenerfv(param:Int, ?count:Int=1) : Array<Float>`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -909,7 +909,7 @@
 
 
 
-`getListeneriv(param:Int, ?count:Int) : Array<Int>`
+`getListeneriv(param:Int, ?count:Int=1) : Array<Int>`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -965,7 +965,7 @@
 
 
 
-`getSourceiv(source:Int, param:Int, ?count:Int) : Array<Int>`
+`getSourceiv(source:Int, param:Int, ?count:Int=1) : Array<Int>`
 
 <span class="small_desc_flat"> no description </span>   
 

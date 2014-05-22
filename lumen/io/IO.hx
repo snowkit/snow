@@ -46,7 +46,7 @@ class IOFile {
 
 class IO {
     
-    public static function from_file( _id:String, _mode:String="rb" ) : IOFile {
+    public static function from_file( _id:String, ?_mode:String="rb" ) : IOFile {
         var handle = lumen_iosrc_from_file(_id, _mode);
         return new IOFile(handle);
     }

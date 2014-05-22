@@ -51,11 +51,13 @@
           "args": [
             {
               "name": "_manager",
-              "type": "lumen.window.Windowing"
+              "type": "lumen.window.Windowing",
+              "value": "null"
             },
             {
               "name": "_lib",
-              "type": "lumen.Lumen"
+              "type": "lumen.Lumen",
+              "value": "null"
             }
           ]
         },

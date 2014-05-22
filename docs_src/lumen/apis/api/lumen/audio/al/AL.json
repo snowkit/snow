@@ -24,8 +24,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "alhx_GetEnumValue : Dynamic",
-          "type": "Dynamic",
+          "signature": "alhx_GetEnumValue : String->Int",
+          "type": "String->Int",
           "doc": ""
         },
         {
@@ -44,8 +44,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "alhx_Disable : Dynamic",
-          "type": "Dynamic",
+          "signature": "alhx_Disable : Int->Dynamic",
+          "type": "Int->Dynamic",
           "doc": ""
         },
         {
@@ -54,8 +54,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "alhx_Listenerfv : Dynamic",
-          "type": "Dynamic",
+          "signature": "alhx_Listenerfv : Int->Array->Dynamic",
+          "type": "Int->Array->Dynamic",
           "doc": ""
         },
         {
@@ -74,8 +74,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "alhx_SourcePausev : Dynamic",
-          "type": "Dynamic",
+          "signature": "alhx_SourcePausev : Int->Array->Dynamic",
+          "type": "Int->Array->Dynamic",
           "doc": ""
         },
         {
@@ -104,8 +104,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "alhx_SpeedOfSound : Dynamic",
-          "type": "Dynamic",
+          "signature": "alhx_SpeedOfSound : Float->Dynamic",
+          "type": "Float->Dynamic",
           "doc": ""
         },
         {
@@ -124,8 +124,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "alhx_GetInteger : Dynamic",
-          "type": "Dynamic",
+          "signature": "alhx_GetInteger : Int->Int",
+          "type": "Int->Int",
           "doc": ""
         },
         {
@@ -134,8 +134,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "alhx_GetListenerf : Dynamic",
-          "type": "Dynamic",
+          "signature": "alhx_GetListenerf : Int->Float",
+          "type": "Int->Float",
           "doc": ""
         },
         {
@@ -164,8 +164,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "alhx_Sourcei : Dynamic",
-          "type": "Dynamic",
+          "signature": "alhx_Sourcei : Int->Int->Int->Dynamic",
+          "type": "Int->Int->Int->Dynamic",
           "doc": ""
         },
         {
@@ -174,8 +174,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "alhx_Listeneriv : Dynamic",
-          "type": "Dynamic",
+          "signature": "alhx_Listeneriv : Int->Array->Dynamic",
+          "type": "Int->Array->Dynamic",
           "doc": ""
         },
         {
@@ -184,8 +184,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "alhx_SourcePause : Dynamic",
-          "type": "Dynamic",
+          "signature": "alhx_SourcePause : Int->Dynamic",
+          "type": "Int->Dynamic",
           "doc": ""
         },
         {
@@ -194,8 +194,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "alhx_DeleteBuffers : Dynamic",
-          "type": "Dynamic",
+          "signature": "alhx_DeleteBuffers : Int->Array->Dynamic",
+          "type": "Int->Array->Dynamic",
           "doc": ""
         },
         {
@@ -294,8 +294,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "alhx_GetSourcefv : Dynamic",
-          "type": "Dynamic",
+          "signature": "alhx_GetSourcefv : Int->Int->Array",
+          "type": "Int->Int->Array",
           "doc": ""
         },
         {
@@ -324,8 +324,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "alhx_GetBufferf : Dynamic",
-          "type": "Dynamic",
+          "signature": "alhx_GetBufferf : Int->Int->Float",
+          "type": "Int->Int->Float",
           "doc": ""
         },
         {
@@ -334,8 +334,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "alhx_DopplerVelocity : Dynamic",
-          "type": "Dynamic",
+          "signature": "alhx_DopplerVelocity : Float->Dynamic",
+          "type": "Float->Dynamic",
           "doc": ""
         },
         {
@@ -364,8 +364,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "alhx_GetDoublev : Dynamic",
-          "type": "Dynamic",
+          "signature": "alhx_GetDoublev : Int->Null->Array",
+          "type": "Int->Null->Array",
           "doc": ""
         },
         {
@@ -374,8 +374,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "alhx_GetListener3f : Dynamic",
-          "type": "Dynamic",
+          "signature": "alhx_GetListener3f : Int->Array",
+          "type": "Int->Array",
           "doc": ""
         },
         {
@@ -384,8 +384,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "alhx_Buffer3f : Dynamic",
-          "type": "Dynamic",
+          "signature": "alhx_Buffer3f : Int->Int->Float->Float->Float->Dynamic",
+          "type": "Int->Int->Float->Float->Float->Dynamic",
           "doc": ""
         },
         {
@@ -394,8 +394,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "alhx_DeleteSource : Dynamic",
-          "type": "Dynamic",
+          "signature": "alhx_DeleteSource : Int->Dynamic",
+          "type": "Int->Dynamic",
           "doc": ""
         },
         {
@@ -414,8 +414,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "alhx_SourcePlayv : Dynamic",
-          "type": "Dynamic",
+          "signature": "alhx_SourcePlayv : Int->Array->Dynamic",
+          "type": "Int->Array->Dynamic",
           "doc": ""
         },
         {
@@ -424,8 +424,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "alhx_SourceQueueBuffers : Dynamic",
-          "type": "Dynamic",
+          "signature": "alhx_SourceQueueBuffers : Int->Int->Array->Dynamic",
+          "type": "Int->Int->Array->Dynamic",
           "doc": ""
         },
         {
@@ -444,8 +444,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "alhx_GetBuffer3i : Dynamic",
-          "type": "Dynamic",
+          "signature": "alhx_GetBuffer3i : Int->Int->Array",
+          "type": "Int->Int->Array",
           "doc": ""
         },
         {
@@ -474,8 +474,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "alhx_BufferData : Dynamic",
-          "type": "Dynamic",
+          "signature": "alhx_BufferData : Int->Int->lumen.utils.ByteArray->Int->Int->Dynamic",
+          "type": "Int->Int->lumen.utils.ByteArray->Int->Int->Dynamic",
           "doc": ""
         },
         {
@@ -514,8 +514,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "alhx_GetListener3i : Dynamic",
-          "type": "Dynamic",
+          "signature": "alhx_GetListener3i : Int->Array",
+          "type": "Int->Array",
           "doc": ""
         },
         {
@@ -524,8 +524,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "alhx_GenSources : Dynamic",
-          "type": "Dynamic",
+          "signature": "alhx_GenSources : Int->Array",
+          "type": "Int->Array",
           "doc": ""
         },
         {
@@ -584,8 +584,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "alhx_GetIntegerv : Dynamic",
-          "type": "Dynamic",
+          "signature": "alhx_GetIntegerv : Int->Null->Array",
+          "type": "Int->Null->Array",
           "doc": ""
         },
         {
@@ -594,8 +594,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "alhx_GetSourcei : Dynamic",
-          "type": "Dynamic",
+          "signature": "alhx_GetSourcei : Int->Int->Int",
+          "type": "Int->Int->Int",
           "doc": ""
         },
         {
@@ -604,8 +604,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "alhx_Bufferfv : Dynamic",
-          "type": "Dynamic",
+          "signature": "alhx_Bufferfv : Int->Int->Array->Dynamic",
+          "type": "Int->Int->Array->Dynamic",
           "doc": ""
         },
         {
@@ -614,8 +614,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "alhx_GetError : Dynamic",
-          "type": "Dynamic",
+          "signature": "alhx_GetError : Int",
+          "type": "Int",
           "doc": ""
         },
         {
@@ -634,8 +634,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "alhx_GenSource : Dynamic",
-          "type": "Dynamic",
+          "signature": "alhx_GenSource : Int",
+          "type": "Int",
           "doc": ""
         },
         {
@@ -644,8 +644,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "alhx_SourceRewindv : Dynamic",
-          "type": "Dynamic",
+          "signature": "alhx_SourceRewindv : Int->Array->Dynamic",
+          "type": "Int->Array->Dynamic",
           "doc": ""
         },
         {
@@ -664,8 +664,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "alhx_IsSource : Dynamic",
-          "type": "Dynamic",
+          "signature": "alhx_IsSource : Int->Bool",
+          "type": "Int->Bool",
           "doc": ""
         },
         {
@@ -684,8 +684,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "alhx_Enable : Dynamic",
-          "type": "Dynamic",
+          "signature": "alhx_Enable : Int->Dynamic",
+          "type": "Int->Dynamic",
           "doc": ""
         },
         {
@@ -694,8 +694,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "alhx_GetBufferfv : Dynamic",
-          "type": "Dynamic",
+          "signature": "alhx_GetBufferfv : Int->Int->Null->Array",
+          "type": "Int->Int->Null->Array",
           "doc": ""
         },
         {
@@ -724,8 +724,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "alhx_GetListeneri : Dynamic",
-          "type": "Dynamic",
+          "signature": "alhx_GetListeneri : Int->Int",
+          "type": "Int->Int",
           "doc": ""
         },
         {
@@ -734,8 +734,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "alhx_GetListenerfv : Dynamic",
-          "type": "Dynamic",
+          "signature": "alhx_GetListenerfv : Int->Null->Array",
+          "type": "Int->Null->Array",
           "doc": ""
         },
         {
@@ -744,8 +744,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "alhx_Source3f : Dynamic",
-          "type": "Dynamic",
+          "signature": "alhx_Source3f : Int->Int->Float->Float->Float->Dynamic",
+          "type": "Int->Int->Float->Float->Float->Dynamic",
           "doc": ""
         },
         {
@@ -754,8 +754,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "alhx_SourceUnqueueBuffers : Dynamic",
-          "type": "Dynamic",
+          "signature": "alhx_SourceUnqueueBuffers : Int->Int->Array",
+          "type": "Int->Int->Array",
           "doc": ""
         },
         {
@@ -764,8 +764,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "alhx_Buffer3i : Dynamic",
-          "type": "Dynamic",
+          "signature": "alhx_Buffer3i : Int->Int->Int->Int->Int->Dynamic",
+          "type": "Int->Int->Int->Int->Int->Dynamic",
           "doc": ""
         },
         {
@@ -774,8 +774,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "alhx_IsEnabled : Dynamic",
-          "type": "Dynamic",
+          "signature": "alhx_IsEnabled : Int->Bool",
+          "type": "Int->Bool",
           "doc": ""
         },
         {
@@ -794,8 +794,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "alhx_GetFloatv : Dynamic",
-          "type": "Dynamic",
+          "signature": "alhx_GetFloatv : Int->Null->Array",
+          "type": "Int->Null->Array",
           "doc": ""
         },
         {
@@ -834,8 +834,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "alhx_GetBoolean : Dynamic",
-          "type": "Dynamic",
+          "signature": "alhx_GetBoolean : Int->Bool",
+          "type": "Int->Bool",
           "doc": ""
         },
         {
@@ -844,8 +844,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "alhx_Bufferf : Dynamic",
-          "type": "Dynamic",
+          "signature": "alhx_Bufferf : Int->Int->Float->Dynamic",
+          "type": "Int->Int->Float->Dynamic",
           "doc": ""
         },
         {
@@ -884,8 +884,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "alhx_DeleteSources : Dynamic",
-          "type": "Dynamic",
+          "signature": "alhx_DeleteSources : Int->Array->Dynamic",
+          "type": "Int->Array->Dynamic",
           "doc": ""
         },
         {
@@ -894,8 +894,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "alhx_GenBuffers : Dynamic",
-          "type": "Dynamic",
+          "signature": "alhx_GenBuffers : Int->Array",
+          "type": "Int->Array",
           "doc": ""
         },
         {
@@ -914,8 +914,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "alhx_Sourcefv : Dynamic",
-          "type": "Dynamic",
+          "signature": "alhx_Sourcefv : Int->Int->Array->Dynamic",
+          "type": "Int->Int->Array->Dynamic",
           "doc": ""
         },
         {
@@ -934,8 +934,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "alhx_GetSourceiv : Dynamic",
-          "type": "Dynamic",
+          "signature": "alhx_GetSourceiv : Int->Int->Null->Array",
+          "type": "Int->Int->Null->Array",
           "doc": ""
         },
         {
@@ -954,8 +954,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "alhx_Bufferiv : Dynamic",
-          "type": "Dynamic",
+          "signature": "alhx_Bufferiv : Int->Int->Array->Dynamic",
+          "type": "Int->Int->Array->Dynamic",
           "doc": ""
         },
         {
@@ -974,8 +974,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "alhx_GetBufferi : Dynamic",
-          "type": "Dynamic",
+          "signature": "alhx_GetBufferi : Int->Int->Int",
+          "type": "Int->Int->Int",
           "doc": ""
         },
         {
@@ -994,8 +994,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "alhx_Listenerf : Dynamic",
-          "type": "Dynamic",
+          "signature": "alhx_Listenerf : Int->Float->Dynamic",
+          "type": "Int->Float->Dynamic",
           "doc": ""
         },
         {
@@ -1004,8 +1004,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "alhx_IsBuffer : Dynamic",
-          "type": "Dynamic",
+          "signature": "alhx_IsBuffer : Int->Bool",
+          "type": "Int->Bool",
           "doc": ""
         },
         {
@@ -1034,8 +1034,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "alhx_SourceStop : Dynamic",
-          "type": "Dynamic",
+          "signature": "alhx_SourceStop : Int->Dynamic",
+          "type": "Int->Dynamic",
           "doc": ""
         },
         {
@@ -1054,8 +1054,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "alhx_GetSource3f : Dynamic",
-          "type": "Dynamic",
+          "signature": "alhx_GetSource3f : Int->Int->Array",
+          "type": "Int->Int->Array",
           "doc": ""
         },
         {
@@ -1064,8 +1064,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "alhx_GenBuffer : Dynamic",
-          "type": "Dynamic",
+          "signature": "alhx_GenBuffer : Int",
+          "type": "Int",
           "doc": ""
         },
         {
@@ -1084,8 +1084,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "alhx_IsExtensionPresent : Dynamic",
-          "type": "Dynamic",
+          "signature": "alhx_IsExtensionPresent : String->Bool",
+          "type": "String->Bool",
           "doc": ""
         },
         {
@@ -1114,8 +1114,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "alhx_Listeneri : Dynamic",
-          "type": "Dynamic",
+          "signature": "alhx_Listeneri : Int->Int->Dynamic",
+          "type": "Int->Int->Dynamic",
           "doc": ""
         },
         {
@@ -1144,8 +1144,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "alhx_Source3i : Dynamic",
-          "type": "Dynamic",
+          "signature": "alhx_Source3i : Int->Int->Int->Int->Int->Dynamic",
+          "type": "Int->Int->Int->Int->Int->Dynamic",
           "doc": ""
         },
         {
@@ -1164,8 +1164,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "alhx_DeleteBuffer : Dynamic",
-          "type": "Dynamic",
+          "signature": "alhx_DeleteBuffer : Int->Dynamic",
+          "type": "Int->Dynamic",
           "doc": ""
         },
         {
@@ -1174,8 +1174,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "alhx_GetString : Dynamic",
-          "type": "Dynamic",
+          "signature": "alhx_GetString : Int->String",
+          "type": "Int->String",
           "doc": ""
         },
         {
@@ -1194,8 +1194,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "alhx_Sourcef : Dynamic",
-          "type": "Dynamic",
+          "signature": "alhx_Sourcef : Int->Int->Float->Dynamic",
+          "type": "Int->Int->Float->Dynamic",
           "doc": ""
         },
         {
@@ -1204,8 +1204,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "alhx_GetBooleanv : Dynamic",
-          "type": "Dynamic",
+          "signature": "alhx_GetBooleanv : Int->Null->Array",
+          "type": "Int->Null->Array",
           "doc": ""
         },
         {
@@ -1214,8 +1214,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "alhx_Listener3f : Dynamic",
-          "type": "Dynamic",
+          "signature": "alhx_Listener3f : Int->Float->Float->Float->Dynamic",
+          "type": "Int->Float->Float->Float->Dynamic",
           "doc": ""
         },
         {
@@ -1224,8 +1224,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "alhx_Bufferi : Dynamic",
-          "type": "Dynamic",
+          "signature": "alhx_Bufferi : Int->Int->Int->Dynamic",
+          "type": "Int->Int->Int->Dynamic",
           "doc": ""
         },
         {
@@ -1234,8 +1234,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "alhx_GetFloat : Dynamic",
-          "type": "Dynamic",
+          "signature": "alhx_GetFloat : Int->Float",
+          "type": "Int->Float",
           "doc": ""
         },
         {
@@ -1254,8 +1254,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "alhx_GetDouble : Dynamic",
-          "type": "Dynamic",
+          "signature": "alhx_GetDouble : Int->Float",
+          "type": "Int->Float",
           "doc": ""
         },
         {
@@ -1284,8 +1284,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "alhx_DistanceModel : Dynamic",
-          "type": "Dynamic",
+          "signature": "alhx_DistanceModel : Int->Dynamic",
+          "type": "Int->Dynamic",
           "doc": ""
         },
         {
@@ -1304,8 +1304,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "alhx_Listener3i : Dynamic",
-          "type": "Dynamic",
+          "signature": "alhx_Listener3i : Int->Int->Int->Int->Dynamic",
+          "type": "Int->Int->Int->Int->Dynamic",
           "doc": ""
         },
         {
@@ -1314,8 +1314,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "alhx_GetListeneriv : Dynamic",
-          "type": "Dynamic",
+          "signature": "alhx_GetListeneriv : Int->Null->Array",
+          "type": "Int->Null->Array",
           "doc": ""
         },
         {
@@ -1324,8 +1324,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "alhx_GetSourcef : Dynamic",
-          "type": "Dynamic",
+          "signature": "alhx_GetSourcef : Int->Int->Float",
+          "type": "Int->Int->Float",
           "doc": ""
         },
         {
@@ -1334,8 +1334,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "alhx_Sourceiv : Dynamic",
-          "type": "Dynamic",
+          "signature": "alhx_Sourceiv : Int->Int->Array->Dynamic",
+          "type": "Int->Int->Array->Dynamic",
           "doc": ""
         },
         {
@@ -1364,8 +1364,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "alhx_GetBufferiv : Dynamic",
-          "type": "Dynamic",
+          "signature": "alhx_GetBufferiv : Int->Int->Null->Array",
+          "type": "Int->Int->Null->Array",
           "doc": ""
         },
         {
@@ -1384,8 +1384,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "alhx_SourceStopv : Dynamic",
-          "type": "Dynamic",
+          "signature": "alhx_SourceStopv : Int->Array->Dynamic",
+          "type": "Int->Array->Dynamic",
           "doc": ""
         },
         {
@@ -1394,8 +1394,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "alhx_GetSource3i : Dynamic",
-          "type": "Dynamic",
+          "signature": "alhx_GetSource3i : Int->Int->Array",
+          "type": "Int->Int->Array",
           "doc": ""
         },
         {
@@ -1404,8 +1404,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "alhx_DopplerFactor : Dynamic",
-          "type": "Dynamic",
+          "signature": "alhx_DopplerFactor : Float->Dynamic",
+          "type": "Float->Dynamic",
           "doc": ""
         },
         {
@@ -1414,8 +1414,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "alhx_SourcePlay : Dynamic",
-          "type": "Dynamic",
+          "signature": "alhx_SourcePlay : Int->Dynamic",
+          "type": "Int->Dynamic",
           "doc": ""
         },
         {
@@ -1424,8 +1424,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "alhx_GetBuffer3f : Dynamic",
-          "type": "Dynamic",
+          "signature": "alhx_GetBuffer3f : Int->Int->Array",
+          "type": "Int->Int->Array",
           "doc": ""
         },
         {
@@ -1434,8 +1434,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "alhx_SourceRewind : Dynamic",
-          "type": "Dynamic",
+          "signature": "alhx_SourceRewind : Int->Dynamic",
+          "type": "Int->Dynamic",
           "doc": ""
         },
         {
@@ -1466,7 +1466,8 @@
           "args": [
             {
               "name": "value",
-              "type": "Float"
+              "type": "Float",
+              "value": "null"
             }
           ]
         },
@@ -1493,7 +1494,8 @@
           "args": [
             {
               "name": "buffer",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             }
           ]
         },
@@ -1509,19 +1511,23 @@
           "args": [
             {
               "name": "param",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "value1",
-              "type": "Float"
+              "type": "Float",
+              "value": "null"
             },
             {
               "name": "value2",
-              "type": "Float"
+              "type": "Float",
+              "value": "null"
             },
             {
               "name": "value3",
-              "type": "Float"
+              "type": "Float",
+              "value": "null"
             }
           ]
         },
@@ -1537,11 +1543,13 @@
           "args": [
             {
               "name": "source",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "param",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             }
           ]
         },
@@ -1557,7 +1565,8 @@
           "args": [
             {
               "name": "extname",
-              "type": "String"
+              "type": "String",
+              "value": "null"
             }
           ]
         },
@@ -1573,11 +1582,13 @@
           "args": [
             {
               "name": "param",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "value",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             }
           ]
         },
@@ -1593,7 +1604,8 @@
           "args": [
             {
               "name": "param",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             }
           ]
         },
@@ -1609,7 +1621,8 @@
           "args": [
             {
               "name": "sources",
-              "type": "Array<Int>"
+              "type": "Array<Int>",
+              "value": "null"
             }
           ]
         },
@@ -1625,11 +1638,13 @@
           "args": [
             {
               "name": "source",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "param",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             }
           ]
         },
@@ -1645,7 +1660,8 @@
           "args": [
             {
               "name": "source",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             }
           ]
         },
@@ -1661,11 +1677,13 @@
           "args": [
             {
               "name": "buffer",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "param",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             }
           ]
         },
@@ -1681,7 +1699,8 @@
           "args": [
             {
               "name": "capability",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             }
           ]
         },
@@ -1697,7 +1716,8 @@
           "args": [
             {
               "name": "source",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             }
           ]
         },
@@ -1713,7 +1733,8 @@
           "args": [
             {
               "name": "source",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             }
           ]
         },
@@ -1729,15 +1750,18 @@
           "args": [
             {
               "name": "buffer",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "param",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "value",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             }
           ]
         },
@@ -1753,11 +1777,13 @@
           "args": [
             {
               "name": "source",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "param",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             }
           ]
         },
@@ -1773,15 +1799,18 @@
           "args": [
             {
               "name": "buffer",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "param",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "values",
-              "type": "Array<Float>"
+              "type": "Array<Float>",
+              "value": "null"
             }
           ]
         },
@@ -1797,11 +1826,13 @@
           "args": [
             {
               "name": "param",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "values",
-              "type": "Array<Int>"
+              "type": "Array<Int>",
+              "value": "null"
             }
           ]
         },
@@ -1817,7 +1848,8 @@
           "args": [
             {
               "name": "source",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             }
           ]
         },
@@ -1833,15 +1865,18 @@
           "args": [
             {
               "name": "source",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "nb",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "buffers",
-              "type": "Array<Int>"
+              "type": "Array<Int>",
+              "value": "null"
             }
           ]
         },
@@ -1852,16 +1887,18 @@
           "isstatic": true,
           "isinline": false,
           "doc": "",
-          "signature": "getListenerfv(param:Int, ?count:Int) : Array<Float>",
+          "signature": "getListenerfv(param:Int, ?count:Int=1) : Array<Float>",
           "return": ": Array<Float>",
           "args": [
             {
               "name": "param",
-              "type": "Int"
+              "type": "Int",
+              "value": ""
             },
             {
               "name": "?count",
-              "type": "Int"
+              "type": "Int",
+              "value": "1"
             }
           ]
         },
@@ -1877,23 +1914,28 @@
           "args": [
             {
               "name": "buffer",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "format",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "data",
-              "type": "lumen.utils.Float32Array"
+              "type": "lumen.utils.Float32Array",
+              "value": "null"
             },
             {
               "name": "size",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "freq",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             }
           ]
         },
@@ -1909,15 +1951,18 @@
           "args": [
             {
               "name": "buffer",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "param",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "value",
-              "type": "Float"
+              "type": "Float",
+              "value": "null"
             }
           ]
         },
@@ -1933,7 +1978,8 @@
           "args": [
             {
               "name": "sources",
-              "type": "Array<Int>"
+              "type": "Array<Int>",
+              "value": "null"
             }
           ]
         },
@@ -1944,16 +1990,18 @@
           "isstatic": true,
           "isinline": false,
           "doc": "",
-          "signature": "getFloatv(param:Int, ?count:Int) : Array<Float>",
+          "signature": "getFloatv(param:Int, ?count:Int=1) : Array<Float>",
           "return": ": Array<Float>",
           "args": [
             {
               "name": "param",
-              "type": "Int"
+              "type": "Int",
+              "value": ""
             },
             {
               "name": "?count",
-              "type": "Int"
+              "type": "Int",
+              "value": "1"
             }
           ]
         },
@@ -1969,7 +2017,8 @@
           "args": [
             {
               "name": "buffers",
-              "type": "Array<Int>"
+              "type": "Array<Int>",
+              "value": "null"
             }
           ]
         },
@@ -1985,11 +2034,13 @@
           "args": [
             {
               "name": "buffer",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "param",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             }
           ]
         },
@@ -2005,15 +2056,18 @@
           "args": [
             {
               "name": "buffer",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "param",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "values",
-              "type": "Array<Int>"
+              "type": "Array<Int>",
+              "value": "null"
             }
           ]
         },
@@ -2029,7 +2083,8 @@
           "args": [
             {
               "name": "ename",
-              "type": "String"
+              "type": "String",
+              "value": "null"
             }
           ]
         },
@@ -2045,7 +2100,8 @@
           "args": [
             {
               "name": "value",
-              "type": "Float"
+              "type": "Float",
+              "value": "null"
             }
           ]
         },
@@ -2061,7 +2117,8 @@
           "args": [
             {
               "name": "param",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             }
           ]
         },
@@ -2077,7 +2134,8 @@
           "args": [
             {
               "name": "source",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             }
           ]
         },
@@ -2093,7 +2151,8 @@
           "args": [
             {
               "name": "buffer",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             }
           ]
         },
@@ -2109,7 +2168,8 @@
           "args": [
             {
               "name": "n",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             }
           ]
         },
@@ -2125,7 +2185,8 @@
           "args": [
             {
               "name": "param",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             }
           ]
         },
@@ -2141,7 +2202,8 @@
           "args": [
             {
               "name": "param",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             }
           ]
         },
@@ -2157,7 +2219,8 @@
           "args": [
             {
               "name": "source",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             }
           ]
         },
@@ -2173,23 +2236,28 @@
           "args": [
             {
               "name": "buffer",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "param",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "value1",
-              "type": "Float"
+              "type": "Float",
+              "value": "null"
             },
             {
               "name": "value2",
-              "type": "Float"
+              "type": "Float",
+              "value": "null"
             },
             {
               "name": "value3",
-              "type": "Float"
+              "type": "Float",
+              "value": "null"
             }
           ]
         },
@@ -2205,11 +2273,13 @@
           "args": [
             {
               "name": "source",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "param",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             }
           ]
         },
@@ -2225,7 +2295,8 @@
           "args": [
             {
               "name": "param",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             }
           ]
         },
@@ -2241,19 +2312,23 @@
           "args": [
             {
               "name": "param",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "value1",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "value2",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "value3",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             }
           ]
         },
@@ -2269,15 +2344,18 @@
           "args": [
             {
               "name": "source",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "param",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "value",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             }
           ]
         },
@@ -2288,20 +2366,23 @@
           "isstatic": true,
           "isinline": false,
           "doc": "",
-          "signature": "getBufferfv(buffer:Int, param:Int, ?count:Int) : Array<Float>",
+          "signature": "getBufferfv(buffer:Int, param:Int, ?count:Int=1) : Array<Float>",
           "return": ": Array<Float>",
           "args": [
             {
               "name": "buffer",
-              "type": "Int"
+              "type": "Int",
+              "value": ""
             },
             {
               "name": "param",
-              "type": "Int"
+              "type": "Int",
+              "value": ""
             },
             {
               "name": "?count",
-              "type": "Int"
+              "type": "Int",
+              "value": "1"
             }
           ]
         },
@@ -2317,15 +2398,18 @@
           "args": [
             {
               "name": "source",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "param",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "values",
-              "type": "Array<Float>"
+              "type": "Array<Float>",
+              "value": "null"
             }
           ]
         },
@@ -2341,7 +2425,8 @@
           "args": [
             {
               "name": "sources",
-              "type": "Array<Int>"
+              "type": "Array<Int>",
+              "value": "null"
             }
           ]
         },
@@ -2357,7 +2442,8 @@
           "args": [
             {
               "name": "param",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             }
           ]
         },
@@ -2373,15 +2459,18 @@
           "args": [
             {
               "name": "source",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "param",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "value",
-              "type": "Float"
+              "type": "Float",
+              "value": "null"
             }
           ]
         },
@@ -2392,20 +2481,23 @@
           "isstatic": true,
           "isinline": false,
           "doc": "",
-          "signature": "getSourceiv(source:Int, param:Int, ?count:Int) : Array<Int>",
+          "signature": "getSourceiv(source:Int, param:Int, ?count:Int=1) : Array<Int>",
           "return": ": Array<Int>",
           "args": [
             {
               "name": "source",
-              "type": "Int"
+              "type": "Int",
+              "value": ""
             },
             {
               "name": "param",
-              "type": "Int"
+              "type": "Int",
+              "value": ""
             },
             {
               "name": "?count",
-              "type": "Int"
+              "type": "Int",
+              "value": "1"
             }
           ]
         },
@@ -2421,11 +2513,13 @@
           "args": [
             {
               "name": "source",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "buffer",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             }
           ]
         },
@@ -2441,7 +2535,8 @@
           "args": [
             {
               "name": "capability",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             }
           ]
         },
@@ -2452,16 +2547,18 @@
           "isstatic": true,
           "isinline": false,
           "doc": "",
-          "signature": "getDoublev(param:Int, ?count:Int) : Array<Float>",
+          "signature": "getDoublev(param:Int, ?count:Int=1) : Array<Float>",
           "return": ": Array<Float>",
           "args": [
             {
               "name": "param",
-              "type": "Int"
+              "type": "Int",
+              "value": ""
             },
             {
               "name": "?count",
-              "type": "Int"
+              "type": "Int",
+              "value": "1"
             }
           ]
         },
@@ -2477,11 +2574,13 @@
           "args": [
             {
               "name": "buffer",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "param",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             }
           ]
         },
@@ -2497,15 +2596,18 @@
           "args": [
             {
               "name": "source",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "param",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "values",
-              "type": "Array<Int>"
+              "type": "Array<Int>",
+              "value": "null"
             }
           ]
         },
@@ -2521,7 +2623,8 @@
           "args": [
             {
               "name": "param",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             }
           ]
         },
@@ -2537,7 +2640,8 @@
           "args": [
             {
               "name": "error",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             }
           ]
         },
@@ -2553,11 +2657,13 @@
           "args": [
             {
               "name": "param",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "value",
-              "type": "Float"
+              "type": "Float",
+              "value": "null"
             }
           ]
         },
@@ -2573,11 +2679,13 @@
           "args": [
             {
               "name": "buffer",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "param",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             }
           ]
         },
@@ -2593,7 +2701,8 @@
           "args": [
             {
               "name": "distanceModel",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             }
           ]
         },
@@ -2609,7 +2718,8 @@
           "args": [
             {
               "name": "param",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             }
           ]
         },
@@ -2625,7 +2735,8 @@
           "args": [
             {
               "name": "sources",
-              "type": "Array<Int>"
+              "type": "Array<Int>",
+              "value": "null"
             }
           ]
         },
@@ -2652,23 +2763,28 @@
           "args": [
             {
               "name": "source",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "param",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "value1",
-              "type": "Float"
+              "type": "Float",
+              "value": "null"
             },
             {
               "name": "value2",
-              "type": "Float"
+              "type": "Float",
+              "value": "null"
             },
             {
               "name": "value3",
-              "type": "Float"
+              "type": "Float",
+              "value": "null"
             }
           ]
         },
@@ -2684,11 +2800,13 @@
           "args": [
             {
               "name": "source",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "nb",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             }
           ]
         },
@@ -2704,23 +2822,28 @@
           "args": [
             {
               "name": "buffer",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "param",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "value1",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "value2",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "value3",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             }
           ]
         },
@@ -2736,7 +2859,8 @@
           "args": [
             {
               "name": "n",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             }
           ]
         },
@@ -2752,7 +2876,8 @@
           "args": [
             {
               "name": "capability",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             }
           ]
         },
@@ -2763,16 +2888,18 @@
           "isstatic": true,
           "isinline": false,
           "doc": "",
-          "signature": "getBooleanv(param:Int, ?count:Int) : Array<Bool>",
+          "signature": "getBooleanv(param:Int, ?count:Int=1) : Array<Bool>",
           "return": ": Array<Bool>",
           "args": [
             {
               "name": "param",
-              "type": "Int"
+              "type": "Int",
+              "value": ""
             },
             {
               "name": "?count",
-              "type": "Int"
+              "type": "Int",
+              "value": "1"
             }
           ]
         },
@@ -2788,7 +2915,8 @@
           "args": [
             {
               "name": "param",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             }
           ]
         },
@@ -2799,16 +2927,18 @@
           "isstatic": true,
           "isinline": false,
           "doc": "",
-          "signature": "getListeneriv(param:Int, ?count:Int) : Array<Int>",
+          "signature": "getListeneriv(param:Int, ?count:Int=1) : Array<Int>",
           "return": ": Array<Int>",
           "args": [
             {
               "name": "param",
-              "type": "Int"
+              "type": "Int",
+              "value": ""
             },
             {
               "name": "?count",
-              "type": "Int"
+              "type": "Int",
+              "value": "1"
             }
           ]
         },
@@ -2824,11 +2954,13 @@
           "args": [
             {
               "name": "source",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "param",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             }
           ]
         },
@@ -2844,11 +2976,13 @@
           "args": [
             {
               "name": "param",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "values",
-              "type": "Array<Float>"
+              "type": "Array<Float>",
+              "value": "null"
             }
           ]
         },
@@ -2864,7 +2998,8 @@
           "args": [
             {
               "name": "sources",
-              "type": "Array<Int>"
+              "type": "Array<Int>",
+              "value": "null"
             }
           ]
         },
@@ -2891,7 +3026,8 @@
           "args": [
             {
               "name": "value",
-              "type": "Float"
+              "type": "Float",
+              "value": "null"
             }
           ]
         },
@@ -2902,20 +3038,23 @@
           "isstatic": true,
           "isinline": false,
           "doc": "",
-          "signature": "getBufferiv(buffer:Int, param:Int, ?count:Int) : Array<Int>",
+          "signature": "getBufferiv(buffer:Int, param:Int, ?count:Int=1) : Array<Int>",
           "return": ": Array<Int>",
           "args": [
             {
               "name": "buffer",
-              "type": "Int"
+              "type": "Int",
+              "value": ""
             },
             {
               "name": "param",
-              "type": "Int"
+              "type": "Int",
+              "value": ""
             },
             {
               "name": "?count",
-              "type": "Int"
+              "type": "Int",
+              "value": "1"
             }
           ]
         },
@@ -2931,7 +3070,8 @@
           "args": [
             {
               "name": "fname",
-              "type": "String"
+              "type": "String",
+              "value": "null"
             }
           ]
         },
@@ -2947,23 +3087,28 @@
           "args": [
             {
               "name": "source",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "param",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "value1",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "value2",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "value3",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             }
           ]
         },
@@ -2979,7 +3124,8 @@
           "args": [
             {
               "name": "source",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             }
           ]
         },
@@ -2990,16 +3136,18 @@
           "isstatic": true,
           "isinline": false,
           "doc": "",
-          "signature": "getIntegerv(param:Int, ?count:Int) : Array<Int>",
+          "signature": "getIntegerv(param:Int, ?count:Int=1) : Array<Int>",
           "return": ": Array<Int>",
           "args": [
             {
               "name": "param",
-              "type": "Int"
+              "type": "Int",
+              "value": ""
             },
             {
               "name": "?count",
-              "type": "Int"
+              "type": "Int",
+              "value": "1"
             }
           ]
         }

@@ -73,7 +73,8 @@
           "args": [
             {
               "name": "s",
-              "type": "String"
+              "type": "String",
+              "value": "null"
             }
           ]
         },
@@ -144,7 +145,8 @@
           "args": [
             {
               "name": "inLen",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             }
           ]
         },
@@ -204,15 +206,18 @@
           "args": [
             {
               "name": "outData",
-              "type": "lumen.utils.ByteArray"
+              "type": "lumen.utils.ByteArray",
+              "value": "null"
             },
             {
               "name": "?inOffset",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "?inLen",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             }
           ]
         },

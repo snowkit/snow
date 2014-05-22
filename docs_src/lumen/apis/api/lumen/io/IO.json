@@ -14,8 +14,8 @@
           "ispublic": false,
           "isinline": false,
           "isstatic": true,
-          "signature": "lumen_iosrc_from_file : Dynamic",
-          "type": "Dynamic",
+          "signature": "lumen_iosrc_from_file : String->String->Dynamic",
+          "type": "String->String->Dynamic",
           "doc": ""
         }
       ]
@@ -31,16 +31,18 @@
           "isstatic": true,
           "isinline": false,
           "doc": "",
-          "signature": "from_file(_id:String, ?_mode:String) : lumen.io.IOFile",
+          "signature": "from_file(_id:String, ?_mode:String='rb') : lumen.io.IOFile",
           "return": ": lumen.io.IOFile",
           "args": [
             {
               "name": "_id",
-              "type": "String"
+              "type": "String",
+              "value": ""
             },
             {
               "name": "?_mode",
-              "type": "String"
+              "type": "String",
+              "value": "'rb'"
             }
           ]
         }

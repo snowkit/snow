@@ -67,20 +67,23 @@
           "isstatic": false,
           "isinline": false,
           "doc": "",
-          "signature": "new(lengthOrBuffer:Dynamic, ?byteOffset:Int, ?length:Int) ",
+          "signature": "new(lengthOrBuffer:Dynamic, ?byteOffset:Int=0, ?length:Int) ",
           "return": "",
           "args": [
             {
               "name": "lengthOrBuffer",
-              "type": "Dynamic"
+              "type": "Dynamic",
+              "value": ""
             },
             {
               "name": "?byteOffset",
-              "type": "Int"
+              "type": "Int",
+              "value": "0"
             },
             {
               "name": "?length",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             }
           ]
         },

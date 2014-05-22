@@ -19,32 +19,43 @@ typedef WindowSize = {
     //and allows opening and closing windows
 class Window {
 
-        //the window id, for tracking them
+        /** the window id, for tracking events to each window */
     public var id : Int;
-        //the manager this window belongs to
+        /** the manager this window belongs to */
     public var manager : Windowing;
-        //the requested and actual configs
+        /** the requested window config */
     public var asked_config : WindowConfig;
+        /** the actual returned window config */
     public var config : WindowConfig;
-        //the native window handle
+        /** the native window handle */
     public var handle : Dynamic;
+        /** the window event handler callback */
     public var window_event_handler : WindowEvent->Void;
+        /** the window render handler callback */
     public var window_render_handler : Window->Void;
 
-        //state
+        /** The window title `(read/write)` */
     @:isVar public var title (get,set) : String;
+        /** The window bordered state `(read/write)` */
     @:isVar public var bordered (get,set) : Bool = true;
+        /** The window grab state `(read/write)` */
     @:isVar public var grab (get,set) : Bool = false;
+        /** The window fullscreen state `(read/write)` */
     @:isVar public var fullscreen (get,set) : Bool = false;   
-        //spatial
+
+        /** The window position `(read/write)` */
     @:isVar public var position (get,set) : WindowPosition;
+        /** The window size `(read/write)` */
     @:isVar public var size (get,set) : WindowSize;
+        /** The window maximum size `(read/write)` */
     @:isVar public var max_size (get,set) : WindowSize;
+        /** The window minimum size `(read/write)` */
     @:isVar public var min_size (get,set) : WindowSize;
 
-        //set this for fullscreen desktop mode, instead of fullscreen mode
+        /** set this for fullscreen desktop mode, instead of fullscreen mode */
     public var fullscreen_desktop : Bool = true;
 
+        //internal minimized flag to avoid rendering when minimized
     var minimized : Bool = false;
 
     public function new( _manager:Windowing, _config:WindowConfig ) {
@@ -84,7 +95,7 @@ class Window {
         });
 
         trace("/ lumen / created window with id: " + id);
-        trace('/ lumen / updating real window config for $id is ' + _config);
+        trace('/ lumen / updating real window config for $id is ' + _config);       
 
     } //on_window_created
 
@@ -130,14 +141,14 @@ class Window {
 
     } //on_event
 
-    public function update() {
+    @:noCompletion public function update() {
 
         lumen_window_update( handle );
 
     } //update
 
 
-    public function render() {
+    @:noCompletion public function render() {
 
         if(minimized) {
             return;
@@ -157,33 +168,37 @@ class Window {
 
     } //render
 
-    public function swap() {
+        /** Swap the back buffer of the window, call after rendering to update the window view */
+    public function swap() : Void->Void {
 
         lumen_window_swap( handle );
 
+        return function(){}
+
     } //swap
 
-
+        /** Close the window */
     public function close() {
         
         lumen_window_close( handle );
 
     } //close
 
+        /** Display a cross platform message on this window */
     public function simple_message( message:String, title:String="" ) {
 
         lumen_window_simple_message( handle, message, title );
 
     } //simple_message
 
-    public function get_fullscreen() : Bool {
+    function get_fullscreen() : Bool {
 
         return fullscreen;
 
     } //get_fullscreen
 
 
-    public function set_fullscreen( _enable:Bool ) {
+    function set_fullscreen( _enable:Bool ) {
         
         if(handle != null) {
             lumen_window_fullscreen( handle, _enable, fullscreen_desktop ? 0 : 1  );
@@ -193,13 +208,13 @@ class Window {
 
     } //set_fullscreen
 
-    public function get_bordered() : Bool {
+    function get_bordered() : Bool {
         
         return bordered;
         
     } //get_bordered
 
-    public function get_grab() : Bool {
+    function get_grab() : Bool {
 
         return grab;
 
@@ -287,7 +302,7 @@ class Window {
 
     } //set_min_size
 
-    public function set_bordered( _bordered:Bool ) : Bool {
+    function set_bordered( _bordered:Bool ) : Bool {
         
         if(handle != null) {
             lumen_window_bordered(handle, _bordered);
@@ -297,7 +312,7 @@ class Window {
         
     } //set_bordered
 
-    public function set_grab( _grab:Bool ) : Bool {
+    function set_grab( _grab:Bool ) : Bool {
 
         if(handle != null) {
             lumen_window_grab(handle, _grab);

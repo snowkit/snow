@@ -33,7 +33,7 @@
 
 
 
-`load(library:String, method:String, ?args:Int) : Dynamic`
+`load(library:String, method:String, ?args:Int=0) : Dynamic`
 
 <span class="small_desc_flat"> no description </span>   
 
