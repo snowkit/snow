@@ -11,9 +11,9 @@
         {
           "name": "INVALID_CONTEXT",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "INVALID_CONTEXT : Int",
           "type": "Int",
           "doc": ""
@@ -21,9 +21,9 @@
         {
           "name": "ALL_ATTRIBUTES",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "ALL_ATTRIBUTES : Int",
           "type": "Int",
           "doc": ""
@@ -31,9 +31,9 @@
         {
           "name": "DEVICE_SPECIFIER",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "DEVICE_SPECIFIER : Int",
           "type": "Int",
           "doc": ""
@@ -41,9 +41,9 @@
         {
           "name": "OUT_OF_MEMORY",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "OUT_OF_MEMORY : Int",
           "type": "Int",
           "doc": ""
@@ -51,9 +51,9 @@
         {
           "name": "alhx_alcMakeContextCurrent",
           "meta": [],
-          "public": false,
-          "inline": false,
-          "static": true,
+          "ispublic": false,
+          "isinline": false,
+          "isstatic": true,
           "signature": "alhx_alcMakeContextCurrent : Dynamic",
           "type": "Dynamic",
           "doc": ""
@@ -61,9 +61,9 @@
         {
           "name": "alhx_alcGetCurrentContext",
           "meta": [],
-          "public": false,
-          "inline": false,
-          "static": true,
+          "ispublic": false,
+          "isinline": false,
+          "isstatic": true,
           "signature": "alhx_alcGetCurrentContext : Dynamic",
           "type": "Dynamic",
           "doc": ""
@@ -71,9 +71,9 @@
         {
           "name": "alhx_alcGetContextsDevice",
           "meta": [],
-          "public": false,
-          "inline": false,
-          "static": true,
+          "ispublic": false,
+          "isinline": false,
+          "isstatic": true,
           "signature": "alhx_alcGetContextsDevice : Dynamic",
           "type": "Dynamic",
           "doc": ""
@@ -81,9 +81,9 @@
         {
           "name": "STEREO_SOURCES",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "STEREO_SOURCES : Int",
           "type": "Int",
           "doc": ""
@@ -91,9 +91,9 @@
         {
           "name": "INVALID_VALUE_MEANING",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "INVALID_VALUE_MEANING : String",
           "type": "String",
           "doc": ""
@@ -101,9 +101,9 @@
         {
           "name": "alhx_alcCreateContext",
           "meta": [],
-          "public": false,
-          "inline": false,
-          "static": true,
+          "ispublic": false,
+          "isinline": false,
+          "isstatic": true,
           "signature": "alhx_alcCreateContext : Dynamic",
           "type": "Dynamic",
           "doc": ""
@@ -111,9 +111,9 @@
         {
           "name": "DEFAULT_DEVICE_SPECIFIER",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "DEFAULT_DEVICE_SPECIFIER : Int",
           "type": "Int",
           "doc": ""
@@ -121,9 +121,9 @@
         {
           "name": "INVALID_ENUM_MEANING",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "INVALID_ENUM_MEANING : String",
           "type": "String",
           "doc": ""
@@ -131,9 +131,9 @@
         {
           "name": "MONO_SOURCES",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "MONO_SOURCES : Int",
           "type": "Int",
           "doc": ""
@@ -141,9 +141,9 @@
         {
           "name": "EXTENSIONS",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "EXTENSIONS : Int",
           "type": "Int",
           "doc": ""
@@ -151,9 +151,9 @@
         {
           "name": "ENUMERATE_ALL_EXT",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "ENUMERATE_ALL_EXT : Int",
           "type": "Int",
           "doc": ""
@@ -161,9 +161,9 @@
         {
           "name": "alhx_alcProcessContext",
           "meta": [],
-          "public": false,
-          "inline": false,
-          "static": true,
+          "ispublic": false,
+          "isinline": false,
+          "isstatic": true,
           "signature": "alhx_alcProcessContext : Dynamic",
           "type": "Dynamic",
           "doc": ""
@@ -171,9 +171,9 @@
         {
           "name": "FALSE",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "FALSE : Int",
           "type": "Int",
           "doc": ""
@@ -181,9 +181,9 @@
         {
           "name": "OUT_OF_MEMORY_MEANING",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "OUT_OF_MEMORY_MEANING : String",
           "type": "String",
           "doc": ""
@@ -191,9 +191,9 @@
         {
           "name": "alhx_alcGetError",
           "meta": [],
-          "public": false,
-          "inline": false,
-          "static": true,
+          "ispublic": false,
+          "isinline": false,
+          "isstatic": true,
           "signature": "alhx_alcGetError : Dynamic",
           "type": "Dynamic",
           "doc": ""
@@ -201,9 +201,9 @@
         {
           "name": "SYNC",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "SYNC : Int",
           "type": "Int",
           "doc": ""
@@ -211,9 +211,9 @@
         {
           "name": "DEFAULT_ALL_DEVICES_SPECIFIER",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "DEFAULT_ALL_DEVICES_SPECIFIER : Int",
           "type": "Int",
           "doc": ""
@@ -221,9 +221,9 @@
         {
           "name": "alhx_alcDestroyContext",
           "meta": [],
-          "public": false,
-          "inline": false,
-          "static": true,
+          "ispublic": false,
+          "isinline": false,
+          "isstatic": true,
           "signature": "alhx_alcDestroyContext : Dynamic",
           "type": "Dynamic",
           "doc": ""
@@ -231,9 +231,9 @@
         {
           "name": "INVALID_DEVICE",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "INVALID_DEVICE : Int",
           "type": "Int",
           "doc": ""
@@ -241,9 +241,9 @@
         {
           "name": "alhx_alcCloseDevice",
           "meta": [],
-          "public": false,
-          "inline": false,
-          "static": true,
+          "ispublic": false,
+          "isinline": false,
+          "isstatic": true,
           "signature": "alhx_alcCloseDevice : Dynamic",
           "type": "Dynamic",
           "doc": ""
@@ -251,9 +251,9 @@
         {
           "name": "alhx_alcSuspendContext",
           "meta": [],
-          "public": false,
-          "inline": false,
-          "static": true,
+          "ispublic": false,
+          "isinline": false,
+          "isstatic": true,
           "signature": "alhx_alcSuspendContext : Dynamic",
           "type": "Dynamic",
           "doc": ""
@@ -261,9 +261,9 @@
         {
           "name": "INVALID_DEVICE_MEANING",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "INVALID_DEVICE_MEANING : String",
           "type": "String",
           "doc": ""
@@ -271,9 +271,9 @@
         {
           "name": "alhx_alcGetString",
           "meta": [],
-          "public": false,
-          "inline": false,
-          "static": true,
+          "ispublic": false,
+          "isinline": false,
+          "isstatic": true,
           "signature": "alhx_alcGetString : Dynamic",
           "type": "Dynamic",
           "doc": ""
@@ -281,9 +281,9 @@
         {
           "name": "INVALID_VALUE",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "INVALID_VALUE : Int",
           "type": "Int",
           "doc": ""
@@ -291,9 +291,9 @@
         {
           "name": "alhx_alcOpenDevice",
           "meta": [],
-          "public": false,
-          "inline": false,
-          "static": true,
+          "ispublic": false,
+          "isinline": false,
+          "isstatic": true,
           "signature": "alhx_alcOpenDevice : Dynamic",
           "type": "Dynamic",
           "doc": ""
@@ -301,9 +301,9 @@
         {
           "name": "INVALID_ENUM",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "INVALID_ENUM : Int",
           "type": "Int",
           "doc": ""
@@ -311,9 +311,9 @@
         {
           "name": "alhx_alcGetIntegerv",
           "meta": [],
-          "public": false,
-          "inline": false,
-          "static": true,
+          "ispublic": false,
+          "isinline": false,
+          "isstatic": true,
           "signature": "alhx_alcGetIntegerv : Dynamic",
           "type": "Dynamic",
           "doc": ""
@@ -321,9 +321,9 @@
         {
           "name": "ATTRIBUTES_SIZE",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "ATTRIBUTES_SIZE : Int",
           "type": "Int",
           "doc": ""
@@ -331,9 +331,9 @@
         {
           "name": "INVALID_CONTEXT_MEANING",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "INVALID_CONTEXT_MEANING : String",
           "type": "String",
           "doc": ""
@@ -341,9 +341,9 @@
         {
           "name": "FREQUENCY",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "FREQUENCY : Int",
           "type": "Int",
           "doc": ""
@@ -351,9 +351,9 @@
         {
           "name": "REFRESH",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "REFRESH : Int",
           "type": "Int",
           "doc": ""
@@ -361,9 +361,9 @@
         {
           "name": "TRUE",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "TRUE : Int",
           "type": "Int",
           "doc": ""
@@ -371,9 +371,9 @@
         {
           "name": "NO_ERROR",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "NO_ERROR : Int",
           "type": "Int",
           "doc": ""
@@ -381,9 +381,9 @@
         {
           "name": "ALL_DEVICES_SPECIFIER",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "ALL_DEVICES_SPECIFIER : Int",
           "type": "Int",
           "doc": ""
@@ -391,15 +391,15 @@
       ]
     },
     {
-      "name": "Methods",
-      "link": "#Methods",
+      "name": "StaticMethods",
+      "link": "#StaticMethods",
       "values": [
         {
           "name": "createContext",
           "meta": [],
-          "public": true,
-          "static": true,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": true,
+          "isinline": false,
           "doc": "",
           "signature": "createContext(device:Dynamic, ?attrlist:Array<Int>) : Dynamic",
           "return": ": Dynamic",
@@ -417,9 +417,9 @@
         {
           "name": "destroyContext",
           "meta": [],
-          "public": true,
-          "static": true,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": true,
+          "isinline": false,
           "doc": "",
           "signature": "destroyContext(context:Dynamic) : Void",
           "return": ": Void",
@@ -433,9 +433,9 @@
         {
           "name": "getError",
           "meta": [],
-          "public": true,
-          "static": true,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": true,
+          "isinline": false,
           "doc": "",
           "signature": "getError(device:Dynamic) : Int",
           "return": ": Int",
@@ -449,9 +449,9 @@
         {
           "name": "openDevice",
           "meta": [],
-          "public": true,
-          "static": true,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": true,
+          "isinline": false,
           "doc": "",
           "signature": "openDevice(?devicename:String) : Dynamic",
           "return": ": Dynamic",
@@ -465,9 +465,9 @@
         {
           "name": "closeDevice",
           "meta": [],
-          "public": true,
-          "static": true,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": true,
+          "isinline": false,
           "doc": "",
           "signature": "closeDevice(device:Dynamic) : Bool",
           "return": ": Bool",
@@ -481,9 +481,9 @@
         {
           "name": "getCurrentContext",
           "meta": [],
-          "public": true,
-          "static": true,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": true,
+          "isinline": false,
           "doc": "",
           "signature": "getCurrentContext() : Dynamic",
           "return": ": Dynamic",
@@ -492,9 +492,9 @@
         {
           "name": "getContextsDevice",
           "meta": [],
-          "public": true,
-          "static": true,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": true,
+          "isinline": false,
           "doc": "",
           "signature": "getContextsDevice(context:Dynamic) : Dynamic",
           "return": ": Dynamic",
@@ -508,9 +508,9 @@
         {
           "name": "getString",
           "meta": [],
-          "public": true,
-          "static": true,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": true,
+          "isinline": false,
           "doc": "",
           "signature": "getString(device:Dynamic, param:Int) : String",
           "return": ": String",
@@ -528,9 +528,9 @@
         {
           "name": "getIntegerv",
           "meta": [],
-          "public": true,
-          "static": true,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": true,
+          "isinline": false,
           "doc": "",
           "signature": "getIntegerv(device:Dynamic, param:Int, size:Int) : Array<Int>",
           "return": ": Array<Int>",
@@ -552,9 +552,9 @@
         {
           "name": "getErrorMeaning",
           "meta": [],
-          "public": true,
-          "static": true,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": true,
+          "isinline": false,
           "doc": "",
           "signature": "getErrorMeaning(error:Int) : String",
           "return": ": String",
@@ -568,9 +568,9 @@
         {
           "name": "makeContextCurrent",
           "meta": [],
-          "public": true,
-          "static": true,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": true,
+          "isinline": false,
           "doc": "",
           "signature": "makeContextCurrent(context:Dynamic) : Bool",
           "return": ": Bool",
@@ -584,9 +584,9 @@
         {
           "name": "processContext",
           "meta": [],
-          "public": true,
-          "static": true,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": true,
+          "isinline": false,
           "doc": "",
           "signature": "processContext(context:Dynamic) : Void",
           "return": ": Void",
@@ -600,9 +600,9 @@
         {
           "name": "suspendContext",
           "meta": [],
-          "public": true,
-          "static": true,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": true,
+          "isinline": false,
           "doc": "",
           "signature": "suspendContext(context:Dynamic) : Void",
           "return": ": Void",
@@ -614,6 +614,11 @@
           ]
         }
       ]
+    },
+    {
+      "name": "Methods",
+      "link": "#Methods",
+      "values": []
     }
   ]
 }

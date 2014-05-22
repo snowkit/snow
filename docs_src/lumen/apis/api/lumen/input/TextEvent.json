@@ -1,0 +1,84 @@
+{
+  "source": "lumen.input.TextEvent",
+  "doc": "",
+  "links": [],
+  "toplinks": [],
+  "sections": [
+    {
+      "name": "Members",
+      "link": "#Members",
+      "values": [
+        {
+          "name": "text",
+          "meta": [],
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
+          "signature": "text : String",
+          "type": "String",
+          "doc": ""
+        },
+        {
+          "name": "type",
+          "meta": [],
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
+          "signature": "type : lumen.input.TextEventType",
+          "type": "lumen.input.TextEventType",
+          "doc": ""
+        },
+        {
+          "name": "start",
+          "meta": [],
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
+          "signature": "start : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "raw",
+          "meta": [],
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
+          "signature": "raw : lumen.types.InputEvent",
+          "type": "lumen.types.InputEvent",
+          "doc": ""
+        },
+        {
+          "name": "length",
+          "meta": [],
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
+          "signature": "length : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "timestamp",
+          "meta": [],
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
+          "signature": "timestamp : Float",
+          "type": "Float",
+          "doc": ""
+        },
+        {
+          "name": "window_id",
+          "meta": [],
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
+          "signature": "window_id : Int",
+          "type": "Int",
+          "doc": ""
+        }
+      ]
+    }
+  ]
+}

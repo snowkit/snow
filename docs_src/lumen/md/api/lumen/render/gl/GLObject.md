@@ -6,8 +6,7 @@
 #GLObject
 
 
-&emsp;&emsp;&emsp;home   
-[API Index](../../../../api/index.html#lumen.render)   
+##[API Index](../../../../api/index.html#lumen.render)   
 &emsp;&emsp;&emsp;parent    
 [lumen.render](../)     
 &emsp;&emsp;&emsp;current    
@@ -46,6 +45,8 @@
 `valid : Bool`
 
 <span class="small_desc_flat"> no description </span>   
+
+&nbsp;   
 
 &nbsp;   
 

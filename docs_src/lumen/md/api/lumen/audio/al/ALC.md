@@ -6,8 +6,7 @@
 #ALC
 
 
-&emsp;&emsp;&emsp;home   
-[API Index](../../../../api/index.html#lumen.audio)   
+##[API Index](../../../../api/index.html#lumen.audio)   
 &emsp;&emsp;&emsp;parent    
 [lumen.audio](../)     
 &emsp;&emsp;&emsp;current    
@@ -19,7 +18,7 @@
 
 
 [Members](#Members)   
-[Methods](#Methods)   
+[StaticMethods](#StaticMethods)   
 
 
 ---
@@ -33,7 +32,7 @@
 
 
 
-`ALL_ATTRIBUTES : Int`
+<span class="inline-block static">static</span>`ALL_ATTRIBUTES : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -41,7 +40,7 @@
 
 
 
-`ALL_DEVICES_SPECIFIER : Int`
+<span class="inline-block static">static</span>`ALL_DEVICES_SPECIFIER : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -49,7 +48,7 @@
 
 
 
-`ATTRIBUTES_SIZE : Int`
+<span class="inline-block static">static</span>`ATTRIBUTES_SIZE : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -57,7 +56,7 @@
 
 
 
-`DEFAULT_ALL_DEVICES_SPECIFIER : Int`
+<span class="inline-block static">static</span>`DEFAULT_ALL_DEVICES_SPECIFIER : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -65,7 +64,7 @@
 
 
 
-`DEFAULT_DEVICE_SPECIFIER : Int`
+<span class="inline-block static">static</span>`DEFAULT_DEVICE_SPECIFIER : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -73,7 +72,7 @@
 
 
 
-`DEVICE_SPECIFIER : Int`
+<span class="inline-block static">static</span>`DEVICE_SPECIFIER : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -81,7 +80,7 @@
 
 
 
-`ENUMERATE_ALL_EXT : Int`
+<span class="inline-block static">static</span>`ENUMERATE_ALL_EXT : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -89,7 +88,7 @@
 
 
 
-`EXTENSIONS : Int`
+<span class="inline-block static">static</span>`EXTENSIONS : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -97,7 +96,7 @@
 
 
 
-`FALSE : Int`
+<span class="inline-block static">static</span>`FALSE : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -105,7 +104,7 @@
 
 
 
-`FREQUENCY : Int`
+<span class="inline-block static">static</span>`FREQUENCY : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -113,7 +112,7 @@
 
 
 
-`INVALID_CONTEXT : Int`
+<span class="inline-block static">static</span>`INVALID_CONTEXT : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -121,7 +120,7 @@
 
 
 
-`INVALID_CONTEXT_MEANING : String`
+<span class="inline-block static">static</span>`INVALID_CONTEXT_MEANING : String`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -129,7 +128,7 @@
 
 
 
-`INVALID_DEVICE : Int`
+<span class="inline-block static">static</span>`INVALID_DEVICE : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -137,7 +136,7 @@
 
 
 
-`INVALID_DEVICE_MEANING : String`
+<span class="inline-block static">static</span>`INVALID_DEVICE_MEANING : String`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -145,7 +144,7 @@
 
 
 
-`INVALID_ENUM : Int`
+<span class="inline-block static">static</span>`INVALID_ENUM : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -153,7 +152,7 @@
 
 
 
-`INVALID_ENUM_MEANING : String`
+<span class="inline-block static">static</span>`INVALID_ENUM_MEANING : String`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -161,7 +160,7 @@
 
 
 
-`INVALID_VALUE : Int`
+<span class="inline-block static">static</span>`INVALID_VALUE : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -169,7 +168,7 @@
 
 
 
-`INVALID_VALUE_MEANING : String`
+<span class="inline-block static">static</span>`INVALID_VALUE_MEANING : String`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -177,7 +176,7 @@
 
 
 
-`MONO_SOURCES : Int`
+<span class="inline-block static">static</span>`MONO_SOURCES : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -185,7 +184,7 @@
 
 
 
-`NO_ERROR : Int`
+<span class="inline-block static">static</span>`NO_ERROR : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -193,7 +192,7 @@
 
 
 
-`OUT_OF_MEMORY : Int`
+<span class="inline-block static">static</span>`OUT_OF_MEMORY : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -201,7 +200,7 @@
 
 
 
-`OUT_OF_MEMORY_MEANING : String`
+<span class="inline-block static">static</span>`OUT_OF_MEMORY_MEANING : String`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -209,7 +208,7 @@
 
 
 
-`REFRESH : Int`
+<span class="inline-block static">static</span>`REFRESH : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -217,7 +216,7 @@
 
 
 
-`STEREO_SOURCES : Int`
+<span class="inline-block static">static</span>`STEREO_SOURCES : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -225,7 +224,7 @@
 
 
 
-`SYNC : Int`
+<span class="inline-block static">static</span>`SYNC : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -233,14 +232,14 @@
 
 
 
-`TRUE : Int`
+<span class="inline-block static">static</span>`TRUE : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
 &nbsp;   
 
-<a class="lift" name="Methods" ></a>
-###Methods   
+<a class="lift" name="StaticMethods" ></a>
+###StaticMethods   
 ---
 <a class="lift" name="closeDevice" href="#closeDevice">closeDevice</a>
 
@@ -345,6 +344,8 @@
 `suspendContext(context:Dynamic) : Void`
 
 <span class="small_desc_flat"> no description </span>   
+
+&nbsp;   
 
 
 

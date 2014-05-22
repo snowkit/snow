@@ -6,8 +6,7 @@
 #GL
 
 
-&emsp;&emsp;&emsp;home   
-[API Index](../../../../../api/index.html#lumen.render)   
+##[API Index](../../../../../api/index.html#lumen.render)   
 &emsp;&emsp;&emsp;parent    
 [lumen.render.gl](../)     
 &emsp;&emsp;&emsp;current    
@@ -19,7 +18,7 @@
 
 
 [Properties](#Properties)   
-[Methods](#Methods)   
+[StaticMethods](#StaticMethods)   
 
 
 ---
@@ -41,8 +40,8 @@
 
 &nbsp;   
 
-<a class="lift" name="Methods" ></a>
-###Methods   
+<a class="lift" name="StaticMethods" ></a>
+###StaticMethods   
 ---
 <a class="lift" name="activeTexture" href="#activeTexture">activeTexture</a>
 
@@ -1139,6 +1138,8 @@
 `viewport(x:Int, y:Int, width:Int, height:Int) : Void`
 
 <span class="small_desc_flat"> no description </span>   
+
+&nbsp;   
 
 
 

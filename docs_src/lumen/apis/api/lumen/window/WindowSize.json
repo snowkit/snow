@@ -1,0 +1,34 @@
+{
+  "source": "lumen.window.WindowSize",
+  "doc": "",
+  "links": [],
+  "toplinks": [],
+  "sections": [
+    {
+      "name": "Members",
+      "link": "#Members",
+      "values": [
+        {
+          "name": "h",
+          "meta": [],
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
+          "signature": "h : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "w",
+          "meta": [],
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
+          "signature": "w : Int",
+          "type": "Int",
+          "doc": ""
+        }
+      ]
+    }
+  ]
+}

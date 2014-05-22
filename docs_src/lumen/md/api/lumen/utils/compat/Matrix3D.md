@@ -6,8 +6,7 @@
 #Matrix3D
 
 
-&emsp;&emsp;&emsp;home   
-[API Index](../../../../api/index.html#lumen.utils)   
+##[API Index](../../../../api/index.html#lumen.utils)   
 &emsp;&emsp;&emsp;parent    
 [lumen.utils](../)     
 &emsp;&emsp;&emsp;current    
@@ -20,6 +19,7 @@
 
 [Members](#Members)   
 [Properties](#Properties)   
+[StaticMethods](#StaticMethods)   
 [Methods](#Methods)   
 
 
@@ -61,25 +61,9 @@
 
 &nbsp;   
 
-<a class="lift" name="Methods" ></a>
-###Methods   
+<a class="lift" name="StaticMethods" ></a>
+###StaticMethods   
 ---
-<a class="lift" name="append" href="#append">append</a>
-
-
-
-`append(lhs:lumen.utils.compat.Matrix3D) : Void`
-
-<span class="small_desc_flat"> no description </span>   
-
-<a class="lift" name="appendRotation" href="#appendRotation">appendRotation</a>
-
-
-
-`appendRotation(degrees:Float, axis:lumen.utils.compat.Vector3D, ?pivotPoint:lumen.utils.compat.Vector3D) : Void`
-
-<span class="small_desc_flat"> no description </span>   
-
 <a class="lift" name="create2D" href="#create2D">create2D</a>
 
 
@@ -101,6 +85,27 @@
 
 
 `createOrtho(x0:Float, x1:Float, y0:Float, y1:Float, zNear:Float, zFar:Float) : lumen.utils.compat.Matrix3D`
+
+<span class="small_desc_flat"> no description </span>   
+
+&nbsp;   
+
+<a class="lift" name="Methods" ></a>
+###Methods   
+---
+<a class="lift" name="append" href="#append">append</a>
+
+
+
+`append(lhs:lumen.utils.compat.Matrix3D) : Void`
+
+<span class="small_desc_flat"> no description </span>   
+
+<a class="lift" name="appendRotation" href="#appendRotation">appendRotation</a>
+
+
+
+`appendRotation(degrees:Float, axis:lumen.utils.compat.Vector3D, ?pivotPoint:lumen.utils.compat.Vector3D) : Void`
 
 <span class="small_desc_flat"> no description </span>   
 

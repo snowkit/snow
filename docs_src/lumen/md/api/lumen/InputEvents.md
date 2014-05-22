@@ -6,8 +6,7 @@
 #InputEvents
 
 
-&emsp;&emsp;&emsp;home   
-[API Index](../../api/index.html#lumen)   
+##[API Index](../../api/index.html#lumen)   
 &emsp;&emsp;&emsp;parent    
 _none_   
 &emsp;&emsp;&emsp;current    
@@ -19,7 +18,7 @@ _none_
 
 
 [Members](#Members)   
-[Methods](#Methods)   
+[StaticMethods](#StaticMethods)   
 
 
 ---
@@ -33,7 +32,7 @@ _none_
 
 
 
-`ie_controller : Int`
+<span class="inline-block static">static</span>`ie_controller : Int`
 
 <span class="small_desc_flat"> An controller input event. Use these instead of joystick on desktop. </span>   
 
@@ -41,7 +40,7 @@ _none_
 
 
 
-`ie_joystick : Int`
+<span class="inline-block static">static</span>`ie_joystick : Int`
 
 <span class="small_desc_flat"> An joystick input event. On mobile, accellerometer is a joystick (for now) </span>   
 
@@ -49,7 +48,7 @@ _none_
 
 
 
-`ie_key : Int`
+<span class="inline-block static">static</span>`ie_key : Int`
 
 <span class="small_desc_flat"> An keyboard input event </span>   
 
@@ -57,7 +56,7 @@ _none_
 
 
 
-`ie_mouse : Int`
+<span class="inline-block static">static</span>`ie_mouse : Int`
 
 <span class="small_desc_flat"> An mouse input event </span>   
 
@@ -65,7 +64,7 @@ _none_
 
 
 
-`ie_touch : Int`
+<span class="inline-block static">static</span>`ie_touch : Int`
 
 <span class="small_desc_flat"> An touch input event </span>   
 
@@ -73,14 +72,14 @@ _none_
 
 
 
-`ie_unknown : Int`
+<span class="inline-block static">static</span>`ie_unknown : Int`
 
 <span class="small_desc_flat"> An unknown input event </span>   
 
 &nbsp;   
 
-<a class="lift" name="Methods" ></a>
-###Methods   
+<a class="lift" name="StaticMethods" ></a>
+###StaticMethods   
 ---
 <a class="lift" name="typed" href="#typed">typed</a>
 
@@ -89,6 +88,8 @@ _none_
 `typed(type:Int) : lumen.InputEventType`
 
 <span class="small_desc_flat"> returns a typed `InputEventType` from an integer ID, for communication between internal native + haxe code </span>   
+
+&nbsp;   
 
 
 

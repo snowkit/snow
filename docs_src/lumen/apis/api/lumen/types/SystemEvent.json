@@ -1,0 +1,59 @@
+{
+  "source": "lumen.types.SystemEvent",
+  "doc": "",
+  "links": [],
+  "toplinks": [],
+  "sections": [
+    {
+      "name": "Members",
+      "link": "#Members",
+      "values": [
+        {
+          "name": "type",
+          "meta": [
+            {
+              "name": ":optional",
+              "value": ""
+            }
+          ],
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
+          "signature": "type : lumen.types.SystemEventType",
+          "type": "lumen.types.SystemEventType",
+          "doc": ""
+        },
+        {
+          "name": "window",
+          "meta": [
+            {
+              "name": ":optional",
+              "value": ""
+            }
+          ],
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
+          "signature": "window : Null<lumen.types.WindowEvent>",
+          "type": "Null<lumen.types.WindowEvent>",
+          "doc": ""
+        },
+        {
+          "name": "input",
+          "meta": [
+            {
+              "name": ":optional",
+              "value": ""
+            }
+          ],
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
+          "signature": "input : Null<lumen.types.InputEvent>",
+          "type": "Null<lumen.types.InputEvent>",
+          "doc": ""
+        }
+      ]
+    }
+  ]
+}

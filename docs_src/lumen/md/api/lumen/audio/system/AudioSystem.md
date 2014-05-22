@@ -5,9 +5,14 @@
 
 #AudioSystem
 
+--- 
 
-&emsp;&emsp;&emsp;home   
-[API Index](../../../../api/index.html#lumen.audio)   
+Internal audio system definition, interact with this system through `lumen.Audio`, not directly
+
+---
+<br/>
+
+##[API Index](../../../../api/index.html#lumen.audio)   
 &emsp;&emsp;&emsp;parent    
 [lumen.audio](../)     
 &emsp;&emsp;&emsp;current    
@@ -44,6 +49,8 @@
 `manager : lumen.audio.Audio`
 
 <span class="small_desc_flat"> no description </span>   
+
+&nbsp;   
 
 &nbsp;   
 

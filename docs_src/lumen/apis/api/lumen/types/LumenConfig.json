@@ -1,0 +1,89 @@
+{
+  "source": "lumen.types.LumenConfig",
+  "doc": "",
+  "links": [],
+  "toplinks": [],
+  "sections": [
+    {
+      "name": "Members",
+      "link": "#Members",
+      "values": [
+        {
+          "name": "run_loop",
+          "meta": [
+            {
+              "name": ":optional",
+              "value": ""
+            }
+          ],
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
+          "signature": "run_loop : Null<Bool>",
+          "type": "Null<Bool>",
+          "doc": ""
+        },
+        {
+          "name": "asset_data",
+          "meta": [
+            {
+              "name": ":optional",
+              "value": ""
+            }
+          ],
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
+          "signature": "asset_data : Array<lumen.types.AssetInfo>",
+          "type": "Array<lumen.types.AssetInfo>",
+          "doc": ""
+        },
+        {
+          "name": "runtime_config",
+          "meta": [
+            {
+              "name": ":optional",
+              "value": ""
+            }
+          ],
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
+          "signature": "runtime_config : Dynamic",
+          "type": "Dynamic",
+          "doc": ""
+        },
+        {
+          "name": "host",
+          "meta": [
+            {
+              "name": ":optional",
+              "value": ""
+            }
+          ],
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
+          "signature": "host : lumen.App",
+          "type": "lumen.App",
+          "doc": ""
+        },
+        {
+          "name": "window_config",
+          "meta": [
+            {
+              "name": ":optional",
+              "value": ""
+            }
+          ],
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
+          "signature": "window_config : Null<lumen.types.WindowConfig>",
+          "type": "Null<lumen.types.WindowConfig>",
+          "doc": ""
+        }
+      ]
+    }
+  ]
+}

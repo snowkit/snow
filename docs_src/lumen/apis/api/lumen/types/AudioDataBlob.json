@@ -1,0 +1,34 @@
+{
+  "source": "lumen.types.AudioDataBlob",
+  "doc": "",
+  "links": [],
+  "toplinks": [],
+  "sections": [
+    {
+      "name": "Members",
+      "link": "#Members",
+      "values": [
+        {
+          "name": "complete",
+          "meta": [],
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
+          "signature": "complete : Bool",
+          "type": "Bool",
+          "doc": ""
+        },
+        {
+          "name": "data",
+          "meta": [],
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
+          "signature": "data : lumen.utils.ByteArray",
+          "type": "lumen.utils.ByteArray",
+          "doc": ""
+        }
+      ]
+    }
+  ]
+}

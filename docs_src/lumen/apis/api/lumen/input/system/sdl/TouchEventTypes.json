@@ -11,9 +11,9 @@
         {
           "name": "te_move",
           "meta": [],
-          "public": false,
-          "inline": false,
-          "static": true,
+          "ispublic": false,
+          "isinline": false,
+          "isstatic": true,
           "signature": "te_move : Int",
           "type": "Int",
           "doc": ""
@@ -21,9 +21,9 @@
         {
           "name": "te_down",
           "meta": [],
-          "public": false,
-          "inline": false,
-          "static": true,
+          "ispublic": false,
+          "isinline": false,
+          "isstatic": true,
           "signature": "te_down : Int",
           "type": "Int",
           "doc": ""
@@ -31,9 +31,9 @@
         {
           "name": "te_up",
           "meta": [],
-          "public": false,
-          "inline": false,
-          "static": true,
+          "ispublic": false,
+          "isinline": false,
+          "isstatic": true,
           "signature": "te_up : Int",
           "type": "Int",
           "doc": ""
@@ -41,15 +41,15 @@
       ]
     },
     {
-      "name": "Methods",
-      "link": "#Methods",
+      "name": "StaticMethods",
+      "link": "#StaticMethods",
       "values": [
         {
           "name": "typed",
           "meta": [],
-          "public": true,
-          "static": true,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": true,
+          "isinline": false,
           "doc": "",
           "signature": "typed(te_type:Int) : lumen.input.TouchState",
           "return": ": lumen.input.TouchState",
@@ -61,6 +61,11 @@
           ]
         }
       ]
+    },
+    {
+      "name": "Methods",
+      "link": "#Methods",
+      "values": []
     }
   ]
 }

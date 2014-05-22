@@ -16,9 +16,9 @@
               "value": ""
             }
           ],
-          "public": false,
-          "inline": false,
-          "static": true,
+          "ispublic": false,
+          "isinline": false,
+          "isstatic": true,
           "signature": "__moduleNames : Map<String,String>",
           "type": "Map<String,String>",
           "doc": ""
@@ -26,15 +26,15 @@
       ]
     },
     {
-      "name": "Methods",
-      "link": "#Methods",
+      "name": "StaticMethods",
+      "link": "#StaticMethods",
       "values": [
         {
           "name": "load",
           "meta": [],
-          "public": true,
-          "static": true,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": true,
+          "isinline": false,
           "doc": "",
           "signature": "load(library:String, method:String, ?args:Int) : Dynamic",
           "return": ": Dynamic",
@@ -56,9 +56,9 @@
         {
           "name": "findHaxeLib",
           "meta": [],
-          "public": false,
-          "static": true,
-          "inline": false,
+          "ispublic": false,
+          "isstatic": true,
+          "isinline": false,
           "doc": "",
           "signature": "findHaxeLib(library:String) : String",
           "return": ": String",
@@ -72,9 +72,9 @@
         {
           "name": "loaderTrace",
           "meta": [],
-          "public": false,
-          "static": true,
-          "inline": false,
+          "ispublic": false,
+          "isstatic": true,
+          "isinline": false,
           "doc": "",
           "signature": "loaderTrace(message:String) : Void",
           "return": ": Void",
@@ -88,9 +88,9 @@
         {
           "name": "tryLoad",
           "meta": [],
-          "public": false,
-          "static": true,
-          "inline": false,
+          "ispublic": false,
+          "isstatic": true,
+          "isinline": false,
           "doc": "",
           "signature": "tryLoad(name:String, library:String, func:String, args:Int) : Dynamic",
           "return": ": Dynamic",
@@ -116,15 +116,20 @@
         {
           "name": "get_system_name",
           "meta": [],
-          "public": false,
-          "static": true,
-          "inline": false,
+          "ispublic": false,
+          "isstatic": true,
+          "isinline": false,
           "doc": "",
           "signature": "get_system_name() : String",
           "return": ": String",
           "args": []
         }
       ]
+    },
+    {
+      "name": "Methods",
+      "link": "#Methods",
+      "values": []
     }
   ]
 }

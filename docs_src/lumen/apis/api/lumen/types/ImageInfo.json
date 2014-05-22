@@ -1,0 +1,74 @@
+{
+  "source": "lumen.types.ImageInfo",
+  "doc": "",
+  "links": [],
+  "toplinks": [],
+  "sections": [
+    {
+      "name": "Members",
+      "link": "#Members",
+      "values": [
+        {
+          "name": "height",
+          "meta": [],
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
+          "signature": "height : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "id",
+          "meta": [],
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
+          "signature": "id : String",
+          "type": "String",
+          "doc": ""
+        },
+        {
+          "name": "width",
+          "meta": [],
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
+          "signature": "width : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "data",
+          "meta": [],
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
+          "signature": "data : lumen.utils.ByteArray",
+          "type": "lumen.utils.ByteArray",
+          "doc": ""
+        },
+        {
+          "name": "bpp_source",
+          "meta": [],
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
+          "signature": "bpp_source : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "bpp",
+          "meta": [],
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
+          "signature": "bpp : Int",
+          "type": "Int",
+          "doc": ""
+        }
+      ]
+    }
+  ]
+}

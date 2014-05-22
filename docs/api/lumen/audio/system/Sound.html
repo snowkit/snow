@@ -47,7 +47,8 @@
             <p><a href="../../../../index.html"><img src="../../../../images/logo.png" alt="Logo"></a></p>
 <hr>
 <h1 id="sound">Sound</h1>
-<p>&emsp;&emsp;&emsp;home<br><a href="../../../../api/index.html#lumen.audio">API Index</a><br>&emsp;&emsp;&emsp;parent<br><a href="../">lumen.audio</a><br>&emsp;&emsp;&emsp;current<br><a href="./">lumen.audio.system</a> / Sound</p>
+<h2 id="-api-index-api-index-html-lumen-audio-"><a href="../../../../api/index.html#lumen.audio">API Index</a></h2>
+<p>&emsp;&emsp;&emsp;parent<br><a href="../">lumen.audio</a><br>&emsp;&emsp;&emsp;current<br><a href="./">lumen.audio.system</a> / Sound</p>
 <p><br/></p>
 <hr>
 <p><a href="#Members">Members</a><br><a href="#Properties">Properties</a><br><a href="#Methods">Methods</a>   </p>
@@ -57,82 +58,83 @@
 <h3 id="members">Members</h3>
 <hr>
 <p><a class="lift" name="info" href="#info">info</a></p>
-<p><code>info : lumen.AudioInfo</code></p>
-<p><span class="small_desc_flat"> no description </span>   </p>
+<p><code>info : lumen.types.AudioInfo</code></p>
+<p><span class="small_desc_flat"> The <code>AudioInfo</code> this sound is created from </span>   </p>
 <p><a class="lift" name="is_stream" href="#is_stream">is_stream</a></p>
 <p><code>is_stream : Bool</code></p>
-<p><span class="small_desc_flat"> no description </span>   </p>
+<p><span class="small_desc_flat"> If the sound is a stream source </span>   </p>
 <p><a class="lift" name="manager" href="#manager">manager</a></p>
 <p><code>manager : lumen.audio.Audio</code></p>
-<p><span class="small_desc_flat"> no description </span>   </p>
+<p><span class="small_desc_flat"> The <code>Audio</code> system handling this sound </span>   </p>
 <p><a class="lift" name="name" href="#name">name</a></p>
 <p><code>name : String</code></p>
-<p><span class="small_desc_flat"> no description </span>   </p>
+<p><span class="small_desc_flat"> The name of this sound </span>   </p>
 <p><a class="lift" name="paused" href="#paused">paused</a></p>
 <p><code>paused : Bool</code></p>
-<p><span class="small_desc_flat"> no description </span>   </p>
+<p><span class="small_desc_flat"> If the sound is paused </span>   </p>
 <p><a class="lift" name="playing" href="#playing">playing</a></p>
 <p><code>playing : Bool</code></p>
-<p><span class="small_desc_flat"> no description </span>   </p>
+<p><span class="small_desc_flat"> If the sound is playing </span>   </p>
 <p>&nbsp;   </p>
 <p><a class="lift" name="Properties" ></a></p>
 <h3 id="properties">Properties</h3>
 <hr>
 <p><a class="lift" name="duration" href="#duration">duration</a></p>
 <p><code>duration : Float</code></p>
-<p><span class="small_desc_flat"> no description </span>   </p>
+<p><span class="small_desc_flat"> The duration of this sound, in <code>bytes</code> </span>   </p>
 <p><a class="lift" name="length" href="#length">length</a></p>
 <p><code>length : Int</code></p>
-<p><span class="small_desc_flat"> no description </span>   </p>
+<p><span class="small_desc_flat"> The length of this sound in <code>seconds</code> </span>   </p>
 <p><a class="lift" name="looping" href="#looping">looping</a></p>
 <p><code>looping : Bool</code></p>
-<p><span class="small_desc_flat"> no description </span>   </p>
+<p><span class="small_desc_flat"> If the sound is looping or not </span>   </p>
 <p><a class="lift" name="pan" href="#pan">pan</a></p>
 <p><code>pan : Float</code></p>
-<p><span class="small_desc_flat"> no description </span>   </p>
+<p><span class="small_desc_flat"> The pan of this sound. Pan only logically works on mono sounds, and is by default 2D sounds </span>   </p>
 <p><a class="lift" name="pitch" href="#pitch">pitch</a></p>
 <p><code>pitch : Float</code></p>
-<p><span class="small_desc_flat"> no description </span>   </p>
+<p><span class="small_desc_flat"> The pitch of this sound </span>   </p>
 <p><a class="lift" name="position" href="#position">position</a></p>
 <p><code>position : Int</code></p>
-<p><span class="small_desc_flat"> no description </span>   </p>
+<p><span class="small_desc_flat"> The current playback position of this sound in <code>bytes</code> </span>   </p>
 <p><a class="lift" name="time" href="#time">time</a></p>
 <p><code>time : Float</code></p>
-<p><span class="small_desc_flat"> no description </span>   </p>
+<p><span class="small_desc_flat"> The current playback time of this sound in <code>seconds</code> </span>   </p>
 <p><a class="lift" name="volume" href="#volume">volume</a></p>
 <p><code>volume : Float</code></p>
-<p><span class="small_desc_flat"> no description </span>   </p>
+<p><span class="small_desc_flat"> The volume of this sound </span>   </p>
+<p>&nbsp;   </p>
 <p>&nbsp;   </p>
 <p><a class="lift" name="Methods" ></a></p>
 <h3 id="methods">Methods</h3>
 <hr>
 <p><a class="lift" name="bytes_to_seconds" href="#bytes_to_seconds">bytes_to_seconds</a></p>
 <p><code>bytes_to_seconds(_bytes:Int) : Float</code></p>
-<p><span class="small_desc_flat"> no description </span>   </p>
+<p><span class="small_desc_flat"> A helper for converting bytes to seconds for this sound source, using the format settings specific to this sound </span>   </p>
 <p><a class="lift" name="destroy" href="#destroy">destroy</a></p>
 <p><code>destroy() : Void</code></p>
-<p><span class="small_desc_flat"> no description </span>   </p>
+<p><span class="small_desc_flat"> Destroy this sound and it’s data </span>   </p>
 <p><a class="lift" name="loop" href="#loop">loop</a></p>
 <p><code>loop() : Void</code></p>
-<p><span class="small_desc_flat"> no description </span>   </p>
+<p><span class="small_desc_flat"> Loop this sound </span>   </p>
 <p><a class="lift" name="new" href="#new">new</a></p>
-<p><code>new(_manager:lumen.audio.Audio, _name:String, _audio_info:lumen.AudioInfo)</code></p>
+<p><code>new(_manager:lumen.audio.Audio, _name:String, _audio_info:lumen.types.AudioInfo)</code></p>
 <p><span class="small_desc_flat"> no description </span>   </p>
 <p><a class="lift" name="pause" href="#pause">pause</a></p>
 <p><code>pause() : Void</code></p>
-<p><span class="small_desc_flat"> no description </span>   </p>
+<p><span class="small_desc_flat"> Pause this sound </span>   </p>
 <p><a class="lift" name="play" href="#play">play</a></p>
 <p><code>play() : Void</code></p>
-<p><span class="small_desc_flat"> no description </span>   </p>
+<p><span class="small_desc_flat"> Play this sound </span>   </p>
 <p><a class="lift" name="seconds_to_bytes" href="#seconds_to_bytes">seconds_to_bytes</a></p>
 <p><code>seconds_to_bytes(_seconds:Float) : Int</code></p>
-<p><span class="small_desc_flat"> no description </span>   </p>
+<p><span class="small_desc_flat"> A helper for converting seconds to bytes for this sound source, using the format settings specific to this sound </span>   </p>
 <p><a class="lift" name="stop" href="#stop">stop</a></p>
 <p><code>stop() : Void</code></p>
-<p><span class="small_desc_flat"> no description </span>   </p>
+<p><span class="small_desc_flat"> Stop this sound </span>   </p>
 <p><a class="lift" name="toggle" href="#toggle">toggle</a></p>
 <p><code>toggle() : Void</code></p>
-<p><span class="small_desc_flat"> no description </span>   </p>
+<p><span class="small_desc_flat"> Toggle this sound </span>   </p>
 <p>&nbsp;
 &nbsp;
 &nbsp;</p>

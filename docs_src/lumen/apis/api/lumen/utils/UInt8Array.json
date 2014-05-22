@@ -14,15 +14,20 @@
       ]
     },
     {
+      "name": "StaticMethods",
+      "link": "#StaticMethods",
+      "values": []
+    },
+    {
       "name": "Methods",
       "link": "#Methods",
       "values": [
         {
           "name": "set",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "set(bufferOrArray:Dynamic, ?offset:Int) : Void",
           "return": ": Void",
@@ -40,9 +45,9 @@
         {
           "name": "subarray",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "subarray(start:Int, ?end:Int) : lumen.utils.UInt8Array",
           "return": ": lumen.utils.UInt8Array",
@@ -60,9 +65,9 @@
         {
           "name": "new",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "new(bufferOrArray:Dynamic, ?start:Int, ?length:Int) ",
           "return": "",

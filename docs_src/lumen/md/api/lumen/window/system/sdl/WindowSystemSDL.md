@@ -6,8 +6,7 @@
 #WindowSystemSDL
 
 
-&emsp;&emsp;&emsp;home   
-[API Index](../../../../../api/index.html#lumen.window)   
+##[API Index](../../../../../api/index.html#lumen.window)   
 &emsp;&emsp;&emsp;parent    
 [lumen.window.system](../)     
 &emsp;&emsp;&emsp;current    
@@ -30,6 +29,8 @@
 ###Extends   
 ---
 <a class="lift" name="lumen.window.system.WindowSystem" href="{{{rel_path}}}api/lumen/window.system.WindowSystem.html">lumen.window.system.WindowSystem</a>
+
+&nbsp;   
 
 &nbsp;   
 

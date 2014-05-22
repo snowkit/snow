@@ -6,8 +6,7 @@
 #Window
 
 
-&emsp;&emsp;&emsp;home   
-[API Index](../../../api/index.html#lumen.window)   
+##[API Index](../../../api/index.html#lumen.window)   
 &emsp;&emsp;&emsp;parent    
 [lumen](../)     
 &emsp;&emsp;&emsp;current    
@@ -34,7 +33,7 @@
 
 
 
-`asked_config : lumen.WindowConfig`
+`asked_config : lumen.types.WindowConfig`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -42,7 +41,7 @@
 
 
 
-`config : lumen.WindowConfig`
+`config : lumen.types.WindowConfig`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -165,6 +164,8 @@
 
 &nbsp;   
 
+&nbsp;   
+
 <a class="lift" name="Methods" ></a>
 ###Methods   
 ---
@@ -204,7 +205,7 @@
 
 
 
-`new(_manager:lumen.window.Windowing, _config:lumen.WindowConfig) `
+`new(_manager:lumen.window.Windowing, _config:lumen.types.WindowConfig) `
 
 <span class="small_desc_flat"> no description </span>   
 

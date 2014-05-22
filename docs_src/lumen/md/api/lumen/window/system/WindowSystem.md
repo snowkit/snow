@@ -6,8 +6,7 @@
 #WindowSystem
 
 
-&emsp;&emsp;&emsp;home   
-[API Index](../../../../api/index.html#lumen.window)   
+##[API Index](../../../../api/index.html#lumen.window)   
 &emsp;&emsp;&emsp;parent    
 [lumen.window](../)     
 &emsp;&emsp;&emsp;current    
@@ -22,6 +21,8 @@
 
 
 ---
+
+&nbsp;   
 
 &nbsp;   
 

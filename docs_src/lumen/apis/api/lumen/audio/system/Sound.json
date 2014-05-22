@@ -11,62 +11,62 @@
         {
           "name": "name",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": false,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
           "signature": "name : String",
           "type": "String",
-          "doc": ""
+          "doc": "The name of this sound"
         },
         {
           "name": "playing",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": false,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
           "signature": "playing : Bool",
           "type": "Bool",
-          "doc": ""
+          "doc": "If the sound is playing"
         },
         {
           "name": "is_stream",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": false,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
           "signature": "is_stream : Bool",
           "type": "Bool",
-          "doc": ""
+          "doc": "If the sound is a stream source"
         },
         {
           "name": "paused",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": false,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
           "signature": "paused : Bool",
           "type": "Bool",
-          "doc": ""
+          "doc": "If the sound is paused"
         },
         {
           "name": "manager",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": false,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
           "signature": "manager : lumen.audio.Audio",
           "type": "lumen.audio.Audio",
-          "doc": ""
+          "doc": "The `Audio` system handling this sound"
         },
         {
           "name": "info",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": false,
-          "signature": "info : lumen.AudioInfo",
-          "type": "lumen.AudioInfo",
-          "doc": ""
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
+          "signature": "info : lumen.types.AudioInfo",
+          "type": "lumen.types.AudioInfo",
+          "doc": "The `AudioInfo` this sound is created from"
         }
       ]
     },
@@ -85,7 +85,7 @@
           "get": true,
           "set": true,
           "signature": "pitch : Float",
-          "doc": "",
+          "doc": "The pitch of this sound",
           "type": "Float",
           "type_desc": "read/write"
         },
@@ -100,7 +100,7 @@
           "get": true,
           "set": true,
           "signature": "position : Int",
-          "doc": "",
+          "doc": "The current playback position of this sound in `bytes`",
           "type": "Int",
           "type_desc": "read/write"
         },
@@ -115,7 +115,7 @@
           "get": true,
           "set": true,
           "signature": "volume : Float",
-          "doc": "",
+          "doc": "The volume of this sound",
           "type": "Float",
           "type_desc": "read/write"
         },
@@ -130,7 +130,7 @@
           "get": true,
           "set": true,
           "signature": "looping : Bool",
-          "doc": "",
+          "doc": "If the sound is looping or not",
           "type": "Bool",
           "type_desc": "read/write"
         },
@@ -145,7 +145,7 @@
           "get": true,
           "set": true,
           "signature": "time : Float",
-          "doc": "",
+          "doc": "The current playback time of this sound in `seconds`",
           "type": "Float",
           "type_desc": "read/write"
         },
@@ -160,7 +160,7 @@
           "get": true,
           "set": false,
           "signature": "length : Int",
-          "doc": "",
+          "doc": "The length of this sound in `seconds`",
           "type": "Int",
           "type_desc": "(read only)"
         },
@@ -175,7 +175,7 @@
           "get": true,
           "set": true,
           "signature": "pan : Float",
-          "doc": "",
+          "doc": "The pan of this sound. Pan only logically works on mono sounds, and is by default 2D sounds",
           "type": "Float",
           "type_desc": "read/write"
         },
@@ -190,11 +190,16 @@
           "get": true,
           "set": false,
           "signature": "duration : Float",
-          "doc": "",
+          "doc": "The duration of this sound, in `bytes`",
           "type": "Float",
           "type_desc": "(read only)"
         }
       ]
+    },
+    {
+      "name": "StaticMethods",
+      "link": "#StaticMethods",
+      "values": []
     },
     {
       "name": "Methods",
@@ -203,10 +208,10 @@
         {
           "name": "seconds_to_bytes",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
-          "doc": "",
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
+          "doc": "A helper for converting seconds to bytes for this sound source, using the format settings specific to this sound",
           "signature": "seconds_to_bytes(_seconds:Float) : Int",
           "return": ": Int",
           "args": [
@@ -219,9 +224,9 @@
         {
           "name": "get_pitch",
           "meta": [],
-          "public": false,
-          "static": false,
-          "inline": false,
+          "ispublic": false,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "get_pitch() : Float",
           "return": ": Float",
@@ -230,9 +235,9 @@
         {
           "name": "set_looping",
           "meta": [],
-          "public": false,
-          "static": false,
-          "inline": false,
+          "ispublic": false,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "set_looping(_looping:Bool) : Bool",
           "return": ": Bool",
@@ -246,10 +251,10 @@
         {
           "name": "stop",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
-          "doc": "",
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
+          "doc": "Stop this sound",
           "signature": "stop() : Void",
           "return": ": Void",
           "args": []
@@ -262,9 +267,9 @@
               "value": ""
             }
           ],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "internal_play() : Void",
           "return": ": Void",
@@ -273,9 +278,9 @@
         {
           "name": "get_time",
           "meta": [],
-          "public": false,
-          "static": false,
-          "inline": false,
+          "ispublic": false,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "get_time() : Float",
           "return": ": Float",
@@ -284,9 +289,9 @@
         {
           "name": "get_duration",
           "meta": [],
-          "public": false,
-          "static": false,
-          "inline": false,
+          "ispublic": false,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "get_duration() : Float",
           "return": ": Float",
@@ -295,9 +300,9 @@
         {
           "name": "set_pitch",
           "meta": [],
-          "public": false,
-          "static": false,
-          "inline": false,
+          "ispublic": false,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "set_pitch(_pitch:Float) : Float",
           "return": ": Float",
@@ -316,9 +321,9 @@
               "value": ""
             }
           ],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "internal_pause() : Void",
           "return": ": Void",
@@ -327,9 +332,9 @@
         {
           "name": "set_time",
           "meta": [],
-          "public": false,
-          "static": false,
-          "inline": false,
+          "ispublic": false,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "set_time(_time:Float) : Float",
           "return": ": Float",
@@ -343,10 +348,10 @@
         {
           "name": "loop",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
-          "doc": "",
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
+          "doc": "Loop this sound",
           "signature": "loop() : Void",
           "return": ": Void",
           "args": []
@@ -354,10 +359,10 @@
         {
           "name": "toggle",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
-          "doc": "",
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
+          "doc": "Toggle this sound",
           "signature": "toggle() : Void",
           "return": ": Void",
           "args": []
@@ -365,9 +370,9 @@
         {
           "name": "get_pan",
           "meta": [],
-          "public": false,
-          "static": false,
-          "inline": false,
+          "ispublic": false,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "get_pan() : Float",
           "return": ": Float",
@@ -376,10 +381,10 @@
         {
           "name": "bytes_to_seconds",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
-          "doc": "",
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
+          "doc": "A helper for converting bytes to seconds for this sound source, using the format settings specific to this sound",
           "signature": "bytes_to_seconds(_bytes:Int) : Float",
           "return": ": Float",
           "args": [
@@ -392,9 +397,9 @@
         {
           "name": "set_pan",
           "meta": [],
-          "public": false,
-          "static": false,
-          "inline": false,
+          "ispublic": false,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "set_pan(_pan:Float) : Float",
           "return": ": Float",
@@ -408,11 +413,11 @@
         {
           "name": "new",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
-          "signature": "new(_manager:lumen.audio.Audio, _name:String, _audio_info:lumen.AudioInfo) ",
+          "signature": "new(_manager:lumen.audio.Audio, _name:String, _audio_info:lumen.types.AudioInfo) ",
           "return": "",
           "args": [
             {
@@ -425,7 +430,7 @@
             },
             {
               "name": "_audio_info",
-              "type": "lumen.AudioInfo"
+              "type": "lumen.types.AudioInfo"
             }
           ]
         },
@@ -437,9 +442,9 @@
               "value": ""
             }
           ],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "internal_update() : Void",
           "return": ": Void",
@@ -448,9 +453,9 @@
         {
           "name": "get_volume",
           "meta": [],
-          "public": false,
-          "static": false,
-          "inline": false,
+          "ispublic": false,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "get_volume() : Float",
           "return": ": Float",
@@ -459,10 +464,10 @@
         {
           "name": "pause",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
-          "doc": "",
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
+          "doc": "Pause this sound",
           "signature": "pause() : Void",
           "return": ": Void",
           "args": []
@@ -475,9 +480,9 @@
               "value": ""
             }
           ],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "internal_stop() : Void",
           "return": ": Void",
@@ -486,9 +491,9 @@
         {
           "name": "get_length",
           "meta": [],
-          "public": false,
-          "static": false,
-          "inline": false,
+          "ispublic": false,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "get_length() : Int",
           "return": ": Int",
@@ -497,9 +502,9 @@
         {
           "name": "set_volume",
           "meta": [],
-          "public": false,
-          "static": false,
-          "inline": false,
+          "ispublic": false,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "set_volume(_volume:Float) : Float",
           "return": ": Float",
@@ -513,10 +518,10 @@
         {
           "name": "play",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
-          "doc": "",
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
+          "doc": "Play this sound",
           "signature": "play() : Void",
           "return": ": Void",
           "args": []
@@ -524,10 +529,10 @@
         {
           "name": "destroy",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
-          "doc": "",
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
+          "doc": "Destroy this sound and it's data",
           "signature": "destroy() : Void",
           "return": ": Void",
           "args": []
@@ -540,9 +545,9 @@
               "value": ""
             }
           ],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "internal_loop() : Void",
           "return": ": Void",
@@ -551,9 +556,9 @@
         {
           "name": "get_position",
           "meta": [],
-          "public": false,
-          "static": false,
-          "inline": false,
+          "ispublic": false,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "get_position() : Int",
           "return": ": Int",
@@ -562,9 +567,9 @@
         {
           "name": "get_looping",
           "meta": [],
-          "public": false,
-          "static": false,
-          "inline": false,
+          "ispublic": false,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "get_looping() : Bool",
           "return": ": Bool",
@@ -573,9 +578,9 @@
         {
           "name": "set_position",
           "meta": [],
-          "public": false,
-          "static": false,
-          "inline": false,
+          "ispublic": false,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "set_position(_position:Int) : Int",
           "return": ": Int",

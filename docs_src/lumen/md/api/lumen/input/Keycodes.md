@@ -5,9 +5,15 @@
 
 #Keycodes
 
+--- 
 
-&emsp;&emsp;&emsp;home   
-[API Index](../../../api/index.html#lumen.input)   
+The keycode class, with conversion helpers for scancodes. The values below come directly from SDL header include files,
+but they aren't specific to SDL so they are used generically
+
+---
+<br/>
+
+##[API Index](../../../api/index.html#lumen.input)   
 &emsp;&emsp;&emsp;parent    
 [lumen](../)     
 &emsp;&emsp;&emsp;current    
@@ -19,7 +25,7 @@
 
 
 [Members](#Members)   
-[Methods](#Methods)   
+[StaticMethods](#StaticMethods)   
 
 
 ---
@@ -33,7 +39,7 @@
 
 
 
-`AC_BACK : Int`
+<span class="inline-block static">static</span>`AC_BACK : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -41,7 +47,7 @@
 
 
 
-`AC_BOOKMARKS : Int`
+<span class="inline-block static">static</span>`AC_BOOKMARKS : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -49,7 +55,7 @@
 
 
 
-`AC_FORWARD : Int`
+<span class="inline-block static">static</span>`AC_FORWARD : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -57,7 +63,7 @@
 
 
 
-`AC_HOME : Int`
+<span class="inline-block static">static</span>`AC_HOME : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -65,7 +71,7 @@
 
 
 
-`AC_REFRESH : Int`
+<span class="inline-block static">static</span>`AC_REFRESH : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -73,7 +79,7 @@
 
 
 
-`AC_SEARCH : Int`
+<span class="inline-block static">static</span>`AC_SEARCH : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -81,7 +87,7 @@
 
 
 
-`AC_STOP : Int`
+<span class="inline-block static">static</span>`AC_STOP : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -89,7 +95,7 @@
 
 
 
-`AGAIN : Int`
+<span class="inline-block static">static</span>`AGAIN : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -97,7 +103,7 @@
 
 
 
-`ALTERASE : Int`
+<span class="inline-block static">static</span>`ALTERASE : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -105,7 +111,7 @@
 
 
 
-`AMPERSAND : Int`
+<span class="inline-block static">static</span>`AMPERSAND : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -113,7 +119,7 @@
 
 
 
-`APPLICATION : Int`
+<span class="inline-block static">static</span>`APPLICATION : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -121,7 +127,7 @@
 
 
 
-`ASTERISK : Int`
+<span class="inline-block static">static</span>`ASTERISK : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -129,7 +135,7 @@
 
 
 
-`AT : Int`
+<span class="inline-block static">static</span>`AT : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -137,7 +143,7 @@
 
 
 
-`AUDIOMUTE : Int`
+<span class="inline-block static">static</span>`AUDIOMUTE : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -145,7 +151,7 @@
 
 
 
-`AUDIONEXT : Int`
+<span class="inline-block static">static</span>`AUDIONEXT : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -153,7 +159,7 @@
 
 
 
-`AUDIOPLAY : Int`
+<span class="inline-block static">static</span>`AUDIOPLAY : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -161,7 +167,7 @@
 
 
 
-`AUDIOPREV : Int`
+<span class="inline-block static">static</span>`AUDIOPREV : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -169,7 +175,7 @@
 
 
 
-`AUDIOSTOP : Int`
+<span class="inline-block static">static</span>`AUDIOSTOP : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -177,7 +183,7 @@
 
 
 
-`BACKQUOTE : Int`
+<span class="inline-block static">static</span>`BACKQUOTE : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -185,7 +191,7 @@
 
 
 
-`BACKSLASH : Int`
+<span class="inline-block static">static</span>`BACKSLASH : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -193,7 +199,7 @@
 
 
 
-`BACKSPACE : Int`
+<span class="inline-block static">static</span>`BACKSPACE : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -201,7 +207,7 @@
 
 
 
-`BRIGHTNESSDOWN : Int`
+<span class="inline-block static">static</span>`BRIGHTNESSDOWN : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -209,7 +215,7 @@
 
 
 
-`BRIGHTNESSUP : Int`
+<span class="inline-block static">static</span>`BRIGHTNESSUP : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -217,7 +223,7 @@
 
 
 
-`CALCULATOR : Int`
+<span class="inline-block static">static</span>`CALCULATOR : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -225,7 +231,7 @@
 
 
 
-`CANCEL : Int`
+<span class="inline-block static">static</span>`CANCEL : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -233,7 +239,7 @@
 
 
 
-`CAPSLOCK : Int`
+<span class="inline-block static">static</span>`CAPSLOCK : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -241,7 +247,7 @@
 
 
 
-`CARET : Int`
+<span class="inline-block static">static</span>`CARET : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -249,7 +255,7 @@
 
 
 
-`CLEAR : Int`
+<span class="inline-block static">static</span>`CLEAR : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -257,7 +263,7 @@
 
 
 
-`CLEARAGAIN : Int`
+<span class="inline-block static">static</span>`CLEARAGAIN : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -265,7 +271,7 @@
 
 
 
-`COLON : Int`
+<span class="inline-block static">static</span>`COLON : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -273,7 +279,7 @@
 
 
 
-`COMMA : Int`
+<span class="inline-block static">static</span>`COMMA : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -281,7 +287,7 @@
 
 
 
-`COMPUTER : Int`
+<span class="inline-block static">static</span>`COMPUTER : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -289,7 +295,7 @@
 
 
 
-`COPY : Int`
+<span class="inline-block static">static</span>`COPY : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -297,7 +303,7 @@
 
 
 
-`CRSEL : Int`
+<span class="inline-block static">static</span>`CRSEL : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -305,7 +311,7 @@
 
 
 
-`CURRENCYSUBUNIT : Int`
+<span class="inline-block static">static</span>`CURRENCYSUBUNIT : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -313,7 +319,7 @@
 
 
 
-`CURRENCYUNIT : Int`
+<span class="inline-block static">static</span>`CURRENCYUNIT : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -321,7 +327,7 @@
 
 
 
-`CUT : Int`
+<span class="inline-block static">static</span>`CUT : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -329,7 +335,7 @@
 
 
 
-`DECIMALSEPARATOR : Int`
+<span class="inline-block static">static</span>`DECIMALSEPARATOR : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -337,7 +343,7 @@
 
 
 
-`DELETE : Int`
+<span class="inline-block static">static</span>`DELETE : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -345,7 +351,7 @@
 
 
 
-`DISPLAYSWITCH : Int`
+<span class="inline-block static">static</span>`DISPLAYSWITCH : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -353,7 +359,7 @@
 
 
 
-`DOLLAR : Int`
+<span class="inline-block static">static</span>`DOLLAR : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -361,7 +367,7 @@
 
 
 
-`DOWN : Int`
+<span class="inline-block static">static</span>`DOWN : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -369,7 +375,7 @@
 
 
 
-`EJECT : Int`
+<span class="inline-block static">static</span>`EJECT : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -377,7 +383,7 @@
 
 
 
-`END : Int`
+<span class="inline-block static">static</span>`END : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -385,7 +391,7 @@
 
 
 
-`EQUALS : Int`
+<span class="inline-block static">static</span>`EQUALS : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -393,7 +399,7 @@
 
 
 
-`ESCAPE : Int`
+<span class="inline-block static">static</span>`ESCAPE : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -401,7 +407,7 @@
 
 
 
-`EXCLAIM : Int`
+<span class="inline-block static">static</span>`EXCLAIM : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -409,7 +415,7 @@
 
 
 
-`EXECUTE : Int`
+<span class="inline-block static">static</span>`EXECUTE : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -417,7 +423,7 @@
 
 
 
-`EXSEL : Int`
+<span class="inline-block static">static</span>`EXSEL : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -425,7 +431,7 @@
 
 
 
-`F1 : Int`
+<span class="inline-block static">static</span>`F1 : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -433,7 +439,7 @@
 
 
 
-`F10 : Int`
+<span class="inline-block static">static</span>`F10 : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -441,7 +447,7 @@
 
 
 
-`F11 : Int`
+<span class="inline-block static">static</span>`F11 : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -449,7 +455,7 @@
 
 
 
-`F12 : Int`
+<span class="inline-block static">static</span>`F12 : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -457,7 +463,7 @@
 
 
 
-`F13 : Int`
+<span class="inline-block static">static</span>`F13 : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -465,7 +471,7 @@
 
 
 
-`F14 : Int`
+<span class="inline-block static">static</span>`F14 : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -473,7 +479,7 @@
 
 
 
-`F15 : Int`
+<span class="inline-block static">static</span>`F15 : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -481,7 +487,7 @@
 
 
 
-`F16 : Int`
+<span class="inline-block static">static</span>`F16 : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -489,7 +495,7 @@
 
 
 
-`F17 : Int`
+<span class="inline-block static">static</span>`F17 : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -497,7 +503,7 @@
 
 
 
-`F18 : Int`
+<span class="inline-block static">static</span>`F18 : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -505,7 +511,7 @@
 
 
 
-`F19 : Int`
+<span class="inline-block static">static</span>`F19 : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -513,7 +519,7 @@
 
 
 
-`F2 : Int`
+<span class="inline-block static">static</span>`F2 : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -521,7 +527,7 @@
 
 
 
-`F20 : Int`
+<span class="inline-block static">static</span>`F20 : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -529,7 +535,7 @@
 
 
 
-`F21 : Int`
+<span class="inline-block static">static</span>`F21 : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -537,7 +543,7 @@
 
 
 
-`F22 : Int`
+<span class="inline-block static">static</span>`F22 : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -545,7 +551,7 @@
 
 
 
-`F23 : Int`
+<span class="inline-block static">static</span>`F23 : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -553,7 +559,7 @@
 
 
 
-`F24 : Int`
+<span class="inline-block static">static</span>`F24 : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -561,7 +567,7 @@
 
 
 
-`F3 : Int`
+<span class="inline-block static">static</span>`F3 : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -569,7 +575,7 @@
 
 
 
-`F4 : Int`
+<span class="inline-block static">static</span>`F4 : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -577,7 +583,7 @@
 
 
 
-`F5 : Int`
+<span class="inline-block static">static</span>`F5 : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -585,7 +591,7 @@
 
 
 
-`F6 : Int`
+<span class="inline-block static">static</span>`F6 : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -593,7 +599,7 @@
 
 
 
-`F7 : Int`
+<span class="inline-block static">static</span>`F7 : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -601,7 +607,7 @@
 
 
 
-`F8 : Int`
+<span class="inline-block static">static</span>`F8 : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -609,7 +615,7 @@
 
 
 
-`F9 : Int`
+<span class="inline-block static">static</span>`F9 : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -617,7 +623,7 @@
 
 
 
-`FIND : Int`
+<span class="inline-block static">static</span>`FIND : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -625,7 +631,7 @@
 
 
 
-`GREATER : Int`
+<span class="inline-block static">static</span>`GREATER : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -633,7 +639,7 @@
 
 
 
-`HASH : Int`
+<span class="inline-block static">static</span>`HASH : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -641,7 +647,7 @@
 
 
 
-`HELP : Int`
+<span class="inline-block static">static</span>`HELP : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -649,7 +655,7 @@
 
 
 
-`HOME : Int`
+<span class="inline-block static">static</span>`HOME : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -657,7 +663,7 @@
 
 
 
-`INSERT : Int`
+<span class="inline-block static">static</span>`INSERT : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -665,7 +671,7 @@
 
 
 
-`KBDILLUMDOWN : Int`
+<span class="inline-block static">static</span>`KBDILLUMDOWN : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -673,7 +679,7 @@
 
 
 
-`KBDILLUMTOGGLE : Int`
+<span class="inline-block static">static</span>`KBDILLUMTOGGLE : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -681,7 +687,7 @@
 
 
 
-`KBDILLUMUP : Int`
+<span class="inline-block static">static</span>`KBDILLUMUP : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -689,7 +695,7 @@
 
 
 
-`KEY_0 : Int`
+<span class="inline-block static">static</span>`KEY_0 : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -697,7 +703,7 @@
 
 
 
-`KEY_1 : Int`
+<span class="inline-block static">static</span>`KEY_1 : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -705,7 +711,7 @@
 
 
 
-`KEY_2 : Int`
+<span class="inline-block static">static</span>`KEY_2 : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -713,7 +719,7 @@
 
 
 
-`KEY_3 : Int`
+<span class="inline-block static">static</span>`KEY_3 : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -721,7 +727,7 @@
 
 
 
-`KEY_4 : Int`
+<span class="inline-block static">static</span>`KEY_4 : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -729,7 +735,7 @@
 
 
 
-`KEY_5 : Int`
+<span class="inline-block static">static</span>`KEY_5 : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -737,7 +743,7 @@
 
 
 
-`KEY_6 : Int`
+<span class="inline-block static">static</span>`KEY_6 : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -745,7 +751,7 @@
 
 
 
-`KEY_7 : Int`
+<span class="inline-block static">static</span>`KEY_7 : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -753,7 +759,7 @@
 
 
 
-`KEY_8 : Int`
+<span class="inline-block static">static</span>`KEY_8 : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -761,7 +767,7 @@
 
 
 
-`KEY_9 : Int`
+<span class="inline-block static">static</span>`KEY_9 : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -769,7 +775,7 @@
 
 
 
-`KEY_a : Int`
+<span class="inline-block static">static</span>`KEY_a : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -777,7 +783,7 @@
 
 
 
-`KEY_b : Int`
+<span class="inline-block static">static</span>`KEY_b : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -785,7 +791,7 @@
 
 
 
-`KEY_c : Int`
+<span class="inline-block static">static</span>`KEY_c : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -793,7 +799,7 @@
 
 
 
-`KEY_d : Int`
+<span class="inline-block static">static</span>`KEY_d : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -801,7 +807,7 @@
 
 
 
-`KEY_e : Int`
+<span class="inline-block static">static</span>`KEY_e : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -809,7 +815,7 @@
 
 
 
-`KEY_f : Int`
+<span class="inline-block static">static</span>`KEY_f : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -817,7 +823,7 @@
 
 
 
-`KEY_g : Int`
+<span class="inline-block static">static</span>`KEY_g : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -825,7 +831,7 @@
 
 
 
-`KEY_h : Int`
+<span class="inline-block static">static</span>`KEY_h : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -833,7 +839,7 @@
 
 
 
-`KEY_i : Int`
+<span class="inline-block static">static</span>`KEY_i : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -841,7 +847,7 @@
 
 
 
-`KEY_j : Int`
+<span class="inline-block static">static</span>`KEY_j : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -849,7 +855,7 @@
 
 
 
-`KEY_k : Int`
+<span class="inline-block static">static</span>`KEY_k : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -857,7 +863,7 @@
 
 
 
-`KEY_l : Int`
+<span class="inline-block static">static</span>`KEY_l : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -865,7 +871,7 @@
 
 
 
-`KEY_m : Int`
+<span class="inline-block static">static</span>`KEY_m : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -873,7 +879,7 @@
 
 
 
-`KEY_n : Int`
+<span class="inline-block static">static</span>`KEY_n : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -881,7 +887,7 @@
 
 
 
-`KEY_o : Int`
+<span class="inline-block static">static</span>`KEY_o : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -889,7 +895,7 @@
 
 
 
-`KEY_p : Int`
+<span class="inline-block static">static</span>`KEY_p : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -897,7 +903,7 @@
 
 
 
-`KEY_q : Int`
+<span class="inline-block static">static</span>`KEY_q : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -905,7 +911,7 @@
 
 
 
-`KEY_r : Int`
+<span class="inline-block static">static</span>`KEY_r : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -913,7 +919,7 @@
 
 
 
-`KEY_s : Int`
+<span class="inline-block static">static</span>`KEY_s : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -921,7 +927,7 @@
 
 
 
-`KEY_t : Int`
+<span class="inline-block static">static</span>`KEY_t : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -929,7 +935,7 @@
 
 
 
-`KEY_u : Int`
+<span class="inline-block static">static</span>`KEY_u : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -937,7 +943,7 @@
 
 
 
-`KEY_v : Int`
+<span class="inline-block static">static</span>`KEY_v : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -945,7 +951,7 @@
 
 
 
-`KEY_w : Int`
+<span class="inline-block static">static</span>`KEY_w : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -953,7 +959,7 @@
 
 
 
-`KEY_x : Int`
+<span class="inline-block static">static</span>`KEY_x : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -961,7 +967,7 @@
 
 
 
-`KEY_y : Int`
+<span class="inline-block static">static</span>`KEY_y : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -969,7 +975,7 @@
 
 
 
-`KEY_z : Int`
+<span class="inline-block static">static</span>`KEY_z : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -977,7 +983,7 @@
 
 
 
-`KP_0 : Int`
+<span class="inline-block static">static</span>`KP_0 : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -985,7 +991,7 @@
 
 
 
-`KP_00 : Int`
+<span class="inline-block static">static</span>`KP_00 : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -993,7 +999,7 @@
 
 
 
-`KP_000 : Int`
+<span class="inline-block static">static</span>`KP_000 : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1001,7 +1007,7 @@
 
 
 
-`KP_1 : Int`
+<span class="inline-block static">static</span>`KP_1 : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1009,7 +1015,7 @@
 
 
 
-`KP_2 : Int`
+<span class="inline-block static">static</span>`KP_2 : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1017,7 +1023,7 @@
 
 
 
-`KP_3 : Int`
+<span class="inline-block static">static</span>`KP_3 : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1025,7 +1031,7 @@
 
 
 
-`KP_4 : Int`
+<span class="inline-block static">static</span>`KP_4 : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1033,7 +1039,7 @@
 
 
 
-`KP_5 : Int`
+<span class="inline-block static">static</span>`KP_5 : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1041,7 +1047,7 @@
 
 
 
-`KP_6 : Int`
+<span class="inline-block static">static</span>`KP_6 : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1049,7 +1055,7 @@
 
 
 
-`KP_7 : Int`
+<span class="inline-block static">static</span>`KP_7 : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1057,7 +1063,7 @@
 
 
 
-`KP_8 : Int`
+<span class="inline-block static">static</span>`KP_8 : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1065,7 +1071,7 @@
 
 
 
-`KP_9 : Int`
+<span class="inline-block static">static</span>`KP_9 : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1073,7 +1079,7 @@
 
 
 
-`KP_A : Int`
+<span class="inline-block static">static</span>`KP_A : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1081,7 +1087,7 @@
 
 
 
-`KP_AMPERSAND : Int`
+<span class="inline-block static">static</span>`KP_AMPERSAND : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1089,7 +1095,7 @@
 
 
 
-`KP_AT : Int`
+<span class="inline-block static">static</span>`KP_AT : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1097,7 +1103,7 @@
 
 
 
-`KP_B : Int`
+<span class="inline-block static">static</span>`KP_B : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1105,7 +1111,7 @@
 
 
 
-`KP_BACKSPACE : Int`
+<span class="inline-block static">static</span>`KP_BACKSPACE : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1113,7 +1119,7 @@
 
 
 
-`KP_BINARY : Int`
+<span class="inline-block static">static</span>`KP_BINARY : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1121,7 +1127,7 @@
 
 
 
-`KP_C : Int`
+<span class="inline-block static">static</span>`KP_C : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1129,7 +1135,7 @@
 
 
 
-`KP_CLEAR : Int`
+<span class="inline-block static">static</span>`KP_CLEAR : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1137,7 +1143,7 @@
 
 
 
-`KP_CLEARENTRY : Int`
+<span class="inline-block static">static</span>`KP_CLEARENTRY : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1145,7 +1151,7 @@
 
 
 
-`KP_COLON : Int`
+<span class="inline-block static">static</span>`KP_COLON : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1153,7 +1159,7 @@
 
 
 
-`KP_COMMA : Int`
+<span class="inline-block static">static</span>`KP_COMMA : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1161,7 +1167,7 @@
 
 
 
-`KP_D : Int`
+<span class="inline-block static">static</span>`KP_D : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1169,7 +1175,7 @@
 
 
 
-`KP_DBLAMPERSAND : Int`
+<span class="inline-block static">static</span>`KP_DBLAMPERSAND : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1177,7 +1183,7 @@
 
 
 
-`KP_DBLVERTICALBAR : Int`
+<span class="inline-block static">static</span>`KP_DBLVERTICALBAR : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1185,7 +1191,7 @@
 
 
 
-`KP_DECIMAL : Int`
+<span class="inline-block static">static</span>`KP_DECIMAL : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1193,7 +1199,7 @@
 
 
 
-`KP_DIVIDE : Int`
+<span class="inline-block static">static</span>`KP_DIVIDE : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1201,7 +1207,7 @@
 
 
 
-`KP_E : Int`
+<span class="inline-block static">static</span>`KP_E : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1209,7 +1215,7 @@
 
 
 
-`KP_ENTER : Int`
+<span class="inline-block static">static</span>`KP_ENTER : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1217,7 +1223,7 @@
 
 
 
-`KP_EQUALS : Int`
+<span class="inline-block static">static</span>`KP_EQUALS : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1225,7 +1231,7 @@
 
 
 
-`KP_EQUALSAS400 : Int`
+<span class="inline-block static">static</span>`KP_EQUALSAS400 : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1233,7 +1239,7 @@
 
 
 
-`KP_EXCLAM : Int`
+<span class="inline-block static">static</span>`KP_EXCLAM : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1241,7 +1247,7 @@
 
 
 
-`KP_F : Int`
+<span class="inline-block static">static</span>`KP_F : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1249,7 +1255,7 @@
 
 
 
-`KP_GREATER : Int`
+<span class="inline-block static">static</span>`KP_GREATER : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1257,7 +1263,7 @@
 
 
 
-`KP_HASH : Int`
+<span class="inline-block static">static</span>`KP_HASH : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1265,7 +1271,7 @@
 
 
 
-`KP_HEXADECIMAL : Int`
+<span class="inline-block static">static</span>`KP_HEXADECIMAL : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1273,7 +1279,7 @@
 
 
 
-`KP_LEFTBRACE : Int`
+<span class="inline-block static">static</span>`KP_LEFTBRACE : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1281,7 +1287,7 @@
 
 
 
-`KP_LEFTPAREN : Int`
+<span class="inline-block static">static</span>`KP_LEFTPAREN : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1289,7 +1295,7 @@
 
 
 
-`KP_LESS : Int`
+<span class="inline-block static">static</span>`KP_LESS : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1297,7 +1303,7 @@
 
 
 
-`KP_MEMADD : Int`
+<span class="inline-block static">static</span>`KP_MEMADD : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1305,7 +1311,7 @@
 
 
 
-`KP_MEMCLEAR : Int`
+<span class="inline-block static">static</span>`KP_MEMCLEAR : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1313,7 +1319,7 @@
 
 
 
-`KP_MEMDIVIDE : Int`
+<span class="inline-block static">static</span>`KP_MEMDIVIDE : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1321,7 +1327,7 @@
 
 
 
-`KP_MEMMULTIPLY : Int`
+<span class="inline-block static">static</span>`KP_MEMMULTIPLY : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1329,7 +1335,7 @@
 
 
 
-`KP_MEMRECALL : Int`
+<span class="inline-block static">static</span>`KP_MEMRECALL : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1337,7 +1343,7 @@
 
 
 
-`KP_MEMSTORE : Int`
+<span class="inline-block static">static</span>`KP_MEMSTORE : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1345,7 +1351,7 @@
 
 
 
-`KP_MEMSUBTRACT : Int`
+<span class="inline-block static">static</span>`KP_MEMSUBTRACT : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1353,7 +1359,7 @@
 
 
 
-`KP_MINUS : Int`
+<span class="inline-block static">static</span>`KP_MINUS : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1361,7 +1367,7 @@
 
 
 
-`KP_MULTIPLY : Int`
+<span class="inline-block static">static</span>`KP_MULTIPLY : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1369,7 +1375,7 @@
 
 
 
-`KP_OCTAL : Int`
+<span class="inline-block static">static</span>`KP_OCTAL : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1377,7 +1383,7 @@
 
 
 
-`KP_PERCENT : Int`
+<span class="inline-block static">static</span>`KP_PERCENT : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1385,7 +1391,7 @@
 
 
 
-`KP_PERIOD : Int`
+<span class="inline-block static">static</span>`KP_PERIOD : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1393,7 +1399,7 @@
 
 
 
-`KP_PLUS : Int`
+<span class="inline-block static">static</span>`KP_PLUS : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1401,7 +1407,7 @@
 
 
 
-`KP_PLUSMINUS : Int`
+<span class="inline-block static">static</span>`KP_PLUSMINUS : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1409,7 +1415,7 @@
 
 
 
-`KP_POWER : Int`
+<span class="inline-block static">static</span>`KP_POWER : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1417,7 +1423,7 @@
 
 
 
-`KP_RIGHTBRACE : Int`
+<span class="inline-block static">static</span>`KP_RIGHTBRACE : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1425,7 +1431,7 @@
 
 
 
-`KP_RIGHTPAREN : Int`
+<span class="inline-block static">static</span>`KP_RIGHTPAREN : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1433,7 +1439,7 @@
 
 
 
-`KP_SPACE : Int`
+<span class="inline-block static">static</span>`KP_SPACE : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1441,7 +1447,7 @@
 
 
 
-`KP_TAB : Int`
+<span class="inline-block static">static</span>`KP_TAB : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1449,7 +1455,7 @@
 
 
 
-`KP_VERTICALBAR : Int`
+<span class="inline-block static">static</span>`KP_VERTICALBAR : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1457,7 +1463,7 @@
 
 
 
-`KP_XOR : Int`
+<span class="inline-block static">static</span>`KP_XOR : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1465,7 +1471,7 @@
 
 
 
-`LALT : Int`
+<span class="inline-block static">static</span>`LALT : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1473,7 +1479,7 @@
 
 
 
-`LCTRL : Int`
+<span class="inline-block static">static</span>`LCTRL : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1481,7 +1487,7 @@
 
 
 
-`LEFT : Int`
+<span class="inline-block static">static</span>`LEFT : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1489,7 +1495,7 @@
 
 
 
-`LEFTBRACKET : Int`
+<span class="inline-block static">static</span>`LEFTBRACKET : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1497,7 +1503,7 @@
 
 
 
-`LEFTPAREN : Int`
+<span class="inline-block static">static</span>`LEFTPAREN : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1505,7 +1511,7 @@
 
 
 
-`LESS : Int`
+<span class="inline-block static">static</span>`LESS : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1513,7 +1519,7 @@
 
 
 
-`LMETA : Int`
+<span class="inline-block static">static</span>`LMETA : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1521,7 +1527,7 @@
 
 
 
-`LSHIFT : Int`
+<span class="inline-block static">static</span>`LSHIFT : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1529,7 +1535,7 @@
 
 
 
-`MAIL : Int`
+<span class="inline-block static">static</span>`MAIL : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1537,7 +1543,7 @@
 
 
 
-`MEDIASELECT : Int`
+<span class="inline-block static">static</span>`MEDIASELECT : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1545,7 +1551,7 @@
 
 
 
-`MENU : Int`
+<span class="inline-block static">static</span>`MENU : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1553,7 +1559,7 @@
 
 
 
-`MINUS : Int`
+<span class="inline-block static">static</span>`MINUS : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1561,7 +1567,7 @@
 
 
 
-`MODE : Int`
+<span class="inline-block static">static</span>`MODE : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1569,7 +1575,7 @@
 
 
 
-`MUTE : Int`
+<span class="inline-block static">static</span>`MUTE : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1577,7 +1583,7 @@
 
 
 
-`NUMLOCKCLEAR : Int`
+<span class="inline-block static">static</span>`NUMLOCKCLEAR : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1585,7 +1591,7 @@
 
 
 
-`OPER : Int`
+<span class="inline-block static">static</span>`OPER : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1593,7 +1599,7 @@
 
 
 
-`OUT : Int`
+<span class="inline-block static">static</span>`OUT : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1601,7 +1607,7 @@
 
 
 
-`PAGEDOWN : Int`
+<span class="inline-block static">static</span>`PAGEDOWN : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1609,7 +1615,7 @@
 
 
 
-`PAGEUP : Int`
+<span class="inline-block static">static</span>`PAGEUP : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1617,7 +1623,7 @@
 
 
 
-`PASTE : Int`
+<span class="inline-block static">static</span>`PASTE : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1625,7 +1631,7 @@
 
 
 
-`PAUSE : Int`
+<span class="inline-block static">static</span>`PAUSE : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1633,7 +1639,7 @@
 
 
 
-`PERCENT : Int`
+<span class="inline-block static">static</span>`PERCENT : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1641,7 +1647,7 @@
 
 
 
-`PERIOD : Int`
+<span class="inline-block static">static</span>`PERIOD : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1649,7 +1655,7 @@
 
 
 
-`PLUS : Int`
+<span class="inline-block static">static</span>`PLUS : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1657,7 +1663,7 @@
 
 
 
-`POWER : Int`
+<span class="inline-block static">static</span>`POWER : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1665,7 +1671,7 @@
 
 
 
-`PRINTSCREEN : Int`
+<span class="inline-block static">static</span>`PRINTSCREEN : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1673,7 +1679,7 @@
 
 
 
-`PRIOR : Int`
+<span class="inline-block static">static</span>`PRIOR : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1681,7 +1687,7 @@
 
 
 
-`QUESTION : Int`
+<span class="inline-block static">static</span>`QUESTION : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1689,7 +1695,7 @@
 
 
 
-`QUOTE : Int`
+<span class="inline-block static">static</span>`QUOTE : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1697,7 +1703,7 @@
 
 
 
-`QUOTEDBL : Int`
+<span class="inline-block static">static</span>`QUOTEDBL : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1705,7 +1711,7 @@
 
 
 
-`RALT : Int`
+<span class="inline-block static">static</span>`RALT : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1713,7 +1719,7 @@
 
 
 
-`RCTRL : Int`
+<span class="inline-block static">static</span>`RCTRL : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1721,7 +1727,7 @@
 
 
 
-`RETURN : Int`
+<span class="inline-block static">static</span>`RETURN : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1729,7 +1735,7 @@
 
 
 
-`RETURN2 : Int`
+<span class="inline-block static">static</span>`RETURN2 : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1737,7 +1743,7 @@
 
 
 
-`RIGHT : Int`
+<span class="inline-block static">static</span>`RIGHT : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1745,7 +1751,7 @@
 
 
 
-`RIGHTBRACKET : Int`
+<span class="inline-block static">static</span>`RIGHTBRACKET : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1753,7 +1759,7 @@
 
 
 
-`RIGHTPAREN : Int`
+<span class="inline-block static">static</span>`RIGHTPAREN : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1761,7 +1767,7 @@
 
 
 
-`RMETA : Int`
+<span class="inline-block static">static</span>`RMETA : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1769,7 +1775,7 @@
 
 
 
-`RSHIFT : Int`
+<span class="inline-block static">static</span>`RSHIFT : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1777,7 +1783,7 @@
 
 
 
-`SCROLLLOCK : Int`
+<span class="inline-block static">static</span>`SCROLLLOCK : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1785,7 +1791,7 @@
 
 
 
-`SELECT : Int`
+<span class="inline-block static">static</span>`SELECT : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1793,7 +1799,7 @@
 
 
 
-`SEMICOLON : Int`
+<span class="inline-block static">static</span>`SEMICOLON : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1801,7 +1807,7 @@
 
 
 
-`SEPARATOR : Int`
+<span class="inline-block static">static</span>`SEPARATOR : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1809,7 +1815,7 @@
 
 
 
-`SLASH : Int`
+<span class="inline-block static">static</span>`SLASH : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1817,7 +1823,7 @@
 
 
 
-`SLEEP : Int`
+<span class="inline-block static">static</span>`SLEEP : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1825,7 +1831,7 @@
 
 
 
-`SPACE : Int`
+<span class="inline-block static">static</span>`SPACE : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1833,7 +1839,7 @@
 
 
 
-`STOP : Int`
+<span class="inline-block static">static</span>`STOP : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1841,7 +1847,7 @@
 
 
 
-`SYSREQ : Int`
+<span class="inline-block static">static</span>`SYSREQ : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1849,7 +1855,7 @@
 
 
 
-`TAB : Int`
+<span class="inline-block static">static</span>`TAB : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1857,7 +1863,7 @@
 
 
 
-`THOUSANDSSEPARATOR : Int`
+<span class="inline-block static">static</span>`THOUSANDSSEPARATOR : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1865,7 +1871,7 @@
 
 
 
-`UNDERSCORE : Int`
+<span class="inline-block static">static</span>`UNDERSCORE : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1873,7 +1879,7 @@
 
 
 
-`UNDO : Int`
+<span class="inline-block static">static</span>`UNDO : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1881,7 +1887,7 @@
 
 
 
-`UNKNOWN : Int`
+<span class="inline-block static">static</span>`UNKNOWN : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1889,7 +1895,7 @@
 
 
 
-`UP : Int`
+<span class="inline-block static">static</span>`UP : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1897,7 +1903,7 @@
 
 
 
-`VOLUMEDOWN : Int`
+<span class="inline-block static">static</span>`VOLUMEDOWN : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1905,7 +1911,7 @@
 
 
 
-`VOLUMEUP : Int`
+<span class="inline-block static">static</span>`VOLUMEUP : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1913,14 +1919,14 @@
 
 
 
-`WWW : Int`
+<span class="inline-block static">static</span>`WWW : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
 &nbsp;   
 
-<a class="lift" name="Methods" ></a>
-###Methods   
+<a class="lift" name="StaticMethods" ></a>
+###StaticMethods   
 ---
 <a class="lift" name="from_scan" href="#from_scan">from_scan</a>
 
@@ -1928,7 +1934,9 @@
 
 `from_scan(scancode:Int) : Int`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat"> Convert a scancode to a keycode for comparison </span>   
+
+&nbsp;   
 
 
 

@@ -6,8 +6,7 @@
 #Lumen
 
 
-&emsp;&emsp;&emsp;home   
-[API Index](../../api/index.html#lumen)   
+##[API Index](../../api/index.html#lumen)   
 &emsp;&emsp;&emsp;parent    
 _none_   
 &emsp;&emsp;&emsp;current    
@@ -20,6 +19,7 @@ _none_
 
 [Members](#Members)   
 [Properties](#Properties)   
+[StaticMethods](#StaticMethods)   
 [Methods](#Methods)   
 
 
@@ -36,7 +36,7 @@ _none_
 
 `assets : lumen.assets.Assets`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat"> The asset system </span>   
 
 <a class="lift" name="audio" href="#audio">audio</a>
 
@@ -44,15 +44,15 @@ _none_
 
 `audio : lumen.audio.Audio`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat"> The audio system </span>   
 
 <a class="lift" name="config" href="#config">config</a>
 
 
 
-`config : lumen.LumenConfig`
+`config : lumen.types.LumenConfig`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat"> The configuration from the project file, runtime config and other configs </span>   
 
 <a class="lift" name="has_shutdown" href="#has_shutdown">has_shutdown</a>
 
@@ -60,7 +60,7 @@ _none_
 
 `has_shutdown : Bool`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat"> Set if shut dow has completed </span>   
 
 <a class="lift" name="host" href="#host">host</a>
 
@@ -68,7 +68,7 @@ _none_
 
 `host : lumen.App`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat"> The host application </span>   
 
 <a class="lift" name="input" href="#input">input</a>
 
@@ -76,15 +76,7 @@ _none_
 
 `input : lumen.input.Input`
 
-<span class="small_desc_flat"> no description </span>   
-
-<a class="lift" name="log" href="#log">log</a>
-
-
-
-`log : Bool`
-
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat"> The input system </span>   
 
 <a class="lift" name="main_window" href="#main_window">main_window</a>
 
@@ -92,15 +84,7 @@ _none_
 
 `main_window : lumen.window.Window`
 
-<span class="small_desc_flat"> no description </span>   
-
-<a class="lift" name="more_verbose" href="#more_verbose">more_verbose</a>
-
-
-
-`more_verbose : Bool`
-
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat"> If the config specifies a default window, this is it </span>   
 
 <a class="lift" name="shutting_down" href="#shutting_down">shutting_down</a>
 
@@ -108,15 +92,7 @@ _none_
 
 `shutting_down : Bool`
 
-<span class="small_desc_flat"> no description </span>   
-
-<a class="lift" name="verbose" href="#verbose">verbose</a>
-
-
-
-`verbose : Bool`
-
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat"> Set if shut down has commenced </span>   
 
 <a class="lift" name="window" href="#window">window</a>
 
@@ -124,7 +100,7 @@ _none_
 
 `window : lumen.window.Windowing`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat"> The window manager </span>   
 
 &nbsp;   
 
@@ -137,7 +113,7 @@ _none_
 
 `time : Float`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat"> The current timestamp </span>   
 
 <a class="lift" name="uniqueid" href="#uniqueid">uniqueid</a>
 
@@ -145,44 +121,33 @@ _none_
 
 `uniqueid : String`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat"> Generate a unique ID to use </span>   
 
 &nbsp;   
 
-<a class="lift" name="Methods" ></a>
-###Methods   
+<a class="lift" name="StaticMethods" ></a>
+###StaticMethods   
 ---
-<a class="lift" name="_debug" href="#_debug">_debug</a>
-
-
-
-`_debug(value:Dynamic, ?_verbose:Bool, ?_more_verbose:Bool) : Void`
-
-<span class="small_desc_flat"> no description </span>   
-
 <a class="lift" name="load" href="#load">load</a>
 
 
 
 `load(library:String, method:String, ?args:Int) : Dynamic`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat"> Loads a function out of a library </span>   
 
-<a class="lift" name="new" href="#new">new</a>
+&nbsp;   
 
-
-
-`new() `
-
-<span class="small_desc_flat"> no description </span>   
-
+<a class="lift" name="Methods" ></a>
+###Methods   
+---
 <a class="lift" name="shutdown" href="#shutdown">shutdown</a>
 
 
 
 `shutdown() : Void`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat"> Shutdown the engine and quit </span>   
 
 
 

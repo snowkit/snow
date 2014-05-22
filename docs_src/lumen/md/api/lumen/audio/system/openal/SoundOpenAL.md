@@ -5,9 +5,14 @@
 
 #SoundOpenAL
 
+--- 
 
-&emsp;&emsp;&emsp;home   
-[API Index](../../../../../api/index.html#lumen.audio)   
+The openal specific implementation of Sound
+
+---
+<br/>
+
+##[API Index](../../../../../api/index.html#lumen.audio)   
 &emsp;&emsp;&emsp;parent    
 [lumen.audio.system](../)     
 &emsp;&emsp;&emsp;current    
@@ -43,7 +48,7 @@
 
 `buffer : Int`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat"> the sound buffer name </span>   
 
 <a class="lift" name="format" href="#format">format</a>
 
@@ -51,7 +56,7 @@
 
 `format : Int`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat"> mono8? stereo16? </span>   
 
 <a class="lift" name="source" href="#source">source</a>
 
@@ -59,7 +64,11 @@
 
 `source : Int`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat"> the sound source name </span>   
+
+&nbsp;   
+
+&nbsp;   
 
 &nbsp;   
 
@@ -86,7 +95,7 @@
 
 
 
-`new(_manager:lumen.audio.Audio, _name:String, _audio_info:lumen.AudioInfo) `
+`new(_manager:lumen.audio.Audio, _name:String, _audio_info:lumen.types.AudioInfo) `
 
 <span class="small_desc_flat"> no description </span>   
 

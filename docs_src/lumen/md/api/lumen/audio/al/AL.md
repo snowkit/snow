@@ -6,8 +6,7 @@
 #AL
 
 
-&emsp;&emsp;&emsp;home   
-[API Index](../../../../api/index.html#lumen.audio)   
+##[API Index](../../../../api/index.html#lumen.audio)   
 &emsp;&emsp;&emsp;parent    
 [lumen.audio](../)     
 &emsp;&emsp;&emsp;current    
@@ -19,7 +18,7 @@
 
 
 [Members](#Members)   
-[Methods](#Methods)   
+[StaticMethods](#StaticMethods)   
 
 
 ---
@@ -33,7 +32,7 @@
 
 
 
-`BITS : Int`
+<span class="inline-block static">static</span>`BITS : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -41,7 +40,7 @@
 
 
 
-`BUFFER : Int`
+<span class="inline-block static">static</span>`BUFFER : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -49,7 +48,7 @@
 
 
 
-`BUFFERS_PROCESSED : Int`
+<span class="inline-block static">static</span>`BUFFERS_PROCESSED : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -57,7 +56,7 @@
 
 
 
-`BUFFERS_QUEUED : Int`
+<span class="inline-block static">static</span>`BUFFERS_QUEUED : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -65,7 +64,7 @@
 
 
 
-`BYTE_OFFSET : Int`
+<span class="inline-block static">static</span>`BYTE_OFFSET : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -73,7 +72,7 @@
 
 
 
-`CHANNELS : Int`
+<span class="inline-block static">static</span>`CHANNELS : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -81,7 +80,7 @@
 
 
 
-`CONE_INNER_ANGLE : Int`
+<span class="inline-block static">static</span>`CONE_INNER_ANGLE : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -89,7 +88,7 @@
 
 
 
-`CONE_OUTER_ANGLE : Int`
+<span class="inline-block static">static</span>`CONE_OUTER_ANGLE : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -97,7 +96,7 @@
 
 
 
-`CONE_OUTER_GAIN : Int`
+<span class="inline-block static">static</span>`CONE_OUTER_GAIN : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -105,7 +104,7 @@
 
 
 
-`DIRECTION : Int`
+<span class="inline-block static">static</span>`DIRECTION : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -113,7 +112,7 @@
 
 
 
-`DISTANCE_MODEL : Int`
+<span class="inline-block static">static</span>`DISTANCE_MODEL : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -121,7 +120,7 @@
 
 
 
-`DOPPLER_FACTOR : Int`
+<span class="inline-block static">static</span>`DOPPLER_FACTOR : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -129,7 +128,7 @@
 
 
 
-`DOPPLER_VELOCITY : Int`
+<span class="inline-block static">static</span>`DOPPLER_VELOCITY : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -137,7 +136,7 @@
 
 
 
-`EXPONENT_DISTANCE : Int`
+<span class="inline-block static">static</span>`EXPONENT_DISTANCE : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -145,7 +144,7 @@
 
 
 
-`EXPONENT_DISTANCE_CLAMPED : Int`
+<span class="inline-block static">static</span>`EXPONENT_DISTANCE_CLAMPED : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -153,7 +152,7 @@
 
 
 
-`EXTENSIONS : Int`
+<span class="inline-block static">static</span>`EXTENSIONS : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -161,7 +160,7 @@
 
 
 
-`FALSE : Int`
+<span class="inline-block static">static</span>`FALSE : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -169,7 +168,7 @@
 
 
 
-`FORMAT_MONO16 : Int`
+<span class="inline-block static">static</span>`FORMAT_MONO16 : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -177,7 +176,7 @@
 
 
 
-`FORMAT_MONO8 : Int`
+<span class="inline-block static">static</span>`FORMAT_MONO8 : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -185,7 +184,7 @@
 
 
 
-`FORMAT_STEREO16 : Int`
+<span class="inline-block static">static</span>`FORMAT_STEREO16 : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -193,7 +192,7 @@
 
 
 
-`FORMAT_STEREO8 : Int`
+<span class="inline-block static">static</span>`FORMAT_STEREO8 : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -201,7 +200,7 @@
 
 
 
-`FREQUENCY : Int`
+<span class="inline-block static">static</span>`FREQUENCY : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -209,7 +208,7 @@
 
 
 
-`GAIN : Int`
+<span class="inline-block static">static</span>`GAIN : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -217,7 +216,7 @@
 
 
 
-`INITIAL : Int`
+<span class="inline-block static">static</span>`INITIAL : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -225,7 +224,7 @@
 
 
 
-`INVALID_ENUM : Int`
+<span class="inline-block static">static</span>`INVALID_ENUM : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -233,7 +232,7 @@
 
 
 
-`INVALID_ENUM_MEANING : String`
+<span class="inline-block static">static</span>`INVALID_ENUM_MEANING : String`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -241,7 +240,7 @@
 
 
 
-`INVALID_NAME : Int`
+<span class="inline-block static">static</span>`INVALID_NAME : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -249,7 +248,7 @@
 
 
 
-`INVALID_NAME_MEANING : String`
+<span class="inline-block static">static</span>`INVALID_NAME_MEANING : String`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -257,7 +256,7 @@
 
 
 
-`INVALID_OPERATION : Int`
+<span class="inline-block static">static</span>`INVALID_OPERATION : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -265,7 +264,7 @@
 
 
 
-`INVALID_OPERATION_MEANING : String`
+<span class="inline-block static">static</span>`INVALID_OPERATION_MEANING : String`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -273,7 +272,7 @@
 
 
 
-`INVALID_VALUE : Int`
+<span class="inline-block static">static</span>`INVALID_VALUE : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -281,7 +280,7 @@
 
 
 
-`INVALID_VALUE_MEANING : String`
+<span class="inline-block static">static</span>`INVALID_VALUE_MEANING : String`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -289,7 +288,7 @@
 
 
 
-`INVERSE_DISTANCE : Int`
+<span class="inline-block static">static</span>`INVERSE_DISTANCE : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -297,7 +296,7 @@
 
 
 
-`INVERSE_DISTANCE_CLAMPED : Int`
+<span class="inline-block static">static</span>`INVERSE_DISTANCE_CLAMPED : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -305,7 +304,7 @@
 
 
 
-`LINEAR_DISTANCE : Int`
+<span class="inline-block static">static</span>`LINEAR_DISTANCE : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -313,7 +312,7 @@
 
 
 
-`LINEAR_DISTANCE_CLAMPED : Int`
+<span class="inline-block static">static</span>`LINEAR_DISTANCE_CLAMPED : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -321,7 +320,7 @@
 
 
 
-`LOOPING : Int`
+<span class="inline-block static">static</span>`LOOPING : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -329,7 +328,7 @@
 
 
 
-`MAX_DISTANCE : Int`
+<span class="inline-block static">static</span>`MAX_DISTANCE : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -337,7 +336,7 @@
 
 
 
-`MAX_GAIN : Int`
+<span class="inline-block static">static</span>`MAX_GAIN : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -345,7 +344,7 @@
 
 
 
-`MIN_GAIN : Int`
+<span class="inline-block static">static</span>`MIN_GAIN : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -353,7 +352,7 @@
 
 
 
-`NONE : Int`
+<span class="inline-block static">static</span>`NONE : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -361,7 +360,7 @@
 
 
 
-`NO_ERROR : Int`
+<span class="inline-block static">static</span>`NO_ERROR : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -369,7 +368,7 @@
 
 
 
-`ORIENTATION : Int`
+<span class="inline-block static">static</span>`ORIENTATION : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -377,7 +376,7 @@
 
 
 
-`OUT_OF_MEMORY : Int`
+<span class="inline-block static">static</span>`OUT_OF_MEMORY : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -385,7 +384,7 @@
 
 
 
-`OUT_OF_MEMORY_MEANING : String`
+<span class="inline-block static">static</span>`OUT_OF_MEMORY_MEANING : String`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -393,7 +392,7 @@
 
 
 
-`PAUSED : Int`
+<span class="inline-block static">static</span>`PAUSED : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -401,7 +400,7 @@
 
 
 
-`PITCH : Int`
+<span class="inline-block static">static</span>`PITCH : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -409,7 +408,7 @@
 
 
 
-`PLAYING : Int`
+<span class="inline-block static">static</span>`PLAYING : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -417,7 +416,7 @@
 
 
 
-`POSITION : Int`
+<span class="inline-block static">static</span>`POSITION : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -425,7 +424,7 @@
 
 
 
-`REFERENCE_DISTANCE : Int`
+<span class="inline-block static">static</span>`REFERENCE_DISTANCE : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -433,7 +432,7 @@
 
 
 
-`RENDERER : Int`
+<span class="inline-block static">static</span>`RENDERER : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -441,7 +440,7 @@
 
 
 
-`ROLLOFF_FACTOR : Int`
+<span class="inline-block static">static</span>`ROLLOFF_FACTOR : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -449,7 +448,7 @@
 
 
 
-`SAMPLE_OFFSET : Int`
+<span class="inline-block static">static</span>`SAMPLE_OFFSET : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -457,7 +456,7 @@
 
 
 
-`SEC_OFFSET : Int`
+<span class="inline-block static">static</span>`SEC_OFFSET : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -465,7 +464,7 @@
 
 
 
-`SIZE : Int`
+<span class="inline-block static">static</span>`SIZE : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -473,7 +472,7 @@
 
 
 
-`SOURCE_RELATIVE : Int`
+<span class="inline-block static">static</span>`SOURCE_RELATIVE : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -481,7 +480,7 @@
 
 
 
-`SOURCE_STATE : Int`
+<span class="inline-block static">static</span>`SOURCE_STATE : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -489,7 +488,7 @@
 
 
 
-`SOURCE_TYPE : Int`
+<span class="inline-block static">static</span>`SOURCE_TYPE : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -497,7 +496,7 @@
 
 
 
-`SPEED_OF_SOUND : Int`
+<span class="inline-block static">static</span>`SPEED_OF_SOUND : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -505,7 +504,7 @@
 
 
 
-`STATIC : Int`
+<span class="inline-block static">static</span>`STATIC : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -513,7 +512,7 @@
 
 
 
-`STOPPED : Int`
+<span class="inline-block static">static</span>`STOPPED : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -521,7 +520,7 @@
 
 
 
-`STREAMING : Int`
+<span class="inline-block static">static</span>`STREAMING : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -529,7 +528,7 @@
 
 
 
-`TRUE : Int`
+<span class="inline-block static">static</span>`TRUE : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -537,7 +536,7 @@
 
 
 
-`UNDETERMINED : Int`
+<span class="inline-block static">static</span>`UNDETERMINED : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -545,7 +544,7 @@
 
 
 
-`VELOCITY : Int`
+<span class="inline-block static">static</span>`VELOCITY : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -553,7 +552,7 @@
 
 
 
-`VENDOR : Int`
+<span class="inline-block static">static</span>`VENDOR : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -561,14 +560,14 @@
 
 
 
-`VERSION : Int`
+<span class="inline-block static">static</span>`VERSION : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
 &nbsp;   
 
-<a class="lift" name="Methods" ></a>
-###Methods   
+<a class="lift" name="StaticMethods" ></a>
+###StaticMethods   
 ---
 <a class="lift" name="buffer3f" href="#buffer3f">buffer3f</a>
 
@@ -1209,6 +1208,8 @@
 `speedOfSound(value:Float) : Void`
 
 <span class="small_desc_flat"> no description </span>   
+
+&nbsp;   
 
 
 

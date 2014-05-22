@@ -6,8 +6,7 @@
 #ByteArray
 
 
-&emsp;&emsp;&emsp;home   
-[API Index](../../../../api/index.html#lumen.utils)   
+##[API Index](../../../../api/index.html#lumen.utils)   
 &emsp;&emsp;&emsp;parent    
 [lumen.utils](../)     
 &emsp;&emsp;&emsp;current    
@@ -22,6 +21,7 @@
 [Implements](#Implements)   
 [Members](#Members)   
 [Properties](#Properties)   
+[StaticMethods](#StaticMethods)   
 [Methods](#Methods)   
 
 
@@ -107,6 +107,27 @@
 
 &nbsp;   
 
+<a class="lift" name="StaticMethods" ></a>
+###StaticMethods   
+---
+<a class="lift" name="fromBytes" href="#fromBytes">fromBytes</a>
+
+
+
+`fromBytes(inBytes:haxe.io.Bytes) : lumen.utils.native.ByteArray`
+
+<span class="small_desc_flat"> no description </span>   
+
+<a class="lift" name="readFile" href="#readFile">readFile</a>
+
+
+
+`readFile(inString:String) : lumen.utils.native.ByteArray`
+
+<span class="small_desc_flat"> no description </span>   
+
+&nbsp;   
+
 <a class="lift" name="Methods" ></a>
 ###Methods   
 ---
@@ -147,14 +168,6 @@
 
 
 `deflate() : Void`
-
-<span class="small_desc_flat"> no description </span>   
-
-<a class="lift" name="fromBytes" href="#fromBytes">fromBytes</a>
-
-
-
-`fromBytes(inBytes:haxe.io.Bytes) : lumen.utils.native.ByteArray`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -211,14 +224,6 @@
 
 
 `readDouble() : Float`
-
-<span class="small_desc_flat"> no description </span>   
-
-<a class="lift" name="readFile" href="#readFile">readFile</a>
-
-
-
-`readFile(inString:String) : lumen.utils.native.ByteArray`
 
 <span class="small_desc_flat"> no description </span>   
 

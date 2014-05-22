@@ -1,0 +1,44 @@
+{
+  "source": "lumen.render.gl.native.ShaderPrecisionFormat",
+  "doc": "",
+  "links": [],
+  "toplinks": [],
+  "sections": [
+    {
+      "name": "Members",
+      "link": "#Members",
+      "values": [
+        {
+          "name": "rangeMin",
+          "meta": [],
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
+          "signature": "rangeMin : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "rangeMax",
+          "meta": [],
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
+          "signature": "rangeMax : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "precision",
+          "meta": [],
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
+          "signature": "precision : Int",
+          "type": "Int",
+          "doc": ""
+        }
+      ]
+    }
+  ]
+}

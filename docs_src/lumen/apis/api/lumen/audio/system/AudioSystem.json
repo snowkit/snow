@@ -1,6 +1,6 @@
 {
   "source": "lumen.audio.system.AudioSystem",
-  "doc": "",
+  "doc": "Internal audio system definition, interact with this system through `lumen.Audio`, not directly",
   "links": [],
   "toplinks": [],
   "sections": [
@@ -11,24 +11,39 @@
         {
           "name": "lib",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": false,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
           "signature": "lib : lumen.Lumen",
           "type": "lumen.Lumen",
           "doc": ""
         },
         {
+          "name": "haxe_doc",
+          "meta": [],
+          "ispublic": false,
+          "isinline": false,
+          "isstatic": false,
+          "signature": "haxe_doc : Dynamic",
+          "type": "Dynamic",
+          "doc": ""
+        },
+        {
           "name": "manager",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": false,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
           "signature": "manager : lumen.audio.Audio",
           "type": "lumen.audio.Audio",
           "doc": ""
         }
       ]
+    },
+    {
+      "name": "StaticMethods",
+      "link": "#StaticMethods",
+      "values": []
     },
     {
       "name": "Methods",
@@ -37,9 +52,9 @@
         {
           "name": "resume",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "resume() : Void",
           "return": ": Void",
@@ -48,9 +63,9 @@
         {
           "name": "new",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "new(_manager:lumen.audio.Audio, _lib:lumen.Lumen) ",
           "return": "",
@@ -68,9 +83,9 @@
         {
           "name": "update",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "update() : Void",
           "return": ": Void",
@@ -79,9 +94,9 @@
         {
           "name": "suspend",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "suspend() : Void",
           "return": ": Void",
@@ -90,9 +105,9 @@
         {
           "name": "destroy",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "destroy() : Void",
           "return": ": Void",
@@ -101,9 +116,9 @@
         {
           "name": "toggle",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "toggle() : Void",
           "return": ": Void",
@@ -112,9 +127,9 @@
         {
           "name": "init",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "init() : Void",
           "return": ": Void",

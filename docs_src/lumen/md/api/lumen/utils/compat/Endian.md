@@ -6,8 +6,7 @@
 #Endian
 
 
-&emsp;&emsp;&emsp;home   
-[API Index](../../../../api/index.html#lumen.utils)   
+##[API Index](../../../../api/index.html#lumen.utils)   
 &emsp;&emsp;&emsp;parent    
 [lumen.utils](../)     
 &emsp;&emsp;&emsp;current    

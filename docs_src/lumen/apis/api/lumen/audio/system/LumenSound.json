@@ -1,0 +1,8 @@
+{
+  "source": "lumen.audio.system.LumenSound",
+  "doc": "",
+  "links": [],
+  "toplinks": [],
+  "sections": [],
+  "alias": "lumen.audio.system.openal.SoundOpenAL"
+}

@@ -5,9 +5,14 @@
 
 #AssetBytes
 
+--- 
 
-&emsp;&emsp;&emsp;home   
-[API Index](../../../api/index.html#lumen.assets)   
+An asset that contains byte `data` as a `ByteArray`
+
+---
+<br/>
+
+##[API Index](../../../api/index.html#lumen.assets)   
 &emsp;&emsp;&emsp;parent    
 [lumen](../)     
 &emsp;&emsp;&emsp;current    
@@ -43,7 +48,9 @@
 
 `data : lumen.utils.ByteArray`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat"> The `ByteArray` this asset contains </span>   
+
+&nbsp;   
 
 &nbsp;   
 
@@ -54,7 +61,7 @@
 
 
 
-`new(_info:lumen.AssetInfo, _data:lumen.utils.ByteArray) `
+`new(_info:lumen.types.AssetInfo, _data:lumen.utils.ByteArray) `
 
 <span class="small_desc_flat"> no description </span>   
 

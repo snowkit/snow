@@ -1,20 +1,36 @@
 {
   "source": "lumen.audio.system.openal.OpenALHelper",
-  "doc": "",
+  "doc": "Internal helper class for interaction with OpenAL.",
   "links": [],
   "toplinks": [],
   "sections": [
     {
-      "name": "Methods",
-      "link": "#Methods",
+      "name": "Members",
+      "link": "#Members",
+      "values": [
+        {
+          "name": "haxe_doc",
+          "meta": [],
+          "ispublic": false,
+          "isinline": false,
+          "isstatic": false,
+          "signature": "haxe_doc : Dynamic",
+          "type": "Dynamic",
+          "doc": ""
+        }
+      ]
+    },
+    {
+      "name": "StaticMethods",
+      "link": "#StaticMethods",
       "values": [
         {
           "name": "default_source_setup",
           "meta": [],
-          "public": true,
-          "static": true,
-          "inline": false,
-          "doc": "",
+          "ispublic": true,
+          "isstatic": true,
+          "isinline": false,
+          "doc": "Set up a source using default values for PITCH, GAIN, POSITION, VELOCITY, and LOOPING",
           "signature": "default_source_setup(source:Int) : Void",
           "return": ": Void",
           "args": [
@@ -27,20 +43,25 @@
         {
           "name": "determine_format",
           "meta": [],
-          "public": true,
-          "static": true,
-          "inline": false,
-          "doc": "",
-          "signature": "determine_format(_info:lumen.AudioInfo) : Int",
+          "ispublic": true,
+          "isstatic": true,
+          "isinline": false,
+          "doc": "Determine the OpenAL format of an `AudioInfo` instance, such as AL.FORMAT_MONO16 or AL.FORMAT_STEREO16",
+          "signature": "determine_format(_info:lumen.types.AudioInfo) : Int",
           "return": ": Int",
           "args": [
             {
               "name": "_info",
-              "type": "lumen.AudioInfo"
+              "type": "lumen.types.AudioInfo"
             }
           ]
         }
       ]
+    },
+    {
+      "name": "Methods",
+      "link": "#Methods",
+      "values": []
     }
   ]
 }

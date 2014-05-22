@@ -1,6 +1,6 @@
 {
   "source": "lumen.assets.Assets",
-  "doc": "",
+  "doc": "The asset system class gives you access to fetching and manipulating assets, \n    caching/uncaching assets, and handles loading files and data cross platform",
   "links": [],
   "toplinks": [],
   "sections": [
@@ -11,79 +11,29 @@
         {
           "name": "lumen_assets_audio_read_bytes_ogg",
           "meta": [],
-          "public": false,
-          "inline": false,
-          "static": true,
+          "ispublic": false,
+          "isinline": false,
+          "isstatic": true,
           "signature": "lumen_assets_audio_read_bytes_ogg : Dynamic",
           "type": "Dynamic",
           "doc": ""
         },
         {
-          "name": "lumen_assets_audio_seek_bytes_wav",
-          "meta": [],
-          "public": false,
-          "inline": false,
-          "static": true,
-          "signature": "lumen_assets_audio_seek_bytes_wav : Dynamic",
-          "type": "Dynamic",
-          "doc": ""
-        },
-        {
-          "name": "lumen_assets_audio_read_bytes_pcm",
-          "meta": [],
-          "public": false,
-          "inline": false,
-          "static": true,
-          "signature": "lumen_assets_audio_read_bytes_pcm : Dynamic",
-          "type": "Dynamic",
-          "doc": ""
-        },
-        {
-          "name": "list",
-          "meta": [],
-          "public": true,
-          "inline": false,
-          "static": false,
-          "signature": "list : Map<String,lumen.AssetInfo>",
-          "type": "Map<String,lumen.AssetInfo>",
-          "doc": ""
-        },
-        {
           "name": "lumen_assets_audio_load_info_ogg",
           "meta": [],
-          "public": false,
-          "inline": false,
-          "static": true,
+          "ispublic": false,
+          "isinline": false,
+          "isstatic": true,
           "signature": "lumen_assets_audio_load_info_ogg : Dynamic",
           "type": "Dynamic",
           "doc": ""
         },
         {
-          "name": "manifest_path",
-          "meta": [],
-          "public": true,
-          "inline": false,
-          "static": false,
-          "signature": "manifest_path : String",
-          "type": "String",
-          "doc": ""
-        },
-        {
-          "name": "lib",
-          "meta": [],
-          "public": false,
-          "inline": false,
-          "static": false,
-          "signature": "lib : lumen.Lumen",
-          "type": "lumen.Lumen",
-          "doc": ""
-        },
-        {
           "name": "lumen_assets_image_load_info",
           "meta": [],
-          "public": false,
-          "inline": false,
-          "static": true,
+          "ispublic": false,
+          "isinline": false,
+          "isstatic": true,
           "signature": "lumen_assets_image_load_info : Dynamic",
           "type": "Dynamic",
           "doc": ""
@@ -91,19 +41,99 @@
         {
           "name": "lumen_assets_audio_seek_bytes_ogg",
           "meta": [],
-          "public": false,
-          "inline": false,
-          "static": true,
+          "ispublic": false,
+          "isinline": false,
+          "isstatic": true,
           "signature": "lumen_assets_audio_seek_bytes_ogg : Dynamic",
+          "type": "Dynamic",
+          "doc": ""
+        },
+        {
+          "name": "assets_root",
+          "meta": [],
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
+          "signature": "assets_root : String",
+          "type": "String",
+          "doc": "If the assets are not relative to the runtime root path, this value can adjust all asset paths. This is automatically handled and exists to allow control."
+        },
+        {
+          "name": "lumen_assets_audio_load_info_pcm",
+          "meta": [],
+          "ispublic": false,
+          "isinline": false,
+          "isstatic": true,
+          "signature": "lumen_assets_audio_load_info_pcm : Dynamic",
+          "type": "Dynamic",
+          "doc": ""
+        },
+        {
+          "name": "lumen_assets_audio_seek_bytes_wav",
+          "meta": [],
+          "ispublic": false,
+          "isinline": false,
+          "isstatic": true,
+          "signature": "lumen_assets_audio_seek_bytes_wav : Dynamic",
+          "type": "Dynamic",
+          "doc": ""
+        },
+        {
+          "name": "lumen_assets_audio_read_bytes_pcm",
+          "meta": [],
+          "ispublic": false,
+          "isinline": false,
+          "isstatic": true,
+          "signature": "lumen_assets_audio_read_bytes_pcm : Dynamic",
+          "type": "Dynamic",
+          "doc": ""
+        },
+        {
+          "name": "list",
+          "meta": [],
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
+          "signature": "list : Map<String,lumen.types.AssetInfo>",
+          "type": "Map<String,lumen.types.AssetInfo>",
+          "doc": "The list of assets in the system, added at startup by the `App` class, in the `get_asset_list` function"
+        },
+        {
+          "name": "manifest_path",
+          "meta": [],
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
+          "signature": "manifest_path : String",
+          "type": "String",
+          "doc": "The manifest file to parse for the asset list. By default, this is set to `manifest` from the build tools but the `App` class can have a custom `get_asset_list` handler use this value."
+        },
+        {
+          "name": "lib",
+          "meta": [],
+          "ispublic": false,
+          "isinline": false,
+          "isstatic": false,
+          "signature": "lib : lumen.Lumen",
+          "type": "lumen.Lumen",
+          "doc": ""
+        },
+        {
+          "name": "haxe_doc",
+          "meta": [],
+          "ispublic": false,
+          "isinline": false,
+          "isstatic": false,
+          "signature": "haxe_doc : Dynamic",
           "type": "Dynamic",
           "doc": ""
         },
         {
           "name": "lumen_assets_audio_seek_bytes_pcm",
           "meta": [],
-          "public": false,
-          "inline": false,
-          "static": true,
+          "ispublic": false,
+          "isinline": false,
+          "isstatic": true,
           "signature": "lumen_assets_audio_seek_bytes_pcm : Dynamic",
           "type": "Dynamic",
           "doc": ""
@@ -111,44 +141,29 @@
         {
           "name": "lumen_assets_audio_load_info_wav",
           "meta": [],
-          "public": false,
-          "inline": false,
-          "static": true,
+          "ispublic": false,
+          "isinline": false,
+          "isstatic": true,
           "signature": "lumen_assets_audio_load_info_wav : Dynamic",
           "type": "Dynamic",
           "doc": ""
         },
         {
-          "name": "assets_root",
-          "meta": [],
-          "public": true,
-          "inline": false,
-          "static": false,
-          "signature": "assets_root : String",
-          "type": "String",
-          "doc": ""
-        },
-        {
           "name": "lumen_assets_audio_read_bytes_wav",
           "meta": [],
-          "public": false,
-          "inline": false,
-          "static": true,
+          "ispublic": false,
+          "isinline": false,
+          "isstatic": true,
           "signature": "lumen_assets_audio_read_bytes_wav : Dynamic",
-          "type": "Dynamic",
-          "doc": ""
-        },
-        {
-          "name": "lumen_assets_audio_load_info_pcm",
-          "meta": [],
-          "public": false,
-          "inline": false,
-          "static": true,
-          "signature": "lumen_assets_audio_load_info_pcm : Dynamic",
           "type": "Dynamic",
           "doc": ""
         }
       ]
+    },
+    {
+      "name": "StaticMethods",
+      "link": "#StaticMethods",
+      "values": []
     },
     {
       "name": "Methods",
@@ -162,16 +177,16 @@
               "value": ""
             }
           ],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
-          "signature": "audio_load_portion_ogg(_info:lumen.AudioInfo, _start:Int, _len:Int) : lumen.AudioDataBlob",
-          "return": ": lumen.AudioDataBlob",
+          "signature": "audio_load_portion_ogg(_info:lumen.types.AudioInfo, _start:Int, _len:Int) : lumen.types.AudioDataBlob",
+          "return": ": lumen.types.AudioDataBlob",
           "args": [
             {
               "name": "_info",
-              "type": "lumen.AudioInfo"
+              "type": "lumen.types.AudioInfo"
             },
             {
               "name": "_start",
@@ -191,16 +206,16 @@
               "value": ""
             }
           ],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
-          "signature": "audio_seek_source_ogg(_info:lumen.AudioInfo, _to:Int) : Bool",
+          "signature": "audio_seek_source_ogg(_info:lumen.types.AudioInfo, _to:Int) : Bool",
           "return": ": Bool",
           "args": [
             {
               "name": "_info",
-              "type": "lumen.AudioInfo"
+              "type": "lumen.types.AudioInfo"
             },
             {
               "name": "_to",
@@ -211,9 +226,9 @@
         {
           "name": "load_error",
           "meta": [],
-          "public": false,
-          "static": false,
-          "inline": false,
+          "ispublic": false,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "load_error(_id:String, ?reason:String) : Void",
           "return": ": Void",
@@ -231,10 +246,10 @@
         {
           "name": "get_text",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
-          "doc": "",
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
+          "doc": "Get an asset as a `String`, used for text based assets",
           "signature": "get_text(_id:String) : lumen.assets.AssetText",
           "return": ": lumen.assets.AssetText",
           "args": [
@@ -247,10 +262,10 @@
         {
           "name": "get_image",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
-          "doc": "",
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
+          "doc": "Get an asset as a `AssetImage`, used for image files",
           "signature": "get_image(_id:String, ?options:lumen.assets.AssetImageOptions) : lumen.assets.AssetImage",
           "return": ": lumen.assets.AssetImage",
           "args": [
@@ -267,10 +282,10 @@
         {
           "name": "get_audio",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
-          "doc": "",
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
+          "doc": "Get an asset as a `AssetAudio`, used for audio files",
           "signature": "get_audio(_id:String, ?options:lumen.assets.AssetAudioOptions) : lumen.assets.AssetAudio",
           "return": ": lumen.assets.AssetAudio",
           "args": [
@@ -292,16 +307,16 @@
               "value": ""
             }
           ],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
-          "signature": "audio_load_portion(_info:lumen.AudioInfo, _start:Int, _len:Int) : lumen.AudioDataBlob",
-          "return": ": lumen.AudioDataBlob",
+          "signature": "audio_load_portion(_info:lumen.types.AudioInfo, _start:Int, _len:Int) : lumen.types.AudioDataBlob",
+          "return": ": lumen.types.AudioDataBlob",
           "args": [
             {
               "name": "_info",
-              "type": "lumen.AudioInfo"
+              "type": "lumen.types.AudioInfo"
             },
             {
               "name": "_start",
@@ -316,9 +331,9 @@
         {
           "name": "exists_error",
           "meta": [],
-          "public": false,
-          "static": false,
-          "inline": false,
+          "ispublic": false,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "exists_error(_id:String) : Void",
           "return": ": Void",
@@ -332,12 +347,12 @@
         {
           "name": "get",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
-          "doc": "",
-          "signature": "get(_id:String) : lumen.AssetInfo",
-          "return": ": lumen.AssetInfo",
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
+          "doc": "Get an asset from the system",
+          "signature": "get(_id:String) : lumen.types.AssetInfo",
+          "return": ": lumen.types.AssetInfo",
           "args": [
             {
               "name": "_id",
@@ -348,10 +363,10 @@
         {
           "name": "exists",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
-          "doc": "",
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
+          "doc": "Check if an asset exists in the system",
           "signature": "exists(_id:String) : Bool",
           "return": ": Bool",
           "args": [
@@ -364,16 +379,16 @@
         {
           "name": "_path",
           "meta": [],
-          "public": false,
-          "static": false,
-          "inline": false,
+          "ispublic": false,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
-          "signature": "_path(_asset:lumen.AssetInfo) : String",
+          "signature": "_path(_asset:lumen.types.AssetInfo) : String",
           "return": ": String",
           "args": [
             {
               "name": "_asset",
-              "type": "lumen.AssetInfo"
+              "type": "lumen.types.AssetInfo"
             }
           ]
         },
@@ -385,16 +400,16 @@
               "value": ""
             }
           ],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
-          "signature": "audio_seek_source_pcm(_info:lumen.AudioInfo, _to:Int) : Bool",
+          "signature": "audio_seek_source_pcm(_info:lumen.types.AudioInfo, _to:Int) : Bool",
           "return": ": Bool",
           "args": [
             {
               "name": "_info",
-              "type": "lumen.AudioInfo"
+              "type": "lumen.types.AudioInfo"
             },
             {
               "name": "_to",
@@ -405,9 +420,9 @@
         {
           "name": "new",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "new(_lib:lumen.Lumen) ",
           "return": "",
@@ -421,10 +436,10 @@
         {
           "name": "path",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
-          "doc": "",
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
+          "doc": "Get the asset path for an asset, adjusted by platform, root etc.",
           "signature": "path(_id:String) : String",
           "return": ": String",
           "args": [
@@ -442,16 +457,16 @@
               "value": ""
             }
           ],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
-          "signature": "audio_load_ogg(asset:lumen.AssetInfo, ?load:Bool) : lumen.AudioInfo",
-          "return": ": lumen.AudioInfo",
+          "signature": "audio_load_ogg(asset:lumen.types.AssetInfo, ?load:Bool) : lumen.types.AudioInfo",
+          "return": ": lumen.types.AudioInfo",
           "args": [
             {
               "name": "asset",
-              "type": "lumen.AssetInfo"
+              "type": "lumen.types.AssetInfo"
             },
             {
               "name": "?load",
@@ -462,12 +477,12 @@
         {
           "name": "audio_format_from_int",
           "meta": [],
-          "public": false,
-          "static": false,
-          "inline": false,
+          "ispublic": false,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
-          "signature": "audio_format_from_int(_int:Int) : lumen.AudioFormatType",
-          "return": ": lumen.AudioFormatType",
+          "signature": "audio_format_from_int(_int:Int) : lumen.types.AudioFormatType",
+          "return": ": lumen.types.AudioFormatType",
           "args": [
             {
               "name": "_int",
@@ -483,16 +498,16 @@
               "value": ""
             }
           ],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
-          "signature": "audio_seek_source_wav(_info:lumen.AudioInfo, _to:Int) : Bool",
+          "signature": "audio_seek_source_wav(_info:lumen.types.AudioInfo, _to:Int) : Bool",
           "return": ": Bool",
           "args": [
             {
               "name": "_info",
-              "type": "lumen.AudioInfo"
+              "type": "lumen.types.AudioInfo"
             },
             {
               "name": "_to",
@@ -508,16 +523,16 @@
               "value": ""
             }
           ],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
-          "signature": "audio_load_pcm(asset:lumen.AssetInfo, ?load:Bool) : lumen.AudioInfo",
-          "return": ": lumen.AudioInfo",
+          "signature": "audio_load_pcm(asset:lumen.types.AssetInfo, ?load:Bool) : lumen.types.AudioInfo",
+          "return": ": lumen.types.AudioInfo",
           "args": [
             {
               "name": "asset",
-              "type": "lumen.AssetInfo"
+              "type": "lumen.types.AssetInfo"
             },
             {
               "name": "?load",
@@ -533,16 +548,16 @@
               "value": ""
             }
           ],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
-          "signature": "audio_load_portion_pcm(_info:lumen.AudioInfo, _start:Int, _len:Int) : lumen.AudioDataBlob",
-          "return": ": lumen.AudioDataBlob",
+          "signature": "audio_load_portion_pcm(_info:lumen.types.AudioInfo, _start:Int, _len:Int) : lumen.types.AudioDataBlob",
+          "return": ": lumen.types.AudioDataBlob",
           "args": [
             {
               "name": "_info",
-              "type": "lumen.AudioInfo"
+              "type": "lumen.types.AudioInfo"
             },
             {
               "name": "_start",
@@ -557,26 +572,26 @@
         {
           "name": "add",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
-          "doc": "",
-          "signature": "add(_list:Array<lumen.AssetInfo>) : Void",
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
+          "doc": "Add an asset list to the system",
+          "signature": "add(_list:Array<lumen.types.AssetInfo>) : Void",
           "return": ": Void",
           "args": [
             {
               "name": "_list",
-              "type": "Array<lumen.AssetInfo>"
+              "type": "Array<lumen.types.AssetInfo>"
             }
           ]
         },
         {
           "name": "get_bytes",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
-          "doc": "",
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
+          "doc": "Get an asset as a `ByteArray`, used for binary assets",
           "signature": "get_bytes(_id:String) : lumen.assets.AssetBytes",
           "return": ": lumen.assets.AssetBytes",
           "args": [
@@ -594,16 +609,16 @@
               "value": ""
             }
           ],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
-          "signature": "audio_load_wav(asset:lumen.AssetInfo, ?load:Bool) : lumen.AudioInfo",
-          "return": ": lumen.AudioInfo",
+          "signature": "audio_load_wav(asset:lumen.types.AssetInfo, ?load:Bool) : lumen.types.AudioInfo",
+          "return": ": lumen.types.AudioInfo",
           "args": [
             {
               "name": "asset",
-              "type": "lumen.AssetInfo"
+              "type": "lumen.types.AssetInfo"
             },
             {
               "name": "?load",
@@ -619,16 +634,16 @@
               "value": ""
             }
           ],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
-          "signature": "audio_load_portion_wav(_info:lumen.AudioInfo, _start:Int, _len:Int) : lumen.AudioDataBlob",
-          "return": ": lumen.AudioDataBlob",
+          "signature": "audio_load_portion_wav(_info:lumen.types.AudioInfo, _start:Int, _len:Int) : lumen.types.AudioDataBlob",
+          "return": ": lumen.types.AudioDataBlob",
           "args": [
             {
               "name": "_info",
-              "type": "lumen.AudioInfo"
+              "type": "lumen.types.AudioInfo"
             },
             {
               "name": "_start",
@@ -648,16 +663,16 @@
               "value": ""
             }
           ],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
-          "signature": "audio_seek_source(_info:lumen.AudioInfo, _to:Int) : Bool",
+          "signature": "audio_seek_source(_info:lumen.types.AudioInfo, _to:Int) : Bool",
           "return": ": Bool",
           "args": [
             {
               "name": "_info",
-              "type": "lumen.AudioInfo"
+              "type": "lumen.types.AudioInfo"
             },
             {
               "name": "_to",

@@ -6,8 +6,7 @@
 #IMemoryRange
 
 
-&emsp;&emsp;&emsp;home   
-[API Index](../../../api/index.html#lumen.utils)   
+##[API Index](../../../api/index.html#lumen.utils)   
 &emsp;&emsp;&emsp;parent    
 [lumen](../)     
 &emsp;&emsp;&emsp;current    
@@ -22,6 +21,8 @@
 
 
 ---
+
+&nbsp;   
 
 &nbsp;   
 

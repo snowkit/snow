@@ -5,9 +5,14 @@
 
 #Input
 
+--- 
 
-&emsp;&emsp;&emsp;home   
-[API Index](../../../api/index.html#lumen.input)   
+Internal input system, accessed via `app.input`
+
+---
+<br/>
+
+##[API Index](../../../api/index.html#lumen.input)   
 &emsp;&emsp;&emsp;parent    
 [lumen](../)     
 &emsp;&emsp;&emsp;current    
@@ -22,6 +27,8 @@
 
 
 ---
+
+&nbsp;   
 
 &nbsp;   
 
@@ -106,7 +113,7 @@
 
 
 
-`mod_state_from_event(event:lumen.InputEvent) : lumen.input.ModState`
+`mod_state_from_event(event:lumen.types.InputEvent) : lumen.input.ModState`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -122,7 +129,7 @@
 
 
 
-`on_event(_event:lumen.SystemEvent) : Void`
+`on_event(_event:lumen.types.SystemEvent) : Void`
 
 <span class="small_desc_flat"> no description </span>   
 

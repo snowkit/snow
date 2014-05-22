@@ -6,8 +6,7 @@
 #Float32Array
 
 
-&emsp;&emsp;&emsp;home   
-[API Index](../../../api/index.html#lumen.utils)   
+##[API Index](../../../api/index.html#lumen.utils)   
 &emsp;&emsp;&emsp;parent    
 [lumen](../)     
 &emsp;&emsp;&emsp;current    
@@ -19,6 +18,7 @@
 
 
 [Extends](#Extends)   
+[StaticMethods](#StaticMethods)   
 [Methods](#Methods)   
 
 
@@ -33,8 +33,8 @@
 
 &nbsp;   
 
-<a class="lift" name="Methods" ></a>
-###Methods   
+<a class="lift" name="StaticMethods" ></a>
+###StaticMethods   
 ---
 <a class="lift" name="fromMatrix" href="#fromMatrix">fromMatrix</a>
 
@@ -44,6 +44,11 @@
 
 <span class="small_desc_flat"> no description </span>   
 
+&nbsp;   
+
+<a class="lift" name="Methods" ></a>
+###Methods   
+---
 <a class="lift" name="new" href="#new">new</a>
 
 

@@ -11,9 +11,9 @@
         {
           "name": "was_ready",
           "meta": [],
-          "public": false,
-          "inline": false,
-          "static": false,
+          "ispublic": false,
+          "isinline": false,
+          "isstatic": false,
           "signature": "was_ready : Bool",
           "type": "Bool",
           "doc": ""
@@ -21,19 +21,24 @@
         {
           "name": "lumen_shutdown",
           "meta": [],
-          "public": false,
-          "inline": false,
-          "static": true,
+          "ispublic": false,
+          "isinline": false,
+          "isstatic": true,
           "signature": "lumen_shutdown : Dynamic",
           "type": "Dynamic",
           "doc": ""
         },
         {
           "name": "more_verbose",
-          "meta": [],
-          "public": true,
-          "inline": false,
-          "static": false,
+          "meta": [
+            {
+              "name": ":noCompletion",
+              "value": ""
+            }
+          ],
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
           "signature": "more_verbose : Bool",
           "type": "Bool",
           "doc": ""
@@ -41,9 +46,9 @@
         {
           "name": "lumen_app_path",
           "meta": [],
-          "public": false,
-          "inline": false,
-          "static": true,
+          "ispublic": false,
+          "isinline": false,
+          "isstatic": true,
           "signature": "lumen_app_path : Dynamic",
           "type": "Dynamic",
           "doc": ""
@@ -51,19 +56,19 @@
         {
           "name": "shutting_down",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": false,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
           "signature": "shutting_down : Bool",
           "type": "Bool",
-          "doc": ""
+          "doc": "Set if shut down has commenced"
         },
         {
           "name": "lumen_init",
           "meta": [],
-          "public": false,
-          "inline": false,
-          "static": true,
+          "ispublic": false,
+          "isinline": false,
+          "isstatic": true,
           "signature": "lumen_init : Dynamic",
           "type": "Dynamic",
           "doc": ""
@@ -71,39 +76,44 @@
         {
           "name": "config",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": false,
-          "signature": "config : lumen.LumenConfig",
-          "type": "lumen.LumenConfig",
-          "doc": ""
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
+          "signature": "config : lumen.types.LumenConfig",
+          "type": "lumen.types.LumenConfig",
+          "doc": "The configuration from the project file, runtime config and other configs"
         },
         {
           "name": "assets",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": false,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
           "signature": "assets : lumen.assets.Assets",
           "type": "lumen.assets.Assets",
-          "doc": ""
+          "doc": "The asset system"
         },
         {
           "name": "has_shutdown",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": false,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
           "signature": "has_shutdown : Bool",
           "type": "Bool",
-          "doc": ""
+          "doc": "Set if shut dow has completed"
         },
         {
           "name": "log",
-          "meta": [],
-          "public": true,
-          "inline": false,
-          "static": false,
+          "meta": [
+            {
+              "name": ":noCompletion",
+              "value": ""
+            }
+          ],
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
           "signature": "log : Bool",
           "type": "Bool",
           "doc": ""
@@ -111,9 +121,9 @@
         {
           "name": "lumen_window_show_cursor",
           "meta": [],
-          "public": false,
-          "inline": false,
-          "static": true,
+          "ispublic": false,
+          "isinline": false,
+          "isstatic": true,
           "signature": "lumen_window_show_cursor : Dynamic",
           "type": "Dynamic",
           "doc": ""
@@ -121,9 +131,9 @@
         {
           "name": "lumen_timestamp",
           "meta": [],
-          "public": false,
-          "inline": false,
-          "static": true,
+          "ispublic": false,
+          "isinline": false,
+          "isstatic": true,
           "signature": "lumen_timestamp : Dynamic",
           "type": "Dynamic",
           "doc": ""
@@ -131,39 +141,39 @@
         {
           "name": "host",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": false,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
           "signature": "host : lumen.App",
           "type": "lumen.App",
-          "doc": ""
+          "doc": "The host application"
         },
         {
           "name": "window",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": false,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
           "signature": "window : lumen.window.Windowing",
           "type": "lumen.window.Windowing",
-          "doc": ""
+          "doc": "The window manager"
         },
         {
           "name": "audio",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": false,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
           "signature": "audio : lumen.audio.Audio",
           "type": "lumen.audio.Audio",
-          "doc": ""
+          "doc": "The audio system"
         },
         {
           "name": "is_ready",
           "meta": [],
-          "public": false,
-          "inline": false,
-          "static": false,
+          "ispublic": false,
+          "isinline": false,
+          "isstatic": false,
           "signature": "is_ready : Bool",
           "type": "Bool",
           "doc": ""
@@ -171,9 +181,9 @@
         {
           "name": "lumen_pref_path",
           "meta": [],
-          "public": false,
-          "inline": false,
-          "static": true,
+          "ispublic": false,
+          "isinline": false,
+          "isstatic": true,
           "signature": "lumen_pref_path : Dynamic",
           "type": "Dynamic",
           "doc": ""
@@ -181,9 +191,9 @@
         {
           "name": "lumen_render_enable_vsync",
           "meta": [],
-          "public": false,
-          "inline": false,
-          "static": true,
+          "ispublic": false,
+          "isinline": false,
+          "isstatic": true,
           "signature": "lumen_render_enable_vsync : Dynamic",
           "type": "Dynamic",
           "doc": ""
@@ -191,29 +201,34 @@
         {
           "name": "input",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": false,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
           "signature": "input : lumen.input.Input",
           "type": "lumen.input.Input",
-          "doc": ""
+          "doc": "The input system"
         },
         {
           "name": "main_window",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": false,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
           "signature": "main_window : lumen.window.Window",
           "type": "lumen.window.Window",
-          "doc": ""
+          "doc": "If the config specifies a default window, this is it"
         },
         {
           "name": "verbose",
-          "meta": [],
-          "public": true,
-          "inline": false,
-          "static": false,
+          "meta": [
+            {
+              "name": ":noCompletion",
+              "value": ""
+            }
+          ],
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
           "signature": "verbose : Bool",
           "type": "Bool",
           "doc": ""
@@ -230,7 +245,7 @@
           "get": true,
           "set": false,
           "signature": "uniqueid : String",
-          "doc": "",
+          "doc": "Generate a unique ID to use",
           "type": "String",
           "type_desc": "(read only)"
         },
@@ -240,23 +255,23 @@
           "get": true,
           "set": false,
           "signature": "time : Float",
-          "doc": "",
+          "doc": "The current timestamp",
           "type": "Float",
           "type_desc": "(read only)"
         }
       ]
     },
     {
-      "name": "Methods",
-      "link": "#Methods",
+      "name": "StaticMethods",
+      "link": "#StaticMethods",
       "values": [
         {
           "name": "load",
           "meta": [],
-          "public": true,
-          "static": true,
-          "inline": false,
-          "doc": "",
+          "ispublic": true,
+          "isstatic": true,
+          "isinline": false,
+          "doc": "Loads a function out of a library",
           "signature": "load(library:String, method:String, ?args:Int) : Dynamic",
           "return": ": Dynamic",
           "args": [
@@ -273,14 +288,20 @@
               "type": "Int"
             }
           ]
-        },
+        }
+      ]
+    },
+    {
+      "name": "Methods",
+      "link": "#Methods",
+      "values": [
         {
           "name": "shutdown",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
-          "doc": "",
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
+          "doc": "Shutdown the engine and quit",
           "signature": "shutdown() : Void",
           "return": ": Void",
           "args": []
@@ -288,9 +309,9 @@
         {
           "name": "on_lumen_init",
           "meta": [],
-          "public": false,
-          "static": false,
-          "inline": false,
+          "ispublic": false,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "on_lumen_init() : Void",
           "return": ": Void",
@@ -298,10 +319,15 @@
         },
         {
           "name": "new",
-          "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "meta": [
+            {
+              "name": ":noCompletion",
+              "value": ""
+            }
+          ],
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "new() ",
           "return": "",
@@ -310,9 +336,9 @@
         {
           "name": "get_time",
           "meta": [],
-          "public": false,
-          "static": false,
-          "inline": false,
+          "ispublic": false,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "get_time() : Float",
           "return": ": Float",
@@ -321,9 +347,9 @@
         {
           "name": "on_lumen_update",
           "meta": [],
-          "public": false,
-          "static": false,
-          "inline": false,
+          "ispublic": false,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "on_lumen_update() : Void",
           "return": ": Void",
@@ -332,16 +358,16 @@
         {
           "name": "on_main_window_event",
           "meta": [],
-          "public": false,
-          "static": false,
-          "inline": false,
+          "ispublic": false,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
-          "signature": "on_main_window_event(_event:lumen.WindowEvent) : Void",
+          "signature": "on_main_window_event(_event:lumen.types.WindowEvent) : Void",
           "return": ": Void",
           "args": [
             {
               "name": "_event",
-              "type": "lumen.WindowEvent"
+              "type": "lumen.types.WindowEvent"
             }
           ]
         },
@@ -353,9 +379,9 @@
               "value": ""
             }
           ],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "do_internal_update(dt:Float) : Void",
           "return": ": Void",
@@ -374,9 +400,9 @@
               "value": ""
             }
           ],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "do_internal_render() : Void",
           "return": ": Void",
@@ -385,25 +411,25 @@
         {
           "name": "on_event",
           "meta": [],
-          "public": false,
-          "static": false,
-          "inline": false,
+          "ispublic": false,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
-          "signature": "on_event(_event:lumen.SystemEvent) : Void",
+          "signature": "on_event(_event:lumen.types.SystemEvent) : Void",
           "return": ": Void",
           "args": [
             {
               "name": "_event",
-              "type": "lumen.SystemEvent"
+              "type": "lumen.types.SystemEvent"
             }
           ]
         },
         {
           "name": "get_uniqueid",
           "meta": [],
-          "public": false,
-          "static": false,
-          "inline": false,
+          "ispublic": false,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "get_uniqueid() : String",
           "return": ": String",
@@ -411,10 +437,15 @@
         },
         {
           "name": "_debug",
-          "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "meta": [
+            {
+              "name": ":noCompletion",
+              "value": ""
+            }
+          ],
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "_debug(value:Dynamic, ?_verbose:Bool, ?_more_verbose:Bool) : Void",
           "return": ": Void",
@@ -441,11 +472,11 @@
               "value": ""
             }
           ],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
-          "signature": "init(_host:lumen.App, _config:lumen.LumenConfig) : Void",
+          "signature": "init(_host:lumen.App, _config:lumen.types.LumenConfig) : Void",
           "return": ": Void",
           "args": [
             {
@@ -454,16 +485,16 @@
             },
             {
               "name": "_config",
-              "type": "lumen.LumenConfig"
+              "type": "lumen.types.LumenConfig"
             }
           ]
         },
         {
           "name": "on_lumen_ready",
           "meta": [],
-          "public": false,
-          "static": false,
-          "inline": false,
+          "ispublic": false,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "on_lumen_ready() : Void",
           "return": ": Void",

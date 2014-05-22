@@ -11,9 +11,9 @@
         {
           "name": "lumen_iosrc_from_file",
           "meta": [],
-          "public": false,
-          "inline": false,
-          "static": true,
+          "ispublic": false,
+          "isinline": false,
+          "isstatic": true,
           "signature": "lumen_iosrc_from_file : Dynamic",
           "type": "Dynamic",
           "doc": ""
@@ -21,15 +21,15 @@
       ]
     },
     {
-      "name": "Methods",
-      "link": "#Methods",
+      "name": "StaticMethods",
+      "link": "#StaticMethods",
       "values": [
         {
           "name": "from_file",
           "meta": [],
-          "public": true,
-          "static": true,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": true,
+          "isinline": false,
           "doc": "",
           "signature": "from_file(_id:String, ?_mode:String) : lumen.io.IOFile",
           "return": ": lumen.io.IOFile",
@@ -45,6 +45,11 @@
           ]
         }
       ]
+    },
+    {
+      "name": "Methods",
+      "link": "#Methods",
+      "values": []
     }
   ]
 }

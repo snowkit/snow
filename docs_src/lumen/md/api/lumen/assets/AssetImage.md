@@ -5,9 +5,14 @@
 
 #AssetImage
 
+--- 
 
-&emsp;&emsp;&emsp;home   
-[API Index](../../../api/index.html#lumen.assets)   
+An asset that contains image file `data` as an `ImageInfo`
+
+---
+<br/>
+
+##[API Index](../../../api/index.html#lumen.assets)   
 &emsp;&emsp;&emsp;parent    
 [lumen](../)     
 &emsp;&emsp;&emsp;current    
@@ -41,9 +46,11 @@
 
 
 
-`data : lumen.ImageInfo`
+`data : lumen.types.ImageInfo`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat"> The `ImageInfo` this asset contains </span>   
+
+&nbsp;   
 
 &nbsp;   
 
@@ -54,7 +61,7 @@
 
 
 
-`new(_info:lumen.AssetInfo, _data:lumen.ImageInfo) `
+`new(_info:lumen.types.AssetInfo, _data:lumen.types.ImageInfo) `
 
 <span class="small_desc_flat"> no description </span>   
 

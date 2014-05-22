@@ -1,6 +1,6 @@
 {
   "source": "lumen.assets.AssetText",
-  "doc": "",
+  "doc": "An asset that contains `text` as a `String`",
   "links": [],
   "toplinks": [],
   "sections": [
@@ -20,14 +20,29 @@
         {
           "name": "text",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": false,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
           "signature": "text : String",
           "type": "String",
+          "doc": "The `String` this asset contains"
+        },
+        {
+          "name": "haxe_doc",
+          "meta": [],
+          "ispublic": false,
+          "isinline": false,
+          "isstatic": false,
+          "signature": "haxe_doc : Dynamic",
+          "type": "Dynamic",
           "doc": ""
         }
       ]
+    },
+    {
+      "name": "StaticMethods",
+      "link": "#StaticMethods",
+      "values": []
     },
     {
       "name": "Methods",
@@ -36,16 +51,16 @@
         {
           "name": "new",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
-          "signature": "new(_info:lumen.AssetInfo, _data:String) ",
+          "signature": "new(_info:lumen.types.AssetInfo, _data:String) ",
           "return": "",
           "args": [
             {
               "name": "_info",
-              "type": "lumen.AssetInfo"
+              "type": "lumen.types.AssetInfo"
             },
             {
               "name": "_data",

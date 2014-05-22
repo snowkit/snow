@@ -5,9 +5,15 @@
 
 #Scancodes
 
+--- 
 
-&emsp;&emsp;&emsp;home   
-[API Index](../../../api/index.html#lumen.input)   
+The scancode class. The values below come directly from SDL header include files,
+but they aren't specific to SDL so they are used generically
+
+---
+<br/>
+
+##[API Index](../../../api/index.html#lumen.input)   
 &emsp;&emsp;&emsp;parent    
 [lumen](../)     
 &emsp;&emsp;&emsp;current    
@@ -32,7 +38,7 @@
 
 
 
-`AC_BACK : Int`
+<span class="inline-block static">static</span>`AC_BACK : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -40,7 +46,7 @@
 
 
 
-`AC_BOOKMARKS : Int`
+<span class="inline-block static">static</span>`AC_BOOKMARKS : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -48,7 +54,7 @@
 
 
 
-`AC_FORWARD : Int`
+<span class="inline-block static">static</span>`AC_FORWARD : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -56,7 +62,7 @@
 
 
 
-`AC_HOME : Int`
+<span class="inline-block static">static</span>`AC_HOME : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -64,7 +70,7 @@
 
 
 
-`AC_REFRESH : Int`
+<span class="inline-block static">static</span>`AC_REFRESH : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -72,7 +78,7 @@
 
 
 
-`AC_SEARCH : Int`
+<span class="inline-block static">static</span>`AC_SEARCH : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -80,7 +86,7 @@
 
 
 
-`AC_STOP : Int`
+<span class="inline-block static">static</span>`AC_STOP : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -88,23 +94,23 @@
 
 
 
-`AGAIN : Int`
+<span class="inline-block static">static</span>`AGAIN : Int`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat"> redo </span>   
 
 <a class="lift" name="ALTERASE" href="#ALTERASE">ALTERASE</a>
 
 
 
-`ALTERASE : Int`
+<span class="inline-block static">static</span>`ALTERASE : Int`
 
-<span class="small_desc_flat"> <![CDATA[< reserved]]> </span>   
+<span class="small_desc_flat"> Erase-Eaze </span>   
 
 <a class="lift" name="APOSTROPHE" href="#APOSTROPHE">APOSTROPHE</a>
 
 
 
-`APOSTROPHE : Int`
+<span class="inline-block static">static</span>`APOSTROPHE : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -112,7 +118,7 @@
 
 
 
-`APP1 : Int`
+<span class="inline-block static">static</span>`APP1 : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -120,7 +126,7 @@
 
 
 
-`APP2 : Int`
+<span class="inline-block static">static</span>`APP2 : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -128,24 +134,15 @@
 
 
 
-`APPLICATION : Int`
+<span class="inline-block static">static</span>`APPLICATION : Int`
 
-<span class="small_desc_flat"> <![CDATA[< This is the additional key that ISO
-                                        *   keyboards have over ANSI ones,
-                                        *   located between left shift and Y.
-                                        *   Produces GRAVE ACCENT and TILDE in a
-                                        *   US or UK Mac layout, REVERSE SOLIDUS
-                                        *   (backslash) and VERTICAL LINE in a
-                                        *   US or UK Windows layout, and
-                                        *   LESS-THAN SIGN and GREATER-THAN SIGN
-                                        *   in a Swiss German, German, or French
-                                        *   layout.]]> </span>   
+<span class="small_desc_flat"> windows contextual menu, compose </span>   
 
 <a class="lift" name="AUDIOMUTE" href="#AUDIOMUTE">AUDIOMUTE</a>
 
 
 
-`AUDIOMUTE : Int`
+<span class="inline-block static">static</span>`AUDIOMUTE : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -153,17 +150,15 @@
 
 
 
-`AUDIONEXT : Int`
+<span class="inline-block static">static</span>`AUDIONEXT : Int`
 
-<span class="small_desc_flat"> <![CDATA[< I'm not sure if this is really not covered
-                                 *   by any of the above, but since there's a
-                                 *   special KMOD_MODE for it I'm adding it here]]> </span>   
+<span class="small_desc_flat"> no description </span>   
 
 <a class="lift" name="AUDIOPLAY" href="#AUDIOPLAY">AUDIOPLAY</a>
 
 
 
-`AUDIOPLAY : Int`
+<span class="inline-block static">static</span>`AUDIOPLAY : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -171,7 +166,7 @@
 
 
 
-`AUDIOPREV : Int`
+<span class="inline-block static">static</span>`AUDIOPREV : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -179,7 +174,7 @@
 
 
 
-`AUDIOSTOP : Int`
+<span class="inline-block static">static</span>`AUDIOSTOP : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -187,15 +182,27 @@
 
 
 
-`BACKSLASH : Int`
+<span class="inline-block static">static</span>`BACKSLASH : Int`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat"> Located at the lower left of the return
+    key on ISO keyboards and at the right end
+    of the QWERTY row on ANSI keyboards.
+    Produces REVERSE SOLIDUS (backslash) and
+    VERTICAL LINE in a US layout, REVERSE
+    SOLIDUS and VERTICAL LINE in a UK Mac
+    layout, NUMBER SIGN and TILDE in a UK
+    Windows layout, DOLLAR SIGN and POUND SIGN
+    in a Swiss German layout, NUMBER SIGN and
+    APOSTROPHE in a German layout, GRAVE
+    ACCENT and POUND SIGN in a French Mac
+    layout, and ASTERISK and MICRO SIGN in a
+    French Windows layout. </span>   
 
 <a class="lift" name="BACKSPACE" href="#BACKSPACE">BACKSPACE</a>
 
 
 
-`BACKSPACE : Int`
+<span class="inline-block static">static</span>`BACKSPACE : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -203,18 +210,15 @@
 
 
 
-`BRIGHTNESSDOWN : Int`
+<span class="inline-block static">static</span>`BRIGHTNESSDOWN : Int`
 
-<span class="small_desc_flat"> *  
-ame Walther keys
-     *
-     *  These are values that Christian Walther added (for mac keyboard?). </span>   
+<span class="small_desc_flat"> no description </span>   
 
 <a class="lift" name="BRIGHTNESSUP" href="#BRIGHTNESSUP">BRIGHTNESSUP</a>
 
 
 
-`BRIGHTNESSUP : Int`
+<span class="inline-block static">static</span>`BRIGHTNESSUP : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -222,7 +226,7 @@ ame Walther keys
 
 
 
-`CALCULATOR : Int`
+<span class="inline-block static">static</span>`CALCULATOR : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -230,7 +234,7 @@ ame Walther keys
 
 
 
-`CANCEL : Int`
+<span class="inline-block static">static</span>`CANCEL : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -238,7 +242,7 @@ ame Walther keys
 
 
 
-`CAPSLOCK : Int`
+<span class="inline-block static">static</span>`CAPSLOCK : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -246,7 +250,7 @@ ame Walther keys
 
 
 
-`CLEAR : Int`
+<span class="inline-block static">static</span>`CLEAR : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -254,7 +258,7 @@ ame Walther keys
 
 
 
-`CLEARAGAIN : Int`
+<span class="inline-block static">static</span>`CLEARAGAIN : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -262,30 +266,15 @@ ame Walther keys
 
 
 
-`COMMA : Int`
+<span class="inline-block static">static</span>`COMMA : Int`
 
-<span class="small_desc_flat"> <![CDATA[< Located in the top left corner (on both ANSI
-                                  *   and ISO keyboards). Produces GRAVE ACCENT and
-                                  *   TILDE in a US Windows layout and in US and UK
-                                  *   Mac layouts on ANSI keyboards, GRAVE ACCENT
-                                  *   and NOT SIGN in a UK Windows layout, SECTION
-                                  *   SIGN and PLUS-MINUS SIGN in US and UK Mac
-                                  *   layouts on ISO keyboards, SECTION SIGN and
-                                  *   DEGREE SIGN in a Swiss German layout (Mac:
-                                  *   only on ISO keyboards); CIRCUMFLEX ACCENT and
-                                  *   DEGREE SIGN in a German layout (Mac: only on
-                                  *   ISO keyboards), SUPERSCRIPT TWO and TILDE in a
-                                  *   French Windows layout, COMMERCIAL AT and
-                                  *   NUMBER SIGN in a French Mac layout on ISO
-                                  *   keyboards, and LESS-THAN SIGN and GREATER-THAN
-                                  *   SIGN in a Swiss German, German, or French Mac
-                                  *   layout on ANSI keyboards.]]> </span>   
+<span class="small_desc_flat"> no description </span>   
 
 <a class="lift" name="COMPUTER" href="#COMPUTER">COMPUTER</a>
 
 
 
-`COMPUTER : Int`
+<span class="inline-block static">static</span>`COMPUTER : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -293,7 +282,7 @@ ame Walther keys
 
 
 
-`COPY : Int`
+<span class="inline-block static">static</span>`COPY : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -301,7 +290,7 @@ ame Walther keys
 
 
 
-`CRSEL : Int`
+<span class="inline-block static">static</span>`CRSEL : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -309,7 +298,7 @@ ame Walther keys
 
 
 
-`CURRENCYSUBUNIT : Int`
+<span class="inline-block static">static</span>`CURRENCYSUBUNIT : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -317,7 +306,7 @@ ame Walther keys
 
 
 
-`CURRENCYUNIT : Int`
+<span class="inline-block static">static</span>`CURRENCYUNIT : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -325,7 +314,7 @@ ame Walther keys
 
 
 
-`CUT : Int`
+<span class="inline-block static">static</span>`CUT : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -333,7 +322,7 @@ ame Walther keys
 
 
 
-`DECIMALSEPARATOR : Int`
+<span class="inline-block static">static</span>`DECIMALSEPARATOR : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -341,7 +330,7 @@ ame Walther keys
 
 
 
-`DELETE : Int`
+<span class="inline-block static">static</span>`DELETE : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -349,15 +338,15 @@ ame Walther keys
 
 
 
-`DISPLAYSWITCH : Int`
+<span class="inline-block static">static</span>`DISPLAYSWITCH : Int`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat"> display mirroring/dual display switch, video mode switch </span>   
 
 <a class="lift" name="DOWN" href="#DOWN">DOWN</a>
 
 
 
-`DOWN : Int`
+<span class="inline-block static">static</span>`DOWN : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -365,7 +354,7 @@ ame Walther keys
 
 
 
-`EJECT : Int`
+<span class="inline-block static">static</span>`EJECT : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -373,7 +362,7 @@ ame Walther keys
 
 
 
-`END : Int`
+<span class="inline-block static">static</span>`END : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -381,7 +370,7 @@ ame Walther keys
 
 
 
-`EQUALS : Int`
+<span class="inline-block static">static</span>`EQUALS : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -389,7 +378,7 @@ ame Walther keys
 
 
 
-`ESCAPE : Int`
+<span class="inline-block static">static</span>`ESCAPE : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -397,7 +386,7 @@ ame Walther keys
 
 
 
-`EXECUTE : Int`
+<span class="inline-block static">static</span>`EXECUTE : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -405,7 +394,7 @@ ame Walther keys
 
 
 
-`EXSEL : Int`
+<span class="inline-block static">static</span>`EXSEL : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -413,7 +402,7 @@ ame Walther keys
 
 
 
-`F1 : Int`
+<span class="inline-block static">static</span>`F1 : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -421,7 +410,7 @@ ame Walther keys
 
 
 
-`F10 : Int`
+<span class="inline-block static">static</span>`F10 : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -429,7 +418,7 @@ ame Walther keys
 
 
 
-`F11 : Int`
+<span class="inline-block static">static</span>`F11 : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -437,7 +426,7 @@ ame Walther keys
 
 
 
-`F12 : Int`
+<span class="inline-block static">static</span>`F12 : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -445,7 +434,7 @@ ame Walther keys
 
 
 
-`F13 : Int`
+<span class="inline-block static">static</span>`F13 : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -453,7 +442,7 @@ ame Walther keys
 
 
 
-`F14 : Int`
+<span class="inline-block static">static</span>`F14 : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -461,7 +450,7 @@ ame Walther keys
 
 
 
-`F15 : Int`
+<span class="inline-block static">static</span>`F15 : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -469,7 +458,7 @@ ame Walther keys
 
 
 
-`F16 : Int`
+<span class="inline-block static">static</span>`F16 : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -477,7 +466,7 @@ ame Walther keys
 
 
 
-`F17 : Int`
+<span class="inline-block static">static</span>`F17 : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -485,7 +474,7 @@ ame Walther keys
 
 
 
-`F18 : Int`
+<span class="inline-block static">static</span>`F18 : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -493,7 +482,7 @@ ame Walther keys
 
 
 
-`F19 : Int`
+<span class="inline-block static">static</span>`F19 : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -501,7 +490,7 @@ ame Walther keys
 
 
 
-`F2 : Int`
+<span class="inline-block static">static</span>`F2 : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -509,7 +498,7 @@ ame Walther keys
 
 
 
-`F20 : Int`
+<span class="inline-block static">static</span>`F20 : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -517,7 +506,7 @@ ame Walther keys
 
 
 
-`F21 : Int`
+<span class="inline-block static">static</span>`F21 : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -525,7 +514,7 @@ ame Walther keys
 
 
 
-`F22 : Int`
+<span class="inline-block static">static</span>`F22 : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -533,7 +522,7 @@ ame Walther keys
 
 
 
-`F23 : Int`
+<span class="inline-block static">static</span>`F23 : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -541,7 +530,7 @@ ame Walther keys
 
 
 
-`F24 : Int`
+<span class="inline-block static">static</span>`F24 : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -549,7 +538,7 @@ ame Walther keys
 
 
 
-`F3 : Int`
+<span class="inline-block static">static</span>`F3 : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -557,7 +546,7 @@ ame Walther keys
 
 
 
-`F4 : Int`
+<span class="inline-block static">static</span>`F4 : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -565,7 +554,7 @@ ame Walther keys
 
 
 
-`F5 : Int`
+<span class="inline-block static">static</span>`F5 : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -573,7 +562,7 @@ ame Walther keys
 
 
 
-`F6 : Int`
+<span class="inline-block static">static</span>`F6 : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -581,7 +570,7 @@ ame Walther keys
 
 
 
-`F7 : Int`
+<span class="inline-block static">static</span>`F7 : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -589,7 +578,7 @@ ame Walther keys
 
 
 
-`F8 : Int`
+<span class="inline-block static">static</span>`F8 : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -597,7 +586,7 @@ ame Walther keys
 
 
 
-`F9 : Int`
+<span class="inline-block static">static</span>`F9 : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -605,7 +594,7 @@ ame Walther keys
 
 
 
-`FIND : Int`
+<span class="inline-block static">static</span>`FIND : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -613,15 +602,30 @@ ame Walther keys
 
 
 
-`GRAVE : Int`
+<span class="inline-block static">static</span>`GRAVE : Int`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat"> Located in the top left corner (on both ANSI
+    and ISO keyboards). Produces GRAVE ACCENT and
+    TILDE in a US Windows layout and in US and UK
+    Mac layouts on ANSI keyboards, GRAVE ACCENT
+    and NOT SIGN in a UK Windows layout, SECTION
+    SIGN and PLUS-MINUS SIGN in US and UK Mac
+    layouts on ISO keyboards, SECTION SIGN and
+    DEGREE SIGN in a Swiss German layout (Mac:
+    only on ISO keyboards); CIRCUMFLEX ACCENT and
+    DEGREE SIGN in a German layout (Mac: only on
+    ISO keyboards), SUPERSCRIPT TWO and TILDE in a
+    French Windows layout, COMMERCIAL AT and
+    NUMBER SIGN in a French Mac layout on ISO
+    keyboards, and LESS-THAN SIGN and GREATER-THAN
+    SIGN in a Swiss German, German, or French Mac
+    layout on ANSI keyboards. </span>   
 
 <a class="lift" name="HELP" href="#HELP">HELP</a>
 
 
 
-`HELP : Int`
+<span class="inline-block static">static</span>`HELP : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -629,57 +633,55 @@ ame Walther keys
 
 
 
-`HOME : Int`
+<span class="inline-block static">static</span>`HOME : Int`
 
-<span class="small_desc_flat"> <![CDATA[< insert on PC, help on some Mac keyboards (but
-                                   does send code 73, not 117)]]> </span>   
+<span class="small_desc_flat"> no description </span>   
 
 <a class="lift" name="INSERT" href="#INSERT">INSERT</a>
 
 
 
-`INSERT : Int`
+<span class="inline-block static">static</span>`INSERT : Int`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat"> insert on PC, help on some Mac keyboards (but does send code 73, not 117) </span>   
 
 <a class="lift" name="INTERNATIONAL1" href="#INTERNATIONAL1">INTERNATIONAL1</a>
 
 
 
-`INTERNATIONAL1 : Int`
+<span class="inline-block static">static</span>`INTERNATIONAL1 : Int`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat"> used on Asian keyboards; see footnotes in USB doc </span>   
 
 <a class="lift" name="INTERNATIONAL2" href="#INTERNATIONAL2">INTERNATIONAL2</a>
 
 
 
-`INTERNATIONAL2 : Int`
+<span class="inline-block static">static</span>`INTERNATIONAL2 : Int`
 
-<span class="small_desc_flat"> <![CDATA[< used on Asian keyboards; see
-                                                        footnotes in USB doc]]> </span>   
+<span class="small_desc_flat"> no description </span>   
 
 <a class="lift" name="INTERNATIONAL3" href="#INTERNATIONAL3">INTERNATIONAL3</a>
 
 
 
-`INTERNATIONAL3 : Int`
+<span class="inline-block static">static</span>`INTERNATIONAL3 : Int`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat"> Yen </span>   
 
 <a class="lift" name="INTERNATIONAL4" href="#INTERNATIONAL4">INTERNATIONAL4</a>
 
 
 
-`INTERNATIONAL4 : Int`
+<span class="inline-block static">static</span>`INTERNATIONAL4 : Int`
 
-<span class="small_desc_flat"> <![CDATA[< Yen]]> </span>   
+<span class="small_desc_flat"> no description </span>   
 
 <a class="lift" name="INTERNATIONAL5" href="#INTERNATIONAL5">INTERNATIONAL5</a>
 
 
 
-`INTERNATIONAL5 : Int`
+<span class="inline-block static">static</span>`INTERNATIONAL5 : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -687,7 +689,7 @@ ame Walther keys
 
 
 
-`INTERNATIONAL6 : Int`
+<span class="inline-block static">static</span>`INTERNATIONAL6 : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -695,7 +697,7 @@ ame Walther keys
 
 
 
-`INTERNATIONAL7 : Int`
+<span class="inline-block static">static</span>`INTERNATIONAL7 : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -703,7 +705,7 @@ ame Walther keys
 
 
 
-`INTERNATIONAL8 : Int`
+<span class="inline-block static">static</span>`INTERNATIONAL8 : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -711,7 +713,7 @@ ame Walther keys
 
 
 
-`INTERNATIONAL9 : Int`
+<span class="inline-block static">static</span>`INTERNATIONAL9 : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -719,7 +721,7 @@ ame Walther keys
 
 
 
-`KBDILLUMDOWN : Int`
+<span class="inline-block static">static</span>`KBDILLUMDOWN : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -727,16 +729,15 @@ ame Walther keys
 
 
 
-`KBDILLUMTOGGLE : Int`
+<span class="inline-block static">static</span>`KBDILLUMTOGGLE : Int`
 
-<span class="small_desc_flat"> <![CDATA[< display mirroring/dual display
-                                           switch, video mode switch]]> </span>   
+<span class="small_desc_flat"> no description </span>   
 
 <a class="lift" name="KBDILLUMUP" href="#KBDILLUMUP">KBDILLUMUP</a>
 
 
 
-`KBDILLUMUP : Int`
+<span class="inline-block static">static</span>`KBDILLUMUP : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -744,7 +745,7 @@ ame Walther keys
 
 
 
-`KEY_0 : Int`
+<span class="inline-block static">static</span>`KEY_0 : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -752,7 +753,7 @@ ame Walther keys
 
 
 
-`KEY_1 : Int`
+<span class="inline-block static">static</span>`KEY_1 : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -760,7 +761,7 @@ ame Walther keys
 
 
 
-`KEY_2 : Int`
+<span class="inline-block static">static</span>`KEY_2 : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -768,7 +769,7 @@ ame Walther keys
 
 
 
-`KEY_3 : Int`
+<span class="inline-block static">static</span>`KEY_3 : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -776,7 +777,7 @@ ame Walther keys
 
 
 
-`KEY_4 : Int`
+<span class="inline-block static">static</span>`KEY_4 : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -784,7 +785,7 @@ ame Walther keys
 
 
 
-`KEY_5 : Int`
+<span class="inline-block static">static</span>`KEY_5 : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -792,7 +793,7 @@ ame Walther keys
 
 
 
-`KEY_6 : Int`
+<span class="inline-block static">static</span>`KEY_6 : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -800,7 +801,7 @@ ame Walther keys
 
 
 
-`KEY_7 : Int`
+<span class="inline-block static">static</span>`KEY_7 : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -808,7 +809,7 @@ ame Walther keys
 
 
 
-`KEY_8 : Int`
+<span class="inline-block static">static</span>`KEY_8 : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -816,7 +817,7 @@ ame Walther keys
 
 
 
-`KEY_9 : Int`
+<span class="inline-block static">static</span>`KEY_9 : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -824,18 +825,15 @@ ame Walther keys
 
 
 
-`KEY_A : Int`
+<span class="inline-block static">static</span>`KEY_A : Int`
 
-<span class="small_desc_flat"> *  
-ame Usage page 0x07
-     *
-     *  These values are from usage page 0x07 (USB keyboard page). </span>   
+<span class="small_desc_flat"> no description </span>   
 
 <a class="lift" name="KEY_B" href="#KEY_B">KEY_B</a>
 
 
 
-`KEY_B : Int`
+<span class="inline-block static">static</span>`KEY_B : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -843,7 +841,7 @@ ame Usage page 0x07
 
 
 
-`KEY_C : Int`
+<span class="inline-block static">static</span>`KEY_C : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -851,7 +849,7 @@ ame Usage page 0x07
 
 
 
-`KEY_D : Int`
+<span class="inline-block static">static</span>`KEY_D : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -859,7 +857,7 @@ ame Usage page 0x07
 
 
 
-`KEY_E : Int`
+<span class="inline-block static">static</span>`KEY_E : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -867,7 +865,7 @@ ame Usage page 0x07
 
 
 
-`KEY_F : Int`
+<span class="inline-block static">static</span>`KEY_F : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -875,7 +873,7 @@ ame Usage page 0x07
 
 
 
-`KEY_G : Int`
+<span class="inline-block static">static</span>`KEY_G : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -883,7 +881,7 @@ ame Usage page 0x07
 
 
 
-`KEY_H : Int`
+<span class="inline-block static">static</span>`KEY_H : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -891,7 +889,7 @@ ame Usage page 0x07
 
 
 
-`KEY_I : Int`
+<span class="inline-block static">static</span>`KEY_I : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -899,7 +897,7 @@ ame Usage page 0x07
 
 
 
-`KEY_J : Int`
+<span class="inline-block static">static</span>`KEY_J : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -907,7 +905,7 @@ ame Usage page 0x07
 
 
 
-`KEY_K : Int`
+<span class="inline-block static">static</span>`KEY_K : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -915,7 +913,7 @@ ame Usage page 0x07
 
 
 
-`KEY_L : Int`
+<span class="inline-block static">static</span>`KEY_L : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -923,7 +921,7 @@ ame Usage page 0x07
 
 
 
-`KEY_M : Int`
+<span class="inline-block static">static</span>`KEY_M : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -931,7 +929,7 @@ ame Usage page 0x07
 
 
 
-`KEY_N : Int`
+<span class="inline-block static">static</span>`KEY_N : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -939,7 +937,7 @@ ame Usage page 0x07
 
 
 
-`KEY_O : Int`
+<span class="inline-block static">static</span>`KEY_O : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -947,7 +945,7 @@ ame Usage page 0x07
 
 
 
-`KEY_P : Int`
+<span class="inline-block static">static</span>`KEY_P : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -955,7 +953,7 @@ ame Usage page 0x07
 
 
 
-`KEY_Q : Int`
+<span class="inline-block static">static</span>`KEY_Q : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -963,7 +961,7 @@ ame Usage page 0x07
 
 
 
-`KEY_R : Int`
+<span class="inline-block static">static</span>`KEY_R : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -971,7 +969,7 @@ ame Usage page 0x07
 
 
 
-`KEY_S : Int`
+<span class="inline-block static">static</span>`KEY_S : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -979,7 +977,7 @@ ame Usage page 0x07
 
 
 
-`KEY_T : Int`
+<span class="inline-block static">static</span>`KEY_T : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -987,7 +985,7 @@ ame Usage page 0x07
 
 
 
-`KEY_U : Int`
+<span class="inline-block static">static</span>`KEY_U : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -995,7 +993,7 @@ ame Usage page 0x07
 
 
 
-`KEY_V : Int`
+<span class="inline-block static">static</span>`KEY_V : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1003,7 +1001,7 @@ ame Usage page 0x07
 
 
 
-`KEY_W : Int`
+<span class="inline-block static">static</span>`KEY_W : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1011,7 +1009,7 @@ ame Usage page 0x07
 
 
 
-`KEY_X : Int`
+<span class="inline-block static">static</span>`KEY_X : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1019,7 +1017,7 @@ ame Usage page 0x07
 
 
 
-`KEY_Y : Int`
+<span class="inline-block static">static</span>`KEY_Y : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1027,7 +1025,7 @@ ame Usage page 0x07
 
 
 
-`KEY_Z : Int`
+<span class="inline-block static">static</span>`KEY_Z : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1035,7 +1033,7 @@ ame Usage page 0x07
 
 
 
-`KP_0 : Int`
+<span class="inline-block static">static</span>`KP_0 : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1043,7 +1041,7 @@ ame Usage page 0x07
 
 
 
-`KP_00 : Int`
+<span class="inline-block static">static</span>`KP_00 : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1051,7 +1049,7 @@ ame Usage page 0x07
 
 
 
-`KP_000 : Int`
+<span class="inline-block static">static</span>`KP_000 : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1059,7 +1057,7 @@ ame Usage page 0x07
 
 
 
-`KP_1 : Int`
+<span class="inline-block static">static</span>`KP_1 : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1067,7 +1065,7 @@ ame Usage page 0x07
 
 
 
-`KP_2 : Int`
+<span class="inline-block static">static</span>`KP_2 : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1075,7 +1073,7 @@ ame Usage page 0x07
 
 
 
-`KP_3 : Int`
+<span class="inline-block static">static</span>`KP_3 : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1083,7 +1081,7 @@ ame Usage page 0x07
 
 
 
-`KP_4 : Int`
+<span class="inline-block static">static</span>`KP_4 : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1091,7 +1089,7 @@ ame Usage page 0x07
 
 
 
-`KP_5 : Int`
+<span class="inline-block static">static</span>`KP_5 : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1099,7 +1097,7 @@ ame Usage page 0x07
 
 
 
-`KP_6 : Int`
+<span class="inline-block static">static</span>`KP_6 : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1107,7 +1105,7 @@ ame Usage page 0x07
 
 
 
-`KP_7 : Int`
+<span class="inline-block static">static</span>`KP_7 : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1115,7 +1113,7 @@ ame Usage page 0x07
 
 
 
-`KP_8 : Int`
+<span class="inline-block static">static</span>`KP_8 : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1123,7 +1121,7 @@ ame Usage page 0x07
 
 
 
-`KP_9 : Int`
+<span class="inline-block static">static</span>`KP_9 : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1131,7 +1129,7 @@ ame Usage page 0x07
 
 
 
-`KP_A : Int`
+<span class="inline-block static">static</span>`KP_A : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1139,7 +1137,7 @@ ame Usage page 0x07
 
 
 
-`KP_AMPERSAND : Int`
+<span class="inline-block static">static</span>`KP_AMPERSAND : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1147,7 +1145,7 @@ ame Usage page 0x07
 
 
 
-`KP_AT : Int`
+<span class="inline-block static">static</span>`KP_AT : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1155,7 +1153,7 @@ ame Usage page 0x07
 
 
 
-`KP_B : Int`
+<span class="inline-block static">static</span>`KP_B : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1163,7 +1161,7 @@ ame Usage page 0x07
 
 
 
-`KP_BACKSPACE : Int`
+<span class="inline-block static">static</span>`KP_BACKSPACE : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1171,7 +1169,7 @@ ame Usage page 0x07
 
 
 
-`KP_BINARY : Int`
+<span class="inline-block static">static</span>`KP_BINARY : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1179,7 +1177,7 @@ ame Usage page 0x07
 
 
 
-`KP_C : Int`
+<span class="inline-block static">static</span>`KP_C : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1187,7 +1185,7 @@ ame Usage page 0x07
 
 
 
-`KP_CLEAR : Int`
+<span class="inline-block static">static</span>`KP_CLEAR : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1195,7 +1193,7 @@ ame Usage page 0x07
 
 
 
-`KP_CLEARENTRY : Int`
+<span class="inline-block static">static</span>`KP_CLEARENTRY : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1203,7 +1201,7 @@ ame Usage page 0x07
 
 
 
-`KP_COLON : Int`
+<span class="inline-block static">static</span>`KP_COLON : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1211,7 +1209,7 @@ ame Usage page 0x07
 
 
 
-`KP_COMMA : Int`
+<span class="inline-block static">static</span>`KP_COMMA : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1219,7 +1217,7 @@ ame Usage page 0x07
 
 
 
-`KP_D : Int`
+<span class="inline-block static">static</span>`KP_D : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1227,7 +1225,7 @@ ame Usage page 0x07
 
 
 
-`KP_DBLAMPERSAND : Int`
+<span class="inline-block static">static</span>`KP_DBLAMPERSAND : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1235,7 +1233,7 @@ ame Usage page 0x07
 
 
 
-`KP_DBLVERTICALBAR : Int`
+<span class="inline-block static">static</span>`KP_DBLVERTICALBAR : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1243,7 +1241,7 @@ ame Usage page 0x07
 
 
 
-`KP_DECIMAL : Int`
+<span class="inline-block static">static</span>`KP_DECIMAL : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1251,15 +1249,15 @@ ame Usage page 0x07
 
 
 
-`KP_DIVIDE : Int`
+<span class="inline-block static">static</span>`KP_DIVIDE : Int`
 
-<span class="small_desc_flat"> <![CDATA[< num lock on PC, clear on Mac keyboards]]> </span>   
+<span class="small_desc_flat"> no description </span>   
 
 <a class="lift" name="KP_E" href="#KP_E">KP_E</a>
 
 
 
-`KP_E : Int`
+<span class="inline-block static">static</span>`KP_E : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1267,7 +1265,7 @@ ame Usage page 0x07
 
 
 
-`KP_ENTER : Int`
+<span class="inline-block static">static</span>`KP_ENTER : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1275,17 +1273,15 @@ ame Usage page 0x07
 
 
 
-`KP_EQUALS : Int`
+<span class="inline-block static">static</span>`KP_EQUALS : Int`
 
-<span class="small_desc_flat"> <![CDATA[< The USB document says this is a status flag,
-                                       *   not a physical key - but some Mac keyboards
-                                       *   do have a power key.]]> </span>   
+<span class="small_desc_flat"> no description </span>   
 
 <a class="lift" name="KP_EQUALSAS400" href="#KP_EQUALSAS400">KP_EQUALSAS400</a>
 
 
 
-`KP_EQUALSAS400 : Int`
+<span class="inline-block static">static</span>`KP_EQUALSAS400 : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1293,7 +1289,7 @@ ame Usage page 0x07
 
 
 
-`KP_EXCLAM : Int`
+<span class="inline-block static">static</span>`KP_EXCLAM : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1301,7 +1297,7 @@ ame Usage page 0x07
 
 
 
-`KP_F : Int`
+<span class="inline-block static">static</span>`KP_F : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1309,7 +1305,7 @@ ame Usage page 0x07
 
 
 
-`KP_GREATER : Int`
+<span class="inline-block static">static</span>`KP_GREATER : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1317,7 +1313,7 @@ ame Usage page 0x07
 
 
 
-`KP_HASH : Int`
+<span class="inline-block static">static</span>`KP_HASH : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1325,7 +1321,7 @@ ame Usage page 0x07
 
 
 
-`KP_HEXADECIMAL : Int`
+<span class="inline-block static">static</span>`KP_HEXADECIMAL : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1333,7 +1329,7 @@ ame Usage page 0x07
 
 
 
-`KP_LEFTBRACE : Int`
+<span class="inline-block static">static</span>`KP_LEFTBRACE : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1341,7 +1337,7 @@ ame Usage page 0x07
 
 
 
-`KP_LEFTPAREN : Int`
+<span class="inline-block static">static</span>`KP_LEFTPAREN : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1349,7 +1345,7 @@ ame Usage page 0x07
 
 
 
-`KP_LESS : Int`
+<span class="inline-block static">static</span>`KP_LESS : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1357,7 +1353,7 @@ ame Usage page 0x07
 
 
 
-`KP_MEMADD : Int`
+<span class="inline-block static">static</span>`KP_MEMADD : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1365,7 +1361,7 @@ ame Usage page 0x07
 
 
 
-`KP_MEMCLEAR : Int`
+<span class="inline-block static">static</span>`KP_MEMCLEAR : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1373,7 +1369,7 @@ ame Usage page 0x07
 
 
 
-`KP_MEMDIVIDE : Int`
+<span class="inline-block static">static</span>`KP_MEMDIVIDE : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1381,7 +1377,7 @@ ame Usage page 0x07
 
 
 
-`KP_MEMMULTIPLY : Int`
+<span class="inline-block static">static</span>`KP_MEMMULTIPLY : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1389,7 +1385,7 @@ ame Usage page 0x07
 
 
 
-`KP_MEMRECALL : Int`
+<span class="inline-block static">static</span>`KP_MEMRECALL : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1397,7 +1393,7 @@ ame Usage page 0x07
 
 
 
-`KP_MEMSTORE : Int`
+<span class="inline-block static">static</span>`KP_MEMSTORE : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1405,7 +1401,7 @@ ame Usage page 0x07
 
 
 
-`KP_MEMSUBTRACT : Int`
+<span class="inline-block static">static</span>`KP_MEMSUBTRACT : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1413,7 +1409,7 @@ ame Usage page 0x07
 
 
 
-`KP_MINUS : Int`
+<span class="inline-block static">static</span>`KP_MINUS : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1421,7 +1417,7 @@ ame Usage page 0x07
 
 
 
-`KP_MULTIPLY : Int`
+<span class="inline-block static">static</span>`KP_MULTIPLY : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1429,7 +1425,7 @@ ame Usage page 0x07
 
 
 
-`KP_OCTAL : Int`
+<span class="inline-block static">static</span>`KP_OCTAL : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1437,7 +1433,7 @@ ame Usage page 0x07
 
 
 
-`KP_PERCENT : Int`
+<span class="inline-block static">static</span>`KP_PERCENT : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1445,7 +1441,7 @@ ame Usage page 0x07
 
 
 
-`KP_PERIOD : Int`
+<span class="inline-block static">static</span>`KP_PERIOD : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1453,7 +1449,7 @@ ame Usage page 0x07
 
 
 
-`KP_PLUS : Int`
+<span class="inline-block static">static</span>`KP_PLUS : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1461,7 +1457,7 @@ ame Usage page 0x07
 
 
 
-`KP_PLUSMINUS : Int`
+<span class="inline-block static">static</span>`KP_PLUSMINUS : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1469,7 +1465,7 @@ ame Usage page 0x07
 
 
 
-`KP_POWER : Int`
+<span class="inline-block static">static</span>`KP_POWER : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1477,7 +1473,7 @@ ame Usage page 0x07
 
 
 
-`KP_RIGHTBRACE : Int`
+<span class="inline-block static">static</span>`KP_RIGHTBRACE : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1485,7 +1481,7 @@ ame Usage page 0x07
 
 
 
-`KP_RIGHTPAREN : Int`
+<span class="inline-block static">static</span>`KP_RIGHTPAREN : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1493,7 +1489,7 @@ ame Usage page 0x07
 
 
 
-`KP_SPACE : Int`
+<span class="inline-block static">static</span>`KP_SPACE : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1501,7 +1497,7 @@ ame Usage page 0x07
 
 
 
-`KP_TAB : Int`
+<span class="inline-block static">static</span>`KP_TAB : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1509,7 +1505,7 @@ ame Usage page 0x07
 
 
 
-`KP_VERTICALBAR : Int`
+<span class="inline-block static">static</span>`KP_VERTICALBAR : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1517,7 +1513,7 @@ ame Usage page 0x07
 
 
 
-`KP_XOR : Int`
+<span class="inline-block static">static</span>`KP_XOR : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1525,87 +1521,87 @@ ame Usage page 0x07
 
 
 
-`LALT : Int`
+<span class="inline-block static">static</span>`LALT : Int`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat"> alt, option </span>   
 
 <a class="lift" name="LANG1" href="#LANG1">LANG1</a>
 
 
 
-`LANG1 : Int`
+<span class="inline-block static">static</span>`LANG1 : Int`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat"> Hangul/English toggle </span>   
 
 <a class="lift" name="LANG2" href="#LANG2">LANG2</a>
 
 
 
-`LANG2 : Int`
+<span class="inline-block static">static</span>`LANG2 : Int`
 
-<span class="small_desc_flat"> <![CDATA[< Hangul/English toggle]]> </span>   
+<span class="small_desc_flat"> Hanja conversion </span>   
 
 <a class="lift" name="LANG3" href="#LANG3">LANG3</a>
 
 
 
-`LANG3 : Int`
+<span class="inline-block static">static</span>`LANG3 : Int`
 
-<span class="small_desc_flat"> <![CDATA[< Hanja conversion]]> </span>   
+<span class="small_desc_flat"> Katakana </span>   
 
 <a class="lift" name="LANG4" href="#LANG4">LANG4</a>
 
 
 
-`LANG4 : Int`
+<span class="inline-block static">static</span>`LANG4 : Int`
 
-<span class="small_desc_flat"> <![CDATA[< Katakana]]> </span>   
+<span class="small_desc_flat"> Hiragana </span>   
 
 <a class="lift" name="LANG5" href="#LANG5">LANG5</a>
 
 
 
-`LANG5 : Int`
+<span class="inline-block static">static</span>`LANG5 : Int`
 
-<span class="small_desc_flat"> <![CDATA[< Hiragana]]> </span>   
+<span class="small_desc_flat"> Zenkaku/Hankaku </span>   
 
 <a class="lift" name="LANG6" href="#LANG6">LANG6</a>
 
 
 
-`LANG6 : Int`
+<span class="inline-block static">static</span>`LANG6 : Int`
 
-<span class="small_desc_flat"> <![CDATA[< Zenkaku/Hankaku]]> </span>   
+<span class="small_desc_flat"> reserved </span>   
 
 <a class="lift" name="LANG7" href="#LANG7">LANG7</a>
 
 
 
-`LANG7 : Int`
+<span class="inline-block static">static</span>`LANG7 : Int`
 
-<span class="small_desc_flat"> <![CDATA[< reserved]]> </span>   
+<span class="small_desc_flat"> reserved </span>   
 
 <a class="lift" name="LANG8" href="#LANG8">LANG8</a>
 
 
 
-`LANG8 : Int`
+<span class="inline-block static">static</span>`LANG8 : Int`
 
-<span class="small_desc_flat"> <![CDATA[< reserved]]> </span>   
+<span class="small_desc_flat"> reserved </span>   
 
 <a class="lift" name="LANG9" href="#LANG9">LANG9</a>
 
 
 
-`LANG9 : Int`
+<span class="inline-block static">static</span>`LANG9 : Int`
 
-<span class="small_desc_flat"> <![CDATA[< reserved]]> </span>   
+<span class="small_desc_flat"> reserved </span>   
 
 <a class="lift" name="LCTRL" href="#LCTRL">LCTRL</a>
 
 
 
-`LCTRL : Int`
+<span class="inline-block static">static</span>`LCTRL : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1613,7 +1609,7 @@ ame Usage page 0x07
 
 
 
-`LEFT : Int`
+<span class="inline-block static">static</span>`LEFT : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1621,7 +1617,7 @@ ame Usage page 0x07
 
 
 
-`LEFTBRACKET : Int`
+<span class="inline-block static">static</span>`LEFTBRACKET : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1629,15 +1625,15 @@ ame Usage page 0x07
 
 
 
-`LMETA : Int`
+<span class="inline-block static">static</span>`LMETA : Int`
 
-<span class="small_desc_flat"> <![CDATA[< alt, option]]> </span>   
+<span class="small_desc_flat"> windows, command (apple), meta </span>   
 
 <a class="lift" name="LSHIFT" href="#LSHIFT">LSHIFT</a>
 
 
 
-`LSHIFT : Int`
+<span class="inline-block static">static</span>`LSHIFT : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1645,7 +1641,7 @@ ame Usage page 0x07
 
 
 
-`MAIL : Int`
+<span class="inline-block static">static</span>`MAIL : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1653,7 +1649,7 @@ ame Usage page 0x07
 
 
 
-`MEDIASELECT : Int`
+<span class="inline-block static">static</span>`MEDIASELECT : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1661,7 +1657,7 @@ ame Usage page 0x07
 
 
 
-`MENU : Int`
+<span class="inline-block static">static</span>`MENU : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1669,7 +1665,7 @@ ame Usage page 0x07
 
 
 
-`MINUS : Int`
+<span class="inline-block static">static</span>`MINUS : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1677,15 +1673,17 @@ ame Usage page 0x07
 
 
 
-`MODE : Int`
+<span class="inline-block static">static</span>`MODE : Int`
 
-<span class="small_desc_flat"> <![CDATA[< windows, command (apple), meta]]> </span>   
+<span class="small_desc_flat"> Not sure if this is really not covered
+    by any of the above, but since there's a
+    special KMOD_MODE for it I'm adding it here </span>   
 
 <a class="lift" name="MUTE" href="#MUTE">MUTE</a>
 
 
 
-`MUTE : Int`
+<span class="inline-block static">static</span>`MUTE : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1693,43 +1691,50 @@ ame Usage page 0x07
 
 
 
-`NONUSBACKSLASH : Int`
+<span class="inline-block static">static</span>`NONUSBACKSLASH : Int`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat"> This is the additional key that ISO
+    keyboards have over ANSI ones,
+    located between left shift and Y.
+    Produces GRAVE ACCENT and TILDE in a
+    US or UK Mac layout, REVERSE SOLIDUS
+    (backslash) and VERTICAL LINE in a
+    US or UK Windows layout, and
+    LESS-THAN SIGN and GREATER-THAN SIGN
+    in a Swiss German, German, or French
+    layout. </span>   
 
 <a class="lift" name="NONUSHASH" href="#NONUSHASH">NONUSHASH</a>
 
 
 
-`NONUSHASH : Int`
+<span class="inline-block static">static</span>`NONUSHASH : Int`
 
-<span class="small_desc_flat"> <![CDATA[< Located at the lower left of the return
-                                  *   key on ISO keyboards and at the right end
-                                  *   of the QWERTY row on ANSI keyboards.
-                                  *   Produces REVERSE SOLIDUS (backslash) and
-                                  *   VERTICAL LINE in a US layout, REVERSE
-                                  *   SOLIDUS and VERTICAL LINE in a UK Mac
-                                  *   layout, NUMBER SIGN and TILDE in a UK
-                                  *   Windows layout, DOLLAR SIGN and POUND SIGN
-                                  *   in a Swiss German layout, NUMBER SIGN and
-                                  *   APOSTROPHE in a German layout, GRAVE
-                                  *   ACCENT and POUND SIGN in a French Mac
-                                  *   layout, and ASTERISK and MICRO SIGN in a
-                                  *   French Windows layout.]]> </span>   
+<span class="small_desc_flat"> ISO USB keyboards actually use this code
+    instead of 49 for the same key, but all
+    OSes I've seen treat the two codes
+    identically. So, as an implementor, unless
+    your keyboard generates both of those
+    codes and your OS treats them differently,
+    you should generate public static var BACKSLASH
+    instead of this code. As a user, you
+    should not rely on this code because SDL
+    will never generate it with most (all?)
+    keyboards. </span>   
 
 <a class="lift" name="NUMLOCKCLEAR" href="#NUMLOCKCLEAR">NUMLOCKCLEAR</a>
 
 
 
-`NUMLOCKCLEAR : Int`
+<span class="inline-block static">static</span>`NUMLOCKCLEAR : Int`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat"> num lock on PC, clear on Mac keyboards </span>   
 
 <a class="lift" name="OPER" href="#OPER">OPER</a>
 
 
 
-`OPER : Int`
+<span class="inline-block static">static</span>`OPER : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1737,7 +1742,7 @@ ame Usage page 0x07
 
 
 
-`OUT : Int`
+<span class="inline-block static">static</span>`OUT : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1745,7 +1750,7 @@ ame Usage page 0x07
 
 
 
-`PAGEDOWN : Int`
+<span class="inline-block static">static</span>`PAGEDOWN : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1753,7 +1758,7 @@ ame Usage page 0x07
 
 
 
-`PAGEUP : Int`
+<span class="inline-block static">static</span>`PAGEUP : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1761,7 +1766,7 @@ ame Usage page 0x07
 
 
 
-`PASTE : Int`
+<span class="inline-block static">static</span>`PASTE : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1769,7 +1774,7 @@ ame Usage page 0x07
 
 
 
-`PAUSE : Int`
+<span class="inline-block static">static</span>`PAUSE : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1777,7 +1782,7 @@ ame Usage page 0x07
 
 
 
-`PERIOD : Int`
+<span class="inline-block static">static</span>`PERIOD : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1785,15 +1790,17 @@ ame Usage page 0x07
 
 
 
-`POWER : Int`
+<span class="inline-block static">static</span>`POWER : Int`
 
-<span class="small_desc_flat"> <![CDATA[< windows contextual menu, compose]]> </span>   
+<span class="small_desc_flat"> The USB document says this is a status flag,
+    not a physical key - but some Mac keyboards
+    do have a power key. </span>   
 
 <a class="lift" name="PRINTSCREEN" href="#PRINTSCREEN">PRINTSCREEN</a>
 
 
 
-`PRINTSCREEN : Int`
+<span class="inline-block static">static</span>`PRINTSCREEN : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1801,7 +1808,7 @@ ame Usage page 0x07
 
 
 
-`PRIOR : Int`
+<span class="inline-block static">static</span>`PRIOR : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1809,23 +1816,23 @@ ame Usage page 0x07
 
 
 
-`RALT : Int`
+<span class="inline-block static">static</span>`RALT : Int`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat"> alt gr, option </span>   
 
 <a class="lift" name="RCTRL" href="#RCTRL">RCTRL</a>
 
 
 
-`RCTRL : Int`
+<span class="inline-block static">static</span>`RCTRL : Int`
 
-<span class="small_desc_flat"> <![CDATA[< windows, command (apple), meta]]> </span>   
+<span class="small_desc_flat"> no description </span>   
 
 <a class="lift" name="RETURN" href="#RETURN">RETURN</a>
 
 
 
-`RETURN : Int`
+<span class="inline-block static">static</span>`RETURN : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1833,7 +1840,7 @@ ame Usage page 0x07
 
 
 
-`RETURN2 : Int`
+<span class="inline-block static">static</span>`RETURN2 : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1841,7 +1848,7 @@ ame Usage page 0x07
 
 
 
-`RIGHT : Int`
+<span class="inline-block static">static</span>`RIGHT : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1849,7 +1856,7 @@ ame Usage page 0x07
 
 
 
-`RIGHTBRACKET : Int`
+<span class="inline-block static">static</span>`RIGHTBRACKET : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1857,15 +1864,15 @@ ame Usage page 0x07
 
 
 
-`RMETA : Int`
+<span class="inline-block static">static</span>`RMETA : Int`
 
-<span class="small_desc_flat"> <![CDATA[< alt gr, option]]> </span>   
+<span class="small_desc_flat"> windows, command (apple), meta </span>   
 
 <a class="lift" name="RSHIFT" href="#RSHIFT">RSHIFT</a>
 
 
 
-`RSHIFT : Int`
+<span class="inline-block static">static</span>`RSHIFT : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1873,7 +1880,7 @@ ame Usage page 0x07
 
 
 
-`SCROLLLOCK : Int`
+<span class="inline-block static">static</span>`SCROLLLOCK : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1881,7 +1888,7 @@ ame Usage page 0x07
 
 
 
-`SELECT : Int`
+<span class="inline-block static">static</span>`SELECT : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1889,25 +1896,15 @@ ame Usage page 0x07
 
 
 
-`SEMICOLON : Int`
+<span class="inline-block static">static</span>`SEMICOLON : Int`
 
-<span class="small_desc_flat"> <![CDATA[< ISO USB keyboards actually use this code
-                                  *   instead of 49 for the same key, but all
-                                  *   OSes I've seen treat the two codes
-                                  *   identically. So, as an implementor, unless
-                                  *   your keyboard generates both of those
-                                  *   codes and your OS treats them differently,
-                                  *   you should generate public static var BACKSLASH
-                                  *   instead of this code. As a user, you
-                                  *   should not rely on this code because SDL
-                                  *   will never generate it with most (all?)
-                                  *   keyboards.]]> </span>   
+<span class="small_desc_flat"> no description </span>   
 
 <a class="lift" name="SEPARATOR" href="#SEPARATOR">SEPARATOR</a>
 
 
 
-`SEPARATOR : Int`
+<span class="inline-block static">static</span>`SEPARATOR : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1915,7 +1912,7 @@ ame Usage page 0x07
 
 
 
-`SLASH : Int`
+<span class="inline-block static">static</span>`SLASH : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1923,7 +1920,7 @@ ame Usage page 0x07
 
 
 
-`SLEEP : Int`
+<span class="inline-block static">static</span>`SLEEP : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1931,7 +1928,7 @@ ame Usage page 0x07
 
 
 
-`SPACE : Int`
+<span class="inline-block static">static</span>`SPACE : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1939,7 +1936,7 @@ ame Usage page 0x07
 
 
 
-`STOP : Int`
+<span class="inline-block static">static</span>`STOP : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1947,15 +1944,15 @@ ame Usage page 0x07
 
 
 
-`SYSREQ : Int`
+<span class="inline-block static">static</span>`SYSREQ : Int`
 
-<span class="small_desc_flat"> <![CDATA[< Erase-Eaze]]> </span>   
+<span class="small_desc_flat"> no description </span>   
 
 <a class="lift" name="TAB" href="#TAB">TAB</a>
 
 
 
-`TAB : Int`
+<span class="inline-block static">static</span>`TAB : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1963,7 +1960,7 @@ ame Usage page 0x07
 
 
 
-`THOUSANDSSEPARATOR : Int`
+<span class="inline-block static">static</span>`THOUSANDSSEPARATOR : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1971,15 +1968,15 @@ ame Usage page 0x07
 
 
 
-`UNDO : Int`
+<span class="inline-block static">static</span>`UNDO : Int`
 
-<span class="small_desc_flat"> <![CDATA[< redo]]> </span>   
+<span class="small_desc_flat"> no description </span>   
 
 <a class="lift" name="UNKNOWN" href="#UNKNOWN">UNKNOWN</a>
 
 
 
-`UNKNOWN : Int`
+<span class="inline-block static">static</span>`UNKNOWN : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1987,7 +1984,7 @@ ame Usage page 0x07
 
 
 
-`UP : Int`
+<span class="inline-block static">static</span>`UP : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -1995,7 +1992,7 @@ ame Usage page 0x07
 
 
 
-`VOLUMEDOWN : Int`
+<span class="inline-block static">static</span>`VOLUMEDOWN : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -2003,7 +2000,7 @@ ame Usage page 0x07
 
 
 
-`VOLUMEUP : Int`
+<span class="inline-block static">static</span>`VOLUMEUP : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -2011,7 +2008,7 @@ ame Usage page 0x07
 
 
 
-`WWW : Int`
+<span class="inline-block static">static</span>`WWW : Int`
 
 <span class="small_desc_flat"> no description </span>   
 

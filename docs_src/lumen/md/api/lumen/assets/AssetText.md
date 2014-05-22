@@ -5,9 +5,14 @@
 
 #AssetText
 
+--- 
 
-&emsp;&emsp;&emsp;home   
-[API Index](../../../api/index.html#lumen.assets)   
+An asset that contains `text` as a `String`
+
+---
+<br/>
+
+##[API Index](../../../api/index.html#lumen.assets)   
 &emsp;&emsp;&emsp;parent    
 [lumen](../)     
 &emsp;&emsp;&emsp;current    
@@ -43,7 +48,9 @@
 
 `text : String`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat"> The `String` this asset contains </span>   
+
+&nbsp;   
 
 &nbsp;   
 
@@ -54,7 +61,7 @@
 
 
 
-`new(_info:lumen.AssetInfo, _data:String) `
+`new(_info:lumen.types.AssetInfo, _data:String) `
 
 <span class="small_desc_flat"> no description </span>   
 

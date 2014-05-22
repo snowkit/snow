@@ -20,14 +20,19 @@
         {
           "name": "shaders",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": false,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
           "signature": "shaders : Array<lumen.render.gl.GLShader>",
           "type": "Array<lumen.render.gl.GLShader>",
           "doc": ""
         }
       ]
+    },
+    {
+      "name": "StaticMethods",
+      "link": "#StaticMethods",
+      "values": []
     },
     {
       "name": "Methods",
@@ -36,9 +41,9 @@
         {
           "name": "new",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "new(version:Int, id:Dynamic) ",
           "return": "",
@@ -56,9 +61,9 @@
         {
           "name": "getType",
           "meta": [],
-          "public": false,
-          "static": false,
-          "inline": false,
+          "ispublic": false,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "getType() : String",
           "return": ": String",
@@ -67,9 +72,9 @@
         {
           "name": "getShaders",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "getShaders() : Array<lumen.render.gl.GLShader>",
           "return": ": Array<lumen.render.gl.GLShader>",
@@ -78,9 +83,9 @@
         {
           "name": "attach",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "attach(shader:lumen.render.gl.GLShader) : Void",
           "return": ": Void",

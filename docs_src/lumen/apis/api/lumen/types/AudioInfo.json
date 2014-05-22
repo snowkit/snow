@@ -1,0 +1,114 @@
+{
+  "source": "lumen.types.AudioInfo",
+  "doc": "",
+  "links": [],
+  "toplinks": [],
+  "sections": [
+    {
+      "name": "Members",
+      "link": "#Members",
+      "values": [
+        {
+          "name": "length_pcm",
+          "meta": [],
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
+          "signature": "length_pcm : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "handle",
+          "meta": [],
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
+          "signature": "handle : Dynamic",
+          "type": "Dynamic",
+          "doc": ""
+        },
+        {
+          "name": "format",
+          "meta": [],
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
+          "signature": "format : lumen.types.AudioFormatType",
+          "type": "lumen.types.AudioFormatType",
+          "doc": ""
+        },
+        {
+          "name": "bits_per_sample",
+          "meta": [],
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
+          "signature": "bits_per_sample : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "rate",
+          "meta": [],
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
+          "signature": "rate : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "length",
+          "meta": [],
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
+          "signature": "length : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "id",
+          "meta": [],
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
+          "signature": "id : String",
+          "type": "String",
+          "doc": ""
+        },
+        {
+          "name": "bitrate",
+          "meta": [],
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
+          "signature": "bitrate : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "channels",
+          "meta": [],
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
+          "signature": "channels : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "data",
+          "meta": [],
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
+          "signature": "data : lumen.utils.ByteArray",
+          "type": "lumen.utils.ByteArray",
+          "doc": ""
+        }
+      ]
+    }
+  ]
+}

@@ -6,8 +6,7 @@
 #WindowEvents
 
 
-&emsp;&emsp;&emsp;home   
-[API Index](../../api/index.html#lumen)   
+##[API Index](../../api/index.html#lumen)   
 &emsp;&emsp;&emsp;parent    
 _none_   
 &emsp;&emsp;&emsp;current    
@@ -19,7 +18,7 @@ _none_
 
 
 [Members](#Members)   
-[Methods](#Methods)   
+[StaticMethods](#StaticMethods)   
 
 
 ---
@@ -33,7 +32,7 @@ _none_
 
 
 
-`we_close : Int`
+<span class="inline-block static">static</span>`we_close : Int`
 
 <span class="small_desc_flat"> A window is being closed </span>   
 
@@ -41,7 +40,7 @@ _none_
 
 
 
-`we_created : Int`
+<span class="inline-block static">static</span>`we_created : Int`
 
 <span class="small_desc_flat"> A window is created </span>   
 
@@ -49,7 +48,7 @@ _none_
 
 
 
-`we_enter : Int`
+<span class="inline-block static">static</span>`we_enter : Int`
 
 <span class="small_desc_flat"> A window is entered by a mouse </span>   
 
@@ -57,7 +56,7 @@ _none_
 
 
 
-`we_exposed : Int`
+<span class="inline-block static">static</span>`we_exposed : Int`
 
 <span class="small_desc_flat"> A window is exposed </span>   
 
@@ -65,7 +64,7 @@ _none_
 
 
 
-`we_focus_gained : Int`
+<span class="inline-block static">static</span>`we_focus_gained : Int`
 
 <span class="small_desc_flat"> A window has gained focus </span>   
 
@@ -73,7 +72,7 @@ _none_
 
 
 
-`we_focus_lost : Int`
+<span class="inline-block static">static</span>`we_focus_lost : Int`
 
 <span class="small_desc_flat"> A window has lost focus </span>   
 
@@ -81,7 +80,7 @@ _none_
 
 
 
-`we_hidden : Int`
+<span class="inline-block static">static</span>`we_hidden : Int`
 
 <span class="small_desc_flat"> A window is hidden </span>   
 
@@ -89,7 +88,7 @@ _none_
 
 
 
-`we_leave : Int`
+<span class="inline-block static">static</span>`we_leave : Int`
 
 <span class="small_desc_flat"> A window is left by a mouse </span>   
 
@@ -97,7 +96,7 @@ _none_
 
 
 
-`we_maximized : Int`
+<span class="inline-block static">static</span>`we_maximized : Int`
 
 <span class="small_desc_flat"> A window is maximized </span>   
 
@@ -105,7 +104,7 @@ _none_
 
 
 
-`we_minimized : Int`
+<span class="inline-block static">static</span>`we_minimized : Int`
 
 <span class="small_desc_flat"> A window is minimized </span>   
 
@@ -113,7 +112,7 @@ _none_
 
 
 
-`we_moved : Int`
+<span class="inline-block static">static</span>`we_moved : Int`
 
 <span class="small_desc_flat"> A window is moved </span>   
 
@@ -121,7 +120,7 @@ _none_
 
 
 
-`we_resized : Int`
+<span class="inline-block static">static</span>`we_resized : Int`
 
 <span class="small_desc_flat"> A window is resized, by the user or code. </span>   
 
@@ -129,7 +128,7 @@ _none_
 
 
 
-`we_restored : Int`
+<span class="inline-block static">static</span>`we_restored : Int`
 
 <span class="small_desc_flat"> A window is restored </span>   
 
@@ -137,7 +136,7 @@ _none_
 
 
 
-`we_shown : Int`
+<span class="inline-block static">static</span>`we_shown : Int`
 
 <span class="small_desc_flat"> A window is shown </span>   
 
@@ -145,7 +144,7 @@ _none_
 
 
 
-`we_size_changed : Int`
+<span class="inline-block static">static</span>`we_size_changed : Int`
 
 <span class="small_desc_flat"> A window is resized, by the OS or internals. </span>   
 
@@ -153,14 +152,14 @@ _none_
 
 
 
-`we_unknown : Int`
+<span class="inline-block static">static</span>`we_unknown : Int`
 
 <span class="small_desc_flat"> An unknown window event </span>   
 
 &nbsp;   
 
-<a class="lift" name="Methods" ></a>
-###Methods   
+<a class="lift" name="StaticMethods" ></a>
+###StaticMethods   
 ---
 <a class="lift" name="typed" href="#typed">typed</a>
 
@@ -169,6 +168,8 @@ _none_
 `typed(type:Int) : lumen.WindowEventType`
 
 <span class="small_desc_flat"> returns a typed `WindowEventType` from an integer ID, for communication between internal native + haxe code </span>   
+
+&nbsp;   
 
 
 

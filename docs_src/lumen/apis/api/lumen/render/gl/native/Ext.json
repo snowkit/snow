@@ -5,15 +5,15 @@
   "toplinks": [],
   "sections": [
     {
-      "name": "Methods",
-      "link": "#Methods",
+      "name": "StaticMethods",
+      "link": "#StaticMethods",
       "values": [
         {
           "name": "load",
           "meta": [],
-          "public": false,
-          "static": true,
-          "inline": false,
+          "ispublic": false,
+          "isstatic": true,
+          "isinline": false,
           "doc": "",
           "signature": "load(inName:String, inArgCount:Int) : Dynamic",
           "return": ": Dynamic",
@@ -31,9 +31,9 @@
         {
           "name": "drawBuffers",
           "meta": [],
-          "public": true,
-          "static": true,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": true,
+          "isinline": false,
           "doc": "",
           "signature": "drawBuffers(n:Int, buffers:Int) : Void",
           "return": ": Void",
@@ -49,6 +49,11 @@
           ]
         }
       ]
+    },
+    {
+      "name": "Methods",
+      "link": "#Methods",
+      "values": []
     }
   ]
 }

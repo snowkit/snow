@@ -11,9 +11,9 @@
         {
           "name": "ge_removed",
           "meta": [],
-          "public": false,
-          "inline": false,
-          "static": true,
+          "ispublic": false,
+          "isinline": false,
+          "isstatic": true,
           "signature": "ge_removed : Int",
           "type": "Int",
           "doc": ""
@@ -21,9 +21,9 @@
         {
           "name": "ge_remapped",
           "meta": [],
-          "public": false,
-          "inline": false,
-          "static": true,
+          "ispublic": false,
+          "isinline": false,
+          "isstatic": true,
           "signature": "ge_remapped : Int",
           "type": "Int",
           "doc": ""
@@ -31,9 +31,9 @@
         {
           "name": "ge_button_down",
           "meta": [],
-          "public": false,
-          "inline": false,
-          "static": true,
+          "ispublic": false,
+          "isinline": false,
+          "isstatic": true,
           "signature": "ge_button_down : Int",
           "type": "Int",
           "doc": ""
@@ -41,9 +41,9 @@
         {
           "name": "ge_axis",
           "meta": [],
-          "public": false,
-          "inline": false,
-          "static": true,
+          "ispublic": false,
+          "isinline": false,
+          "isstatic": true,
           "signature": "ge_axis : Int",
           "type": "Int",
           "doc": ""
@@ -51,9 +51,9 @@
         {
           "name": "ge_button_up",
           "meta": [],
-          "public": false,
-          "inline": false,
-          "static": true,
+          "ispublic": false,
+          "isinline": false,
+          "isstatic": true,
           "signature": "ge_button_up : Int",
           "type": "Int",
           "doc": ""
@@ -61,9 +61,9 @@
         {
           "name": "ge_added",
           "meta": [],
-          "public": false,
-          "inline": false,
-          "static": true,
+          "ispublic": false,
+          "isinline": false,
+          "isstatic": true,
           "signature": "ge_added : Int",
           "type": "Int",
           "doc": ""
@@ -71,15 +71,15 @@
       ]
     },
     {
-      "name": "Methods",
-      "link": "#Methods",
+      "name": "StaticMethods",
+      "link": "#StaticMethods",
       "values": [
         {
           "name": "typed",
           "meta": [],
-          "public": true,
-          "static": true,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": true,
+          "isinline": false,
           "doc": "",
           "signature": "typed(ge_type:Int) : lumen.input.system.sdl.ControllerEventType",
           "return": ": lumen.input.system.sdl.ControllerEventType",
@@ -91,6 +91,11 @@
           ]
         }
       ]
+    },
+    {
+      "name": "Methods",
+      "link": "#Methods",
+      "values": []
     }
   ]
 }

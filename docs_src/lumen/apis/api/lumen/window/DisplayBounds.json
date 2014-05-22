@@ -1,0 +1,54 @@
+{
+  "source": "lumen.window.DisplayBounds",
+  "doc": "",
+  "links": [],
+  "toplinks": [],
+  "sections": [
+    {
+      "name": "Members",
+      "link": "#Members",
+      "values": [
+        {
+          "name": "height",
+          "meta": [],
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
+          "signature": "height : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "y",
+          "meta": [],
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
+          "signature": "y : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "width",
+          "meta": [],
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
+          "signature": "width : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "x",
+          "meta": [],
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
+          "signature": "x : Int",
+          "type": "Int",
+          "doc": ""
+        }
+      ]
+    }
+  ]
+}

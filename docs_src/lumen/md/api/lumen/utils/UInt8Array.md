@@ -6,8 +6,7 @@
 #UInt8Array
 
 
-&emsp;&emsp;&emsp;home   
-[API Index](../../../api/index.html#lumen.utils)   
+##[API Index](../../../api/index.html#lumen.utils)   
 &emsp;&emsp;&emsp;parent    
 [lumen](../)     
 &emsp;&emsp;&emsp;current    
@@ -30,6 +29,8 @@
 ###Extends   
 ---
 <a class="lift" name="lumen.utils.ArrayBufferView" href="{{{rel_path}}}api/lumen/utils.ArrayBufferView.html">lumen.utils.ArrayBufferView</a>
+
+&nbsp;   
 
 &nbsp;   
 

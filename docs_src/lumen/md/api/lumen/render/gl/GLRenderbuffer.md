@@ -6,8 +6,7 @@
 #GLRenderbuffer
 
 
-&emsp;&emsp;&emsp;home   
-[API Index](../../../../api/index.html#lumen.render)   
+##[API Index](../../../../api/index.html#lumen.render)   
 &emsp;&emsp;&emsp;parent    
 [lumen.render](../)     
 &emsp;&emsp;&emsp;current    
@@ -30,6 +29,8 @@
 ###Extends   
 ---
 <a class="lift" name="lumen.render.gl.GLObject" href="{{{rel_path}}}api/lumen/render.gl.GLObject.html">lumen.render.gl.GLObject</a>
+
+&nbsp;   
 
 &nbsp;   
 

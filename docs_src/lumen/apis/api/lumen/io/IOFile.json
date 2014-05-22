@@ -11,9 +11,9 @@
         {
           "name": "handle",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": false,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
           "signature": "handle : Dynamic",
           "type": "Dynamic",
           "doc": ""
@@ -21,9 +21,9 @@
         {
           "name": "lumen_iosrc_file_tell",
           "meta": [],
-          "public": false,
-          "inline": false,
-          "static": true,
+          "ispublic": false,
+          "isinline": false,
+          "isstatic": true,
           "signature": "lumen_iosrc_file_tell : Dynamic",
           "type": "Dynamic",
           "doc": ""
@@ -31,9 +31,9 @@
         {
           "name": "lumen_iosrc_file_read",
           "meta": [],
-          "public": false,
-          "inline": false,
-          "static": true,
+          "ispublic": false,
+          "isinline": false,
+          "isstatic": true,
           "signature": "lumen_iosrc_file_read : Dynamic",
           "type": "Dynamic",
           "doc": ""
@@ -41,9 +41,9 @@
         {
           "name": "lumen_iosrc_file_close",
           "meta": [],
-          "public": false,
-          "inline": false,
-          "static": true,
+          "ispublic": false,
+          "isinline": false,
+          "isstatic": true,
           "signature": "lumen_iosrc_file_close : Dynamic",
           "type": "Dynamic",
           "doc": ""
@@ -51,9 +51,9 @@
         {
           "name": "lumen_iosrc_file_write",
           "meta": [],
-          "public": false,
-          "inline": false,
-          "static": true,
+          "ispublic": false,
+          "isinline": false,
+          "isstatic": true,
           "signature": "lumen_iosrc_file_write : Dynamic",
           "type": "Dynamic",
           "doc": ""
@@ -61,14 +61,19 @@
         {
           "name": "lumen_iosrc_file_seek",
           "meta": [],
-          "public": false,
-          "inline": false,
-          "static": true,
+          "ispublic": false,
+          "isinline": false,
+          "isstatic": true,
           "signature": "lumen_iosrc_file_seek : Dynamic",
           "type": "Dynamic",
           "doc": ""
         }
       ]
+    },
+    {
+      "name": "StaticMethods",
+      "link": "#StaticMethods",
+      "values": []
     },
     {
       "name": "Methods",
@@ -77,9 +82,9 @@
         {
           "name": "new",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "new(_handle:Dynamic) ",
           "return": "",
@@ -93,9 +98,9 @@
         {
           "name": "write",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "write(src:lumen.utils.ByteArray, size:Int, num:Int) : Dynamic",
           "return": ": Dynamic",
@@ -117,9 +122,9 @@
         {
           "name": "read",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "read(dest:lumen.utils.ByteArray, size:Int, maxnum:Int) : Dynamic",
           "return": ": Dynamic",
@@ -141,9 +146,9 @@
         {
           "name": "close",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "close() : Dynamic",
           "return": ": Dynamic",
@@ -152,9 +157,9 @@
         {
           "name": "seek",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "seek(offset:Int, whence:Int) : Dynamic",
           "return": ": Dynamic",
@@ -172,9 +177,9 @@
         {
           "name": "tell",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "tell() : Dynamic",
           "return": ": Dynamic",

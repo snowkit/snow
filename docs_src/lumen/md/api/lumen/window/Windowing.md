@@ -6,8 +6,7 @@
 #Windowing
 
 
-&emsp;&emsp;&emsp;home   
-[API Index](../../../api/index.html#lumen.window)   
+##[API Index](../../../api/index.html#lumen.window)   
 &emsp;&emsp;&emsp;parent    
 [lumen](../)     
 &emsp;&emsp;&emsp;current    
@@ -55,6 +54,8 @@
 
 &nbsp;   
 
+&nbsp;   
+
 <a class="lift" name="Methods" ></a>
 ###Methods   
 ---
@@ -62,7 +63,7 @@
 
 
 
-`create(_config:lumen.WindowConfig) : lumen.window.Window`
+`create(_config:lumen.types.WindowConfig) : lumen.window.Window`
 
 <span class="small_desc_flat"> no description </span>   
 

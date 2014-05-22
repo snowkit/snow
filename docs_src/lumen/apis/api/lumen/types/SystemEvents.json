@@ -1,5 +1,5 @@
 {
-  "source": "lumen.SystemEvents",
+  "source": "lumen.types.SystemEvents",
   "doc": "",
   "links": [],
   "toplinks": [],
@@ -11,9 +11,9 @@
         {
           "name": "se_update",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "se_update : Int",
           "type": "Int",
           "doc": "An internal system update event"
@@ -21,9 +21,9 @@
         {
           "name": "se_window",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "se_window : Int",
           "type": "Int",
           "doc": "An system window event"
@@ -31,9 +31,9 @@
         {
           "name": "se_app_terminating",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "se_app_terminating : Int",
           "type": "Int",
           "doc": "An system terminating event, called by the OS (mobile specific)"
@@ -41,9 +41,9 @@
         {
           "name": "se_ready",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "se_ready : Int",
           "type": "Int",
           "doc": "An internal system ready event"
@@ -51,9 +51,9 @@
         {
           "name": "se_app_lowmemory",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "se_app_lowmemory : Int",
           "type": "Int",
           "doc": "An system low memory event, clear memory if you can. Called by the OS (mobile specific)"
@@ -61,9 +61,9 @@
         {
           "name": "se_unknown",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "se_unknown : Int",
           "type": "Int",
           "doc": "An unknown system event"
@@ -71,9 +71,9 @@
         {
           "name": "se_input",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "se_input : Int",
           "type": "Int",
           "doc": "An system input event"
@@ -81,9 +81,9 @@
         {
           "name": "se_app_willenterbackground",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "se_app_willenterbackground : Int",
           "type": "Int",
           "doc": "An event for just before the app enters the background, called by the OS (mobile specific)"
@@ -91,9 +91,9 @@
         {
           "name": "se_app_didenterbackground",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "se_app_didenterbackground : Int",
           "type": "Int",
           "doc": "An event for when the app enters the background, called by the OS (mobile specific)"
@@ -101,9 +101,9 @@
         {
           "name": "se_app_willenterforeground",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "se_app_willenterforeground : Int",
           "type": "Int",
           "doc": "An event for just before the app enters the foreground, called by the OS (mobile specific)"
@@ -111,9 +111,9 @@
         {
           "name": "se_app_didenterforeground",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "se_app_didenterforeground : Int",
           "type": "Int",
           "doc": "An event for when the app enters the foreground, called by the OS (mobile specific)"
@@ -121,9 +121,9 @@
         {
           "name": "se_init",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "se_init : Int",
           "type": "Int",
           "doc": "An internal system init event"
@@ -131,9 +131,9 @@
         {
           "name": "se_shutdown",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "se_shutdown : Int",
           "type": "Int",
           "doc": "An system shutdown event"
@@ -141,9 +141,9 @@
         {
           "name": "se_quit",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "se_quit : Int",
           "type": "Int",
           "doc": "An system quit event. Initiated by user, can be cancelled/ignored"
@@ -151,18 +151,18 @@
       ]
     },
     {
-      "name": "Methods",
-      "link": "#Methods",
+      "name": "StaticMethods",
+      "link": "#StaticMethods",
       "values": [
         {
           "name": "typed",
           "meta": [],
-          "public": true,
-          "static": true,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": true,
+          "isinline": false,
           "doc": "returns a typed `SystemEventType` from an integer ID, for communication between internal native + haxe code",
-          "signature": "typed(type:Int) : lumen.SystemEventType",
-          "return": ": lumen.SystemEventType",
+          "signature": "typed(type:Int) : lumen.types.SystemEventType",
+          "return": ": lumen.types.SystemEventType",
           "args": [
             {
               "name": "type",
@@ -171,6 +171,11 @@
           ]
         }
       ]
+    },
+    {
+      "name": "Methods",
+      "link": "#Methods",
+      "values": []
     }
   ]
 }

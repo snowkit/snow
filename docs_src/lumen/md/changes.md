@@ -1,6 +1,48 @@
 &nbsp;   
 <div class="commit_info">
 
+commit [c9833dcd73](http://github.com/underscorediscovery/lumen/commit/c9833dcd73dfc3f8c59a0277995af1e680b16151)   
+author: underscorediscovery   
+date: Thu May 22 2014 05:56:59 GMT-0230 (NDT)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Continued documentation, and moving Types into their own package for clarity</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [357b87069e](http://github.com/underscorediscovery/lumen/commit/357b87069ef772f09d9cf560a009a99fdcc707a1)   
+author: underscorediscovery   
+date: Thu May 22 2014 01:16:52 GMT-0230 (NDT)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>cleaning up rogue tabs</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [3b302df358](http://github.com/underscorediscovery/lumen/commit/3b302df358473637cd48d883623b7ad6334a62c6)   
+author: underscorediscovery   
+date: Thu May 22 2014 01:15:00 GMT-0230 (NDT)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>removing rogue files, private classes don't get output (will make optionable)</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
 commit [366f40d3f2](http://github.com/underscorediscovery/lumen/commit/366f40d3f22ed8f42dacf465acab92f571dd6ed0)   
 author: underscorediscovery   
 date: Thu May 22 2014 00:49:33 GMT-0230 (NDT)   

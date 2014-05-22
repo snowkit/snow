@@ -1,0 +1,174 @@
+{
+  "source": "lumen.input.ModState",
+  "doc": "",
+  "links": [],
+  "toplinks": [],
+  "sections": [
+    {
+      "name": "Members",
+      "link": "#Members",
+      "values": [
+        {
+          "name": "rctrl",
+          "meta": [],
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
+          "signature": "rctrl : Bool",
+          "type": "Bool",
+          "doc": ""
+        },
+        {
+          "name": "lalt",
+          "meta": [],
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
+          "signature": "lalt : Bool",
+          "type": "Bool",
+          "doc": ""
+        },
+        {
+          "name": "rshift",
+          "meta": [],
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
+          "signature": "rshift : Bool",
+          "type": "Bool",
+          "doc": ""
+        },
+        {
+          "name": "mode",
+          "meta": [],
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
+          "signature": "mode : Bool",
+          "type": "Bool",
+          "doc": ""
+        },
+        {
+          "name": "none",
+          "meta": [],
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
+          "signature": "none : Bool",
+          "type": "Bool",
+          "doc": ""
+        },
+        {
+          "name": "alt",
+          "meta": [],
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
+          "signature": "alt : Bool",
+          "type": "Bool",
+          "doc": ""
+        },
+        {
+          "name": "rmeta",
+          "meta": [],
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
+          "signature": "rmeta : Bool",
+          "type": "Bool",
+          "doc": ""
+        },
+        {
+          "name": "lctrl",
+          "meta": [],
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
+          "signature": "lctrl : Bool",
+          "type": "Bool",
+          "doc": ""
+        },
+        {
+          "name": "caps",
+          "meta": [],
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
+          "signature": "caps : Bool",
+          "type": "Bool",
+          "doc": ""
+        },
+        {
+          "name": "lshift",
+          "meta": [],
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
+          "signature": "lshift : Bool",
+          "type": "Bool",
+          "doc": ""
+        },
+        {
+          "name": "ralt",
+          "meta": [],
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
+          "signature": "ralt : Bool",
+          "type": "Bool",
+          "doc": ""
+        },
+        {
+          "name": "ctrl",
+          "meta": [],
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
+          "signature": "ctrl : Bool",
+          "type": "Bool",
+          "doc": ""
+        },
+        {
+          "name": "num",
+          "meta": [],
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
+          "signature": "num : Bool",
+          "type": "Bool",
+          "doc": ""
+        },
+        {
+          "name": "shift",
+          "meta": [],
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
+          "signature": "shift : Bool",
+          "type": "Bool",
+          "doc": ""
+        },
+        {
+          "name": "meta",
+          "meta": [],
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
+          "signature": "meta : Bool",
+          "type": "Bool",
+          "doc": ""
+        },
+        {
+          "name": "lmeta",
+          "meta": [],
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
+          "signature": "lmeta : Bool",
+          "type": "Bool",
+          "doc": ""
+        }
+      ]
+    }
+  ]
+}

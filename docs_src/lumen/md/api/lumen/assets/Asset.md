@@ -5,9 +5,14 @@
 
 #Asset
 
+--- 
 
-&emsp;&emsp;&emsp;home   
-[API Index](../../../api/index.html#lumen.assets)   
+An asset base class
+
+---
+<br/>
+
+##[API Index](../../../api/index.html#lumen.assets)   
 &emsp;&emsp;&emsp;parent    
 [lumen](../)     
 &emsp;&emsp;&emsp;current    
@@ -35,15 +40,17 @@
 
 `id : String`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat"> The id of this asset like `assets/image.png` </span>   
 
 <a class="lift" name="info" href="#info">info</a>
 
 
 
-`info : lumen.AssetInfo`
+`info : lumen.types.AssetInfo`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat"> The `AssetInfo` of this asset </span>   
+
+&nbsp;   
 
 &nbsp;   
 
@@ -54,7 +61,7 @@
 
 
 
-`new(_info:lumen.AssetInfo) `
+`new(_info:lumen.types.AssetInfo) `
 
 <span class="small_desc_flat"> no description </span>   
 

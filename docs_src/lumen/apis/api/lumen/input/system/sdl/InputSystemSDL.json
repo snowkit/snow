@@ -1,6 +1,6 @@
 {
   "source": "lumen.input.system.sdl.InputSystemSDL",
-  "doc": "",
+  "doc": "Internal input system, concrete SDL implementation. Accessed through `lumen.Input`, not directly",
   "links": [],
   "toplinks": [],
   "sections": [
@@ -14,31 +14,52 @@
       ]
     },
     {
+      "name": "Members",
+      "link": "#Members",
+      "values": [
+        {
+          "name": "haxe_doc",
+          "meta": [],
+          "ispublic": false,
+          "isinline": false,
+          "isstatic": false,
+          "signature": "haxe_doc : Dynamic",
+          "type": "Dynamic",
+          "doc": ""
+        }
+      ]
+    },
+    {
+      "name": "StaticMethods",
+      "link": "#StaticMethods",
+      "values": []
+    },
+    {
       "name": "Methods",
       "link": "#Methods",
       "values": [
         {
           "name": "mod_state_from_event",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
-          "doc": "",
-          "signature": "mod_state_from_event(event:lumen.InputEvent) : lumen.input.ModState",
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
+          "doc": "Helper to return a `ModState` (shift, ctrl etc) from a given `InputEvent`",
+          "signature": "mod_state_from_event(event:lumen.types.InputEvent) : lumen.input.ModState",
           "return": ": lumen.input.ModState",
           "args": [
             {
               "name": "event",
-              "type": "lumen.InputEvent"
+              "type": "lumen.types.InputEvent"
             }
           ]
         },
         {
           "name": "new",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "new(_manager:lumen.input.Input, _lib:lumen.Lumen) ",
           "return": "",
@@ -55,10 +76,15 @@
         },
         {
           "name": "update",
-          "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "meta": [
+            {
+              "name": ":noCompletion",
+              "value": ""
+            }
+          ],
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "update() : Void",
           "return": ": Void",
@@ -67,9 +93,9 @@
         {
           "name": "key_state_from_event",
           "meta": [],
-          "public": false,
-          "static": false,
-          "inline": false,
+          "ispublic": false,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "key_state_from_event(type:lumen.input.system.sdl.KeyEventType) : lumen.input.PressedState",
           "return": ": lumen.input.PressedState",
@@ -82,26 +108,36 @@
         },
         {
           "name": "on_event",
-          "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "meta": [
+            {
+              "name": ":noCompletion",
+              "value": ""
+            }
+          ],
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
-          "signature": "on_event(_event:lumen.InputEvent) : Void",
+          "signature": "on_event(_event:lumen.types.InputEvent) : Void",
           "return": ": Void",
           "args": [
             {
               "name": "_event",
-              "type": "lumen.InputEvent"
+              "type": "lumen.types.InputEvent"
             }
           ]
         },
         {
           "name": "destroy",
-          "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "meta": [
+            {
+              "name": ":noCompletion",
+              "value": ""
+            }
+          ],
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "destroy() : Void",
           "return": ": Void",
@@ -110,9 +146,9 @@
         {
           "name": "mouse_button_from_number",
           "meta": [],
-          "public": false,
-          "static": false,
-          "inline": false,
+          "ispublic": false,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "mouse_button_from_number(button:Int) : lumen.input.MouseButton",
           "return": ": lumen.input.MouseButton",
@@ -125,10 +161,15 @@
         },
         {
           "name": "init",
-          "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "meta": [
+            {
+              "name": ":noCompletion",
+              "value": ""
+            }
+          ],
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "init() : Void",
           "return": ": Void",

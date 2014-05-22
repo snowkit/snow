@@ -5,9 +5,14 @@
 
 #AudioSystemOpenAL
 
+--- 
 
-&emsp;&emsp;&emsp;home   
-[API Index](../../../../../api/index.html#lumen.audio)   
+Internal audio system implementation for OpenAL, interact with this system through `lumen.Audio`, not directly
+
+---
+<br/>
+
+##[API Index](../../../../../api/index.html#lumen.audio)   
 &emsp;&emsp;&emsp;parent    
 [lumen.audio.system](../)     
 &emsp;&emsp;&emsp;current    
@@ -30,6 +35,8 @@
 ###Extends   
 ---
 <a class="lift" name="lumen.audio.system.AudioSystem" href="{{{rel_path}}}api/lumen/audio.system.AudioSystem.html">lumen.audio.system.AudioSystem</a>
+
+&nbsp;   
 
 &nbsp;   
 

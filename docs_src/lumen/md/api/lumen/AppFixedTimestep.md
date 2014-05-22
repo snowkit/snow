@@ -14,8 +14,7 @@ Read the App Guide for full info, and for even more information see : http://gaf
 ---
 <br/>
 
-&emsp;&emsp;&emsp;home   
-[API Index](../../api/index.html#lumen)   
+##[API Index](../../api/index.html#lumen)   
 &emsp;&emsp;&emsp;parent    
 _none_   
 &emsp;&emsp;&emsp;current    
@@ -60,6 +59,8 @@ _none_
 `overflow : Float`
 
 <span class="small_desc_flat"> the overflow of the updates. This is used to calculate the alpha time for rendering interpolation, `var alpha_time = overflow / mspf;` </span>   
+
+&nbsp;   
 
 &nbsp;   
 

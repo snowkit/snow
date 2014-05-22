@@ -1,6 +1,6 @@
 {
   "source": "lumen.assets.AssetBytes",
-  "doc": "",
+  "doc": "An asset that contains byte `data` as a `ByteArray`",
   "links": [],
   "toplinks": [],
   "sections": [
@@ -18,16 +18,31 @@
       "link": "#Members",
       "values": [
         {
+          "name": "haxe_doc",
+          "meta": [],
+          "ispublic": false,
+          "isinline": false,
+          "isstatic": false,
+          "signature": "haxe_doc : Dynamic",
+          "type": "Dynamic",
+          "doc": ""
+        },
+        {
           "name": "data",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": false,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
           "signature": "data : lumen.utils.ByteArray",
           "type": "lumen.utils.ByteArray",
-          "doc": ""
+          "doc": "The `ByteArray` this asset contains"
         }
       ]
+    },
+    {
+      "name": "StaticMethods",
+      "link": "#StaticMethods",
+      "values": []
     },
     {
       "name": "Methods",
@@ -36,16 +51,16 @@
         {
           "name": "new",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
-          "signature": "new(_info:lumen.AssetInfo, _data:lumen.utils.ByteArray) ",
+          "signature": "new(_info:lumen.types.AssetInfo, _data:lumen.utils.ByteArray) ",
           "return": "",
           "args": [
             {
               "name": "_info",
-              "type": "lumen.AssetInfo"
+              "type": "lumen.types.AssetInfo"
             },
             {
               "name": "_data",

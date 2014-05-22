@@ -1,0 +1,54 @@
+{
+  "source": "lumen.types.AssetInfo",
+  "doc": "",
+  "links": [],
+  "toplinks": [],
+  "sections": [
+    {
+      "name": "Members",
+      "link": "#Members",
+      "values": [
+        {
+          "name": "path",
+          "meta": [],
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
+          "signature": "path : String",
+          "type": "String",
+          "doc": ""
+        },
+        {
+          "name": "type",
+          "meta": [],
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
+          "signature": "type : String",
+          "type": "String",
+          "doc": ""
+        },
+        {
+          "name": "id",
+          "meta": [],
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
+          "signature": "id : String",
+          "type": "String",
+          "doc": ""
+        },
+        {
+          "name": "ext",
+          "meta": [],
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
+          "signature": "ext : String",
+          "type": "String",
+          "doc": ""
+        }
+      ]
+    }
+  ]
+}

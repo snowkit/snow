@@ -26,4 +26,4 @@ things.
 
 **API docs**
 
-[API reference]({{{rel_path}}}api/api.full.html)
+[API reference]({{{rel_path}}}api/index.html)

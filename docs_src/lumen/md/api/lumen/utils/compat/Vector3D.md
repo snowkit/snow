@@ -6,8 +6,7 @@
 #Vector3D
 
 
-&emsp;&emsp;&emsp;home   
-[API Index](../../../../api/index.html#lumen.utils)   
+##[API Index](../../../../api/index.html#lumen.utils)   
 &emsp;&emsp;&emsp;parent    
 [lumen.utils](../)     
 &emsp;&emsp;&emsp;current    
@@ -106,6 +105,8 @@
 `lengthSquared : Float`
 
 <span class="small_desc_flat"> no description </span>   
+
+&nbsp;   
 
 &nbsp;   
 

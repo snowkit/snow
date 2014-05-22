@@ -20,14 +20,19 @@
         {
           "name": "bytes",
           "meta": [],
-          "public": false,
-          "inline": false,
-          "static": false,
+          "ispublic": false,
+          "isinline": false,
+          "isstatic": false,
           "signature": "bytes : haxe.io.BytesData",
           "type": "haxe.io.BytesData",
           "doc": ""
         }
       ]
+    },
+    {
+      "name": "StaticMethods",
+      "link": "#StaticMethods",
+      "values": []
     },
     {
       "name": "Methods",
@@ -36,9 +41,9 @@
         {
           "name": "getByteBuffer",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "getByteBuffer() : lumen.utils.ByteArray",
           "return": ": lumen.utils.ByteArray",
@@ -47,9 +52,9 @@
         {
           "name": "getLength",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "getLength() : Int",
           "return": ": Int",
@@ -58,9 +63,9 @@
         {
           "name": "new",
           "meta": [],
-          "public": false,
-          "static": false,
-          "inline": false,
+          "ispublic": false,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "new(lengthOrBuffer:Dynamic, ?byteOffset:Int, ?length:Int) ",
           "return": "",
@@ -82,9 +87,9 @@
         {
           "name": "getStart",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "getStart() : Int",
           "return": ": Int",

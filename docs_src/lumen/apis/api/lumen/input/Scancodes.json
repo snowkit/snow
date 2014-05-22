@@ -1,6 +1,6 @@
 {
   "source": "lumen.input.Scancodes",
-  "doc": "",
+  "doc": "The scancode class. The values below come directly from SDL header include files,\nbut they aren't specific to SDL so they are used generically",
   "links": [],
   "toplinks": [],
   "sections": [
@@ -11,9 +11,9 @@
         {
           "name": "KEY_O",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "KEY_O : Int",
           "type": "Int",
           "doc": ""
@@ -21,9 +21,9 @@
         {
           "name": "PERIOD",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "PERIOD : Int",
           "type": "Int",
           "doc": ""
@@ -31,9 +31,9 @@
         {
           "name": "KP_HEXADECIMAL",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "KP_HEXADECIMAL : Int",
           "type": "Int",
           "doc": ""
@@ -41,9 +41,9 @@
         {
           "name": "DECIMALSEPARATOR",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "DECIMALSEPARATOR : Int",
           "type": "Int",
           "doc": ""
@@ -51,9 +51,9 @@
         {
           "name": "F7",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "F7 : Int",
           "type": "Int",
           "doc": ""
@@ -61,9 +61,9 @@
         {
           "name": "WWW",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "WWW : Int",
           "type": "Int",
           "doc": ""
@@ -71,9 +71,9 @@
         {
           "name": "KP_8",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "KP_8 : Int",
           "type": "Int",
           "doc": ""
@@ -81,9 +81,9 @@
         {
           "name": "SLASH",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "SLASH : Int",
           "type": "Int",
           "doc": ""
@@ -91,9 +91,9 @@
         {
           "name": "KEY_T",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "KEY_T : Int",
           "type": "Int",
           "doc": ""
@@ -101,9 +101,9 @@
         {
           "name": "OUT",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "OUT : Int",
           "type": "Int",
           "doc": ""
@@ -111,9 +111,9 @@
         {
           "name": "KP_00",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "KP_00 : Int",
           "type": "Int",
           "doc": ""
@@ -121,29 +121,29 @@
         {
           "name": "KEY_A",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "KEY_A : Int",
           "type": "Int",
-          "doc": "*  \name Usage page 0x07\n     *\n     *  These values are from usage page 0x07 (USB keyboard page)."
+          "doc": ""
         },
         {
           "name": "HOME",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "HOME : Int",
           "type": "Int",
-          "doc": "<![CDATA[< insert on PC, help on some Mac keyboards (but\n                                   does send code 73, not 117)]]>"
+          "doc": ""
         },
         {
           "name": "KP_AT",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "KP_AT : Int",
           "type": "Int",
           "doc": ""
@@ -151,9 +151,9 @@
         {
           "name": "INTERNATIONAL7",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "INTERNATIONAL7 : Int",
           "type": "Int",
           "doc": ""
@@ -161,29 +161,29 @@
         {
           "name": "GRAVE",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "GRAVE : Int",
           "type": "Int",
-          "doc": ""
+          "doc": "Located in the top left corner (on both ANSI\n    and ISO keyboards). Produces GRAVE ACCENT and\n    TILDE in a US Windows layout and in US and UK\n    Mac layouts on ANSI keyboards, GRAVE ACCENT\n    and NOT SIGN in a UK Windows layout, SECTION\n    SIGN and PLUS-MINUS SIGN in US and UK Mac\n    layouts on ISO keyboards, SECTION SIGN and\n    DEGREE SIGN in a Swiss German layout (Mac:\n    only on ISO keyboards); CIRCUMFLEX ACCENT and\n    DEGREE SIGN in a German layout (Mac: only on\n    ISO keyboards), SUPERSCRIPT TWO and TILDE in a\n    French Windows layout, COMMERCIAL AT and\n    NUMBER SIGN in a French Mac layout on ISO\n    keyboards, and LESS-THAN SIGN and GREATER-THAN\n    SIGN in a Swiss German, German, or French Mac\n    layout on ANSI keyboards."
         },
         {
           "name": "LANG3",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "LANG3 : Int",
           "type": "Int",
-          "doc": "<![CDATA[< Hanja conversion]]>"
+          "doc": "Katakana"
         },
         {
           "name": "F20",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "F20 : Int",
           "type": "Int",
           "doc": ""
@@ -191,9 +191,9 @@
         {
           "name": "VOLUMEDOWN",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "VOLUMEDOWN : Int",
           "type": "Int",
           "doc": ""
@@ -201,9 +201,9 @@
         {
           "name": "AC_HOME",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "AC_HOME : Int",
           "type": "Int",
           "doc": ""
@@ -211,9 +211,9 @@
         {
           "name": "KEY_Y",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "KEY_Y : Int",
           "type": "Int",
           "doc": ""
@@ -221,19 +221,19 @@
         {
           "name": "NONUSBACKSLASH",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "NONUSBACKSLASH : Int",
           "type": "Int",
-          "doc": ""
+          "doc": "This is the additional key that ISO\n    keyboards have over ANSI ones,\n    located between left shift and Y.\n    Produces GRAVE ACCENT and TILDE in a\n    US or UK Mac layout, REVERSE SOLIDUS\n    (backslash) and VERTICAL LINE in a\n    US or UK Windows layout, and\n    LESS-THAN SIGN and GREATER-THAN SIGN\n    in a Swiss German, German, or French\n    layout."
         },
         {
           "name": "F6",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "F6 : Int",
           "type": "Int",
           "doc": ""
@@ -241,9 +241,9 @@
         {
           "name": "KP_PLUSMINUS",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "KP_PLUSMINUS : Int",
           "type": "Int",
           "doc": ""
@@ -251,9 +251,9 @@
         {
           "name": "BRIGHTNESSUP",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "BRIGHTNESSUP : Int",
           "type": "Int",
           "doc": ""
@@ -261,19 +261,19 @@
         {
           "name": "ALTERASE",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "ALTERASE : Int",
           "type": "Int",
-          "doc": "<![CDATA[< reserved]]>"
+          "doc": "Erase-Eaze"
         },
         {
           "name": "CRSEL",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "CRSEL : Int",
           "type": "Int",
           "doc": ""
@@ -281,9 +281,9 @@
         {
           "name": "KEY_F",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "KEY_F : Int",
           "type": "Int",
           "doc": ""
@@ -291,9 +291,9 @@
         {
           "name": "PAUSE",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "PAUSE : Int",
           "type": "Int",
           "doc": ""
@@ -301,9 +301,9 @@
         {
           "name": "F15",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "F15 : Int",
           "type": "Int",
           "doc": ""
@@ -311,9 +311,9 @@
         {
           "name": "CUT",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "CUT : Int",
           "type": "Int",
           "doc": ""
@@ -321,19 +321,19 @@
         {
           "name": "POWER",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "POWER : Int",
           "type": "Int",
-          "doc": "<![CDATA[< windows contextual menu, compose]]>"
+          "doc": "The USB document says this is a status flag,\n    not a physical key - but some Mac keyboards\n    do have a power key."
         },
         {
           "name": "KEY_3",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "KEY_3 : Int",
           "type": "Int",
           "doc": ""
@@ -341,9 +341,9 @@
         {
           "name": "KP_3",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "KP_3 : Int",
           "type": "Int",
           "doc": ""
@@ -351,19 +351,19 @@
         {
           "name": "LANG8",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "LANG8 : Int",
           "type": "Int",
-          "doc": "<![CDATA[< reserved]]>"
+          "doc": "reserved"
         },
         {
           "name": "APOSTROPHE",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "APOSTROPHE : Int",
           "type": "Int",
           "doc": ""
@@ -371,19 +371,19 @@
         {
           "name": "INTERNATIONAL2",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "INTERNATIONAL2 : Int",
           "type": "Int",
-          "doc": "<![CDATA[< used on Asian keyboards; see\n                                                        footnotes in USB doc]]>"
+          "doc": ""
         },
         {
           "name": "CURRENCYSUBUNIT",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "CURRENCYSUBUNIT : Int",
           "type": "Int",
           "doc": ""
@@ -391,9 +391,9 @@
         {
           "name": "UNKNOWN",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "UNKNOWN : Int",
           "type": "Int",
           "doc": ""
@@ -401,9 +401,9 @@
         {
           "name": "SEPARATOR",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "SEPARATOR : Int",
           "type": "Int",
           "doc": ""
@@ -411,9 +411,9 @@
         {
           "name": "KP_HASH",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "KP_HASH : Int",
           "type": "Int",
           "doc": ""
@@ -421,9 +421,9 @@
         {
           "name": "KEY_K",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "KEY_K : Int",
           "type": "Int",
           "doc": ""
@@ -431,19 +431,19 @@
         {
           "name": "SEMICOLON",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "SEMICOLON : Int",
           "type": "Int",
-          "doc": "<![CDATA[< ISO USB keyboards actually use this code\n                                  *   instead of 49 for the same key, but all\n                                  *   OSes I've seen treat the two codes\n                                  *   identically. So, as an implementor, unless\n                                  *   your keyboard generates both of those\n                                  *   codes and your OS treats them differently,\n                                  *   you should generate public static var BACKSLASH\n                                  *   instead of this code. As a user, you\n                                  *   should not rely on this code because SDL\n                                  *   will never generate it with most (all?)\n                                  *   keyboards.]]>"
+          "doc": ""
         },
         {
           "name": "F10",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "F10 : Int",
           "type": "Int",
           "doc": ""
@@ -451,9 +451,9 @@
         {
           "name": "KP_COMMA",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "KP_COMMA : Int",
           "type": "Int",
           "doc": ""
@@ -461,19 +461,19 @@
         {
           "name": "AUDIONEXT",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "AUDIONEXT : Int",
           "type": "Int",
-          "doc": "<![CDATA[< I'm not sure if this is really not covered\n                                 *   by any of the above, but since there's a\n                                 *   special KMOD_MODE for it I'm adding it here]]>"
+          "doc": ""
         },
         {
           "name": "KEY_8",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "KEY_8 : Int",
           "type": "Int",
           "doc": ""
@@ -481,9 +481,9 @@
         {
           "name": "SCROLLLOCK",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "SCROLLLOCK : Int",
           "type": "Int",
           "doc": ""
@@ -491,9 +491,9 @@
         {
           "name": "F5",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "F5 : Int",
           "type": "Int",
           "doc": ""
@@ -501,9 +501,9 @@
         {
           "name": "KP_VERTICALBAR",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "KP_VERTICALBAR : Int",
           "type": "Int",
           "doc": ""
@@ -511,9 +511,9 @@
         {
           "name": "ESCAPE",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "ESCAPE : Int",
           "type": "Int",
           "doc": ""
@@ -521,9 +521,9 @@
         {
           "name": "KP_C",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "KP_C : Int",
           "type": "Int",
           "doc": ""
@@ -531,9 +531,9 @@
         {
           "name": "KP_MINUS",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "KP_MINUS : Int",
           "type": "Int",
           "doc": ""
@@ -541,9 +541,9 @@
         {
           "name": "KEY_P",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "KEY_P : Int",
           "type": "Int",
           "doc": ""
@@ -551,9 +551,9 @@
         {
           "name": "PRIOR",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "PRIOR : Int",
           "type": "Int",
           "doc": ""
@@ -561,9 +561,9 @@
         {
           "name": "INTERNATIONAL6",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "INTERNATIONAL6 : Int",
           "type": "Int",
           "doc": ""
@@ -571,9 +571,9 @@
         {
           "name": "DELETE",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "DELETE : Int",
           "type": "Int",
           "doc": ""
@@ -581,9 +581,9 @@
         {
           "name": "COMPUTER",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "COMPUTER : Int",
           "type": "Int",
           "doc": ""
@@ -591,9 +591,9 @@
         {
           "name": "RIGHTBRACKET",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "RIGHTBRACKET : Int",
           "type": "Int",
           "doc": ""
@@ -601,9 +601,9 @@
         {
           "name": "AUDIOSTOP",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "AUDIOSTOP : Int",
           "type": "Int",
           "doc": ""
@@ -611,9 +611,9 @@
         {
           "name": "KP_PERIOD",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "KP_PERIOD : Int",
           "type": "Int",
           "doc": ""
@@ -621,9 +621,9 @@
         {
           "name": "F23",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "F23 : Int",
           "type": "Int",
           "doc": ""
@@ -631,9 +631,9 @@
         {
           "name": "MUTE",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "MUTE : Int",
           "type": "Int",
           "doc": ""
@@ -641,9 +641,9 @@
         {
           "name": "KP_MEMCLEAR",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "KP_MEMCLEAR : Int",
           "type": "Int",
           "doc": ""
@@ -651,9 +651,9 @@
         {
           "name": "KEY_U",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "KEY_U : Int",
           "type": "Int",
           "doc": ""
@@ -661,9 +661,9 @@
         {
           "name": "KP_DBLVERTICALBAR",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "KP_DBLVERTICALBAR : Int",
           "type": "Int",
           "doc": ""
@@ -671,9 +671,9 @@
         {
           "name": "EJECT",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "EJECT : Int",
           "type": "Int",
           "doc": ""
@@ -681,9 +681,9 @@
         {
           "name": "KP_6",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "KP_6 : Int",
           "type": "Int",
           "doc": ""
@@ -691,9 +691,9 @@
         {
           "name": "PAGEDOWN",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "PAGEDOWN : Int",
           "type": "Int",
           "doc": ""
@@ -701,9 +701,9 @@
         {
           "name": "KEY_B",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "KEY_B : Int",
           "type": "Int",
           "doc": ""
@@ -711,9 +711,9 @@
         {
           "name": "F4",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "F4 : Int",
           "type": "Int",
           "doc": ""
@@ -721,9 +721,9 @@
         {
           "name": "F18",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "F18 : Int",
           "type": "Int",
           "doc": ""
@@ -731,39 +731,39 @@
         {
           "name": "LANG4",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "LANG4 : Int",
           "type": "Int",
-          "doc": "<![CDATA[< Katakana]]>"
+          "doc": "Hiragana"
         },
         {
           "name": "INTERNATIONAL1",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "INTERNATIONAL1 : Int",
           "type": "Int",
-          "doc": ""
+          "doc": "used on Asian keyboards; see footnotes in USB doc"
         },
         {
           "name": "NUMLOCKCLEAR",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "NUMLOCKCLEAR : Int",
           "type": "Int",
-          "doc": ""
+          "doc": "num lock on PC, clear on Mac keyboards"
         },
         {
           "name": "KEY_Z",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "KEY_Z : Int",
           "type": "Int",
           "doc": ""
@@ -771,19 +771,19 @@
         {
           "name": "KP_EQUALS",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "KP_EQUALS : Int",
           "type": "Int",
-          "doc": "<![CDATA[< The USB document says this is a status flag,\n                                       *   not a physical key - but some Mac keyboards\n                                       *   do have a power key.]]>"
+          "doc": ""
         },
         {
           "name": "KP_MEMMULTIPLY",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "KP_MEMMULTIPLY : Int",
           "type": "Int",
           "doc": ""
@@ -791,9 +791,9 @@
         {
           "name": "KEY_G",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "KEY_G : Int",
           "type": "Int",
           "doc": ""
@@ -801,9 +801,9 @@
         {
           "name": "EQUALS",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "EQUALS : Int",
           "type": "Int",
           "doc": ""
@@ -811,9 +811,9 @@
         {
           "name": "MAIL",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "MAIL : Int",
           "type": "Int",
           "doc": ""
@@ -821,9 +821,9 @@
         {
           "name": "KEY_4",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "KEY_4 : Int",
           "type": "Int",
           "doc": ""
@@ -831,9 +831,9 @@
         {
           "name": "F13",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "F13 : Int",
           "type": "Int",
           "doc": ""
@@ -841,9 +841,9 @@
         {
           "name": "KP_RIGHTPAREN",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "KP_RIGHTPAREN : Int",
           "type": "Int",
           "doc": ""
@@ -851,9 +851,9 @@
         {
           "name": "KP_F",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "KP_F : Int",
           "type": "Int",
           "doc": ""
@@ -861,19 +861,19 @@
         {
           "name": "LANG9",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "LANG9 : Int",
           "type": "Int",
-          "doc": "<![CDATA[< reserved]]>"
+          "doc": "reserved"
         },
         {
           "name": "CURRENCYUNIT",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "CURRENCYUNIT : Int",
           "type": "Int",
           "doc": ""
@@ -881,9 +881,9 @@
         {
           "name": "MENU",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "MENU : Int",
           "type": "Int",
           "doc": ""
@@ -891,9 +891,9 @@
         {
           "name": "AC_BOOKMARKS",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "AC_BOOKMARKS : Int",
           "type": "Int",
           "doc": ""
@@ -901,9 +901,9 @@
         {
           "name": "F3",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "F3 : Int",
           "type": "Int",
           "doc": ""
@@ -911,9 +911,9 @@
         {
           "name": "CANCEL",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "CANCEL : Int",
           "type": "Int",
           "doc": ""
@@ -921,9 +921,9 @@
         {
           "name": "KP_1",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "KP_1 : Int",
           "type": "Int",
           "doc": ""
@@ -931,9 +931,9 @@
         {
           "name": "KEY_L",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "KEY_L : Int",
           "type": "Int",
           "doc": ""
@@ -941,9 +941,9 @@
         {
           "name": "DOWN",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "DOWN : Int",
           "type": "Int",
           "doc": ""
@@ -951,9 +951,9 @@
         {
           "name": "KEY_9",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "KEY_9 : Int",
           "type": "Int",
           "doc": ""
@@ -961,9 +961,9 @@
         {
           "name": "INTERNATIONAL5",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "INTERNATIONAL5 : Int",
           "type": "Int",
           "doc": ""
@@ -971,19 +971,19 @@
         {
           "name": "UNDO",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "UNDO : Int",
           "type": "Int",
-          "doc": "<![CDATA[< redo]]>"
+          "doc": ""
         },
         {
           "name": "KP_MEMSTORE",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "KP_MEMSTORE : Int",
           "type": "Int",
           "doc": ""
@@ -991,9 +991,9 @@
         {
           "name": "AUDIOPLAY",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "AUDIOPLAY : Int",
           "type": "Int",
           "doc": ""
@@ -1001,9 +1001,9 @@
         {
           "name": "CALCULATOR",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "CALCULATOR : Int",
           "type": "Int",
           "doc": ""
@@ -1011,9 +1011,9 @@
         {
           "name": "KP_9",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "KP_9 : Int",
           "type": "Int",
           "doc": ""
@@ -1021,9 +1021,9 @@
         {
           "name": "KP_TAB",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "KP_TAB : Int",
           "type": "Int",
           "doc": ""
@@ -1031,9 +1031,9 @@
         {
           "name": "SELECT",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "SELECT : Int",
           "type": "Int",
           "doc": ""
@@ -1041,9 +1041,9 @@
         {
           "name": "THOUSANDSSEPARATOR",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "THOUSANDSSEPARATOR : Int",
           "type": "Int",
           "doc": ""
@@ -1051,19 +1051,19 @@
         {
           "name": "RMETA",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "RMETA : Int",
           "type": "Int",
-          "doc": "<![CDATA[< alt gr, option]]>"
+          "doc": "windows, command (apple), meta"
         },
         {
           "name": "KP_000",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "KP_000 : Int",
           "type": "Int",
           "doc": ""
@@ -1071,9 +1071,9 @@
         {
           "name": "KEY_Q",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "KEY_Q : Int",
           "type": "Int",
           "doc": ""
@@ -1081,9 +1081,9 @@
         {
           "name": "MINUS",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "MINUS : Int",
           "type": "Int",
           "doc": ""
@@ -1091,9 +1091,9 @@
         {
           "name": "AC_FORWARD",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "AC_FORWARD : Int",
           "type": "Int",
           "doc": ""
@@ -1101,9 +1101,9 @@
         {
           "name": "KP_A",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "KP_A : Int",
           "type": "Int",
           "doc": ""
@@ -1111,19 +1111,19 @@
         {
           "name": "LMETA",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "LMETA : Int",
           "type": "Int",
-          "doc": "<![CDATA[< alt, option]]>"
+          "doc": "windows, command (apple), meta"
         },
         {
           "name": "F2",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "F2 : Int",
           "type": "Int",
           "doc": ""
@@ -1131,9 +1131,9 @@
         {
           "name": "EXECUTE",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "EXECUTE : Int",
           "type": "Int",
           "doc": ""
@@ -1141,9 +1141,9 @@
         {
           "name": "KEY_V",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "KEY_V : Int",
           "type": "Int",
           "doc": ""
@@ -1151,9 +1151,9 @@
         {
           "name": "KP_ENTER",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "KP_ENTER : Int",
           "type": "Int",
           "doc": ""
@@ -1161,9 +1161,9 @@
         {
           "name": "F21",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "F21 : Int",
           "type": "Int",
           "doc": ""
@@ -1171,9 +1171,9 @@
         {
           "name": "AC_SEARCH",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "AC_SEARCH : Int",
           "type": "Int",
           "doc": ""
@@ -1181,9 +1181,9 @@
         {
           "name": "AC_BACK",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "AC_BACK : Int",
           "type": "Int",
           "doc": ""
@@ -1191,9 +1191,9 @@
         {
           "name": "KEY_C",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "KEY_C : Int",
           "type": "Int",
           "doc": ""
@@ -1201,9 +1201,9 @@
         {
           "name": "END",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "END : Int",
           "type": "Int",
           "doc": ""
@@ -1211,9 +1211,9 @@
         {
           "name": "AC_STOP",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "AC_STOP : Int",
           "type": "Int",
           "doc": ""
@@ -1221,9 +1221,9 @@
         {
           "name": "AC_REFRESH",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "AC_REFRESH : Int",
           "type": "Int",
           "doc": ""
@@ -1231,9 +1231,9 @@
         {
           "name": "KEY_0",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "KEY_0 : Int",
           "type": "Int",
           "doc": ""
@@ -1241,9 +1241,9 @@
         {
           "name": "MEDIASELECT",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "MEDIASELECT : Int",
           "type": "Int",
           "doc": ""
@@ -1251,9 +1251,9 @@
         {
           "name": "F16",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "F16 : Int",
           "type": "Int",
           "doc": ""
@@ -1261,9 +1261,9 @@
         {
           "name": "VOLUMEUP",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "VOLUMEUP : Int",
           "type": "Int",
           "doc": ""
@@ -1271,19 +1271,19 @@
         {
           "name": "LANG5",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "LANG5 : Int",
           "type": "Int",
-          "doc": "<![CDATA[< Hiragana]]>"
+          "doc": "Zenkaku/Hankaku"
         },
         {
           "name": "KP_4",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "KP_4 : Int",
           "type": "Int",
           "doc": ""
@@ -1291,9 +1291,9 @@
         {
           "name": "KP_CLEAR",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "KP_CLEAR : Int",
           "type": "Int",
           "doc": ""
@@ -1301,39 +1301,39 @@
         {
           "name": "RALT",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "RALT : Int",
           "type": "Int",
-          "doc": ""
+          "doc": "alt gr, option"
         },
         {
           "name": "KBDILLUMTOGGLE",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "KBDILLUMTOGGLE : Int",
-          "type": "Int",
-          "doc": "<![CDATA[< display mirroring/dual display\n                                           switch, video mode switch]]>"
-        },
-        {
-          "name": "DISPLAYSWITCH",
-          "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
-          "signature": "DISPLAYSWITCH : Int",
           "type": "Int",
           "doc": ""
         },
         {
+          "name": "DISPLAYSWITCH",
+          "meta": [],
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
+          "signature": "DISPLAYSWITCH : Int",
+          "type": "Int",
+          "doc": "display mirroring/dual display switch, video mode switch"
+        },
+        {
           "name": "F1",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "F1 : Int",
           "type": "Int",
           "doc": ""
@@ -1341,9 +1341,9 @@
         {
           "name": "KEY_H",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "KEY_H : Int",
           "type": "Int",
           "doc": ""
@@ -1351,19 +1351,19 @@
         {
           "name": "LALT",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "LALT : Int",
           "type": "Int",
-          "doc": ""
+          "doc": "alt, option"
         },
         {
           "name": "STOP",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "STOP : Int",
           "type": "Int",
           "doc": ""
@@ -1371,9 +1371,9 @@
         {
           "name": "KEY_5",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "KEY_5 : Int",
           "type": "Int",
           "doc": ""
@@ -1381,19 +1381,19 @@
         {
           "name": "MODE",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "MODE : Int",
           "type": "Int",
-          "doc": "<![CDATA[< windows, command (apple), meta]]>"
+          "doc": "Not sure if this is really not covered\n    by any of the above, but since there's a\n    special KMOD_MODE for it I'm adding it here"
         },
         {
           "name": "AUDIOPREV",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "AUDIOPREV : Int",
           "type": "Int",
           "doc": ""
@@ -1401,9 +1401,9 @@
         {
           "name": "CAPSLOCK",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "CAPSLOCK : Int",
           "type": "Int",
           "doc": ""
@@ -1411,19 +1411,19 @@
         {
           "name": "INSERT",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "INSERT : Int",
           "type": "Int",
-          "doc": ""
+          "doc": "insert on PC, help on some Mac keyboards (but does send code 73, not 117)"
         },
         {
           "name": "KP_OCTAL",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "KP_OCTAL : Int",
           "type": "Int",
           "doc": ""
@@ -1431,9 +1431,9 @@
         {
           "name": "F11",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "F11 : Int",
           "type": "Int",
           "doc": ""
@@ -1441,9 +1441,9 @@
         {
           "name": "KP_D",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "KP_D : Int",
           "type": "Int",
           "doc": ""
@@ -1451,9 +1451,9 @@
         {
           "name": "KEY_M",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "KEY_M : Int",
           "type": "Int",
           "doc": ""
@@ -1461,9 +1461,9 @@
         {
           "name": "APP1",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "APP1 : Int",
           "type": "Int",
           "doc": ""
@@ -1471,9 +1471,9 @@
         {
           "name": "FIND",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "FIND : Int",
           "type": "Int",
           "doc": ""
@@ -1481,9 +1481,9 @@
         {
           "name": "EXSEL",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "EXSEL : Int",
           "type": "Int",
           "doc": ""
@@ -1491,9 +1491,9 @@
         {
           "name": "KP_EQUALSAS400",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "KP_EQUALSAS400 : Int",
           "type": "Int",
           "doc": ""
@@ -1501,9 +1501,9 @@
         {
           "name": "KEY_R",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "KEY_R : Int",
           "type": "Int",
           "doc": ""
@@ -1511,9 +1511,9 @@
         {
           "name": "CLEARAGAIN",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "CLEARAGAIN : Int",
           "type": "Int",
           "doc": ""
@@ -1521,19 +1521,19 @@
         {
           "name": "RCTRL",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "RCTRL : Int",
           "type": "Int",
-          "doc": "<![CDATA[< windows, command (apple), meta]]>"
+          "doc": ""
         },
         {
           "name": "F24",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "F24 : Int",
           "type": "Int",
           "doc": ""
@@ -1541,9 +1541,9 @@
         {
           "name": "KP_7",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "KP_7 : Int",
           "type": "Int",
           "doc": ""
@@ -1551,9 +1551,9 @@
         {
           "name": "KP_XOR",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "KP_XOR : Int",
           "type": "Int",
           "doc": ""
@@ -1561,9 +1561,9 @@
         {
           "name": "PAGEUP",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "PAGEUP : Int",
           "type": "Int",
           "doc": ""
@@ -1571,9 +1571,9 @@
         {
           "name": "BACKSPACE",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "BACKSPACE : Int",
           "type": "Int",
           "doc": ""
@@ -1581,19 +1581,19 @@
         {
           "name": "LANG1",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "LANG1 : Int",
           "type": "Int",
-          "doc": ""
+          "doc": "Hangul/English toggle"
         },
         {
           "name": "LCTRL",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "LCTRL : Int",
           "type": "Int",
           "doc": ""
@@ -1601,9 +1601,9 @@
         {
           "name": "F19",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "F19 : Int",
           "type": "Int",
           "doc": ""
@@ -1611,9 +1611,9 @@
         {
           "name": "RETURN2",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "RETURN2 : Int",
           "type": "Int",
           "doc": ""
@@ -1621,9 +1621,9 @@
         {
           "name": "KP_MEMSUBTRACT",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "KP_MEMSUBTRACT : Int",
           "type": "Int",
           "doc": ""
@@ -1631,9 +1631,9 @@
         {
           "name": "KP_PLUS",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "KP_PLUS : Int",
           "type": "Int",
           "doc": ""
@@ -1641,9 +1641,9 @@
         {
           "name": "KP_SPACE",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "KP_SPACE : Int",
           "type": "Int",
           "doc": ""
@@ -1651,9 +1651,9 @@
         {
           "name": "KEY_W",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "KEY_W : Int",
           "type": "Int",
           "doc": ""
@@ -1661,9 +1661,9 @@
         {
           "name": "KP_MULTIPLY",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "KP_MULTIPLY : Int",
           "type": "Int",
           "doc": ""
@@ -1671,9 +1671,9 @@
         {
           "name": "KEY_D",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "KEY_D : Int",
           "type": "Int",
           "doc": ""
@@ -1681,9 +1681,9 @@
         {
           "name": "HELP",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "HELP : Int",
           "type": "Int",
           "doc": ""
@@ -1691,9 +1691,9 @@
         {
           "name": "KEY_1",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "KEY_1 : Int",
           "type": "Int",
           "doc": ""
@@ -1701,9 +1701,9 @@
         {
           "name": "KP_DECIMAL",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "KP_DECIMAL : Int",
           "type": "Int",
           "doc": ""
@@ -1711,29 +1711,29 @@
         {
           "name": "APPLICATION",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "APPLICATION : Int",
           "type": "Int",
-          "doc": "<![CDATA[< This is the additional key that ISO\n                                        *   keyboards have over ANSI ones,\n                                        *   located between left shift and Y.\n                                        *   Produces GRAVE ACCENT and TILDE in a\n                                        *   US or UK Mac layout, REVERSE SOLIDUS\n                                        *   (backslash) and VERTICAL LINE in a\n                                        *   US or UK Windows layout, and\n                                        *   LESS-THAN SIGN and GREATER-THAN SIGN\n                                        *   in a Swiss German, German, or French\n                                        *   layout.]]>"
+          "doc": "windows contextual menu, compose"
         },
         {
           "name": "LANG6",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "LANG6 : Int",
           "type": "Int",
-          "doc": "<![CDATA[< Zenkaku/Hankaku]]>"
+          "doc": "reserved"
         },
         {
           "name": "PASTE",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "PASTE : Int",
           "type": "Int",
           "doc": ""
@@ -1741,9 +1741,9 @@
         {
           "name": "KP_LESS",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "KP_LESS : Int",
           "type": "Int",
           "doc": ""
@@ -1751,9 +1751,9 @@
         {
           "name": "KP_CLEARENTRY",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "KP_CLEARENTRY : Int",
           "type": "Int",
           "doc": ""
@@ -1761,9 +1761,9 @@
         {
           "name": "KP_LEFTBRACE",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "KP_LEFTBRACE : Int",
           "type": "Int",
           "doc": ""
@@ -1771,9 +1771,9 @@
         {
           "name": "KBDILLUMDOWN",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "KBDILLUMDOWN : Int",
           "type": "Int",
           "doc": ""
@@ -1781,9 +1781,9 @@
         {
           "name": "F14",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "F14 : Int",
           "type": "Int",
           "doc": ""
@@ -1791,9 +1791,9 @@
         {
           "name": "KEY_I",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "KEY_I : Int",
           "type": "Int",
           "doc": ""
@@ -1801,9 +1801,9 @@
         {
           "name": "TAB",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "TAB : Int",
           "type": "Int",
           "doc": ""
@@ -1811,9 +1811,9 @@
         {
           "name": "KP_2",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "KP_2 : Int",
           "type": "Int",
           "doc": ""
@@ -1821,9 +1821,9 @@
         {
           "name": "KEY_6",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "KEY_6 : Int",
           "type": "Int",
           "doc": ""
@@ -1831,19 +1831,19 @@
         {
           "name": "COMMA",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "COMMA : Int",
           "type": "Int",
-          "doc": "<![CDATA[< Located in the top left corner (on both ANSI\n                                  *   and ISO keyboards). Produces GRAVE ACCENT and\n                                  *   TILDE in a US Windows layout and in US and UK\n                                  *   Mac layouts on ANSI keyboards, GRAVE ACCENT\n                                  *   and NOT SIGN in a UK Windows layout, SECTION\n                                  *   SIGN and PLUS-MINUS SIGN in US and UK Mac\n                                  *   layouts on ISO keyboards, SECTION SIGN and\n                                  *   DEGREE SIGN in a Swiss German layout (Mac:\n                                  *   only on ISO keyboards); CIRCUMFLEX ACCENT and\n                                  *   DEGREE SIGN in a German layout (Mac: only on\n                                  *   ISO keyboards), SUPERSCRIPT TWO and TILDE in a\n                                  *   French Windows layout, COMMERCIAL AT and\n                                  *   NUMBER SIGN in a French Mac layout on ISO\n                                  *   keyboards, and LESS-THAN SIGN and GREATER-THAN\n                                  *   SIGN in a Swiss German, German, or French Mac\n                                  *   layout on ANSI keyboards.]]>"
+          "doc": ""
         },
         {
           "name": "INTERNATIONAL9",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "INTERNATIONAL9 : Int",
           "type": "Int",
           "doc": ""
@@ -1851,9 +1851,9 @@
         {
           "name": "OPER",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "OPER : Int",
           "type": "Int",
           "doc": ""
@@ -1861,9 +1861,9 @@
         {
           "name": "PRINTSCREEN",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "PRINTSCREEN : Int",
           "type": "Int",
           "doc": ""
@@ -1871,9 +1871,9 @@
         {
           "name": "KP_MEMDIVIDE",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "KP_MEMDIVIDE : Int",
           "type": "Int",
           "doc": ""
@@ -1881,9 +1881,9 @@
         {
           "name": "KEY_N",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "KEY_N : Int",
           "type": "Int",
           "doc": ""
@@ -1891,29 +1891,39 @@
         {
           "name": "NONUSHASH",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "NONUSHASH : Int",
           "type": "Int",
-          "doc": "<![CDATA[< Located at the lower left of the return\n                                  *   key on ISO keyboards and at the right end\n                                  *   of the QWERTY row on ANSI keyboards.\n                                  *   Produces REVERSE SOLIDUS (backslash) and\n                                  *   VERTICAL LINE in a US layout, REVERSE\n                                  *   SOLIDUS and VERTICAL LINE in a UK Mac\n                                  *   layout, NUMBER SIGN and TILDE in a UK\n                                  *   Windows layout, DOLLAR SIGN and POUND SIGN\n                                  *   in a Swiss German layout, NUMBER SIGN and\n                                  *   APOSTROPHE in a German layout, GRAVE\n                                  *   ACCENT and POUND SIGN in a French Mac\n                                  *   layout, and ASTERISK and MICRO SIGN in a\n                                  *   French Windows layout.]]>"
+          "doc": "ISO USB keyboards actually use this code\n    instead of 49 for the same key, but all\n    OSes I've seen treat the two codes\n    identically. So, as an implementor, unless\n    your keyboard generates both of those\n    codes and your OS treats them differently,\n    you should generate public static var BACKSLASH\n    instead of this code. As a user, you\n    should not rely on this code because SDL\n    will never generate it with most (all?)\n    keyboards."
+        },
+        {
+          "name": "haxe_doc",
+          "meta": [],
+          "ispublic": false,
+          "isinline": false,
+          "isstatic": false,
+          "signature": "haxe_doc : Dynamic",
+          "type": "Dynamic",
+          "doc": ""
         },
         {
           "name": "KP_DIVIDE",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "KP_DIVIDE : Int",
           "type": "Int",
-          "doc": "<![CDATA[< num lock on PC, clear on Mac keyboards]]>"
+          "doc": ""
         },
         {
           "name": "KP_BACKSPACE",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "KP_BACKSPACE : Int",
           "type": "Int",
           "doc": ""
@@ -1921,9 +1931,9 @@
         {
           "name": "AUDIOMUTE",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "AUDIOMUTE : Int",
           "type": "Int",
           "doc": ""
@@ -1931,9 +1941,9 @@
         {
           "name": "KP_POWER",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "KP_POWER : Int",
           "type": "Int",
           "doc": ""
@@ -1941,9 +1951,9 @@
         {
           "name": "KP_PERCENT",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "KP_PERCENT : Int",
           "type": "Int",
           "doc": ""
@@ -1951,9 +1961,9 @@
         {
           "name": "RETURN",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "RETURN : Int",
           "type": "Int",
           "doc": ""
@@ -1961,9 +1971,9 @@
         {
           "name": "KP_B",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "KP_B : Int",
           "type": "Int",
           "doc": ""
@@ -1971,9 +1981,9 @@
         {
           "name": "RSHIFT",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "RSHIFT : Int",
           "type": "Int",
           "doc": ""
@@ -1981,29 +1991,29 @@
         {
           "name": "SYSREQ",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "SYSREQ : Int",
           "type": "Int",
-          "doc": "<![CDATA[< Erase-Eaze]]>"
+          "doc": ""
         },
         {
           "name": "INTERNATIONAL4",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "INTERNATIONAL4 : Int",
           "type": "Int",
-          "doc": "<![CDATA[< Yen]]>"
+          "doc": ""
         },
         {
           "name": "KP_MEMADD",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "KP_MEMADD : Int",
           "type": "Int",
           "doc": ""
@@ -2011,9 +2021,9 @@
         {
           "name": "UP",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "UP : Int",
           "type": "Int",
           "doc": ""
@@ -2021,9 +2031,9 @@
         {
           "name": "KEY_S",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "KEY_S : Int",
           "type": "Int",
           "doc": ""
@@ -2031,9 +2041,9 @@
         {
           "name": "COPY",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "COPY : Int",
           "type": "Int",
           "doc": ""
@@ -2041,9 +2051,9 @@
         {
           "name": "LSHIFT",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "LSHIFT : Int",
           "type": "Int",
           "doc": ""
@@ -2051,9 +2061,9 @@
         {
           "name": "F9",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "F9 : Int",
           "type": "Int",
           "doc": ""
@@ -2061,9 +2071,9 @@
         {
           "name": "KP_RIGHTBRACE",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "KP_RIGHTBRACE : Int",
           "type": "Int",
           "doc": ""
@@ -2071,9 +2081,9 @@
         {
           "name": "KP_LEFTPAREN",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "KP_LEFTPAREN : Int",
           "type": "Int",
           "doc": ""
@@ -2081,9 +2091,9 @@
         {
           "name": "F22",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "F22 : Int",
           "type": "Int",
           "doc": ""
@@ -2091,9 +2101,9 @@
         {
           "name": "KP_EXCLAM",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "KP_EXCLAM : Int",
           "type": "Int",
           "doc": ""
@@ -2101,9 +2111,9 @@
         {
           "name": "LEFTBRACKET",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "LEFTBRACKET : Int",
           "type": "Int",
           "doc": ""
@@ -2111,9 +2121,9 @@
         {
           "name": "LEFT",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "LEFT : Int",
           "type": "Int",
           "doc": ""
@@ -2121,9 +2131,9 @@
         {
           "name": "KP_AMPERSAND",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "KP_AMPERSAND : Int",
           "type": "Int",
           "doc": ""
@@ -2131,9 +2141,9 @@
         {
           "name": "KP_DBLAMPERSAND",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "KP_DBLAMPERSAND : Int",
           "type": "Int",
           "doc": ""
@@ -2141,19 +2151,19 @@
         {
           "name": "LANG2",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "LANG2 : Int",
           "type": "Int",
-          "doc": "<![CDATA[< Hangul/English toggle]]>"
+          "doc": "Hanja conversion"
         },
         {
           "name": "KP_5",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "KP_5 : Int",
           "type": "Int",
           "doc": ""
@@ -2161,9 +2171,9 @@
         {
           "name": "KBDILLUMUP",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "KBDILLUMUP : Int",
           "type": "Int",
           "doc": ""
@@ -2171,9 +2181,9 @@
         {
           "name": "KEY_X",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "KEY_X : Int",
           "type": "Int",
           "doc": ""
@@ -2181,9 +2191,9 @@
         {
           "name": "F17",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "F17 : Int",
           "type": "Int",
           "doc": ""
@@ -2191,9 +2201,9 @@
         {
           "name": "KEY_E",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "KEY_E : Int",
           "type": "Int",
           "doc": ""
@@ -2201,19 +2211,19 @@
         {
           "name": "BRIGHTNESSDOWN",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "BRIGHTNESSDOWN : Int",
           "type": "Int",
-          "doc": "*  \name Walther keys\n     *\n     *  These are values that Christian Walther added (for mac keyboard?)."
+          "doc": ""
         },
         {
           "name": "KEY_2",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "KEY_2 : Int",
           "type": "Int",
           "doc": ""
@@ -2221,19 +2231,19 @@
         {
           "name": "BACKSLASH",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "BACKSLASH : Int",
           "type": "Int",
-          "doc": ""
+          "doc": "Located at the lower left of the return\n    key on ISO keyboards and at the right end\n    of the QWERTY row on ANSI keyboards.\n    Produces REVERSE SOLIDUS (backslash) and\n    VERTICAL LINE in a US layout, REVERSE\n    SOLIDUS and VERTICAL LINE in a UK Mac\n    layout, NUMBER SIGN and TILDE in a UK\n    Windows layout, DOLLAR SIGN and POUND SIGN\n    in a Swiss German layout, NUMBER SIGN and\n    APOSTROPHE in a German layout, GRAVE\n    ACCENT and POUND SIGN in a French Mac\n    layout, and ASTERISK and MICRO SIGN in a\n    French Windows layout."
         },
         {
           "name": "INTERNATIONAL8",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "INTERNATIONAL8 : Int",
           "type": "Int",
           "doc": ""
@@ -2241,19 +2251,19 @@
         {
           "name": "LANG7",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "LANG7 : Int",
           "type": "Int",
-          "doc": "<![CDATA[< reserved]]>"
+          "doc": "reserved"
         },
         {
           "name": "CLEAR",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "CLEAR : Int",
           "type": "Int",
           "doc": ""
@@ -2261,9 +2271,9 @@
         {
           "name": "KP_GREATER",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "KP_GREATER : Int",
           "type": "Int",
           "doc": ""
@@ -2271,9 +2281,9 @@
         {
           "name": "F8",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "F8 : Int",
           "type": "Int",
           "doc": ""
@@ -2281,9 +2291,9 @@
         {
           "name": "KP_MEMRECALL",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "KP_MEMRECALL : Int",
           "type": "Int",
           "doc": ""
@@ -2291,9 +2301,9 @@
         {
           "name": "F12",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "F12 : Int",
           "type": "Int",
           "doc": ""
@@ -2301,9 +2311,9 @@
         {
           "name": "SLEEP",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "SLEEP : Int",
           "type": "Int",
           "doc": ""
@@ -2311,9 +2321,9 @@
         {
           "name": "KEY_J",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "KEY_J : Int",
           "type": "Int",
           "doc": ""
@@ -2321,9 +2331,9 @@
         {
           "name": "KP_E",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "KP_E : Int",
           "type": "Int",
           "doc": ""
@@ -2331,9 +2341,9 @@
         {
           "name": "RIGHT",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "RIGHT : Int",
           "type": "Int",
           "doc": ""
@@ -2341,9 +2351,9 @@
         {
           "name": "KEY_7",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "KEY_7 : Int",
           "type": "Int",
           "doc": ""
@@ -2351,9 +2361,9 @@
         {
           "name": "KP_COLON",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "KP_COLON : Int",
           "type": "Int",
           "doc": ""
@@ -2361,9 +2371,9 @@
         {
           "name": "APP2",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "APP2 : Int",
           "type": "Int",
           "doc": ""
@@ -2371,19 +2381,19 @@
         {
           "name": "INTERNATIONAL3",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "INTERNATIONAL3 : Int",
           "type": "Int",
-          "doc": ""
+          "doc": "Yen"
         },
         {
           "name": "KP_BINARY",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "KP_BINARY : Int",
           "type": "Int",
           "doc": ""
@@ -2391,9 +2401,9 @@
         {
           "name": "SPACE",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "SPACE : Int",
           "type": "Int",
           "doc": ""
@@ -2401,9 +2411,9 @@
         {
           "name": "KP_0",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "KP_0 : Int",
           "type": "Int",
           "doc": ""
@@ -2411,12 +2421,12 @@
         {
           "name": "AGAIN",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "AGAIN : Int",
           "type": "Int",
-          "doc": ""
+          "doc": "redo"
         }
       ]
     }

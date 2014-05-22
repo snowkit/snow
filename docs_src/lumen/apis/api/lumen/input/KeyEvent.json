@@ -1,0 +1,94 @@
+{
+  "source": "lumen.input.KeyEvent",
+  "doc": "",
+  "links": [],
+  "toplinks": [],
+  "sections": [
+    {
+      "name": "Members",
+      "link": "#Members",
+      "values": [
+        {
+          "name": "keycode",
+          "meta": [],
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
+          "signature": "keycode : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "scancode",
+          "meta": [],
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
+          "signature": "scancode : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "raw",
+          "meta": [],
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
+          "signature": "raw : lumen.types.InputEvent",
+          "type": "lumen.types.InputEvent",
+          "doc": ""
+        },
+        {
+          "name": "repeat",
+          "meta": [],
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
+          "signature": "repeat : Bool",
+          "type": "Bool",
+          "doc": ""
+        },
+        {
+          "name": "timestamp",
+          "meta": [],
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
+          "signature": "timestamp : Float",
+          "type": "Float",
+          "doc": ""
+        },
+        {
+          "name": "window_id",
+          "meta": [],
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
+          "signature": "window_id : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "state",
+          "meta": [],
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
+          "signature": "state : lumen.input.PressedState",
+          "type": "lumen.input.PressedState",
+          "doc": ""
+        },
+        {
+          "name": "mod",
+          "meta": [],
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
+          "signature": "mod : lumen.input.ModState",
+          "type": "lumen.input.ModState",
+          "doc": ""
+        }
+      ]
+    }
+  ]
+}

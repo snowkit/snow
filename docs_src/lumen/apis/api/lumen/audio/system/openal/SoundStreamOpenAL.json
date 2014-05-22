@@ -1,6 +1,6 @@
 {
   "source": "lumen.audio.system.openal.SoundStreamOpenAL",
-  "doc": "",
+  "doc": "The openal specific implementation of SoundStream",
   "links": [],
   "toplinks": [],
   "sections": [
@@ -20,9 +20,9 @@
         {
           "name": "half_pi",
           "meta": [],
-          "public": false,
-          "inline": false,
-          "static": true,
+          "ispublic": false,
+          "isinline": false,
+          "isstatic": true,
           "signature": "half_pi : Float",
           "type": "Float",
           "doc": ""
@@ -30,64 +30,89 @@
         {
           "name": "source",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": false,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
           "signature": "source : Int",
           "type": "Int",
-          "doc": ""
+          "doc": "the sound source name"
         },
         {
           "name": "format",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": false,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
           "signature": "format : Int",
           "type": "Int",
-          "doc": ""
-        },
-        {
-          "name": "buffer_count",
-          "meta": [],
-          "public": true,
-          "inline": false,
-          "static": false,
-          "signature": "buffer_count : Int",
-          "type": "Int",
-          "doc": ""
+          "doc": "mono8? stereo16?"
         },
         {
           "name": "buffers",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": false,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
           "signature": "buffers : Array<Int>",
           "type": "Array<Int>",
+          "doc": "the sound buffer names"
+        },
+        {
+          "name": "haxe_doc",
+          "meta": [],
+          "ispublic": false,
+          "isinline": false,
+          "isstatic": false,
+          "signature": "haxe_doc : Dynamic",
+          "type": "Dynamic",
+          "doc": ""
+        },
+        {
+          "name": "meta",
+          "meta": [],
+          "ispublic": false,
+          "isinline": false,
+          "isstatic": false,
+          "signature": "meta : Dynamic",
+          "type": "Dynamic",
           "doc": ""
         },
         {
           "name": "buffers_left",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": false,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
           "signature": "buffers_left : Int",
           "type": "Int",
-          "doc": ""
+          "doc": "remaining buffers to play"
         },
         {
           "name": "current_time",
           "meta": [],
-          "public": false,
-          "inline": false,
-          "static": false,
+          "ispublic": false,
+          "isinline": false,
+          "isstatic": false,
           "signature": "current_time : Float",
           "type": "Float",
           "doc": ""
         }
       ]
+    },
+    {
+      "name": "Meta",
+      "link": "#Meta",
+      "values": [
+        {
+          "name": ":noCompletion",
+          "value": ""
+        }
+      ]
+    },
+    {
+      "name": "StaticMethods",
+      "link": "#StaticMethods",
+      "values": []
     },
     {
       "name": "Methods",
@@ -96,9 +121,9 @@
         {
           "name": "set_looping",
           "meta": [],
-          "public": false,
-          "static": false,
-          "inline": false,
+          "ispublic": false,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "set_looping(_looping:Bool) : Bool",
           "return": ": Bool",
@@ -112,9 +137,9 @@
         {
           "name": "internal_play",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "internal_play() : Void",
           "return": ": Void",
@@ -123,9 +148,9 @@
         {
           "name": "stop",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "stop() : Void",
           "return": ": Void",
@@ -134,9 +159,9 @@
         {
           "name": "get_time",
           "meta": [],
-          "public": false,
-          "static": false,
-          "inline": false,
+          "ispublic": false,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "get_time() : Float",
           "return": ": Float",
@@ -145,9 +170,9 @@
         {
           "name": "set_pitch",
           "meta": [],
-          "public": false,
-          "static": false,
-          "inline": false,
+          "ispublic": false,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "set_pitch(_pitch:Float) : Float",
           "return": ": Float",
@@ -161,9 +186,9 @@
         {
           "name": "internal_pause",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "internal_pause() : Void",
           "return": ": Void",
@@ -172,9 +197,9 @@
         {
           "name": "set_time",
           "meta": [],
-          "public": false,
-          "static": false,
-          "inline": false,
+          "ispublic": false,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "set_time(_time:Float) : Float",
           "return": ": Float",
@@ -188,12 +213,12 @@
         {
           "name": "fill_buffer",
           "meta": [],
-          "public": false,
-          "static": false,
-          "inline": false,
+          "ispublic": false,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
-          "signature": "fill_buffer(_buffer:Int) : lumen.AudioDataBlob",
-          "return": ": lumen.AudioDataBlob",
+          "signature": "fill_buffer(_buffer:Int) : lumen.types.AudioDataBlob",
+          "return": ": lumen.types.AudioDataBlob",
           "args": [
             {
               "name": "_buffer",
@@ -204,9 +229,9 @@
         {
           "name": "flush_queue",
           "meta": [],
-          "public": false,
-          "static": false,
-          "inline": false,
+          "ispublic": false,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "flush_queue() : Void",
           "return": ": Void",
@@ -215,9 +240,9 @@
         {
           "name": "update_stream",
           "meta": [],
-          "public": false,
-          "static": false,
-          "inline": false,
+          "ispublic": false,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "update_stream() : Bool",
           "return": ": Bool",
@@ -226,9 +251,9 @@
         {
           "name": "loop",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "loop() : Void",
           "return": ": Void",
@@ -237,9 +262,9 @@
         {
           "name": "set_pan",
           "meta": [],
-          "public": false,
-          "static": false,
-          "inline": false,
+          "ispublic": false,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "set_pan(_pan:Float) : Float",
           "return": ": Float",
@@ -253,11 +278,11 @@
         {
           "name": "new",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
-          "signature": "new(_manager:lumen.audio.Audio, _name:String, _audio_info:lumen.AudioInfo) ",
+          "signature": "new(_manager:lumen.audio.Audio, _name:String, _audio_info:lumen.types.AudioInfo) ",
           "return": "",
           "args": [
             {
@@ -270,16 +295,16 @@
             },
             {
               "name": "_audio_info",
-              "type": "lumen.AudioInfo"
+              "type": "lumen.types.AudioInfo"
             }
           ]
         },
         {
           "name": "internal_update",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "internal_update() : Void",
           "return": ": Void",
@@ -288,9 +313,9 @@
         {
           "name": "init_queue",
           "meta": [],
-          "public": false,
-          "static": false,
-          "inline": false,
+          "ispublic": false,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "init_queue(?_buffer_start:Int) : Void",
           "return": ": Void",
@@ -304,9 +329,9 @@
         {
           "name": "pause",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "pause() : Void",
           "return": ": Void",
@@ -315,9 +340,9 @@
         {
           "name": "set_volume",
           "meta": [],
-          "public": false,
-          "static": false,
-          "inline": false,
+          "ispublic": false,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "set_volume(_volume:Float) : Float",
           "return": ": Float",
@@ -331,9 +356,9 @@
         {
           "name": "play",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "play() : Void",
           "return": ": Void",
@@ -342,9 +367,9 @@
         {
           "name": "destroy",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "destroy() : Void",
           "return": ": Void",
@@ -353,9 +378,9 @@
         {
           "name": "get_position",
           "meta": [],
-          "public": false,
-          "static": false,
-          "inline": false,
+          "ispublic": false,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "get_position() : Int",
           "return": ": Int",
@@ -364,9 +389,9 @@
         {
           "name": "set_position",
           "meta": [],
-          "public": false,
-          "static": false,
-          "inline": false,
+          "ispublic": false,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "set_position(_position:Int) : Int",
           "return": ": Int",

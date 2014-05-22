@@ -1,0 +1,114 @@
+{
+  "source": "lumen.input.MouseEvent",
+  "doc": "",
+  "links": [],
+  "toplinks": [],
+  "sections": [
+    {
+      "name": "Members",
+      "link": "#Members",
+      "values": [
+        {
+          "name": "xrel",
+          "meta": [],
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
+          "signature": "xrel : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "which",
+          "meta": [],
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
+          "signature": "which : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "raw",
+          "meta": [],
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
+          "signature": "raw : lumen.types.InputEvent",
+          "type": "lumen.types.InputEvent",
+          "doc": ""
+        },
+        {
+          "name": "y",
+          "meta": [],
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
+          "signature": "y : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "x",
+          "meta": [],
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
+          "signature": "x : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "timestamp",
+          "meta": [],
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
+          "signature": "timestamp : Float",
+          "type": "Float",
+          "doc": ""
+        },
+        {
+          "name": "button",
+          "meta": [],
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
+          "signature": "button : lumen.input.MouseButton",
+          "type": "lumen.input.MouseButton",
+          "doc": ""
+        },
+        {
+          "name": "yrel",
+          "meta": [],
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
+          "signature": "yrel : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "window_id",
+          "meta": [],
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
+          "signature": "window_id : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "state",
+          "meta": [],
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
+          "signature": "state : lumen.input.MouseState",
+          "type": "lumen.input.MouseState",
+          "doc": ""
+        }
+      ]
+    }
+  ]
+}

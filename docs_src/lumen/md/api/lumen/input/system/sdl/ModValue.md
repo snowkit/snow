@@ -6,8 +6,7 @@
 #ModValue
 
 
-&emsp;&emsp;&emsp;home   
-[API Index](../../../../../api/index.html#lumen.input)   
+##[API Index](../../../../../api/index.html#lumen.input)   
 &emsp;&emsp;&emsp;parent    
 [lumen.input.system](../)     
 &emsp;&emsp;&emsp;current    
@@ -32,7 +31,7 @@
 
 
 
-`CAPS : Int`
+<span class="inline-block static">static</span>`CAPS : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -40,7 +39,7 @@
 
 
 
-`LALT : Int`
+<span class="inline-block static">static</span>`LALT : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -48,7 +47,7 @@
 
 
 
-`LCTRL : Int`
+<span class="inline-block static">static</span>`LCTRL : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -56,7 +55,7 @@
 
 
 
-`LMETA : Int`
+<span class="inline-block static">static</span>`LMETA : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -64,7 +63,7 @@
 
 
 
-`LSHIFT : Int`
+<span class="inline-block static">static</span>`LSHIFT : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -72,7 +71,7 @@
 
 
 
-`MODE : Int`
+<span class="inline-block static">static</span>`MODE : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -80,7 +79,7 @@
 
 
 
-`NONE : Int`
+<span class="inline-block static">static</span>`NONE : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -88,7 +87,7 @@
 
 
 
-`NUM : Int`
+<span class="inline-block static">static</span>`NUM : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -96,7 +95,7 @@
 
 
 
-`RALT : Int`
+<span class="inline-block static">static</span>`RALT : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -104,7 +103,7 @@
 
 
 
-`RCTRL : Int`
+<span class="inline-block static">static</span>`RCTRL : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -112,7 +111,7 @@
 
 
 
-`RMETA : Int`
+<span class="inline-block static">static</span>`RMETA : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -120,7 +119,7 @@
 
 
 
-`RSHIFT : Int`
+<span class="inline-block static">static</span>`RSHIFT : Int`
 
 <span class="small_desc_flat"> no description </span>   
 
