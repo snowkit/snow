@@ -11562,6 +11562,7 @@
     },
     { "name": "lumen.audio.system.AudioSystem",
       "meta":[
+      { "name":":noCompletion", "value":"" }
       ],
       "extends":[
       ],
@@ -11599,6 +11600,17 @@
             "isstatic":false,
             "signature":"manager : lumen.audio.Audio",
             "type":"lumen.audio.Audio",
+            "doc":""
+        },
+        {
+          "name":"meta",
+            "meta":[
+            ],
+            "ispublic":false,
+            "isinline":false,
+            "isstatic":false,
+            "signature":"meta : Dynamic",
+            "type":"Dynamic",
             "doc":""
         }
       ],
@@ -11979,6 +11991,7 @@
     },
     { "name": "lumen.audio.system.openal.AudioSystemOpenAL",
       "meta":[
+      { "name":":noCompletion", "value":"" }
       ],
       "extends":[
         { "name":"lumen.audio.system.AudioSystem" }
@@ -12016,6 +12029,17 @@
             "isinline":false,
             "isstatic":false,
             "signature":"haxe_doc : Dynamic",
+            "type":"Dynamic",
+            "doc":""
+        },
+        {
+          "name":"meta",
+            "meta":[
+            ],
+            "ispublic":false,
+            "isinline":false,
+            "isstatic":false,
+            "signature":"meta : Dynamic",
             "type":"Dynamic",
             "doc":""
         }
@@ -17318,6 +17342,7 @@
     },
     { "name": "lumen.audio.system.openal.OpenALHelper",
       "meta":[
+      { "name":":noCompletion", "value":"" }
       ],
       "extends":[
       ],
@@ -17332,6 +17357,17 @@
             "isinline":false,
             "isstatic":false,
             "signature":"haxe_doc : Dynamic",
+            "type":"Dynamic",
+            "doc":""
+        },
+        {
+          "name":"meta",
+            "meta":[
+            ],
+            "ispublic":false,
+            "isinline":false,
+            "isstatic":false,
+            "signature":"meta : Dynamic",
             "type":"Dynamic",
             "doc":""
         }
@@ -22768,6 +22804,7 @@
     },
     { "name": "lumen.audio.system.LumenAudioSystem",
       "meta":[
+      { "name":":noCompletion", "value":"" }
       ],
       "members":[
       ],
@@ -23064,6 +23101,7 @@
     },
     { "name": "lumen.audio.system.LumenSoundStream",
       "meta":[
+      { "name":":noCompletion", "value":"" }
       ],
       "members":[
       ],
@@ -23158,6 +23196,7 @@
     },
     { "name": "lumen.audio.system.LumenSound",
       "meta":[
+      { "name":":noCompletion", "value":"" }
       ],
       "members":[
       ],

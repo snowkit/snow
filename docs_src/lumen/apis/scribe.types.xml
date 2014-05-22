@@ -4105,9 +4105,18 @@
 	<c path="Array"><x path="Int"/></c>
 </f></alhx_alcGetIntegerv>
 	</class>
-	<typedef path="lumen.audio.system.LumenAudioSystem" params="" file="../../lumen/audio/system/AudioSystem.hx" module="lumen.audio.system.AudioSystem"><c path="lumen.audio.system.openal.AudioSystemOpenAL"/></typedef>
-	<typedef path="lumen.audio.system.LumenSound" params="" file="../../lumen/audio/system/AudioSystem.hx" module="lumen.audio.system.AudioSystem"><c path="lumen.audio.system.openal.SoundOpenAL"/></typedef>
-	<typedef path="lumen.audio.system.LumenSoundStream" params="" file="../../lumen/audio/system/AudioSystem.hx" module="lumen.audio.system.AudioSystem"><c path="lumen.audio.system.openal.SoundStreamOpenAL"/></typedef>
+	<typedef path="lumen.audio.system.LumenAudioSystem" params="" file="../../lumen/audio/system/AudioSystem.hx" module="lumen.audio.system.AudioSystem">
+		<c path="lumen.audio.system.openal.AudioSystemOpenAL"/>
+		<meta><m n=":noCompletion"/></meta>
+	</typedef>
+	<typedef path="lumen.audio.system.LumenSound" params="" file="../../lumen/audio/system/AudioSystem.hx" module="lumen.audio.system.AudioSystem">
+		<c path="lumen.audio.system.openal.SoundOpenAL"/>
+		<meta><m n=":noCompletion"/></meta>
+	</typedef>
+	<typedef path="lumen.audio.system.LumenSoundStream" params="" file="../../lumen/audio/system/AudioSystem.hx" module="lumen.audio.system.AudioSystem">
+		<c path="lumen.audio.system.openal.SoundStreamOpenAL"/>
+		<meta><m n=":noCompletion"/></meta>
+	</typedef>
 	<class path="lumen.audio.system.AudioSystem" params="" file="../../lumen/audio/system/AudioSystem.hx">
 		<manager public="1"><c path="lumen.audio.Audio"/></manager>
 		<lib public="1"><c path="lumen.Lumen"/></lib>
@@ -4123,6 +4132,7 @@
 	<x path="Void"/>
 </f></new>
 		<haxe_doc>Internal audio system definition, interact with this system through `lumen.Audio`, not directly</haxe_doc>
+		<meta><m n=":noCompletion"/></meta>
 	</class>
 	<class path="lumen.audio.system.Sound" params="" file="../../lumen/audio/system/Sound.hx">
 		<manager public="1">
@@ -4347,6 +4357,7 @@
 	<x path="Void"/>
 </f></new>
 		<haxe_doc>Internal audio system implementation for OpenAL, interact with this system through `lumen.Audio`, not directly</haxe_doc>
+		<meta><m n=":noCompletion"/></meta>
 	</class>
 	<class path="lumen.audio.system.openal.OpenALHelper" params="" file="../../lumen/audio/system/openal/OpenALHelper.hx">
 		<default_source_setup public="1" set="method" line="13" static="1">
@@ -4364,6 +4375,7 @@
 			<haxe_doc>Determine the OpenAL format of an `AudioInfo` instance, such as AL.FORMAT_MONO16 or AL.FORMAT_STEREO16</haxe_doc>
 		</determine_format>
 		<haxe_doc>Internal helper class for interaction with OpenAL.</haxe_doc>
+		<meta><m n=":noCompletion"/></meta>
 	</class>
 	<class path="lumen.audio.system.openal.SoundOpenAL" params="" file="../../lumen/audio/system/openal/SoundOpenAL.hx">
 		<extends path="lumen.audio.system.Sound"/>

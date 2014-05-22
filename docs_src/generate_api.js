@@ -34,8 +34,24 @@
 
                         var theclass = classes[i];
                         var filename = theclass.name;
+                        var _skip = false;
 
                         if(!theclass.ispublic) {
+                            _skip = true;
+                        }
+
+                        if(theclass["meta"]) {
+                            var _metas = theclass["meta"];
+                            for(var j = 0; j < _metas.length; ++j ) {
+                                var _meta = _metas[j];
+                                if(_meta.name == ':noCompletion') {
+                                    _skip = true;
+                                }
+                            }
+                        }
+
+                        if(_skip) {
+                            console.log('skipping ' + theclass.name);
                             continue;
                         }
 
@@ -144,8 +160,24 @@
 
                         var thetypedef = typedefs[i];
                         var filename = thetypedef.name;
+                        var _skip = false;
 
                         if(!thetypedef.ispublic) {
+                            _skip = true;
+                        }
+
+                        if(thetypedef["meta"]) {
+                            var _metas = thetypedef["meta"];
+                            for(var j = 0; j < _metas.length; ++j ) {
+                                var _meta = _metas[j];
+                                if(_meta.name == ':noCompletion') {
+                                    _skip = true;
+                                }
+                            }
+                        }
+
+                        if(_skip) {
+                            console.log('skipping ' + thetypedef.name);
                             continue;
                         }
 

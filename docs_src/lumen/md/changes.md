@@ -1,15 +1,43 @@
 &nbsp;   
 <div class="commit_info">
 
-commit [c9833dcd73](http://github.com/underscorediscovery/lumen/commit/c9833dcd73dfc3f8c59a0277995af1e680b16151)   
+commit [8daffbdfbd](http://github.com/underscorediscovery/lumen/commit/8daffbdfbd60fe89368227d8c3425107f7eb1ecc)   
 author: underscorediscovery   
-date: Thu May 22 2014 05:56:59 GMT-0230 (NDT)   
+date: Thu May 22 2014 05:58:02 GMT-0230 (NDT)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Continued documentation updates, adding typedefs</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [5f9410469b](http://github.com/underscorediscovery/lumen/commit/5f9410469bcf9f4e71f76b7c59201b8653731f72)   
+author: underscorediscovery   
+date: Thu May 22 2014 05:58:02 GMT-0230 (NDT)   
 </div>
 
 &nbsp;   
 <div class="commit_message">
 
 <ul><li>Continued documentation, and moving Types into their own package for clarity</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [b3d77d7078](http://github.com/underscorediscovery/lumen/commit/b3d77d7078c0d722dffdd4228a5f287697ad5663)   
+author: Sven Bergström   
+date: Thu May 22 2014 02:14:09 GMT-0230 (NDT)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Update readme.md</li></ul>
 </div>
 &nbsp;   
 &nbsp;   

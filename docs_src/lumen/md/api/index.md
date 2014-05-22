@@ -33,16 +33,8 @@
 <a href="lumen/audio/Audio.html">Audio</a> <br/>
 <a href="lumen/audio/al/AL.html">al.AL</a> <br/>
 <a href="lumen/audio/al/ALC.html">al.ALC</a> <br/>
-<a href="lumen/audio/system/AudioSystem.html">system.AudioSystem</a> <br/>
-<a href="lumen/audio/system/LumenAudioSystem.html">system.LumenAudioSystem</a> <br/>
-<a href="lumen/audio/system/LumenSound.html">system.LumenSound</a> <br/>
-<a href="lumen/audio/system/LumenSoundStream.html">system.LumenSoundStream</a> <br/>
 <a href="lumen/audio/system/Sound.html">system.Sound</a> <br/>
 <a href="lumen/audio/system/SoundStream.html">system.SoundStream</a> <br/>
-<a href="lumen/audio/system/openal/AudioSystemOpenAL.html">system.openal.AudioSystemOpenAL</a> <br/>
-<a href="lumen/audio/system/openal/OpenALHelper.html">system.openal.OpenALHelper</a> <br/>
-<a href="lumen/audio/system/openal/SoundOpenAL.html">system.openal.SoundOpenAL</a> <br/>
-<a href="lumen/audio/system/openal/SoundStreamOpenAL.html">system.openal.SoundStreamOpenAL</a> <br/>
 
 <a name="lumen.input"/>
 ###[lumen.input](#lumen.input) 
