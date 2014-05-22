@@ -28,7 +28,7 @@
 <a class="lift" name="Extends" ></a>
 ###Extends   
 ---
-<a class="lift" name="lumen.utils.ArrayBufferView" href="{{{rel_path}}}api/lumen/utils.ArrayBufferView.html">lumen.utils.ArrayBufferView</a>
+<a class="lift" name="lumen.utils.ArrayBufferView" href="{{{rel_path}}}api/lumen/utils/ArrayBufferView.html">lumen.utils.ArrayBufferView</a>
 
 &nbsp;   
 

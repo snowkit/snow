@@ -28,7 +28,7 @@
 <a class="lift" name="Extends" ></a>
 ###Extends   
 ---
-<a class="lift" name="lumen.render.gl.GLObject" href="{{{rel_path}}}api/lumen/render.gl.GLObject.html">lumen.render.gl.GLObject</a>
+<a class="lift" name="lumen.render.gl.GLObject" href="{{{rel_path}}}api/lumen/render/gl/GLObject.html">lumen.render.gl.GLObject</a>
 
 &nbsp;   
 

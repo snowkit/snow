@@ -1,6 +1,34 @@
 &nbsp;   
 <div class="commit_info">
 
+commit [9ca8342dae](http://github.com/underscorediscovery/lumen/commit/9ca8342dae6b944fd07e951a31de1ac5fdbeeda5)   
+author: underscorediscovery   
+date: Thu May 22 2014 08:27:09 GMT-0230 (NDT)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>adding missing files for typedefs and enums</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [ac4dde925b](http://github.com/underscorediscovery/lumen/commit/ac4dde925b7da4cbfd0c4662dd84108f67ff29c4)   
+author: underscorediscovery   
+date: Thu May 22 2014 08:25:09 GMT-0230 (NDT)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>updating docs to include docs for typedefs, enums, and per enum value items</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
 commit [a8618a9a0d](http://github.com/underscorediscovery/lumen/commit/a8618a9a0dc3168bbc1532931928d1ec30f6665b)   
 author: underscorediscovery   
 date: Thu May 22 2014 06:15:33 GMT-0230 (NDT)   

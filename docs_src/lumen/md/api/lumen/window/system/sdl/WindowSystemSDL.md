@@ -28,7 +28,7 @@
 <a class="lift" name="Extends" ></a>
 ###Extends   
 ---
-<a class="lift" name="lumen.window.system.WindowSystem" href="{{{rel_path}}}api/lumen/window.system.WindowSystem.html">lumen.window.system.WindowSystem</a>
+<a class="lift" name="lumen.window.system.WindowSystem" href="{{{rel_path}}}api/lumen/window/system/WindowSystem.html">lumen.window.system.WindowSystem</a>
 
 &nbsp;   
 

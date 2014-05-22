@@ -12798,7 +12798,7 @@
             "isstatic":true,
             "isinline":false,
             "doc":"",
-            "signature":"iterator(this:Array<iterator.T>) : Iterator<iterator.T>",
+            "signature":"iterator<T>(this:Array<iterator.T>) : Iterator<iterator.T>",
             "return":": Iterator<iterator.T>",
             "args":[
               { "name": "this","type": "Array<iterator.T>","value": "null" }

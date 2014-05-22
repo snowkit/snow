@@ -29,7 +29,7 @@
 <a class="lift" name="Extends" ></a>
 ###Extends   
 ---
-<a class="lift" name="lumen.audio.system.Sound" href="{{{rel_path}}}api/lumen/audio.system.Sound.html">lumen.audio.system.Sound</a>
+<a class="lift" name="lumen.audio.system.Sound" href="{{{rel_path}}}api/lumen/audio/system/Sound.html">lumen.audio.system.Sound</a>
 
 &nbsp;   
 

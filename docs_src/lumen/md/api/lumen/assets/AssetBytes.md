@@ -35,7 +35,7 @@ An asset that contains byte `data` as a `ByteArray`
 <a class="lift" name="Extends" ></a>
 ###Extends   
 ---
-<a class="lift" name="lumen.assets.Asset" href="{{{rel_path}}}api/lumen/assets.Asset.html">lumen.assets.Asset</a>
+<a class="lift" name="lumen.assets.Asset" href="{{{rel_path}}}api/lumen/assets/Asset.html">lumen.assets.Asset</a>
 
 &nbsp;   
 

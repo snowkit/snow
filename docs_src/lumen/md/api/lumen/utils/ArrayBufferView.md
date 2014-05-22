@@ -28,13 +28,7 @@
 <a class="lift" name="Implements" ></a>
 ###Implements   
 ---
-<a class="lift" name="lumen.utils.IMemoryRange" href="#lumen.utils.IMemoryRange">lumen.utils.IMemoryRange</a>
-
-
-
-`undefined`
-
-<span class="small_desc_flat"> no description </span>   
+<a class="lift" name="lumen.utils.IMemoryRange" href="{{{rel_path}}}api/lumen/utils/IMemoryRange.html">lumen.utils.IMemoryRange</a>
 
 &nbsp;   
 

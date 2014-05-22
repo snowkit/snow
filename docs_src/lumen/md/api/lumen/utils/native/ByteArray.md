@@ -32,28 +32,16 @@
 <a class="lift" name="Extends" ></a>
 ###Extends   
 ---
-<a class="lift" name="haxe.io.Bytes" href="{{{rel_path}}}api/haxe/io.Bytes.html">haxe.io.Bytes</a>
+<a class="lift" name="haxe.io.Bytes" href="{{{rel_path}}}api/haxe/io/Bytes.html">haxe.io.Bytes</a>
 
 &nbsp;   
 
 <a class="lift" name="Implements" ></a>
 ###Implements   
 ---
-<a class="lift" name="lumen.utils.IDataInput" href="#lumen.utils.IDataInput">lumen.utils.IDataInput</a>
+<a class="lift" name="lumen.utils.IDataInput" href="{{{rel_path}}}api/lumen/utils/IDataInput.html">lumen.utils.IDataInput</a>
 
-
-
-`undefined`
-
-<span class="small_desc_flat"> no description </span>   
-
-<a class="lift" name="lumen.utils.IMemoryRange" href="#lumen.utils.IMemoryRange">lumen.utils.IMemoryRange</a>
-
-
-
-`undefined`
-
-<span class="small_desc_flat"> no description </span>   
+<a class="lift" name="lumen.utils.IMemoryRange" href="{{{rel_path}}}api/lumen/utils/IMemoryRange.html">lumen.utils.IMemoryRange</a>
 
 &nbsp;   
 

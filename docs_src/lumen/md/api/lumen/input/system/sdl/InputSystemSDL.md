@@ -34,7 +34,7 @@ Internal input system, concrete SDL implementation. Accessed through `lumen.Inpu
 <a class="lift" name="Extends" ></a>
 ###Extends   
 ---
-<a class="lift" name="lumen.input.system.InputSystem" href="{{{rel_path}}}api/lumen/input.system.InputSystem.html">lumen.input.system.InputSystem</a>
+<a class="lift" name="lumen.input.system.InputSystem" href="{{{rel_path}}}api/lumen/input/system/InputSystem.html">lumen.input.system.InputSystem</a>
 
 &nbsp;   
 

@@ -476,9 +476,9 @@
                             _added_section_header = true;
                         }
 
-                        if(_section.name == 'Extends') {
+                        if(_section.name == 'Extends' || _section.name == 'Implements') {
 
-                            var _extends_link = _value.name.replace('.','/')+'.html' 
+                            var _extends_link = _value.name.replace(/\./gi,'/')+'.html' 
                             _context.content += '<a class="lift" name="'+_value.name+'" href="{{{rel_path}}}api/'+_extends_link+'">'+_value.name+'</a>\n\n';
 
                         } else if(_section.name != 'Meta') {
