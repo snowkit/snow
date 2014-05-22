@@ -181,26 +181,41 @@ class SystemEvents {
 
         //lumen core events
 
+        /** An unknown system event */
     public static var se_unknown                    = 0;
+        /** An internal system init event */
     public static var se_init                       = 1;
+        /** An internal system ready event */
     public static var se_ready                      = 2;
+        /** An internal system update event */
     public static var se_update                     = 3;
+        /** An system shutdown event */
     public static var se_shutdown                   = 4;
+        /** An system window event */
     public static var se_window                     = 5;
+        /** An system input event */
     public static var se_input                      = 6;
 
         //lumen application events
 
+        /** An system quit event. Initiated by user, can be cancelled/ignored */
     public static var se_quit                       = 7;
+        /** An system terminating event, called by the OS (mobile specific) */
     public static var se_app_terminating            = 8;
+        /** An system low memory event, clear memory if you can. Called by the OS (mobile specific) */
     public static var se_app_lowmemory              = 9;
+        /** An event for just before the app enters the background, called by the OS (mobile specific) */
     public static var se_app_willenterbackground    = 10;
+        /** An event for when the app enters the background, called by the OS (mobile specific) */
     public static var se_app_didenterbackground     = 11;
+        /** An event for just before the app enters the foreground, called by the OS (mobile specific) */
     public static var se_app_willenterforeground    = 12;
+        /** An event for when the app enters the foreground, called by the OS (mobile specific) */
     public static var se_app_didenterforeground     = 13;
 
 //Helpers
-
+    
+        /** returns a typed `SystemEventType` from an integer ID, for communication between internal native + haxe code */
     public static function typed(type:Int) : SystemEventType {
 
             if(type == se_init)                         return SystemEventType.init;
@@ -227,26 +242,43 @@ class SystemEvents {
 class WindowEvents {
 
 //window events
-
+    
+        /** An unknown window event */
     public static var we_unknown          = 0;
+        /** A window is created */
     public static var we_created          = 1;
+        /** A window is shown */
     public static var we_shown            = 2;
+        /** A window is hidden */
     public static var we_hidden           = 3;
+        /** A window is exposed */
     public static var we_exposed          = 4;
+        /** A window is moved */
     public static var we_moved            = 5;
+        /** A window is resized, by the user or code. */
     public static var we_resized          = 6;
+        /** A window is resized, by the OS or internals. */
     public static var we_size_changed     = 7;
+        /** A window is minimized */
     public static var we_minimized        = 8;
+        /** A window is maximized */
     public static var we_maximized        = 9;
+        /** A window is restored */
     public static var we_restored         = 10;
+        /** A window is entered by a mouse */
     public static var we_enter            = 11;
+        /** A window is left by a mouse */
     public static var we_leave            = 12;
+        /** A window has gained focus */        
     public static var we_focus_gained     = 13;
+        /** A window has lost focus */        
     public static var we_focus_lost       = 14;
+        /** A window is being closed */        
     public static var we_close            = 15;
 
 //Helpers
 
+        /** returns a typed `WindowEventType` from an integer ID, for communication between internal native + haxe code */
     public static function typed(type:Int) : WindowEventType {
         
             if(type == we_created)        return WindowEventType.window_created;
@@ -275,16 +307,23 @@ class InputEvents {
     
 //Input events
 
+            /** An unknown input event */
         public static var ie_unknown                    = 0;
 
+            /** An keyboard input event */
         public static var ie_key                        = 1;
+            /** An mouse input event */
         public static var ie_mouse                      = 2;
+            /** An touch input event */
         public static var ie_touch                      = 3;
+            /** An joystick input event. On mobile, accellerometer is a joystick (for now) */
         public static var ie_joystick                   = 4;
+            /** An controller input event. Use these instead of joystick on desktop. */
         public static var ie_controller                 = 5;
 
 //Helpers
-
+    
+        /** returns a typed `InputEventType` from an integer ID, for communication between internal native + haxe code */
     public static function typed(type:Int) : InputEventType {
         
             if(type == ie_unknown)      return InputEventType.unknown;

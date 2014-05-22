@@ -5,15 +5,15 @@ class Ext {
 
     public static function drawBuffers( n:Int, buffers:Int ){
 
-    	if(ext_draw_buffers == null) {
-    		ext_draw_buffers = GL.getExtension('EXT_draw_buffers');
-    		if(ext_draw_buffers == null) {
-    			ext_draw_buffers = GL.getExtension('WEBGL_draw_buffers');
-    			if(ext_draw_buffers == null) {
-    				throw "Attemping to use GL.Ext.drawBuffers when it is not found in this browser.";
-    			}
-    		}
-    	}
+        if(ext_draw_buffers == null) {
+            ext_draw_buffers = GL.getExtension('EXT_draw_buffers');
+            if(ext_draw_buffers == null) {
+                ext_draw_buffers = GL.getExtension('WEBGL_draw_buffers');
+                if(ext_draw_buffers == null) {
+                    throw "Attemping to use GL.Ext.drawBuffers when it is not found in this browser.";
+                }
+            }
+        }
 
         return ext_draw_buffers( n, buffers );
     }

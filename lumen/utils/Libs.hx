@@ -1,10 +1,10 @@
 package lumen.utils;
 
 class Libs {
-	
+    
         //for Load function
     @:noCompletion static var __moduleNames:Map<String, String> = null;
-	
+    
     static function tryLoad( name:String, library:String, func:String, args:Int ) : Dynamic {
         
         #if lumen_native

@@ -5,39 +5,39 @@ package arguable;
 class Stack<T> {
 
         //only editable by this class, gettable anywhere
-	@:isVar public var length (default, null) : Int = 0;
+    @:isVar public var length (default, null) : Int = 0;
 
-	public var first : StackNode<T>;
+    public var first : StackNode<T>;
 
-	public function new() {
-		first = null;
-		length = 0;
-	} //new
+    public function new() {
+        first = null;
+        length = 0;
+    } //new
 
-	public function empty() {
-		return first == null;
-	} //empty
+    public function empty() {
+        return first == null;
+    } //empty
 
-	public function push( element:T ) {
+    public function push( element:T ) {
 
-		if(element==null) throw "This Stack does not hold null elements.";
+        if(element==null) throw "This Stack does not hold null elements.";
 
-		var oldfirst : StackNode<T> = first;
+        var oldfirst : StackNode<T> = first;
 
         first = new StackNode<T>();
 
-        	first.item = element;
-        	first.next = oldfirst;
+            first.item = element;
+            first.next = oldfirst;
 
         length++;
 
-	} //push
+    } //push
 
-	public function pop() : T {
+    public function pop() : T {
         if (empty()) throw "Stack underflow";
         
         var element : T = first.item;
-        	first = first.next;
+            first = first.next;
         
         length--;
 
@@ -50,21 +50,21 @@ class Stack<T> {
     } //top
 
     public function iterator() : Iterator<T> {
-    	return toArray().iterator();
+        return toArray().iterator();
     } //iterator
 
     public function toArray() : Array<T> {
-    	
-    	if(empty()) return [];
-    		//start at the top of the stack
-    	var a : Array<T> = [];
-    	var current = first;
-    	while(current != null) {
-    		a.push( current.item );
-    		current = current.next;
-    	}
+        
+        if(empty()) return [];
+            //start at the top of the stack
+        var a : Array<T> = [];
+        var current = first;
+        while(current != null) {
+            a.push( current.item );
+            current = current.next;
+        }
 
-    	return a;
+        return a;
 
     } //toArray
 
@@ -72,7 +72,7 @@ class Stack<T> {
 
 
 class StackNode<T> {
-	public var item : T;
-	public var next : StackNode<T>;
+    public var item : T;
+    public var next : StackNode<T>;
     public function new() {}
 }

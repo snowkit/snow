@@ -5,70 +5,86 @@ import lumen.input.Input;
 import lumen.LumenTypes;
 
     //Note all times in lumen are in seconds.
-    //The default type of application, with variable delta time, or fixed delta time, or a fixed frame rate
 
+/** The default type of application, with variable delta time, or fixed delta time, or a fixed frame rate. See the App guide for complete details. */
 class App {
 
 //Access to the lumen API
-
+    
+        /** use this to access the api features. *i.e* `app.assets.get_text(_id)` */
     public var app : Lumen;
 
 //Configurable values
 
-        //the scale of time
+        /** the scale of time */
     public var timescale : Float = 1;
-             //if this is non zero this will be passed in
+        /** if this is non zero this will be passed in */
     public var fixed_delta : Float = 0;
-        //if this is non zero, updates will be forced to this rate
+        /** if this is non zero, updates will be forced to this rate */
     public var fixed_rate : Float = 0;
-        //the maximum frame time
+        /** the maximum frame time */
     public var max_frame_time : Float = 0.25;
 
 //Timing information
 
-        //the time the last frame took to run
+        /** the time the last frame took to run */
     public var delta_time : Float = 0.016;
-        //the time the last frame took to run
+        /** the simulated time the last frame took to run, relative to scale etc */
     public var delta_sim : Float = 0.016;
-        //the start time of the last frame
+        /** the start time of the last frame */
     public var last_frame_start : Float = 0.0;
-        //the current simulation time
+        /** the current simulation time */
     public var current_time : Float = 0;
-        //the start time of this frame
+        /** the start time of this frame */
     public var cur_frame_start : Float = 0.0;
 
 //Internal values
 
-        //for fixed_rate, the time when the next tick should occur around
+        /** for fixed_rate, the time when the next tick should occur around */
     var next_tick : Float = 0;
 
 //override these in your game class
 
-        //user facing api
     public function new() {}
+        /** Your entry point. Called for you when you can initialize your application */
     public function ready() {}
+        /** Your update loop. Called every frame for you. The dt value depends on the timing configuration (see the App guide) */
     public function update(dt:Float) {}
 
+        /** Called when a key is pressed down */
     public function onkeydown( _event : KeyEvent ) {}
+        /** Called when a key is released */
     public function onkeyup( _event : KeyEvent ) {}
+        /** Called when text input is happening. Use this for textfields, as it handles the complexity of unicode etc. */
     public function ontextinput( _event : TextEvent ) {}
 
-    public function onmouseup( _event:MouseEvent ) {}
+        /** Called when a mouse button is pressed */
     public function onmousedown( _event:MouseEvent ) {}
+        /** Called when a mouse button is released */
+    public function onmouseup( _event:MouseEvent ) {}
+        /** Called when the mouse wheel moves */
     public function onmousewheel( _event:MouseEvent ) {}
+        /** Called when the mouse moves */
     public function onmousemove( _event:MouseEvent ) {}
 
-    public function ontouchup( _event:TouchEvent ) {}
+        /** Called when a touch is released, use the `touch_id` to track which */
     public function ontouchdown( _event:TouchEvent ) {}
+        /** Called when a touch is first pressed, use the `touch_id` to track which */
+    public function ontouchup( _event:TouchEvent ) {}
+        /** Called when a touch is moved, use the `touch_id` to track which */
     public function ontouchmove( _event:TouchEvent ) {}
 
+        /** Called when a connected gamepad axis moves, use `which` to determine gamepad id */
     public function ongamepadaxis( _event:GamepadEvent ) {}
-    public function ongamepadbuttonup( _event:GamepadEvent ) {}
+        /** Called when a connected gamepad button is pressed, use `which` to determine gamepad id */
     public function ongamepadbuttondown( _event:GamepadEvent ) {}
+        /** Called when a connected gamepad button is released, use `which` to determine gamepad id */
+    public function ongamepadbuttonup( _event:GamepadEvent ) {}
+        /** Called when a gamepad is connected or disconnected, use `which` to determine gamepad id */
     public function ongamepaddevice( _event:GamepadEvent ) {}
 
-//override this if you want to change how the runtime config is loaded/handled
 
+        /** override this if you want to change how the runtime config is loaded/handled */
     public function get_runtime_config() : Dynamic {
 
             //we want to load the runtime config from a json file by default
@@ -84,8 +100,7 @@ class App {
 
     } //get_runtime_config
 
-//overide this if you want to change how the asset config is loaded/handled 
-
+        /** overide this if you want to change how the asset list is loaded/handled. By default it uses the asset manifest generated by the build tools. */
     public function get_asset_list() : Array<AssetInfo> {
 
         var asset_list : Array<AssetInfo> = [];
@@ -167,14 +182,14 @@ class App {
 
 
 
-    //For more information see : http://gafferongames.com/game-physics/fix-your-timestep/
-    //this stores and calculates a fixed game update loop, and rendering interpolation is required
-    //for smooth updates between frames.
+/** Read the App Guide for full info, and for even more information see : http://gafferongames.com/game-physics/fix-your-timestep/
+    this stores and calculates a fixed game update loop, and rendering interpolation is required
+    for smooth updates between frames. */
 class AppFixedTimestep extends App {
 
-        //fixed simulation update speed
+        /** fixed simulation update speed */
     public var mspf : Float = 0.0167;
-        //the overflow of the updates
+        /** the overflow of the updates. This is used to calculate the alpha time for rendering interpolation, `var alpha_time = overflow / mspf;` */
     public var overflow : Float = 0.0;
 
     @:noCompletion override public function on_lumen_init() {
