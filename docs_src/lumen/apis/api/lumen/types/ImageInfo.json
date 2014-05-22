@@ -1,6 +1,6 @@
 {
   "source": "lumen.types.ImageInfo",
-  "doc": "",
+  "doc": "Information about an image file/data\n\n`id` : source asset id   \n`bpp` : used bits per pixel   \n`width` : image width   \n`height` : image height   \n`bpp_source` : source bits per pixel   \n`data` : image data",
   "links": [],
   "toplinks": [],
   "sections": [

@@ -3,16 +3,16 @@
 
 ---
 
-#Window
-
 
 ##[API Index](../../../api/index.html#lumen.window)   
-&emsp;&emsp;&emsp;parent    
 [lumen](../)     
-&emsp;&emsp;&emsp;current    
-[lumen.window](./) / Window
+&emsp;&emsp;&emsp;[lumen.window](./)   
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Window
 
-<br/>
+---
+
+#Window
+
 
 ---
 
@@ -183,7 +183,7 @@
 
 `new(_manager:lumen.window.Windowing, _config:lumen.types.WindowConfig) `
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="simple_message" href="#simple_message">simple_message</a>
 

@@ -3,16 +3,16 @@
 
 ---
 
-#WindowSize
-
 
 ##[API Index](../../../api/index.html#lumen.window)   
-&emsp;&emsp;&emsp;parent    
 [lumen](../)     
-&emsp;&emsp;&emsp;current    
-[lumen.window](./) / WindowSize
+&emsp;&emsp;&emsp;[lumen.window](./)   
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;WindowSize
 
-<br/>
+---
+
+#WindowSize
+
 
 ---
 
@@ -33,7 +33,7 @@
 
 `h : Int`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="w" href="#w">w</a>
 
@@ -41,7 +41,7 @@
 
 `w : Int`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 
 

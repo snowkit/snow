@@ -308,7 +308,7 @@
           "ispublic": true,
           "isstatic": false,
           "isinline": false,
-          "doc": "",
+          "doc": "The default constructor of an App is empty, so you can override it if you want, but take note that this happens way before lumen is ready for use.",
           "signature": "new() ",
           "return": "",
           "args": []

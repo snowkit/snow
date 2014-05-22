@@ -1,7 +1,7 @@
 package lumen.render.gl.html5;
 
 
-class Ext {
+@:noCompletion class Ext {
 
     public static function drawBuffers( n:Int, buffers:Int ){
 

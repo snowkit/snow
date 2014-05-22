@@ -3,16 +3,16 @@
 
 ---
 
-#ShaderPrecisionFormat
-
 
 ##[API Index](../../../../../api/index.html#lumen.render)   
-&emsp;&emsp;&emsp;parent    
 [lumen.render.gl](../)     
-&emsp;&emsp;&emsp;current    
-[lumen.render.gl.native](./) / ShaderPrecisionFormat
+&emsp;&emsp;&emsp;[lumen.render.gl.native](./)   
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;ShaderPrecisionFormat
 
-<br/>
+---
+
+#ShaderPrecisionFormat
+
 
 ---
 
@@ -33,7 +33,7 @@
 
 `precision : Int`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="rangeMax" href="#rangeMax">rangeMax</a>
 
@@ -41,7 +41,7 @@
 
 `rangeMax : Int`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="rangeMin" href="#rangeMin">rangeMin</a>
 
@@ -49,7 +49,7 @@
 
 `rangeMin : Int`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 
 

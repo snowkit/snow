@@ -1,6 +1,6 @@
 {
   "source": "lumen.types.InputEventType",
-  "doc": "",
+  "doc": "A typed input event",
   "links": [],
   "toplinks": [],
   "sections": [
@@ -11,32 +11,32 @@
         {
           "name": "unknown",
           "signature": "lumen.types.InputEventType.unknown",
-          "doc": ""
+          "doc": "An unknown input event"
         },
         {
           "name": "key",
           "signature": "lumen.types.InputEventType.key",
-          "doc": ""
+          "doc": "An keyboard input event"
         },
         {
           "name": "mouse",
           "signature": "lumen.types.InputEventType.mouse",
-          "doc": ""
+          "doc": "An mouse input event"
         },
         {
           "name": "touch",
           "signature": "lumen.types.InputEventType.touch",
-          "doc": ""
+          "doc": "An touch input event"
         },
         {
           "name": "joystick",
           "signature": "lumen.types.InputEventType.joystick",
-          "doc": ""
+          "doc": "An joystick input event. On mobile, accellerometer is a joystick (for now)"
         },
         {
           "name": "controller",
           "signature": "lumen.types.InputEventType.controller",
-          "doc": ""
+          "doc": "An controller input event. Use these instead of joystick on desktop."
         }
       ]
     },

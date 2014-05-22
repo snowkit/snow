@@ -1,6 +1,6 @@
 {
   "source": "lumen.types.AudioFormatType",
-  "doc": "",
+  "doc": "The type of audio format",
   "links": [],
   "toplinks": [],
   "sections": [

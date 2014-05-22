@@ -21,15 +21,19 @@ typedef DisplayBounds = {
     height : Int
 }
 
+/** A window manager, accessed via `app.window` */
 class Windowing {
 
     var lib : Lumen;
 
+        /** The list of windows in this manager */
     public var window_list : Map<Int, Window>;
+        /** The number of windows in this manager */
     public var window_count : Int = 0;
-    public var system : LumenWindowSystem;
+        /** The concrete implementation of the window system */
+    @:noCompletion public var system : LumenWindowSystem;
 
-    public function new( _lib:Lumen ) {
+    @:noCompletion public function new( _lib:Lumen ) {
 
         lib = _lib;
         window_list = new Map();
@@ -41,7 +45,8 @@ class Windowing {
     } //new
 
 //Public facing API
-
+    
+        /** Create a window with the given config */
     public function create( _config:WindowConfig ) : Window {
 
         var _window = new Window( this, _config );
@@ -55,30 +60,37 @@ class Windowing {
 
 #if lumen_native
 
+        /** `Desktop only` Get the number of displays present */
     public function desktop_get_display_count() : Int {
         return lumen_desktop_get_display_count();
     } //desktop_get_display_count
 
+        /** `Desktop only` Get the number of display modes present */
     public function desktop_get_display_mode_count( display:Int ) : Int {
         return lumen_desktop_get_display_mode_count( display );
     } //desktop_get_display_mode_count
 
+        /** `Desktop only` Get the native mode information of the display by index */
     public function desktop_get_display_native_mode( display:Int ) : DisplayMode {
         return lumen_desktop_get_display_native_mode( display );
     } //desktop_get_display_native_mode
 
+        /** `Desktop only` Get the current mode information of the display by index */
     public function desktop_get_display_current_mode( display:Int ) : DisplayMode {
         return lumen_desktop_get_display_current_mode( display );
     } //desktop_get_display_current_mode
 
+        /** `Desktop only` Get the information from a specific mode index, the index obtrained from iterating with `desktop_get_display_mode_count` value */
     public function desktop_get_display_mode( display:Int, mode_index:Int ) : DisplayMode {
         return lumen_desktop_get_display_mode( display, mode_index );
     } //desktop_get_display_mode
 
+        /** `Desktop only` Get the bounds of the display by index */
     public function desktop_get_display_bounds( display:Int ) : DisplayBounds {
         return lumen_desktop_get_display_bounds( display );
     } //desktop_get_display_bounds
 
+        /** `Desktop only` Get the name of the display by index, where available */
     public function desktop_get_display_name( display:Int ) : String {
         return lumen_desktop_get_display_name( display );
     } //desktop_get_display_name

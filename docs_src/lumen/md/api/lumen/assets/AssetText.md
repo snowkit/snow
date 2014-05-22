@@ -3,22 +3,17 @@
 
 ---
 
-#AssetText
-
---- 
-
-An asset that contains `text` as a `String`
-
----
-<br/>
 
 ##[API Index](../../../api/index.html#lumen.assets)   
-&emsp;&emsp;&emsp;parent    
 [lumen](../)     
-&emsp;&emsp;&emsp;current    
-[lumen.assets](./) / AssetText
+&emsp;&emsp;&emsp;[lumen.assets](./)   
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;AssetText
 
-<br/>
+---
+
+#AssetText
+
+An asset that contains `text` as a `String`. Get assets from the `Assets` class, via `app.assets`
 
 ---
 
@@ -63,7 +58,7 @@ An asset that contains `text` as a `String`
 
 `new(_info:lumen.types.AssetInfo, _data:String) `
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 
 

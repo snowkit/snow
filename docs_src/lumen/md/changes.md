@@ -1,6 +1,20 @@
 &nbsp;   
 <div class="commit_info">
 
+commit [9d2d8850ec](http://github.com/underscorediscovery/lumen/commit/9d2d8850ece7cf3e4f47b2b06666f3f962617c99)   
+author: underscorediscovery   
+date: Thu May 22 2014 09:26:05 GMT-0230 (NDT)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>updating docs, includes type params for functions, and other fixes</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
 commit [9ca8342dae](http://github.com/underscorediscovery/lumen/commit/9ca8342dae6b944fd07e951a31de1ac5fdbeeda5)   
 author: underscorediscovery   
 date: Thu May 22 2014 08:27:09 GMT-0230 (NDT)   

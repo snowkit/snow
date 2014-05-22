@@ -2,23 +2,13 @@
   "classes":[
     { "name": "lumen.types.SystemEvents",
       "meta":[
+      { "name":":noCompletion", "value":"" }
       ],
       "extends":[
       ],
       "implements":[
       ],
       "members":[
-        {
-          "name":"se_update",
-            "meta":[
-            ],
-            "ispublic":true,
-            "isinline":false,
-            "isstatic":true,
-            "signature":"se_update : Int",
-            "type":"Int",
-            "doc":"An internal system update event"
-        },
         {
           "name":"se_window",
             "meta":[
@@ -28,7 +18,7 @@
             "isstatic":true,
             "signature":"se_window : Int",
             "type":"Int",
-            "doc":"An system window event"
+            "doc":""
         },
         {
           "name":"se_app_terminating",
@@ -39,7 +29,7 @@
             "isstatic":true,
             "signature":"se_app_terminating : Int",
             "type":"Int",
-            "doc":"An system terminating event, called by the OS (mobile specific)"
+            "doc":""
         },
         {
           "name":"se_ready",
@@ -50,40 +40,7 @@
             "isstatic":true,
             "signature":"se_ready : Int",
             "type":"Int",
-            "doc":"An internal system ready event"
-        },
-        {
-          "name":"se_app_lowmemory",
-            "meta":[
-            ],
-            "ispublic":true,
-            "isinline":false,
-            "isstatic":true,
-            "signature":"se_app_lowmemory : Int",
-            "type":"Int",
-            "doc":"An system low memory event, clear memory if you can. Called by the OS (mobile specific)"
-        },
-        {
-          "name":"se_unknown",
-            "meta":[
-            ],
-            "ispublic":true,
-            "isinline":false,
-            "isstatic":true,
-            "signature":"se_unknown : Int",
-            "type":"Int",
-            "doc":"An unknown system event"
-        },
-        {
-          "name":"se_input",
-            "meta":[
-            ],
-            "ispublic":true,
-            "isinline":false,
-            "isstatic":true,
-            "signature":"se_input : Int",
-            "type":"Int",
-            "doc":"An system input event"
+            "doc":""
         },
         {
           "name":"se_app_willenterbackground",
@@ -94,29 +51,7 @@
             "isstatic":true,
             "signature":"se_app_willenterbackground : Int",
             "type":"Int",
-            "doc":"An event for just before the app enters the background, called by the OS (mobile specific)"
-        },
-        {
-          "name":"se_app_didenterbackground",
-            "meta":[
-            ],
-            "ispublic":true,
-            "isinline":false,
-            "isstatic":true,
-            "signature":"se_app_didenterbackground : Int",
-            "type":"Int",
-            "doc":"An event for when the app enters the background, called by the OS (mobile specific)"
-        },
-        {
-          "name":"se_app_willenterforeground",
-            "meta":[
-            ],
-            "ispublic":true,
-            "isinline":false,
-            "isstatic":true,
-            "signature":"se_app_willenterforeground : Int",
-            "type":"Int",
-            "doc":"An event for just before the app enters the foreground, called by the OS (mobile specific)"
+            "doc":""
         },
         {
           "name":"se_app_didenterforeground",
@@ -127,7 +62,73 @@
             "isstatic":true,
             "signature":"se_app_didenterforeground : Int",
             "type":"Int",
-            "doc":"An event for when the app enters the foreground, called by the OS (mobile specific)"
+            "doc":""
+        },
+        {
+          "name":"se_update",
+            "meta":[
+            ],
+            "ispublic":true,
+            "isinline":false,
+            "isstatic":true,
+            "signature":"se_update : Int",
+            "type":"Int",
+            "doc":""
+        },
+        {
+          "name":"se_app_lowmemory",
+            "meta":[
+            ],
+            "ispublic":true,
+            "isinline":false,
+            "isstatic":true,
+            "signature":"se_app_lowmemory : Int",
+            "type":"Int",
+            "doc":""
+        },
+        {
+          "name":"se_unknown",
+            "meta":[
+            ],
+            "ispublic":true,
+            "isinline":false,
+            "isstatic":true,
+            "signature":"se_unknown : Int",
+            "type":"Int",
+            "doc":""
+        },
+        {
+          "name":"se_input",
+            "meta":[
+            ],
+            "ispublic":true,
+            "isinline":false,
+            "isstatic":true,
+            "signature":"se_input : Int",
+            "type":"Int",
+            "doc":""
+        },
+        {
+          "name":"se_app_didenterbackground",
+            "meta":[
+            ],
+            "ispublic":true,
+            "isinline":false,
+            "isstatic":true,
+            "signature":"se_app_didenterbackground : Int",
+            "type":"Int",
+            "doc":""
+        },
+        {
+          "name":"se_app_willenterforeground",
+            "meta":[
+            ],
+            "ispublic":true,
+            "isinline":false,
+            "isstatic":true,
+            "signature":"se_app_willenterforeground : Int",
+            "type":"Int",
+            "doc":""
         },
         {
           "name":"se_init",
@@ -138,7 +139,7 @@
             "isstatic":true,
             "signature":"se_init : Int",
             "type":"Int",
-            "doc":"An internal system init event"
+            "doc":""
         },
         {
           "name":"se_shutdown",
@@ -149,7 +150,18 @@
             "isstatic":true,
             "signature":"se_shutdown : Int",
             "type":"Int",
-            "doc":"An system shutdown event"
+            "doc":""
+        },
+        {
+          "name":"meta",
+            "meta":[
+            ],
+            "ispublic":false,
+            "isinline":false,
+            "isstatic":false,
+            "signature":"meta : Dynamic",
+            "type":"Dynamic",
+            "doc":""
         },
         {
           "name":"se_quit",
@@ -160,7 +172,7 @@
             "isstatic":true,
             "signature":"se_quit : Int",
             "type":"Int",
-            "doc":"An system quit event. Initiated by user, can be cancelled/ignored"
+            "doc":""
         }
       ],
       "properties":[
@@ -173,7 +185,7 @@
             "ispublic":true,
             "isstatic":true,
             "isinline":false,
-            "doc":"returns a typed `SystemEventType` from an integer ID, for communication between internal native + haxe code",
+            "doc":"",
             "signature":"typed(type:Int) : lumen.types.SystemEventType",
             "return":": lumen.types.SystemEventType",
             "args":[
@@ -186,6 +198,7 @@
     },
     { "name": "lumen.types.WindowEvents",
       "meta":[
+      { "name":":noCompletion", "value":"" }
       ],
       "extends":[
       ],
@@ -201,7 +214,7 @@
             "isstatic":true,
             "signature":"we_exposed : Int",
             "type":"Int",
-            "doc":"A window is exposed"
+            "doc":""
         },
         {
           "name":"we_enter",
@@ -212,7 +225,7 @@
             "isstatic":true,
             "signature":"we_enter : Int",
             "type":"Int",
-            "doc":"A window is entered by a mouse"
+            "doc":""
         },
         {
           "name":"we_leave",
@@ -223,7 +236,7 @@
             "isstatic":true,
             "signature":"we_leave : Int",
             "type":"Int",
-            "doc":"A window is left by a mouse"
+            "doc":""
         },
         {
           "name":"we_hidden",
@@ -234,7 +247,7 @@
             "isstatic":true,
             "signature":"we_hidden : Int",
             "type":"Int",
-            "doc":"A window is hidden"
+            "doc":""
         },
         {
           "name":"we_size_changed",
@@ -245,7 +258,7 @@
             "isstatic":true,
             "signature":"we_size_changed : Int",
             "type":"Int",
-            "doc":"A window is resized, by the OS or internals."
+            "doc":""
         },
         {
           "name":"we_close",
@@ -256,7 +269,7 @@
             "isstatic":true,
             "signature":"we_close : Int",
             "type":"Int",
-            "doc":"A window is being closed"
+            "doc":""
         },
         {
           "name":"we_resized",
@@ -267,7 +280,7 @@
             "isstatic":true,
             "signature":"we_resized : Int",
             "type":"Int",
-            "doc":"A window is resized, by the user or code."
+            "doc":""
         },
         {
           "name":"we_restored",
@@ -278,7 +291,7 @@
             "isstatic":true,
             "signature":"we_restored : Int",
             "type":"Int",
-            "doc":"A window is restored"
+            "doc":""
         },
         {
           "name":"we_unknown",
@@ -289,7 +302,7 @@
             "isstatic":true,
             "signature":"we_unknown : Int",
             "type":"Int",
-            "doc":"An unknown window event"
+            "doc":""
         },
         {
           "name":"we_focus_gained",
@@ -300,7 +313,7 @@
             "isstatic":true,
             "signature":"we_focus_gained : Int",
             "type":"Int",
-            "doc":"A window has gained focus"
+            "doc":""
         },
         {
           "name":"we_moved",
@@ -311,7 +324,7 @@
             "isstatic":true,
             "signature":"we_moved : Int",
             "type":"Int",
-            "doc":"A window is moved"
+            "doc":""
         },
         {
           "name":"we_focus_lost",
@@ -322,7 +335,7 @@
             "isstatic":true,
             "signature":"we_focus_lost : Int",
             "type":"Int",
-            "doc":"A window has lost focus"
+            "doc":""
         },
         {
           "name":"we_created",
@@ -333,7 +346,7 @@
             "isstatic":true,
             "signature":"we_created : Int",
             "type":"Int",
-            "doc":"A window is created"
+            "doc":""
         },
         {
           "name":"we_minimized",
@@ -344,7 +357,7 @@
             "isstatic":true,
             "signature":"we_minimized : Int",
             "type":"Int",
-            "doc":"A window is minimized"
+            "doc":""
         },
         {
           "name":"we_maximized",
@@ -355,7 +368,18 @@
             "isstatic":true,
             "signature":"we_maximized : Int",
             "type":"Int",
-            "doc":"A window is maximized"
+            "doc":""
+        },
+        {
+          "name":"meta",
+            "meta":[
+            ],
+            "ispublic":false,
+            "isinline":false,
+            "isstatic":false,
+            "signature":"meta : Dynamic",
+            "type":"Dynamic",
+            "doc":""
         },
         {
           "name":"we_shown",
@@ -366,7 +390,7 @@
             "isstatic":true,
             "signature":"we_shown : Int",
             "type":"Int",
-            "doc":"A window is shown"
+            "doc":""
         }
       ],
       "properties":[
@@ -1256,6 +1280,7 @@
     },
     { "name": "lumen.window.system.sdl.WindowSystemSDL",
       "meta":[
+      { "name":":noCompletion", "value":"" }
       ],
       "extends":[
         { "name":"lumen.window.system.WindowSystem" }
@@ -1263,6 +1288,17 @@
       "implements":[
       ],
       "members":[
+        {
+          "name":"meta",
+            "meta":[
+            ],
+            "ispublic":false,
+            "isinline":false,
+            "isstatic":false,
+            "signature":"meta : Dynamic",
+            "type":"Dynamic",
+            "doc":""
+        }
       ],
       "properties":[
       ],
@@ -1285,6 +1321,7 @@
         {
           "name":"update",
             "meta":[
+            { "name":":noCompletion", "value":"" }
             ],
             "ispublic":true,
             "isstatic":false,
@@ -1298,6 +1335,7 @@
         {
           "name":"destroy",
             "meta":[
+            { "name":":noCompletion", "value":"" }
             ],
             "ispublic":true,
             "isstatic":false,
@@ -1311,6 +1349,7 @@
         {
           "name":"init",
             "meta":[
+            { "name":":noCompletion", "value":"" }
             ],
             "ispublic":true,
             "isstatic":false,
@@ -4978,7 +5017,7 @@
           }
       ],
       "ispublic":true,
-      "doc":"An asset that contains byte `data` as a `ByteArray`"
+      "doc":"An asset that contains byte `data` as a `ByteArray`. Get assets from the `Assets` class, via `app.assets`"
     },
     { "name": "lumen.assets.Assets",
       "meta":[
@@ -5528,6 +5567,7 @@
     },
     { "name": "lumen.input.system.sdl.ModValue",
       "meta":[
+      { "name":":noCompletion", "value":"" }
       ],
       "extends":[
       ],
@@ -5665,6 +5705,17 @@
             "signature":"NONE : Int",
             "type":"Int",
             "doc":""
+        },
+        {
+          "name":"meta",
+            "meta":[
+            ],
+            "ispublic":false,
+            "isinline":false,
+            "isstatic":false,
+            "signature":"meta : Dynamic",
+            "type":"Dynamic",
+            "doc":""
         }
       ],
       "properties":[
@@ -5721,6 +5772,7 @@
     },
     { "name": "lumen.input.system.sdl.TouchEventTypes",
       "meta":[
+      { "name":":noCompletion", "value":"" }
       ],
       "extends":[
       ],
@@ -5758,6 +5810,17 @@
             "isstatic":true,
             "signature":"te_up : Int",
             "type":"Int",
+            "doc":""
+        },
+        {
+          "name":"meta",
+            "meta":[
+            ],
+            "ispublic":false,
+            "isinline":false,
+            "isstatic":false,
+            "signature":"meta : Dynamic",
+            "type":"Dynamic",
             "doc":""
         }
       ],
@@ -6038,6 +6101,17 @@
             "signature":"lumen_iosrc_from_file : String->String->Dynamic",
             "type":"String->String->Dynamic",
             "doc":""
+        },
+        {
+          "name":"haxe_doc",
+            "meta":[
+            ],
+            "ispublic":false,
+            "isinline":false,
+            "isstatic":false,
+            "signature":"haxe_doc : Dynamic",
+            "type":"Dynamic",
+            "doc":""
         }
       ],
       "properties":[
@@ -6050,7 +6124,7 @@
             "ispublic":true,
             "isstatic":true,
             "isinline":false,
-            "doc":"",
+            "doc":"Create an `IOFile` from a file path `_id`, this bypasses the `Asset` system path helpers.",
             "signature":"from_file(_id:String, ?_mode:String='rb') : lumen.io.IOFile",
             "return":": lumen.io.IOFile",
             "args":[
@@ -6060,7 +6134,7 @@
           }
       ],
       "ispublic":true,
-      "doc":""
+      "doc":"This class is a low level cross platform IO helper. \n    If you want file access, use `Assets` instead, unless really required."
     },
     { "name": "lumen.utils.Libs",
       "meta":[
@@ -6830,13 +6904,14 @@
         {
           "name":"system",
             "meta":[
+            { "name":":noCompletion", "value":"" }
             ],
             "ispublic":true,
             "isinline":false,
             "isstatic":false,
             "signature":"system : lumen.window.system.LumenWindowSystem",
             "type":"lumen.window.system.LumenWindowSystem",
-            "doc":""
+            "doc":"The concrete implementation of the window system"
         },
         {
           "name":"lumen_desktop_get_display_bounds",
@@ -6858,6 +6933,17 @@
             "isstatic":false,
             "signature":"lib : lumen.Lumen",
             "type":"lumen.Lumen",
+            "doc":""
+        },
+        {
+          "name":"haxe_doc",
+            "meta":[
+            ],
+            "ispublic":false,
+            "isinline":false,
+            "isstatic":false,
+            "signature":"haxe_doc : Dynamic",
+            "type":"Dynamic",
             "doc":""
         },
         {
@@ -6913,7 +6999,7 @@
             "isstatic":false,
             "signature":"window_count : Int",
             "type":"Int",
-            "doc":""
+            "doc":"The number of windows in this manager"
         },
         {
           "name":"lumen_desktop_get_display_mode_count",
@@ -6935,7 +7021,7 @@
             "isstatic":false,
             "signature":"window_list : Map<Int,lumen.window.Window>",
             "type":"Map<Int,lumen.window.Window>",
-            "doc":""
+            "doc":"The list of windows in this manager"
         }
       ],
       "properties":[
@@ -6948,7 +7034,7 @@
             "ispublic":true,
             "isstatic":false,
             "isinline":false,
-            "doc":"",
+            "doc":"Create a window with the given config",
             "signature":"create(_config:lumen.types.WindowConfig) : lumen.window.Window",
             "return":": lumen.window.Window",
             "args":[
@@ -6958,6 +7044,7 @@
         {
           "name":"new",
             "meta":[
+            { "name":":noCompletion", "value":"" }
             ],
             "ispublic":true,
             "isstatic":false,
@@ -6976,7 +7063,7 @@
             "ispublic":true,
             "isstatic":false,
             "isinline":false,
-            "doc":"",
+            "doc":"`Desktop only` Get the information from a specific mode index, the index obtrained from iterating with `desktop_get_display_mode_count` value",
             "signature":"desktop_get_display_mode(display:Int, mode_index:Int) : lumen.window.DisplayMode",
             "return":": lumen.window.DisplayMode",
             "args":[
@@ -6991,7 +7078,7 @@
             "ispublic":true,
             "isstatic":false,
             "isinline":false,
-            "doc":"",
+            "doc":"`Desktop only` Get the bounds of the display by index",
             "signature":"desktop_get_display_bounds(display:Int) : lumen.window.DisplayBounds",
             "return":": lumen.window.DisplayBounds",
             "args":[
@@ -7005,7 +7092,7 @@
             "ispublic":true,
             "isstatic":false,
             "isinline":false,
-            "doc":"",
+            "doc":"`Desktop only` Get the name of the display by index, where available",
             "signature":"desktop_get_display_name(display:Int) : String",
             "return":": String",
             "args":[
@@ -7019,7 +7106,7 @@
             "ispublic":true,
             "isstatic":false,
             "isinline":false,
-            "doc":"",
+            "doc":"`Desktop only` Get the number of display modes present",
             "signature":"desktop_get_display_mode_count(display:Int) : Int",
             "return":": Int",
             "args":[
@@ -7033,7 +7120,7 @@
             "ispublic":true,
             "isstatic":false,
             "isinline":false,
-            "doc":"",
+            "doc":"`Desktop only` Get the current mode information of the display by index",
             "signature":"desktop_get_display_current_mode(display:Int) : lumen.window.DisplayMode",
             "return":": lumen.window.DisplayMode",
             "args":[
@@ -7076,7 +7163,7 @@
             "ispublic":true,
             "isstatic":false,
             "isinline":false,
-            "doc":"",
+            "doc":"`Desktop only` Get the number of displays present",
             "signature":"desktop_get_display_count() : Int",
             "return":": Int",
             "args":[
@@ -7103,7 +7190,7 @@
             "ispublic":true,
             "isstatic":false,
             "isinline":false,
-            "doc":"",
+            "doc":"`Desktop only` Get the native mode information of the display by index",
             "signature":"desktop_get_display_native_mode(display:Int) : lumen.window.DisplayMode",
             "return":": lumen.window.DisplayMode",
             "args":[
@@ -7112,10 +7199,11 @@
           }
       ],
       "ispublic":true,
-      "doc":""
+      "doc":"A window manager, accessed via `app.window`"
     },
     { "name": "lumen.window.system.WindowSystem",
       "meta":[
+      { "name":":noCompletion", "value":"" }
       ],
       "extends":[
       ],
@@ -7142,6 +7230,17 @@
             "isstatic":false,
             "signature":"manager : lumen.window.Windowing",
             "type":"lumen.window.Windowing",
+            "doc":""
+        },
+        {
+          "name":"meta",
+            "meta":[
+            ],
+            "ispublic":false,
+            "isinline":false,
+            "isstatic":false,
+            "signature":"meta : Dynamic",
+            "type":"Dynamic",
             "doc":""
         }
       ],
@@ -7258,10 +7357,11 @@
           }
       ],
       "ispublic":true,
-      "doc":"An asset that contains image file `data` as an `ImageInfo`"
+      "doc":"An asset that contains image file `data` as an `ImageInfo`. Get assets from the `Assets` class, via `app.assets`"
     },
     { "name": "lumen.input.system.InputSystem",
       "meta":[
+      { "name":":noCompletion", "value":"" }
       ],
       "extends":[
       ],
@@ -7299,6 +7399,17 @@
             "isstatic":false,
             "signature":"manager : lumen.input.Input",
             "type":"lumen.input.Input",
+            "doc":""
+        },
+        {
+          "name":"meta",
+            "meta":[
+            ],
+            "ispublic":false,
+            "isinline":false,
+            "isstatic":false,
+            "signature":"meta : Dynamic",
+            "type":"Dynamic",
             "doc":""
         }
       ],
@@ -7413,7 +7524,7 @@
             "isstatic":false,
             "signature":"handle : Dynamic",
             "type":"Dynamic",
-            "doc":""
+            "doc":"The internal native file handle"
         },
         {
           "name":"lumen_iosrc_file_tell",
@@ -7424,6 +7535,17 @@
             "isstatic":true,
             "signature":"lumen_iosrc_file_tell : Dynamic->Dynamic",
             "type":"Dynamic->Dynamic",
+            "doc":""
+        },
+        {
+          "name":"haxe_doc",
+            "meta":[
+            ],
+            "ispublic":false,
+            "isinline":false,
+            "isstatic":false,
+            "signature":"haxe_doc : Dynamic",
+            "type":"Dynamic",
             "doc":""
         },
         {
@@ -7477,6 +7599,7 @@
         {
           "name":"new",
             "meta":[
+            { "name":":noCompletion", "value":"" }
             ],
             "ispublic":true,
             "isstatic":false,
@@ -7495,7 +7618,7 @@
             "ispublic":true,
             "isstatic":false,
             "isinline":false,
-            "doc":"",
+            "doc":"Write `num` of items of `size` in bytes, from `src` into this file. Same signature/returns as `fwrite`",
             "signature":"write(src:lumen.utils.ByteArray, size:Int, num:Int) : Dynamic",
             "return":": Dynamic",
             "args":[
@@ -7511,7 +7634,7 @@
             "ispublic":true,
             "isstatic":false,
             "isinline":false,
-            "doc":"",
+            "doc":"Read a `maxnum` of items of `size` in bytes, into `dest`. Same signature/returns as `fread`",
             "signature":"read(dest:lumen.utils.ByteArray, size:Int, maxnum:Int) : Dynamic",
             "return":": Dynamic",
             "args":[
@@ -7527,7 +7650,7 @@
             "ispublic":true,
             "isstatic":false,
             "isinline":false,
-            "doc":"",
+            "doc":"Close the file",
             "signature":"close() : Dynamic",
             "return":": Dynamic",
             "args":[
@@ -7540,7 +7663,7 @@
             "ispublic":true,
             "isstatic":false,
             "isinline":false,
-            "doc":"",
+            "doc":"Seek `offset` from `whence`, where whence is an int matching `set=0`, `cur=1`, `end=2`. Same signature/returns as `fseek`",
             "signature":"seek(offset:Int, whence:Int) : Dynamic",
             "return":": Dynamic",
             "args":[
@@ -7555,7 +7678,7 @@
             "ispublic":true,
             "isstatic":false,
             "isinline":false,
-            "doc":"",
+            "doc":"Tell the current position in the file, in bytes",
             "signature":"tell() : Dynamic",
             "return":": Dynamic",
             "args":[
@@ -7563,7 +7686,7 @@
           }
       ],
       "ispublic":true,
-      "doc":""
+      "doc":"This class is a low level cross platform file access helper, that handles in bundle assets etc. \n    If you want a file, use `Assets` instead, unless really required."
     },
     { "name": "lumen.audio.system.SoundStream",
       "meta":[
@@ -7723,7 +7846,7 @@
           }
       ],
       "ispublic":true,
-      "doc":"An asset that contains `text` as a `String`"
+      "doc":"An asset that contains `text` as a `String`. Get assets from the `Assets` class, via `app.assets`"
     },
     { "name": "lumen.input.Keycodes",
       "meta":[
@@ -10364,6 +10487,7 @@
     },
     { "name": "lumen.input.system.sdl.GamepadEventTypes",
       "meta":[
+      { "name":":noCompletion", "value":"" }
       ],
       "extends":[
       ],
@@ -10434,6 +10558,17 @@
             "isstatic":true,
             "signature":"ge_added : Int",
             "type":"Int",
+            "doc":""
+        },
+        {
+          "name":"meta",
+            "meta":[
+            ],
+            "ispublic":false,
+            "isinline":false,
+            "isstatic":false,
+            "signature":"meta : Dynamic",
+            "type":"Dynamic",
             "doc":""
         }
       ],
@@ -10748,7 +10883,7 @@
             "ispublic":true,
             "isstatic":false,
             "isinline":false,
-            "doc":"",
+            "doc":"The default constructor of an App is empty, so you can override it if you want, but take note that this happens way before lumen is ready for use.",
             "signature":"new() ",
             "return":"",
             "args":[
@@ -11003,7 +11138,7 @@
             "ispublic":true,
             "isstatic":false,
             "isinline":false,
-            "doc":"",
+            "doc":"returns true if the `Key` value was pressed in the latest frame",
             "signature":"keypressed(_code:Int) : Bool",
             "return":": Bool",
             "args":[
@@ -11017,7 +11152,7 @@
             "ispublic":true,
             "isstatic":false,
             "isinline":false,
-            "doc":"",
+            "doc":"returns true if the `Key` value was released in the latest frame",
             "signature":"keyreleased(_code:Int) : Bool",
             "return":": Bool",
             "args":[
@@ -11027,6 +11162,7 @@
         {
           "name":"on_event",
             "meta":[
+            { "name":":noCompletion", "value":"" }
             ],
             "ispublic":true,
             "isstatic":false,
@@ -11045,7 +11181,7 @@
             "ispublic":true,
             "isstatic":false,
             "isinline":false,
-            "doc":"",
+            "doc":"manually dispatch a touch event through the system, delivered to the app handlers, internal and external",
             "signature":"dispatch_touch_event(_event:lumen.input.TouchEvent) : Void",
             "return":": Void",
             "args":[
@@ -11059,7 +11195,7 @@
             "ispublic":true,
             "isstatic":false,
             "isinline":false,
-            "doc":"",
+            "doc":"returns true if the `Key` value is down at the time of calling this",
             "signature":"keydown(_code:Int) : Bool",
             "return":": Bool",
             "args":[
@@ -11073,7 +11209,7 @@
             "ispublic":true,
             "isstatic":false,
             "isinline":false,
-            "doc":"",
+            "doc":"manually dispatch a mouse event through the system, delivered to the app handlers, internal and external",
             "signature":"dispatch_mouse_event(_event:lumen.input.MouseEvent) : Void",
             "return":": Void",
             "args":[
@@ -11087,7 +11223,7 @@
             "ispublic":true,
             "isstatic":false,
             "isinline":false,
-            "doc":"",
+            "doc":"Helper to return a `ModState` (shift, ctrl etc) from a given `InputEvent`",
             "signature":"mod_state_from_event(event:lumen.types.InputEvent) : lumen.input.ModState",
             "return":": lumen.input.ModState",
             "args":[
@@ -11097,6 +11233,7 @@
         {
           "name":"new",
             "meta":[
+            { "name":":noCompletion", "value":"" }
             ],
             "ispublic":true,
             "isstatic":false,
@@ -11115,7 +11252,7 @@
             "ispublic":true,
             "isstatic":false,
             "isinline":false,
-            "doc":"",
+            "doc":"manually dispatch a text event through the system, delivered to the app handlers, internal and external",
             "signature":"dispatch_text_event(_event:lumen.input.TextEvent) : Void",
             "return":": Void",
             "args":[
@@ -11129,7 +11266,7 @@
             "ispublic":true,
             "isstatic":false,
             "isinline":false,
-            "doc":"",
+            "doc":"manually dispatch a gamepad event through the system, delivered to the app handlers, internal and external",
             "signature":"dispatch_gamepad_event(_event:lumen.input.GamepadEvent) : Void",
             "return":": Void",
             "args":[
@@ -11139,6 +11276,7 @@
         {
           "name":"update",
             "meta":[
+            { "name":":noCompletion", "value":"" }
             ],
             "ispublic":true,
             "isstatic":false,
@@ -11152,6 +11290,7 @@
         {
           "name":"on_gamepad_added",
             "meta":[
+            { "name":":noCompletion", "value":"" }
             ],
             "ispublic":true,
             "isstatic":false,
@@ -11166,6 +11305,7 @@
         {
           "name":"destroy",
             "meta":[
+            { "name":":noCompletion", "value":"" }
             ],
             "ispublic":true,
             "isstatic":false,
@@ -11183,7 +11323,7 @@
             "ispublic":true,
             "isstatic":false,
             "isinline":false,
-            "doc":"",
+            "doc":"manually dispatch a keyboard event through the system, delivered to the app handlers, internal and external",
             "signature":"dispatch_key_event(_event:lumen.input.KeyEvent) : Void",
             "return":": Void",
             "args":[
@@ -11193,6 +11333,7 @@
         {
           "name":"on_gamepad_removed",
             "meta":[
+            { "name":":noCompletion", "value":"" }
             ],
             "ispublic":true,
             "isstatic":false,
@@ -11255,12 +11396,24 @@
     },
     { "name": "lumen.render.gl.native.Ext",
       "meta":[
+      { "name":":noCompletion", "value":"" }
       ],
       "extends":[
       ],
       "implements":[
       ],
       "members":[
+        {
+          "name":"meta",
+            "meta":[
+            ],
+            "ispublic":false,
+            "isinline":false,
+            "isstatic":false,
+            "signature":"meta : Dynamic",
+            "type":"Dynamic",
+            "doc":""
+        }
       ],
       "properties":[
       ],
@@ -11301,6 +11454,7 @@
     },
     { "name": "lumen.input.system.sdl.KeyEventTypes",
       "meta":[
+      { "name":":noCompletion", "value":"" }
       ],
       "extends":[
       ],
@@ -11327,6 +11481,17 @@
             "isstatic":true,
             "signature":"ke_down : Int",
             "type":"Int",
+            "doc":""
+        },
+        {
+          "name":"meta",
+            "meta":[
+            ],
+            "ispublic":false,
+            "isinline":false,
+            "isstatic":false,
+            "signature":"meta : Dynamic",
+            "type":"Dynamic",
             "doc":""
         },
         {
@@ -13712,7 +13877,7 @@
           }
       ],
       "ispublic":true,
-      "doc":"An asset base class"
+      "doc":"An asset base class. Get assets from the `Assets` class, via `app.assets`"
     },
     { "name": "lumen.render.gl.GLObject",
       "meta":[
@@ -14439,7 +14604,7 @@
           }
       ],
       "ispublic":true,
-      "doc":"An asset that contains audio file `data` as an `AudioInfo`"
+      "doc":"An asset that contains audio file `data` as an `AudioInfo`. Get assets from the `Assets` class, via `app.assets`"
     },
     { "name": "lumen.input.Scancodes",
       "meta":[
@@ -17137,6 +17302,7 @@
     },
     { "name": "lumen.input.system.sdl.InputSystemSDL",
       "meta":[
+      { "name":":noCompletion", "value":"" }
       ],
       "extends":[
         { "name":"lumen.input.system.InputSystem" }
@@ -17152,6 +17318,17 @@
             "isinline":false,
             "isstatic":false,
             "signature":"haxe_doc : Dynamic",
+            "type":"Dynamic",
+            "doc":""
+        },
+        {
+          "name":"meta",
+            "meta":[
+            ],
+            "ispublic":false,
+            "isinline":false,
+            "isstatic":false,
+            "signature":"meta : Dynamic",
             "type":"Dynamic",
             "doc":""
         }
@@ -20197,6 +20374,7 @@
     },
     { "name": "lumen.input.system.sdl.MouseEventTypes",
       "meta":[
+      { "name":":noCompletion", "value":"" }
       ],
       "extends":[
       ],
@@ -20245,6 +20423,17 @@
             "isstatic":true,
             "signature":"me_wheel : Int",
             "type":"Int",
+            "doc":""
+        },
+        {
+          "name":"meta",
+            "meta":[
+            ],
+            "ispublic":false,
+            "isinline":false,
+            "isstatic":false,
+            "signature":"meta : Dynamic",
+            "type":"Dynamic",
             "doc":""
         }
       ],
@@ -21548,6 +21737,7 @@
     },
     { "name": "lumen.types.InputEvents",
       "meta":[
+      { "name":":noCompletion", "value":"" }
       ],
       "extends":[
       ],
@@ -21563,7 +21753,7 @@
             "isstatic":true,
             "signature":"ie_key : Int",
             "type":"Int",
-            "doc":"An keyboard input event"
+            "doc":""
         },
         {
           "name":"ie_controller",
@@ -21574,7 +21764,7 @@
             "isstatic":true,
             "signature":"ie_controller : Int",
             "type":"Int",
-            "doc":"An controller input event. Use these instead of joystick on desktop."
+            "doc":""
         },
         {
           "name":"ie_mouse",
@@ -21585,7 +21775,7 @@
             "isstatic":true,
             "signature":"ie_mouse : Int",
             "type":"Int",
-            "doc":"An mouse input event"
+            "doc":""
         },
         {
           "name":"ie_touch",
@@ -21596,7 +21786,7 @@
             "isstatic":true,
             "signature":"ie_touch : Int",
             "type":"Int",
-            "doc":"An touch input event"
+            "doc":""
         },
         {
           "name":"ie_joystick",
@@ -21607,7 +21797,18 @@
             "isstatic":true,
             "signature":"ie_joystick : Int",
             "type":"Int",
-            "doc":"An joystick input event. On mobile, accellerometer is a joystick (for now)"
+            "doc":""
+        },
+        {
+          "name":"meta",
+            "meta":[
+            ],
+            "ispublic":false,
+            "isinline":false,
+            "isstatic":false,
+            "signature":"meta : Dynamic",
+            "type":"Dynamic",
+            "doc":""
         },
         {
           "name":"ie_unknown",
@@ -21618,7 +21819,7 @@
             "isstatic":true,
             "signature":"ie_unknown : Int",
             "type":"Int",
-            "doc":"An unknown input event"
+            "doc":""
         }
       ],
       "properties":[
@@ -21661,7 +21862,7 @@
         }
       ],
       "ispublic":true,
-      "doc":"The options for an `AssetImage` asset",
+      "doc":"The options for an `AssetImage` asset. Get assets from the `Assets` class, via `app.assets`",
       "alias":""
     },
     { "name": "lumen.render.gl.GLContextAttributes",
@@ -21767,7 +21968,7 @@
         }
       ],
       "ispublic":true,
-      "doc":"",
+      "doc":"Information about an audio portion requested via assets\n\n`complete` : True if the file has reached the end in this blob   \n`data` : The data stored in this blob",
       "alias":""
     },
     { "name": "lumen.utils.ByteArray",
@@ -21866,7 +22067,7 @@
         }
       ],
       "ispublic":true,
-      "doc":"",
+      "doc":"A system input event \n   \n`? type` : The type of input event this was   \n`? timestamp` : The time in seconds that this event occured, useful for deltas   \n`? window_id` : The window id from which this event originated   \n`? event` : The raw platform event data",
       "alias":""
     },
     { "name": "lumen.input.TouchEvent",
@@ -21985,7 +22186,7 @@
         }
       ],
       "ispublic":true,
-      "doc":"",
+      "doc":"Information about a touch event\n\n`raw` : The raw event from the system, unmodified   \n`state` : The state this touch event is in   \n`timestamp` : The time in seconds when this touch event occurred, use for deltas   \n`touch_id` : The id of the touch that this event comes from, a finger id   \n`device_id` : The device id this touch comes from   \n`x` : The x position in the window of the touch event   \n`y` : The x position in the window of the touch event   \n`dx` : The delta x value of the touch event, if the state is `moving`   \n`dy` : The delta y value of the touch event, if the state is `moving`   \n`pressure` : The pressure value of the touch event, where available",
       "alias":""
     },
     { "name": "lumen.types.AssetInfo",
@@ -22038,7 +22239,7 @@
         }
       ],
       "ispublic":true,
-      "doc":"",
+      "doc":"Information for a single asset \n\n`id` : the asset id   \n`path` : the location of the asset   \n`ext` : the asset extension, if any   \n`type` : a convenience type indicator",
       "alias":""
     },
     { "name": "lumen.input.Scan",
@@ -22175,7 +22376,7 @@
         }
       ],
       "ispublic":true,
-      "doc":"",
+      "doc":"Information about a text input event\n\n`raw` : The raw event from the system, unmodified   \n`text` : The text that this event has generated   \n`type` : The type of text event   \n`timestamp` : The time in seconds when this touch event occurred, use for deltas   \n`window_id` : The window id this event originated from   \n`start` : The start position, if the `type` is `edit`   \n`length` : The length position, if the `type` is `edit`",
       "alias":""
     },
     { "name": "lumen.window.DisplayMode",
@@ -22347,7 +22548,7 @@
         }
       ],
       "ispublic":true,
-      "doc":"",
+      "doc":"Information about a mouse event \n\n`raw` : The raw event from the system, unmodified   \n`timestamp` : The time in seconds when this touch event occurred, use for deltas   \n`window_id` : The window id this event originated from    \n`which` : Which mouse this event originated from (usually 0)   \n`state` : The state this event is in   \n`button` : The button id, if the event `state` is `down` or `up`   \n`x` : The x position in the window of the mouse event   \n`y` : The y position in the window of the mouse event   \n`xrel` : The relative x position if `state` is `move` or a window has grabbed state   \n`yrel` : The relative y position if `state` is `move` or a window has grabbed state",
       "alias":""
     },
     { "name": "lumen.render.gl.GLUniformLocation",
@@ -22456,7 +22657,7 @@
         }
       ],
       "ispublic":true,
-      "doc":"",
+      "doc":"The lumen core configuration information\n\n`? host` : the bootstrapped application   \n`? window_config` : the window config for a default window, if any   \n`? run_loop` : whether or not the core should run a loop at all   \n`? runtime_config` : the user specific config read from json at runtime   \n`? asset_data` : the raw list of assets. use the app.assets from Lumen for access",
       "alias":""
     },
     { "name": "lumen.types.WindowConfig",
@@ -22657,11 +22858,12 @@
         }
       ],
       "ispublic":true,
-      "doc":"",
+      "doc":"Window configuration information for creating windows\n\n`? fullscreen` : create in fullscreen   \n`? resizable` : allow the window to be resized   \n`? borderless` : create as a borderless window   \n`? antialiasing` : a value of `2`, `4`, `8` or other valid antialiasing flags   \n`? stencil_buffer` : create a stencil buffer (not per window)   \n`? depth_buffer` : create a depth buffer (not per window)   \n`? vsync` : enable vsync (not per window)   \n`? fps` : window max fps if any   \n`? x` : window y at creation   \n`? y` : window x at creation   \n`? width` : window height at creation   \n`? height` : window width at creation   \n`? title` : window title   \n`? orientation` : `Mobile specific` - window orientation setting",
       "alias":""
     },
     { "name": "lumen.render.gl.Ext",
       "meta":[
+      { "name":":noCompletion", "value":"" }
       ],
       "members":[
       ],
@@ -22783,7 +22985,7 @@
         }
       ],
       "ispublic":true,
-      "doc":"",
+      "doc":"Information about an image file/data\n\n`id` : source asset id   \n`bpp` : used bits per pixel   \n`width` : image width   \n`height` : image height   \n`bpp_source` : source bits per pixel   \n`data` : image data",
       "alias":""
     },
     { "name": "lumen.input.Key",
@@ -22908,11 +23110,12 @@
         }
       ],
       "ispublic":true,
-      "doc":"",
+      "doc":"Information about a gamepad event\n\n`raw` : The raw event from the system, unmodified   \n`timestamp` : The time in seconds when this touch event occurred, use for deltas   \n`type` : The button id, if the event `type` is `button`   \n`state` : The state this event is in   \n`which` : The id of the gamepad this event comes from   \n`button` : The button id, if the event `type` is `button`   \n`axis` : The axis id, if the event `type` is `button`   \n`value` : The axis value, if the event `type` is `axis`",
       "alias":""
     },
     { "name": "lumen.input.system.LumenInputSystem",
       "meta":[
+      { "name":":noCompletion", "value":"" }
       ],
       "members":[
       ],
@@ -23036,7 +23239,7 @@
         }
       ],
       "ispublic":true,
-      "doc":"",
+      "doc":"Information about an audio file/data\n\n`id` : file source   \n`format` : format   \n`channels` : number of channels   \n`rate` : hz rate    \n`bitrate` : sound bitrate   \n`bits_per_sample` : bits per sample, 8 / 16   \n`data` : sound raw data,   \n`length` : the file length in bytes   \n`length_pcm` : the pcm uncompressed raw length in bytes   \n`handle` : the native audio handle for later manipulation",
       "alias":""
     },
     { "name": "lumen.window.DisplayBounds",
@@ -23094,6 +23297,7 @@
     },
     { "name": "lumen.window.system.LumenWindowSystem",
       "meta":[
+      { "name":":noCompletion", "value":"" }
       ],
       "members":[
       ],
@@ -23193,7 +23397,7 @@
         }
       ],
       "ispublic":true,
-      "doc":"",
+      "doc":"A system event. \nValues below are null unless the event `type` matches. _i.e_ if type is `window`, the `window` value is not null, and so on",
       "alias":""
     },
     { "name": "lumen.audio.system.LumenSound",
@@ -23388,7 +23592,7 @@
         }
       ],
       "ispublic":true,
-      "doc":"Input modifier state",
+      "doc":"Input modifier state \n\n`none` : no modifiers are down   \n`lshift` : left shift key is down   \n`rshift` : right shift key is down   \n`lctrl` : left ctrl key is down   \n`rctrl` : right ctrl key is down   \n`lalt` : left alt/option key is down   \n`ralt` : right alt/option key is down   \n`lmeta` : left windows/command key is down   \n`rmeta` : right windows/command key is down   \n`num` : numlock is enabled   \n`caps` : capslock is enabled   \n`mode` : mode key is down   \n`ctrl` : left or right ctrl key is down   \n`shift` : left or right shift key is down   \n`alt` : left or right alt/option key is down   \n`meta` : left or right windows/command key is down",
       "alias":""
     },
     { "name": "lumen.input.KeyEvent",
@@ -23485,7 +23689,7 @@
         }
       ],
       "ispublic":true,
-      "doc":"",
+      "doc":"Information about a keyboard event\n\n`raw` : The raw event from the system, unmodified   \n`scancode` : The `lumen.input.Scan` code value for this event   \n`keycode` : The `lumen.input.Key` code value for this event   \n`state` : The state of the key in this event   \n`mod` : The modifier state of this event   \n`repeat` : If this value is bigger than 0 this is a key repeat event of a key held down   \n`timestamp` : The time in seconds when this touch event occurred, use for deltas   \n`window_id` : The window id this event originated from",
       "alias":""
     },
     { "name": "lumen.types.WindowEvent",
@@ -23542,7 +23746,7 @@
         }
       ],
       "ispublic":true,
-      "doc":"",
+      "doc":"A system window event \n\n`? type` : The type of window event this was   \n`? timestamp` : The time in seconds that this event occured, useful for deltas   \n`? window_id` : The window id from which this event originated   \n`? event` : The raw platform event data",
       "alias":""
     }
   ],
@@ -23552,64 +23756,64 @@
       { "name":":flatEnum", "value":"" }
       ],
       "values":[
-        { "name":"unknown", "doc":"" },
-        { "name":"down", "doc":"" },
-        { "name":"up", "doc":"" }
+        { "name":"unknown", "doc":"An unknown state" },
+        { "name":"down", "doc":"In a pressed state" },
+        { "name":"up", "doc":"In a released state" }
       ],
       "ispublic":true,
-      "doc":""
+      "doc":"A typed state for buttons or similar"
     },
     { "name": "lumen.input.MouseButton",
       "meta":[
       { "name":":flatEnum", "value":"" }
       ],
       "values":[
-        { "name":"none", "doc":"" },
-        { "name":"left", "doc":"" },
-        { "name":"middle", "doc":"" },
-        { "name":"right", "doc":"" },
-        { "name":"extra1", "doc":"" },
-        { "name":"extra2", "doc":"" }
+        { "name":"none", "doc":"no mouse buttons" },
+        { "name":"left", "doc":"left mouse button" },
+        { "name":"middle", "doc":"middle mouse button" },
+        { "name":"right", "doc":"right mouse button" },
+        { "name":"extra1", "doc":"extra button pressed (4)" },
+        { "name":"extra2", "doc":"extra button pressed (5)" }
       ],
       "ispublic":true,
-      "doc":""
+      "doc":"A typed mouse button id"
     },
     { "name": "lumen.types.WindowEventType",
       "meta":[
       { "name":":flatEnum", "value":"" }
       ],
       "values":[
-        { "name":"unknown", "doc":"" },
-        { "name":"window_created", "doc":"" },
-        { "name":"window_shown", "doc":"" },
-        { "name":"window_hidden", "doc":"" },
-        { "name":"window_exposed", "doc":"" },
-        { "name":"window_moved", "doc":"" },
-        { "name":"window_resized", "doc":"" },
-        { "name":"window_size_changed", "doc":"" },
-        { "name":"window_minimized", "doc":"" },
-        { "name":"window_maximized", "doc":"" },
-        { "name":"window_restored", "doc":"" },
-        { "name":"window_enter", "doc":"" },
-        { "name":"window_leave", "doc":"" },
-        { "name":"window_focus_gained", "doc":"" },
-        { "name":"window_focus_lost", "doc":"" },
-        { "name":"window_close", "doc":"" }
+        { "name":"unknown", "doc":"An unknown window event" },
+        { "name":"window_created", "doc":"A window is created" },
+        { "name":"window_shown", "doc":"A window is shown" },
+        { "name":"window_hidden", "doc":"A window is hidden" },
+        { "name":"window_exposed", "doc":"A window is exposed" },
+        { "name":"window_moved", "doc":"A window is moved" },
+        { "name":"window_resized", "doc":"A window is resized, by the user or code." },
+        { "name":"window_size_changed", "doc":"A window is resized, by the OS or internals." },
+        { "name":"window_minimized", "doc":"A window is minimized" },
+        { "name":"window_maximized", "doc":"A window is maximized" },
+        { "name":"window_restored", "doc":"A window is restored" },
+        { "name":"window_enter", "doc":"A window is entered by a mouse" },
+        { "name":"window_leave", "doc":"A window is left by a mouse" },
+        { "name":"window_focus_gained", "doc":"A window has gained focus" },
+        { "name":"window_focus_lost", "doc":"A window has lost focus" },
+        { "name":"window_close", "doc":"A window is being closed" }
       ],
       "ispublic":true,
-      "doc":""
+      "doc":"A typed window event"
     },
     { "name": "lumen.input.TextEventType",
       "meta":[
       { "name":":flatEnum", "value":"" }
       ],
       "values":[
-        { "name":"unknown", "doc":"" },
-        { "name":"edit", "doc":"" },
-        { "name":"input", "doc":"" }
+        { "name":"unknown", "doc":"An unknown event" },
+        { "name":"edit", "doc":"An edit text typing event" },
+        { "name":"input", "doc":"An input text typing event" }
       ],
       "ispublic":true,
-      "doc":""
+      "doc":"A typed text event type"
     },
     { "name": "lumen.types.AudioFormatType",
       "meta":[
@@ -23622,7 +23826,7 @@
         { "name":"pcm", "doc":"" }
       ],
       "ispublic":true,
-      "doc":""
+      "doc":"The type of audio format"
     },
     { "name": "lumen.utils.compat.CompressionAlgorithm",
       "meta":[
@@ -23642,14 +23846,14 @@
       { "name":":flatEnum", "value":"" }
       ],
       "values":[
-        { "name":"unknown", "doc":"" },
-        { "name":"down", "doc":"" },
-        { "name":"up", "doc":"" },
-        { "name":"move", "doc":"" },
-        { "name":"wheel", "doc":"" }
+        { "name":"unknown", "doc":"An unknown state" },
+        { "name":"down", "doc":"In a pressed state" },
+        { "name":"up", "doc":"In a released state" },
+        { "name":"move", "doc":"In a moving state" },
+        { "name":"wheel", "doc":"A mouse wheel state" }
       ],
       "ispublic":true,
-      "doc":""
+      "doc":"A typed mouse state"
     },
     { "name": "lumen.input.TouchState",
       "meta":[
@@ -23666,7 +23870,7 @@
     },
     { "name": "lumen.input.system.sdl.ControllerEventType",
       "meta":[
-      { "name":":flatEnum", "value":"" }
+      { "name":":noCompletion", "value":"" }
       ],
       "values":[
         { "name":"unknown", "doc":"" },
@@ -23685,34 +23889,34 @@
       { "name":":flatEnum", "value":"" }
       ],
       "values":[
-        { "name":"unknown", "doc":"" },
-        { "name":"key", "doc":"" },
-        { "name":"mouse", "doc":"" },
-        { "name":"touch", "doc":"" },
-        { "name":"joystick", "doc":"" },
-        { "name":"controller", "doc":"" }
+        { "name":"unknown", "doc":"An unknown input event" },
+        { "name":"key", "doc":"An keyboard input event" },
+        { "name":"mouse", "doc":"An mouse input event" },
+        { "name":"touch", "doc":"An touch input event" },
+        { "name":"joystick", "doc":"An joystick input event. On mobile, accellerometer is a joystick (for now)" },
+        { "name":"controller", "doc":"An controller input event. Use these instead of joystick on desktop." }
       ],
       "ispublic":true,
-      "doc":""
+      "doc":"A typed input event"
     },
     { "name": "lumen.input.GamepadEventType",
       "meta":[
       { "name":":flatEnum", "value":"" }
       ],
       "values":[
-        { "name":"unknown", "doc":"" },
-        { "name":"axis", "doc":"" },
-        { "name":"button", "doc":"" },
-        { "name":"device_added", "doc":"" },
-        { "name":"device_removed", "doc":"" },
-        { "name":"device_remapped", "doc":"" }
+        { "name":"unknown", "doc":"An unknown event" },
+        { "name":"axis", "doc":"An axis change event" },
+        { "name":"button", "doc":"A button event" },
+        { "name":"device_added", "doc":"A device added event" },
+        { "name":"device_removed", "doc":"A device removed event" },
+        { "name":"device_remapped", "doc":"A device was remapped" }
       ],
       "ispublic":true,
-      "doc":""
+      "doc":"A typed gamepad event type"
     },
     { "name": "lumen.input.system.sdl.KeyEventType",
       "meta":[
-      { "name":":flatEnum", "value":"" }
+      { "name":":noCompletion", "value":"" }
       ],
       "values":[
         { "name":"unknown", "doc":"" },
@@ -23726,7 +23930,7 @@
     },
     { "name": "lumen.input.system.sdl.MouseEventType",
       "meta":[
-      { "name":":flatEnum", "value":"" }
+      { "name":":noCompletion", "value":"" }
       ],
       "values":[
         { "name":"unknown", "doc":"" },
@@ -23743,23 +23947,23 @@
       { "name":":flatEnum", "value":"" }
       ],
       "values":[
-        { "name":"unknown", "doc":"" },
-        { "name":"init", "doc":"" },
-        { "name":"ready", "doc":"" },
-        { "name":"update", "doc":"" },
-        { "name":"shutdown", "doc":"" },
-        { "name":"window", "doc":"" },
-        { "name":"input", "doc":"" },
-        { "name":"quit", "doc":"" },
-        { "name":"app_terminating", "doc":"" },
-        { "name":"app_lowmemory", "doc":"" },
-        { "name":"app_willenterbackground", "doc":"" },
-        { "name":"app_didenterbackground", "doc":"" },
-        { "name":"app_willenterforeground", "doc":"" },
-        { "name":"app_didenterforeground", "doc":"" }
+        { "name":"unknown", "doc":"An unknown system event" },
+        { "name":"init", "doc":"An internal system init event" },
+        { "name":"ready", "doc":"An internal system ready event" },
+        { "name":"update", "doc":"An internal system update event" },
+        { "name":"shutdown", "doc":"An system shutdown event" },
+        { "name":"window", "doc":"An system window event" },
+        { "name":"input", "doc":"An system input event" },
+        { "name":"quit", "doc":"An system quit event. Initiated by user, can be cancelled/ignored" },
+        { "name":"app_terminating", "doc":"An system terminating event, called by the OS (mobile specific)" },
+        { "name":"app_lowmemory", "doc":"An system low memory event, clear memory if you can. Called by the OS (mobile specific)" },
+        { "name":"app_willenterbackground", "doc":"An event for just before the app enters the background, called by the OS (mobile specific)" },
+        { "name":"app_didenterbackground", "doc":"An event for when the app enters the background, called by the OS (mobile specific)" },
+        { "name":"app_willenterforeground", "doc":"An event for just before the app enters the foreground, called by the OS (mobile specific)" },
+        { "name":"app_didenterforeground", "doc":"An event for when the app enters the foreground, called by the OS (mobile specific)" }
       ],
       "ispublic":true,
-      "doc":""
+      "doc":"A typed system event"
     }
   ]
 }

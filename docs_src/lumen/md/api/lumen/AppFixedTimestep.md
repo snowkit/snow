@@ -3,24 +3,18 @@
 
 ---
 
-#AppFixedTimestep
 
---- 
+##[API Index](../../api/index.html#lumen)   
+&emsp;&emsp;&emsp;[lumen](./)   
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;AppFixedTimestep
+
+---
+
+#AppFixedTimestep
 
 Read the App Guide for full info, and for even more information see : http://gafferongames.com/game-physics/fix-your-timestep/
     this stores and calculates a fixed game update loop, and rendering interpolation is required
     for smooth updates between frames.
-
----
-<br/>
-
-##[API Index](../../api/index.html#lumen)   
-&emsp;&emsp;&emsp;parent    
-_none_   
-&emsp;&emsp;&emsp;current    
-[lumen](./) / AppFixedTimestep
-
-<br/>
 
 ---
 
@@ -73,7 +67,7 @@ _none_
 
 `new() `
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 
 

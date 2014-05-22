@@ -1,6 +1,6 @@
 {
   "source": "lumen.types.SystemEvent",
-  "doc": "",
+  "doc": "A system event. \nValues below are null unless the event `type` matches. _i.e_ if type is `window`, the `window` value is not null, and so on",
   "links": [],
   "toplinks": [],
   "sections": [

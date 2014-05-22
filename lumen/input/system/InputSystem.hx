@@ -6,16 +6,16 @@ import lumen.input.Input;
 
 #if lumen_input_sdl
 
-    typedef LumenInputSystem = lumen.input.system.sdl.InputSystemSDL;
+    @:noCompletion typedef LumenInputSystem = lumen.input.system.sdl.InputSystemSDL;
 
 #else
         
-    typedef LumenInputSystem = lumen.input.system.InputSystem;
+    @:noCompletion typedef LumenInputSystem = lumen.input.system.InputSystem;
 
 #end //lumen_input_sdl
 
 /** Internal input system, accessed through `lumen.Input`, not directly */
-class InputSystem {
+@:noCompletion class InputSystem {
 
     var manager : Input;
     var lib : Lumen;

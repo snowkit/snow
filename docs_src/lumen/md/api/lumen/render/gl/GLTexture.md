@@ -3,16 +3,16 @@
 
 ---
 
-#GLTexture
-
 
 ##[API Index](../../../../api/index.html#lumen.render)   
-&emsp;&emsp;&emsp;parent    
 [lumen.render](../)     
-&emsp;&emsp;&emsp;current    
-[lumen.render.gl](./) / GLTexture
+&emsp;&emsp;&emsp;[lumen.render.gl](./)   
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;GLTexture
 
-<br/>
+---
+
+#GLTexture
+
 
 ---
 
@@ -43,7 +43,7 @@
 
 `new(version:Int, id:Dynamic) `
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 
 

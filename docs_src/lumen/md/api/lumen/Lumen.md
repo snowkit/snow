@@ -3,16 +3,15 @@
 
 ---
 
-#Lumen
-
 
 ##[API Index](../../api/index.html#lumen)   
-&emsp;&emsp;&emsp;parent    
-_none_   
-&emsp;&emsp;&emsp;current    
-[lumen](./) / Lumen
+&emsp;&emsp;&emsp;[lumen](./)   
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Lumen
 
-<br/>
+---
+
+#Lumen
+
 
 ---
 

@@ -3,22 +3,17 @@
 
 ---
 
-#AssetImageOptions
-
---- 
-
-The options for an `AssetImage` asset
-
----
-<br/>
 
 ##[API Index](../../../api/index.html#lumen.assets)   
-&emsp;&emsp;&emsp;parent    
 [lumen](../)     
-&emsp;&emsp;&emsp;current    
-[lumen.assets](./) / AssetImageOptions
+&emsp;&emsp;&emsp;[lumen.assets](./)   
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;AssetImageOptions
 
-<br/>
+---
+
+#AssetImageOptions
+
+The options for an `AssetImage` asset. Get assets from the `Assets` class, via `app.assets`
 
 ---
 
@@ -39,7 +34,7 @@ The options for an `AssetImage` asset
 
 `components : Int`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 
 

@@ -3,16 +3,16 @@
 
 ---
 
-#CompressionAlgorithm
-
 
 ##[API Index](../../../../api/index.html#lumen.utils)   
-&emsp;&emsp;&emsp;parent    
 [lumen.utils](../)     
-&emsp;&emsp;&emsp;current    
-[lumen.utils.compat](./) / CompressionAlgorithm
+&emsp;&emsp;&emsp;[lumen.utils.compat](./)   
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;CompressionAlgorithm
 
-<br/>
+---
+
+#CompressionAlgorithm
+
 
 ---
 
@@ -33,7 +33,7 @@
 
 `lumen.utils.compat.CompressionAlgorithm.DEFLATE`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="GZIP" href="#GZIP">GZIP</a>
 
@@ -41,7 +41,7 @@
 
 `lumen.utils.compat.CompressionAlgorithm.GZIP`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="LZMA" href="#LZMA">LZMA</a>
 
@@ -49,7 +49,7 @@
 
 `lumen.utils.compat.CompressionAlgorithm.LZMA`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="ZLIB" href="#ZLIB">ZLIB</a>
 
@@ -57,7 +57,7 @@
 
 `lumen.utils.compat.CompressionAlgorithm.ZLIB`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 &nbsp;   
 

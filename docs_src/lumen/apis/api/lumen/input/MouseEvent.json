@@ -1,6 +1,6 @@
 {
   "source": "lumen.input.MouseEvent",
-  "doc": "",
+  "doc": "Information about a mouse event \n\n`raw` : The raw event from the system, unmodified   \n`timestamp` : The time in seconds when this touch event occurred, use for deltas   \n`window_id` : The window id this event originated from    \n`which` : Which mouse this event originated from (usually 0)   \n`state` : The state this event is in   \n`button` : The button id, if the event `state` is `down` or `up`   \n`x` : The x position in the window of the mouse event   \n`y` : The y position in the window of the mouse event   \n`xrel` : The relative x position if `state` is `move` or a window has grabbed state   \n`yrel` : The relative y position if `state` is `move` or a window has grabbed state",
   "links": [],
   "toplinks": [],
   "sections": [

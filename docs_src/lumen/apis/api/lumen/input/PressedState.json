@@ -1,6 +1,6 @@
 {
   "source": "lumen.input.PressedState",
-  "doc": "",
+  "doc": "A typed state for buttons or similar",
   "links": [],
   "toplinks": [],
   "sections": [
@@ -11,17 +11,17 @@
         {
           "name": "unknown",
           "signature": "lumen.input.PressedState.unknown",
-          "doc": ""
+          "doc": "An unknown state"
         },
         {
           "name": "down",
           "signature": "lumen.input.PressedState.down",
-          "doc": ""
+          "doc": "In a pressed state"
         },
         {
           "name": "up",
           "signature": "lumen.input.PressedState.up",
-          "doc": ""
+          "doc": "In a released state"
         }
       ]
     },

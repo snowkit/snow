@@ -3,16 +3,16 @@
 
 ---
 
-#ArrayBuffer
-
 
 ##[API Index](../../../api/index.html#lumen.utils)   
-&emsp;&emsp;&emsp;parent    
 [lumen](../)     
-&emsp;&emsp;&emsp;current    
-[lumen.utils](./) / ArrayBuffer
+&emsp;&emsp;&emsp;[lumen.utils](./)   
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;ArrayBuffer
 
-<br/>
+---
+
+#ArrayBuffer
+
 
 ---
 

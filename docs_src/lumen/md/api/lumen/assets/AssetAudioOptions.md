@@ -3,22 +3,17 @@
 
 ---
 
-#AssetAudioOptions
-
---- 
-
-The options for an `AssetAudio` asset
-
----
-<br/>
 
 ##[API Index](../../../api/index.html#lumen.assets)   
-&emsp;&emsp;&emsp;parent    
 [lumen](../)     
-&emsp;&emsp;&emsp;current    
-[lumen.assets](./) / AssetAudioOptions
+&emsp;&emsp;&emsp;[lumen.assets](./)   
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;AssetAudioOptions
 
-<br/>
+---
+
+#AssetAudioOptions
+
+The options for an `AssetAudio` asset
 
 ---
 
@@ -39,7 +34,7 @@ The options for an `AssetAudio` asset
 
 `load : Null<Bool>`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="type" href="#type">type</a>
 
@@ -47,7 +42,7 @@ The options for an `AssetAudio` asset
 
 `type : String`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 
 

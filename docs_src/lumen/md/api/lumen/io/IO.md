@@ -3,16 +3,18 @@
 
 ---
 
-#IO
-
 
 ##[API Index](../../../api/index.html#lumen.io)   
-&emsp;&emsp;&emsp;parent    
 [lumen](../)     
-&emsp;&emsp;&emsp;current    
-[lumen.io](./) / IO
+&emsp;&emsp;&emsp;[lumen.io](./)   
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;IO
 
-<br/>
+---
+
+#IO
+
+This class is a low level cross platform IO helper. 
+    If you want file access, use `Assets` instead, unless really required.
 
 ---
 
@@ -35,7 +37,7 @@
 
 `from_file(_id:String, ?_mode:String='rb') : lumen.io.IOFile`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat"> Create an `IOFile` from a file path `_id`, this bypasses the `Asset` system path helpers. </span>   
 
 &nbsp;   
 

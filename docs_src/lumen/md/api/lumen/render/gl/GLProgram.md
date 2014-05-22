@@ -3,16 +3,16 @@
 
 ---
 
-#GLProgram
-
 
 ##[API Index](../../../../api/index.html#lumen.render)   
-&emsp;&emsp;&emsp;parent    
 [lumen.render](../)     
-&emsp;&emsp;&emsp;current    
-[lumen.render.gl](./) / GLProgram
+&emsp;&emsp;&emsp;[lumen.render.gl](./)   
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;GLProgram
 
-<br/>
+---
+
+#GLProgram
+
 
 ---
 
@@ -42,7 +42,7 @@
 
 `shaders : Array<lumen.render.gl.GLShader>`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 &nbsp;   
 
@@ -57,7 +57,7 @@
 
 `attach(shader:lumen.render.gl.GLShader) : Void`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="getShaders" href="#getShaders">getShaders</a>
 
@@ -65,7 +65,7 @@
 
 `getShaders() : Array<lumen.render.gl.GLShader>`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="new" href="#new">new</a>
 
@@ -73,7 +73,7 @@
 
 `new(version:Int, id:Dynamic) `
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 
 

@@ -3,16 +3,16 @@
 
 ---
 
-#GLUniformLocation
-
 
 ##[API Index](../../../../api/index.html#lumen.render)   
-&emsp;&emsp;&emsp;parent    
 [lumen.render](../)     
-&emsp;&emsp;&emsp;current    
-[lumen.render.gl](./) / GLUniformLocation
+&emsp;&emsp;&emsp;[lumen.render.gl](./)   
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;GLUniformLocation
 
-<br/>
+---
+
+#GLUniformLocation
+
 
 ---
 

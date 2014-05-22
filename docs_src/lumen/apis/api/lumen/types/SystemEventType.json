@@ -1,6 +1,6 @@
 {
   "source": "lumen.types.SystemEventType",
-  "doc": "",
+  "doc": "A typed system event",
   "links": [],
   "toplinks": [],
   "sections": [
@@ -11,72 +11,72 @@
         {
           "name": "unknown",
           "signature": "lumen.types.SystemEventType.unknown",
-          "doc": ""
+          "doc": "An unknown system event"
         },
         {
           "name": "init",
           "signature": "lumen.types.SystemEventType.init",
-          "doc": ""
+          "doc": "An internal system init event"
         },
         {
           "name": "ready",
           "signature": "lumen.types.SystemEventType.ready",
-          "doc": ""
+          "doc": "An internal system ready event"
         },
         {
           "name": "update",
           "signature": "lumen.types.SystemEventType.update",
-          "doc": ""
+          "doc": "An internal system update event"
         },
         {
           "name": "shutdown",
           "signature": "lumen.types.SystemEventType.shutdown",
-          "doc": ""
+          "doc": "An system shutdown event"
         },
         {
           "name": "window",
           "signature": "lumen.types.SystemEventType.window",
-          "doc": ""
+          "doc": "An system window event"
         },
         {
           "name": "input",
           "signature": "lumen.types.SystemEventType.input",
-          "doc": ""
+          "doc": "An system input event"
         },
         {
           "name": "quit",
           "signature": "lumen.types.SystemEventType.quit",
-          "doc": ""
+          "doc": "An system quit event. Initiated by user, can be cancelled/ignored"
         },
         {
           "name": "app_terminating",
           "signature": "lumen.types.SystemEventType.app_terminating",
-          "doc": ""
+          "doc": "An system terminating event, called by the OS (mobile specific)"
         },
         {
           "name": "app_lowmemory",
           "signature": "lumen.types.SystemEventType.app_lowmemory",
-          "doc": ""
+          "doc": "An system low memory event, clear memory if you can. Called by the OS (mobile specific)"
         },
         {
           "name": "app_willenterbackground",
           "signature": "lumen.types.SystemEventType.app_willenterbackground",
-          "doc": ""
+          "doc": "An event for just before the app enters the background, called by the OS (mobile specific)"
         },
         {
           "name": "app_didenterbackground",
           "signature": "lumen.types.SystemEventType.app_didenterbackground",
-          "doc": ""
+          "doc": "An event for when the app enters the background, called by the OS (mobile specific)"
         },
         {
           "name": "app_willenterforeground",
           "signature": "lumen.types.SystemEventType.app_willenterforeground",
-          "doc": ""
+          "doc": "An event for just before the app enters the foreground, called by the OS (mobile specific)"
         },
         {
           "name": "app_didenterforeground",
           "signature": "lumen.types.SystemEventType.app_didenterforeground",
-          "doc": ""
+          "doc": "An event for when the app enters the foreground, called by the OS (mobile specific)"
         }
       ]
     },

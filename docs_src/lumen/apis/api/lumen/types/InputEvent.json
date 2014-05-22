@@ -1,6 +1,6 @@
 {
   "source": "lumen.types.InputEvent",
-  "doc": "",
+  "doc": "A system input event \n   \n`? type` : The type of input event this was   \n`? timestamp` : The time in seconds that this event occured, useful for deltas   \n`? window_id` : The window id from which this event originated   \n`? event` : The raw platform event data",
   "links": [],
   "toplinks": [],
   "sections": [

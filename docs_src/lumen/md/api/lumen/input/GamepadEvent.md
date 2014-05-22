@@ -3,16 +3,26 @@
 
 ---
 
-#GamepadEvent
-
 
 ##[API Index](../../../api/index.html#lumen.input)   
-&emsp;&emsp;&emsp;parent    
 [lumen](../)     
-&emsp;&emsp;&emsp;current    
-[lumen.input](./) / GamepadEvent
+&emsp;&emsp;&emsp;[lumen.input](./)   
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;GamepadEvent
 
-<br/>
+---
+
+#GamepadEvent
+
+Information about a gamepad event
+
+`raw` : The raw event from the system, unmodified   
+`timestamp` : The time in seconds when this touch event occurred, use for deltas   
+`type` : The button id, if the event `type` is `button`   
+`state` : The state this event is in   
+`which` : The id of the gamepad this event comes from   
+`button` : The button id, if the event `type` is `button`   
+`axis` : The axis id, if the event `type` is `button`   
+`value` : The axis value, if the event `type` is `axis`
 
 ---
 
@@ -33,7 +43,7 @@
 
 `axis : Int`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="button" href="#button">button</a>
 
@@ -41,7 +51,7 @@
 
 `button : Int`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="raw" href="#raw">raw</a>
 
@@ -49,7 +59,7 @@
 
 `raw : lumen.types.InputEvent`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="state" href="#state">state</a>
 
@@ -57,7 +67,7 @@
 
 `state : lumen.input.PressedState`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="timestamp" href="#timestamp">timestamp</a>
 
@@ -65,7 +75,7 @@
 
 `timestamp : Float`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="type" href="#type">type</a>
 
@@ -73,7 +83,7 @@
 
 `type : lumen.input.GamepadEventType`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="value" href="#value">value</a>
 
@@ -81,7 +91,7 @@
 
 `value : Int`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="which" href="#which">which</a>
 
@@ -89,7 +99,7 @@
 
 `which : Int`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 
 

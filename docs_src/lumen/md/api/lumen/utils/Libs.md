@@ -3,16 +3,16 @@
 
 ---
 
-#Libs
-
 
 ##[API Index](../../../api/index.html#lumen.utils)   
-&emsp;&emsp;&emsp;parent    
 [lumen](../)     
-&emsp;&emsp;&emsp;current    
-[lumen.utils](./) / Libs
+&emsp;&emsp;&emsp;[lumen.utils](./)   
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Libs
 
-<br/>
+---
+
+#Libs
+
 
 ---
 
@@ -35,7 +35,7 @@
 
 `load(library:String, method:String, ?args:Int=0) : Dynamic`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 &nbsp;   
 

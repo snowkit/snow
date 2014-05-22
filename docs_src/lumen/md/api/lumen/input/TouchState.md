@@ -3,22 +3,17 @@
 
 ---
 
-#TouchState
-
---- 
-
-The states a touch can be in
-
----
-<br/>
 
 ##[API Index](../../../api/index.html#lumen.input)   
-&emsp;&emsp;&emsp;parent    
 [lumen](../)     
-&emsp;&emsp;&emsp;current    
-[lumen.input](./) / TouchState
+&emsp;&emsp;&emsp;[lumen.input](./)   
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;TouchState
 
-<br/>
+---
+
+#TouchState
+
+The states a touch can be in
 
 ---
 

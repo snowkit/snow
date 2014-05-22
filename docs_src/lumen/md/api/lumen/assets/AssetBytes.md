@@ -3,22 +3,17 @@
 
 ---
 
-#AssetBytes
-
---- 
-
-An asset that contains byte `data` as a `ByteArray`
-
----
-<br/>
 
 ##[API Index](../../../api/index.html#lumen.assets)   
-&emsp;&emsp;&emsp;parent    
 [lumen](../)     
-&emsp;&emsp;&emsp;current    
-[lumen.assets](./) / AssetBytes
+&emsp;&emsp;&emsp;[lumen.assets](./)   
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;AssetBytes
 
-<br/>
+---
+
+#AssetBytes
+
+An asset that contains byte `data` as a `ByteArray`. Get assets from the `Assets` class, via `app.assets`
 
 ---
 
@@ -63,7 +58,7 @@ An asset that contains byte `data` as a `ByteArray`
 
 `new(_info:lumen.types.AssetInfo, _data:lumen.utils.ByteArray) `
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 
 

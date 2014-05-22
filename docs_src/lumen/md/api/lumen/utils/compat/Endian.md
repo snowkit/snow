@@ -3,16 +3,16 @@
 
 ---
 
-#Endian
-
 
 ##[API Index](../../../../api/index.html#lumen.utils)   
-&emsp;&emsp;&emsp;parent    
 [lumen.utils](../)     
-&emsp;&emsp;&emsp;current    
-[lumen.utils.compat](./) / Endian
+&emsp;&emsp;&emsp;[lumen.utils.compat](./)   
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Endian
 
-<br/>
+---
+
+#Endian
+
 
 ---
 

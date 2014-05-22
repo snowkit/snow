@@ -1,6 +1,6 @@
 {
   "source": "lumen.io.IOFile",
-  "doc": "",
+  "doc": "This class is a low level cross platform file access helper, that handles in bundle assets etc. \n    If you want a file, use `Assets` instead, unless really required.",
   "links": [],
   "toplinks": [],
   "sections": [
@@ -16,7 +16,7 @@
           "isstatic": false,
           "signature": "handle : Dynamic",
           "type": "Dynamic",
-          "doc": ""
+          "doc": "The internal native file handle"
         },
         {
           "name": "lumen_iosrc_file_tell",
@@ -26,6 +26,16 @@
           "isstatic": true,
           "signature": "lumen_iosrc_file_tell : Dynamic->Dynamic",
           "type": "Dynamic->Dynamic",
+          "doc": ""
+        },
+        {
+          "name": "haxe_doc",
+          "meta": [],
+          "ispublic": false,
+          "isinline": false,
+          "isstatic": false,
+          "signature": "haxe_doc : Dynamic",
+          "type": "Dynamic",
           "doc": ""
         },
         {
@@ -81,7 +91,12 @@
       "values": [
         {
           "name": "new",
-          "meta": [],
+          "meta": [
+            {
+              "name": ":noCompletion",
+              "value": ""
+            }
+          ],
           "ispublic": true,
           "isstatic": false,
           "isinline": false,
@@ -102,7 +117,7 @@
           "ispublic": true,
           "isstatic": false,
           "isinline": false,
-          "doc": "",
+          "doc": "Write `num` of items of `size` in bytes, from `src` into this file. Same signature/returns as `fwrite`",
           "signature": "write(src:lumen.utils.ByteArray, size:Int, num:Int) : Dynamic",
           "return": ": Dynamic",
           "args": [
@@ -129,7 +144,7 @@
           "ispublic": true,
           "isstatic": false,
           "isinline": false,
-          "doc": "",
+          "doc": "Read a `maxnum` of items of `size` in bytes, into `dest`. Same signature/returns as `fread`",
           "signature": "read(dest:lumen.utils.ByteArray, size:Int, maxnum:Int) : Dynamic",
           "return": ": Dynamic",
           "args": [
@@ -156,7 +171,7 @@
           "ispublic": true,
           "isstatic": false,
           "isinline": false,
-          "doc": "",
+          "doc": "Close the file",
           "signature": "close() : Dynamic",
           "return": ": Dynamic",
           "args": []
@@ -167,7 +182,7 @@
           "ispublic": true,
           "isstatic": false,
           "isinline": false,
-          "doc": "",
+          "doc": "Seek `offset` from `whence`, where whence is an int matching `set=0`, `cur=1`, `end=2`. Same signature/returns as `fseek`",
           "signature": "seek(offset:Int, whence:Int) : Dynamic",
           "return": ": Dynamic",
           "args": [
@@ -189,7 +204,7 @@
           "ispublic": true,
           "isstatic": false,
           "isinline": false,
-          "doc": "",
+          "doc": "Tell the current position in the file, in bytes",
           "signature": "tell() : Dynamic",
           "return": ": Dynamic",
           "args": []

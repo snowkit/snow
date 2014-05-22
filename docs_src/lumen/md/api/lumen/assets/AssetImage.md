@@ -3,22 +3,17 @@
 
 ---
 
-#AssetImage
-
---- 
-
-An asset that contains image file `data` as an `ImageInfo`
-
----
-<br/>
 
 ##[API Index](../../../api/index.html#lumen.assets)   
-&emsp;&emsp;&emsp;parent    
 [lumen](../)     
-&emsp;&emsp;&emsp;current    
-[lumen.assets](./) / AssetImage
+&emsp;&emsp;&emsp;[lumen.assets](./)   
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;AssetImage
 
-<br/>
+---
+
+#AssetImage
+
+An asset that contains image file `data` as an `ImageInfo`. Get assets from the `Assets` class, via `app.assets`
 
 ---
 
@@ -63,7 +58,7 @@ An asset that contains image file `data` as an `ImageInfo`
 
 `new(_info:lumen.types.AssetInfo, _data:lumen.types.ImageInfo) `
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 
 

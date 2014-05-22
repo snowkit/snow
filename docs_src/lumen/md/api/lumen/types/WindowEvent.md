@@ -3,16 +3,22 @@
 
 ---
 
-#WindowEvent
-
 
 ##[API Index](../../../api/index.html#lumen.types)   
-&emsp;&emsp;&emsp;parent    
 [lumen](../)     
-&emsp;&emsp;&emsp;current    
-[lumen.types](./) / WindowEvent
+&emsp;&emsp;&emsp;[lumen.types](./)   
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;WindowEvent
 
-<br/>
+---
+
+#WindowEvent
+
+A system window event 
+
+`? type` : The type of window event this was   
+`? timestamp` : The time in seconds that this event occured, useful for deltas   
+`? window_id` : The window id from which this event originated   
+`? event` : The raw platform event data
 
 ---
 
@@ -33,7 +39,7 @@
 
 `event : Dynamic`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="timestamp" href="#timestamp">timestamp</a>
 
@@ -41,7 +47,7 @@
 
 `timestamp : Null<Float>`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="type" href="#type">type</a>
 
@@ -49,7 +55,7 @@
 
 `type : lumen.types.WindowEventType`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="window_id" href="#window_id">window_id</a>
 
@@ -57,7 +63,7 @@
 
 `window_id : Null<Int>`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 
 

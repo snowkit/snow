@@ -1,6 +1,6 @@
 {
   "source": "lumen.input.GamepadEventType",
-  "doc": "",
+  "doc": "A typed gamepad event type",
   "links": [],
   "toplinks": [],
   "sections": [
@@ -11,32 +11,32 @@
         {
           "name": "unknown",
           "signature": "lumen.input.GamepadEventType.unknown",
-          "doc": ""
+          "doc": "An unknown event"
         },
         {
           "name": "axis",
           "signature": "lumen.input.GamepadEventType.axis",
-          "doc": ""
+          "doc": "An axis change event"
         },
         {
           "name": "button",
           "signature": "lumen.input.GamepadEventType.button",
-          "doc": ""
+          "doc": "A button event"
         },
         {
           "name": "device_added",
           "signature": "lumen.input.GamepadEventType.device_added",
-          "doc": ""
+          "doc": "A device added event"
         },
         {
           "name": "device_removed",
           "signature": "lumen.input.GamepadEventType.device_removed",
-          "doc": ""
+          "doc": "A device removed event"
         },
         {
           "name": "device_remapped",
           "signature": "lumen.input.GamepadEventType.device_remapped",
-          "doc": ""
+          "doc": "A device was remapped"
         }
       ]
     },

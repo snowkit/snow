@@ -3,16 +3,16 @@
 
 ---
 
-#WindowPosition
-
 
 ##[API Index](../../../api/index.html#lumen.window)   
-&emsp;&emsp;&emsp;parent    
 [lumen](../)     
-&emsp;&emsp;&emsp;current    
-[lumen.window](./) / WindowPosition
+&emsp;&emsp;&emsp;[lumen.window](./)   
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;WindowPosition
 
-<br/>
+---
+
+#WindowPosition
+
 
 ---
 
@@ -33,7 +33,7 @@
 
 `x : Int`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="y" href="#y">y</a>
 
@@ -41,7 +41,7 @@
 
 `y : Int`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 
 

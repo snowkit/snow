@@ -1,6 +1,6 @@
 {
   "source": "lumen.input.MouseState",
-  "doc": "",
+  "doc": "A typed mouse state",
   "links": [],
   "toplinks": [],
   "sections": [
@@ -11,27 +11,27 @@
         {
           "name": "unknown",
           "signature": "lumen.input.MouseState.unknown",
-          "doc": ""
+          "doc": "An unknown state"
         },
         {
           "name": "down",
           "signature": "lumen.input.MouseState.down",
-          "doc": ""
+          "doc": "In a pressed state"
         },
         {
           "name": "up",
           "signature": "lumen.input.MouseState.up",
-          "doc": ""
+          "doc": "In a released state"
         },
         {
           "name": "move",
           "signature": "lumen.input.MouseState.move",
-          "doc": ""
+          "doc": "In a moving state"
         },
         {
           "name": "wheel",
           "signature": "lumen.input.MouseState.wheel",
-          "doc": ""
+          "doc": "A mouse wheel state"
         }
       ]
     },

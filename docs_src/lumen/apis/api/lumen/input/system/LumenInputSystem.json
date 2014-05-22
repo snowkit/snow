@@ -1,8 +1,0 @@
-{
-  "source": "lumen.input.system.LumenInputSystem",
-  "doc": "",
-  "links": [],
-  "toplinks": [],
-  "sections": [],
-  "alias": "lumen.input.system.sdl.InputSystemSDL"
-}

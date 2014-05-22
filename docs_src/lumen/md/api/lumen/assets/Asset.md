@@ -3,22 +3,17 @@
 
 ---
 
-#Asset
-
---- 
-
-An asset base class
-
----
-<br/>
 
 ##[API Index](../../../api/index.html#lumen.assets)   
-&emsp;&emsp;&emsp;parent    
 [lumen](../)     
-&emsp;&emsp;&emsp;current    
-[lumen.assets](./) / Asset
+&emsp;&emsp;&emsp;[lumen.assets](./)   
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Asset
 
-<br/>
+---
+
+#Asset
+
+An asset base class. Get assets from the `Assets` class, via `app.assets`
 
 ---
 
@@ -63,7 +58,7 @@ An asset base class
 
 `new(_info:lumen.types.AssetInfo) `
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 
 

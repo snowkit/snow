@@ -44,7 +44,8 @@ class App {
     var next_tick : Float = 0;
 
 //override these in your game class
-
+    
+        /** The default constructor of an App is empty, so you can override it if you want, but take note that this happens way before lumen is ready for use. */
     public function new() {}
         /** Your entry point. Called for you when you can initialize your application */
     public function ready() {}

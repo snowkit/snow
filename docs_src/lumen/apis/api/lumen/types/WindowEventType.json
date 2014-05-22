@@ -1,6 +1,6 @@
 {
   "source": "lumen.types.WindowEventType",
-  "doc": "",
+  "doc": "A typed window event",
   "links": [],
   "toplinks": [],
   "sections": [
@@ -11,82 +11,82 @@
         {
           "name": "unknown",
           "signature": "lumen.types.WindowEventType.unknown",
-          "doc": ""
+          "doc": "An unknown window event"
         },
         {
           "name": "window_created",
           "signature": "lumen.types.WindowEventType.window_created",
-          "doc": ""
+          "doc": "A window is created"
         },
         {
           "name": "window_shown",
           "signature": "lumen.types.WindowEventType.window_shown",
-          "doc": ""
+          "doc": "A window is shown"
         },
         {
           "name": "window_hidden",
           "signature": "lumen.types.WindowEventType.window_hidden",
-          "doc": ""
+          "doc": "A window is hidden"
         },
         {
           "name": "window_exposed",
           "signature": "lumen.types.WindowEventType.window_exposed",
-          "doc": ""
+          "doc": "A window is exposed"
         },
         {
           "name": "window_moved",
           "signature": "lumen.types.WindowEventType.window_moved",
-          "doc": ""
+          "doc": "A window is moved"
         },
         {
           "name": "window_resized",
           "signature": "lumen.types.WindowEventType.window_resized",
-          "doc": ""
+          "doc": "A window is resized, by the user or code."
         },
         {
           "name": "window_size_changed",
           "signature": "lumen.types.WindowEventType.window_size_changed",
-          "doc": ""
+          "doc": "A window is resized, by the OS or internals."
         },
         {
           "name": "window_minimized",
           "signature": "lumen.types.WindowEventType.window_minimized",
-          "doc": ""
+          "doc": "A window is minimized"
         },
         {
           "name": "window_maximized",
           "signature": "lumen.types.WindowEventType.window_maximized",
-          "doc": ""
+          "doc": "A window is maximized"
         },
         {
           "name": "window_restored",
           "signature": "lumen.types.WindowEventType.window_restored",
-          "doc": ""
+          "doc": "A window is restored"
         },
         {
           "name": "window_enter",
           "signature": "lumen.types.WindowEventType.window_enter",
-          "doc": ""
+          "doc": "A window is entered by a mouse"
         },
         {
           "name": "window_leave",
           "signature": "lumen.types.WindowEventType.window_leave",
-          "doc": ""
+          "doc": "A window is left by a mouse"
         },
         {
           "name": "window_focus_gained",
           "signature": "lumen.types.WindowEventType.window_focus_gained",
-          "doc": ""
+          "doc": "A window has gained focus"
         },
         {
           "name": "window_focus_lost",
           "signature": "lumen.types.WindowEventType.window_focus_lost",
-          "doc": ""
+          "doc": "A window has lost focus"
         },
         {
           "name": "window_close",
           "signature": "lumen.types.WindowEventType.window_close",
-          "doc": ""
+          "doc": "A window is being closed"
         }
       ]
     },

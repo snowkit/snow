@@ -1,6 +1,6 @@
 {
   "source": "lumen.io.IO",
-  "doc": "",
+  "doc": "This class is a low level cross platform IO helper. \n    If you want file access, use `Assets` instead, unless really required.",
   "links": [],
   "toplinks": [],
   "sections": [
@@ -17,6 +17,16 @@
           "signature": "lumen_iosrc_from_file : String->String->Dynamic",
           "type": "String->String->Dynamic",
           "doc": ""
+        },
+        {
+          "name": "haxe_doc",
+          "meta": [],
+          "ispublic": false,
+          "isinline": false,
+          "isstatic": false,
+          "signature": "haxe_doc : Dynamic",
+          "type": "Dynamic",
+          "doc": ""
         }
       ]
     },
@@ -30,7 +40,7 @@
           "ispublic": true,
           "isstatic": true,
           "isinline": false,
-          "doc": "",
+          "doc": "Create an `IOFile` from a file path `_id`, this bypasses the `Asset` system path helpers.",
           "signature": "from_file(_id:String, ?_mode:String='rb') : lumen.io.IOFile",
           "return": ": lumen.io.IOFile",
           "args": [

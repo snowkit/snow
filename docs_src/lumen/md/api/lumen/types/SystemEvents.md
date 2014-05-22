@@ -3,16 +3,16 @@
 
 ---
 
-#SystemEvents
-
 
 ##[API Index](../../../api/index.html#lumen.types)   
-&emsp;&emsp;&emsp;parent    
 [lumen](../)     
-&emsp;&emsp;&emsp;current    
-[lumen.types](./) / SystemEvents
+&emsp;&emsp;&emsp;[lumen.types](./)   
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;SystemEvents
 
-<br/>
+---
+
+#SystemEvents
+
 
 ---
 

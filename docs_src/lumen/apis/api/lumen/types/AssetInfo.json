@@ -1,6 +1,6 @@
 {
   "source": "lumen.types.AssetInfo",
-  "doc": "",
+  "doc": "Information for a single asset \n\n`id` : the asset id   \n`path` : the location of the asset   \n`ext` : the asset extension, if any   \n`type` : a convenience type indicator",
   "links": [],
   "toplinks": [],
   "sections": [

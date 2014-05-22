@@ -3,23 +3,18 @@
 
 ---
 
-#Assets
 
---- 
+##[API Index](../../../api/index.html#lumen.assets)   
+[lumen](../)     
+&emsp;&emsp;&emsp;[lumen.assets](./)   
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Assets
+
+---
+
+#Assets
 
 The asset system class gives you access to fetching and manipulating assets, 
     caching/uncaching assets, and handles loading files and data cross platform
-
----
-<br/>
-
-##[API Index](../../../api/index.html#lumen.assets)   
-&emsp;&emsp;&emsp;parent    
-[lumen](../)     
-&emsp;&emsp;&emsp;current    
-[lumen.assets](./) / Assets
-
-<br/>
 
 ---
 
@@ -128,7 +123,7 @@ The asset system class gives you access to fetching and manipulating assets,
 
 `new(_lib:lumen.Lumen) `
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="path" href="#path">path</a>
 

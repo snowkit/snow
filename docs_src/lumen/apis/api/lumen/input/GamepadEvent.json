@@ -1,6 +1,6 @@
 {
   "source": "lumen.input.GamepadEvent",
-  "doc": "",
+  "doc": "Information about a gamepad event\n\n`raw` : The raw event from the system, unmodified   \n`timestamp` : The time in seconds when this touch event occurred, use for deltas   \n`type` : The button id, if the event `type` is `button`   \n`state` : The state this event is in   \n`which` : The id of the gamepad this event comes from   \n`button` : The button id, if the event `type` is `button`   \n`axis` : The axis id, if the event `type` is `button`   \n`value` : The axis value, if the event `type` is `axis`",
   "links": [],
   "toplinks": [],
   "sections": [

@@ -504,132 +504,135 @@
 			<x path="Float"/>
 			<haxe_doc>for fixed_rate, the time when the next tick should occur around</haxe_doc>
 		</next_tick>
-		<ready public="1" set="method" line="50">
+		<ready public="1" set="method" line="51">
 			<f a=""><x path="Void"/></f>
 			<haxe_doc>Your entry point. Called for you when you can initialize your application</haxe_doc>
 		</ready>
-		<update public="1" set="method" line="52">
+		<update public="1" set="method" line="53">
 			<f a="dt">
 				<x path="Float"/>
 				<x path="Void"/>
 			</f>
 			<haxe_doc>Your update loop. Called every frame for you. The dt value depends on the timing configuration (see the App guide)</haxe_doc>
 		</update>
-		<onkeydown public="1" set="method" line="55">
+		<onkeydown public="1" set="method" line="56">
 			<f a="_event">
 				<t path="lumen.input.KeyEvent"/>
 				<x path="Void"/>
 			</f>
 			<haxe_doc>Called when a key is pressed down</haxe_doc>
 		</onkeydown>
-		<onkeyup public="1" set="method" line="57">
+		<onkeyup public="1" set="method" line="58">
 			<f a="_event">
 				<t path="lumen.input.KeyEvent"/>
 				<x path="Void"/>
 			</f>
 			<haxe_doc>Called when a key is released</haxe_doc>
 		</onkeyup>
-		<ontextinput public="1" set="method" line="59">
+		<ontextinput public="1" set="method" line="60">
 			<f a="_event">
 				<t path="lumen.input.TextEvent"/>
 				<x path="Void"/>
 			</f>
 			<haxe_doc>Called when text input is happening. Use this for textfields, as it handles the complexity of unicode etc.</haxe_doc>
 		</ontextinput>
-		<onmousedown public="1" set="method" line="62">
+		<onmousedown public="1" set="method" line="63">
 			<f a="_event">
 				<t path="lumen.input.MouseEvent"/>
 				<x path="Void"/>
 			</f>
 			<haxe_doc>Called when a mouse button is pressed</haxe_doc>
 		</onmousedown>
-		<onmouseup public="1" set="method" line="64">
+		<onmouseup public="1" set="method" line="65">
 			<f a="_event">
 				<t path="lumen.input.MouseEvent"/>
 				<x path="Void"/>
 			</f>
 			<haxe_doc>Called when a mouse button is released</haxe_doc>
 		</onmouseup>
-		<onmousewheel public="1" set="method" line="66">
+		<onmousewheel public="1" set="method" line="67">
 			<f a="_event">
 				<t path="lumen.input.MouseEvent"/>
 				<x path="Void"/>
 			</f>
 			<haxe_doc>Called when the mouse wheel moves</haxe_doc>
 		</onmousewheel>
-		<onmousemove public="1" set="method" line="68">
+		<onmousemove public="1" set="method" line="69">
 			<f a="_event">
 				<t path="lumen.input.MouseEvent"/>
 				<x path="Void"/>
 			</f>
 			<haxe_doc>Called when the mouse moves</haxe_doc>
 		</onmousemove>
-		<ontouchdown public="1" set="method" line="71">
+		<ontouchdown public="1" set="method" line="72">
 			<f a="_event">
 				<t path="lumen.input.TouchEvent"/>
 				<x path="Void"/>
 			</f>
 			<haxe_doc>Called when a touch is released, use the `touch_id` to track which</haxe_doc>
 		</ontouchdown>
-		<ontouchup public="1" set="method" line="73">
+		<ontouchup public="1" set="method" line="74">
 			<f a="_event">
 				<t path="lumen.input.TouchEvent"/>
 				<x path="Void"/>
 			</f>
 			<haxe_doc>Called when a touch is first pressed, use the `touch_id` to track which</haxe_doc>
 		</ontouchup>
-		<ontouchmove public="1" set="method" line="75">
+		<ontouchmove public="1" set="method" line="76">
 			<f a="_event">
 				<t path="lumen.input.TouchEvent"/>
 				<x path="Void"/>
 			</f>
 			<haxe_doc>Called when a touch is moved, use the `touch_id` to track which</haxe_doc>
 		</ontouchmove>
-		<ongamepadaxis public="1" set="method" line="78">
+		<ongamepadaxis public="1" set="method" line="79">
 			<f a="_event">
 				<t path="lumen.input.GamepadEvent"/>
 				<x path="Void"/>
 			</f>
 			<haxe_doc>Called when a connected gamepad axis moves, use `which` to determine gamepad id</haxe_doc>
 		</ongamepadaxis>
-		<ongamepadbuttondown public="1" set="method" line="80">
+		<ongamepadbuttondown public="1" set="method" line="81">
 			<f a="_event">
 				<t path="lumen.input.GamepadEvent"/>
 				<x path="Void"/>
 			</f>
 			<haxe_doc>Called when a connected gamepad button is pressed, use `which` to determine gamepad id</haxe_doc>
 		</ongamepadbuttondown>
-		<ongamepadbuttonup public="1" set="method" line="82">
+		<ongamepadbuttonup public="1" set="method" line="83">
 			<f a="_event">
 				<t path="lumen.input.GamepadEvent"/>
 				<x path="Void"/>
 			</f>
 			<haxe_doc>Called when a connected gamepad button is released, use `which` to determine gamepad id</haxe_doc>
 		</ongamepadbuttonup>
-		<ongamepaddevice public="1" set="method" line="84">
+		<ongamepaddevice public="1" set="method" line="85">
 			<f a="_event">
 				<t path="lumen.input.GamepadEvent"/>
 				<x path="Void"/>
 			</f>
 			<haxe_doc>Called when a gamepad is connected or disconnected, use `which` to determine gamepad id</haxe_doc>
 		</ongamepaddevice>
-		<get_runtime_config public="1" set="method" line="88">
+		<get_runtime_config public="1" set="method" line="89">
 			<f a=""><d/></f>
 			<haxe_doc>override this if you want to change how the runtime config is loaded/handled</haxe_doc>
 		</get_runtime_config>
-		<get_asset_list public="1" set="method" line="104">
+		<get_asset_list public="1" set="method" line="105">
 			<f a=""><c path="Array"><t path="lumen.types.AssetInfo"/></c></f>
 			<haxe_doc>overide this if you want to change how the asset list is loaded/handled. By default it uses the asset manifest generated by the build tools.</haxe_doc>
 		</get_asset_list>
-		<on_lumen_init public="1" set="method" line="134">
+		<on_lumen_init public="1" set="method" line="135">
 			<f a=""><x path="Void"/></f>
 			<meta><m n=":noCompletion"/></meta>
 		</on_lumen_init>
-		<on_lumen_update public="1" set="method" line="143">
+		<on_lumen_update public="1" set="method" line="144">
 			<f a=""><x path="Void"/></f>
 			<meta><m n=":noCompletion"/></meta>
 		</on_lumen_update>
-		<new public="1" set="method" line="48"><f a=""><x path="Void"/></f></new>
+		<new public="1" set="method" line="49">
+			<f a=""><x path="Void"/></f>
+			<haxe_doc>The default constructor of an App is empty, so you can override it if you want, but take note that this happens way before lumen is ready for use.</haxe_doc>
+		</new>
 		<haxe_doc>The default type of application, with variable delta time, or fixed delta time, or a fixed frame rate. See the App guide for complete details.</haxe_doc>
 	</class>
 	<class path="lumen.AppFixedTimestep" params="" file="../../lumen/App.hx" module="lumen.App">
@@ -642,15 +645,15 @@
 			<x path="Float"/>
 			<haxe_doc>the overflow of the updates. This is used to calculate the alpha time for rendering interpolation, `var alpha_time = overflow / mspf;`</haxe_doc>
 		</overflow>
-		<on_lumen_init public="1" set="method" line="195" override="1">
+		<on_lumen_init public="1" set="method" line="196" override="1">
 			<f a=""><x path="Void"/></f>
 			<meta><m n=":noCompletion"/></meta>
 		</on_lumen_init>
-		<on_lumen_update public="1" set="method" line="204" override="1">
+		<on_lumen_update public="1" set="method" line="205" override="1">
 			<f a=""><x path="Void"/></f>
 			<meta><m n=":noCompletion"/></meta>
 		</on_lumen_update>
-		<new public="1" set="method" line="188"><f a=""><x path="Void"/></f></new>
+		<new public="1" set="method" line="189"><f a=""><x path="Void"/></f></new>
 		<haxe_doc>Read the App Guide for full info, and for even more information see : http://gafferongames.com/game-physics/fix-your-timestep/
     this stores and calculates a fixed game update loop, and rendering interpolation is required
     for smooth updates between frames.</haxe_doc>
@@ -2704,7 +2707,7 @@
 	<t path="lumen.types.AssetInfo"/>
 	<x path="Void"/>
 </f></new>
-		<haxe_doc>An asset base class</haxe_doc>
+		<haxe_doc>An asset base class. Get assets from the `Assets` class, via `app.assets`</haxe_doc>
 	</class>
 	<class path="lumen.assets.AssetBytes" params="" file="../../lumen/assets/Assets.hx" module="lumen.assets.Assets">
 		<extends path="lumen.assets.Asset"/>
@@ -2717,7 +2720,7 @@
 	<t path="lumen.utils.ByteArray"/>
 	<x path="Void"/>
 </f></new>
-		<haxe_doc>An asset that contains byte `data` as a `ByteArray`</haxe_doc>
+		<haxe_doc>An asset that contains byte `data` as a `ByteArray`. Get assets from the `Assets` class, via `app.assets`</haxe_doc>
 	</class>
 	<class path="lumen.assets.AssetText" params="" file="../../lumen/assets/Assets.hx" module="lumen.assets.Assets">
 		<extends path="lumen.assets.Asset"/>
@@ -2730,11 +2733,11 @@
 	<c path="String"/>
 	<x path="Void"/>
 </f></new>
-		<haxe_doc>An asset that contains `text` as a `String`</haxe_doc>
+		<haxe_doc>An asset that contains `text` as a `String`. Get assets from the `Assets` class, via `app.assets`</haxe_doc>
 	</class>
 	<typedef path="lumen.assets.AssetImageOptions" params="" file="../../lumen/assets/Assets.hx" module="lumen.assets.Assets">
 		<a><components><x path="Int"/></components></a>
-		<haxe_doc>The options for an `AssetImage` asset</haxe_doc>
+		<haxe_doc>The options for an `AssetImage` asset. Get assets from the `Assets` class, via `app.assets`</haxe_doc>
 	</typedef>
 	<class path="lumen.assets.AssetImage" params="" file="../../lumen/assets/Assets.hx" module="lumen.assets.Assets">
 		<extends path="lumen.assets.Asset"/>
@@ -2747,7 +2750,7 @@
 	<t path="lumen.types.ImageInfo"/>
 	<x path="Void"/>
 </f></new>
-		<haxe_doc>An asset that contains image file `data` as an `ImageInfo`</haxe_doc>
+		<haxe_doc>An asset that contains image file `data` as an `ImageInfo`. Get assets from the `Assets` class, via `app.assets`</haxe_doc>
 	</class>
 	<typedef path="lumen.assets.AssetAudioOptions" params="" file="../../lumen/assets/Assets.hx" module="lumen.assets.Assets">
 		<a>
@@ -2773,7 +2776,7 @@
 	<t path="lumen.types.AudioInfo"/>
 	<x path="Void"/>
 </f></new>
-		<haxe_doc>An asset that contains audio file `data` as an `AudioInfo`</haxe_doc>
+		<haxe_doc>An asset that contains audio file `data` as an `AudioInfo`. Get assets from the `Assets` class, via `app.assets`</haxe_doc>
 	</class>
 	<class path="lumen.assets.Assets" params="" file="../../lumen/assets/Assets.hx">
 		<lumen_assets_image_load_info line="417" static="1"><f a=":">
@@ -4508,11 +4511,11 @@
 	<typedef path="lumen.input.Key" params="" file="../../lumen/input/Input.hx" module="lumen.input.Input"><c path="lumen.input.Keycodes"/></typedef>
 	<typedef path="lumen.input.Scan" params="" file="../../lumen/input/Input.hx" module="lumen.input.Input"><c path="lumen.input.Scancodes"/></typedef>
 	<class path="lumen.input.Input" params="" file="../../lumen/input/Input.hx">
-		<lumen_gamepad_open line="201" static="1"><f a="">
+		<lumen_gamepad_open line="214" static="1"><f a="">
 	<d/>
 	<unknown/>
 </f></lumen_gamepad_open>
-		<lumen_gamepad_close line="202" static="1"><f a="">
+		<lumen_gamepad_close line="215" static="1"><f a="">
 	<d/>
 	<unknown/>
 </f></lumen_gamepad_close>
@@ -4530,98 +4533,148 @@
 	<x path="Int"/>
 	<x path="Bool"/>
 </x></key_code_released>
-		<keypressed public="1" set="method" line="41"><f a="_code">
-	<x path="Int"/>
-	<x path="Bool"/>
-</f></keypressed>
-		<keyreleased public="1" set="method" line="45"><f a="_code">
-	<x path="Int"/>
-	<x path="Bool"/>
-</f></keyreleased>
-		<keydown public="1" set="method" line="49"><f a="_code">
-	<x path="Int"/>
-	<x path="Bool"/>
-</f></keydown>
-		<on_event public="1" set="method" line="54"><f a="_event">
-	<t path="lumen.types.SystemEvent"/>
-	<x path="Void"/>
-</f></on_event>
-		<dispatch_key_event public="1" set="method" line="62"><f a="_event">
-	<t path="lumen.input.KeyEvent"/>
-	<x path="Void"/>
-</f></dispatch_key_event>
-		<dispatch_text_event public="1" set="method" line="89"><f a="_event">
-	<t path="lumen.input.TextEvent"/>
-	<x path="Void"/>
-</f></dispatch_text_event>
-		<dispatch_mouse_event public="1" set="method" line="95"><f a="_event">
-	<t path="lumen.input.MouseEvent"/>
-	<x path="Void"/>
-</f></dispatch_mouse_event>
-		<dispatch_touch_event public="1" set="method" line="109"><f a="_event">
-	<t path="lumen.input.TouchEvent"/>
-	<x path="Void"/>
-</f></dispatch_touch_event>
-		<dispatch_gamepad_event public="1" set="method" line="121"><f a="_event">
-	<t path="lumen.input.GamepadEvent"/>
-	<x path="Void"/>
-</f></dispatch_gamepad_event>
-		<on_gamepad_added public="1" set="method" line="143"><f a="_event">
-	<d/>
-	<x path="Void"/>
-</f></on_gamepad_added>
-		<on_gamepad_removed public="1" set="method" line="149"><f a="_event">
-	<d/>
-	<x path="Void"/>
-</f></on_gamepad_removed>
-		<update public="1" set="method" line="155"><f a=""><x path="Void"/></f></update>
-		<destroy public="1" set="method" line="189"><f a=""><x path="Void"/></f></destroy>
-		<mod_state_from_event public="1" set="method" line="195"><f a="event">
-	<t path="lumen.types.InputEvent"/>
-	<t path="lumen.input.ModState"/>
-</f></mod_state_from_event>
-		<new public="1" set="method" line="24"><f a="_lib">
-	<c path="lumen.Lumen"/>
-	<x path="Void"/>
-</f></new>
+		<keypressed public="1" set="method" line="43">
+			<f a="_code">
+				<x path="Int"/>
+				<x path="Bool"/>
+			</f>
+			<haxe_doc>returns true if the `Key` value was pressed in the latest frame</haxe_doc>
+		</keypressed>
+		<keyreleased public="1" set="method" line="48">
+			<f a="_code">
+				<x path="Int"/>
+				<x path="Bool"/>
+			</f>
+			<haxe_doc>returns true if the `Key` value was released in the latest frame</haxe_doc>
+		</keyreleased>
+		<keydown public="1" set="method" line="53">
+			<f a="_code">
+				<x path="Int"/>
+				<x path="Bool"/>
+			</f>
+			<haxe_doc>returns true if the `Key` value is down at the time of calling this</haxe_doc>
+		</keydown>
+		<dispatch_key_event public="1" set="method" line="58">
+			<f a="_event">
+				<t path="lumen.input.KeyEvent"/>
+				<x path="Void"/>
+			</f>
+			<haxe_doc>manually dispatch a keyboard event through the system, delivered to the app handlers, internal and external</haxe_doc>
+		</dispatch_key_event>
+		<dispatch_text_event public="1" set="method" line="86">
+			<f a="_event">
+				<t path="lumen.input.TextEvent"/>
+				<x path="Void"/>
+			</f>
+			<haxe_doc>manually dispatch a text event through the system, delivered to the app handlers, internal and external</haxe_doc>
+		</dispatch_text_event>
+		<dispatch_mouse_event public="1" set="method" line="93">
+			<f a="_event">
+				<t path="lumen.input.MouseEvent"/>
+				<x path="Void"/>
+			</f>
+			<haxe_doc>manually dispatch a mouse event through the system, delivered to the app handlers, internal and external</haxe_doc>
+		</dispatch_mouse_event>
+		<dispatch_touch_event public="1" set="method" line="108">
+			<f a="_event">
+				<t path="lumen.input.TouchEvent"/>
+				<x path="Void"/>
+			</f>
+			<haxe_doc>manually dispatch a touch event through the system, delivered to the app handlers, internal and external</haxe_doc>
+		</dispatch_touch_event>
+		<dispatch_gamepad_event public="1" set="method" line="121">
+			<f a="_event">
+				<t path="lumen.input.GamepadEvent"/>
+				<x path="Void"/>
+			</f>
+			<haxe_doc>manually dispatch a gamepad event through the system, delivered to the app handlers, internal and external</haxe_doc>
+		</dispatch_gamepad_event>
+		<mod_state_from_event public="1" set="method" line="144">
+			<f a="event">
+				<t path="lumen.types.InputEvent"/>
+				<t path="lumen.input.ModState"/>
+			</f>
+			<haxe_doc>Helper to return a `ModState` (shift, ctrl etc) from a given `InputEvent`</haxe_doc>
+		</mod_state_from_event>
+		<on_event public="1" set="method" line="153">
+			<f a="_event">
+				<t path="lumen.types.SystemEvent"/>
+				<x path="Void"/>
+			</f>
+			<meta><m n=":noCompletion"/></meta>
+		</on_event>
+		<on_gamepad_added public="1" set="method" line="161">
+			<f a="_event">
+				<d/>
+				<x path="Void"/>
+			</f>
+			<meta><m n=":noCompletion"/></meta>
+		</on_gamepad_added>
+		<on_gamepad_removed public="1" set="method" line="167">
+			<f a="_event">
+				<d/>
+				<x path="Void"/>
+			</f>
+			<meta><m n=":noCompletion"/></meta>
+		</on_gamepad_removed>
+		<update public="1" set="method" line="173">
+			<f a=""><x path="Void"/></f>
+			<meta><m n=":noCompletion"/></meta>
+		</update>
+		<destroy public="1" set="method" line="207">
+			<f a=""><x path="Void"/></f>
+			<meta><m n=":noCompletion"/></meta>
+		</destroy>
+		<new public="1" set="method" line="24">
+			<f a="_lib">
+				<c path="lumen.Lumen"/>
+				<x path="Void"/>
+			</f>
+			<meta><m n=":noCompletion"/></meta>
+		</new>
 		<haxe_doc>Internal input system, accessed via `app.input`</haxe_doc>
 	</class>
 	<enum path="lumen.input.PressedState" params="" file="../../lumen/input/Input.hx" module="lumen.input.Input">
-		<unknown/>
-		<down/>
-		<up/>
+		<unknown><haxe_doc>An unknown state</haxe_doc></unknown>
+		<down><haxe_doc>In a pressed state</haxe_doc></down>
+		<up><haxe_doc>In a released state</haxe_doc></up>
+		<haxe_doc>A typed state for buttons or similar</haxe_doc>
 		<meta><m n=":flatEnum"/></meta>
 	</enum>
 	<enum path="lumen.input.MouseState" params="" file="../../lumen/input/Input.hx" module="lumen.input.Input">
-		<unknown/>
-		<down/>
-		<up/>
-		<move/>
-		<wheel/>
+		<unknown><haxe_doc>An unknown state</haxe_doc></unknown>
+		<down><haxe_doc>In a pressed state</haxe_doc></down>
+		<up><haxe_doc>In a released state</haxe_doc></up>
+		<move><haxe_doc>In a moving state</haxe_doc></move>
+		<wheel><haxe_doc>A mouse wheel state</haxe_doc></wheel>
+		<haxe_doc>A typed mouse state</haxe_doc>
 		<meta><m n=":flatEnum"/></meta>
 	</enum>
 	<enum path="lumen.input.MouseButton" params="" file="../../lumen/input/Input.hx" module="lumen.input.Input">
-		<none/>
-		<left/>
-		<middle/>
-		<right/>
-		<extra1/>
-		<extra2/>
+		<none><haxe_doc>no mouse buttons</haxe_doc></none>
+		<left><haxe_doc>left mouse button</haxe_doc></left>
+		<middle><haxe_doc>middle mouse button</haxe_doc></middle>
+		<right><haxe_doc>right mouse button</haxe_doc></right>
+		<extra1><haxe_doc>extra button pressed (4)</haxe_doc></extra1>
+		<extra2><haxe_doc>extra button pressed (5)</haxe_doc></extra2>
+		<haxe_doc>A typed mouse button id</haxe_doc>
 		<meta><m n=":flatEnum"/></meta>
 	</enum>
 	<enum path="lumen.input.TextEventType" params="" file="../../lumen/input/Input.hx" module="lumen.input.Input">
-		<unknown/>
-		<edit/>
-		<input/>
+		<unknown><haxe_doc>An unknown event</haxe_doc></unknown>
+		<edit><haxe_doc>An edit text typing event</haxe_doc></edit>
+		<input><haxe_doc>An input text typing event</haxe_doc></input>
+		<haxe_doc>A typed text event type</haxe_doc>
 		<meta><m n=":flatEnum"/></meta>
 	</enum>
 	<enum path="lumen.input.GamepadEventType" params="" file="../../lumen/input/Input.hx" module="lumen.input.Input">
-		<unknown/>
-		<axis/>
-		<button/>
-		<device_added/>
-		<device_removed/>
-		<device_remapped/>
+		<unknown><haxe_doc>An unknown event</haxe_doc></unknown>
+		<axis><haxe_doc>An axis change event</haxe_doc></axis>
+		<button><haxe_doc>A button event</haxe_doc></button>
+		<device_added><haxe_doc>A device added event</haxe_doc></device_added>
+		<device_removed><haxe_doc>A device removed event</haxe_doc></device_removed>
+		<device_remapped><haxe_doc>A device was remapped</haxe_doc></device_remapped>
+		<haxe_doc>A typed gamepad event type</haxe_doc>
 		<meta><m n=":flatEnum"/></meta>
 	</enum>
 	<enum path="lumen.input.TouchState" params="" file="../../lumen/input/Input.hx" module="lumen.input.Input">
@@ -4651,61 +4704,141 @@
 			<caps><x path="Bool"/></caps>
 			<alt><x path="Bool"/></alt>
 		</a>
-		<haxe_doc>Input modifier state</haxe_doc>
+		<haxe_doc>Input modifier state 
+
+`none` : no modifiers are down   
+`lshift` : left shift key is down   
+`rshift` : right shift key is down   
+`lctrl` : left ctrl key is down   
+`rctrl` : right ctrl key is down   
+`lalt` : left alt/option key is down   
+`ralt` : right alt/option key is down   
+`lmeta` : left windows/command key is down   
+`rmeta` : right windows/command key is down   
+`num` : numlock is enabled   
+`caps` : capslock is enabled   
+`mode` : mode key is down   
+`ctrl` : left or right ctrl key is down   
+`shift` : left or right shift key is down   
+`alt` : left or right alt/option key is down   
+`meta` : left or right windows/command key is down</haxe_doc>
 	</typedef>
-	<typedef path="lumen.input.MouseEvent" params="" file="../../lumen/input/Input.hx" module="lumen.input.Input"><a>
-	<yrel><x path="Int"/></yrel>
-	<y><x path="Int"/></y>
-	<xrel><x path="Int"/></xrel>
-	<x><x path="Int"/></x>
-	<window_id><x path="Int"/></window_id>
-	<which><x path="Int"/></which>
-	<timestamp><x path="Float"/></timestamp>
-	<state><e path="lumen.input.MouseState"/></state>
-	<raw><t path="lumen.types.InputEvent"/></raw>
-	<button><e path="lumen.input.MouseButton"/></button>
-</a></typedef>
-	<typedef path="lumen.input.KeyEvent" params="" file="../../lumen/input/Input.hx" module="lumen.input.Input"><a>
-	<window_id><x path="Int"/></window_id>
-	<timestamp><x path="Float"/></timestamp>
-	<state><e path="lumen.input.PressedState"/></state>
-	<scancode><x path="Int"/></scancode>
-	<repeat><x path="Bool"/></repeat>
-	<raw><t path="lumen.types.InputEvent"/></raw>
-	<mod><t path="lumen.input.ModState"/></mod>
-	<keycode><x path="Int"/></keycode>
-</a></typedef>
-	<typedef path="lumen.input.TextEvent" params="" file="../../lumen/input/Input.hx" module="lumen.input.Input"><a>
-	<window_id><x path="Int"/></window_id>
-	<type><e path="lumen.input.TextEventType"/></type>
-	<timestamp><x path="Float"/></timestamp>
-	<text><c path="String"/></text>
-	<start><x path="Int"/></start>
-	<raw><t path="lumen.types.InputEvent"/></raw>
-	<length><x path="Int"/></length>
-</a></typedef>
-	<typedef path="lumen.input.GamepadEvent" params="" file="../../lumen/input/Input.hx" module="lumen.input.Input"><a>
-	<which><x path="Int"/></which>
-	<value><x path="Int"/></value>
-	<type><e path="lumen.input.GamepadEventType"/></type>
-	<timestamp><x path="Float"/></timestamp>
-	<state><e path="lumen.input.PressedState"/></state>
-	<raw><t path="lumen.types.InputEvent"/></raw>
-	<button><x path="Int"/></button>
-	<axis><x path="Int"/></axis>
-</a></typedef>
-	<typedef path="lumen.input.TouchEvent" params="" file="../../lumen/input/Input.hx" module="lumen.input.Input"><a>
-	<y><x path="Float"/></y>
-	<x><x path="Float"/></x>
-	<touch_id><x path="Int"/></touch_id>
-	<timestamp><x path="Float"/></timestamp>
-	<state><e path="lumen.input.TouchState"/></state>
-	<raw><t path="lumen.types.InputEvent"/></raw>
-	<pressure><x path="Float"/></pressure>
-	<dy><x path="Float"/></dy>
-	<dx><x path="Float"/></dx>
-	<device_id><x path="Int"/></device_id>
-</a></typedef>
+	<typedef path="lumen.input.MouseEvent" params="" file="../../lumen/input/Input.hx" module="lumen.input.Input">
+		<a>
+			<yrel><x path="Int"/></yrel>
+			<y><x path="Int"/></y>
+			<xrel><x path="Int"/></xrel>
+			<x><x path="Int"/></x>
+			<window_id><x path="Int"/></window_id>
+			<which><x path="Int"/></which>
+			<timestamp><x path="Float"/></timestamp>
+			<state><e path="lumen.input.MouseState"/></state>
+			<raw><t path="lumen.types.InputEvent"/></raw>
+			<button><e path="lumen.input.MouseButton"/></button>
+		</a>
+		<haxe_doc>Information about a mouse event 
+
+`raw` : The raw event from the system, unmodified   
+`timestamp` : The time in seconds when this touch event occurred, use for deltas   
+`window_id` : The window id this event originated from    
+`which` : Which mouse this event originated from (usually 0)   
+`state` : The state this event is in   
+`button` : The button id, if the event `state` is `down` or `up`   
+`x` : The x position in the window of the mouse event   
+`y` : The y position in the window of the mouse event   
+`xrel` : The relative x position if `state` is `move` or a window has grabbed state   
+`yrel` : The relative y position if `state` is `move` or a window has grabbed state</haxe_doc>
+	</typedef>
+	<typedef path="lumen.input.KeyEvent" params="" file="../../lumen/input/Input.hx" module="lumen.input.Input">
+		<a>
+			<window_id><x path="Int"/></window_id>
+			<timestamp><x path="Float"/></timestamp>
+			<state><e path="lumen.input.PressedState"/></state>
+			<scancode><x path="Int"/></scancode>
+			<repeat><x path="Bool"/></repeat>
+			<raw><t path="lumen.types.InputEvent"/></raw>
+			<mod><t path="lumen.input.ModState"/></mod>
+			<keycode><x path="Int"/></keycode>
+		</a>
+		<haxe_doc>Information about a keyboard event
+
+`raw` : The raw event from the system, unmodified   
+`scancode` : The `lumen.input.Scan` code value for this event   
+`keycode` : The `lumen.input.Key` code value for this event   
+`state` : The state of the key in this event   
+`mod` : The modifier state of this event   
+`repeat` : If this value is bigger than 0 this is a key repeat event of a key held down   
+`timestamp` : The time in seconds when this touch event occurred, use for deltas   
+`window_id` : The window id this event originated from</haxe_doc>
+	</typedef>
+	<typedef path="lumen.input.TextEvent" params="" file="../../lumen/input/Input.hx" module="lumen.input.Input">
+		<a>
+			<window_id><x path="Int"/></window_id>
+			<type><e path="lumen.input.TextEventType"/></type>
+			<timestamp><x path="Float"/></timestamp>
+			<text><c path="String"/></text>
+			<start><x path="Int"/></start>
+			<raw><t path="lumen.types.InputEvent"/></raw>
+			<length><x path="Int"/></length>
+		</a>
+		<haxe_doc>Information about a text input event
+
+`raw` : The raw event from the system, unmodified   
+`text` : The text that this event has generated   
+`type` : The type of text event   
+`timestamp` : The time in seconds when this touch event occurred, use for deltas   
+`window_id` : The window id this event originated from   
+`start` : The start position, if the `type` is `edit`   
+`length` : The length position, if the `type` is `edit`</haxe_doc>
+	</typedef>
+	<typedef path="lumen.input.GamepadEvent" params="" file="../../lumen/input/Input.hx" module="lumen.input.Input">
+		<a>
+			<which><x path="Int"/></which>
+			<value><x path="Int"/></value>
+			<type><e path="lumen.input.GamepadEventType"/></type>
+			<timestamp><x path="Float"/></timestamp>
+			<state><e path="lumen.input.PressedState"/></state>
+			<raw><t path="lumen.types.InputEvent"/></raw>
+			<button><x path="Int"/></button>
+			<axis><x path="Int"/></axis>
+		</a>
+		<haxe_doc>Information about a gamepad event
+
+`raw` : The raw event from the system, unmodified   
+`timestamp` : The time in seconds when this touch event occurred, use for deltas   
+`type` : The button id, if the event `type` is `button`   
+`state` : The state this event is in   
+`which` : The id of the gamepad this event comes from   
+`button` : The button id, if the event `type` is `button`   
+`axis` : The axis id, if the event `type` is `button`   
+`value` : The axis value, if the event `type` is `axis`</haxe_doc>
+	</typedef>
+	<typedef path="lumen.input.TouchEvent" params="" file="../../lumen/input/Input.hx" module="lumen.input.Input">
+		<a>
+			<y><x path="Float"/></y>
+			<x><x path="Float"/></x>
+			<touch_id><x path="Int"/></touch_id>
+			<timestamp><x path="Float"/></timestamp>
+			<state><e path="lumen.input.TouchState"/></state>
+			<raw><t path="lumen.types.InputEvent"/></raw>
+			<pressure><x path="Float"/></pressure>
+			<dy><x path="Float"/></dy>
+			<dx><x path="Float"/></dx>
+			<device_id><x path="Int"/></device_id>
+		</a>
+		<haxe_doc>Information about a touch event
+
+`raw` : The raw event from the system, unmodified   
+`state` : The state this touch event is in   
+`timestamp` : The time in seconds when this touch event occurred, use for deltas   
+`touch_id` : The id of the touch that this event comes from, a finger id   
+`device_id` : The device id this touch comes from   
+`x` : The x position in the window of the touch event   
+`y` : The x position in the window of the touch event   
+`dx` : The delta x value of the touch event, if the state is `moving`   
+`dy` : The delta y value of the touch event, if the state is `moving`   
+`pressure` : The pressure value of the touch event, where available</haxe_doc>
+	</typedef>
 	<class path="lumen.input.Scancodes" params="" file="../../lumen/input/Keycodes.hx" module="lumen.input.Keycodes">
 		<UNKNOWN public="1" line="272" static="1"><x path="Int"/></UNKNOWN>
 		<KEY_A public="1" line="277" static="1"><x path="Int"/></KEY_A>
@@ -5329,7 +5462,10 @@ but they aren't specific to SDL so they are used generically</haxe_doc>
 		<haxe_doc>The keycode class, with conversion helpers for scancodes. The values below come directly from SDL header include files,
 but they aren't specific to SDL so they are used generically</haxe_doc>
 	</class>
-	<typedef path="lumen.input.system.LumenInputSystem" params="" file="../../lumen/input/system/InputSystem.hx" module="lumen.input.system.InputSystem"><c path="lumen.input.system.sdl.InputSystemSDL"/></typedef>
+	<typedef path="lumen.input.system.LumenInputSystem" params="" file="../../lumen/input/system/InputSystem.hx" module="lumen.input.system.InputSystem">
+		<c path="lumen.input.system.sdl.InputSystemSDL"/>
+		<meta><m n=":noCompletion"/></meta>
+	</typedef>
 	<class path="lumen.input.system.InputSystem" params="" file="../../lumen/input/system/InputSystem.hx">
 		<manager><c path="lumen.input.Input"/></manager>
 		<lib><c path="lumen.Lumen"/></lib>
@@ -5368,6 +5504,7 @@ but they aren't specific to SDL so they are used generically</haxe_doc>
 			<meta><m n=":noCompletion"/></meta>
 		</new>
 		<haxe_doc>Internal input system, accessed through `lumen.Input`, not directly</haxe_doc>
+		<meta><m n=":noCompletion"/></meta>
 	</class>
 	<enum path="lumen.input.system.sdl.KeyEventType" params="" file="../../lumen/input/system/sdl/InputSystemSDL.hx" module="lumen.input.system.sdl.InputSystemSDL">
 		<unknown/>
@@ -5375,7 +5512,10 @@ but they aren't specific to SDL so they are used generically</haxe_doc>
 		<up/>
 		<textedit/>
 		<textinput/>
-		<meta><m n=":flatEnum"/></meta>
+		<meta>
+			<m n=":flatEnum"/>
+			<m n=":noCompletion"/>
+		</meta>
 	</enum>
 	<enum path="lumen.input.system.sdl.MouseEventType" params="" file="../../lumen/input/system/sdl/InputSystemSDL.hx" module="lumen.input.system.sdl.InputSystemSDL">
 		<unknown/>
@@ -5383,7 +5523,10 @@ but they aren't specific to SDL so they are used generically</haxe_doc>
 		<down/>
 		<up/>
 		<wheel/>
-		<meta><m n=":flatEnum"/></meta>
+		<meta>
+			<m n=":flatEnum"/>
+			<m n=":noCompletion"/>
+		</meta>
 	</enum>
 	<enum path="lumen.input.system.sdl.ControllerEventType" params="" file="../../lumen/input/system/sdl/InputSystemSDL.hx" module="lumen.input.system.sdl.InputSystemSDL">
 		<unknown/>
@@ -5393,7 +5536,10 @@ but they aren't specific to SDL so they are used generically</haxe_doc>
 		<added/>
 		<removed/>
 		<remapped/>
-		<meta><m n=":flatEnum"/></meta>
+		<meta>
+			<m n=":flatEnum"/>
+			<m n=":noCompletion"/>
+		</meta>
 	</enum>
 	<class path="lumen.input.system.sdl.KeyEventTypes" params="" file="../../lumen/input/system/sdl/InputSystemSDL.hx" module="lumen.input.system.sdl.InputSystemSDL">
 		<ke_down line="38" static="1"><x path="Int"/></ke_down>
@@ -5404,6 +5550,7 @@ but they aren't specific to SDL so they are used generically</haxe_doc>
 	<x path="Int"/>
 	<e path="lumen.input.system.sdl.KeyEventType"/>
 </f></typed>
+		<meta><m n=":noCompletion"/></meta>
 	</class>
 	<class path="lumen.input.system.sdl.GamepadEventTypes" params="" file="../../lumen/input/system/sdl/InputSystemSDL.hx" module="lumen.input.system.sdl.InputSystemSDL">
 		<ge_axis line="58" static="1"><x path="Int"/></ge_axis>
@@ -5416,6 +5563,7 @@ but they aren't specific to SDL so they are used generically</haxe_doc>
 	<x path="Int"/>
 	<e path="lumen.input.system.sdl.ControllerEventType"/>
 </f></typed>
+		<meta><m n=":noCompletion"/></meta>
 	</class>
 	<class path="lumen.input.system.sdl.TouchEventTypes" params="" file="../../lumen/input/system/sdl/InputSystemSDL.hx" module="lumen.input.system.sdl.InputSystemSDL">
 		<te_down line="81" static="1"><x path="Int"/></te_down>
@@ -5425,6 +5573,7 @@ but they aren't specific to SDL so they are used generically</haxe_doc>
 	<x path="Int"/>
 	<e path="lumen.input.TouchState"/>
 </f></typed>
+		<meta><m n=":noCompletion"/></meta>
 	</class>
 	<class path="lumen.input.system.sdl.MouseEventTypes" params="" file="../../lumen/input/system/sdl/InputSystemSDL.hx" module="lumen.input.system.sdl.InputSystemSDL">
 		<me_move line="98" static="1"><x path="Int"/></me_move>
@@ -5435,6 +5584,7 @@ but they aren't specific to SDL so they are used generically</haxe_doc>
 	<x path="Int"/>
 	<e path="lumen.input.system.sdl.MouseEventType"/>
 </f></typed>
+		<meta><m n=":noCompletion"/></meta>
 	</class>
 	<class path="lumen.input.system.sdl.ModValue" params="" file="../../lumen/input/system/sdl/InputSystemSDL.hx" module="lumen.input.system.sdl.InputSystemSDL">
 		<NONE public="1" line="118" static="1"><x path="Int"/></NONE>
@@ -5449,6 +5599,7 @@ but they aren't specific to SDL so they are used generically</haxe_doc>
 		<NUM public="1" line="127" static="1"><x path="Int"/></NUM>
 		<CAPS public="1" line="128" static="1"><x path="Int"/></CAPS>
 		<MODE public="1" line="129" static="1"><x path="Int"/></MODE>
+		<meta><m n=":noCompletion"/></meta>
 	</class>
 	<class path="lumen.input.system.sdl.InputSystemSDL" params="" file="../../lumen/input/system/sdl/InputSystemSDL.hx">
 		<extends path="lumen.input.system.InputSystem"/>
@@ -5492,75 +5643,107 @@ but they aren't specific to SDL so they are used generically</haxe_doc>
 	<x path="Void"/>
 </f></new>
 		<haxe_doc>Internal input system, concrete SDL implementation. Accessed through `lumen.Input`, not directly</haxe_doc>
+		<meta><m n=":noCompletion"/></meta>
 	</class>
 	<class path="lumen.io.IOFile" params="" file="../../lumen/io/IO.hx" module="lumen.io.IO">
-		<lumen_iosrc_file_read line="38" static="1"><f a=":::">
+		<lumen_iosrc_file_read line="44" static="1"><f a=":::">
 	<d/>
 	<t path="lumen.utils.ByteArray"/>
 	<x path="Int"/>
 	<x path="Int"/>
 	<unknown/>
 </f></lumen_iosrc_file_read>
-		<lumen_iosrc_file_write line="39" static="1"><f a=":::">
+		<lumen_iosrc_file_write line="45" static="1"><f a=":::">
 	<d/>
 	<t path="lumen.utils.ByteArray"/>
 	<x path="Int"/>
 	<x path="Int"/>
 	<unknown/>
 </f></lumen_iosrc_file_write>
-		<lumen_iosrc_file_seek line="40" static="1"><f a="::">
+		<lumen_iosrc_file_seek line="46" static="1"><f a="::">
 	<d/>
 	<x path="Int"/>
 	<x path="Int"/>
 	<unknown/>
 </f></lumen_iosrc_file_seek>
-		<lumen_iosrc_file_tell line="41" static="1"><f a="">
+		<lumen_iosrc_file_tell line="47" static="1"><f a="">
 	<d/>
 	<unknown/>
 </f></lumen_iosrc_file_tell>
-		<lumen_iosrc_file_close line="42" static="1"><f a="">
+		<lumen_iosrc_file_close line="48" static="1"><f a="">
 	<d/>
 	<unknown/>
 </f></lumen_iosrc_file_close>
-		<handle public="1"><d/></handle>
-		<read public="1" set="method" line="16"><f a="dest:size:maxnum">
-	<t path="lumen.utils.ByteArray"/>
-	<x path="Int"/>
-	<x path="Int"/>
-	<unknown/>
-</f></read>
-		<write public="1" set="method" line="20"><f a="src:size:num">
-	<t path="lumen.utils.ByteArray"/>
-	<x path="Int"/>
-	<x path="Int"/>
-	<unknown/>
-</f></write>
-		<seek public="1" set="method" line="24"><f a="offset:whence">
-	<x path="Int"/>
-	<x path="Int"/>
-	<unknown/>
-</f></seek>
-		<tell public="1" set="method" line="28"><f a=""><unknown/></f></tell>
-		<close public="1" set="method" line="32"><f a=""><unknown/></f></close>
-		<new public="1" set="method" line="10"><f a="_handle">
-	<d/>
-	<x path="Void"/>
-</f></new>
+		<handle public="1">
+			<d/>
+			<haxe_doc>The internal native file handle</haxe_doc>
+		</handle>
+		<read public="1" set="method" line="18">
+			<f a="dest:size:maxnum">
+				<t path="lumen.utils.ByteArray"/>
+				<x path="Int"/>
+				<x path="Int"/>
+				<unknown/>
+			</f>
+			<haxe_doc>Read a `maxnum` of items of `size` in bytes, into `dest`. Same signature/returns as `fread`</haxe_doc>
+		</read>
+		<write public="1" set="method" line="23">
+			<f a="src:size:num">
+				<t path="lumen.utils.ByteArray"/>
+				<x path="Int"/>
+				<x path="Int"/>
+				<unknown/>
+			</f>
+			<haxe_doc>Write `num` of items of `size` in bytes, from `src` into this file. Same signature/returns as `fwrite`</haxe_doc>
+		</write>
+		<seek public="1" set="method" line="28">
+			<f a="offset:whence">
+				<x path="Int"/>
+				<x path="Int"/>
+				<unknown/>
+			</f>
+			<haxe_doc>Seek `offset` from `whence`, where whence is an int matching `set=0`, `cur=1`, `end=2`. Same signature/returns as `fseek`</haxe_doc>
+		</seek>
+		<tell public="1" set="method" line="33">
+			<f a=""><unknown/></f>
+			<haxe_doc>Tell the current position in the file, in bytes</haxe_doc>
+		</tell>
+		<close public="1" set="method" line="38">
+			<f a=""><unknown/></f>
+			<haxe_doc>Close the file</haxe_doc>
+		</close>
+		<new public="1" set="method" line="13">
+			<f a="_handle">
+				<d/>
+				<x path="Void"/>
+			</f>
+			<meta><m n=":noCompletion"/></meta>
+		</new>
+		<haxe_doc>This class is a low level cross platform file access helper, that handles in bundle assets etc. 
+    If you want a file, use `Assets` instead, unless really required.</haxe_doc>
 	</class>
 	<class path="lumen.io.IO" params="" file="../../lumen/io/IO.hx">
-		<from_file public="1" set="method" line="49" static="1"><f a="_id:?_mode" v=":'rb'">
-	<c path="String"/>
-	<c path="String"/>
-	<c path="lumen.io.IOFile"/>
-</f></from_file>
-		<lumen_iosrc_from_file line="55" static="1"><f a=":">
+		<from_file public="1" set="method" line="59" static="1">
+			<f a="_id:?_mode" v=":'rb'">
+				<c path="String"/>
+				<c path="String"/>
+				<c path="lumen.io.IOFile"/>
+			</f>
+			<haxe_doc>Create an `IOFile` from a file path `_id`, this bypasses the `Asset` system path helpers.</haxe_doc>
+		</from_file>
+		<lumen_iosrc_from_file line="65" static="1"><f a=":">
 	<c path="String"/>
 	<c path="String"/>
 	<unknown/>
 </f></lumen_iosrc_from_file>
+		<haxe_doc>This class is a low level cross platform IO helper. 
+    If you want file access, use `Assets` instead, unless really required.</haxe_doc>
 	</class>
 	<typedef path="lumen.render.gl.GL" params="" file="../../lumen/render/gl/GL.hx"><c path="lumen.render.gl.native.GL"/></typedef>
-	<typedef path="lumen.render.gl.Ext" params="" file="../../lumen/render/gl/GL.hx" module="lumen.render.gl.GL"><c path="lumen.render.gl.native.Ext"/></typedef>
+	<typedef path="lumen.render.gl.Ext" params="" file="../../lumen/render/gl/GL.hx" module="lumen.render.gl.GL">
+		<c path="lumen.render.gl.native.Ext"/>
+		<meta><m n=":noCompletion"/></meta>
+	</typedef>
 	<typedef path="lumen.render.gl.GLActiveInfo" params="" file="../../lumen/render/gl/GLActiveInfo.hx"><a>
 	<type><x path="Int"/></type>
 	<size><x path="Int"/></size>
@@ -5698,6 +5881,7 @@ but they aren't specific to SDL so they are used generically</haxe_doc>
 		<DRAW_BUFFER15 public="1" get="inline" set="null" line="53" static="1"><x path="Int"/></DRAW_BUFFER15>
 		<MAX_COLOR_ATTACHMENTS public="1" get="inline" set="null" line="55" static="1"><x path="Int"/></MAX_COLOR_ATTACHMENTS>
 		<MAX_DRAW_BUFFERS public="1" get="inline" set="null" line="56" static="1"><x path="Int"/></MAX_DRAW_BUFFERS>
+		<meta><m n=":noCompletion"/></meta>
 	</class>
 	<class path="lumen.render.gl.native.GL" params="" file="../../lumen/render/gl/native/GL.hx">
 		<DEPTH_BUFFER_BIT public="1" get="inline" set="null" line="15" static="1"><x path="Int"/></DEPTH_BUFFER_BIT>
@@ -7408,396 +7592,377 @@ but they aren't specific to SDL so they are used generically</haxe_doc>
 	<rangeMax><x path="Int"/></rangeMax>
 	<precision><x path="Int"/></precision>
 </a></typedef>
-	<typedef path="lumen.types.AssetInfo" params="" file="../../lumen/types/Types.hx" module="lumen.types.Types"><a>
-	<type><c path="String"/></type>
-	<path><c path="String"/></path>
-	<id><c path="String"/></id>
-	<ext><c path="String"/></ext>
-</a></typedef>
-	<typedef path="lumen.types.LumenConfig" params="" file="../../lumen/types/Types.hx" module="lumen.types.Types"><a>
-	<window_config>
-		<t path="Null"><t path="lumen.types.WindowConfig"/></t>
-		<meta><m n=":optional"/></meta>
-	</window_config>
-	<runtime_config>
-		<d/>
-		<meta><m n=":optional"/></meta>
-	</runtime_config>
-	<run_loop>
-		<t path="Null"><x path="Bool"/></t>
-		<meta><m n=":optional"/></meta>
-	</run_loop>
-	<host>
-		<c path="lumen.App"/>
-		<meta><m n=":optional"/></meta>
-	</host>
-	<asset_data>
-		<c path="Array"><t path="lumen.types.AssetInfo"/></c>
-		<meta><m n=":optional"/></meta>
-	</asset_data>
-</a></typedef>
-	<typedef path="lumen.types.ImageInfo" params="" file="../../lumen/types/Types.hx" module="lumen.types.Types"><a>
-	<width><x path="Int"/></width>
-	<id><c path="String"/></id>
-	<height><x path="Int"/></height>
-	<data><t path="lumen.utils.ByteArray"/></data>
-	<bpp_source><x path="Int"/></bpp_source>
-	<bpp><x path="Int"/></bpp>
-</a></typedef>
+	<typedef path="lumen.types.AssetInfo" params="" file="../../lumen/types/Types.hx" module="lumen.types.Types">
+		<a>
+			<type><c path="String"/></type>
+			<path><c path="String"/></path>
+			<id><c path="String"/></id>
+			<ext><c path="String"/></ext>
+		</a>
+		<haxe_doc>Information for a single asset 
+
+`id` : the asset id   
+`path` : the location of the asset   
+`ext` : the asset extension, if any   
+`type` : a convenience type indicator</haxe_doc>
+	</typedef>
+	<typedef path="lumen.types.LumenConfig" params="" file="../../lumen/types/Types.hx" module="lumen.types.Types">
+		<a>
+			<window_config>
+				<t path="Null"><t path="lumen.types.WindowConfig"/></t>
+				<meta><m n=":optional"/></meta>
+			</window_config>
+			<runtime_config>
+				<d/>
+				<meta><m n=":optional"/></meta>
+			</runtime_config>
+			<run_loop>
+				<t path="Null"><x path="Bool"/></t>
+				<meta><m n=":optional"/></meta>
+			</run_loop>
+			<host>
+				<c path="lumen.App"/>
+				<meta><m n=":optional"/></meta>
+			</host>
+			<asset_data>
+				<c path="Array"><t path="lumen.types.AssetInfo"/></c>
+				<meta><m n=":optional"/></meta>
+			</asset_data>
+		</a>
+		<haxe_doc>The lumen core configuration information
+
+`? host` : the bootstrapped application   
+`? window_config` : the window config for a default window, if any   
+`? run_loop` : whether or not the core should run a loop at all   
+`? runtime_config` : the user specific config read from json at runtime   
+`? asset_data` : the raw list of assets. use the app.assets from Lumen for access</haxe_doc>
+	</typedef>
+	<typedef path="lumen.types.ImageInfo" params="" file="../../lumen/types/Types.hx" module="lumen.types.Types">
+		<a>
+			<width><x path="Int"/></width>
+			<id><c path="String"/></id>
+			<height><x path="Int"/></height>
+			<data><t path="lumen.utils.ByteArray"/></data>
+			<bpp_source><x path="Int"/></bpp_source>
+			<bpp><x path="Int"/></bpp>
+		</a>
+		<haxe_doc>Information about an image file/data
+
+`id` : source asset id   
+`bpp` : used bits per pixel   
+`width` : image width   
+`height` : image height   
+`bpp_source` : source bits per pixel   
+`data` : image data</haxe_doc>
+	</typedef>
 	<enum path="lumen.types.AudioFormatType" params="" file="../../lumen/types/Types.hx" module="lumen.types.Types">
 		<unknown/>
 		<ogg/>
 		<wav/>
 		<pcm/>
+		<haxe_doc>The type of audio format</haxe_doc>
 		<meta><m n=":flatEnum"/></meta>
 	</enum>
-	<typedef path="lumen.types.AudioInfo" params="" file="../../lumen/types/Types.hx" module="lumen.types.Types"><a>
-	<rate><x path="Int"/></rate>
-	<length_pcm><x path="Int"/></length_pcm>
-	<length><x path="Int"/></length>
-	<id><c path="String"/></id>
-	<handle><d/></handle>
-	<format><e path="lumen.types.AudioFormatType"/></format>
-	<data><t path="lumen.utils.ByteArray"/></data>
-	<channels><x path="Int"/></channels>
-	<bits_per_sample><x path="Int"/></bits_per_sample>
-	<bitrate><x path="Int"/></bitrate>
-</a></typedef>
-	<typedef path="lumen.types.AudioDataBlob" params="" file="../../lumen/types/Types.hx" module="lumen.types.Types"><a>
-	<data><t path="lumen.utils.ByteArray"/></data>
-	<complete><x path="Bool"/></complete>
-</a></typedef>
-	<typedef path="lumen.types.WindowConfig" params="" file="../../lumen/types/Types.hx" module="lumen.types.Types"><a>
-	<y>
-		<t path="Null"><x path="Int"/></t>
-		<meta><m n=":optional"/></meta>
-	</y>
-	<x>
-		<t path="Null"><x path="Int"/></t>
-		<meta><m n=":optional"/></meta>
-	</x>
-	<width>
-		<t path="Null"><x path="Int"/></t>
-		<meta><m n=":optional"/></meta>
-	</width>
-	<vsync>
-		<t path="Null"><x path="Bool"/></t>
-		<meta><m n=":optional"/></meta>
-	</vsync>
-	<title>
-		<c path="String"/>
-		<meta><m n=":optional"/></meta>
-	</title>
-	<stencil_buffer>
-		<t path="Null"><x path="Bool"/></t>
-		<meta><m n=":optional"/></meta>
-	</stencil_buffer>
-	<resizable>
-		<t path="Null"><x path="Bool"/></t>
-		<meta><m n=":optional"/></meta>
-	</resizable>
-	<orientation>
-		<c path="String"/>
-		<meta><m n=":optional"/></meta>
-	</orientation>
-	<multitouch_supported>
-		<t path="Null"><x path="Bool"/></t>
-		<meta><m n=":optional"/></meta>
-	</multitouch_supported>
-	<multitouch>
-		<t path="Null"><x path="Bool"/></t>
-		<meta><m n=":optional"/></meta>
-	</multitouch>
-	<height>
-		<t path="Null"><x path="Int"/></t>
-		<meta><m n=":optional"/></meta>
-	</height>
-	<fullscreen>
-		<t path="Null"><x path="Bool"/></t>
-		<meta><m n=":optional"/></meta>
-	</fullscreen>
-	<fps>
-		<t path="Null"><x path="Int"/></t>
-		<meta><m n=":optional"/></meta>
-	</fps>
-	<depth_buffer>
-		<t path="Null"><x path="Bool"/></t>
-		<meta><m n=":optional"/></meta>
-	</depth_buffer>
-	<borderless>
-		<t path="Null"><x path="Bool"/></t>
-		<meta><m n=":optional"/></meta>
-	</borderless>
-	<antialiasing>
-		<t path="Null"><x path="Int"/></t>
-		<meta><m n=":optional"/></meta>
-	</antialiasing>
-</a></typedef>
-	<typedef path="lumen.types.SystemEvent" params="" file="../../lumen/types/Types.hx" module="lumen.types.Types"><a>
-	<window>
-		<t path="Null"><t path="lumen.types.WindowEvent"/></t>
-		<meta><m n=":optional"/></meta>
-	</window>
-	<type>
-		<e path="lumen.types.SystemEventType"/>
-		<meta><m n=":optional"/></meta>
-	</type>
-	<input>
-		<t path="Null"><t path="lumen.types.InputEvent"/></t>
-		<meta><m n=":optional"/></meta>
-	</input>
-</a></typedef>
-	<typedef path="lumen.types.WindowEvent" params="" file="../../lumen/types/Types.hx" module="lumen.types.Types"><a>
-	<window_id>
-		<t path="Null"><x path="Int"/></t>
-		<meta><m n=":optional"/></meta>
-	</window_id>
-	<type>
-		<e path="lumen.types.WindowEventType"/>
-		<meta><m n=":optional"/></meta>
-	</type>
-	<timestamp>
-		<t path="Null"><x path="Float"/></t>
-		<meta><m n=":optional"/></meta>
-	</timestamp>
-	<event>
-		<d/>
-		<meta><m n=":optional"/></meta>
-	</event>
-</a></typedef>
-	<typedef path="lumen.types.InputEvent" params="" file="../../lumen/types/Types.hx" module="lumen.types.Types"><a>
-	<window_id>
-		<t path="Null"><x path="Int"/></t>
-		<meta><m n=":optional"/></meta>
-	</window_id>
-	<type>
-		<e path="lumen.types.InputEventType"/>
-		<meta><m n=":optional"/></meta>
-	</type>
-	<timestamp>
-		<t path="Null"><x path="Float"/></t>
-		<meta><m n=":optional"/></meta>
-	</timestamp>
-	<event>
-		<d/>
-		<meta><m n=":optional"/></meta>
-	</event>
-</a></typedef>
+	<typedef path="lumen.types.AudioInfo" params="" file="../../lumen/types/Types.hx" module="lumen.types.Types">
+		<a>
+			<rate><x path="Int"/></rate>
+			<length_pcm><x path="Int"/></length_pcm>
+			<length><x path="Int"/></length>
+			<id><c path="String"/></id>
+			<handle><d/></handle>
+			<format><e path="lumen.types.AudioFormatType"/></format>
+			<data><t path="lumen.utils.ByteArray"/></data>
+			<channels><x path="Int"/></channels>
+			<bits_per_sample><x path="Int"/></bits_per_sample>
+			<bitrate><x path="Int"/></bitrate>
+		</a>
+		<haxe_doc>Information about an audio file/data
+
+`id` : file source   
+`format` : format   
+`channels` : number of channels   
+`rate` : hz rate    
+`bitrate` : sound bitrate   
+`bits_per_sample` : bits per sample, 8 / 16   
+`data` : sound raw data,   
+`length` : the file length in bytes   
+`length_pcm` : the pcm uncompressed raw length in bytes   
+`handle` : the native audio handle for later manipulation</haxe_doc>
+	</typedef>
+	<typedef path="lumen.types.AudioDataBlob" params="" file="../../lumen/types/Types.hx" module="lumen.types.Types">
+		<a>
+			<data><t path="lumen.utils.ByteArray"/></data>
+			<complete><x path="Bool"/></complete>
+		</a>
+		<haxe_doc>Information about an audio portion requested via assets
+
+`complete` : True if the file has reached the end in this blob   
+`data` : The data stored in this blob</haxe_doc>
+	</typedef>
+	<typedef path="lumen.types.WindowConfig" params="" file="../../lumen/types/Types.hx" module="lumen.types.Types">
+		<a>
+			<y>
+				<t path="Null"><x path="Int"/></t>
+				<meta><m n=":optional"/></meta>
+			</y>
+			<x>
+				<t path="Null"><x path="Int"/></t>
+				<meta><m n=":optional"/></meta>
+			</x>
+			<width>
+				<t path="Null"><x path="Int"/></t>
+				<meta><m n=":optional"/></meta>
+			</width>
+			<vsync>
+				<t path="Null"><x path="Bool"/></t>
+				<meta><m n=":optional"/></meta>
+			</vsync>
+			<title>
+				<c path="String"/>
+				<meta><m n=":optional"/></meta>
+			</title>
+			<stencil_buffer>
+				<t path="Null"><x path="Bool"/></t>
+				<meta><m n=":optional"/></meta>
+			</stencil_buffer>
+			<resizable>
+				<t path="Null"><x path="Bool"/></t>
+				<meta><m n=":optional"/></meta>
+			</resizable>
+			<orientation>
+				<c path="String"/>
+				<meta><m n=":optional"/></meta>
+			</orientation>
+			<multitouch_supported>
+				<t path="Null"><x path="Bool"/></t>
+				<meta><m n=":optional"/></meta>
+			</multitouch_supported>
+			<multitouch>
+				<t path="Null"><x path="Bool"/></t>
+				<meta><m n=":optional"/></meta>
+			</multitouch>
+			<height>
+				<t path="Null"><x path="Int"/></t>
+				<meta><m n=":optional"/></meta>
+			</height>
+			<fullscreen>
+				<t path="Null"><x path="Bool"/></t>
+				<meta><m n=":optional"/></meta>
+			</fullscreen>
+			<fps>
+				<t path="Null"><x path="Int"/></t>
+				<meta><m n=":optional"/></meta>
+			</fps>
+			<depth_buffer>
+				<t path="Null"><x path="Bool"/></t>
+				<meta><m n=":optional"/></meta>
+			</depth_buffer>
+			<borderless>
+				<t path="Null"><x path="Bool"/></t>
+				<meta><m n=":optional"/></meta>
+			</borderless>
+			<antialiasing>
+				<t path="Null"><x path="Int"/></t>
+				<meta><m n=":optional"/></meta>
+			</antialiasing>
+		</a>
+		<haxe_doc>Window configuration information for creating windows
+
+`? fullscreen` : create in fullscreen   
+`? resizable` : allow the window to be resized   
+`? borderless` : create as a borderless window   
+`? antialiasing` : a value of `2`, `4`, `8` or other valid antialiasing flags   
+`? stencil_buffer` : create a stencil buffer (not per window)   
+`? depth_buffer` : create a depth buffer (not per window)   
+`? vsync` : enable vsync (not per window)   
+`? fps` : window max fps if any   
+`? x` : window y at creation   
+`? y` : window x at creation   
+`? width` : window height at creation   
+`? height` : window width at creation   
+`? title` : window title   
+`? orientation` : `Mobile specific` - window orientation setting</haxe_doc>
+	</typedef>
+	<typedef path="lumen.types.SystemEvent" params="" file="../../lumen/types/Types.hx" module="lumen.types.Types">
+		<a>
+			<window>
+				<t path="Null"><t path="lumen.types.WindowEvent"/></t>
+				<meta><m n=":optional"/></meta>
+			</window>
+			<type>
+				<e path="lumen.types.SystemEventType"/>
+				<meta><m n=":optional"/></meta>
+			</type>
+			<input>
+				<t path="Null"><t path="lumen.types.InputEvent"/></t>
+				<meta><m n=":optional"/></meta>
+			</input>
+		</a>
+		<haxe_doc>A system event. 
+Values below are null unless the event `type` matches. _i.e_ if type is `window`, the `window` value is not null, and so on</haxe_doc>
+	</typedef>
+	<typedef path="lumen.types.WindowEvent" params="" file="../../lumen/types/Types.hx" module="lumen.types.Types">
+		<a>
+			<window_id>
+				<t path="Null"><x path="Int"/></t>
+				<meta><m n=":optional"/></meta>
+			</window_id>
+			<type>
+				<e path="lumen.types.WindowEventType"/>
+				<meta><m n=":optional"/></meta>
+			</type>
+			<timestamp>
+				<t path="Null"><x path="Float"/></t>
+				<meta><m n=":optional"/></meta>
+			</timestamp>
+			<event>
+				<d/>
+				<meta><m n=":optional"/></meta>
+			</event>
+		</a>
+		<haxe_doc>A system window event 
+
+`? type` : The type of window event this was   
+`? timestamp` : The time in seconds that this event occured, useful for deltas   
+`? window_id` : The window id from which this event originated   
+`? event` : The raw platform event data</haxe_doc>
+	</typedef>
+	<typedef path="lumen.types.InputEvent" params="" file="../../lumen/types/Types.hx" module="lumen.types.Types">
+		<a>
+			<window_id>
+				<t path="Null"><x path="Int"/></t>
+				<meta><m n=":optional"/></meta>
+			</window_id>
+			<type>
+				<e path="lumen.types.InputEventType"/>
+				<meta><m n=":optional"/></meta>
+			</type>
+			<timestamp>
+				<t path="Null"><x path="Float"/></t>
+				<meta><m n=":optional"/></meta>
+			</timestamp>
+			<event>
+				<d/>
+				<meta><m n=":optional"/></meta>
+			</event>
+		</a>
+		<haxe_doc>A system input event 
+   
+`? type` : The type of input event this was   
+`? timestamp` : The time in seconds that this event occured, useful for deltas   
+`? window_id` : The window id from which this event originated   
+`? event` : The raw platform event data</haxe_doc>
+	</typedef>
 	<enum path="lumen.types.SystemEventType" params="" file="../../lumen/types/Types.hx" module="lumen.types.Types">
-		<unknown/>
-		<init/>
-		<ready/>
-		<update/>
-		<shutdown/>
-		<window/>
-		<input/>
-		<quit/>
-		<app_terminating/>
-		<app_lowmemory/>
-		<app_willenterbackground/>
-		<app_didenterbackground/>
-		<app_willenterforeground/>
-		<app_didenterforeground/>
+		<unknown><haxe_doc>An unknown system event</haxe_doc></unknown>
+		<init><haxe_doc>An internal system init event</haxe_doc></init>
+		<ready><haxe_doc>An internal system ready event</haxe_doc></ready>
+		<update><haxe_doc>An internal system update event</haxe_doc></update>
+		<shutdown><haxe_doc>An system shutdown event</haxe_doc></shutdown>
+		<window><haxe_doc>An system window event</haxe_doc></window>
+		<input><haxe_doc>An system input event</haxe_doc></input>
+		<quit><haxe_doc>An system quit event. Initiated by user, can be cancelled/ignored</haxe_doc></quit>
+		<app_terminating><haxe_doc>An system terminating event, called by the OS (mobile specific)</haxe_doc></app_terminating>
+		<app_lowmemory><haxe_doc>An system low memory event, clear memory if you can. Called by the OS (mobile specific)</haxe_doc></app_lowmemory>
+		<app_willenterbackground><haxe_doc>An event for just before the app enters the background, called by the OS (mobile specific)</haxe_doc></app_willenterbackground>
+		<app_didenterbackground><haxe_doc>An event for when the app enters the background, called by the OS (mobile specific)</haxe_doc></app_didenterbackground>
+		<app_willenterforeground><haxe_doc>An event for just before the app enters the foreground, called by the OS (mobile specific)</haxe_doc></app_willenterforeground>
+		<app_didenterforeground><haxe_doc>An event for when the app enters the foreground, called by the OS (mobile specific)</haxe_doc></app_didenterforeground>
+		<haxe_doc>A typed system event</haxe_doc>
 		<meta><m n=":flatEnum"/></meta>
 	</enum>
 	<enum path="lumen.types.WindowEventType" params="" file="../../lumen/types/Types.hx" module="lumen.types.Types">
-		<unknown/>
-		<window_created/>
-		<window_shown/>
-		<window_hidden/>
-		<window_exposed/>
-		<window_moved/>
-		<window_resized/>
-		<window_size_changed/>
-		<window_minimized/>
-		<window_maximized/>
-		<window_restored/>
-		<window_enter/>
-		<window_leave/>
-		<window_focus_gained/>
-		<window_focus_lost/>
-		<window_close/>
+		<unknown><haxe_doc>An unknown window event</haxe_doc></unknown>
+		<window_created><haxe_doc>A window is created</haxe_doc></window_created>
+		<window_shown><haxe_doc>A window is shown</haxe_doc></window_shown>
+		<window_hidden><haxe_doc>A window is hidden</haxe_doc></window_hidden>
+		<window_exposed><haxe_doc>A window is exposed</haxe_doc></window_exposed>
+		<window_moved><haxe_doc>A window is moved</haxe_doc></window_moved>
+		<window_resized><haxe_doc>A window is resized, by the user or code.</haxe_doc></window_resized>
+		<window_size_changed><haxe_doc>A window is resized, by the OS or internals.</haxe_doc></window_size_changed>
+		<window_minimized><haxe_doc>A window is minimized</haxe_doc></window_minimized>
+		<window_maximized><haxe_doc>A window is maximized</haxe_doc></window_maximized>
+		<window_restored><haxe_doc>A window is restored</haxe_doc></window_restored>
+		<window_enter><haxe_doc>A window is entered by a mouse</haxe_doc></window_enter>
+		<window_leave><haxe_doc>A window is left by a mouse</haxe_doc></window_leave>
+		<window_focus_gained><haxe_doc>A window has gained focus</haxe_doc></window_focus_gained>
+		<window_focus_lost><haxe_doc>A window has lost focus</haxe_doc></window_focus_lost>
+		<window_close><haxe_doc>A window is being closed</haxe_doc></window_close>
+		<haxe_doc>A typed window event</haxe_doc>
 		<meta><m n=":flatEnum"/></meta>
 	</enum>
 	<enum path="lumen.types.InputEventType" params="" file="../../lumen/types/Types.hx" module="lumen.types.Types">
-		<unknown/>
-		<key/>
-		<mouse/>
-		<touch/>
-		<joystick/>
-		<controller/>
+		<unknown><haxe_doc>An unknown input event</haxe_doc></unknown>
+		<key><haxe_doc>An keyboard input event</haxe_doc></key>
+		<mouse><haxe_doc>An mouse input event</haxe_doc></mouse>
+		<touch><haxe_doc>An touch input event</haxe_doc></touch>
+		<joystick><haxe_doc>An joystick input event. On mobile, accellerometer is a joystick (for now)</haxe_doc></joystick>
+		<controller><haxe_doc>An controller input event. Use these instead of joystick on desktop.</haxe_doc></controller>
+		<haxe_doc>A typed input event</haxe_doc>
 		<meta><m n=":flatEnum"/></meta>
 	</enum>
 	<class path="lumen.types.SystemEvents" params="" file="../../lumen/types/Types.hx" module="lumen.types.Types">
-		<se_unknown public="1" line="185" static="1">
-			<x path="Int"/>
-			<haxe_doc>An unknown system event</haxe_doc>
-		</se_unknown>
-		<se_init public="1" line="187" static="1">
-			<x path="Int"/>
-			<haxe_doc>An internal system init event</haxe_doc>
-		</se_init>
-		<se_ready public="1" line="189" static="1">
-			<x path="Int"/>
-			<haxe_doc>An internal system ready event</haxe_doc>
-		</se_ready>
-		<se_update public="1" line="191" static="1">
-			<x path="Int"/>
-			<haxe_doc>An internal system update event</haxe_doc>
-		</se_update>
-		<se_shutdown public="1" line="193" static="1">
-			<x path="Int"/>
-			<haxe_doc>An system shutdown event</haxe_doc>
-		</se_shutdown>
-		<se_window public="1" line="195" static="1">
-			<x path="Int"/>
-			<haxe_doc>An system window event</haxe_doc>
-		</se_window>
-		<se_input public="1" line="197" static="1">
-			<x path="Int"/>
-			<haxe_doc>An system input event</haxe_doc>
-		</se_input>
-		<se_quit public="1" line="202" static="1">
-			<x path="Int"/>
-			<haxe_doc>An system quit event. Initiated by user, can be cancelled/ignored</haxe_doc>
-		</se_quit>
-		<se_app_terminating public="1" line="204" static="1">
-			<x path="Int"/>
-			<haxe_doc>An system terminating event, called by the OS (mobile specific)</haxe_doc>
-		</se_app_terminating>
-		<se_app_lowmemory public="1" line="206" static="1">
-			<x path="Int"/>
-			<haxe_doc>An system low memory event, clear memory if you can. Called by the OS (mobile specific)</haxe_doc>
-		</se_app_lowmemory>
-		<se_app_willenterbackground public="1" line="208" static="1">
-			<x path="Int"/>
-			<haxe_doc>An event for just before the app enters the background, called by the OS (mobile specific)</haxe_doc>
-		</se_app_willenterbackground>
-		<se_app_didenterbackground public="1" line="210" static="1">
-			<x path="Int"/>
-			<haxe_doc>An event for when the app enters the background, called by the OS (mobile specific)</haxe_doc>
-		</se_app_didenterbackground>
-		<se_app_willenterforeground public="1" line="212" static="1">
-			<x path="Int"/>
-			<haxe_doc>An event for just before the app enters the foreground, called by the OS (mobile specific)</haxe_doc>
-		</se_app_willenterforeground>
-		<se_app_didenterforeground public="1" line="214" static="1">
-			<x path="Int"/>
-			<haxe_doc>An event for when the app enters the foreground, called by the OS (mobile specific)</haxe_doc>
-		</se_app_didenterforeground>
-		<typed public="1" set="method" line="219" static="1">
-			<f a="type">
-				<x path="Int"/>
-				<e path="lumen.types.SystemEventType"/>
-			</f>
-			<haxe_doc>returns a typed `SystemEventType` from an integer ID, for communication between internal native + haxe code</haxe_doc>
-		</typed>
+		<se_unknown public="1" line="307" static="1"><x path="Int"/></se_unknown>
+		<se_init public="1" line="308" static="1"><x path="Int"/></se_init>
+		<se_ready public="1" line="309" static="1"><x path="Int"/></se_ready>
+		<se_update public="1" line="310" static="1"><x path="Int"/></se_update>
+		<se_shutdown public="1" line="311" static="1"><x path="Int"/></se_shutdown>
+		<se_window public="1" line="312" static="1"><x path="Int"/></se_window>
+		<se_input public="1" line="313" static="1"><x path="Int"/></se_input>
+		<se_quit public="1" line="317" static="1"><x path="Int"/></se_quit>
+		<se_app_terminating public="1" line="318" static="1"><x path="Int"/></se_app_terminating>
+		<se_app_lowmemory public="1" line="319" static="1"><x path="Int"/></se_app_lowmemory>
+		<se_app_willenterbackground public="1" line="320" static="1"><x path="Int"/></se_app_willenterbackground>
+		<se_app_didenterbackground public="1" line="321" static="1"><x path="Int"/></se_app_didenterbackground>
+		<se_app_willenterforeground public="1" line="322" static="1"><x path="Int"/></se_app_willenterforeground>
+		<se_app_didenterforeground public="1" line="323" static="1"><x path="Int"/></se_app_didenterforeground>
+		<typed public="1" set="method" line="327" static="1"><f a="type">
+	<x path="Int"/>
+	<e path="lumen.types.SystemEventType"/>
+</f></typed>
+		<meta><m n=":noCompletion"/></meta>
 	</class>
 	<class path="lumen.types.WindowEvents" params="" file="../../lumen/types/Types.hx" module="lumen.types.Types">
-		<we_unknown public="1" line="247" static="1">
-			<x path="Int"/>
-			<haxe_doc>An unknown window event</haxe_doc>
-		</we_unknown>
-		<we_created public="1" line="249" static="1">
-			<x path="Int"/>
-			<haxe_doc>A window is created</haxe_doc>
-		</we_created>
-		<we_shown public="1" line="251" static="1">
-			<x path="Int"/>
-			<haxe_doc>A window is shown</haxe_doc>
-		</we_shown>
-		<we_hidden public="1" line="253" static="1">
-			<x path="Int"/>
-			<haxe_doc>A window is hidden</haxe_doc>
-		</we_hidden>
-		<we_exposed public="1" line="255" static="1">
-			<x path="Int"/>
-			<haxe_doc>A window is exposed</haxe_doc>
-		</we_exposed>
-		<we_moved public="1" line="257" static="1">
-			<x path="Int"/>
-			<haxe_doc>A window is moved</haxe_doc>
-		</we_moved>
-		<we_resized public="1" line="259" static="1">
-			<x path="Int"/>
-			<haxe_doc>A window is resized, by the user or code.</haxe_doc>
-		</we_resized>
-		<we_size_changed public="1" line="261" static="1">
-			<x path="Int"/>
-			<haxe_doc>A window is resized, by the OS or internals.</haxe_doc>
-		</we_size_changed>
-		<we_minimized public="1" line="263" static="1">
-			<x path="Int"/>
-			<haxe_doc>A window is minimized</haxe_doc>
-		</we_minimized>
-		<we_maximized public="1" line="265" static="1">
-			<x path="Int"/>
-			<haxe_doc>A window is maximized</haxe_doc>
-		</we_maximized>
-		<we_restored public="1" line="267" static="1">
-			<x path="Int"/>
-			<haxe_doc>A window is restored</haxe_doc>
-		</we_restored>
-		<we_enter public="1" line="269" static="1">
-			<x path="Int"/>
-			<haxe_doc>A window is entered by a mouse</haxe_doc>
-		</we_enter>
-		<we_leave public="1" line="271" static="1">
-			<x path="Int"/>
-			<haxe_doc>A window is left by a mouse</haxe_doc>
-		</we_leave>
-		<we_focus_gained public="1" line="273" static="1">
-			<x path="Int"/>
-			<haxe_doc>A window has gained focus</haxe_doc>
-		</we_focus_gained>
-		<we_focus_lost public="1" line="275" static="1">
-			<x path="Int"/>
-			<haxe_doc>A window has lost focus</haxe_doc>
-		</we_focus_lost>
-		<we_close public="1" line="277" static="1">
-			<x path="Int"/>
-			<haxe_doc>A window is being closed</haxe_doc>
-		</we_close>
-		<typed public="1" set="method" line="282" static="1">
+		<we_unknown public="1" line="354" static="1"><x path="Int"/></we_unknown>
+		<we_created public="1" line="355" static="1"><x path="Int"/></we_created>
+		<we_shown public="1" line="356" static="1"><x path="Int"/></we_shown>
+		<we_hidden public="1" line="357" static="1"><x path="Int"/></we_hidden>
+		<we_exposed public="1" line="358" static="1"><x path="Int"/></we_exposed>
+		<we_moved public="1" line="359" static="1"><x path="Int"/></we_moved>
+		<we_resized public="1" line="360" static="1"><x path="Int"/></we_resized>
+		<we_size_changed public="1" line="361" static="1"><x path="Int"/></we_size_changed>
+		<we_minimized public="1" line="362" static="1"><x path="Int"/></we_minimized>
+		<we_maximized public="1" line="363" static="1"><x path="Int"/></we_maximized>
+		<we_restored public="1" line="364" static="1"><x path="Int"/></we_restored>
+		<we_enter public="1" line="365" static="1"><x path="Int"/></we_enter>
+		<we_leave public="1" line="366" static="1"><x path="Int"/></we_leave>
+		<we_focus_gained public="1" line="367" static="1"><x path="Int"/></we_focus_gained>
+		<we_focus_lost public="1" line="368" static="1"><x path="Int"/></we_focus_lost>
+		<we_close public="1" line="369" static="1"><x path="Int"/></we_close>
+		<typed public="1" set="method" line="374" static="1">
 			<f a="type">
 				<x path="Int"/>
 				<e path="lumen.types.WindowEventType"/>
 			</f>
 			<haxe_doc>returns a typed `WindowEventType` from an integer ID, for communication between internal native + haxe code</haxe_doc>
 		</typed>
+		<meta><m n=":noCompletion"/></meta>
 	</class>
 	<class path="lumen.types.InputEvents" params="" file="../../lumen/types/Types.hx" module="lumen.types.Types">
-		<ie_unknown public="1" line="311" static="1">
-			<x path="Int"/>
-			<haxe_doc>An unknown input event</haxe_doc>
-		</ie_unknown>
-		<ie_key public="1" line="314" static="1">
-			<x path="Int"/>
-			<haxe_doc>An keyboard input event</haxe_doc>
-		</ie_key>
-		<ie_mouse public="1" line="316" static="1">
-			<x path="Int"/>
-			<haxe_doc>An mouse input event</haxe_doc>
-		</ie_mouse>
-		<ie_touch public="1" line="318" static="1">
-			<x path="Int"/>
-			<haxe_doc>An touch input event</haxe_doc>
-		</ie_touch>
-		<ie_joystick public="1" line="320" static="1">
-			<x path="Int"/>
-			<haxe_doc>An joystick input event. On mobile, accellerometer is a joystick (for now)</haxe_doc>
-		</ie_joystick>
-		<ie_controller public="1" line="322" static="1">
-			<x path="Int"/>
-			<haxe_doc>An controller input event. Use these instead of joystick on desktop.</haxe_doc>
-		</ie_controller>
-		<typed public="1" set="method" line="327" static="1">
+		<ie_unknown public="1" line="402" static="1"><x path="Int"/></ie_unknown>
+		<ie_key public="1" line="403" static="1"><x path="Int"/></ie_key>
+		<ie_mouse public="1" line="404" static="1"><x path="Int"/></ie_mouse>
+		<ie_touch public="1" line="405" static="1"><x path="Int"/></ie_touch>
+		<ie_joystick public="1" line="406" static="1"><x path="Int"/></ie_joystick>
+		<ie_controller public="1" line="407" static="1"><x path="Int"/></ie_controller>
+		<typed public="1" set="method" line="412" static="1">
 			<f a="type">
 				<x path="Int"/>
 				<e path="lumen.types.InputEventType"/>
 			</f>
 			<haxe_doc>returns a typed `InputEventType` from an integer ID, for communication between internal native + haxe code</haxe_doc>
 		</typed>
+		<meta><m n=":noCompletion"/></meta>
 	</class>
 	<typedef path="lumen.utils.ArrayBuffer" params="" file="../../lumen/utils/ArrayBuffer.hx"><t path="lumen.utils.ByteArray"/></typedef>
 	<class path="lumen.utils.IMemoryRange" params="" file="../../lumen/utils/IMemoryRange.hx" interface="1">
@@ -9150,90 +9315,131 @@ but they aren't specific to SDL so they are used generically</haxe_doc>
 	<height><x path="Int"/></height>
 </a></typedef>
 	<class path="lumen.window.Windowing" params="" file="../../lumen/window/Windowing.hx">
-		<lumen_desktop_get_display_count line="130" static="1"><f a=""><x path="Int"/></f></lumen_desktop_get_display_count>
-		<lumen_desktop_get_display_mode_count line="131" static="1"><f a="">
+		<lumen_desktop_get_display_count line="142" static="1"><f a=""><x path="Int"/></f></lumen_desktop_get_display_count>
+		<lumen_desktop_get_display_mode_count line="143" static="1"><f a="">
 	<x path="Int"/>
 	<x path="Int"/>
 </f></lumen_desktop_get_display_mode_count>
-		<lumen_desktop_get_display_native_mode line="132" static="1"><f a="">
+		<lumen_desktop_get_display_native_mode line="144" static="1"><f a="">
 	<x path="Int"/>
 	<t path="lumen.window.DisplayMode"/>
 </f></lumen_desktop_get_display_native_mode>
-		<lumen_desktop_get_display_current_mode line="133" static="1"><f a="">
+		<lumen_desktop_get_display_current_mode line="145" static="1"><f a="">
 	<x path="Int"/>
 	<t path="lumen.window.DisplayMode"/>
 </f></lumen_desktop_get_display_current_mode>
-		<lumen_desktop_get_display_mode line="134" static="1"><f a=":">
+		<lumen_desktop_get_display_mode line="146" static="1"><f a=":">
 	<x path="Int"/>
 	<x path="Int"/>
 	<t path="lumen.window.DisplayMode"/>
 </f></lumen_desktop_get_display_mode>
-		<lumen_desktop_get_display_bounds line="135" static="1"><f a="">
+		<lumen_desktop_get_display_bounds line="147" static="1"><f a="">
 	<x path="Int"/>
 	<t path="lumen.window.DisplayBounds"/>
 </f></lumen_desktop_get_display_bounds>
-		<lumen_desktop_get_display_name line="136" static="1"><f a="">
+		<lumen_desktop_get_display_name line="148" static="1"><f a="">
 	<x path="Int"/>
 	<c path="String"/>
 </f></lumen_desktop_get_display_name>
 		<lib><c path="lumen.Lumen"/></lib>
-		<window_list public="1"><x path="Map">
-	<x path="Int"/>
-	<c path="lumen.window.Window"/>
-</x></window_list>
-		<window_count public="1"><x path="Int"/></window_count>
-		<system public="1"><t path="lumen.window.system.LumenWindowSystem"/></system>
-		<create public="1" set="method" line="45"><f a="_config">
-	<t path="lumen.types.WindowConfig"/>
-	<c path="lumen.window.Window"/>
-</f></create>
-		<desktop_get_display_count public="1" set="method" line="58"><f a=""><x path="Int"/></f></desktop_get_display_count>
-		<desktop_get_display_mode_count public="1" set="method" line="62"><f a="display">
-	<x path="Int"/>
-	<x path="Int"/>
-</f></desktop_get_display_mode_count>
-		<desktop_get_display_native_mode public="1" set="method" line="66"><f a="display">
-	<x path="Int"/>
-	<t path="lumen.window.DisplayMode"/>
-</f></desktop_get_display_native_mode>
-		<desktop_get_display_current_mode public="1" set="method" line="70"><f a="display">
-	<x path="Int"/>
-	<t path="lumen.window.DisplayMode"/>
-</f></desktop_get_display_current_mode>
-		<desktop_get_display_mode public="1" set="method" line="74"><f a="display:mode_index">
-	<x path="Int"/>
-	<x path="Int"/>
-	<t path="lumen.window.DisplayMode"/>
-</f></desktop_get_display_mode>
-		<desktop_get_display_bounds public="1" set="method" line="78"><f a="display">
-	<x path="Int"/>
-	<t path="lumen.window.DisplayBounds"/>
-</f></desktop_get_display_bounds>
-		<desktop_get_display_name public="1" set="method" line="82"><f a="display">
-	<x path="Int"/>
-	<c path="String"/>
-</f></desktop_get_display_name>
-		<on_event public="1" set="method" line="92">
+		<window_list public="1">
+			<x path="Map">
+				<x path="Int"/>
+				<c path="lumen.window.Window"/>
+			</x>
+			<haxe_doc>The list of windows in this manager</haxe_doc>
+		</window_list>
+		<window_count public="1">
+			<x path="Int"/>
+			<haxe_doc>The number of windows in this manager</haxe_doc>
+		</window_count>
+		<system public="1">
+			<t path="lumen.window.system.LumenWindowSystem"/>
+			<meta><m n=":noCompletion"/></meta>
+			<haxe_doc>The concrete implementation of the window system</haxe_doc>
+		</system>
+		<create public="1" set="method" line="50">
+			<f a="_config">
+				<t path="lumen.types.WindowConfig"/>
+				<c path="lumen.window.Window"/>
+			</f>
+			<haxe_doc>Create a window with the given config</haxe_doc>
+		</create>
+		<desktop_get_display_count public="1" set="method" line="64">
+			<f a=""><x path="Int"/></f>
+			<haxe_doc>`Desktop only` Get the number of displays present</haxe_doc>
+		</desktop_get_display_count>
+		<desktop_get_display_mode_count public="1" set="method" line="69">
+			<f a="display">
+				<x path="Int"/>
+				<x path="Int"/>
+			</f>
+			<haxe_doc>`Desktop only` Get the number of display modes present</haxe_doc>
+		</desktop_get_display_mode_count>
+		<desktop_get_display_native_mode public="1" set="method" line="74">
+			<f a="display">
+				<x path="Int"/>
+				<t path="lumen.window.DisplayMode"/>
+			</f>
+			<haxe_doc>`Desktop only` Get the native mode information of the display by index</haxe_doc>
+		</desktop_get_display_native_mode>
+		<desktop_get_display_current_mode public="1" set="method" line="79">
+			<f a="display">
+				<x path="Int"/>
+				<t path="lumen.window.DisplayMode"/>
+			</f>
+			<haxe_doc>`Desktop only` Get the current mode information of the display by index</haxe_doc>
+		</desktop_get_display_current_mode>
+		<desktop_get_display_mode public="1" set="method" line="84">
+			<f a="display:mode_index">
+				<x path="Int"/>
+				<x path="Int"/>
+				<t path="lumen.window.DisplayMode"/>
+			</f>
+			<haxe_doc>`Desktop only` Get the information from a specific mode index, the index obtrained from iterating with `desktop_get_display_mode_count` value</haxe_doc>
+		</desktop_get_display_mode>
+		<desktop_get_display_bounds public="1" set="method" line="89">
+			<f a="display">
+				<x path="Int"/>
+				<t path="lumen.window.DisplayBounds"/>
+			</f>
+			<haxe_doc>`Desktop only` Get the bounds of the display by index</haxe_doc>
+		</desktop_get_display_bounds>
+		<desktop_get_display_name public="1" set="method" line="94">
+			<f a="display">
+				<x path="Int"/>
+				<c path="String"/>
+			</f>
+			<haxe_doc>`Desktop only` Get the name of the display by index, where available</haxe_doc>
+		</desktop_get_display_name>
+		<on_event public="1" set="method" line="104">
 			<f a="_event">
 				<t path="lumen.types.SystemEvent"/>
 				<x path="Void"/>
 			</f>
 			<meta><m n=":noCompletion"/></meta>
 		</on_event>
-		<update public="1" set="method" line="108">
+		<update public="1" set="method" line="120">
 			<f a=""><x path="Void"/></f>
 			<meta><m n=":noCompletion"/></meta>
 		</update>
-		<destroy public="1" set="method" line="122">
+		<destroy public="1" set="method" line="134">
 			<f a=""><x path="Void"/></f>
 			<meta><m n=":noCompletion"/></meta>
 		</destroy>
-		<new public="1" set="method" line="32"><f a="_lib">
-	<c path="lumen.Lumen"/>
-	<x path="Void"/>
-</f></new>
+		<new public="1" set="method" line="36">
+			<f a="_lib">
+				<c path="lumen.Lumen"/>
+				<x path="Void"/>
+			</f>
+			<meta><m n=":noCompletion"/></meta>
+		</new>
+		<haxe_doc>A window manager, accessed via `app.window`</haxe_doc>
 	</class>
-	<typedef path="lumen.window.system.LumenWindowSystem" params="" file="../../lumen/window/system/WindowSystem.hx" module="lumen.window.system.WindowSystem"><c path="lumen.window.system.sdl.WindowSystemSDL"/></typedef>
+	<typedef path="lumen.window.system.LumenWindowSystem" params="" file="../../lumen/window/system/WindowSystem.hx" module="lumen.window.system.WindowSystem">
+		<c path="lumen.window.system.sdl.WindowSystemSDL"/>
+		<meta><m n=":noCompletion"/></meta>
+	</typedef>
 	<class path="lumen.window.system.WindowSystem" params="" file="../../lumen/window/system/WindowSystem.hx">
 		<manager><c path="lumen.window.Windowing"/></manager>
 		<lib><c path="lumen.Lumen"/></lib>
@@ -9245,16 +9451,27 @@ but they aren't specific to SDL so they are used generically</haxe_doc>
 	<c path="lumen.Lumen"/>
 	<x path="Void"/>
 </f></new>
+		<meta><m n=":noCompletion"/></meta>
 	</class>
 	<class path="lumen.window.system.sdl.WindowSystemSDL" params="" file="../../lumen/window/system/sdl/WindowSystemSDL.hx">
 		<extends path="lumen.window.system.WindowSystem"/>
-		<init public="1" set="method" line="13" override="1"><f a=""><x path="Void"/></f></init>
-		<update public="1" set="method" line="16" override="1"><f a=""><x path="Void"/></f></update>
-		<destroy public="1" set="method" line="19" override="1"><f a=""><x path="Void"/></f></destroy>
+		<init public="1" set="method" line="13" override="1">
+			<f a=""><x path="Void"/></f>
+			<meta><m n=":noCompletion"/></meta>
+		</init>
+		<update public="1" set="method" line="16" override="1">
+			<f a=""><x path="Void"/></f>
+			<meta><m n=":noCompletion"/></meta>
+		</update>
+		<destroy public="1" set="method" line="19" override="1">
+			<f a=""><x path="Void"/></f>
+			<meta><m n=":noCompletion"/></meta>
+		</destroy>
 		<new public="1" set="method" line="11"><f a="_manager:_lib">
 	<c path="lumen.window.Windowing"/>
 	<c path="lumen.Lumen"/>
 	<x path="Void"/>
 </f></new>
+		<meta><m n=":noCompletion"/></meta>
 	</class>
 </haxe>

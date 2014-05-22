@@ -3,16 +3,16 @@
 
 ---
 
-#Sound
-
 
 ##[API Index](../../../../api/index.html#lumen.audio)   
-&emsp;&emsp;&emsp;parent    
 [lumen.audio](../)     
-&emsp;&emsp;&emsp;current    
-[lumen.audio.system](./) / Sound
+&emsp;&emsp;&emsp;[lumen.audio.system](./)   
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Sound
 
-<br/>
+---
+
+#Sound
+
 
 ---
 
@@ -183,7 +183,7 @@
 
 `new(_manager:lumen.audio.Audio, _name:String, _audio_info:lumen.types.AudioInfo) `
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="pause" href="#pause">pause</a>
 

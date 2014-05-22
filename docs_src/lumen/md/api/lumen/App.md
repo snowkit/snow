@@ -3,22 +3,16 @@
 
 ---
 
-#App
-
---- 
-
-The default type of application, with variable delta time, or fixed delta time, or a fixed frame rate. See the App guide for complete details.
-
----
-<br/>
 
 ##[API Index](../../api/index.html#lumen)   
-&emsp;&emsp;&emsp;parent    
-_none_   
-&emsp;&emsp;&emsp;current    
-[lumen](./) / App
+&emsp;&emsp;&emsp;[lumen](./)   
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;App
 
-<br/>
+---
+
+#App
+
+The default type of application, with variable delta time, or fixed delta time, or a fixed frame rate. See the App guide for complete details.
 
 ---
 
@@ -143,7 +137,7 @@ _none_
 
 `new() `
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat"> The default constructor of an App is empty, so you can override it if you want, but take note that this happens way before lumen is ready for use. </span>   
 
 <a class="lift" name="ongamepadaxis" href="#ongamepadaxis">ongamepadaxis</a>
 

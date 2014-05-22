@@ -1,6 +1,6 @@
 {
   "source": "lumen.input.TextEventType",
-  "doc": "",
+  "doc": "A typed text event type",
   "links": [],
   "toplinks": [],
   "sections": [
@@ -11,17 +11,17 @@
         {
           "name": "unknown",
           "signature": "lumen.input.TextEventType.unknown",
-          "doc": ""
+          "doc": "An unknown event"
         },
         {
           "name": "edit",
           "signature": "lumen.input.TextEventType.edit",
-          "doc": ""
+          "doc": "An edit text typing event"
         },
         {
           "name": "input",
           "signature": "lumen.input.TextEventType.input",
-          "doc": ""
+          "doc": "An input text typing event"
         }
       ]
     },

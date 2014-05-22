@@ -3,16 +3,17 @@
 
 ---
 
-#PressedState
-
 
 ##[API Index](../../../api/index.html#lumen.input)   
-&emsp;&emsp;&emsp;parent    
 [lumen](../)     
-&emsp;&emsp;&emsp;current    
-[lumen.input](./) / PressedState
+&emsp;&emsp;&emsp;[lumen.input](./)   
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;PressedState
 
-<br/>
+---
+
+#PressedState
+
+A typed state for buttons or similar
 
 ---
 
@@ -33,7 +34,7 @@
 
 `lumen.input.PressedState.down`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat"> In a pressed state </span>   
 
 <a class="lift" name="unknown" href="#unknown">unknown</a>
 
@@ -41,7 +42,7 @@
 
 `lumen.input.PressedState.unknown`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat"> An unknown state </span>   
 
 <a class="lift" name="up" href="#up">up</a>
 
@@ -49,7 +50,7 @@
 
 `lumen.input.PressedState.up`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat"> In a released state </span>   
 
 &nbsp;   
 

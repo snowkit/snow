@@ -3,16 +3,16 @@
 
 ---
 
-#GLContextAttributes
-
 
 ##[API Index](../../../../api/index.html#lumen.render)   
-&emsp;&emsp;&emsp;parent    
 [lumen.render](../)     
-&emsp;&emsp;&emsp;current    
-[lumen.render.gl](./) / GLContextAttributes
+&emsp;&emsp;&emsp;[lumen.render.gl](./)   
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;GLContextAttributes
 
-<br/>
+---
+
+#GLContextAttributes
+
 
 ---
 
@@ -33,7 +33,7 @@
 
 `alpha : Bool`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="antialias" href="#antialias">antialias</a>
 
@@ -41,7 +41,7 @@
 
 `antialias : Bool`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="depth" href="#depth">depth</a>
 
@@ -49,7 +49,7 @@
 
 `depth : Bool`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="premultipliedAlpha" href="#premultipliedAlpha">premultipliedAlpha</a>
 
@@ -57,7 +57,7 @@
 
 `premultipliedAlpha : Bool`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="preserveDrawingBuffer" href="#preserveDrawingBuffer">preserveDrawingBuffer</a>
 
@@ -65,7 +65,7 @@
 
 `preserveDrawingBuffer : Bool`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="stencil" href="#stencil">stencil</a>
 
@@ -73,7 +73,7 @@
 
 `stencil : Bool`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 
 

@@ -3,16 +3,17 @@
 
 ---
 
-#TextEventType
-
 
 ##[API Index](../../../api/index.html#lumen.input)   
-&emsp;&emsp;&emsp;parent    
 [lumen](../)     
-&emsp;&emsp;&emsp;current    
-[lumen.input](./) / TextEventType
+&emsp;&emsp;&emsp;[lumen.input](./)   
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;TextEventType
 
-<br/>
+---
+
+#TextEventType
+
+A typed text event type
 
 ---
 
@@ -33,7 +34,7 @@
 
 `lumen.input.TextEventType.edit`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat"> An edit text typing event </span>   
 
 <a class="lift" name="input" href="#input">input</a>
 
@@ -41,7 +42,7 @@
 
 `lumen.input.TextEventType.input`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat"> An input text typing event </span>   
 
 <a class="lift" name="unknown" href="#unknown">unknown</a>
 
@@ -49,7 +50,7 @@
 
 `lumen.input.TextEventType.unknown`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat"> An unknown event </span>   
 
 &nbsp;   
 

@@ -3,16 +3,16 @@
 
 ---
 
-#Scan
-
 
 ##[API Index](../../../api/index.html#lumen.input)   
-&emsp;&emsp;&emsp;parent    
 [lumen](../)     
-&emsp;&emsp;&emsp;current    
-[lumen.input](./) / Scan
+&emsp;&emsp;&emsp;[lumen.input](./)   
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Scan
 
-<br/>
+---
+
+#Scan
+
 
 ---
 

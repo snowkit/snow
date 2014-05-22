@@ -3,16 +3,16 @@
 
 ---
 
-#WindowEvents
-
 
 ##[API Index](../../../api/index.html#lumen.types)   
-&emsp;&emsp;&emsp;parent    
 [lumen](../)     
-&emsp;&emsp;&emsp;current    
-[lumen.types](./) / WindowEvents
+&emsp;&emsp;&emsp;[lumen.types](./)   
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;WindowEvents
 
-<br/>
+---
+
+#WindowEvents
+
 
 ---
 

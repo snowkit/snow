@@ -1,6 +1,6 @@
 {
   "source": "lumen.assets.AssetText",
-  "doc": "An asset that contains `text` as a `String`",
+  "doc": "An asset that contains `text` as a `String`. Get assets from the `Assets` class, via `app.assets`",
   "links": [],
   "toplinks": [],
   "sections": [

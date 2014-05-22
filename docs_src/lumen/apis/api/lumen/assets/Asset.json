@@ -1,6 +1,6 @@
 {
   "source": "lumen.assets.Asset",
-  "doc": "An asset base class",
+  "doc": "An asset base class. Get assets from the `Assets` class, via `app.assets`",
   "links": [],
   "toplinks": [],
   "sections": [

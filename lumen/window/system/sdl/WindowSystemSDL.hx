@@ -8,15 +8,15 @@ import lumen.window.system.WindowSystem;
 
 #if lumen_window_sdl
 
-    class WindowSystemSDL extends WindowSystem {
+    @:noCompletion class WindowSystemSDL extends WindowSystem {
 
-        override public function init() {
+        @:noCompletion override public function init() {
         } //init
 
-        override public function update() {
+        @:noCompletion override public function update() {
         } //update
 
-        override public function destroy() {
+        @:noCompletion override public function destroy() {
         } //destroy
 
     } //WindowSystemSDL

@@ -1,6 +1,6 @@
 {
   "source": "lumen.window.Windowing",
-  "doc": "",
+  "doc": "A window manager, accessed via `app.window`",
   "links": [],
   "toplinks": [],
   "sections": [
@@ -20,13 +20,18 @@
         },
         {
           "name": "system",
-          "meta": [],
+          "meta": [
+            {
+              "name": ":noCompletion",
+              "value": ""
+            }
+          ],
           "ispublic": true,
           "isinline": false,
           "isstatic": false,
           "signature": "system : lumen.window.system.LumenWindowSystem",
           "type": "lumen.window.system.LumenWindowSystem",
-          "doc": ""
+          "doc": "The concrete implementation of the window system"
         },
         {
           "name": "lumen_desktop_get_display_bounds",
@@ -46,6 +51,16 @@
           "isstatic": false,
           "signature": "lib : lumen.Lumen",
           "type": "lumen.Lumen",
+          "doc": ""
+        },
+        {
+          "name": "haxe_doc",
+          "meta": [],
+          "ispublic": false,
+          "isinline": false,
+          "isstatic": false,
+          "signature": "haxe_doc : Dynamic",
+          "type": "Dynamic",
           "doc": ""
         },
         {
@@ -96,7 +111,7 @@
           "isstatic": false,
           "signature": "window_count : Int",
           "type": "Int",
-          "doc": ""
+          "doc": "The number of windows in this manager"
         },
         {
           "name": "lumen_desktop_get_display_mode_count",
@@ -116,7 +131,7 @@
           "isstatic": false,
           "signature": "window_list : Map<Int,lumen.window.Window>",
           "type": "Map<Int,lumen.window.Window>",
-          "doc": ""
+          "doc": "The list of windows in this manager"
         }
       ]
     },
@@ -135,7 +150,7 @@
           "ispublic": true,
           "isstatic": false,
           "isinline": false,
-          "doc": "",
+          "doc": "Create a window with the given config",
           "signature": "create(_config:lumen.types.WindowConfig) : lumen.window.Window",
           "return": ": lumen.window.Window",
           "args": [
@@ -148,7 +163,12 @@
         },
         {
           "name": "new",
-          "meta": [],
+          "meta": [
+            {
+              "name": ":noCompletion",
+              "value": ""
+            }
+          ],
           "ispublic": true,
           "isstatic": false,
           "isinline": false,
@@ -169,7 +189,7 @@
           "ispublic": true,
           "isstatic": false,
           "isinline": false,
-          "doc": "",
+          "doc": "`Desktop only` Get the information from a specific mode index, the index obtrained from iterating with `desktop_get_display_mode_count` value",
           "signature": "desktop_get_display_mode(display:Int, mode_index:Int) : lumen.window.DisplayMode",
           "return": ": lumen.window.DisplayMode",
           "args": [
@@ -191,7 +211,7 @@
           "ispublic": true,
           "isstatic": false,
           "isinline": false,
-          "doc": "",
+          "doc": "`Desktop only` Get the bounds of the display by index",
           "signature": "desktop_get_display_bounds(display:Int) : lumen.window.DisplayBounds",
           "return": ": lumen.window.DisplayBounds",
           "args": [
@@ -208,7 +228,7 @@
           "ispublic": true,
           "isstatic": false,
           "isinline": false,
-          "doc": "",
+          "doc": "`Desktop only` Get the name of the display by index, where available",
           "signature": "desktop_get_display_name(display:Int) : String",
           "return": ": String",
           "args": [
@@ -225,7 +245,7 @@
           "ispublic": true,
           "isstatic": false,
           "isinline": false,
-          "doc": "",
+          "doc": "`Desktop only` Get the number of display modes present",
           "signature": "desktop_get_display_mode_count(display:Int) : Int",
           "return": ": Int",
           "args": [
@@ -242,7 +262,7 @@
           "ispublic": true,
           "isstatic": false,
           "isinline": false,
-          "doc": "",
+          "doc": "`Desktop only` Get the current mode information of the display by index",
           "signature": "desktop_get_display_current_mode(display:Int) : lumen.window.DisplayMode",
           "return": ": lumen.window.DisplayMode",
           "args": [
@@ -297,7 +317,7 @@
           "ispublic": true,
           "isstatic": false,
           "isinline": false,
-          "doc": "",
+          "doc": "`Desktop only` Get the number of displays present",
           "signature": "desktop_get_display_count() : Int",
           "return": ": Int",
           "args": []
@@ -324,7 +344,7 @@
           "ispublic": true,
           "isstatic": false,
           "isinline": false,
-          "doc": "",
+          "doc": "`Desktop only` Get the native mode information of the display by index",
           "signature": "desktop_get_display_native_mode(display:Int) : lumen.window.DisplayMode",
           "return": ": lumen.window.DisplayMode",
           "args": [

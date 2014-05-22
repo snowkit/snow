@@ -3,16 +3,16 @@
 
 ---
 
-#ArrayBufferView
-
 
 ##[API Index](../../../api/index.html#lumen.utils)   
-&emsp;&emsp;&emsp;parent    
 [lumen](../)     
-&emsp;&emsp;&emsp;current    
-[lumen.utils](./) / ArrayBufferView
+&emsp;&emsp;&emsp;[lumen.utils](./)   
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;ArrayBufferView
 
-<br/>
+---
+
+#ArrayBufferView
+
 
 ---
 
@@ -45,7 +45,7 @@
 
 `getByteBuffer() : lumen.utils.ByteArray`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="getLength" href="#getLength">getLength</a>
 
@@ -53,7 +53,7 @@
 
 `getLength() : Int`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="getStart" href="#getStart">getStart</a>
 
@@ -61,7 +61,7 @@
 
 `getStart() : Int`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 
 

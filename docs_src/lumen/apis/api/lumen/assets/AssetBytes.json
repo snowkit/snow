@@ -1,6 +1,6 @@
 {
   "source": "lumen.assets.AssetBytes",
-  "doc": "An asset that contains byte `data` as a `ByteArray`",
+  "doc": "An asset that contains byte `data` as a `ByteArray`. Get assets from the `Assets` class, via `app.assets`",
   "links": [],
   "toplinks": [],
   "sections": [

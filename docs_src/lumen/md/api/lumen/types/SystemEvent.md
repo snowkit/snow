@@ -3,16 +3,18 @@
 
 ---
 
-#SystemEvent
-
 
 ##[API Index](../../../api/index.html#lumen.types)   
-&emsp;&emsp;&emsp;parent    
 [lumen](../)     
-&emsp;&emsp;&emsp;current    
-[lumen.types](./) / SystemEvent
+&emsp;&emsp;&emsp;[lumen.types](./)   
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;SystemEvent
 
-<br/>
+---
+
+#SystemEvent
+
+A system event. 
+Values below are null unless the event `type` matches. _i.e_ if type is `window`, the `window` value is not null, and so on
 
 ---
 
@@ -33,7 +35,7 @@
 
 `input : Null<lumen.types.InputEvent>`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="type" href="#type">type</a>
 
@@ -41,7 +43,7 @@
 
 `type : lumen.types.SystemEventType`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="window" href="#window">window</a>
 
@@ -49,7 +51,7 @@
 
 `window : Null<lumen.types.WindowEvent>`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 
 

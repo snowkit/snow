@@ -3,16 +3,22 @@
 
 ---
 
-#AssetInfo
-
 
 ##[API Index](../../../api/index.html#lumen.types)   
-&emsp;&emsp;&emsp;parent    
 [lumen](../)     
-&emsp;&emsp;&emsp;current    
-[lumen.types](./) / AssetInfo
+&emsp;&emsp;&emsp;[lumen.types](./)   
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;AssetInfo
 
-<br/>
+---
+
+#AssetInfo
+
+Information for a single asset 
+
+`id` : the asset id   
+`path` : the location of the asset   
+`ext` : the asset extension, if any   
+`type` : a convenience type indicator
 
 ---
 
@@ -33,7 +39,7 @@
 
 `ext : String`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="id" href="#id">id</a>
 
@@ -41,7 +47,7 @@
 
 `id : String`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="path" href="#path">path</a>
 
@@ -49,7 +55,7 @@
 
 `path : String`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="type" href="#type">type</a>
 
@@ -57,7 +63,7 @@
 
 `type : String`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 
 

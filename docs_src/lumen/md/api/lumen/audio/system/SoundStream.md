@@ -3,16 +3,16 @@
 
 ---
 
-#SoundStream
-
 
 ##[API Index](../../../../api/index.html#lumen.audio)   
-&emsp;&emsp;&emsp;parent    
 [lumen.audio](../)     
-&emsp;&emsp;&emsp;current    
-[lumen.audio.system](./) / SoundStream
+&emsp;&emsp;&emsp;[lumen.audio.system](./)   
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;SoundStream
 
-<br/>
+---
+
+#SoundStream
+
 
 ---
 
@@ -97,7 +97,7 @@
 
 `new(_manager:lumen.audio.Audio, _name:String, _audio_info:lumen.types.AudioInfo) `
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 
 

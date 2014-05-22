@@ -3,16 +3,17 @@
 
 ---
 
-#AudioFormatType
-
 
 ##[API Index](../../../api/index.html#lumen.types)   
-&emsp;&emsp;&emsp;parent    
 [lumen](../)     
-&emsp;&emsp;&emsp;current    
-[lumen.types](./) / AudioFormatType
+&emsp;&emsp;&emsp;[lumen.types](./)   
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;AudioFormatType
 
-<br/>
+---
+
+#AudioFormatType
+
+The type of audio format
 
 ---
 
@@ -33,7 +34,7 @@
 
 `lumen.types.AudioFormatType.ogg`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="pcm" href="#pcm">pcm</a>
 
@@ -41,7 +42,7 @@
 
 `lumen.types.AudioFormatType.pcm`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="unknown" href="#unknown">unknown</a>
 
@@ -49,7 +50,7 @@
 
 `lumen.types.AudioFormatType.unknown`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="wav" href="#wav">wav</a>
 
@@ -57,7 +58,7 @@
 
 `lumen.types.AudioFormatType.wav`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 &nbsp;   
 

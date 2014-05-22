@@ -1,6 +1,6 @@
 {
   "source": "lumen.types.AudioInfo",
-  "doc": "",
+  "doc": "Information about an audio file/data\n\n`id` : file source   \n`format` : format   \n`channels` : number of channels   \n`rate` : hz rate    \n`bitrate` : sound bitrate   \n`bits_per_sample` : bits per sample, 8 / 16   \n`data` : sound raw data,   \n`length` : the file length in bytes   \n`length_pcm` : the pcm uncompressed raw length in bytes   \n`handle` : the native audio handle for later manipulation",
   "links": [],
   "toplinks": [],
   "sections": [

@@ -1,6 +1,6 @@
 {
   "source": "lumen.input.MouseButton",
-  "doc": "",
+  "doc": "A typed mouse button id",
   "links": [],
   "toplinks": [],
   "sections": [
@@ -11,32 +11,32 @@
         {
           "name": "none",
           "signature": "lumen.input.MouseButton.none",
-          "doc": ""
+          "doc": "no mouse buttons"
         },
         {
           "name": "left",
           "signature": "lumen.input.MouseButton.left",
-          "doc": ""
+          "doc": "left mouse button"
         },
         {
           "name": "middle",
           "signature": "lumen.input.MouseButton.middle",
-          "doc": ""
+          "doc": "middle mouse button"
         },
         {
           "name": "right",
           "signature": "lumen.input.MouseButton.right",
-          "doc": ""
+          "doc": "right mouse button"
         },
         {
           "name": "extra1",
           "signature": "lumen.input.MouseButton.extra1",
-          "doc": ""
+          "doc": "extra button pressed (4)"
         },
         {
           "name": "extra2",
           "signature": "lumen.input.MouseButton.extra2",
-          "doc": ""
+          "doc": "extra button pressed (5)"
         }
       ]
     },

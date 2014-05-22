@@ -3,16 +3,16 @@
 
 ---
 
-#Float32Array
-
 
 ##[API Index](../../../api/index.html#lumen.utils)   
-&emsp;&emsp;&emsp;parent    
 [lumen](../)     
-&emsp;&emsp;&emsp;current    
-[lumen.utils](./) / Float32Array
+&emsp;&emsp;&emsp;[lumen.utils](./)   
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Float32Array
 
-<br/>
+---
+
+#Float32Array
+
 
 ---
 
@@ -42,7 +42,7 @@
 
 `fromMatrix(matrix:lumen.utils.compat.Matrix3D) : lumen.utils.Float32Array`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 &nbsp;   
 
@@ -55,7 +55,7 @@
 
 `new(bufferOrArray:Dynamic, ?start:Int=0, ?length:Int) `
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="set" href="#set">set</a>
 
@@ -63,7 +63,7 @@
 
 `set(bufferOrArray:Dynamic, ?offset:Int=0) : Void`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="subarray" href="#subarray">subarray</a>
 
@@ -71,7 +71,7 @@
 
 `subarray(start:Int, ?end:Int) : lumen.utils.Float32Array`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 
 

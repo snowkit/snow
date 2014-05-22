@@ -3,16 +3,16 @@
 
 ---
 
-#ByteArray
-
 
 ##[API Index](../../../api/index.html#lumen.utils)   
-&emsp;&emsp;&emsp;parent    
 [lumen](../)     
-&emsp;&emsp;&emsp;current    
-[lumen.utils](./) / ByteArray
+&emsp;&emsp;&emsp;[lumen.utils](./)   
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;ByteArray
 
-<br/>
+---
+
+#ByteArray
+
 
 ---
 

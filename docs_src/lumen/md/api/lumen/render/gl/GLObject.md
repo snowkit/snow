@@ -3,16 +3,16 @@
 
 ---
 
-#GLObject
-
 
 ##[API Index](../../../../api/index.html#lumen.render)   
-&emsp;&emsp;&emsp;parent    
 [lumen.render](../)     
-&emsp;&emsp;&emsp;current    
-[lumen.render.gl](./) / GLObject
+&emsp;&emsp;&emsp;[lumen.render.gl](./)   
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;GLObject
 
-<br/>
+---
+
+#GLObject
+
 
 ---
 
@@ -36,7 +36,7 @@
 
 `invalidated : Bool`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="valid" href="#valid">valid</a>
 
@@ -44,7 +44,7 @@
 
 `valid : Bool`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 &nbsp;   
 
@@ -59,7 +59,7 @@
 
 `invalidate() : Void`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="isInvalid" href="#isInvalid">isInvalid</a>
 
@@ -67,7 +67,7 @@
 
 `isInvalid() : Bool`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="isValid" href="#isValid">isValid</a>
 
@@ -75,7 +75,7 @@
 
 `isValid() : Bool`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="toString" href="#toString">toString</a>
 
@@ -83,7 +83,7 @@
 
 `toString() : String`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 
 

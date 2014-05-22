@@ -3,16 +3,16 @@
 
 ---
 
-#Matrix3D
-
 
 ##[API Index](../../../../api/index.html#lumen.utils)   
-&emsp;&emsp;&emsp;parent    
 [lumen.utils](../)     
-&emsp;&emsp;&emsp;current    
-[lumen.utils.compat](./) / Matrix3D
+&emsp;&emsp;&emsp;[lumen.utils.compat](./)   
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Matrix3D
 
-<br/>
+---
+
+#Matrix3D
+
 
 ---
 
@@ -36,7 +36,7 @@
 
 `rawData : lumen.utils.compat.Vector<Float>`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 &nbsp;   
 
@@ -49,7 +49,7 @@
 
 `determinant : Float`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="position" href="#position">position</a>
 
@@ -57,7 +57,7 @@
 
 `position : lumen.utils.compat.Vector3D`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 &nbsp;   
 
@@ -70,7 +70,7 @@
 
 `create2D(x:Float, y:Float, ?scale:Float=1, ?rotation:Float=0) : lumen.utils.compat.Matrix3D`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="createABCD" href="#createABCD">createABCD</a>
 
@@ -78,7 +78,7 @@
 
 `createABCD(a:Float, b:Float, c:Float, d:Float, tx:Float, ty:Float) : lumen.utils.compat.Matrix3D`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="createOrtho" href="#createOrtho">createOrtho</a>
 
@@ -86,7 +86,7 @@
 
 `createOrtho(x0:Float, x1:Float, y0:Float, y1:Float, zNear:Float, zFar:Float) : lumen.utils.compat.Matrix3D`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 &nbsp;   
 
@@ -99,7 +99,7 @@
 
 `append(lhs:lumen.utils.compat.Matrix3D) : Void`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="appendRotation" href="#appendRotation">appendRotation</a>
 
@@ -107,7 +107,7 @@
 
 `appendRotation(degrees:Float, axis:lumen.utils.compat.Vector3D, ?pivotPoint:lumen.utils.compat.Vector3D) : Void`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="decompose" href="#decompose">decompose</a>
 
@@ -115,7 +115,7 @@
 
 `decompose() : lumen.utils.compat.Vector<lumen.utils.compat.Vector3D>`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="new" href="#new">new</a>
 
@@ -123,7 +123,7 @@
 
 `new(?v:lumen.utils.compat.Vector<Float>) `
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="recompose" href="#recompose">recompose</a>
 
@@ -131,7 +131,7 @@
 
 `recompose(components:lumen.utils.compat.Vector<lumen.utils.compat.Vector3D>) : Bool`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="transformVectors" href="#transformVectors">transformVectors</a>
 
@@ -139,7 +139,7 @@
 
 `transformVectors(vin:lumen.utils.compat.Vector<Float>, vout:lumen.utils.compat.Vector<Float>) : Void`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 
 

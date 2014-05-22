@@ -1,8 +1,0 @@
-{
-  "source": "lumen.window.system.LumenWindowSystem",
-  "doc": "",
-  "links": [],
-  "toplinks": [],
-  "sections": [],
-  "alias": "lumen.window.system.sdl.WindowSystemSDL"
-}

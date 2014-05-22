@@ -3,16 +3,16 @@
 
 ---
 
-#IDataInput
-
 
 ##[API Index](../../../api/index.html#lumen.utils)   
-&emsp;&emsp;&emsp;parent    
 [lumen](../)     
-&emsp;&emsp;&emsp;current    
-[lumen.utils](./) / IDataInput
+&emsp;&emsp;&emsp;[lumen.utils](./)   
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;IDataInput
 
-<br/>
+---
+
+#IDataInput
+
 
 ---
 
@@ -34,7 +34,7 @@
 
 `bytesAvailable : Int`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="endian" href="#endian">endian</a>
 
@@ -42,7 +42,7 @@
 
 `endian : String`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 &nbsp;   
 
@@ -57,7 +57,7 @@
 
 `readBoolean() : Bool`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="readByte" href="#readByte">readByte</a>
 
@@ -65,7 +65,7 @@
 
 `readByte() : Int`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="readBytes" href="#readBytes">readBytes</a>
 
@@ -73,7 +73,7 @@
 
 `readBytes(outData:lumen.utils.ByteArray, ?inOffset:Int, ?inLen:Int) : Void`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="readDouble" href="#readDouble">readDouble</a>
 
@@ -81,7 +81,7 @@
 
 `readDouble() : Float`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="readFloat" href="#readFloat">readFloat</a>
 
@@ -89,7 +89,7 @@
 
 `readFloat() : Float`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="readInt" href="#readInt">readInt</a>
 
@@ -97,7 +97,7 @@
 
 `readInt() : Int`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="readShort" href="#readShort">readShort</a>
 
@@ -105,7 +105,7 @@
 
 `readShort() : Int`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="readUTF" href="#readUTF">readUTF</a>
 
@@ -113,7 +113,7 @@
 
 `readUTF() : String`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="readUTFBytes" href="#readUTFBytes">readUTFBytes</a>
 
@@ -121,7 +121,7 @@
 
 `readUTFBytes(inLen:Int) : String`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="readUnsignedByte" href="#readUnsignedByte">readUnsignedByte</a>
 
@@ -129,7 +129,7 @@
 
 `readUnsignedByte() : Int`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="readUnsignedInt" href="#readUnsignedInt">readUnsignedInt</a>
 
@@ -137,7 +137,7 @@
 
 `readUnsignedInt() : Int`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="readUnsignedShort" href="#readUnsignedShort">readUnsignedShort</a>
 
@@ -145,7 +145,7 @@
 
 `readUnsignedShort() : Int`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 
 

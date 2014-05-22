@@ -3,16 +3,20 @@
 
 ---
 
-#AudioDataBlob
-
 
 ##[API Index](../../../api/index.html#lumen.types)   
-&emsp;&emsp;&emsp;parent    
 [lumen](../)     
-&emsp;&emsp;&emsp;current    
-[lumen.types](./) / AudioDataBlob
+&emsp;&emsp;&emsp;[lumen.types](./)   
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;AudioDataBlob
 
-<br/>
+---
+
+#AudioDataBlob
+
+Information about an audio portion requested via assets
+
+`complete` : True if the file has reached the end in this blob   
+`data` : The data stored in this blob
 
 ---
 
@@ -33,7 +37,7 @@
 
 `complete : Bool`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="data" href="#data">data</a>
 
@@ -41,7 +45,7 @@
 
 `data : lumen.utils.ByteArray`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 
 

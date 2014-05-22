@@ -3,16 +3,16 @@
 
 ---
 
-#DisplayBounds
-
 
 ##[API Index](../../../api/index.html#lumen.window)   
-&emsp;&emsp;&emsp;parent    
 [lumen](../)     
-&emsp;&emsp;&emsp;current    
-[lumen.window](./) / DisplayBounds
+&emsp;&emsp;&emsp;[lumen.window](./)   
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;DisplayBounds
 
-<br/>
+---
+
+#DisplayBounds
+
 
 ---
 
@@ -33,7 +33,7 @@
 
 `height : Int`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="width" href="#width">width</a>
 
@@ -41,7 +41,7 @@
 
 `width : Int`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="x" href="#x">x</a>
 
@@ -49,7 +49,7 @@
 
 `x : Int`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="y" href="#y">y</a>
 
@@ -57,7 +57,7 @@
 
 `y : Int`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 
 

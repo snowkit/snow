@@ -1,6 +1,6 @@
 {
   "source": "lumen.assets.AssetAudio",
-  "doc": "An asset that contains audio file `data` as an `AudioInfo`",
+  "doc": "An asset that contains audio file `data` as an `AudioInfo`. Get assets from the `Assets` class, via `app.assets`",
   "links": [],
   "toplinks": [],
   "sections": [

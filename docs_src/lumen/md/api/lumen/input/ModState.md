@@ -3,22 +3,34 @@
 
 ---
 
-#ModState
-
---- 
-
-Input modifier state
-
----
-<br/>
 
 ##[API Index](../../../api/index.html#lumen.input)   
-&emsp;&emsp;&emsp;parent    
 [lumen](../)     
-&emsp;&emsp;&emsp;current    
-[lumen.input](./) / ModState
+&emsp;&emsp;&emsp;[lumen.input](./)   
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;ModState
 
-<br/>
+---
+
+#ModState
+
+Input modifier state 
+
+`none` : no modifiers are down   
+`lshift` : left shift key is down   
+`rshift` : right shift key is down   
+`lctrl` : left ctrl key is down   
+`rctrl` : right ctrl key is down   
+`lalt` : left alt/option key is down   
+`ralt` : right alt/option key is down   
+`lmeta` : left windows/command key is down   
+`rmeta` : right windows/command key is down   
+`num` : numlock is enabled   
+`caps` : capslock is enabled   
+`mode` : mode key is down   
+`ctrl` : left or right ctrl key is down   
+`shift` : left or right shift key is down   
+`alt` : left or right alt/option key is down   
+`meta` : left or right windows/command key is down
 
 ---
 
@@ -39,7 +51,7 @@ Input modifier state
 
 `alt : Bool`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="caps" href="#caps">caps</a>
 
@@ -47,7 +59,7 @@ Input modifier state
 
 `caps : Bool`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="ctrl" href="#ctrl">ctrl</a>
 
@@ -55,7 +67,7 @@ Input modifier state
 
 `ctrl : Bool`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="lalt" href="#lalt">lalt</a>
 
@@ -63,7 +75,7 @@ Input modifier state
 
 `lalt : Bool`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="lctrl" href="#lctrl">lctrl</a>
 
@@ -71,7 +83,7 @@ Input modifier state
 
 `lctrl : Bool`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="lmeta" href="#lmeta">lmeta</a>
 
@@ -79,7 +91,7 @@ Input modifier state
 
 `lmeta : Bool`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="lshift" href="#lshift">lshift</a>
 
@@ -87,7 +99,7 @@ Input modifier state
 
 `lshift : Bool`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="meta" href="#meta">meta</a>
 
@@ -95,7 +107,7 @@ Input modifier state
 
 `meta : Bool`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="mode" href="#mode">mode</a>
 
@@ -103,7 +115,7 @@ Input modifier state
 
 `mode : Bool`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="none" href="#none">none</a>
 
@@ -111,7 +123,7 @@ Input modifier state
 
 `none : Bool`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="num" href="#num">num</a>
 
@@ -119,7 +131,7 @@ Input modifier state
 
 `num : Bool`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="ralt" href="#ralt">ralt</a>
 
@@ -127,7 +139,7 @@ Input modifier state
 
 `ralt : Bool`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="rctrl" href="#rctrl">rctrl</a>
 
@@ -135,7 +147,7 @@ Input modifier state
 
 `rctrl : Bool`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="rmeta" href="#rmeta">rmeta</a>
 
@@ -143,7 +155,7 @@ Input modifier state
 
 `rmeta : Bool`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="rshift" href="#rshift">rshift</a>
 
@@ -151,7 +163,7 @@ Input modifier state
 
 `rshift : Bool`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="shift" href="#shift">shift</a>
 
@@ -159,7 +171,7 @@ Input modifier state
 
 `shift : Bool`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 
 

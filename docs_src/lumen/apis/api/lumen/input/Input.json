@@ -105,7 +105,7 @@
           "ispublic": true,
           "isstatic": false,
           "isinline": false,
-          "doc": "",
+          "doc": "returns true if the `Key` value was pressed in the latest frame",
           "signature": "keypressed(_code:Int) : Bool",
           "return": ": Bool",
           "args": [
@@ -122,7 +122,7 @@
           "ispublic": true,
           "isstatic": false,
           "isinline": false,
-          "doc": "",
+          "doc": "returns true if the `Key` value was released in the latest frame",
           "signature": "keyreleased(_code:Int) : Bool",
           "return": ": Bool",
           "args": [
@@ -135,7 +135,12 @@
         },
         {
           "name": "on_event",
-          "meta": [],
+          "meta": [
+            {
+              "name": ":noCompletion",
+              "value": ""
+            }
+          ],
           "ispublic": true,
           "isstatic": false,
           "isinline": false,
@@ -156,7 +161,7 @@
           "ispublic": true,
           "isstatic": false,
           "isinline": false,
-          "doc": "",
+          "doc": "manually dispatch a touch event through the system, delivered to the app handlers, internal and external",
           "signature": "dispatch_touch_event(_event:lumen.input.TouchEvent) : Void",
           "return": ": Void",
           "args": [
@@ -173,7 +178,7 @@
           "ispublic": true,
           "isstatic": false,
           "isinline": false,
-          "doc": "",
+          "doc": "returns true if the `Key` value is down at the time of calling this",
           "signature": "keydown(_code:Int) : Bool",
           "return": ": Bool",
           "args": [
@@ -190,7 +195,7 @@
           "ispublic": true,
           "isstatic": false,
           "isinline": false,
-          "doc": "",
+          "doc": "manually dispatch a mouse event through the system, delivered to the app handlers, internal and external",
           "signature": "dispatch_mouse_event(_event:lumen.input.MouseEvent) : Void",
           "return": ": Void",
           "args": [
@@ -207,7 +212,7 @@
           "ispublic": true,
           "isstatic": false,
           "isinline": false,
-          "doc": "",
+          "doc": "Helper to return a `ModState` (shift, ctrl etc) from a given `InputEvent`",
           "signature": "mod_state_from_event(event:lumen.types.InputEvent) : lumen.input.ModState",
           "return": ": lumen.input.ModState",
           "args": [
@@ -220,7 +225,12 @@
         },
         {
           "name": "new",
-          "meta": [],
+          "meta": [
+            {
+              "name": ":noCompletion",
+              "value": ""
+            }
+          ],
           "ispublic": true,
           "isstatic": false,
           "isinline": false,
@@ -241,7 +251,7 @@
           "ispublic": true,
           "isstatic": false,
           "isinline": false,
-          "doc": "",
+          "doc": "manually dispatch a text event through the system, delivered to the app handlers, internal and external",
           "signature": "dispatch_text_event(_event:lumen.input.TextEvent) : Void",
           "return": ": Void",
           "args": [
@@ -258,7 +268,7 @@
           "ispublic": true,
           "isstatic": false,
           "isinline": false,
-          "doc": "",
+          "doc": "manually dispatch a gamepad event through the system, delivered to the app handlers, internal and external",
           "signature": "dispatch_gamepad_event(_event:lumen.input.GamepadEvent) : Void",
           "return": ": Void",
           "args": [
@@ -271,7 +281,12 @@
         },
         {
           "name": "update",
-          "meta": [],
+          "meta": [
+            {
+              "name": ":noCompletion",
+              "value": ""
+            }
+          ],
           "ispublic": true,
           "isstatic": false,
           "isinline": false,
@@ -282,7 +297,12 @@
         },
         {
           "name": "on_gamepad_added",
-          "meta": [],
+          "meta": [
+            {
+              "name": ":noCompletion",
+              "value": ""
+            }
+          ],
           "ispublic": true,
           "isstatic": false,
           "isinline": false,
@@ -299,7 +319,12 @@
         },
         {
           "name": "destroy",
-          "meta": [],
+          "meta": [
+            {
+              "name": ":noCompletion",
+              "value": ""
+            }
+          ],
           "ispublic": true,
           "isstatic": false,
           "isinline": false,
@@ -314,7 +339,7 @@
           "ispublic": true,
           "isstatic": false,
           "isinline": false,
-          "doc": "",
+          "doc": "manually dispatch a keyboard event through the system, delivered to the app handlers, internal and external",
           "signature": "dispatch_key_event(_event:lumen.input.KeyEvent) : Void",
           "return": ": Void",
           "args": [
@@ -327,7 +352,12 @@
         },
         {
           "name": "on_gamepad_removed",
-          "meta": [],
+          "meta": [
+            {
+              "name": ":noCompletion",
+              "value": ""
+            }
+          ],
           "ispublic": true,
           "isstatic": false,
           "isinline": false,
