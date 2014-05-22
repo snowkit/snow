@@ -46,10 +46,11 @@
         <div class="content">
             <p><a href="../../../index.html"><img src="../../../images/logo.png" alt="Logo"></a></p>
 <hr>
-<h1 id="windowing">Windowing</h1>
 <h2 id="-api-index-api-index-html-lumen-window-"><a href="../../../api/index.html#lumen.window">API Index</a></h2>
-<p>&emsp;&emsp;&emsp;parent<br><a href="../">lumen</a><br>&emsp;&emsp;&emsp;current<br><a href="./">lumen.window</a> / Windowing</p>
-<p><br/></p>
+<p><a href="../">lumen</a><br>&emsp;&emsp;&emsp;<a href="./">lumen.window</a><br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Windowing</p>
+<hr>
+<h1 id="windowing">Windowing</h1>
+<p>A window manager, accessed via <code>app.window</code></p>
 <hr>
 <p><a href="#Members">Members</a><br><a href="#Methods">Methods</a>   </p>
 <hr>
@@ -57,15 +58,12 @@
 <p><a class="lift" name="Members" ></a></p>
 <h3 id="members">Members</h3>
 <hr>
-<p><a class="lift" name="system" href="#system">system</a></p>
-<p><code>system : lumen.window.system.LumenWindowSystem</code></p>
-<p><span class="small_desc_flat"> no description </span>   </p>
 <p><a class="lift" name="window_count" href="#window_count">window_count</a></p>
 <p><code>window_count : Int</code></p>
-<p><span class="small_desc_flat"> no description </span>   </p>
+<p><span class="small_desc_flat"> The number of windows in this manager </span>   </p>
 <p><a class="lift" name="window_list" href="#window_list">window_list</a></p>
 <p><code>window_list : Map&lt;Int,lumen.window.Window&gt;</code></p>
-<p><span class="small_desc_flat"> no description </span>   </p>
+<p><span class="small_desc_flat"> The list of windows in this manager </span>   </p>
 <p>&nbsp;   </p>
 <p>&nbsp;   </p>
 <p><a class="lift" name="Methods" ></a></p>
@@ -73,31 +71,28 @@
 <hr>
 <p><a class="lift" name="create" href="#create">create</a></p>
 <p><code>create(_config:lumen.types.WindowConfig) : lumen.window.Window</code></p>
-<p><span class="small_desc_flat"> no description </span>   </p>
+<p><span class="small_desc_flat"> Create a window with the given config </span>   </p>
 <p><a class="lift" name="desktop_get_display_bounds" href="#desktop_get_display_bounds">desktop_get_display_bounds</a></p>
 <p><code>desktop_get_display_bounds(display:Int) : lumen.window.DisplayBounds</code></p>
-<p><span class="small_desc_flat"> no description </span>   </p>
+<p><span class="small_desc_flat"> <code>Desktop only</code> Get the bounds of the display by index </span>   </p>
 <p><a class="lift" name="desktop_get_display_count" href="#desktop_get_display_count">desktop_get_display_count</a></p>
 <p><code>desktop_get_display_count() : Int</code></p>
-<p><span class="small_desc_flat"> no description </span>   </p>
+<p><span class="small_desc_flat"> <code>Desktop only</code> Get the number of displays present </span>   </p>
 <p><a class="lift" name="desktop_get_display_current_mode" href="#desktop_get_display_current_mode">desktop_get_display_current_mode</a></p>
 <p><code>desktop_get_display_current_mode(display:Int) : lumen.window.DisplayMode</code></p>
-<p><span class="small_desc_flat"> no description </span>   </p>
+<p><span class="small_desc_flat"> <code>Desktop only</code> Get the current mode information of the display by index </span>   </p>
 <p><a class="lift" name="desktop_get_display_mode" href="#desktop_get_display_mode">desktop_get_display_mode</a></p>
 <p><code>desktop_get_display_mode(display:Int, mode_index:Int) : lumen.window.DisplayMode</code></p>
-<p><span class="small_desc_flat"> no description </span>   </p>
+<p><span class="small_desc_flat"> <code>Desktop only</code> Get the information from a specific mode index, the index obtrained from iterating with <code>desktop_get_display_mode_count</code> value </span>   </p>
 <p><a class="lift" name="desktop_get_display_mode_count" href="#desktop_get_display_mode_count">desktop_get_display_mode_count</a></p>
 <p><code>desktop_get_display_mode_count(display:Int) : Int</code></p>
-<p><span class="small_desc_flat"> no description </span>   </p>
+<p><span class="small_desc_flat"> <code>Desktop only</code> Get the number of display modes present </span>   </p>
 <p><a class="lift" name="desktop_get_display_name" href="#desktop_get_display_name">desktop_get_display_name</a></p>
 <p><code>desktop_get_display_name(display:Int) : String</code></p>
-<p><span class="small_desc_flat"> no description </span>   </p>
+<p><span class="small_desc_flat"> <code>Desktop only</code> Get the name of the display by index, where available </span>   </p>
 <p><a class="lift" name="desktop_get_display_native_mode" href="#desktop_get_display_native_mode">desktop_get_display_native_mode</a></p>
 <p><code>desktop_get_display_native_mode(display:Int) : lumen.window.DisplayMode</code></p>
-<p><span class="small_desc_flat"> no description </span>   </p>
-<p><a class="lift" name="new" href="#new">new</a></p>
-<p><code>new(_lib:lumen.Lumen)</code></p>
-<p><span class="small_desc_flat"> no description </span>   </p>
+<p><span class="small_desc_flat"> <code>Desktop only</code> Get the native mode information of the display by index </span>   </p>
 <p>&nbsp;
 &nbsp;
 &nbsp;</p>
