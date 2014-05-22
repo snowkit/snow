@@ -1,6 +1,202 @@
 &nbsp;   
 <div class="commit_info">
 
+commit [6363836cc0](http://github.com/underscorediscovery/lumen/commit/6363836cc035c3f2a9015c9238ca7730b160f95f)   
+author: underscorediscovery   
+date: Wed May 21 2014 04:20:57 GMT-0230 (NDT)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Moving dependencies out of the root</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [8f3eadc138](http://github.com/underscorediscovery/lumen/commit/8f3eadc138c6933386f1ddfb0938388d5f119302)   
+author: Sven Bergström   
+date: Wed May 21 2014 04:19:35 GMT-0230 (NDT)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Update readme.md</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [a743d6e7a1](http://github.com/underscorediscovery/lumen/commit/a743d6e7a1ba476369b7633e58745118c370983e)   
+author: Sven Bergström   
+date: Wed May 21 2014 04:16:29 GMT-0230 (NDT)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Update readme.md</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [603d2fe540](http://github.com/underscorediscovery/lumen/commit/603d2fe540e59c39a7f4837c7fabf36ed54e241a)   
+author: Sven Bergström   
+date: Wed May 21 2014 04:15:53 GMT-0230 (NDT)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Update readme.md</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [37596632ff](http://github.com/underscorediscovery/lumen/commit/37596632ff120d563df9eb2ca7d175e221aca84a)   
+author: underscorediscovery   
+date: Wed May 21 2014 04:03:48 GMT-0230 (NDT)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Updating documentation generator and starting work on the docs</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [593e08aa17](http://github.com/underscorediscovery/lumen/commit/593e08aa17ce12be18133dfdac772bb49a287db2)   
+author: Sven Bergström   
+date: Sun May 18 2014 13:00:13 GMT-0230 (NDT)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>adding more info for build identification, again</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [ec4bf636c8](http://github.com/underscorediscovery/lumen/commit/ec4bf636c8cd99cc0c111ab00759da5699fbc4f9)   
+author: Sven Bergström   
+date: Sun May 18 2014 12:59:20 GMT-0230 (NDT)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>adding more info for build identification</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [01b6a93069](http://github.com/underscorediscovery/lumen/commit/01b6a93069f3bfbc5f3582dc119909905e49bc86)   
+author: Sven Bergström   
+date: Sun May 18 2014 12:57:06 GMT-0230 (NDT)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>fixing dumb error in links for latest builds</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [39b36e1a20](http://github.com/underscorediscovery/lumen/commit/39b36e1a20096515bd4712ab260f6ebc4591b691)   
+author: Sven Bergström   
+date: Sun May 18 2014 12:55:53 GMT-0230 (NDT)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>adding links to latest binaries</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [bfe3e076f8](http://github.com/underscorediscovery/lumen/commit/bfe3e076f8e475f2dacef56ce3899f506ab00e03)   
+author: underscorediscovery   
+date: Sat May 17 2014 23:45:05 GMT-0230 (NDT)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>"teamcity; updating windows binaries"</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [ffe81949b6](http://github.com/underscorediscovery/lumen/commit/ffe81949b64cc356d80916e8f09344474c2553c6)   
+author: underscorediscovery   
+date: Sat May 17 2014 23:40:24 GMT-0230 (NDT)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>"teamcity; updating linux binaries"</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [46f78d1e90](http://github.com/underscorediscovery/lumen/commit/46f78d1e9066ac33c253e85260bba2d2f39e8832)   
+author: underscorediscovery   
+date: Sat May 17 2014 23:39:27 GMT-0230 (NDT)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>"teamcity; updating ios binaries"</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [e4c96965a9](http://github.com/underscorediscovery/lumen/commit/e4c96965a99e051ef870566180478088b2a8933c)   
+author: underscorediscovery   
+date: Sat May 17 2014 23:38:22 GMT-0230 (NDT)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>"teamcity; updating mac binaries"</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [67cc11e44b](http://github.com/underscorediscovery/lumen/commit/67cc11e44b0800ad737a1245912e1b9570458e12)   
+author: underscorediscovery   
+date: Sat May 17 2014 23:37:25 GMT-0230 (NDT)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>"teamcity; updating android binaries"</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
 commit [f1ba29193d](http://github.com/underscorediscovery/lumen/commit/f1ba29193d417d32e833fc864070ac922b90e52d)   
 author: underscorediscovery   
 date: Sat May 17 2014 23:34:00 GMT-0230 (NDT)   

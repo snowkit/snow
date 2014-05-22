@@ -1,0 +1,76 @@
+{
+  "source": "lumen.window.system.sdl.WindowSystemSDL",
+  "doc": "",
+  "links": [],
+  "toplinks": [],
+  "sections": [
+    {
+      "name": "Extends",
+      "link": "#Extends",
+      "values": [
+        {
+          "name": "lumen.window.system.WindowSystem"
+        }
+      ]
+    },
+    {
+      "name": "Methods",
+      "link": "#Methods",
+      "values": [
+        {
+          "name": "new",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "new(_manager:lumen.window.Windowing, _lib:lumen.Lumen) ",
+          "return": "",
+          "args": [
+            {
+              "name": "_manager",
+              "type": "lumen.window.Windowing"
+            },
+            {
+              "name": "_lib",
+              "type": "lumen.Lumen"
+            }
+          ]
+        },
+        {
+          "name": "update",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "update() : Void",
+          "return": ": Void",
+          "args": []
+        },
+        {
+          "name": "destroy",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "destroy() : Void",
+          "return": ": Void",
+          "args": []
+        },
+        {
+          "name": "init",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "init() : Void",
+          "return": ": Void",
+          "args": []
+        }
+      ]
+    }
+  ]
+}

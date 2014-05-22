@@ -1,0 +1,140 @@
+{
+  "source": "lumen.input.system.sdl.InputSystemSDL",
+  "doc": "",
+  "links": [],
+  "toplinks": [],
+  "sections": [
+    {
+      "name": "Extends",
+      "link": "#Extends",
+      "values": [
+        {
+          "name": "lumen.input.system.InputSystem"
+        }
+      ]
+    },
+    {
+      "name": "Methods",
+      "link": "#Methods",
+      "values": [
+        {
+          "name": "mod_state_from_event",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "mod_state_from_event(event:lumen.InputEvent) : lumen.input.ModState",
+          "return": ": lumen.input.ModState",
+          "args": [
+            {
+              "name": "event",
+              "type": "lumen.InputEvent"
+            }
+          ]
+        },
+        {
+          "name": "new",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "new(_manager:lumen.input.Input, _lib:lumen.Lumen) ",
+          "return": "",
+          "args": [
+            {
+              "name": "_manager",
+              "type": "lumen.input.Input"
+            },
+            {
+              "name": "_lib",
+              "type": "lumen.Lumen"
+            }
+          ]
+        },
+        {
+          "name": "update",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "update() : Void",
+          "return": ": Void",
+          "args": []
+        },
+        {
+          "name": "key_state_from_event",
+          "meta": [],
+          "public": false,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "key_state_from_event(type:lumen.input.system.sdl.KeyEventType) : lumen.input.PressedState",
+          "return": ": lumen.input.PressedState",
+          "args": [
+            {
+              "name": "type",
+              "type": "lumen.input.system.sdl.KeyEventType"
+            }
+          ]
+        },
+        {
+          "name": "on_event",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "on_event(_event:lumen.InputEvent) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "_event",
+              "type": "lumen.InputEvent"
+            }
+          ]
+        },
+        {
+          "name": "destroy",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "destroy() : Void",
+          "return": ": Void",
+          "args": []
+        },
+        {
+          "name": "mouse_button_from_number",
+          "meta": [],
+          "public": false,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "mouse_button_from_number(button:Int) : lumen.input.MouseButton",
+          "return": ": lumen.input.MouseButton",
+          "args": [
+            {
+              "name": "button",
+              "type": "Int"
+            }
+          ]
+        },
+        {
+          "name": "init",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "init() : Void",
+          "return": ": Void",
+          "args": []
+        }
+      ]
+    }
+  ]
+}

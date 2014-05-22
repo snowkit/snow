@@ -1,0 +1,134 @@
+{
+  "source": "lumen.input.system.sdl.ModValue",
+  "doc": "",
+  "links": [],
+  "toplinks": [],
+  "sections": [
+    {
+      "name": "Members",
+      "link": "#Members",
+      "values": [
+        {
+          "name": "LSHIFT",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "LSHIFT : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "LMETA",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "LMETA : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "NUM",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "NUM : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "CAPS",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "CAPS : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "RSHIFT",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "RSHIFT : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "LCTRL",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "LCTRL : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "LALT",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "LALT : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "RMETA",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "RMETA : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "RCTRL",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "RCTRL : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "RALT",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "RALT : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "MODE",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "MODE : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "NONE",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "NONE : Int",
+          "type": "Int",
+          "doc": ""
+        }
+      ]
+    }
+  ]
+}

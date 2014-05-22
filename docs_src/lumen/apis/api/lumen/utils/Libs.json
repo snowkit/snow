@@ -1,0 +1,130 @@
+{
+  "source": "lumen.utils.Libs",
+  "doc": "",
+  "links": [],
+  "toplinks": [],
+  "sections": [
+    {
+      "name": "Members",
+      "link": "#Members",
+      "values": [
+        {
+          "name": "__moduleNames",
+          "meta": [
+            {
+              "name": ":noCompletion",
+              "value": ""
+            }
+          ],
+          "public": false,
+          "inline": false,
+          "static": true,
+          "signature": "__moduleNames : Map<String,String>",
+          "type": "Map<String,String>",
+          "doc": ""
+        }
+      ]
+    },
+    {
+      "name": "Methods",
+      "link": "#Methods",
+      "values": [
+        {
+          "name": "load",
+          "meta": [],
+          "public": true,
+          "static": true,
+          "inline": false,
+          "doc": "",
+          "signature": "load(library:String, method:String, ?args:Int) : Dynamic",
+          "return": ": Dynamic",
+          "args": [
+            {
+              "name": "library",
+              "type": "String"
+            },
+            {
+              "name": "method",
+              "type": "String"
+            },
+            {
+              "name": "?args",
+              "type": "Int"
+            }
+          ]
+        },
+        {
+          "name": "findHaxeLib",
+          "meta": [],
+          "public": false,
+          "static": true,
+          "inline": false,
+          "doc": "",
+          "signature": "findHaxeLib(library:String) : String",
+          "return": ": String",
+          "args": [
+            {
+              "name": "library",
+              "type": "String"
+            }
+          ]
+        },
+        {
+          "name": "loaderTrace",
+          "meta": [],
+          "public": false,
+          "static": true,
+          "inline": false,
+          "doc": "",
+          "signature": "loaderTrace(message:String) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "message",
+              "type": "String"
+            }
+          ]
+        },
+        {
+          "name": "tryLoad",
+          "meta": [],
+          "public": false,
+          "static": true,
+          "inline": false,
+          "doc": "",
+          "signature": "tryLoad(name:String, library:String, func:String, args:Int) : Dynamic",
+          "return": ": Dynamic",
+          "args": [
+            {
+              "name": "name",
+              "type": "String"
+            },
+            {
+              "name": "library",
+              "type": "String"
+            },
+            {
+              "name": "func",
+              "type": "String"
+            },
+            {
+              "name": "args",
+              "type": "Int"
+            }
+          ]
+        },
+        {
+          "name": "get_system_name",
+          "meta": [],
+          "public": false,
+          "static": true,
+          "inline": false,
+          "doc": "",
+          "signature": "get_system_name() : String",
+          "return": ": String",
+          "args": []
+        }
+      ]
+    }
+  ]
+}

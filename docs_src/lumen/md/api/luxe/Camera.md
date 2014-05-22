@@ -24,7 +24,7 @@
 
 
 
-    shake_vector : luxe.Vector
+`shake_vector : luxe.Vector`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -32,7 +32,7 @@
 
 
 
-    shake_amount : Float
+`shake_amount : Float`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -40,7 +40,7 @@
 
 
 
-    view : phoenix.Camera
+`view : phoenix.Camera`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -48,7 +48,7 @@
 
 
 
-    bounds : luxe.Rectangle
+`bounds : luxe.Rectangle`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -56,7 +56,7 @@
 
 
 
-    shaking : Bool
+`shaking : Bool`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -64,7 +64,7 @@
 
 
 
-    minimum_shake : Float
+`minimum_shake : Float`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -77,7 +77,7 @@
 
 
 
-    viewport : luxe.Rectangle
+`viewport : luxe.Rectangle`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -85,7 +85,7 @@
 
 
 
-    minimum_zoom : Float
+`minimum_zoom : Float`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -93,7 +93,7 @@
 
 
 
-    zoom : Float
+`zoom : Float`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -101,7 +101,7 @@
 
 
 
-    center : luxe.Vector
+`center : luxe.Vector`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -114,7 +114,7 @@
 
 
 
-    shake(amount:Float) : Void
+`shake(amount:Float) : Void`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -122,7 +122,7 @@
 
 
 
-    new(?options:Dynamic) 
+`new(?options:Dynamic) `
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -130,7 +130,7 @@
 
 
 
-    get_serialize_data() : null
+`get_serialize_data() : null`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -138,7 +138,7 @@
 
 
 
-    focus(_p:luxe.Vector, ?_t:Float, ?oncomplete:Void) : Void
+`focus(_p:luxe.Vector, ?_t:Float, ?oncomplete:Void) : Void`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -146,7 +146,7 @@
 
 
 
-    world_point_to_screen(_vector:luxe.Vector, ?_viewport:luxe.Rectangle) : luxe.Vector
+`world_point_to_screen(_vector:luxe.Vector, ?_viewport:luxe.Rectangle) : luxe.Vector`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -154,7 +154,7 @@
 
 
 
-    screen_point_to_world(_vector:luxe.Vector) : luxe.Vector
+`screen_point_to_world(_vector:luxe.Vector) : luxe.Vector`
 
 <span class="small_desc_flat"> no description </span>   
 

@@ -1,0 +1,66 @@
+{
+  "source": "lumen.input.system.sdl.TouchEventTypes",
+  "doc": "",
+  "links": [],
+  "toplinks": [],
+  "sections": [
+    {
+      "name": "Members",
+      "link": "#Members",
+      "values": [
+        {
+          "name": "te_move",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": true,
+          "signature": "te_move : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "te_down",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": true,
+          "signature": "te_down : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "te_up",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": true,
+          "signature": "te_up : Int",
+          "type": "Int",
+          "doc": ""
+        }
+      ]
+    },
+    {
+      "name": "Methods",
+      "link": "#Methods",
+      "values": [
+        {
+          "name": "typed",
+          "meta": [],
+          "public": true,
+          "static": true,
+          "inline": false,
+          "doc": "",
+          "signature": "typed(te_type:Int) : lumen.input.TouchState",
+          "return": ": lumen.input.TouchState",
+          "args": [
+            {
+              "name": "te_type",
+              "type": "Int"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

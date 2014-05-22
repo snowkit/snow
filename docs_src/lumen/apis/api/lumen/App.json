@@ -1,5 +1,456 @@
 {
-	"source":"lumen.App",
-	"links":[],
-	"toplinks":[],
-	"sections":[{"name":"Members","link":"#Members","values":[]},{"name":"Properties","link":"#Properties","values":[]},{"name":"Methods","link":"#Methods","values":[]}]}
+  "source": "lumen.App",
+  "doc": "The default type of application, with variable delta time, or fixed delta time, or a fixed frame rate. See the App guide for complete details.",
+  "links": [],
+  "toplinks": [],
+  "sections": [
+    {
+      "name": "Members",
+      "link": "#Members",
+      "values": [
+        {
+          "name": "app",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "app : lumen.Lumen",
+          "type": "lumen.Lumen",
+          "doc": "use this to access the api features. *i.e* `app.assets.get_text(_id)`"
+        },
+        {
+          "name": "timescale",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "timescale : Float",
+          "type": "Float",
+          "doc": "the scale of time"
+        },
+        {
+          "name": "max_frame_time",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "max_frame_time : Float",
+          "type": "Float",
+          "doc": "the maximum frame time"
+        },
+        {
+          "name": "delta_time",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "delta_time : Float",
+          "type": "Float",
+          "doc": "the time the last frame took to run"
+        },
+        {
+          "name": "next_tick",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": false,
+          "signature": "next_tick : Float",
+          "type": "Float",
+          "doc": "for fixed_rate, the time when the next tick should occur around"
+        },
+        {
+          "name": "haxe_doc",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": false,
+          "signature": "haxe_doc : Dynamic",
+          "type": "Dynamic",
+          "doc": ""
+        },
+        {
+          "name": "delta_sim",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "delta_sim : Float",
+          "type": "Float",
+          "doc": "the simulated time the last frame took to run, relative to scale etc"
+        },
+        {
+          "name": "last_frame_start",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "last_frame_start : Float",
+          "type": "Float",
+          "doc": "the start time of the last frame"
+        },
+        {
+          "name": "cur_frame_start",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "cur_frame_start : Float",
+          "type": "Float",
+          "doc": "the start time of this frame"
+        },
+        {
+          "name": "fixed_delta",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "fixed_delta : Float",
+          "type": "Float",
+          "doc": "if this is non zero this will be passed in"
+        },
+        {
+          "name": "fixed_rate",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "fixed_rate : Float",
+          "type": "Float",
+          "doc": "if this is non zero, updates will be forced to this rate"
+        },
+        {
+          "name": "current_time",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "current_time : Float",
+          "type": "Float",
+          "doc": "the current simulation time"
+        }
+      ]
+    },
+    {
+      "name": "Methods",
+      "link": "#Methods",
+      "values": [
+        {
+          "name": "get_runtime_config",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "override this if you want to change how the runtime config is loaded/handled",
+          "signature": "get_runtime_config() : Dynamic",
+          "return": ": Dynamic",
+          "args": []
+        },
+        {
+          "name": "ontouchup",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "Called when a touch is first pressed, use the `touch_id` to track which",
+          "signature": "ontouchup(_event:lumen.input.TouchEvent) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "_event",
+              "type": "lumen.input.TouchEvent"
+            }
+          ]
+        },
+        {
+          "name": "onmousedown",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "Called when a mouse button is pressed",
+          "signature": "onmousedown(_event:lumen.input.MouseEvent) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "_event",
+              "type": "lumen.input.MouseEvent"
+            }
+          ]
+        },
+        {
+          "name": "ongamepadbuttondown",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "Called when a connected gamepad button is pressed, use `which` to determine gamepad id",
+          "signature": "ongamepadbuttondown(_event:lumen.input.GamepadEvent) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "_event",
+              "type": "lumen.input.GamepadEvent"
+            }
+          ]
+        },
+        {
+          "name": "onmousewheel",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "Called when the mouse wheel moves",
+          "signature": "onmousewheel(_event:lumen.input.MouseEvent) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "_event",
+              "type": "lumen.input.MouseEvent"
+            }
+          ]
+        },
+        {
+          "name": "ontouchmove",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "Called when a touch is moved, use the `touch_id` to track which",
+          "signature": "ontouchmove(_event:lumen.input.TouchEvent) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "_event",
+              "type": "lumen.input.TouchEvent"
+            }
+          ]
+        },
+        {
+          "name": "onmouseup",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "Called when a mouse button is released",
+          "signature": "onmouseup(_event:lumen.input.MouseEvent) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "_event",
+              "type": "lumen.input.MouseEvent"
+            }
+          ]
+        },
+        {
+          "name": "ongamepadbuttonup",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "Called when a connected gamepad button is released, use `which` to determine gamepad id",
+          "signature": "ongamepadbuttonup(_event:lumen.input.GamepadEvent) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "_event",
+              "type": "lumen.input.GamepadEvent"
+            }
+          ]
+        },
+        {
+          "name": "onkeydown",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "Called when a key is pressed down",
+          "signature": "onkeydown(_event:lumen.input.KeyEvent) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "_event",
+              "type": "lumen.input.KeyEvent"
+            }
+          ]
+        },
+        {
+          "name": "on_lumen_init",
+          "meta": [
+            {
+              "name": ":noCompletion",
+              "value": ""
+            }
+          ],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "on_lumen_init() : Void",
+          "return": ": Void",
+          "args": []
+        },
+        {
+          "name": "new",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "new() ",
+          "return": "",
+          "args": []
+        },
+        {
+          "name": "onmousemove",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "Called when the mouse moves",
+          "signature": "onmousemove(_event:lumen.input.MouseEvent) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "_event",
+              "type": "lumen.input.MouseEvent"
+            }
+          ]
+        },
+        {
+          "name": "ongamepadaxis",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "Called when a connected gamepad axis moves, use `which` to determine gamepad id",
+          "signature": "ongamepadaxis(_event:lumen.input.GamepadEvent) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "_event",
+              "type": "lumen.input.GamepadEvent"
+            }
+          ]
+        },
+        {
+          "name": "on_lumen_update",
+          "meta": [
+            {
+              "name": ":noCompletion",
+              "value": ""
+            }
+          ],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "on_lumen_update() : Void",
+          "return": ": Void",
+          "args": []
+        },
+        {
+          "name": "ontextinput",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "Called when text input is happening. Use this for textfields, as it handles the complexity of unicode etc.",
+          "signature": "ontextinput(_event:lumen.input.TextEvent) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "_event",
+              "type": "lumen.input.TextEvent"
+            }
+          ]
+        },
+        {
+          "name": "ongamepaddevice",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "Called when a gamepad is connected or disconnected, use `which` to determine gamepad id",
+          "signature": "ongamepaddevice(_event:lumen.input.GamepadEvent) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "_event",
+              "type": "lumen.input.GamepadEvent"
+            }
+          ]
+        },
+        {
+          "name": "update",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "Your update loop. Called every frame for you. The dt value depends on the timing configuration (see the App guide)",
+          "signature": "update(dt:Float) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "dt",
+              "type": "Float"
+            }
+          ]
+        },
+        {
+          "name": "get_asset_list",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "overide this if you want to change how the asset list is loaded/handled. By default it uses the asset manifest generated by the build tools.",
+          "signature": "get_asset_list() : Array<lumen.AssetInfo>",
+          "return": ": Array<lumen.AssetInfo>",
+          "args": []
+        },
+        {
+          "name": "ready",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "Your entry point. Called for you when you can initialize your application",
+          "signature": "ready() : Void",
+          "return": ": Void",
+          "args": []
+        },
+        {
+          "name": "onkeyup",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "Called when a key is released",
+          "signature": "onkeyup(_event:lumen.input.KeyEvent) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "_event",
+              "type": "lumen.input.KeyEvent"
+            }
+          ]
+        },
+        {
+          "name": "ontouchdown",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "Called when a touch is released, use the `touch_id` to track which",
+          "signature": "ontouchdown(_event:lumen.input.TouchEvent) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "_event",
+              "type": "lumen.input.TouchEvent"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

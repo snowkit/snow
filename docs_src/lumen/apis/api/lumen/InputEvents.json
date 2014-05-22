@@ -1,0 +1,96 @@
+{
+  "source": "lumen.InputEvents",
+  "doc": "",
+  "links": [],
+  "toplinks": [],
+  "sections": [
+    {
+      "name": "Members",
+      "link": "#Members",
+      "values": [
+        {
+          "name": "ie_key",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "ie_key : Int",
+          "type": "Int",
+          "doc": "An keyboard input event"
+        },
+        {
+          "name": "ie_controller",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "ie_controller : Int",
+          "type": "Int",
+          "doc": "An controller input event. Use these instead of joystick on desktop."
+        },
+        {
+          "name": "ie_mouse",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "ie_mouse : Int",
+          "type": "Int",
+          "doc": "An mouse input event"
+        },
+        {
+          "name": "ie_touch",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "ie_touch : Int",
+          "type": "Int",
+          "doc": "An touch input event"
+        },
+        {
+          "name": "ie_joystick",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "ie_joystick : Int",
+          "type": "Int",
+          "doc": "An joystick input event. On mobile, accellerometer is a joystick (for now)"
+        },
+        {
+          "name": "ie_unknown",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "ie_unknown : Int",
+          "type": "Int",
+          "doc": "An unknown input event"
+        }
+      ]
+    },
+    {
+      "name": "Methods",
+      "link": "#Methods",
+      "values": [
+        {
+          "name": "typed",
+          "meta": [],
+          "public": true,
+          "static": true,
+          "inline": false,
+          "doc": "returns a typed `InputEventType` from an integer ID, for communication between internal native + haxe code",
+          "signature": "typed(type:Int) : lumen.InputEventType",
+          "return": ": lumen.InputEventType",
+          "args": [
+            {
+              "name": "type",
+              "type": "Int"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

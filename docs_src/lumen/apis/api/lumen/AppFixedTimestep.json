@@ -1,0 +1,102 @@
+{
+  "source": "lumen.AppFixedTimestep",
+  "doc": "Read the App Guide for full info, and for even more information see : http://gafferongames.com/game-physics/fix-your-timestep/\n    this stores and calculates a fixed game update loop, and rendering interpolation is required\n    for smooth updates between frames.",
+  "links": [],
+  "toplinks": [],
+  "sections": [
+    {
+      "name": "Extends",
+      "link": "#Extends",
+      "values": [
+        {
+          "name": "lumen.App"
+        }
+      ]
+    },
+    {
+      "name": "Members",
+      "link": "#Members",
+      "values": [
+        {
+          "name": "haxe_doc",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": false,
+          "signature": "haxe_doc : Dynamic",
+          "type": "Dynamic",
+          "doc": ""
+        },
+        {
+          "name": "mspf",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "mspf : Float",
+          "type": "Float",
+          "doc": "fixed simulation update speed"
+        },
+        {
+          "name": "overflow",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "overflow : Float",
+          "type": "Float",
+          "doc": "the overflow of the updates. This is used to calculate the alpha time for rendering interpolation, `var alpha_time = overflow / mspf;`"
+        }
+      ]
+    },
+    {
+      "name": "Methods",
+      "link": "#Methods",
+      "values": [
+        {
+          "name": "on_lumen_init",
+          "meta": [
+            {
+              "name": ":noCompletion",
+              "value": ""
+            }
+          ],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "on_lumen_init() : Void",
+          "return": ": Void",
+          "args": []
+        },
+        {
+          "name": "new",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "new() ",
+          "return": "",
+          "args": []
+        },
+        {
+          "name": "on_lumen_update",
+          "meta": [
+            {
+              "name": ":noCompletion",
+              "value": ""
+            }
+          ],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "on_lumen_update() : Void",
+          "return": ": Void",
+          "args": []
+        }
+      ]
+    }
+  ]
+}

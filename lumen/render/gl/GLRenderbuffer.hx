@@ -2,21 +2,21 @@ package lumen.render.gl;
 
 #if lumen_html5
 
-	typedef GLRenderbuffer = js.html.webgl.Renderbuffer;
+    typedef GLRenderbuffer = js.html.webgl.Renderbuffer;
 
 #else //lumen_html5
 
-	class GLRenderbuffer extends GLObject {
-		
-		public function new (version:Int, id:Dynamic) {
-			super (version, id);
-		}
-		
-		override function getType ():String {
-			return "Renderbuffer";
-		}
-		
-	}
+    class GLRenderbuffer extends GLObject {
+        
+        public function new (version:Int, id:Dynamic) {
+            super (version, id);
+        }
+        
+        override function getType ():String {
+            return "Renderbuffer";
+        }
+        
+    }
 
 #end //lumen_native
 

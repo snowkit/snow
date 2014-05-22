@@ -1,0 +1,671 @@
+{
+  "source": "lumen.assets.Assets",
+  "doc": "",
+  "links": [],
+  "toplinks": [],
+  "sections": [
+    {
+      "name": "Members",
+      "link": "#Members",
+      "values": [
+        {
+          "name": "lumen_assets_audio_read_bytes_ogg",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": true,
+          "signature": "lumen_assets_audio_read_bytes_ogg : Dynamic",
+          "type": "Dynamic",
+          "doc": ""
+        },
+        {
+          "name": "lumen_assets_audio_seek_bytes_wav",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": true,
+          "signature": "lumen_assets_audio_seek_bytes_wav : Dynamic",
+          "type": "Dynamic",
+          "doc": ""
+        },
+        {
+          "name": "lumen_assets_audio_read_bytes_pcm",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": true,
+          "signature": "lumen_assets_audio_read_bytes_pcm : Dynamic",
+          "type": "Dynamic",
+          "doc": ""
+        },
+        {
+          "name": "list",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "list : Map<String,lumen.AssetInfo>",
+          "type": "Map<String,lumen.AssetInfo>",
+          "doc": ""
+        },
+        {
+          "name": "lumen_assets_audio_load_info_ogg",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": true,
+          "signature": "lumen_assets_audio_load_info_ogg : Dynamic",
+          "type": "Dynamic",
+          "doc": ""
+        },
+        {
+          "name": "manifest_path",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "manifest_path : String",
+          "type": "String",
+          "doc": ""
+        },
+        {
+          "name": "lib",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": false,
+          "signature": "lib : lumen.Lumen",
+          "type": "lumen.Lumen",
+          "doc": ""
+        },
+        {
+          "name": "lumen_assets_image_load_info",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": true,
+          "signature": "lumen_assets_image_load_info : Dynamic",
+          "type": "Dynamic",
+          "doc": ""
+        },
+        {
+          "name": "lumen_assets_audio_seek_bytes_ogg",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": true,
+          "signature": "lumen_assets_audio_seek_bytes_ogg : Dynamic",
+          "type": "Dynamic",
+          "doc": ""
+        },
+        {
+          "name": "lumen_assets_audio_seek_bytes_pcm",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": true,
+          "signature": "lumen_assets_audio_seek_bytes_pcm : Dynamic",
+          "type": "Dynamic",
+          "doc": ""
+        },
+        {
+          "name": "lumen_assets_audio_load_info_wav",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": true,
+          "signature": "lumen_assets_audio_load_info_wav : Dynamic",
+          "type": "Dynamic",
+          "doc": ""
+        },
+        {
+          "name": "assets_root",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "assets_root : String",
+          "type": "String",
+          "doc": ""
+        },
+        {
+          "name": "lumen_assets_audio_read_bytes_wav",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": true,
+          "signature": "lumen_assets_audio_read_bytes_wav : Dynamic",
+          "type": "Dynamic",
+          "doc": ""
+        },
+        {
+          "name": "lumen_assets_audio_load_info_pcm",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": true,
+          "signature": "lumen_assets_audio_load_info_pcm : Dynamic",
+          "type": "Dynamic",
+          "doc": ""
+        }
+      ]
+    },
+    {
+      "name": "Methods",
+      "link": "#Methods",
+      "values": [
+        {
+          "name": "audio_load_portion_ogg",
+          "meta": [
+            {
+              "name": ":noCompletion",
+              "value": ""
+            }
+          ],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "audio_load_portion_ogg(_info:lumen.AudioInfo, _start:Int, _len:Int) : lumen.AudioDataBlob",
+          "return": ": lumen.AudioDataBlob",
+          "args": [
+            {
+              "name": "_info",
+              "type": "lumen.AudioInfo"
+            },
+            {
+              "name": "_start",
+              "type": "Int"
+            },
+            {
+              "name": "_len",
+              "type": "Int"
+            }
+          ]
+        },
+        {
+          "name": "audio_seek_source_ogg",
+          "meta": [
+            {
+              "name": ":noCompletion",
+              "value": ""
+            }
+          ],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "audio_seek_source_ogg(_info:lumen.AudioInfo, _to:Int) : Bool",
+          "return": ": Bool",
+          "args": [
+            {
+              "name": "_info",
+              "type": "lumen.AudioInfo"
+            },
+            {
+              "name": "_to",
+              "type": "Int"
+            }
+          ]
+        },
+        {
+          "name": "load_error",
+          "meta": [],
+          "public": false,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "load_error(_id:String, ?reason:String) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "_id",
+              "type": "String"
+            },
+            {
+              "name": "?reason",
+              "type": "String"
+            }
+          ]
+        },
+        {
+          "name": "get_text",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "get_text(_id:String) : lumen.assets.AssetText",
+          "return": ": lumen.assets.AssetText",
+          "args": [
+            {
+              "name": "_id",
+              "type": "String"
+            }
+          ]
+        },
+        {
+          "name": "get_image",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "get_image(_id:String, ?options:lumen.assets.AssetImageOptions) : lumen.assets.AssetImage",
+          "return": ": lumen.assets.AssetImage",
+          "args": [
+            {
+              "name": "_id",
+              "type": "String"
+            },
+            {
+              "name": "?options",
+              "type": "lumen.assets.AssetImageOptions"
+            }
+          ]
+        },
+        {
+          "name": "get_audio",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "get_audio(_id:String, ?options:lumen.assets.AssetAudioOptions) : lumen.assets.AssetAudio",
+          "return": ": lumen.assets.AssetAudio",
+          "args": [
+            {
+              "name": "_id",
+              "type": "String"
+            },
+            {
+              "name": "?options",
+              "type": "lumen.assets.AssetAudioOptions"
+            }
+          ]
+        },
+        {
+          "name": "audio_load_portion",
+          "meta": [
+            {
+              "name": ":noCompletion",
+              "value": ""
+            }
+          ],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "audio_load_portion(_info:lumen.AudioInfo, _start:Int, _len:Int) : lumen.AudioDataBlob",
+          "return": ": lumen.AudioDataBlob",
+          "args": [
+            {
+              "name": "_info",
+              "type": "lumen.AudioInfo"
+            },
+            {
+              "name": "_start",
+              "type": "Int"
+            },
+            {
+              "name": "_len",
+              "type": "Int"
+            }
+          ]
+        },
+        {
+          "name": "exists_error",
+          "meta": [],
+          "public": false,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "exists_error(_id:String) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "_id",
+              "type": "String"
+            }
+          ]
+        },
+        {
+          "name": "get",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "get(_id:String) : lumen.AssetInfo",
+          "return": ": lumen.AssetInfo",
+          "args": [
+            {
+              "name": "_id",
+              "type": "String"
+            }
+          ]
+        },
+        {
+          "name": "exists",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "exists(_id:String) : Bool",
+          "return": ": Bool",
+          "args": [
+            {
+              "name": "_id",
+              "type": "String"
+            }
+          ]
+        },
+        {
+          "name": "_path",
+          "meta": [],
+          "public": false,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "_path(_asset:lumen.AssetInfo) : String",
+          "return": ": String",
+          "args": [
+            {
+              "name": "_asset",
+              "type": "lumen.AssetInfo"
+            }
+          ]
+        },
+        {
+          "name": "audio_seek_source_pcm",
+          "meta": [
+            {
+              "name": ":noCompletion",
+              "value": ""
+            }
+          ],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "audio_seek_source_pcm(_info:lumen.AudioInfo, _to:Int) : Bool",
+          "return": ": Bool",
+          "args": [
+            {
+              "name": "_info",
+              "type": "lumen.AudioInfo"
+            },
+            {
+              "name": "_to",
+              "type": "Int"
+            }
+          ]
+        },
+        {
+          "name": "new",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "new(_lib:lumen.Lumen) ",
+          "return": "",
+          "args": [
+            {
+              "name": "_lib",
+              "type": "lumen.Lumen"
+            }
+          ]
+        },
+        {
+          "name": "path",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "path(_id:String) : String",
+          "return": ": String",
+          "args": [
+            {
+              "name": "_id",
+              "type": "String"
+            }
+          ]
+        },
+        {
+          "name": "audio_load_ogg",
+          "meta": [
+            {
+              "name": ":noCompletion",
+              "value": ""
+            }
+          ],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "audio_load_ogg(asset:lumen.AssetInfo, ?load:Bool) : lumen.AudioInfo",
+          "return": ": lumen.AudioInfo",
+          "args": [
+            {
+              "name": "asset",
+              "type": "lumen.AssetInfo"
+            },
+            {
+              "name": "?load",
+              "type": "Bool"
+            }
+          ]
+        },
+        {
+          "name": "audio_format_from_int",
+          "meta": [],
+          "public": false,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "audio_format_from_int(_int:Int) : lumen.AudioFormatType",
+          "return": ": lumen.AudioFormatType",
+          "args": [
+            {
+              "name": "_int",
+              "type": "Int"
+            }
+          ]
+        },
+        {
+          "name": "audio_seek_source_wav",
+          "meta": [
+            {
+              "name": ":noCompletion",
+              "value": ""
+            }
+          ],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "audio_seek_source_wav(_info:lumen.AudioInfo, _to:Int) : Bool",
+          "return": ": Bool",
+          "args": [
+            {
+              "name": "_info",
+              "type": "lumen.AudioInfo"
+            },
+            {
+              "name": "_to",
+              "type": "Int"
+            }
+          ]
+        },
+        {
+          "name": "audio_load_pcm",
+          "meta": [
+            {
+              "name": ":noCompletion",
+              "value": ""
+            }
+          ],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "audio_load_pcm(asset:lumen.AssetInfo, ?load:Bool) : lumen.AudioInfo",
+          "return": ": lumen.AudioInfo",
+          "args": [
+            {
+              "name": "asset",
+              "type": "lumen.AssetInfo"
+            },
+            {
+              "name": "?load",
+              "type": "Bool"
+            }
+          ]
+        },
+        {
+          "name": "audio_load_portion_pcm",
+          "meta": [
+            {
+              "name": ":noCompletion",
+              "value": ""
+            }
+          ],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "audio_load_portion_pcm(_info:lumen.AudioInfo, _start:Int, _len:Int) : lumen.AudioDataBlob",
+          "return": ": lumen.AudioDataBlob",
+          "args": [
+            {
+              "name": "_info",
+              "type": "lumen.AudioInfo"
+            },
+            {
+              "name": "_start",
+              "type": "Int"
+            },
+            {
+              "name": "_len",
+              "type": "Int"
+            }
+          ]
+        },
+        {
+          "name": "add",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "add(_list:Array<lumen.AssetInfo>) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "_list",
+              "type": "Array<lumen.AssetInfo>"
+            }
+          ]
+        },
+        {
+          "name": "get_bytes",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "get_bytes(_id:String) : lumen.assets.AssetBytes",
+          "return": ": lumen.assets.AssetBytes",
+          "args": [
+            {
+              "name": "_id",
+              "type": "String"
+            }
+          ]
+        },
+        {
+          "name": "audio_load_wav",
+          "meta": [
+            {
+              "name": ":noCompletion",
+              "value": ""
+            }
+          ],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "audio_load_wav(asset:lumen.AssetInfo, ?load:Bool) : lumen.AudioInfo",
+          "return": ": lumen.AudioInfo",
+          "args": [
+            {
+              "name": "asset",
+              "type": "lumen.AssetInfo"
+            },
+            {
+              "name": "?load",
+              "type": "Bool"
+            }
+          ]
+        },
+        {
+          "name": "audio_load_portion_wav",
+          "meta": [
+            {
+              "name": ":noCompletion",
+              "value": ""
+            }
+          ],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "audio_load_portion_wav(_info:lumen.AudioInfo, _start:Int, _len:Int) : lumen.AudioDataBlob",
+          "return": ": lumen.AudioDataBlob",
+          "args": [
+            {
+              "name": "_info",
+              "type": "lumen.AudioInfo"
+            },
+            {
+              "name": "_start",
+              "type": "Int"
+            },
+            {
+              "name": "_len",
+              "type": "Int"
+            }
+          ]
+        },
+        {
+          "name": "audio_seek_source",
+          "meta": [
+            {
+              "name": ":noCompletion",
+              "value": ""
+            }
+          ],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "audio_seek_source(_info:lumen.AudioInfo, _to:Int) : Bool",
+          "return": ": Bool",
+          "args": [
+            {
+              "name": "_info",
+              "type": "lumen.AudioInfo"
+            },
+            {
+              "name": "_to",
+              "type": "Int"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

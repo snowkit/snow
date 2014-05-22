@@ -1,0 +1,59 @@
+{
+  "source": "lumen.assets.AssetImage",
+  "doc": "",
+  "links": [],
+  "toplinks": [],
+  "sections": [
+    {
+      "name": "Extends",
+      "link": "#Extends",
+      "values": [
+        {
+          "name": "lumen.assets.Asset"
+        }
+      ]
+    },
+    {
+      "name": "Members",
+      "link": "#Members",
+      "values": [
+        {
+          "name": "data",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "data : lumen.ImageInfo",
+          "type": "lumen.ImageInfo",
+          "doc": ""
+        }
+      ]
+    },
+    {
+      "name": "Methods",
+      "link": "#Methods",
+      "values": [
+        {
+          "name": "new",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "new(_info:lumen.AssetInfo, _data:lumen.ImageInfo) ",
+          "return": "",
+          "args": [
+            {
+              "name": "_info",
+              "type": "lumen.AssetInfo"
+            },
+            {
+              "name": "_data",
+              "type": "lumen.ImageInfo"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

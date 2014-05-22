@@ -1,0 +1,741 @@
+{
+  "source": "lumen.window.Window",
+  "doc": "",
+  "links": [],
+  "toplinks": [],
+  "sections": [
+    {
+      "name": "Members",
+      "link": "#Members",
+      "values": [
+        {
+          "name": "lumen_window_fullscreen",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": true,
+          "signature": "lumen_window_fullscreen : Dynamic",
+          "type": "Dynamic",
+          "doc": ""
+        },
+        {
+          "name": "fullscreen_desktop",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "fullscreen_desktop : Bool",
+          "type": "Bool",
+          "doc": ""
+        },
+        {
+          "name": "internal_resize",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": false,
+          "signature": "internal_resize : Bool",
+          "type": "Bool",
+          "doc": ""
+        },
+        {
+          "name": "lumen_window_create",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": true,
+          "signature": "lumen_window_create : Dynamic",
+          "type": "Dynamic",
+          "doc": ""
+        },
+        {
+          "name": "lumen_window_set_title",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": true,
+          "signature": "lumen_window_set_title : Dynamic",
+          "type": "Dynamic",
+          "doc": ""
+        },
+        {
+          "name": "lumen_window_simple_message",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": true,
+          "signature": "lumen_window_simple_message : Dynamic",
+          "type": "Dynamic",
+          "doc": ""
+        },
+        {
+          "name": "lumen_window_set_min_size",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": true,
+          "signature": "lumen_window_set_min_size : Dynamic",
+          "type": "Dynamic",
+          "doc": ""
+        },
+        {
+          "name": "lumen_window_bordered",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": true,
+          "signature": "lumen_window_bordered : Dynamic",
+          "type": "Dynamic",
+          "doc": ""
+        },
+        {
+          "name": "lumen_window_close",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": true,
+          "signature": "lumen_window_close : Dynamic",
+          "type": "Dynamic",
+          "doc": ""
+        },
+        {
+          "name": "lumen_window_set_size",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": true,
+          "signature": "lumen_window_set_size : Dynamic",
+          "type": "Dynamic",
+          "doc": ""
+        },
+        {
+          "name": "lumen_window_grab",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": true,
+          "signature": "lumen_window_grab : Dynamic",
+          "type": "Dynamic",
+          "doc": ""
+        },
+        {
+          "name": "lumen_window_set_max_size",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": true,
+          "signature": "lumen_window_set_max_size : Dynamic",
+          "type": "Dynamic",
+          "doc": ""
+        },
+        {
+          "name": "config",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "config : lumen.WindowConfig",
+          "type": "lumen.WindowConfig",
+          "doc": ""
+        },
+        {
+          "name": "handle",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "handle : Dynamic",
+          "type": "Dynamic",
+          "doc": ""
+        },
+        {
+          "name": "lumen_window_set_position",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": true,
+          "signature": "lumen_window_set_position : Dynamic",
+          "type": "Dynamic",
+          "doc": ""
+        },
+        {
+          "name": "lumen_window_swap",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": true,
+          "signature": "lumen_window_swap : Dynamic",
+          "type": "Dynamic",
+          "doc": ""
+        },
+        {
+          "name": "minimized",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": false,
+          "signature": "minimized : Bool",
+          "type": "Bool",
+          "doc": ""
+        },
+        {
+          "name": "id",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "id : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "asked_config",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "asked_config : lumen.WindowConfig",
+          "type": "lumen.WindowConfig",
+          "doc": ""
+        },
+        {
+          "name": "lumen_window_update",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": true,
+          "signature": "lumen_window_update : Dynamic",
+          "type": "Dynamic",
+          "doc": ""
+        },
+        {
+          "name": "window_event_handler",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "window_event_handler : Dynamic",
+          "type": "Dynamic",
+          "doc": ""
+        },
+        {
+          "name": "lumen_window_render",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": true,
+          "signature": "lumen_window_render : Dynamic",
+          "type": "Dynamic",
+          "doc": ""
+        },
+        {
+          "name": "manager",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "manager : lumen.window.Windowing",
+          "type": "lumen.window.Windowing",
+          "doc": ""
+        },
+        {
+          "name": "internal_position",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": false,
+          "signature": "internal_position : Bool",
+          "type": "Bool",
+          "doc": ""
+        },
+        {
+          "name": "window_render_handler",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "window_render_handler : Dynamic",
+          "type": "Dynamic",
+          "doc": ""
+        }
+      ]
+    },
+    {
+      "name": "Properties",
+      "link": "#Properties",
+      "values": [
+        {
+          "name": "position",
+          "meta": [
+            {
+              "name": ":isVar",
+              "value": ""
+            }
+          ],
+          "get": true,
+          "set": true,
+          "signature": "position : lumen.window.WindowPosition",
+          "doc": "",
+          "type": "lumen.window.WindowPosition",
+          "type_desc": "read/write"
+        },
+        {
+          "name": "fullscreen",
+          "meta": [
+            {
+              "name": ":isVar",
+              "value": ""
+            }
+          ],
+          "get": true,
+          "set": true,
+          "signature": "fullscreen : Bool",
+          "doc": "",
+          "type": "Bool",
+          "type_desc": "read/write"
+        },
+        {
+          "name": "size",
+          "meta": [
+            {
+              "name": ":isVar",
+              "value": ""
+            }
+          ],
+          "get": true,
+          "set": true,
+          "signature": "size : lumen.window.WindowSize",
+          "doc": "",
+          "type": "lumen.window.WindowSize",
+          "type_desc": "read/write"
+        },
+        {
+          "name": "grab",
+          "meta": [
+            {
+              "name": ":isVar",
+              "value": ""
+            }
+          ],
+          "get": true,
+          "set": true,
+          "signature": "grab : Bool",
+          "doc": "",
+          "type": "Bool",
+          "type_desc": "read/write"
+        },
+        {
+          "name": "max_size",
+          "meta": [
+            {
+              "name": ":isVar",
+              "value": ""
+            }
+          ],
+          "get": true,
+          "set": true,
+          "signature": "max_size : lumen.window.WindowSize",
+          "doc": "",
+          "type": "lumen.window.WindowSize",
+          "type_desc": "read/write"
+        },
+        {
+          "name": "min_size",
+          "meta": [
+            {
+              "name": ":isVar",
+              "value": ""
+            }
+          ],
+          "get": true,
+          "set": true,
+          "signature": "min_size : lumen.window.WindowSize",
+          "doc": "",
+          "type": "lumen.window.WindowSize",
+          "type_desc": "read/write"
+        },
+        {
+          "name": "title",
+          "meta": [
+            {
+              "name": ":isVar",
+              "value": ""
+            }
+          ],
+          "get": true,
+          "set": true,
+          "signature": "title : String",
+          "doc": "",
+          "type": "String",
+          "type_desc": "read/write"
+        },
+        {
+          "name": "bordered",
+          "meta": [
+            {
+              "name": ":isVar",
+              "value": ""
+            }
+          ],
+          "get": true,
+          "set": true,
+          "signature": "bordered : Bool",
+          "doc": "",
+          "type": "Bool",
+          "type_desc": "read/write"
+        }
+      ]
+    },
+    {
+      "name": "Methods",
+      "link": "#Methods",
+      "values": [
+        {
+          "name": "swap",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "swap() : Void",
+          "return": ": Void",
+          "args": []
+        },
+        {
+          "name": "render",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "render() : Void",
+          "return": ": Void",
+          "args": []
+        },
+        {
+          "name": "on_event",
+          "meta": [
+            {
+              "name": ":noCompletion",
+              "value": ""
+            }
+          ],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "on_event(_event:lumen.WindowEvent) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "_event",
+              "type": "lumen.WindowEvent"
+            }
+          ]
+        },
+        {
+          "name": "get_fullscreen",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "get_fullscreen() : Bool",
+          "return": ": Bool",
+          "args": []
+        },
+        {
+          "name": "close",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "close() : Void",
+          "return": ": Void",
+          "args": []
+        },
+        {
+          "name": "set_fullscreen",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "set_fullscreen(_enable:Bool) : Bool",
+          "return": ": Bool",
+          "args": [
+            {
+              "name": "_enable",
+              "type": "Bool"
+            }
+          ]
+        },
+        {
+          "name": "new",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "new(_manager:lumen.window.Windowing, _config:lumen.WindowConfig) ",
+          "return": "",
+          "args": [
+            {
+              "name": "_manager",
+              "type": "lumen.window.Windowing"
+            },
+            {
+              "name": "_config",
+              "type": "lumen.WindowConfig"
+            }
+          ]
+        },
+        {
+          "name": "get_bordered",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "get_bordered() : Bool",
+          "return": ": Bool",
+          "args": []
+        },
+        {
+          "name": "update",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "update() : Void",
+          "return": ": Void",
+          "args": []
+        },
+        {
+          "name": "get_grab",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "get_grab() : Bool",
+          "return": ": Bool",
+          "args": []
+        },
+        {
+          "name": "get_max_size",
+          "meta": [],
+          "public": false,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "get_max_size() : lumen.window.WindowSize",
+          "return": ": lumen.window.WindowSize",
+          "args": []
+        },
+        {
+          "name": "get_min_size",
+          "meta": [],
+          "public": false,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "get_min_size() : lumen.window.WindowSize",
+          "return": ": lumen.window.WindowSize",
+          "args": []
+        },
+        {
+          "name": "get_title",
+          "meta": [],
+          "public": false,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "get_title() : String",
+          "return": ": String",
+          "args": []
+        },
+        {
+          "name": "get_position",
+          "meta": [],
+          "public": false,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "get_position() : lumen.window.WindowPosition",
+          "return": ": lumen.window.WindowPosition",
+          "args": []
+        },
+        {
+          "name": "get_size",
+          "meta": [],
+          "public": false,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "get_size() : lumen.window.WindowSize",
+          "return": ": lumen.window.WindowSize",
+          "args": []
+        },
+        {
+          "name": "set_bordered",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "set_bordered(_bordered:Bool) : Bool",
+          "return": ": Bool",
+          "args": [
+            {
+              "name": "_bordered",
+              "type": "Bool"
+            }
+          ]
+        },
+        {
+          "name": "on_window_created",
+          "meta": [],
+          "public": false,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "on_window_created(_handle:Dynamic, _id:Int, _config:lumen.WindowConfig) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "_handle",
+              "type": "Dynamic"
+            },
+            {
+              "name": "_id",
+              "type": "Int"
+            },
+            {
+              "name": "_config",
+              "type": "lumen.WindowConfig"
+            }
+          ]
+        },
+        {
+          "name": "set_title",
+          "meta": [],
+          "public": false,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "set_title(_title:String) : String",
+          "return": ": String",
+          "args": [
+            {
+              "name": "_title",
+              "type": "String"
+            }
+          ]
+        },
+        {
+          "name": "set_max_size",
+          "meta": [],
+          "public": false,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "set_max_size(_size:lumen.window.WindowSize) : lumen.window.WindowSize",
+          "return": ": lumen.window.WindowSize",
+          "args": [
+            {
+              "name": "_size",
+              "type": "lumen.window.WindowSize"
+            }
+          ]
+        },
+        {
+          "name": "set_min_size",
+          "meta": [],
+          "public": false,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "set_min_size(_size:lumen.window.WindowSize) : lumen.window.WindowSize",
+          "return": ": lumen.window.WindowSize",
+          "args": [
+            {
+              "name": "_size",
+              "type": "lumen.window.WindowSize"
+            }
+          ]
+        },
+        {
+          "name": "set_grab",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "set_grab(_grab:Bool) : Bool",
+          "return": ": Bool",
+          "args": [
+            {
+              "name": "_grab",
+              "type": "Bool"
+            }
+          ]
+        },
+        {
+          "name": "simple_message",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "simple_message(message:String, ?title:String) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "message",
+              "type": "String"
+            },
+            {
+              "name": "?title",
+              "type": "String"
+            }
+          ]
+        },
+        {
+          "name": "set_position",
+          "meta": [],
+          "public": false,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "set_position(_pos:lumen.window.WindowPosition) : lumen.window.WindowPosition",
+          "return": ": lumen.window.WindowPosition",
+          "args": [
+            {
+              "name": "_pos",
+              "type": "lumen.window.WindowPosition"
+            }
+          ]
+        },
+        {
+          "name": "set_size",
+          "meta": [],
+          "public": false,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "set_size(_size:lumen.window.WindowSize) : lumen.window.WindowSize",
+          "return": ": lumen.window.WindowSize",
+          "args": [
+            {
+              "name": "_size",
+              "type": "lumen.window.WindowSize"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

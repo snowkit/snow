@@ -1,0 +1,126 @@
+{
+  "source": "lumen.audio.system.AudioSystem",
+  "doc": "",
+  "links": [],
+  "toplinks": [],
+  "sections": [
+    {
+      "name": "Members",
+      "link": "#Members",
+      "values": [
+        {
+          "name": "lib",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "lib : lumen.Lumen",
+          "type": "lumen.Lumen",
+          "doc": ""
+        },
+        {
+          "name": "manager",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "manager : lumen.audio.Audio",
+          "type": "lumen.audio.Audio",
+          "doc": ""
+        }
+      ]
+    },
+    {
+      "name": "Methods",
+      "link": "#Methods",
+      "values": [
+        {
+          "name": "resume",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "resume() : Void",
+          "return": ": Void",
+          "args": []
+        },
+        {
+          "name": "new",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "new(_manager:lumen.audio.Audio, _lib:lumen.Lumen) ",
+          "return": "",
+          "args": [
+            {
+              "name": "_manager",
+              "type": "lumen.audio.Audio"
+            },
+            {
+              "name": "_lib",
+              "type": "lumen.Lumen"
+            }
+          ]
+        },
+        {
+          "name": "update",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "update() : Void",
+          "return": ": Void",
+          "args": []
+        },
+        {
+          "name": "suspend",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "suspend() : Void",
+          "return": ": Void",
+          "args": []
+        },
+        {
+          "name": "destroy",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "destroy() : Void",
+          "return": ": Void",
+          "args": []
+        },
+        {
+          "name": "toggle",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "toggle() : Void",
+          "return": ": Void",
+          "args": []
+        },
+        {
+          "name": "init",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "init() : Void",
+          "return": ": Void",
+          "args": []
+        }
+      ]
+    }
+  ]
+}

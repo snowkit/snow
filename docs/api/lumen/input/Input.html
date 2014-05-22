@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+    
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <link rel="shortcut icon" href="../../../images/favicon.png" />
+
+        <link rel="stylesheet" type="text/css" href="../../../css/style.css" media="all">
+        <link rel="stylesheet" type="text/css" href="../../../css/code.css" media="all">
+        <link rel="stylesheet" type="text/css" href="../../../css/font.css" media="all">
+        
+        <script src="../../../js/jquery-2.0.3.min.js"> </script>
+
+        <script>
+
+            $(document).ready(function() {
+
+                $('.section').css('display','none');
+                $('.readmore').click(function(e){
+                    var _child = $(this).parent().find('.section').first();
+                    var _opp = 'block';
+                    if( _child.css('display') == 'block' ) {
+                        _opp = 'none';
+                        $(this).text('more ...');
+                    } else {
+                        $(this).text('less ...');
+                    }
+                    _child.css('display', _opp);
+                });
+
+                $('div.sample').on('click', function(e){
+                        //get the data tag
+                    var content = $(this).attr('data-content');
+                        //remove clicking handler
+                    $(this).off('click');
+                        //replace the content!
+                    $(this).html('<iframe src="'+content+'" sandbox="allow-same-origin allow-scripts" style="overflow:hidden; scrollbar:none; border: 0; width:645px; height:450px;"></iframe> ')
+                });
+
+            }); //document.ready
+
+        </script>
+    </head>
+
+    <body>
+        <div class="content">
+            <p><a href="../../../index.html"><img src="../../../images/logo.png" alt="Logo"></a></p>
+<hr>
+<h1 id="input">Input</h1>
+<p>&emsp;&emsp;&emsp;home<br><a href="../../../api/index.html#lumen.input">API Index</a><br>&emsp;&emsp;&emsp;parent<br><a href="../">lumen</a><br>&emsp;&emsp;&emsp;current<br><a href="./">lumen.input</a> / Input</p>
+<p><br/></p>
+<hr>
+<p><a href="#Methods">Methods</a>   </p>
+<hr>
+<p>&nbsp;   </p>
+<p>&nbsp;   </p>
+<p><a class="lift" name="Methods" ></a></p>
+<h3 id="methods">Methods</h3>
+<hr>
+<p><a class="lift" name="destroy" href="#destroy">destroy</a></p>
+<p><code>destroy() : Void</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="dispatch_gamepad_event" href="#dispatch_gamepad_event">dispatch_gamepad_event</a></p>
+<p><code>dispatch_gamepad_event(_event:lumen.input.GamepadEvent) : Void</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="dispatch_key_event" href="#dispatch_key_event">dispatch_key_event</a></p>
+<p><code>dispatch_key_event(_event:lumen.input.KeyEvent) : Void</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="dispatch_mouse_event" href="#dispatch_mouse_event">dispatch_mouse_event</a></p>
+<p><code>dispatch_mouse_event(_event:lumen.input.MouseEvent) : Void</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="dispatch_text_event" href="#dispatch_text_event">dispatch_text_event</a></p>
+<p><code>dispatch_text_event(_event:lumen.input.TextEvent) : Void</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="dispatch_touch_event" href="#dispatch_touch_event">dispatch_touch_event</a></p>
+<p><code>dispatch_touch_event(_event:lumen.input.TouchEvent) : Void</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="keydown" href="#keydown">keydown</a></p>
+<p><code>keydown(_code:Int) : Bool</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="keypressed" href="#keypressed">keypressed</a></p>
+<p><code>keypressed(_code:Int) : Bool</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="keyreleased" href="#keyreleased">keyreleased</a></p>
+<p><code>keyreleased(_code:Int) : Bool</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="mod_state_from_event" href="#mod_state_from_event">mod_state_from_event</a></p>
+<p><code>mod_state_from_event(event:lumen.InputEvent) : lumen.input.ModState</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="new" href="#new">new</a></p>
+<p><code>new(_lib:lumen.Lumen)</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="on_event" href="#on_event">on_event</a></p>
+<p><code>on_event(_event:lumen.SystemEvent) : Void</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="on_gamepad_added" href="#on_gamepad_added">on_gamepad_added</a></p>
+<p><code>on_gamepad_added(_event:Dynamic) : Void</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="on_gamepad_removed" href="#on_gamepad_removed">on_gamepad_removed</a></p>
+<p><code>on_gamepad_removed(_event:Dynamic) : Void</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="update" href="#update">update</a></p>
+<p><code>update() : Void</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p>&nbsp;
+&nbsp;
+&nbsp;</p>
+<hr>
+<p>&nbsp;<br>&nbsp;   </p>
+
+        </div>
+    </body>
+
+</html>

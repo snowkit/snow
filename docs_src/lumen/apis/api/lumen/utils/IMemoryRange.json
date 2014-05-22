@@ -1,0 +1,47 @@
+{
+  "source": "lumen.utils.IMemoryRange",
+  "doc": "",
+  "links": [],
+  "toplinks": [],
+  "sections": [
+    {
+      "name": "Methods",
+      "link": "#Methods",
+      "values": [
+        {
+          "name": "getByteBuffer",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "getByteBuffer() : lumen.utils.ByteArray",
+          "return": ": lumen.utils.ByteArray",
+          "args": []
+        },
+        {
+          "name": "getLength",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "getLength() : Int",
+          "return": ": Int",
+          "args": []
+        },
+        {
+          "name": "getStart",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "getStart() : Int",
+          "return": ": Int",
+          "args": []
+        }
+      ]
+    }
+  ]
+}

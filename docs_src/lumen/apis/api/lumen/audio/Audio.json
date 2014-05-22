@@ -1,0 +1,288 @@
+{
+  "source": "lumen.audio.Audio",
+  "doc": "",
+  "links": [],
+  "toplinks": [],
+  "sections": [
+    {
+      "name": "Members",
+      "link": "#Members",
+      "values": [
+        {
+          "name": "active",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "active : Bool",
+          "type": "Bool",
+          "doc": ""
+        },
+        {
+          "name": "system",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "system : lumen.audio.system.LumenAudioSystem",
+          "type": "lumen.audio.system.LumenAudioSystem",
+          "doc": ""
+        },
+        {
+          "name": "sound_list",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": false,
+          "signature": "sound_list : Map<String,lumen.audio.system.Sound>",
+          "type": "Map<String,lumen.audio.system.Sound>",
+          "doc": ""
+        },
+        {
+          "name": "lib",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "lib : lumen.Lumen",
+          "type": "lumen.Lumen",
+          "doc": ""
+        },
+        {
+          "name": "stream_list",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": false,
+          "signature": "stream_list : Map<String,lumen.audio.system.SoundStream>",
+          "type": "Map<String,lumen.audio.system.SoundStream>",
+          "doc": ""
+        }
+      ]
+    },
+    {
+      "name": "Methods",
+      "link": "#Methods",
+      "values": [
+        {
+          "name": "create",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "create(_id:String, ?_name:String, ?streaming:Bool) : lumen.audio.system.Sound",
+          "return": ": lumen.audio.system.Sound",
+          "args": [
+            {
+              "name": "_id",
+              "type": "String"
+            },
+            {
+              "name": "?_name",
+              "type": "String"
+            },
+            {
+              "name": "?streaming",
+              "type": "Bool"
+            }
+          ]
+        },
+        {
+          "name": "pitch",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "pitch(_name:String, _pitch:Float) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "_name",
+              "type": "String"
+            },
+            {
+              "name": "_pitch",
+              "type": "Float"
+            }
+          ]
+        },
+        {
+          "name": "new",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "new(_lib:lumen.Lumen) ",
+          "return": "",
+          "args": [
+            {
+              "name": "_lib",
+              "type": "lumen.Lumen"
+            }
+          ]
+        },
+        {
+          "name": "stop",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "stop(_name:String) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "_name",
+              "type": "String"
+            }
+          ]
+        },
+        {
+          "name": "volume",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "volume(_name:String, _volume:Float) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "_name",
+              "type": "String"
+            },
+            {
+              "name": "_volume",
+              "type": "Float"
+            }
+          ]
+        },
+        {
+          "name": "pause",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "pause(_name:String) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "_name",
+              "type": "String"
+            }
+          ]
+        },
+        {
+          "name": "on_event",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "on_event(_event:lumen.SystemEvent) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "_event",
+              "type": "lumen.SystemEvent"
+            }
+          ]
+        },
+        {
+          "name": "update",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "update() : Void",
+          "return": ": Void",
+          "args": []
+        },
+        {
+          "name": "play",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "play(_name:String) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "_name",
+              "type": "String"
+            }
+          ]
+        },
+        {
+          "name": "destroy",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "destroy() : Void",
+          "return": ": Void",
+          "args": []
+        },
+        {
+          "name": "get",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "get(_name:String) : lumen.audio.system.Sound",
+          "return": ": lumen.audio.system.Sound",
+          "args": [
+            {
+              "name": "_name",
+              "type": "String"
+            }
+          ]
+        },
+        {
+          "name": "pan",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "pan(_name:String, _pan:Float) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "_name",
+              "type": "String"
+            },
+            {
+              "name": "_pan",
+              "type": "Float"
+            }
+          ]
+        },
+        {
+          "name": "toggle",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "toggle(_name:String) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "_name",
+              "type": "String"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

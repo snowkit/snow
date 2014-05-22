@@ -1,0 +1,76 @@
+{
+  "source": "lumen.input.system.sdl.KeyEventTypes",
+  "doc": "",
+  "links": [],
+  "toplinks": [],
+  "sections": [
+    {
+      "name": "Members",
+      "link": "#Members",
+      "values": [
+        {
+          "name": "ke_textinput",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": true,
+          "signature": "ke_textinput : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "ke_down",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": true,
+          "signature": "ke_down : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "ke_up",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": true,
+          "signature": "ke_up : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "ke_textedit",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": true,
+          "signature": "ke_textedit : Int",
+          "type": "Int",
+          "doc": ""
+        }
+      ]
+    },
+    {
+      "name": "Methods",
+      "link": "#Methods",
+      "values": [
+        {
+          "name": "typed",
+          "meta": [],
+          "public": true,
+          "static": true,
+          "inline": false,
+          "doc": "",
+          "signature": "typed(ke_type:Int) : lumen.input.system.sdl.KeyEventType",
+          "return": ": lumen.input.system.sdl.KeyEventType",
+          "args": [
+            {
+              "name": "ke_type",
+              "type": "Int"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

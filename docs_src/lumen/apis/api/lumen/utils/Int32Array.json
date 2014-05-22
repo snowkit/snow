@@ -1,0 +1,87 @@
+{
+  "source": "lumen.utils.Int32Array",
+  "doc": "",
+  "links": [],
+  "toplinks": [],
+  "sections": [
+    {
+      "name": "Extends",
+      "link": "#Extends",
+      "values": [
+        {
+          "name": "lumen.utils.ArrayBufferView"
+        }
+      ]
+    },
+    {
+      "name": "Methods",
+      "link": "#Methods",
+      "values": [
+        {
+          "name": "set",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "set(bufferOrArray:Dynamic, ?offset:Int) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "bufferOrArray",
+              "type": "Dynamic"
+            },
+            {
+              "name": "?offset",
+              "type": "Int"
+            }
+          ]
+        },
+        {
+          "name": "subarray",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "subarray(start:Int, ?end:Int) : lumen.utils.Int32Array",
+          "return": ": lumen.utils.Int32Array",
+          "args": [
+            {
+              "name": "start",
+              "type": "Int"
+            },
+            {
+              "name": "?end",
+              "type": "Int"
+            }
+          ]
+        },
+        {
+          "name": "new",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "new(bufferOrArray:Dynamic, ?start:Int, ?length:Int) ",
+          "return": "",
+          "args": [
+            {
+              "name": "bufferOrArray",
+              "type": "Dynamic"
+            },
+            {
+              "name": "?start",
+              "type": "Int"
+            },
+            {
+              "name": "?length",
+              "type": "Int"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

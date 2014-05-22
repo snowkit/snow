@@ -1,0 +1,50 @@
+{
+  "source": "lumen.io.IO",
+  "doc": "",
+  "links": [],
+  "toplinks": [],
+  "sections": [
+    {
+      "name": "Members",
+      "link": "#Members",
+      "values": [
+        {
+          "name": "lumen_iosrc_from_file",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": true,
+          "signature": "lumen_iosrc_from_file : Dynamic",
+          "type": "Dynamic",
+          "doc": ""
+        }
+      ]
+    },
+    {
+      "name": "Methods",
+      "link": "#Methods",
+      "values": [
+        {
+          "name": "from_file",
+          "meta": [],
+          "public": true,
+          "static": true,
+          "inline": false,
+          "doc": "",
+          "signature": "from_file(_id:String, ?_mode:String) : lumen.io.IOFile",
+          "return": ": lumen.io.IOFile",
+          "args": [
+            {
+              "name": "_id",
+              "type": "String"
+            },
+            {
+              "name": "?_mode",
+              "type": "String"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

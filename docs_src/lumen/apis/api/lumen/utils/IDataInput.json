@@ -1,0 +1,228 @@
+{
+  "source": "lumen.utils.IDataInput",
+  "doc": "",
+  "links": [],
+  "toplinks": [],
+  "sections": [
+    {
+      "name": "Properties",
+      "link": "#Properties",
+      "values": [
+        {
+          "name": "bytesAvailable",
+          "meta": [],
+          "get": true,
+          "set": false,
+          "signature": "bytesAvailable : Int",
+          "doc": "",
+          "type": "Int",
+          "type_desc": "(read only)"
+        },
+        {
+          "name": "endian",
+          "meta": [],
+          "get": true,
+          "set": true,
+          "signature": "endian : String",
+          "doc": "",
+          "type": "String",
+          "type_desc": "read/write"
+        }
+      ]
+    },
+    {
+      "name": "Methods",
+      "link": "#Methods",
+      "values": [
+        {
+          "name": "get_endian",
+          "meta": [],
+          "public": false,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "get_endian() : String",
+          "return": ": String",
+          "args": []
+        },
+        {
+          "name": "readUnsignedInt",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "readUnsignedInt() : Int",
+          "return": ": Int",
+          "args": []
+        },
+        {
+          "name": "set_endian",
+          "meta": [],
+          "public": false,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "set_endian(s:String) : String",
+          "return": ": String",
+          "args": [
+            {
+              "name": "s",
+              "type": "String"
+            }
+          ]
+        },
+        {
+          "name": "readUnsignedShort",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "readUnsignedShort() : Int",
+          "return": ": Int",
+          "args": []
+        },
+        {
+          "name": "get_bytesAvailable",
+          "meta": [],
+          "public": false,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "get_bytesAvailable() : Int",
+          "return": ": Int",
+          "args": []
+        },
+        {
+          "name": "readShort",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "readShort() : Int",
+          "return": ": Int",
+          "args": []
+        },
+        {
+          "name": "readDouble",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "readDouble() : Float",
+          "return": ": Float",
+          "args": []
+        },
+        {
+          "name": "readUnsignedByte",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "readUnsignedByte() : Int",
+          "return": ": Int",
+          "args": []
+        },
+        {
+          "name": "readUTFBytes",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "readUTFBytes(inLen:Int) : String",
+          "return": ": String",
+          "args": [
+            {
+              "name": "inLen",
+              "type": "Int"
+            }
+          ]
+        },
+        {
+          "name": "readBoolean",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "readBoolean() : Bool",
+          "return": ": Bool",
+          "args": []
+        },
+        {
+          "name": "readInt",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "readInt() : Int",
+          "return": ": Int",
+          "args": []
+        },
+        {
+          "name": "readUTF",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "readUTF() : String",
+          "return": ": String",
+          "args": []
+        },
+        {
+          "name": "readByte",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "readByte() : Int",
+          "return": ": Int",
+          "args": []
+        },
+        {
+          "name": "readBytes",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "readBytes(outData:lumen.utils.ByteArray, ?inOffset:Int, ?inLen:Int) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "outData",
+              "type": "lumen.utils.ByteArray"
+            },
+            {
+              "name": "?inOffset",
+              "type": "Int"
+            },
+            {
+              "name": "?inLen",
+              "type": "Int"
+            }
+          ]
+        },
+        {
+          "name": "readFloat",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "readFloat() : Float",
+          "return": ": Float",
+          "args": []
+        }
+      ]
+    }
+  ]
+}

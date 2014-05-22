@@ -1,0 +1,326 @@
+{
+  "source": "lumen.window.Windowing",
+  "doc": "",
+  "links": [],
+  "toplinks": [],
+  "sections": [
+    {
+      "name": "Members",
+      "link": "#Members",
+      "values": [
+        {
+          "name": "lumen_desktop_get_display_count",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": true,
+          "signature": "lumen_desktop_get_display_count : Dynamic",
+          "type": "Dynamic",
+          "doc": ""
+        },
+        {
+          "name": "system",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "system : lumen.window.system.LumenWindowSystem",
+          "type": "lumen.window.system.LumenWindowSystem",
+          "doc": ""
+        },
+        {
+          "name": "lumen_desktop_get_display_bounds",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": true,
+          "signature": "lumen_desktop_get_display_bounds : Dynamic",
+          "type": "Dynamic",
+          "doc": ""
+        },
+        {
+          "name": "lib",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": false,
+          "signature": "lib : lumen.Lumen",
+          "type": "lumen.Lumen",
+          "doc": ""
+        },
+        {
+          "name": "lumen_desktop_get_display_native_mode",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": true,
+          "signature": "lumen_desktop_get_display_native_mode : Dynamic",
+          "type": "Dynamic",
+          "doc": ""
+        },
+        {
+          "name": "lumen_desktop_get_display_current_mode",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": true,
+          "signature": "lumen_desktop_get_display_current_mode : Dynamic",
+          "type": "Dynamic",
+          "doc": ""
+        },
+        {
+          "name": "lumen_desktop_get_display_mode",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": true,
+          "signature": "lumen_desktop_get_display_mode : Dynamic",
+          "type": "Dynamic",
+          "doc": ""
+        },
+        {
+          "name": "lumen_desktop_get_display_name",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": true,
+          "signature": "lumen_desktop_get_display_name : Dynamic",
+          "type": "Dynamic",
+          "doc": ""
+        },
+        {
+          "name": "window_count",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "window_count : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "lumen_desktop_get_display_mode_count",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": true,
+          "signature": "lumen_desktop_get_display_mode_count : Dynamic",
+          "type": "Dynamic",
+          "doc": ""
+        },
+        {
+          "name": "window_list",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "window_list : Map<Int,lumen.window.Window>",
+          "type": "Map<Int,lumen.window.Window>",
+          "doc": ""
+        }
+      ]
+    },
+    {
+      "name": "Methods",
+      "link": "#Methods",
+      "values": [
+        {
+          "name": "create",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "create(_config:lumen.WindowConfig) : lumen.window.Window",
+          "return": ": lumen.window.Window",
+          "args": [
+            {
+              "name": "_config",
+              "type": "lumen.WindowConfig"
+            }
+          ]
+        },
+        {
+          "name": "new",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "new(_lib:lumen.Lumen) ",
+          "return": "",
+          "args": [
+            {
+              "name": "_lib",
+              "type": "lumen.Lumen"
+            }
+          ]
+        },
+        {
+          "name": "desktop_get_display_mode",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "desktop_get_display_mode(display:Int, mode_index:Int) : lumen.window.DisplayMode",
+          "return": ": lumen.window.DisplayMode",
+          "args": [
+            {
+              "name": "display",
+              "type": "Int"
+            },
+            {
+              "name": "mode_index",
+              "type": "Int"
+            }
+          ]
+        },
+        {
+          "name": "desktop_get_display_bounds",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "desktop_get_display_bounds(display:Int) : lumen.window.DisplayBounds",
+          "return": ": lumen.window.DisplayBounds",
+          "args": [
+            {
+              "name": "display",
+              "type": "Int"
+            }
+          ]
+        },
+        {
+          "name": "desktop_get_display_name",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "desktop_get_display_name(display:Int) : String",
+          "return": ": String",
+          "args": [
+            {
+              "name": "display",
+              "type": "Int"
+            }
+          ]
+        },
+        {
+          "name": "desktop_get_display_mode_count",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "desktop_get_display_mode_count(display:Int) : Int",
+          "return": ": Int",
+          "args": [
+            {
+              "name": "display",
+              "type": "Int"
+            }
+          ]
+        },
+        {
+          "name": "desktop_get_display_current_mode",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "desktop_get_display_current_mode(display:Int) : lumen.window.DisplayMode",
+          "return": ": lumen.window.DisplayMode",
+          "args": [
+            {
+              "name": "display",
+              "type": "Int"
+            }
+          ]
+        },
+        {
+          "name": "on_event",
+          "meta": [
+            {
+              "name": ":noCompletion",
+              "value": ""
+            }
+          ],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "on_event(_event:lumen.SystemEvent) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "_event",
+              "type": "lumen.SystemEvent"
+            }
+          ]
+        },
+        {
+          "name": "update",
+          "meta": [
+            {
+              "name": ":noCompletion",
+              "value": ""
+            }
+          ],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "update() : Void",
+          "return": ": Void",
+          "args": []
+        },
+        {
+          "name": "desktop_get_display_count",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "desktop_get_display_count() : Int",
+          "return": ": Int",
+          "args": []
+        },
+        {
+          "name": "destroy",
+          "meta": [
+            {
+              "name": ":noCompletion",
+              "value": ""
+            }
+          ],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "destroy() : Void",
+          "return": ": Void",
+          "args": []
+        },
+        {
+          "name": "desktop_get_display_native_mode",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "desktop_get_display_native_mode(display:Int) : lumen.window.DisplayMode",
+          "return": ": lumen.window.DisplayMode",
+          "args": [
+            {
+              "name": "display",
+              "type": "Int"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

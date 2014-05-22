@@ -1,0 +1,96 @@
+{
+  "source": "lumen.utils.ArrayBufferView",
+  "doc": "",
+  "links": [],
+  "toplinks": [],
+  "sections": [
+    {
+      "name": "Implements",
+      "link": "#Implements",
+      "values": [
+        {
+          "name": "lumen.utils.IMemoryRange"
+        }
+      ]
+    },
+    {
+      "name": "Members",
+      "link": "#Members",
+      "values": [
+        {
+          "name": "bytes",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": false,
+          "signature": "bytes : haxe.io.BytesData",
+          "type": "haxe.io.BytesData",
+          "doc": ""
+        }
+      ]
+    },
+    {
+      "name": "Methods",
+      "link": "#Methods",
+      "values": [
+        {
+          "name": "getByteBuffer",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "getByteBuffer() : lumen.utils.ByteArray",
+          "return": ": lumen.utils.ByteArray",
+          "args": []
+        },
+        {
+          "name": "getLength",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "getLength() : Int",
+          "return": ": Int",
+          "args": []
+        },
+        {
+          "name": "new",
+          "meta": [],
+          "public": false,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "new(lengthOrBuffer:Dynamic, ?byteOffset:Int, ?length:Int) ",
+          "return": "",
+          "args": [
+            {
+              "name": "lengthOrBuffer",
+              "type": "Dynamic"
+            },
+            {
+              "name": "?byteOffset",
+              "type": "Int"
+            },
+            {
+              "name": "?length",
+              "type": "Int"
+            }
+          ]
+        },
+        {
+          "name": "getStart",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "getStart() : Int",
+          "return": ": Int",
+          "args": []
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,259 @@
+{
+  "source": "lumen.utils.compat.Matrix3D",
+  "doc": "",
+  "links": [],
+  "toplinks": [],
+  "sections": [
+    {
+      "name": "Members",
+      "link": "#Members",
+      "values": [
+        {
+          "name": "rawData",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "rawData : lumen.utils.compat.Vector<Float>",
+          "type": "lumen.utils.compat.Vector<Float>",
+          "doc": ""
+        }
+      ]
+    },
+    {
+      "name": "Properties",
+      "link": "#Properties",
+      "values": [
+        {
+          "name": "position",
+          "meta": [],
+          "get": true,
+          "set": true,
+          "signature": "position : lumen.utils.compat.Vector3D",
+          "doc": "",
+          "type": "lumen.utils.compat.Vector3D",
+          "type_desc": "read/write"
+        },
+        {
+          "name": "determinant",
+          "meta": [],
+          "get": true,
+          "set": false,
+          "signature": "determinant : Float",
+          "doc": "",
+          "type": "Float",
+          "type_desc": "(read only)"
+        }
+      ]
+    },
+    {
+      "name": "Methods",
+      "link": "#Methods",
+      "values": [
+        {
+          "name": "createABCD",
+          "meta": [],
+          "public": true,
+          "static": true,
+          "inline": false,
+          "doc": "",
+          "signature": "createABCD(a:Float, b:Float, c:Float, d:Float, tx:Float, ty:Float) : lumen.utils.compat.Matrix3D",
+          "return": ": lumen.utils.compat.Matrix3D",
+          "args": [
+            {
+              "name": "a",
+              "type": "Float"
+            },
+            {
+              "name": "b",
+              "type": "Float"
+            },
+            {
+              "name": "c",
+              "type": "Float"
+            },
+            {
+              "name": "d",
+              "type": "Float"
+            },
+            {
+              "name": "tx",
+              "type": "Float"
+            },
+            {
+              "name": "ty",
+              "type": "Float"
+            }
+          ]
+        },
+        {
+          "name": "new",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "new(?v:lumen.utils.compat.Vector<Float>) ",
+          "return": "",
+          "args": [
+            {
+              "name": "?v",
+              "type": "lumen.utils.compat.Vector<Float>"
+            }
+          ]
+        },
+        {
+          "name": "append",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "append(lhs:lumen.utils.compat.Matrix3D) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "lhs",
+              "type": "lumen.utils.compat.Matrix3D"
+            }
+          ]
+        },
+        {
+          "name": "decompose",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "decompose() : lumen.utils.compat.Vector<lumen.utils.compat.Vector3D>",
+          "return": ": lumen.utils.compat.Vector<lumen.utils.compat.Vector3D>",
+          "args": []
+        },
+        {
+          "name": "recompose",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "recompose(components:lumen.utils.compat.Vector<lumen.utils.compat.Vector3D>) : Bool",
+          "return": ": Bool",
+          "args": [
+            {
+              "name": "components",
+              "type": "lumen.utils.compat.Vector<lumen.utils.compat.Vector3D>"
+            }
+          ]
+        },
+        {
+          "name": "createOrtho",
+          "meta": [],
+          "public": true,
+          "static": true,
+          "inline": false,
+          "doc": "",
+          "signature": "createOrtho(x0:Float, x1:Float, y0:Float, y1:Float, zNear:Float, zFar:Float) : lumen.utils.compat.Matrix3D",
+          "return": ": lumen.utils.compat.Matrix3D",
+          "args": [
+            {
+              "name": "x0",
+              "type": "Float"
+            },
+            {
+              "name": "x1",
+              "type": "Float"
+            },
+            {
+              "name": "y0",
+              "type": "Float"
+            },
+            {
+              "name": "y1",
+              "type": "Float"
+            },
+            {
+              "name": "zNear",
+              "type": "Float"
+            },
+            {
+              "name": "zFar",
+              "type": "Float"
+            }
+          ]
+        },
+        {
+          "name": "create2D",
+          "meta": [],
+          "public": true,
+          "static": true,
+          "inline": false,
+          "doc": "",
+          "signature": "create2D(x:Float, y:Float, ?scale:Float, ?rotation:Float) : lumen.utils.compat.Matrix3D",
+          "return": ": lumen.utils.compat.Matrix3D",
+          "args": [
+            {
+              "name": "x",
+              "type": "Float"
+            },
+            {
+              "name": "y",
+              "type": "Float"
+            },
+            {
+              "name": "?scale",
+              "type": "Float"
+            },
+            {
+              "name": "?rotation",
+              "type": "Float"
+            }
+          ]
+        },
+        {
+          "name": "appendRotation",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "appendRotation(degrees:Float, axis:lumen.utils.compat.Vector3D, ?pivotPoint:lumen.utils.compat.Vector3D) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "degrees",
+              "type": "Float"
+            },
+            {
+              "name": "axis",
+              "type": "lumen.utils.compat.Vector3D"
+            },
+            {
+              "name": "?pivotPoint",
+              "type": "lumen.utils.compat.Vector3D"
+            }
+          ]
+        },
+        {
+          "name": "transformVectors",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "transformVectors(vin:lumen.utils.compat.Vector<Float>, vout:lumen.utils.compat.Vector<Float>) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "vin",
+              "type": "lumen.utils.compat.Vector<Float>"
+            },
+            {
+              "name": "vout",
+              "type": "lumen.utils.compat.Vector<Float>"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -3,10 +3,9 @@ var marked      = require('marked'),
     mustache    = require('mustache'),
     path        = require('path'),
     fs          = require('graceful-fs'),
-    hljs        = require('highlight.js'),
     wrench      = require('wrench'),
     util        = require('util'),
-    colorize    = require('pygments').colorize,
+    hljs        = require('./modules/highlight.js'),
     jsonic      = require('jsonic'),
     helper      = require('./generate_helper'),
     api         = require('./generate_api');
@@ -17,9 +16,10 @@ var marked      = require('marked'),
     var _marked_options = {
         gfm: true,
         highlight: function (code, _lang, callback) {
-            colorize(code, 'hx', 'html', function(data) {
-                callback(null, data);
-            });
+            // colorize(code, 'hx', 'html', function(data) {
+            //     callback(null, data);
+            // });
+            callback( null, hljs.highlight('haxe', code).value );
         },
         tables: true,
         breaks: false,
@@ -211,6 +211,14 @@ var marked      = require('marked'),
         helper.log('- copying images');
 
     helper.copy_folder_recursively( config.images_path, config.output_path + config.images_output_path, true );
+
+    if(config.samples_path) {
+
+            helper.log('- copying samples');
+
+        helper.copy_folder_recursively( config.samples_path, config.output_path + config.samples_output_path, true );
+
+    } //if samples path
 
         helper.log('- copying style template');
 

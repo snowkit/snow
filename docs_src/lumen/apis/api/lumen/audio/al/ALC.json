@@ -1,0 +1,619 @@
+{
+  "source": "lumen.audio.al.ALC",
+  "doc": "",
+  "links": [],
+  "toplinks": [],
+  "sections": [
+    {
+      "name": "Members",
+      "link": "#Members",
+      "values": [
+        {
+          "name": "INVALID_CONTEXT",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "INVALID_CONTEXT : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "ALL_ATTRIBUTES",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "ALL_ATTRIBUTES : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "DEVICE_SPECIFIER",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "DEVICE_SPECIFIER : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "OUT_OF_MEMORY",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "OUT_OF_MEMORY : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "alhx_alcMakeContextCurrent",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": true,
+          "signature": "alhx_alcMakeContextCurrent : Dynamic",
+          "type": "Dynamic",
+          "doc": ""
+        },
+        {
+          "name": "alhx_alcGetCurrentContext",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": true,
+          "signature": "alhx_alcGetCurrentContext : Dynamic",
+          "type": "Dynamic",
+          "doc": ""
+        },
+        {
+          "name": "alhx_alcGetContextsDevice",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": true,
+          "signature": "alhx_alcGetContextsDevice : Dynamic",
+          "type": "Dynamic",
+          "doc": ""
+        },
+        {
+          "name": "STEREO_SOURCES",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "STEREO_SOURCES : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "INVALID_VALUE_MEANING",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "INVALID_VALUE_MEANING : String",
+          "type": "String",
+          "doc": ""
+        },
+        {
+          "name": "alhx_alcCreateContext",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": true,
+          "signature": "alhx_alcCreateContext : Dynamic",
+          "type": "Dynamic",
+          "doc": ""
+        },
+        {
+          "name": "DEFAULT_DEVICE_SPECIFIER",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "DEFAULT_DEVICE_SPECIFIER : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "INVALID_ENUM_MEANING",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "INVALID_ENUM_MEANING : String",
+          "type": "String",
+          "doc": ""
+        },
+        {
+          "name": "MONO_SOURCES",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "MONO_SOURCES : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "EXTENSIONS",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "EXTENSIONS : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "ENUMERATE_ALL_EXT",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "ENUMERATE_ALL_EXT : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "alhx_alcProcessContext",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": true,
+          "signature": "alhx_alcProcessContext : Dynamic",
+          "type": "Dynamic",
+          "doc": ""
+        },
+        {
+          "name": "FALSE",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "FALSE : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "OUT_OF_MEMORY_MEANING",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "OUT_OF_MEMORY_MEANING : String",
+          "type": "String",
+          "doc": ""
+        },
+        {
+          "name": "alhx_alcGetError",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": true,
+          "signature": "alhx_alcGetError : Dynamic",
+          "type": "Dynamic",
+          "doc": ""
+        },
+        {
+          "name": "SYNC",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "SYNC : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "DEFAULT_ALL_DEVICES_SPECIFIER",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "DEFAULT_ALL_DEVICES_SPECIFIER : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "alhx_alcDestroyContext",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": true,
+          "signature": "alhx_alcDestroyContext : Dynamic",
+          "type": "Dynamic",
+          "doc": ""
+        },
+        {
+          "name": "INVALID_DEVICE",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "INVALID_DEVICE : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "alhx_alcCloseDevice",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": true,
+          "signature": "alhx_alcCloseDevice : Dynamic",
+          "type": "Dynamic",
+          "doc": ""
+        },
+        {
+          "name": "alhx_alcSuspendContext",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": true,
+          "signature": "alhx_alcSuspendContext : Dynamic",
+          "type": "Dynamic",
+          "doc": ""
+        },
+        {
+          "name": "INVALID_DEVICE_MEANING",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "INVALID_DEVICE_MEANING : String",
+          "type": "String",
+          "doc": ""
+        },
+        {
+          "name": "alhx_alcGetString",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": true,
+          "signature": "alhx_alcGetString : Dynamic",
+          "type": "Dynamic",
+          "doc": ""
+        },
+        {
+          "name": "INVALID_VALUE",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "INVALID_VALUE : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "alhx_alcOpenDevice",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": true,
+          "signature": "alhx_alcOpenDevice : Dynamic",
+          "type": "Dynamic",
+          "doc": ""
+        },
+        {
+          "name": "INVALID_ENUM",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "INVALID_ENUM : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "alhx_alcGetIntegerv",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": true,
+          "signature": "alhx_alcGetIntegerv : Dynamic",
+          "type": "Dynamic",
+          "doc": ""
+        },
+        {
+          "name": "ATTRIBUTES_SIZE",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "ATTRIBUTES_SIZE : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "INVALID_CONTEXT_MEANING",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "INVALID_CONTEXT_MEANING : String",
+          "type": "String",
+          "doc": ""
+        },
+        {
+          "name": "FREQUENCY",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "FREQUENCY : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "REFRESH",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "REFRESH : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "TRUE",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "TRUE : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "NO_ERROR",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "NO_ERROR : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "ALL_DEVICES_SPECIFIER",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "ALL_DEVICES_SPECIFIER : Int",
+          "type": "Int",
+          "doc": ""
+        }
+      ]
+    },
+    {
+      "name": "Methods",
+      "link": "#Methods",
+      "values": [
+        {
+          "name": "createContext",
+          "meta": [],
+          "public": true,
+          "static": true,
+          "inline": false,
+          "doc": "",
+          "signature": "createContext(device:Dynamic, ?attrlist:Array<Int>) : Dynamic",
+          "return": ": Dynamic",
+          "args": [
+            {
+              "name": "device",
+              "type": "Dynamic"
+            },
+            {
+              "name": "?attrlist",
+              "type": "Array<Int>"
+            }
+          ]
+        },
+        {
+          "name": "destroyContext",
+          "meta": [],
+          "public": true,
+          "static": true,
+          "inline": false,
+          "doc": "",
+          "signature": "destroyContext(context:Dynamic) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "context",
+              "type": "Dynamic"
+            }
+          ]
+        },
+        {
+          "name": "getError",
+          "meta": [],
+          "public": true,
+          "static": true,
+          "inline": false,
+          "doc": "",
+          "signature": "getError(device:Dynamic) : Int",
+          "return": ": Int",
+          "args": [
+            {
+              "name": "device",
+              "type": "Dynamic"
+            }
+          ]
+        },
+        {
+          "name": "openDevice",
+          "meta": [],
+          "public": true,
+          "static": true,
+          "inline": false,
+          "doc": "",
+          "signature": "openDevice(?devicename:String) : Dynamic",
+          "return": ": Dynamic",
+          "args": [
+            {
+              "name": "?devicename",
+              "type": "String"
+            }
+          ]
+        },
+        {
+          "name": "closeDevice",
+          "meta": [],
+          "public": true,
+          "static": true,
+          "inline": false,
+          "doc": "",
+          "signature": "closeDevice(device:Dynamic) : Bool",
+          "return": ": Bool",
+          "args": [
+            {
+              "name": "device",
+              "type": "Dynamic"
+            }
+          ]
+        },
+        {
+          "name": "getCurrentContext",
+          "meta": [],
+          "public": true,
+          "static": true,
+          "inline": false,
+          "doc": "",
+          "signature": "getCurrentContext() : Dynamic",
+          "return": ": Dynamic",
+          "args": []
+        },
+        {
+          "name": "getContextsDevice",
+          "meta": [],
+          "public": true,
+          "static": true,
+          "inline": false,
+          "doc": "",
+          "signature": "getContextsDevice(context:Dynamic) : Dynamic",
+          "return": ": Dynamic",
+          "args": [
+            {
+              "name": "context",
+              "type": "Dynamic"
+            }
+          ]
+        },
+        {
+          "name": "getString",
+          "meta": [],
+          "public": true,
+          "static": true,
+          "inline": false,
+          "doc": "",
+          "signature": "getString(device:Dynamic, param:Int) : String",
+          "return": ": String",
+          "args": [
+            {
+              "name": "device",
+              "type": "Dynamic"
+            },
+            {
+              "name": "param",
+              "type": "Int"
+            }
+          ]
+        },
+        {
+          "name": "getIntegerv",
+          "meta": [],
+          "public": true,
+          "static": true,
+          "inline": false,
+          "doc": "",
+          "signature": "getIntegerv(device:Dynamic, param:Int, size:Int) : Array<Int>",
+          "return": ": Array<Int>",
+          "args": [
+            {
+              "name": "device",
+              "type": "Dynamic"
+            },
+            {
+              "name": "param",
+              "type": "Int"
+            },
+            {
+              "name": "size",
+              "type": "Int"
+            }
+          ]
+        },
+        {
+          "name": "getErrorMeaning",
+          "meta": [],
+          "public": true,
+          "static": true,
+          "inline": false,
+          "doc": "",
+          "signature": "getErrorMeaning(error:Int) : String",
+          "return": ": String",
+          "args": [
+            {
+              "name": "error",
+              "type": "Int"
+            }
+          ]
+        },
+        {
+          "name": "makeContextCurrent",
+          "meta": [],
+          "public": true,
+          "static": true,
+          "inline": false,
+          "doc": "",
+          "signature": "makeContextCurrent(context:Dynamic) : Bool",
+          "return": ": Bool",
+          "args": [
+            {
+              "name": "context",
+              "type": "Dynamic"
+            }
+          ]
+        },
+        {
+          "name": "processContext",
+          "meta": [],
+          "public": true,
+          "static": true,
+          "inline": false,
+          "doc": "",
+          "signature": "processContext(context:Dynamic) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "context",
+              "type": "Dynamic"
+            }
+          ]
+        },
+        {
+          "name": "suspendContext",
+          "meta": [],
+          "public": true,
+          "static": true,
+          "inline": false,
+          "doc": "",
+          "signature": "suspendContext(context:Dynamic) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "context",
+              "type": "Dynamic"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

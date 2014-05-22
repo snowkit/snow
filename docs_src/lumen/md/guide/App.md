@@ -1,13 +1,15 @@
 
 [![Logo]({{{rel_path}}}images/logo.png)]({{{rel_path}}}index.html)
 
+---
+
 ##The lumen App 
 This is the base class for a basic lumen host application. This is what your game/app extends from. The most basic empty lumen application looks like this : 
 
 ```
 class MyGame extends lumen.App {
     
-    override public function ready() {
+    override function ready() {
         trace("initialize game here");
     }
     
@@ -49,7 +51,7 @@ To set a `fixed delta` : set the value of `fixed_delta` to a time in seconds.
 When you work on your game/app, you simply utilise the delta time passed into the update function, and the values in the `lumen.App` give you control over timescale in real time, so you don't have to manage that. For example, when moving an object horizontally each frame, you would do the following : 
 
 ```
-override public function update(delta:Float) {
+override function update(delta:Float) {
     position.x += speed * delta;
 }
 ```

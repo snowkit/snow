@@ -6,7 +6,7 @@ body,html {
 
 h1,h2,h3,h4,h5,h6 {
 	font-family: osp;
-	font-size:5em;
+	font-size:3em;
 	letter-spacing: -0.01em;
 	margin: 0.2em;
 	margin-left: 0em;
@@ -28,7 +28,6 @@ hr {
 	border-top: 1px solid #ECECEC;
 }
 
-pre,code { font-family:'dsm',monospace; background:#272822; border-radius:0.2em; height:auto; margin: 0.2em; padding: 0; padding-left:1em;  }
 
 li {
 	font-size: 1em;
@@ -183,22 +182,6 @@ p {
 .more {
 	display: block;
 	position: relative;
-}
-
-pre {
-	padding:0.1em 0.3em 0.1em 0.3em;
-	white-space: pre-wrap;
-}
-
-code {
-	display: inline-block;
-	font-size: 0.75em;
-	padding-bottom: 0.1em;
-	padding-left: 0.4em;
-	padding-right: 0.4em;
-	border-radius: 0.2em;
-	background-color: transparent;	
-	white-space: nowrap;
 }
 
 

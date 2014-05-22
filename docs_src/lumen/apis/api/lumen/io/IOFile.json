@@ -1,0 +1,186 @@
+{
+  "source": "lumen.io.IOFile",
+  "doc": "",
+  "links": [],
+  "toplinks": [],
+  "sections": [
+    {
+      "name": "Members",
+      "link": "#Members",
+      "values": [
+        {
+          "name": "handle",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "handle : Dynamic",
+          "type": "Dynamic",
+          "doc": ""
+        },
+        {
+          "name": "lumen_iosrc_file_tell",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": true,
+          "signature": "lumen_iosrc_file_tell : Dynamic",
+          "type": "Dynamic",
+          "doc": ""
+        },
+        {
+          "name": "lumen_iosrc_file_read",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": true,
+          "signature": "lumen_iosrc_file_read : Dynamic",
+          "type": "Dynamic",
+          "doc": ""
+        },
+        {
+          "name": "lumen_iosrc_file_close",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": true,
+          "signature": "lumen_iosrc_file_close : Dynamic",
+          "type": "Dynamic",
+          "doc": ""
+        },
+        {
+          "name": "lumen_iosrc_file_write",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": true,
+          "signature": "lumen_iosrc_file_write : Dynamic",
+          "type": "Dynamic",
+          "doc": ""
+        },
+        {
+          "name": "lumen_iosrc_file_seek",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": true,
+          "signature": "lumen_iosrc_file_seek : Dynamic",
+          "type": "Dynamic",
+          "doc": ""
+        }
+      ]
+    },
+    {
+      "name": "Methods",
+      "link": "#Methods",
+      "values": [
+        {
+          "name": "new",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "new(_handle:Dynamic) ",
+          "return": "",
+          "args": [
+            {
+              "name": "_handle",
+              "type": "Dynamic"
+            }
+          ]
+        },
+        {
+          "name": "write",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "write(src:lumen.utils.ByteArray, size:Int, num:Int) : Dynamic",
+          "return": ": Dynamic",
+          "args": [
+            {
+              "name": "src",
+              "type": "lumen.utils.ByteArray"
+            },
+            {
+              "name": "size",
+              "type": "Int"
+            },
+            {
+              "name": "num",
+              "type": "Int"
+            }
+          ]
+        },
+        {
+          "name": "read",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "read(dest:lumen.utils.ByteArray, size:Int, maxnum:Int) : Dynamic",
+          "return": ": Dynamic",
+          "args": [
+            {
+              "name": "dest",
+              "type": "lumen.utils.ByteArray"
+            },
+            {
+              "name": "size",
+              "type": "Int"
+            },
+            {
+              "name": "maxnum",
+              "type": "Int"
+            }
+          ]
+        },
+        {
+          "name": "close",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "close() : Dynamic",
+          "return": ": Dynamic",
+          "args": []
+        },
+        {
+          "name": "seek",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "seek(offset:Int, whence:Int) : Dynamic",
+          "return": ": Dynamic",
+          "args": [
+            {
+              "name": "offset",
+              "type": "Int"
+            },
+            {
+              "name": "whence",
+              "type": "Int"
+            }
+          ]
+        },
+        {
+          "name": "tell",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "tell() : Dynamic",
+          "return": ": Dynamic",
+          "args": []
+        }
+      ]
+    }
+  ]
+}

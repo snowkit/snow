@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+    
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <link rel="shortcut icon" href="../../../images/favicon.png" />
+
+        <link rel="stylesheet" type="text/css" href="../../../css/style.css" media="all">
+        <link rel="stylesheet" type="text/css" href="../../../css/code.css" media="all">
+        <link rel="stylesheet" type="text/css" href="../../../css/font.css" media="all">
+        
+        <script src="../../../js/jquery-2.0.3.min.js"> </script>
+
+        <script>
+
+            $(document).ready(function() {
+
+                $('.section').css('display','none');
+                $('.readmore').click(function(e){
+                    var _child = $(this).parent().find('.section').first();
+                    var _opp = 'block';
+                    if( _child.css('display') == 'block' ) {
+                        _opp = 'none';
+                        $(this).text('more ...');
+                    } else {
+                        $(this).text('less ...');
+                    }
+                    _child.css('display', _opp);
+                });
+
+                $('div.sample').on('click', function(e){
+                        //get the data tag
+                    var content = $(this).attr('data-content');
+                        //remove clicking handler
+                    $(this).off('click');
+                        //replace the content!
+                    $(this).html('<iframe src="'+content+'" sandbox="allow-same-origin allow-scripts" style="overflow:hidden; scrollbar:none; border: 0; width:645px; height:450px;"></iframe> ')
+                });
+
+            }); //document.ready
+
+        </script>
+    </head>
+
+    <body>
+        <div class="content">
+            <p><a href="../../../index.html"><img src="../../../images/logo.png" alt="Logo"></a></p>
+<hr>
+<h1 id="assets">Assets</h1>
+<p>&emsp;&emsp;&emsp;home<br><a href="../../../api/index.html#lumen.assets">API Index</a><br>&emsp;&emsp;&emsp;parent<br><a href="../">lumen</a><br>&emsp;&emsp;&emsp;current<br><a href="./">lumen.assets</a> / Assets</p>
+<p><br/></p>
+<hr>
+<p><a href="#Members">Members</a><br><a href="#Methods">Methods</a>   </p>
+<hr>
+<p>&nbsp;   </p>
+<p><a class="lift" name="Members" ></a></p>
+<h3 id="members">Members</h3>
+<hr>
+<p><a class="lift" name="assets_root" href="#assets_root">assets_root</a></p>
+<p><code>assets_root : String</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="list" href="#list">list</a></p>
+<p><code>list : Map&lt;String,lumen.AssetInfo&gt;</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="manifest_path" href="#manifest_path">manifest_path</a></p>
+<p><code>manifest_path : String</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p>&nbsp;   </p>
+<p><a class="lift" name="Methods" ></a></p>
+<h3 id="methods">Methods</h3>
+<hr>
+<p><a class="lift" name="add" href="#add">add</a></p>
+<p><code>add(_list:Array&lt;lumen.AssetInfo&gt;) : Void</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="exists" href="#exists">exists</a></p>
+<p><code>exists(_id:String) : Bool</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="get" href="#get">get</a></p>
+<p><code>get(_id:String) : lumen.AssetInfo</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="get_audio" href="#get_audio">get_audio</a></p>
+<p><code>get_audio(_id:String, ?options:lumen.assets.AssetAudioOptions) : lumen.assets.AssetAudio</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="get_bytes" href="#get_bytes">get_bytes</a></p>
+<p><code>get_bytes(_id:String) : lumen.assets.AssetBytes</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="get_image" href="#get_image">get_image</a></p>
+<p><code>get_image(_id:String, ?options:lumen.assets.AssetImageOptions) : lumen.assets.AssetImage</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="get_text" href="#get_text">get_text</a></p>
+<p><code>get_text(_id:String) : lumen.assets.AssetText</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="new" href="#new">new</a></p>
+<p><code>new(_lib:lumen.Lumen)</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="path" href="#path">path</a></p>
+<p><code>path(_id:String) : String</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p>&nbsp;
+&nbsp;
+&nbsp;</p>
+<hr>
+<p>&nbsp;<br>&nbsp;   </p>
+
+        </div>
+    </body>
+
+</html>

@@ -1,0 +1,2396 @@
+{
+  "source": "lumen.input.Keycodes",
+  "doc": "",
+  "links": [],
+  "toplinks": [],
+  "sections": [
+    {
+      "name": "Members",
+      "link": "#Members",
+      "values": [
+        {
+          "name": "PERIOD",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "PERIOD : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "KP_HEXADECIMAL",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "KP_HEXADECIMAL : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "EXCLAIM",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "EXCLAIM : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "DECIMALSEPARATOR",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "DECIMALSEPARATOR : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "F7",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "F7 : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "WWW",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "WWW : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "KEY_z",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "KEY_z : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "KP_8",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "KP_8 : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "SLASH",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "SLASH : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "KEY_g",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "KEY_g : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "OUT",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "OUT : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "KP_00",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "KP_00 : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "HOME",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "HOME : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "KP_AT",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "KP_AT : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "KEY_l",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "KEY_l : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "F20",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "F20 : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "VOLUMEDOWN",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "VOLUMEDOWN : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "AC_HOME",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "AC_HOME : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "F6",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "F6 : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "KP_PLUSMINUS",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "KP_PLUSMINUS : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "BRIGHTNESSUP",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "BRIGHTNESSUP : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "ALTERASE",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "ALTERASE : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "CRSEL",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "CRSEL : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "PAUSE",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "PAUSE : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "F15",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "F15 : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "CUT",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "CUT : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "POWER",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "POWER : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "KEY_3",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "KEY_3 : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "KP_3",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "KP_3 : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "KEY_q",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "KEY_q : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "CURRENCYSUBUNIT",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "CURRENCYSUBUNIT : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "UNKNOWN",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "UNKNOWN : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "SEPARATOR",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "SEPARATOR : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "KP_HASH",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "KP_HASH : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "QUOTEDBL",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "QUOTEDBL : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "SEMICOLON",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "SEMICOLON : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "F10",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "F10 : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "KP_COMMA",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "KP_COMMA : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "AUDIONEXT",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "AUDIONEXT : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "KEY_8",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "KEY_8 : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "SCROLLLOCK",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "SCROLLLOCK : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "KEY_v",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "KEY_v : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "F5",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "F5 : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "KP_VERTICALBAR",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "KP_VERTICALBAR : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "ESCAPE",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "ESCAPE : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "KEY_c",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "KEY_c : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "KP_C",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "KP_C : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "KP_MINUS",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "KP_MINUS : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "PRIOR",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "PRIOR : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "DELETE",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "DELETE : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "COMPUTER",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "COMPUTER : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "RIGHTBRACKET",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "RIGHTBRACKET : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "KEY_h",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "KEY_h : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "AUDIOSTOP",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "AUDIOSTOP : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "KP_PERIOD",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "KP_PERIOD : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "F23",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "F23 : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "MUTE",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "MUTE : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "KP_MEMCLEAR",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "KP_MEMCLEAR : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "KP_DBLVERTICALBAR",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "KP_DBLVERTICALBAR : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "EJECT",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "EJECT : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "KP_6",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "KP_6 : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "PAGEDOWN",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "PAGEDOWN : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "F4",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "F4 : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "F18",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "F18 : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "KEY_m",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "KEY_m : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "NUMLOCKCLEAR",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "NUMLOCKCLEAR : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "KP_EQUALS",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "KP_EQUALS : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "KP_MEMMULTIPLY",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "KP_MEMMULTIPLY : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "UNDERSCORE",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "UNDERSCORE : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "EQUALS",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "EQUALS : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "MAIL",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "MAIL : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "KEY_4",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "KEY_4 : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "F13",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "F13 : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "KP_RIGHTPAREN",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "KP_RIGHTPAREN : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "KP_F",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "KP_F : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "CURRENCYUNIT",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "CURRENCYUNIT : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "KEY_r",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "KEY_r : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "MENU",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "MENU : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "AC_BOOKMARKS",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "AC_BOOKMARKS : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "F3",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "F3 : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "CANCEL",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "CANCEL : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "KP_1",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "KP_1 : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "DOWN",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "DOWN : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "KEY_9",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "KEY_9 : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "UNDO",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "UNDO : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "KEY_w",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "KEY_w : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "KP_MEMSTORE",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "KP_MEMSTORE : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "AUDIOPLAY",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "AUDIOPLAY : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "CALCULATOR",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "CALCULATOR : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "KP_9",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "KP_9 : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "KP_TAB",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "KP_TAB : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "KEY_d",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "KEY_d : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "SELECT",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "SELECT : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "THOUSANDSSEPARATOR",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "THOUSANDSSEPARATOR : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "RMETA",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "RMETA : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "KP_000",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "KP_000 : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "BACKQUOTE",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "BACKQUOTE : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "MINUS",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "MINUS : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "AC_FORWARD",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "AC_FORWARD : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "KP_A",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "KP_A : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "LMETA",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "LMETA : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "F2",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "F2 : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "KEY_i",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "KEY_i : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "EXECUTE",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "EXECUTE : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "QUOTE",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "QUOTE : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "KP_ENTER",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "KP_ENTER : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "F21",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "F21 : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "AC_SEARCH",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "AC_SEARCH : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "AC_BACK",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "AC_BACK : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "END",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "END : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "AC_STOP",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "AC_STOP : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "AC_REFRESH",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "AC_REFRESH : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "KEY_0",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "KEY_0 : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "MEDIASELECT",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "MEDIASELECT : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "F16",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "F16 : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "VOLUMEUP",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "VOLUMEUP : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "KEY_n",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "KEY_n : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "KP_4",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "KP_4 : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "KP_CLEAR",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "KP_CLEAR : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "RALT",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "RALT : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "KBDILLUMTOGGLE",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "KBDILLUMTOGGLE : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "DISPLAYSWITCH",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "DISPLAYSWITCH : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "F1",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "F1 : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "LESS",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "LESS : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "LALT",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "LALT : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "STOP",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "STOP : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "KEY_5",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "KEY_5 : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "MODE",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "MODE : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "AUDIOPREV",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "AUDIOPREV : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "CAPSLOCK",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "CAPSLOCK : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "KEY_s",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "KEY_s : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "INSERT",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "INSERT : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "KP_OCTAL",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "KP_OCTAL : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "F11",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "F11 : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "QUESTION",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "QUESTION : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "KP_D",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "KP_D : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "AT",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "AT : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "FIND",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "FIND : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "EXSEL",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "EXSEL : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "KEY_x",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "KEY_x : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "KEY_e",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "KEY_e : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "KP_EQUALSAS400",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "KP_EQUALSAS400 : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "CLEARAGAIN",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "CLEARAGAIN : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "RCTRL",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "RCTRL : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "F24",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "F24 : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "KP_7",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "KP_7 : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "KP_XOR",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "KP_XOR : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "PAGEUP",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "PAGEUP : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "BACKSPACE",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "BACKSPACE : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "LCTRL",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "LCTRL : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "KEY_j",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "KEY_j : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "F19",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "F19 : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "RETURN2",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "RETURN2 : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "KP_MEMSUBTRACT",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "KP_MEMSUBTRACT : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "KP_PLUS",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "KP_PLUS : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "KP_SPACE",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "KP_SPACE : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "KP_MULTIPLY",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "KP_MULTIPLY : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "HELP",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "HELP : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "PLUS",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "PLUS : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "KEY_1",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "KEY_1 : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "KP_DECIMAL",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "KP_DECIMAL : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "APPLICATION",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "APPLICATION : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "KEY_o",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "KEY_o : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "PASTE",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "PASTE : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "KP_LESS",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "KP_LESS : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "KP_CLEARENTRY",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "KP_CLEARENTRY : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "HASH",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "HASH : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "KP_LEFTBRACE",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "KP_LEFTBRACE : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "KBDILLUMDOWN",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "KBDILLUMDOWN : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "F14",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "F14 : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "TAB",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "TAB : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "KP_2",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "KP_2 : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "KEY_6",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "KEY_6 : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "COMMA",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "COMMA : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "KEY_t",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "KEY_t : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "OPER",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "OPER : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "KEY_a",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "KEY_a : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "PRINTSCREEN",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "PRINTSCREEN : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "KP_MEMDIVIDE",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "KP_MEMDIVIDE : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "KP_DIVIDE",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "KP_DIVIDE : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "KP_BACKSPACE",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "KP_BACKSPACE : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "AUDIOMUTE",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "AUDIOMUTE : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "KEY_y",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "KEY_y : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "KP_POWER",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "KP_POWER : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "KP_PERCENT",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "KP_PERCENT : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "RETURN",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "RETURN : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "KP_B",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "KP_B : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "RSHIFT",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "RSHIFT : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "LEFTPAREN",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "LEFTPAREN : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "SYSREQ",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "SYSREQ : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "ASTERISK",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "ASTERISK : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "KEY_f",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "KEY_f : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "KP_MEMADD",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "KP_MEMADD : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "UP",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "UP : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "CARET",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "CARET : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "COPY",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "COPY : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "LSHIFT",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "LSHIFT : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "AMPERSAND",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "AMPERSAND : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "F9",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "F9 : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "KP_RIGHTBRACE",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "KP_RIGHTBRACE : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "COLON",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "COLON : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "KP_LEFTPAREN",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "KP_LEFTPAREN : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "F22",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "F22 : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "KP_EXCLAM",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "KP_EXCLAM : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "LEFTBRACKET",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "LEFTBRACKET : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "LEFT",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "LEFT : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "KP_AMPERSAND",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "KP_AMPERSAND : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "KP_DBLAMPERSAND",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "KP_DBLAMPERSAND : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "KEY_k",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "KEY_k : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "GREATER",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "GREATER : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "KP_5",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "KP_5 : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "KBDILLUMUP",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "KBDILLUMUP : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "DOLLAR",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "DOLLAR : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "F17",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "F17 : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "BRIGHTNESSDOWN",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "BRIGHTNESSDOWN : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "KEY_2",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "KEY_2 : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "BACKSLASH",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "BACKSLASH : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "CLEAR",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "CLEAR : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "KEY_p",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "KEY_p : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "KP_GREATER",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "KP_GREATER : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "F8",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "F8 : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "KP_MEMRECALL",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "KP_MEMRECALL : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "F12",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "F12 : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "SLEEP",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "SLEEP : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "KP_E",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "KP_E : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "RIGHT",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "RIGHT : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "KEY_7",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "KEY_7 : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "KP_COLON",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "KP_COLON : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "RIGHTPAREN",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "RIGHTPAREN : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "PERCENT",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "PERCENT : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "KEY_u",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "KEY_u : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "KP_BINARY",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "KP_BINARY : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "SPACE",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "SPACE : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "KEY_b",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "KEY_b : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "KP_0",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "KP_0 : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "AGAIN",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "AGAIN : Int",
+          "type": "Int",
+          "doc": ""
+        }
+      ]
+    },
+    {
+      "name": "Methods",
+      "link": "#Methods",
+      "values": [
+        {
+          "name": "from_scan",
+          "meta": [],
+          "public": true,
+          "static": true,
+          "inline": false,
+          "doc": "",
+          "signature": "from_scan(scancode:Int) : Int",
+          "return": ": Int",
+          "args": [
+            {
+              "name": "scancode",
+              "type": "Int"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

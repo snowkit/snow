@@ -1,0 +1,592 @@
+{
+  "source": "lumen.audio.system.Sound",
+  "doc": "",
+  "links": [],
+  "toplinks": [],
+  "sections": [
+    {
+      "name": "Members",
+      "link": "#Members",
+      "values": [
+        {
+          "name": "name",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "name : String",
+          "type": "String",
+          "doc": ""
+        },
+        {
+          "name": "playing",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "playing : Bool",
+          "type": "Bool",
+          "doc": ""
+        },
+        {
+          "name": "is_stream",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "is_stream : Bool",
+          "type": "Bool",
+          "doc": ""
+        },
+        {
+          "name": "paused",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "paused : Bool",
+          "type": "Bool",
+          "doc": ""
+        },
+        {
+          "name": "manager",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "manager : lumen.audio.Audio",
+          "type": "lumen.audio.Audio",
+          "doc": ""
+        },
+        {
+          "name": "info",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "info : lumen.AudioInfo",
+          "type": "lumen.AudioInfo",
+          "doc": ""
+        }
+      ]
+    },
+    {
+      "name": "Properties",
+      "link": "#Properties",
+      "values": [
+        {
+          "name": "pitch",
+          "meta": [
+            {
+              "name": ":isVar",
+              "value": ""
+            }
+          ],
+          "get": true,
+          "set": true,
+          "signature": "pitch : Float",
+          "doc": "",
+          "type": "Float",
+          "type_desc": "read/write"
+        },
+        {
+          "name": "position",
+          "meta": [
+            {
+              "name": ":isVar",
+              "value": ""
+            }
+          ],
+          "get": true,
+          "set": true,
+          "signature": "position : Int",
+          "doc": "",
+          "type": "Int",
+          "type_desc": "read/write"
+        },
+        {
+          "name": "volume",
+          "meta": [
+            {
+              "name": ":isVar",
+              "value": ""
+            }
+          ],
+          "get": true,
+          "set": true,
+          "signature": "volume : Float",
+          "doc": "",
+          "type": "Float",
+          "type_desc": "read/write"
+        },
+        {
+          "name": "looping",
+          "meta": [
+            {
+              "name": ":isVar",
+              "value": ""
+            }
+          ],
+          "get": true,
+          "set": true,
+          "signature": "looping : Bool",
+          "doc": "",
+          "type": "Bool",
+          "type_desc": "read/write"
+        },
+        {
+          "name": "time",
+          "meta": [
+            {
+              "name": ":isVar",
+              "value": ""
+            }
+          ],
+          "get": true,
+          "set": true,
+          "signature": "time : Float",
+          "doc": "",
+          "type": "Float",
+          "type_desc": "read/write"
+        },
+        {
+          "name": "length",
+          "meta": [
+            {
+              "name": ":isVar",
+              "value": ""
+            }
+          ],
+          "get": true,
+          "set": false,
+          "signature": "length : Int",
+          "doc": "",
+          "type": "Int",
+          "type_desc": "(read only)"
+        },
+        {
+          "name": "pan",
+          "meta": [
+            {
+              "name": ":isVar",
+              "value": ""
+            }
+          ],
+          "get": true,
+          "set": true,
+          "signature": "pan : Float",
+          "doc": "",
+          "type": "Float",
+          "type_desc": "read/write"
+        },
+        {
+          "name": "duration",
+          "meta": [
+            {
+              "name": ":isVar",
+              "value": ""
+            }
+          ],
+          "get": true,
+          "set": false,
+          "signature": "duration : Float",
+          "doc": "",
+          "type": "Float",
+          "type_desc": "(read only)"
+        }
+      ]
+    },
+    {
+      "name": "Methods",
+      "link": "#Methods",
+      "values": [
+        {
+          "name": "seconds_to_bytes",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "seconds_to_bytes(_seconds:Float) : Int",
+          "return": ": Int",
+          "args": [
+            {
+              "name": "_seconds",
+              "type": "Float"
+            }
+          ]
+        },
+        {
+          "name": "get_pitch",
+          "meta": [],
+          "public": false,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "get_pitch() : Float",
+          "return": ": Float",
+          "args": []
+        },
+        {
+          "name": "set_looping",
+          "meta": [],
+          "public": false,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "set_looping(_looping:Bool) : Bool",
+          "return": ": Bool",
+          "args": [
+            {
+              "name": "_looping",
+              "type": "Bool"
+            }
+          ]
+        },
+        {
+          "name": "stop",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "stop() : Void",
+          "return": ": Void",
+          "args": []
+        },
+        {
+          "name": "internal_play",
+          "meta": [
+            {
+              "name": ":noCompletion",
+              "value": ""
+            }
+          ],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "internal_play() : Void",
+          "return": ": Void",
+          "args": []
+        },
+        {
+          "name": "get_time",
+          "meta": [],
+          "public": false,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "get_time() : Float",
+          "return": ": Float",
+          "args": []
+        },
+        {
+          "name": "get_duration",
+          "meta": [],
+          "public": false,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "get_duration() : Float",
+          "return": ": Float",
+          "args": []
+        },
+        {
+          "name": "set_pitch",
+          "meta": [],
+          "public": false,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "set_pitch(_pitch:Float) : Float",
+          "return": ": Float",
+          "args": [
+            {
+              "name": "_pitch",
+              "type": "Float"
+            }
+          ]
+        },
+        {
+          "name": "internal_pause",
+          "meta": [
+            {
+              "name": ":noCompletion",
+              "value": ""
+            }
+          ],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "internal_pause() : Void",
+          "return": ": Void",
+          "args": []
+        },
+        {
+          "name": "set_time",
+          "meta": [],
+          "public": false,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "set_time(_time:Float) : Float",
+          "return": ": Float",
+          "args": [
+            {
+              "name": "_time",
+              "type": "Float"
+            }
+          ]
+        },
+        {
+          "name": "loop",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "loop() : Void",
+          "return": ": Void",
+          "args": []
+        },
+        {
+          "name": "toggle",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "toggle() : Void",
+          "return": ": Void",
+          "args": []
+        },
+        {
+          "name": "get_pan",
+          "meta": [],
+          "public": false,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "get_pan() : Float",
+          "return": ": Float",
+          "args": []
+        },
+        {
+          "name": "bytes_to_seconds",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "bytes_to_seconds(_bytes:Int) : Float",
+          "return": ": Float",
+          "args": [
+            {
+              "name": "_bytes",
+              "type": "Int"
+            }
+          ]
+        },
+        {
+          "name": "set_pan",
+          "meta": [],
+          "public": false,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "set_pan(_pan:Float) : Float",
+          "return": ": Float",
+          "args": [
+            {
+              "name": "_pan",
+              "type": "Float"
+            }
+          ]
+        },
+        {
+          "name": "new",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "new(_manager:lumen.audio.Audio, _name:String, _audio_info:lumen.AudioInfo) ",
+          "return": "",
+          "args": [
+            {
+              "name": "_manager",
+              "type": "lumen.audio.Audio"
+            },
+            {
+              "name": "_name",
+              "type": "String"
+            },
+            {
+              "name": "_audio_info",
+              "type": "lumen.AudioInfo"
+            }
+          ]
+        },
+        {
+          "name": "internal_update",
+          "meta": [
+            {
+              "name": ":noCompletion",
+              "value": ""
+            }
+          ],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "internal_update() : Void",
+          "return": ": Void",
+          "args": []
+        },
+        {
+          "name": "get_volume",
+          "meta": [],
+          "public": false,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "get_volume() : Float",
+          "return": ": Float",
+          "args": []
+        },
+        {
+          "name": "pause",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "pause() : Void",
+          "return": ": Void",
+          "args": []
+        },
+        {
+          "name": "internal_stop",
+          "meta": [
+            {
+              "name": ":noCompletion",
+              "value": ""
+            }
+          ],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "internal_stop() : Void",
+          "return": ": Void",
+          "args": []
+        },
+        {
+          "name": "get_length",
+          "meta": [],
+          "public": false,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "get_length() : Int",
+          "return": ": Int",
+          "args": []
+        },
+        {
+          "name": "set_volume",
+          "meta": [],
+          "public": false,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "set_volume(_volume:Float) : Float",
+          "return": ": Float",
+          "args": [
+            {
+              "name": "_volume",
+              "type": "Float"
+            }
+          ]
+        },
+        {
+          "name": "play",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "play() : Void",
+          "return": ": Void",
+          "args": []
+        },
+        {
+          "name": "destroy",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "destroy() : Void",
+          "return": ": Void",
+          "args": []
+        },
+        {
+          "name": "internal_loop",
+          "meta": [
+            {
+              "name": ":noCompletion",
+              "value": ""
+            }
+          ],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "internal_loop() : Void",
+          "return": ": Void",
+          "args": []
+        },
+        {
+          "name": "get_position",
+          "meta": [],
+          "public": false,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "get_position() : Int",
+          "return": ": Int",
+          "args": []
+        },
+        {
+          "name": "get_looping",
+          "meta": [],
+          "public": false,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "get_looping() : Bool",
+          "return": ": Bool",
+          "args": []
+        },
+        {
+          "name": "set_position",
+          "meta": [],
+          "public": false,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "set_position(_position:Int) : Int",
+          "return": ": Int",
+          "args": [
+            {
+              "name": "_position",
+              "type": "Int"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

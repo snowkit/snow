@@ -1,0 +1,54 @@
+{
+  "source": "lumen.render.gl.GLShader",
+  "doc": "",
+  "links": [],
+  "toplinks": [],
+  "sections": [
+    {
+      "name": "Extends",
+      "link": "#Extends",
+      "values": [
+        {
+          "name": "lumen.render.gl.GLObject"
+        }
+      ]
+    },
+    {
+      "name": "Methods",
+      "link": "#Methods",
+      "values": [
+        {
+          "name": "new",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "new(version:Int, id:Dynamic) ",
+          "return": "",
+          "args": [
+            {
+              "name": "version",
+              "type": "Int"
+            },
+            {
+              "name": "id",
+              "type": "Dynamic"
+            }
+          ]
+        },
+        {
+          "name": "getType",
+          "meta": [],
+          "public": false,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "getType() : String",
+          "return": ": String",
+          "args": []
+        }
+      ]
+    }
+  ]
+}

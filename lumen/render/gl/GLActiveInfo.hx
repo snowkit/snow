@@ -6,12 +6,12 @@ package lumen.render.gl;
 
 #else
 
-	typedef GLActiveInfo = {
-		
-		size : Int,
-		type : Int,
-		name : String,
-		
-	};
+    typedef GLActiveInfo = {
+        
+        size : Int,
+        type : Int,
+        name : String,
+        
+    };
 
 #end //lumen_html5

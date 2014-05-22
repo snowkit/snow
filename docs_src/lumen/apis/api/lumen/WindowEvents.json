@@ -1,0 +1,196 @@
+{
+  "source": "lumen.WindowEvents",
+  "doc": "",
+  "links": [],
+  "toplinks": [],
+  "sections": [
+    {
+      "name": "Members",
+      "link": "#Members",
+      "values": [
+        {
+          "name": "we_exposed",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "we_exposed : Int",
+          "type": "Int",
+          "doc": "A window is exposed"
+        },
+        {
+          "name": "we_enter",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "we_enter : Int",
+          "type": "Int",
+          "doc": "A window is entered by a mouse"
+        },
+        {
+          "name": "we_leave",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "we_leave : Int",
+          "type": "Int",
+          "doc": "A window is left by a mouse"
+        },
+        {
+          "name": "we_hidden",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "we_hidden : Int",
+          "type": "Int",
+          "doc": "A window is hidden"
+        },
+        {
+          "name": "we_size_changed",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "we_size_changed : Int",
+          "type": "Int",
+          "doc": "A window is resized, by the OS or internals."
+        },
+        {
+          "name": "we_close",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "we_close : Int",
+          "type": "Int",
+          "doc": "A window is being closed"
+        },
+        {
+          "name": "we_resized",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "we_resized : Int",
+          "type": "Int",
+          "doc": "A window is resized, by the user or code."
+        },
+        {
+          "name": "we_restored",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "we_restored : Int",
+          "type": "Int",
+          "doc": "A window is restored"
+        },
+        {
+          "name": "we_unknown",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "we_unknown : Int",
+          "type": "Int",
+          "doc": "An unknown window event"
+        },
+        {
+          "name": "we_focus_gained",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "we_focus_gained : Int",
+          "type": "Int",
+          "doc": "A window has gained focus"
+        },
+        {
+          "name": "we_moved",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "we_moved : Int",
+          "type": "Int",
+          "doc": "A window is moved"
+        },
+        {
+          "name": "we_focus_lost",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "we_focus_lost : Int",
+          "type": "Int",
+          "doc": "A window has lost focus"
+        },
+        {
+          "name": "we_created",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "we_created : Int",
+          "type": "Int",
+          "doc": "A window is created"
+        },
+        {
+          "name": "we_minimized",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "we_minimized : Int",
+          "type": "Int",
+          "doc": "A window is minimized"
+        },
+        {
+          "name": "we_maximized",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "we_maximized : Int",
+          "type": "Int",
+          "doc": "A window is maximized"
+        },
+        {
+          "name": "we_shown",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "we_shown : Int",
+          "type": "Int",
+          "doc": "A window is shown"
+        }
+      ]
+    },
+    {
+      "name": "Methods",
+      "link": "#Methods",
+      "values": [
+        {
+          "name": "typed",
+          "meta": [],
+          "public": true,
+          "static": true,
+          "inline": false,
+          "doc": "returns a typed `WindowEventType` from an integer ID, for communication between internal native + haxe code",
+          "signature": "typed(type:Int) : lumen.WindowEventType",
+          "return": ": lumen.WindowEventType",
+          "args": [
+            {
+              "name": "type",
+              "type": "Int"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

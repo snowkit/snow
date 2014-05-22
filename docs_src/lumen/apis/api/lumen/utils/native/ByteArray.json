@@ -1,0 +1,751 @@
+{
+  "source": "lumen.utils.native.ByteArray",
+  "doc": "",
+  "links": [],
+  "toplinks": [],
+  "sections": [
+    {
+      "name": "Extends",
+      "link": "#Extends",
+      "values": [
+        {
+          "name": "haxe.io.Bytes"
+        }
+      ]
+    },
+    {
+      "name": "Implements",
+      "link": "#Implements",
+      "values": [
+        {
+          "name": "lumen.utils.IMemoryRange"
+        },
+        {
+          "name": "lumen.utils.IDataInput"
+        }
+      ]
+    },
+    {
+      "name": "Members",
+      "link": "#Members",
+      "values": [
+        {
+          "name": "position",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "position : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "_float_of_bytes",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": true,
+          "signature": "_float_of_bytes : Dynamic",
+          "type": "Dynamic",
+          "doc": "@private"
+        },
+        {
+          "name": "lumen_byte_array_read_file",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": true,
+          "signature": "lumen_byte_array_read_file : Dynamic",
+          "type": "Dynamic",
+          "doc": ""
+        },
+        {
+          "name": "lumen_lzma_encode",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": true,
+          "signature": "lumen_lzma_encode : Dynamic",
+          "type": "Dynamic",
+          "doc": ""
+        },
+        {
+          "name": "bigEndian",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "bigEndian : Bool",
+          "type": "Bool",
+          "doc": ""
+        },
+        {
+          "name": "_double_of_bytes",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": true,
+          "signature": "_double_of_bytes : Dynamic",
+          "type": "Dynamic",
+          "doc": "@private"
+        },
+        {
+          "name": "lumen_lzma_decode",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": true,
+          "signature": "lumen_lzma_decode : Dynamic",
+          "type": "Dynamic",
+          "doc": ""
+        },
+        {
+          "name": "_float_bytes",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": true,
+          "signature": "_float_bytes : Dynamic",
+          "type": "Dynamic",
+          "doc": "@private"
+        },
+        {
+          "name": "lumen_byte_array_overwrite_file",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": true,
+          "signature": "lumen_byte_array_overwrite_file : Dynamic",
+          "type": "Dynamic",
+          "doc": ""
+        },
+        {
+          "name": "_double_bytes",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": true,
+          "signature": "_double_bytes : Dynamic",
+          "type": "Dynamic",
+          "doc": "@private"
+        }
+      ]
+    },
+    {
+      "name": "Properties",
+      "link": "#Properties",
+      "values": [
+        {
+          "name": "bytesAvailable",
+          "meta": [],
+          "get": true,
+          "set": false,
+          "signature": "bytesAvailable : Int",
+          "doc": "",
+          "type": "Int",
+          "type_desc": "(read only)"
+        },
+        {
+          "name": "endian",
+          "meta": [],
+          "get": true,
+          "set": true,
+          "signature": "endian : String",
+          "doc": "",
+          "type": "String",
+          "type_desc": "read/write"
+        },
+        {
+          "name": "byteLength",
+          "meta": [],
+          "get": true,
+          "set": false,
+          "signature": "byteLength : Int",
+          "doc": "",
+          "type": "Int",
+          "type_desc": "(read only)"
+        }
+      ]
+    },
+    {
+      "name": "Methods",
+      "link": "#Methods",
+      "values": [
+        {
+          "name": "ensureElem",
+          "meta": [],
+          "public": false,
+          "static": false,
+          "inline": false,
+          "doc": "@private",
+          "signature": "ensureElem(inSize:Int, inUpdateLenght:Bool) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "inSize",
+              "type": "Int"
+            },
+            {
+              "name": "inUpdateLenght",
+              "type": "Bool"
+            }
+          ]
+        },
+        {
+          "name": "writeFile",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "writeFile(inString:String) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "inString",
+              "type": "String"
+            }
+          ]
+        },
+        {
+          "name": "compress",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "compress(?algorithm:lumen.utils.compat.CompressionAlgorithm) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "?algorithm",
+              "type": "lumen.utils.compat.CompressionAlgorithm"
+            }
+          ]
+        },
+        {
+          "name": "readUnsignedInt",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "readUnsignedInt() : Int",
+          "return": ": Int",
+          "args": []
+        },
+        {
+          "name": "writeBytes",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "writeBytes(bytes:haxe.io.Bytes, ?inOffset:Int, ?inLength:Int) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "bytes",
+              "type": "haxe.io.Bytes"
+            },
+            {
+              "name": "?inOffset",
+              "type": "Int"
+            },
+            {
+              "name": "?inLength",
+              "type": "Int"
+            }
+          ]
+        },
+        {
+          "name": "set_endian",
+          "meta": [],
+          "public": false,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "set_endian(s:String) : String",
+          "return": ": String",
+          "args": [
+            {
+              "name": "s",
+              "type": "String"
+            }
+          ]
+        },
+        {
+          "name": "readShort",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "readShort() : Int",
+          "return": ": Int",
+          "args": []
+        },
+        {
+          "name": "readDouble",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "readDouble() : Float",
+          "return": ": Float",
+          "args": []
+        },
+        {
+          "name": "getLength",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "getLength() : Int",
+          "return": ": Int",
+          "args": []
+        },
+        {
+          "name": "writeDouble",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "writeDouble(x:Float) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "x",
+              "type": "Float"
+            }
+          ]
+        },
+        {
+          "name": "new",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "new(?inSize:Int) ",
+          "return": "",
+          "args": [
+            {
+              "name": "?inSize",
+              "type": "Int"
+            }
+          ]
+        },
+        {
+          "name": "inflate",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "inflate() : Void",
+          "return": ": Void",
+          "args": []
+        },
+        {
+          "name": "fromBytes",
+          "meta": [],
+          "public": true,
+          "static": true,
+          "inline": false,
+          "doc": "",
+          "signature": "fromBytes(inBytes:haxe.io.Bytes) : lumen.utils.native.ByteArray",
+          "return": ": lumen.utils.native.ByteArray",
+          "args": [
+            {
+              "name": "inBytes",
+              "type": "haxe.io.Bytes"
+            }
+          ]
+        },
+        {
+          "name": "readInt",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "readInt() : Int",
+          "return": ": Int",
+          "args": []
+        },
+        {
+          "name": "readUTF",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "readUTF() : String",
+          "return": ": String",
+          "args": []
+        },
+        {
+          "name": "writeUnsignedInt",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "writeUnsignedInt(value:Int) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "value",
+              "type": "Int"
+            }
+          ]
+        },
+        {
+          "name": "writeUTF",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "writeUTF(s:String) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "s",
+              "type": "String"
+            }
+          ]
+        },
+        {
+          "name": "writeFloat",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "writeFloat(x:Float) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "x",
+              "type": "Float"
+            }
+          ]
+        },
+        {
+          "name": "readFloat",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "readFloat() : Float",
+          "return": ": Float",
+          "args": []
+        },
+        {
+          "name": "asString",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "asString() : String",
+          "return": ": String",
+          "args": []
+        },
+        {
+          "name": "get_byteLength",
+          "meta": [],
+          "public": false,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "get_byteLength() : Int",
+          "return": ": Int",
+          "args": []
+        },
+        {
+          "name": "getStart",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "getStart() : Int",
+          "return": ": Int",
+          "args": []
+        },
+        {
+          "name": "get_endian",
+          "meta": [],
+          "public": false,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "get_endian() : String",
+          "return": ": String",
+          "args": []
+        },
+        {
+          "name": "deflate",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "deflate() : Void",
+          "return": ": Void",
+          "args": []
+        },
+        {
+          "name": "readFile",
+          "meta": [],
+          "public": true,
+          "static": true,
+          "inline": false,
+          "doc": "",
+          "signature": "readFile(inString:String) : lumen.utils.native.ByteArray",
+          "return": ": lumen.utils.native.ByteArray",
+          "args": [
+            {
+              "name": "inString",
+              "type": "String"
+            }
+          ]
+        },
+        {
+          "name": "readUnsignedShort",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "readUnsignedShort() : Int",
+          "return": ": Int",
+          "args": []
+        },
+        {
+          "name": "get_bytesAvailable",
+          "meta": [],
+          "public": false,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "get_bytesAvailable() : Int",
+          "return": ": Int",
+          "args": []
+        },
+        {
+          "name": "writeInt",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "writeInt(value:Int) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "value",
+              "type": "Int"
+            }
+          ]
+        },
+        {
+          "name": "writeBoolean",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "writeBoolean(value:Bool) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "value",
+              "type": "Bool"
+            }
+          ]
+        },
+        {
+          "name": "writeUTFBytes",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "writeUTFBytes(s:String) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "s",
+              "type": "String"
+            }
+          ]
+        },
+        {
+          "name": "getByteBuffer",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "getByteBuffer() : lumen.utils.native.ByteArray",
+          "return": ": lumen.utils.native.ByteArray",
+          "args": []
+        },
+        {
+          "name": "readUTFBytes",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "readUTFBytes(inLen:Int) : String",
+          "return": ": String",
+          "args": [
+            {
+              "name": "inLen",
+              "type": "Int"
+            }
+          ]
+        },
+        {
+          "name": "clear",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "clear() : Void",
+          "return": ": Void",
+          "args": []
+        },
+        {
+          "name": "setLength",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "setLength(inLength:Int) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "inLength",
+              "type": "Int"
+            }
+          ]
+        },
+        {
+          "name": "ThrowEOFi",
+          "meta": [],
+          "public": false,
+          "static": false,
+          "inline": false,
+          "doc": "@private",
+          "signature": "ThrowEOFi() : Int",
+          "return": ": Int",
+          "args": []
+        },
+        {
+          "name": "writeShort",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "writeShort(value:Int) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "value",
+              "type": "Int"
+            }
+          ]
+        },
+        {
+          "name": "checkData",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "checkData(inLength:Int) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "inLength",
+              "type": "Int"
+            }
+          ]
+        },
+        {
+          "name": "slice",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "slice(inBegin:Int, ?inEnd:Int) : lumen.utils.native.ByteArray",
+          "return": ": lumen.utils.native.ByteArray",
+          "args": [
+            {
+              "name": "inBegin",
+              "type": "Int"
+            },
+            {
+              "name": "?inEnd",
+              "type": "Int"
+            }
+          ]
+        },
+        {
+          "name": "readBytes",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "readBytes(outData:lumen.utils.native.ByteArray, ?inOffset:Int, ?inLen:Int) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "outData",
+              "type": "lumen.utils.native.ByteArray"
+            },
+            {
+              "name": "?inOffset",
+              "type": "Int"
+            },
+            {
+              "name": "?inLen",
+              "type": "Int"
+            }
+          ]
+        },
+        {
+          "name": "uncompress",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "uncompress(?algorithm:lumen.utils.compat.CompressionAlgorithm) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "?algorithm",
+              "type": "lumen.utils.compat.CompressionAlgorithm"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,56 @@
+{
+  "source": "lumen.assets.Asset",
+  "doc": "",
+  "links": [],
+  "toplinks": [],
+  "sections": [
+    {
+      "name": "Members",
+      "link": "#Members",
+      "values": [
+        {
+          "name": "id",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "id : String",
+          "type": "String",
+          "doc": ""
+        },
+        {
+          "name": "info",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "info : lumen.AssetInfo",
+          "type": "lumen.AssetInfo",
+          "doc": ""
+        }
+      ]
+    },
+    {
+      "name": "Methods",
+      "link": "#Methods",
+      "values": [
+        {
+          "name": "new",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "new(_info:lumen.AssetInfo) ",
+          "return": "",
+          "args": [
+            {
+              "name": "_info",
+              "type": "lumen.AssetInfo"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "source": "lumen.audio.system.openal.OpenALHelper",
+  "doc": "",
+  "links": [],
+  "toplinks": [],
+  "sections": [
+    {
+      "name": "Methods",
+      "link": "#Methods",
+      "values": [
+        {
+          "name": "default_source_setup",
+          "meta": [],
+          "public": true,
+          "static": true,
+          "inline": false,
+          "doc": "",
+          "signature": "default_source_setup(source:Int) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "source",
+              "type": "Int"
+            }
+          ]
+        },
+        {
+          "name": "determine_format",
+          "meta": [],
+          "public": true,
+          "static": true,
+          "inline": false,
+          "doc": "",
+          "signature": "determine_format(_info:lumen.AudioInfo) : Int",
+          "return": ": Int",
+          "args": [
+            {
+              "name": "_info",
+              "type": "lumen.AudioInfo"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

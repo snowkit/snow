@@ -1,0 +1,144 @@
+{
+  "source": "lumen.utils.compat.Vector3D",
+  "doc": "",
+  "links": [],
+  "toplinks": [],
+  "sections": [
+    {
+      "name": "Members",
+      "link": "#Members",
+      "values": [
+        {
+          "name": "z",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "z : Float",
+          "type": "Float",
+          "doc": ""
+        },
+        {
+          "name": "y",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "y : Float",
+          "type": "Float",
+          "doc": ""
+        },
+        {
+          "name": "x",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "x : Float",
+          "type": "Float",
+          "doc": ""
+        },
+        {
+          "name": "w",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "w : Float",
+          "type": "Float",
+          "doc": ""
+        }
+      ]
+    },
+    {
+      "name": "Properties",
+      "link": "#Properties",
+      "values": [
+        {
+          "name": "Z_AXIS",
+          "meta": [],
+          "get": true,
+          "set": false,
+          "signature": "Z_AXIS : lumen.utils.compat.Vector3D",
+          "doc": "",
+          "type": "lumen.utils.compat.Vector3D",
+          "type_desc": "(read only)"
+        },
+        {
+          "name": "Y_AXIS",
+          "meta": [],
+          "get": true,
+          "set": false,
+          "signature": "Y_AXIS : lumen.utils.compat.Vector3D",
+          "doc": "",
+          "type": "lumen.utils.compat.Vector3D",
+          "type_desc": "(read only)"
+        },
+        {
+          "name": "X_AXIS",
+          "meta": [],
+          "get": true,
+          "set": false,
+          "signature": "X_AXIS : lumen.utils.compat.Vector3D",
+          "doc": "",
+          "type": "lumen.utils.compat.Vector3D",
+          "type_desc": "(read only)"
+        },
+        {
+          "name": "length",
+          "meta": [],
+          "get": true,
+          "set": false,
+          "signature": "length : Float",
+          "doc": "",
+          "type": "Float",
+          "type_desc": "(read only)"
+        },
+        {
+          "name": "lengthSquared",
+          "meta": [],
+          "get": true,
+          "set": false,
+          "signature": "lengthSquared : Float",
+          "doc": "",
+          "type": "Float",
+          "type_desc": "(read only)"
+        }
+      ]
+    },
+    {
+      "name": "Methods",
+      "link": "#Methods",
+      "values": [
+        {
+          "name": "new",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "new(?x:Float, ?y:Float, ?z:Float, ?w:Float) ",
+          "return": "",
+          "args": [
+            {
+              "name": "?x",
+              "type": "Float"
+            },
+            {
+              "name": "?y",
+              "type": "Float"
+            },
+            {
+              "name": "?z",
+              "type": "Float"
+            },
+            {
+              "name": "?w",
+              "type": "Float"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

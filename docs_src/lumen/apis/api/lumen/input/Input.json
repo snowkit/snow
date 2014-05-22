@@ -1,0 +1,320 @@
+{
+  "source": "lumen.input.Input",
+  "doc": "",
+  "links": [],
+  "toplinks": [],
+  "sections": [
+    {
+      "name": "Members",
+      "link": "#Members",
+      "values": [
+        {
+          "name": "key_code_released",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": false,
+          "signature": "key_code_released : Map<Int,Bool>",
+          "type": "Map<Int,Bool>",
+          "doc": ""
+        },
+        {
+          "name": "system",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": false,
+          "signature": "system : lumen.input.system.LumenInputSystem",
+          "type": "lumen.input.system.LumenInputSystem",
+          "doc": ""
+        },
+        {
+          "name": "lib",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": false,
+          "signature": "lib : lumen.Lumen",
+          "type": "lumen.Lumen",
+          "doc": ""
+        },
+        {
+          "name": "lumen_gamepad_close",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": true,
+          "signature": "lumen_gamepad_close : Dynamic",
+          "type": "Dynamic",
+          "doc": ""
+        },
+        {
+          "name": "key_code_down",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": false,
+          "signature": "key_code_down : Map<Int,Bool>",
+          "type": "Map<Int,Bool>",
+          "doc": ""
+        },
+        {
+          "name": "key_code_pressed",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": false,
+          "signature": "key_code_pressed : Map<Int,Bool>",
+          "type": "Map<Int,Bool>",
+          "doc": ""
+        },
+        {
+          "name": "lumen_gamepad_open",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": true,
+          "signature": "lumen_gamepad_open : Dynamic",
+          "type": "Dynamic",
+          "doc": ""
+        }
+      ]
+    },
+    {
+      "name": "Methods",
+      "link": "#Methods",
+      "values": [
+        {
+          "name": "keypressed",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "keypressed(_code:Int) : Bool",
+          "return": ": Bool",
+          "args": [
+            {
+              "name": "_code",
+              "type": "Int"
+            }
+          ]
+        },
+        {
+          "name": "keyreleased",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "keyreleased(_code:Int) : Bool",
+          "return": ": Bool",
+          "args": [
+            {
+              "name": "_code",
+              "type": "Int"
+            }
+          ]
+        },
+        {
+          "name": "on_event",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "on_event(_event:lumen.SystemEvent) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "_event",
+              "type": "lumen.SystemEvent"
+            }
+          ]
+        },
+        {
+          "name": "dispatch_touch_event",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "dispatch_touch_event(_event:lumen.input.TouchEvent) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "_event",
+              "type": "lumen.input.TouchEvent"
+            }
+          ]
+        },
+        {
+          "name": "keydown",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "keydown(_code:Int) : Bool",
+          "return": ": Bool",
+          "args": [
+            {
+              "name": "_code",
+              "type": "Int"
+            }
+          ]
+        },
+        {
+          "name": "dispatch_mouse_event",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "dispatch_mouse_event(_event:lumen.input.MouseEvent) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "_event",
+              "type": "lumen.input.MouseEvent"
+            }
+          ]
+        },
+        {
+          "name": "mod_state_from_event",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "mod_state_from_event(event:lumen.InputEvent) : lumen.input.ModState",
+          "return": ": lumen.input.ModState",
+          "args": [
+            {
+              "name": "event",
+              "type": "lumen.InputEvent"
+            }
+          ]
+        },
+        {
+          "name": "new",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "new(_lib:lumen.Lumen) ",
+          "return": "",
+          "args": [
+            {
+              "name": "_lib",
+              "type": "lumen.Lumen"
+            }
+          ]
+        },
+        {
+          "name": "dispatch_text_event",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "dispatch_text_event(_event:lumen.input.TextEvent) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "_event",
+              "type": "lumen.input.TextEvent"
+            }
+          ]
+        },
+        {
+          "name": "dispatch_gamepad_event",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "dispatch_gamepad_event(_event:lumen.input.GamepadEvent) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "_event",
+              "type": "lumen.input.GamepadEvent"
+            }
+          ]
+        },
+        {
+          "name": "update",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "update() : Void",
+          "return": ": Void",
+          "args": []
+        },
+        {
+          "name": "on_gamepad_added",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "on_gamepad_added(_event:Dynamic) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "_event",
+              "type": "Dynamic"
+            }
+          ]
+        },
+        {
+          "name": "destroy",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "destroy() : Void",
+          "return": ": Void",
+          "args": []
+        },
+        {
+          "name": "dispatch_key_event",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "dispatch_key_event(_event:lumen.input.KeyEvent) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "_event",
+              "type": "lumen.input.KeyEvent"
+            }
+          ]
+        },
+        {
+          "name": "on_gamepad_removed",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "on_gamepad_removed(_event:Dynamic) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "_event",
+              "type": "Dynamic"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

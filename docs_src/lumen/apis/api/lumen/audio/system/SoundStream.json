@@ -1,0 +1,119 @@
+{
+  "source": "lumen.audio.system.SoundStream",
+  "doc": "",
+  "links": [],
+  "toplinks": [],
+  "sections": [
+    {
+      "name": "Extends",
+      "link": "#Extends",
+      "values": [
+        {
+          "name": "lumen.audio.system.Sound"
+        }
+      ]
+    },
+    {
+      "name": "Members",
+      "link": "#Members",
+      "values": [
+        {
+          "name": "data_seek",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "data_seek : Dynamic",
+          "type": "Dynamic",
+          "doc": ""
+        },
+        {
+          "name": "buffer_length",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "buffer_length : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "data_get",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "data_get : Dynamic",
+          "type": "Dynamic",
+          "doc": ""
+        }
+      ]
+    },
+    {
+      "name": "Methods",
+      "link": "#Methods",
+      "values": [
+        {
+          "name": "default_data_get",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "default_data_get(_start:Int, _length:Int) : lumen.AudioDataBlob",
+          "return": ": lumen.AudioDataBlob",
+          "args": [
+            {
+              "name": "_start",
+              "type": "Int"
+            },
+            {
+              "name": "_length",
+              "type": "Int"
+            }
+          ]
+        },
+        {
+          "name": "new",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "new(_manager:lumen.audio.Audio, _name:String, _audio_info:lumen.AudioInfo) ",
+          "return": "",
+          "args": [
+            {
+              "name": "_manager",
+              "type": "lumen.audio.Audio"
+            },
+            {
+              "name": "_name",
+              "type": "String"
+            },
+            {
+              "name": "_audio_info",
+              "type": "lumen.AudioInfo"
+            }
+          ]
+        },
+        {
+          "name": "default_data_seek",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "default_data_seek(_to:Int) : Bool",
+          "return": ": Bool",
+          "args": [
+            {
+              "name": "_to",
+              "type": "Int"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

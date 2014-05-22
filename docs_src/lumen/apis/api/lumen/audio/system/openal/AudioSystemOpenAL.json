@@ -1,0 +1,113 @@
+{
+  "source": "lumen.audio.system.openal.AudioSystemOpenAL",
+  "doc": "",
+  "links": [],
+  "toplinks": [],
+  "sections": [
+    {
+      "name": "Extends",
+      "link": "#Extends",
+      "values": [
+        {
+          "name": "lumen.audio.system.AudioSystem"
+        }
+      ]
+    },
+    {
+      "name": "Members",
+      "link": "#Members",
+      "values": [
+        {
+          "name": "context",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": false,
+          "signature": "context : lumen.audio.al.Context",
+          "type": "lumen.audio.al.Context",
+          "doc": ""
+        },
+        {
+          "name": "device",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": false,
+          "signature": "device : lumen.audio.al.Device",
+          "type": "lumen.audio.al.Device",
+          "doc": ""
+        }
+      ]
+    },
+    {
+      "name": "Methods",
+      "link": "#Methods",
+      "values": [
+        {
+          "name": "resume",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "resume() : Void",
+          "return": ": Void",
+          "args": []
+        },
+        {
+          "name": "new",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "new(_manager:lumen.audio.Audio, _lib:lumen.Lumen) ",
+          "return": "",
+          "args": [
+            {
+              "name": "_manager",
+              "type": "lumen.audio.Audio"
+            },
+            {
+              "name": "_lib",
+              "type": "lumen.Lumen"
+            }
+          ]
+        },
+        {
+          "name": "suspend",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "suspend() : Void",
+          "return": ": Void",
+          "args": []
+        },
+        {
+          "name": "destroy",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "destroy() : Void",
+          "return": ": Void",
+          "args": []
+        },
+        {
+          "name": "init",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "init() : Void",
+          "return": ": Void",
+          "args": []
+        }
+      ]
+    }
+  ]
+}

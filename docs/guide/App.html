@@ -45,17 +45,16 @@
     <body>
         <div class="content">
             <p><a href="../index.html"><img src="../images/logo.png" alt="Logo"></a></p>
+<hr>
 <h2 id="the-lumen-app">The lumen App</h2>
 <p>This is the base class for a basic lumen host application. This is what your game/app extends from. The most basic empty lumen application looks like this : </p>
-<pre><code><div class="highlight"><pre><span class="kd">class</span> <span class="nc">MyGame</span> <span class="kd">extends</span> <span class="nc">lumen.App</span> <span class="p">{</span>
+<pre><code><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyGame</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">lumen</span>.<span class="hljs-title">App</span> </span>{
 
-    <span class="kd">override</span> <span class="kd">public</span> <span class="kd">function</span> <span class="nf">ready</span><span class="p">()</span> <span class="p">{</span>
-        <span class="kr">trace</span><span class="p">(</span><span class="s2">&quot;initialize game here&quot;</span><span class="p">);</span>
-    <span class="p">}</span>
+    <span class="hljs-keyword">override</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">ready</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-keyword">trace</span>(<span class="hljs-string">"initialize game here"</span>);
+    }
 
-<span class="p">}</span>
-</pre></div>
-
+}
 </code></pre><p>lumen handles system events, input events, window events (if you request/create a window) and updating your application/game each frame. It is highly configurable/flexible and allows you to subvert the default behavior in favor of your own implementations.</p>
 <p>That said - it does a lot for you already. Fixed timestep, variable timestep, no loop at all, these are all configurable options. Time scaling is also implemented on the lumen level, so that coding your games and applications becomes the focus for you.</p>
 <h3 id="app-handlers">App handlers</h3>
@@ -75,17 +74,13 @@
 <p>To set the <code>capped update</code> : set the value of <code>fixed_rate</code> to a time in seconds.<br>To set a <code>fixed delta</code> : set the value of <code>fixed_delta</code> to a time in seconds.</p>
 <h4 id="usage-of-update-delta-float-">Usage of update(delta:Float)</h4>
 <p>When you work on your game/app, you simply utilise the delta time passed into the update function, and the values in the <code>lumen.App</code> give you control over timescale in real time, so you don’t have to manage that. For example, when moving an object horizontally each frame, you would do the following : </p>
-<pre><code><div class="highlight"><pre><span class="kd">override</span> <span class="kd">public</span> <span class="err">function</span> <span class="err">update(delta:Float)</span> <span class="err">{</span>
-    <span class="err">position.x</span> <span class="err">+=</span> <span class="err">speed</span> <span class="err">*</span> <span class="err">delta;</span>
-<span class="err">}</span>
-</pre></div>
-
+<pre><code><span class="hljs-keyword">override</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">update</span><span class="hljs-params">(delta:Float)</span> </span>{
+    position.x += speed * delta;
+}
 </code></pre><p>If you were to change the timescale, the object would slow down automatically, or speed up. </p>
-<pre><code><div class="highlight"><pre><span class="err">app.timescale</span> <span class="err">=</span> <span class="err">0.5;</span>        <span class="c1">//slow down time to 50%   </span>
-<span class="err">app.timescale</span> <span class="err">=</span> <span class="err">2;</span>          <span class="c1">//fast forward time   </span>
-<span class="err">app.timescale</span> <span class="err">=</span> <span class="err">-1;</span>         <span class="c1">//rewind time   </span>
-</pre></div>
-
+<pre><code>app.timescale = <span class="hljs-number">0.5</span>;        <span class="hljs-comment">//slow down time to 50%   </span>
+app.timescale = <span class="hljs-number">2</span>;          <span class="hljs-comment">//fast forward time   </span>
+app.timescale = -<span class="hljs-number">1</span>;         <span class="hljs-comment">//rewind time   </span>
 </code></pre><p>Take note that rewinding and fast forwarding an entire game/app is up to you to implement, but the timing values will allow you to base your calculations of the same values for fixed delta, variable delta, or fixed time step without changing your code.</p>
 <h4 id="-fix-your-timestep-">“fix your timestep”</h4>
 <p><em>This section is optional, for the users that want this more advanced behavior.</em></p>

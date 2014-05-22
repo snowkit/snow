@@ -36,11 +36,16 @@
                         var filename = theclass.name;
                         var output_json = {
                             source : filename,
+                            doc : '',
                             links : [],
                             toplinks : [],
                             sections : []
                         }
 
+                        //add the docs if any
+                        if(theclass["doc"].length != 0) {
+                            output_json.doc = theclass["doc"];
+                        }
                         //now go through and add the sections,
                         //extends, implements, members, properties, methods
                         if(theclass["extends"].length != 0) {
@@ -123,6 +128,8 @@
 
         var _list = helper.glob_list( config.apis_path + config.api_input );
         var _api_list = [];
+        var _package_list = [];
+        var _package_items = {};
 
         for(i = 0; i < _list.length; ++i) {
             
@@ -132,10 +139,38 @@
 
             if(_api_details && _api_details.source && _api_details.sections) {
 
-                _api_list.push({ 
-                    name:  _api_details.source, 
-                    link: _api_details.source.replace('.','/')+'.html' 
+                var _link_dest = _api_details.source.replace(/\./gi,'/')+'.html';
+                var _name_dest = _api_details.source;
+
+                _api_list.push({
+                    name:  _name_dest, 
+                    link: _link_dest
                 });
+
+                var _package_info = _api_details.source.split('.');
+                        //and the class
+                    _package_info.pop();
+                        //store with the root as well
+                    var _root_name = _package_info.join('.');
+                        //remove the root package
+                    var _root_package = _package_info.shift();
+                        //get the major root
+                    var _package_root = _package_info[0] ? _root_package+'.'+_package_info[0] : _root_name;
+                        //join them again
+                    _package_info = _package_info[0];
+
+                if(_package_root.indexOf('/_') == -1) {
+                            //add if not existing
+                        if(!_package_items[_package_root]) {
+                            _package_items[_package_root] = [];
+
+                            _package_list.push({ name:_package_root, items:_package_items[_package_root]});
+                        }
+
+                    var _api_item = _api_list[_api_list.length-1];
+                        _api_item.name = _api_item.name.replace(_package_root+'.','');
+                    _package_items[_package_root].push(_api_item);
+                }
 
                 var _dest_path = _list[i];
                     _dest_path = _dest_path.replace( config.apis_path, '');
@@ -144,9 +179,15 @@
                 var _context = {
                     toplinks : '',
                     links : '',
+                    doc : '',
                     content : '',
                     rel_path : helper.get_rel_path_count(_dest_path)
                 }; 
+
+                    //add the doc if any
+                if(_api_details.doc && _api_details.doc.length) {
+                    _context.doc = _api_details.doc;
+                }
 
                     //for each top link, add it
                 for(_j = 0; _j < _api_details.toplinks.length; ++_j) {
@@ -180,6 +221,12 @@
                     } //if section has any values
                     
                         //now for each section value
+                    _section.values.sort(function(a,b){
+                        if(a.name < b.name) return -1;
+                        if(a.name >= b.name) return 1;
+                        return 0;
+                    });
+
                     for(_k = 0; _k < _section.values.length; ++_k) {
 
                         var _value = _section.values[_k];
@@ -200,9 +247,7 @@
                                 var _meta_value = _meta[_l].value;
                                 if(_meta_name === ':noCompletion' || _meta_name === ':hide') {
                                     _skip = true;
-                                } else if(_meta_name === ':desc') {
-                                    _value.desc = _meta_value;
-                                }
+                                } 
                             }
                         } //meta_exists
 
@@ -227,19 +272,36 @@
                         if(_section.name == 'Extends') {
 
                             var _extends_link = _value.name.replace('.','/')+'.html' 
-                            _context.content += '<a class="lift" name="'+_value.name+'" href="'+_extends_link+'">'+_value.name+'</a>\n\n';
+                            _context.content += '<a class="lift" name="'+_value.name+'" href="{{{rel_path}}}api/'+_extends_link+'">'+_value.name+'</a>\n\n';
 
                         } else if(_section.name != 'Meta') {
 
                             _context.content += '<a class="lift" name="'+_value.name+'" href="#'+_value.name+'">'+_value.name+'</a>\n\n';
-                            _context.content += '\n\n    ' + _value.signature +'\n\n';
-                            _context.content += '<span class="small_desc_flat"> ' + (_value.desc || "no description")+ ' </span>   \n\n';
+                            _context.content += '\n\n`' + _value.signature +'`\n\n';
+                            _context.content += '<span class="small_desc_flat"> ' + (_value.doc || "no description")+ ' </span>   \n\n';
 
                         }
 
                     } //each section value
 
                 } //each section
+
+                    //add more info for the class output
+                var _context_package = _api_details.source.split('.');
+                var _context_class = _context_package.pop();
+                var _context_package_root = _context_package[0];
+
+                if(_context_package.length > 1) {
+                    _context_package_root+='.'+_context_package[1];
+                }
+
+                var _context_package_parent = _context_package.slice();
+                    _context_package_parent.pop();
+
+                _context.package_parent = _context_package_parent.join('.');
+                _context.package = _context_package.join('.');
+                _context.class_name = _context_class;
+                _context.package_root = _context_package_root;
 
                     //write out a single file per class, into it's package folder
                 var packages = _api_details.source.split('.');
@@ -267,7 +329,8 @@
 
         var _rel_test = _out_dest.replace('.md','.html');
         
-        var _index_context = { api_list : _api_list, rel_path:helper.get_rel_path_count(_rel_test) };
+        var _index_context = { package_list:_package_list, api_list : _api_list, rel_path:helper.get_rel_path_count(_rel_test) };
+
             //template the index file with the list
         var _template_out = mustache.render( _api_index_template, _index_context );
             //write the correct file to the correct location

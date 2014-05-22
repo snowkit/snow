@@ -16,7 +16,7 @@
 
     "api_out_md_path" : "api/",
     "api_source_json" : "./lumen/apis/generated_api.json",
-    "api_index_out" : "api.full.md",
+    "api_index_out" : "index.md",
     "api_template" : "api_page.html",
     "api_index_template" : "api_index.html",
     "template_index" : "index.html",

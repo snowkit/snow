@@ -1,0 +1,3009 @@
+{
+  "source": "lumen.audio.al.AL",
+  "doc": "",
+  "links": [],
+  "toplinks": [],
+  "sections": [
+    {
+      "name": "Members",
+      "link": "#Members",
+      "values": [
+        {
+          "name": "DOPPLER_VELOCITY",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "DOPPLER_VELOCITY : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "alhx_GetEnumValue",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": true,
+          "signature": "alhx_GetEnumValue : Dynamic",
+          "type": "Dynamic",
+          "doc": ""
+        },
+        {
+          "name": "FORMAT_STEREO8",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "FORMAT_STEREO8 : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "alhx_Disable",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": true,
+          "signature": "alhx_Disable : Dynamic",
+          "type": "Dynamic",
+          "doc": ""
+        },
+        {
+          "name": "alhx_Listenerfv",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": true,
+          "signature": "alhx_Listenerfv : Dynamic",
+          "type": "Dynamic",
+          "doc": ""
+        },
+        {
+          "name": "INVALID_VALUE_MEANING",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "INVALID_VALUE_MEANING : String",
+          "type": "String",
+          "doc": ""
+        },
+        {
+          "name": "alhx_SourcePausev",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": true,
+          "signature": "alhx_SourcePausev : Dynamic",
+          "type": "Dynamic",
+          "doc": ""
+        },
+        {
+          "name": "CONE_INNER_ANGLE",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "CONE_INNER_ANGLE : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "RENDERER",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "RENDERER : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "alhx_SpeedOfSound",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": true,
+          "signature": "alhx_SpeedOfSound : Dynamic",
+          "type": "Dynamic",
+          "doc": ""
+        },
+        {
+          "name": "FORMAT_MONO16",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "FORMAT_MONO16 : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "alhx_GetInteger",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": true,
+          "signature": "alhx_GetInteger : Dynamic",
+          "type": "Dynamic",
+          "doc": ""
+        },
+        {
+          "name": "alhx_GetListenerf",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": true,
+          "signature": "alhx_GetListenerf : Dynamic",
+          "type": "Dynamic",
+          "doc": ""
+        },
+        {
+          "name": "STATIC",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "STATIC : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "OUT_OF_MEMORY_MEANING",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "OUT_OF_MEMORY_MEANING : String",
+          "type": "String",
+          "doc": ""
+        },
+        {
+          "name": "alhx_Sourcei",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": true,
+          "signature": "alhx_Sourcei : Dynamic",
+          "type": "Dynamic",
+          "doc": ""
+        },
+        {
+          "name": "alhx_Listeneriv",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": true,
+          "signature": "alhx_Listeneriv : Dynamic",
+          "type": "Dynamic",
+          "doc": ""
+        },
+        {
+          "name": "alhx_SourcePause",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": true,
+          "signature": "alhx_SourcePause : Dynamic",
+          "type": "Dynamic",
+          "doc": ""
+        },
+        {
+          "name": "alhx_DeleteBuffers",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": true,
+          "signature": "alhx_DeleteBuffers : Dynamic",
+          "type": "Dynamic",
+          "doc": ""
+        },
+        {
+          "name": "CONE_OUTER_GAIN",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "CONE_OUTER_GAIN : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "LOOPING",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "LOOPING : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "STREAMING",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "STREAMING : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "SPEED_OF_SOUND",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "SPEED_OF_SOUND : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "EXPONENT_DISTANCE",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "EXPONENT_DISTANCE : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "MIN_GAIN",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "MIN_GAIN : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "INVERSE_DISTANCE",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "INVERSE_DISTANCE : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "FORMAT_MONO8",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "FORMAT_MONO8 : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "SIZE",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "SIZE : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "alhx_GetSourcefv",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": true,
+          "signature": "alhx_GetSourcefv : Dynamic",
+          "type": "Dynamic",
+          "doc": ""
+        },
+        {
+          "name": "CONE_OUTER_ANGLE",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "CONE_OUTER_ANGLE : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "INVALID_OPERATION_MEANING",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "INVALID_OPERATION_MEANING : String",
+          "type": "String",
+          "doc": ""
+        },
+        {
+          "name": "alhx_GetBufferf",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": true,
+          "signature": "alhx_GetBufferf : Dynamic",
+          "type": "Dynamic",
+          "doc": ""
+        },
+        {
+          "name": "alhx_DopplerVelocity",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": true,
+          "signature": "alhx_DopplerVelocity : Dynamic",
+          "type": "Dynamic",
+          "doc": ""
+        },
+        {
+          "name": "PITCH",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "PITCH : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "DOPPLER_FACTOR",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "DOPPLER_FACTOR : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "alhx_GetDoublev",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": true,
+          "signature": "alhx_GetDoublev : Dynamic",
+          "type": "Dynamic",
+          "doc": ""
+        },
+        {
+          "name": "alhx_GetListener3f",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": true,
+          "signature": "alhx_GetListener3f : Dynamic",
+          "type": "Dynamic",
+          "doc": ""
+        },
+        {
+          "name": "alhx_Buffer3f",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": true,
+          "signature": "alhx_Buffer3f : Dynamic",
+          "type": "Dynamic",
+          "doc": ""
+        },
+        {
+          "name": "alhx_DeleteSource",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": true,
+          "signature": "alhx_DeleteSource : Dynamic",
+          "type": "Dynamic",
+          "doc": ""
+        },
+        {
+          "name": "GAIN",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "GAIN : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "alhx_SourcePlayv",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": true,
+          "signature": "alhx_SourcePlayv : Dynamic",
+          "type": "Dynamic",
+          "doc": ""
+        },
+        {
+          "name": "alhx_SourceQueueBuffers",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": true,
+          "signature": "alhx_SourceQueueBuffers : Dynamic",
+          "type": "Dynamic",
+          "doc": ""
+        },
+        {
+          "name": "BUFFER",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "BUFFER : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "alhx_GetBuffer3i",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": true,
+          "signature": "alhx_GetBuffer3i : Dynamic",
+          "type": "Dynamic",
+          "doc": ""
+        },
+        {
+          "name": "MAX_GAIN",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "MAX_GAIN : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "BITS",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "BITS : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "alhx_BufferData",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": true,
+          "signature": "alhx_BufferData : Dynamic",
+          "type": "Dynamic",
+          "doc": ""
+        },
+        {
+          "name": "ROLLOFF_FACTOR",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "ROLLOFF_FACTOR : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "SAMPLE_OFFSET",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "SAMPLE_OFFSET : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "OUT_OF_MEMORY",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "OUT_OF_MEMORY : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "alhx_GetListener3i",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": true,
+          "signature": "alhx_GetListener3i : Dynamic",
+          "type": "Dynamic",
+          "doc": ""
+        },
+        {
+          "name": "alhx_GenSources",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": true,
+          "signature": "alhx_GenSources : Dynamic",
+          "type": "Dynamic",
+          "doc": ""
+        },
+        {
+          "name": "EXTENSIONS",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "EXTENSIONS : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "FALSE",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "FALSE : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "VELOCITY",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "VELOCITY : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "REFERENCE_DISTANCE",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "REFERENCE_DISTANCE : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "SEC_OFFSET",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "SEC_OFFSET : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "alhx_GetIntegerv",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": true,
+          "signature": "alhx_GetIntegerv : Dynamic",
+          "type": "Dynamic",
+          "doc": ""
+        },
+        {
+          "name": "alhx_GetSourcei",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": true,
+          "signature": "alhx_GetSourcei : Dynamic",
+          "type": "Dynamic",
+          "doc": ""
+        },
+        {
+          "name": "alhx_Bufferfv",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": true,
+          "signature": "alhx_Bufferfv : Dynamic",
+          "type": "Dynamic",
+          "doc": ""
+        },
+        {
+          "name": "alhx_GetError",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": true,
+          "signature": "alhx_GetError : Dynamic",
+          "type": "Dynamic",
+          "doc": ""
+        },
+        {
+          "name": "DISTANCE_MODEL",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "DISTANCE_MODEL : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "alhx_GenSource",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": true,
+          "signature": "alhx_GenSource : Dynamic",
+          "type": "Dynamic",
+          "doc": ""
+        },
+        {
+          "name": "alhx_SourceRewindv",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": true,
+          "signature": "alhx_SourceRewindv : Dynamic",
+          "type": "Dynamic",
+          "doc": ""
+        },
+        {
+          "name": "PAUSED",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "PAUSED : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "alhx_IsSource",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": true,
+          "signature": "alhx_IsSource : Dynamic",
+          "type": "Dynamic",
+          "doc": ""
+        },
+        {
+          "name": "INVALID_ENUM",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "INVALID_ENUM : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "alhx_Enable",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": true,
+          "signature": "alhx_Enable : Dynamic",
+          "type": "Dynamic",
+          "doc": ""
+        },
+        {
+          "name": "alhx_GetBufferfv",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": true,
+          "signature": "alhx_GetBufferfv : Dynamic",
+          "type": "Dynamic",
+          "doc": ""
+        },
+        {
+          "name": "POSITION",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "POSITION : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "DIRECTION",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "DIRECTION : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "alhx_GetListeneri",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": true,
+          "signature": "alhx_GetListeneri : Dynamic",
+          "type": "Dynamic",
+          "doc": ""
+        },
+        {
+          "name": "alhx_GetListenerfv",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": true,
+          "signature": "alhx_GetListenerfv : Dynamic",
+          "type": "Dynamic",
+          "doc": ""
+        },
+        {
+          "name": "alhx_Source3f",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": true,
+          "signature": "alhx_Source3f : Dynamic",
+          "type": "Dynamic",
+          "doc": ""
+        },
+        {
+          "name": "alhx_SourceUnqueueBuffers",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": true,
+          "signature": "alhx_SourceUnqueueBuffers : Dynamic",
+          "type": "Dynamic",
+          "doc": ""
+        },
+        {
+          "name": "alhx_Buffer3i",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": true,
+          "signature": "alhx_Buffer3i : Dynamic",
+          "type": "Dynamic",
+          "doc": ""
+        },
+        {
+          "name": "alhx_IsEnabled",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": true,
+          "signature": "alhx_IsEnabled : Dynamic",
+          "type": "Dynamic",
+          "doc": ""
+        },
+        {
+          "name": "INITIAL",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "INITIAL : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "alhx_GetFloatv",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": true,
+          "signature": "alhx_GetFloatv : Dynamic",
+          "type": "Dynamic",
+          "doc": ""
+        },
+        {
+          "name": "INVALID_NAME_MEANING",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "INVALID_NAME_MEANING : String",
+          "type": "String",
+          "doc": ""
+        },
+        {
+          "name": "PLAYING",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "PLAYING : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "BYTE_OFFSET",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "BYTE_OFFSET : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "alhx_GetBoolean",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": true,
+          "signature": "alhx_GetBoolean : Dynamic",
+          "type": "Dynamic",
+          "doc": ""
+        },
+        {
+          "name": "alhx_Bufferf",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": true,
+          "signature": "alhx_Bufferf : Dynamic",
+          "type": "Dynamic",
+          "doc": ""
+        },
+        {
+          "name": "INVALID_ENUM_MEANING",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "INVALID_ENUM_MEANING : String",
+          "type": "String",
+          "doc": ""
+        },
+        {
+          "name": "EXPONENT_DISTANCE_CLAMPED",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "EXPONENT_DISTANCE_CLAMPED : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "SOURCE_STATE",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "SOURCE_STATE : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "alhx_DeleteSources",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": true,
+          "signature": "alhx_DeleteSources : Dynamic",
+          "type": "Dynamic",
+          "doc": ""
+        },
+        {
+          "name": "alhx_GenBuffers",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": true,
+          "signature": "alhx_GenBuffers : Dynamic",
+          "type": "Dynamic",
+          "doc": ""
+        },
+        {
+          "name": "FORMAT_STEREO16",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "FORMAT_STEREO16 : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "alhx_Sourcefv",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": true,
+          "signature": "alhx_Sourcefv : Dynamic",
+          "type": "Dynamic",
+          "doc": ""
+        },
+        {
+          "name": "UNDETERMINED",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "UNDETERMINED : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "alhx_GetSourceiv",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": true,
+          "signature": "alhx_GetSourceiv : Dynamic",
+          "type": "Dynamic",
+          "doc": ""
+        },
+        {
+          "name": "BUFFERS_QUEUED",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "BUFFERS_QUEUED : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "alhx_Bufferiv",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": true,
+          "signature": "alhx_Bufferiv : Dynamic",
+          "type": "Dynamic",
+          "doc": ""
+        },
+        {
+          "name": "CHANNELS",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "CHANNELS : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "alhx_GetBufferi",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": true,
+          "signature": "alhx_GetBufferi : Dynamic",
+          "type": "Dynamic",
+          "doc": ""
+        },
+        {
+          "name": "BUFFERS_PROCESSED",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "BUFFERS_PROCESSED : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "alhx_Listenerf",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": true,
+          "signature": "alhx_Listenerf : Dynamic",
+          "type": "Dynamic",
+          "doc": ""
+        },
+        {
+          "name": "alhx_IsBuffer",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": true,
+          "signature": "alhx_IsBuffer : Dynamic",
+          "type": "Dynamic",
+          "doc": ""
+        },
+        {
+          "name": "INVALID_VALUE",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "INVALID_VALUE : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "INVERSE_DISTANCE_CLAMPED",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "INVERSE_DISTANCE_CLAMPED : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "alhx_SourceStop",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": true,
+          "signature": "alhx_SourceStop : Dynamic",
+          "type": "Dynamic",
+          "doc": ""
+        },
+        {
+          "name": "VENDOR",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "VENDOR : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "alhx_GetSource3f",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": true,
+          "signature": "alhx_GetSource3f : Dynamic",
+          "type": "Dynamic",
+          "doc": ""
+        },
+        {
+          "name": "alhx_GenBuffer",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": true,
+          "signature": "alhx_GenBuffer : Dynamic",
+          "type": "Dynamic",
+          "doc": ""
+        },
+        {
+          "name": "LINEAR_DISTANCE_CLAMPED",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "LINEAR_DISTANCE_CLAMPED : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "alhx_IsExtensionPresent",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": true,
+          "signature": "alhx_IsExtensionPresent : Dynamic",
+          "type": "Dynamic",
+          "doc": ""
+        },
+        {
+          "name": "FREQUENCY",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "FREQUENCY : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "alhx_GetProcAddress",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": true,
+          "signature": "alhx_GetProcAddress : Dynamic",
+          "type": "Dynamic",
+          "doc": ""
+        },
+        {
+          "name": "alhx_Listeneri",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": true,
+          "signature": "alhx_Listeneri : Dynamic",
+          "type": "Dynamic",
+          "doc": ""
+        },
+        {
+          "name": "TRUE",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "TRUE : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "NO_ERROR",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "NO_ERROR : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "alhx_Source3i",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": true,
+          "signature": "alhx_Source3i : Dynamic",
+          "type": "Dynamic",
+          "doc": ""
+        },
+        {
+          "name": "VERSION",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "VERSION : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "alhx_DeleteBuffer",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": true,
+          "signature": "alhx_DeleteBuffer : Dynamic",
+          "type": "Dynamic",
+          "doc": ""
+        },
+        {
+          "name": "alhx_GetString",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": true,
+          "signature": "alhx_GetString : Dynamic",
+          "type": "Dynamic",
+          "doc": ""
+        },
+        {
+          "name": "INVALID_OPERATION",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "INVALID_OPERATION : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "alhx_Sourcef",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": true,
+          "signature": "alhx_Sourcef : Dynamic",
+          "type": "Dynamic",
+          "doc": ""
+        },
+        {
+          "name": "alhx_GetBooleanv",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": true,
+          "signature": "alhx_GetBooleanv : Dynamic",
+          "type": "Dynamic",
+          "doc": ""
+        },
+        {
+          "name": "alhx_Listener3f",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": true,
+          "signature": "alhx_Listener3f : Dynamic",
+          "type": "Dynamic",
+          "doc": ""
+        },
+        {
+          "name": "alhx_Bufferi",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": true,
+          "signature": "alhx_Bufferi : Dynamic",
+          "type": "Dynamic",
+          "doc": ""
+        },
+        {
+          "name": "alhx_GetFloat",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": true,
+          "signature": "alhx_GetFloat : Dynamic",
+          "type": "Dynamic",
+          "doc": ""
+        },
+        {
+          "name": "INVALID_NAME",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "INVALID_NAME : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "alhx_GetDouble",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": true,
+          "signature": "alhx_GetDouble : Dynamic",
+          "type": "Dynamic",
+          "doc": ""
+        },
+        {
+          "name": "NONE",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "NONE : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "ORIENTATION",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "ORIENTATION : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "alhx_DistanceModel",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": true,
+          "signature": "alhx_DistanceModel : Dynamic",
+          "type": "Dynamic",
+          "doc": ""
+        },
+        {
+          "name": "SOURCE_TYPE",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "SOURCE_TYPE : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "alhx_Listener3i",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": true,
+          "signature": "alhx_Listener3i : Dynamic",
+          "type": "Dynamic",
+          "doc": ""
+        },
+        {
+          "name": "alhx_GetListeneriv",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": true,
+          "signature": "alhx_GetListeneriv : Dynamic",
+          "type": "Dynamic",
+          "doc": ""
+        },
+        {
+          "name": "alhx_GetSourcef",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": true,
+          "signature": "alhx_GetSourcef : Dynamic",
+          "type": "Dynamic",
+          "doc": ""
+        },
+        {
+          "name": "alhx_Sourceiv",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": true,
+          "signature": "alhx_Sourceiv : Dynamic",
+          "type": "Dynamic",
+          "doc": ""
+        },
+        {
+          "name": "LINEAR_DISTANCE",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "LINEAR_DISTANCE : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "STOPPED",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "STOPPED : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "alhx_GetBufferiv",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": true,
+          "signature": "alhx_GetBufferiv : Dynamic",
+          "type": "Dynamic",
+          "doc": ""
+        },
+        {
+          "name": "SOURCE_RELATIVE",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "SOURCE_RELATIVE : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "alhx_SourceStopv",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": true,
+          "signature": "alhx_SourceStopv : Dynamic",
+          "type": "Dynamic",
+          "doc": ""
+        },
+        {
+          "name": "alhx_GetSource3i",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": true,
+          "signature": "alhx_GetSource3i : Dynamic",
+          "type": "Dynamic",
+          "doc": ""
+        },
+        {
+          "name": "alhx_DopplerFactor",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": true,
+          "signature": "alhx_DopplerFactor : Dynamic",
+          "type": "Dynamic",
+          "doc": ""
+        },
+        {
+          "name": "alhx_SourcePlay",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": true,
+          "signature": "alhx_SourcePlay : Dynamic",
+          "type": "Dynamic",
+          "doc": ""
+        },
+        {
+          "name": "alhx_GetBuffer3f",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": true,
+          "signature": "alhx_GetBuffer3f : Dynamic",
+          "type": "Dynamic",
+          "doc": ""
+        },
+        {
+          "name": "alhx_SourceRewind",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": true,
+          "signature": "alhx_SourceRewind : Dynamic",
+          "type": "Dynamic",
+          "doc": ""
+        },
+        {
+          "name": "MAX_DISTANCE",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "MAX_DISTANCE : Int",
+          "type": "Int",
+          "doc": ""
+        }
+      ]
+    },
+    {
+      "name": "Methods",
+      "link": "#Methods",
+      "values": [
+        {
+          "name": "speedOfSound",
+          "meta": [],
+          "public": true,
+          "static": true,
+          "inline": false,
+          "doc": "",
+          "signature": "speedOfSound(value:Float) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "value",
+              "type": "Float"
+            }
+          ]
+        },
+        {
+          "name": "getError",
+          "meta": [],
+          "public": true,
+          "static": true,
+          "inline": false,
+          "doc": "",
+          "signature": "getError() : Int",
+          "return": ": Int",
+          "args": []
+        },
+        {
+          "name": "isBuffer",
+          "meta": [],
+          "public": true,
+          "static": true,
+          "inline": false,
+          "doc": "",
+          "signature": "isBuffer(buffer:Int) : Bool",
+          "return": ": Bool",
+          "args": [
+            {
+              "name": "buffer",
+              "type": "Int"
+            }
+          ]
+        },
+        {
+          "name": "listener3f",
+          "meta": [],
+          "public": true,
+          "static": true,
+          "inline": false,
+          "doc": "",
+          "signature": "listener3f(param:Int, value1:Float, value2:Float, value3:Float) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "param",
+              "type": "Int"
+            },
+            {
+              "name": "value1",
+              "type": "Float"
+            },
+            {
+              "name": "value2",
+              "type": "Float"
+            },
+            {
+              "name": "value3",
+              "type": "Float"
+            }
+          ]
+        },
+        {
+          "name": "getSource3i",
+          "meta": [],
+          "public": true,
+          "static": true,
+          "inline": false,
+          "doc": "",
+          "signature": "getSource3i(source:Int, param:Int) : Array<Int>",
+          "return": ": Array<Int>",
+          "args": [
+            {
+              "name": "source",
+              "type": "Int"
+            },
+            {
+              "name": "param",
+              "type": "Int"
+            }
+          ]
+        },
+        {
+          "name": "isExtensionPresent",
+          "meta": [],
+          "public": true,
+          "static": true,
+          "inline": false,
+          "doc": "",
+          "signature": "isExtensionPresent(extname:String) : Bool",
+          "return": ": Bool",
+          "args": [
+            {
+              "name": "extname",
+              "type": "String"
+            }
+          ]
+        },
+        {
+          "name": "listeneri",
+          "meta": [],
+          "public": true,
+          "static": true,
+          "inline": false,
+          "doc": "",
+          "signature": "listeneri(param:Int, value:Int) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "param",
+              "type": "Int"
+            },
+            {
+              "name": "value",
+              "type": "Int"
+            }
+          ]
+        },
+        {
+          "name": "getListener3f",
+          "meta": [],
+          "public": true,
+          "static": true,
+          "inline": false,
+          "doc": "",
+          "signature": "getListener3f(param:Int) : Array<Float>",
+          "return": ": Array<Float>",
+          "args": [
+            {
+              "name": "param",
+              "type": "Int"
+            }
+          ]
+        },
+        {
+          "name": "deleteSources",
+          "meta": [],
+          "public": true,
+          "static": true,
+          "inline": false,
+          "doc": "",
+          "signature": "deleteSources(sources:Array<Int>) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "sources",
+              "type": "Array<Int>"
+            }
+          ]
+        },
+        {
+          "name": "getSourcefv",
+          "meta": [],
+          "public": true,
+          "static": true,
+          "inline": false,
+          "doc": "",
+          "signature": "getSourcefv(source:Int, param:Int) : Array<Float>",
+          "return": ": Array<Float>",
+          "args": [
+            {
+              "name": "source",
+              "type": "Int"
+            },
+            {
+              "name": "param",
+              "type": "Int"
+            }
+          ]
+        },
+        {
+          "name": "sourceUnqueueBuffer",
+          "meta": [],
+          "public": true,
+          "static": true,
+          "inline": false,
+          "doc": "",
+          "signature": "sourceUnqueueBuffer(source:Int) : Int",
+          "return": ": Int",
+          "args": [
+            {
+              "name": "source",
+              "type": "Int"
+            }
+          ]
+        },
+        {
+          "name": "getBufferf",
+          "meta": [],
+          "public": true,
+          "static": true,
+          "inline": false,
+          "doc": "",
+          "signature": "getBufferf(buffer:Int, param:Int) : Float",
+          "return": ": Float",
+          "args": [
+            {
+              "name": "buffer",
+              "type": "Int"
+            },
+            {
+              "name": "param",
+              "type": "Int"
+            }
+          ]
+        },
+        {
+          "name": "isEnabled",
+          "meta": [],
+          "public": true,
+          "static": true,
+          "inline": false,
+          "doc": "",
+          "signature": "isEnabled(capability:Int) : Bool",
+          "return": ": Bool",
+          "args": [
+            {
+              "name": "capability",
+              "type": "Int"
+            }
+          ]
+        },
+        {
+          "name": "isSource",
+          "meta": [],
+          "public": true,
+          "static": true,
+          "inline": false,
+          "doc": "",
+          "signature": "isSource(source:Int) : Bool",
+          "return": ": Bool",
+          "args": [
+            {
+              "name": "source",
+              "type": "Int"
+            }
+          ]
+        },
+        {
+          "name": "deleteSource",
+          "meta": [],
+          "public": true,
+          "static": true,
+          "inline": false,
+          "doc": "",
+          "signature": "deleteSource(source:Int) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "source",
+              "type": "Int"
+            }
+          ]
+        },
+        {
+          "name": "bufferi",
+          "meta": [],
+          "public": true,
+          "static": true,
+          "inline": false,
+          "doc": "",
+          "signature": "bufferi(buffer:Int, param:Int, value:Int) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "buffer",
+              "type": "Int"
+            },
+            {
+              "name": "param",
+              "type": "Int"
+            },
+            {
+              "name": "value",
+              "type": "Int"
+            }
+          ]
+        },
+        {
+          "name": "getSourcei",
+          "meta": [],
+          "public": true,
+          "static": true,
+          "inline": false,
+          "doc": "",
+          "signature": "getSourcei(source:Int, param:Int) : Int",
+          "return": ": Int",
+          "args": [
+            {
+              "name": "source",
+              "type": "Int"
+            },
+            {
+              "name": "param",
+              "type": "Int"
+            }
+          ]
+        },
+        {
+          "name": "bufferfv",
+          "meta": [],
+          "public": true,
+          "static": true,
+          "inline": false,
+          "doc": "",
+          "signature": "bufferfv(buffer:Int, param:Int, values:Array<Float>) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "buffer",
+              "type": "Int"
+            },
+            {
+              "name": "param",
+              "type": "Int"
+            },
+            {
+              "name": "values",
+              "type": "Array<Float>"
+            }
+          ]
+        },
+        {
+          "name": "listeneriv",
+          "meta": [],
+          "public": true,
+          "static": true,
+          "inline": false,
+          "doc": "",
+          "signature": "listeneriv(param:Int, values:Array<Int>) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "param",
+              "type": "Int"
+            },
+            {
+              "name": "values",
+              "type": "Array<Int>"
+            }
+          ]
+        },
+        {
+          "name": "sourcePause",
+          "meta": [],
+          "public": true,
+          "static": true,
+          "inline": false,
+          "doc": "",
+          "signature": "sourcePause(source:Int) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "source",
+              "type": "Int"
+            }
+          ]
+        },
+        {
+          "name": "sourceQueueBuffers",
+          "meta": [],
+          "public": true,
+          "static": true,
+          "inline": false,
+          "doc": "",
+          "signature": "sourceQueueBuffers(source:Int, nb:Int, buffers:Array<Int>) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "source",
+              "type": "Int"
+            },
+            {
+              "name": "nb",
+              "type": "Int"
+            },
+            {
+              "name": "buffers",
+              "type": "Array<Int>"
+            }
+          ]
+        },
+        {
+          "name": "getListenerfv",
+          "meta": [],
+          "public": true,
+          "static": true,
+          "inline": false,
+          "doc": "",
+          "signature": "getListenerfv(param:Int, ?count:Int) : Array<Float>",
+          "return": ": Array<Float>",
+          "args": [
+            {
+              "name": "param",
+              "type": "Int"
+            },
+            {
+              "name": "?count",
+              "type": "Int"
+            }
+          ]
+        },
+        {
+          "name": "bufferData",
+          "meta": [],
+          "public": true,
+          "static": true,
+          "inline": false,
+          "doc": "",
+          "signature": "bufferData(buffer:Int, format:Int, data:lumen.utils.Float32Array, size:Int, freq:Int) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "buffer",
+              "type": "Int"
+            },
+            {
+              "name": "format",
+              "type": "Int"
+            },
+            {
+              "name": "data",
+              "type": "lumen.utils.Float32Array"
+            },
+            {
+              "name": "size",
+              "type": "Int"
+            },
+            {
+              "name": "freq",
+              "type": "Int"
+            }
+          ]
+        },
+        {
+          "name": "bufferf",
+          "meta": [],
+          "public": true,
+          "static": true,
+          "inline": false,
+          "doc": "",
+          "signature": "bufferf(buffer:Int, param:Int, value:Float) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "buffer",
+              "type": "Int"
+            },
+            {
+              "name": "param",
+              "type": "Int"
+            },
+            {
+              "name": "value",
+              "type": "Float"
+            }
+          ]
+        },
+        {
+          "name": "sourceStopv",
+          "meta": [],
+          "public": true,
+          "static": true,
+          "inline": false,
+          "doc": "",
+          "signature": "sourceStopv(sources:Array<Int>) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "sources",
+              "type": "Array<Int>"
+            }
+          ]
+        },
+        {
+          "name": "getFloatv",
+          "meta": [],
+          "public": true,
+          "static": true,
+          "inline": false,
+          "doc": "",
+          "signature": "getFloatv(param:Int, ?count:Int) : Array<Float>",
+          "return": ": Array<Float>",
+          "args": [
+            {
+              "name": "param",
+              "type": "Int"
+            },
+            {
+              "name": "?count",
+              "type": "Int"
+            }
+          ]
+        },
+        {
+          "name": "deleteBuffers",
+          "meta": [],
+          "public": true,
+          "static": true,
+          "inline": false,
+          "doc": "",
+          "signature": "deleteBuffers(buffers:Array<Int>) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "buffers",
+              "type": "Array<Int>"
+            }
+          ]
+        },
+        {
+          "name": "getBuffer3i",
+          "meta": [],
+          "public": true,
+          "static": true,
+          "inline": false,
+          "doc": "",
+          "signature": "getBuffer3i(buffer:Int, param:Int) : Array<Int>",
+          "return": ": Array<Int>",
+          "args": [
+            {
+              "name": "buffer",
+              "type": "Int"
+            },
+            {
+              "name": "param",
+              "type": "Int"
+            }
+          ]
+        },
+        {
+          "name": "bufferiv",
+          "meta": [],
+          "public": true,
+          "static": true,
+          "inline": false,
+          "doc": "",
+          "signature": "bufferiv(buffer:Int, param:Int, values:Array<Int>) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "buffer",
+              "type": "Int"
+            },
+            {
+              "name": "param",
+              "type": "Int"
+            },
+            {
+              "name": "values",
+              "type": "Array<Int>"
+            }
+          ]
+        },
+        {
+          "name": "getEnumValue",
+          "meta": [],
+          "public": true,
+          "static": true,
+          "inline": false,
+          "doc": "",
+          "signature": "getEnumValue(ename:String) : Int",
+          "return": ": Int",
+          "args": [
+            {
+              "name": "ename",
+              "type": "String"
+            }
+          ]
+        },
+        {
+          "name": "dopplerFactor",
+          "meta": [],
+          "public": true,
+          "static": true,
+          "inline": false,
+          "doc": "",
+          "signature": "dopplerFactor(value:Float) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "value",
+              "type": "Float"
+            }
+          ]
+        },
+        {
+          "name": "getListeneri",
+          "meta": [],
+          "public": true,
+          "static": true,
+          "inline": false,
+          "doc": "",
+          "signature": "getListeneri(param:Int) : Int",
+          "return": ": Int",
+          "args": [
+            {
+              "name": "param",
+              "type": "Int"
+            }
+          ]
+        },
+        {
+          "name": "sourcePlay",
+          "meta": [],
+          "public": true,
+          "static": true,
+          "inline": false,
+          "doc": "",
+          "signature": "sourcePlay(source:Int) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "source",
+              "type": "Int"
+            }
+          ]
+        },
+        {
+          "name": "deleteBuffer",
+          "meta": [],
+          "public": true,
+          "static": true,
+          "inline": false,
+          "doc": "",
+          "signature": "deleteBuffer(buffer:Int) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "buffer",
+              "type": "Int"
+            }
+          ]
+        },
+        {
+          "name": "genSources",
+          "meta": [],
+          "public": true,
+          "static": true,
+          "inline": false,
+          "doc": "",
+          "signature": "genSources(n:Int) : Array<Int>",
+          "return": ": Array<Int>",
+          "args": [
+            {
+              "name": "n",
+              "type": "Int"
+            }
+          ]
+        },
+        {
+          "name": "getBoolean",
+          "meta": [],
+          "public": true,
+          "static": true,
+          "inline": false,
+          "doc": "",
+          "signature": "getBoolean(param:Int) : Bool",
+          "return": ": Bool",
+          "args": [
+            {
+              "name": "param",
+              "type": "Int"
+            }
+          ]
+        },
+        {
+          "name": "getFloat",
+          "meta": [],
+          "public": true,
+          "static": true,
+          "inline": false,
+          "doc": "",
+          "signature": "getFloat(param:Int) : Float",
+          "return": ": Float",
+          "args": [
+            {
+              "name": "param",
+              "type": "Int"
+            }
+          ]
+        },
+        {
+          "name": "sourceRewind",
+          "meta": [],
+          "public": true,
+          "static": true,
+          "inline": false,
+          "doc": "",
+          "signature": "sourceRewind(source:Int) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "source",
+              "type": "Int"
+            }
+          ]
+        },
+        {
+          "name": "buffer3f",
+          "meta": [],
+          "public": true,
+          "static": true,
+          "inline": false,
+          "doc": "",
+          "signature": "buffer3f(buffer:Int, param:Int, value1:Float, value2:Float, value3:Float) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "buffer",
+              "type": "Int"
+            },
+            {
+              "name": "param",
+              "type": "Int"
+            },
+            {
+              "name": "value1",
+              "type": "Float"
+            },
+            {
+              "name": "value2",
+              "type": "Float"
+            },
+            {
+              "name": "value3",
+              "type": "Float"
+            }
+          ]
+        },
+        {
+          "name": "getSource3f",
+          "meta": [],
+          "public": true,
+          "static": true,
+          "inline": false,
+          "doc": "",
+          "signature": "getSource3f(source:Int, param:Int) : Array<Float>",
+          "return": ": Array<Float>",
+          "args": [
+            {
+              "name": "source",
+              "type": "Int"
+            },
+            {
+              "name": "param",
+              "type": "Int"
+            }
+          ]
+        },
+        {
+          "name": "getDouble",
+          "meta": [],
+          "public": true,
+          "static": true,
+          "inline": false,
+          "doc": "",
+          "signature": "getDouble(param:Int) : Float",
+          "return": ": Float",
+          "args": [
+            {
+              "name": "param",
+              "type": "Int"
+            }
+          ]
+        },
+        {
+          "name": "listener3i",
+          "meta": [],
+          "public": true,
+          "static": true,
+          "inline": false,
+          "doc": "",
+          "signature": "listener3i(param:Int, value1:Int, value2:Int, value3:Int) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "param",
+              "type": "Int"
+            },
+            {
+              "name": "value1",
+              "type": "Int"
+            },
+            {
+              "name": "value2",
+              "type": "Int"
+            },
+            {
+              "name": "value3",
+              "type": "Int"
+            }
+          ]
+        },
+        {
+          "name": "sourcei",
+          "meta": [],
+          "public": true,
+          "static": true,
+          "inline": false,
+          "doc": "",
+          "signature": "sourcei(source:Int, param:Int, value:Int) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "source",
+              "type": "Int"
+            },
+            {
+              "name": "param",
+              "type": "Int"
+            },
+            {
+              "name": "value",
+              "type": "Int"
+            }
+          ]
+        },
+        {
+          "name": "getBufferfv",
+          "meta": [],
+          "public": true,
+          "static": true,
+          "inline": false,
+          "doc": "",
+          "signature": "getBufferfv(buffer:Int, param:Int, ?count:Int) : Array<Float>",
+          "return": ": Array<Float>",
+          "args": [
+            {
+              "name": "buffer",
+              "type": "Int"
+            },
+            {
+              "name": "param",
+              "type": "Int"
+            },
+            {
+              "name": "?count",
+              "type": "Int"
+            }
+          ]
+        },
+        {
+          "name": "sourcefv",
+          "meta": [],
+          "public": true,
+          "static": true,
+          "inline": false,
+          "doc": "",
+          "signature": "sourcefv(source:Int, param:Int, values:Array<Float>) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "source",
+              "type": "Int"
+            },
+            {
+              "name": "param",
+              "type": "Int"
+            },
+            {
+              "name": "values",
+              "type": "Array<Float>"
+            }
+          ]
+        },
+        {
+          "name": "sourcePausev",
+          "meta": [],
+          "public": true,
+          "static": true,
+          "inline": false,
+          "doc": "",
+          "signature": "sourcePausev(sources:Array<Int>) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "sources",
+              "type": "Array<Int>"
+            }
+          ]
+        },
+        {
+          "name": "getInteger",
+          "meta": [],
+          "public": true,
+          "static": true,
+          "inline": false,
+          "doc": "",
+          "signature": "getInteger(param:Int) : Int",
+          "return": ": Int",
+          "args": [
+            {
+              "name": "param",
+              "type": "Int"
+            }
+          ]
+        },
+        {
+          "name": "sourcef",
+          "meta": [],
+          "public": true,
+          "static": true,
+          "inline": false,
+          "doc": "",
+          "signature": "sourcef(source:Int, param:Int, value:Float) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "source",
+              "type": "Int"
+            },
+            {
+              "name": "param",
+              "type": "Int"
+            },
+            {
+              "name": "value",
+              "type": "Float"
+            }
+          ]
+        },
+        {
+          "name": "getSourceiv",
+          "meta": [],
+          "public": true,
+          "static": true,
+          "inline": false,
+          "doc": "",
+          "signature": "getSourceiv(source:Int, param:Int, ?count:Int) : Array<Int>",
+          "return": ": Array<Int>",
+          "args": [
+            {
+              "name": "source",
+              "type": "Int"
+            },
+            {
+              "name": "param",
+              "type": "Int"
+            },
+            {
+              "name": "?count",
+              "type": "Int"
+            }
+          ]
+        },
+        {
+          "name": "sourceQueueBuffer",
+          "meta": [],
+          "public": true,
+          "static": true,
+          "inline": false,
+          "doc": "",
+          "signature": "sourceQueueBuffer(source:Int, buffer:Int) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "source",
+              "type": "Int"
+            },
+            {
+              "name": "buffer",
+              "type": "Int"
+            }
+          ]
+        },
+        {
+          "name": "enable",
+          "meta": [],
+          "public": true,
+          "static": true,
+          "inline": false,
+          "doc": "",
+          "signature": "enable(capability:Int) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "capability",
+              "type": "Int"
+            }
+          ]
+        },
+        {
+          "name": "getDoublev",
+          "meta": [],
+          "public": true,
+          "static": true,
+          "inline": false,
+          "doc": "",
+          "signature": "getDoublev(param:Int, ?count:Int) : Array<Float>",
+          "return": ": Array<Float>",
+          "args": [
+            {
+              "name": "param",
+              "type": "Int"
+            },
+            {
+              "name": "?count",
+              "type": "Int"
+            }
+          ]
+        },
+        {
+          "name": "getBufferi",
+          "meta": [],
+          "public": true,
+          "static": true,
+          "inline": false,
+          "doc": "",
+          "signature": "getBufferi(buffer:Int, param:Int) : Int",
+          "return": ": Int",
+          "args": [
+            {
+              "name": "buffer",
+              "type": "Int"
+            },
+            {
+              "name": "param",
+              "type": "Int"
+            }
+          ]
+        },
+        {
+          "name": "sourceiv",
+          "meta": [],
+          "public": true,
+          "static": true,
+          "inline": false,
+          "doc": "",
+          "signature": "sourceiv(source:Int, param:Int, values:Array<Int>) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "source",
+              "type": "Int"
+            },
+            {
+              "name": "param",
+              "type": "Int"
+            },
+            {
+              "name": "values",
+              "type": "Array<Int>"
+            }
+          ]
+        },
+        {
+          "name": "getString",
+          "meta": [],
+          "public": true,
+          "static": true,
+          "inline": false,
+          "doc": "",
+          "signature": "getString(param:Int) : String",
+          "return": ": String",
+          "args": [
+            {
+              "name": "param",
+              "type": "Int"
+            }
+          ]
+        },
+        {
+          "name": "getErrorMeaning",
+          "meta": [],
+          "public": true,
+          "static": true,
+          "inline": false,
+          "doc": "",
+          "signature": "getErrorMeaning(error:Int) : String",
+          "return": ": String",
+          "args": [
+            {
+              "name": "error",
+              "type": "Int"
+            }
+          ]
+        },
+        {
+          "name": "listenerf",
+          "meta": [],
+          "public": true,
+          "static": true,
+          "inline": false,
+          "doc": "",
+          "signature": "listenerf(param:Int, value:Float) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "param",
+              "type": "Int"
+            },
+            {
+              "name": "value",
+              "type": "Float"
+            }
+          ]
+        },
+        {
+          "name": "getBuffer3f",
+          "meta": [],
+          "public": true,
+          "static": true,
+          "inline": false,
+          "doc": "",
+          "signature": "getBuffer3f(buffer:Int, param:Int) : Array<Float>",
+          "return": ": Array<Float>",
+          "args": [
+            {
+              "name": "buffer",
+              "type": "Int"
+            },
+            {
+              "name": "param",
+              "type": "Int"
+            }
+          ]
+        },
+        {
+          "name": "distanceModel",
+          "meta": [],
+          "public": true,
+          "static": true,
+          "inline": false,
+          "doc": "",
+          "signature": "distanceModel(distanceModel:Int) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "distanceModel",
+              "type": "Int"
+            }
+          ]
+        },
+        {
+          "name": "getListener3i",
+          "meta": [],
+          "public": true,
+          "static": true,
+          "inline": false,
+          "doc": "",
+          "signature": "getListener3i(param:Int) : Array<Int>",
+          "return": ": Array<Int>",
+          "args": [
+            {
+              "name": "param",
+              "type": "Int"
+            }
+          ]
+        },
+        {
+          "name": "sourcePlayv",
+          "meta": [],
+          "public": true,
+          "static": true,
+          "inline": false,
+          "doc": "",
+          "signature": "sourcePlayv(sources:Array<Int>) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "sources",
+              "type": "Array<Int>"
+            }
+          ]
+        },
+        {
+          "name": "genSource",
+          "meta": [],
+          "public": true,
+          "static": true,
+          "inline": false,
+          "doc": "",
+          "signature": "genSource() : Int",
+          "return": ": Int",
+          "args": []
+        },
+        {
+          "name": "source3f",
+          "meta": [],
+          "public": true,
+          "static": true,
+          "inline": false,
+          "doc": "",
+          "signature": "source3f(source:Int, param:Int, value1:Float, value2:Float, value3:Float) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "source",
+              "type": "Int"
+            },
+            {
+              "name": "param",
+              "type": "Int"
+            },
+            {
+              "name": "value1",
+              "type": "Float"
+            },
+            {
+              "name": "value2",
+              "type": "Float"
+            },
+            {
+              "name": "value3",
+              "type": "Float"
+            }
+          ]
+        },
+        {
+          "name": "sourceUnqueueBuffers",
+          "meta": [],
+          "public": true,
+          "static": true,
+          "inline": false,
+          "doc": "",
+          "signature": "sourceUnqueueBuffers(source:Int, nb:Int) : Array<Int>",
+          "return": ": Array<Int>",
+          "args": [
+            {
+              "name": "source",
+              "type": "Int"
+            },
+            {
+              "name": "nb",
+              "type": "Int"
+            }
+          ]
+        },
+        {
+          "name": "buffer3i",
+          "meta": [],
+          "public": true,
+          "static": true,
+          "inline": false,
+          "doc": "",
+          "signature": "buffer3i(buffer:Int, param:Int, value1:Int, value2:Int, value3:Int) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "buffer",
+              "type": "Int"
+            },
+            {
+              "name": "param",
+              "type": "Int"
+            },
+            {
+              "name": "value1",
+              "type": "Int"
+            },
+            {
+              "name": "value2",
+              "type": "Int"
+            },
+            {
+              "name": "value3",
+              "type": "Int"
+            }
+          ]
+        },
+        {
+          "name": "genBuffers",
+          "meta": [],
+          "public": true,
+          "static": true,
+          "inline": false,
+          "doc": "",
+          "signature": "genBuffers(n:Int) : Array<Int>",
+          "return": ": Array<Int>",
+          "args": [
+            {
+              "name": "n",
+              "type": "Int"
+            }
+          ]
+        },
+        {
+          "name": "disable",
+          "meta": [],
+          "public": true,
+          "static": true,
+          "inline": false,
+          "doc": "",
+          "signature": "disable(capability:Int) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "capability",
+              "type": "Int"
+            }
+          ]
+        },
+        {
+          "name": "getBooleanv",
+          "meta": [],
+          "public": true,
+          "static": true,
+          "inline": false,
+          "doc": "",
+          "signature": "getBooleanv(param:Int, ?count:Int) : Array<Bool>",
+          "return": ": Array<Bool>",
+          "args": [
+            {
+              "name": "param",
+              "type": "Int"
+            },
+            {
+              "name": "?count",
+              "type": "Int"
+            }
+          ]
+        },
+        {
+          "name": "getListenerf",
+          "meta": [],
+          "public": true,
+          "static": true,
+          "inline": false,
+          "doc": "",
+          "signature": "getListenerf(param:Int) : Float",
+          "return": ": Float",
+          "args": [
+            {
+              "name": "param",
+              "type": "Int"
+            }
+          ]
+        },
+        {
+          "name": "getListeneriv",
+          "meta": [],
+          "public": true,
+          "static": true,
+          "inline": false,
+          "doc": "",
+          "signature": "getListeneriv(param:Int, ?count:Int) : Array<Int>",
+          "return": ": Array<Int>",
+          "args": [
+            {
+              "name": "param",
+              "type": "Int"
+            },
+            {
+              "name": "?count",
+              "type": "Int"
+            }
+          ]
+        },
+        {
+          "name": "getSourcef",
+          "meta": [],
+          "public": true,
+          "static": true,
+          "inline": false,
+          "doc": "",
+          "signature": "getSourcef(source:Int, param:Int) : Float",
+          "return": ": Float",
+          "args": [
+            {
+              "name": "source",
+              "type": "Int"
+            },
+            {
+              "name": "param",
+              "type": "Int"
+            }
+          ]
+        },
+        {
+          "name": "listenerfv",
+          "meta": [],
+          "public": true,
+          "static": true,
+          "inline": false,
+          "doc": "",
+          "signature": "listenerfv(param:Int, values:Array<Float>) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "param",
+              "type": "Int"
+            },
+            {
+              "name": "values",
+              "type": "Array<Float>"
+            }
+          ]
+        },
+        {
+          "name": "sourceRewindv",
+          "meta": [],
+          "public": true,
+          "static": true,
+          "inline": false,
+          "doc": "",
+          "signature": "sourceRewindv(sources:Array<Int>) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "sources",
+              "type": "Array<Int>"
+            }
+          ]
+        },
+        {
+          "name": "genBuffer",
+          "meta": [],
+          "public": true,
+          "static": true,
+          "inline": false,
+          "doc": "",
+          "signature": "genBuffer() : Int",
+          "return": ": Int",
+          "args": []
+        },
+        {
+          "name": "dopplerVelocity",
+          "meta": [],
+          "public": true,
+          "static": true,
+          "inline": false,
+          "doc": "",
+          "signature": "dopplerVelocity(value:Float) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "value",
+              "type": "Float"
+            }
+          ]
+        },
+        {
+          "name": "getBufferiv",
+          "meta": [],
+          "public": true,
+          "static": true,
+          "inline": false,
+          "doc": "",
+          "signature": "getBufferiv(buffer:Int, param:Int, ?count:Int) : Array<Int>",
+          "return": ": Array<Int>",
+          "args": [
+            {
+              "name": "buffer",
+              "type": "Int"
+            },
+            {
+              "name": "param",
+              "type": "Int"
+            },
+            {
+              "name": "?count",
+              "type": "Int"
+            }
+          ]
+        },
+        {
+          "name": "getProcAddress",
+          "meta": [],
+          "public": true,
+          "static": true,
+          "inline": false,
+          "doc": "",
+          "signature": "getProcAddress(fname:String) : Dynamic",
+          "return": ": Dynamic",
+          "args": [
+            {
+              "name": "fname",
+              "type": "String"
+            }
+          ]
+        },
+        {
+          "name": "source3i",
+          "meta": [],
+          "public": true,
+          "static": true,
+          "inline": false,
+          "doc": "",
+          "signature": "source3i(source:Int, param:Int, value1:Int, value2:Int, value3:Int) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "source",
+              "type": "Int"
+            },
+            {
+              "name": "param",
+              "type": "Int"
+            },
+            {
+              "name": "value1",
+              "type": "Int"
+            },
+            {
+              "name": "value2",
+              "type": "Int"
+            },
+            {
+              "name": "value3",
+              "type": "Int"
+            }
+          ]
+        },
+        {
+          "name": "sourceStop",
+          "meta": [],
+          "public": true,
+          "static": true,
+          "inline": false,
+          "doc": "",
+          "signature": "sourceStop(source:Int) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "source",
+              "type": "Int"
+            }
+          ]
+        },
+        {
+          "name": "getIntegerv",
+          "meta": [],
+          "public": true,
+          "static": true,
+          "inline": false,
+          "doc": "",
+          "signature": "getIntegerv(param:Int, ?count:Int) : Array<Int>",
+          "return": ": Array<Int>",
+          "args": [
+            {
+              "name": "param",
+              "type": "Int"
+            },
+            {
+              "name": "?count",
+              "type": "Int"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
