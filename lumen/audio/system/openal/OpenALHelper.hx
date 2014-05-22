@@ -7,7 +7,7 @@ import lumen.types.Types;
     import lumen.audio.al.AL;
 
     /** Internal helper class for interaction with OpenAL. */
-    class OpenALHelper {
+    @:noCompletion class OpenALHelper {
 
             /** Set up a source using default values for PITCH, GAIN, POSITION, VELOCITY, and LOOPING */
         public static function default_source_setup( source:Int ) {
