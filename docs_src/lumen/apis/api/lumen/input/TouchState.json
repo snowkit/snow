@@ -1,0 +1,44 @@
+{
+  "source": "lumen.input.TouchState",
+  "doc": "The states a touch can be in",
+  "links": [],
+  "toplinks": [],
+  "sections": [
+    {
+      "name": "Values",
+      "link": "#Values",
+      "values": [
+        {
+          "name": "unknown",
+          "signature": "lumen.input.TouchState.unknown",
+          "doc": "an unknown state"
+        },
+        {
+          "name": "down",
+          "signature": "lumen.input.TouchState.down",
+          "doc": "touch is down"
+        },
+        {
+          "name": "up",
+          "signature": "lumen.input.TouchState.up",
+          "doc": "touch is up"
+        },
+        {
+          "name": "move",
+          "signature": "lumen.input.TouchState.move",
+          "doc": "touch is moving"
+        }
+      ]
+    },
+    {
+      "name": "Meta",
+      "link": "#Meta",
+      "values": [
+        {
+          "name": ":flatEnum",
+          "value": ""
+        }
+      ]
+    }
+  ]
+}

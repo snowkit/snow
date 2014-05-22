@@ -1,0 +1,39 @@
+{
+  "source": "lumen.input.PressedState",
+  "doc": "",
+  "links": [],
+  "toplinks": [],
+  "sections": [
+    {
+      "name": "Values",
+      "link": "#Values",
+      "values": [
+        {
+          "name": "unknown",
+          "signature": "lumen.input.PressedState.unknown",
+          "doc": ""
+        },
+        {
+          "name": "down",
+          "signature": "lumen.input.PressedState.down",
+          "doc": ""
+        },
+        {
+          "name": "up",
+          "signature": "lumen.input.PressedState.up",
+          "doc": ""
+        }
+      ]
+    },
+    {
+      "name": "Meta",
+      "link": "#Meta",
+      "values": [
+        {
+          "name": ":flatEnum",
+          "value": ""
+        }
+      ]
+    }
+  ]
+}

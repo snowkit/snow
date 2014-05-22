@@ -1,0 +1,49 @@
+{
+  "source": "lumen.input.system.sdl.KeyEventType",
+  "doc": "",
+  "links": [],
+  "toplinks": [],
+  "sections": [
+    {
+      "name": "Values",
+      "link": "#Values",
+      "values": [
+        {
+          "name": "unknown",
+          "signature": "lumen.input.system.sdl.KeyEventType.unknown",
+          "doc": ""
+        },
+        {
+          "name": "down",
+          "signature": "lumen.input.system.sdl.KeyEventType.down",
+          "doc": ""
+        },
+        {
+          "name": "up",
+          "signature": "lumen.input.system.sdl.KeyEventType.up",
+          "doc": ""
+        },
+        {
+          "name": "textedit",
+          "signature": "lumen.input.system.sdl.KeyEventType.textedit",
+          "doc": ""
+        },
+        {
+          "name": "textinput",
+          "signature": "lumen.input.system.sdl.KeyEventType.textinput",
+          "doc": ""
+        }
+      ]
+    },
+    {
+      "name": "Meta",
+      "link": "#Meta",
+      "values": [
+        {
+          "name": ":flatEnum",
+          "value": ""
+        }
+      ]
+    }
+  ]
+}

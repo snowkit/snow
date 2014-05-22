@@ -1,0 +1,54 @@
+{
+  "source": "lumen.input.GamepadEventType",
+  "doc": "",
+  "links": [],
+  "toplinks": [],
+  "sections": [
+    {
+      "name": "Values",
+      "link": "#Values",
+      "values": [
+        {
+          "name": "unknown",
+          "signature": "lumen.input.GamepadEventType.unknown",
+          "doc": ""
+        },
+        {
+          "name": "axis",
+          "signature": "lumen.input.GamepadEventType.axis",
+          "doc": ""
+        },
+        {
+          "name": "button",
+          "signature": "lumen.input.GamepadEventType.button",
+          "doc": ""
+        },
+        {
+          "name": "device_added",
+          "signature": "lumen.input.GamepadEventType.device_added",
+          "doc": ""
+        },
+        {
+          "name": "device_removed",
+          "signature": "lumen.input.GamepadEventType.device_removed",
+          "doc": ""
+        },
+        {
+          "name": "device_remapped",
+          "signature": "lumen.input.GamepadEventType.device_remapped",
+          "doc": ""
+        }
+      ]
+    },
+    {
+      "name": "Meta",
+      "link": "#Meta",
+      "values": [
+        {
+          "name": ":flatEnum",
+          "value": ""
+        }
+      ]
+    }
+  ]
+}

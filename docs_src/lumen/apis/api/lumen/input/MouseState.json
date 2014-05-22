@@ -1,0 +1,49 @@
+{
+  "source": "lumen.input.MouseState",
+  "doc": "",
+  "links": [],
+  "toplinks": [],
+  "sections": [
+    {
+      "name": "Values",
+      "link": "#Values",
+      "values": [
+        {
+          "name": "unknown",
+          "signature": "lumen.input.MouseState.unknown",
+          "doc": ""
+        },
+        {
+          "name": "down",
+          "signature": "lumen.input.MouseState.down",
+          "doc": ""
+        },
+        {
+          "name": "up",
+          "signature": "lumen.input.MouseState.up",
+          "doc": ""
+        },
+        {
+          "name": "move",
+          "signature": "lumen.input.MouseState.move",
+          "doc": ""
+        },
+        {
+          "name": "wheel",
+          "signature": "lumen.input.MouseState.wheel",
+          "doc": ""
+        }
+      ]
+    },
+    {
+      "name": "Meta",
+      "link": "#Meta",
+      "values": [
+        {
+          "name": ":flatEnum",
+          "value": ""
+        }
+      ]
+    }
+  ]
+}

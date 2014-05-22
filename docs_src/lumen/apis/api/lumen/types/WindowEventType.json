@@ -1,0 +1,104 @@
+{
+  "source": "lumen.types.WindowEventType",
+  "doc": "",
+  "links": [],
+  "toplinks": [],
+  "sections": [
+    {
+      "name": "Values",
+      "link": "#Values",
+      "values": [
+        {
+          "name": "unknown",
+          "signature": "lumen.types.WindowEventType.unknown",
+          "doc": ""
+        },
+        {
+          "name": "window_created",
+          "signature": "lumen.types.WindowEventType.window_created",
+          "doc": ""
+        },
+        {
+          "name": "window_shown",
+          "signature": "lumen.types.WindowEventType.window_shown",
+          "doc": ""
+        },
+        {
+          "name": "window_hidden",
+          "signature": "lumen.types.WindowEventType.window_hidden",
+          "doc": ""
+        },
+        {
+          "name": "window_exposed",
+          "signature": "lumen.types.WindowEventType.window_exposed",
+          "doc": ""
+        },
+        {
+          "name": "window_moved",
+          "signature": "lumen.types.WindowEventType.window_moved",
+          "doc": ""
+        },
+        {
+          "name": "window_resized",
+          "signature": "lumen.types.WindowEventType.window_resized",
+          "doc": ""
+        },
+        {
+          "name": "window_size_changed",
+          "signature": "lumen.types.WindowEventType.window_size_changed",
+          "doc": ""
+        },
+        {
+          "name": "window_minimized",
+          "signature": "lumen.types.WindowEventType.window_minimized",
+          "doc": ""
+        },
+        {
+          "name": "window_maximized",
+          "signature": "lumen.types.WindowEventType.window_maximized",
+          "doc": ""
+        },
+        {
+          "name": "window_restored",
+          "signature": "lumen.types.WindowEventType.window_restored",
+          "doc": ""
+        },
+        {
+          "name": "window_enter",
+          "signature": "lumen.types.WindowEventType.window_enter",
+          "doc": ""
+        },
+        {
+          "name": "window_leave",
+          "signature": "lumen.types.WindowEventType.window_leave",
+          "doc": ""
+        },
+        {
+          "name": "window_focus_gained",
+          "signature": "lumen.types.WindowEventType.window_focus_gained",
+          "doc": ""
+        },
+        {
+          "name": "window_focus_lost",
+          "signature": "lumen.types.WindowEventType.window_focus_lost",
+          "doc": ""
+        },
+        {
+          "name": "window_close",
+          "signature": "lumen.types.WindowEventType.window_close",
+          "doc": ""
+        }
+      ]
+    },
+    {
+      "name": "Meta",
+      "link": "#Meta",
+      "values": [
+        {
+          "name": ":flatEnum",
+          "value": ""
+        }
+      ]
+    }
+  ]
+}

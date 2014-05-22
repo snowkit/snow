@@ -1,0 +1,54 @@
+{
+  "source": "lumen.types.InputEventType",
+  "doc": "",
+  "links": [],
+  "toplinks": [],
+  "sections": [
+    {
+      "name": "Values",
+      "link": "#Values",
+      "values": [
+        {
+          "name": "unknown",
+          "signature": "lumen.types.InputEventType.unknown",
+          "doc": ""
+        },
+        {
+          "name": "key",
+          "signature": "lumen.types.InputEventType.key",
+          "doc": ""
+        },
+        {
+          "name": "mouse",
+          "signature": "lumen.types.InputEventType.mouse",
+          "doc": ""
+        },
+        {
+          "name": "touch",
+          "signature": "lumen.types.InputEventType.touch",
+          "doc": ""
+        },
+        {
+          "name": "joystick",
+          "signature": "lumen.types.InputEventType.joystick",
+          "doc": ""
+        },
+        {
+          "name": "controller",
+          "signature": "lumen.types.InputEventType.controller",
+          "doc": ""
+        }
+      ]
+    },
+    {
+      "name": "Meta",
+      "link": "#Meta",
+      "values": [
+        {
+          "name": ":flatEnum",
+          "value": ""
+        }
+      ]
+    }
+  ]
+}

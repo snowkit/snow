@@ -1,0 +1,39 @@
+{
+  "source": "lumen.input.TextEventType",
+  "doc": "",
+  "links": [],
+  "toplinks": [],
+  "sections": [
+    {
+      "name": "Values",
+      "link": "#Values",
+      "values": [
+        {
+          "name": "unknown",
+          "signature": "lumen.input.TextEventType.unknown",
+          "doc": ""
+        },
+        {
+          "name": "edit",
+          "signature": "lumen.input.TextEventType.edit",
+          "doc": ""
+        },
+        {
+          "name": "input",
+          "signature": "lumen.input.TextEventType.input",
+          "doc": ""
+        }
+      ]
+    },
+    {
+      "name": "Meta",
+      "link": "#Meta",
+      "values": [
+        {
+          "name": ":flatEnum",
+          "value": ""
+        }
+      ]
+    }
+  ]
+}

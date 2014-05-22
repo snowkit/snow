@@ -1,0 +1,94 @@
+{
+  "source": "lumen.types.SystemEventType",
+  "doc": "",
+  "links": [],
+  "toplinks": [],
+  "sections": [
+    {
+      "name": "Values",
+      "link": "#Values",
+      "values": [
+        {
+          "name": "unknown",
+          "signature": "lumen.types.SystemEventType.unknown",
+          "doc": ""
+        },
+        {
+          "name": "init",
+          "signature": "lumen.types.SystemEventType.init",
+          "doc": ""
+        },
+        {
+          "name": "ready",
+          "signature": "lumen.types.SystemEventType.ready",
+          "doc": ""
+        },
+        {
+          "name": "update",
+          "signature": "lumen.types.SystemEventType.update",
+          "doc": ""
+        },
+        {
+          "name": "shutdown",
+          "signature": "lumen.types.SystemEventType.shutdown",
+          "doc": ""
+        },
+        {
+          "name": "window",
+          "signature": "lumen.types.SystemEventType.window",
+          "doc": ""
+        },
+        {
+          "name": "input",
+          "signature": "lumen.types.SystemEventType.input",
+          "doc": ""
+        },
+        {
+          "name": "quit",
+          "signature": "lumen.types.SystemEventType.quit",
+          "doc": ""
+        },
+        {
+          "name": "app_terminating",
+          "signature": "lumen.types.SystemEventType.app_terminating",
+          "doc": ""
+        },
+        {
+          "name": "app_lowmemory",
+          "signature": "lumen.types.SystemEventType.app_lowmemory",
+          "doc": ""
+        },
+        {
+          "name": "app_willenterbackground",
+          "signature": "lumen.types.SystemEventType.app_willenterbackground",
+          "doc": ""
+        },
+        {
+          "name": "app_didenterbackground",
+          "signature": "lumen.types.SystemEventType.app_didenterbackground",
+          "doc": ""
+        },
+        {
+          "name": "app_willenterforeground",
+          "signature": "lumen.types.SystemEventType.app_willenterforeground",
+          "doc": ""
+        },
+        {
+          "name": "app_didenterforeground",
+          "signature": "lumen.types.SystemEventType.app_didenterforeground",
+          "doc": ""
+        }
+      ]
+    },
+    {
+      "name": "Meta",
+      "link": "#Meta",
+      "values": [
+        {
+          "name": ":flatEnum",
+          "value": ""
+        }
+      ]
+    }
+  ]
+}
