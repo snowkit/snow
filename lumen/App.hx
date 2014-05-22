@@ -2,7 +2,7 @@ package lumen;
 
 import lumen.utils.ByteArray;
 import lumen.input.Input;
-import lumen.LumenTypes;
+import lumen.types.Types;
 
     //Note all times in lumen are in seconds.
 

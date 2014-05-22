@@ -1,7 +1,7 @@
 
 package lumen.input.system.sdl;
 
-import lumen.LumenTypes;
+import lumen.types.Types;
 import lumen.input.system.InputSystem;
 import lumen.input.Input;
 
@@ -130,18 +130,19 @@ class ModValue {
 
 } 
 
-
+/** Internal input system, concrete SDL implementation. Accessed through `lumen.Input`, not directly */
     class InputSystemSDL extends InputSystem {
 
-        override public function init() {
+        @:noCompletion override public function init() {
         } //init
 
-        override public function update() {
+        @:noCompletion override public function update() {
         } //update
 
-        override public function destroy() {
+        @:noCompletion override public function destroy() {
         } //destroy
-
+            
+            /** Helper to return a `ModState` (shift, ctrl etc) from a given `InputEvent` */
         override public function mod_state_from_event( event:InputEvent ) : ModState {
             
             //event comes through as event.event.keysym.mod
@@ -215,7 +216,7 @@ class ModValue {
 
         } //mouse_button_from_number
 
-        override public function on_event( _event : InputEvent ) {
+        @:noCompletion override public function on_event( _event : InputEvent ) {
 
             super.on_event( _event );
 
@@ -396,15 +397,9 @@ class ModValue {
 
                 manager.dispatch_mouse_event( api_event );
 
-        //Touch events
 
-            } else if(_event.type == touch) {
+            } //if's
 
-
-            }
-
-        //Mouse Events
-                       
         } //on_event
 
     } //InputSystemSDL

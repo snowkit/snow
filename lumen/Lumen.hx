@@ -3,7 +3,7 @@ package lumen;
 import haxe.Timer;
 
 import lumen.App;
-import lumen.LumenTypes;
+import lumen.types.Types;
 import lumen.utils.ByteArray;
 
 import lumen.assets.Assets;
@@ -14,27 +14,48 @@ import lumen.window.Window;
 
 class Lumen {
 
+//Property accessors
+
+        /** The current timestamp */
     public var time (get,never) : Float;
-
-    public var host : App;
-    public var config : LumenConfig;
-
-    public var window : Windowing;
-    public var input : Input;
-    public var audio : Audio;
-    public var assets : Assets;
-
-    public var shutting_down : Bool = false;
-    public var has_shutdown : Bool = false;
-
-    public var main_window : Window;
-
+        /** Generate a unique ID to use */
     public var uniqueid (get,never) : String;
 
+
+//State management
+
+        /** The host application */
+    public var host : App;
+        /** The configuration from the project file, runtime config and other configs */
+    public var config : LumenConfig;
+
+//Sub systems
+
+        /** The window manager */
+    public var window : Windowing;
+        /** The input system */
+    public var input : Input;
+        /** The audio system */
+    public var audio : Audio;
+        /** The asset system */
+    public var assets : Assets;
+
+        /** Set if shut down has commenced */
+    public var shutting_down : Bool = false;
+        /** Set if shut dow has completed  */
+    public var has_shutdown : Bool = false;
+        /** If the config specifies a default window, this is it */
+    public var main_window : Window;
+
+//Internal values
+
+        //if already passed the ready state
     var was_ready : Bool = false;
+        //if ready has completed, so systems can begin safely
     var is_ready : Bool = false;
 
-    public function new() {
+
+    @:noCompletion public function new() {
 
     } //new
 
@@ -50,6 +71,7 @@ class Lumen {
 
     } //init
 
+        /** Shutdown the engine and quit */
     public function shutdown() {
 
         shutting_down = true;
@@ -246,7 +268,7 @@ class Lumen {
         return haxe.crypto.Md5.encode(Std.string( time * Math.random() ));
     } //uniqueid
 
-       //Loads a function out of a library
+        /** Loads a function out of a library */
     public static function load( library:String, method:String, args:Int = 0 ) : Dynamic {
 
         return lumen.utils.Libs.load( library, method, args );
@@ -271,10 +293,10 @@ class Lumen {
 
     // #if debug
 
-        public var log : Bool = true;
-        public var verbose : Bool = true;
-        public var more_verbose : Bool = false;
-        public function _debug(value:Dynamic, _verbose:Bool = false, _more_verbose:Bool = false) {
+        @:noCompletion public var log : Bool = true;
+        @:noCompletion public var verbose : Bool = true;
+        @:noCompletion public var more_verbose : Bool = false;
+        @:noCompletion public function _debug(value:Dynamic, _verbose:Bool = false, _more_verbose:Bool = false) {
             if(log) {
                 if(verbose && _verbose && !_more_verbose) {
                     trace(value);

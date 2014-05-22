@@ -1,28 +1,41 @@
 package lumen.audio.system;
 
 import lumen.audio.Audio;
-import lumen.LumenTypes;
+import lumen.types.Types;
 
 //The base class for a sound instance
 
 class Sound {
 
-
+        /** The `Audio` system handling this sound */
     public var manager : Audio;
+        /** The `AudioInfo` this sound is created from */
     public var info : AudioInfo;
+        /** The name of this sound */
     public var name : String = '';
 
+        /** If the sound is playing */
     public var playing : Bool = false;
+        /** If the sound is paused */
     public var paused : Bool = false;
+        /** If the sound is a stream source */
     public var is_stream : Bool = false;
 
+        /** The pitch of this sound */
     @:isVar public var pitch    (get,set) : Float = 1.0;
+        /** The volume of this sound */
     @:isVar public var volume   (get,set) : Float = 1.0;
+        /** The pan of this sound. Pan only logically works on mono sounds, and is by default 2D sounds  */
     @:isVar public var pan      (get,set) : Float = 0.0;
+        /** If the sound is looping or not */
     @:isVar public var looping  (get,set) : Bool = false;
+        /** The current playback position of this sound in `bytes` */
     @:isVar public var position (get,set) : Int = 0;
+        /** The current playback time of this sound in `seconds` */
     @:isVar public var time     (get,set) : Float = 0.0;
+        /** The length of this sound in `seconds` */
     @:isVar public var length   (get,never) : Int = 0;
+        /** The duration of this sound, in `bytes` */
     @:isVar public var duration (get,never) : Float = 0.0;
 
 
@@ -34,6 +47,7 @@ class Sound {
 
     } //new
 
+        /** A helper for converting bytes to seconds for this sound source, using the format settings specific to this sound */
     public function bytes_to_seconds( _bytes:Int ) : Float {
 
         var word = info.bits_per_sample == 16 ? 2 : 1;
@@ -43,6 +57,7 @@ class Sound {
 
     } //bytes_to_seconds
 
+        /** A helper for converting seconds to bytes for this sound source, using the format settings specific to this sound */
     public function seconds_to_bytes( _seconds:Float ) : Int {
         
         var word = info.bits_per_sample == 16 ? 2 : 1;
@@ -52,11 +67,15 @@ class Sound {
     
     } //seconds_to_bytes
 
+        /** Play this sound */
     public function play() {}
+        /** Loop this sound */
     public function loop() {}
+        /** Stop this sound */
     public function stop() {}
+        /** Pause this sound */
     public function pause() {}
-
+        /** Toggle this sound */
     public function toggle() {
         
         playing = !playing;
@@ -72,7 +91,8 @@ class Sound {
         }
 
     } //toggle
-
+        
+        /** Destroy this sound and it's data */
     public function destroy() {}
 
         //used for system events, hidden from user

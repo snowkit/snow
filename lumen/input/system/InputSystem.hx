@@ -1,7 +1,7 @@
 package lumen.input.system;
 
 import lumen.Lumen;
-import lumen.LumenTypes;
+import lumen.types.Types;
 import lumen.input.Input;
 
 #if lumen_input_sdl
@@ -14,31 +14,32 @@ import lumen.input.Input;
 
 #end //lumen_input_sdl
 
-
+/** Internal input system, accessed through `lumen.Input`, not directly */
 class InputSystem {
 
     var manager : Input;
     var lib : Lumen;
 
-    public function new( _manager:Input, _lib:Lumen ) {
+    @:noCompletion public function new( _manager:Input, _lib:Lumen ) {
 
         manager = _manager;
         lib = _lib;
 
     } //new
 
-    public function init() {
+    @:noCompletion public function init() {
     } //init
 
-    public function update() {
+    @:noCompletion public function update() {
     } //update
 
-    public function destroy() {
+    @:noCompletion public function destroy() {
     } //destroy
 
-    public function on_event( _event : InputEvent ) {
+    @:noCompletion public function on_event( _event : InputEvent ) {
     } //on_event    
 
+        /** Helper to return a `ModState` (shift, ctrl etc) from a given `InputEvent` */
     public function mod_state_from_event( event:InputEvent ) : ModState {
 
         return {

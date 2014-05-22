@@ -4,22 +4,22 @@ import lumen.audio.Audio;
 import lumen.audio.system.Sound;
 import lumen.audio.system.openal.OpenALHelper;
 
-import lumen.LumenTypes;
+import lumen.types.Types;
 import lumen.utils.Float32Array;
 
 #if lumen_audio_openal
 
 import lumen.audio.al.AL;
 
-    //The openal specific implementation of Sound
-class SoundOpenAL extends Sound {
+/** The openal specific implementation of Sound */
+@:noCompletion class SoundOpenAL extends Sound {
 
 
-        //the sound source name
+        /** the sound source name */
     public var source : Int;
-        //the sound buffer name
+        /** the sound buffer name */
     public var buffer : Int;
-        //mono8? stereo16?
+        /** mono8? stereo16? */
     public var format : Int;
 
     public function new( _manager:Audio, _name:String, _audio_info : AudioInfo ) {

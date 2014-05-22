@@ -1,6 +1,6 @@
 package lumen.window;
 
-import lumen.LumenTypes;
+import lumen.types.Types;
 import lumen.window.Window;
 import lumen.utils.Libs;
 
