@@ -7,6 +7,8 @@ import lumen.utils.Libs;
     If you want a file, use `Assets` instead, unless really required. */
 class IOFile {
 
+#if lumen_native
+
         /** The internal native file handle */
     public var handle : Dynamic;
 
@@ -39,13 +41,12 @@ class IOFile {
         return lumen_iosrc_file_close(handle);
     } //close
 
-
-#if lumen_native
     static var lumen_iosrc_file_read    = Libs.load( "lumen", "lumen_iosrc_file_read", 4 );
     static var lumen_iosrc_file_write   = Libs.load( "lumen", "lumen_iosrc_file_write", 4 );
     static var lumen_iosrc_file_seek    = Libs.load( "lumen", "lumen_iosrc_file_seek", 3 );
     static var lumen_iosrc_file_tell    = Libs.load( "lumen", "lumen_iosrc_file_tell", 1 );
     static var lumen_iosrc_file_close   = Libs.load( "lumen", "lumen_iosrc_file_close", 1 );
+
 #end //lumen_native
 
 } //IOFile
@@ -54,15 +55,17 @@ class IOFile {
 /** This class is a low level cross platform IO helper. 
     If you want file access, use `Assets` instead, unless really required. */
 class IO {
-        
+
+#if lumen_native        
+
+    static var lumen_iosrc_from_file = Libs.load( "lumen", "lumen_iosrc_from_file", 2 );
+    
         /** Create an `IOFile` from a file path `_id`, this bypasses the `Asset` system path helpers. */
     public static function from_file( _id:String, ?_mode:String="rb" ) : IOFile {
         var handle = lumen_iosrc_from_file(_id, _mode);
         return new IOFile(handle);
     }
 
-#if lumen_native
-    static var lumen_iosrc_from_file = Libs.load( "lumen", "lumen_iosrc_from_file", 2 );
 #end //lumen_native
 
 } //IO
