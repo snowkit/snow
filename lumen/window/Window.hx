@@ -15,6 +15,8 @@ typedef WindowSize = {
     var h : Int;
 }
 
+abstract WindowHandle(Dynamic) from Dynamic to Dynamic {}
+
     //A window has it's own event loop
     //and allows opening and closing windows
 class Window {
@@ -28,7 +30,7 @@ class Window {
         /** the actual returned window config */
     public var config : WindowConfig;
         /** the native window handle */
-    public var handle : Dynamic;
+    public var handle : WindowHandle;
         /** the window event handler callback */
     public var window_event_handler : WindowEvent->Void;
         /** the window render handler callback */
@@ -69,11 +71,11 @@ class Window {
         asked_config = _config;
         config = _config;
 
-        lumen_window_create( _config, on_window_created );
+        manager.system.window_create( _config, on_window_created );
 
     } //new
 
-    function on_window_created( _handle:Dynamic, _id:Int, _config:WindowConfig ) {
+    function on_window_created( _handle:WindowHandle, _id:Int, _config:WindowConfig ) : Void {
 
         id = _id;
         handle = _handle;
@@ -143,7 +145,7 @@ class Window {
 
     @:noCompletion public function update() {
 
-        lumen_window_update( handle );
+        manager.system.window_update( handle );
 
     } //update
 
@@ -154,7 +156,7 @@ class Window {
             return;
         }
 
-        lumen_window_render( handle );
+        manager.system.window_render( handle );
 
         if(window_render_handler != null) {
             window_render_handler( this );
@@ -171,7 +173,7 @@ class Window {
         /** Swap the back buffer of the window, call after rendering to update the window view */
     public function swap() : Void->Void {
 
-        lumen_window_swap( handle );
+        manager.system.window_swap( handle );
 
         return function(){}
 
@@ -180,14 +182,14 @@ class Window {
         /** Close the window */
     public function close() {
         
-        lumen_window_close( handle );
+        manager.system.window_close( handle );
 
     } //close
 
         /** Display a cross platform message on this window */
     public function simple_message( message:String, title:String="" ) {
 
-        lumen_window_simple_message( handle, message, title );
+        manager.system.window_simple_message( handle, message, title );
 
     } //simple_message
 
@@ -201,7 +203,7 @@ class Window {
     function set_fullscreen( _enable:Bool ) {
         
         if(handle != null) {
-            lumen_window_fullscreen( handle, _enable, fullscreen_desktop ? 0 : 1  );
+            manager.system.window_fullscreen( handle, _enable, fullscreen_desktop ? 0 : 1  );
         }
 
         return fullscreen = _enable;
@@ -253,7 +255,7 @@ class Window {
     function set_title( _title:String ) {
 
         if(handle != null) {
-            lumen_window_set_title(handle, _title);
+            manager.system.window_set_title(handle, _title);
         }
 
         return title = _title;
@@ -262,7 +264,7 @@ class Window {
     function set_position( _pos:WindowPosition ) : WindowPosition {
 
         if(position != null && handle != null && !internal_position) {
-            lumen_window_set_position( handle, _pos.x, _pos.y );
+            manager.system.window_set_position( handle, _pos.x, _pos.y );
         }
 
         return position = _pos;
@@ -275,7 +277,7 @@ class Window {
     function set_size( _size:WindowSize ) : WindowSize {
 
         if(size != null && handle != null && !internal_resize) {
-            lumen_window_set_size( handle, _size.w, _size.h );
+            manager.system.window_set_size( handle, _size.w, _size.h );
         }
 
         return size = _size;
@@ -285,7 +287,7 @@ class Window {
     function set_max_size( _size:WindowSize ) : WindowSize {
 
         if(max_size != null && handle != null) { 
-            lumen_window_set_max_size( handle, _size.w, _size.h );
+            manager.system.window_set_max_size( handle, _size.w, _size.h );
         }
 
         return max_size = _size;
@@ -295,7 +297,7 @@ class Window {
     function set_min_size( _size:WindowSize ) : WindowSize {
 
         if(min_size != null && handle != null) {
-            lumen_window_set_min_size( handle, _size.w, _size.h );
+            manager.system.window_set_min_size( handle, _size.w, _size.h );
         }
 
         return min_size = _size;
@@ -305,7 +307,7 @@ class Window {
     function set_bordered( _bordered:Bool ) : Bool {
         
         if(handle != null) {
-            lumen_window_bordered(handle, _bordered);
+            manager.system.window_bordered(handle, _bordered);
         }
 
         return bordered = _bordered;
@@ -315,26 +317,11 @@ class Window {
     function set_grab( _grab:Bool ) : Bool {
 
         if(handle != null) {
-            lumen_window_grab(handle, _grab);
+            manager.system.window_grab(handle, _grab);
         }
 
         return grab = _grab;
 
     } //set_grab    
-
-    static var lumen_window_create          = Lumen.load( "lumen", "lumen_window_create", 2 );
-    static var lumen_window_close           = Lumen.load( "lumen", "lumen_window_close", 1 );
-    static var lumen_window_update          = Lumen.load( "lumen", "lumen_window_update", 1 );
-    static var lumen_window_render          = Lumen.load( "lumen", "lumen_window_render", 1 );
-    static var lumen_window_swap            = Lumen.load( "lumen", "lumen_window_swap", 1 );
-    static var lumen_window_simple_message  = Lumen.load( "lumen", "lumen_window_simple_message", 3 );
-    static var lumen_window_set_size        = Lumen.load( "lumen", "lumen_window_set_size", 3 );
-    static var lumen_window_set_position    = Lumen.load( "lumen", "lumen_window_set_position", 3 );
-    static var lumen_window_set_title       = Lumen.load( "lumen", "lumen_window_set_title", 2 );
-    static var lumen_window_set_max_size    = Lumen.load( "lumen", "lumen_window_set_max_size", 3 );
-    static var lumen_window_set_min_size    = Lumen.load( "lumen", "lumen_window_set_min_size", 3 );
-    static var lumen_window_grab            = Lumen.load( "lumen", "lumen_window_grab", 2 );
-    static var lumen_window_fullscreen      = Lumen.load( "lumen", "lumen_window_fullscreen", 3 );
-    static var lumen_window_bordered        = Lumen.load( "lumen", "lumen_window_bordered", 2 );
 
 } //Window
