@@ -9,7 +9,7 @@ import lumen.window.Windowing;
 
 #else
 
-    @:noCompletion typedef LumenWindowSystem = lumen.input.system.WindowSystem;
+    @:noCompletion typedef LumenWindowSystem = lumen.window.system.WindowSystem;
 
 #end //lumen_window_sdl
 
