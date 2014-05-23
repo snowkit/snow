@@ -208,6 +208,7 @@ class Assets {
             }
 
             var asset = get(_id);
+
             var _image_info = lumen_assets_image_load_info( _path(asset), options.components );
 
             if(_image_info == null) {
@@ -427,6 +428,23 @@ class Assets {
     static var lumen_assets_audio_load_info_pcm   = Libs.load( "lumen", "lumen_assets_audio_load_info_pcm", 2 );
     static var lumen_assets_audio_read_bytes_pcm  = Libs.load( "lumen", "lumen_assets_audio_read_bytes_pcm", 3 );
     static var lumen_assets_audio_seek_bytes_pcm  = Libs.load( "lumen", "lumen_assets_audio_seek_bytes_pcm", 2 );
+
+#else 
+    
+        //:todo:
+    static function lumen_assets_image_load_info(a,b) { return null; }
+
+    static function lumen_assets_audio_load_info_ogg(a,b) { return null; }
+    static function lumen_assets_audio_read_bytes_ogg(a,b,c) { return null; }
+    static function lumen_assets_audio_seek_bytes_ogg(a,b) { return null; }
+
+    static function lumen_assets_audio_load_info_wav(a,b) { return null; }
+    static function lumen_assets_audio_read_bytes_wav(a,b,c) { return null; }
+    static function lumen_assets_audio_seek_bytes_wav(a,b) { return null; }
+
+    static function lumen_assets_audio_load_info_pcm(a,b) { return null; }
+    static function lumen_assets_audio_read_bytes_pcm(a,b,c) { return null; }
+    static function lumen_assets_audio_seek_bytes_pcm(a,b) { return null; }
 
 #end //lumen_native
 

@@ -11,6 +11,9 @@ import lumen.input.Input;
 import lumen.audio.Audio;
 import lumen.window.Windowing;
 import lumen.window.Window;
+    
+    //the platform core bindings
+import lumen.platform.Core;
 
 class Lumen {
 
@@ -53,9 +56,13 @@ class Lumen {
     var was_ready : Bool = false;
         //if ready has completed, so systems can begin safely
     var is_ready : Bool = false;
-
+        //the core platform instance to bind us 
+    var core : Core;
 
     @:noCompletion public function new() {
+
+            //We create the core as a concrete platform version of the core
+        core = new LumenCore( this );
 
     } //new
 
@@ -67,7 +74,7 @@ class Lumen {
         host.app = this;
         config = _config;
 
-        lumen_init( on_event );
+        core.init( on_event );
 
     } //init
 
@@ -80,7 +87,7 @@ class Lumen {
         input.destroy();
         window.destroy();
 
-        lumen_shutdown();
+        core.shutdown();
 
         has_shutdown = true;
 
@@ -88,7 +95,7 @@ class Lumen {
 
     function get_time() : Float {
 
-        return lumen_timestamp();
+        return core.timestamp();
 
     } //time getter
 
@@ -100,7 +107,7 @@ class Lumen {
 
         #if lumen_native
 
-            var app_path = lumen_app_path();
+            var app_path = core.app_path();
 
             _debug('/ lumen / setting up app path ${app_path}', true);
 
@@ -108,7 +115,7 @@ class Lumen {
 
             #if !mobile
                 _debug('/ lumen / setting up pref path', true);
-                lumen_pref_path('lumen','default');
+                core.pref_path('lumen','default');
             #end //mobile
 
         #end //lumen_native
@@ -172,9 +179,6 @@ class Lumen {
 
             //now if they requested a window, let's open one
         main_window = window.create( config.window_config );
-
-            //and track the main window only for now
-        main_window.window_event_handler = on_main_window_event;
 
             //now ready
         is_ready = true;
@@ -256,16 +260,13 @@ class Lumen {
 
     } //on_event
 
-    function on_main_window_event( _event:WindowEvent ) {
-
-
-    } //main_window_events
-
 
 //Helpers
 
     function get_uniqueid() : String {
-        return haxe.crypto.Md5.encode(Std.string( time * Math.random() ));
+
+        return haxe.crypto.Md5.encode( Std.string( time * Math.random() ));
+
     } //uniqueid
 
         /** Loads a function out of a library */
@@ -274,20 +275,6 @@ class Lumen {
         return lumen.utils.Libs.load( library, method, args );
 
     } //load
-
-//Native bindings
-
-    #if lumen_native
-
-        static var lumen_init = load( "lumen", "lumen_init", 1 );
-        static var lumen_shutdown = load( "lumen", "lumen_shutdown", 0 );
-        static var lumen_timestamp = load( "lumen", "lumen_timestamp", 0 );
-        static var lumen_app_path = load( "lumen", "lumen_app_path", 0 );
-        static var lumen_pref_path = load( "lumen", "lumen_pref_path", 2 );
-        static var lumen_render_enable_vsync = load( "lumen", "lumen_render_enable_vsync", 1 );
-        static var lumen_window_show_cursor = load( "lumen", "lumen_window_show_cursor", 1 );
-
-    #end //lumen_native
 
 //Debug helpers
 

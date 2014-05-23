@@ -1,9 +1,9 @@
 package lumen.utils;
-// #if (cpp || neko)
-#if (lumen_native || lumen_html5)
 
-interface IDataInput 
-{
+
+interface IDataInput {
+
+
    public var bytesAvailable(get_bytesAvailable, null):Int;
    public var endian(get_endian, set_endian):String;
 
@@ -28,8 +28,6 @@ interface IDataInput
    private function get_bytesAvailable():Int;
    private function get_endian():String;
    private function set_endian(s:String):String;
-}
 
-#else
-typedef IDataInput = flash.utils.IDataInput;
-#end
+
+} //IDataInput

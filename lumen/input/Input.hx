@@ -2,8 +2,8 @@ package lumen.input;
 
 import lumen.types.Types;
 
-import lumen.input.system.InputSystem;
-import lumen.input.system.InputSystem.LumenInputSystem;
+import lumen.input.InputSystem;
+import lumen.input.InputSystem.LumenInputSystem;
 
 
     //API usage clarity

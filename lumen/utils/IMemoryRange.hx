@@ -1,8 +1,6 @@
 package lumen.utils;
 
-
 import lumen.utils.ByteArray;
-
 
 interface IMemoryRange {
     
