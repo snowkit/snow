@@ -2,9 +2,6 @@
 import lumen.Lumen;
 
 import lumen.render.gl.GL;
-import lumen.render.gl.GLTexture;
-import lumen.render.gl.GLProgram;
-import lumen.render.gl.GLBuffer;
 
 import lumen.utils.ByteArray;
 import lumen.utils.UInt8Array;
@@ -66,24 +63,24 @@ class Main extends lumen.AppFixedTimestep {
         if(app.config.runtime_config.texture_time != null) texture_time = app.config.runtime_config.texture_time;
         if(app.config.runtime_config.timescale != null) timescale = app.config.runtime_config.timescale;
 
-        var dcount : Int = app.window.desktop_get_display_count();
+        var dcount : Int = app.window.system.display_count();
         trace('A total of ${dcount} displays were found');
         for(i in 0 ... dcount) {
-            var bounds = app.window.desktop_get_display_bounds(i);
-            var name = app.window.desktop_get_display_name(i);
+            var bounds = app.window.system.display_bounds(i);
+            var name = app.window.system.display_name(i);
             trace('display ${i}, name: ${name} bounds: ${bounds} modes:' );
 
                 //get list of modes for this display
-            var modecount = app.window.desktop_get_display_mode_count(i);
+            var modecount = app.window.system.display_mode_count(i);
 
             for(j in 0 ... modecount) {
-                var mode = app.window.desktop_get_display_mode(i,j);
+                var mode = app.window.system.display_mode(i,j);
                 trace('\t\t ${mode.width} x ${mode.height}  @  ${mode.refresh_rate}hz ');
             }
 
         }
 
-        trace("desktop native resolution of primary display : " + app.window.desktop_get_display_native_mode(0) );
+        trace("desktop native resolution of primary display : " + app.window.system.display_native_mode(0) );
 
         trace("OpenGL reports version " + GL.versionString());
 
