@@ -31,6 +31,27 @@ var marked      = require('marked'),
         return _list;
     } //_filter_unmodified
 
+    var do_replacements = function( config, _content ) {
+
+        var _replacements = config.replacements;
+
+        var _count = _replacements.length;
+        var _output = _content;
+
+        for(var i = 0; i < _count; i++) {
+
+            var _item = _replacements[i];            
+
+            var _replace = new RegExp( "{" + _item.key + "}", 'g');
+
+            _output = _output.replace( _replace, _item.content );
+
+        } //each replacement
+
+        return _output;
+
+    } //do_replacements
+
     var _md_files = {};
     var _read_md_files = function(config, _the_list) {
 
@@ -50,7 +71,9 @@ var marked      = require('marked'),
     var _html_files = {};
     var _generate_html = function( config, _path, _done ) {
 
-        var _file_content = _md_files[ _path ];        
+        var _file_content = _md_files[ _path ];
+
+        _file_content = do_replacements( config, _file_content );
         
         marked( _file_content, _marked_options, function(err, _parsed_markdown) {
 

@@ -1,6 +1,6 @@
 {
   "source": "lumen.AppFixedTimestep",
-  "doc": "Read the App Guide for full info, and for even more information see : http://gafferongames.com/game-physics/fix-your-timestep/\n    this stores and calculates a fixed game update loop, and rendering interpolation is required\n    for smooth updates between frames.",
+  "doc": "Read the {App Guide} for full info, and for even more information see : http://gafferongames.com/game-physics/fix-your-timestep/\n    this stores and calculates a fixed game update loop, and rendering interpolation is required\n    for smooth updates between frames.",
   "links": [],
   "toplinks": [],
   "sections": [

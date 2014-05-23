@@ -1,6 +1,6 @@
 {
   "source": "lumen.App",
-  "doc": "The default type of application, with variable delta time, or fixed delta time, or a fixed frame rate. See the App guide for complete details.",
+  "doc": "The default type of application, with variable delta time, or fixed delta time, or a fixed frame rate. See the {App Guide} for complete details.",
   "links": [],
   "toplinks": [],
   "sections": [
@@ -156,7 +156,7 @@
           "ispublic": true,
           "isstatic": false,
           "isinline": false,
-          "doc": "Called when a touch is first pressed, use the `touch_id` to track which",
+          "doc": "Called for you when a touch is first pressed, use the `touch_id` to track which",
           "signature": "ontouchup(_event:lumen.input.TouchEvent) : Void",
           "return": ": Void",
           "args": [
@@ -173,7 +173,7 @@
           "ispublic": true,
           "isstatic": false,
           "isinline": false,
-          "doc": "Called when a mouse button is pressed",
+          "doc": "Called for you when a mouse button is pressed",
           "signature": "onmousedown(_event:lumen.input.MouseEvent) : Void",
           "return": ": Void",
           "args": [
@@ -190,7 +190,7 @@
           "ispublic": true,
           "isstatic": false,
           "isinline": false,
-          "doc": "Called when a connected gamepad button is pressed, use `which` to determine gamepad id",
+          "doc": "Called for you when a connected gamepad button is pressed, use `which` to determine gamepad id",
           "signature": "ongamepadbuttondown(_event:lumen.input.GamepadEvent) : Void",
           "return": ": Void",
           "args": [
@@ -207,7 +207,7 @@
           "ispublic": true,
           "isstatic": false,
           "isinline": false,
-          "doc": "Called when the mouse wheel moves",
+          "doc": "Called for you when the mouse wheel moves",
           "signature": "onmousewheel(_event:lumen.input.MouseEvent) : Void",
           "return": ": Void",
           "args": [
@@ -224,7 +224,7 @@
           "ispublic": true,
           "isstatic": false,
           "isinline": false,
-          "doc": "Called when a touch is moved, use the `touch_id` to track which",
+          "doc": "Called for you when a touch is moved, use the `touch_id` to track which",
           "signature": "ontouchmove(_event:lumen.input.TouchEvent) : Void",
           "return": ": Void",
           "args": [
@@ -241,7 +241,7 @@
           "ispublic": true,
           "isstatic": false,
           "isinline": false,
-          "doc": "Called when a mouse button is released",
+          "doc": "Called for you when a mouse button is released",
           "signature": "onmouseup(_event:lumen.input.MouseEvent) : Void",
           "return": ": Void",
           "args": [
@@ -258,7 +258,7 @@
           "ispublic": true,
           "isstatic": false,
           "isinline": false,
-          "doc": "Called when a connected gamepad button is released, use `which` to determine gamepad id",
+          "doc": "Called for you when a connected gamepad button is released, use `which` to determine gamepad id",
           "signature": "ongamepadbuttonup(_event:lumen.input.GamepadEvent) : Void",
           "return": ": Void",
           "args": [
@@ -275,7 +275,7 @@
           "ispublic": true,
           "isstatic": false,
           "isinline": false,
-          "doc": "Called when a key is pressed down",
+          "doc": "Called for you when a key is pressed down",
           "signature": "onkeydown(_event:lumen.input.KeyEvent) : Void",
           "return": ": Void",
           "args": [
@@ -308,7 +308,7 @@
           "ispublic": true,
           "isstatic": false,
           "isinline": false,
-          "doc": "The default constructor of an App is empty, so you can override it if you want, but take note that this happens way before lumen is ready for use.",
+          "doc": "The default constructor of an App is empty, so you can override it if you want, but take note that this happens way before lumen is ready for use. Use [ready](#ready) for entry point.",
           "signature": "new() ",
           "return": "",
           "args": []
@@ -319,7 +319,7 @@
           "ispublic": true,
           "isstatic": false,
           "isinline": false,
-          "doc": "Called when the mouse moves",
+          "doc": "Called for you when the mouse moves",
           "signature": "onmousemove(_event:lumen.input.MouseEvent) : Void",
           "return": ": Void",
           "args": [
@@ -336,7 +336,7 @@
           "ispublic": true,
           "isstatic": false,
           "isinline": false,
-          "doc": "Called when a connected gamepad axis moves, use `which` to determine gamepad id",
+          "doc": "Called for you when a connected gamepad axis moves, use `which` to determine gamepad id",
           "signature": "ongamepadaxis(_event:lumen.input.GamepadEvent) : Void",
           "return": ": Void",
           "args": [
@@ -369,7 +369,7 @@
           "ispublic": true,
           "isstatic": false,
           "isinline": false,
-          "doc": "Called when text input is happening. Use this for textfields, as it handles the complexity of unicode etc.",
+          "doc": "Called for you when text input is happening. Use this for textfields, as it handles the complexity of unicode etc.",
           "signature": "ontextinput(_event:lumen.input.TextEvent) : Void",
           "return": ": Void",
           "args": [
@@ -386,7 +386,7 @@
           "ispublic": true,
           "isstatic": false,
           "isinline": false,
-          "doc": "Called when a gamepad is connected or disconnected, use `which` to determine gamepad id",
+          "doc": "Called for you when a gamepad is connected or disconnected, use `which` to determine gamepad id",
           "signature": "ongamepaddevice(_event:lumen.input.GamepadEvent) : Void",
           "return": ": Void",
           "args": [
@@ -403,7 +403,7 @@
           "ispublic": true,
           "isstatic": false,
           "isinline": false,
-          "doc": "Your update loop. Called every frame for you. The dt value depends on the timing configuration (see the App guide)",
+          "doc": "Your update loop. Called every frame for you. The dt value depends on the timing configuration (see the {App Guide})",
           "signature": "update(dt:Float) : Void",
           "return": ": Void",
           "args": [
@@ -420,7 +420,7 @@
           "ispublic": true,
           "isstatic": false,
           "isinline": false,
-          "doc": "overide this if you want to change how the asset list is loaded/handled. By default it uses the asset manifest generated by the build tools.",
+          "doc": "override this if you want to change how the asset list is loaded/handled. By default it uses the asset manifest generated by the build tools.",
           "signature": "get_asset_list() : Array<lumen.types.AssetInfo>",
           "return": ": Array<lumen.types.AssetInfo>",
           "args": []
@@ -442,7 +442,7 @@
           "ispublic": true,
           "isstatic": false,
           "isinline": false,
-          "doc": "Called when a key is released",
+          "doc": "Called for you when a key is released",
           "signature": "onkeyup(_event:lumen.input.KeyEvent) : Void",
           "return": ": Void",
           "args": [
@@ -459,7 +459,7 @@
           "ispublic": true,
           "isstatic": false,
           "isinline": false,
-          "doc": "Called when a touch is released, use the `touch_id` to track which",
+          "doc": "Called for you when a touch is released, use the `touch_id` to track which",
           "signature": "ontouchdown(_event:lumen.input.TouchEvent) : Void",
           "return": ": Void",
           "args": [

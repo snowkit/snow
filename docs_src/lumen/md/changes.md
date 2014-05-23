@@ -1,6 +1,34 @@
 &nbsp;   
 <div class="commit_info">
 
+commit [721b272d7b](http://github.com/underscorediscovery/lumen/commit/721b272d7b8b1e7743d6f8ba5c42069d7868b32f)   
+author: underscorediscovery   
+date: Fri May 23 2014 06:14:30 GMT-0230 (NDT)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>ignoring docs for now, since they are just going to be in constant flux</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [38085e479a](http://github.com/underscorediscovery/lumen/commit/38085e479a431d38fa0ca9ed8a56f82da73f1547)   
+author: underscorediscovery   
+date: Thu May 22 2014 12:13:38 GMT-0230 (NDT)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Adding docs for all remaining major classes and improving doc generator more</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
 commit [9d2d8850ec](http://github.com/underscorediscovery/lumen/commit/9d2d8850ece7cf3e4f47b2b06666f3f962617c99)   
 author: underscorediscovery   
 date: Thu May 22 2014 09:26:05 GMT-0230 (NDT)   

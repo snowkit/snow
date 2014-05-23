@@ -513,105 +513,105 @@
 				<x path="Float"/>
 				<x path="Void"/>
 			</f>
-			<haxe_doc>Your update loop. Called every frame for you. The dt value depends on the timing configuration (see the App guide)</haxe_doc>
+			<haxe_doc>Your update loop. Called every frame for you. The dt value depends on the timing configuration (see the {App Guide})</haxe_doc>
 		</update>
 		<onkeydown public="1" set="method" line="56">
 			<f a="_event">
 				<t path="lumen.input.KeyEvent"/>
 				<x path="Void"/>
 			</f>
-			<haxe_doc>Called when a key is pressed down</haxe_doc>
+			<haxe_doc>Called for you when a key is pressed down</haxe_doc>
 		</onkeydown>
 		<onkeyup public="1" set="method" line="58">
 			<f a="_event">
 				<t path="lumen.input.KeyEvent"/>
 				<x path="Void"/>
 			</f>
-			<haxe_doc>Called when a key is released</haxe_doc>
+			<haxe_doc>Called for you when a key is released</haxe_doc>
 		</onkeyup>
 		<ontextinput public="1" set="method" line="60">
 			<f a="_event">
 				<t path="lumen.input.TextEvent"/>
 				<x path="Void"/>
 			</f>
-			<haxe_doc>Called when text input is happening. Use this for textfields, as it handles the complexity of unicode etc.</haxe_doc>
+			<haxe_doc>Called for you when text input is happening. Use this for textfields, as it handles the complexity of unicode etc.</haxe_doc>
 		</ontextinput>
 		<onmousedown public="1" set="method" line="63">
 			<f a="_event">
 				<t path="lumen.input.MouseEvent"/>
 				<x path="Void"/>
 			</f>
-			<haxe_doc>Called when a mouse button is pressed</haxe_doc>
+			<haxe_doc>Called for you when a mouse button is pressed</haxe_doc>
 		</onmousedown>
 		<onmouseup public="1" set="method" line="65">
 			<f a="_event">
 				<t path="lumen.input.MouseEvent"/>
 				<x path="Void"/>
 			</f>
-			<haxe_doc>Called when a mouse button is released</haxe_doc>
+			<haxe_doc>Called for you when a mouse button is released</haxe_doc>
 		</onmouseup>
 		<onmousewheel public="1" set="method" line="67">
 			<f a="_event">
 				<t path="lumen.input.MouseEvent"/>
 				<x path="Void"/>
 			</f>
-			<haxe_doc>Called when the mouse wheel moves</haxe_doc>
+			<haxe_doc>Called for you when the mouse wheel moves</haxe_doc>
 		</onmousewheel>
 		<onmousemove public="1" set="method" line="69">
 			<f a="_event">
 				<t path="lumen.input.MouseEvent"/>
 				<x path="Void"/>
 			</f>
-			<haxe_doc>Called when the mouse moves</haxe_doc>
+			<haxe_doc>Called for you when the mouse moves</haxe_doc>
 		</onmousemove>
 		<ontouchdown public="1" set="method" line="72">
 			<f a="_event">
 				<t path="lumen.input.TouchEvent"/>
 				<x path="Void"/>
 			</f>
-			<haxe_doc>Called when a touch is released, use the `touch_id` to track which</haxe_doc>
+			<haxe_doc>Called for you when a touch is released, use the `touch_id` to track which</haxe_doc>
 		</ontouchdown>
 		<ontouchup public="1" set="method" line="74">
 			<f a="_event">
 				<t path="lumen.input.TouchEvent"/>
 				<x path="Void"/>
 			</f>
-			<haxe_doc>Called when a touch is first pressed, use the `touch_id` to track which</haxe_doc>
+			<haxe_doc>Called for you when a touch is first pressed, use the `touch_id` to track which</haxe_doc>
 		</ontouchup>
 		<ontouchmove public="1" set="method" line="76">
 			<f a="_event">
 				<t path="lumen.input.TouchEvent"/>
 				<x path="Void"/>
 			</f>
-			<haxe_doc>Called when a touch is moved, use the `touch_id` to track which</haxe_doc>
+			<haxe_doc>Called for you when a touch is moved, use the `touch_id` to track which</haxe_doc>
 		</ontouchmove>
 		<ongamepadaxis public="1" set="method" line="79">
 			<f a="_event">
 				<t path="lumen.input.GamepadEvent"/>
 				<x path="Void"/>
 			</f>
-			<haxe_doc>Called when a connected gamepad axis moves, use `which` to determine gamepad id</haxe_doc>
+			<haxe_doc>Called for you when a connected gamepad axis moves, use `which` to determine gamepad id</haxe_doc>
 		</ongamepadaxis>
 		<ongamepadbuttondown public="1" set="method" line="81">
 			<f a="_event">
 				<t path="lumen.input.GamepadEvent"/>
 				<x path="Void"/>
 			</f>
-			<haxe_doc>Called when a connected gamepad button is pressed, use `which` to determine gamepad id</haxe_doc>
+			<haxe_doc>Called for you when a connected gamepad button is pressed, use `which` to determine gamepad id</haxe_doc>
 		</ongamepadbuttondown>
 		<ongamepadbuttonup public="1" set="method" line="83">
 			<f a="_event">
 				<t path="lumen.input.GamepadEvent"/>
 				<x path="Void"/>
 			</f>
-			<haxe_doc>Called when a connected gamepad button is released, use `which` to determine gamepad id</haxe_doc>
+			<haxe_doc>Called for you when a connected gamepad button is released, use `which` to determine gamepad id</haxe_doc>
 		</ongamepadbuttonup>
 		<ongamepaddevice public="1" set="method" line="85">
 			<f a="_event">
 				<t path="lumen.input.GamepadEvent"/>
 				<x path="Void"/>
 			</f>
-			<haxe_doc>Called when a gamepad is connected or disconnected, use `which` to determine gamepad id</haxe_doc>
+			<haxe_doc>Called for you when a gamepad is connected or disconnected, use `which` to determine gamepad id</haxe_doc>
 		</ongamepaddevice>
 		<get_runtime_config public="1" set="method" line="89">
 			<f a=""><d/></f>
@@ -619,7 +619,7 @@
 		</get_runtime_config>
 		<get_asset_list public="1" set="method" line="105">
 			<f a=""><c path="Array"><t path="lumen.types.AssetInfo"/></c></f>
-			<haxe_doc>overide this if you want to change how the asset list is loaded/handled. By default it uses the asset manifest generated by the build tools.</haxe_doc>
+			<haxe_doc>override this if you want to change how the asset list is loaded/handled. By default it uses the asset manifest generated by the build tools.</haxe_doc>
 		</get_asset_list>
 		<on_lumen_init public="1" set="method" line="135">
 			<f a=""><x path="Void"/></f>
@@ -631,9 +631,9 @@
 		</on_lumen_update>
 		<new public="1" set="method" line="49">
 			<f a=""><x path="Void"/></f>
-			<haxe_doc>The default constructor of an App is empty, so you can override it if you want, but take note that this happens way before lumen is ready for use.</haxe_doc>
+			<haxe_doc>The default constructor of an App is empty, so you can override it if you want, but take note that this happens way before lumen is ready for use. Use [ready](#ready) for entry point.</haxe_doc>
 		</new>
-		<haxe_doc>The default type of application, with variable delta time, or fixed delta time, or a fixed frame rate. See the App guide for complete details.</haxe_doc>
+		<haxe_doc>The default type of application, with variable delta time, or fixed delta time, or a fixed frame rate. See the {App Guide} for complete details.</haxe_doc>
 	</class>
 	<class path="lumen.AppFixedTimestep" params="" file="../../lumen/App.hx" module="lumen.App">
 		<extends path="lumen.App"/>
@@ -654,7 +654,7 @@
 			<meta><m n=":noCompletion"/></meta>
 		</on_lumen_update>
 		<new public="1" set="method" line="189"><f a=""><x path="Void"/></f></new>
-		<haxe_doc>Read the App Guide for full info, and for even more information see : http://gafferongames.com/game-physics/fix-your-timestep/
+		<haxe_doc>Read the {App Guide} for full info, and for even more information see : http://gafferongames.com/game-physics/fix-your-timestep/
     this stores and calculates a fixed game update loop, and rendering interpolation is required
     for smooth updates between frames.</haxe_doc>
 	</class>
