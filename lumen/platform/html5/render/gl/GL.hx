@@ -451,7 +451,13 @@ class GL {
     
     
     public static function versionString():String {
-        return "webGL"; //:todo:
+
+        var ver = lumenContext.getParameter(VERSION);
+        var slver = lumenContext.getParameter(SHADING_LANGUAGE_VERSION);
+        var ren = lumenContext.getParameter(RENDERER);
+        var ven = lumenContext.getParameter(VENDOR);
+
+        return "/ " + ver + " / " + slver + " / " + ren + " / " + ven + " /";
     }
 
     
