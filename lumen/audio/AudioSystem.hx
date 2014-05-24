@@ -6,8 +6,12 @@ import lumen.Lumen;
 import lumen.utils.AbstractClass;
 
 #if lumen_html5
-
-    @:noCompletion typedef AudioSystem = lumen.platform.html5.audio.AudioSystem;
+    
+    #if lumen_audio_howlerjs
+        @:noCompletion typedef AudioSystem = lumen.platform.html5.audio.howlerjs.AudioSystem;
+    #else
+        @:noCompletion typedef AudioSystem = lumen.platform.html5.audio.AudioSystem;
+    #end
 
 #else 
 
