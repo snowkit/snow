@@ -25,13 +25,15 @@ import lumen.utils.Libs;
             bpp : _info.bpp,
             width : _info.width,
             height : _info.height,
+            width_actual : _info.width,
+            height_actual : _info.height,
             bpp_source : _info.bpp_source,
             data : uintarray
         };
 
         if(_onloaded != null) {
             _onloaded(info);
-        }
+        } //_onloaded
         
         _info = null;
 

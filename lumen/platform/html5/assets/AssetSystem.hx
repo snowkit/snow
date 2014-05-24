@@ -71,6 +71,8 @@ import lumen.types.Types;
                 bpp : 4,
                 width : image.width,
                 height : image.height,
+                width_actual : width_pot,
+                height_actual : height_pot,
                 bpp_source : 4,
                 data : new lumen.utils.UInt8Array( image_bytes.data )
             };
