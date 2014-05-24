@@ -1,15 +1,15 @@
-package lumen.platform;
+package lumen;
 
 import lumen.utils.AbstractClass;
 import lumen.types.Types;
 
 #if lumen_html5
 
-   typedef LumenCore = lumen.platform.html5.CoreHTML5;
+   typedef Core = lumen.platform.html5.Core;
 
 #else
 
-   typedef LumenCore = lumen.platform.native.CoreNative;
+   typedef Core = lumen.platform.native.Core;
 
 #end //lumen_html5
 
@@ -19,10 +19,10 @@ Implemented in the platform specific concrete versions of this class.
 
 This uses a macro to allow this class to pretend to be abstract, and complain via compiler errors if the specific functions are missing.
  */ 
-@:noCompletion class Core implements AbstractClass {
+@:noCompletion class CoreBinding implements AbstractClass {
 
         //The lumen instance
-    var app : Lumen;    
+    var app : Lumen;
         /** Called by the lumen internals to intiialize the core and subsystems of the framework, with the event handler passed in for where to deliver system events */
     public function init( _event_handler : SystemEvent->Void ) : Void;
         /** Called to explicitly shutdown the framework cleanly. Called by `quit` and `app_terminated` type events by the core, for example. */
@@ -35,4 +35,4 @@ This uses a macro to allow this class to pretend to be abstract, and complain vi
     public function pref_path( _appname:String, _package:String ) : String;
 
 
-} //Core 
+} //CoreBinding 

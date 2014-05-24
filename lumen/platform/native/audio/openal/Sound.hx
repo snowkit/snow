@@ -1,18 +1,15 @@
-package lumen.audio.system.openal;
+package lumen.platform.native.audio.openal;
 
 import lumen.audio.Audio;
-import lumen.audio.system.Sound;
-import lumen.audio.system.openal.OpenALHelper;
-
 import lumen.types.Types;
 import lumen.utils.Float32Array;
 
-#if lumen_audio_openal
+import lumen.platform.native.audio.openal.OpenALHelper;
+import lumen.platform.native.audio.openal.AL;
 
-import lumen.audio.al.AL;
 
 /** The openal specific implementation of Sound */
-@:noCompletion class SoundOpenAL extends Sound {
+@:noCompletion class Sound extends lumen.platform.native.audio.Sound {
 
 
         /** the sound source name */
@@ -206,7 +203,4 @@ import lumen.audio.al.AL;
 
     } //set_time
 
-} //SoundOpenAL
-
-
-#end //lumen_audio_openal
+} //Sound

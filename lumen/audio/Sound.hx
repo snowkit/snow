@@ -1,11 +1,34 @@
-package lumen.audio.system;
+package lumen.audio;
 
 import lumen.audio.Audio;
 import lumen.types.Types;
 
-//The base class for a sound instance
+import lumen.utils.AbstractClass;
 
-class Sound {
+#if lumen_html5
+    
+    @:noCompletion typedef Sound = lumen.platform.html5.audio.Sound;
+    @:noCompletion typedef SoundStream = lumen.platform.html5.audio.SoundStream;
+
+#else 
+
+    #if lumen_audio_openal
+        @:noCompletion typedef Sound = lumen.platform.native.audio.openal.Sound;
+        @:noCompletion typedef SoundStream = lumen.platform.native.audio.openal.SoundStream;
+    #else
+        @:noCompletion typedef Sound = lumen.platform.native.audio.Sound;
+        @:noCompletion typedef SoundStream = lumen.platform.native.audio.SoundStream;
+    #end 
+
+#end 
+
+
+
+//The base class for a sound or sound stream instance.
+//This can't be abstract like the other bindings due to so much shared code, 
+//it's cleaner to keep this all in here instead
+
+@:noCompletion class SoundBinding {
 
         /** The `Audio` system handling this sound */
     public var manager : Audio;
@@ -38,6 +61,7 @@ class Sound {
         /** The duration of this sound, in `bytes` */
     @:isVar public var duration (get,never) : Float = 0.0;
 
+//Construct
 
     public function new( _manager:Audio, _name:String, _audio_info : AudioInfo ) {
 
@@ -46,6 +70,29 @@ class Sound {
         info = _audio_info;
 
     } //new
+
+//Abstract functions implemented in concrete platform level
+
+        /** Play this sound */
+    public function play() {} 
+        /** Loop this sound */
+    public function loop() {} 
+        /** Stop this sound */
+    public function stop() {} 
+        /** Pause this sound */
+    public function pause() {} 
+        /** Destroy this sound and it's data */
+    public function destroy() {} 
+        
+// Internal system events
+
+    @:noCompletion public function internal_update() {}
+    @:noCompletion public function internal_play() {}
+    @:noCompletion public function internal_loop() {}
+    @:noCompletion public function internal_stop() {}
+    @:noCompletion public function internal_pause() {}
+
+//Shared implementations
 
         /** A helper for converting bytes to seconds for this sound source, using the format settings specific to this sound */
     public function bytes_to_seconds( _bytes:Int ) : Float {
@@ -67,14 +114,6 @@ class Sound {
     
     } //seconds_to_bytes
 
-        /** Play this sound */
-    public function play() {}
-        /** Loop this sound */
-    public function loop() {}
-        /** Stop this sound */
-    public function stop() {}
-        /** Pause this sound */
-    public function pause() {}
         /** Toggle this sound */
     public function toggle() {
         
@@ -91,17 +130,6 @@ class Sound {
         }
 
     } //toggle
-        
-        /** Destroy this sound and it's data */
-    public function destroy() {}
-
-        //used for system events, hidden from user
-    @:noCompletion public function internal_update() {}
-    @:noCompletion public function internal_play() {}
-    @:noCompletion public function internal_loop() {}
-    @:noCompletion public function internal_stop() {}
-    @:noCompletion public function internal_pause() {}
-
 
     function get_pan() : Float {
         return pan;

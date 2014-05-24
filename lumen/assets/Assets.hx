@@ -4,82 +4,8 @@ import lumen.io.IO;
 import lumen.types.Types;
 import lumen.utils.ByteArray;
 import lumen.utils.Libs;
+import lumen.assets.AssetSystem;
 
-
-/**  An asset base class. Get assets from the `Assets` class, via `app.assets` */
-class Asset {
-        /** The id of this asset like `assets/image.png` */
-    public var id : String;
-        /** The `AssetInfo` of this asset */
-    public var info : AssetInfo;
-
-    public function new( _info:AssetInfo ) {
-        info = _info;
-        id = info.id;
-    } //new
-
-} //Asset
-
-
-/**  An asset that contains byte `data` as a `ByteArray`. Get assets from the `Assets` class, via `app.assets` */
-class AssetBytes extends Asset {
-
-        /** The `ByteArray` this asset contains */
-    public var data : ByteArray;
-    public function new( _info:AssetInfo, _data:ByteArray ) {
-        super( _info );
-        data = _data;
-    }
-
-} //AssetBytes
-
-/**  An asset that contains `text` as a `String`. Get assets from the `Assets` class, via `app.assets` */
-class AssetText extends Asset {
-
-        /** The `String` this asset contains */
-    public var text : String;
-    public function new( _info:AssetInfo, _data:String ) {
-        super( _info );
-        text = _data;
-    }
-
-} //AssetText
-
-/**  The options for an `AssetImage` asset. Get assets from the `Assets` class, via `app.assets` */
-typedef AssetImageOptions = {
-    components : Int
-} //AssetImageOptions
-
-/**  An asset that contains image file `data` as an `ImageInfo`. Get assets from the `Assets` class, via `app.assets` */
-class AssetImage extends Asset {
-
-        /** The `ImageInfo` this asset contains */
-    public var data : ImageInfo;
-
-    public function new( _info:AssetInfo, _data:ImageInfo ) {
-        super( _info );
-        data = _data;
-    }
-
-} //AssetImage
-
-/**  The options for an `AssetAudio` asset */
-typedef AssetAudioOptions = {
-    ? type : String,
-    ? load : Bool
-} //AssetAudioOptions
-
-/**  An asset that contains audio file `data` as an `AudioInfo`. Get assets from the `Assets` class, via `app.assets` */
-class AssetAudio extends Asset {
-
-        /** The `AudioInfo` this asset contains */
-    public var data : AudioInfo;
-    public function new( _info:AssetInfo, _data:AudioInfo ) {
-        super( _info );
-        data = _data;
-    }
-
-} //AssetAudio
 
 /** The asset system class gives you access to fetching and manipulating assets, 
     caching/uncaching assets, and handles loading files and data cross platform */
@@ -91,6 +17,8 @@ class Assets {
     public var assets_root : String = '';
         /** The manifest file to parse for the asset list. By default, this is set to `manifest` from the build tools but the `App` class can have a custom `get_asset_list` handler use this value. */
     public var manifest_path : String = 'manifest';
+        /** The asset system platform implementation */
+    @:noCompletion public var system : AssetSystem;
 
     var lib : Lumen;
 
@@ -105,6 +33,7 @@ class Assets {
 
         lib = _lib;
         list = new Map();
+        system = new AssetSystem(this);
 
     } //new
 
@@ -209,7 +138,7 @@ class Assets {
 
             var asset = get(_id);
 
-            var _image_info = lumen_assets_image_load_info( _path(asset), options.components );
+            var _image_info = system.image_load_info( _path(asset), options.components );
 
             if(_image_info == null) {
                 load_error(_id, "image info returned null");
@@ -258,15 +187,15 @@ class Assets {
             switch(options.type) {
 
                 case 'wav' : {
-                    _audio_info = audio_load_wav( asset, options.load );
+                    _audio_info = system.audio_load_wav( asset, options.load );
                 }
 
                 case 'ogg' : {
-                    _audio_info = audio_load_ogg( asset, options.load );
+                    _audio_info = system.audio_load_ogg( asset, options.load );
                 }
 
                 case 'pcm' : {
-                    _audio_info = audio_load_pcm( asset, options.load );
+                    _audio_info = system.audio_load_pcm( asset, options.load );
                 }
 
                 default : {
@@ -306,58 +235,15 @@ class Assets {
     //since these are currently talking to native only
 
 
-//ogg
-
-    @:noCompletion public function audio_load_ogg( asset:AssetInfo, ?load:Bool=true ) : AudioInfo {
-        return lumen_assets_audio_load_info_ogg( _path(asset), load );
-    } //audio_load_ogg
-
-    @:noCompletion public function audio_load_portion_ogg( _info:AudioInfo, _start:Int, _len:Int ) : AudioDataBlob {
-        return lumen_assets_audio_read_bytes_ogg( _info, _start, _len );
-    } //load_audio_portion_ogg
-
-    @:noCompletion public function audio_seek_source_ogg( _info:AudioInfo, _to:Int ) : Bool {
-        return lumen_assets_audio_seek_bytes_ogg( _info, _to );
-    } //audio_seek_source_ogg
-
-//wav
-
-    @:noCompletion public function audio_load_wav( asset:AssetInfo, ?load:Bool=true ) : AudioInfo {
-        return lumen_assets_audio_load_info_wav( _path(asset), load );
-    } //audio_load_wav
-
-    @:noCompletion public function audio_load_portion_wav( _info:AudioInfo, _start:Int, _len:Int ) : AudioDataBlob {
-        return lumen_assets_audio_read_bytes_wav( _info, _start, _len );
-    } //load_audio_portion_wav
-
-    @:noCompletion public function audio_seek_source_wav( _info:AudioInfo, _to:Int ) : Bool {
-        return lumen_assets_audio_seek_bytes_wav( _info, _to );
-    } //audio_seek_source_ogg
-
-//pcm
-
-    @:noCompletion public function audio_load_pcm( asset:AssetInfo, ?load:Bool=true ) : AudioInfo {
-        return lumen_assets_audio_load_info_pcm( _path(asset), load );
-    } //audio_load_pcm
-
-    @:noCompletion public function audio_load_portion_pcm( _info:AudioInfo, _start:Int, _len:Int ) : AudioDataBlob {
-        return lumen_assets_audio_read_bytes_pcm( _info, _start, _len );
-    } //load_audio_portion_pcm
-
-    @:noCompletion public function audio_seek_source_pcm( _info:AudioInfo, _to:Int ) : Bool {
-        return lumen_assets_audio_seek_bytes_pcm( _info, _to );
-    } //audio_seek_source_pcm
-
-
     @:noCompletion public function audio_seek_source( _info:AudioInfo, _to:Int ) : Bool {
         
         switch(_info.format) {
             case AudioFormatType.ogg:
-                return audio_seek_source_ogg(_info, _to);
+                return system.audio_seek_source_ogg(_info, _to);
             case AudioFormatType.wav:
-                return audio_seek_source_wav(_info, _to);
+                return system.audio_seek_source_wav(_info, _to);
             case AudioFormatType.pcm:
-                return audio_seek_source_pcm(_info, _to);
+                return system.audio_seek_source_pcm(_info, _to);
             default:
                 return false;
         }
@@ -370,11 +256,11 @@ class Assets {
 
         switch(_info.format) {
             case AudioFormatType.ogg:
-                return audio_load_portion_ogg(_info, _start, _len);
+                return system.audio_load_portion_ogg(_info, _start, _len);
             case AudioFormatType.wav:
-                return audio_load_portion_wav(_info, _start, _len);
+                return system.audio_load_portion_wav(_info, _start, _len);
             case AudioFormatType.pcm:
-                return audio_load_portion_pcm(_info, _start, _len);
+                return system.audio_load_portion_pcm(_info, _start, _len);
             default:
                 return null;
         }
@@ -389,7 +275,7 @@ class Assets {
         //a helper to get the full path without overhead,
         //and to centralise this so that the root is always
         //included in the requested path
-    function _path( _asset:AssetInfo ) : String {
+    @:noCompletion public function _path( _asset:AssetInfo ) : String {
         return assets_root + _asset.path;
     } //_path
 
@@ -412,40 +298,5 @@ class Assets {
         }
 
     } //audio_format_from_int
-
-#if lumen_native
-
-    static var lumen_assets_image_load_info       = Libs.load( "lumen", "lumen_assets_image_load_info", 2 );
-
-    static var lumen_assets_audio_load_info_ogg   = Libs.load( "lumen", "lumen_assets_audio_load_info_ogg", 2 );
-    static var lumen_assets_audio_read_bytes_ogg  = Libs.load( "lumen", "lumen_assets_audio_read_bytes_ogg", 3 );
-    static var lumen_assets_audio_seek_bytes_ogg  = Libs.load( "lumen", "lumen_assets_audio_seek_bytes_ogg", 2 );
-
-    static var lumen_assets_audio_load_info_wav   = Libs.load( "lumen", "lumen_assets_audio_load_info_wav", 2 );
-    static var lumen_assets_audio_read_bytes_wav  = Libs.load( "lumen", "lumen_assets_audio_read_bytes_wav", 3 );
-    static var lumen_assets_audio_seek_bytes_wav  = Libs.load( "lumen", "lumen_assets_audio_seek_bytes_wav", 2 );
-
-    static var lumen_assets_audio_load_info_pcm   = Libs.load( "lumen", "lumen_assets_audio_load_info_pcm", 2 );
-    static var lumen_assets_audio_read_bytes_pcm  = Libs.load( "lumen", "lumen_assets_audio_read_bytes_pcm", 3 );
-    static var lumen_assets_audio_seek_bytes_pcm  = Libs.load( "lumen", "lumen_assets_audio_seek_bytes_pcm", 2 );
-
-#else 
-    
-        //:todo:
-    static function lumen_assets_image_load_info(a,b) { return null; }
-
-    static function lumen_assets_audio_load_info_ogg(a,b) { return null; }
-    static function lumen_assets_audio_read_bytes_ogg(a,b,c) { return null; }
-    static function lumen_assets_audio_seek_bytes_ogg(a,b) { return null; }
-
-    static function lumen_assets_audio_load_info_wav(a,b) { return null; }
-    static function lumen_assets_audio_read_bytes_wav(a,b,c) { return null; }
-    static function lumen_assets_audio_seek_bytes_wav(a,b) { return null; }
-
-    static function lumen_assets_audio_load_info_pcm(a,b) { return null; }
-    static function lumen_assets_audio_read_bytes_pcm(a,b,c) { return null; }
-    static function lumen_assets_audio_seek_bytes_pcm(a,b) { return null; }
-
-#end //lumen_native
 
 } //Assets

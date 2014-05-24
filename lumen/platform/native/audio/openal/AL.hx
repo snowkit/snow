@@ -1,4 +1,4 @@
-package lumen.audio.al;
+package lumen.platform.native.audio.openal;
 
 import lumen.utils.Libs;
 import lumen.utils.Float32Array;

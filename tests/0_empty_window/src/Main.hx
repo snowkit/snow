@@ -11,17 +11,17 @@ import lumen.utils.compat.Matrix3D;
 import lumen.window.Window;
 import lumen.input.Input;
 
-import lumen.types.Types.ImageInfo;
+import lumen.types.Types;
 import lumen.assets.Assets;
 import lumen.App;
 
-import lumen.audio.system.Sound;
+import lumen.audio.Sound;
 
 class Main extends lumen.AppFixedTimestep {
 
-    var imageUniform:Int;
-    var modelViewMatrixUniform:Int;
-    var projectionMatrixUniform:Int;
+    var imageUniform:GLUniformLocation;
+    var modelViewMatrixUniform:GLUniformLocation;
+    var projectionMatrixUniform:GLUniformLocation;
     var shaderProgram:GLProgram;
     var texCoordAttribute:Int;
     var texCoordBuffer:GLBuffer;
@@ -101,7 +101,7 @@ class Main extends lumen.AppFixedTimestep {
         for(f in files) {
             var image : AssetImage = app.assets.get_image( f );
             if(image != null) {
-                trace('loaded $f with ${image.data.width}x${image.data.height}x${image.data.bpp} (source bpp:${image.data.bpp_source}) mem:${image.data.data.byteLength}');
+                trace('loaded $f with ${image.data.width}x${image.data.height}x${image.data.bpp} (source bpp:${image.data.bpp_source}) mem:${image.data.data.length}');
                 textures.push( createTexture( image ) );
             }
         }

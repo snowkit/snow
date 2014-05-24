@@ -3,7 +3,7 @@ package lumen.platform.html5;
 import lumen.types.Types;
 
 /** Implemented in the platform specific concrete versions of this class */ 
-@:noCompletion class CoreHTML5 extends lumen.platform.Core {
+@:noCompletion class Core extends lumen.Core.CoreBinding {
 
     public function new( _app:Lumen ) {
         
@@ -37,4 +37,4 @@ import lumen.types.Types;
     } //pref_path
 
 
-} //CoreHTML5
+} //Core
