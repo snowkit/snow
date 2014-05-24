@@ -107,7 +107,7 @@ class App {
         var asset_list : Array<AssetInfo> = [];
         var manifest_data = ByteArray.readFile( app.assets.assets_root + app.assets.manifest_path );
 
-        if(manifest_data != null) {
+        if(manifest_data != null && manifest_data.length != 0) {
 
             var _list:Array<Dynamic> = haxe.Unserializer.run(manifest_data.toString());
 
@@ -122,7 +122,9 @@ class App {
 
             } //for each asset
 
-        } //manifest_data != null
+        } else { //manifest_data != null
+            trace('/ lumen / default asset manifest not found, or length was zero');
+        }
 
         return asset_list;
 
