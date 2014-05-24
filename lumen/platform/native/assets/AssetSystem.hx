@@ -13,8 +13,30 @@ import lumen.utils.Libs;
 
 //images
     
-    override public function image_load_info( _path:String, ?_components:Int = 4) : ImageInfo {
-        return lumen_assets_image_load_info( _path, _components );
+    override public function image_load_info( _path:String, ?_components:Int = 4, ?_onloaded:?ImageInfo->Void ) : ImageInfo {
+        
+        var _info = lumen_assets_image_load_info( _path, _components );
+
+            //data comes through as a ByteArray, but it should be UInt8Array
+        var uintarray : lumen.utils.UInt8Array = new lumen.utils.UInt8Array( _info.data );
+
+        var info : ImageInfo = {
+            id : _info.id,
+            bpp : _info.bpp,
+            width : _info.width,
+            height : _info.height,
+            bpp_source : _info.bpp_source,
+            data : uintarray
+        };
+
+        if(_onloaded != null) {
+            _onloaded(info);
+        }
+        
+        _info = null;
+
+        return info;
+
     } //image_load_info
 
 //ogg

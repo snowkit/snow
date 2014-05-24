@@ -18,7 +18,7 @@ import lumen.utils.AbstractClass;
 	public var manager : Assets;
 
         /** Image info loader */
-    public function image_load_info( _path:String, ?_components:Int = 4) : ImageInfo;
+    public function image_load_info( _path:String, ?_components:Int = 4, ?_onloaded:?ImageInfo->Void ) : ImageInfo;
 		/** OGG specific info loader */
     public function audio_load_ogg( asset:AssetInfo, ?load:Bool=true ) : AudioInfo;
     	/** OGG specific portion loader */
