@@ -133,25 +133,40 @@ class Assets {
         if(exists(_id)) {
 
             if(options == null) {
-                options = { components : 4 };
+                options = { 
+                    components : 4, 
+                    onloaded : null
+                };
+            } else {
+                if(options.components == null) {
+                    options.components = 4;
+                }
             }
 
             var asset = get(_id);
 
-            var _image_info = system.image_load_info( _path(asset), options.components );
+            system.image_load_info( _path(asset), options.components, function( ?_image_info:ImageInfo ) { 
 
-            if(_image_info == null) {
-                load_error(_id, "image info returned null");
-                return null;
-            }
+                if(_image_info == null) {
+                    load_error(_id, "image info returned null");
+                    if(options.onloaded != null) {
+                        options.onloaded(null);
+                    }
+                }
 
-                //with images the bytes data could be null too, this is also an invalid asset
-            if(_image_info.data == null) {
-                load_error(_id, "image info data was null");
-                return null;
-            }
+                    //with images the bytes data could be null too, this is also an invalid asset
+                if(_image_info.data == null) {
+                    load_error(_id, "image info data was null");
+                    if(options.onloaded != null) {
+                        options.onloaded(null);
+                    }
+                }
 
-            return new AssetImage( asset, _image_info );
+                if(options.onloaded != null) {
+                    options.onloaded( new AssetImage( asset, _image_info ) );
+                }
+
+            });
 
         } else {
             exists_error(_id);

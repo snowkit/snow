@@ -29,7 +29,7 @@ import lumen.window.WindowSystem;
 
     override public function window_create( config:WindowConfig, on_created: WindowHandle->Int->WindowConfig->Void ) {
 
-        var _handle : js.html.CanvasElement = cast js.Browser.document.createElement('canvas');
+        var _handle : js.html.CanvasElement = js.Browser.document.createCanvasElement();
 
                 //assign the sizes
             _handle.width = config.width;

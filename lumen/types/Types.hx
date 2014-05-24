@@ -2,6 +2,7 @@ package lumen.types;
 
 import lumen.Lumen;
 import lumen.utils.ByteArray;
+import lumen.utils.UInt8Array;
 
 
 /** 
@@ -63,7 +64,8 @@ class AssetText extends Asset {
 
 /**  The options for an `AssetImage` asset. Get assets from the `Assets` class, via `app.assets` */
 typedef AssetImageOptions = {
-    components : Int
+    ? components : Int,
+    ? onloaded : AssetImage -> Void 
 } //AssetImageOptions
 
 /**  An asset that contains image file `data` as an `ImageInfo`. Get assets from the `Assets` class, via `app.assets` */
@@ -136,7 +138,7 @@ typedef ImageInfo = {
     width : Int,
     height : Int,
     bpp_source : Int,
-    data : ByteArray 
+    data : UInt8Array 
 
 } //ImageInfo
 

@@ -28,7 +28,7 @@ class Main extends lumen.AppFixedTimestep {
     var vertexAttribute:Int;
     var vertexBuffer:GLBuffer;
     var textures: Array<GLTexture>;
-    var current_texture : GLTexture;
+    var current_texture : GLTexture = null;
     var tex_index : Int = 0;
     var files : Array<String>;
 
@@ -99,19 +99,23 @@ class Main extends lumen.AppFixedTimestep {
         ];
 
         for(f in files) {
-            var image : AssetImage = app.assets.get_image( f );
-            if(image != null) {
-                trace('loaded $f with ${image.data.width}x${image.data.height}x${image.data.bpp} (source bpp:${image.data.bpp_source}) mem:${image.data.data.length}');
-                textures.push( createTexture( image ) );
-            }
-        }
+            app.assets.get_image( f, { 
+                onloaded:function(image){
+                    if(image != null) {
+                        trace('loaded $f with ${image.data.width}x${image.data.height}x${image.data.bpp} (source bpp:${image.data.bpp_source}) mem:${image.data.data.length}');
+                        textures.push( createTexture( image ) );
+                        if(current_texture == null) {
+                            current_texture = textures[0];
+                        }
+                    }
+                }
+            });
+        }        
 
-        //this is temp testing, just hook into the window render directly
-        current_texture = textures[0];
-
+            //this is temp testing, just hook into the window render directly
         app.main_window.window_render_handler = onrender;
 
-        next_tex_tick = haxe.Timer.stamp() + texture_time;
+        next_tex_tick = texture_time;
 
         positionY = (app.main_window.size.h - size) / 2;
 
@@ -128,7 +132,7 @@ class Main extends lumen.AppFixedTimestep {
         trace("sound5 : " + sound5.name);
 
         // sound4.loop();
-        sound5.loop();
+        // sound5.loop();
 
     } //ready
 
@@ -244,19 +248,27 @@ class Main extends lumen.AppFixedTimestep {
 
         phys_posx += (speed * dirX * delta);
 
-        // Sys.println('dt:${delta}');
+        if(current_texture != null) {
 
-        if(current_time > next_tex_tick) {
+            if(current_time > next_tex_tick) {
+
+                next_tex_tick = current_time + texture_time;
+
+                tex_index++;
+
+                if(tex_index == textures.length) {
+                    tex_index = 0;
+                }
+
+                current_texture = textures[tex_index];
+
+            } 
+
+        } else {
 
             next_tex_tick = current_time + texture_time;
-            tex_index++;
-            if(tex_index == files.length) {
-                tex_index = 0;
-            }
 
-            current_texture = textures[tex_index];
-
-        }
+        } //current_texture != null
 
         if(app.input.keyreleased(Key.SPACE)) {
             trace('space released');
@@ -306,7 +318,7 @@ class Main extends lumen.AppFixedTimestep {
         var texture = GL.createTexture();
 
             GL.bindTexture (GL.TEXTURE_2D, texture);
-            GL.texImage2D (GL.TEXTURE_2D, 0, GL.RGBA, image.data.width, image.data.height, 0, GL.RGBA, GL.UNSIGNED_BYTE, new UInt8Array( cast image.data.data ) );
+            GL.texImage2D (GL.TEXTURE_2D, 0, GL.RGBA, image.data.width, image.data.height, 0, GL.RGBA, GL.UNSIGNED_BYTE, image.data.data );
             GL.texParameteri (GL.TEXTURE_2D, GL.TEXTURE_MAG_FILTER, GL.NEAREST);
             GL.texParameteri (GL.TEXTURE_2D, GL.TEXTURE_MIN_FILTER, GL.NEAREST);
             GL.bindTexture (GL.TEXTURE_2D, null);
@@ -442,8 +454,10 @@ class Main extends lumen.AppFixedTimestep {
         GL.enableVertexAttribArray (vertexAttribute);
         GL.enableVertexAttribArray (texCoordAttribute);
 
-        GL.activeTexture (GL.TEXTURE0);
-        GL.bindTexture (GL.TEXTURE_2D, current_texture);
+        if(current_texture != null) {
+            GL.activeTexture (GL.TEXTURE0);
+            GL.bindTexture (GL.TEXTURE_2D, current_texture);
+        }
 
         GL.bindBuffer (GL.ARRAY_BUFFER, vertexBuffer);
         GL.vertexAttribPointer (vertexAttribute, 3, GL.FLOAT, false, 0, 0);
