@@ -63,7 +63,7 @@ namespace lumen {
         std::string glren   ( gl_ren ? gl_ren   : "GL renderer version null" );
         std::string glven   ( gl_ven ? gl_ven   : "GL vendor version null" );
 
-        std::string res = glver + " / " + glslver + " (" + glren + " / " + glven + ")";
+        std::string res = "/ " + glver + " / " + glslver + " / " + glren + " / " + glven + " /";
 
         return alloc_string( res.c_str() );
 
