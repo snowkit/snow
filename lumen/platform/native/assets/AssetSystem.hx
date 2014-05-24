@@ -8,34 +8,33 @@ import lumen.utils.Libs;
 @:noCompletion class AssetSystem extends AssetSystemBinding {
 
 	public function new( _manager:Assets ) {
-		manager = _manager;
-	}
+		
+        manager = _manager;
+
+	} //new
 
 //images
     
     override public function image_load_info( _path:String, ?_components:Int = 4, ?_onloaded:?ImageInfo->Void ) : ImageInfo {
         
-        var _info = lumen_assets_image_load_info( _path, _components );
-
-            //data comes through as a ByteArray, but it should be UInt8Array
-        var uintarray : lumen.utils.UInt8Array = new lumen.utils.UInt8Array( _info.data );
+        var _native_info = lumen_assets_image_load_info( _path, _components );
 
         var info : ImageInfo = {
-            id : _info.id,
-            bpp : _info.bpp,
-            width : _info.width,
-            height : _info.height,
-            width_actual : _info.width,
-            height_actual : _info.height,
-            bpp_source : _info.bpp_source,
-            data : uintarray
+            id : _native_info.id,
+            bpp : _native_info.bpp,
+            width : _native_info.width,
+            height : _native_info.height,
+            width_actual : _native_info.width,
+            height_actual : _native_info.height,
+            bpp_source : _native_info.bpp_source,
+            data : new lumen.utils.UInt8Array( _native_info.data )
         };
 
         if(_onloaded != null) {
             _onloaded(info);
         } //_onloaded
         
-        _info = null;
+        _native_info = null;
 
         return info;
 
