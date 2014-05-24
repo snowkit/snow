@@ -2,34 +2,66 @@
 
 <extension>
 
-    <templatePath name="templates" />
-    <sample path="samples" />
+<!-- defines -->
 
     <haxedef name="lumen_html5" if="html5" />
     <haxedef name="lumen_native" if="native" />
     <haxedef name="no-compilation" />
 
-    <haxedef name="lumen_audio_openal" if="native" />
-    <haxedef name="lumen_input_sdl" if="native" />
-    <haxedef name="lumen_window_sdl" if="native" />
+<!-- binding configs -->
 
+    <!-- audio specific bindings -->
+
+        <!-- native -->
+            <set name="lumen_audio_openal" value="1" if="native" />
+            <haxedef name="lumen_audio_openal" if="lumen_audio_openal" />
+
+        <!-- html5 -->
+            <set name="lumen_audio_howlerjs" value="1" if="html5" />
+            <haxedef name="lumen_audio_howlerjs" if="lumen_audio_howlerjs" />
+
+    <!-- input specific bindings -->
+        <set name="lumen_input_sdl" value="1" if="native" />
+        <haxedef name="lumen_input_sdl" if="lumen_input_sdl" />
+
+    <!-- window specific bindings -->
+        <set name="lumen_window_sdl" value="1" if="native" />
+        <haxedef name="lumen_window_sdl" if="lumen_window_sdl" />
+
+<!-- platform configs -->
+
+        <!-- android -->
+    <architecture name="armv7" if="android" />
+    <dependency name="extension-api" path="templates/android-dependencies/extension-api" if="android" />
+
+<!-- build tools configs -->
+
+    <templatePath name="templates" />
+    <sample path="samples" />
+
+<!-- dependencies -->
 
     <section unless="display">
 
-        <haxelib name="hxcpp" if="cpp" />
+    <!-- native dependency -->
 
-        <ndll name="std" haxelib="hxcpp" if="cpp" unless="static_link"/>
+            <!-- build against hxcpp always for cpp builds -->
+        <haxelib name="hxcpp" if="cpp" />
+            <!-- + hxcpp ndlls -->
+        <ndll name="std"    haxelib="hxcpp" if="cpp" unless="static_link"/>
         <ndll name="regexp" haxelib="hxcpp" if="cpp" unless="static_link"/>
-        <ndll name="zlib" haxelib="hxcpp" if="cpp" unless="static_link"/>
+        <ndll name="zlib"   haxelib="hxcpp" if="cpp" unless="static_link"/>
+            <!-- for the tools/templates/bin files, like minify etc -->
+        <haxelib name="lime-tools"/>
+
+    <!-- html5 deps -->
+
+        <dependency path="templates/html5-dependencies/howlerjs/howler.min.js" if="lumen_audio_howlerjs"/>
+    
+    <!-- common dependency  -->
 
         <ndll name="lumen"/>
 
-        <architecture name="armv7" if="android" />
-
-        <dependency name="extension-api" path="templates/dependencies/extension-api" if="android" />
-
-            <!-- for the bin template files -->
-        <haxelib name="lime-tools"/>
 
     </section>
 
