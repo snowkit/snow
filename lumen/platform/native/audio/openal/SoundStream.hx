@@ -1,29 +1,22 @@
-package lumen.audio.system.openal;
+package lumen.platform.native.audio.openal;
 
 import lumen.audio.Audio;
-import lumen.audio.system.SoundStream;
-import lumen.audio.system.openal.OpenALHelper;
-
 import lumen.types.Types;
-import lumen.utils.ByteArray;
 import lumen.utils.Float32Array;
 
-#if lumen_audio_openal
-
-import lumen.audio.al.AL;
+import lumen.platform.native.audio.openal.OpenALHelper;
+import lumen.platform.native.audio.openal.AL;
 
 
 /** The openal specific implementation of SoundStream */
-@:noCompletion class SoundStreamOpenAL extends SoundStream {
+@:noCompletion class SoundStream extends lumen.platform.native.audio.SoundStream {
 
-        /** the sound source name */
-    public var source : Int;
+
         /** the sound buffer names */
     public var buffers : Array<Int>;
-        /** mono8? stereo16? */
-    public var format : Int;
         /** remaining buffers to play */
     public var buffers_left : Int = 0;
+
 
     public function new( _manager:Audio, _name:String, _audio_info : AudioInfo ) {
 
@@ -391,7 +384,4 @@ import lumen.audio.al.AL;
     } //set_time
 
 
-} //SoundStreamOpenAL
-
-
-#end //lumen_audio_openal
+} //SoundStream

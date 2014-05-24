@@ -5,7 +5,6 @@ import lumen.window.Window;
 import lumen.utils.Libs;
 
 import lumen.window.WindowSystem;
-import lumen.window.WindowSystem.LumenWindowSystem;
 
 typedef DisplayMode = {
     format : Int,
@@ -31,14 +30,14 @@ class Windowing {
         /** The number of windows in this manager */
     public var window_count : Int = 0;
         /** The concrete implementation of the window system */
-    @:noCompletion public var system : LumenWindowSystem;
+    @:noCompletion public var system : WindowSystem;
 
     @:noCompletion public function new( _lib:Lumen ) {
 
         lib = _lib;
         window_list = new Map();
 
-        system = new LumenWindowSystem(this, lib);
+        system = new WindowSystem(this, lib);
 
         system.init();
 

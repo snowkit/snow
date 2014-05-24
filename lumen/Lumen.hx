@@ -13,7 +13,7 @@ import lumen.window.Windowing;
 import lumen.window.Window;
     
     //the platform core bindings
-import lumen.platform.Core;
+import lumen.Core;
 
 class Lumen {
 
@@ -62,7 +62,7 @@ class Lumen {
     @:noCompletion public function new() {
 
             //We create the core as a concrete platform version of the core
-        core = new LumenCore( this );
+        core = new Core( this );
 
     } //new
 

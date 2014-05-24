@@ -12,8 +12,15 @@ import lumen.utils.Libs;
  //Internal class handled by Windowing, the window system gives access to window features and functions
  //allowing the abstraction to exist between platform and implementation, so the system can be swapped out and the implementation remains unchanged.
 
-@:noCompletion class WindowSystemNative extends WindowSystem {
+@:noCompletion class WindowSystem extends WindowSystemBinding {
 
+    public function new( _manager:Windowing, _lib:Lumen ) {
+
+        manager = _manager;
+        lib = _lib;
+
+    } //new
+    
     override public function init() {
     } //init
 

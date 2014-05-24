@@ -7,8 +7,15 @@ import lumen.window.Windowing;
 import lumen.window.WindowSystem;
 
     //Internal class handled by Windowing, a less concrete implementation of the window system 
-@:noCompletion class WindowSystemHTML5 extends WindowSystem {
+@:noCompletion class WindowSystem extends WindowSystemBinding {
 
+    public function new( _manager:Windowing, _lib:Lumen ) {
+
+        manager = _manager;
+        lib = _lib;
+
+    } //new
+    
     override public function init() {
     } //init
 
@@ -44,4 +51,4 @@ import lumen.window.WindowSystem;
     override public function display_name( display:Int ) : String { return ''; }
 
 
-} //WindowSystem
+} //WindowSystemHTML5

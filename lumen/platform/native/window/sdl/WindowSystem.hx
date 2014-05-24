@@ -8,8 +8,8 @@ import lumen.window.WindowSystem;
 
 #if lumen_window_sdl
 
-    @:noCompletion class WindowSystemSDL extends WindowSystemNative {
+    @:noCompletion class WindowSystem extends lumen.platform.native.window.WindowSystem {
 
-    } //WindowSystemSDL
+    } //WindowSystem
 
 #end //lumen_window_sdl

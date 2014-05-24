@@ -2,14 +2,8 @@ package lumen.audio;
 
 import lumen.types.Types;
 
-    //the generic versions of the sound info
-import lumen.audio.system.Sound;
-import lumen.audio.system.SoundStream;
-import lumen.audio.system.AudioSystem;
-    //the specific adapter implementation of the sound classes
-import lumen.audio.system.AudioSystem.LumenAudioSystem;
-import lumen.audio.system.AudioSystem.LumenSound;
-import lumen.audio.system.AudioSystem.LumenSoundStream;
+import lumen.audio.Sound;
+import lumen.audio.AudioSystem;
 
 import lumen.assets.Assets;
 import lumen.utils.ByteArray;
@@ -17,7 +11,7 @@ import lumen.utils.ByteArray;
 class Audio {
 
         /** The implementation of the current audio system */
-    public var system : LumenAudioSystem;
+    public var system : AudioSystem;
         /** Set to false to stop any and all processing in the audio system */
     public var active : Bool = false;
         //for external access to the library by the systems
@@ -30,7 +24,7 @@ class Audio {
 
         lib = _lib;
 
-        system = new LumenAudioSystem(this, lib);
+        system = new AudioSystem(this, lib);
 
         system.init();
 
@@ -67,11 +61,11 @@ class Audio {
 
         if(!streaming) {
 
-            sound = new LumenSound(this, _name, info);
+            sound = new Sound(this, _name, info);
 
         } else {
 
-            var sound_stream = new LumenSoundStream(this, _name, info);
+            var sound_stream = new SoundStream(this, _name, info);
                 //we store the sounds in a separate list
                 //so that streams don't get bogged down by
                 //lots of sound effects. This means you have
@@ -237,5 +231,7 @@ class Audio {
         system.update();
 
     } //update
+
+
 
 } //Audio
