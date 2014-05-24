@@ -480,32 +480,7 @@ class GL {
         lumenContext.bindAttribLocation(program, index, name);
         
     }
-    
-/*
-    public static function bindBitmapDataTexture(texture:BitmapData):Void {
-        
-        if (texture.lumenGLTexture == null) {
-            
-            texture.lumenGLTexture = lumenContext.createTexture();
-            lumenContext.bindTexture(TEXTURE_2D, texture.lumenGLTexture);
-            
-            lumenContext.texParameteri(TEXTURE_2D, TEXTURE_WRAP_S, CLAMP_TO_EDGE);
-            lumenContext.texParameteri(TEXTURE_2D, TEXTURE_WRAP_T, CLAMP_TO_EDGE);
-            lumenContext.texParameteri(TEXTURE_2D, TEXTURE_MIN_FILTER, NEAREST);
-            lumenContext.texParameteri(TEXTURE_2D, TEXTURE_MAG_FILTER, NEAREST);
-            
-            texture.lock();
-            lumenContext.texImage2D(TEXTURE_2D, 0, RGBA, RGBA, UNSIGNED_BYTE, texture.lumenImageData);
-            texture.unlock();
-            
-        } else {
-            
-            lumenContext.bindTexture(TEXTURE_2D, texture.lumenGLTexture);
-            
-        }
-        
-    }
-*/
+
     
     public static function bindBuffer(target:Int, buffer:GLBuffer):Void {
         

@@ -156,7 +156,7 @@ import lumen.window.WindowSystem;
 
         //:todo:
     override public function display_bounds( display:Int ) : DisplayBounds { 
-        return { x:0, y:0, w:0, h:0 };
+        return { x:0, y:0, width:0, height:0 };
     } //display_bounds
 
         //:todo:
