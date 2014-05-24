@@ -9,6 +9,8 @@ import lumen.window.WindowSystem;
     //Internal class handled by Windowing, a less concrete implementation of the window system 
 @:noCompletion class WindowSystem extends WindowSystemBinding {
 
+    var gl_context : js.html.webgl.RenderingContext;
+
     public function new( _manager:Windowing, _lib:Lumen ) {
 
         manager = _manager;
@@ -25,9 +27,39 @@ import lumen.window.WindowSystem;
     override public function destroy() {
     } //destroy
 
-        //:todo:
-    override public function window_create( config:WindowConfig, on_created: WindowHandle->Int->WindowConfig->Void ) {}
-    override public function window_close( handle:WindowHandle ) {}
+    override public function window_create( config:WindowConfig, on_created: WindowHandle->Int->WindowConfig->Void ) {
+
+        var _handle : js.html.CanvasElement = cast js.Browser.document.createElement('canvas');
+
+                //assign the sizes
+            _handle.width = config.width;
+            _handle.height = config.height;
+
+                //add it to the document
+            js.Browser.document.body.appendChild(_handle);
+
+            //:todo: These options, plus this context is singular atm, gotta investigate shared context
+        gl_context = _handle.getContextWebGL({ alpha:false, premultipliedAlpha:false });
+
+        if(gl_context == null) {
+            throw "WebGL is required to run this!";
+        }
+
+            //assign the context so GL can work
+        lumen.render.gl.GL.lumenContext = gl_context;
+
+            //tell them and give the handle for later.
+            //:todo: work out window id's for multiple canvases
+        on_created(_handle, 0, config);
+
+    } //window_create
+
+    override public function window_close( handle:WindowHandle ) {
+
+        var _handle : js.html.CanvasElement = cast handle;
+
+    } //window_close
+
     override public function window_update( handle:WindowHandle ) {}
     override public function window_render( handle:WindowHandle ) {}
     override public function window_swap( handle:WindowHandle ) {}
@@ -46,7 +78,16 @@ import lumen.window.WindowSystem;
     override public function display_mode_count( display:Int ) : Int { return 1; }
     override public function display_native_mode( display:Int ) : DisplayMode { return null; }
     override public function display_current_mode( display:Int ) : DisplayMode { return null; }
-    override public function display_mode( display:Int, mode_index:Int ) : DisplayMode { return null; }
+    
+    override public function display_mode( display:Int, mode_index:Int ) : DisplayMode {
+        return {
+            format : 0,
+            refresh_rate : 0,
+            width : 0,
+            height : 0
+        };
+    }
+
     override public function display_bounds( display:Int ) : DisplayBounds { return null; }
     override public function display_name( display:Int ) : String { return ''; }
 
