@@ -209,9 +209,17 @@ class Lumen {
 
     } //on_lumen_update
 
+    public function dispatch_system_event( _event:SystemEvent ) {
+
+        on_event(_event);
+
+    } //dispatch_system_event
+
     function on_event( _event:SystemEvent ) {
 
-        _event.type = SystemEvents.typed( cast _event.type );
+        if(Std.is(_event.type, Int)) {
+            _event.type = SystemEvents.typed( cast _event.type );
+        }
 
         if( _event.type != SystemEventType.update &&
             _event.type != SystemEventType.unknown &&
