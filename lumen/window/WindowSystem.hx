@@ -50,7 +50,7 @@ import lumen.utils.AbstractClass;
         /** Swap a given window handle */
     public function window_swap( handle:WindowHandle );
         /** Display a message on a window handle */
-    public function window_simple_message( handle:WindowHandle, message:String, title:String="" );
+    public function window_simple_message( handle:WindowHandle, message:String, ?title:String="" );
         /** Set the size of a window handle */
     public function window_set_size( handle:WindowHandle, w:Int, h:Int );
         /** Set the position of a window handle */

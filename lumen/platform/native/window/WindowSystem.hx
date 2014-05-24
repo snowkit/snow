@@ -50,7 +50,7 @@ import lumen.utils.Libs;
 		lumen_window_swap( handle );
     } //window_swap
 
-    override public function window_simple_message( handle:WindowHandle, message:String, title:String="" ) {
+    override public function window_simple_message( handle:WindowHandle, message:String, ?title:String="" ) {
 		lumen_window_simple_message( handle, message, title );    	
     } //window_simple_message
 
