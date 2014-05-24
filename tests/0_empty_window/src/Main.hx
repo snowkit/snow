@@ -59,7 +59,7 @@ class Main extends lumen.AppFixedTimestep {
         trace("app config is loaded as : " + app.config.runtime_config );
 
         if(app.config.runtime_config.size != null) size = app.config.runtime_config.size;
-        if(app.config.runtime_config.speed != null) speed = app.config.runtime_config.movespeed;
+        if(app.config.runtime_config.movespeed != null) speed = app.config.runtime_config.movespeed;
         if(app.config.runtime_config.texture_time != null) texture_time = app.config.runtime_config.texture_time;
         if(app.config.runtime_config.timescale != null) timescale = app.config.runtime_config.timescale;
 
@@ -277,11 +277,11 @@ class Main extends lumen.AppFixedTimestep {
 
         //"update"
         //this is to test the fix-your-timestep thing
-        //essentially app.mspf is a fixed timestep, alpha time is how far we are into one...
+        //essentially app.frame_time is a fixed timestep, alpha time is how far we are into one...
 
         var prevx = positionX;
-        var alpha_time : Float = overflow / mspf;
-        // var alpha_time : Float = 1; use this to test the others
+        var alpha_time : Float = overflow / frame_time;
+        // var alpha_time : Float = 1; //use this to test the others
 
         positionX = (phys_posx * alpha_time) + prevx * ( 1.0 - alpha_time );
 
