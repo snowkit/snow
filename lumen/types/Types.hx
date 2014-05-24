@@ -137,6 +137,8 @@ typedef ImageInfo = {
     bpp : Int,
     width : Int,
     height : Int,
+    width_actual : Int,
+    height_actual : Int,
     bpp_source : Int,
     data : UInt8Array 
 
