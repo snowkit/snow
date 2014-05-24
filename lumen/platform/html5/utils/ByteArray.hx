@@ -160,10 +160,28 @@ class ByteArray implements ArrayAccess<Int> {
         
     }
         
-        //:todo:
-    static public function readFile(inString:String):ByteArray {
-        return new ByteArray(); 
-    } 
+        //:todo: should this be configured for async reads?
+    static public function readFile(_path:String):ByteArray {
+
+        var request = new js.html.XMLHttpRequest();
+            
+            request.open("GET", _path, false);
+            request.overrideMimeType('text/plain; charset=x-user-defined');
+            request.send(null);
+
+        var bytearray : ByteArray = new ByteArray();
+        var buffer : String = request.response;
+        var len : Int = buffer.length;            
+
+            for( i in 0 ... len ) {
+                bytearray.writeByte(buffer.charCodeAt(i));
+            }
+
+            bytearray.position = 0;
+
+        return bytearray;
+
+    } //readFile
     
     public inline function readBoolean():Bool {
         
