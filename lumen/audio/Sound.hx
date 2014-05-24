@@ -7,17 +7,22 @@ import lumen.utils.AbstractClass;
 
 #if lumen_html5
     
-    @:noCompletion typedef Sound = lumen.platform.html5.audio.Sound;
-    @:noCompletion typedef SoundStream = lumen.platform.html5.audio.SoundStream;
+    #if lumen_audio_howlerjs
+        typedef Sound = lumen.platform.html5.audio.howlerjs.Sound;
+        typedef SoundStream = lumen.platform.html5.audio.howlerjs.SoundStream;
+    #else
+        typedef Sound = lumen.platform.html5.audio.Sound;
+        typedef SoundStream = lumen.platform.html5.audio.SoundStream;
+    #end
 
 #else 
 
     #if lumen_audio_openal
-        @:noCompletion typedef Sound = lumen.platform.native.audio.openal.Sound;
-        @:noCompletion typedef SoundStream = lumen.platform.native.audio.openal.SoundStream;
+        typedef Sound = lumen.platform.native.audio.openal.Sound;
+        typedef SoundStream = lumen.platform.native.audio.openal.SoundStream;
     #else
-        @:noCompletion typedef Sound = lumen.platform.native.audio.Sound;
-        @:noCompletion typedef SoundStream = lumen.platform.native.audio.SoundStream;
+        typedef Sound = lumen.platform.native.audio.Sound;
+        typedef SoundStream = lumen.platform.native.audio.SoundStream;
     #end 
 
 #end 
