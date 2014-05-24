@@ -195,13 +195,13 @@ class App {
 class AppFixedTimestep extends App {
 
         /** fixed simulation update speed */
-    public var mspf : Float = 0.0167;
-        /** the overflow of the updates. This is used to calculate the alpha time for rendering interpolation, `var alpha_time = overflow / mspf;` */
+    public var frame_time : Float = 0.0167;
+        /** the overflow of the updates. This is used to calculate the alpha time for rendering interpolation, `var alpha_time = overflow / frame_time;` */
     public var overflow : Float = 0.0;
 
     @:noCompletion override public function on_lumen_init() {
 
-        mspf = 1.0/60.0;
+        frame_time = 1.0/60.0;
         last_frame_start = app.time;
 
     } //on_lumen_init
@@ -221,15 +221,15 @@ class AppFixedTimestep extends App {
 
         overflow += delta_time;
 
-        while(overflow >= mspf) {
+        while(overflow >= frame_time) {
 
-            app.do_internal_update(mspf * timescale);
+            app.do_internal_update(frame_time * timescale);
 
-            current_time += mspf * timescale;
+            current_time += frame_time * timescale;
 
-            overflow -= mspf * timescale;
+            overflow -= frame_time * timescale;
 
-        } //overflow >= mspf
+        } //overflow >= frame_time
 
         app.do_internal_render();
 
