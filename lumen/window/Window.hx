@@ -171,11 +171,9 @@ class Window {
     } //render
 
         /** Swap the back buffer of the window, call after rendering to update the window view */
-    public function swap() : Void->Void {
+    public function swap() {
 
         manager.system.window_swap( handle );
-
-        return function(){}
 
     } //swap
 
