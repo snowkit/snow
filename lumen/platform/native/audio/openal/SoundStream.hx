@@ -4,8 +4,8 @@ import lumen.audio.Audio;
 import lumen.types.Types;
 import lumen.utils.Float32Array;
 
+import lumen.audio.openal.AL;
 import lumen.platform.native.audio.openal.OpenALHelper;
-import lumen.platform.native.audio.openal.AL;
 
 
 /** The openal specific implementation of SoundStream */

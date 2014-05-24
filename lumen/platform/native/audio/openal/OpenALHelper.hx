@@ -1,7 +1,7 @@
 package lumen.platform.native.audio.openal;
 
 import lumen.types.Types;
-import lumen.platform.native.audio.openal.AL;
+import lumen.audio.openal.AL;
 
 /** Internal helper class for interaction with OpenAL. */
 @:noCompletion class OpenALHelper {

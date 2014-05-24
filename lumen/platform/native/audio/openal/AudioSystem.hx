@@ -4,9 +4,9 @@ package lumen.platform.native.audio.openal;
 import lumen.types.Types;
 import lumen.audio.AudioSystem;
 
-import lumen.platform.native.audio.openal.AL;
-import lumen.platform.native.audio.openal.AL.Context;
-import lumen.platform.native.audio.openal.AL.Device;
+import lumen.audio.openal.AL;
+import lumen.audio.openal.AL.Context;
+import lumen.audio.openal.AL.Device;
 
 
     /** Internal audio system implementation for OpenAL, interact with this system through `lumen.Audio`, not directly */
