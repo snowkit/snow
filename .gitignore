@@ -7,5 +7,8 @@ thumbs.db
 obj/
 builds/
 users/
+docs
+./docs
+./docs/
 docs/
 samples/_tests_builds_/0_empty_window/upx.exe
