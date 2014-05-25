@@ -9,21 +9,23 @@
         <link rel="stylesheet" type="text/css" href="./css/code.css" media="all">
         <link rel="stylesheet" type="text/css" href="./css/font.css" media="all">
         
+        <link rel="stylesheet" type="text/css" href="./css/tooltipster.css" media="all">
+        <link rel="stylesheet" type="text/css" href="./css/tooltipster-shadow.css" media="all">
+        
         <script src="./js/jquery-2.0.3.min.js"> </script>
+        <script src="./js/jquery.tooltipster.min.js"> </script>
 
         <script>
 
             $(document).ready(function() {
 
-                $('.section').css('display','none');
+                // $('.section').css('display','none');
                 $('.readmore').click(function(e){
                     var _child = $(this).parent().find('.section').first();
                     var _opp = 'block';
                     if( _child.css('display') == 'block' ) {
                         _opp = 'none';
-                        $(this).text('more ...');
                     } else {
-                        $(this).text('less ...');
                     }
                     _child.css('display', _opp);
                 });
@@ -37,6 +39,10 @@
                     $(this).html('<iframe src="'+content+'" sandbox="allow-same-origin allow-scripts" style="overflow:hidden; scrollbar:none; border: 0; width:645px; height:450px;"></iframe> ')
                 });
 
+                $('.tooltip').tooltipster({
+                    theme:'tooltipster-shadow'
+                });
+
             }); //document.ready
 
         </script>
@@ -46,6 +52,267 @@
         <div class="content">
             <p>&nbsp;   </p>
 <div class="commit_info">
+
+commit <a href="http://github.com/underscorediscovery/lumen/commit/5f944e08a91f1dd0b1887ca5b1379b9acc231473">5f944e08a9</a><br>author: underscorediscovery<br>date: Sat May 24 2014 20:32:57 GMT-0230 (NDT)<br></div>
+
+<p>&nbsp;   </p>
+<div class="commit_message">
+
+<ul><li>trying to ignore docs while testing</li></ul>
+</div>
+&nbsp;<br>&nbsp;<br><div class="commit_info">
+
+commit <a href="http://github.com/underscorediscovery/lumen/commit/1a16121d677f5610a6cac9af826cc713443bd3f9">1a16121d67</a><br>author: underscorediscovery<br>date: Sat May 24 2014 08:17:11 GMT-0230 (NDT)<br></div>
+
+<p>&nbsp;   </p>
+<div class="commit_message">
+
+<ul><li>minor cleanup</li></ul>
+</div>
+&nbsp;<br>&nbsp;<br><div class="commit_info">
+
+commit <a href="http://github.com/underscorediscovery/lumen/commit/c24e8ed040c0f82483b6a1f3270b896781cfde0c">c24e8ed040</a><br>author: underscorediscovery<br>date: Sat May 24 2014 08:13:31 GMT-0230 (NDT)<br></div>
+
+<p>&nbsp;   </p>
+<div class="commit_message">
+
+<ul><li>adding actual size information for when images are padded (like html5). use this value for calculating things if you need the real image space sizes</li></ul>
+</div>
+&nbsp;<br>&nbsp;<br><div class="commit_info">
+
+commit <a href="http://github.com/underscorediscovery/lumen/commit/7868381f6f33166ac98a8aa35775e135336bd59a">7868381f6f</a><br>author: underscorediscovery<br>date: Sat May 24 2014 08:05:21 GMT-0230 (NDT)<br></div>
+
+<p>&nbsp;   </p>
+<div class="commit_message">
+
+<ul><li>Adding image loading for html5, adding onloaded for image assets, changing images .data to UInt8Array because that’s the format they will be used in, for GL</li><li>Still deciding on the onloaded nature… but it’s a start</li></ul>
+</div>
+&nbsp;<br>&nbsp;<br><div class="commit_info">
+
+commit <a href="http://github.com/underscorediscovery/lumen/commit/9b6eaacf939b32cbfadf53e0d4b61069966a6a70">9b6eaacf93</a><br>author: underscorediscovery<br>date: Sat May 24 2014 06:09:20 GMT-0230 (NDT)<br></div>
+
+<p>&nbsp;   </p>
+<div class="commit_message">
+
+<ul><li>fixing incorrect flags and cleanup of old flash stuff</li></ul>
+</div>
+&nbsp;<br>&nbsp;<br><div class="commit_info">
+
+commit <a href="http://github.com/underscorediscovery/lumen/commit/7c3d4a91e7c436fab94176a62298d8324df69716">7c3d4a91e7</a><br>author: underscorediscovery<br>date: Sat May 24 2014 05:46:06 GMT-0230 (NDT)<br></div>
+
+<p>&nbsp;   </p>
+<div class="commit_message">
+
+<ul><li>filling in functions for message/close/title on html5, and stubbing others with todo notes to allow finding them easier</li></ul>
+</div>
+&nbsp;<br>&nbsp;<br><div class="commit_info">
+
+commit <a href="http://github.com/underscorediscovery/lumen/commit/b08cde2f1a980f2da00c93715287df04d32d71d8">b08cde2f1a</a><br>author: underscorediscovery<br>date: Sat May 24 2014 05:27:45 GMT-0230 (NDT)<br></div>
+
+<p>&nbsp;   </p>
+<div class="commit_message">
+
+<ul><li>implement window create functions for html5, creates a canvas + gl context, not shared, will need to make single window for now</li><li>also dummy video mode so tis not crashing</li></ul>
+</div>
+&nbsp;<br>&nbsp;<br><div class="commit_info">
+
+commit <a href="http://github.com/underscorediscovery/lumen/commit/05f7493870025cc2fd166f0396b63110b92a02b8">05f7493870</a><br>author: underscorediscovery<br>date: Sat May 24 2014 05:25:11 GMT-0230 (NDT)<br></div>
+
+<p>&nbsp;   </p>
+<div class="commit_message">
+
+<ul><li>Implementing update looping and timing for html5</li></ul>
+</div>
+&nbsp;<br>&nbsp;<br><div class="commit_info">
+
+commit <a href="http://github.com/underscorediscovery/lumen/commit/d195ef9e4f8206c8e30dab8b5e6a58448374743e">d195ef9e4f</a><br>author: underscorediscovery<br>date: Sat May 24 2014 05:23:46 GMT-0230 (NDT)<br></div>
+
+<p>&nbsp;   </p>
+<div class="commit_message">
+
+<ul><li>fixing bugs in the config and switching mspf-&gt;frame_time because it’s in seconds, not mspf</li></ul>
+</div>
+&nbsp;<br>&nbsp;<br><div class="commit_info">
+
+commit <a href="http://github.com/underscorediscovery/lumen/commit/01021bfb2280921224ffdea4e02249031361539f">01021bfb22</a><br>author: underscorediscovery<br>date: Sat May 24 2014 05:20:32 GMT-0230 (NDT)<br></div>
+
+<p>&nbsp;   </p>
+<div class="commit_message">
+
+<ul><li>parity and clarity for gl version on native gl</li></ul>
+</div>
+&nbsp;<br>&nbsp;<br><div class="commit_info">
+
+commit <a href="http://github.com/underscorediscovery/lumen/commit/0f3b052bc123fbd53397625596dc7f350d44f292">0f3b052bc1</a><br>author: underscorediscovery<br>date: Sat May 24 2014 05:20:02 GMT-0230 (NDT)<br></div>
+
+<p>&nbsp;   </p>
+<div class="commit_message">
+
+<ul><li>removing cruft testing values</li></ul>
+</div>
+&nbsp;<br>&nbsp;<br><div class="commit_info">
+
+commit <a href="http://github.com/underscorediscovery/lumen/commit/4146cbf9cf175577fd7ebe77afc80deb1041b6bb">4146cbf9cf</a><br>author: underscorediscovery<br>date: Sat May 24 2014 05:19:29 GMT-0230 (NDT)<br></div>
+
+<p>&nbsp;   </p>
+<div class="commit_message">
+
+<ul><li>Implement versionString helper for GL strings for html5</li></ul>
+</div>
+&nbsp;<br>&nbsp;<br><div class="commit_info">
+
+commit <a href="http://github.com/underscorediscovery/lumen/commit/0a1462ccd4f5fe595d0f0a8ba5e31c2972efdd87">0a1462ccd4</a><br>author: underscorediscovery<br>date: Sat May 24 2014 02:31:23 GMT-0230 (NDT)<br></div>
+
+<p>&nbsp;   </p>
+<div class="commit_message">
+
+<ul><li>Adding ByteArray.readFile for html5</li><li>This will always be blocking, and an async api version elsewhere will</li><li>be added (for both native+js)</li></ul>
+</div>
+&nbsp;<br>&nbsp;<br><div class="commit_info">
+
+commit <a href="http://github.com/underscorediscovery/lumen/commit/2ddbeb87def4befca61b66de19e9778a0024264d">2ddbeb87de</a><br>author: underscorediscovery<br>date: Sat May 24 2014 02:30:48 GMT-0230 (NDT)<br></div>
+
+<p>&nbsp;   </p>
+<div class="commit_message">
+
+<ul><li>Starting html5 implementation of the core features, timestamp, init, app_path, pref-path are done.</li><li>Timestamp falls back on haxe.Timer.stamp() which seems to mimmick</li><li>Date.now()/1000 in js… While if the browser supports performance.now()</li><li>that is used instead</li></ul>
+</div>
+&nbsp;<br>&nbsp;<br><div class="commit_info">
+
+commit <a href="http://github.com/underscorediscovery/lumen/commit/5eb41aa0892bd899d9e882319ee43738d03949e3">5eb41aa089</a><br>author: underscorediscovery<br>date: Sat May 24 2014 02:29:21 GMT-0230 (NDT)<br></div>
+
+<p>&nbsp;   </p>
+<div class="commit_message">
+
+<ul><li>Fixing AL defines being in the main packages as aliases</li></ul>
+</div>
+&nbsp;<br>&nbsp;<br><div class="commit_info">
+
+commit <a href="http://github.com/underscorediscovery/lumen/commit/65bcae22dc3d577ff2faa70d2c6d8ea4ab41e4d5">65bcae22dc</a><br>author: underscorediscovery<br>date: Sat May 24 2014 02:28:56 GMT-0230 (NDT)<br></div>
+
+<p>&nbsp;   </p>
+<div class="commit_message">
+
+<ul><li>adding system event dispatch helper to handle any specifics</li><li>And handling the typing only when the type is coming as an int from</li><li>native</li></ul>
+</div>
+&nbsp;<br>&nbsp;<br><div class="commit_info">
+
+commit <a href="http://github.com/underscorediscovery/lumen/commit/f60aa5ab7aef44fe6d61862309ed3c669ef45f6a">f60aa5ab7a</a><br>author: underscorediscovery<br>date: Sat May 24 2014 02:28:07 GMT-0230 (NDT)<br></div>
+
+<p>&nbsp;   </p>
+<div class="commit_message">
+
+<ul><li>adding howler.js bindings and externs for audio implementation</li></ul>
+</div>
+&nbsp;<br>&nbsp;<br><div class="commit_info">
+
+commit <a href="http://github.com/underscorediscovery/lumen/commit/92679f9ca7963b3f25441cd14fe785731f30531d">92679f9ca7</a><br>author: underscorediscovery<br>date: Sat May 24 2014 02:27:19 GMT-0230 (NDT)<br></div>
+
+<p>&nbsp;   </p>
+<div class="commit_message">
+
+<ul><li>adding safer manifest checks for zero length manifests throwing errors on unserialize</li></ul>
+</div>
+&nbsp;<br>&nbsp;<br><div class="commit_info">
+
+commit <a href="http://github.com/underscorediscovery/lumen/commit/b6604d45385b3122a7501d3edcc6ecba3aaa8d93">b6604d4538</a><br>author: underscorediscovery<br>date: Sat May 24 2014 02:26:46 GMT-0230 (NDT)<br></div>
+
+<p>&nbsp;   </p>
+<div class="commit_message">
+
+<ul><li>tidying include.xml and adding html5 dependencies, cleanup android dependencies</li></ul>
+</div>
+&nbsp;<br>&nbsp;<br><div class="commit_info">
+
+commit <a href="http://github.com/underscorediscovery/lumen/commit/699597ec23d2d1af74f54c0fbfeedf1f6499573e">699597ec23</a><br>author: underscorediscovery<br>date: Sat May 24 2014 02:26:01 GMT-0230 (NDT)<br></div>
+
+<p>&nbsp;   </p>
+<div class="commit_message">
+
+<ul><li>removing generated json files for classes, this will be improved by using the json directly, and the json being exported with full information from the scribe classes</li></ul>
+</div>
+&nbsp;<br>&nbsp;<br><div class="commit_info">
+
+commit <a href="http://github.com/underscorediscovery/lumen/commit/0b1f23ca74fcd76a5d49915e9d34a3142869e830">0b1f23ca74</a><br>author: underscorediscovery<br>date: Fri May 23 2014 21:46:26 GMT-0230 (NDT)<br></div>
+
+<p>&nbsp;   </p>
+<div class="commit_message">
+
+<ul><li>more large scale refactoring, this separates the bindings from the usage. See first commit comment for info, but this will be in docs soon</li></ul>
+</div>
+&nbsp;<br>&nbsp;<br><div class="commit_info">
+
+commit <a href="http://github.com/underscorediscovery/lumen/commit/d36ecf7f7ee43fe369518527888f0a98210b0927">d36ecf7f7e</a><br>author: underscorediscovery<br>date: Fri May 23 2014 08:15:31 GMT-0230 (NDT)<br></div>
+
+<p>&nbsp;   </p>
+<div class="commit_message">
+
+<ul><li>Fixing tests building against latest refactoring</li></ul>
+</div>
+&nbsp;<br>&nbsp;<br><div class="commit_info">
+
+commit <a href="http://github.com/underscorediscovery/lumen/commit/953dea7b204eee79f538fd185a345334b789c5d9">953dea7b20</a><br>author: underscorediscovery<br>date: Fri May 23 2014 08:12:22 GMT-0230 (NDT)<br></div>
+
+<p>&nbsp;   </p>
+<div class="commit_message">
+
+<ul><li>See previous commit, for no reason github app doesn’t include these in the first commit</li></ul>
+</div>
+&nbsp;<br>&nbsp;<br><div class="commit_info">
+
+commit <a href="http://github.com/underscorediscovery/lumen/commit/98d9f68bb416550696681a7ef020c4b6297ae965">98d9f68bb4</a><br>author: underscorediscovery<br>date: Fri May 23 2014 08:11:56 GMT-0230 (NDT)<br></div>
+
+<p>&nbsp;   </p>
+<div class="commit_message">
+
+<ul><li>Large scale refactoring to accommodate html5 builds, ok if tests fail right now but shouldn’t</li><li>Note this is half way done. Assets and Audio need refactoring to</li><li>platform specific folder and i am not done with the naming conventions,</li><li>*System might be changed out etc.</li><li>This includes unifying all platform separation in one place, and</li><li>pointing the classes to those.</li><li>Includes refactoring the GL code to be clearer and less import-y</li><li>Includes removing all haxe3 defines from the utils functions</li></ul>
+</div>
+&nbsp;<br>&nbsp;<br><div class="commit_info">
+
+commit <a href="http://github.com/underscorediscovery/lumen/commit/667475907edd92f5a20fa9daff37d4ecc291bd55">667475907e</a><br>author: underscorediscovery<br>date: Fri May 23 2014 06:20:40 GMT-0230 (NDT)<br></div>
+
+<p>&nbsp;   </p>
+<div class="commit_message">
+
+<ul><li>Shielding for non-native builds</li></ul>
+</div>
+&nbsp;<br>&nbsp;<br><div class="commit_info">
+
+commit <a href="http://github.com/underscorediscovery/lumen/commit/750264bd4ca03b7edd1a5209004ce435b89c5cfd">750264bd4c</a><br>author: underscorediscovery<br>date: Fri May 23 2014 06:20:18 GMT-0230 (NDT)<br></div>
+
+<p>&nbsp;   </p>
+<div class="commit_message">
+
+<ul><li>fixing typo in non native specific import</li></ul>
+</div>
+&nbsp;<br>&nbsp;<br><div class="commit_info">
+
+commit <a href="http://github.com/underscorediscovery/lumen/commit/dedd5272f0c47e661da30d85540c63cb7ab1418d">dedd5272f0</a><br>author: underscorediscovery<br>date: Fri May 23 2014 06:18:28 GMT-0230 (NDT)<br></div>
+
+<p>&nbsp;   </p>
+<div class="commit_message">
+
+<ul><li>Doc fixes and tweaks, including code-&gt;link replacements for guides etc</li><li>Also includes some minor changes for building against html5, which is</li><li>currently happening</li></ul>
+</div>
+&nbsp;<br>&nbsp;<br><div class="commit_info">
+
+commit <a href="http://github.com/underscorediscovery/lumen/commit/721b272d7b8b1e7743d6f8ba5c42069d7868b32f">721b272d7b</a><br>author: underscorediscovery<br>date: Fri May 23 2014 06:14:30 GMT-0230 (NDT)<br></div>
+
+<p>&nbsp;   </p>
+<div class="commit_message">
+
+<ul><li>ignoring docs for now, since they are just going to be in constant flux</li></ul>
+</div>
+&nbsp;<br>&nbsp;<br><div class="commit_info">
+
+commit <a href="http://github.com/underscorediscovery/lumen/commit/38085e479a431d38fa0ca9ed8a56f82da73f1547">38085e479a</a><br>author: underscorediscovery<br>date: Thu May 22 2014 12:13:38 GMT-0230 (NDT)<br></div>
+
+<p>&nbsp;   </p>
+<div class="commit_message">
+
+<ul><li>Adding docs for all remaining major classes and improving doc generator more</li></ul>
+</div>
+&nbsp;<br>&nbsp;<br><div class="commit_info">
 
 commit <a href="http://github.com/underscorediscovery/lumen/commit/9d2d8850ece7cf3e4f47b2b06666f3f962617c99">9d2d8850ec</a><br>author: underscorediscovery<br>date: Thu May 22 2014 09:26:05 GMT-0230 (NDT)<br></div>
 
