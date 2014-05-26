@@ -4,12 +4,19 @@ var helper      = {};
 var path        = require('path'),
     glob        = require('glob'),
     fs          = require('graceful-fs'),
-    wrench      = require('wrench');
+    wrench      = require('wrench'),
+    bars        = require('handlebars');
 
 
     helper._verbose = true;
     helper.verbose = function(s){ if(helper._verbose) { console.log(s); } }
     helper.log = function(s){ console.log(s); }
+
+    helper.bars = bars;
+    helper.render = function( _templ, _context, _partials ) {
+        var tm = bars.compile(_templ);
+        return tm(_context, {partials:_partials} );
+    } 
 
     helper.create_folder_path = function(_dest, _clean) {
 

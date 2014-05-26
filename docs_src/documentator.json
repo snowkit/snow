@@ -20,6 +20,12 @@
     "api_template" : "api_page.html",
     "api_index_template" : "api_index.html",
     "template_index" : "index.html",
+    "api_partials" : [
+        { "name": "type", "path":"api_partial_type.html"},
+        { "name": "args", "path":"api_partial_args.html"}
+    ],
+    "api_packages" : ["lumen"],
+    "api_exclude" : ["openal", "input.Key", "input.Scan", "gl."],
 
     "git_features" : true,
     "force_full" : true,

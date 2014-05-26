@@ -2,20 +2,199 @@
     var api = {};
 
     var helper   = require('./generate_helper'),
-        mustache = require('mustache');
         path     = require('path');
+
+    var haxe_types = ['String', 'Float', 'Int', 'Bool', 'Dynamic', 'Array', 'Map' ];
+    var haxe_link = 'http://api.haxe.org/';
+
 
     api.generate = function(config) {
 
             helper.log('- parsing json api description');
 
-        api.generate_api_sources( config );
+        // api.generate_api_sources( config );
 
-            helper.log('- generating api md\'s');
+            // helper.log('- generating api md\'s');
 
         api.generate_md_files( config );
 
     } //generate
+
+        //helper to the get the class name from a full package name
+    api._get_class_name = function( _full_name ) {
+        return _full_name.split('.').pop();
+    }
+        //helper to the get the package root from a full package name
+    api._get_package_root = function( _full_name ) {
+        return _full_name.split('.').shift();
+    }
+        //helper to the get the package sub (root.sub) from a full package name
+    api._get_package_sub = function( _full_name ) {
+        var _items = _full_name.split('.');
+            //remove the class
+        _items.pop();
+            //return the path or ||
+        return _items[1] || '';
+    }
+
+    api._get_type_link = function(config, _t) {
+        
+        if(!config.api_packages) {
+            return '';
+        }
+
+            //get the type root
+        var tr = api._get_package_root(_t);
+            //if this is a type params type, split that out
+        if(tr.indexOf('<') != -1) {
+            tr = tr.substr(0, tr.indexOf('<'));
+        }
+
+            //if found in the list of acceptable packages, 
+            //we return that type value
+        if( config.api_packages.indexOf(tr) != -1) {
+            return '#'+_t;
+        } else {
+                //check if its in the haxe type list
+            if(haxe_types.indexOf(tr) != -1) {
+                return haxe_link + tr + '.html';
+            }            
+        }
+
+        return '';
+
+    } //_get_type_link
+
+    api.generate_md_files = function( config ) {
+
+        helper.bars.registerHelper('escape_markdown', function(data) {
+            var s = data;
+                
+                s = s.replace(/_/gi, '\\_');
+
+            return s;
+        });
+
+        var _api_index_template = helper.read_file( config.template_path + config.api_index_template );
+        var _api_partials = {};
+        var doc = helper.json( config.api_source_json );
+
+        var _partial_list = config.api_partials || [];
+        for(_i in _partial_list) {
+            var p = _partial_list[_i];
+            var p_templ =  helper.read_file( config.template_path + p.path );
+            _api_partials[p.name] = p_templ;
+        }
+
+            //This is the list of sorted packages, by {root}.{sub} basically.
+            //this is an assumption that may give way later.
+        var _package_list = [];
+        var _package_items = {};
+
+        if(doc) {
+
+            var _type_count = doc.names.length;
+            var _blacklist = config.api_exclude || [];
+
+            for(var i = 0; i < _type_count; ++i) {
+
+                var _type_name = doc.names[i];
+                var _type_info = doc.types[_type_name];
+
+                var _root = api._get_package_root(_type_info.name);
+                var _sub = api._get_package_sub(_type_info.name);
+                var _full = _type_info.name;
+
+                var _package_parent = _root + ( _sub ? ('.'+_sub) : '' );
+
+                var _skip = false;
+
+                if(_blacklist.length) {
+                    for(k = 0; k < _blacklist.length; ++k) {
+                        if(_full.indexOf(_blacklist[k]) != -1) {
+                            _skip = true;
+                        }
+                    }
+                }
+
+                if(_skip) {
+                    continue;
+                }
+
+                    //if this package isn't yet added to the list,
+                    //we add it and fill it with the name and blank list
+                if(!_package_items[_package_parent]) {
+                        //new list
+                    _package_items[_package_parent] = [];
+                        //store it in the root list
+                    _package_list.push({ 
+                        name:_package_parent, 
+                        items:_package_items[_package_parent]
+                    });
+                }
+
+
+                if(!_type_info.meta['@:noCompletion'] && _type_info.ispublic) {
+
+                        //a short name removing the root+sub package
+                    _type_info.name_short = _type_info.name.replace(_package_parent+'.','');
+
+                        //we make a type link for each item that has one, provided it's from our package
+                    if(_type_info.type == 'class') {
+                        
+                        for(_m in _type_info.members) {
+
+                            var t = _type_info.members[_m];
+                            var _tl = api._get_type_link(config,t.type.name);
+
+                            if(_tl) { 
+                                _type_info.members[_m].type_link = _tl; 
+                            }
+
+                        } //for each member
+                        
+                    }
+
+
+                        //push this class into the list 
+                    _package_items[_package_parent].push( _type_info );
+                }
+
+            } //for all classes
+
+                //sort the package list items by alphabeticalness
+            for(k = 0; k < _package_list.length; ++k) {
+                _package_list[k].items.sort(function(a,b){
+                    if(a.name < b.name) return -1;
+                    if(a.name >= b.name) return 1;
+                    return 0;
+                });
+            }
+
+                //work out the end file
+            var _out_dest = config.api_out_md_path + config.api_index_out;
+            var _rel_test = _out_dest.replace('.md','.html');
+            var _index_context = { 
+                package_list : _package_list,
+                api_list : doc.types, 
+                rel_path:helper.get_rel_path_count(_rel_test) 
+            };
+
+                //template the index file with the list
+            var _template_out = helper.render( _api_index_template, _index_context, _api_partials );
+                //write the correct file to the correct location
+            _out_dest = config.md_path + config.api_out_md_path + config.api_index_out;        
+                //write out to the destination
+            helper.write_file( _out_dest , _template_out );
+                //debug
+            helper.log("\t - wrote api index file " + _out_dest);
+
+            helper.log("- generated api files complete");
+
+
+        } //_doc_json
+
+    } //generate_md_files
 
     api.generate_api_sources = function( config ) {
 
@@ -328,7 +507,7 @@
 
     } //generate_api_sources
 
-    api.generate_md_files = function( config ) {
+    api.generate_md_files2 = function( config ) {
 
         helper.log('- parsing code api files from ' + config.apis_path + config.api_input);
 
@@ -530,7 +709,7 @@
                     //the end resulting file
                 var api_file_dest = package_path + class_name + '.md';
                     //complete the generated template md
-                var _template_out = mustache.render( _api_template, _context );
+                var _template_out = helper.render( _api_template, _context );
                     //log the details
                 helper.verbose("\t - generating file " + api_file_dest);
                     //save it
@@ -548,7 +727,7 @@
         var _index_context = { package_list:_package_list, api_list : _api_list, rel_path:helper.get_rel_path_count(_rel_test) };
 
             //template the index file with the list
-        var _template_out = mustache.render( _api_index_template, _index_context );
+        var _template_out = helper.render( _api_index_template, _index_context );
             //write the correct file to the correct location
         _out_dest = config.md_path + config.api_out_md_path + config.api_index_out;        
             //write out to the destination

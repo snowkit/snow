@@ -7,7 +7,7 @@
   "dependencies": {
     "marked": "latest",
     "glob": "latest",
-    "mustache" : "latest",
+    "handlebars" : "latest",
     "graceful-fs" : "latest",
     "pygments" : "latest",
     "wrench" : "latest",

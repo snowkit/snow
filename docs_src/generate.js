@@ -250,7 +250,7 @@ var marked      = require('marked'),
 
         helper.log('- generating docs');
 
-    git.generate_changes( config, function(){
+    // git.generate_changes( config, function(){
 
         generate_docs( config, function(){
 
@@ -258,5 +258,5 @@ var marked      = require('marked'),
 
         });
 
-    }); //changes
+    // }); //changes
 

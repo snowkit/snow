@@ -1,0 +1,11 @@
+{{~name}}
+{{~^func}}
+	{{~#if params~}}
+		&lt; 
+		{{~#params~}} 
+			{{~#if @index}}, {{/if}}
+				{{~name}}
+		{{~/params~}}
+		&gt;
+	{{~/if}}
+{{~/func~}}
