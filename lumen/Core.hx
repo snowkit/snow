@@ -5,11 +5,11 @@ import lumen.types.Types;
 
 #if lumen_html5
 
-   typedef Core = lumen.platform.html5.Core;
+   @:noCompletion typedef Core = lumen.platform.html5.Core;
 
 #else
 
-   typedef Core = lumen.platform.native.Core;
+   @:noCompletion typedef Core = lumen.platform.native.Core;
 
 #end //lumen_html5
 

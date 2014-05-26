@@ -6,20 +6,6 @@ import lumen.utils.Libs;
 
 import lumen.window.WindowSystem;
 
-typedef DisplayMode = {
-    format : Int,
-    refresh_rate : Int,
-    width : Int,
-    height : Int
-}
-
-typedef DisplayBounds = {
-    x : Int,
-    y : Int,
-    width : Int,
-    height : Int
-}
-
 /** A window manager, accessed via `app.window` */
 class Windowing {
 

@@ -3,7 +3,6 @@ package lumen.utils;
 
 interface IDataInput {
 
-
    public var bytesAvailable(get_bytesAvailable, null):Int;
    public var endian(get_endian, set_endian):String;
 
@@ -28,6 +27,5 @@ interface IDataInput {
    private function get_bytesAvailable():Int;
    private function get_endian():String;
    private function set_endian(s:String):String;
-
 
 } //IDataInput

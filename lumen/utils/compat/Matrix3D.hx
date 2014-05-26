@@ -6,7 +6,7 @@ package lumen.utils.compat;
 import lumen.utils.compat.Vector;
 import lumen.utils.compat.Vector3D;
 
-class Matrix3D 
+@:noCompletion class Matrix3D 
 {
    public var determinant(get_determinant, null):Float;
    public var position(get_position, set_position):Vector3D;

@@ -1,7 +1,7 @@
 package lumen.utils.compat;
 
 
-@:arrayAccess abstract Vector<T>(Array<T>) {
+@:noCompletion @:arrayAccess abstract Vector<T>(Array<T>) {
     
     
     public var length (get, set):Int;

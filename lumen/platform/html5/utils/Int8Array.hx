@@ -1,3 +1,7 @@
 package lumen.platform.html5.utils;
 
-typedef Int8Array = js.html.Int8Array;
+#if lumen_html5
+
+	typedef Int8Array = js.html.Int8Array;
+
+#end //lumen_html5

@@ -4,18 +4,6 @@ import lumen.types.Types;
 import lumen.window.Windowing;
 
 import lumen.render.gl.GL;
-    
-typedef WindowPosition = {
-    var x : Int;
-    var y : Int;
-}
-
-typedef WindowSize = {
-    var w : Int;
-    var h : Int;
-}
-
-abstract WindowHandle(Dynamic) from Dynamic to Dynamic {}
 
     //A window has it's own event loop
     //and allows opening and closing windows

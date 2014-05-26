@@ -1,6 +1,4 @@
 package lumen.platform.native.utils;
-// #if (cpp || neko)
-#if (lumen_native || lumen_html5)
 
 import lumen.utils.IMemoryRange;
 import lumen.utils.Libs;
@@ -627,7 +625,3 @@ class ByteArray extends Bytes implements ArrayAccess<Int> implements IDataInput 
    private static var lumen_lzma_encode = Libs.load("lumen", "lumen_lzma_encode", 1);
    private static var lumen_lzma_decode = Libs.load("lumen", "lumen_lzma_decode", 1);
 }
-
-#else
-typedef ByteArray = Dynamic;//todo ; flash.utils.ByteArray;
-#end
