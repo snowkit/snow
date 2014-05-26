@@ -1,6 +1,286 @@
 &nbsp;   
 <div class="commit_info">
 
+commit [5f944e08a9](http://github.com/underscorediscovery/lumen/commit/5f944e08a91f1dd0b1887ca5b1379b9acc231473)   
+author: underscorediscovery   
+date: Sat May 24 2014 20:32:57 GMT-0230 (NDT)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>trying to ignore docs while testing</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [1a16121d67](http://github.com/underscorediscovery/lumen/commit/1a16121d677f5610a6cac9af826cc713443bd3f9)   
+author: underscorediscovery   
+date: Sat May 24 2014 08:17:11 GMT-0230 (NDT)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>minor cleanup</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [c24e8ed040](http://github.com/underscorediscovery/lumen/commit/c24e8ed040c0f82483b6a1f3270b896781cfde0c)   
+author: underscorediscovery   
+date: Sat May 24 2014 08:13:31 GMT-0230 (NDT)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>adding actual size information for when images are padded (like html5). use this value for calculating things if you need the real image space sizes</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [7868381f6f](http://github.com/underscorediscovery/lumen/commit/7868381f6f33166ac98a8aa35775e135336bd59a)   
+author: underscorediscovery   
+date: Sat May 24 2014 08:05:21 GMT-0230 (NDT)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Adding image loading for html5, adding onloaded for image assets, changing images .data to UInt8Array because that's the format they will be used in, for GL</li><li>Still deciding on the onloaded nature… but it’s a start</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [9b6eaacf93](http://github.com/underscorediscovery/lumen/commit/9b6eaacf939b32cbfadf53e0d4b61069966a6a70)   
+author: underscorediscovery   
+date: Sat May 24 2014 06:09:20 GMT-0230 (NDT)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>fixing incorrect flags and cleanup of old flash stuff</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [7c3d4a91e7](http://github.com/underscorediscovery/lumen/commit/7c3d4a91e7c436fab94176a62298d8324df69716)   
+author: underscorediscovery   
+date: Sat May 24 2014 05:46:06 GMT-0230 (NDT)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>filling in functions for message/close/title on html5, and stubbing others with todo notes to allow finding them easier</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [b08cde2f1a](http://github.com/underscorediscovery/lumen/commit/b08cde2f1a980f2da00c93715287df04d32d71d8)   
+author: underscorediscovery   
+date: Sat May 24 2014 05:27:45 GMT-0230 (NDT)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>implement window create functions for html5, creates a canvas + gl context, not shared, will need to make single window for now</li><li>also dummy video mode so tis not crashing</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [05f7493870](http://github.com/underscorediscovery/lumen/commit/05f7493870025cc2fd166f0396b63110b92a02b8)   
+author: underscorediscovery   
+date: Sat May 24 2014 05:25:11 GMT-0230 (NDT)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Implementing update looping and timing for html5</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [d195ef9e4f](http://github.com/underscorediscovery/lumen/commit/d195ef9e4f8206c8e30dab8b5e6a58448374743e)   
+author: underscorediscovery   
+date: Sat May 24 2014 05:23:46 GMT-0230 (NDT)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>fixing bugs in the config and switching mspf->frame_time because it's in seconds, not mspf</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [01021bfb22](http://github.com/underscorediscovery/lumen/commit/01021bfb2280921224ffdea4e02249031361539f)   
+author: underscorediscovery   
+date: Sat May 24 2014 05:20:32 GMT-0230 (NDT)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>parity and clarity for gl version on native gl</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [0f3b052bc1](http://github.com/underscorediscovery/lumen/commit/0f3b052bc123fbd53397625596dc7f350d44f292)   
+author: underscorediscovery   
+date: Sat May 24 2014 05:20:02 GMT-0230 (NDT)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>removing cruft testing values</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [4146cbf9cf](http://github.com/underscorediscovery/lumen/commit/4146cbf9cf175577fd7ebe77afc80deb1041b6bb)   
+author: underscorediscovery   
+date: Sat May 24 2014 05:19:29 GMT-0230 (NDT)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Implement versionString helper for GL strings for html5</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [0a1462ccd4](http://github.com/underscorediscovery/lumen/commit/0a1462ccd4f5fe595d0f0a8ba5e31c2972efdd87)   
+author: underscorediscovery   
+date: Sat May 24 2014 02:31:23 GMT-0230 (NDT)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Adding ByteArray.readFile for html5</li><li>This will always be blocking, and an async api version elsewhere will</li><li>be added (for both native+js)</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [2ddbeb87de](http://github.com/underscorediscovery/lumen/commit/2ddbeb87def4befca61b66de19e9778a0024264d)   
+author: underscorediscovery   
+date: Sat May 24 2014 02:30:48 GMT-0230 (NDT)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Starting html5 implementation of the core features, timestamp, init, app_path, pref-path are done.</li><li>Timestamp falls back on haxe.Timer.stamp() which seems to mimmick</li><li>Date.now()/1000 in js… While if the browser supports performance.now()</li><li>that is used instead</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [5eb41aa089](http://github.com/underscorediscovery/lumen/commit/5eb41aa0892bd899d9e882319ee43738d03949e3)   
+author: underscorediscovery   
+date: Sat May 24 2014 02:29:21 GMT-0230 (NDT)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Fixing AL defines being in the main packages as aliases</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [65bcae22dc](http://github.com/underscorediscovery/lumen/commit/65bcae22dc3d577ff2faa70d2c6d8ea4ab41e4d5)   
+author: underscorediscovery   
+date: Sat May 24 2014 02:28:56 GMT-0230 (NDT)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>adding system event dispatch helper to handle any specifics</li><li>And handling the typing only when the type is coming as an int from</li><li>native</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [f60aa5ab7a](http://github.com/underscorediscovery/lumen/commit/f60aa5ab7aef44fe6d61862309ed3c669ef45f6a)   
+author: underscorediscovery   
+date: Sat May 24 2014 02:28:07 GMT-0230 (NDT)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>adding howler.js bindings and externs for audio implementation</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [92679f9ca7](http://github.com/underscorediscovery/lumen/commit/92679f9ca7963b3f25441cd14fe785731f30531d)   
+author: underscorediscovery   
+date: Sat May 24 2014 02:27:19 GMT-0230 (NDT)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>adding safer manifest checks for zero length manifests throwing errors on unserialize</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [b6604d4538](http://github.com/underscorediscovery/lumen/commit/b6604d45385b3122a7501d3edcc6ecba3aaa8d93)   
+author: underscorediscovery   
+date: Sat May 24 2014 02:26:46 GMT-0230 (NDT)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>tidying include.xml and adding html5 dependencies, cleanup android dependencies</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [699597ec23](http://github.com/underscorediscovery/lumen/commit/699597ec23d2d1af74f54c0fbfeedf1f6499573e)   
+author: underscorediscovery   
+date: Sat May 24 2014 02:26:01 GMT-0230 (NDT)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>removing generated json files for classes, this will be improved by using the json directly, and the json being exported with full information from the scribe classes</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
 commit [0b1f23ca74](http://github.com/underscorediscovery/lumen/commit/0b1f23ca74fcd76a5d49915e9d34a3142869e830)   
 author: underscorediscovery   
 date: Fri May 23 2014 21:46:26 GMT-0230 (NDT)   
