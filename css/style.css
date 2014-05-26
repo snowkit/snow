@@ -153,7 +153,7 @@ p {
     line-height: 1.5em;
     position: relative;
     display: block;
-    width: 40em;
+    /*width: 40em;*/
     margin-left:1em;
     font-size:0.9em;
     margin-bottom: 0.6em;
@@ -208,10 +208,10 @@ user-select: none;
 }
 
 .content {
-    max-width:50em;
-    width:40em;
+    max-width:45em;
+    width:50em;
     left:50%;
-    margin-left: -20em;
+    margin-left: -22.5em;
     position: relative;
     display: block;
 }
@@ -235,7 +235,7 @@ user-select: none;
     border-radius: 0.2em;   
 }
 
-.member, .method {
+.member, .method, .property {
     color:#666;
     display: block;    
     line-height: 1.3em;
