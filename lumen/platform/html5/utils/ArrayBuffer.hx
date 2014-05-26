@@ -1,3 +1,7 @@
 package lumen.platform.html5.utils;
 
-abstract ArrayBuffer(js.html.ArrayBuffer) from js.html.ArrayBuffer to js.html.ArrayBuffer {}
+#if lumen_html5
+
+	typedef ArrayBuffer = js.html.ArrayBuffer;
+
+#end //lumen_html5

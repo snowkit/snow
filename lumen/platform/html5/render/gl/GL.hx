@@ -1,5 +1,6 @@
 package lumen.platform.html5.render.gl;
 
+#if lumen_html5
 
 import lumen.utils.compat.Matrix3D;
 import lumen.utils.ByteArray;
@@ -1443,3 +1444,4 @@ typedef ShaderPrecisionFormat = {
    
 };
 
+#end //lumen_html5

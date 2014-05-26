@@ -1,3 +1,7 @@
 package lumen.platform.html5.utils;
 
-typedef UInt16Array = js.html.Uint16Array;
+#if lumen_html5
+	
+	typedef UInt16Array = js.html.Uint16Array;
+
+#end //lumen_html5

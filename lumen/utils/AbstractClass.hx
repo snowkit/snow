@@ -18,7 +18,7 @@ interface AbstractClass {}
 
 private typedef StringMap<T> = Map<String, T>;
 
-class AbstractClassBuilder {
+@:noCompletion class AbstractClassBuilder {
 	#if macro
 	/** 
 		The without-body declared methods of an AbstractClass.

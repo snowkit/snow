@@ -3,7 +3,7 @@ package lumen.input;
 
 /** The keycode class, with conversion helpers for scancodes. The values below come directly from SDL header include files,
 but they aren't specific to SDL so they are used generically */
-class Keycodes {
+@:noCompletion class Keycodes {
 
         /** Convert a scancode to a keycode for comparison */
     public static function from_scan( scancode : Int ) : Int {
@@ -267,7 +267,7 @@ class Keycodes {
 
 /** The scancode class. The values below come directly from SDL header include files,
 but they aren't specific to SDL so they are used generically */
-class Scancodes {
+@:noCompletion class Scancodes {
 
     public static var UNKNOWN : Int                 = 0;
 

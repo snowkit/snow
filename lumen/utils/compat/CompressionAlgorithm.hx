@@ -1,7 +1,7 @@
 package lumen.utils.compat;
 
 
-enum CompressionAlgorithm {
+@:noCompletion enum CompressionAlgorithm {
     DEFLATE;
     ZLIB;
     LZMA;
