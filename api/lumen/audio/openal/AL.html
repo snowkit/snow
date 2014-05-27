@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html>
+    
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <link rel="shortcut icon" href="../../../../images/favicon.png" />
+
+        <link rel="stylesheet" type="text/css" href="../../../../css/style.css" media="all">
+        <link rel="stylesheet" type="text/css" href="../../../../css/code.css" media="all">
+        <link rel="stylesheet" type="text/css" href="../../../../css/font.css" media="all">
+        
+        <link rel="stylesheet" type="text/css" href="../../../../css/tooltipster.css" media="all">
+        <link rel="stylesheet" type="text/css" href="../../../../css/tooltipster-shadow.css" media="all">
+        
+        <script src="../../../../js/jquery-2.0.3.min.js"> </script>
+        <script src="../../../../js/jquery.tooltipster.min.js"> </script>
+
+        <script>
+
+            $(document).ready(function() {
+
+                $('.section').css('display','none');
+                $('.readmore').click(function(e){
+                    var _child = $(this).parent().find('.section').first();
+                    var _opp = 'block';
+                    if( _child.css('display') == 'block' ) {
+                        _opp = 'none';
+                    } else {
+                    }
+                    _child.css('display', _opp);
+                });
+
+                $('div.sample').on('click', function(e){
+                        //get the data tag
+                    var content = $(this).attr('data-content');
+                        //remove clicking handler
+                    $(this).off('click');
+                        //replace the content!
+                    $(this).html('<iframe src="'+content+'" sandbox="allow-same-origin allow-scripts" style="overflow:hidden; scrollbar:none; border: 0; width:645px; height:450px;"></iframe> ')
+                });
+
+                $('.tooltip').tooltipster({
+                    theme:'tooltipster-shadow'
+                });
+
+            }); //document.ready
+
+        </script>
+    </head>
+
+    <body>
+        <div class="content">
+            <p><a href="../../../../api/index.html"><img src="../../../../images/logo.png" alt="Logo"></a></p>
+<hr>
+<h1 id="al">AL</h1>
+<hr>
+<p><code>class</code>
+<span class="meta"></p>
+<p></span></p>
+<hr>
+<p>&nbsp;
+&nbsp;</p>
+<p><h3>Members</h3> <hr/><span class="member apipage">
+            <a name="BITS"><a class="lift" href="#BITS">BITS</a></a><span class="inline-block static">static</span><code class="signature apipage">BITS : <a href="http://api.haxe.org/Int.html">Int</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="BUFFER"><a class="lift" href="#BUFFER">BUFFER</a></a><span class="inline-block static">static</span><code class="signature apipage">BUFFER : <a href="http://api.haxe.org/Int.html">Int</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="BUFFERS_PROCESSED"><a class="lift" href="#BUFFERS_PROCESSED">BUFFERS_PROCESSED</a></a><span class="inline-block static">static</span><code class="signature apipage">BUFFERS_PROCESSED : <a href="http://api.haxe.org/Int.html">Int</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="BUFFERS_QUEUED"><a class="lift" href="#BUFFERS_QUEUED">BUFFERS_QUEUED</a></a><span class="inline-block static">static</span><code class="signature apipage">BUFFERS_QUEUED : <a href="http://api.haxe.org/Int.html">Int</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="BYTE_OFFSET"><a class="lift" href="#BYTE_OFFSET">BYTE_OFFSET</a></a><span class="inline-block static">static</span><code class="signature apipage">BYTE_OFFSET : <a href="http://api.haxe.org/Int.html">Int</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="CHANNELS"><a class="lift" href="#CHANNELS">CHANNELS</a></a><span class="inline-block static">static</span><code class="signature apipage">CHANNELS : <a href="http://api.haxe.org/Int.html">Int</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="CONE_INNER_ANGLE"><a class="lift" href="#CONE_INNER_ANGLE">CONE_INNER_ANGLE</a></a><span class="inline-block static">static</span><code class="signature apipage">CONE_INNER_ANGLE : <a href="http://api.haxe.org/Int.html">Int</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="CONE_OUTER_ANGLE"><a class="lift" href="#CONE_OUTER_ANGLE">CONE_OUTER_ANGLE</a></a><span class="inline-block static">static</span><code class="signature apipage">CONE_OUTER_ANGLE : <a href="http://api.haxe.org/Int.html">Int</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="CONE_OUTER_GAIN"><a class="lift" href="#CONE_OUTER_GAIN">CONE_OUTER_GAIN</a></a><span class="inline-block static">static</span><code class="signature apipage">CONE_OUTER_GAIN : <a href="http://api.haxe.org/Int.html">Int</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="DIRECTION"><a class="lift" href="#DIRECTION">DIRECTION</a></a><span class="inline-block static">static</span><code class="signature apipage">DIRECTION : <a href="http://api.haxe.org/Int.html">Int</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="DISTANCE_MODEL"><a class="lift" href="#DISTANCE_MODEL">DISTANCE_MODEL</a></a><span class="inline-block static">static</span><code class="signature apipage">DISTANCE_MODEL : <a href="http://api.haxe.org/Int.html">Int</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="DOPPLER_FACTOR"><a class="lift" href="#DOPPLER_FACTOR">DOPPLER_FACTOR</a></a><span class="inline-block static">static</span><code class="signature apipage">DOPPLER_FACTOR : <a href="http://api.haxe.org/Int.html">Int</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="DOPPLER_VELOCITY"><a class="lift" href="#DOPPLER_VELOCITY">DOPPLER_VELOCITY</a></a><span class="inline-block static">static</span><code class="signature apipage">DOPPLER_VELOCITY : <a href="http://api.haxe.org/Int.html">Int</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="EXPONENT_DISTANCE"><a class="lift" href="#EXPONENT_DISTANCE">EXPONENT_DISTANCE</a></a><span class="inline-block static">static</span><code class="signature apipage">EXPONENT_DISTANCE : <a href="http://api.haxe.org/Int.html">Int</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="EXPONENT_DISTANCE_CLAMPED"><a class="lift" href="#EXPONENT_DISTANCE_CLAMPED">EXPONENT_DISTANCE_CLAMPED</a></a><span class="inline-block static">static</span><code class="signature apipage">EXPONENT_DISTANCE_CLAMPED : <a href="http://api.haxe.org/Int.html">Int</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="EXTENSIONS"><a class="lift" href="#EXTENSIONS">EXTENSIONS</a></a><span class="inline-block static">static</span><code class="signature apipage">EXTENSIONS : <a href="http://api.haxe.org/Int.html">Int</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="FALSE"><a class="lift" href="#FALSE">FALSE</a></a><span class="inline-block static">static</span><code class="signature apipage">FALSE : <a href="http://api.haxe.org/Int.html">Int</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="FORMAT_MONO16"><a class="lift" href="#FORMAT_MONO16">FORMAT_MONO16</a></a><span class="inline-block static">static</span><code class="signature apipage">FORMAT_MONO16 : <a href="http://api.haxe.org/Int.html">Int</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="FORMAT_MONO8"><a class="lift" href="#FORMAT_MONO8">FORMAT_MONO8</a></a><span class="inline-block static">static</span><code class="signature apipage">FORMAT_MONO8 : <a href="http://api.haxe.org/Int.html">Int</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="FORMAT_STEREO16"><a class="lift" href="#FORMAT_STEREO16">FORMAT_STEREO16</a></a><span class="inline-block static">static</span><code class="signature apipage">FORMAT_STEREO16 : <a href="http://api.haxe.org/Int.html">Int</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="FORMAT_STEREO8"><a class="lift" href="#FORMAT_STEREO8">FORMAT_STEREO8</a></a><span class="inline-block static">static</span><code class="signature apipage">FORMAT_STEREO8 : <a href="http://api.haxe.org/Int.html">Int</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="FREQUENCY"><a class="lift" href="#FREQUENCY">FREQUENCY</a></a><span class="inline-block static">static</span><code class="signature apipage">FREQUENCY : <a href="http://api.haxe.org/Int.html">Int</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="GAIN"><a class="lift" href="#GAIN">GAIN</a></a><span class="inline-block static">static</span><code class="signature apipage">GAIN : <a href="http://api.haxe.org/Int.html">Int</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="INITIAL"><a class="lift" href="#INITIAL">INITIAL</a></a><span class="inline-block static">static</span><code class="signature apipage">INITIAL : <a href="http://api.haxe.org/Int.html">Int</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="INVALID_ENUM"><a class="lift" href="#INVALID_ENUM">INVALID_ENUM</a></a><span class="inline-block static">static</span><code class="signature apipage">INVALID_ENUM : <a href="http://api.haxe.org/Int.html">Int</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="INVALID_ENUM_MEANING"><a class="lift" href="#INVALID_ENUM_MEANING">INVALID_ENUM_MEANING</a></a><span class="inline-block static">static</span><code class="signature apipage">INVALID_ENUM_MEANING : <a href="http://api.haxe.org/String.html">String</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="INVALID_NAME"><a class="lift" href="#INVALID_NAME">INVALID_NAME</a></a><span class="inline-block static">static</span><code class="signature apipage">INVALID_NAME : <a href="http://api.haxe.org/Int.html">Int</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="INVALID_NAME_MEANING"><a class="lift" href="#INVALID_NAME_MEANING">INVALID_NAME_MEANING</a></a><span class="inline-block static">static</span><code class="signature apipage">INVALID_NAME_MEANING : <a href="http://api.haxe.org/String.html">String</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="INVALID_OPERATION"><a class="lift" href="#INVALID_OPERATION">INVALID_OPERATION</a></a><span class="inline-block static">static</span><code class="signature apipage">INVALID_OPERATION : <a href="http://api.haxe.org/Int.html">Int</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="INVALID_OPERATION_MEANING"><a class="lift" href="#INVALID_OPERATION_MEANING">INVALID_OPERATION_MEANING</a></a><span class="inline-block static">static</span><code class="signature apipage">INVALID_OPERATION_MEANING : <a href="http://api.haxe.org/String.html">String</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="INVALID_VALUE"><a class="lift" href="#INVALID_VALUE">INVALID_VALUE</a></a><span class="inline-block static">static</span><code class="signature apipage">INVALID_VALUE : <a href="http://api.haxe.org/Int.html">Int</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="INVALID_VALUE_MEANING"><a class="lift" href="#INVALID_VALUE_MEANING">INVALID_VALUE_MEANING</a></a><span class="inline-block static">static</span><code class="signature apipage">INVALID_VALUE_MEANING : <a href="http://api.haxe.org/String.html">String</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="INVERSE_DISTANCE"><a class="lift" href="#INVERSE_DISTANCE">INVERSE_DISTANCE</a></a><span class="inline-block static">static</span><code class="signature apipage">INVERSE_DISTANCE : <a href="http://api.haxe.org/Int.html">Int</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="INVERSE_DISTANCE_CLAMPED"><a class="lift" href="#INVERSE_DISTANCE_CLAMPED">INVERSE_DISTANCE_CLAMPED</a></a><span class="inline-block static">static</span><code class="signature apipage">INVERSE_DISTANCE_CLAMPED : <a href="http://api.haxe.org/Int.html">Int</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="LINEAR_DISTANCE"><a class="lift" href="#LINEAR_DISTANCE">LINEAR_DISTANCE</a></a><span class="inline-block static">static</span><code class="signature apipage">LINEAR_DISTANCE : <a href="http://api.haxe.org/Int.html">Int</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="LINEAR_DISTANCE_CLAMPED"><a class="lift" href="#LINEAR_DISTANCE_CLAMPED">LINEAR_DISTANCE_CLAMPED</a></a><span class="inline-block static">static</span><code class="signature apipage">LINEAR_DISTANCE_CLAMPED : <a href="http://api.haxe.org/Int.html">Int</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="LOOPING"><a class="lift" href="#LOOPING">LOOPING</a></a><span class="inline-block static">static</span><code class="signature apipage">LOOPING : <a href="http://api.haxe.org/Int.html">Int</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="MAX_DISTANCE"><a class="lift" href="#MAX_DISTANCE">MAX_DISTANCE</a></a><span class="inline-block static">static</span><code class="signature apipage">MAX_DISTANCE : <a href="http://api.haxe.org/Int.html">Int</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="MAX_GAIN"><a class="lift" href="#MAX_GAIN">MAX_GAIN</a></a><span class="inline-block static">static</span><code class="signature apipage">MAX_GAIN : <a href="http://api.haxe.org/Int.html">Int</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="MIN_GAIN"><a class="lift" href="#MIN_GAIN">MIN_GAIN</a></a><span class="inline-block static">static</span><code class="signature apipage">MIN_GAIN : <a href="http://api.haxe.org/Int.html">Int</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="NO_ERROR"><a class="lift" href="#NO_ERROR">NO_ERROR</a></a><span class="inline-block static">static</span><code class="signature apipage">NO_ERROR : <a href="http://api.haxe.org/Int.html">Int</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="NONE"><a class="lift" href="#NONE">NONE</a></a><span class="inline-block static">static</span><code class="signature apipage">NONE : <a href="http://api.haxe.org/Int.html">Int</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="ORIENTATION"><a class="lift" href="#ORIENTATION">ORIENTATION</a></a><span class="inline-block static">static</span><code class="signature apipage">ORIENTATION : <a href="http://api.haxe.org/Int.html">Int</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="OUT_OF_MEMORY"><a class="lift" href="#OUT_OF_MEMORY">OUT_OF_MEMORY</a></a><span class="inline-block static">static</span><code class="signature apipage">OUT_OF_MEMORY : <a href="http://api.haxe.org/Int.html">Int</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="OUT_OF_MEMORY_MEANING"><a class="lift" href="#OUT_OF_MEMORY_MEANING">OUT_OF_MEMORY_MEANING</a></a><span class="inline-block static">static</span><code class="signature apipage">OUT_OF_MEMORY_MEANING : <a href="http://api.haxe.org/String.html">String</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="PAUSED"><a class="lift" href="#PAUSED">PAUSED</a></a><span class="inline-block static">static</span><code class="signature apipage">PAUSED : <a href="http://api.haxe.org/Int.html">Int</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="PITCH"><a class="lift" href="#PITCH">PITCH</a></a><span class="inline-block static">static</span><code class="signature apipage">PITCH : <a href="http://api.haxe.org/Int.html">Int</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="PLAYING"><a class="lift" href="#PLAYING">PLAYING</a></a><span class="inline-block static">static</span><code class="signature apipage">PLAYING : <a href="http://api.haxe.org/Int.html">Int</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="POSITION"><a class="lift" href="#POSITION">POSITION</a></a><span class="inline-block static">static</span><code class="signature apipage">POSITION : <a href="http://api.haxe.org/Int.html">Int</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="REFERENCE_DISTANCE"><a class="lift" href="#REFERENCE_DISTANCE">REFERENCE_DISTANCE</a></a><span class="inline-block static">static</span><code class="signature apipage">REFERENCE_DISTANCE : <a href="http://api.haxe.org/Int.html">Int</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="RENDERER"><a class="lift" href="#RENDERER">RENDERER</a></a><span class="inline-block static">static</span><code class="signature apipage">RENDERER : <a href="http://api.haxe.org/Int.html">Int</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="ROLLOFF_FACTOR"><a class="lift" href="#ROLLOFF_FACTOR">ROLLOFF_FACTOR</a></a><span class="inline-block static">static</span><code class="signature apipage">ROLLOFF_FACTOR : <a href="http://api.haxe.org/Int.html">Int</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="SAMPLE_OFFSET"><a class="lift" href="#SAMPLE_OFFSET">SAMPLE_OFFSET</a></a><span class="inline-block static">static</span><code class="signature apipage">SAMPLE_OFFSET : <a href="http://api.haxe.org/Int.html">Int</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="SEC_OFFSET"><a class="lift" href="#SEC_OFFSET">SEC_OFFSET</a></a><span class="inline-block static">static</span><code class="signature apipage">SEC_OFFSET : <a href="http://api.haxe.org/Int.html">Int</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="SIZE"><a class="lift" href="#SIZE">SIZE</a></a><span class="inline-block static">static</span><code class="signature apipage">SIZE : <a href="http://api.haxe.org/Int.html">Int</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="SOURCE_RELATIVE"><a class="lift" href="#SOURCE_RELATIVE">SOURCE_RELATIVE</a></a><span class="inline-block static">static</span><code class="signature apipage">SOURCE_RELATIVE : <a href="http://api.haxe.org/Int.html">Int</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="SOURCE_STATE"><a class="lift" href="#SOURCE_STATE">SOURCE_STATE</a></a><span class="inline-block static">static</span><code class="signature apipage">SOURCE_STATE : <a href="http://api.haxe.org/Int.html">Int</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="SOURCE_TYPE"><a class="lift" href="#SOURCE_TYPE">SOURCE_TYPE</a></a><span class="inline-block static">static</span><code class="signature apipage">SOURCE_TYPE : <a href="http://api.haxe.org/Int.html">Int</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="SPEED_OF_SOUND"><a class="lift" href="#SPEED_OF_SOUND">SPEED_OF_SOUND</a></a><span class="inline-block static">static</span><code class="signature apipage">SPEED_OF_SOUND : <a href="http://api.haxe.org/Int.html">Int</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="STATIC"><a class="lift" href="#STATIC">STATIC</a></a><span class="inline-block static">static</span><code class="signature apipage">STATIC : <a href="http://api.haxe.org/Int.html">Int</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="STOPPED"><a class="lift" href="#STOPPED">STOPPED</a></a><span class="inline-block static">static</span><code class="signature apipage">STOPPED : <a href="http://api.haxe.org/Int.html">Int</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="STREAMING"><a class="lift" href="#STREAMING">STREAMING</a></a><span class="inline-block static">static</span><code class="signature apipage">STREAMING : <a href="http://api.haxe.org/Int.html">Int</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="TRUE"><a class="lift" href="#TRUE">TRUE</a></a><span class="inline-block static">static</span><code class="signature apipage">TRUE : <a href="http://api.haxe.org/Int.html">Int</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="UNDETERMINED"><a class="lift" href="#UNDETERMINED">UNDETERMINED</a></a><span class="inline-block static">static</span><code class="signature apipage">UNDETERMINED : <a href="http://api.haxe.org/Int.html">Int</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="VELOCITY"><a class="lift" href="#VELOCITY">VELOCITY</a></a><span class="inline-block static">static</span><code class="signature apipage">VELOCITY : <a href="http://api.haxe.org/Int.html">Int</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="VENDOR"><a class="lift" href="#VENDOR">VENDOR</a></a><span class="inline-block static">static</span><code class="signature apipage">VENDOR : <a href="http://api.haxe.org/Int.html">Int</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="VERSION"><a class="lift" href="#VERSION">VERSION</a></a><span class="inline-block static">static</span><code class="signature apipage">VERSION : <a href="http://api.haxe.org/Int.html">Int</a></code><br/></span>
+        <span class="small_desc_flat"></span></p>
+<p><h3>Methods</h3> <hr/><span class="method apipage">
+            <a name="buffer3f"><a class="lift" href="#buffer3f">buffer3f</a></a><span class="inline-block static">static</span><code class="signature apipage">buffer3f(buffer:<span><a href="http://api.haxe.org/Int.html">Int</a></span>, param:<span><a href="http://api.haxe.org/Int.html">Int</a></span>, value1:<span><a href="http://api.haxe.org/Float.html">Float</a></span>, value2:<span><a href="http://api.haxe.org/Float.html">Float</a></span>, value3:<span><a href="http://api.haxe.org/Float.html">Float</a></span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="buffer3i"><a class="lift" href="#buffer3i">buffer3i</a></a><span class="inline-block static">static</span><code class="signature apipage">buffer3i(buffer:<span><a href="http://api.haxe.org/Int.html">Int</a></span>, param:<span><a href="http://api.haxe.org/Int.html">Int</a></span>, value1:<span><a href="http://api.haxe.org/Int.html">Int</a></span>, value2:<span><a href="http://api.haxe.org/Int.html">Int</a></span>, value3:<span><a href="http://api.haxe.org/Int.html">Int</a></span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="bufferData"><a class="lift" href="#bufferData">bufferData</a></a><span class="inline-block static">static</span><code class="signature apipage">bufferData(buffer:<span><a href="http://api.haxe.org/Int.html">Int</a></span>, format:<span><a href="http://api.haxe.org/Int.html">Int</a></span>, data:<span><a href="#lumen.utils.Float32Array">lumen.utils.Float32Array</a></span>, size:<span><a href="http://api.haxe.org/Int.html">Int</a></span>, freq:<span><a href="http://api.haxe.org/Int.html">Int</a></span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="bufferf"><a class="lift" href="#bufferf">bufferf</a></a><span class="inline-block static">static</span><code class="signature apipage">bufferf(buffer:<span><a href="http://api.haxe.org/Int.html">Int</a></span>, param:<span><a href="http://api.haxe.org/Int.html">Int</a></span>, value:<span><a href="http://api.haxe.org/Float.html">Float</a></span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="bufferfv"><a class="lift" href="#bufferfv">bufferfv</a></a><span class="inline-block static">static</span><code class="signature apipage">bufferfv(buffer:<span><a href="http://api.haxe.org/Int.html">Int</a></span>, param:<span><a href="http://api.haxe.org/Int.html">Int</a></span>, values:<span><a href="http://api.haxe.org/Array.html">Array</a>&lt;<a href="http://api.haxe.org/Float.html">Float</a>&gt;</span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="bufferi"><a class="lift" href="#bufferi">bufferi</a></a><span class="inline-block static">static</span><code class="signature apipage">bufferi(buffer:<span><a href="http://api.haxe.org/Int.html">Int</a></span>, param:<span><a href="http://api.haxe.org/Int.html">Int</a></span>, value:<span><a href="http://api.haxe.org/Int.html">Int</a></span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="bufferiv"><a class="lift" href="#bufferiv">bufferiv</a></a><span class="inline-block static">static</span><code class="signature apipage">bufferiv(buffer:<span><a href="http://api.haxe.org/Int.html">Int</a></span>, param:<span><a href="http://api.haxe.org/Int.html">Int</a></span>, values:<span><a href="http://api.haxe.org/Array.html">Array</a>&lt;<a href="http://api.haxe.org/Int.html">Int</a>&gt;</span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="deleteBuffer"><a class="lift" href="#deleteBuffer">deleteBuffer</a></a><span class="inline-block static">static</span><code class="signature apipage">deleteBuffer(buffer:<span><a href="http://api.haxe.org/Int.html">Int</a></span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="deleteBuffers"><a class="lift" href="#deleteBuffers">deleteBuffers</a></a><span class="inline-block static">static</span><code class="signature apipage">deleteBuffers(buffers:<span><a href="http://api.haxe.org/Array.html">Array</a>&lt;<a href="http://api.haxe.org/Int.html">Int</a>&gt;</span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="deleteSource"><a class="lift" href="#deleteSource">deleteSource</a></a><span class="inline-block static">static</span><code class="signature apipage">deleteSource(source:<span><a href="http://api.haxe.org/Int.html">Int</a></span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="deleteSources"><a class="lift" href="#deleteSources">deleteSources</a></a><span class="inline-block static">static</span><code class="signature apipage">deleteSources(sources:<span><a href="http://api.haxe.org/Array.html">Array</a>&lt;<a href="http://api.haxe.org/Int.html">Int</a>&gt;</span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="disable"><a class="lift" href="#disable">disable</a></a><span class="inline-block static">static</span><code class="signature apipage">disable(capability:<span><a href="http://api.haxe.org/Int.html">Int</a></span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="distanceModel"><a class="lift" href="#distanceModel">distanceModel</a></a><span class="inline-block static">static</span><code class="signature apipage">distanceModel(distanceModel:<span><a href="http://api.haxe.org/Int.html">Int</a></span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="dopplerFactor"><a class="lift" href="#dopplerFactor">dopplerFactor</a></a><span class="inline-block static">static</span><code class="signature apipage">dopplerFactor(value:<span><a href="http://api.haxe.org/Float.html">Float</a></span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="dopplerVelocity"><a class="lift" href="#dopplerVelocity">dopplerVelocity</a></a><span class="inline-block static">static</span><code class="signature apipage">dopplerVelocity(value:<span><a href="http://api.haxe.org/Float.html">Float</a></span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="enable"><a class="lift" href="#enable">enable</a></a><span class="inline-block static">static</span><code class="signature apipage">enable(capability:<span><a href="http://api.haxe.org/Int.html">Int</a></span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="genBuffer"><a class="lift" href="#genBuffer">genBuffer</a></a><span class="inline-block static">static</span><code class="signature apipage">genBuffer() : <a href="http://api.haxe.org/Int.html">Int</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="genBuffers"><a class="lift" href="#genBuffers">genBuffers</a></a><span class="inline-block static">static</span><code class="signature apipage">genBuffers(n:<span><a href="http://api.haxe.org/Int.html">Int</a></span>) : <a href="http://api.haxe.org/Array.html">Array</a>&lt;<a href="http://api.haxe.org/Int.html">Int</a>&gt;</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="genSource"><a class="lift" href="#genSource">genSource</a></a><span class="inline-block static">static</span><code class="signature apipage">genSource() : <a href="http://api.haxe.org/Int.html">Int</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="genSources"><a class="lift" href="#genSources">genSources</a></a><span class="inline-block static">static</span><code class="signature apipage">genSources(n:<span><a href="http://api.haxe.org/Int.html">Int</a></span>) : <a href="http://api.haxe.org/Array.html">Array</a>&lt;<a href="http://api.haxe.org/Int.html">Int</a>&gt;</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="getBoolean"><a class="lift" href="#getBoolean">getBoolean</a></a><span class="inline-block static">static</span><code class="signature apipage">getBoolean(param:<span><a href="http://api.haxe.org/Int.html">Int</a></span>) : <a href="http://api.haxe.org/Bool.html">Bool</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="getBooleanv"><a class="lift" href="#getBooleanv">getBooleanv</a></a><span class="inline-block static">static</span><code class="signature apipage">getBooleanv(param:<span><a href="http://api.haxe.org/Int.html">Int</a></span>, ?count:<span><a href="http://api.haxe.org/Int.html">Int</a>=1</span>) : <a href="http://api.haxe.org/Array.html">Array</a>&lt;<a href="http://api.haxe.org/Bool.html">Bool</a>&gt;</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="getBuffer3f"><a class="lift" href="#getBuffer3f">getBuffer3f</a></a><span class="inline-block static">static</span><code class="signature apipage">getBuffer3f(buffer:<span><a href="http://api.haxe.org/Int.html">Int</a></span>, param:<span><a href="http://api.haxe.org/Int.html">Int</a></span>) : <a href="http://api.haxe.org/Array.html">Array</a>&lt;<a href="http://api.haxe.org/Float.html">Float</a>&gt;</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="getBuffer3i"><a class="lift" href="#getBuffer3i">getBuffer3i</a></a><span class="inline-block static">static</span><code class="signature apipage">getBuffer3i(buffer:<span><a href="http://api.haxe.org/Int.html">Int</a></span>, param:<span><a href="http://api.haxe.org/Int.html">Int</a></span>) : <a href="http://api.haxe.org/Array.html">Array</a>&lt;<a href="http://api.haxe.org/Int.html">Int</a>&gt;</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="getBufferf"><a class="lift" href="#getBufferf">getBufferf</a></a><span class="inline-block static">static</span><code class="signature apipage">getBufferf(buffer:<span><a href="http://api.haxe.org/Int.html">Int</a></span>, param:<span><a href="http://api.haxe.org/Int.html">Int</a></span>) : <a href="http://api.haxe.org/Float.html">Float</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="getBufferfv"><a class="lift" href="#getBufferfv">getBufferfv</a></a><span class="inline-block static">static</span><code class="signature apipage">getBufferfv(buffer:<span><a href="http://api.haxe.org/Int.html">Int</a></span>, param:<span><a href="http://api.haxe.org/Int.html">Int</a></span>, ?count:<span><a href="http://api.haxe.org/Int.html">Int</a>=1</span>) : <a href="http://api.haxe.org/Array.html">Array</a>&lt;<a href="http://api.haxe.org/Float.html">Float</a>&gt;</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="getBufferi"><a class="lift" href="#getBufferi">getBufferi</a></a><span class="inline-block static">static</span><code class="signature apipage">getBufferi(buffer:<span><a href="http://api.haxe.org/Int.html">Int</a></span>, param:<span><a href="http://api.haxe.org/Int.html">Int</a></span>) : <a href="http://api.haxe.org/Int.html">Int</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="getBufferiv"><a class="lift" href="#getBufferiv">getBufferiv</a></a><span class="inline-block static">static</span><code class="signature apipage">getBufferiv(buffer:<span><a href="http://api.haxe.org/Int.html">Int</a></span>, param:<span><a href="http://api.haxe.org/Int.html">Int</a></span>, ?count:<span><a href="http://api.haxe.org/Int.html">Int</a>=1</span>) : <a href="http://api.haxe.org/Array.html">Array</a>&lt;<a href="http://api.haxe.org/Int.html">Int</a>&gt;</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="getDouble"><a class="lift" href="#getDouble">getDouble</a></a><span class="inline-block static">static</span><code class="signature apipage">getDouble(param:<span><a href="http://api.haxe.org/Int.html">Int</a></span>) : <a href="http://api.haxe.org/Float.html">Float</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="getDoublev"><a class="lift" href="#getDoublev">getDoublev</a></a><span class="inline-block static">static</span><code class="signature apipage">getDoublev(param:<span><a href="http://api.haxe.org/Int.html">Int</a></span>, ?count:<span><a href="http://api.haxe.org/Int.html">Int</a>=1</span>) : <a href="http://api.haxe.org/Array.html">Array</a>&lt;<a href="http://api.haxe.org/Float.html">Float</a>&gt;</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="getEnumValue"><a class="lift" href="#getEnumValue">getEnumValue</a></a><span class="inline-block static">static</span><code class="signature apipage">getEnumValue(ename:<span><a href="http://api.haxe.org/String.html">String</a></span>) : <a href="http://api.haxe.org/Int.html">Int</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="getError"><a class="lift" href="#getError">getError</a></a><span class="inline-block static">static</span><code class="signature apipage">getError() : <a href="http://api.haxe.org/Int.html">Int</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="getErrorMeaning"><a class="lift" href="#getErrorMeaning">getErrorMeaning</a></a><span class="inline-block static">static</span><code class="signature apipage">getErrorMeaning(error:<span><a href="http://api.haxe.org/Int.html">Int</a></span>) : <a href="http://api.haxe.org/String.html">String</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="getFloat"><a class="lift" href="#getFloat">getFloat</a></a><span class="inline-block static">static</span><code class="signature apipage">getFloat(param:<span><a href="http://api.haxe.org/Int.html">Int</a></span>) : <a href="http://api.haxe.org/Float.html">Float</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="getFloatv"><a class="lift" href="#getFloatv">getFloatv</a></a><span class="inline-block static">static</span><code class="signature apipage">getFloatv(param:<span><a href="http://api.haxe.org/Int.html">Int</a></span>, ?count:<span><a href="http://api.haxe.org/Int.html">Int</a>=1</span>) : <a href="http://api.haxe.org/Array.html">Array</a>&lt;<a href="http://api.haxe.org/Float.html">Float</a>&gt;</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="getInteger"><a class="lift" href="#getInteger">getInteger</a></a><span class="inline-block static">static</span><code class="signature apipage">getInteger(param:<span><a href="http://api.haxe.org/Int.html">Int</a></span>) : <a href="http://api.haxe.org/Int.html">Int</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="getIntegerv"><a class="lift" href="#getIntegerv">getIntegerv</a></a><span class="inline-block static">static</span><code class="signature apipage">getIntegerv(param:<span><a href="http://api.haxe.org/Int.html">Int</a></span>, ?count:<span><a href="http://api.haxe.org/Int.html">Int</a>=1</span>) : <a href="http://api.haxe.org/Array.html">Array</a>&lt;<a href="http://api.haxe.org/Int.html">Int</a>&gt;</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="getListener3f"><a class="lift" href="#getListener3f">getListener3f</a></a><span class="inline-block static">static</span><code class="signature apipage">getListener3f(param:<span><a href="http://api.haxe.org/Int.html">Int</a></span>) : <a href="http://api.haxe.org/Array.html">Array</a>&lt;<a href="http://api.haxe.org/Float.html">Float</a>&gt;</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="getListener3i"><a class="lift" href="#getListener3i">getListener3i</a></a><span class="inline-block static">static</span><code class="signature apipage">getListener3i(param:<span><a href="http://api.haxe.org/Int.html">Int</a></span>) : <a href="http://api.haxe.org/Array.html">Array</a>&lt;<a href="http://api.haxe.org/Int.html">Int</a>&gt;</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="getListenerf"><a class="lift" href="#getListenerf">getListenerf</a></a><span class="inline-block static">static</span><code class="signature apipage">getListenerf(param:<span><a href="http://api.haxe.org/Int.html">Int</a></span>) : <a href="http://api.haxe.org/Float.html">Float</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="getListenerfv"><a class="lift" href="#getListenerfv">getListenerfv</a></a><span class="inline-block static">static</span><code class="signature apipage">getListenerfv(param:<span><a href="http://api.haxe.org/Int.html">Int</a></span>, ?count:<span><a href="http://api.haxe.org/Int.html">Int</a>=1</span>) : <a href="http://api.haxe.org/Array.html">Array</a>&lt;<a href="http://api.haxe.org/Float.html">Float</a>&gt;</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="getListeneri"><a class="lift" href="#getListeneri">getListeneri</a></a><span class="inline-block static">static</span><code class="signature apipage">getListeneri(param:<span><a href="http://api.haxe.org/Int.html">Int</a></span>) : <a href="http://api.haxe.org/Int.html">Int</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="getListeneriv"><a class="lift" href="#getListeneriv">getListeneriv</a></a><span class="inline-block static">static</span><code class="signature apipage">getListeneriv(param:<span><a href="http://api.haxe.org/Int.html">Int</a></span>, ?count:<span><a href="http://api.haxe.org/Int.html">Int</a>=1</span>) : <a href="http://api.haxe.org/Array.html">Array</a>&lt;<a href="http://api.haxe.org/Int.html">Int</a>&gt;</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="getProcAddress"><a class="lift" href="#getProcAddress">getProcAddress</a></a><span class="inline-block static">static</span><code class="signature apipage">getProcAddress(fname:<span><a href="http://api.haxe.org/String.html">String</a></span>) : <a href="http://api.haxe.org/Dynamic.html">Dynamic</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="getSource3f"><a class="lift" href="#getSource3f">getSource3f</a></a><span class="inline-block static">static</span><code class="signature apipage">getSource3f(source:<span><a href="http://api.haxe.org/Int.html">Int</a></span>, param:<span><a href="http://api.haxe.org/Int.html">Int</a></span>) : <a href="http://api.haxe.org/Array.html">Array</a>&lt;<a href="http://api.haxe.org/Float.html">Float</a>&gt;</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="getSource3i"><a class="lift" href="#getSource3i">getSource3i</a></a><span class="inline-block static">static</span><code class="signature apipage">getSource3i(source:<span><a href="http://api.haxe.org/Int.html">Int</a></span>, param:<span><a href="http://api.haxe.org/Int.html">Int</a></span>) : <a href="http://api.haxe.org/Array.html">Array</a>&lt;<a href="http://api.haxe.org/Int.html">Int</a>&gt;</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="getSourcef"><a class="lift" href="#getSourcef">getSourcef</a></a><span class="inline-block static">static</span><code class="signature apipage">getSourcef(source:<span><a href="http://api.haxe.org/Int.html">Int</a></span>, param:<span><a href="http://api.haxe.org/Int.html">Int</a></span>) : <a href="http://api.haxe.org/Float.html">Float</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="getSourcefv"><a class="lift" href="#getSourcefv">getSourcefv</a></a><span class="inline-block static">static</span><code class="signature apipage">getSourcefv(source:<span><a href="http://api.haxe.org/Int.html">Int</a></span>, param:<span><a href="http://api.haxe.org/Int.html">Int</a></span>) : <a href="http://api.haxe.org/Array.html">Array</a>&lt;<a href="http://api.haxe.org/Float.html">Float</a>&gt;</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="getSourcei"><a class="lift" href="#getSourcei">getSourcei</a></a><span class="inline-block static">static</span><code class="signature apipage">getSourcei(source:<span><a href="http://api.haxe.org/Int.html">Int</a></span>, param:<span><a href="http://api.haxe.org/Int.html">Int</a></span>) : <a href="http://api.haxe.org/Int.html">Int</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="getSourceiv"><a class="lift" href="#getSourceiv">getSourceiv</a></a><span class="inline-block static">static</span><code class="signature apipage">getSourceiv(source:<span><a href="http://api.haxe.org/Int.html">Int</a></span>, param:<span><a href="http://api.haxe.org/Int.html">Int</a></span>, ?count:<span><a href="http://api.haxe.org/Int.html">Int</a>=1</span>) : <a href="http://api.haxe.org/Array.html">Array</a>&lt;<a href="http://api.haxe.org/Int.html">Int</a>&gt;</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="getString"><a class="lift" href="#getString">getString</a></a><span class="inline-block static">static</span><code class="signature apipage">getString(param:<span><a href="http://api.haxe.org/Int.html">Int</a></span>) : <a href="http://api.haxe.org/String.html">String</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="isBuffer"><a class="lift" href="#isBuffer">isBuffer</a></a><span class="inline-block static">static</span><code class="signature apipage">isBuffer(buffer:<span><a href="http://api.haxe.org/Int.html">Int</a></span>) : <a href="http://api.haxe.org/Bool.html">Bool</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="isEnabled"><a class="lift" href="#isEnabled">isEnabled</a></a><span class="inline-block static">static</span><code class="signature apipage">isEnabled(capability:<span><a href="http://api.haxe.org/Int.html">Int</a></span>) : <a href="http://api.haxe.org/Bool.html">Bool</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="isExtensionPresent"><a class="lift" href="#isExtensionPresent">isExtensionPresent</a></a><span class="inline-block static">static</span><code class="signature apipage">isExtensionPresent(extname:<span><a href="http://api.haxe.org/String.html">String</a></span>) : <a href="http://api.haxe.org/Bool.html">Bool</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="isSource"><a class="lift" href="#isSource">isSource</a></a><span class="inline-block static">static</span><code class="signature apipage">isSource(source:<span><a href="http://api.haxe.org/Int.html">Int</a></span>) : <a href="http://api.haxe.org/Bool.html">Bool</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="listener3f"><a class="lift" href="#listener3f">listener3f</a></a><span class="inline-block static">static</span><code class="signature apipage">listener3f(param:<span><a href="http://api.haxe.org/Int.html">Int</a></span>, value1:<span><a href="http://api.haxe.org/Float.html">Float</a></span>, value2:<span><a href="http://api.haxe.org/Float.html">Float</a></span>, value3:<span><a href="http://api.haxe.org/Float.html">Float</a></span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="listener3i"><a class="lift" href="#listener3i">listener3i</a></a><span class="inline-block static">static</span><code class="signature apipage">listener3i(param:<span><a href="http://api.haxe.org/Int.html">Int</a></span>, value1:<span><a href="http://api.haxe.org/Int.html">Int</a></span>, value2:<span><a href="http://api.haxe.org/Int.html">Int</a></span>, value3:<span><a href="http://api.haxe.org/Int.html">Int</a></span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="listenerf"><a class="lift" href="#listenerf">listenerf</a></a><span class="inline-block static">static</span><code class="signature apipage">listenerf(param:<span><a href="http://api.haxe.org/Int.html">Int</a></span>, value:<span><a href="http://api.haxe.org/Float.html">Float</a></span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="listenerfv"><a class="lift" href="#listenerfv">listenerfv</a></a><span class="inline-block static">static</span><code class="signature apipage">listenerfv(param:<span><a href="http://api.haxe.org/Int.html">Int</a></span>, values:<span><a href="http://api.haxe.org/Array.html">Array</a>&lt;<a href="http://api.haxe.org/Float.html">Float</a>&gt;</span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="listeneri"><a class="lift" href="#listeneri">listeneri</a></a><span class="inline-block static">static</span><code class="signature apipage">listeneri(param:<span><a href="http://api.haxe.org/Int.html">Int</a></span>, value:<span><a href="http://api.haxe.org/Int.html">Int</a></span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="listeneriv"><a class="lift" href="#listeneriv">listeneriv</a></a><span class="inline-block static">static</span><code class="signature apipage">listeneriv(param:<span><a href="http://api.haxe.org/Int.html">Int</a></span>, values:<span><a href="http://api.haxe.org/Array.html">Array</a>&lt;<a href="http://api.haxe.org/Int.html">Int</a>&gt;</span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="source3f"><a class="lift" href="#source3f">source3f</a></a><span class="inline-block static">static</span><code class="signature apipage">source3f(source:<span><a href="http://api.haxe.org/Int.html">Int</a></span>, param:<span><a href="http://api.haxe.org/Int.html">Int</a></span>, value1:<span><a href="http://api.haxe.org/Float.html">Float</a></span>, value2:<span><a href="http://api.haxe.org/Float.html">Float</a></span>, value3:<span><a href="http://api.haxe.org/Float.html">Float</a></span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="source3i"><a class="lift" href="#source3i">source3i</a></a><span class="inline-block static">static</span><code class="signature apipage">source3i(source:<span><a href="http://api.haxe.org/Int.html">Int</a></span>, param:<span><a href="http://api.haxe.org/Int.html">Int</a></span>, value1:<span><a href="http://api.haxe.org/Int.html">Int</a></span>, value2:<span><a href="http://api.haxe.org/Int.html">Int</a></span>, value3:<span><a href="http://api.haxe.org/Int.html">Int</a></span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="sourcef"><a class="lift" href="#sourcef">sourcef</a></a><span class="inline-block static">static</span><code class="signature apipage">sourcef(source:<span><a href="http://api.haxe.org/Int.html">Int</a></span>, param:<span><a href="http://api.haxe.org/Int.html">Int</a></span>, value:<span><a href="http://api.haxe.org/Float.html">Float</a></span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="sourcefv"><a class="lift" href="#sourcefv">sourcefv</a></a><span class="inline-block static">static</span><code class="signature apipage">sourcefv(source:<span><a href="http://api.haxe.org/Int.html">Int</a></span>, param:<span><a href="http://api.haxe.org/Int.html">Int</a></span>, values:<span><a href="http://api.haxe.org/Array.html">Array</a>&lt;<a href="http://api.haxe.org/Float.html">Float</a>&gt;</span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="sourcei"><a class="lift" href="#sourcei">sourcei</a></a><span class="inline-block static">static</span><code class="signature apipage">sourcei(source:<span><a href="http://api.haxe.org/Int.html">Int</a></span>, param:<span><a href="http://api.haxe.org/Int.html">Int</a></span>, value:<span><a href="http://api.haxe.org/Int.html">Int</a></span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="sourceiv"><a class="lift" href="#sourceiv">sourceiv</a></a><span class="inline-block static">static</span><code class="signature apipage">sourceiv(source:<span><a href="http://api.haxe.org/Int.html">Int</a></span>, param:<span><a href="http://api.haxe.org/Int.html">Int</a></span>, values:<span><a href="http://api.haxe.org/Array.html">Array</a>&lt;<a href="http://api.haxe.org/Int.html">Int</a>&gt;</span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="sourcePause"><a class="lift" href="#sourcePause">sourcePause</a></a><span class="inline-block static">static</span><code class="signature apipage">sourcePause(source:<span><a href="http://api.haxe.org/Int.html">Int</a></span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="sourcePausev"><a class="lift" href="#sourcePausev">sourcePausev</a></a><span class="inline-block static">static</span><code class="signature apipage">sourcePausev(sources:<span><a href="http://api.haxe.org/Array.html">Array</a>&lt;<a href="http://api.haxe.org/Int.html">Int</a>&gt;</span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="sourcePlay"><a class="lift" href="#sourcePlay">sourcePlay</a></a><span class="inline-block static">static</span><code class="signature apipage">sourcePlay(source:<span><a href="http://api.haxe.org/Int.html">Int</a></span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="sourcePlayv"><a class="lift" href="#sourcePlayv">sourcePlayv</a></a><span class="inline-block static">static</span><code class="signature apipage">sourcePlayv(sources:<span><a href="http://api.haxe.org/Array.html">Array</a>&lt;<a href="http://api.haxe.org/Int.html">Int</a>&gt;</span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="sourceQueueBuffer"><a class="lift" href="#sourceQueueBuffer">sourceQueueBuffer</a></a><span class="inline-block static">static</span><code class="signature apipage">sourceQueueBuffer(source:<span><a href="http://api.haxe.org/Int.html">Int</a></span>, buffer:<span><a href="http://api.haxe.org/Int.html">Int</a></span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="sourceQueueBuffers"><a class="lift" href="#sourceQueueBuffers">sourceQueueBuffers</a></a><span class="inline-block static">static</span><code class="signature apipage">sourceQueueBuffers(source:<span><a href="http://api.haxe.org/Int.html">Int</a></span>, nb:<span><a href="http://api.haxe.org/Int.html">Int</a></span>, buffers:<span><a href="http://api.haxe.org/Array.html">Array</a>&lt;<a href="http://api.haxe.org/Int.html">Int</a>&gt;</span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="sourceRewind"><a class="lift" href="#sourceRewind">sourceRewind</a></a><span class="inline-block static">static</span><code class="signature apipage">sourceRewind(source:<span><a href="http://api.haxe.org/Int.html">Int</a></span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="sourceRewindv"><a class="lift" href="#sourceRewindv">sourceRewindv</a></a><span class="inline-block static">static</span><code class="signature apipage">sourceRewindv(sources:<span><a href="http://api.haxe.org/Array.html">Array</a>&lt;<a href="http://api.haxe.org/Int.html">Int</a>&gt;</span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="sourceStop"><a class="lift" href="#sourceStop">sourceStop</a></a><span class="inline-block static">static</span><code class="signature apipage">sourceStop(source:<span><a href="http://api.haxe.org/Int.html">Int</a></span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="sourceStopv"><a class="lift" href="#sourceStopv">sourceStopv</a></a><span class="inline-block static">static</span><code class="signature apipage">sourceStopv(sources:<span><a href="http://api.haxe.org/Array.html">Array</a>&lt;<a href="http://api.haxe.org/Int.html">Int</a>&gt;</span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="sourceUnqueueBuffer"><a class="lift" href="#sourceUnqueueBuffer">sourceUnqueueBuffer</a></a><span class="inline-block static">static</span><code class="signature apipage">sourceUnqueueBuffer(source:<span><a href="http://api.haxe.org/Int.html">Int</a></span>) : <a href="http://api.haxe.org/Int.html">Int</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="sourceUnqueueBuffers"><a class="lift" href="#sourceUnqueueBuffers">sourceUnqueueBuffers</a></a><span class="inline-block static">static</span><code class="signature apipage">sourceUnqueueBuffers(source:<span><a href="http://api.haxe.org/Int.html">Int</a></span>, nb:<span><a href="http://api.haxe.org/Int.html">Int</a></span>) : <a href="http://api.haxe.org/Array.html">Array</a>&lt;<a href="http://api.haxe.org/Int.html">Int</a>&gt;</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="speedOfSound"><a class="lift" href="#speedOfSound">speedOfSound</a></a><span class="inline-block static">static</span><code class="signature apipage">speedOfSound(value:<span><a href="http://api.haxe.org/Float.html">Float</a></span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span></p>
+<p><h3>Properties</h3> <hr/>no public properties</p>
+<p>&nbsp;
+&nbsp;
+&nbsp;</p>
+
+        </div>
+    </body>
+
+</html>

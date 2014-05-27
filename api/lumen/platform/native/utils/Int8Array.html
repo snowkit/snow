@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+    
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <link rel="shortcut icon" href="../../../../../images/favicon.png" />
+
+        <link rel="stylesheet" type="text/css" href="../../../../../css/style.css" media="all">
+        <link rel="stylesheet" type="text/css" href="../../../../../css/code.css" media="all">
+        <link rel="stylesheet" type="text/css" href="../../../../../css/font.css" media="all">
+        
+        <link rel="stylesheet" type="text/css" href="../../../../../css/tooltipster.css" media="all">
+        <link rel="stylesheet" type="text/css" href="../../../../../css/tooltipster-shadow.css" media="all">
+        
+        <script src="../../../../../js/jquery-2.0.3.min.js"> </script>
+        <script src="../../../../../js/jquery.tooltipster.min.js"> </script>
+
+        <script>
+
+            $(document).ready(function() {
+
+                $('.section').css('display','none');
+                $('.readmore').click(function(e){
+                    var _child = $(this).parent().find('.section').first();
+                    var _opp = 'block';
+                    if( _child.css('display') == 'block' ) {
+                        _opp = 'none';
+                    } else {
+                    }
+                    _child.css('display', _opp);
+                });
+
+                $('div.sample').on('click', function(e){
+                        //get the data tag
+                    var content = $(this).attr('data-content');
+                        //remove clicking handler
+                    $(this).off('click');
+                        //replace the content!
+                    $(this).html('<iframe src="'+content+'" sandbox="allow-same-origin allow-scripts" style="overflow:hidden; scrollbar:none; border: 0; width:645px; height:450px;"></iframe> ')
+                });
+
+                $('.tooltip').tooltipster({
+                    theme:'tooltipster-shadow'
+                });
+
+            }); //document.ready
+
+        </script>
+    </head>
+
+    <body>
+        <div class="content">
+            <p><a href="../../../../../api/index.html"><img src="../../../../../images/logo.png" alt="Logo"></a></p>
+<hr>
+<h1 id="int8array">Int8Array</h1>
+<hr>
+<p><code>class</code>extends <code><span><a href="">lumen.platform.native.utils.ArrayBufferView</a></span></code>
+<span class="meta"></p>
+<p></span></p>
+<hr>
+<p>&nbsp;
+&nbsp;</p>
+<p><h3>Members</h3> <hr/></p>
+<p><h3>Methods</h3> <hr/><span class="method apipage">
+            <a name="new"><a class="lift" href="#new">new</a></a><a title="inherited from lumen.platform.native.utils.ArrayBufferView" class="tooltip inherited">&gt;</a><code class="signature apipage">new(bufferOrArray:<span><a href="http://api.haxe.org/Dynamic.html">Dynamic</a></span>, ?start:<span><a href="http://api.haxe.org/Int.html">Int</a>=0</span>, ?length:<span><a href="http://api.haxe.org/Int.html">Int</a>=null</span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="set"><a class="lift" href="#set">set</a></a><code class="signature apipage">set(bufferOrArray:<span><a href="http://api.haxe.org/Dynamic.html">Dynamic</a></span>, ?offset:<span><a href="http://api.haxe.org/Int.html">Int</a>=0</span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="subarray"><a class="lift" href="#subarray">subarray</a></a><code class="signature apipage">subarray(start:<span><a href="http://api.haxe.org/Int.html">Int</a></span>, ?end:<span><a href="http://api.haxe.org/Int.html">Int</a>=null</span>) : <a href="#lumen.platform.native.utils.Int8Array">lumen.platform.native.utils.Int8Array</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="getByteBuffer"><a class="lift" href="#getByteBuffer">getByteBuffer</a></a><a title="inherited from lumen.platform.native.utils.ArrayBufferView" class="tooltip inherited">&gt;</a><code class="signature apipage">getByteBuffer() : <a href="#lumen.platform.native.utils.ByteArray">lumen.platform.native.utils.ByteArray</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="getFloat32"><a class="lift" href="#getFloat32">getFloat32</a></a><a title="inherited from lumen.platform.native.utils.ArrayBufferView" class="tooltip inherited">&gt;</a><code class="signature apipage">getFloat32(position:<span><a href="http://api.haxe.org/Int.html">Int</a></span>) : <a href="http://api.haxe.org/Float.html">Float</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="getInt16"><a class="lift" href="#getInt16">getInt16</a></a><a title="inherited from lumen.platform.native.utils.ArrayBufferView" class="tooltip inherited">&gt;</a><code class="signature apipage">getInt16(position:<span><a href="http://api.haxe.org/Int.html">Int</a></span>) : <a href="http://api.haxe.org/Int.html">Int</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="getInt32"><a class="lift" href="#getInt32">getInt32</a></a><a title="inherited from lumen.platform.native.utils.ArrayBufferView" class="tooltip inherited">&gt;</a><code class="signature apipage">getInt32(position:<span><a href="http://api.haxe.org/Int.html">Int</a></span>) : <a href="http://api.haxe.org/Int.html">Int</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="getInt8"><a class="lift" href="#getInt8">getInt8</a></a><a title="inherited from lumen.platform.native.utils.ArrayBufferView" class="tooltip inherited">&gt;</a><code class="signature apipage">getInt8(position:<span><a href="http://api.haxe.org/Int.html">Int</a></span>) : <a href="http://api.haxe.org/Int.html">Int</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="getLength"><a class="lift" href="#getLength">getLength</a></a><a title="inherited from lumen.platform.native.utils.ArrayBufferView" class="tooltip inherited">&gt;</a><code class="signature apipage">getLength() : <a href="http://api.haxe.org/Int.html">Int</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="getStart"><a class="lift" href="#getStart">getStart</a></a><a title="inherited from lumen.platform.native.utils.ArrayBufferView" class="tooltip inherited">&gt;</a><code class="signature apipage">getStart() : <a href="http://api.haxe.org/Int.html">Int</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="getUInt16"><a class="lift" href="#getUInt16">getUInt16</a></a><a title="inherited from lumen.platform.native.utils.ArrayBufferView" class="tooltip inherited">&gt;</a><code class="signature apipage">getUInt16(position:<span><a href="http://api.haxe.org/Int.html">Int</a></span>) : <a href="http://api.haxe.org/Int.html">Int</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="getUInt32"><a class="lift" href="#getUInt32">getUInt32</a></a><a title="inherited from lumen.platform.native.utils.ArrayBufferView" class="tooltip inherited">&gt;</a><code class="signature apipage">getUInt32(position:<span><a href="http://api.haxe.org/Int.html">Int</a></span>) : <a href="http://api.haxe.org/Int.html">Int</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="getUInt8"><a class="lift" href="#getUInt8">getUInt8</a></a><a title="inherited from lumen.platform.native.utils.ArrayBufferView" class="tooltip inherited">&gt;</a><code class="signature apipage">getUInt8(position:<span><a href="http://api.haxe.org/Int.html">Int</a></span>) : <a href="http://api.haxe.org/Int.html">Int</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="setFloat32"><a class="lift" href="#setFloat32">setFloat32</a></a><a title="inherited from lumen.platform.native.utils.ArrayBufferView" class="tooltip inherited">&gt;</a><code class="signature apipage">setFloat32(position:<span><a href="http://api.haxe.org/Int.html">Int</a></span>, value:<span><a href="http://api.haxe.org/Float.html">Float</a></span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="setInt16"><a class="lift" href="#setInt16">setInt16</a></a><a title="inherited from lumen.platform.native.utils.ArrayBufferView" class="tooltip inherited">&gt;</a><code class="signature apipage">setInt16(position:<span><a href="http://api.haxe.org/Int.html">Int</a></span>, value:<span><a href="http://api.haxe.org/Int.html">Int</a></span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="setInt32"><a class="lift" href="#setInt32">setInt32</a></a><a title="inherited from lumen.platform.native.utils.ArrayBufferView" class="tooltip inherited">&gt;</a><code class="signature apipage">setInt32(position:<span><a href="http://api.haxe.org/Int.html">Int</a></span>, value:<span><a href="http://api.haxe.org/Int.html">Int</a></span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="setInt8"><a class="lift" href="#setInt8">setInt8</a></a><a title="inherited from lumen.platform.native.utils.ArrayBufferView" class="tooltip inherited">&gt;</a><code class="signature apipage">setInt8(position:<span><a href="http://api.haxe.org/Int.html">Int</a></span>, value:<span><a href="http://api.haxe.org/Int.html">Int</a></span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="setUInt16"><a class="lift" href="#setUInt16">setUInt16</a></a><a title="inherited from lumen.platform.native.utils.ArrayBufferView" class="tooltip inherited">&gt;</a><code class="signature apipage">setUInt16(position:<span><a href="http://api.haxe.org/Int.html">Int</a></span>, value:<span><a href="http://api.haxe.org/Int.html">Int</a></span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="setUInt32"><a class="lift" href="#setUInt32">setUInt32</a></a><a title="inherited from lumen.platform.native.utils.ArrayBufferView" class="tooltip inherited">&gt;</a><code class="signature apipage">setUInt32(position:<span><a href="http://api.haxe.org/Int.html">Int</a></span>, value:<span><a href="http://api.haxe.org/Int.html">Int</a></span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="setUInt8"><a class="lift" href="#setUInt8">setUInt8</a></a><a title="inherited from lumen.platform.native.utils.ArrayBufferView" class="tooltip inherited">&gt;</a><code class="signature apipage">setUInt8(position:<span><a href="http://api.haxe.org/Int.html">Int</a></span>, value:<span><a href="http://api.haxe.org/Int.html">Int</a></span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span></p>
+<p><h3>Properties</h3> <hr/><span class="property apipage">
+            <a name="BYTES_PER_ELEMENT"><a class="lift" href="#BYTES_PER_ELEMENT">BYTES_PER_ELEMENT</a></a><code class="signature apipage">BYTES_PER_ELEMENT : <a href="">Int</a></code><br/><span class="small_desc_flat"></span>
+        </span><span class="property apipage">
+            <a name="length"><a class="lift" href="#length">length</a></a><code class="signature apipage">length : <a href="">Int</a></code><br/><span class="small_desc_flat"></span>
+        </span><span class="property apipage">
+            <a name="buffer"><a class="lift" href="#buffer">buffer</a></a><a title="inherited from lumen.platform.native.utils.ArrayBufferView" class="tooltip inherited">&gt;</a><code class="signature apipage">buffer : <a href="">lumen.platform.native.utils.ByteArray</a></code><br/><span class="small_desc_flat"></span>
+        </span><span class="property apipage">
+            <a name="byteLength"><a class="lift" href="#byteLength">byteLength</a></a><a title="inherited from lumen.platform.native.utils.ArrayBufferView" class="tooltip inherited">&gt;</a><code class="signature apipage">byteLength : <a href="">Int</a></code><br/><span class="small_desc_flat"></span>
+        </span><span class="property apipage">
+            <a name="byteOffset"><a class="lift" href="#byteOffset">byteOffset</a></a><a title="inherited from lumen.platform.native.utils.ArrayBufferView" class="tooltip inherited">&gt;</a><code class="signature apipage">byteOffset : <a href="">Int</a></code><br/><span class="small_desc_flat"></span>
+        </span></p>
+<p>&nbsp;
+&nbsp;
+&nbsp;</p>
+
+        </div>
+    </body>
+
+</html>

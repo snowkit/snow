@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+    
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <link rel="shortcut icon" href="../../../../../images/favicon.png" />
+
+        <link rel="stylesheet" type="text/css" href="../../../../../css/style.css" media="all">
+        <link rel="stylesheet" type="text/css" href="../../../../../css/code.css" media="all">
+        <link rel="stylesheet" type="text/css" href="../../../../../css/font.css" media="all">
+        
+        <link rel="stylesheet" type="text/css" href="../../../../../css/tooltipster.css" media="all">
+        <link rel="stylesheet" type="text/css" href="../../../../../css/tooltipster-shadow.css" media="all">
+        
+        <script src="../../../../../js/jquery-2.0.3.min.js"> </script>
+        <script src="../../../../../js/jquery.tooltipster.min.js"> </script>
+
+        <script>
+
+            $(document).ready(function() {
+
+                $('.section').css('display','none');
+                $('.readmore').click(function(e){
+                    var _child = $(this).parent().find('.section').first();
+                    var _opp = 'block';
+                    if( _child.css('display') == 'block' ) {
+                        _opp = 'none';
+                    } else {
+                    }
+                    _child.css('display', _opp);
+                });
+
+                $('div.sample').on('click', function(e){
+                        //get the data tag
+                    var content = $(this).attr('data-content');
+                        //remove clicking handler
+                    $(this).off('click');
+                        //replace the content!
+                    $(this).html('<iframe src="'+content+'" sandbox="allow-same-origin allow-scripts" style="overflow:hidden; scrollbar:none; border: 0; width:645px; height:450px;"></iframe> ')
+                });
+
+                $('.tooltip').tooltipster({
+                    theme:'tooltipster-shadow'
+                });
+
+            }); //document.ready
+
+        </script>
+    </head>
+
+    <body>
+        <div class="content">
+            <p><a href="../../../../../api/index.html"><img src="../../../../../images/logo.png" alt="Logo"></a></p>
+<hr>
+<h1 id="soundstream">SoundStream</h1>
+<hr>
+<p><code>class</code>extends <code><span><a href="">lumen.platform.native.audio.openal.Sound</a></span></code>
+<span class="meta"></p>
+<p></span></p>
+<hr>
+<p>&nbsp;
+&nbsp;</p>
+<p><h3>Members</h3> <hr/><span class="member apipage">
+            <a name="buffer_count"><a class="lift" href="#buffer_count">buffer_count</a></a><code class="signature apipage">buffer_count : <a href="http://api.haxe.org/Int.html">Int</a></code><br/></span>
+        <span class="small_desc_flat">The number of buffers to use in the queue for streaming. Default is <code>4</code> <code>todo</code> optionize</span><span class="member apipage">
+            <a name="buffer_length"><a class="lift" href="#buffer_length">buffer_length</a></a><code class="signature apipage">buffer_length : <a href="http://api.haxe.org/Int.html">Int</a></code><br/></span>
+        <span class="small_desc_flat">The length of bytes for a single buffer to queue up to stream. Default is <code>176400</code>, about 1 second in 16 bit mono. <code>todo</code> optionize</span><span class="member apipage">
+            <a name="data_get"><a class="lift" href="#data_get">data_get</a></a><code class="signature apipage">data_get : <a href="">Int-&gt;Int-&gt;lumen.types.AudioDataBlob</a></code><br/></span>
+        <span class="small_desc_flat">The get function, assign a function here if you want to stream data to the source manually, like generative sound.</span><span class="member apipage">
+            <a name="data_seek"><a class="lift" href="#data_seek">data_seek</a></a><code class="signature apipage">data_seek : <a href="">Int-&gt;Bool</a></code><br/></span>
+        <span class="small_desc_flat">The seek function, assign a function here if you want to stream data to the source manually, like generative sound.</span></p>
+<p><h3>Methods</h3> <hr/><span class="method apipage">
+            <a name="new"><a class="lift" href="#new">new</a></a><code class="signature apipage">new(_manager:<span><a href="#lumen.audio.Audio">lumen.audio.Audio</a></span>, _name:<span><a href="http://api.haxe.org/String.html">String</a></span>, _audio_info:<span><a href="#lumen.types.AudioInfo">lumen.types.AudioInfo</a></span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span></p>
+<p><h3>Properties</h3> <hr/>no public properties</p>
+<p>&nbsp;
+&nbsp;
+&nbsp;</p>
+
+        </div>
+    </body>
+
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+    
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <link rel="shortcut icon" href="../../../images/favicon.png" />
+
+        <link rel="stylesheet" type="text/css" href="../../../css/style.css" media="all">
+        <link rel="stylesheet" type="text/css" href="../../../css/code.css" media="all">
+        <link rel="stylesheet" type="text/css" href="../../../css/font.css" media="all">
+        
+        <link rel="stylesheet" type="text/css" href="../../../css/tooltipster.css" media="all">
+        <link rel="stylesheet" type="text/css" href="../../../css/tooltipster-shadow.css" media="all">
+        
+        <script src="../../../js/jquery-2.0.3.min.js"> </script>
+        <script src="../../../js/jquery.tooltipster.min.js"> </script>
+
+        <script>
+
+            $(document).ready(function() {
+
+                $('.section').css('display','none');
+                $('.readmore').click(function(e){
+                    var _child = $(this).parent().find('.section').first();
+                    var _opp = 'block';
+                    if( _child.css('display') == 'block' ) {
+                        _opp = 'none';
+                    } else {
+                    }
+                    _child.css('display', _opp);
+                });
+
+                $('div.sample').on('click', function(e){
+                        //get the data tag
+                    var content = $(this).attr('data-content');
+                        //remove clicking handler
+                    $(this).off('click');
+                        //replace the content!
+                    $(this).html('<iframe src="'+content+'" sandbox="allow-same-origin allow-scripts" style="overflow:hidden; scrollbar:none; border: 0; width:645px; height:450px;"></iframe> ')
+                });
+
+                $('.tooltip').tooltipster({
+                    theme:'tooltipster-shadow'
+                });
+
+            }); //document.ready
+
+        </script>
+    </head>
+
+    <body>
+        <div class="content">
+            <p><a href="../../../api/index.html"><img src="../../../images/logo.png" alt="Logo"></a></p>
+<hr>
+<h1 id="input">Input</h1>
+<p>Internal input system, accessed via <code>app.input</code></p>
+<hr>
+<p><code>class</code>
+<span class="meta"></p>
+<p></span></p>
+<hr>
+<p>&nbsp;
+&nbsp;</p>
+<p><h3>Members</h3> <hr/></p>
+<p><h3>Methods</h3> <hr/><span class="method apipage">
+            <a name="dispatch_gamepad_event"><a class="lift" href="#dispatch_gamepad_event">dispatch_gamepad_event</a></a><code class="signature apipage">dispatch_gamepad_event(_event:<span><a href="#lumen.types.GamepadEvent">lumen.types.GamepadEvent</a></span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat">manually dispatch a gamepad event through the system, delivered to the app handlers, internal and external</span>
+        </span>
+    <span class="method apipage">
+            <a name="dispatch_key_event"><a class="lift" href="#dispatch_key_event">dispatch_key_event</a></a><code class="signature apipage">dispatch_key_event(_event:<span><a href="#lumen.types.KeyEvent">lumen.types.KeyEvent</a></span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat">manually dispatch a keyboard event through the system, delivered to the app handlers, internal and external</span>
+        </span>
+    <span class="method apipage">
+            <a name="dispatch_mouse_event"><a class="lift" href="#dispatch_mouse_event">dispatch_mouse_event</a></a><code class="signature apipage">dispatch_mouse_event(_event:<span><a href="#lumen.types.MouseEvent">lumen.types.MouseEvent</a></span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat">manually dispatch a mouse event through the system, delivered to the app handlers, internal and external</span>
+        </span>
+    <span class="method apipage">
+            <a name="dispatch_text_event"><a class="lift" href="#dispatch_text_event">dispatch_text_event</a></a><code class="signature apipage">dispatch_text_event(_event:<span><a href="#lumen.types.TextEvent">lumen.types.TextEvent</a></span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat">manually dispatch a text event through the system, delivered to the app handlers, internal and external</span>
+        </span>
+    <span class="method apipage">
+            <a name="dispatch_touch_event"><a class="lift" href="#dispatch_touch_event">dispatch_touch_event</a></a><code class="signature apipage">dispatch_touch_event(_event:<span><a href="#lumen.types.TouchEvent">lumen.types.TouchEvent</a></span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat">manually dispatch a touch event through the system, delivered to the app handlers, internal and external</span>
+        </span>
+    <span class="method apipage">
+            <a name="keydown"><a class="lift" href="#keydown">keydown</a></a><code class="signature apipage">keydown(_code:<span><a href="http://api.haxe.org/Int.html">Int</a></span>) : <a href="http://api.haxe.org/Bool.html">Bool</a></code><br/><span class="small_desc_flat">returns true if the <code>Key</code> value is down at the time of calling this</span>
+        </span>
+    <span class="method apipage">
+            <a name="keypressed"><a class="lift" href="#keypressed">keypressed</a></a><code class="signature apipage">keypressed(_code:<span><a href="http://api.haxe.org/Int.html">Int</a></span>) : <a href="http://api.haxe.org/Bool.html">Bool</a></code><br/><span class="small_desc_flat">returns true if the <code>Key</code> value was pressed in the latest frame</span>
+        </span>
+    <span class="method apipage">
+            <a name="keyreleased"><a class="lift" href="#keyreleased">keyreleased</a></a><code class="signature apipage">keyreleased(_code:<span><a href="http://api.haxe.org/Int.html">Int</a></span>) : <a href="http://api.haxe.org/Bool.html">Bool</a></code><br/><span class="small_desc_flat">returns true if the <code>Key</code> value was released in the latest frame</span>
+        </span>
+    <span class="method apipage">
+            <a name="mod_state_from_event"><a class="lift" href="#mod_state_from_event">mod_state_from_event</a></a><code class="signature apipage">mod_state_from_event(event:<span><a href="#lumen.types.InputEvent">lumen.types.InputEvent</a></span>) : <a href="#lumen.types.ModState">lumen.types.ModState</a></code><br/><span class="small_desc_flat">Helper to return a <code>ModState</code> (shift, ctrl etc) from a given <code>InputEvent</code></span>
+        </span></p>
+<p><h3>Properties</h3> <hr/>no public properties</p>
+<p>&nbsp;
+&nbsp;
+&nbsp;</p>
+
+        </div>
+    </body>
+
+</html>

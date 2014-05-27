@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+    
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <link rel="shortcut icon" href="../../../images/favicon.png" />
+
+        <link rel="stylesheet" type="text/css" href="../../../css/style.css" media="all">
+        <link rel="stylesheet" type="text/css" href="../../../css/code.css" media="all">
+        <link rel="stylesheet" type="text/css" href="../../../css/font.css" media="all">
+        
+        <link rel="stylesheet" type="text/css" href="../../../css/tooltipster.css" media="all">
+        <link rel="stylesheet" type="text/css" href="../../../css/tooltipster-shadow.css" media="all">
+        
+        <script src="../../../js/jquery-2.0.3.min.js"> </script>
+        <script src="../../../js/jquery.tooltipster.min.js"> </script>
+
+        <script>
+
+            $(document).ready(function() {
+
+                $('.section').css('display','none');
+                $('.readmore').click(function(e){
+                    var _child = $(this).parent().find('.section').first();
+                    var _opp = 'block';
+                    if( _child.css('display') == 'block' ) {
+                        _opp = 'none';
+                    } else {
+                    }
+                    _child.css('display', _opp);
+                });
+
+                $('div.sample').on('click', function(e){
+                        //get the data tag
+                    var content = $(this).attr('data-content');
+                        //remove clicking handler
+                    $(this).off('click');
+                        //replace the content!
+                    $(this).html('<iframe src="'+content+'" sandbox="allow-same-origin allow-scripts" style="overflow:hidden; scrollbar:none; border: 0; width:645px; height:450px;"></iframe> ')
+                });
+
+                $('.tooltip').tooltipster({
+                    theme:'tooltipster-shadow'
+                });
+
+            }); //document.ready
+
+        </script>
+    </head>
+
+    <body>
+        <div class="content">
+            <p><a href="../../../api/index.html"><img src="../../../images/logo.png" alt="Logo"></a></p>
+<hr>
+<h1 id="lumenconfig">LumenConfig</h1>
+<p>The lumen core configuration information\n\n<code>? host</code> : the bootstrapped application   \n<code>? window_config</code> : the window config for a default window, if any   \n<code>? run_loop</code> : whether or not the core should run a loop at all   \n<code>? runtime_config</code> : the user specific config read from json at runtime   \n<code>? asset_data</code> : the raw list of assets. use the app.assets from Lumen for access</p>
+<hr>
+<p><code>typedef</code>
+<span class="meta"></p>
+<p></span></p>
+<hr>
+<p>&nbsp;
+&nbsp;</p>
+<p><h3>Members</h3> <hr/><span class="member apipage">
+            <a name="asset_data"><a class="lift" href="#asset_data">asset_data</a></a><code class="signature apipage">asset_data : <a href="http://api.haxe.org/Array.html">Array</a>&lt;<a href="#lumen.types.AssetInfo">lumen.types.AssetInfo</a>&gt;</code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="host"><a class="lift" href="#host">host</a></a><code class="signature apipage">host : <a href="#lumen.App">lumen.App</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="run_loop"><a class="lift" href="#run_loop">run_loop</a></a><code class="signature apipage">run_loop : <a href="http://api.haxe.org/Bool.html">Bool</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="runtime_config"><a class="lift" href="#runtime_config">runtime_config</a></a><code class="signature apipage">runtime_config : <a href="http://api.haxe.org/Dynamic.html">Dynamic</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="window_config"><a class="lift" href="#window_config">window_config</a></a><code class="signature apipage">window_config : <a href="#lumen.types.WindowConfig">lumen.types.WindowConfig</a></code><br/></span>
+        <span class="small_desc_flat"></span></p>
+<p><h3>Methods</h3> <hr/>no public methods</p>
+<p><h3>Properties</h3> <hr/>no public properties</p>
+<p>&nbsp;
+&nbsp;
+&nbsp;</p>
+
+        </div>
+    </body>
+
+</html>

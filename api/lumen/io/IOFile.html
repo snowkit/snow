@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+    
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <link rel="shortcut icon" href="../../../images/favicon.png" />
+
+        <link rel="stylesheet" type="text/css" href="../../../css/style.css" media="all">
+        <link rel="stylesheet" type="text/css" href="../../../css/code.css" media="all">
+        <link rel="stylesheet" type="text/css" href="../../../css/font.css" media="all">
+        
+        <link rel="stylesheet" type="text/css" href="../../../css/tooltipster.css" media="all">
+        <link rel="stylesheet" type="text/css" href="../../../css/tooltipster-shadow.css" media="all">
+        
+        <script src="../../../js/jquery-2.0.3.min.js"> </script>
+        <script src="../../../js/jquery.tooltipster.min.js"> </script>
+
+        <script>
+
+            $(document).ready(function() {
+
+                $('.section').css('display','none');
+                $('.readmore').click(function(e){
+                    var _child = $(this).parent().find('.section').first();
+                    var _opp = 'block';
+                    if( _child.css('display') == 'block' ) {
+                        _opp = 'none';
+                    } else {
+                    }
+                    _child.css('display', _opp);
+                });
+
+                $('div.sample').on('click', function(e){
+                        //get the data tag
+                    var content = $(this).attr('data-content');
+                        //remove clicking handler
+                    $(this).off('click');
+                        //replace the content!
+                    $(this).html('<iframe src="'+content+'" sandbox="allow-same-origin allow-scripts" style="overflow:hidden; scrollbar:none; border: 0; width:645px; height:450px;"></iframe> ')
+                });
+
+                $('.tooltip').tooltipster({
+                    theme:'tooltipster-shadow'
+                });
+
+            }); //document.ready
+
+        </script>
+    </head>
+
+    <body>
+        <div class="content">
+            <p><a href="../../../api/index.html"><img src="../../../images/logo.png" alt="Logo"></a></p>
+<hr>
+<h1 id="iofile">IOFile</h1>
+<p>This class is a low level cross platform file access helper, that handles in bundle assets etc. \n    If you want a file, use <code>Assets</code> instead, unless really required.</p>
+<hr>
+<p><code>class</code>
+<span class="meta"></p>
+<p></span></p>
+<hr>
+<p>&nbsp;
+&nbsp;</p>
+<p><h3>Members</h3> <hr/><span class="member apipage">
+            <a name="handle"><a class="lift" href="#handle">handle</a></a><code class="signature apipage">handle : <a href="http://api.haxe.org/Dynamic.html">Dynamic</a></code><br/></span>
+        <span class="small_desc_flat">The internal native file handle</span></p>
+<p><h3>Methods</h3> <hr/><span class="method apipage">
+            <a name="close"><a class="lift" href="#close">close</a></a><code class="signature apipage">close() : <a href="http://api.haxe.org/Dynamic.html">Dynamic</a></code><br/><span class="small_desc_flat">Close the file</span>
+        </span>
+    <span class="method apipage">
+            <a name="read"><a class="lift" href="#read">read</a></a><code class="signature apipage">read(dest:<span><a href="#lumen.utils.ByteArray">lumen.utils.ByteArray</a></span>, size:<span><a href="http://api.haxe.org/Int.html">Int</a></span>, maxnum:<span><a href="http://api.haxe.org/Int.html">Int</a></span>) : <a href="http://api.haxe.org/Dynamic.html">Dynamic</a></code><br/><span class="small_desc_flat">Read a <code>maxnum</code> of items of <code>size</code> in bytes, into <code>dest</code>. Same signature/returns as <code>fread</code></span>
+        </span>
+    <span class="method apipage">
+            <a name="seek"><a class="lift" href="#seek">seek</a></a><code class="signature apipage">seek(offset:<span><a href="http://api.haxe.org/Int.html">Int</a></span>, whence:<span><a href="http://api.haxe.org/Int.html">Int</a></span>) : <a href="http://api.haxe.org/Dynamic.html">Dynamic</a></code><br/><span class="small_desc_flat">Seek <code>offset</code> from <code>whence</code>, where whence is an int matching <code>set=0</code>, <code>cur=1</code>, <code>end=2</code>. Same signature/returns as <code>fseek</code></span>
+        </span>
+    <span class="method apipage">
+            <a name="tell"><a class="lift" href="#tell">tell</a></a><code class="signature apipage">tell() : <a href="http://api.haxe.org/Dynamic.html">Dynamic</a></code><br/><span class="small_desc_flat">Tell the current position in the file, in bytes</span>
+        </span>
+    <span class="method apipage">
+            <a name="write"><a class="lift" href="#write">write</a></a><code class="signature apipage">write(src:<span><a href="#lumen.utils.ByteArray">lumen.utils.ByteArray</a></span>, size:<span><a href="http://api.haxe.org/Int.html">Int</a></span>, num:<span><a href="http://api.haxe.org/Int.html">Int</a></span>) : <a href="http://api.haxe.org/Dynamic.html">Dynamic</a></code><br/><span class="small_desc_flat">Write <code>num</code> of items of <code>size</code> in bytes, from <code>src</code> into this file. Same signature/returns as <code>fwrite</code></span>
+        </span></p>
+<p><h3>Properties</h3> <hr/>no public properties</p>
+<p>&nbsp;
+&nbsp;
+&nbsp;</p>
+
+        </div>
+    </body>
+
+</html>

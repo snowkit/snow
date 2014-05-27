@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+    
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <link rel="shortcut icon" href="../../../images/favicon.png" />
+
+        <link rel="stylesheet" type="text/css" href="../../../css/style.css" media="all">
+        <link rel="stylesheet" type="text/css" href="../../../css/code.css" media="all">
+        <link rel="stylesheet" type="text/css" href="../../../css/font.css" media="all">
+        
+        <link rel="stylesheet" type="text/css" href="../../../css/tooltipster.css" media="all">
+        <link rel="stylesheet" type="text/css" href="../../../css/tooltipster-shadow.css" media="all">
+        
+        <script src="../../../js/jquery-2.0.3.min.js"> </script>
+        <script src="../../../js/jquery.tooltipster.min.js"> </script>
+
+        <script>
+
+            $(document).ready(function() {
+
+                $('.section').css('display','none');
+                $('.readmore').click(function(e){
+                    var _child = $(this).parent().find('.section').first();
+                    var _opp = 'block';
+                    if( _child.css('display') == 'block' ) {
+                        _opp = 'none';
+                    } else {
+                    }
+                    _child.css('display', _opp);
+                });
+
+                $('div.sample').on('click', function(e){
+                        //get the data tag
+                    var content = $(this).attr('data-content');
+                        //remove clicking handler
+                    $(this).off('click');
+                        //replace the content!
+                    $(this).html('<iframe src="'+content+'" sandbox="allow-same-origin allow-scripts" style="overflow:hidden; scrollbar:none; border: 0; width:645px; height:450px;"></iframe> ')
+                });
+
+                $('.tooltip').tooltipster({
+                    theme:'tooltipster-shadow'
+                });
+
+            }); //document.ready
+
+        </script>
+    </head>
+
+    <body>
+        <div class="content">
+            <p><a href="../../../api/index.html"><img src="../../../images/logo.png" alt="Logo"></a></p>
+<hr>
+<h1 id="modstate">ModState</h1>
+<p>Input modifier state \n\n<code>none</code> : no modifiers are down   \n<code>lshift</code> : left shift key is down   \n<code>rshift</code> : right shift key is down   \n<code>lctrl</code> : left ctrl key is down   \n<code>rctrl</code> : right ctrl key is down   \n<code>lalt</code> : left alt/option key is down   \n<code>ralt</code> : right alt/option key is down   \n<code>lmeta</code> : left windows/command key is down   \n<code>rmeta</code> : right windows/command key is down   \n<code>num</code> : numlock is enabled   \n<code>caps</code> : capslock is enabled   \n<code>mode</code> : mode key is down   \n<code>ctrl</code> : left or right ctrl key is down   \n<code>shift</code> : left or right shift key is down   \n<code>alt</code> : left or right alt/option key is down   \n<code>meta</code> : left or right windows/command key is down</p>
+<hr>
+<p><code>typedef</code>
+<span class="meta"></p>
+<p></span></p>
+<hr>
+<p>&nbsp;
+&nbsp;</p>
+<p><h3>Members</h3> <hr/><span class="member apipage">
+            <a name="alt"><a class="lift" href="#alt">alt</a></a><code class="signature apipage">alt : <a href="http://api.haxe.org/Bool.html">Bool</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="caps"><a class="lift" href="#caps">caps</a></a><code class="signature apipage">caps : <a href="http://api.haxe.org/Bool.html">Bool</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="ctrl"><a class="lift" href="#ctrl">ctrl</a></a><code class="signature apipage">ctrl : <a href="http://api.haxe.org/Bool.html">Bool</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="lalt"><a class="lift" href="#lalt">lalt</a></a><code class="signature apipage">lalt : <a href="http://api.haxe.org/Bool.html">Bool</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="lctrl"><a class="lift" href="#lctrl">lctrl</a></a><code class="signature apipage">lctrl : <a href="http://api.haxe.org/Bool.html">Bool</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="lmeta"><a class="lift" href="#lmeta">lmeta</a></a><code class="signature apipage">lmeta : <a href="http://api.haxe.org/Bool.html">Bool</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="lshift"><a class="lift" href="#lshift">lshift</a></a><code class="signature apipage">lshift : <a href="http://api.haxe.org/Bool.html">Bool</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="meta"><a class="lift" href="#meta">meta</a></a><code class="signature apipage">meta : <a href="http://api.haxe.org/Bool.html">Bool</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="mode"><a class="lift" href="#mode">mode</a></a><code class="signature apipage">mode : <a href="http://api.haxe.org/Bool.html">Bool</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="none"><a class="lift" href="#none">none</a></a><code class="signature apipage">none : <a href="http://api.haxe.org/Bool.html">Bool</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="num"><a class="lift" href="#num">num</a></a><code class="signature apipage">num : <a href="http://api.haxe.org/Bool.html">Bool</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="ralt"><a class="lift" href="#ralt">ralt</a></a><code class="signature apipage">ralt : <a href="http://api.haxe.org/Bool.html">Bool</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="rctrl"><a class="lift" href="#rctrl">rctrl</a></a><code class="signature apipage">rctrl : <a href="http://api.haxe.org/Bool.html">Bool</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="rmeta"><a class="lift" href="#rmeta">rmeta</a></a><code class="signature apipage">rmeta : <a href="http://api.haxe.org/Bool.html">Bool</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="rshift"><a class="lift" href="#rshift">rshift</a></a><code class="signature apipage">rshift : <a href="http://api.haxe.org/Bool.html">Bool</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="shift"><a class="lift" href="#shift">shift</a></a><code class="signature apipage">shift : <a href="http://api.haxe.org/Bool.html">Bool</a></code><br/></span>
+        <span class="small_desc_flat"></span></p>
+<p><h3>Methods</h3> <hr/>no public methods</p>
+<p><h3>Properties</h3> <hr/>no public properties</p>
+<p>&nbsp;
+&nbsp;
+&nbsp;</p>
+
+        </div>
+    </body>
+
+</html>

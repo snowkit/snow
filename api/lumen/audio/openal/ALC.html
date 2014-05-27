@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+    
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <link rel="shortcut icon" href="../../../../images/favicon.png" />
+
+        <link rel="stylesheet" type="text/css" href="../../../../css/style.css" media="all">
+        <link rel="stylesheet" type="text/css" href="../../../../css/code.css" media="all">
+        <link rel="stylesheet" type="text/css" href="../../../../css/font.css" media="all">
+        
+        <link rel="stylesheet" type="text/css" href="../../../../css/tooltipster.css" media="all">
+        <link rel="stylesheet" type="text/css" href="../../../../css/tooltipster-shadow.css" media="all">
+        
+        <script src="../../../../js/jquery-2.0.3.min.js"> </script>
+        <script src="../../../../js/jquery.tooltipster.min.js"> </script>
+
+        <script>
+
+            $(document).ready(function() {
+
+                $('.section').css('display','none');
+                $('.readmore').click(function(e){
+                    var _child = $(this).parent().find('.section').first();
+                    var _opp = 'block';
+                    if( _child.css('display') == 'block' ) {
+                        _opp = 'none';
+                    } else {
+                    }
+                    _child.css('display', _opp);
+                });
+
+                $('div.sample').on('click', function(e){
+                        //get the data tag
+                    var content = $(this).attr('data-content');
+                        //remove clicking handler
+                    $(this).off('click');
+                        //replace the content!
+                    $(this).html('<iframe src="'+content+'" sandbox="allow-same-origin allow-scripts" style="overflow:hidden; scrollbar:none; border: 0; width:645px; height:450px;"></iframe> ')
+                });
+
+                $('.tooltip').tooltipster({
+                    theme:'tooltipster-shadow'
+                });
+
+            }); //document.ready
+
+        </script>
+    </head>
+
+    <body>
+        <div class="content">
+            <p><a href="../../../../api/index.html"><img src="../../../../images/logo.png" alt="Logo"></a></p>
+<hr>
+<h1 id="alc">ALC</h1>
+<hr>
+<p><code>class</code>
+<span class="meta"></p>
+<p></span></p>
+<hr>
+<p>&nbsp;
+&nbsp;</p>
+<p><h3>Members</h3> <hr/><span class="member apipage">
+            <a name="ALL_ATTRIBUTES"><a class="lift" href="#ALL_ATTRIBUTES">ALL_ATTRIBUTES</a></a><span class="inline-block static">static</span><code class="signature apipage">ALL_ATTRIBUTES : <a href="http://api.haxe.org/Int.html">Int</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="ALL_DEVICES_SPECIFIER"><a class="lift" href="#ALL_DEVICES_SPECIFIER">ALL_DEVICES_SPECIFIER</a></a><span class="inline-block static">static</span><code class="signature apipage">ALL_DEVICES_SPECIFIER : <a href="http://api.haxe.org/Int.html">Int</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="ATTRIBUTES_SIZE"><a class="lift" href="#ATTRIBUTES_SIZE">ATTRIBUTES_SIZE</a></a><span class="inline-block static">static</span><code class="signature apipage">ATTRIBUTES_SIZE : <a href="http://api.haxe.org/Int.html">Int</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="DEFAULT_ALL_DEVICES_SPECIFIER"><a class="lift" href="#DEFAULT_ALL_DEVICES_SPECIFIER">DEFAULT_ALL_DEVICES_SPECIFIER</a></a><span class="inline-block static">static</span><code class="signature apipage">DEFAULT_ALL_DEVICES_SPECIFIER : <a href="http://api.haxe.org/Int.html">Int</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="DEFAULT_DEVICE_SPECIFIER"><a class="lift" href="#DEFAULT_DEVICE_SPECIFIER">DEFAULT_DEVICE_SPECIFIER</a></a><span class="inline-block static">static</span><code class="signature apipage">DEFAULT_DEVICE_SPECIFIER : <a href="http://api.haxe.org/Int.html">Int</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="DEVICE_SPECIFIER"><a class="lift" href="#DEVICE_SPECIFIER">DEVICE_SPECIFIER</a></a><span class="inline-block static">static</span><code class="signature apipage">DEVICE_SPECIFIER : <a href="http://api.haxe.org/Int.html">Int</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="ENUMERATE_ALL_EXT"><a class="lift" href="#ENUMERATE_ALL_EXT">ENUMERATE_ALL_EXT</a></a><span class="inline-block static">static</span><code class="signature apipage">ENUMERATE_ALL_EXT : <a href="http://api.haxe.org/Int.html">Int</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="EXTENSIONS"><a class="lift" href="#EXTENSIONS">EXTENSIONS</a></a><span class="inline-block static">static</span><code class="signature apipage">EXTENSIONS : <a href="http://api.haxe.org/Int.html">Int</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="FALSE"><a class="lift" href="#FALSE">FALSE</a></a><span class="inline-block static">static</span><code class="signature apipage">FALSE : <a href="http://api.haxe.org/Int.html">Int</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="FREQUENCY"><a class="lift" href="#FREQUENCY">FREQUENCY</a></a><span class="inline-block static">static</span><code class="signature apipage">FREQUENCY : <a href="http://api.haxe.org/Int.html">Int</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="INVALID_CONTEXT"><a class="lift" href="#INVALID_CONTEXT">INVALID_CONTEXT</a></a><span class="inline-block static">static</span><code class="signature apipage">INVALID_CONTEXT : <a href="http://api.haxe.org/Int.html">Int</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="INVALID_CONTEXT_MEANING"><a class="lift" href="#INVALID_CONTEXT_MEANING">INVALID_CONTEXT_MEANING</a></a><span class="inline-block static">static</span><code class="signature apipage">INVALID_CONTEXT_MEANING : <a href="http://api.haxe.org/String.html">String</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="INVALID_DEVICE"><a class="lift" href="#INVALID_DEVICE">INVALID_DEVICE</a></a><span class="inline-block static">static</span><code class="signature apipage">INVALID_DEVICE : <a href="http://api.haxe.org/Int.html">Int</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="INVALID_DEVICE_MEANING"><a class="lift" href="#INVALID_DEVICE_MEANING">INVALID_DEVICE_MEANING</a></a><span class="inline-block static">static</span><code class="signature apipage">INVALID_DEVICE_MEANING : <a href="http://api.haxe.org/String.html">String</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="INVALID_ENUM"><a class="lift" href="#INVALID_ENUM">INVALID_ENUM</a></a><span class="inline-block static">static</span><code class="signature apipage">INVALID_ENUM : <a href="http://api.haxe.org/Int.html">Int</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="INVALID_ENUM_MEANING"><a class="lift" href="#INVALID_ENUM_MEANING">INVALID_ENUM_MEANING</a></a><span class="inline-block static">static</span><code class="signature apipage">INVALID_ENUM_MEANING : <a href="http://api.haxe.org/String.html">String</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="INVALID_VALUE"><a class="lift" href="#INVALID_VALUE">INVALID_VALUE</a></a><span class="inline-block static">static</span><code class="signature apipage">INVALID_VALUE : <a href="http://api.haxe.org/Int.html">Int</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="INVALID_VALUE_MEANING"><a class="lift" href="#INVALID_VALUE_MEANING">INVALID_VALUE_MEANING</a></a><span class="inline-block static">static</span><code class="signature apipage">INVALID_VALUE_MEANING : <a href="http://api.haxe.org/String.html">String</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="MONO_SOURCES"><a class="lift" href="#MONO_SOURCES">MONO_SOURCES</a></a><span class="inline-block static">static</span><code class="signature apipage">MONO_SOURCES : <a href="http://api.haxe.org/Int.html">Int</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="NO_ERROR"><a class="lift" href="#NO_ERROR">NO_ERROR</a></a><span class="inline-block static">static</span><code class="signature apipage">NO_ERROR : <a href="http://api.haxe.org/Int.html">Int</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="OUT_OF_MEMORY"><a class="lift" href="#OUT_OF_MEMORY">OUT_OF_MEMORY</a></a><span class="inline-block static">static</span><code class="signature apipage">OUT_OF_MEMORY : <a href="http://api.haxe.org/Int.html">Int</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="OUT_OF_MEMORY_MEANING"><a class="lift" href="#OUT_OF_MEMORY_MEANING">OUT_OF_MEMORY_MEANING</a></a><span class="inline-block static">static</span><code class="signature apipage">OUT_OF_MEMORY_MEANING : <a href="http://api.haxe.org/String.html">String</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="REFRESH"><a class="lift" href="#REFRESH">REFRESH</a></a><span class="inline-block static">static</span><code class="signature apipage">REFRESH : <a href="http://api.haxe.org/Int.html">Int</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="STEREO_SOURCES"><a class="lift" href="#STEREO_SOURCES">STEREO_SOURCES</a></a><span class="inline-block static">static</span><code class="signature apipage">STEREO_SOURCES : <a href="http://api.haxe.org/Int.html">Int</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="SYNC"><a class="lift" href="#SYNC">SYNC</a></a><span class="inline-block static">static</span><code class="signature apipage">SYNC : <a href="http://api.haxe.org/Int.html">Int</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="TRUE"><a class="lift" href="#TRUE">TRUE</a></a><span class="inline-block static">static</span><code class="signature apipage">TRUE : <a href="http://api.haxe.org/Int.html">Int</a></code><br/></span>
+        <span class="small_desc_flat"></span></p>
+<p><h3>Methods</h3> <hr/><span class="method apipage">
+            <a name="closeDevice"><a class="lift" href="#closeDevice">closeDevice</a></a><span class="inline-block static">static</span><code class="signature apipage">closeDevice(device:<span><a href="http://api.haxe.org/Dynamic.html">Dynamic</a></span>) : <a href="http://api.haxe.org/Bool.html">Bool</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="createContext"><a class="lift" href="#createContext">createContext</a></a><span class="inline-block static">static</span><code class="signature apipage">createContext(device:<span><a href="http://api.haxe.org/Dynamic.html">Dynamic</a></span>, ?attrlist:<span><a href="http://api.haxe.org/Array.html">Array</a>&lt;<a href="http://api.haxe.org/Int.html">Int</a>&gt;=null</span>) : <a href="http://api.haxe.org/Dynamic.html">Dynamic</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="destroyContext"><a class="lift" href="#destroyContext">destroyContext</a></a><span class="inline-block static">static</span><code class="signature apipage">destroyContext(context:<span><a href="http://api.haxe.org/Dynamic.html">Dynamic</a></span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="getContextsDevice"><a class="lift" href="#getContextsDevice">getContextsDevice</a></a><span class="inline-block static">static</span><code class="signature apipage">getContextsDevice(context:<span><a href="http://api.haxe.org/Dynamic.html">Dynamic</a></span>) : <a href="http://api.haxe.org/Dynamic.html">Dynamic</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="getCurrentContext"><a class="lift" href="#getCurrentContext">getCurrentContext</a></a><span class="inline-block static">static</span><code class="signature apipage">getCurrentContext() : <a href="http://api.haxe.org/Dynamic.html">Dynamic</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="getError"><a class="lift" href="#getError">getError</a></a><span class="inline-block static">static</span><code class="signature apipage">getError(device:<span><a href="http://api.haxe.org/Dynamic.html">Dynamic</a></span>) : <a href="http://api.haxe.org/Int.html">Int</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="getErrorMeaning"><a class="lift" href="#getErrorMeaning">getErrorMeaning</a></a><span class="inline-block static">static</span><code class="signature apipage">getErrorMeaning(error:<span><a href="http://api.haxe.org/Int.html">Int</a></span>) : <a href="http://api.haxe.org/String.html">String</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="getIntegerv"><a class="lift" href="#getIntegerv">getIntegerv</a></a><span class="inline-block static">static</span><code class="signature apipage">getIntegerv(device:<span><a href="http://api.haxe.org/Dynamic.html">Dynamic</a></span>, param:<span><a href="http://api.haxe.org/Int.html">Int</a></span>, size:<span><a href="http://api.haxe.org/Int.html">Int</a></span>) : <a href="http://api.haxe.org/Array.html">Array</a>&lt;<a href="http://api.haxe.org/Int.html">Int</a>&gt;</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="getString"><a class="lift" href="#getString">getString</a></a><span class="inline-block static">static</span><code class="signature apipage">getString(device:<span><a href="http://api.haxe.org/Dynamic.html">Dynamic</a></span>, param:<span><a href="http://api.haxe.org/Int.html">Int</a></span>) : <a href="http://api.haxe.org/String.html">String</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="makeContextCurrent"><a class="lift" href="#makeContextCurrent">makeContextCurrent</a></a><span class="inline-block static">static</span><code class="signature apipage">makeContextCurrent(context:<span><a href="http://api.haxe.org/Dynamic.html">Dynamic</a></span>) : <a href="http://api.haxe.org/Bool.html">Bool</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="openDevice"><a class="lift" href="#openDevice">openDevice</a></a><span class="inline-block static">static</span><code class="signature apipage">openDevice(?devicename:<span><a href="http://api.haxe.org/String.html">String</a>=null</span>) : <a href="http://api.haxe.org/Dynamic.html">Dynamic</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="processContext"><a class="lift" href="#processContext">processContext</a></a><span class="inline-block static">static</span><code class="signature apipage">processContext(context:<span><a href="http://api.haxe.org/Dynamic.html">Dynamic</a></span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="suspendContext"><a class="lift" href="#suspendContext">suspendContext</a></a><span class="inline-block static">static</span><code class="signature apipage">suspendContext(context:<span><a href="http://api.haxe.org/Dynamic.html">Dynamic</a></span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span></p>
+<p><h3>Properties</h3> <hr/>no public properties</p>
+<p>&nbsp;
+&nbsp;
+&nbsp;</p>
+
+        </div>
+    </body>
+
+</html>

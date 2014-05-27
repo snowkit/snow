@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+    
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <link rel="shortcut icon" href="../../../../../../images/favicon.png" />
+
+        <link rel="stylesheet" type="text/css" href="../../../../../../css/style.css" media="all">
+        <link rel="stylesheet" type="text/css" href="../../../../../../css/code.css" media="all">
+        <link rel="stylesheet" type="text/css" href="../../../../../../css/font.css" media="all">
+        
+        <link rel="stylesheet" type="text/css" href="../../../../../../css/tooltipster.css" media="all">
+        <link rel="stylesheet" type="text/css" href="../../../../../../css/tooltipster-shadow.css" media="all">
+        
+        <script src="../../../../../../js/jquery-2.0.3.min.js"> </script>
+        <script src="../../../../../../js/jquery.tooltipster.min.js"> </script>
+
+        <script>
+
+            $(document).ready(function() {
+
+                $('.section').css('display','none');
+                $('.readmore').click(function(e){
+                    var _child = $(this).parent().find('.section').first();
+                    var _opp = 'block';
+                    if( _child.css('display') == 'block' ) {
+                        _opp = 'none';
+                    } else {
+                    }
+                    _child.css('display', _opp);
+                });
+
+                $('div.sample').on('click', function(e){
+                        //get the data tag
+                    var content = $(this).attr('data-content');
+                        //remove clicking handler
+                    $(this).off('click');
+                        //replace the content!
+                    $(this).html('<iframe src="'+content+'" sandbox="allow-same-origin allow-scripts" style="overflow:hidden; scrollbar:none; border: 0; width:645px; height:450px;"></iframe> ')
+                });
+
+                $('.tooltip').tooltipster({
+                    theme:'tooltipster-shadow'
+                });
+
+            }); //document.ready
+
+        </script>
+    </head>
+
+    <body>
+        <div class="content">
+            <p><a href="../../../../../../api/index.html"><img src="../../../../../../images/logo.png" alt="Logo"></a></p>
+<hr>
+<h1 id="glcontextattributes">GLContextAttributes</h1>
+<hr>
+<p><code>typedef</code>
+<span class="meta"></p>
+<p></span></p>
+<hr>
+<p>&nbsp;
+&nbsp;</p>
+<p><h3>Members</h3> <hr/><span class="member apipage">
+            <a name="alpha"><a class="lift" href="#alpha">alpha</a></a><code class="signature apipage">alpha : <a href="http://api.haxe.org/Bool.html">Bool</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="antialias"><a class="lift" href="#antialias">antialias</a></a><code class="signature apipage">antialias : <a href="http://api.haxe.org/Bool.html">Bool</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="depth"><a class="lift" href="#depth">depth</a></a><code class="signature apipage">depth : <a href="http://api.haxe.org/Bool.html">Bool</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="premultipliedAlpha"><a class="lift" href="#premultipliedAlpha">premultipliedAlpha</a></a><code class="signature apipage">premultipliedAlpha : <a href="http://api.haxe.org/Bool.html">Bool</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="preserveDrawingBuffer"><a class="lift" href="#preserveDrawingBuffer">preserveDrawingBuffer</a></a><code class="signature apipage">preserveDrawingBuffer : <a href="http://api.haxe.org/Bool.html">Bool</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="stencil"><a class="lift" href="#stencil">stencil</a></a><code class="signature apipage">stencil : <a href="http://api.haxe.org/Bool.html">Bool</a></code><br/></span>
+        <span class="small_desc_flat"></span></p>
+<p><h3>Methods</h3> <hr/>no public methods</p>
+<p><h3>Properties</h3> <hr/>no public properties</p>
+<p>&nbsp;
+&nbsp;
+&nbsp;</p>
+
+        </div>
+    </body>
+
+</html>

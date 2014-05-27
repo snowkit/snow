@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+    
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <link rel="shortcut icon" href="../../images/favicon.png" />
+
+        <link rel="stylesheet" type="text/css" href="../../css/style.css" media="all">
+        <link rel="stylesheet" type="text/css" href="../../css/code.css" media="all">
+        <link rel="stylesheet" type="text/css" href="../../css/font.css" media="all">
+        
+        <link rel="stylesheet" type="text/css" href="../../css/tooltipster.css" media="all">
+        <link rel="stylesheet" type="text/css" href="../../css/tooltipster-shadow.css" media="all">
+        
+        <script src="../../js/jquery-2.0.3.min.js"> </script>
+        <script src="../../js/jquery.tooltipster.min.js"> </script>
+
+        <script>
+
+            $(document).ready(function() {
+
+                $('.section').css('display','none');
+                $('.readmore').click(function(e){
+                    var _child = $(this).parent().find('.section').first();
+                    var _opp = 'block';
+                    if( _child.css('display') == 'block' ) {
+                        _opp = 'none';
+                    } else {
+                    }
+                    _child.css('display', _opp);
+                });
+
+                $('div.sample').on('click', function(e){
+                        //get the data tag
+                    var content = $(this).attr('data-content');
+                        //remove clicking handler
+                    $(this).off('click');
+                        //replace the content!
+                    $(this).html('<iframe src="'+content+'" sandbox="allow-same-origin allow-scripts" style="overflow:hidden; scrollbar:none; border: 0; width:645px; height:450px;"></iframe> ')
+                });
+
+                $('.tooltip').tooltipster({
+                    theme:'tooltipster-shadow'
+                });
+
+            }); //document.ready
+
+        </script>
+    </head>
+
+    <body>
+        <div class="content">
+            <p><a href="../../api/index.html"><img src="../../images/logo.png" alt="Logo"></a></p>
+<hr>
+<h1 id="app">App</h1>
+<p>The default type of application, with variable delta time, or fixed delta time, or a fixed frame rate. See the <a href="../../guide/App.html">App Guide</a> for complete details.</p>
+<hr>
+<p><code>class</code>
+<span class="meta">
+<br/>meta: @:test1, @:test2
+</span></p>
+<hr>
+<p>&nbsp;
+&nbsp;</p>
+<p><h3>Members</h3> <hr/><span class="member apipage">
+            <a name="app"><a class="lift" href="#app">app</a></a><code class="signature apipage">app : <a href="#lumen.Lumen">lumen.Lumen</a></code><br/></span>
+        <span class="small_desc_flat">use this to access the api features. <em>i.e</em> <code>app.assets.get_text(_id)</code></span><span class="member apipage">
+            <a name="cur_frame_start"><a class="lift" href="#cur_frame_start">cur_frame_start</a></a><code class="signature apipage">cur_frame_start : <a href="http://api.haxe.org/Float.html">Float</a></code><br/></span>
+        <span class="small_desc_flat">the start time of this frame</span><span class="member apipage">
+            <a name="current_time"><a class="lift" href="#current_time">current_time</a></a><code class="signature apipage">current_time : <a href="http://api.haxe.org/Float.html">Float</a></code><br/></span>
+        <span class="small_desc_flat">the current simulation time</span><span class="member apipage">
+            <a name="delta_sim"><a class="lift" href="#delta_sim">delta_sim</a></a><code class="signature apipage">delta_sim : <a href="http://api.haxe.org/Float.html">Float</a></code><br/></span>
+        <span class="small_desc_flat">the simulated time the last frame took to run, relative to scale etc</span><span class="member apipage">
+            <a name="delta_time"><a class="lift" href="#delta_time">delta_time</a></a><code class="signature apipage">delta_time : <a href="http://api.haxe.org/Float.html">Float</a></code><br/></span>
+        <span class="small_desc_flat">the time the last frame took to run</span><span class="member apipage">
+            <a name="fixed_delta"><a class="lift" href="#fixed_delta">fixed_delta</a></a><code class="signature apipage">fixed_delta : <a href="http://api.haxe.org/Float.html">Float</a></code><br/></span>
+        <span class="small_desc_flat">if this is non zero this will be passed in</span><span class="member apipage">
+            <a name="fixed_rate"><a class="lift" href="#fixed_rate">fixed_rate</a></a><code class="signature apipage">fixed_rate : <a href="http://api.haxe.org/Float.html">Float</a></code><br/></span>
+        <span class="small_desc_flat">if this is non zero, updates will be forced to this rate</span><span class="member apipage">
+            <a name="last_frame_start"><a class="lift" href="#last_frame_start">last_frame_start</a></a><code class="signature apipage">last_frame_start : <a href="http://api.haxe.org/Float.html">Float</a></code><br/></span>
+        <span class="small_desc_flat">the start time of the last frame</span><span class="member apipage">
+            <a name="max_frame_time"><a class="lift" href="#max_frame_time">max_frame_time</a></a><code class="signature apipage">max_frame_time : <a href="http://api.haxe.org/Float.html">Float</a></code><br/></span>
+        <span class="small_desc_flat">the maximum frame time</span><span class="member apipage">
+            <a name="timescale"><a class="lift" href="#timescale">timescale</a></a><code class="signature apipage">timescale : <a href="http://api.haxe.org/Float.html">Float</a></code><br/></span>
+        <span class="small_desc_flat">the scale of time</span></p>
+<p><h3>Methods</h3> <hr/><span class="method apipage">
+            <a name="get_asset_list"><a class="lift" href="#get_asset_list">get_asset_list</a></a><code class="signature apipage">get_asset_list() : <a href="http://api.haxe.org/Array.html">Array</a>&lt;<a href="#lumen.types.AssetInfo">lumen.types.AssetInfo</a>&gt;</code><br/><span class="small_desc_flat">override this if you want to change how the asset list is loaded/handled. By default it uses the asset manifest generated by the build tools.</span>
+        </span>
+    <span class="method apipage">
+            <a name="get_runtime_config"><a class="lift" href="#get_runtime_config">get_runtime_config</a></a><code class="signature apipage">get_runtime_config() : <a href="http://api.haxe.org/Dynamic.html">Dynamic</a></code><br/><span class="small_desc_flat">override this if you want to change how the runtime config is loaded/handled</span>
+        </span>
+    <span class="method apipage">
+            <a name="new"><a class="lift" href="#new">new</a></a><code class="signature apipage">new() : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat">The default constructor of an App is empty, so you can override it if you want, but take note that this happens way before lumen is ready for use. Use <a href="#ready">ready</a> for entry point.</span>
+        </span>
+    <span class="method apipage">
+            <a name="ongamepadaxis"><a class="lift" href="#ongamepadaxis">ongamepadaxis</a></a><code class="signature apipage">ongamepadaxis(_event:<span><a href="#lumen.types.GamepadEvent">lumen.types.GamepadEvent</a></span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat">Called for you when a connected gamepad axis moves, use <code>which</code> to determine gamepad id</span>
+        </span>
+    <span class="method apipage">
+            <a name="ongamepadbuttondown"><a class="lift" href="#ongamepadbuttondown">ongamepadbuttondown</a></a><code class="signature apipage">ongamepadbuttondown(_event:<span><a href="#lumen.types.GamepadEvent">lumen.types.GamepadEvent</a></span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat">Called for you when a connected gamepad button is pressed, use <code>which</code> to determine gamepad id</span>
+        </span>
+    <span class="method apipage">
+            <a name="ongamepadbuttonup"><a class="lift" href="#ongamepadbuttonup">ongamepadbuttonup</a></a><code class="signature apipage">ongamepadbuttonup(_event:<span><a href="#lumen.types.GamepadEvent">lumen.types.GamepadEvent</a></span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat">Called for you when a connected gamepad button is released, use <code>which</code> to determine gamepad id</span>
+        </span>
+    <span class="method apipage">
+            <a name="ongamepaddevice"><a class="lift" href="#ongamepaddevice">ongamepaddevice</a></a><code class="signature apipage">ongamepaddevice(_event:<span><a href="#lumen.types.GamepadEvent">lumen.types.GamepadEvent</a></span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat">Called for you when a gamepad is connected or disconnected, use <code>which</code> to determine gamepad id</span>
+        </span>
+    <span class="method apipage">
+            <a name="onkeydown"><a class="lift" href="#onkeydown">onkeydown</a></a><code class="signature apipage">onkeydown(_event:<span><a href="#lumen.types.KeyEvent">lumen.types.KeyEvent</a></span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat">Called for you when a key is pressed down</span>
+        </span>
+    <span class="method apipage">
+            <a name="onkeyup"><a class="lift" href="#onkeyup">onkeyup</a></a><code class="signature apipage">onkeyup(_event:<span><a href="#lumen.types.KeyEvent">lumen.types.KeyEvent</a></span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat">Called for you when a key is released</span>
+        </span>
+    <span class="method apipage">
+            <a name="onmousedown"><a class="lift" href="#onmousedown">onmousedown</a></a><code class="signature apipage">onmousedown(_event:<span><a href="#lumen.types.MouseEvent">lumen.types.MouseEvent</a></span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat">Called for you when a mouse button is pressed</span>
+        </span>
+    <span class="method apipage">
+            <a name="onmousemove"><a class="lift" href="#onmousemove">onmousemove</a></a><code class="signature apipage">onmousemove(_event:<span><a href="#lumen.types.MouseEvent">lumen.types.MouseEvent</a></span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat">Called for you when the mouse moves</span>
+        </span>
+    <span class="method apipage">
+            <a name="onmouseup"><a class="lift" href="#onmouseup">onmouseup</a></a><code class="signature apipage">onmouseup(_event:<span><a href="#lumen.types.MouseEvent">lumen.types.MouseEvent</a></span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat">Called for you when a mouse button is released</span>
+        </span>
+    <span class="method apipage">
+            <a name="onmousewheel"><a class="lift" href="#onmousewheel">onmousewheel</a></a><code class="signature apipage">onmousewheel(_event:<span><a href="#lumen.types.MouseEvent">lumen.types.MouseEvent</a></span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat">Called for you when the mouse wheel moves</span>
+        </span>
+    <span class="method apipage">
+            <a name="ontextinput"><a class="lift" href="#ontextinput">ontextinput</a></a><code class="signature apipage">ontextinput(_event:<span><a href="#lumen.types.TextEvent">lumen.types.TextEvent</a></span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat">Called for you when text input is happening. Use this for textfields, as it handles the complexity of unicode etc.</span>
+        </span>
+    <span class="method apipage">
+            <a name="ontouchdown"><a class="lift" href="#ontouchdown">ontouchdown</a></a><code class="signature apipage">ontouchdown(_event:<span><a href="#lumen.types.TouchEvent">lumen.types.TouchEvent</a></span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat">Called for you when a touch is released, use the <code>touch_id</code> to track which</span>
+        </span>
+    <span class="method apipage">
+            <a name="ontouchmove"><a class="lift" href="#ontouchmove">ontouchmove</a></a><code class="signature apipage">ontouchmove(_event:<span><a href="#lumen.types.TouchEvent">lumen.types.TouchEvent</a></span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat">Called for you when a touch is moved, use the <code>touch_id</code> to track which</span>
+        </span>
+    <span class="method apipage">
+            <a name="ontouchup"><a class="lift" href="#ontouchup">ontouchup</a></a><code class="signature apipage">ontouchup(_event:<span><a href="#lumen.types.TouchEvent">lumen.types.TouchEvent</a></span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat">Called for you when a touch is first pressed, use the <code>touch_id</code> to track which</span>
+        </span>
+    <span class="method apipage">
+            <a name="ready"><a class="lift" href="#ready">ready</a></a><code class="signature apipage">ready() : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat">Your entry point. Called for you when you can initialize your application</span>
+        </span>
+    <span class="method apipage">
+            <a name="update"><a class="lift" href="#update">update</a></a><code class="signature apipage">update(dt:<span><a href="http://api.haxe.org/Float.html">Float</a></span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat">Your update loop. Called every frame for you. The dt value depends on the timing configuration (see the <a href="../../guide/App.html">App Guide</a>)</span>
+        </span></p>
+<p><h3>Properties</h3> <hr/>no public properties</p>
+<p>&nbsp;
+&nbsp;
+&nbsp;</p>
+
+        </div>
+    </body>
+
+</html>

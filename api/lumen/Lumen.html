@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+    
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <link rel="shortcut icon" href="../../images/favicon.png" />
+
+        <link rel="stylesheet" type="text/css" href="../../css/style.css" media="all">
+        <link rel="stylesheet" type="text/css" href="../../css/code.css" media="all">
+        <link rel="stylesheet" type="text/css" href="../../css/font.css" media="all">
+        
+        <link rel="stylesheet" type="text/css" href="../../css/tooltipster.css" media="all">
+        <link rel="stylesheet" type="text/css" href="../../css/tooltipster-shadow.css" media="all">
+        
+        <script src="../../js/jquery-2.0.3.min.js"> </script>
+        <script src="../../js/jquery.tooltipster.min.js"> </script>
+
+        <script>
+
+            $(document).ready(function() {
+
+                $('.section').css('display','none');
+                $('.readmore').click(function(e){
+                    var _child = $(this).parent().find('.section').first();
+                    var _opp = 'block';
+                    if( _child.css('display') == 'block' ) {
+                        _opp = 'none';
+                    } else {
+                    }
+                    _child.css('display', _opp);
+                });
+
+                $('div.sample').on('click', function(e){
+                        //get the data tag
+                    var content = $(this).attr('data-content');
+                        //remove clicking handler
+                    $(this).off('click');
+                        //replace the content!
+                    $(this).html('<iframe src="'+content+'" sandbox="allow-same-origin allow-scripts" style="overflow:hidden; scrollbar:none; border: 0; width:645px; height:450px;"></iframe> ')
+                });
+
+                $('.tooltip').tooltipster({
+                    theme:'tooltipster-shadow'
+                });
+
+            }); //document.ready
+
+        </script>
+    </head>
+
+    <body>
+        <div class="content">
+            <p><a href="../../api/index.html"><img src="../../images/logo.png" alt="Logo"></a></p>
+<hr>
+<h1 id="lumen">Lumen</h1>
+<hr>
+<p><code>class</code>
+<span class="meta"></p>
+<p></span></p>
+<hr>
+<p>&nbsp;
+&nbsp;</p>
+<p><h3>Members</h3> <hr/><span class="member apipage">
+            <a name="assets"><a class="lift" href="#assets">assets</a></a><code class="signature apipage">assets : <a href="#lumen.assets.Assets">lumen.assets.Assets</a></code><br/></span>
+        <span class="small_desc_flat">The asset system</span><span class="member apipage">
+            <a name="audio"><a class="lift" href="#audio">audio</a></a><code class="signature apipage">audio : <a href="#lumen.audio.Audio">lumen.audio.Audio</a></code><br/></span>
+        <span class="small_desc_flat">The audio system</span><span class="member apipage">
+            <a name="config"><a class="lift" href="#config">config</a></a><code class="signature apipage">config : <a href="#lumen.types.LumenConfig">lumen.types.LumenConfig</a></code><br/></span>
+        <span class="small_desc_flat">The configuration from the project file, runtime config and other configs</span><span class="member apipage">
+            <a name="has_shutdown"><a class="lift" href="#has_shutdown">has_shutdown</a></a><code class="signature apipage">has_shutdown : <a href="http://api.haxe.org/Bool.html">Bool</a></code><br/></span>
+        <span class="small_desc_flat">Set if shut dow has completed</span><span class="member apipage">
+            <a name="host"><a class="lift" href="#host">host</a></a><code class="signature apipage">host : <a href="#lumen.App">lumen.App</a></code><br/></span>
+        <span class="small_desc_flat">The host application</span><span class="member apipage">
+            <a name="input"><a class="lift" href="#input">input</a></a><code class="signature apipage">input : <a href="#lumen.input.Input">lumen.input.Input</a></code><br/></span>
+        <span class="small_desc_flat">The input system</span><span class="member apipage">
+            <a name="main_window"><a class="lift" href="#main_window">main_window</a></a><code class="signature apipage">main_window : <a href="#lumen.window.Window">lumen.window.Window</a></code><br/></span>
+        <span class="small_desc_flat">If the config specifies a default window, this is it</span><span class="member apipage">
+            <a name="shutting_down"><a class="lift" href="#shutting_down">shutting_down</a></a><code class="signature apipage">shutting_down : <a href="http://api.haxe.org/Bool.html">Bool</a></code><br/></span>
+        <span class="small_desc_flat">Set if shut down has commenced</span><span class="member apipage">
+            <a name="window"><a class="lift" href="#window">window</a></a><code class="signature apipage">window : <a href="#lumen.window.Windowing">lumen.window.Windowing</a></code><br/></span>
+        <span class="small_desc_flat">The window manager</span></p>
+<p><h3>Methods</h3> <hr/><span class="method apipage">
+            <a name="dispatch_system_event"><a class="lift" href="#dispatch_system_event">dispatch_system_event</a></a><code class="signature apipage">dispatch_system_event(_event:<span><a href="#lumen.types.SystemEvent">lumen.types.SystemEvent</a></span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="load"><a class="lift" href="#load">load</a></a><span class="inline-block static">static</span><code class="signature apipage">load(library:<span><a href="http://api.haxe.org/String.html">String</a></span>, method:<span><a href="http://api.haxe.org/String.html">String</a></span>, ?args:<span><a href="http://api.haxe.org/Int.html">Int</a>=0</span>) : <a href="http://api.haxe.org/Dynamic.html">Dynamic</a></code><br/><span class="small_desc_flat">Loads a function out of a library</span>
+        </span>
+    <span class="method apipage">
+            <a name="shutdown"><a class="lift" href="#shutdown">shutdown</a></a><code class="signature apipage">shutdown() : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat">Shutdown the engine and quit</span>
+        </span></p>
+<p><h3>Properties</h3> <hr/><span class="property apipage">
+            <a name="time"><a class="lift" href="#time">time</a></a><code class="signature apipage">time : <a href="">Float</a></code><br/><span class="small_desc_flat">The current timestamp</span>
+        </span><span class="property apipage">
+            <a name="uniqueid"><a class="lift" href="#uniqueid">uniqueid</a></a><code class="signature apipage">uniqueid : <a href="">String</a></code><br/><span class="small_desc_flat">Generate a unique ID to use</span>
+        </span></p>
+<p>&nbsp;
+&nbsp;
+&nbsp;</p>
+
+        </div>
+    </body>
+
+</html>

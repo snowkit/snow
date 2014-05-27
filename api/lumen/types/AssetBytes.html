@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+    
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <link rel="shortcut icon" href="../../../images/favicon.png" />
+
+        <link rel="stylesheet" type="text/css" href="../../../css/style.css" media="all">
+        <link rel="stylesheet" type="text/css" href="../../../css/code.css" media="all">
+        <link rel="stylesheet" type="text/css" href="../../../css/font.css" media="all">
+        
+        <link rel="stylesheet" type="text/css" href="../../../css/tooltipster.css" media="all">
+        <link rel="stylesheet" type="text/css" href="../../../css/tooltipster-shadow.css" media="all">
+        
+        <script src="../../../js/jquery-2.0.3.min.js"> </script>
+        <script src="../../../js/jquery.tooltipster.min.js"> </script>
+
+        <script>
+
+            $(document).ready(function() {
+
+                $('.section').css('display','none');
+                $('.readmore').click(function(e){
+                    var _child = $(this).parent().find('.section').first();
+                    var _opp = 'block';
+                    if( _child.css('display') == 'block' ) {
+                        _opp = 'none';
+                    } else {
+                    }
+                    _child.css('display', _opp);
+                });
+
+                $('div.sample').on('click', function(e){
+                        //get the data tag
+                    var content = $(this).attr('data-content');
+                        //remove clicking handler
+                    $(this).off('click');
+                        //replace the content!
+                    $(this).html('<iframe src="'+content+'" sandbox="allow-same-origin allow-scripts" style="overflow:hidden; scrollbar:none; border: 0; width:645px; height:450px;"></iframe> ')
+                });
+
+                $('.tooltip').tooltipster({
+                    theme:'tooltipster-shadow'
+                });
+
+            }); //document.ready
+
+        </script>
+    </head>
+
+    <body>
+        <div class="content">
+            <p><a href="../../../api/index.html"><img src="../../../images/logo.png" alt="Logo"></a></p>
+<hr>
+<h1 id="assetbytes">AssetBytes</h1>
+<p>An asset that contains byte <code>data</code> as a <code>ByteArray</code>. Get assets from the <code>Assets</code> class, via <code>app.assets</code></p>
+<hr>
+<p><code>class</code>extends <code><span><a href="">lumen.types.Asset</a></span></code>
+<span class="meta"></p>
+<p></span></p>
+<hr>
+<p>&nbsp;
+&nbsp;</p>
+<p><h3>Members</h3> <hr/><span class="member apipage">
+            <a name="data"><a class="lift" href="#data">data</a></a><code class="signature apipage">data : <a href="#lumen.utils.ByteArray">lumen.utils.ByteArray</a></code><br/></span>
+        <span class="small_desc_flat">The <code>ByteArray</code> this asset contains</span><span class="member apipage">
+            <a name="id"><a class="lift" href="#id">id</a></a><a title="inherited from lumen.types.Asset" class="tooltip inherited">&gt;</a><code class="signature apipage">id : <a href="http://api.haxe.org/String.html">String</a></code><br/></span>
+        <span class="small_desc_flat">The id of this asset like <code>assets/image.png</code></span><span class="member apipage">
+            <a name="info"><a class="lift" href="#info">info</a></a><a title="inherited from lumen.types.Asset" class="tooltip inherited">&gt;</a><code class="signature apipage">info : <a href="#lumen.types.AssetInfo">lumen.types.AssetInfo</a></code><br/></span>
+        <span class="small_desc_flat">The <code>AssetInfo</code> of this asset</span></p>
+<p><h3>Methods</h3> <hr/><span class="method apipage">
+            <a name="new"><a class="lift" href="#new">new</a></a><a title="inherited from lumen.types.Asset" class="tooltip inherited">&gt;</a><code class="signature apipage">new(_info:<span><a href="#lumen.types.AssetInfo">lumen.types.AssetInfo</a></span>, _data:<span><a href="#lumen.utils.ByteArray">lumen.utils.ByteArray</a></span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span></p>
+<p><h3>Properties</h3> <hr/>no public properties</p>
+<p>&nbsp;
+&nbsp;
+&nbsp;</p>
+
+        </div>
+    </body>
+
+</html>
