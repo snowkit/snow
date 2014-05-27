@@ -10,11 +10,13 @@
 
 {{~#items~}}
     
-    <a name="{{name}}"><h3><a href="#{{name}}">{{{name_short}}}</a></h3></a>
+    <a name="{{name}}"><h3 class="class_title"><a href="#{{name}}">{{{name_short}}}</a></h3> 
+    <a href="{{{../../rel_path}}}api/{{type_path name}}.html" title="view full documentation for this type" class="tooltip inherited fullpage">view</a>
+    </a><br/>
 
     {{~#if members.length~}}
         <div class="more">
-            <span class="readmore"><h4>Members</h4></span>
+            <span class="readmore"><strong class="section_title">Members</strong></span>
             <span class="section">
                 {{~#members}}
                     {{~#ispublic~}}
@@ -22,7 +24,7 @@
                             {{~#inherited~}}
                                 <a title="inherited from {{inherit_source}}" class="tooltip inherited">&gt;</a>
                             {{~/inherited~}}
-                            <code>{{escape_markdown name}} : [{{#type}}{{>type}}{{/type}}]({{{type_link}}})</code><br/>{{noop~}}
+                            <code>{{#optional}}?{{/optional}}{{escape_markdown name}} : {{#type}}{{>type}}{{/type}}</code><br/>{{noop~}}
                         </span>
                     {{~/ispublic}}
                 {{~/members~}}
@@ -32,7 +34,7 @@
 
     {{~#if values.length~}}
         <div class="more">
-            <span class="readmore"><h4>Values</h4></span>
+            <span class="readmore"><strong class="section_title">Values</strong></span>
             <span class="section">
                 {{~#values~}}
                     <span class="member">`{{name}}`<br/> </span> 
@@ -43,7 +45,7 @@
 
     {{~#if methods.length~}}
         <div class="more">
-            <span class="readmore"><h4>Methods</h4></span>
+            <span class="readmore"><strong class="section_title">Methods</strong></span>
             <span class="section">
                 {{~#methods}}
                     {{~#ispublic~}}
@@ -52,7 +54,7 @@
                                 <a title="inherited from {{inherit_source}}" class="tooltip inherited">&gt;</a>
                             {{~/inherited~}}
 
-                            <code>{{escape_markdown name}}({{>args}}) : [{{#return_type}}{{>type}}{{/return_type}}]({{returntype_link}}~)</code>{{noop~}}
+                            <code>{{escape_markdown name}}({{>args}}) : {{#return_type}}{{>type}}{{/return_type}}</code>{{noop~}}
                         </span>
                     {{~/ispublic}}
                 {{~/methods~}}
@@ -62,7 +64,7 @@
 
     {{~#if properties.length~}}
         <div class="more">
-            <span class="readmore"><h4>Properties</h4></span>
+            <span class="readmore"><strong class="section_title">Properties</strong></span>
             <span class="section">
                 {{~#properties}}
                     {{~#ispublic}}
@@ -71,7 +73,7 @@
                                 <a title="inherited from {{inherit_source}}" class="tooltip inherited">&gt;</a>
                             {{~/inherited~}} 
 
-                            <code>{{escape_markdown name}} : [{{#type}}{{>type}}{{/type}}]({{{type_link}}})</code>{{noop~}}
+                            <code>{{escape_markdown name}} : {{#type}}{{>type}}{{/type}}</code>{{noop~}}
                         </span> 
                     {{~/ispublic}}
                 {{~/properties}}

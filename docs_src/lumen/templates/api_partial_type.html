@@ -1,10 +1,10 @@
-{{~name}}
+[{{~name}}]({{{type_link}}})
 {{~^func}}
 	{{~#if params~}}
 		&lt; 
 		{{~#params~}} 
 			{{~#if @index}}, {{/if}}
-				{{~name}}
+				{{~>type~}}
 		{{~/params~}}
 		&gt;
 	{{~/if}}

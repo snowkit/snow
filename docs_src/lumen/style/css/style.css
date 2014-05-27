@@ -154,7 +154,7 @@ p {
     position: relative;
     display: block;
     /*width: 40em;*/
-    margin-left:1em;
+    margin-left:2.25em;
     font-size:0.9em;
     margin-bottom: 0.6em;
 }
@@ -164,6 +164,7 @@ p {
     position: relative;
     color:#121212;
     opacity: 0.7;
+    margin-left: 1.25em;
 }
 .readmore:hover {
     cursor:pointer;
@@ -242,6 +243,29 @@ user-select: none;
     font-size: 1em;
 }
 
+.signature.apipage {
+    margin-top:1.6em;
+    margin-left: 0.5em;
+    margin-bottom: 1.3em;
+}
+
+.small_desc_flat code {
+    color:#f6007b;
+    margin-top: -0.1em;
+}
+
+.meta {
+    font-size: 0.8em;
+    position: relative;
+    padding-bottom: 0.1em;
+    padding-left: 0.4em;
+    padding-right: 0.4em;
+    border-radius: 0.2em;
+    color:#cecece;
+    top:0.6em;
+    border:solid 1px rgba(39,40,34,0.1);
+}
+
 .inherited {
     cursor: pointer;
     font-size:0.5em;
@@ -254,7 +278,28 @@ user-select: none;
     color:#f6007b; border:solid 1px rgba(39,40,34,0.3);
 }
 
-.doc {
-    margin-left:2em;
-    color:#aaa;
+.section_title {
+    font-size: 0.75em;
+    color:#ccc;
+    font-weight: normal;
 }
+
+.section_title:hover {
+    color:#444;
+}
+
+.class_title {
+    display: inline-block;
+    font-size: 1em;
+    font-weight: bold;
+    margin-left:0.5em;
+    font-family: helvetica;
+    margin-top:-1em;
+}
+
+.fullpage {
+    font-size: 0.7em;
+    padding-bottom: 0.15em;
+    display: inline-block;
+}
+
