@@ -5,9 +5,10 @@
 
 
 
-#Assets
+<h1>Assets</h1>
 
-The asset system class gives you access to fetching and manipulating assets, \n    caching/uncaching assets, and handles loading files and data cross platform
+The asset system class gives you access to fetching and manipulating assets, 
+    caching/uncaching assets, and handles loading files and data cross platform
 
 ---
 

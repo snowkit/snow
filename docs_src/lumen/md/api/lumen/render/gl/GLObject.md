@@ -5,7 +5,7 @@
 
 
 
-#GLObject
+<h1>GLObject</h1>
 
 A helper class for the resources, mostly specific to native code right now but this is still being cleaned up
 

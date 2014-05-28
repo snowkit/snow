@@ -5,7 +5,7 @@
 
 
 
-#WindowSize
+<h1>WindowSize</h1>
 
 A size value for a window
 

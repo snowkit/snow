@@ -5,9 +5,26 @@
 
 
 
-#ModState
+<h1>ModState</h1>
 
-Input modifier state \n\n`none` : no modifiers are down   \n`lshift` : left shift key is down   \n`rshift` : right shift key is down   \n`lctrl` : left ctrl key is down   \n`rctrl` : right ctrl key is down   \n`lalt` : left alt/option key is down   \n`ralt` : right alt/option key is down   \n`lmeta` : left windows/command key is down   \n`rmeta` : right windows/command key is down   \n`num` : numlock is enabled   \n`caps` : capslock is enabled   \n`mode` : mode key is down   \n`ctrl` : left or right ctrl key is down   \n`shift` : left or right shift key is down   \n`alt` : left or right alt/option key is down   \n`meta` : left or right windows/command key is down
+Input modifier state 
+
+`none` : no modifiers are down   
+`lshift` : left shift key is down   
+`rshift` : right shift key is down   
+`lctrl` : left ctrl key is down   
+`rctrl` : right ctrl key is down   
+`lalt` : left alt/option key is down   
+`ralt` : right alt/option key is down   
+`lmeta` : left windows/command key is down   
+`rmeta` : right windows/command key is down   
+`num` : numlock is enabled   
+`caps` : capslock is enabled   
+`mode` : mode key is down   
+`ctrl` : left or right ctrl key is down   
+`shift` : left or right shift key is down   
+`alt` : left or right alt/option key is down   
+`meta` : left or right windows/command key is down
 
 ---
 

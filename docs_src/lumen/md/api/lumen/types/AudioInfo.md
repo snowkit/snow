@@ -5,9 +5,20 @@
 
 
 
-#AudioInfo
+<h1>AudioInfo</h1>
 
-Information about an audio file/data\n\n`id` : file source   \n`format` : format   \n`channels` : number of channels   \n`rate` : hz rate    \n`bitrate` : sound bitrate   \n`bits_per_sample` : bits per sample, 8 / 16   \n`data` : sound raw data,   \n`length` : the file length in bytes   \n`length_pcm` : the pcm uncompressed raw length in bytes   \n`handle` : the native audio handle for later manipulation
+Information about an audio file/data
+
+`id` : file source   
+`format` : format   
+`channels` : number of channels   
+`rate` : hz rate    
+`bitrate` : sound bitrate   
+`bits_per_sample` : bits per sample, 8 / 16   
+`data` : sound raw data,   
+`length` : the file length in bytes   
+`length_pcm` : the pcm uncompressed raw length in bytes   
+`handle` : the native audio handle for later manipulation
 
 ---
 

@@ -5,7 +5,7 @@
 
 
 
-#InputEventType
+<h1>InputEventType</h1>
 
 A typed input event
 

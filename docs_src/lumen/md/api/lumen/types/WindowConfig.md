@@ -5,9 +5,24 @@
 
 
 
-#WindowConfig
+<h1>WindowConfig</h1>
 
-Window configuration information for creating windows\n\n`? fullscreen` : create in fullscreen   \n`? resizable` : allow the window to be resized   \n`? borderless` : create as a borderless window   \n`? antialiasing` : a value of `2`, `4`, `8` or other valid antialiasing flags   \n`? stencil_buffer` : create a stencil buffer (not per window)   \n`? depth_buffer` : create a depth buffer (not per window)   \n`? vsync` : enable vsync (not per window)   \n`? fps` : window max fps if any   \n`? x` : window y at creation   \n`? y` : window x at creation   \n`? width` : window height at creation   \n`? height` : window width at creation   \n`? title` : window title   \n`? orientation` : `Mobile specific` - window orientation setting
+Window configuration information for creating windows
+
+`? fullscreen` : create in fullscreen   
+`? resizable` : allow the window to be resized   
+`? borderless` : create as a borderless window   
+`? antialiasing` : a value of `2`, `4`, `8` or other valid antialiasing flags   
+`? stencil_buffer` : create a stencil buffer (not per window)   
+`? depth_buffer` : create a depth buffer (not per window)   
+`? vsync` : enable vsync (not per window)   
+`? fps` : window max fps if any   
+`? x` : window y at creation   
+`? y` : window x at creation   
+`? width` : window height at creation   
+`? height` : window width at creation   
+`? title` : window title   
+`? orientation` : `Mobile specific` - window orientation setting
 
 ---
 

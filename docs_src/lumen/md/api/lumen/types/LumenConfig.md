@@ -5,9 +5,15 @@
 
 
 
-#LumenConfig
+<h1>LumenConfig</h1>
 
-The lumen core configuration information\n\n`? host` : the bootstrapped application   \n`? window_config` : the window config for a default window, if any   \n`? run_loop` : whether or not the core should run a loop at all   \n`? runtime_config` : the user specific config read from json at runtime   \n`? asset_data` : the raw list of assets. use the app.assets from Lumen for access
+The lumen core configuration information
+
+`? host` : the bootstrapped application   
+`? window_config` : the window config for a default window, if any   
+`? run_loop` : whether or not the core should run a loop at all   
+`? runtime_config` : the user specific config read from json at runtime   
+`? asset_data` : the raw list of assets. use the app.assets from Lumen for access
 
 ---
 

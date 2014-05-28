@@ -5,7 +5,7 @@
 
 
 
-#AssetText
+<h1>AssetText</h1>
 
 An asset that contains `text` as a `String`. Get assets from the `Assets` class, via `app.assets`
 

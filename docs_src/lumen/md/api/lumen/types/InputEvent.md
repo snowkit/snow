@@ -5,9 +5,14 @@
 
 
 
-#InputEvent
+<h1>InputEvent</h1>
 
-A system input event \n   \n`? type` : The type of input event this was   \n`? timestamp` : The time in seconds that this event occured, useful for deltas   \n`? window_id` : The window id from which this event originated   \n`? event` : The raw platform event data
+A system input event 
+   
+`? type` : The type of input event this was   
+`? timestamp` : The time in seconds that this event occured, useful for deltas   
+`? window_id` : The window id from which this event originated   
+`? event` : The raw platform event data
 
 ---
 

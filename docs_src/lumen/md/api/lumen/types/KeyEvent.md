@@ -5,9 +5,18 @@
 
 
 
-#KeyEvent
+<h1>KeyEvent</h1>
 
-Information about a keyboard event\n\n`raw` : The raw event from the system, unmodified   \n`scancode` : The `lumen.input.Scan` code value for this event   \n`keycode` : The `lumen.input.Key` code value for this event   \n`state` : The state of the key in this event   \n`mod` : The modifier state of this event   \n`repeat` : If this value is bigger than 0 this is a key repeat event of a key held down   \n`timestamp` : The time in seconds when this touch event occurred, use for deltas   \n`window_id` : The window id this event originated from
+Information about a keyboard event
+
+`raw` : The raw event from the system, unmodified   
+`scancode` : The `lumen.input.Scan` code value for this event   
+`keycode` : The `lumen.input.Key` code value for this event   
+`state` : The state of the key in this event   
+`mod` : The modifier state of this event   
+`repeat` : If this value is bigger than 0 this is a key repeat event of a key held down   
+`timestamp` : The time in seconds when this touch event occurred, use for deltas   
+`window_id` : The window id this event originated from
 
 ---
 

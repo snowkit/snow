@@ -5,7 +5,7 @@
 
 
 
-#MouseButton
+<h1>MouseButton</h1>
 
 A typed mouse button id
 

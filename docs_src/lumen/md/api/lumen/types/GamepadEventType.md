@@ -5,7 +5,7 @@
 
 
 
-#GamepadEventType
+<h1>GamepadEventType</h1>
 
 A typed gamepad event type
 

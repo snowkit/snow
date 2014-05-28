@@ -5,9 +5,16 @@
 
 
 
-#ImageInfo
+<h1>ImageInfo</h1>
 
-Information about an image file/data\n\n`id` : source asset id   \n`bpp` : used bits per pixel   \n`width` : image width   \n`height` : image height   \n`bpp_source` : source bits per pixel   \n`data` : image data
+Information about an image file/data
+
+`id` : source asset id   
+`bpp` : used bits per pixel   
+`width` : image width   
+`height` : image height   
+`bpp_source` : source bits per pixel   
+`data` : image data
 
 ---
 

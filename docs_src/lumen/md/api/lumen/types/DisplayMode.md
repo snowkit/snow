@@ -5,7 +5,7 @@
 
 
 
-#DisplayMode
+<h1>DisplayMode</h1>
 
 Information about a display mode
 

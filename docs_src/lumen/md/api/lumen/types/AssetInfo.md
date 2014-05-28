@@ -5,9 +5,14 @@
 
 
 
-#AssetInfo
+<h1>AssetInfo</h1>
 
-Information for a single asset \n\n`id` : the asset id   \n`path` : the location of the asset   \n`ext` : the asset extension, if any   \n`type` : a convenience type indicator
+Information for a single asset 
+
+`id` : the asset id   
+`path` : the location of the asset   
+`ext` : the asset extension, if any   
+`type` : a convenience type indicator
 
 ---
 

@@ -5,7 +5,7 @@
 
 
 
-#Asset
+<h1>Asset</h1>
 
 An asset base class. Get assets from the `Assets` class, via `app.assets`
 

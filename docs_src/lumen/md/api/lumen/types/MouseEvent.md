@@ -5,9 +5,20 @@
 
 
 
-#MouseEvent
+<h1>MouseEvent</h1>
 
-Information about a mouse event \n\n`raw` : The raw event from the system, unmodified   \n`timestamp` : The time in seconds when this touch event occurred, use for deltas   \n`window_id` : The window id this event originated from    \n`which` : Which mouse this event originated from (usually 0)   \n`state` : The state this event is in   \n`button` : The button id, if the event `state` is `down` or `up`   \n`x` : The x position in the window of the mouse event   \n`y` : The y position in the window of the mouse event   \n`xrel` : The relative x position if `state` is `move` or a window has grabbed state   \n`yrel` : The relative y position if `state` is `move` or a window has grabbed state
+Information about a mouse event 
+
+`raw` : The raw event from the system, unmodified   
+`timestamp` : The time in seconds when this touch event occurred, use for deltas   
+`window_id` : The window id this event originated from    
+`which` : Which mouse this event originated from (usually 0)   
+`state` : The state this event is in   
+`button` : The button id, if the event `state` is `down` or `up`   
+`x` : The x position in the window of the mouse event   
+`y` : The y position in the window of the mouse event   
+`xrel` : The relative x position if `state` is `move` or a window has grabbed state   
+`yrel` : The relative y position if `state` is `move` or a window has grabbed state
 
 ---
 

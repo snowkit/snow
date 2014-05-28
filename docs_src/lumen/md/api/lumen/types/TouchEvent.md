@@ -5,9 +5,20 @@
 
 
 
-#TouchEvent
+<h1>TouchEvent</h1>
 
-Information about a touch event\n\n`raw` : The raw event from the system, unmodified   \n`state` : The state this touch event is in   \n`timestamp` : The time in seconds when this touch event occurred, use for deltas   \n`touch_id` : The id of the touch that this event comes from, a finger id   \n`device_id` : The device id this touch comes from   \n`x` : The x position in the window of the touch event   \n`y` : The x position in the window of the touch event   \n`dx` : The delta x value of the touch event, if the state is `moving`   \n`dy` : The delta y value of the touch event, if the state is `moving`   \n`pressure` : The pressure value of the touch event, where available
+Information about a touch event
+
+`raw` : The raw event from the system, unmodified   
+`state` : The state this touch event is in   
+`timestamp` : The time in seconds when this touch event occurred, use for deltas   
+`touch_id` : The id of the touch that this event comes from, a finger id   
+`device_id` : The device id this touch comes from   
+`x` : The x position in the window of the touch event   
+`y` : The x position in the window of the touch event   
+`dx` : The delta x value of the touch event, if the state is `moving`   
+`dy` : The delta y value of the touch event, if the state is `moving`   
+`pressure` : The pressure value of the touch event, where available
 
 ---
 

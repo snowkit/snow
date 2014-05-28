@@ -5,7 +5,7 @@
 
 
 
-#AssetImageOptions
+<h1>AssetImageOptions</h1>
 
 The options for an `AssetImage` asset. Get assets from the `Assets` class, via `app.assets`
 

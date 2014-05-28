@@ -5,7 +5,7 @@
 
 
 
-#MouseState
+<h1>MouseState</h1>
 
 A typed mouse state
 

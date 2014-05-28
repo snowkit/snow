@@ -5,7 +5,7 @@
 
 
 
-#Howl
+<h1>Howl</h1>
 
 
 
@@ -13,7 +13,7 @@
 
 `class`
 <span class="meta">
-<br/>meta: @:native
+<br/>meta: @:native('window.Howl')
 </span>
 
 

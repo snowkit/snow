@@ -5,9 +5,10 @@
 
 
 
-#IOFile
+<h1>IOFile</h1>
 
-This class is a low level cross platform file access helper, that handles in bundle assets etc. \n    If you want a file, use `Assets` instead, unless really required.
+This class is a low level cross platform file access helper, that handles in bundle assets etc. 
+    If you want a file, use `Assets` instead, unless really required.
 
 ---
 

@@ -5,7 +5,7 @@
 
 
 
-#DisplayBounds
+<h1>DisplayBounds</h1>
 
 The size and location of a display
 

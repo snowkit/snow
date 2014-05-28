@@ -5,7 +5,7 @@
 
 
 
-#Input
+<h1>Input</h1>
 
 Internal input system, accessed via `app.input`
 

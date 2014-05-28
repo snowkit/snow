@@ -5,7 +5,7 @@
 
 
 
-#Windowing
+<h1>Windowing</h1>
 
 A window manager, accessed via `app.window`
 

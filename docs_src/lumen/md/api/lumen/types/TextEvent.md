@@ -5,9 +5,17 @@
 
 
 
-#TextEvent
+<h1>TextEvent</h1>
 
-Information about a text input event\n\n`raw` : The raw event from the system, unmodified   \n`text` : The text that this event has generated   \n`type` : The type of text event   \n`timestamp` : The time in seconds when this touch event occurred, use for deltas   \n`window_id` : The window id this event originated from   \n`start` : The start position, if the `type` is `edit`   \n`length` : The length position, if the `type` is `edit`
+Information about a text input event
+
+`raw` : The raw event from the system, unmodified   
+`text` : The text that this event has generated   
+`type` : The type of text event   
+`timestamp` : The time in seconds when this touch event occurred, use for deltas   
+`window_id` : The window id this event originated from   
+`start` : The start position, if the `type` is `edit`   
+`length` : The length position, if the `type` is `edit`
 
 ---
 

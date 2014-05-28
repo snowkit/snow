@@ -5,7 +5,7 @@
 
 
 
-#TextEventType
+<h1>TextEventType</h1>
 
 A typed text event type
 

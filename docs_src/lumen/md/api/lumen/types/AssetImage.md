@@ -5,7 +5,7 @@
 
 
 
-#AssetImage
+<h1>AssetImage</h1>
 
 An asset that contains image file `data` as an `ImageInfo`. Get assets from the `Assets` class, via `app.assets`
 

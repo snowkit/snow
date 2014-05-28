@@ -5,7 +5,7 @@
 
 
 
-#WindowEventType
+<h1>WindowEventType</h1>
 
 A typed window event
 

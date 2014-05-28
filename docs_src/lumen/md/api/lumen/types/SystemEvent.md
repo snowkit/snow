@@ -5,9 +5,10 @@
 
 
 
-#SystemEvent
+<h1>SystemEvent</h1>
 
-A system event. \nValues below are null unless the event `type` matches. _i.e_ if type is `window`, the `window` value is not null, and so on
+A system event. 
+Values below are null unless the event `type` matches. _i.e_ if type is `window`, the `window` value is not null, and so on
 
 ---
 

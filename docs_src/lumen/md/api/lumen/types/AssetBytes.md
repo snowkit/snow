@@ -5,7 +5,7 @@
 
 
 
-#AssetBytes
+<h1>AssetBytes</h1>
 
 An asset that contains byte `data` as a `ByteArray`. Get assets from the `Assets` class, via `app.assets`
 

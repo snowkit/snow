@@ -28963,7 +28963,7 @@
       "meta": {},
       "name": "lumen.types.SystemEvent",
       "type": "typedef",
-      "doc": "A system event. \\nValues below are null unless the event `type` matches. _i.e_ if type is `window`, the `window` value is not null, and so on",
+      "doc": "A system event. \nValues below are null unless the event `type` matches. _i.e_ if type is `window`, the `window` value is not null, and so on",
       "ispublic": true,
       "members": [
         {
@@ -29975,7 +29975,7 @@
       "meta": {},
       "name": "lumen.types.WindowConfig",
       "type": "typedef",
-      "doc": "Window configuration information for creating windows\\n\\n`? fullscreen` : create in fullscreen   \\n`? resizable` : allow the window to be resized   \\n`? borderless` : create as a borderless window   \\n`? antialiasing` : a value of `2`, `4`, `8` or other valid antialiasing flags   \\n`? stencil_buffer` : create a stencil buffer (not per window)   \\n`? depth_buffer` : create a depth buffer (not per window)   \\n`? vsync` : enable vsync (not per window)   \\n`? fps` : window max fps if any   \\n`? x` : window y at creation   \\n`? y` : window x at creation   \\n`? width` : window height at creation   \\n`? height` : window width at creation   \\n`? title` : window title   \\n`? orientation` : `Mobile specific` - window orientation setting",
+      "doc": "Window configuration information for creating windows\n\n`? fullscreen` : create in fullscreen   \n`? resizable` : allow the window to be resized   \n`? borderless` : create as a borderless window   \n`? antialiasing` : a value of `2`, `4`, `8` or other valid antialiasing flags   \n`? stencil_buffer` : create a stencil buffer (not per window)   \n`? depth_buffer` : create a depth buffer (not per window)   \n`? vsync` : enable vsync (not per window)   \n`? fps` : window max fps if any   \n`? x` : window y at creation   \n`? y` : window x at creation   \n`? width` : window height at creation   \n`? height` : window width at creation   \n`? title` : window title   \n`? orientation` : `Mobile specific` - window orientation setting",
       "ispublic": true,
       "members": [
         {
@@ -30572,7 +30572,7 @@
       "meta": {},
       "name": "lumen.types.LumenConfig",
       "type": "typedef",
-      "doc": "The lumen core configuration information\\n\\n`? host` : the bootstrapped application   \\n`? window_config` : the window config for a default window, if any   \\n`? run_loop` : whether or not the core should run a loop at all   \\n`? runtime_config` : the user specific config read from json at runtime   \\n`? asset_data` : the raw list of assets. use the app.assets from Lumen for access",
+      "doc": "The lumen core configuration information\n\n`? host` : the bootstrapped application   \n`? window_config` : the window config for a default window, if any   \n`? run_loop` : whether or not the core should run a loop at all   \n`? runtime_config` : the user specific config read from json at runtime   \n`? asset_data` : the raw list of assets. use the app.assets from Lumen for access",
       "ispublic": true,
       "members": [
         {
@@ -31993,7 +31993,7 @@
       "meta": {},
       "name": "lumen.types.TextEvent",
       "type": "typedef",
-      "doc": "Information about a text input event\\n\\n`raw` : The raw event from the system, unmodified   \\n`text` : The text that this event has generated   \\n`type` : The type of text event   \\n`timestamp` : The time in seconds when this touch event occurred, use for deltas   \\n`window_id` : The window id this event originated from   \\n`start` : The start position, if the `type` is `edit`   \\n`length` : The length position, if the `type` is `edit`",
+      "doc": "Information about a text input event\n\n`raw` : The raw event from the system, unmodified   \n`text` : The text that this event has generated   \n`type` : The type of text event   \n`timestamp` : The time in seconds when this touch event occurred, use for deltas   \n`window_id` : The window id this event originated from   \n`start` : The start position, if the `type` is `edit`   \n`length` : The length position, if the `type` is `edit`",
       "ispublic": true,
       "members": [
         {
@@ -34078,7 +34078,7 @@
       "name": "lumen.assets.Assets",
       "type": "class",
       "properties": [],
-      "doc": "The asset system class gives you access to fetching and manipulating assets, \\n    caching/uncaching assets, and handles loading files and data cross platform",
+      "doc": "The asset system class gives you access to fetching and manipulating assets, \n    caching/uncaching assets, and handles loading files and data cross platform",
       "ispublic": true,
       "members": [
         {
@@ -36237,7 +36237,7 @@
       "meta": {},
       "name": "lumen.types.AudioDataBlob",
       "type": "typedef",
-      "doc": "Information about an audio portion requested via assets\\n\\n`complete` : True if the file has reached the end in this blob   \\n`data` : The data stored in this blob",
+      "doc": "Information about an audio portion requested via assets\n\n`complete` : True if the file has reached the end in this blob   \n`data` : The data stored in this blob",
       "ispublic": true,
       "members": [
         {
@@ -37603,7 +37603,7 @@
       "name": "lumen.input.Key",
       "type": "class",
       "properties": [],
-      "doc": "The keycode class, with conversion helpers for scancodes. The values below come directly from SDL header include files,\\nbut they aren't specific to SDL so they are used generically",
+      "doc": "The keycode class, with conversion helpers for scancodes. The values below come directly from SDL header include files,\nbut they aren't specific to SDL so they are used generically",
       "ispublic": true,
       "members": [
         {
@@ -43596,7 +43596,7 @@
       "name": "lumen.utils.AbstractClass",
       "type": "class",
       "properties": [],
-      "doc": "Old school abstract class.\\n\tClasses that implements it, and their sub-classes, will be able to declare abstract methods (methods that without body).\\n\tThere will be a check in compile-time such that no public constructor is allowed without all abstract methods implemented.",
+      "doc": "Old school abstract class.\n\tClasses that implements it, and their sub-classes, will be able to declare abstract methods (methods that without body).\n\tThere will be a check in compile-time such that no public constructor is allowed without all abstract methods implemented.",
       "ispublic": true,
       "members": [],
       "methods": [],
@@ -43607,7 +43607,7 @@
       "meta": {},
       "name": "lumen.types.ImageInfo",
       "type": "typedef",
-      "doc": "Information about an image file/data\\n\\n`id` : source asset id   \\n`bpp` : used bits per pixel   \\n`width` : image width   \\n`height` : image height   \\n`bpp_source` : source bits per pixel   \\n`data` : image data",
+      "doc": "Information about an image file/data\n\n`id` : source asset id   \n`bpp` : used bits per pixel   \n`width` : image width   \n`height` : image height   \n`bpp_source` : source bits per pixel   \n`data` : image data",
       "ispublic": true,
       "members": [
         {
@@ -44090,7 +44090,7 @@
       "meta": {},
       "name": "lumen.types.GamepadEvent",
       "type": "typedef",
-      "doc": "Information about a gamepad event\\n\\n`raw` : The raw event from the system, unmodified   \\n`timestamp` : The time in seconds when this touch event occurred, use for deltas   \\n`type` : The button id, if the event `type` is `button`   \\n`state` : The state this event is in   \\n`which` : The id of the gamepad this event comes from   \\n`button` : The button id, if the event `type` is `button`   \\n`axis` : The axis id, if the event `type` is `button`   \\n`value` : The axis value, if the event `type` is `axis`",
+      "doc": "Information about a gamepad event\n\n`raw` : The raw event from the system, unmodified   \n`timestamp` : The time in seconds when this touch event occurred, use for deltas   \n`type` : The button id, if the event `type` is `button`   \n`state` : The state this event is in   \n`which` : The id of the gamepad this event comes from   \n`button` : The button id, if the event `type` is `button`   \n`axis` : The axis id, if the event `type` is `button`   \n`value` : The axis value, if the event `type` is `axis`",
       "ispublic": true,
       "members": [
         {
@@ -45056,7 +45056,7 @@
       "meta": {},
       "name": "lumen.types.AssetInfo",
       "type": "typedef",
-      "doc": "Information for a single asset \\n\\n`id` : the asset id   \\n`path` : the location of the asset   \\n`ext` : the asset extension, if any   \\n`type` : a convenience type indicator",
+      "doc": "Information for a single asset \n\n`id` : the asset id   \n`path` : the location of the asset   \n`ext` : the asset extension, if any   \n`type` : a convenience type indicator",
       "ispublic": true,
       "members": [
         {
@@ -57470,7 +57470,7 @@
       "meta": {},
       "name": "lumen.types.TouchEvent",
       "type": "typedef",
-      "doc": "Information about a touch event\\n\\n`raw` : The raw event from the system, unmodified   \\n`state` : The state this touch event is in   \\n`timestamp` : The time in seconds when this touch event occurred, use for deltas   \\n`touch_id` : The id of the touch that this event comes from, a finger id   \\n`device_id` : The device id this touch comes from   \\n`x` : The x position in the window of the touch event   \\n`y` : The x position in the window of the touch event   \\n`dx` : The delta x value of the touch event, if the state is `moving`   \\n`dy` : The delta y value of the touch event, if the state is `moving`   \\n`pressure` : The pressure value of the touch event, where available",
+      "doc": "Information about a touch event\n\n`raw` : The raw event from the system, unmodified   \n`state` : The state this touch event is in   \n`timestamp` : The time in seconds when this touch event occurred, use for deltas   \n`touch_id` : The id of the touch that this event comes from, a finger id   \n`device_id` : The device id this touch comes from   \n`x` : The x position in the window of the touch event   \n`y` : The x position in the window of the touch event   \n`dx` : The delta x value of the touch event, if the state is `moving`   \n`dy` : The delta y value of the touch event, if the state is `moving`   \n`pressure` : The pressure value of the touch event, where available",
       "ispublic": true,
       "members": [
         {
@@ -58309,7 +58309,7 @@
       "meta": {},
       "name": "lumen.types.KeyEvent",
       "type": "typedef",
-      "doc": "Information about a keyboard event\\n\\n`raw` : The raw event from the system, unmodified   \\n`scancode` : The `lumen.input.Scan` code value for this event   \\n`keycode` : The `lumen.input.Key` code value for this event   \\n`state` : The state of the key in this event   \\n`mod` : The modifier state of this event   \\n`repeat` : If this value is bigger than 0 this is a key repeat event of a key held down   \\n`timestamp` : The time in seconds when this touch event occurred, use for deltas   \\n`window_id` : The window id this event originated from",
+      "doc": "Information about a keyboard event\n\n`raw` : The raw event from the system, unmodified   \n`scancode` : The `lumen.input.Scan` code value for this event   \n`keycode` : The `lumen.input.Key` code value for this event   \n`state` : The state of the key in this event   \n`mod` : The modifier state of this event   \n`repeat` : If this value is bigger than 0 this is a key repeat event of a key held down   \n`timestamp` : The time in seconds when this touch event occurred, use for deltas   \n`window_id` : The window id this event originated from",
       "ispublic": true,
       "members": [
         {
@@ -58456,7 +58456,7 @@
       "meta": {},
       "name": "lumen.types.InputEvent",
       "type": "typedef",
-      "doc": "A system input event \\n   \\n`? type` : The type of input event this was   \\n`? timestamp` : The time in seconds that this event occured, useful for deltas   \\n`? window_id` : The window id from which this event originated   \\n`? event` : The raw platform event data",
+      "doc": "A system input event \n   \n`? type` : The type of input event this was   \n`? timestamp` : The time in seconds that this event occured, useful for deltas   \n`? window_id` : The window id from which this event originated   \n`? event` : The raw platform event data",
       "ispublic": true,
       "members": [
         {
@@ -58951,7 +58951,7 @@
       "name": "lumen.input.Scancodes",
       "type": "class",
       "properties": [],
-      "doc": "The scancode class. The values below come directly from SDL header include files,\\nbut they aren't specific to SDL so they are used generically",
+      "doc": "The scancode class. The values below come directly from SDL header include files,\nbut they aren't specific to SDL so they are used generically",
       "ispublic": true,
       "members": [
         {
@@ -59269,7 +59269,7 @@
             "name": "Int",
             "params": []
           },
-          "doc": "Located at the lower left of the return\\n    key on ISO keyboards and at the right end\\n    of the QWERTY row on ANSI keyboards.\\n    Produces REVERSE SOLIDUS (backslash) and\\n    VERTICAL LINE in a US layout, REVERSE\\n    SOLIDUS and VERTICAL LINE in a UK Mac\\n    layout, NUMBER SIGN and TILDE in a UK\\n    Windows layout, DOLLAR SIGN and POUND SIGN\\n    in a Swiss German layout, NUMBER SIGN and\\n    APOSTROPHE in a German layout, GRAVE\\n    ACCENT and POUND SIGN in a French Mac\\n    layout, and ASTERISK and MICRO SIGN in a\\n    French Windows layout.",
+          "doc": "Located at the lower left of the return\n    key on ISO keyboards and at the right end\n    of the QWERTY row on ANSI keyboards.\n    Produces REVERSE SOLIDUS (backslash) and\n    VERTICAL LINE in a US layout, REVERSE\n    SOLIDUS and VERTICAL LINE in a UK Mac\n    layout, NUMBER SIGN and TILDE in a UK\n    Windows layout, DOLLAR SIGN and POUND SIGN\n    in a Swiss German layout, NUMBER SIGN and\n    APOSTROPHE in a German layout, GRAVE\n    ACCENT and POUND SIGN in a French Mac\n    layout, and ASTERISK and MICRO SIGN in a\n    French Windows layout.",
           "ispublic": true,
           "inherit_source": "",
           "signature": "BACKSLASH : Int",
@@ -60136,7 +60136,7 @@
             "name": "Int",
             "params": []
           },
-          "doc": "Located in the top left corner (on both ANSI\\n    and ISO keyboards). Produces GRAVE ACCENT and\\n    TILDE in a US Windows layout and in US and UK\\n    Mac layouts on ANSI keyboards, GRAVE ACCENT\\n    and NOT SIGN in a UK Windows layout, SECTION\\n    SIGN and PLUS-MINUS SIGN in US and UK Mac\\n    layouts on ISO keyboards, SECTION SIGN and\\n    DEGREE SIGN in a Swiss German layout (Mac:\\n    only on ISO keyboards); CIRCUMFLEX ACCENT and\\n    DEGREE SIGN in a German layout (Mac: only on\\n    ISO keyboards), SUPERSCRIPT TWO and TILDE in a\\n    French Windows layout, COMMERCIAL AT and\\n    NUMBER SIGN in a French Mac layout on ISO\\n    keyboards, and LESS-THAN SIGN and GREATER-THAN\\n    SIGN in a Swiss German, German, or French Mac\\n    layout on ANSI keyboards.",
+          "doc": "Located in the top left corner (on both ANSI\n    and ISO keyboards). Produces GRAVE ACCENT and\n    TILDE in a US Windows layout and in US and UK\n    Mac layouts on ANSI keyboards, GRAVE ACCENT\n    and NOT SIGN in a UK Windows layout, SECTION\n    SIGN and PLUS-MINUS SIGN in US and UK Mac\n    layouts on ISO keyboards, SECTION SIGN and\n    DEGREE SIGN in a Swiss German layout (Mac:\n    only on ISO keyboards); CIRCUMFLEX ACCENT and\n    DEGREE SIGN in a German layout (Mac: only on\n    ISO keyboards), SUPERSCRIPT TWO and TILDE in a\n    French Windows layout, COMMERCIAL AT and\n    NUMBER SIGN in a French Mac layout on ISO\n    keyboards, and LESS-THAN SIGN and GREATER-THAN\n    SIGN in a Swiss German, German, or French Mac\n    layout on ANSI keyboards.",
           "ispublic": true,
           "inherit_source": "",
           "signature": "GRAVE : Int",
@@ -62380,7 +62380,7 @@
             "name": "Int",
             "params": []
           },
-          "doc": "Not sure if this is really not covered\\n    by any of the above, but since there's a\\n    special KMOD_MODE for it I'm adding it here",
+          "doc": "Not sure if this is really not covered\n    by any of the above, but since there's a\n    special KMOD_MODE for it I'm adding it here",
           "ispublic": true,
           "inherit_source": "",
           "signature": "MODE : Int",
@@ -62414,7 +62414,7 @@
             "name": "Int",
             "params": []
           },
-          "doc": "This is the additional key that ISO\\n    keyboards have over ANSI ones,\\n    located between left shift and Y.\\n    Produces GRAVE ACCENT and TILDE in a\\n    US or UK Mac layout, REVERSE SOLIDUS\\n    (backslash) and VERTICAL LINE in a\\n    US or UK Windows layout, and\\n    LESS-THAN SIGN and GREATER-THAN SIGN\\n    in a Swiss German, German, or French\\n    layout.",
+          "doc": "This is the additional key that ISO\n    keyboards have over ANSI ones,\n    located between left shift and Y.\n    Produces GRAVE ACCENT and TILDE in a\n    US or UK Mac layout, REVERSE SOLIDUS\n    (backslash) and VERTICAL LINE in a\n    US or UK Windows layout, and\n    LESS-THAN SIGN and GREATER-THAN SIGN\n    in a Swiss German, German, or French\n    layout.",
           "ispublic": true,
           "inherit_source": "",
           "signature": "NONUSBACKSLASH : Int",
@@ -62431,7 +62431,7 @@
             "name": "Int",
             "params": []
           },
-          "doc": "ISO USB keyboards actually use this code\\n    instead of 49 for the same key, but all\\n    OSes I've seen treat the two codes\\n    identically. So, as an implementor, unless\\n    your keyboard generates both of those\\n    codes and your OS treats them differently,\\n    you should generate public static var BACKSLASH\\n    instead of this code. As a user, you\\n    should not rely on this code because SDL\\n    will never generate it with most (all?)\\n    keyboards.",
+          "doc": "ISO USB keyboards actually use this code\n    instead of 49 for the same key, but all\n    OSes I've seen treat the two codes\n    identically. So, as an implementor, unless\n    your keyboard generates both of those\n    codes and your OS treats them differently,\n    you should generate public static var BACKSLASH\n    instead of this code. As a user, you\n    should not rely on this code because SDL\n    will never generate it with most (all?)\n    keyboards.",
           "ispublic": true,
           "inherit_source": "",
           "signature": "NONUSHASH : Int",
@@ -62584,7 +62584,7 @@
             "name": "Int",
             "params": []
           },
-          "doc": "The USB document says this is a status flag,\\n    not a physical key - but some Mac keyboards\\n    do have a power key.",
+          "doc": "The USB document says this is a status flag,\n    not a physical key - but some Mac keyboards\n    do have a power key.",
           "ispublic": true,
           "inherit_source": "",
           "signature": "POWER : Int",
@@ -65494,7 +65494,7 @@
       "name": "lumen.AppFixedTimestep",
       "type": "class",
       "properties": [],
-      "doc": "Read the {App Guide} for full info, and for even more information see : http://gafferongames.com/game-physics/fix-your-timestep/\\n    this stores and calculates a fixed game update loop, and rendering interpolation is required\\n    for smooth updates between frames.",
+      "doc": "Read the {App Guide} for full info, and for even more information see : http://gafferongames.com/game-physics/fix-your-timestep/\n    this stores and calculates a fixed game update loop, and rendering interpolation is required\n    for smooth updates between frames.",
       "ispublic": true,
       "members": [
         {
@@ -66253,7 +66253,7 @@
       "name": "lumen.io.IOFile",
       "type": "class",
       "properties": [],
-      "doc": "This class is a low level cross platform file access helper, that handles in bundle assets etc. \\n    If you want a file, use `Assets` instead, unless really required.",
+      "doc": "This class is a low level cross platform file access helper, that handles in bundle assets etc. \n    If you want a file, use `Assets` instead, unless really required.",
       "ispublic": true,
       "members": [
         {
@@ -67032,7 +67032,7 @@
       "name": "lumen.input.Scan",
       "type": "class",
       "properties": [],
-      "doc": "The scancode class. The values below come directly from SDL header include files,\\nbut they aren't specific to SDL so they are used generically",
+      "doc": "The scancode class. The values below come directly from SDL header include files,\nbut they aren't specific to SDL so they are used generically",
       "ispublic": true,
       "members": [
         {
@@ -67350,7 +67350,7 @@
             "name": "Int",
             "params": []
           },
-          "doc": "Located at the lower left of the return\\n    key on ISO keyboards and at the right end\\n    of the QWERTY row on ANSI keyboards.\\n    Produces REVERSE SOLIDUS (backslash) and\\n    VERTICAL LINE in a US layout, REVERSE\\n    SOLIDUS and VERTICAL LINE in a UK Mac\\n    layout, NUMBER SIGN and TILDE in a UK\\n    Windows layout, DOLLAR SIGN and POUND SIGN\\n    in a Swiss German layout, NUMBER SIGN and\\n    APOSTROPHE in a German layout, GRAVE\\n    ACCENT and POUND SIGN in a French Mac\\n    layout, and ASTERISK and MICRO SIGN in a\\n    French Windows layout.",
+          "doc": "Located at the lower left of the return\n    key on ISO keyboards and at the right end\n    of the QWERTY row on ANSI keyboards.\n    Produces REVERSE SOLIDUS (backslash) and\n    VERTICAL LINE in a US layout, REVERSE\n    SOLIDUS and VERTICAL LINE in a UK Mac\n    layout, NUMBER SIGN and TILDE in a UK\n    Windows layout, DOLLAR SIGN and POUND SIGN\n    in a Swiss German layout, NUMBER SIGN and\n    APOSTROPHE in a German layout, GRAVE\n    ACCENT and POUND SIGN in a French Mac\n    layout, and ASTERISK and MICRO SIGN in a\n    French Windows layout.",
           "ispublic": true,
           "inherit_source": "",
           "signature": "BACKSLASH : Int",
@@ -68217,7 +68217,7 @@
             "name": "Int",
             "params": []
           },
-          "doc": "Located in the top left corner (on both ANSI\\n    and ISO keyboards). Produces GRAVE ACCENT and\\n    TILDE in a US Windows layout and in US and UK\\n    Mac layouts on ANSI keyboards, GRAVE ACCENT\\n    and NOT SIGN in a UK Windows layout, SECTION\\n    SIGN and PLUS-MINUS SIGN in US and UK Mac\\n    layouts on ISO keyboards, SECTION SIGN and\\n    DEGREE SIGN in a Swiss German layout (Mac:\\n    only on ISO keyboards); CIRCUMFLEX ACCENT and\\n    DEGREE SIGN in a German layout (Mac: only on\\n    ISO keyboards), SUPERSCRIPT TWO and TILDE in a\\n    French Windows layout, COMMERCIAL AT and\\n    NUMBER SIGN in a French Mac layout on ISO\\n    keyboards, and LESS-THAN SIGN and GREATER-THAN\\n    SIGN in a Swiss German, German, or French Mac\\n    layout on ANSI keyboards.",
+          "doc": "Located in the top left corner (on both ANSI\n    and ISO keyboards). Produces GRAVE ACCENT and\n    TILDE in a US Windows layout and in US and UK\n    Mac layouts on ANSI keyboards, GRAVE ACCENT\n    and NOT SIGN in a UK Windows layout, SECTION\n    SIGN and PLUS-MINUS SIGN in US and UK Mac\n    layouts on ISO keyboards, SECTION SIGN and\n    DEGREE SIGN in a Swiss German layout (Mac:\n    only on ISO keyboards); CIRCUMFLEX ACCENT and\n    DEGREE SIGN in a German layout (Mac: only on\n    ISO keyboards), SUPERSCRIPT TWO and TILDE in a\n    French Windows layout, COMMERCIAL AT and\n    NUMBER SIGN in a French Mac layout on ISO\n    keyboards, and LESS-THAN SIGN and GREATER-THAN\n    SIGN in a Swiss German, German, or French Mac\n    layout on ANSI keyboards.",
           "ispublic": true,
           "inherit_source": "",
           "signature": "GRAVE : Int",
@@ -70461,7 +70461,7 @@
             "name": "Int",
             "params": []
           },
-          "doc": "Not sure if this is really not covered\\n    by any of the above, but since there's a\\n    special KMOD_MODE for it I'm adding it here",
+          "doc": "Not sure if this is really not covered\n    by any of the above, but since there's a\n    special KMOD_MODE for it I'm adding it here",
           "ispublic": true,
           "inherit_source": "",
           "signature": "MODE : Int",
@@ -70495,7 +70495,7 @@
             "name": "Int",
             "params": []
           },
-          "doc": "This is the additional key that ISO\\n    keyboards have over ANSI ones,\\n    located between left shift and Y.\\n    Produces GRAVE ACCENT and TILDE in a\\n    US or UK Mac layout, REVERSE SOLIDUS\\n    (backslash) and VERTICAL LINE in a\\n    US or UK Windows layout, and\\n    LESS-THAN SIGN and GREATER-THAN SIGN\\n    in a Swiss German, German, or French\\n    layout.",
+          "doc": "This is the additional key that ISO\n    keyboards have over ANSI ones,\n    located between left shift and Y.\n    Produces GRAVE ACCENT and TILDE in a\n    US or UK Mac layout, REVERSE SOLIDUS\n    (backslash) and VERTICAL LINE in a\n    US or UK Windows layout, and\n    LESS-THAN SIGN and GREATER-THAN SIGN\n    in a Swiss German, German, or French\n    layout.",
           "ispublic": true,
           "inherit_source": "",
           "signature": "NONUSBACKSLASH : Int",
@@ -70512,7 +70512,7 @@
             "name": "Int",
             "params": []
           },
-          "doc": "ISO USB keyboards actually use this code\\n    instead of 49 for the same key, but all\\n    OSes I've seen treat the two codes\\n    identically. So, as an implementor, unless\\n    your keyboard generates both of those\\n    codes and your OS treats them differently,\\n    you should generate public static var BACKSLASH\\n    instead of this code. As a user, you\\n    should not rely on this code because SDL\\n    will never generate it with most (all?)\\n    keyboards.",
+          "doc": "ISO USB keyboards actually use this code\n    instead of 49 for the same key, but all\n    OSes I've seen treat the two codes\n    identically. So, as an implementor, unless\n    your keyboard generates both of those\n    codes and your OS treats them differently,\n    you should generate public static var BACKSLASH\n    instead of this code. As a user, you\n    should not rely on this code because SDL\n    will never generate it with most (all?)\n    keyboards.",
           "ispublic": true,
           "inherit_source": "",
           "signature": "NONUSHASH : Int",
@@ -70665,7 +70665,7 @@
             "name": "Int",
             "params": []
           },
-          "doc": "The USB document says this is a status flag,\\n    not a physical key - but some Mac keyboards\\n    do have a power key.",
+          "doc": "The USB document says this is a status flag,\n    not a physical key - but some Mac keyboards\n    do have a power key.",
           "ispublic": true,
           "inherit_source": "",
           "signature": "POWER : Int",
@@ -94127,7 +94127,7 @@
       "name": "lumen.io.IO",
       "type": "class",
       "properties": [],
-      "doc": "This class is a low level cross platform IO helper. \\n    If you want file access, use `Assets` instead, unless really required.",
+      "doc": "This class is a low level cross platform IO helper. \n    If you want file access, use `Assets` instead, unless really required.",
       "ispublic": true,
       "members": [
         {
@@ -94209,7 +94209,7 @@
       "meta": {},
       "name": "lumen.types.MouseEvent",
       "type": "typedef",
-      "doc": "Information about a mouse event \\n\\n`raw` : The raw event from the system, unmodified   \\n`timestamp` : The time in seconds when this touch event occurred, use for deltas   \\n`window_id` : The window id this event originated from    \\n`which` : Which mouse this event originated from (usually 0)   \\n`state` : The state this event is in   \\n`button` : The button id, if the event `state` is `down` or `up`   \\n`x` : The x position in the window of the mouse event   \\n`y` : The y position in the window of the mouse event   \\n`xrel` : The relative x position if `state` is `move` or a window has grabbed state   \\n`yrel` : The relative y position if `state` is `move` or a window has grabbed state",
+      "doc": "Information about a mouse event \n\n`raw` : The raw event from the system, unmodified   \n`timestamp` : The time in seconds when this touch event occurred, use for deltas   \n`window_id` : The window id this event originated from    \n`which` : Which mouse this event originated from (usually 0)   \n`state` : The state this event is in   \n`button` : The button id, if the event `state` is `down` or `up`   \n`x` : The x position in the window of the mouse event   \n`y` : The y position in the window of the mouse event   \n`xrel` : The relative x position if `state` is `move` or a window has grabbed state   \n`yrel` : The relative y position if `state` is `move` or a window has grabbed state",
       "ispublic": true,
       "members": [
         {
@@ -97454,7 +97454,7 @@
       "meta": {},
       "name": "lumen.types.AudioInfo",
       "type": "typedef",
-      "doc": "Information about an audio file/data\\n\\n`id` : file source   \\n`format` : format   \\n`channels` : number of channels   \\n`rate` : hz rate    \\n`bitrate` : sound bitrate   \\n`bits_per_sample` : bits per sample, 8 / 16   \\n`data` : sound raw data,   \\n`length` : the file length in bytes   \\n`length_pcm` : the pcm uncompressed raw length in bytes   \\n`handle` : the native audio handle for later manipulation",
+      "doc": "Information about an audio file/data\n\n`id` : file source   \n`format` : format   \n`channels` : number of channels   \n`rate` : hz rate    \n`bitrate` : sound bitrate   \n`bits_per_sample` : bits per sample, 8 / 16   \n`data` : sound raw data,   \n`length` : the file length in bytes   \n`length_pcm` : the pcm uncompressed raw length in bytes   \n`handle` : the native audio handle for later manipulation",
       "ispublic": true,
       "members": [
         {
@@ -105105,7 +105105,7 @@
       "name": "lumen.input.Keycodes",
       "type": "class",
       "properties": [],
-      "doc": "The keycode class, with conversion helpers for scancodes. The values below come directly from SDL header include files,\\nbut they aren't specific to SDL so they are used generically",
+      "doc": "The keycode class, with conversion helpers for scancodes. The values below come directly from SDL header include files,\nbut they aren't specific to SDL so they are used generically",
       "ispublic": true,
       "members": [
         {
@@ -109991,7 +109991,7 @@
       "name": "lumen.CoreBinding",
       "type": "class",
       "properties": [],
-      "doc": "Implemented in the platform specific concrete versions of this class. \\n\\nThis uses a macro to allow this class to pretend to be abstract, and complain via compiler errors if the specific functions are missing.",
+      "doc": "Implemented in the platform specific concrete versions of this class. \n\nThis uses a macro to allow this class to pretend to be abstract, and complain via compiler errors if the specific functions are missing.",
       "ispublic": true,
       "members": [
         {
@@ -110754,7 +110754,7 @@
       "name": "lumen.window.WindowSystemBinding",
       "type": "class",
       "properties": [],
-      "doc": "Internal class handled by `Windowing`, a less concrete implementation of the platform window bindings. \\n    WindowBinding is bound to lumen.platform.native.WindowSystem, lumen.platform.native.WindowSystem etc",
+      "doc": "Internal class handled by `Windowing`, a less concrete implementation of the platform window bindings. \n    WindowBinding is bound to lumen.platform.native.WindowSystem, lumen.platform.native.WindowSystem etc",
       "ispublic": true,
       "members": [
         {
@@ -111145,7 +111145,7 @@
             "name": "Void",
             "params": []
           },
-          "doc": "Create a window with config, calls on_created when complete passing the handle, the ID, \\n            and the actual config that was used since the requested config could fail",
+          "doc": "Create a window with config, calls on_created when complete passing the handle, the ID, \n            and the actual config that was used since the requested config could fail",
           "ispublic": true,
           "inherit_source": "",
           "signature": "window_create(config:lumen.types.WindowConfig, on_created:lumen.types.WindowHandle->Int->lumen.types.WindowConfig->Void) : Void",
@@ -112135,7 +112135,7 @@
       "meta": {},
       "name": "lumen.types.WindowEvent",
       "type": "typedef",
-      "doc": "A system window event \\n\\n`? type` : The type of window event this was   \\n`? timestamp` : The time in seconds that this event occured, useful for deltas   \\n`? window_id` : The window id from which this event originated   \\n`? event` : The raw platform event data",
+      "doc": "A system window event \n\n`? type` : The type of window event this was   \n`? timestamp` : The time in seconds that this event occured, useful for deltas   \n`? window_id` : The window id from which this event originated   \n`? event` : The raw platform event data",
       "ispublic": true,
       "members": [
         {
@@ -113272,7 +113272,7 @@
       "meta": {},
       "name": "lumen.types.ModState",
       "type": "typedef",
-      "doc": "Input modifier state \\n\\n`none` : no modifiers are down   \\n`lshift` : left shift key is down   \\n`rshift` : right shift key is down   \\n`lctrl` : left ctrl key is down   \\n`rctrl` : right ctrl key is down   \\n`lalt` : left alt/option key is down   \\n`ralt` : right alt/option key is down   \\n`lmeta` : left windows/command key is down   \\n`rmeta` : right windows/command key is down   \\n`num` : numlock is enabled   \\n`caps` : capslock is enabled   \\n`mode` : mode key is down   \\n`ctrl` : left or right ctrl key is down   \\n`shift` : left or right shift key is down   \\n`alt` : left or right alt/option key is down   \\n`meta` : left or right windows/command key is down",
+      "doc": "Input modifier state \n\n`none` : no modifiers are down   \n`lshift` : left shift key is down   \n`rshift` : right shift key is down   \n`lctrl` : left ctrl key is down   \n`rctrl` : right ctrl key is down   \n`lalt` : left alt/option key is down   \n`ralt` : right alt/option key is down   \n`lmeta` : left windows/command key is down   \n`rmeta` : right windows/command key is down   \n`num` : numlock is enabled   \n`caps` : capslock is enabled   \n`mode` : mode key is down   \n`ctrl` : left or right ctrl key is down   \n`shift` : left or right shift key is down   \n`alt` : left or right alt/option key is down   \n`meta` : left or right windows/command key is down",
       "ispublic": true,
       "members": [
         {

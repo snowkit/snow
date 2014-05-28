@@ -5,7 +5,7 @@
 
 
 
-#AudioFormatType
+<h1>AudioFormatType</h1>
 
 The type of audio format
 

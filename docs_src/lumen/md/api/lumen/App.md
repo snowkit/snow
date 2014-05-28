@@ -5,7 +5,7 @@
 
 
 
-#App
+<h1>App</h1>
 
 The default type of application, with variable delta time, or fixed delta time, or a fixed frame rate. See the {App Guide} for complete details.
 

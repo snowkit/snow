@@ -5,9 +5,18 @@
 
 
 
-#GamepadEvent
+<h1>GamepadEvent</h1>
 
-Information about a gamepad event\n\n`raw` : The raw event from the system, unmodified   \n`timestamp` : The time in seconds when this touch event occurred, use for deltas   \n`type` : The button id, if the event `type` is `button`   \n`state` : The state this event is in   \n`which` : The id of the gamepad this event comes from   \n`button` : The button id, if the event `type` is `button`   \n`axis` : The axis id, if the event `type` is `button`   \n`value` : The axis value, if the event `type` is `axis`
+Information about a gamepad event
+
+`raw` : The raw event from the system, unmodified   
+`timestamp` : The time in seconds when this touch event occurred, use for deltas   
+`type` : The button id, if the event `type` is `button`   
+`state` : The state this event is in   
+`which` : The id of the gamepad this event comes from   
+`button` : The button id, if the event `type` is `button`   
+`axis` : The axis id, if the event `type` is `button`   
+`value` : The axis value, if the event `type` is `axis`
 
 ---
 
