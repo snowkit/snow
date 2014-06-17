@@ -5,21 +5,22 @@ import lumen.types.Types;
 import lumen.input.Input;
 
 import lumen.utils.AbstractClass;
+import lumen.window.Window;
 
 
 #if lumen_html5
-    
+
     @:noCompletion typedef InputSystem = lumen.platform.html5.input.InputSystem;
 
-#else 
+#else
 
     #if lumen_input_sdl
         @:noCompletion typedef InputSystem = lumen.platform.native.input.sdl.InputSystem;
     #else
         @:noCompletion typedef InputSystem = lumen.platform.native.input.InputSystem;
-    #end 
+    #end
 
-#end 
+#end
 
 /** Internal input system, accessed through `lumen.Input`, not directly */
 @:noCompletion class InputSystemBinding implements AbstractClass {
@@ -41,5 +42,9 @@ import lumen.utils.AbstractClass;
     public function gamepad_add(id:Int);
         /** Close a gamepad with this id */
     public function gamepad_remove(id:Int);
+        /** Listen for input events on the given window */
+    @:noCompletion public function listen( window:Window );
+        /** Stop listening for input events on the given window */
+    @:noCompletion public function unlisten( window:Window );
 
 } //InputSystemBinding

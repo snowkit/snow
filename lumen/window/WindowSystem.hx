@@ -8,22 +8,22 @@ import lumen.window.Windowing;
 import lumen.utils.AbstractClass;
 
 #if lumen_html5
-    
+
     @:noCompletion typedef WindowSystem = lumen.platform.html5.window.WindowSystem;
 
-#else 
+#else
 
     #if lumen_window_sdl
         @:noCompletion typedef WindowSystem = lumen.platform.native.window.sdl.WindowSystem;
     #else
         @:noCompletion typedef WindowSystem = lumen.platform.native.window.WindowSystem;
-    #end 
+    #end
 
-#end 
+#end
 
 
-/** 
-    Internal class handled by `Windowing`, a less concrete implementation of the platform window bindings. 
+/**
+    Internal class handled by `Windowing`, a less concrete implementation of the platform window bindings.
     WindowBinding is bound to lumen.platform.native.WindowSystem, lumen.platform.native.WindowSystem etc
 */
 @:noCompletion class WindowSystemBinding implements AbstractClass {
@@ -37,8 +37,12 @@ import lumen.utils.AbstractClass;
     public function update();
         /** Called when the window manager destroys this system */
     public function destroy();
+        /** Called to set up any listeners on the given window  */
+    public function listen( window:Window );
+        /** Called to remove any listeners on the given window  */
+    public function unlisten( window:Window );
 
-        /** Create a window with config, calls on_created when complete passing the handle, the ID, 
+        /** Create a window with config, calls on_created when complete passing the handle, the ID,
             and the actual config that was used since the requested config could fail */
     public function window_create( config:WindowConfig, on_created: WindowHandle->Int->WindowConfig->Void );
         /** Close a given window handle */

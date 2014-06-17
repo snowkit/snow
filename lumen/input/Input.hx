@@ -2,6 +2,7 @@ package lumen.input;
 
 import lumen.types.Types;
 import lumen.input.InputSystem;
+import lumen.window.Window;
 
 
     //API usage clarity
@@ -82,7 +83,7 @@ class Input {
 
         /** manually dispatch a text event through the system, delivered to the app handlers, internal and external */
     public function dispatch_text_event( _event:TextEvent ) {
-            
+
         lib.host.ontextinput(_event);
 
     } //dispatch_text_event
@@ -128,8 +129,8 @@ class Input {
                 lib.host.ongamepadbuttonup(_event);
             }
 
-        } 
-        else if( _event.type == GamepadEventType.device_added || 
+        }
+        else if( _event.type == GamepadEventType.device_added ||
                  _event.type == GamepadEventType.device_removed ||
                  _event.type == GamepadEventType.device_remapped
         ) {
@@ -144,9 +145,21 @@ class Input {
         return system.mod_state_from_event( event );
 
     } //mod_state_from_event
-    
+
 //Interal API
 
+
+    @:noCompletion public function listen( _window:Window ) {
+
+        system.listen(_window);
+
+    } //listen
+
+    @:noCompletion public function unlisten( _window:Window ) {
+
+        system.unlisten(_window);
+
+    } //unlisten
 
     @:noCompletion public function on_event( _event:SystemEvent ) {
 
@@ -157,13 +170,13 @@ class Input {
     } //on_event
 
     @:noCompletion public function on_gamepad_added( _event:Dynamic ) {
-        
+
         system.gamepad_add( _event.which );
 
     } //on_gamepad_added
-    
+
     @:noCompletion public function on_gamepad_removed( _event:Dynamic ) {
-        
+
         system.gamepad_remove( _event.which );
 
     } //on_gamepad_removed
@@ -177,7 +190,7 @@ class Input {
             //then flag it so that it may be
         for(_code in key_code_pressed.keys()){
 
-            var _flag : Bool = key_code_pressed.get(_code);            
+            var _flag : Bool = key_code_pressed.get(_code);
             if(_flag){
                 key_code_pressed.remove(_code);
             } else {
@@ -191,7 +204,7 @@ class Input {
             //then flag it so that it may be
         for(_code in key_code_released.keys()){
 
-            var _flag : Bool = key_code_released.get(_code);            
+            var _flag : Bool = key_code_released.get(_code);
             if(_flag){
                 key_code_released.remove(_code);
             } else {

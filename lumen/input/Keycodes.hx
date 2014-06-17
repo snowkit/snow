@@ -351,7 +351,7 @@ but they aren't specific to SDL so they are used generically */
     will never generate it with most (all?)
     keyboards.
 */
-    public static var NONUSHASH : Int          = 50; 
+    public static var NONUSHASH : Int          = 50;
     public static var SEMICOLON : Int          = 51;
     public static var APOSTROPHE : Int         = 52;
 
@@ -371,8 +371,8 @@ but they aren't specific to SDL so they are used generically */
     keyboards, and LESS-THAN SIGN and GREATER-THAN
     SIGN in a Swiss German, German, or French Mac
     layout on ANSI keyboards.
-*/    
-    public static var GRAVE : Int              = 53; 
+*/
+    public static var GRAVE : Int              = 53;
     public static var COMMA : Int              = 54;
     public static var PERIOD : Int             = 55;
     public static var SLASH : Int              = 56;
@@ -397,7 +397,7 @@ but they aren't specific to SDL so they are used generically */
     public static var PAUSE : Int              = 72;
 
 /** insert on PC, help on some Mac keyboards (but does send code 73, not 117) */
-    public static var INSERT : Int             = 73; 
+    public static var INSERT : Int             = 73;
     public static var HOME : Int               = 74;
     public static var PAGEUP : Int             = 75;
     public static var DELETE : Int             = 76;
@@ -409,7 +409,7 @@ but they aren't specific to SDL so they are used generically */
     public static var UP : Int                 = 82;
 
 /** num lock on PC, clear on Mac keyboards */
-    public static var NUMLOCKCLEAR : Int       = 83; 
+    public static var NUMLOCKCLEAR : Int       = 83;
     public static var KP_DIVIDE : Int          = 84;
     public static var KP_MULTIPLY : Int        = 85;
     public static var KP_MINUS : Int           = 86;
@@ -438,15 +438,15 @@ but they aren't specific to SDL so they are used generically */
     LESS-THAN SIGN and GREATER-THAN SIGN
     in a Swiss German, German, or French
     layout. */
-    public static var NONUSBACKSLASH : Int     = 100; 
+    public static var NONUSBACKSLASH : Int     = 100;
 
 /** windows contextual menu, compose */
-    public static var APPLICATION : Int        = 101; 
+    public static var APPLICATION : Int        = 101;
 
 /** The USB document says this is a status flag,
     not a physical key - but some Mac keyboards
     do have a power key. */
-    public static var POWER : Int              = 102; 
+    public static var POWER : Int              = 102;
     public static var KP_EQUALS : Int          = 103;
     public static var F13 : Int                = 104;
     public static var F14 : Int                = 105;
@@ -466,7 +466,7 @@ but they aren't specific to SDL so they are used generically */
     public static var SELECT : Int             = 119;
     public static var STOP : Int               = 120;
 
-/** redo */    
+/** redo */
     public static var AGAIN : Int              = 121;
     public static var UNDO : Int               = 122;
     public static var CUT : Int                = 123;
@@ -477,10 +477,10 @@ but they aren't specific to SDL so they are used generically */
     public static var VOLUMEUP : Int           = 128;
     public static var VOLUMEDOWN : Int         = 129;
 
-// not sure whether there's a reason to enable these 
-//     public static var LOCKINGCAPSLOCK = 130,  
-//     public static var LOCKINGNUMLOCK = 131, 
-//     public static var LOCKINGSCROLLLOCK = 132, 
+// not sure whether there's a reason to enable these
+//     public static var LOCKINGCAPSLOCK = 130,
+//     public static var LOCKINGNUMLOCK = 131,
+//     public static var LOCKINGSCROLLLOCK = 132,
 
     public static var KP_COMMA : Int           = 133;
     public static var KP_EQUALSAS400 : Int     = 134;
@@ -489,34 +489,34 @@ but they aren't specific to SDL so they are used generically */
     public static var INTERNATIONAL1 : Int     = 135;
     public static var INTERNATIONAL2 : Int     = 136;
 
-/** Yen */    
-    public static var INTERNATIONAL3 : Int     = 137; 
+/** Yen */
+    public static var INTERNATIONAL3 : Int     = 137;
     public static var INTERNATIONAL4 : Int     = 138;
     public static var INTERNATIONAL5 : Int     = 139;
     public static var INTERNATIONAL6 : Int     = 140;
     public static var INTERNATIONAL7 : Int     = 141;
     public static var INTERNATIONAL8 : Int     = 142;
     public static var INTERNATIONAL9 : Int     = 143;
-/** Hangul/English toggle */    
-    public static var LANG1 : Int              = 144; 
-/** Hanja conversion */    
-    public static var LANG2 : Int              = 145; 
-/** Katakana */    
-    public static var LANG3 : Int              = 146; 
-/** Hiragana */    
-    public static var LANG4 : Int              = 147; 
-/** Zenkaku/Hankaku */    
-    public static var LANG5 : Int              = 148; 
-/** reserved */    
-    public static var LANG6 : Int              = 149; 
-/** reserved */    
-    public static var LANG7 : Int              = 150; 
-/** reserved */    
-    public static var LANG8 : Int              = 151; 
-/** reserved */    
-    public static var LANG9 : Int              = 152; 
+/** Hangul/English toggle */
+    public static var LANG1 : Int              = 144;
+/** Hanja conversion */
+    public static var LANG2 : Int              = 145;
+/** Katakana */
+    public static var LANG3 : Int              = 146;
+/** Hiragana */
+    public static var LANG4 : Int              = 147;
+/** Zenkaku/Hankaku */
+    public static var LANG5 : Int              = 148;
+/** reserved */
+    public static var LANG6 : Int              = 149;
+/** reserved */
+    public static var LANG7 : Int              = 150;
+/** reserved */
+    public static var LANG8 : Int              = 151;
+/** reserved */
+    public static var LANG9 : Int              = 152;
 /** Erase-Eaze */
-    public static var ALTERASE : Int           = 153; 
+    public static var ALTERASE : Int           = 153;
     public static var SYSREQ : Int             = 154;
     public static var CANCEL : Int             = 155;
     public static var CLEAR : Int              = 156;
@@ -578,16 +578,16 @@ but they aren't specific to SDL so they are used generically */
 
     public static var LCTRL : Int              = 224;
     public static var LSHIFT : Int             = 225;
-/** alt, option */    
-    public static var LALT : Int               = 226; 
-/** windows, command (apple), meta */    
-    public static var LMETA : Int              = 227; 
+/** alt, option */
+    public static var LALT : Int               = 226;
+/** windows, command (apple), meta */
+    public static var LMETA : Int              = 227;
     public static var RCTRL : Int              = 228;
     public static var RSHIFT : Int             = 229;
-/** alt gr, option */    
-    public static var RALT : Int               = 230; 
-/** windows, command (apple), meta */    
-    public static var RMETA : Int              = 231; 
+/** alt gr, option */
+    public static var RALT : Int               = 230;
+/** windows, command (apple), meta */
+    public static var RMETA : Int              = 231;
 
 /** Not sure if this is really not covered
     by any of the above, but since there's a
@@ -595,7 +595,7 @@ but they aren't specific to SDL so they are used generically */
     public static var MODE : Int               = 257;
 
 
-    // 
+    //
     //    Usage page 0x0C
     //    These values are mapped from usage page 0x0C (USB consumer page).
 
@@ -623,8 +623,8 @@ but they aren't specific to SDL so they are used generically */
     public static var BRIGHTNESSDOWN : Int     = 275;
     public static var BRIGHTNESSUP : Int       = 276;
 
-/** display mirroring/dual display switch, video mode switch */    
-    public static var DISPLAYSWITCH : Int      = 277; 
+/** display mirroring/dual display switch, video mode switch */
+    public static var DISPLAYSWITCH : Int      = 277;
 
     public static var KBDILLUMTOGGLE : Int     = 278;
     public static var KBDILLUMDOWN : Int       = 279;

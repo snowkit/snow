@@ -13,6 +13,8 @@ class Windowing {
 
         /** The list of windows in this manager */
     public var window_list : Map<Int, Window>;
+        /** The list of window handles, pointing to id's in the `window_list` */
+    public var window_handles : Map<WindowHandle, Int>;
         /** The number of windows in this manager */
     public var window_count : Int = 0;
         /** The concrete implementation of the window system */
@@ -22,6 +24,7 @@ class Windowing {
 
         lib = _lib;
         window_list = new Map();
+        window_handles = new Map();
 
         system = new WindowSystem(this, lib);
 
@@ -30,18 +33,46 @@ class Windowing {
     } //new
 
 //Public facing API
-    
+
         /** Create a window with the given config */
     public function create( _config:WindowConfig ) : Window {
 
         var _window = new Window( this, _config );
 
             window_list.set( _window.id, _window );
+            window_handles.set(_window.handle, _window.id );
             window_count++;
+
+            //handle any window system specifics that have to happen
+            //to this window when creating it, like enter/leave events
+        system.listen( _window );
+
+            //unless requested not to, give this window to the input
+            //system to listen for events and dispatch them as needed
+        if(_config.no_input == null || _config.no_input == false) {
+            lib.input.listen( _window );
+        }
 
         return _window;
 
     } //create
+
+    public function window_from_handle( _handle:WindowHandle ) : Window {
+
+        if(window_handles.exists(_handle)) {
+            var _id = window_handles.get(_handle);
+            return window_list.get(_id);
+        }
+
+        return null;
+
+    } //window_from_handle
+
+    public function window_from_id( _id:Int ) : Window {
+
+        return window_list.get(_id);
+
+    } //window_from_id
 
 
 //Internal core API
@@ -52,9 +83,12 @@ class Windowing {
         if(_event.type == SystemEventType.window) {
 
             var _window_event = _event.window;
-            _window_event.type = WindowEvents.typed( cast _window_event.type );
 
-            var _window = window_list.get(_window_event.window_id);
+            if(Std.is(_window_event.type, Int)) {
+                _window_event.type = WindowEvents.typed( cast _window_event.type );
+            }
+
+            var _window = window_list.get( _window_event.window_id );
             if(_window != null) {
                 _window.on_event( _window_event );
             }

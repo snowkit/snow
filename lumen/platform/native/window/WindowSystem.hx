@@ -1,5 +1,5 @@
 package lumen.platform.native.window;
-	
+
 
 import lumen.Lumen;
 import lumen.types.Types;
@@ -20,7 +20,7 @@ import lumen.utils.Libs;
         lib = _lib;
 
     } //new
-    
+
     override public function init() {
     } //init
 
@@ -51,7 +51,7 @@ import lumen.utils.Libs;
     } //window_swap
 
     override public function window_simple_message( handle:WindowHandle, message:String, ?title:String="" ) {
-		lumen_window_simple_message( handle, message, title );    	
+		lumen_window_simple_message( handle, message, title );
     } //window_simple_message
 
     override public function window_set_size( handle:WindowHandle, w:Int, h:Int ) {
