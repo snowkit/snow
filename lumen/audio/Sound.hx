@@ -92,7 +92,7 @@ import lumen.utils.AbstractClass;
 // Internal system events
 
     @:noCompletion public function internal_update() {}
-    @:noCompletion public function internal_play() {}
+    @:noCompletion public function internal_play()  {}
     @:noCompletion public function internal_loop() {}
     @:noCompletion public function internal_stop() {}
     @:noCompletion public function internal_pause() {}

@@ -235,7 +235,9 @@ class Main extends lumen.AppFixedTimestep {
 
 
     override function ongamepadaxis( _event:GamepadEvent ) {
-        trace('axis; device: ${_event.which}, axis: ${_event.axis}, value: ${_event.value}');
+        if(Math.abs(_event.value) > 0.5) {
+            trace('axis; device: ${_event.which}, axis: ${_event.axis}, value: ${_event.value}');
+        }
     }
 
     override function ongamepadbuttonup( _event:GamepadEvent ) {

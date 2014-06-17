@@ -332,7 +332,7 @@ typedef HTML5Gamepad = {
         if( !active_gamepads.exists( _gamepad.index ) ) {
 
                 //if not we add it to the list
-            var _new_gamepad = {
+            var _new_gamepad : HTML5Gamepad = {
                 id : _gamepad.id,
                 index : _gamepad.index,
                 axes : cast _gamepad.axes,
@@ -342,10 +342,10 @@ typedef HTML5Gamepad = {
 
             var _button_list : Array<HTML5GamepadButton> = cast _gamepad.buttons;
             for(_button in _button_list) {
-                _new_gamepad.buttons.push({ pressed:_button.pressed, value:_button.value });
+                _new_gamepad.buttons.push({ pressed:false, value:0 });
             }
 
-            active_gamepads.set( _gamepad.index, _new_gamepad);
+            active_gamepads.set( _gamepad.index, _new_gamepad );
 
                 //fire an on connected event
             var api_event : GamepadEvent = {
