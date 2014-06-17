@@ -776,7 +776,7 @@ typedef GamepadEvent = {
     which : Int,
     button : Int,
     axis : Int,
-    value : Int
+    value : Float
 
 } //GamepadEvent
 

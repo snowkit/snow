@@ -5,7 +5,25 @@ import lumen.input.InputSystem;
 import lumen.types.Types;
 import lumen.window.Window;
 
+
+typedef HTML5GamepadButton = {
+    value : Float,
+    pressed : Bool
+}
+
+typedef HTML5Gamepad = {
+    axes : Array<Float>,
+    index : Int,
+    buttons : Array<HTML5GamepadButton>,
+    id : String,
+    timestamp : Float
+}
+
+
 @:noCompletion class InputSystem extends InputSystemBinding {
+
+    var active_gamepads : Map<Int, HTML5Gamepad>;
+    var gamepads_supported : Bool = false;
 
  	@:noCompletion public function new( _manager:Input, _lib:Lumen ) {
 
@@ -20,9 +38,18 @@ import lumen.window.Window;
         js.Browser.document.addEventListener('keydown', on_keydown);
         js.Browser.document.addEventListener('keyup',   on_keyup);
 
+            //initialize gamepads if they exist
+        active_gamepads = new Map();
+        gamepads_supported = (get_gamepad_list() != null);
+
     } //init
 
     override public function update() {
+
+        if(gamepads_supported) {
+            poll_gamepads();
+        }
+
     } //update
 
     override public function destroy() {
@@ -243,6 +270,233 @@ import lumen.window.Window;
     override public function gamepad_remove( id:Int ) {
 
     } //gamepad_remove
+
+    function poll_gamepads() {
+
+            //just in case
+        if(!gamepads_supported) return;
+
+        var list = get_gamepad_list();
+        if(list != null) {
+            for(i in 0 ... list.length) {
+                if( untyped list[i] != null ) {
+                    handle_gamepad( untyped list[i] );
+                } else {
+                    //if an entry in the list was null,
+                    //check if it was here already before
+                    var _gamepad = active_gamepads.get(i);
+                    if(_gamepad != null) {
+                            //this was disconnected, so fire an event
+                        var _event : InputEvent = {
+                            timestamp:_gamepad.timestamp,
+                            event:_gamepad,
+                            window_id : 1, //always main window because non specific event
+                            type : InputEventType.controller
+                        };
+                        var api_event : GamepadEvent = {
+                            raw : _event,
+                            timestamp : _event.timestamp,
+                            type : GamepadEventType.device_removed,
+                            state : PressedState.unknown,
+                            which : _gamepad.index,
+                            button : -1,
+                            axis : -1,
+                            value : 0
+                        };
+
+                        manager.dispatch_gamepad_event( api_event );
+                    } //_gamepad != null
+
+                        //and remove it so it only fires once
+                    active_gamepads.remove(i);
+
+                } //list[i] != null
+            } //for each in the list
+        } //if there is a list
+
+    } //poll_gamepads
+
+    function handle_gamepad( _gamepad : Dynamic ) {
+
+            //disconnected gamepads we don't need
+        if(_gamepad == null) return;
+
+        var _event : InputEvent = {
+            timestamp:_gamepad.timestamp,
+            event:_gamepad,
+            window_id : 1, //always main window because non specific event
+            type : InputEventType.controller
+        };
+
+            //check if this gamepad exists already
+        if( !active_gamepads.exists( _gamepad.index ) ) {
+
+                //if not we add it to the list
+            var _new_gamepad = {
+                id : _gamepad.id,
+                index : _gamepad.index,
+                axes : cast _gamepad.axes,
+                buttons : [],
+                timestamp : _gamepad.timestamp
+            };
+
+            var _button_list : Array<HTML5GamepadButton> = cast _gamepad.buttons;
+            for(_button in _button_list) {
+                _new_gamepad.buttons.push({ pressed:_button.pressed, value:_button.value });
+            }
+
+            active_gamepads.set( _gamepad.index, _new_gamepad);
+
+                //fire an on connected event
+            var api_event : GamepadEvent = {
+                raw : _event,
+                timestamp : _event.timestamp,
+                type : GamepadEventType.device_added,
+                state : PressedState.unknown,
+                which : _gamepad.index,
+                button : -1,
+                axis : -1,
+                value : 0
+            };
+
+            manager.dispatch_gamepad_event( api_event );
+
+        } else {
+
+                //found in the list so we can update it if anything changed
+            var gamepad = active_gamepads.get(_gamepad.index);
+
+                //but only if the timestamp differs
+            if(gamepad.timestamp != _gamepad.timestamp) {
+
+                    //update the id if it changed
+                if(gamepad.id != _gamepad.id) { gamepad.id = _gamepad.id; }
+
+                    //update the timestamp
+                gamepad.timestamp = _gamepad.timestamp;
+
+                    //we store the list of changed indices
+                    //so we can call the handler functions with each
+                var axes_changed : Array<Int> = [];
+                var buttons_changed : Array<Int> = [];
+                    //the last known values
+                var last_axes : Array<Float> = gamepad.axes;
+                var last_buttons : Array<HTML5GamepadButton> = gamepad.buttons;
+
+                    //the new known values
+                var new_axes : Array<Float> = cast _gamepad.axes;
+                var new_buttons : Array<HTML5GamepadButton> = cast _gamepad.buttons;
+
+                    //check for axes changes
+                var axis_index : Int = 0;
+                for(axis in new_axes) {
+
+                    if(axis != last_axes[axis_index]) {
+                        axes_changed.push(axis_index);
+                        gamepad.axes[axis_index] = axis;
+                    }
+
+                    axis_index++;
+
+                } //axis in new_axes
+
+                    //check for button changes
+                var button_index : Int = 0;
+                for(button in new_buttons) {
+
+                    if( button.value != last_buttons[button_index].value ) {
+                        buttons_changed.push(button_index);
+                        gamepad.buttons[button_index].pressed = button.pressed;
+                        gamepad.buttons[button_index].value = button.value;
+                    }
+
+                    button_index++;
+
+                } //button in new_buttons
+
+                    //now forward any axis changes to the wrapper
+                for(index in axes_changed) {
+
+                    var api_event : GamepadEvent = {
+                        raw : _event,
+                        timestamp : _event.timestamp,
+                        type : GamepadEventType.axis,
+                        state : PressedState.unknown,
+                        which : gamepad.index,
+                        button : -1,
+                        axis : index,
+                        value : new_axes[index]
+                    };
+
+                    manager.dispatch_gamepad_event( api_event );
+
+                } //for each axis changed
+
+                    //then forward any button changes to the wrapper
+                for(index in buttons_changed) {
+
+                    var _state = (new_buttons[index].value == 0) ? PressedState.up : PressedState.down;
+
+                    var api_event : GamepadEvent = {
+                        raw : _event,
+                        timestamp : _event.timestamp,
+                        type : GamepadEventType.button,
+                        state : _state,
+                        which : gamepad.index,
+                        button : index,
+                        axis : -1,
+                        value : new_buttons[index].value
+                    };
+
+                    manager.dispatch_gamepad_event( api_event );
+
+                } //for each button change
+
+            } //timestamp changed
+
+        } //exists
+
+    } //handle_gamepad
+
+    function fail_gamepads() {
+
+        gamepads_supported = false;
+        trace("/ lumen / Gamepads are not supported in this browser :(");
+
+    } //fail_gamepads
+
+        //It's really early for gamepads in browser
+    function get_gamepad_list() : Dynamic {
+
+            //Modernizr is used to detect gamepad support
+        var modernizr = untyped js.Browser.window.Modernizr;
+        if(modernizr != null) {
+
+            if(modernizr.gamepads == true) {
+
+                    //try official api first
+                if( untyped js.Browser.navigator.getGamepads != null ) {
+                    return untyped js.Browser.navigator.getGamepads();
+                }
+
+                    //try newer webkit GetGamepads() function
+                if( untyped js.Browser.navigator.webkitGetGamepads != null ) {
+                    return untyped js.Browser.navigator.webkitGetGamepads();
+                }
+
+                    //if we make it here we failed support so fail out
+                fail_gamepads();
+
+            } else {
+                fail_gamepads();
+            }
+
+        } //modernizr != null
+
+        return null;
+
+    } //get_gamepad_list
+
 
     @:noCompletion public function input_event_from_key( _key_event:js.html.KeyboardEvent ) {
 
