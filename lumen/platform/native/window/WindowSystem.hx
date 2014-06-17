@@ -30,6 +30,12 @@ import lumen.utils.Libs;
     override public function destroy() {
     } //destroy
 
+    @:noCompletion override public function listen( window:Window ) {
+    } //listen
+
+    @:noCompletion override public function unlisten( window:Window ) {
+    } //unlisten
+
     override public function window_create( config:WindowConfig, on_created: WindowHandle->Int->WindowConfig->Void ) {
     	lumen_window_create( config, on_created );
     } //window_create

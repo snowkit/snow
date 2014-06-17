@@ -235,19 +235,19 @@ class Main extends lumen.AppFixedTimestep {
 
 
     override function ongamepadaxis( _event:GamepadEvent ) {
-        // trace('axis; device: ${_event.which}, axis: ${_event.axis}, value: ${_event.value}');
+        trace('axis; device: ${_event.which}, axis: ${_event.axis}, value: ${_event.value}');
     }
 
     override function ongamepadbuttonup( _event:GamepadEvent ) {
-        // trace('button up; device: ${_event.which}, button: ${_event.button}');
+        trace('button up; device: ${_event.which}, button: ${_event.button} value: ${_event.value}');
     }
 
     override function ongamepadbuttondown( _event:GamepadEvent ) {
-        // trace('button down; device: ${_event.which}, button: ${_event.button}');
+        trace('button down; device: ${_event.which}, button: ${_event.button} value: ${_event.value}');
     }
 
     override function ongamepaddevice( _event:GamepadEvent ) {
-        // trace('device event; device: ${_event.which}, type: ${_event.type}');
+        trace('device event; device: ${_event.which}, type: ${_event.type}');
     }
 
 
