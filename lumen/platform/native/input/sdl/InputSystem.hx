@@ -200,12 +200,14 @@ import lumen.input.Input;
                 _type = GamepadEventType.button;
                 _state = PressedState.up;
                 _button = _gamepad_event.button;
+                _value = 0;
             }
             else
             if(_gamepad_event.type == ControllerEventType.button_down ) {
                 _type = GamepadEventType.button;
                 _state = PressedState.down;
                 _button = _gamepad_event.button;
+                _value = 1;
             }
             else
         //Axis
