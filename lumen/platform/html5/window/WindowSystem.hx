@@ -8,7 +8,7 @@ import lumen.window.WindowSystem;
 
 #if lumen_html5
 
-        //Internal class handled by Windowing, a less concrete implementation of the window system 
+        //Internal class handled by Windowing, a less concrete implementation of the window system
     @:noCompletion class WindowSystem extends WindowSystemBinding {
 
         var gl_context : js.html.webgl.RenderingContext;
@@ -19,7 +19,7 @@ import lumen.window.WindowSystem;
             lib = _lib;
 
         } //new
-        
+
         override public function init() {
         } //init
 
@@ -50,24 +50,28 @@ import lumen.window.WindowSystem;
                 //assign the context so GL can work
             lumen.render.gl.GL.lumenContext = gl_context;
 
+                //get the real canvas position and give it to the config
+            var _window_pos = get_real_window_position( _handle );
+
+                config.x = _window_pos.x;
+                config.y = _window_pos.y;
+
                 //tell them and give the handle for later.
                 //:todo: work out window id's for multiple canvases
-            on_created(_handle, 0, config);
+            on_created(_handle, 1, config);
 
         } //window_create
 
         override public function window_close( handle:WindowHandle ) {
 
-            var _handle : js.html.CanvasElement = cast handle;
-
-            js.Browser.document.body.removeChild(_handle);
+            js.Browser.document.body.removeChild(handle);
 
         } //window_close
 
         override public function window_update( handle:WindowHandle ) {
 
         } //window_update
-        
+
         override public function window_render( handle:WindowHandle ) {
 
         } //window_render
@@ -75,7 +79,7 @@ import lumen.window.WindowSystem;
         override public function window_swap( handle:WindowHandle ) {
 
         } //window_swap
-        
+
         override public function window_simple_message( handle:WindowHandle, message:String, ?title:String="" ) {
 
             js.Browser.window.alert( message );
@@ -84,9 +88,51 @@ import lumen.window.WindowSystem;
 
         override public function window_set_size( handle:WindowHandle, w:Int, h:Int ) {}
         override public function window_set_position( handle:WindowHandle, x:Int, y:Int ) {}
-        
+
+        public function get_real_window_position( handle:WindowHandle ) : WindowPosition {
+
+            // see the following link for this implementation
+            // http://www.quirksmode.org/js/findpos.html
+
+            var curleft = 0;
+            var curtop = 0;
+
+                //start at the canvas
+            var _obj : js.html.Element = cast handle;
+            var _has_parent : Bool = true;
+            var _max_count = 0;
+
+            while(_has_parent == true) {
+
+                _max_count++;
+
+                if(_max_count > 100) {
+                    _has_parent = false;
+                    break;
+                } //prevent rogue endless loops
+
+                if(_obj.offsetParent != null) {
+
+                        //it still has an offset parent, add it up
+                    curleft += _obj.offsetLeft;
+                    curtop += _obj.offsetTop;
+
+                        //then move onto the parent
+                    _obj = _obj.offsetParent;
+
+                } else {
+                        //we are done
+                    _has_parent = false;
+
+                }
+            } //while
+
+            return { x:curleft, y:curtop };
+
+        } //get_real_window_position
+
         override public function window_set_title( handle:WindowHandle, title:String ) {
-            
+
             js.Browser.document.title = title;
 
         } //window_set_title
@@ -117,17 +163,17 @@ import lumen.window.WindowSystem;
         } //window_bordered
 
             //:todo:
-        override public function display_count() : Int { 
-            return 1; 
+        override public function display_count() : Int {
+            return 1;
         } //display_count
 
             //:todo:
-        override public function display_mode_count( display:Int ) : Int { 
-            return 1; 
+        override public function display_mode_count( display:Int ) : Int {
+            return 1;
         } //display_mode_count
 
             //:todo:
-        override public function display_native_mode( display:Int ) : DisplayMode { 
+        override public function display_native_mode( display:Int ) : DisplayMode {
             return {
                 format : 0,
                 refresh_rate : 0,
@@ -137,7 +183,7 @@ import lumen.window.WindowSystem;
         } //display_native_mode
 
             //:todo:
-        override public function display_current_mode( display:Int ) : DisplayMode { 
+        override public function display_current_mode( display:Int ) : DisplayMode {
             return {
                 format : 0,
                 refresh_rate : 0,
@@ -145,7 +191,7 @@ import lumen.window.WindowSystem;
                 height : 0
             };
         } //display_current_mode
-        
+
             //:todo:
         override public function display_mode( display:Int, mode_index:Int ) : DisplayMode {
             return {
@@ -157,15 +203,69 @@ import lumen.window.WindowSystem;
         } //display_mode
 
             //:todo:
-        override public function display_bounds( display:Int ) : DisplayBounds { 
+        override public function display_bounds( display:Int ) : DisplayBounds {
             return { x:0, y:0, width:0, height:0 };
         } //display_bounds
 
             //:todo:
-        override public function display_name( display:Int ) : String { 
-            return 'Browser'; 
+        override public function display_name( display:Int ) : String {
+            return 'Browser';
         } //display_name
 
+            /** Called to set up any listeners on the given window  */
+        override public function listen( window:Window ) {
+
+            window.handle.addEventListener('mouseleave', on_internal_leave);
+            window.handle.addEventListener('mouseenter', on_internal_enter);
+
+        } //listen
+
+            /** Called to remove any listeners on the given window  */
+        override public function unlisten( window:Window ) {
+
+            window.handle.removeEventListener('mouseleave', on_internal_leave);
+            window.handle.removeEventListener('mouseenter', on_internal_enter);
+
+        } //unlisten
+
+
+        function on_internal_leave( _mouse_event:js.html.MouseEvent ) {
+
+            // var _window : Window = lib.window.from_handle(_mouse_event)
+
+                //tell the window manager a window was left
+            var api_event : WindowEvent = {
+                type : WindowEventType.window_leave,
+                timestamp : _mouse_event.timeStamp,
+                window_id : 1,//_window.id,
+                event : _mouse_event
+            };
+
+            lib.dispatch_system_event({
+                type : SystemEventType.window,
+                window : api_event
+            });
+
+        } //on_internal_leave
+
+        function on_internal_enter( _mouse_event:js.html.MouseEvent ) {
+
+            // var _window : Window = lib.window.from_handle()
+
+                //tell the system a window was entered
+            var api_event : WindowEvent = {
+                type : WindowEventType.window_enter,
+                timestamp : _mouse_event.timeStamp,
+                window_id : 1,//_window.id,
+                event : _mouse_event
+            };
+
+            lib.dispatch_system_event({
+                type : SystemEventType.window,
+                window : api_event
+            });
+
+        } //on_internal_enter
 
     } //WindowSystemHTML5
 

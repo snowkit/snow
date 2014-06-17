@@ -99,7 +99,7 @@ class Main extends lumen.AppFixedTimestep {
         ];
 
         for(f in files) {
-            app.assets.get_image( f, { 
+            app.assets.get_image( f, {
                 onloaded:function(image){
                     if(image != null) {
                         trace('loaded $f with ${image.data.width}x${image.data.height}x${image.data.bpp} (source bpp:${image.data.bpp_source}) mem:${image.data.data.length}');
@@ -110,7 +110,7 @@ class Main extends lumen.AppFixedTimestep {
                     }
                 }
             });
-        }        
+        }
 
             //this is temp testing, just hook into the window render directly
         app.main_window.window_render_handler = onrender;
@@ -157,7 +157,7 @@ class Main extends lumen.AppFixedTimestep {
             sound3.play();
         }
 
-        if(event.keycode == Key.SPACE) {
+        if(event.keycode == Key.KEY_p) {
             sound5.toggle();
         }
 
@@ -172,7 +172,7 @@ class Main extends lumen.AppFixedTimestep {
             trace('set to ${sound5.duration}*0.75 | music 75% ' + t);
         }
 
-        if(event.scancode == Scan.GRAVE) {
+        if(event.keycode == Key.BACKQUOTE) {
             app.audio.pitch('wav', 0.5);
             sound3.play();
         }
@@ -180,6 +180,8 @@ class Main extends lumen.AppFixedTimestep {
     } //onkeydown
 
     override function onkeyup( event:KeyEvent ) {
+
+        // trace("onkeyup " + event);
 
             //alt enter to toggle fullscreen test
         if( event.keycode == Key.RETURN && event.mod.alt ) {
@@ -203,22 +205,32 @@ class Main extends lumen.AppFixedTimestep {
     }
 
     override function onmousemove( event:MouseEvent ) {
-        // trace("move " + event);
+        // trace('move ${event.x} / ${event.y} / ${event.xrel} / ${event.yrel}');
+        if(app.input.keydown(Key.SPACE)) {
+            positionY = event.y - (size/2);
+            positionX = event.x - (size/2);
+            phys_posx = positionX;
+        }
     }
 
     override function onmouseup( event:MouseEvent ) {
-        // trace("up " + event);
+
+        // trace("mouse up " + event);
+
         positionY = event.y - (size/2);
         positionX = event.x - (size/2);
         phys_posx = positionX;
+
     }
 
     override function onmousedown( event:MouseEvent ) {
-        // trace("down " + event);
+
+        // trace("mouse down " + event);
+
     }
 
     override function onmousewheel( event:MouseEvent ) {
-        // trace("wheel " + event);
+        // trace("mouse wheel " + event);
     }
 
 
@@ -262,7 +274,7 @@ class Main extends lumen.AppFixedTimestep {
 
                 current_texture = textures[tex_index];
 
-            } 
+            }
 
         } else {
 
@@ -276,10 +288,6 @@ class Main extends lumen.AppFixedTimestep {
 
         if(app.input.keypressed(Key.SPACE)) {
             trace('space pressed');
-        }
-
-        if(app.input.keydown(Key.SPACE)) {
-            // trace('space down');
         }
 
     } //update

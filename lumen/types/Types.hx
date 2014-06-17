@@ -5,13 +5,13 @@ import lumen.utils.ByteArray;
 import lumen.utils.UInt8Array;
 
 
-/** 
-Information for a single asset 
+/**
+Information for a single asset
 
-`id` : the asset id   
-`path` : the location of the asset   
-`ext` : the asset extension, if any   
-`type` : a convenience type indicator   
+`id` : the asset id
+`path` : the location of the asset
+`ext` : the asset extension, if any
+`type` : a convenience type indicator
 
 */
 typedef AssetInfo = {
@@ -65,7 +65,7 @@ class AssetText extends Asset {
 /**  The options for an `AssetImage` asset. Get assets from the `Assets` class, via `app.assets` */
 typedef AssetImageOptions = {
     ? components : Int,
-    ? onloaded : AssetImage -> Void 
+    ? onloaded : AssetImage -> Void
 } //AssetImageOptions
 
 /**  An asset that contains image file `data` as an `ImageInfo`. Get assets from the `Assets` class, via `app.assets` */
@@ -100,22 +100,22 @@ class AssetAudio extends Asset {
 } //AssetAudio
 
 
-/** 
+/**
 The lumen core configuration information
 
-`? host` : the bootstrapped application   
-`? window_config` : the window config for a default window, if any   
-`? run_loop` : whether or not the core should run a loop at all   
-`? runtime_config` : the user specific config read from json at runtime   
-`? asset_data` : the raw list of assets. use the app.assets from Lumen for access   
+`? host` : the bootstrapped application
+`? window_config` : the window config for a default window, if any
+`? run_loop` : whether or not the core should run a loop at all
+`? runtime_config` : the user specific config read from json at runtime
+`? asset_data` : the raw list of assets. use the app.assets from Lumen for access
 
 */
 typedef LumenConfig = {
 
-    ? host                  : App, 
-    ? window_config         : WindowConfig, 
-    ? run_loop              : Bool, 
-    ? runtime_config        : Dynamic, 
+    ? host                  : App,
+    ? window_config         : WindowConfig,
+    ? run_loop              : Bool,
+    ? runtime_config        : Dynamic,
     ? asset_data            : Array<AssetInfo>
 
 } //LumenConfig
@@ -123,12 +123,12 @@ typedef LumenConfig = {
 /**
 Information about an image file/data
 
-`id` : source asset id   
-`bpp` : used bits per pixel   
-`width` : image width   
-`height` : image height   
-`bpp_source` : source bits per pixel   
-`data` : image data   
+`id` : source asset id
+`bpp` : used bits per pixel
+`width` : image width
+`height` : image height
+`bpp_source` : source bits per pixel
+`data` : image data
 
 */
 typedef ImageInfo = {
@@ -140,7 +140,7 @@ typedef ImageInfo = {
     width_actual : Int,
     height_actual : Int,
     bpp_source : Int,
-    data : UInt8Array 
+    data : UInt8Array
 
 } //ImageInfo
 
@@ -154,19 +154,19 @@ enum AudioFormatType {
 
 } //AudioFormatType
 
-/** 
+/**
 Information about an audio file/data
 
-`id` : file source   
-`format` : format   
-`channels` : number of channels   
-`rate` : hz rate    
-`bitrate` : sound bitrate   
-`bits_per_sample` : bits per sample, 8 / 16   
-`data` : sound raw data,   
-`length` : the file length in bytes   
-`length_pcm` : the pcm uncompressed raw length in bytes   
-`handle` : the native audio handle for later manipulation   
+`id` : file source
+`format` : format
+`channels` : number of channels
+`rate` : hz rate
+`bitrate` : sound bitrate
+`bits_per_sample` : bits per sample, 8 / 16
+`data` : sound raw data,
+`length` : the file length in bytes
+`length_pcm` : the pcm uncompressed raw length in bytes
+`handle` : the native audio handle for later manipulation
 
 */
 typedef AudioInfo = {
@@ -180,41 +180,41 @@ typedef AudioInfo = {
     data : ByteArray,
     length : Int,
     length_pcm : Int,
-    handle : Dynamic 
+    handle : Dynamic
 
 } //AudioInfo
 
-/** 
+/**
 Information about an audio portion requested via assets
 
-`complete` : True if the file has reached the end in this blob   
-`data` : The data stored in this blob   
+`complete` : True if the file has reached the end in this blob
+`data` : The data stored in this blob
 
 */
 typedef AudioDataBlob = {
 
     data : ByteArray,
     complete : Bool
-    
+
 } //AudioDataBlob
 
-/** 
+/**
 Window configuration information for creating windows
 
-`? fullscreen` : create in fullscreen   
-`? resizable` : allow the window to be resized   
-`? borderless` : create as a borderless window   
-`? antialiasing` : a value of `2`, `4`, `8` or other valid antialiasing flags   
-`? stencil_buffer` : create a stencil buffer (not per window)   
-`? depth_buffer` : create a depth buffer (not per window)   
-`? vsync` : enable vsync (not per window)   
-`? fps` : window max fps if any   
-`? x` : window y at creation   
-`? y` : window x at creation   
-`? width` : window height at creation   
-`? height` : window width at creation   
-`? title` : window title   
-`? orientation` : `Mobile specific` - window orientation setting   
+`? fullscreen` : create in fullscreen
+`? resizable` : allow the window to be resized
+`? borderless` : create as a borderless window
+`? antialiasing` : a value of `2`, `4`, `8` or other valid antialiasing flags
+`? stencil_buffer` : create a stencil buffer (not per window)
+`? depth_buffer` : create a depth buffer (not per window)
+`? vsync` : enable vsync (not per window)
+`? fps` : window max fps if any
+`? x` : window y at creation
+`? y` : window x at creation
+`? width` : window height at creation
+`? height` : window width at creation
+`? title` : window title
+`? orientation` : `Mobile specific` - window orientation setting
 
 */
 typedef WindowConfig = {
@@ -235,12 +235,13 @@ typedef WindowConfig = {
 
     ? orientation           : String,
     ? multitouch_supported  : Bool,
-    ? multitouch            : Bool
+    ? multitouch            : Bool,
+    ? no_input              : Bool
 
 } //WindowConfig
 
-/** 
-A system event. 
+/**
+A system event.
 Values below are null unless the event `type` matches. _i.e_ if type is `window`, the `window` value is not null, and so on */
 typedef SystemEvent = {
 
@@ -250,13 +251,13 @@ typedef SystemEvent = {
 
 } //SystemEvent
 
-/** 
-A system window event 
+/**
+A system window event
 
-`? type` : The type of window event this was   
-`? timestamp` : The time in seconds that this event occured, useful for deltas   
-`? window_id` : The window id from which this event originated   
-`? event` : The raw platform event data   
+`? type` : The type of window event this was
+`? timestamp` : The time in seconds that this event occured, useful for deltas
+`? window_id` : The window id from which this event originated
+`? event` : The raw platform event data
 
 */
 typedef WindowEvent = {
@@ -268,13 +269,13 @@ typedef WindowEvent = {
 
 } //WindowEvent
 
-/** 
-A system input event 
-   
-`? type` : The type of input event this was   
-`? timestamp` : The time in seconds that this event occured, useful for deltas   
-`? window_id` : The window id from which this event originated   
-`? event` : The raw platform event data   
+/**
+A system input event
+
+`? type` : The type of input event this was
+`? timestamp` : The time in seconds that this event occured, useful for deltas
+`? window_id` : The window id from which this event originated
+`? event` : The raw platform event data
 
 */
 typedef InputEvent = {
@@ -314,9 +315,13 @@ typedef DisplayBounds = {
     height : Int
 }
 
-    
+
     /** A platform window handle */
-abstract WindowHandle(Dynamic) from Dynamic to Dynamic {}
+#if lumen_html5
+typedef WindowHandle = js.html.CanvasElement;
+#else
+typedef WindowHandle = Dynamic;
+#end //lumen_html5
 
 
 /** A typed system event */
@@ -401,13 +406,13 @@ enum InputEventType {
     unknown;
 /** An keyboard input event */
     key;
-/** An mouse input event */    
+/** An mouse input event */
     mouse;
-/** An touch input event */    
+/** An touch input event */
     touch;
-/** An joystick input event. On mobile, accellerometer is a joystick (for now) */    
+/** An joystick input event. On mobile, accellerometer is a joystick (for now) */
     joystick;
-/** An controller input event. Use these instead of joystick on desktop. */    
+/** An controller input event. Use these instead of joystick on desktop. */
     controller;
 
 } //InputEventType
@@ -435,7 +440,7 @@ enum InputEventType {
     public static var se_app_didenterforeground     = 13;
 
 //Helpers
-    
+
     public static function typed(type:Int) : SystemEventType {
 
             if(type == se_init)                         return SystemEventType.init;
@@ -462,7 +467,7 @@ enum InputEventType {
 @:noCompletion class WindowEvents {
 
 //window events
-    
+
     public static var we_unknown          = 0;
     public static var we_created          = 1;
     public static var we_shown            = 2;
@@ -484,7 +489,7 @@ enum InputEventType {
 
         /** returns a typed `WindowEventType` from an integer ID, for communication between internal native + haxe code */
     public static function typed(type:Int) : WindowEventType {
-        
+
             if(type == we_created)        return WindowEventType.window_created;
             if(type == we_shown)          return WindowEventType.window_shown;
             if(type == we_hidden)         return WindowEventType.window_hidden;
@@ -500,7 +505,7 @@ enum InputEventType {
             if(type == we_focus_gained)   return WindowEventType.window_focus_gained;
             if(type == we_focus_lost)     return WindowEventType.window_focus_lost;
             if(type == we_close)          return WindowEventType.window_close;
-            
+
         return WindowEventType.unknown;
 
     } //typed
@@ -508,7 +513,7 @@ enum InputEventType {
 } //WindowEvents
 
 @:noCompletion class InputEvents {
-    
+
 //Input events
 
         public static var ie_unknown                    = 0;
@@ -519,17 +524,17 @@ enum InputEventType {
         public static var ie_controller                 = 5;
 
 //Helpers
-    
+
         /** returns a typed `InputEventType` from an integer ID, for communication between internal native + haxe code */
     public static function typed(type:Int) : InputEventType {
-        
+
             if(type == ie_unknown)      return InputEventType.unknown;
             if(type == ie_key)          return InputEventType.key;
             if(type == ie_mouse)        return InputEventType.mouse;
             if(type == ie_touch)        return InputEventType.touch;
             if(type == ie_joystick)     return InputEventType.joystick;
             if(type == ie_controller)   return InputEventType.controller;
-            
+
         return InputEventType.unknown;
 
     } //typed
@@ -600,15 +605,15 @@ enum GamepadEventType {
 
 /** An unknown event */
     unknown;
-/** An axis change event */    
+/** An axis change event */
     axis;
-/** A button event */    
+/** A button event */
     button;
-/** A device added event */    
+/** A device added event */
     device_added;
-/** A device removed event */    
+/** A device removed event */
     device_removed;
-/** A device was remapped */    
+/** A device was remapped */
     device_remapped;
 
 } //GamepadEventType
@@ -623,29 +628,29 @@ enum TouchState {
 /** touch is up */
     up;
 /** touch is moving */
-    move; 
+    move;
 
 } //TouchState
 
-/** 
-Input modifier state 
+/**
+Input modifier state
 
-`none` : no modifiers are down   
-`lshift` : left shift key is down   
-`rshift` : right shift key is down   
-`lctrl` : left ctrl key is down   
-`rctrl` : right ctrl key is down   
-`lalt` : left alt/option key is down   
-`ralt` : right alt/option key is down   
-`lmeta` : left windows/command key is down   
-`rmeta` : right windows/command key is down   
-`num` : numlock is enabled   
-`caps` : capslock is enabled   
-`mode` : mode key is down   
-`ctrl` : left or right ctrl key is down   
-`shift` : left or right shift key is down   
-`alt` : left or right alt/option key is down   
-`meta` : left or right windows/command key is down   
+`none` : no modifiers are down
+`lshift` : left shift key is down
+`rshift` : right shift key is down
+`lctrl` : left ctrl key is down
+`rctrl` : right ctrl key is down
+`lalt` : left alt/option key is down
+`ralt` : right alt/option key is down
+`lmeta` : left windows/command key is down
+`rmeta` : right windows/command key is down
+`num` : numlock is enabled
+`caps` : capslock is enabled
+`mode` : mode key is down
+`ctrl` : left or right ctrl key is down
+`shift` : left or right shift key is down
+`alt` : left or right alt/option key is down
+`meta` : left or right windows/command key is down
 
 */
 typedef ModState = {
@@ -669,19 +674,19 @@ typedef ModState = {
 
 } //ModState
 
-/** 
-Information about a mouse event 
+/**
+Information about a mouse event
 
-`raw` : The raw event from the system, unmodified   
-`timestamp` : The time in seconds when this touch event occurred, use for deltas   
-`window_id` : The window id this event originated from    
-`which` : Which mouse this event originated from (usually 0)   
-`state` : The state this event is in   
-`button` : The button id, if the event `state` is `down` or `up`   
-`x` : The x position in the window of the mouse event   
-`y` : The y position in the window of the mouse event   
-`xrel` : The relative x position if `state` is `move` or a window has grabbed state   
-`yrel` : The relative y position if `state` is `move` or a window has grabbed state   
+`raw` : The raw event from the system, unmodified
+`timestamp` : The time in seconds when this touch event occurred, use for deltas
+`window_id` : The window id this event originated from
+`which` : Which mouse this event originated from (usually 0)
+`state` : The state this event is in
+`button` : The button id, if the event `state` is `down` or `up`
+`x` : The x position in the window of the mouse event
+`y` : The y position in the window of the mouse event
+`xrel` : The relative x position if `state` is `move` or a window has grabbed state
+`yrel` : The relative y position if `state` is `move` or a window has grabbed state
 
 */
 typedef MouseEvent = {
@@ -699,42 +704,42 @@ typedef MouseEvent = {
 
 } //MouseEvent
 
-/** 
+/**
 Information about a keyboard event
 
-`raw` : The raw event from the system, unmodified   
-`scancode` : The `lumen.input.Scan` code value for this event   
-`keycode` : The `lumen.input.Key` code value for this event   
-`state` : The state of the key in this event   
-`mod` : The modifier state of this event   
-`repeat` : If this value is bigger than 0 this is a key repeat event of a key held down   
-`timestamp` : The time in seconds when this touch event occurred, use for deltas   
-`window_id` : The window id this event originated from   
+`raw` : The raw event from the system, unmodified
+`scancode` : The `lumen.input.Scan` code value for this event
+`keycode` : The `lumen.input.Key` code value for this event
+`state` : The state of the key in this event
+`mod` : The modifier state of this event
+`repeat` : If this value is bigger than 0 this is a key repeat event of a key held down
+`timestamp` : The time in seconds when this touch event occurred, use for deltas
+`window_id` : The window id this event originated from
 
 */
 typedef KeyEvent = {
 
     raw : InputEvent,
     scancode : Int,
-    keycode : Int,    
-    state : PressedState,    
+    keycode : Int,
+    state : PressedState,
     mod : ModState,
-    repeat : Bool,    
-    timestamp : Float,    
+    repeat : Bool,
+    timestamp : Float,
     window_id : Int
 
 } //KeyEvent
 
-/** 
+/**
 Information about a text input event
 
-`raw` : The raw event from the system, unmodified   
-`text` : The text that this event has generated   
-`type` : The type of text event   
-`timestamp` : The time in seconds when this touch event occurred, use for deltas   
-`window_id` : The window id this event originated from   
-`start` : The start position, if the `type` is `edit`   
-`length` : The length position, if the `type` is `edit`   
+`raw` : The raw event from the system, unmodified
+`text` : The text that this event has generated
+`type` : The type of text event
+`timestamp` : The time in seconds when this touch event occurred, use for deltas
+`window_id` : The window id this event originated from
+`start` : The start position, if the `type` is `edit`
+`length` : The length position, if the `type` is `edit`
 
 */
 typedef TextEvent = {
@@ -749,17 +754,17 @@ typedef TextEvent = {
 
 } //TextEvent
 
-/** 
+/**
 Information about a gamepad event
 
-`raw` : The raw event from the system, unmodified   
-`timestamp` : The time in seconds when this touch event occurred, use for deltas   
-`type` : The button id, if the event `type` is `button`   
-`state` : The state this event is in   
-`which` : The id of the gamepad this event comes from   
-`button` : The button id, if the event `type` is `button`   
-`axis` : The axis id, if the event `type` is `button`   
-`value` : The axis value, if the event `type` is `axis`   
+`raw` : The raw event from the system, unmodified
+`timestamp` : The time in seconds when this touch event occurred, use for deltas
+`type` : The button id, if the event `type` is `button`
+`state` : The state this event is in
+`which` : The id of the gamepad this event comes from
+`button` : The button id, if the event `type` is `button`
+`axis` : The axis id, if the event `type` is `button`
+`value` : The axis value, if the event `type` is `axis`
 
 */
 typedef GamepadEvent = {
@@ -775,19 +780,19 @@ typedef GamepadEvent = {
 
 } //GamepadEvent
 
-/** 
+/**
 Information about a touch event
 
-`raw` : The raw event from the system, unmodified   
-`state` : The state this touch event is in   
-`timestamp` : The time in seconds when this touch event occurred, use for deltas   
-`touch_id` : The id of the touch that this event comes from, a finger id   
-`device_id` : The device id this touch comes from   
-`x` : The x position in the window of the touch event   
-`y` : The x position in the window of the touch event   
-`dx` : The delta x value of the touch event, if the state is `moving`   
-`dy` : The delta y value of the touch event, if the state is `moving`   
-`pressure` : The pressure value of the touch event, where available   
+`raw` : The raw event from the system, unmodified
+`state` : The state this touch event is in
+`timestamp` : The time in seconds when this touch event occurred, use for deltas
+`touch_id` : The id of the touch that this event comes from, a finger id
+`device_id` : The device id this touch comes from
+`x` : The x position in the window of the touch event
+`y` : The x position in the window of the touch event
+`dx` : The delta x value of the touch event, if the state is `moving`
+`dy` : The delta y value of the touch event, if the state is `moving`
+`pressure` : The pressure value of the touch event, where available
 
 */
 typedef TouchEvent = {
@@ -799,7 +804,7 @@ typedef TouchEvent = {
     device_id : Int,
     x : Float,
     y : Float,
-    dx : Float, 
+    dx : Float,
     dy : Float,
     pressure : Float
 

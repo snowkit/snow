@@ -31,14 +31,14 @@ class GLBuffer extends GLObject {
 
 
 typedef GLContextAttributes = {
-    
-    alpha:Bool, 
+
+    alpha:Bool,
     depth:Bool,
     stencil:Bool,
     antialias:Bool,
     premultipliedAlpha:Bool,
     preserveDrawingBuffer:Bool
-    
+
 } //GLContextAttributes
 
 
@@ -55,24 +55,24 @@ typedef GLUniformLocation = Int;
 
 
 class GLProgram extends GLObject {
-        
+
     public var shaders:Array<GLShader>;
-    
+
     public function new( version:Int, id:Dynamic ) {
 
         super (version, id);
         shaders = new Array<GLShader> ();
 
     } //new
-    
+
     public function attach( shader:GLShader ) : Void {
         shaders.push(shader);
     } //attach
-    
+
     public function getShaders() : Array<GLShader> {
         return shaders.copy();
     } //getShaders
-    
+
     override function getType ():String {
         return "Program";
     } //getType
@@ -85,7 +85,7 @@ class GLRenderbuffer extends GLObject {
     override function getType ():String {
         return "Renderbuffer";
     }
-    
+
 } //GLRenderbuffer
 
 
@@ -94,16 +94,16 @@ class GLShader extends GLObject {
     override function getType ():String {
         return "Shader";
     }
-    
+
 } //GLShader
 
 
 class GLTexture extends GLObject {
- 
+
     override function getType ():String {
         return "Texture";
     }
-    
+
 } //GLTexture
 
 
@@ -112,7 +112,7 @@ class GLTexture extends GLObject {
 
 
 class GL {
-    
+
     /* ClearBufferMask */
     public static inline var DEPTH_BUFFER_BIT                   = 0x00000100;
     public static inline var STENCIL_BUFFER_BIT                 = 0x00000400;
@@ -539,304 +539,304 @@ class GL {
         lumen_gl_active_texture(texture);
     }
 
-    public static function attachShader(program:GLProgram, shader:GLShader):Void 
+    public static function attachShader(program:GLProgram, shader:GLShader):Void
     {
         program.attach(shader);
         lumen_gl_attach_shader(program.id, shader.id);
     }
 
-    public static function bindAttribLocation(program:GLProgram, index:Int, name:String):Void 
+    public static function bindAttribLocation(program:GLProgram, index:Int, name:String):Void
     {
         lumen_gl_bind_attrib_location(program.id, index, name);
     }
 
-    public static function bindBuffer(target:Int, buffer:GLBuffer):Void 
+    public static function bindBuffer(target:Int, buffer:GLBuffer):Void
     {
         lumen_gl_bind_buffer(target, buffer == null ? 0 : buffer.id);
     }
 
-    public static function bindFramebuffer(target:Int, framebuffer:GLFramebuffer):Void 
+    public static function bindFramebuffer(target:Int, framebuffer:GLFramebuffer):Void
     {
         lumen_gl_bind_framebuffer(target, framebuffer == null ? 0 : framebuffer.id);
     }
 
-    public static function bindRenderbuffer(target:Int, renderbuffer:GLRenderbuffer):Void 
+    public static function bindRenderbuffer(target:Int, renderbuffer:GLRenderbuffer):Void
     {
         lumen_gl_bind_renderbuffer(target, renderbuffer == null ? 0 : renderbuffer.id);
     }
 
-    public static function bindTexture(target:Int, texture:GLTexture):Void 
+    public static function bindTexture(target:Int, texture:GLTexture):Void
     {
         lumen_gl_bind_texture(target, texture == null ? 0 : texture.id);
     }
 
-    public static function blendColor(red:Float, green:Float, blue:Float, alpha:Float):Void 
+    public static function blendColor(red:Float, green:Float, blue:Float, alpha:Float):Void
     {
         lumen_gl_blend_color(red, green, blue, alpha);
     }
 
-    public static function blendEquation(mode:Int):Void 
+    public static function blendEquation(mode:Int):Void
     {
         lumen_gl_blend_equation(mode);
     }
 
-    public static function blendEquationSeparate(modeRGB:Int, modeAlpha:Int):Void 
+    public static function blendEquationSeparate(modeRGB:Int, modeAlpha:Int):Void
     {
         lumen_gl_blend_equation_separate(modeRGB, modeAlpha);
     }
 
-    public static function blendFunc(sfactor:Int, dfactor:Int):Void 
+    public static function blendFunc(sfactor:Int, dfactor:Int):Void
     {
         lumen_gl_blend_func(sfactor, dfactor);
     }
 
-    public static function blendFuncSeparate(srcRGB:Int, dstRGB:Int, srcAlpha:Int, dstAlpha:Int):Void 
+    public static function blendFuncSeparate(srcRGB:Int, dstRGB:Int, srcAlpha:Int, dstAlpha:Int):Void
     {
         lumen_gl_blend_func_separate(srcRGB, dstRGB, srcAlpha, dstAlpha);
     }
 
-    public static function bufferData(target:Int, data:IMemoryRange, usage:Int):Void 
+    public static function bufferData(target:Int, data:IMemoryRange, usage:Int):Void
     {
         lumen_gl_buffer_data(target, data.getByteBuffer(), data.getStart(), data.getLength(), usage);
     }
 
-    public static function bufferSubData(target:Int, offset:Int, data:IMemoryRange ):Void 
+    public static function bufferSubData(target:Int, offset:Int, data:IMemoryRange ):Void
     {
         lumen_gl_buffer_sub_data( target, offset, data.getByteBuffer(), data.getStart(), data.getLength() );
     }
 
-    public static function checkFramebufferStatus(target:Int):Int 
+    public static function checkFramebufferStatus(target:Int):Int
     {
         return lumen_gl_check_framebuffer_status(target);
     }
 
-    public static function clear(mask:Int):Void 
+    public static function clear(mask:Int):Void
     {
         lumen_gl_clear(mask);
     }
 
-    public static function clearColor(red:Float, green:Float, blue:Float, alpha:Float):Void 
+    public static function clearColor(red:Float, green:Float, blue:Float, alpha:Float):Void
     {
         lumen_gl_clear_color(red, green, blue, alpha);
     }
 
-    public static function clearDepth(depth:Float):Void 
+    public static function clearDepth(depth:Float):Void
     {
         lumen_gl_clear_depth(depth);
     }
 
-    public static function clearStencil(s:Int):Void 
+    public static function clearStencil(s:Int):Void
     {
         lumen_gl_clear_stencil(s);
     }
 
-    public static function colorMask(red:Bool, green:Bool, blue:Bool, alpha:Bool):Void 
+    public static function colorMask(red:Bool, green:Bool, blue:Bool, alpha:Bool):Void
     {
         lumen_gl_color_mask(red, green, blue, alpha);
     }
 
-    public static function compileShader(shader:GLShader):Void 
+    public static function compileShader(shader:GLShader):Void
     {
         lumen_gl_compile_shader(shader.id);
     }
 
-    public static function compressedTexImage2D(target:Int, level:Int, internalformat:Int, width:Int, height:Int, border:Int, data:IMemoryRange):Void 
+    public static function compressedTexImage2D(target:Int, level:Int, internalformat:Int, width:Int, height:Int, border:Int, data:IMemoryRange):Void
     {
         lumen_gl_compressed_tex_image_2d(target, level, internalformat, width, height, border, data == null ? null : data.getByteBuffer(), data == null ? null : data.getStart());
     }
 
-    public static function compressedTexSubImage2D(target:Int, level:Int, xoffset:Int, yoffset:Int, width:Int, height:Int, format:Int, data:IMemoryRange):Void 
+    public static function compressedTexSubImage2D(target:Int, level:Int, xoffset:Int, yoffset:Int, width:Int, height:Int, format:Int, data:IMemoryRange):Void
     {
         lumen_gl_compressed_tex_sub_image_2d(target, level, xoffset, yoffset, width, height, format, data == null ? null : data.getByteBuffer(), data == null ? null : data.getStart());
     }
 
-    public static function copyTexImage2D(target:Int, level:Int, internalformat:Int, x:Int, y:Int, width:Int, height:Int, border:Int):Void 
+    public static function copyTexImage2D(target:Int, level:Int, internalformat:Int, x:Int, y:Int, width:Int, height:Int, border:Int):Void
     {
         lumen_gl_copy_tex_image_2d(target, level, internalformat, x, y, width, height, border);
     }
 
-    public static function copyTexSubImage2D(target:Int, level:Int, xoffset:Int, yoffset:Int, x:Int, y:Int, width:Int, height:Int):Void 
+    public static function copyTexSubImage2D(target:Int, level:Int, xoffset:Int, yoffset:Int, x:Int, y:Int, width:Int, height:Int):Void
     {
         lumen_gl_copy_tex_sub_image_2d(target, level, xoffset, yoffset, x, y, width, height);
     }
 
-    public static function createBuffer():GLBuffer 
+    public static function createBuffer():GLBuffer
     {
         return new GLBuffer(version, lumen_gl_create_buffer());
     }
 
-    public static function createFramebuffer():GLFramebuffer 
+    public static function createFramebuffer():GLFramebuffer
     {
         return new GLFramebuffer(version, lumen_gl_create_framebuffer());
     }
 
-    public static function createProgram():GLProgram 
+    public static function createProgram():GLProgram
     {
         return new GLProgram(version, lumen_gl_create_program());
     }
 
-    public static function createRenderbuffer():GLRenderbuffer 
+    public static function createRenderbuffer():GLRenderbuffer
     {
         return new GLRenderbuffer(version, lumen_gl_create_render_buffer());
     }
 
-    public static function createShader(type:Int):GLShader 
+    public static function createShader(type:Int):GLShader
     {
         return new GLShader(version, lumen_gl_create_shader(type));
     }
 
-    public static function createTexture():GLTexture 
+    public static function createTexture():GLTexture
     {
         return new GLTexture(version, lumen_gl_create_texture());
     }
 
-    public static function cullFace(mode:Int):Void 
+    public static function cullFace(mode:Int):Void
     {
         lumen_gl_cull_face(mode);
     }
 
-    public static function deleteBuffer(buffer:GLBuffer):Void 
+    public static function deleteBuffer(buffer:GLBuffer):Void
     {
         lumen_gl_delete_buffer(buffer.id);
         buffer.invalidate();
     }
 
-    public static function deleteFramebuffer(framebuffer:GLFramebuffer):Void 
+    public static function deleteFramebuffer(framebuffer:GLFramebuffer):Void
     {
         lumen_gl_delete_framebuffer(framebuffer.id);
         framebuffer.invalidate();
     }
 
-    public static function deleteProgram(program:GLProgram):Void 
+    public static function deleteProgram(program:GLProgram):Void
     {
         lumen_gl_delete_program(program.id);
         program.invalidate();
     }
 
-    public static function deleteRenderbuffer(renderbuffer:GLRenderbuffer):Void 
+    public static function deleteRenderbuffer(renderbuffer:GLRenderbuffer):Void
     {
         lumen_gl_delete_render_buffer(renderbuffer.id);
         renderbuffer.invalidate();
     }
 
-    public static function deleteShader(shader:GLShader):Void 
+    public static function deleteShader(shader:GLShader):Void
     {
         lumen_gl_delete_shader(shader.id);
         shader.invalidate();
     }
 
-    public static function deleteTexture(texture:GLTexture):Void 
+    public static function deleteTexture(texture:GLTexture):Void
     {
         lumen_gl_delete_texture(texture.id);
         texture.invalidate();
     }
 
-    public static function depthFunc(func:Int):Void 
+    public static function depthFunc(func:Int):Void
     {
         lumen_gl_depth_func(func);
     }
 
-    public static function depthMask(flag:Bool):Void 
+    public static function depthMask(flag:Bool):Void
     {
         lumen_gl_depth_mask(flag);
     }
 
-    public static function depthRange(zNear:Float, zFar:Float):Void 
+    public static function depthRange(zNear:Float, zFar:Float):Void
     {
         lumen_gl_depth_range(zNear, zFar);
     }
 
-    public static function detachShader(program:GLProgram, shader:GLShader):Void 
+    public static function detachShader(program:GLProgram, shader:GLShader):Void
     {
         lumen_gl_detach_shader(program.id, shader.id);
     }
 
-    public static function disable(cap:Int):Void 
+    public static function disable(cap:Int):Void
     {
         lumen_gl_disable(cap);
     }
 
-    public static function disableVertexAttribArray(index:Int):Void 
+    public static function disableVertexAttribArray(index:Int):Void
     {
         lumen_gl_disable_vertex_attrib_array(index);
     }
 
-    public static function drawArrays(mode:Int, first:Int, count:Int):Void 
+    public static function drawArrays(mode:Int, first:Int, count:Int):Void
     {
         lumen_gl_draw_arrays(mode, first, count);
     }
 
-    public static function drawElements(mode:Int, count:Int, type:Int, offset:Int):Void 
+    public static function drawElements(mode:Int, count:Int, type:Int, offset:Int):Void
     {
         lumen_gl_draw_elements(mode, count, type, offset);
     }
 
-    public static function enable(cap:Int):Void 
+    public static function enable(cap:Int):Void
     {
         lumen_gl_enable(cap);
     }
 
-    public static function enableVertexAttribArray(index:Int):Void 
+    public static function enableVertexAttribArray(index:Int):Void
     {
         lumen_gl_enable_vertex_attrib_array(index);
     }
 
-    public static function finish():Void 
+    public static function finish():Void
     {
         lumen_gl_finish();
     }
 
-    public static function flush():Void 
+    public static function flush():Void
     {
         lumen_gl_flush();
     }
 
-    public static function framebufferRenderbuffer(target:Int, attachment:Int, renderbuffertarget:Int, renderbuffer:GLRenderbuffer):Void 
+    public static function framebufferRenderbuffer(target:Int, attachment:Int, renderbuffertarget:Int, renderbuffer:GLRenderbuffer):Void
     {
         lumen_gl_framebuffer_renderbuffer(target, attachment, renderbuffertarget, renderbuffer.id);
     }
 
-    public static function framebufferTexture2D(target:Int, attachment:Int, textarget:Int, texture:GLTexture, level:Int):Void 
+    public static function framebufferTexture2D(target:Int, attachment:Int, textarget:Int, texture:GLTexture, level:Int):Void
     {
         lumen_gl_framebuffer_texture2D(target, attachment, textarget, texture.id, level);
     }
 
-    public static function frontFace(mode:Int):Void 
+    public static function frontFace(mode:Int):Void
     {
         lumen_gl_front_face(mode);
     }
 
-    public static function generateMipmap(target:Int):Void 
+    public static function generateMipmap(target:Int):Void
     {
         lumen_gl_generate_mipmap(target);
     }
 
-    public static function getActiveAttrib(program:GLProgram, index:Int):GLActiveInfo 
+    public static function getActiveAttrib(program:GLProgram, index:Int):GLActiveInfo
     {
         return lumen_gl_get_active_attrib(program.id, index);
     }
 
-    public static function getActiveUniform(program:GLProgram, index:Int):GLActiveInfo 
+    public static function getActiveUniform(program:GLProgram, index:Int):GLActiveInfo
     {
         return lumen_gl_get_active_uniform(program.id, index);
     }
 
-    public static function getAttachedShaders(program:GLProgram):Array<GLShader> 
+    public static function getAttachedShaders(program:GLProgram):Array<GLShader>
     {
         return program.getShaders();
     }
 
-    public static function getAttribLocation(program:GLProgram, name:String):Int 
+    public static function getAttribLocation(program:GLProgram, name:String):Int
     {
         return lumen_gl_get_attrib_location(program.id, name);
     }
 
-    public static function getBufferParameter(target:Int, pname:Int):Dynamic 
+    public static function getBufferParameter(target:Int, pname:Int):Dynamic
     {
         return lumen_gl_get_buffer_paramerter(target, pname);
     }
 
-    public static function getContextAttributes():GLContextAttributes 
+    public static function getContextAttributes():GLContextAttributes
     {
         var base = lumen_gl_get_context_attributes();
         base.premultipliedAlpha = false;
@@ -844,221 +844,221 @@ class GL {
         return base;
     }
 
-    public static function getError():Int 
+    public static function getError():Int
     {
         return lumen_gl_get_error();
     }
 
-    public static function getExtension(name:String):Dynamic 
+    public static function getExtension(name:String):Dynamic
     {
             //todo?!
         return null;
         // return lumen_gl_get_extension(name);
     }
 
-    public static function getFramebufferAttachmentParameter(target:Int, attachment:Int, pname:Int):Dynamic 
+    public static function getFramebufferAttachmentParameter(target:Int, attachment:Int, pname:Int):Dynamic
     {
         return lumen_gl_get_framebuffer_attachment_parameter(target, attachment, pname);
     }
 
-    public static function getParameter(pname:Int):Dynamic 
+    public static function getParameter(pname:Int):Dynamic
     {
         return lumen_gl_get_parameter(pname);
     }
 
-    public static function getProgramInfoLog(program:GLProgram):String 
+    public static function getProgramInfoLog(program:GLProgram):String
     {
         return lumen_gl_get_program_info_log(program.id);
     }
 
-    public static function getProgramParameter(program:GLProgram, pname:Int):Int 
+    public static function getProgramParameter(program:GLProgram, pname:Int):Int
     {
         return lumen_gl_get_program_parameter(program.id, pname);
     }
 
-    public static function getRenderbufferParameter(target:Int, pname:Int):Dynamic 
+    public static function getRenderbufferParameter(target:Int, pname:Int):Dynamic
     {
         return lumen_gl_get_render_buffer_parameter(target, pname);
     }
 
-    public static function getShaderInfoLog(shader:GLShader):String 
+    public static function getShaderInfoLog(shader:GLShader):String
     {
         return lumen_gl_get_shader_info_log(shader.id);
     }
 
-    public static function getShaderParameter(shader:GLShader, pname:Int):Int 
+    public static function getShaderParameter(shader:GLShader, pname:Int):Int
     {
         return lumen_gl_get_shader_parameter(shader.id, pname);
     }
 
-    public static function getShaderPrecisionFormat(shadertype:Int, precisiontype:Int):ShaderPrecisionFormat 
+    public static function getShaderPrecisionFormat(shadertype:Int, precisiontype:Int):ShaderPrecisionFormat
     {
         return lumen_gl_get_shader_precision_format(shadertype, precisiontype);
     }
 
-    public static function getShaderSource(shader:GLShader):String 
+    public static function getShaderSource(shader:GLShader):String
     {
         return lumen_gl_get_shader_source(shader.id);
     }
 
-    public static function getSupportedExtensions():Array<String> 
+    public static function getSupportedExtensions():Array<String>
     {
         var result = new Array<String>();
         lumen_gl_get_supported_extensions(result);
         return result;
     }
 
-    public static function getTexParameter(target:Int, pname:Int):Dynamic 
+    public static function getTexParameter(target:Int, pname:Int):Dynamic
     {
         return lumen_gl_get_tex_parameter(target, pname);
     }
 
-    public static function getUniform(program:GLProgram, location:GLUniformLocation):Dynamic 
+    public static function getUniform(program:GLProgram, location:GLUniformLocation):Dynamic
     {
         return lumen_gl_get_uniform(program.id, location);
     }
 
-    public static function getUniformLocation(program:GLProgram, name:String):Dynamic 
+    public static function getUniformLocation(program:GLProgram, name:String):Dynamic
     {
         return lumen_gl_get_uniform_location(program.id, name);
     }
 
-    public static function getVertexAttrib(index:Int, pname:Int):Dynamic 
+    public static function getVertexAttrib(index:Int, pname:Int):Dynamic
     {
         return lumen_gl_get_vertex_attrib(index, pname);
     }
 
-    public static function getVertexAttribOffset(index:Int, pname:Int):Int 
+    public static function getVertexAttribOffset(index:Int, pname:Int):Int
     {
         return lumen_gl_get_vertex_attrib_offset(index, pname);
     }
 
-    public static function hint(target:Int, mode:Int):Void 
+    public static function hint(target:Int, mode:Int):Void
     {
         lumen_gl_hint(target, mode);
     }
 
-    public static function isBuffer(buffer:GLBuffer):Bool 
+    public static function isBuffer(buffer:GLBuffer):Bool
     {
         return buffer != null && buffer.id > 0 && lumen_gl_is_buffer(buffer.id);
     }
 
     // This is non-static
     // public function isContextLost():Bool { return false; }
-    public static function isEnabled(cap:Int):Bool 
+    public static function isEnabled(cap:Int):Bool
     {
         return lumen_gl_is_enabled(cap);
     }
 
-    public static function isFramebuffer(framebuffer:GLFramebuffer):Bool 
+    public static function isFramebuffer(framebuffer:GLFramebuffer):Bool
     {
         return framebuffer != null && framebuffer.id > 0 && lumen_gl_is_framebuffer(framebuffer.id);
     }
 
-    public static function isProgram(program:GLProgram):Bool 
+    public static function isProgram(program:GLProgram):Bool
     {
         return program != null && program.id > 0 && lumen_gl_is_program(program.id);
     }
 
-    public static function isRenderbuffer(renderbuffer:GLRenderbuffer):Bool 
+    public static function isRenderbuffer(renderbuffer:GLRenderbuffer):Bool
     {
         return renderbuffer != null && renderbuffer.id > 0 && lumen_gl_is_renderbuffer(renderbuffer.id);
     }
 
-    public static function isShader(shader:GLShader):Bool 
+    public static function isShader(shader:GLShader):Bool
     {
         return shader != null && shader.id > 0 && lumen_gl_is_shader(shader.id);
     }
 
-    public static function isTexture(texture:GLTexture):Bool 
+    public static function isTexture(texture:GLTexture):Bool
     {
         return texture != null && texture.id > 0 && lumen_gl_is_texture(texture.id);
     }
 
-    public static function lineWidth(width:Float):Void 
+    public static function lineWidth(width:Float):Void
     {
         lumen_gl_line_width(width);
     }
 
-    public static function linkProgram(program:GLProgram):Void 
+    public static function linkProgram(program:GLProgram):Void
     {
         lumen_gl_link_program(program.id);
     }
 
-    static function load(inName:String, inArgCount:Int):Dynamic 
+    static function load(inName:String, inArgCount:Int):Dynamic
     {
-        try 
+        try
         {
             return Libs.load("lumen", inName, inArgCount);
 
-        } catch(e:Dynamic) 
+        } catch(e:Dynamic)
         {
             trace(e);
             return null;
         }
     }
 
-    public static function pixelStorei(pname:Int, param:Int):Void 
+    public static function pixelStorei(pname:Int, param:Int):Void
     {
         lumen_gl_pixel_storei(pname, param);
     }
 
-    public static function polygonOffset(factor:Float, units:Float):Void 
+    public static function polygonOffset(factor:Float, units:Float):Void
     {
         lumen_gl_polygon_offset(factor, units);
     }
 
-    public static function readPixels(x:Int, y:Int, width:Int, height:Int, format:Int, type:Int, pixels:ArrayBufferView):Void 
+    public static function readPixels(x:Int, y:Int, width:Int, height:Int, format:Int, type:Int, pixels:ArrayBufferView):Void
     {
         lumen_gl_read_pixels(x, y, width, height, format, type, pixels == null ? null : pixels.getByteBuffer(), pixels == null ? null : pixels.getStart());
     }
 
-    public static function renderbufferStorage(target:Int, internalformat:Int, width:Int, height:Int):Void 
+    public static function renderbufferStorage(target:Int, internalformat:Int, width:Int, height:Int):Void
     {
         lumen_gl_renderbuffer_storage(target, internalformat, width, height);
     }
 
-    public static function sampleCoverage(value:Float, invert:Bool):Void 
+    public static function sampleCoverage(value:Float, invert:Bool):Void
     {
         lumen_gl_sample_coverage(value, invert);
     }
 
-    public static function scissor(x:Int, y:Int, width:Int, height:Int):Void 
+    public static function scissor(x:Int, y:Int, width:Int, height:Int):Void
     {
         lumen_gl_scissor(x, y, width, height);
     }
 
-    public static function shaderSource(shader:GLShader, source:String):Void 
+    public static function shaderSource(shader:GLShader, source:String):Void
     {
         lumen_gl_shader_source(shader.id, source);
     }
 
-    public static function stencilFunc(func:Int, ref:Int, mask:Int):Void 
+    public static function stencilFunc(func:Int, ref:Int, mask:Int):Void
     {
         lumen_gl_stencil_func(func, ref, mask);
     }
 
-    public static function stencilFuncSeparate(face:Int, func:Int, ref:Int, mask:Int):Void 
+    public static function stencilFuncSeparate(face:Int, func:Int, ref:Int, mask:Int):Void
     {
         lumen_gl_stencil_func_separate(face, func, ref, mask);
     }
 
-    public static function stencilMask(mask:Int):Void 
+    public static function stencilMask(mask:Int):Void
     {
         lumen_gl_stencil_mask(mask);
     }
 
-    public static function stencilMaskSeparate(face:Int, mask:Int):Void 
+    public static function stencilMaskSeparate(face:Int, mask:Int):Void
     {
         lumen_gl_stencil_mask_separate(face, mask);
     }
 
-    public static function stencilOp(fail:Int, zfail:Int, zpass:Int):Void 
+    public static function stencilOp(fail:Int, zfail:Int, zpass:Int):Void
     {
         lumen_gl_stencil_op(fail, zfail, zpass);
     }
 
-    public static function stencilOpSeparate(face:Int, fail:Int, zfail:Int, zpass:Int):Void 
+    public static function stencilOpSeparate(face:Int, fail:Int, zfail:Int, zpass:Int):Void
     {
         lumen_gl_stencil_op_separate(face, fail, zfail, zpass);
     }
@@ -1068,12 +1068,12 @@ class GL {
         lumen_gl_tex_image_2d(target, level, internalformat, width, height, border, format, type, pixels == null ? null : pixels.getByteBuffer(), pixels == null ? null : pixels.getStart());
     }
 
-    public static function texParameterf(target:Int, pname:Int, param:Float):Void 
+    public static function texParameterf(target:Int, pname:Int, param:Float):Void
     {
         lumen_gl_tex_parameterf(target, pname, param);
     }
 
-    public static function texParameteri(target:Int, pname:Int, param:Int):Void 
+    public static function texParameteri(target:Int, pname:Int, param:Int):Void
     {
         lumen_gl_tex_parameteri(target, pname, param);
     }
@@ -1083,184 +1083,184 @@ class GL {
         lumen_gl_tex_sub_image_2d(target, level, xoffset, yoffset, width, height, format, type, pixels == null ? null : pixels.getByteBuffer(), pixels == null ? null : pixels.getStart());
     }
 
-    public static function uniform1f(location:GLUniformLocation, x:Float):Void 
+    public static function uniform1f(location:GLUniformLocation, x:Float):Void
     {
         lumen_gl_uniform1f(location, x);
     }
 
-    public static function uniform1fv(location:GLUniformLocation, x:Float32Array):Void 
+    public static function uniform1fv(location:GLUniformLocation, x:Float32Array):Void
     {
         lumen_gl_uniform1fv(location, x.getByteBuffer());
     }
 
-    public static function uniform1i(location:GLUniformLocation, x:Int):Void 
+    public static function uniform1i(location:GLUniformLocation, x:Int):Void
     {
         lumen_gl_uniform1i(location, x);
     }
 
-    public static function uniform1iv(location:GLUniformLocation, v:Int32Array):Void 
+    public static function uniform1iv(location:GLUniformLocation, v:Int32Array):Void
     {
         lumen_gl_uniform1iv(location, v.getByteBuffer());
     }
 
-    public static function uniform2f(location:GLUniformLocation, x:Float, y:Float):Void 
+    public static function uniform2f(location:GLUniformLocation, x:Float, y:Float):Void
     {
         lumen_gl_uniform2f(location, x, y);
     }
 
-    public static function uniform2fv(location:GLUniformLocation, v:Float32Array):Void 
+    public static function uniform2fv(location:GLUniformLocation, v:Float32Array):Void
     {
         lumen_gl_uniform2fv(location, v.getByteBuffer());
     }
 
-    public static function uniform2i(location:GLUniformLocation, x:Int, y:Int):Void 
+    public static function uniform2i(location:GLUniformLocation, x:Int, y:Int):Void
     {
         lumen_gl_uniform2i(location, x, y);
     }
 
-    public static function uniform2iv(location:GLUniformLocation, v:Int32Array):Void 
+    public static function uniform2iv(location:GLUniformLocation, v:Int32Array):Void
     {
         lumen_gl_uniform2iv(location, v.getByteBuffer());
     }
 
-    public static function uniform3f(location:GLUniformLocation, x:Float, y:Float, z:Float):Void 
+    public static function uniform3f(location:GLUniformLocation, x:Float, y:Float, z:Float):Void
     {
         lumen_gl_uniform3f(location, x, y, z);
     }
 
-    public static function uniform3fv(location:GLUniformLocation, v:Float32Array):Void 
+    public static function uniform3fv(location:GLUniformLocation, v:Float32Array):Void
     {
         lumen_gl_uniform3fv(location, v.getByteBuffer());
     }
 
-    public static function uniform3i(location:GLUniformLocation, x:Int, y:Int, z:Int):Void 
+    public static function uniform3i(location:GLUniformLocation, x:Int, y:Int, z:Int):Void
     {
         lumen_gl_uniform3i(location, x, y, z);
     }
 
-    public static function uniform3iv(location:GLUniformLocation, v:Int32Array):Void 
+    public static function uniform3iv(location:GLUniformLocation, v:Int32Array):Void
     {
         lumen_gl_uniform3iv(location, v.getByteBuffer());
     }
 
-    public static function uniform4f(location:GLUniformLocation, x:Float, y:Float, z:Float, w:Float):Void 
+    public static function uniform4f(location:GLUniformLocation, x:Float, y:Float, z:Float, w:Float):Void
     {
         lumen_gl_uniform4f(location, x, y, z, w);
     }
 
-    public static function uniform4fv(location:GLUniformLocation, v:Float32Array):Void 
+    public static function uniform4fv(location:GLUniformLocation, v:Float32Array):Void
     {
         lumen_gl_uniform4fv(location, v.getByteBuffer());
     }
 
-    public static function uniform4i(location:GLUniformLocation, x:Int, y:Int, z:Int, w:Int):Void 
+    public static function uniform4i(location:GLUniformLocation, x:Int, y:Int, z:Int, w:Int):Void
     {
         lumen_gl_uniform4i(location, x, y, z, w);
     }
 
-    public static function uniform4iv(location:GLUniformLocation, v:Int32Array):Void 
+    public static function uniform4iv(location:GLUniformLocation, v:Int32Array):Void
     {
         lumen_gl_uniform4iv(location, v.getByteBuffer());
     }
 
-    public static function uniformMatrix2fv(location:GLUniformLocation, transpose:Bool, v:Float32Array):Void 
+    public static function uniformMatrix2fv(location:GLUniformLocation, transpose:Bool, v:Float32Array):Void
     {
         lumen_gl_uniform_matrix(location, transpose, v.getByteBuffer(), 2);
     }
 
-    public static function uniformMatrix3fv(location:GLUniformLocation, transpose:Bool, v:Float32Array):Void 
+    public static function uniformMatrix3fv(location:GLUniformLocation, transpose:Bool, v:Float32Array):Void
     {
         lumen_gl_uniform_matrix(location, transpose, v.getByteBuffer(), 3);
     }
 
-    public static function uniformMatrix4fv(location:GLUniformLocation, transpose:Bool, v:Float32Array):Void 
+    public static function uniformMatrix4fv(location:GLUniformLocation, transpose:Bool, v:Float32Array):Void
     {
         lumen_gl_uniform_matrix(location, transpose, v.getByteBuffer(), 4);
     }
 
-    public static function uniformMatrix3D(location:GLUniformLocation, transpose:Bool, matrix:Matrix3D):Void 
+    public static function uniformMatrix3D(location:GLUniformLocation, transpose:Bool, matrix:Matrix3D):Void
     {
         lumen_gl_uniform_matrix(location, transpose, Float32Array.fromMatrix(matrix).getByteBuffer() , 4);
     }
 
-    public static function useProgram(program:GLProgram):Void 
+    public static function useProgram(program:GLProgram):Void
     {
         lumen_gl_use_program(program == null ? 0 : program.id);
     }
 
-    public static function validateProgram(program:GLProgram):Void 
+    public static function validateProgram(program:GLProgram):Void
     {
         lumen_gl_validate_program(program.id);
     }
 
-    public static function vertexAttrib1f(indx:Int, x:Float):Void 
+    public static function vertexAttrib1f(indx:Int, x:Float):Void
     {
         lumen_gl_vertex_attrib1f(indx, x);
     }
 
-    public static function vertexAttrib1fv(indx:Int, values:Float32Array):Void 
+    public static function vertexAttrib1fv(indx:Int, values:Float32Array):Void
     {
         lumen_gl_vertex_attrib1fv(indx, values.getByteBuffer());
     }
 
-    public static function vertexAttrib2f(indx:Int, x:Float, y:Float):Void 
+    public static function vertexAttrib2f(indx:Int, x:Float, y:Float):Void
     {
         lumen_gl_vertex_attrib2f(indx, x, y);
     }
 
-    public static function vertexAttrib2fv(indx:Int, values:Float32Array):Void 
+    public static function vertexAttrib2fv(indx:Int, values:Float32Array):Void
     {
         lumen_gl_vertex_attrib2fv(indx, values.getByteBuffer());
     }
 
-    public static function vertexAttrib3f(indx:Int, x:Float, y:Float, z:Float):Void 
+    public static function vertexAttrib3f(indx:Int, x:Float, y:Float, z:Float):Void
     {
         lumen_gl_vertex_attrib3f(indx, x, y, z);
     }
 
-    public static function vertexAttrib3fv(indx:Int, values:Float32Array):Void 
+    public static function vertexAttrib3fv(indx:Int, values:Float32Array):Void
     {
         lumen_gl_vertex_attrib3fv(indx, values.getByteBuffer());
     }
 
-    public static function vertexAttrib4f(indx:Int, x:Float, y:Float, z:Float, w:Float):Void 
+    public static function vertexAttrib4f(indx:Int, x:Float, y:Float, z:Float, w:Float):Void
     {
         lumen_gl_vertex_attrib4f(indx, x, y, z, w);
     }
 
-    public static function vertexAttrib4fv(indx:Int, values:Float32Array):Void 
+    public static function vertexAttrib4fv(indx:Int, values:Float32Array):Void
     {
         lumen_gl_vertex_attrib4fv(indx, values.getByteBuffer());
     }
 
-    public static function vertexAttribPointer(indx:Int, size:Int, type:Int, normalized:Bool, stride:Int, offset:Int):Void 
+    public static function vertexAttribPointer(indx:Int, size:Int, type:Int, normalized:Bool, stride:Int, offset:Int):Void
     {
         lumen_gl_vertex_attrib_pointer(indx, size, type, normalized, stride, offset);
     }
 
-    public static function viewport(x:Int, y:Int, width:Int, height:Int):Void 
+    public static function viewport(x:Int, y:Int, width:Int, height:Int):Void
     {
         lumen_gl_viewport(x, y, width, height);
     }
-    
-    
-    
-    
-    // Getters & Setters
-    
 
-    
-    
+
+
+
+    // Getters & Setters
+
+
+
+
     static function get_version():Int { return 2; }
-    
-    
-    
-    
+
+
+
+
     // Native Methods
-    
-    
-    
-    
+
+
+
+
     static var lumen_gl_active_texture = load("lumen_gl_active_texture", 1);
     static var lumen_gl_attach_shader = load("lumen_gl_attach_shader", 2);
     static var lumen_gl_bind_attrib_location = load("lumen_gl_bind_attrib_location", 3);
@@ -1323,7 +1323,7 @@ class GL {
     static var lumen_gl_get_error = load("lumen_gl_get_error", 0);
     static var lumen_gl_get_framebuffer_attachment_parameter = load("lumen_gl_get_framebuffer_attachment_parameter", 3);
     static var lumen_gl_get_parameter = load("lumen_gl_get_parameter", 1);
-    // static var lumen_gl_get_extension = load("lumen_gl_get_extension", 1);    
+    // static var lumen_gl_get_extension = load("lumen_gl_get_extension", 1);
     static var lumen_gl_get_program_info_log = load("lumen_gl_get_program_info_log", 1);
     static var lumen_gl_get_program_parameter = load("lumen_gl_get_program_parameter", 2);
     static var lumen_gl_get_render_buffer_parameter = load("lumen_gl_get_render_buffer_parameter", 2);
@@ -1394,12 +1394,12 @@ class GL {
     static var lumen_gl_vertex_attrib4fv = load("lumen_gl_vertex_attrib4fv", 2);
     static var lumen_gl_vertex_attrib_pointer = load("lumen_gl_vertex_attrib_pointer", -1);
     static var lumen_gl_viewport = load("lumen_gl_viewport", 4);
-    
-    
+
+
 }
 
 
-typedef ShaderPrecisionFormat = 
+typedef ShaderPrecisionFormat =
 {
     rangeMin : Int,
     rangeMax : Int,

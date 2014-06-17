@@ -3,6 +3,7 @@ package lumen.platform.native.input;
 import lumen.input.Input;
 import lumen.input.InputSystem;
 import lumen.types.Types;
+import lumen.window.Window;
 
 
 @:noCompletion class InputSystem extends InputSystemBinding {
@@ -24,6 +25,14 @@ import lumen.types.Types;
     override public function destroy() {
     } //destroy
 
+    @:noCompletion override public function listen( window:Window ) {
+
+    } //listen
+
+    @:noCompletion override public function unlisten( window:Window ) {
+
+    } //unlisten
+
     override public function on_event( _event : InputEvent ) {
     } //on_event
 
@@ -39,7 +48,7 @@ import lumen.types.Types;
 
         return {
             none    : true,
-            lshift  : false, 
+            lshift  : false,
             rshift  : false,
             lctrl   : false,
             rctrl   : false,
@@ -56,8 +65,8 @@ import lumen.types.Types;
             meta    : false
         };
 
-    } //mod_state_from_event  
-    
+    } //mod_state_from_event
+
     static var lumen_gamepad_open = Lumen.load( "lumen", "lumen_gamepad_open", 1 );
     static var lumen_gamepad_close = Lumen.load( "lumen", "lumen_gamepad_close", 1 );
 

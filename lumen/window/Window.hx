@@ -31,7 +31,7 @@ class Window {
         /** The window grab state `(read/write)` */
     @:isVar public var grab (get,set) : Bool = false;
         /** The window fullscreen state `(read/write)` */
-    @:isVar public var fullscreen (get,set) : Bool = false;   
+    @:isVar public var fullscreen (get,set) : Bool = false;
 
         /** The window position `(read/write)` */
     @:isVar public var position (get,set) : WindowPosition;
@@ -69,7 +69,7 @@ class Window {
         handle = _handle;
         config = _config;
 
-            //update the position and size 
+            //update the position and size
             //because it updates in the config
         position.x = _config.x;
         position.y = _config.y;
@@ -77,15 +77,15 @@ class Window {
         size.w = _config.width;
         size.h = _config.height;
 
-        on_event({ 
+        on_event({
             type:WindowEventType.window_created,
             window_id : _id,
-            timestamp : 0, 
+            timestamp : 0,
             event : {}
         });
 
         trace("/ lumen / created window with id: " + id);
-        trace('/ lumen / updating real window config for $id is ' + _config);       
+        trace('/ lumen / updating real window config for $id is ' + _config);
 
     } //on_window_created
 
@@ -167,7 +167,7 @@ class Window {
 
         /** Close the window */
     public function close() {
-        
+
         manager.system.window_close( handle );
 
     } //close
@@ -187,7 +187,7 @@ class Window {
 
 
     function set_fullscreen( _enable:Bool ) {
-        
+
         if(handle != null) {
             manager.system.window_fullscreen( handle, _enable, fullscreen_desktop ? 0 : 1  );
         }
@@ -197,9 +197,9 @@ class Window {
     } //set_fullscreen
 
     function get_bordered() : Bool {
-        
+
         return bordered;
-        
+
     } //get_bordered
 
     function get_grab() : Bool {
@@ -269,17 +269,17 @@ class Window {
         return size = _size;
 
     } //set_size
-    
+
     function set_max_size( _size:WindowSize ) : WindowSize {
 
-        if(max_size != null && handle != null) { 
+        if(max_size != null && handle != null) {
             manager.system.window_set_max_size( handle, _size.w, _size.h );
         }
 
         return max_size = _size;
 
     } //set_max_size
-     
+
     function set_min_size( _size:WindowSize ) : WindowSize {
 
         if(min_size != null && handle != null) {
@@ -291,13 +291,13 @@ class Window {
     } //set_min_size
 
     function set_bordered( _bordered:Bool ) : Bool {
-        
+
         if(handle != null) {
             manager.system.window_bordered(handle, _bordered);
         }
 
         return bordered = _bordered;
-        
+
     } //set_bordered
 
     function set_grab( _grab:Bool ) : Bool {
@@ -308,6 +308,6 @@ class Window {
 
         return grab = _grab;
 
-    } //set_grab    
+    } //set_grab
 
 } //Window

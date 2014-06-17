@@ -16,12 +16,12 @@ import lumen.input.Input;
 
     override public function destroy() {
     } //destroy
-        
+
         /** Helper to return a `ModState` (shift, ctrl etc) from a given `InputEvent` */
     override public function mod_state_from_event( event:InputEvent ) : ModState {
-        
+
         //event comes through as event.event.keysym.mod
-        
+
         if( event.event.type == KeyEventType.up || event.event.type == KeyEventType.down ) {
 
             var mod_value = event.event.keysym.mod;
@@ -38,7 +38,7 @@ import lumen.input.Input;
                 ralt    : mod_value == ModValue.RALT,
                 lmeta   : mod_value == ModValue.LMETA,
                 rmeta   : mod_value == ModValue.RMETA,
-                
+
                 num     : mod_value == ModValue.NUM,
                 caps    : mod_value == ModValue.CAPS,
                 mode    : mod_value == ModValue.MODE,
@@ -62,14 +62,14 @@ import lumen.input.Input;
     function key_state_from_event( type:KeyEventType ) : PressedState {
 
         switch( type ) {
-        
+
             case KeyEventType.down:
                 return PressedState.down;
             case KeyEventType.up:
                 return PressedState.up;
             default:
                 return PressedState.unknown;
-        
+
         } //switch(type)
 
     } //key_state_from_event
@@ -95,13 +95,17 @@ import lumen.input.Input;
 
         super.on_event( _event );
 
-        _event.type = InputEvents.typed( cast _event.type );            
+        if(Std.is(_event.type, Int)) {
+            _event.type = InputEvents.typed( cast _event.type );
+        }
 
     //Key events
 
         if(_event.type == key) {
 
-            _event.event.type = KeyEventTypes.typed(_event.event.type);
+            if(Std.is(_event.event.type, Int)) {
+                _event.event.type = KeyEventTypes.typed(_event.event.type);
+            }
 
             var _key_event = _event.event;
 
@@ -116,11 +120,11 @@ import lumen.input.Input;
                     keycode : _key_event.keysym.sym,
                     state : _key_state,
                     mod : _mod_state,
-                    repeat : _key_event.repeat,    
+                    repeat : _key_event.repeat,
                     timestamp : _event.timestamp,
                     window_id : _event.window_id
                 };
-                    
+
                 manager.dispatch_key_event( api_event );
 
             } else if(_event.event.type == KeyEventType.textedit || _event.event.type == KeyEventType.textinput) {
@@ -131,7 +135,7 @@ import lumen.input.Input;
                     type : (_event.event.type == textedit) ? TextEventType.edit : TextEventType.input,
                     timestamp : _event.timestamp,
                     window_id : _event.window_id,
-                    start : _event.event.start == null ? 0 : _event.event.start, 
+                    start : _event.event.start == null ? 0 : _event.event.start,
                     length : _event.event.length == null ? 0 : _event.event.length
                 }
 
@@ -142,8 +146,11 @@ import lumen.input.Input;
     //Touch events
 
         } else if(_event.type == touch) {
-            
-            _event.event.type = TouchEventTypes.typed(_event.event.type);
+
+            if(Std.is(_event.event.type, Int)) {
+                _event.event.type = TouchEventTypes.typed(_event.event.type);
+            }
+
             var _state = _event.event.type;
 
                 //the mapping from touch_id -> finger_id is intentional,
@@ -156,7 +163,7 @@ import lumen.input.Input;
                 device_id : _event.event.touch_id,
                 x : _event.event.x,
                 y : _event.event.x,
-                dx : _event.event.dx, 
+                dx : _event.event.dx,
                 dy : _event.event.dy,
                 pressure : _event.event.pressure
             }
@@ -167,7 +174,9 @@ import lumen.input.Input;
 
         } else if(_event.type == controller) {
 
-            _event.event.type = GamepadEventTypes.typed(_event.event.type);
+            if(Std.is(_event.event.type, Int)) {
+                _event.event.type = GamepadEventTypes.typed(_event.event.type);
+            }
 
             var _gamepad_event = _event.event;
 
@@ -191,27 +200,27 @@ import lumen.input.Input;
                 _type = GamepadEventType.button;
                 _state = PressedState.up;
                 _button = _gamepad_event.button;
-            } 
+            }
             else
             if(_gamepad_event.type == ControllerEventType.button_down ) {
                 _type = GamepadEventType.button;
                 _state = PressedState.down;
                 _button = _gamepad_event.button;
-            } 
-            else 
+            }
+            else
         //Axis
             if(_gamepad_event.type == ControllerEventType.axis) {
                 _type = GamepadEventType.axis;
                 _value = _gamepad_event.value;
-                _axis = _gamepad_event.axis;                    
-            } 
+                _axis = _gamepad_event.axis;
+            }
             else
             if(_gamepad_event.type == ControllerEventType.added) {
                 _type = GamepadEventType.device_added;
-            } else 
+            } else
             if(_gamepad_event.type == ControllerEventType.removed) {
                 _type = GamepadEventType.device_removed;
-            } else 
+            } else
             if(_gamepad_event.type == ControllerEventType.remapped) {
                 _type = GamepadEventType.device_remapped;
             }
@@ -231,9 +240,11 @@ import lumen.input.Input;
 
     //Mouse events
 
-        } else if(_event.type == mouse) { 
+        } else if(_event.type == mouse) {
 
-            _event.event.type = MouseEventTypes.typed(_event.event.type);
+            if(Std.is(_event.event.type, Int)) {
+                _event.event.type = MouseEventTypes.typed(_event.event.type);
+            }
 
                 //defaults to unknown data
             var _mouse_state : MouseState = MouseState.unknown;
@@ -288,7 +299,7 @@ import lumen.input.Input;
     textinput;
 }
 
-@:noCompletion enum MouseEventType { 
+@:noCompletion enum MouseEventType {
     unknown;
     move;
     down;
@@ -314,7 +325,7 @@ import lumen.input.Input;
     static var ke_textinput : Int   = 771;
 
     public static function typed(ke_type:Int) : KeyEventType {
-        
+
         if(ke_type == ke_down)      return KeyEventType.down;
         if(ke_type == ke_up)        return KeyEventType.up;
         if(ke_type == ke_textedit)  return KeyEventType.textedit;
@@ -357,7 +368,7 @@ import lumen.input.Input;
     static var te_move      : Int = 1794;
 
     public static function typed(te_type:Int) : TouchState {
-        
+
         if(te_type == te_down)      return TouchState.down;
         if(te_type == te_up)        return TouchState.up;
         if(te_type == te_move)      return TouchState.move;
