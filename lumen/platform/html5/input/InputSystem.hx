@@ -163,7 +163,7 @@ import lumen.window.Window;
 
         var _event : InputEvent = input_event_from_key(_key_event);
 
-        var _keycode : Int = convert_keycode(_key_event.which);
+        var _keycode : Int = convert_keycode(_key_event.keyCode);
         var _scancode : Int = convert_scancode(_keycode);
         var _mod_state : ModState = mod_state_from_event(_event);
 
@@ -186,7 +186,7 @@ import lumen.window.Window;
 
         var _event : InputEvent = input_event_from_key(_key_event);
 
-        var _keycode : Int = convert_keycode(_key_event.which);
+        var _keycode : Int = convert_keycode(_key_event.keyCode);
         var _scancode : Int = convert_scancode(_keycode);
         var _mod_state : ModState = mod_state_from_event(_event);
 
@@ -203,7 +203,7 @@ import lumen.window.Window;
 
         manager.dispatch_key_event( api_event );
 
-    } //on_keydown
+    } //on_keyup
 
 	override public function mod_state_from_event( event:InputEvent ) : ModState {
 
