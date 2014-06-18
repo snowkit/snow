@@ -23,7 +23,7 @@
 #include "assets/lumen_assets_image.h"
 
 #include "common/ByteArray.h"
-#include "libs/lzma/lzma.h"
+#include "lzma.h"
 
 namespace lumen {
 

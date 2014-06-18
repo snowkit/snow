@@ -13,3 +13,12 @@
 [submodule "project/src/libs/ogg"]
 	path = project/src/libs/ogg
 	url = git@github.com:native-toolkit/ogg.git
+[submodule "project/src/libs/zlib"]
+	path = project/src/libs/zlib
+	url = git@github.com:native-toolkit/zlib.git
+[submodule "project/src/libs/curl"]
+	path = project/src/libs/curl
+	url = git@github.com:native-toolkit/curl.git
+[submodule "project/src/libs/vorbis"]
+	path = project/src/libs/vorbis
+	url = git@github.com:native-toolkit/vorbis.git
