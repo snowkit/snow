@@ -85,9 +85,9 @@
    <!-- always including zlib for main platforms by default -->
    <set name="LUMEN_LIB_ZLIB" value="1" />
    <!-- always including media libs for main platforms by default -->
-   <set name="LUMEN_LIB_MEDIA" value="1" />
-   <!-- always including theora libs for main platforms by default -->
+   <set name="LUMEN_LIB_OGG" value="1" />
    <set name="LUMEN_LIB_THEORA" value="1" />
+   <set name="LUMEN_LIB_VORBIS" value="1" />
    <!-- always including curl for main platforms by default -->
    <set name="LUMEN_LIB_CURL" value="1" />
    <!-- default to using SSL, but can be toggled -->
@@ -99,11 +99,11 @@
    <include name="build-include-libs.xml" />
    <include name="build-include-sdl2.xml" />
 
+   <include name="${NATIVE_TOOLKIT_PATH}/glew/files.xml" />
+   <include name="${NATIVE_TOOLKIT_PATH}/stb_image/files.xml" />
    <include name="${NATIVE_TOOLKIT_PATH}/ogg/files.xml" />
    <include name="${NATIVE_TOOLKIT_PATH}/theora/files.xml" />
    <include name="${NATIVE_TOOLKIT_PATH}/vorbis/files.xml" />
-   <include name="${NATIVE_TOOLKIT_PATH}/glew/files.xml" />
-   <include name="${NATIVE_TOOLKIT_PATH}/stb_image/files.xml" />
    <include name="${NATIVE_TOOLKIT_PATH}/lzma/files.xml" />
    <include name="${NATIVE_TOOLKIT_PATH}/zlib/files.xml" />
    <include name="${NATIVE_TOOLKIT_PATH}/curl/files.xml" />
@@ -114,6 +114,15 @@
          <!-- include paths -->
       <compilerflag value="-I${LUMEN_INC_DIR}"/>
       <compilerflag value="-I${INC_DIR}"/>
+
+      <compilerflag value="-I${NATIVE_TOOLKIT_PATH}/glew/include/"/>
+      <compilerflag value="-I${NATIVE_TOOLKIT_PATH}/stb_image/include/"/>
+      <compilerflag value="-I${NATIVE_TOOLKIT_PATH}/ogg/include/"/>
+      <compilerflag value="-I${NATIVE_TOOLKIT_PATH}/vorbis/include/"/>
+      <compilerflag value="-I${NATIVE_TOOLKIT_PATH}/theora/include/"/>
+      <compilerflag value="-I${NATIVE_TOOLKIT_PATH}/lzma/include/"/>
+      <compilerflag value="-I${NATIVE_TOOLKIT_PATH}/zlib/include/"/>
+      <compilerflag value="-I${NATIVE_TOOLKIT_PATH}/curl/include/"/>
 
          <!-- c++ defines -->
       <compilerflag value="-DHX_LUMEN"  />
@@ -231,10 +240,11 @@
       <files id="native-toolkit-stb_image"    if="LUMEN_LIB_STB_IMAGE"/>
       <files id="native-toolkit-lzma"         if="LUMEN_LIB_LZMA"/>
       <files id="native-toolkit-theora"       if="LUMEN_LIB_THEORA"/>
+      <files id="native-toolkit-vorbis"       if="LUMEN_LIB_VORBIS"/>
+      <files id="native-toolkit-ogg"          if="LUMEN_LIB_OGG"/>
+      <files id="native-toolkit-zlib"         if="LUMEN_LIB_ZLIB"/>
+      <files id="native-toolkit-curl"         if="LUMEN_LIB_CURL"/>
 
-      <files id="libs-zlib"         if="LUMEN_LIB_ZLIB"/>
-      <files id="libs-media"        if="LUMEN_LIB_MEDIA"/>
-      <files id="libs-curl"         if="LUMEN_LIB_CURL"/>
          <!-- mac and iOS have OpenAL.framework, and rather rely on system version than embedded one -->
       <files id="libs-openal"       if="LUMEN_LIB_OPENAL" unless="mac || iphone"/>
          <!-- by using the flags you can build a static, dynamic or embedded SDL (default is embedded) -->

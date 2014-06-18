@@ -3,7 +3,7 @@
 
   		//glew first, before any gl.h (important)
 	#ifdef LUMEN_LIB_GLEW
-		#include "libs/glew/GL/glew.h"
+		#include "GL/glew.h"
 	#endif //LUMEN_LIB_GLEW
 
 

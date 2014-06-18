@@ -8,9 +8,9 @@
 
 #include "lumen_io.h"
 
-#include "libs/vorbis/vorbisfile.h"
+#include "vorbis/vorbisfile.h"
 
-namespace lumen {	
+namespace lumen {
 
 		//forward
     class OGG_file_source;
@@ -21,7 +21,7 @@ namespace lumen {
 	bool audio_load_info_ogg( QuickVec<unsigned char> &out_buffer, const char* _id, OGG_file_source*& ogg_source, bool read = true );
     bool audio_read_bytes_ogg( OGG_file_source* ogg_source, QuickVec<unsigned char> &out_buffer, long start, long len );
 	bool audio_seek_bytes_ogg( OGG_file_source* ogg_source, long to );
-	
+
     bool audio_load_info_wav( QuickVec<unsigned char> &out_buffer, const char *_id, WAV_file_source*& wav_source, bool read = true );
     bool audio_read_bytes_wav( WAV_file_source* wav_source, QuickVec<unsigned char> &out_buffer, long start, long len );
     bool audio_seek_bytes_wav( WAV_file_source* wav_source, long to );
@@ -82,7 +82,7 @@ namespace lumen {
             std::string         source_name;
             int                 channels;
             int                 rate;
-            int                 bitrate; 
+            int                 bitrate;
             int                 bits_per_sample;
             off_t               data_start;
             off_t               offset;
@@ -115,7 +115,7 @@ namespace lumen {
             std::string         source_name;
             int                 channels;
             int                 rate;
-            int                 bitrate; 
+            int                 bitrate;
             int                 bits_per_sample;
             off_t               offset;
             off_t               length;

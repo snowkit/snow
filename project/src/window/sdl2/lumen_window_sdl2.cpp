@@ -2,7 +2,6 @@
 #include "lumen_window.h"
 
 //glew first, before any gl.h (important)
-// #include "libs/glew/GL/glew.h"
 #include "libs/sdl/SDL.h"
 #include "render/opengl/lumen_opengl.h"
 

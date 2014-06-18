@@ -1,5 +1,5 @@
 
-#include "libs/stb_image/stb_image.h"
+#include "stb_image.h"
 #include "common/ByteArray.h"
 
 #include "lumen_core.h"
