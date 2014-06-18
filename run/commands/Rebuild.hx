@@ -30,7 +30,7 @@ class Rebuild {
         }
 
             //now run per platform rebuild
-        rebuild_target( _chosen_target, _arg_list );        
+        rebuild_target( _chosen_target, _arg_list );
 
     } //run
 
@@ -42,9 +42,9 @@ class Rebuild {
     static function rebuild_target( _target:String, _args:Array<String> ) {
 
             //the list of build arguments to run
-        var builds = [];    
-            //per target archs will persist with multiple targets 
-            //because they are in the Run.args list. 
+        var builds = [];
+            //per target archs will persist with multiple targets
+            //because they are in the Run.args list.
             archs = [];
 
             //for now we only rebuild lumen target,
@@ -112,9 +112,11 @@ class Rebuild {
                     var do_64bit = true;
 
                     if(_target == "mac") {
-                        do_32bit = false;
+                        if(!arch('32bit')) {
+                            do_32bit = false;
+                        }
                     }
-                    
+
                     if(_target == "windows") {
                         do_64bit = false;
                     }
@@ -172,7 +174,7 @@ class Rebuild {
 
 
     static function clean_hxcpp_build( _path:String ) {
-        
+
         var directories = [ PathHelper.combine (_path, "obj") ];
         var files = [ PathHelper.combine (_path, "all_objs"), PathHelper.combine (_path, "vc100.pdb"), PathHelper.combine (_path, "vc110.pdb") ];
 
@@ -181,7 +183,7 @@ class Rebuild {
         for (directory in directories) {
             Helper.remove_directory (directory);
         }
-        
+
         for (file in files) {
             if (FileSystem.exists (file)) {
                 FileSystem.deleteFile (file);
@@ -196,9 +198,9 @@ class Rebuild {
         var _target_flags : Array<String> = [];
 
         switch(_target) {
-            
+
             case "windows":
-                
+
                 if (Sys.environment().exists("VS110COMNTOOLS") && Sys.environment().exists("VS100COMNTOOLS")) {
                     Sys.putEnv("HXCPP_MSVC", Sys.getEnv("VS100COMNTOOLS"));
                 }
@@ -206,11 +208,11 @@ class Rebuild {
             case "mac":
 
                 //mac only
-            
+
             case "linux":
 
                 //linux only
-            
+
             case "ios":
 
                     //ios only
@@ -228,20 +230,20 @@ class Rebuild {
         } //switch target
 
             //now add cumulative ones for multiple targets
-        if( _target == "android" || 
+        if( _target == "android" ||
             _target == "ios" ) {
 
                 switch(_option) {
-                    case "armv7" : 
+                    case "armv7" :
                         _target_flags.push('-DHXCPP_ARMV7');
                 }
 
         } //android || ios
 
-        if( _target == "linux" || 
+        if( _target == "linux" ||
             _target == "mac" ||
             _target == "windows" ) {
-            
+
                 switch(_option) {
                     case "64bit" :
                         _target_flags.push('-DHXCPP_M64');
