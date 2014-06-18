@@ -32,6 +32,9 @@
       <!-- paths -->
    <set name="SRC_DIR" value="${LUMEN_ROOT}src" />
    <set name="INC_DIR" value="${LUMEN_ROOT}include" />
+
+   <set name="NATIVE_TOOLKIT_PATH" value="${LUMEN_ROOT}src/libs" />
+
    <set name="LUMEN_INC_DIR" value="${LUMEN_ROOT}../include" />
    <set name="OUT_DIR" value="../ndll" />
       <!-- lib values -->
@@ -83,6 +86,8 @@
    <set name="LUMEN_LIB_ZLIB" value="1" />
    <!-- always including media libs for main platforms by default -->
    <set name="LUMEN_LIB_MEDIA" value="1" />
+   <!-- always including theora libs for main platforms by default -->
+   <set name="LUMEN_LIB_THEORA" value="1" />
    <!-- always including curl for main platforms by default -->
    <set name="LUMEN_LIB_CURL" value="1" />
    <!-- default to using SSL, but can be toggled -->
@@ -90,9 +95,16 @@
 
 <!-- Files/Sources -->
 
-      <!-- include statically linked third party libs -->
+      <!-- include linked third party libs -->
    <include name="build-include-libs.xml" />
+
+
    <include name="build-include-sdl2.xml" />
+
+   <include name="${NATIVE_TOOLKIT_PATH}/theora/files.xml" />
+   <include name="${NATIVE_TOOLKIT_PATH}/glew/files.xml" />
+   <include name="${NATIVE_TOOLKIT_PATH}/stb_image/files.xml" />
+   <include name="${NATIVE_TOOLKIT_PATH}/lzma/files.xml" />
 
       <!-- lumen build files -->
    <files id="lumen">
@@ -133,7 +145,7 @@
          <file name="${SRC_DIR}/render/opengl/lumen_render_opengl.cpp" />
 
       </section>
-      
+
       <section if="LUMEN_USE_OPENAL">
 
          <compilerflag value="-DAL_LIBTYPE_STATIC=1" />
@@ -213,9 +225,10 @@
 
 <!-- Build the libs -->
 
-      <!-- <files id="libs-glew"         if="LUMEN_LIB_GLEW"/> -->
-      <!-- <files id="libs-stb_image"    if="LUMEN_LIB_STB_IMAGE"/> -->
-      <!-- <files id="libs-lzma"         if="LUMEN_LIB_LZMA"/> -->
+      <files id="native-toolkit-glew"         if="LUMEN_LIB_GLEW"/>
+      <files id="native-toolkit-stb_image"    if="LUMEN_LIB_STB_IMAGE"/>
+      <files id="native-toolkit-lzma"         if="LUMEN_LIB_LZMA"/>
+      <files id="native-toolkit-theora"       if="LUMEN_LIB_THEORA"/>
 
       <files id="libs-zlib"         if="LUMEN_LIB_ZLIB"/>
       <files id="libs-media"        if="LUMEN_LIB_MEDIA"/>
