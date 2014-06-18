@@ -10,7 +10,7 @@ import lumen.types.Types;
 @:test1 @:test2 class App {
 
 //Access to the lumen API
-    
+
         /** use this to access the api features. *i.e* `app.assets.get_text(_id)` */
     public var app : Lumen;
 
@@ -44,7 +44,7 @@ import lumen.types.Types;
     var next_tick : Float = 0;
 
 //override these in your game class
-    
+
         /** The default constructor of an App is empty, so you can override it if you want, but take note that this happens way before lumen is ready for use. Use [ready](#ready) for entry point. */
     public function new() {}
         /** Your entry point. Called for you when you can initialize your application */
@@ -177,7 +177,7 @@ import lumen.types.Types;
         app.do_internal_render();
 
         #if lumen_native
-            
+
                 //yield to the system a bit
             Sys.sleep(0);
 
@@ -234,7 +234,7 @@ class AppFixedTimestep extends App {
         app.do_internal_render();
 
         #if lumen_native
-            
+
                 //yield for the system
             Sys.sleep(0);
 
