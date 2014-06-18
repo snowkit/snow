@@ -56,12 +56,12 @@ class Main extends lumen.AppFixedTimestep {
 
         trace('/ HOST / ready');
 
-        trace("app config is loaded as : " + app.config.runtime_config );
+        trace("app config is loaded as : " + app.config.runtime );
 
-        if(app.config.runtime_config.size != null) size = app.config.runtime_config.size;
-        if(app.config.runtime_config.movespeed != null) speed = app.config.runtime_config.movespeed;
-        if(app.config.runtime_config.texture_time != null) texture_time = app.config.runtime_config.texture_time;
-        if(app.config.runtime_config.timescale != null) timescale = app.config.runtime_config.timescale;
+        if(app.config.runtime.size != null) size = app.config.runtime.size;
+        if(app.config.runtime.movespeed != null) speed = app.config.runtime.movespeed;
+        if(app.config.runtime.texture_time != null) texture_time = app.config.runtime.texture_time;
+        if(app.config.runtime.timescale != null) timescale = app.config.runtime.timescale;
 
         var dcount : Int = app.windowing.system.display_count();
         trace('A total of ${dcount} displays were found');

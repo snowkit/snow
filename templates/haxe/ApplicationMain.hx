@@ -37,10 +37,10 @@ class ApplicationMain {
             depth_buffer    : ::WIN_DEPTH_BUFFER::,
             vsync           : ::WIN_VSYNC::,
             fps             : Std.int(::WIN_FPS::),
-            x               : Std.int(0x1FFF0000), 
-            y               : Std.int(0x1FFF0000), 
-            width           : Std.int(::WIN_WIDTH::), 
-            height          : Std.int(::WIN_HEIGHT::), 
+            x               : Std.int(0x1FFF0000),
+            y               : Std.int(0x1FFF0000),
+            width           : Std.int(::WIN_WIDTH::),
+            height          : Std.int(::WIN_HEIGHT::),
             title           : "::APP_TITLE::",
 
             orientation     : "::WIN_ORIENTATION::"
@@ -51,8 +51,8 @@ class ApplicationMain {
         var _config : LumenConfig = {
 
             host            : _host,
-            window_config   : _window_config,
-            runtime_config  : {},
+            window          : _window_config,
+            runtime         : {},
             run_loop        : true
 
         };
