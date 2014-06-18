@@ -270,7 +270,7 @@ class Main extends lumen.AppFixedTimestep {
     var next_tex_tick : Float = 0;
     var phys_posx : Float = 0;
 
-    override function update(delta:Float) {
+    override function update( delta:Float ) {
 
         positionX = phys_posx;
 
@@ -316,10 +316,8 @@ class Main extends lumen.AppFixedTimestep {
         //essentially app.frame_time is a fixed timestep, alpha time is how far we are into one...
 
         var prevx = positionX;
-        var alpha_time : Float = overflow / frame_time;
-        // var alpha_time : Float = 1; //use this to test the others
 
-        positionX = (phys_posx * alpha_time) + prevx * ( 1.0 - alpha_time );
+        positionX = (phys_posx * alpha) + prevx * ( 1.0 - alpha );
 
         if(positionX >= (app.window.size.w - size)) {
             positionX = (app.window.size.w - size);
@@ -329,7 +327,7 @@ class Main extends lumen.AppFixedTimestep {
             dirX = 1;
         }
 
-        // Sys.println('alpha:${alpha_time} dt:${app.last_frame_time} avgdt:${avgdt} simtime:${app.t}');
+        // Sys.println('alpha:${alpha} dt:${delta_time} delta_sim:${delta_sim}');
 
         render();
 
