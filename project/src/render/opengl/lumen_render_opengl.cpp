@@ -340,7 +340,7 @@ namespace lumen {
 
 // --- Is -------------------------------------------
 
-#ifdef LUMEN_LIB_GLEW
+#ifdef NATIVE_TOOLKIT_GLEW
     #define HAS_EXT_framebuffer_object GLEW_EXT_framebuffer_object
 #else
     #define HAS_EXT_framebuffer_object true

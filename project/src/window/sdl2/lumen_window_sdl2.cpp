@@ -174,7 +174,7 @@ namespace lumen {
             lumen::log("/ lumen / creating a GL context");
             lumen_gl_context = SDL_GL_CreateContext(window);
 
-            #ifdef LUMEN_LIB_GLEW
+            #ifdef NATIVE_TOOLKIT_GLEW
                 int err = glewInit();
                 if(err != 0) {
                     lumen::log("/ lumen / failed to init glew?! %s\n", glewGetErrorString(err));
@@ -183,7 +183,7 @@ namespace lumen {
                 } else {
                     lumen::log("/ lumen / GLEW init ok");
                 }
-            #endif //LUMEN_GLEW
+            #endif //NATIVE_TOOLKIT_GLEW
 
         }
 

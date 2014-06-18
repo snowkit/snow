@@ -74,24 +74,26 @@
    <!-- enable this to build sdl as a .so/.dll file, and then link it (instead of embedded in the core code) -->
    <!-- <set name="LUMEN_LIB_SDL_SHARED_EXTERNAL" value="1" /> -->
 
-   <!-- sometimes glew needs to be disabled because it can make null function pointers -->
-   <set name="LUMEN_LIB_GLEW" value="1"               unless="android || ios"/>
-   <!-- always using OpenAL for main platforms by default -->
+      <!-- sometimes glew needs to be disabled because it can make null function pointers -->
+   <set name="LUMEN_LIB_GLEW" value="1" unless="android || ios"/>
+      <!-- always using OpenAL for main platforms by default -->
    <set name="LUMEN_LIB_OPENAL" value="1"/>
-   <!-- always using stb_image for main platforms by default -->
+      <!-- always using stb_image for main platforms by default -->
    <set name="LUMEN_LIB_STB_IMAGE" value="1"/>
-   <!-- always including lzma for main platforms by default -->
+      <!-- always including lzma for main platforms by default -->
    <set name="LUMEN_LIB_LZMA" value="1" />
-   <!-- always including zlib for main platforms by default -->
+      <!-- always including zlib for main platforms by default, used by curl and other stuff -->
    <set name="LUMEN_LIB_ZLIB" value="1" />
-   <!-- always including media libs for main platforms by default -->
+
+      <!-- always including media libs for main platforms by default -->
    <set name="LUMEN_LIB_OGG" value="1" />
    <set name="LUMEN_LIB_THEORA" value="1" />
    <set name="LUMEN_LIB_VORBIS" value="1" />
-   <!-- always including curl for main platforms by default -->
+
+      <!-- always including curl for main platforms by default -->
    <set name="LUMEN_LIB_CURL" value="1" />
-   <!-- default to using SSL, but can be toggled -->
-   <set name="LUMEN_LIB_CURL_SSL" value="1" />
+      <!-- default to using SSL, but can be toggled -->
+   <set name="NATIVE_TOOLKIT_CURL_SSL" value="1" if="LUMEN_LIB_CURL"/>
 
 <!-- Files/Sources -->
 
@@ -160,8 +162,6 @@
 
       <section if="LUMEN_USE_OPENAL">
 
-         <compilerflag value="-DAL_LIBTYPE_STATIC=1" />
-
          <file name="${SRC_DIR}/audio/openal/lumen_audio_openal.cpp" />
 
       </section>
@@ -209,18 +209,40 @@
    <!-- Library specific flags -->
 
       <section if="LUMEN_LIB_CURL">
-         <compilerflag value="-DLUMEN_LIB_CURL_SSL" if="LUMEN_LIB_CURL_SSL"/>
-      </section>
-
-         <!-- lib specific flags -->
-      <section if="LUMEN_LIB_LZMA">
-         <!-- :todo: investigate why it's flagged as single threaded on non-windows -->
-         <compilerflag value="-D_7ZIP_ST"             unless="windows"/>
+         <include name="${NATIVE_TOOLKIT_PATH}/curl/defines.xml" />
       </section>
 
       <section if="LUMEN_LIB_GLEW">
-         <compilerflag value="-DLUMEN_LIB_GLEW"/>
-         <compilerflag value="-DGLEW_STATIC"/>
+         <include name="${NATIVE_TOOLKIT_PATH}/glew/defines.xml" />
+      </section>
+
+      <section if="LUMEN_LIB_LZMA">
+         <include name="${NATIVE_TOOLKIT_PATH}/lzma/defines.xml" />
+      </section>
+
+      <section if="LUMEN_LIB_OGG">
+         <include name="${NATIVE_TOOLKIT_PATH}/ogg/defines.xml" />
+      </section>
+
+      <section if="LUMEN_LIB_OPENAL">
+         <include name="${NATIVE_TOOLKIT_PATH}/openal-android/defines.xml" if="android"/>
+         <include name="${NATIVE_TOOLKIT_PATH}/openal/defines.xml" unless="mac || ios"/>
+      </section>
+
+      <section if="LUMEN_LIB_STB_IMAGE">
+         <include name="${NATIVE_TOOLKIT_PATH}/stb_image/defines.xml" />
+      </section>
+
+      <section if="LUMEN_LIB_THEORA">
+         <include name="${NATIVE_TOOLKIT_PATH}/theora/defines.xml" />
+      </section>
+
+      <section if="LUMEN_LIB_VORBIS">
+         <include name="${NATIVE_TOOLKIT_PATH}/vorbis/defines.xml" />
+      </section>
+
+      <section if="LUMEN_LIB_ZLIB">
+         <include name="${NATIVE_TOOLKIT_PATH}/zlib/defines.xml" />
       </section>
 
    </files>
@@ -238,19 +260,19 @@
 <!-- Build the libs -->
 
       <files id="native-toolkit-glew"           if="LUMEN_LIB_GLEW"/>
-      <files id="native-toolkit-stb_image"      if="LUMEN_LIB_STB_IMAGE"/>
+      <files id="native-toolkit-curl"           if="LUMEN_LIB_CURL"/>
       <files id="native-toolkit-lzma"           if="LUMEN_LIB_LZMA"/>
+      <files id="native-toolkit-ogg"            if="LUMEN_LIB_OGG"/>
+      <files id="native-toolkit-stb_image"      if="LUMEN_LIB_STB_IMAGE"/>
       <files id="native-toolkit-theora"         if="LUMEN_LIB_THEORA"/>
       <files id="native-toolkit-vorbis"         if="LUMEN_LIB_VORBIS"/>
-      <files id="native-toolkit-ogg"            if="LUMEN_LIB_OGG"/>
       <files id="native-toolkit-zlib"           if="LUMEN_LIB_ZLIB"/>
-      <files id="native-toolkit-curl"           if="LUMEN_LIB_CURL"/>
 
       <section if="LUMEN_LIB_OPENAL">
          <files id="native-toolkit-openal-android" if="android"/>
             <!-- mac and iOS have OpenAL.framework, and rather rely on system version than embedded one -->
-         <!-- <files id="native-toolkit-openal" unless="mac || iphone"/> -->
-         <files id="libs-openal"       if="LUMEN_LIB_OPENAL" unless="mac || iphone"/>
+            <!-- <files id="native-toolkit-openal" unless="mac || ios"/> -->
+         <files id="libs-openal"       if="LUMEN_LIB_OPENAL" unless="mac || ios"/>
       </section>
 
          <!-- by using the flags you can build a static, dynamic or embedded SDL (default is embedded) -->
