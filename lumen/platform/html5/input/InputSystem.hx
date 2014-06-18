@@ -79,13 +79,13 @@ typedef HTML5Gamepad = {
     function on_mousedown( _mouse_event:js.html.MouseEvent ) {
 
         var _window : Window = lib.window.window_from_handle(cast _mouse_event.target);
-        var _event : InputEvent = input_event_from_mouse(_window, _mouse_event);
 
         manager.dispatch_mouse_down_event(
             _mouse_event.pageX - _window.position.x,
             _mouse_event.pageY - _window.position.y,
             _mouse_event.button,
-            _event.timestamp, _event.window_id
+            _mouse_event.timeStamp,
+            _window.id
         );
 
     } //on_mousedown
@@ -93,13 +93,13 @@ typedef HTML5Gamepad = {
     function on_mouseup( _mouse_event:js.html.MouseEvent ) {
 
         var _window : Window = lib.window.window_from_handle(cast _mouse_event.target);
-        var _event : InputEvent = input_event_from_mouse(_window, _mouse_event);
 
         manager.dispatch_mouse_up_event(
             _mouse_event.pageX - _window.position.x,
             _mouse_event.pageY - _window.position.y,
             _mouse_event.button,
-            _event.timestamp, _event.window_id
+            _mouse_event.timeStamp,
+            _window.id
         );
 
     } //on_mouseup
@@ -107,14 +107,14 @@ typedef HTML5Gamepad = {
     function on_mousemove( _mouse_event:js.html.MouseEvent ) {
 
         var _window : Window = lib.window.window_from_handle(cast _mouse_event.target);
-        var _event : InputEvent = input_event_from_mouse(_window, _mouse_event);
 
         manager.dispatch_mouse_move_event(
             _mouse_event.pageX - _window.position.x,
             _mouse_event.pageY - _window.position.y,
             _mouse_event.movementX,
             _mouse_event.movementY,
-            _event.timestamp, _event.window_id
+            _mouse_event.timeStamp,
+            _window.id
         );
 
     } //on_mousemove
@@ -123,7 +123,6 @@ typedef HTML5Gamepad = {
     function on_mousewheel( _wheel_event:js.html.WheelEvent ) {
 
         var _window : Window = lib.window.window_from_handle(cast _wheel_event.target);
-        var _event : InputEvent = input_event_from_wheel(_window, _wheel_event);
 
         var _x : Int = 0;
         var _y : Int = 0;
@@ -141,7 +140,10 @@ typedef HTML5Gamepad = {
         }
 
         manager.dispatch_mouse_wheel_event(
-            _x, _y, _event.timestamp, _event.window_id
+            _x,
+            _y,
+            _wheel_event.timeStamp,
+            _window.id
         );
 
     } //on_mousewheel
@@ -154,31 +156,41 @@ typedef HTML5Gamepad = {
 
     function on_keydown( _key_event:js.html.KeyboardEvent ) {
 
-        var _event : InputEvent = input_event_from_key(_key_event);
-
         var _keycode : Int = convert_keycode(_key_event.keyCode);
         var _scancode : Int = convert_scancode(_keycode);
-        var _mod_state : ModState = mod_state_from_event(_event);
+        var _mod_state : ModState = mod_state_from_event(_key_event);
 
-        manager.dispatch_key_down_event( _keycode, _scancode, untyped _key_event.repeat, _mod_state, _event.timestamp, _event.window_id  );
+            //window id is 1 because keys come from the page, so always the main window
+        manager.dispatch_key_down_event(
+            _keycode,
+            _scancode,
+            untyped _key_event.repeat,
+            _mod_state,
+            _key_event.timeStamp,
+            1
+        );
 
     } //on_keydown
 
     function on_keyup( _key_event:js.html.KeyboardEvent ) {
 
-        var _event : InputEvent = input_event_from_key(_key_event);
-
         var _keycode : Int = convert_keycode(_key_event.keyCode);
         var _scancode : Int = convert_scancode(_keycode);
-        var _mod_state : ModState = mod_state_from_event(_event);
+        var _mod_state : ModState = mod_state_from_event(_key_event);
 
-        manager.dispatch_key_up_event( _keycode, _scancode, untyped _key_event.repeat, _mod_state, _event.timestamp, _event.window_id  );
+            //window id is 1 because keys come from the page, so always the main window
+        manager.dispatch_key_up_event(
+            _keycode,
+            _scancode,
+            untyped _key_event.repeat,
+            _mod_state,
+            _key_event.timeStamp,
+            1
+        );
 
     } //on_keyup
 
-	override public function mod_state_from_event( event:InputEvent ) : ModState {
-
-        var _key_event : js.html.KeyboardEvent = cast event.event;
+	function mod_state_from_event( _key_event : js.html.KeyboardEvent ) : ModState {
 
         var _none : Bool =
             !_key_event.altKey &&
@@ -230,19 +242,11 @@ typedef HTML5Gamepad = {
                     //check if it was here already before
                     var _gamepad = active_gamepads.get(i);
                     if(_gamepad != null) {
-                            //this was disconnected, so fire an event
-                        var _event : InputEvent = {
-                            timestamp:_gamepad.timestamp,
-                            event:_gamepad,
-                            window_id : 1, //always main window because non specific event
-                            type : InputEventType.controller
-                        };
-
 
                         manager.dispatch_gamepad_device_event(
                             _gamepad.index,
                             GamepadDeviceEventType.device_removed,
-                            _event.timestamp
+                            _gamepad.timestamp
                         );
 
                     } //_gamepad != null
@@ -342,7 +346,12 @@ typedef HTML5Gamepad = {
                     //now forward any axis changes to the wrapper
                 for(index in axes_changed) {
 
-                    manager.dispatch_gamepad_axis_event( gamepad.index, index, new_axes[index], gamepad.timestamp );
+                    manager.dispatch_gamepad_axis_event(
+                        gamepad.index,
+                        index,
+                        new_axes[index],
+                        gamepad.timestamp
+                    );
 
                 } //for each axis changed
 
@@ -350,10 +359,24 @@ typedef HTML5Gamepad = {
                 for(index in buttons_changed) {
 
                     if(new_buttons[index].pressed == true) {
-                        manager.dispatch_gamepad_button_down_event( gamepad.index, index, new_buttons[index].value, gamepad.timestamp );
+
+                        manager.dispatch_gamepad_button_down_event(
+                            gamepad.index,
+                            index,
+                            new_buttons[index].value,
+                            gamepad.timestamp
+                        );
+
                     } else {
-                        manager.dispatch_gamepad_button_up_event( gamepad.index, index, new_buttons[index].value, gamepad.timestamp );
-                    }
+
+                        manager.dispatch_gamepad_button_up_event(
+                            gamepad.index,
+                            index,
+                            new_buttons[index].value,
+                            gamepad.timestamp
+                        );
+
+                    } //new_buttons[index].pressed
 
                 } //for each button change
 
@@ -401,52 +424,6 @@ typedef HTML5Gamepad = {
         return null;
 
     } //get_gamepad_list
-
-
-    @:noCompletion public function input_event_from_key( _key_event:js.html.KeyboardEvent ) {
-
-            //the forced 1 here is intentional.
-            //since key events come from the page, not the element,
-            //the most reasonable solution is to submit all key events with the main window id
-            //so this value should not really make much sense to use for each window.
-            //if you want to use multiple canvas onkeydown/up combos you will have to do it manually
-
-        var _event : InputEvent = {
-            type : InputEventType.key,
-            timestamp : _key_event.timeStamp,
-            window_id : 1,
-            event : _key_event
-        };
-
-        return _event;
-
-    } //input_event_from_key
-
-    @:noCompletion public function input_event_from_wheel( _window:Window, _wheel_event:js.html.WheelEvent ) {
-
-        var _event : InputEvent = {
-            type : InputEventType.mouse,
-            timestamp : _wheel_event.timeStamp,
-            window_id : _window.id,
-            event : _wheel_event
-        };
-
-        return _event;
-
-    } //input_event_from_wheel
-
-    @:noCompletion public function input_event_from_mouse( _window:Window, _mouse_event:js.html.MouseEvent ) {
-
-        var _event : InputEvent = {
-            type : InputEventType.mouse,
-            timestamp : _mouse_event.timeStamp,
-            window_id : _window.id,
-            event : _mouse_event
-        };
-
-        return _event;
-
-    } //input_event_from_mouse
 
     function convert_scancode(_keycode:Int) : Int {
 

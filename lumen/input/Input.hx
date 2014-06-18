@@ -155,13 +155,6 @@ class Input {
 
     } //dispatch_gamepad_device_event
 
-        /** Helper to return a `ModState` (shift, ctrl etc) from a given `InputEvent` */
-    public function mod_state_from_event( event:InputEvent ) {
-
-        return system.mod_state_from_event( event );
-
-    } //mod_state_from_event
-
 //Interal API
 
 
