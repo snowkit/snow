@@ -11,7 +11,7 @@ import lumen.input.Input;
 import lumen.audio.Audio;
 import lumen.window.Windowing;
 import lumen.window.Window;
-    
+
     //the platform core bindings
 import lumen.Core;
 
@@ -56,7 +56,7 @@ class Lumen {
     var was_ready : Bool = false;
         //if ready has completed, so systems can begin safely
     var is_ready : Bool = false;
-        //the core platform instance to bind us 
+        //the core platform instance to bind us
     var core : Core;
 
     @:noCompletion public function new() {
