@@ -54,90 +54,106 @@ class Input {
     } //keydown
 
         /** manually dispatch a keyboard event through the system, delivered to the app handlers, internal and external */
-    public function dispatch_key_event( _event:KeyEvent ) {
+    public function dispatch_key_up_event( keycode:Int, scancode:Int, repeat:Bool, mod:ModState, timestamp:Float, window_id:Int ) {
 
-        if(_event.state == PressedState.up) {
+            //flag it as released but unprocessed
+        key_code_released.set(keycode, false);
+            //remove the down flag
+        key_code_down.remove(keycode);
+            //dispatch the event
+        lib.host.onkeyup(keycode, scancode, repeat, mod, timestamp, window_id);
 
-                //flag it as released but unprocessed
-            key_code_released.set(_event.keycode, false);
-                //remove the down flag
-            key_code_down.remove(_event.keycode);
-                //dispatch the event
-            lib.host.onkeyup(_event);
+    } //dispatch_key_up_event
 
-        } else if(_event.state == PressedState.down) {
+    public function dispatch_key_down_event( keycode:Int, scancode:Int, repeat:Bool, mod:ModState, timestamp:Float, window_id:Int ) {
 
             //only do the realtime flags if not key repeat
-            if(!_event.repeat) {
-                    //flag the key as pressed, but unprocessed (false)
-                key_code_pressed.set(_event.keycode, false);
-                    //flag it as down, because keyup removes it
-                key_code_down.set(_event.keycode, true);
-            }
-
-                //dispatch the event
-            lib.host.onkeydown(_event);
+        if(!repeat) {
+                //flag the key as pressed, but unprocessed (false)
+            key_code_pressed.set(keycode, false);
+                //flag it as down, because keyup removes it
+            key_code_down.set(keycode, true);
         }
 
-    } //dispatch_key_event
+            //forward the event
+        lib.host.onkeydown(keycode, scancode, repeat, mod, timestamp, window_id);
+
+    } //dispatch_key_down_event
 
         /** manually dispatch a text event through the system, delivered to the app handlers, internal and external */
-    public function dispatch_text_event( _event:TextEvent ) {
+    public function dispatch_text_event( text:String, start:Int, length:Int, type:TextEventType, timestamp:Float, window_id:Int ) {
 
-        lib.host.ontextinput(_event);
+        lib.host.ontextinput( text, start, length, type, timestamp, window_id );
 
     } //dispatch_text_event
 
-        /** manually dispatch a mouse event through the system, delivered to the app handlers, internal and external */
-    public function dispatch_mouse_event( _event:MouseEvent ) {
+    public function dispatch_mouse_move_event( x:Int, y:Int, xrel:Int, yrel:Int, timestamp:Float, window_id:Int ) {
 
-        if(_event.state == MouseState.down) {
-            lib.host.onmousedown(_event);
-        } else if(_event.state == MouseState.up) {
-            lib.host.onmouseup(_event);
-        } else if(_event.state == MouseState.move) {
-            lib.host.onmousemove(_event);
-        } else if(_event.state == MouseState.wheel) {
-            lib.host.onmousewheel(_event);
-        }
+        lib.host.onmousemove( x, y, xrel, yrel, timestamp, window_id );
 
-    } //dispatch_mouse_event
+    } //dispatch_mouse_move_event
+
+    public function dispatch_mouse_down_event( x:Int, y:Int, button:Int, timestamp:Float, window_id:Int ) {
+
+        lib.host.onmousedown( x, y, button, timestamp, window_id );
+
+    } //dispatch_mouse_down_event
+
+    public function dispatch_mouse_up_event( x:Int, y:Int, button:Int, timestamp:Float, window_id:Int ) {
+
+        lib.host.onmouseup( x, y, button, timestamp, window_id );
+
+    } //dispatch_mouse_up_event
+
+    public function dispatch_mouse_wheel_event( x:Int, y:Int, timestamp:Float, window_id:Int ) {
+
+        lib.host.onmousewheel( x, y, timestamp, window_id );
+
+    } //dispatch_mouse_wheel_event
 
         /** manually dispatch a touch event through the system, delivered to the app handlers, internal and external */
-    public function dispatch_touch_event( _event:TouchEvent ) {
+    public function dispatch_touch_down_event( x:Float, y:Float, touch_id:Int, timestamp:Float ) {
 
-        if(_event.state == TouchState.down) {
-            lib.host.ontouchdown(_event);
-        } else if(_event.state == TouchState.up) {
-            lib.host.ontouchup(_event);
-        } else if(_event.state == TouchState.move) {
-            lib.host.ontouchmove(_event);
-        }
+        lib.host.ontouchdown( x, y, touch_id, timestamp );
 
-    } //dispatch_touch_event
+    } //dispatch_touch_down_event
+
+    public function dispatch_touch_up_event( x:Float, y:Float, touch_id:Int, timestamp:Float ) {
+
+        lib.host.ontouchup( x, y, touch_id, timestamp );
+
+    } //dispatch_touch_up_event
+
+    public function dispatch_touch_move_event( x:Float, y:Float, dx:Float, dy:Float, touch_id:Int, timestamp:Float ) {
+
+        lib.host.ontouchmove( x, y, dx, dy, touch_id, timestamp );
+
+    } //dispatch_touch_move_event
 
         /** manually dispatch a gamepad event through the system, delivered to the app handlers, internal and external */
-    public function dispatch_gamepad_event( _event:GamepadEvent ) {
+    public function dispatch_gamepad_axis_event( gamepad:Int, axis:Int, value:Float, timestamp:Float ) {
 
-        if(_event.type == GamepadEventType.axis) {
-            lib.host.ongamepadaxis(_event);
-        } else if(_event.type == GamepadEventType.button) {
+        lib.host.ongamepadaxis( gamepad, axis, value, timestamp );
 
-            if(_event.state == PressedState.down) {
-                lib.host.ongamepadbuttondown(_event);
-            } else if(_event.state == PressedState.up) {
-                lib.host.ongamepadbuttonup(_event);
-            }
+    } //dispatch_gamepad_axis_event
 
-        }
-        else if( _event.type == GamepadEventType.device_added ||
-                 _event.type == GamepadEventType.device_removed ||
-                 _event.type == GamepadEventType.device_remapped
-        ) {
-            lib.host.ongamepaddevice(_event);
-        }
+    public function dispatch_gamepad_button_down_event( gamepad:Int, button:Int, value:Float, timestamp:Float ) {
 
-    } //dispatch_gamepad_event
+        lib.host.ongamepadbuttondown( gamepad, button, value, timestamp );
+
+    } //dispatch_gamepad_button_down_event
+
+    public function dispatch_gamepad_button_up_event( gamepad:Int, button:Int, value:Float, timestamp:Float ) {
+
+        lib.host.ongamepadbuttonup( gamepad, button, value, timestamp );
+
+    } //dispatch_gamepad_button_up_event
+
+    public function dispatch_gamepad_device_event( gamepad:Int, type:GamepadDeviceEventType, timestamp:Float ) {
+
+        lib.host.ongamepaddevice( gamepad, type, timestamp );
+
+    } //dispatch_gamepad_device_event
 
         /** Helper to return a `ModState` (shift, ctrl etc) from a given `InputEvent` */
     public function mod_state_from_event( event:InputEvent ) {

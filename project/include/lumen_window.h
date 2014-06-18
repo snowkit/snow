@@ -23,7 +23,7 @@ namespace lumen {
 
         //This function is called by hx_bindings, and should attempt
         // to create a window with the specified configuration,
-        // any failed configuration will result in the config being updated, 
+        // any failed configuration will result in the config being updated,
         // and when complete the configuration will be passed back to the on_complete listener.
     LumenWindow* create_window( const window_config &config, AutoGCRoot* on_created );
 
@@ -129,16 +129,16 @@ namespace lumen {
         public:
             WindowEventType type;
             int window_id;
-            int timestamp;
+            double timestamp;
             value event;
 
-        WindowEvent( WindowEventType _type = we_unknown, int _window_id = 1, int _timestamp = 0 ) 
+        WindowEvent( WindowEventType _type = we_unknown, int _window_id = 1, double _timestamp = 0.0 )
             : type(_type), window_id(_window_id), timestamp(_timestamp)
                 {}
 
     };
 
-        //Base window class, inheriting from Object in hx_bindings so 
+        //Base window class, inheriting from Object in hx_bindings so
         //that it can be wrapped in a haxe abstract and passed to hx.
         //Window managers inherit from this, like SDL2.
 
@@ -212,7 +212,7 @@ namespace lumen {
 
             alloc_field( _window_event, id_type, alloc_int( event.type ) );
             alloc_field( _window_event, id_window_id, alloc_int( event.window_id ) );
-            alloc_field( _window_event, id_timestamp, alloc_int( event.timestamp ) );
+            alloc_field( _window_event, id_timestamp, alloc_float( event.timestamp ) );
             alloc_field( _window_event, id_event, event.event );
 
         value _system_event = alloc_empty_object();

@@ -81,20 +81,12 @@ typedef HTML5Gamepad = {
         var _window : Window = lib.window.window_from_handle(cast _mouse_event.target);
         var _event : InputEvent = input_event_from_mouse(_window, _mouse_event);
 
-        var api_event : MouseEvent = {
-            raw : _event,
-            timestamp : _event.timestamp,
-            window_id : _event.window_id,
-            which : 0,
-            state : MouseState.down,
-            button : convert_mouse_button(_mouse_event.button),
-            x : _mouse_event.pageX - _window.position.x,
-            y : _mouse_event.pageY - _window.position.y,
-            xrel : _mouse_event.movementX,
-            yrel : _mouse_event.movementY
-        };
-
-        manager.dispatch_mouse_event(api_event);
+        manager.dispatch_mouse_down_event(
+            _mouse_event.pageX - _window.position.x,
+            _mouse_event.pageY - _window.position.y,
+            convert_mouse_button(_mouse_event.button),
+            _event.timestamp, _event.window_id
+        );
 
     } //on_mousedown
 
@@ -103,20 +95,12 @@ typedef HTML5Gamepad = {
         var _window : Window = lib.window.window_from_handle(cast _mouse_event.target);
         var _event : InputEvent = input_event_from_mouse(_window, _mouse_event);
 
-        var api_event : MouseEvent = {
-            raw : _event,
-            timestamp : _event.timestamp,
-            window_id : _event.window_id,
-            which : 0,
-            state : MouseState.up,
-            button : convert_mouse_button(_mouse_event.button),
-            x : _mouse_event.pageX - _window.position.x,
-            y : _mouse_event.pageY - _window.position.y,
-            xrel : _mouse_event.movementX,
-            yrel : _mouse_event.movementY
-        };
-
-        manager.dispatch_mouse_event(api_event);
+        manager.dispatch_mouse_up_event(
+            _mouse_event.pageX - _window.position.x,
+            _mouse_event.pageY - _window.position.y,
+            convert_mouse_button(_mouse_event.button),
+            _event.timestamp, _event.window_id
+        );
 
     } //on_mouseup
 
@@ -125,20 +109,13 @@ typedef HTML5Gamepad = {
         var _window : Window = lib.window.window_from_handle(cast _mouse_event.target);
         var _event : InputEvent = input_event_from_mouse(_window, _mouse_event);
 
-        var api_event : MouseEvent = {
-            raw : _event,
-            timestamp : _event.timestamp,
-            window_id : _event.window_id,
-            which : 0,
-            state : MouseState.move,
-            button : convert_mouse_button(_mouse_event.button),
-            x : _mouse_event.pageX - _window.position.x,
-            y : _mouse_event.pageY - _window.position.y,
-            xrel : _mouse_event.movementX,
-            yrel : _mouse_event.movementY
-        };
-
-        manager.dispatch_mouse_event(api_event);
+        manager.dispatch_mouse_move_event(
+            _mouse_event.pageX - _window.position.x,
+            _mouse_event.pageY - _window.position.y,
+            _mouse_event.movementX,
+            _mouse_event.movementY,
+            _event.timestamp, _event.window_id
+        );
 
     } //on_mousemove
 
@@ -163,20 +140,9 @@ typedef HTML5Gamepad = {
             _x = Std.int(-_wheel_event.wheelDeltaX/3);
         }
 
-        var api_event : MouseEvent = {
-            raw : _event,
-            timestamp : _event.timestamp,
-            window_id : _event.window_id,
-            which : 0,
-            state : MouseState.wheel,
-            button : MouseButton.none,
-            x : _x,
-            y : _y,
-            xrel : _x,
-            yrel : _y
-        };
-
-        manager.dispatch_mouse_event(api_event);
+        manager.dispatch_mouse_wheel_event(
+            _x, _y, _event.timestamp, _event.window_id
+        );
 
     } //on_mousewheel
 
@@ -194,18 +160,7 @@ typedef HTML5Gamepad = {
         var _scancode : Int = convert_scancode(_keycode);
         var _mod_state : ModState = mod_state_from_event(_event);
 
-        var api_event : KeyEvent = {
-            raw : _event,
-            scancode : _scancode,
-            keycode : _keycode,
-            state : PressedState.down,
-            mod : _mod_state,
-            repeat : untyped _key_event.repeat,
-            timestamp : _event.timestamp,
-            window_id : _event.window_id
-        };
-
-        manager.dispatch_key_event( api_event );
+        manager.dispatch_key_down_event( _keycode, _scancode, untyped _key_event.repeat, _mod_state, _event.timestamp, _event.window_id  );
 
     } //on_keydown
 
@@ -217,18 +172,7 @@ typedef HTML5Gamepad = {
         var _scancode : Int = convert_scancode(_keycode);
         var _mod_state : ModState = mod_state_from_event(_event);
 
-        var api_event : KeyEvent = {
-            raw : _event,
-            scancode : _scancode,
-            keycode : _keycode,
-            state : PressedState.up,
-            mod : _mod_state,
-            repeat : untyped _key_event.repeat,
-            timestamp : _event.timestamp,
-            window_id : _event.window_id
-        };
-
-        manager.dispatch_key_event( api_event );
+        manager.dispatch_key_up_event( _keycode, _scancode, untyped _key_event.repeat, _mod_state, _event.timestamp, _event.window_id  );
 
     } //on_keyup
 

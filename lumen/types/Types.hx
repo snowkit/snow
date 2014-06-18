@@ -417,6 +417,70 @@ enum InputEventType {
 
 } //InputEventType
 
+/** A text specific event event type */
+enum TextEventType {
+
+/** An edit text typing event */
+    edit;
+/** An input text typing event */
+    input;
+
+} //TextEventType
+
+/** A gamepad device event type */
+enum GamepadDeviceEventType {
+
+/** A device added event */
+    device_added;
+/** A device removed event */
+    device_removed;
+/** A device was remapped */
+    device_remapped;
+
+} //GamepadEventType
+
+
+/** Input modifier state */
+typedef ModState = {
+
+        /** `none` : no modifiers are down */
+    var none : Bool;
+        /** `lshift` : left shift key is down */
+    var lshift : Bool;
+        /** `rshift` : right shift key is down */
+    var rshift : Bool;
+        /** `lctrl` : left ctrl key is down */
+    var lctrl : Bool;
+        /** `rctrl` : right ctrl key is down */
+    var rctrl : Bool;
+        /** `lalt` : left alt/option key is down */
+    var lalt : Bool;
+        /** `ralt` : right alt/option key is down */
+    var ralt : Bool;
+        /** `lmeta` : left windows/command key is down */
+    var lmeta : Bool;
+        /** `rmeta` : right windows/command key is down */
+    var rmeta : Bool;
+        /** `num` : numlock is enabled */
+    var num : Bool;
+        /** `caps` : capslock is enabled */
+    var caps : Bool;
+        /** `mode` : mode key is down */
+    var mode : Bool;
+        /** `ctrl` : left or right ctrl key is down */
+    var ctrl : Bool;
+        /** `shift` : left or right shift key is down */
+    var shift : Bool;
+        /** `alt` : left or right alt/option key is down */
+    var alt : Bool;
+        /** `meta` : left or right windows/command key is down */
+    var meta : Bool;
+
+} //ModState
+
+
+//Conversion helpers for native <-> lumen events
+
 @:noCompletion class SystemEvents {
 
         //lumen core events
@@ -540,273 +604,3 @@ enum InputEventType {
     } //typed
 
 } //InputEvents
-
-
-/** A typed state for buttons or similar */
-enum PressedState {
-
-/** An unknown state */
-    unknown;
-/** In a pressed state */
-    down;
-/** In a released state */
-    up;
-
-} //PressedState
-
-/** A typed mouse state */
-enum MouseState {
-
-/** An unknown state */
-    unknown;
-/** In a pressed state */
-    down;
-/** In a released state */
-    up;
-/** In a moving state */
-    move;
-/** A mouse wheel state */
-    wheel;
-
-} //MouseState
-
-/** A typed mouse button id */
-enum MouseButton {
-
-/** no mouse buttons */
-    none;
-/** left mouse button */
-    left;
-/** middle mouse button */
-    middle;
-/** right mouse button */
-    right;
-/** extra button pressed (4) */
-    extra1;
-/** extra button pressed (5) */
-    extra2;
-
-} //MouseButton
-
-/** A typed text event type */
-enum TextEventType {
-
-/** An unknown event */
-    unknown;
-/** An edit text typing event */
-    edit;
-/** An input text typing event */
-    input;
-
-} //TextEventType
-
-/** A typed gamepad event type */
-enum GamepadEventType {
-
-/** An unknown event */
-    unknown;
-/** An axis change event */
-    axis;
-/** A button event */
-    button;
-/** A device added event */
-    device_added;
-/** A device removed event */
-    device_removed;
-/** A device was remapped */
-    device_remapped;
-
-} //GamepadEventType
-
-/** The states a touch can be in */
-enum TouchState {
-
-/** an unknown state */
-    unknown;
-/** touch is down */
-    down;
-/** touch is up */
-    up;
-/** touch is moving */
-    move;
-
-} //TouchState
-
-/**
-Input modifier state
-
-`none` : no modifiers are down
-`lshift` : left shift key is down
-`rshift` : right shift key is down
-`lctrl` : left ctrl key is down
-`rctrl` : right ctrl key is down
-`lalt` : left alt/option key is down
-`ralt` : right alt/option key is down
-`lmeta` : left windows/command key is down
-`rmeta` : right windows/command key is down
-`num` : numlock is enabled
-`caps` : capslock is enabled
-`mode` : mode key is down
-`ctrl` : left or right ctrl key is down
-`shift` : left or right shift key is down
-`alt` : left or right alt/option key is down
-`meta` : left or right windows/command key is down
-
-*/
-typedef ModState = {
-
-    none : Bool,
-    lshift : Bool,
-    rshift : Bool,
-    lctrl : Bool,
-    rctrl : Bool,
-    lalt : Bool,
-    ralt : Bool,
-    lmeta : Bool,
-    rmeta : Bool,
-    num : Bool,
-    caps : Bool,
-    mode : Bool,
-    ctrl : Bool,
-    shift : Bool,
-    alt : Bool,
-    meta : Bool
-
-} //ModState
-
-/**
-Information about a mouse event
-
-`raw` : The raw event from the system, unmodified
-`timestamp` : The time in seconds when this touch event occurred, use for deltas
-`window_id` : The window id this event originated from
-`which` : Which mouse this event originated from (usually 0)
-`state` : The state this event is in
-`button` : The button id, if the event `state` is `down` or `up`
-`x` : The x position in the window of the mouse event
-`y` : The y position in the window of the mouse event
-`xrel` : The relative x position if `state` is `move` or a window has grabbed state
-`yrel` : The relative y position if `state` is `move` or a window has grabbed state
-
-*/
-typedef MouseEvent = {
-
-    raw : InputEvent,
-    timestamp : Float,
-    window_id : Int,
-    which : Int,
-    state : MouseState,
-    button : MouseButton,
-    x : Int,
-    y : Int,
-    xrel : Int,
-    yrel : Int
-
-} //MouseEvent
-
-/**
-Information about a keyboard event
-
-`raw` : The raw event from the system, unmodified
-`scancode` : The `lumen.input.Scan` code value for this event
-`keycode` : The `lumen.input.Key` code value for this event
-`state` : The state of the key in this event
-`mod` : The modifier state of this event
-`repeat` : If this value is bigger than 0 this is a key repeat event of a key held down
-`timestamp` : The time in seconds when this touch event occurred, use for deltas
-`window_id` : The window id this event originated from
-
-*/
-typedef KeyEvent = {
-
-    raw : InputEvent,
-    scancode : Int,
-    keycode : Int,
-    state : PressedState,
-    mod : ModState,
-    repeat : Bool,
-    timestamp : Float,
-    window_id : Int
-
-} //KeyEvent
-
-/**
-Information about a text input event
-
-`raw` : The raw event from the system, unmodified
-`text` : The text that this event has generated
-`type` : The type of text event
-`timestamp` : The time in seconds when this touch event occurred, use for deltas
-`window_id` : The window id this event originated from
-`start` : The start position, if the `type` is `edit`
-`length` : The length position, if the `type` is `edit`
-
-*/
-typedef TextEvent = {
-
-    raw : InputEvent,
-    text : String,
-    type : TextEventType,
-    timestamp : Float,
-    window_id : Int,
-    start : Int,
-    length : Int
-
-} //TextEvent
-
-/**
-Information about a gamepad event
-
-`raw` : The raw event from the system, unmodified
-`timestamp` : The time in seconds when this touch event occurred, use for deltas
-`type` : The button id, if the event `type` is `button`
-`state` : The state this event is in
-`which` : The id of the gamepad this event comes from
-`button` : The button id, if the event `type` is `button`
-`axis` : The axis id, if the event `type` is `button`
-`value` : The axis value, if the event `type` is `axis`
-
-*/
-typedef GamepadEvent = {
-
-    raw : InputEvent,
-    timestamp : Float,
-    type : GamepadEventType,
-    state : PressedState,
-    which : Int,
-    button : Int,
-    axis : Int,
-    value : Float
-
-} //GamepadEvent
-
-/**
-Information about a touch event
-
-`raw` : The raw event from the system, unmodified
-`state` : The state this touch event is in
-`timestamp` : The time in seconds when this touch event occurred, use for deltas
-`touch_id` : The id of the touch that this event comes from, a finger id
-`device_id` : The device id this touch comes from
-`x` : The x position in the window of the touch event
-`y` : The x position in the window of the touch event
-`dx` : The delta x value of the touch event, if the state is `moving`
-`dy` : The delta y value of the touch event, if the state is `moving`
-`pressure` : The pressure value of the touch event, where available
-
-*/
-typedef TouchEvent = {
-
-    raw : InputEvent,
-    state : TouchState,
-    timestamp : Float,
-    touch_id : Int,
-    device_id : Int,
-    x : Float,
-    y : Float,
-    dx : Float,
-    dy : Float,
-    pressure : Float
-
-} //TouchEvent
-
