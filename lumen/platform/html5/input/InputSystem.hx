@@ -84,7 +84,7 @@ typedef HTML5Gamepad = {
         manager.dispatch_mouse_down_event(
             _mouse_event.pageX - _window.position.x,
             _mouse_event.pageY - _window.position.y,
-            convert_mouse_button(_mouse_event.button),
+            _mouse_event.button,
             _event.timestamp, _event.window_id
         );
 
@@ -98,7 +98,7 @@ typedef HTML5Gamepad = {
         manager.dispatch_mouse_up_event(
             _mouse_event.pageX - _window.position.x,
             _mouse_event.pageY - _window.position.y,
-            convert_mouse_button(_mouse_event.button),
+            _mouse_event.button,
             _event.timestamp, _event.window_id
         );
 
@@ -237,18 +237,14 @@ typedef HTML5Gamepad = {
                             window_id : 1, //always main window because non specific event
                             type : InputEventType.controller
                         };
-                        var api_event : GamepadEvent = {
-                            raw : _event,
-                            timestamp : _event.timestamp,
-                            type : GamepadEventType.device_removed,
-                            state : PressedState.unknown,
-                            which : _gamepad.index,
-                            button : -1,
-                            axis : -1,
-                            value : 0
-                        };
 
-                        manager.dispatch_gamepad_event( api_event );
+
+                        manager.dispatch_gamepad_device_event(
+                            _gamepad.index,
+                            GamepadDeviceEventType.device_removed,
+                            _event.timestamp
+                        );
+
                     } //_gamepad != null
 
                         //and remove it so it only fires once
@@ -264,13 +260,6 @@ typedef HTML5Gamepad = {
 
             //disconnected gamepads we don't need
         if(_gamepad == null) return;
-
-        var _event : InputEvent = {
-            timestamp:_gamepad.timestamp,
-            event:_gamepad,
-            window_id : 1, //always main window because non specific event
-            type : InputEventType.controller
-        };
 
             //check if this gamepad exists already
         if( !active_gamepads.exists( _gamepad.index ) ) {
@@ -291,19 +280,11 @@ typedef HTML5Gamepad = {
 
             active_gamepads.set( _gamepad.index, _new_gamepad );
 
-                //fire an on connected event
-            var api_event : GamepadEvent = {
-                raw : _event,
-                timestamp : _event.timestamp,
-                type : GamepadEventType.device_added,
-                state : PressedState.unknown,
-                which : _gamepad.index,
-                button : -1,
-                axis : -1,
-                value : 0
-            };
-
-            manager.dispatch_gamepad_event( api_event );
+            manager.dispatch_gamepad_device_event(
+                _gamepad.index,
+                GamepadDeviceEventType.device_added,
+                _gamepad.timestamp
+            );
 
         } else {
 
@@ -361,38 +342,18 @@ typedef HTML5Gamepad = {
                     //now forward any axis changes to the wrapper
                 for(index in axes_changed) {
 
-                    var api_event : GamepadEvent = {
-                        raw : _event,
-                        timestamp : _event.timestamp,
-                        type : GamepadEventType.axis,
-                        state : PressedState.unknown,
-                        which : gamepad.index,
-                        button : -1,
-                        axis : index,
-                        value : new_axes[index]
-                    };
-
-                    manager.dispatch_gamepad_event( api_event );
+                    manager.dispatch_gamepad_axis_event( gamepad.index, index, new_axes[index], gamepad.timestamp );
 
                 } //for each axis changed
 
                     //then forward any button changes to the wrapper
                 for(index in buttons_changed) {
 
-                    var _state = (new_buttons[index].value == 0) ? PressedState.up : PressedState.down;
-
-                    var api_event : GamepadEvent = {
-                        raw : _event,
-                        timestamp : _event.timestamp,
-                        type : GamepadEventType.button,
-                        state : _state,
-                        which : gamepad.index,
-                        button : index,
-                        axis : -1,
-                        value : new_buttons[index].value
-                    };
-
-                    manager.dispatch_gamepad_event( api_event );
+                    if(new_buttons[index].pressed == true) {
+                        manager.dispatch_gamepad_button_down_event( gamepad.index, index, new_buttons[index].value, gamepad.timestamp );
+                    } else {
+                        manager.dispatch_gamepad_button_up_event( gamepad.index, index, new_buttons[index].value, gamepad.timestamp );
+                    }
 
                 } //for each button change
 
@@ -486,20 +447,6 @@ typedef HTML5Gamepad = {
         return _event;
 
     } //input_event_from_mouse
-
-    function convert_mouse_button(_button:Int) : MouseButton {
-
-        switch(_button) {
-            case 0: return MouseButton.left;
-            case 1: return MouseButton.middle;
-            case 2: return MouseButton.right;
-            case 3: return MouseButton.extra1;
-            case 4: return MouseButton.extra2;
-        }
-
-        return MouseButton.none;
-
-    } //convert_mouse_button
 
     function convert_scancode(_keycode:Int) : Int {
 

@@ -237,34 +237,34 @@ class Main extends lumen.AppFixedTimestep {
             phys_posx = positionX;
         #end
 
-    }
+    } //onmouseup
 
     override function onmousedown( x:Int, y:Int, button:Int, timestamp:Float, window_id:Int ) {
         // trace('mouse down $x $y $button $timestamp $window_id');
-    }
+    } //onmousedown
 
     override function onmousewheel(  x:Int, y:Int, timestamp:Float, window_id:Int ) {
         // trace('mouse wheel $x $y $timestamp $window_id');
-    }
+    } //onmousewheel
 
 
     override function ongamepadaxis( gamepad:Int, axis:Int, value:Float, timestamp:Float ) {
         if(Math.abs(value) > 0.5) {
             trace('axis; device: ${gamepad}, axis: ${axis}, value: ${value} timestamp: ${timestamp}');
         }
-    }
+    } //ongamepadaxis
 
     override function ongamepadbuttonup( gamepad:Int, button:Int, value:Float, timestamp:Float ) {
         trace('button up; device: ${gamepad}, button: ${button} value: ${value} timestamp:  ${timestamp}');
-    }
+    } //ongamepadbuttonup
 
     override function ongamepadbuttondown( gamepad:Int, button:Int, value:Float, timestamp:Float ) {
         trace('button down; device: ${gamepad}, button: ${button} value: ${value} timestamp:  ${timestamp}');
-    }
+    } //ongamepadbuttondown
 
     override function ongamepaddevice( gamepad:Int, type:GamepadDeviceEventType, timestamp:Float ) {
         trace('device event; device: ${gamepad}, type: ${type} timestamp: ${timestamp}');
-    }
+    } //ongamepaddevice
 
 
     var next_tex_tick : Float = 0;
