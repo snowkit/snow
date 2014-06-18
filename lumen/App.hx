@@ -132,20 +132,20 @@ import lumen.types.Types;
 
     } //get_asset_list
 
-//No need to interact with these, unless you want pre-ready init, just call super.on_lumen_init() etc
+//No need to interact with these, unless you want pre-ready init, just call super.on_internal_init() etc
 //to maintain expected App behavior. You can override behavior in the base class, like AppFixedTimestep
 
         //internal facing api
-    @:noCompletion public function on_lumen_init() {
+    @:noCompletion public function on_internal_init() {
 
         cur_frame_start = app.time;
         last_frame_start = cur_frame_start;
         current_time = 0;
         delta_time = 0.016;
 
-    } //on_lumen_init
+    } //on_internal_init
 
-    @:noCompletion public function on_lumen_update() {
+    @:noCompletion public function on_internal_update() {
 
         if(fixed_rate != 0) {
                 //we haven't reached the next frame yet?
@@ -185,7 +185,7 @@ import lumen.types.Types;
 
         #end //lumen_native
 
-    } //on_lumen_update
+    } //on_internal_update
 
 } //App
 
@@ -201,16 +201,16 @@ class AppFixedTimestep extends App {
         /** the overflow of the updates. This is used to calculate the alpha time for rendering interpolation, `var alpha_time = overflow / frame_time;` */
     public var overflow : Float = 0.0;
 
-    @:noCompletion override public function on_lumen_init() {
+    @:noCompletion override public function on_internal_init() {
 
         frame_time = 1.0/60.0;
         last_frame_start = app.time;
 
-    } //on_lumen_init
+    } //on_internal_init
 
-        //no super.on_lumen_update because this entirely controls
+        //no super.on_internal_update because this entirely controls
         //the update loop for the application itself
-    @:noCompletion override public function on_lumen_update() {
+    @:noCompletion override public function on_internal_update() {
 
         cur_frame_start = app.time;
         delta_time = (cur_frame_start - last_frame_start) * timescale;
@@ -242,6 +242,6 @@ class AppFixedTimestep extends App {
 
         #end //lumen_native
 
-    } //on_lumen_update
+    } //on_internal_update
 
 } //AppFixedTimestep
