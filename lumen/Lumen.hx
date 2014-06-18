@@ -123,7 +123,7 @@ class Lumen {
         _debug('/ lumen / pre ready, init host', true);
 
             //any app pre ready init can be handled in here
-        host.on_lumen_init();
+        host.on_internal_init();
 
     } //on_lumen_init
 
@@ -205,7 +205,7 @@ class Lumen {
         }
 
             //handle any internal updates
-        host.on_lumen_update();
+        host.on_internal_update();
 
     } //on_lumen_update
 
