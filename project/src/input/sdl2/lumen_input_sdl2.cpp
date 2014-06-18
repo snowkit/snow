@@ -2,7 +2,7 @@
 #include "lumen_input.h"
 
 #include <hx/CFFI.h>
-#include "libs/sdl/SDL.h"
+#include "SDL.h"
 
 #include <map>
 

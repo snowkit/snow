@@ -1,7 +1,7 @@
 
 
 #include "lumen_io.h"
-#include "libs/sdl/SDL.h"
+#include "SDL.h"
 
 namespace lumen {
 
