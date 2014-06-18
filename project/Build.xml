@@ -107,6 +107,7 @@
    <include name="${NATIVE_TOOLKIT_PATH}/lzma/files.xml" />
    <include name="${NATIVE_TOOLKIT_PATH}/zlib/files.xml" />
    <include name="${NATIVE_TOOLKIT_PATH}/curl/files.xml" />
+   <include name="${NATIVE_TOOLKIT_PATH}/openal-android/files.xml" if="android"/>
 
       <!-- lumen build files -->
    <files id="lumen">
@@ -236,17 +237,22 @@
 
 <!-- Build the libs -->
 
-      <files id="native-toolkit-glew"         if="LUMEN_LIB_GLEW"/>
-      <files id="native-toolkit-stb_image"    if="LUMEN_LIB_STB_IMAGE"/>
-      <files id="native-toolkit-lzma"         if="LUMEN_LIB_LZMA"/>
-      <files id="native-toolkit-theora"       if="LUMEN_LIB_THEORA"/>
-      <files id="native-toolkit-vorbis"       if="LUMEN_LIB_VORBIS"/>
-      <files id="native-toolkit-ogg"          if="LUMEN_LIB_OGG"/>
-      <files id="native-toolkit-zlib"         if="LUMEN_LIB_ZLIB"/>
-      <files id="native-toolkit-curl"         if="LUMEN_LIB_CURL"/>
+      <files id="native-toolkit-glew"           if="LUMEN_LIB_GLEW"/>
+      <files id="native-toolkit-stb_image"      if="LUMEN_LIB_STB_IMAGE"/>
+      <files id="native-toolkit-lzma"           if="LUMEN_LIB_LZMA"/>
+      <files id="native-toolkit-theora"         if="LUMEN_LIB_THEORA"/>
+      <files id="native-toolkit-vorbis"         if="LUMEN_LIB_VORBIS"/>
+      <files id="native-toolkit-ogg"            if="LUMEN_LIB_OGG"/>
+      <files id="native-toolkit-zlib"           if="LUMEN_LIB_ZLIB"/>
+      <files id="native-toolkit-curl"           if="LUMEN_LIB_CURL"/>
 
-         <!-- mac and iOS have OpenAL.framework, and rather rely on system version than embedded one -->
-      <files id="libs-openal"       if="LUMEN_LIB_OPENAL" unless="mac || iphone"/>
+      <section if="LUMEN_LIB_OPENAL">
+         <files id="native-toolkit-openal-android" if="android"/>
+            <!-- mac and iOS have OpenAL.framework, and rather rely on system version than embedded one -->
+         <!-- <files id="native-toolkit-openal" unless="mac || iphone"/> -->
+         <files id="libs-openal"       if="LUMEN_LIB_OPENAL" unless="mac || iphone"/>
+      </section>
+
          <!-- by using the flags you can build a static, dynamic or embedded SDL (default is embedded) -->
       <files id="libs-sdl"          unless="LUMEN_LIB_SDL_STATIC_EXTERNAL || LUMEN_LIB_SDL_SHARED_EXTERNAL"/>
 
