@@ -35,7 +35,7 @@ class Lumen {
 //Sub systems
 
         /** The window manager */
-    public var window : Windowing;
+    public var windowing : Windowing;
         /** The input system */
     public var input : Input;
         /** The audio system */
@@ -48,7 +48,7 @@ class Lumen {
         /** Set if shut dow has completed  */
     public var has_shutdown : Bool = false;
         /** If the config specifies a default window, this is it */
-    public var main_window : Window;
+    public var window : Window;
 
 //Internal values
 
@@ -85,7 +85,7 @@ class Lumen {
 
         audio.destroy();
         input.destroy();
-        window.destroy();
+        windowing.destroy();
 
         core.shutdown();
 
@@ -139,7 +139,7 @@ class Lumen {
 
 
                 //create the sub systems
-            window = new Windowing( this );
+            windowing = new Windowing( this );
             input = new Input( this );
             audio = new Audio( this );
             assets = new Assets( this );
@@ -178,7 +178,7 @@ class Lumen {
         } //runtime config window flag
 
             //now if they requested a window, let's open one
-        main_window = window.create( config.window_config );
+        window = windowing.create( config.window_config );
 
             //now ready
         is_ready = true;
@@ -195,7 +195,7 @@ class Lumen {
     }
 
     @:noCompletion public function do_internal_render() {
-        window.update();
+        windowing.update();
     }
 
     function on_lumen_update() {
@@ -234,7 +234,7 @@ class Lumen {
             //cos of app lifecycles etc being here.
         if(is_ready) {
             audio.on_event( _event );
-            window.on_event( _event );
+            windowing.on_event( _event );
             input.on_event( _event );
         }
 

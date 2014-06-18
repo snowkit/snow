@@ -63,24 +63,24 @@ class Main extends lumen.AppFixedTimestep {
         if(app.config.runtime_config.texture_time != null) texture_time = app.config.runtime_config.texture_time;
         if(app.config.runtime_config.timescale != null) timescale = app.config.runtime_config.timescale;
 
-        var dcount : Int = app.window.system.display_count();
+        var dcount : Int = app.windowing.system.display_count();
         trace('A total of ${dcount} displays were found');
         for(i in 0 ... dcount) {
-            var bounds = app.window.system.display_bounds(i);
-            var name = app.window.system.display_name(i);
+            var bounds = app.windowing.system.display_bounds(i);
+            var name = app.windowing.system.display_name(i);
             trace('display ${i}, name: ${name} bounds: ${bounds} modes:' );
 
                 //get list of modes for this display
-            var modecount = app.window.system.display_mode_count(i);
+            var modecount = app.windowing.system.display_mode_count(i);
 
             for(j in 0 ... modecount) {
-                var mode = app.window.system.display_mode(i,j);
+                var mode = app.windowing.system.display_mode(i,j);
                 trace('\t\t ${mode.width} x ${mode.height}  @  ${mode.refresh_rate}hz ');
             }
 
         }
 
-        trace("desktop native resolution of primary display : " + app.window.system.display_native_mode(0) );
+        trace("desktop native resolution of primary display : " + app.windowing.system.display_native_mode(0) );
 
         trace("OpenGL reports version " + GL.versionString());
 
@@ -113,11 +113,11 @@ class Main extends lumen.AppFixedTimestep {
         }
 
             //this is temp testing, just hook into the window render directly
-        app.main_window.window_render_handler = onrender;
+        app.window.render_handler = onrender;
 
         next_tex_tick = texture_time;
 
-        positionY = (app.main_window.size.h - size) / 2;
+        positionY = (app.window.size.h - size) / 2;
 
         sound1 = app.audio.create("assets/sound.pcm");
         sound2 = app.audio.create("assets/sound.ogg", 'ogg');
@@ -184,7 +184,7 @@ class Main extends lumen.AppFixedTimestep {
 
             //alt enter to toggle fullscreen test
         if( keycode == Key.RETURN && mod.alt ) {
-            app.main_window.fullscreen = !app.main_window.fullscreen;
+            app.window.fullscreen = !app.window.fullscreen;
         }
 
         if( keycode == Key.ESCAPE ) {
@@ -321,8 +321,8 @@ class Main extends lumen.AppFixedTimestep {
 
         positionX = (phys_posx * alpha_time) + prevx * ( 1.0 - alpha_time );
 
-        if(positionX >= (app.main_window.size.w - size)) {
-            positionX = (app.main_window.size.w - size);
+        if(positionX >= (app.window.size.w - size)) {
+            positionX = (app.window.size.w - size);
             dirX = -1;
         } else if(positionX <= 0) {
             positionX = 0;
@@ -463,15 +463,15 @@ class Main extends lumen.AppFixedTimestep {
 
     function render(){
 
-        GL.viewport (0, 0, app.main_window.size.w, app.main_window.size.h);
+        GL.viewport (0, 0, app.window.size.w, app.window.size.h);
 
         GL.clearColor(1.0, 0.5, 0.2, 1.0);
         GL.clear (GL.COLOR_BUFFER_BIT);
 
-        // var positionX = (app.main_window.size.w - size) / 2;
-        // var positionY = (app.main_window.size.h - size) / 2;
+        // var positionX = (app.window.size.w - size) / 2;
+        // var positionY = (app.window.size.h - size) / 2;
 
-        var projectionMatrix = Matrix3D.createOrtho (0, app.main_window.size.w, app.main_window.size.h, 0, 1000, -1000);
+        var projectionMatrix = Matrix3D.createOrtho (0, app.window.size.w, app.window.size.h, 0, 1000, -1000);
         var modelViewMatrix = Matrix3D.create2D (positionX, positionY, 1, 0);
 
         GL.useProgram (shaderProgram);
