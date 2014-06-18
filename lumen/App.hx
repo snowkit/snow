@@ -51,38 +51,40 @@ import lumen.types.Types;
     public function ready() {}
         /** Your update loop. Called every frame for you. The dt value depends on the timing configuration (see the {App Guide}) */
     public function update(dt:Float) {}
+        /** Your exit point. Called for you when you should shut down your application */
+    public function destroyed() {}
 
         /** Called for you when a key is pressed down */
-    public function onkeydown( _event : KeyEvent ) {}
+    public function onkeydown( keycode:Int, scancode:Int, repeat:Bool, mod:ModState, timestamp:Float, window_id:Int ) {}
         /** Called for you when a key is released */
-    public function onkeyup( _event : KeyEvent ) {}
+    public function onkeyup( keycode:Int, scancode:Int, repeat:Bool, mod:ModState, timestamp:Float, window_id:Int ) {}
         /** Called for you when text input is happening. Use this for textfields, as it handles the complexity of unicode etc. */
-    public function ontextinput( _event : TextEvent ) {}
+    public function ontextinput( text:String, start:Int, length:Int, type:TextEventType, timestamp:Float, window_id:Int ) {}
 
         /** Called for you when a mouse button is pressed */
-    public function onmousedown( _event:MouseEvent ) {}
+    public function onmousedown( x:Int, y:Int, button:Int, timestamp:Float, window_id:Int ) {}
         /** Called for you when a mouse button is released */
-    public function onmouseup( _event:MouseEvent ) {}
+    public function onmouseup( x:Int, y:Int, button:Int, timestamp:Float, window_id:Int ) {}
         /** Called for you when the mouse wheel moves */
-    public function onmousewheel( _event:MouseEvent ) {}
+    public function onmousewheel( x:Int, y:Int, timestamp:Float, window_id:Int ) {}
         /** Called for you when the mouse moves */
-    public function onmousemove( _event:MouseEvent ) {}
+    public function onmousemove( x:Int, y:Int, xrel:Int, yrel:Int, timestamp:Float, window_id:Int ) {}
 
         /** Called for you when a touch is released, use the `touch_id` to track which */
-    public function ontouchdown( _event:TouchEvent ) {}
+    public function ontouchdown( x:Float, y:Float, touch_id:Int, timestamp:Float ) {}
         /** Called for you when a touch is first pressed, use the `touch_id` to track which */
-    public function ontouchup( _event:TouchEvent ) {}
+    public function ontouchup( x:Float, y:Float, touch_id:Int, timestamp:Float ) {}
         /** Called for you when a touch is moved, use the `touch_id` to track which */
-    public function ontouchmove( _event:TouchEvent ) {}
+    public function ontouchmove( x:Float, y:Float, dx:Float, dy:Float, touch_id:Int, timestamp:Float ) {}
 
         /** Called for you when a connected gamepad axis moves, use `which` to determine gamepad id */
-    public function ongamepadaxis( _event:GamepadEvent ) {}
+    public function ongamepadaxis( gamepad:Int, axis:Int, value:Float, timestamp:Float ) {}
         /** Called for you when a connected gamepad button is pressed, use `which` to determine gamepad id */
-    public function ongamepadbuttondown( _event:GamepadEvent ) {}
+    public function ongamepadbuttondown( gamepad:Int, button:Int, value:Float, timestamp:Float ) {}
         /** Called for you when a connected gamepad button is released, use `which` to determine gamepad id */
-    public function ongamepadbuttonup( _event:GamepadEvent ) {}
+    public function ongamepadbuttonup( gamepad:Int, button:Int, value:Float, timestamp:Float ) {}
         /** Called for you when a gamepad is connected or disconnected, use `which` to determine gamepad id */
-    public function ongamepaddevice( _event:GamepadEvent ) {}
+    public function ongamepaddevice( gamepad:Int, type:GamepadDeviceEventType, timestamp:Float ) {}
 
 
         /** override this if you want to change how the runtime config is loaded/handled */

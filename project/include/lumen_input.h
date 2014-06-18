@@ -1,6 +1,6 @@
 #ifndef LUMEN_LUMEN_INPUT_H
 #define LUMEN_LUMEN_INPUT_H
-    
+
 #include <string>
 
 #include <hx/CFFI.h>
@@ -35,11 +35,11 @@ namespace lumen {
         public:
             InputEventType type;
             int window_id;
-            int timestamp;
+            double timestamp;
             value event;
 
 
-        InputEvent( InputEventType _type = ie_unknown, int _window_id = 1, int _timestamp = 0 ) 
+        InputEvent( InputEventType _type = ie_unknown, int _window_id = 1, double _timestamp = 0.0 )
             : type(_type), window_id(_window_id), timestamp(_timestamp)
                 { }
 
@@ -54,7 +54,7 @@ namespace lumen {
 
             alloc_field( _input_event, id_type, alloc_int( event.type ) );
             alloc_field( _input_event, id_window_id, alloc_int( event.window_id ) );
-            alloc_field( _input_event, id_timestamp, alloc_int( event.timestamp ) );
+            alloc_field( _input_event, id_timestamp, alloc_float( event.timestamp ) );
             alloc_field( _input_event, id_event, event.event );
 
         value _system_event = alloc_empty_object();
@@ -63,7 +63,7 @@ namespace lumen {
             alloc_field( _system_event, id_type, alloc_int( se_input ) );
                 //store the .input value
             alloc_field( _system_event, id_input, _input_event );
-            
+
             //finally, call the handler
         val_call1( system_event_handler->get(), _system_event );
 
@@ -75,7 +75,7 @@ namespace lumen {
 
     } //dispatch_input_event
 
-} //lumen 
+} //lumen
 
 
 #endif //LUMEN_LUMEN_INPUT_H

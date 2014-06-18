@@ -136,120 +136,134 @@ class Main extends lumen.AppFixedTimestep {
 
     } //ready
 
-
-    override function onkeydown( event:KeyEvent ) {
+    override function onkeydown( keycode:Int, _,_,_,_,_ ) {
 
         // trace("key down : " + event);
 
             //console scan code should be universally next to 1
-        if(event.keycode == Key.KEY_e) {
+        if(keycode == Key.KEY_e) {
             sound1.play();
         }
 
-        if(event.keycode == Key.KEY_q) {
+        if(keycode == Key.KEY_q) {
             left = !left;
             sound2.pan = left ? -1 : 1;
             sound2.play();
         }
 
-        if(event.keycode == Key.KEY_w) {
+        if(keycode == Key.KEY_w) {
             app.audio.pitch('wav', 1.5);
             sound3.play();
         }
 
-        if(event.keycode == Key.KEY_p) {
+        if(keycode == Key.KEY_p) {
             sound5.toggle();
         }
 
-        if(event.keycode == Key.KEY_r) {
+        if(keycode == Key.KEY_r) {
             sound5.position = 0;
             trace('music reset');
         }
 
-        if(event.keycode == Key.KEY_t) {
+        if(keycode == Key.KEY_t) {
             var t = (sound5.duration*0.75);
             sound5.time = t;
             trace('set to ${sound5.duration}*0.75 | music 75% ' + t);
         }
 
-        if(event.keycode == Key.BACKQUOTE) {
+        if(keycode == Key.BACKQUOTE) {
             app.audio.pitch('wav', 0.5);
             sound3.play();
         }
 
     } //onkeydown
 
-    override function onkeyup( event:KeyEvent ) {
+    override function onkeyup( keycode:Int, _,_, mod:ModState, _,_ ) {
 
         // trace("onkeyup " + event);
 
             //alt enter to toggle fullscreen test
-        if( event.keycode == Key.RETURN && event.mod.alt ) {
+        if( keycode == Key.RETURN && mod.alt ) {
             app.main_window.fullscreen = !app.main_window.fullscreen;
         }
 
-        if(event.keycode == Key.ESCAPE) {
+        if( keycode == Key.ESCAPE ) {
             app.shutdown();
         }
 
     } //onkeyup
 
-    override public function ontextinput( event : TextEvent ) {
-        // trace("text input : " + event);
+    override public function ontextinput( text:String, start:Int, length:Int, type:TextEventType, timestamp:Float, window_id:Int ) {
+        // trace('text event; text:$text / start: $start / length: $length / type:$type / timestamp:${timestamp} / window: ${window_id}');
     } //ontextinput
 
-
-    override function ontouchdown( event:TouchEvent ) {
-        sound1.play();
-        sound5.position = 0;
+    override function ontouchdown( x:Float, y:Float, touch_id:Int, timestamp:Float ) {
+        trace('touch down; $x / $y / $touch_id / $timestamp');
     }
 
-    override function onmousemove( event:MouseEvent ) {
-        // trace('move ${event.x} / ${event.y} / ${event.xrel} / ${event.yrel}');
-        if(app.input.keydown(Key.SPACE)) {
-            positionY = event.y - (size/2);
-            positionX = event.x - (size/2);
-            phys_posx = positionX;
-        }
+    override function ontouchup( x:Float, y:Float, touch_id:Int, timestamp:Float ) {
+        trace('touch up; $x / $y / $touch_id / $timestamp');
     }
 
-    override function onmouseup( event:MouseEvent ) {
+    override function ontouchmove( x:Float, y:Float, dx:Float, dy:Float, touch_id:Int, timestamp:Float ) {
 
-        // trace("mouse up " + event);
+        trace('touch move; $x / $y / $dx / $dy / $touch_id / $timestamp ');
 
-        positionY = event.y - (size/2);
-        positionX = event.x - (size/2);
+        positionY = y - (size/2);
+        positionX = x - (size/2);
         phys_posx = positionX;
 
+    } //ontouchmove
+
+    override function onmousemove( x:Int, y:Int, xrel:Int, yrel:Int, timestamp:Float, window_id:Int ) {
+
+        // trace('move $x / $y / $xrel / $yrel / $timestamp / $window_id');
+
+        if(app.input.keydown(Key.SPACE)) {
+            positionY = y - (size/2);
+            positionX = x - (size/2);
+            phys_posx = positionX;
+        }
+
+    } //onmousemove
+
+    override function onmouseup( x:Int, y:Int, button:Int, timestamp:Float, window_id:Int ) {
+
+        // trace('mouse up $x $y $button $timestamp $window_id');
+
+        #if !mobile
+            positionY = y - (size/2);
+            positionX = x - (size/2);
+            phys_posx = positionX;
+        #end
+
     }
 
-    override function onmousedown( event:MouseEvent ) {
-
-        // trace("mouse down " + event);
-
+    override function onmousedown( x:Int, y:Int, button:Int, timestamp:Float, window_id:Int ) {
+        // trace('mouse down $x $y $button $timestamp $window_id');
     }
 
-    override function onmousewheel( event:MouseEvent ) {
-        // trace("mouse wheel " + event);
+    override function onmousewheel(  x:Int, y:Int, timestamp:Float, window_id:Int ) {
+        // trace('mouse wheel $x $y $timestamp $window_id');
     }
 
 
-    override function ongamepadaxis( _event:GamepadEvent ) {
-        if(Math.abs(_event.value) > 0.5) {
-            trace('axis; device: ${_event.which}, axis: ${_event.axis}, value: ${_event.value}');
+    override function ongamepadaxis( gamepad:Int, axis:Int, value:Float, timestamp:Float ) {
+        if(Math.abs(value) > 0.5) {
+            trace('axis; device: ${gamepad}, axis: ${axis}, value: ${value} timestamp: ${timestamp}');
         }
     }
 
-    override function ongamepadbuttonup( _event:GamepadEvent ) {
-        trace('button up; device: ${_event.which}, button: ${_event.button} value: ${_event.value}');
+    override function ongamepadbuttonup( gamepad:Int, button:Int, value:Float, timestamp:Float ) {
+        trace('button up; device: ${gamepad}, button: ${button} value: ${value} timestamp:  ${timestamp}');
     }
 
-    override function ongamepadbuttondown( _event:GamepadEvent ) {
-        trace('button down; device: ${_event.which}, button: ${_event.button} value: ${_event.value}');
+    override function ongamepadbuttondown( gamepad:Int, button:Int, value:Float, timestamp:Float ) {
+        trace('button down; device: ${gamepad}, button: ${button} value: ${value} timestamp:  ${timestamp}');
     }
 
-    override function ongamepaddevice( _event:GamepadEvent ) {
-        trace('device event; device: ${_event.which}, type: ${_event.type}');
+    override function ongamepaddevice( gamepad:Int, type:GamepadDeviceEventType, timestamp:Float ) {
+        trace('device event; device: ${gamepad}, type: ${type} timestamp: ${timestamp}');
     }
 
 

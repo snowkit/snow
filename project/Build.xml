@@ -125,6 +125,8 @@
       <compilerflag value="-I${NATIVE_TOOLKIT_PATH}/lzma/include/"/>
       <compilerflag value="-I${NATIVE_TOOLKIT_PATH}/zlib/include/"/>
       <compilerflag value="-I${NATIVE_TOOLKIT_PATH}/curl/include/"/>
+      <compilerflag value="-I${NATIVE_TOOLKIT_PATH}/openal/include/"/>
+      <compilerflag value="-I${NATIVE_TOOLKIT_PATH}/openal/OpenAL32/include/"/>
 
          <!-- c++ defines -->
       <compilerflag value="-DHX_LUMEN"  />
@@ -275,7 +277,7 @@
       <section if="LUMEN_LIB_OPENAL">
          <files id="native-toolkit-openal-android" if="android"/>
             <!-- mac and iOS have OpenAL.framework, and rather rely on system version than embedded one -->
-         <files id="native-toolkit-openal"   unless="mac || ios"/>
+         <files id="native-toolkit-openal" unless="mac || ios || android"/>
       </section>
 
 <!-- Build the lumen library -->

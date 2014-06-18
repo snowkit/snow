@@ -201,12 +201,15 @@ namespace lumen {
 
                 new_event.timestamp = event.jaxis.timestamp/1000.0;
 
+                     //(range: -32768 to 32767)
+                double _val = (event.caxis.value+32768.0)/(32767.0+32768.0);
+                double normalized_axis_value = (-0.5 + _val) * 2.0;
+
                 alloc_field( _object, id_type, alloc_int(event.jaxis.type) );
                 alloc_field( _object, id_timestamp, alloc_float(event.jaxis.timestamp/1000.0) );
                 alloc_field( _object, id_which, alloc_int(event.jaxis.which) );
                 alloc_field( _object, id_axis, alloc_int(event.jaxis.axis) );
-                    //(range: -32768 to 32767)
-                alloc_field( _object, id_value, alloc_int(event.jaxis.value) );
+                alloc_field( _object, id_value, alloc_float(normalized_axis_value) );
 
                 break;
 
@@ -292,12 +295,15 @@ namespace lumen {
 
                 new_event.timestamp = event.caxis.timestamp/1000.0;
 
+                     //(range: -32768 to 32767)
+                double _val = (event.caxis.value+32768.0)/(32767.0+32768.0);
+                double normalized_axis_value = (-0.5 + _val) * 2.0;
+
                 alloc_field( _object, id_type, alloc_int(event.caxis.type) );
                 alloc_field( _object, id_timestamp, alloc_float(event.caxis.timestamp/1000.0) );
                 alloc_field( _object, id_which, alloc_int(event.caxis.which) );
                 alloc_field( _object, id_axis, alloc_int(event.caxis.axis) );
-                    // (range: -32768 to 32767)
-                alloc_field( _object, id_value, alloc_int(event.caxis.value) );
+                alloc_field( _object, id_value, alloc_float(normalized_axis_value) );
 
                 break;
 
@@ -319,9 +325,9 @@ namespace lumen {
 
             } //button up/down
 
-            case SDL_CONTROLLERDEVICEADDED: 
-            case SDL_CONTROLLERDEVICEREMOVED: 
-            case SDL_CONTROLLERDEVICEREMAPPED: 
+            case SDL_CONTROLLERDEVICEADDED:
+            case SDL_CONTROLLERDEVICEREMOVED:
+            case SDL_CONTROLLERDEVICEREMAPPED:
             {
 
                 new_event.timestamp = event.cdevice.timestamp/1000.0;
@@ -366,7 +372,7 @@ namespace lumen {
 
             //mouse
 
-                case SDL_MOUSEMOTION: 
+                case SDL_MOUSEMOTION:
                 case SDL_MOUSEBUTTONDOWN:
                 case SDL_MOUSEBUTTONUP:
                 case SDL_MOUSEWHEEL:
@@ -379,8 +385,8 @@ namespace lumen {
             //touch
 
                 case SDL_FINGERDOWN:
-                case SDL_FINGERUP: 
-                case SDL_FINGERMOTION: 
+                case SDL_FINGERUP:
+                case SDL_FINGERMOTION:
                 {
                     new_event.type = ie_touch;
                     new_event.event = sdl2_touch_event_to_hx(new_event, event);

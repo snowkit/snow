@@ -59,38 +59,6 @@ import lumen.input.Input;
 
     } //mod_state_from_event
 
-    function key_state_from_event( type:KeyEventType ) : PressedState {
-
-        switch( type ) {
-
-            case KeyEventType.down:
-                return PressedState.down;
-            case KeyEventType.up:
-                return PressedState.up;
-            default:
-                return PressedState.unknown;
-
-        } //switch(type)
-
-    } //key_state_from_event
-
-    function mouse_button_from_number( button : Int ) : MouseButton {
-
-        switch(button) {
-
-            case    1 : return MouseButton.left;
-            case    2 : return MouseButton.middle;
-            case    3 : return MouseButton.right;
-            case    4 : return MouseButton.extra1;
-            case    5 : return MouseButton.extra2;
-            default   : return MouseButton.none;
-
-        }
-
-        return MouseButton.none;
-
-    } //mouse_button_from_number
-
     override public function on_event( _event : InputEvent ) {
 
         super.on_event( _event );
@@ -109,37 +77,37 @@ import lumen.input.Input;
 
             var _key_event = _event.event;
 
-            if(_event.event.type == KeyEventType.up || _event.event.type == KeyEventType.down) {
+            if(_event.event.type == KeyEventType.down) {
 
-                var _mod_state = mod_state_from_event(_event);
-                var _key_state = key_state_from_event(_key_event.type);
+                manager.dispatch_key_down_event(
+                    _key_event.keysym.sym,
+                    _key_event.keysym.scancode,
+                    _key_event.repeat,
+                    mod_state_from_event(_event),
+                    _event.timestamp,
+                    _event.window_id
+                );
 
-                var api_event : KeyEvent = {
-                    raw : _event,
-                    scancode : _key_event.keysym.scancode,
-                    keycode : _key_event.keysym.sym,
-                    state : _key_state,
-                    mod : _mod_state,
-                    repeat : _key_event.repeat,
-                    timestamp : _event.timestamp,
-                    window_id : _event.window_id
-                };
+            } else if(_event.event.type == KeyEventType.up) {
 
-                manager.dispatch_key_event( api_event );
+                manager.dispatch_key_up_event(
+                    _key_event.keysym.sym,
+                    _key_event.keysym.scancode,
+                    _key_event.repeat,
+                    mod_state_from_event(_event),
+                    _event.timestamp,
+                    _event.window_id
+                );
 
             } else if(_event.event.type == KeyEventType.textedit || _event.event.type == KeyEventType.textinput) {
 
-                var api_event : TextEvent = {
-                    raw : _event,
-                    text : _event.event.text,
-                    type : (_event.event.type == textedit) ? TextEventType.edit : TextEventType.input,
-                    timestamp : _event.timestamp,
-                    window_id : _event.window_id,
-                    start : _event.event.start == null ? 0 : _event.event.start,
-                    length : _event.event.length == null ? 0 : _event.event.length
-                }
-
-                manager.dispatch_text_event( api_event );
+                manager.dispatch_text_event(
+                    _event.event.text,
+                    (_event.event.start == null) ? 0 : _event.event.start,
+                    (_event.event.length == null) ? 0 : _event.event.length,
+                    (_event.event.type == textedit) ? TextEventType.edit : TextEventType.input,
+                    _event.timestamp, _event.window_id
+                );
 
             } //
 
@@ -153,22 +121,37 @@ import lumen.input.Input;
 
             var _state = _event.event.type;
 
-                //the mapping from touch_id -> finger_id is intentional,
-                //and the device_id is not a mistake here.
-            var api_event = {
-                raw : _event,
-                state : _state,
-                timestamp : _event.timestamp,
-                touch_id : _event.event.finger_id,
-                device_id : _event.event.touch_id,
-                x : _event.event.x,
-                y : _event.event.x,
-                dx : _event.event.dx,
-                dy : _event.event.dy,
-                pressure : _event.event.pressure
-            }
+                //currently unused, but is available for future use
+            // var _pressure = _event.event.pressure;
+            // var _device_id = _event.event.touch_id;
 
-            manager.dispatch_touch_event( api_event );
+            //:todo: touch coordinates from SDL come through as NDC [-1..1] range
+            //so here we convert them back to the window scale, should we?
+            //maybe there is value in NDC?
+
+            if(_state == TouchState.down) {
+
+                manager.dispatch_touch_down_event(
+                    _event.event.x, _event.event.y,
+                    _event.event.finger_id, _event.timestamp
+                );
+
+            } else if(_state == TouchState.up) {
+
+                manager.dispatch_touch_up_event(
+                    _event.event.x, _event.event.y,
+                    _event.event.finger_id, _event.timestamp
+                );
+
+            } else if(_state == TouchState.move) {
+
+                manager.dispatch_touch_move_event(
+                    _event.event.x, _event.event.y,
+                    _event.event.dx, _event.event.dy,
+                    _event.event.finger_id, _event.timestamp
+                );
+
+            }
 
     //Gamepad events
 
@@ -180,65 +163,51 @@ import lumen.input.Input;
 
             var _gamepad_event = _event.event;
 
-                //these device events are special and want to be handled internally as well
-            if(_gamepad_event.type == ControllerEventType.added) {
-                manager.on_gamepad_added( _gamepad_event );
-            }
-
-            if(_gamepad_event.type == ControllerEventType.removed) {
-                manager.on_gamepad_removed( _gamepad_event );
-            }
-
-            var _button : Int = -1;
-            var _axis   : Int = -1;
-            var _value  : Int =  0;
-            var _state  : PressedState = PressedState.unknown;
-            var _type   : GamepadEventType = GamepadEventType.unknown;
-
         //Buttons
+
             if(_gamepad_event.type == ControllerEventType.button_up) {
-                _type = GamepadEventType.button;
-                _state = PressedState.up;
-                _button = _gamepad_event.button;
-                _value = 0;
-            }
-            else
-            if(_gamepad_event.type == ControllerEventType.button_down ) {
-                _type = GamepadEventType.button;
-                _state = PressedState.down;
-                _button = _gamepad_event.button;
-                _value = 1;
-            }
-            else
+
+                manager.dispatch_gamepad_button_up_event(
+                    _gamepad_event.which, _gamepad_event.button, 0, _event.timestamp
+                );
+
+            } else if(_gamepad_event.type == ControllerEventType.button_down ) {
+
+                manager.dispatch_gamepad_button_down_event(
+                    _gamepad_event.which, _gamepad_event.button, 1, _event.timestamp
+                );
+
         //Axis
-            if(_gamepad_event.type == ControllerEventType.axis) {
-                _type = GamepadEventType.axis;
-                _value = _gamepad_event.value;
-                _axis = _gamepad_event.axis;
-            }
-            else
-            if(_gamepad_event.type == ControllerEventType.added) {
-                _type = GamepadEventType.device_added;
-            } else
-            if(_gamepad_event.type == ControllerEventType.removed) {
-                _type = GamepadEventType.device_removed;
-            } else
-            if(_gamepad_event.type == ControllerEventType.remapped) {
-                _type = GamepadEventType.device_remapped;
-            }
 
-            var api_event : GamepadEvent = {
-                raw : _event,
-                timestamp : _event.timestamp,
-                type : _type,
-                state : _state,
-                which : _gamepad_event.which,
-                button : _button,
-                axis : _axis,
-                value : _value
-            };
+            } else if(_gamepad_event.type == ControllerEventType.axis) {
 
-            manager.dispatch_gamepad_event( api_event );
+                manager.dispatch_gamepad_axis_event(
+                    _gamepad_event.which, _gamepad_event.axis, _gamepad_event.value, _event.timestamp
+                );
+
+            } else {
+
+        //Device events
+
+                var _type : GamepadDeviceEventType = null;
+
+                if(_gamepad_event.type == ControllerEventType.added) {
+
+                    manager.on_gamepad_added( _gamepad_event );
+                    _type = GamepadDeviceEventType.device_added;
+
+                } else if(_gamepad_event.type == ControllerEventType.removed) {
+
+                    manager.on_gamepad_removed( _gamepad_event );
+                    _type = GamepadDeviceEventType.device_removed;
+
+                } else if(_gamepad_event.type == ControllerEventType.remapped) {
+                    _type = GamepadDeviceEventType.device_remapped;
+                }
+
+                manager.dispatch_gamepad_device_event(_gamepad_event.which, _type, _event.timestamp);
+
+            }
 
     //Mouse events
 
@@ -248,43 +217,38 @@ import lumen.input.Input;
                 _event.event.type = MouseEventTypes.typed(_event.event.type);
             }
 
-                //defaults to unknown data
-            var _mouse_state : MouseState = MouseState.unknown;
-            var _mouse_button : MouseButton = mouse_button_from_number(_event.event.button);
-
-                //relx/y defaults to x/y
-            var _xrel : Int = _event.event.x;
-            var _yrel : Int = _event.event.y;
-
             if(_event.event.type == MouseEventType.move) {
 
-                _mouse_state = move;
-                _xrel = _event.event.xrel;
-                _yrel = _event.event.yrel;
+                manager.dispatch_mouse_move_event(
+                    _event.event.x, _event.event.y,
+                    _event.event.xrel, _event.event.yrel,
+                    _event.timestamp, _event.window_id
+                );
 
-            } else if(_event.event.type == MouseEventType.down) {
-                _mouse_state = down;
+            } if(_event.event.type == MouseEventType.down) {
+
+                manager.dispatch_mouse_down_event(
+                    _event.event.x, _event.event.y,
+                    _event.event.button,
+                    _event.timestamp, _event.window_id
+                );
+
             } else if(_event.event.type == MouseEventType.up) {
-                _mouse_state = up;
+
+                manager.dispatch_mouse_up_event(
+                    _event.event.x, _event.event.y,
+                    _event.event.button,
+                    _event.timestamp, _event.window_id
+                );
+
             } else if(_event.event.type == MouseEventType.wheel) {
-                _mouse_state = wheel;
+
+                manager.dispatch_mouse_wheel_event(
+                    _event.event.x, _event.event.y,
+                    _event.timestamp, _event.window_id
+                );
+
             }
-
-            var api_event : MouseEvent = {
-                raw : _event,
-                timestamp : _event.timestamp,
-                window_id : _event.window_id,
-                which : _event.event.which,
-                state : _mouse_state,
-                button : _mouse_button,
-                x : _event.event.x,
-                y : _event.event.y,
-                xrel : _xrel,
-                yrel : _yrel,
-            };
-
-            manager.dispatch_mouse_event( api_event );
-
 
         } //if's
 
@@ -318,6 +282,15 @@ import lumen.input.Input;
     removed;
     remapped;
 }
+
+@:noCompletion enum TouchState {
+
+    unknown;
+    down;
+    up;
+    move;
+
+} //TouchState
 
 @:noCompletion class KeyEventTypes {
 
@@ -376,6 +349,7 @@ import lumen.input.Input;
         if(te_type == te_move)      return TouchState.move;
 
         return TouchState.unknown;
+
     } //typed
 
 } //TouchEventTypes
