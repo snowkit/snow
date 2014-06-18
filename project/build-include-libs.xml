@@ -56,8 +56,6 @@
         <file name="${SRC_DIR}/libs/vorbis/vorbisfile.c"/>
         <file name="${SRC_DIR}/libs/vorbis/vorbisenc.c"/>
 
-           <!-- theora -->
-
     </files>
 
     <files id="libs-openal">
