@@ -9,9 +9,9 @@
 
 		//Then the appropriate headers.
 	#ifdef LUMEN_GLES
-		#include "libs/sdl/SDL_opengles2.h"
+		#include "SDL_opengles2.h"
 	#else
-		#include "libs/sdl/SDL_opengl.h"
+		#include "SDL_opengl.h"
 	#endif
 
 #endif

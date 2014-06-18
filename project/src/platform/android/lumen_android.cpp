@@ -11,7 +11,7 @@
 #include "common/ByteArray.h"
 #include "platform/android/lumen_android.h"
 #include "lumen_io.h"
-#include "libs/sdl/SDL.h"
+#include "SDL.h"
 
 #define LOG(...) ((void)__android_log_print(ANDROID_LOG_ERROR, "/ lumen /", __VA_ARGS__))
 

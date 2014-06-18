@@ -5,7 +5,7 @@
 #include <string>
 
 #ifdef LUMEN_USE_SDL
-    #include "libs/sdl/SDL.h"
+    #include "SDL.h"
 #endif //LUMEN_USE_SDL
 
 #include "common/ByteArray.h"

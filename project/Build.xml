@@ -98,18 +98,17 @@
 <!-- Files/Sources -->
 
       <!-- include linked third party libs -->
-   <include name="build-include-libs.xml" />
-   <include name="build-include-sdl2.xml" />
-
-   <include name="${NATIVE_TOOLKIT_PATH}/glew/files.xml" />
-   <include name="${NATIVE_TOOLKIT_PATH}/stb_image/files.xml" />
-   <include name="${NATIVE_TOOLKIT_PATH}/ogg/files.xml" />
-   <include name="${NATIVE_TOOLKIT_PATH}/theora/files.xml" />
-   <include name="${NATIVE_TOOLKIT_PATH}/vorbis/files.xml" />
-   <include name="${NATIVE_TOOLKIT_PATH}/lzma/files.xml" />
-   <include name="${NATIVE_TOOLKIT_PATH}/zlib/files.xml" />
-   <include name="${NATIVE_TOOLKIT_PATH}/curl/files.xml" />
-   <include name="${NATIVE_TOOLKIT_PATH}/openal-android/files.xml" if="android"/>
+   <include name="${NATIVE_TOOLKIT_PATH}/glew/files.xml"             if="LUMEN_LIB_GLEW" />
+   <include name="${NATIVE_TOOLKIT_PATH}/stb_image/files.xml"        if="LUMEN_LIB_STB_IMAGE" />
+   <include name="${NATIVE_TOOLKIT_PATH}/ogg/files.xml"              if="LUMEN_LIB_OGG" />
+   <include name="${NATIVE_TOOLKIT_PATH}/theora/files.xml"           if="LUMEN_LIB_THEORA" />
+   <include name="${NATIVE_TOOLKIT_PATH}/vorbis/files.xml"           if="LUMEN_LIB_VORBIS" />
+   <include name="${NATIVE_TOOLKIT_PATH}/lzma/files.xml"             if="LUMEN_LIB_LZMA"/>
+   <include name="${NATIVE_TOOLKIT_PATH}/zlib/files.xml"             if="LUMEN_LIB_ZLIB"/>
+   <include name="${NATIVE_TOOLKIT_PATH}/curl/files.xml"             if="LUMEN_LIB_CURL" />
+   <include name="${NATIVE_TOOLKIT_PATH}/sdl/files.xml"              if="LUMEN_LIB_SDL"/>
+   <include name="${NATIVE_TOOLKIT_PATH}/openal-android/files.xml"   if="android"/>
+   <include name="${NATIVE_TOOLKIT_PATH}/openal/files.xml"           unless="mac || ios || android"/>
 
       <!-- lumen build files -->
    <files id="lumen">
@@ -168,14 +167,12 @@
 
       <section if="LUMEN_USE_SDL">
 
-        <compilerflag value="-DHAVE_LIBC" />
-
             <!-- per platform configs preconfigured -->
-        <compilerflag value="-I${INC_DIR}/libs/sdl/"/>
-        <compilerflag value="-I${INC_DIR}/libs/sdl/configs/default/"    unless="windows || mac || linux"/>
-        <compilerflag value="-I${INC_DIR}/libs/sdl/configs/linux/"      if="linux"/>
-        <compilerflag value="-I${INC_DIR}/libs/sdl/configs/windows/"    if="windows"/>
-        <compilerflag value="-I${INC_DIR}/libs/sdl/configs/mac/"        if="mac"/>
+        <compilerflag value="-I${NATIVE_TOOLKIT_PATH}/sdl/include/"/>
+        <compilerflag value="-I${NATIVE_TOOLKIT_PATH}/sdl/include/configs/default/"    unless="windows || mac || linux"/>
+        <compilerflag value="-I${NATIVE_TOOLKIT_PATH}/sdl/include/configs/linux/"      if="linux"/>
+        <compilerflag value="-I${NATIVE_TOOLKIT_PATH}/sdl/include/configs/windows/"    if="windows"/>
+        <compilerflag value="-I${NATIVE_TOOLKIT_PATH}/sdl/include/configs/mac/"        if="mac"/>
 
         <file name="${SRC_DIR}/lumen/sdl2/lumen_core_sdl2.cpp" />
         <file name="${SRC_DIR}/io/sdl2/lumen_io_sdl2.cpp" />
@@ -225,8 +222,14 @@
       </section>
 
       <section if="LUMEN_LIB_OPENAL">
+
          <include name="${NATIVE_TOOLKIT_PATH}/openal-android/defines.xml" if="android"/>
-         <!-- <include name="${NATIVE_TOOLKIT_PATH}/openal/defines.xml" unless="mac || ios || android"/> -->
+         <include name="${NATIVE_TOOLKIT_PATH}/openal/defines.xml" unless="mac || ios || android"/>
+
+      </section>
+
+      <section if="LUMEN_LIB_SDL">
+         <include name="${NATIVE_TOOLKIT_PATH}/sdl/defines.xml" />
       </section>
 
       <section if="LUMEN_LIB_STB_IMAGE">
@@ -267,16 +270,13 @@
       <files id="native-toolkit-theora"         if="LUMEN_LIB_THEORA"/>
       <files id="native-toolkit-vorbis"         if="LUMEN_LIB_VORBIS"/>
       <files id="native-toolkit-zlib"           if="LUMEN_LIB_ZLIB"/>
+      <files id="native-toolkit-sdl"            if="LUMEN_LIB_SDL"      unless="LUMEN_LIB_SDL_STATIC_EXTERNAL || LUMEN_LIB_SDL_SHARED_EXTERNAL"/>
 
       <section if="LUMEN_LIB_OPENAL">
          <files id="native-toolkit-openal-android" if="android"/>
             <!-- mac and iOS have OpenAL.framework, and rather rely on system version than embedded one -->
-            <!-- <files id="native-toolkit-openal" unless="mac || ios"/> -->
-         <files id="libs-openal"       if="LUMEN_LIB_OPENAL" unless="mac || ios"/>
+         <files id="native-toolkit-openal"   unless="mac || ios"/>
       </section>
-
-         <!-- by using the flags you can build a static, dynamic or embedded SDL (default is embedded) -->
-      <files id="libs-sdl"          unless="LUMEN_LIB_SDL_STATIC_EXTERNAL || LUMEN_LIB_SDL_SHARED_EXTERNAL"/>
 
 <!-- Build the lumen library -->
 

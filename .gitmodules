@@ -25,3 +25,9 @@
 [submodule "project/src/libs/openal-android"]
 	path = project/src/libs/openal-android
 	url = git@github.com:native-toolkit/openal-android.git
+[submodule "project/src/libs/openal"]
+	path = project/src/libs/openal
+	url = git@github.com:native-toolkit/openal.git
+[submodule "project/src/libs/sdl"]
+	path = project/src/libs/sdl
+	url = git@github.com:native-toolkit/sdl.git
