@@ -213,9 +213,10 @@
 
 <!-- Build the libs -->
 
-      <files id="libs-glew"         if="LUMEN_LIB_GLEW"/>
-      <files id="libs-stb_image"    if="LUMEN_LIB_STB_IMAGE"/>
-      <files id="libs-lzma"         if="LUMEN_LIB_LZMA"/>
+      <!-- <files id="libs-glew"         if="LUMEN_LIB_GLEW"/> -->
+      <!-- <files id="libs-stb_image"    if="LUMEN_LIB_STB_IMAGE"/> -->
+      <!-- <files id="libs-lzma"         if="LUMEN_LIB_LZMA"/> -->
+
       <files id="libs-zlib"         if="LUMEN_LIB_ZLIB"/>
       <files id="libs-media"        if="LUMEN_LIB_MEDIA"/>
       <files id="libs-curl"         if="LUMEN_LIB_CURL"/>
