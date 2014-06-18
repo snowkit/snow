@@ -22,3 +22,6 @@
 [submodule "project/src/libs/vorbis"]
 	path = project/src/libs/vorbis
 	url = git@github.com:native-toolkit/vorbis.git
+[submodule "project/src/libs/openal-android"]
+	path = project/src/libs/openal-android
+	url = git@github.com:native-toolkit/openal-android.git
