@@ -97,14 +97,16 @@
 
       <!-- include linked third party libs -->
    <include name="build-include-libs.xml" />
-
-
    <include name="build-include-sdl2.xml" />
 
+   <include name="${NATIVE_TOOLKIT_PATH}/ogg/files.xml" />
    <include name="${NATIVE_TOOLKIT_PATH}/theora/files.xml" />
+   <include name="${NATIVE_TOOLKIT_PATH}/vorbis/files.xml" />
    <include name="${NATIVE_TOOLKIT_PATH}/glew/files.xml" />
    <include name="${NATIVE_TOOLKIT_PATH}/stb_image/files.xml" />
    <include name="${NATIVE_TOOLKIT_PATH}/lzma/files.xml" />
+   <include name="${NATIVE_TOOLKIT_PATH}/zlib/files.xml" />
+   <include name="${NATIVE_TOOLKIT_PATH}/curl/files.xml" />
 
       <!-- lumen build files -->
    <files id="lumen">

@@ -10,3 +10,6 @@
 [submodule "project/src/libs/stb_image"]
 	path = project/src/libs/stb_image
 	url = git@github.com:native-toolkit/stb_image.git
+[submodule "project/src/libs/ogg"]
+	path = project/src/libs/ogg
+	url = git@github.com:native-toolkit/ogg.git

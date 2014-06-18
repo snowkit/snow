@@ -2,62 +2,6 @@
 
     <include name="${HXCPP}/build-tool/BuildCommon.xml"/>
 
-
-    <files id="libs-zlib">
-
-        <compilerflag value="-I${INC_DIR}"/>
-        <compilerflag value="-I${INC_DIR}/libs/zlib/"/>
-
-        <file name="${SRC_DIR}/libs/zlib/adler32.c"/>
-        <file name="${SRC_DIR}/libs/zlib/crc32.c"/>
-        <file name="${SRC_DIR}/libs/zlib/infback.c"/>
-        <file name="${SRC_DIR}/libs/zlib/inflate.c"/>
-        <file name="${SRC_DIR}/libs/zlib/uncompr.c"/>
-        <file name="${SRC_DIR}/libs/zlib/compress.c"/>
-        <file name="${SRC_DIR}/libs/zlib/deflate.c"/>
-        <file name="${SRC_DIR}/libs/zlib/gzio.c"/>
-        <file name="${SRC_DIR}/libs/zlib/inffast.c"/>
-        <file name="${SRC_DIR}/libs/zlib/inftrees.c"/>
-        <file name="${SRC_DIR}/libs/zlib/trees.c"/>
-        <file name="${SRC_DIR}/libs/zlib/zutil.c"/>
-
-    </files>
-
-
-    <files id="libs-media" >
-
-      <compilerflag value="-I${INC_DIR}"/>
-
-           <!-- ogg -->
-        <file name="${SRC_DIR}/libs/ogg/bitwise.c" />
-        <file name="${SRC_DIR}/libs/ogg/framing.c" />
-
-           <!-- vorbis -->
-        <file name="${SRC_DIR}/libs/vorbis/mdct.c"/>
-        <file name="${SRC_DIR}/libs/vorbis/smallft.c"/>
-        <file name="${SRC_DIR}/libs/vorbis/block.c"/>
-        <file name="${SRC_DIR}/libs/vorbis/envelope.c"/>
-        <file name="${SRC_DIR}/libs/vorbis/window.c"/>
-        <file name="${SRC_DIR}/libs/vorbis/lsp.c"/>
-        <file name="${SRC_DIR}/libs/vorbis/lpc.c"/>
-        <file name="${SRC_DIR}/libs/vorbis/analysis.c"/>
-        <file name="${SRC_DIR}/libs/vorbis/synthesis.c"/>
-        <file name="${SRC_DIR}/libs/vorbis/psy.c"/>
-        <file name="${SRC_DIR}/libs/vorbis/info.c"/>
-        <file name="${SRC_DIR}/libs/vorbis/floor1.c"/>
-        <file name="${SRC_DIR}/libs/vorbis/floor0.c"/>
-        <file name="${SRC_DIR}/libs/vorbis/res0.c"/>
-        <file name="${SRC_DIR}/libs/vorbis/mapping0.c"/>
-        <file name="${SRC_DIR}/libs/vorbis/registry.c"/>
-        <file name="${SRC_DIR}/libs/vorbis/codebook.c"/>
-        <file name="${SRC_DIR}/libs/vorbis/sharedbook.c"/>
-        <!--<file name="${SRC_DIR}/libs/vorbis/lookup.c"/>-->
-        <file name="${SRC_DIR}/libs/vorbis/bitrate.c"/>
-        <file name="${SRC_DIR}/libs/vorbis/vorbisfile.c"/>
-        <file name="${SRC_DIR}/libs/vorbis/vorbisenc.c"/>
-
-    </files>
-
     <files id="libs-openal">
 
         <section unless="android">
@@ -144,7 +88,7 @@
             <file name="${SRC_DIR}/libs/openal/android/Alc/opensles.c"/>
             <file name="${SRC_DIR}/libs/openal/android/Alc/panning.c"/>
             <file name="${SRC_DIR}/libs/openal/android/Alc/bs2b.c"/>
-<!--
+            <!--
             <file name="${SRC_DIR}/libs/openal/android/Alc/alsa.c"/>
             <file name="${SRC_DIR}/libs/openal/android/Alc/oss.c"/>
             <file name="${SRC_DIR}/libs/openal/android/Alc/dsound.c"/>
@@ -153,7 +97,7 @@
             <file name="${SRC_DIR}/libs/openal/android/Alc/solaris.c"/>
             <file name="${SRC_DIR}/libs/openal/android/Alc/wave.c"/>
             <file name="${SRC_DIR}/libs/openal/android/Alc/winmm.c"/>
- -->
+             -->
             <file name="${SRC_DIR}/libs/openal/android/OpenAL32/alAuxEffectSlot.c"/>
             <file name="${SRC_DIR}/libs/openal/android/OpenAL32/alBuffer.c"/>
             <file name="${SRC_DIR}/libs/openal/android/OpenAL32/alDatabuffer.c"/>
