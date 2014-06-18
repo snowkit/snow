@@ -226,7 +226,7 @@
 
       <section if="LUMEN_LIB_OPENAL">
          <include name="${NATIVE_TOOLKIT_PATH}/openal-android/defines.xml" if="android"/>
-         <include name="${NATIVE_TOOLKIT_PATH}/openal/defines.xml" unless="mac || ios"/>
+         <include name="${NATIVE_TOOLKIT_PATH}/openal/defines.xml" unless="mac || ios || android"/>
       </section>
 
       <section if="LUMEN_LIB_STB_IMAGE">
