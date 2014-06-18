@@ -1,0 +1,10 @@
+
+#### [{{full}}](#{{full}})
+
+&emsp;&emsp;
+{{#each packages ~}}
+{{#unless (hidden_package .) }}
+    {{~#if @index}}&emsp; &bull; &emsp;{{/if~}}
+    [{{ without_package .}}](#{{.}})
+{{/unless}}
+{{~/each~}}
