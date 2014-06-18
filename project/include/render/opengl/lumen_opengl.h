@@ -2,9 +2,9 @@
 #define LUMEN_OPENGL_H
 
   		//glew first, before any gl.h (important)
-	#ifdef LUMEN_LIB_GLEW
+	#ifdef NATIVE_TOOLKIT_GLEW
 		#include "GL/glew.h"
-	#endif //LUMEN_LIB_GLEW
+	#endif //NATIVE_TOOLKIT_GLEW
 
 
 		//Then the appropriate headers.
