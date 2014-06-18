@@ -20,9 +20,9 @@ class Window {
         /** the native window handle */
     public var handle : WindowHandle;
         /** the window event handler callback */
-    public var window_event_handler : WindowEvent->Void;
+    public var event_handler : WindowEvent->Void;
         /** the window render handler callback */
-    public var window_render_handler : Window->Void;
+    public var render_handler : Window->Void;
 
         /** The window title `(read/write)` */
     @:isVar public var title (get,set) : String;
@@ -125,8 +125,8 @@ class Window {
 
         } //switch
 
-        if(window_event_handler != null) {
-            window_event_handler( _event );
+        if(event_handler != null) {
+            event_handler( _event );
         }
 
     } //on_event
@@ -146,8 +146,8 @@ class Window {
 
         manager.system.window_render( handle );
 
-        if(window_render_handler != null) {
-            window_render_handler( this );
+        if(render_handler != null) {
+            render_handler( this );
             return;
         }
 
