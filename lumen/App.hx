@@ -37,6 +37,8 @@ import lumen.types.Types;
     public var current_time : Float = 0;
         /** the start time of this frame */
     public var cur_frame_start : Float = 0.0;
+        /** the alpha time for a render between frame updates */
+    public var alpha : Float = 1.0;
 
 //Internal values
 
@@ -201,6 +203,7 @@ class AppFixedTimestep extends App {
         /** the overflow of the updates. This is used to calculate the alpha time for rendering interpolation, `var alpha_time = overflow / frame_time;` */
     public var overflow : Float = 0.0;
 
+
     @:noCompletion override public function on_internal_init() {
 
         frame_time = 1.0/60.0;
@@ -213,15 +216,16 @@ class AppFixedTimestep extends App {
     @:noCompletion override public function on_internal_update() {
 
         cur_frame_start = app.time;
-        delta_time = (cur_frame_start - last_frame_start) * timescale;
+        delta_time = (cur_frame_start - last_frame_start);
+        delta_sim = delta_time * timescale;
 
-        if(delta_time > max_frame_time) {
-            delta_time = max_frame_time;
+        if(delta_sim > max_frame_time) {
+            delta_sim = max_frame_time;
         }
 
         last_frame_start = cur_frame_start;
 
-        overflow += delta_time;
+        overflow += delta_sim;
 
         while(overflow >= frame_time) {
 
@@ -232,6 +236,9 @@ class AppFixedTimestep extends App {
             overflow -= frame_time * timescale;
 
         } //overflow >= frame_time
+
+            //work this out before a render
+        alpha = overflow / frame_time;
 
         app.do_internal_render();
 
