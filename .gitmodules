@@ -1,0 +1,12 @@
+[submodule "project/src/libs/theora"]
+	path = project/src/libs/theora
+	url = git@github.com:native-toolkit/theora.git
+[submodule "project/src/libs/lzma"]
+	path = project/src/libs/lzma
+	url = git@github.com:native-toolkit/lzma.git
+[submodule "project/src/libs/glew"]
+	path = project/src/libs/glew
+	url = git@github.com:native-toolkit/glew.git
+[submodule "project/src/libs/stb_image"]
+	path = project/src/libs/stb_image
+	url = git@github.com:native-toolkit/stb_image.git
