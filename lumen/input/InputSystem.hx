@@ -36,8 +36,6 @@ import lumen.window.Window;
     public function destroy();
         /** Called when the input manager forwards an event to this system */
     public function on_event( _event : InputEvent );
-        /** Helper to return a `ModState` (shift, ctrl etc) from a given `InputEvent` */
-    public function mod_state_from_event( event:InputEvent ) : ModState;
         /** Open a gamepad with this id */
     public function gamepad_add(id:Int);
         /** Close a gamepad with this id */

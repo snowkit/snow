@@ -44,29 +44,6 @@ import lumen.window.Window;
         lumen_gamepad_close(id);
     } //gamepad_remove
 
-	override public function mod_state_from_event( event:InputEvent ) : ModState {
-
-        return {
-            none    : true,
-            lshift  : false,
-            rshift  : false,
-            lctrl   : false,
-            rctrl   : false,
-            lalt    : false,
-            ralt    : false,
-            lmeta   : false,
-            rmeta   : false,
-            num     : false,
-            caps    : false,
-            mode    : false,
-            ctrl    : false,
-            shift   : false,
-            alt     : false,
-            meta    : false
-        };
-
-    } //mod_state_from_event
-
     static var lumen_gamepad_open = Lumen.load( "lumen", "lumen_gamepad_open", 1 );
     static var lumen_gamepad_close = Lumen.load( "lumen", "lumen_gamepad_close", 1 );
 

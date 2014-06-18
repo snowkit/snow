@@ -18,7 +18,7 @@ import lumen.input.Input;
     } //destroy
 
         /** Helper to return a `ModState` (shift, ctrl etc) from a given `InputEvent` */
-    override public function mod_state_from_event( event:InputEvent ) : ModState {
+    function mod_state_from_event( event:InputEvent ) : ModState {
 
         //event comes through as event.event.keysym.mod
 
@@ -53,7 +53,15 @@ import lumen.input.Input;
         } else {
 
                 //no mod state for text events etc
-            return super.mod_state_from_event( event );
+            return {
+                none:true,
+                lshift:false,   rshift:false,
+                lctrl:false,    rctrl:false,
+                lalt:false,     ralt:false,
+                lmeta:false,    rmeta:false,
+                num:false,      caps:false,     mode:false,
+                ctrl:false,     shift:false,    alt:false,  meta:false
+            };
 
         } //!up && !down
 
@@ -106,7 +114,8 @@ import lumen.input.Input;
                     (_event.event.start == null) ? 0 : _event.event.start,
                     (_event.event.length == null) ? 0 : _event.event.length,
                     (_event.event.type == textedit) ? TextEventType.edit : TextEventType.input,
-                    _event.timestamp, _event.window_id
+                    _event.timestamp,
+                    _event.window_id
                 );
 
             } //
@@ -132,23 +141,30 @@ import lumen.input.Input;
             if(_state == TouchState.down) {
 
                 manager.dispatch_touch_down_event(
-                    _event.event.x, _event.event.y,
-                    _event.event.finger_id, _event.timestamp
+                    _event.event.x,
+                    _event.event.y,
+                    _event.event.finger_id,
+                    _event.timestamp
                 );
 
             } else if(_state == TouchState.up) {
 
                 manager.dispatch_touch_up_event(
-                    _event.event.x, _event.event.y,
-                    _event.event.finger_id, _event.timestamp
+                    _event.event.x,
+                    _event.event.y,
+                    _event.event.finger_id,
+                    _event.timestamp
                 );
 
             } else if(_state == TouchState.move) {
 
                 manager.dispatch_touch_move_event(
-                    _event.event.x, _event.event.y,
-                    _event.event.dx, _event.event.dy,
-                    _event.event.finger_id, _event.timestamp
+                    _event.event.x,
+                    _event.event.y,
+                    _event.event.dx,
+                    _event.event.dy,
+                    _event.event.finger_id,
+                    _event.timestamp
                 );
 
             }
@@ -167,14 +183,22 @@ import lumen.input.Input;
 
             if(_gamepad_event.type == ControllerEventType.button_up) {
 
+                    //the 0 means fully pressed
                 manager.dispatch_gamepad_button_up_event(
-                    _gamepad_event.which, _gamepad_event.button, 0, _event.timestamp
+                    _gamepad_event.which,
+                    _gamepad_event.button,
+                    0,
+                    _event.timestamp
                 );
 
             } else if(_gamepad_event.type == ControllerEventType.button_down ) {
 
+                    //the 1 means fully pressed
                 manager.dispatch_gamepad_button_down_event(
-                    _gamepad_event.which, _gamepad_event.button, 1, _event.timestamp
+                    _gamepad_event.which,
+                    _gamepad_event.button,
+                    1,
+                    _event.timestamp
                 );
 
         //Axis
@@ -182,7 +206,10 @@ import lumen.input.Input;
             } else if(_gamepad_event.type == ControllerEventType.axis) {
 
                 manager.dispatch_gamepad_axis_event(
-                    _gamepad_event.which, _gamepad_event.axis, _gamepad_event.value, _event.timestamp
+                    _gamepad_event.which,
+                    _gamepad_event.axis,
+                    _gamepad_event.value,
+                    _event.timestamp
                 );
 
             } else {
@@ -205,7 +232,11 @@ import lumen.input.Input;
                     _type = GamepadDeviceEventType.device_remapped;
                 }
 
-                manager.dispatch_gamepad_device_event(_gamepad_event.which, _type, _event.timestamp);
+                manager.dispatch_gamepad_device_event(
+                    _gamepad_event.which,
+                    _type,
+                    _event.timestamp
+                );
 
             }
 
@@ -220,32 +251,41 @@ import lumen.input.Input;
             if(_event.event.type == MouseEventType.move) {
 
                 manager.dispatch_mouse_move_event(
-                    _event.event.x, _event.event.y,
-                    _event.event.xrel, _event.event.yrel,
-                    _event.timestamp, _event.window_id
+                    _event.event.x,
+                    _event.event.y,
+                    _event.event.xrel,
+                    _event.event.yrel,
+                    _event.timestamp,
+                    _event.window_id
                 );
 
             } if(_event.event.type == MouseEventType.down) {
 
                 manager.dispatch_mouse_down_event(
-                    _event.event.x, _event.event.y,
+                    _event.event.x,
+                    _event.event.y,
                     _event.event.button,
-                    _event.timestamp, _event.window_id
+                    _event.timestamp,
+                    _event.window_id
                 );
 
             } else if(_event.event.type == MouseEventType.up) {
 
                 manager.dispatch_mouse_up_event(
-                    _event.event.x, _event.event.y,
+                    _event.event.x,
+                    _event.event.y,
                     _event.event.button,
-                    _event.timestamp, _event.window_id
+                    _event.timestamp,
+                    _event.window_id
                 );
 
             } else if(_event.event.type == MouseEventType.wheel) {
 
                 manager.dispatch_mouse_wheel_event(
-                    _event.event.x, _event.event.y,
-                    _event.timestamp, _event.window_id
+                    _event.event.x,
+                    _event.event.y,
+                    _event.timestamp,
+                    _event.window_id
                 );
 
             }
