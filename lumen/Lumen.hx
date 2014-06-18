@@ -158,27 +158,27 @@ class Lumen {
 
 
             //fetch runtime config before we actually tell them to pre-ready init
-        config.runtime_config = host.get_runtime_config();
+        config.runtime = host.get_runtime_config();
 
             //disllow re-entry
         was_ready = true;
 
             //:todo: this should be abstracted to the host in some way
             //load in the window size from the runtime config
-        if(config.runtime_config.window != null) {
+        if(config.runtime.window != null) {
 
-            if(config.runtime_config.window.width != null) {
-                config.window_config.width = config.runtime_config.window.width;
+            if(config.runtime.window.width != null) {
+                config.window.width = config.runtime.window.width;
             }
 
-            if(config.runtime_config.window.height != null) {
-                config.window_config.height = config.runtime_config.window.height;
+            if(config.runtime.window.height != null) {
+                config.window.height = config.runtime.window.height;
             }
 
         } //runtime config window flag
 
             //now if they requested a window, let's open one
-        window = windowing.create( config.window_config );
+        window = windowing.create( config.window );
 
             //now ready
         is_ready = true;

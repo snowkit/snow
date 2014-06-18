@@ -104,18 +104,18 @@ class AssetAudio extends Asset {
 The lumen core configuration information
 
 `? host` : the bootstrapped application
-`? window_config` : the window config for a default window, if any
+`? window` : the window config for a default window, if any
 `? run_loop` : whether or not the core should run a loop at all
-`? runtime_config` : the user specific config read from json at runtime
+`? runtime` : the user specific config read from json at runtime
 `? asset_data` : the raw list of assets. use the app.assets from Lumen for access
 
 */
 typedef LumenConfig = {
 
     ? host                  : App,
-    ? window_config         : WindowConfig,
+    ? window                : WindowConfig,
     ? run_loop              : Bool,
-    ? runtime_config        : Dynamic,
+    ? runtime               : Dynamic,
     ? asset_data            : Array<AssetInfo>
 
 } //LumenConfig
