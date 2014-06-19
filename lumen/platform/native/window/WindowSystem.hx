@@ -85,7 +85,7 @@ import lumen.utils.Libs;
     } //window_grab
 
     override public function window_fullscreen( handle:WindowHandle, fullscreen:Bool, fullscreen_desktop_mode:Int = 1 ) {
-    	lumen_window_fullscreen( handle, fullscreen );
+    	lumen_window_fullscreen( handle, fullscreen, fullscreen_desktop_mode );
     } //window_fullscreen
 
     override public function window_bordered( handle:WindowHandle, bordered:Bool ) {
@@ -116,7 +116,7 @@ import lumen.utils.Libs;
         return lumen_desktop_get_display_mode( display, mode_index );
     } //desktop_get_display_mode
 
-    override public function display_bounds( display:Int ) : DisplayBounds {
+    override public function display_bounds( display:Int ) : { x:Int, y:Int, width:Int, height:Int } {
         return lumen_desktop_get_display_bounds( display );
     } //desktop_get_display_bounds
 

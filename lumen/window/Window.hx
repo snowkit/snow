@@ -25,7 +25,7 @@ class Window {
     public var render_handler : Window->Void;
 
         /** The window title `(read/write)` */
-    @:isVar public var title (get,set) : String;
+    @:isVar public var title (get,set) : String = 'lumen window';
         /** The window bordered state `(read/write)` */
     @:isVar public var bordered (get,set) : Bool = true;
         /** The window grab state `(read/write)` */
@@ -34,26 +34,30 @@ class Window {
     @:isVar public var fullscreen (get,set) : Bool = false;
 
         /** The window position `(read/write)` */
-    @:isVar public var position (get,set) : WindowPosition;
-        /** The window size `(read/write)` */
-    @:isVar public var size (get,set) : WindowSize;
+    @:isVar public var x (default,set) : Int = 0;
+    @:isVar public var y (default,set) : Int = 0;
+    @:isVar public var width (default,set) : Int = 0;
+    @:isVar public var height (default,set) : Int = 0;
+
         /** The window maximum size `(read/write)` */
-    @:isVar public var max_size (get,set) : WindowSize;
+    @:isVar public var max_size (get,set) : { x:Int, y:Int };
         /** The window minimum size `(read/write)` */
-    @:isVar public var min_size (get,set) : WindowSize;
+    @:isVar public var min_size (get,set) : { x:Int, y:Int };
 
         /** set this for fullscreen desktop mode, instead of fullscreen mode */
     public var fullscreen_desktop : Bool = true;
+        /** set this if you want to control when a window swaps() where applicable */
+    public var auto_swap : Bool = true;
 
         //internal minimized flag to avoid rendering when minimized
     var minimized : Bool = false;
+    var internal_position : Bool = false;
+    var internal_resize : Bool = false;
 
     public function new( _manager:Windowing, _config:WindowConfig ) {
 
-        position    = { x:0, y:0 };
-        size        = { w:0, h:0 };
-        max_size    = { w:0, h:0 };
-        min_size    = { w:0, h:0 };
+        max_size    = { x:0, y:0 };
+        min_size    = { x:0, y:0 };
 
         manager = _manager;
         asked_config = _config;
@@ -71,16 +75,20 @@ class Window {
 
             //update the position and size
             //because it updates in the config
-        position.x = _config.x;
-        position.y = _config.y;
+            internal_position = true;
+        x = _config.x;
+        y = _config.y;
+            internal_position = false;
 
-        size.w = _config.width;
-        size.h = _config.height;
+            internal_resize = true;
+        width = _config.width;
+        height = _config.height;
+            internal_resize = false;
 
         on_event({
             type:WindowEventType.window_created,
             window_id : _id,
-            timestamp : 0,
+            timestamp : manager.lib.time,
             event : {}
         });
 
@@ -96,30 +104,40 @@ class Window {
         switch(_event.type) {
 
             case window_moved : {
-                internal_position = true;
-                position = { x:_event.event.data1, y:_event.event.data2 };
-                internal_position = false;
-            }
+
+                    internal_position = true;
+                set_position(_event.event.data1, _event.event.data2);
+                    internal_position = false;
+
+            } //moved
 
             case window_resized : {
-                internal_resize = true;
-                size = { w:_event.event.data1, h:_event.event.data2 };
-                internal_resize = false;
-            }
+
+                    internal_resize = true;
+                set_size(_event.event.data1, _event.event.data2);
+                    internal_resize = false;
+
+            } //resized
 
             case window_size_changed : {
-                internal_resize = true;
-                size = { w:_event.event.data1, h:_event.event.data2 };
-                internal_resize = false;
-            }
+
+                    internal_resize = true;
+                set_size(_event.event.data1, _event.event.data2);
+                    internal_resize = false;
+
+            } //size_changed
 
             case window_minimized : {
+
                 minimized = true;
-            }
+
+            } //minimized
 
             case window_restored : {
+
                 minimized = false;
-            }
+
+            } //restored
 
             default: {}
 
@@ -147,14 +165,23 @@ class Window {
         manager.system.window_render( handle );
 
         if(render_handler != null) {
+
             render_handler( this );
+
+            if(auto_swap) {
+                swap();
+            }
+
             return;
-        }
+
+        } //has render handler
 
         GL.clearColor( 0.12, 0.12, 0.12, 1.0 );
         GL.clear( GL.COLOR_BUFFER_BIT );
 
-        swap();
+        if(auto_swap) {
+            swap();
+        }
 
     } //render
 
@@ -208,25 +235,13 @@ class Window {
 
     } //get_grab
 
-    function get_position() : WindowPosition {
-
-        return position;
-
-    } //get_position
-
-    function get_size() : WindowSize {
-
-        return size;
-
-    } //get_size
-
-    function get_max_size() : WindowSize {
+    function get_max_size() : { x:Int, y:Int } {
 
         return max_size;
 
     } //get_max_size
 
-    function get_min_size() : WindowSize {
+    function get_min_size() : { x:Int, y:Int } {
 
         return min_size;
 
@@ -245,45 +260,106 @@ class Window {
         }
 
         return title = _title;
-    }
 
-    function set_position( _pos:WindowPosition ) : WindowPosition {
+    } //set_title
 
-        if(position != null && handle != null && !internal_position) {
-            manager.system.window_set_position( handle, _pos.x, _pos.y );
+    function set_x( _x:Int ) : Int {
+
+        x = _x;
+
+        if(handle != null && !internal_position) {
+            manager.system.window_set_position( handle, x, y );
         }
 
-        return position = _pos;
+        return x;
 
-    } //set_position
+    } //set_x
 
-    var internal_position : Bool = false;
-    var internal_resize : Bool = false;
+    function set_y( _y:Int ) : Int {
 
-    function set_size( _size:WindowSize ) : WindowSize {
+        y = _y;
 
-        if(size != null && handle != null && !internal_resize) {
-            manager.system.window_set_size( handle, _size.w, _size.h );
+        if(handle != null && !internal_position) {
+            manager.system.window_set_position( handle, x, y );
         }
 
-        return size = _size;
+        return y;
+
+    } //set_y
+
+    function set_width( _width:Int ) : Int {
+
+        width = _width;
+
+        if(handle != null && !internal_resize) {
+            manager.system.window_set_size( handle, width, height );
+        }
+
+        return width;
+
+    } //set_width
+
+    function set_height( _height:Int ) : Int {
+
+        height = _height;
+
+        if(handle != null && !internal_resize) {
+            manager.system.window_set_size( handle, width, height );
+        }
+
+        return height;
+
+    } //set_height
+
+    public function set_position( _x:Int, _y:Int ) {
+
+            //keep the flag
+        var last_internal_position_flag = internal_position;
+
+            //force true
+        internal_position = true;
+            x = _x;
+            y = _y;
+        internal_position = last_internal_position_flag;
+
+            //this is never called
+        if(handle != null && !internal_position) {
+            manager.system.window_set_position( handle, x, y );
+        }
+
+    } //set_xy
+
+    function set_size( _width:Int, _height:Int ) {
+
+            //keep the flag
+        var last_internal_resize_flag = internal_resize;
+
+            //force true
+        internal_resize = true;
+            width = _width;
+            height = _height;
+        internal_resize = last_internal_resize_flag;
+
+        if(handle != null && !internal_resize) {
+            manager.system.window_set_size( handle, _width, _height );
+        }
 
     } //set_size
 
-    function set_max_size( _size:WindowSize ) : WindowSize {
+    function set_max_size( _size:{ x:Int, y:Int } ) : { x:Int, y:Int } {
 
         if(max_size != null && handle != null) {
-            manager.system.window_set_max_size( handle, _size.w, _size.h );
+            manager.system.window_set_max_size( handle, _size.x, _size.y );
         }
 
         return max_size = _size;
 
     } //set_max_size
 
-    function set_min_size( _size:WindowSize ) : WindowSize {
+    function set_min_size( _size: { x:Int, y:Int } ) : { x:Int, y:Int } {
 
         if(min_size != null && handle != null) {
-            manager.system.window_set_min_size( handle, _size.w, _size.h );
+            manager.system.window_set_min_size( handle, _size.x, _size.y );
         }
 
         return min_size = _size;
