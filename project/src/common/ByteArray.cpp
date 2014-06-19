@@ -99,17 +99,17 @@ namespace lumen {
 
     int ByteArray::ToFile(const OSChar *inFilename, const ByteArray array) {
 
-        lumen_iosrc* file = lumen::iosrc_fromfile(inFilename, "wb");
+        lumen::io::iosrc* file = lumen::io::iosrc_fromfile(inFilename, "wb");
 
         if(!file) {
-            lumen::log("/ lumen / ByteArray::ToFile cannot open file for writing %s", inFilename );
+            lumen::log("/ lumen / ByteArray::ToFile cannot open file for writing %s\n", inFilename );
                 //0 means nothing was written
             return 0;
         }
 
-        int res = lumen::iowrite( file, array.Bytes() , 1, array.Size() );
+        int res = lumen::io::write( file, array.Bytes() , 1, array.Size() );
 
-        lumen::ioclose(file);
+        lumen::io::close(file);
 
         return res;
 
@@ -117,24 +117,24 @@ namespace lumen {
 
     ByteArray ByteArray::FromFile(const OSChar *inFilename) {
 
-        lumen_iosrc* file = lumen::iosrc_fromfile(inFilename, "rb");
+        lumen::io::iosrc* file = lumen::io::iosrc_fromfile(inFilename, "rb");
 
         if(!file) {
-            lumen::log("/ lumen / ByteArray::FromFile cannot open file for reading %s", inFilename );
+            lumen::log("/ lumen / ByteArray::FromFile cannot open file for reading %s\n", inFilename );
             return ByteArray();
         }
 
             //determine the length
-        lumen::ioseek(file, 0, lumen_seek_end);
-        int len = lumen::iotell(file);
-        lumen::ioseek(file, 0, lumen_seek_set);
+        lumen::io::seek(file, 0, lumen_seek_end);
+        int len = lumen::io::tell(file);
+        lumen::io::seek(file, 0, lumen_seek_set);
 
             //create a bytearray of the file size
         ByteArray result(len);
             //read the data into the buffer
-        int status = lumen::ioread(file, result.Bytes(), len, 1);
+        int status = lumen::io::read(file, result.Bytes(), len, 1);
             //close the file
-        lumen::ioclose(file);
+        lumen::io::close(file);
 
         return result;
 

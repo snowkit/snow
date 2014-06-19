@@ -195,7 +195,7 @@
 
       <compilerflag value="-DLUMEN_USE_EMPTY_PLATFORM" />
 
-      <file name="${SRC_DIR}/lumen/empty/lumen_core_empty.cpp"/>
+      <file name="${SRC_DIR}/lumen/empty/lumen_empty_platform.cpp"/>
 
    </section>
 

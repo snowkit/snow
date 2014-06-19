@@ -33,7 +33,7 @@ namespace lumen {
                     ogg_source->callbacks.close_func = &ogg_close_func;
                     ogg_source->callbacks.tell_func = &ogg_tell_func;
 
-                ogg_source->file_source = lumen::iosrc_fromfile(_id, "rb");
+                ogg_source->file_source = lumen::io::iosrc_fromfile(_id, "rb");
 
                 if(!ogg_source->file_source) {
 
@@ -45,18 +45,18 @@ namespace lumen {
 
                 } //file source isn't valid
 
-                lumen::ioseek(ogg_source->file_source, 0, lumen_seek_end);
+                lumen::io::seek(ogg_source->file_source, 0, lumen_seek_end);
 
-                    ogg_source->length = lumen::iotell(ogg_source->file_source);
+                    ogg_source->length = lumen::io::tell(ogg_source->file_source);
 
-                lumen::ioseek(ogg_source->file_source, 0, lumen_seek_set);
+                lumen::io::seek(ogg_source->file_source, 0, lumen_seek_set);
 
                     //open the file with the callbacks
                 int result = ov_open_callbacks(ogg_source, ogg_source->ogg_file, NULL, 0, ogg_source->callbacks );
 
                 if(result < 0) {
 
-                    lumen::ioclose(ogg_source->file_source);
+                    lumen::io::close(ogg_source->file_source);
                     delete ogg_source;
                     ogg_source = NULL;
 
@@ -214,7 +214,7 @@ namespace lumen {
 
                 // lumen::log("\t read  : %s, filelen:%lld amount:%lu\n", source->source_name.c_str(),source->length, size * nmemb);
 
-                return lumen::ioread(source->file_source, ptr, size, nmemb);
+                return lumen::io::read(source->file_source, ptr, size, nmemb);
 
             } //read_func
 
@@ -243,7 +243,7 @@ namespace lumen {
 
                 // lumen::log("\t seek  : %s, offset:%lld whence:%d \n", source->source_name.c_str(), offset, _type);
 
-                return lumen::ioseek(source->file_source, offset, _type);
+                return lumen::io::seek(source->file_source, offset, _type);
 
             } //seek_func
 
@@ -253,7 +253,7 @@ namespace lumen {
 
                 // lumen::log("ogg closing the file source for %s", source->source_name.c_str());
 
-                return lumen::ioclose(source->file_source);
+                return lumen::io::close(source->file_source);
 
             } //close_func
 
@@ -261,7 +261,7 @@ namespace lumen {
 
                 OGG_file_source *source = (OGG_file_source*)datasource;
 
-                return (long)lumen::iotell(source->file_source) - source->offset;
+                return (long)lumen::io::tell(source->file_source) - source->offset;
 
             } //tell_func
 
@@ -338,7 +338,7 @@ namespace lumen {
 
                 wav_source = new WAV_file_source();
                 wav_source->source_name = std::string(_id);
-                wav_source->file_source = lumen::iosrc_fromfile(_id, "rb");
+                wav_source->file_source = lumen::io::iosrc_fromfile(_id, "rb");
 
                 if (!wav_source->file_source) {
                     lumen::log("/ lumen / cannot open wav file from %s", _id);
@@ -349,7 +349,7 @@ namespace lumen {
                 RIFF_Header riff_header;
 
                     // Read in the first chunk into the struct
-                int result = lumen::ioread(wav_source->file_source, &riff_header, sizeof(RIFF_Header), 1);
+                int result = lumen::io::read(wav_source->file_source, &riff_header, sizeof(RIFF_Header), 1);
 
                     //check for RIFF and WAVE tag in memory
                 if( !wav_confirm_header(riff_header) ) {
@@ -365,10 +365,10 @@ namespace lumen {
                 while (!found_format) {
 
                         // Save the current position indicator of the stream
-                    current_head = lumen::iotell(wav_source->file_source);
+                    current_head = lumen::io::tell(wav_source->file_source);
 
                         //Read in the 2nd chunk for the wave info
-                    result = lumen::ioread(wav_source->file_source, &wave_format, sizeof(WAVE_Format), 1);
+                    result = lumen::io::read(wav_source->file_source, &wave_format, sizeof(WAVE_Format), 1);
 
                     if (result != 1) {
                         lumen::log("%s : %s\n", _id, "Invalid WAV format!");
@@ -381,7 +381,7 @@ namespace lumen {
                         wave_format.subChunkID[2] != 't' ||
                         wave_format.subChunkID[3] != ' '
                     ) {
-                        lumen::ioseek(wav_source->file_source, wave_format.subChunkSize, lumen_seek_cur);
+                        lumen::io::seek(wav_source->file_source, wave_format.subChunkSize, lumen_seek_cur);
                     } else {
                         found_format = true;
                     }
@@ -390,7 +390,7 @@ namespace lumen {
 
                     //check for extra parameters;
                 if (wave_format.subChunkSize > 16) {
-                    lumen::ioseek(wav_source->file_source, sizeof(short), lumen_seek_cur);
+                    lumen::io::seek(wav_source->file_source, sizeof(short), lumen_seek_cur);
                 }
 
                 bool found_data = false;
@@ -399,7 +399,7 @@ namespace lumen {
                 while (!found_data) {
 
                     //Read in the the last byte of data before the sound file
-                    result = lumen::ioread(wav_source->file_source, &wave_data, sizeof(WAVE_Data), 1);
+                    result = lumen::io::read(wav_source->file_source, &wave_data, sizeof(WAVE_Data), 1);
 
                     if (result != 1) {
                         lumen::log("%s : %s\n", _id, "Invalid WAV data header");
@@ -413,7 +413,7 @@ namespace lumen {
                         wave_data.subChunkID[3] != 'a'
                     ) {
                             // Goto next chunk.
-                        lumen::ioseek(wav_source->file_source, current_head + sizeof(WAVE_Data) + wave_format.subChunkSize, lumen_seek_set);
+                        lumen::io::seek(wav_source->file_source, current_head + sizeof(WAVE_Data) + wave_format.subChunkSize, lumen_seek_set);
                     } else {
                         found_data = true;
                     }
@@ -422,7 +422,7 @@ namespace lumen {
 
                     //we need to store the start of the data for when we want to rewind to the
                     //beginning, for example, when doing a stream from the file and looping
-                wav_source->data_start = lumen::iotell(wav_source->file_source);
+                wav_source->data_start = lumen::io::tell(wav_source->file_source);
                     //store the size of the wav data
                 wav_source->length = wave_data.subChunkSize;
                     //since wav is uncompressed, it's size matches
@@ -448,7 +448,7 @@ namespace lumen {
 
                         //start at the wav data for seeking, ignoring the header stuff now
                     lumen::log("jumping to %d+%d/%d", wav_source->data_start, to, wav_source->length_pcm);
-                    lumen::ioseek(wav_source->file_source, wav_source->data_start + to, lumen_seek_set);
+                    lumen::io::seek(wav_source->file_source, wav_source->data_start + to, lumen_seek_set);
 
                     return true;
 
@@ -471,7 +471,7 @@ namespace lumen {
 
                     //read the data into the given buffer
                 int n_elements = 1;
-                long current_pos = (lumen::iotell( wav_source->file_source ) - wav_source->data_start);
+                long current_pos = (lumen::io::tell( wav_source->file_source ) - wav_source->data_start);
                 long distance_to_end = wav_source->length_pcm - current_pos;
 
                     //if we are reading near the end of the file,
@@ -490,7 +490,7 @@ namespace lumen {
                     out_buffer.resize(_read_len);
 
                         //read from the wav source
-                    long elements_read = lumen::ioread( wav_source->file_source, (char*)out_buffer.begin(), _read_len, n_elements);
+                    long elements_read = lumen::io::read( wav_source->file_source, (char*)out_buffer.begin(), _read_len, n_elements);
 
                         //if no elements were read, it was an error
                         //or end of file so either way it's complete.
@@ -518,19 +518,19 @@ namespace lumen {
 
                 pcm_source = new PCM_file_source();
                 pcm_source->source_name = std::string(_id);
-                pcm_source->file_source = lumen::iosrc_fromfile(_id, "rb");
+                pcm_source->file_source = lumen::io::iosrc_fromfile(_id, "rb");
 
                 if (!pcm_source->file_source) {
                     lumen::log("/ lumen / cannot open pcm file from %s", _id);
                     return false;
                 }
 
-                lumen::ioseek(pcm_source->file_source, 0, lumen_seek_end);
+                lumen::io::seek(pcm_source->file_source, 0, lumen_seek_end);
 
-                    pcm_source->length = lumen::iotell(pcm_source->file_source);
+                    pcm_source->length = lumen::io::tell(pcm_source->file_source);
                     pcm_source->length_pcm = pcm_source->length;
 
-                lumen::ioseek(pcm_source->file_source, 0, lumen_seek_set);
+                lumen::io::seek(pcm_source->file_source, 0, lumen_seek_set);
 
                     //assign the sound format values, these are defaults
                     //and need to be assigned on the haxe side if you want different values,
@@ -554,7 +554,7 @@ namespace lumen {
                 if(pcm_source) {
 
                         //start at the pcm data for seeking, ignoring the header stuff now
-                    lumen::ioseek(pcm_source->file_source, to, lumen_seek_set);
+                    lumen::io::seek(pcm_source->file_source, to, lumen_seek_set);
 
                     return true;
 
@@ -577,7 +577,7 @@ namespace lumen {
 
                     //read the data into the given buffer
                 int n_elements = 1;
-                long current_pos = lumen::iotell( pcm_source->file_source );
+                long current_pos = lumen::io::tell( pcm_source->file_source );
                 long distance_to_end = pcm_source->length_pcm - current_pos;
 
                     //if we are reading near the end of the file,
@@ -595,7 +595,7 @@ namespace lumen {
                     out_buffer.resize(_read_len);
 
                         //read from the pcm source
-                    long elements_read = lumen::ioread( pcm_source->file_source, (char*)out_buffer.begin(), _read_len, n_elements);
+                    long elements_read = lumen::io::read( pcm_source->file_source, (char*)out_buffer.begin(), _read_len, n_elements);
 
                         //if no elements were read, it was an error
                         //or end of file so either way it's complete.
