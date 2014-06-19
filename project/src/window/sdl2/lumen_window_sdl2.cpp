@@ -200,7 +200,7 @@ namespace lumen {
                 //on iOS we need to intercept the loop
             #ifdef IPHONE
                 lumen::log("/ lumen / requesting main loop for iOS");
-                SDL_iPhoneSetAnimationCallback(window, 1, lumen_core_loop, NULL);
+                SDL_iPhoneSetAnimationCallback(window, 1, lumen::core::loop, NULL);
             #endif //IPHONE
 
 
