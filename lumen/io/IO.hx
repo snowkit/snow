@@ -3,7 +3,7 @@ package lumen.io;
 import lumen.utils.ByteArray;
 import lumen.utils.Libs;
 
-/** This class is a low level cross platform file access helper, that handles in bundle assets etc. 
+/** This class is a low level cross platform file access helper, that handles in bundle assets etc.
     If you want a file, use `Assets` instead, unless really required. */
 class IOFile {
 
@@ -52,14 +52,14 @@ class IOFile {
 } //IOFile
 
 
-/** This class is a low level cross platform IO helper. 
+/** This class is a low level cross platform IO helper.
     If you want file access, use `Assets` instead, unless really required. */
 class IO {
 
-#if lumen_native        
+#if lumen_native
 
     static var lumen_iosrc_from_file = Libs.load( "lumen", "lumen_iosrc_from_file", 2 );
-    
+
         /** Create an `IOFile` from a file path `_id`, this bypasses the `Asset` system path helpers. */
     public static function from_file( _id:String, ?_mode:String="rb" ) : IOFile {
         var handle = lumen_iosrc_from_file(_id, _mode);
