@@ -14,14 +14,14 @@ namespace lumen {
 
             int lumen_stbi_read(void *user, char *data, int size) {
 
-                lumen_iosrc* src = (lumen_iosrc*)user;
+                lumen::io::iosrc* src = (lumen::io::iosrc*)user;
 
                     //to tell how much we have read, we tell before and after
-                int before = lumen::iotell(src);
+                int before = lumen::io::tell(src);
 
-                lumen::ioread(src, data, size, 1);
+                lumen::io::read(src, data, size, 1);
 
-                int readtotal = lumen::iotell(src) - before;
+                int readtotal = lumen::io::tell(src) - before;
 
                 // lumen::log("stbi read  %d / %d", size, readtotal );
 
@@ -32,27 +32,27 @@ namespace lumen {
 
             void lumen_stbi_skip(void *user, unsigned n) {
 
-                lumen_iosrc* src = (lumen_iosrc*)user;
+                lumen::io::iosrc* src = (lumen::io::iosrc*)user;
 
                 // lumen::log("stbi skip %d ", n);
 
-                lumen::ioseek(src, n, lumen_seek_cur);
+                lumen::io::seek(src, n, lumen_seek_cur);
 
             } //lumen_stbi_skip
 
 
             int lumen_stbi_eof(void *user) {
 
-                lumen_iosrc* src = (lumen_iosrc*)user;
+                lumen::io::iosrc* src = (lumen::io::iosrc*)user;
 
                     //get this first
-                int current = lumen::iotell(src);
+                int current = lumen::io::tell(src);
                     //then fetch the end to get the size
-                lumen::ioseek(src, 0, lumen_seek_end);
+                lumen::io::seek(src, 0, lumen_seek_end);
                     //get the size
-                long int size = lumen::iotell(src);
+                long int size = lumen::io::tell(src);
                     //reset the seek
-                lumen::ioseek(src, current, lumen_seek_set);
+                lumen::io::seek(src, current, lumen_seek_set);
 
                 // lumen::log("stbi eof? %d / %d / %d", current, size, current > size);
 
@@ -70,7 +70,7 @@ namespace lumen {
             bool load_info( QuickVec<unsigned char> &out_buffer, const char* _id, int* w, int* h, int* bpp, int* bpp_source, int req_bpp = 4 ) {
 
                     //get a io file pointer to the image
-                lumen_iosrc* src = lumen::iosrc_fromfile(_id, "rb");
+                lumen::io::iosrc* src = lumen::io::iosrc_fromfile(_id, "rb");
 
                 if(!src) {
                     lumen::log("/ lumen / cannot open image file from %s", _id);
@@ -86,7 +86,7 @@ namespace lumen {
 
                 unsigned char *data = stbi_load_from_callbacks(&stbi_lumen_callbacks, src, w, h, bpp_source, req_bpp);
 
-                lumen::ioclose(src);
+                lumen::io::close(src);
 
                 // lumen::log("lumen / image / w:%d h:%d source bpp:%d bpp:%d\n", *w, *h, *bpp_source, req_bpp);
 

@@ -52,7 +52,7 @@ namespace lumen {
             class OGG_file_source : public Object {
 
                 public:
-                    lumen_iosrc*        file_source;
+                    lumen::io::iosrc*   file_source;
                     ov_callbacks        callbacks;
                     std::string         source_name;
                     OggVorbis_File*     ogg_file;
@@ -82,7 +82,7 @@ namespace lumen {
             class WAV_file_source : public Object {
 
                 public:
-                    lumen_iosrc*        file_source;
+                    lumen::io::iosrc*   file_source;
                     std::string         source_name;
                     int                 channels;
                     int                 rate;
@@ -101,7 +101,7 @@ namespace lumen {
 
                         //ensure the file is closed
                     if(file_source) {
-                        lumen::ioclose( file_source );
+                        lumen::io::close( file_source );
                     }
 
                     file_source = NULL;
@@ -115,7 +115,7 @@ namespace lumen {
             class PCM_file_source : public Object {
 
                 public:
-                    lumen_iosrc*        file_source;
+                    lumen::io::iosrc*   file_source;
                     std::string         source_name;
                     int                 channels;
                     int                 rate;
@@ -133,7 +133,7 @@ namespace lumen {
 
                         //ensure the file is closed
                     if(file_source) {
-                        lumen::ioclose( file_source );
+                        lumen::io::close( file_source );
                     }
 
                     file_source = NULL;

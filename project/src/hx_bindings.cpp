@@ -734,9 +734,9 @@ extern double timestamp();
 
     value lumen_iosrc_from_file(value _id, value _mode) {
 
-        iosrc_file* iosrc = new iosrc_file();
+        lumen::io::iosrc_file* iosrc = new lumen::io::iosrc_file();
 
-        iosrc->file_source = lumen::iosrc_fromfile( val_string(_id), val_string(_mode) );
+        iosrc->file_source = lumen::io::iosrc_fromfile( val_string(_id), val_string(_mode) );
 
         return Object_to_hx(iosrc);
 
@@ -745,7 +745,7 @@ extern double timestamp();
 
     value lumen_iosrc_file_read(value _handle, value _dest, value _size, value _maxnum) {
 
-        iosrc_file* iosrc = NULL;
+        lumen::io::iosrc_file* iosrc = NULL;
         QuickVec<unsigned char> buffer;
 
         if( Object_from_hx(_handle, iosrc) ) {
@@ -754,7 +754,7 @@ extern double timestamp();
 
                 ByteArray dest(_dest);
 
-                int res = lumen::ioread(iosrc->file_source, dest.Bytes(), val_int(_size), val_int(_maxnum));
+                int res = lumen::io::read(iosrc->file_source, dest.Bytes(), val_int(_size), val_int(_maxnum));
 
                 return alloc_int(res);
             }
@@ -768,7 +768,7 @@ extern double timestamp();
 
     value lumen_iosrc_file_write(value _handle, value _data, value _size, value _num) {
 
-        iosrc_file* iosrc = NULL;
+        lumen::io::iosrc_file* iosrc = NULL;
 
         if( Object_from_hx(_handle, iosrc) ) {
 
@@ -784,7 +784,7 @@ extern double timestamp();
                     data.Resize(len);
                 }
 
-                int res = lumen::iowrite(iosrc->file_source, data.Bytes(), size, num);
+                int res = lumen::io::write(iosrc->file_source, data.Bytes(), size, num);
 
                 return alloc_int(res);
 
@@ -799,11 +799,11 @@ extern double timestamp();
 
     value lumen_iosrc_file_seek(value _handle, value _offset, value _whence) {
 
-        iosrc_file* iosrc = NULL;
+        lumen::io::iosrc_file* iosrc = NULL;
 
         if( Object_from_hx(_handle, iosrc) ) {
 
-            int res = lumen::ioseek(iosrc->file_source, val_int(_offset), val_int(_whence));
+            int res = lumen::io::seek(iosrc->file_source, val_int(_offset), val_int(_whence));
 
             return alloc_int(res);
 
@@ -816,11 +816,11 @@ extern double timestamp();
 
     value lumen_iosrc_file_tell(value _handle) {
 
-        iosrc_file* iosrc = NULL;
+        lumen::io::iosrc_file* iosrc = NULL;
 
         if( Object_from_hx(_handle, iosrc) ) {
 
-            int res = lumen::iotell(iosrc->file_source);
+            int res = lumen::io::tell(iosrc->file_source);
 
             return alloc_int(res);
 
@@ -833,11 +833,11 @@ extern double timestamp();
 
     value lumen_iosrc_file_close(value _handle) {
 
-        iosrc_file* iosrc = NULL;
+        lumen::io::iosrc_file* iosrc = NULL;
 
         if( Object_from_hx(_handle, iosrc) ) {
 
-            int res = lumen::ioclose(iosrc->file_source);
+            int res = lumen::io::close(iosrc->file_source);
 
             return alloc_int(res);
 
