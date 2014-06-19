@@ -38,8 +38,8 @@ namespace lumen {
     namespace core {
 
             //forward
-        int init_core_sdl();
-        int shutdown_core_sdl();
+        int init_sdl();
+        int shutdown_sdl();
         void handle_event( SDL_Event &event );
         int SDLCALL system_event_watch(void *userdata, SDL_Event* event);
 
@@ -61,7 +61,7 @@ namespace lumen {
                 SDL_free( _base_path );
             }
 
-            int res = init_core_sdl();
+            int res = lumen::core::init_sdl();
 
             if(res != 0) {
                 return res;
@@ -75,7 +75,7 @@ namespace lumen {
 
         int shutdown_aux() {
 
-            shutdown_core_sdl();
+            lumen::core::shutdown_sdl();
 
             return 0;
 
@@ -127,7 +127,7 @@ namespace lumen {
     //Helpers
 
 
-        int init_core_sdl() {
+        int init_sdl() {
 
             if(sdl_inited) {
                 return 0;
@@ -147,9 +147,9 @@ namespace lumen {
 
             return res;
 
-        } //init_core_sdl
+        } //init_sdl
 
-        int shutdown_core_sdl() {
+        int shutdown_sdl() {
 
             sdl_inited = false;
 
@@ -159,7 +159,7 @@ namespace lumen {
 
             return 0;
 
-        } //shutdown_core_sdl
+        } //shutdown_sdl
 
         int SDLCALL system_event_watch(void *userdata, SDL_Event* event) {
 
