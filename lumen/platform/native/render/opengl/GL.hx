@@ -1,4 +1,4 @@
-package lumen.platform.native.render.gl;
+package lumen.platform.native.render.opengl;
 
 import lumen.utils.compat.Matrix3D;
 import lumen.utils.ArrayBuffer;
@@ -7,7 +7,7 @@ import lumen.utils.Float32Array;
 import lumen.utils.IMemoryRange;
 import lumen.utils.Int32Array;
 
-import lumen.render.gl.GL.GLObject;
+import lumen.render.opengl.GL.GLObject;
 import lumen.utils.Libs;
 
 

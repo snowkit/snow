@@ -28,6 +28,7 @@
    <set name="ios" value="1" if="iphone" />
 
       <!-- where to build from -->
+   <!-- <set name="LUMEN_ROOT" value="${haxelib:lumen}/project/" /> -->
    <set name="LUMEN_ROOT" value="" />
       <!-- paths -->
    <set name="SRC_DIR" value="${LUMEN_ROOT}src" />

@@ -1,7 +1,7 @@
 
 import lumen.Lumen;
 
-import lumen.render.gl.GL;
+import lumen.render.opengl.GL;
 
 import lumen.utils.ByteArray;
 import lumen.utils.UInt8Array;
