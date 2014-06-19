@@ -384,7 +384,7 @@ extern void window_show_cursor(bool enable);
     } DEFINE_PRIM(lumen_window_grab, 2);
 
 
-    value lumen_window_fullscreen(value _window, value _enable, value _flag) {
+    value lumen_window_fullscreen( value _window, value _enable, value _flag ) {
 
         LumenWindow* window = NULL;
 

@@ -203,7 +203,7 @@ import lumen.window.WindowSystem;
         } //display_mode
 
             //:todo:
-        override public function display_bounds( display:Int ) : DisplayBounds {
+        override public function display_bounds( display:Int ) : { x:Int, y:Int, width:Int, height:Int } {
             return { x:0, y:0, width:0, height:0 };
         } //display_bounds
 

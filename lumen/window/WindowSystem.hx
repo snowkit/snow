@@ -84,7 +84,7 @@ import lumen.utils.AbstractClass;
         /** Get the information from a specific mode index, the index obtrained from iterating with `display_mode_count` value */
     public function display_mode( display:Int, mode_index:Int ) : DisplayMode;
         /** Get the bounds of the display by index */
-    public function display_bounds( display:Int ) : DisplayBounds;
+    public function display_bounds( display:Int ) : { x:Int, y:Int, width:Int, height:Int };
         /** Get the name of the display by index, where available */
     public function display_name( display:Int ) : String;
 

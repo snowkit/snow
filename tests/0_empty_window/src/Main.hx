@@ -117,7 +117,7 @@ class Main extends lumen.AppFixedTimestep {
 
         next_tex_tick = texture_time;
 
-        positionY = (app.window.size.h - size) / 2;
+        positionY = (app.window.height - size) / 2;
 
         sound1 = app.audio.create("assets/sound.pcm");
         sound2 = app.audio.create("assets/sound.ogg", 'ogg');
@@ -313,14 +313,15 @@ class Main extends lumen.AppFixedTimestep {
 
         //"update"
         //this is to test the fix-your-timestep thing
-        //essentially app.frame_time is a fixed timestep, alpha time is how far we are into one...
+        //essentially app.frame_time is a fixed timestep, alpha time is how far we are between a frame and the next,
+        //allowing us to render the mid frame placement smoothly
 
         var prevx = positionX;
 
         positionX = (phys_posx * alpha) + prevx * ( 1.0 - alpha );
 
-        if(positionX >= (app.window.size.w - size)) {
-            positionX = (app.window.size.w - size);
+        if(positionX >= (app.window.width - size)) {
+            positionX = (app.window.width - size);
             dirX = -1;
         } else if(positionX <= 0) {
             positionX = 0;
@@ -330,8 +331,6 @@ class Main extends lumen.AppFixedTimestep {
         // Sys.println('alpha:${alpha} dt:${delta_time} delta_sim:${delta_sim}');
 
         render();
-
-        window.swap();
 
     } //onrender hook
 
@@ -461,15 +460,15 @@ class Main extends lumen.AppFixedTimestep {
 
     function render(){
 
-        GL.viewport (0, 0, app.window.size.w, app.window.size.h);
+        GL.viewport (0, 0, app.window.width, app.window.height);
 
         GL.clearColor(1.0, 0.5, 0.2, 1.0);
         GL.clear (GL.COLOR_BUFFER_BIT);
 
-        // var positionX = (app.window.size.w - size) / 2;
-        // var positionY = (app.window.size.h - size) / 2;
+        // var positionX = (app.window.width - size) / 2;
+        // var positionY = (app.window.height - size) / 2;
 
-        var projectionMatrix = Matrix3D.createOrtho (0, app.window.size.w, app.window.size.h, 0, 1000, -1000);
+        var projectionMatrix = Matrix3D.createOrtho (0, app.window.width, app.window.height, 0, 1000, -1000);
         var modelViewMatrix = Matrix3D.create2D (positionX, positionY, 1, 0);
 
         GL.useProgram (shaderProgram);

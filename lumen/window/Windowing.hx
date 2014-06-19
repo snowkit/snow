@@ -9,7 +9,7 @@ import lumen.window.WindowSystem;
 /** A window manager, accessed via `app.window` */
 class Windowing {
 
-    var lib : Lumen;
+    public var lib : Lumen;
 
         /** The list of windows in this manager */
     public var window_list : Map<Int, Window>;

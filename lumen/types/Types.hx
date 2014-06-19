@@ -287,18 +287,6 @@ typedef InputEvent = {
 
 } //InputEvent
 
-/** A position value for a window */
-typedef WindowPosition = {
-    var x : Int;
-    var y : Int;
-}
-
-/** A size value for a window */
-typedef WindowSize = {
-    var w : Int;
-    var h : Int;
-}
-
 /** Information about a display mode */
 typedef DisplayMode = {
     format : Int,
@@ -306,15 +294,6 @@ typedef DisplayMode = {
     width : Int,
     height : Int
 }
-
-/** The size and location of a display */
-typedef DisplayBounds = {
-    x : Int,
-    y : Int,
-    width : Int,
-    height : Int
-}
-
 
     /** A platform window handle */
 #if lumen_html5

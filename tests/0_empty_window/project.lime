@@ -3,7 +3,7 @@
 <project library="lumen">
 
     <app main="Main" path="bin" file="lumen_empty" />
-    
+
     <source path="src" />
 
     <meta title="lumen empty" package="com.lumenframework.samples" version="1.0.0" company="lumenframework" />
