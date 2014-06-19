@@ -207,6 +207,23 @@ import lumen.window.WindowSystem;
             //:todo:
         override public function window_grab( handle:WindowHandle, grabbed:Bool ) {
 
+            if(grabbed) {
+                    //official api's first
+                if(handle.requestPointerLock == null) {
+                        if(untyped handle.webkitRequestPointerLock == null) {
+                            if(untyped handle.mozRequestPointerLock == null) {
+
+                            } else { untyped handle.mozRequestPointerLock(); }
+                        } else { untyped handle.webkitRequestPointerLock(); }
+                } else { handle.requestPointerLock(); }
+
+            } else {
+
+                //pointer lock cancel api not yet in browsers,
+                //user must press escape
+
+            }
+
         } //window_grab
 
         var _pre_fs_padding : String = '0';
@@ -272,8 +289,9 @@ import lumen.window.WindowSystem;
 
         } //window_fullscreen
 
-            //:todo:
         override public function window_bordered( handle:WindowHandle, bordered:Bool ) {
+
+            //empty, window border has no such concept on browser
 
         } //window_bordered
 

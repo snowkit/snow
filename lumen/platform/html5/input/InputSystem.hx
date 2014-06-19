@@ -108,11 +108,22 @@ typedef HTML5Gamepad = {
 
         var _window : Window = lib.windowing.window_from_handle(cast _mouse_event.target);
 
+        var _movement_x : Int = _mouse_event.movementX;
+        var _movement_y : Int = _mouse_event.movementY;
+
+        if(untyped _mouse_event.webkitMovementX != null) {
+            _movement_x = untyped _mouse_event.webkitMovementX;
+            _movement_y = untyped _mouse_event.webkitMovementY;
+        } else if(untyped _mouse_event.mozMovementX != null) {
+            _movement_x = untyped _mouse_event.mozMovementX;
+            _movement_y = untyped _mouse_event.mozMovementY;
+        }
+
         manager.dispatch_mouse_move_event(
             _mouse_event.pageX - _window.x,
             _mouse_event.pageY - _window.y,
-            _mouse_event.movementX,
-            _mouse_event.movementY,
+            _movement_x,
+            _movement_y,
             _mouse_event.timeStamp,
             _window.id
         );
