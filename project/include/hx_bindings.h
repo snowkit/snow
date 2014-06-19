@@ -29,12 +29,12 @@ namespace lumen {
 
     extern int id_window;
     extern int id_window_id;
-    extern int id_timestamp;    
+    extern int id_timestamp;
     extern int id_data1;
-    extern int id_data2;    
+    extern int id_data2;
 
         //display related
-    
+
     extern int id_refresh_rate;
 
         //input related
@@ -89,10 +89,10 @@ namespace lumen {
     extern int id_depth_buffer;
     extern int id_stencil_buffer;
     extern int id_vsync;
-    extern int id_fps;    
+    extern int id_fps;
 
     inline void lumen_init_ids() {
-        
+
             //global
 
         kind_share( &global_lumen_object_kind, "lumen::Object");
@@ -111,12 +111,12 @@ namespace lumen {
         id_data                 = val_id("data");
         id_handle               = val_id("handle");
         id_complete             = val_id("complete");
-        
+
             //window related flags
 
         id_window               = val_id("window");
         id_window_id            = val_id("window_id");
-        id_timestamp            = val_id("timestamp");        
+        id_timestamp            = val_id("timestamp");
         id_data1                = val_id("data1");
         id_data2                = val_id("data2");
 
@@ -125,7 +125,7 @@ namespace lumen {
         id_refresh_rate         = val_id("refresh_rate");
 
             //input related flags
-        
+
         id_input                = val_id("input");
         id_start                = val_id("start");
         id_state                = val_id("state");
@@ -176,7 +176,7 @@ namespace lumen {
         id_depth_buffer         = val_id("depth_buffer");
         id_stencil_buffer       = val_id("stencil_buffer");
         id_vsync                = val_id("vsync");
-        id_fps                  = val_id("fps");        
+        id_fps                  = val_id("fps");
 
     } //lumen_init_ids
 
@@ -207,14 +207,14 @@ namespace lumen {
         value result = alloc_abstract( global_lumen_object_kind, object );
             //tell the gc to collect this object from the releaser struct callback
         val_gc( result, releaser::release_object );
-            
+
         return result;
 
     } //Object_to_hx
 
 
     template<typename T> bool Object_from_hx( value _in_object, T *&_out_object) {
-       
+
         _out_object = 0;
 
                 //check if it's the right kind of object first
@@ -241,7 +241,7 @@ namespace lumen {
             //handle null/non-existant properties
         if( val_is_null(field) ) {
             return _default;
-        } 
+        }
 
        return val_bool( field );
 
@@ -254,7 +254,7 @@ namespace lumen {
             //handle null/non-existant properties
         if( val_is_null(field) ) {
             return _default;
-        } 
+        }
 
        return (int)val_number( field );
 
@@ -267,7 +267,7 @@ namespace lumen {
             //handle null/non-existant properties
         if( val_is_null(field) ) {
             return _default;
-        } 
+        }
 
        return val_string( field );
 
@@ -284,6 +284,6 @@ namespace lumen {
 
 
 
-} //namespace lumen
+} //lumen namespace
 
 #endif //LUMEN_HX_BINDINGS_H

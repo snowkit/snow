@@ -42,4 +42,4 @@ namespace lumen {
 		return SDL_RWclose(src);
 	} //ioclose
 
-} //namespace lumen
+} //lumen namespace

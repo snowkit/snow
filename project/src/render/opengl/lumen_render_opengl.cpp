@@ -1839,7 +1839,7 @@ namespace lumen {
     } DEFINE_PRIM(lumen_gl_get_tex_parameter,2);
 
 
-} //namespace lumen
+} //lumen namespace
 
 
 extern "C" int lumen_opengl_sdl2_register_prims() {

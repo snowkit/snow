@@ -9,11 +9,19 @@
 #include "lumen_io.h"
 
 
-namespace lumen {	
+namespace lumen {
 
-	bool image_load_info( QuickVec<unsigned char> &out_buffer, const char* _id, int* w, int* h, int* bpp, int* bpp_source, int req_bpp );
+    namespace assets {
 
-} //namespace lumen
+        namespace image {
+
+            bool load_info( QuickVec<unsigned char> &out_buffer, const char* _id, int* w, int* h, int* bpp, int* bpp_source, int req_bpp );
+
+        } //assets::image namespace
+
+    } //assets namespace
+
+} //lumen namespace
 
 
 #endif //_LUMEN_ASSETS_IMAGE_

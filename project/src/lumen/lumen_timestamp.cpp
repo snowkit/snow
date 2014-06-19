@@ -76,18 +76,18 @@ namespace lumen {
 
             if (time_scale == 0.0) {
                 mach_timebase_info_data_t info;
-                mach_timebase_info(&info);  
+                mach_timebase_info(&info);
                 time_scale = 1e-9 * (double)info.numer / info.denom;
             }
 
-           double r =  mach_absolute_time() * time_scale;  
+           double r =  mach_absolute_time() * time_scale;
            return mach_absolute_time() * time_scale;
 
         #else
 
             #if defined(IPHONE)
 
-                double t = CACurrentMediaTime(); 
+                double t = CACurrentMediaTime();
 
             #elif defined(GPH) || defined(HX_LINUX) || defined(EMSCRIPTEN)
 
@@ -119,4 +119,4 @@ namespace lumen {
 
     } //timestamp()
 
-} //namespace lumen
+} //lumen namespace

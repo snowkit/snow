@@ -9,109 +9,113 @@
 
 
 namespace lumen {
+    namespace assets {
+        namespace image {
 
-    int lumen_stbi_read(void *user, char *data, int size) {
+            int lumen_stbi_read(void *user, char *data, int size) {
 
-        lumen_iosrc* src = (lumen_iosrc*)user;
+                lumen_iosrc* src = (lumen_iosrc*)user;
 
-            //to tell how much we have read, we tell before and after
-        int before = lumen::iotell(src);
+                    //to tell how much we have read, we tell before and after
+                int before = lumen::iotell(src);
 
-        lumen::ioread(src, data, size, 1);
+                lumen::ioread(src, data, size, 1);
 
-        int readtotal = lumen::iotell(src) - before;
+                int readtotal = lumen::iotell(src) - before;
 
-        // lumen::log("stbi read  %d / %d", size, readtotal );
+                // lumen::log("stbi read  %d / %d", size, readtotal );
 
-        return readtotal;
+                return readtotal;
 
-    } //lumen_stbi_read
-
-
-    void lumen_stbi_skip(void *user, unsigned n) {
-
-        lumen_iosrc* src = (lumen_iosrc*)user;
-
-        // lumen::log("stbi skip %d ", n);
-
-        lumen::ioseek(src, n, lumen_seek_cur);
-
-    } //lumen_stbi_skip
+            } //lumen_stbi_read
 
 
-    int lumen_stbi_eof(void *user) {
+            void lumen_stbi_skip(void *user, unsigned n) {
 
-        lumen_iosrc* src = (lumen_iosrc*)user;
+                lumen_iosrc* src = (lumen_iosrc*)user;
 
-            //get this first
-        int current = lumen::iotell(src);
-            //then fetch the end to get the size
-        lumen::ioseek(src, 0, lumen_seek_end);
-            //get the size
-        long int size = lumen::iotell(src);
-            //reset the seek
-        lumen::ioseek(src, current, lumen_seek_set);
+                // lumen::log("stbi skip %d ", n);
 
-        // lumen::log("stbi eof? %d / %d / %d", current, size, current > size);
+                lumen::ioseek(src, n, lumen_seek_cur);
 
-        if(current >= size) {
-            return 1;
-        }
+            } //lumen_stbi_skip
 
-        return 0;
 
-    } //lumen_stbi_eof
+            int lumen_stbi_eof(void *user) {
 
-        //bpp == the resulting bits per pixel
-        //bpp == the source image bits per pixel
-        //req_bpp == use this instead of the source
-    bool image_load_info( QuickVec<unsigned char> &out_buffer, const char* _id, int* w, int* h, int* bpp, int* bpp_source, int req_bpp = 4 ) {
+                lumen_iosrc* src = (lumen_iosrc*)user;
 
-            //get a io file pointer to the image
-        lumen_iosrc* src = lumen::iosrc_fromfile(_id, "rb");
+                    //get this first
+                int current = lumen::iotell(src);
+                    //then fetch the end to get the size
+                lumen::ioseek(src, 0, lumen_seek_end);
+                    //get the size
+                long int size = lumen::iotell(src);
+                    //reset the seek
+                lumen::ioseek(src, current, lumen_seek_set);
 
-        if(!src) {
-            lumen::log("/ lumen / cannot open image file from %s", _id);
-            return false;
-        }
+                // lumen::log("stbi eof? %d / %d / %d", current, size, current > size);
 
-            //always use callbacks because we use lumen abstracted IO
-        stbi_io_callbacks stbi_lumen_callbacks = {
-           lumen_stbi_read,
-           lumen_stbi_skip,
-           lumen_stbi_eof
-        };
+                if(current >= size) {
+                    return 1;
+                }
 
-        unsigned char *data = stbi_load_from_callbacks(&stbi_lumen_callbacks, src, w, h, bpp_source, req_bpp);
+                return 0;
 
-        lumen::ioclose(src);
+            } //lumen_stbi_eof
 
-        // lumen::log("lumen / image / w:%d h:%d source bpp:%d bpp:%d\n", *w, *h, *bpp_source, req_bpp);
+                //bpp == the resulting bits per pixel
+                //bpp == the source image bits per pixel
+                //req_bpp == use this instead of the source
+            bool load_info( QuickVec<unsigned char> &out_buffer, const char* _id, int* w, int* h, int* bpp, int* bpp_source, int req_bpp = 4 ) {
 
-        if(data != NULL) {
+                    //get a io file pointer to the image
+                lumen_iosrc* src = lumen::iosrc_fromfile(_id, "rb");
 
-            int _w = *w;
-            int _h = *h;
-            int _bpp = *bpp_source;
+                if(!src) {
+                    lumen::log("/ lumen / cannot open image file from %s", _id);
+                    return false;
+                }
 
-                //if a requested bpp was given, override it
-            if(req_bpp != 0) {
-                _bpp = req_bpp;
-            }
+                    //always use callbacks because we use lumen abstracted IO
+                stbi_io_callbacks stbi_lumen_callbacks = {
+                   lumen_stbi_read,
+                   lumen_stbi_skip,
+                   lumen_stbi_eof
+                };
 
-                //actual used bpp
-            *bpp = _bpp;
-                //work out the total length of the buffer
-            unsigned int length = _w * _h * _bpp;
-                //store it
-            out_buffer.Set(data, length);
-                //clean up used memory
-            stbi_image_free(data);
+                unsigned char *data = stbi_load_from_callbacks(&stbi_lumen_callbacks, src, w, h, bpp_source, req_bpp);
 
-        } //data != NULL
+                lumen::ioclose(src);
 
-        return true;
+                // lumen::log("lumen / image / w:%d h:%d source bpp:%d bpp:%d\n", *w, *h, *bpp_source, req_bpp);
 
-    } //derp
+                if(data != NULL) {
 
-}
+                    int _w = *w;
+                    int _h = *h;
+                    int _bpp = *bpp_source;
+
+                        //if a requested bpp was given, override it
+                    if(req_bpp != 0) {
+                        _bpp = req_bpp;
+                    }
+
+                        //actual used bpp
+                    *bpp = _bpp;
+                        //work out the total length of the buffer
+                    unsigned int length = _w * _h * _bpp;
+                        //store it
+                    out_buffer.Set(data, length);
+                        //clean up used memory
+                    stbi_image_free(data);
+
+                } //data != NULL
+
+                return true;
+
+            } //load_info
+
+        } //assets::image namespace
+    } //assets namespace
+} //lumen namespace

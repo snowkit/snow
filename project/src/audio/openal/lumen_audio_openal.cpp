@@ -13,9 +13,9 @@
 #include "common/Object.h"
 #include "common/ByteArray.h"
 
-namespace lumen {
+namespace alhx {
 
-    class ALHX_ALDevice : public Object {
+    class ALHX_ALDevice : public lumen::Object {
         public:
             ALCdevice *al_device;
 
@@ -30,7 +30,7 @@ namespace lumen {
             }
     };
 
-    class ALHX_ALContext : public Object {
+    class ALHX_ALContext : public lumen::Object {
         public:
             ALCcontext *al_context;
 
@@ -753,7 +753,7 @@ namespace lumen {
 
     value alhx_BufferData(value _buffer, value _format, value _data, value _size, value _freq) {
 
-        ByteArray bytes(_data);
+        lumen::ByteArray bytes(_data);
         int bytesize = bytes.Size();
 
         const float *data = (float *)bytes.Bytes();
@@ -923,20 +923,20 @@ namespace lumen {
 
         ALHX_ALDevice* device;
 
-        if( Object_from_hx(_device, device) ) {
+        if( lumen::Object_from_hx(_device, device) ) {
 
             int* attrlist = val_array_int(_attrlist);
 
             ALCcontext *_al_context = alcCreateContext( device->al_device, attrlist );
 
             if(!_al_context) {
-                lumen::log("/ lumen / failed to create AL context\n");
+                printf("/ alhx / failed to create AL context\n");
                 return alloc_null();
             }
 
             ALHX_ALContext* context = new ALHX_ALContext(_al_context);
 
-            return Object_to_hx(context);
+            return lumen::Object_to_hx(context);
 
         } //fetch device
 
@@ -954,7 +954,7 @@ namespace lumen {
 
         } else {
 
-            if( Object_from_hx(_context, context) ) {
+            if( lumen::Object_from_hx(_context, context) ) {
 
                 alcMakeContextCurrent( context->al_context );
 
@@ -970,7 +970,7 @@ namespace lumen {
 
         ALHX_ALContext* context;
 
-        if( Object_from_hx(_context, context) ) {
+        if( lumen::Object_from_hx(_context, context) ) {
 
             alcProcessContext( context->al_context );
 
@@ -984,7 +984,7 @@ namespace lumen {
 
         ALHX_ALContext* context;
 
-        if( Object_from_hx(_context, context) ) {
+        if( lumen::Object_from_hx(_context, context) ) {
 
             alcSuspendContext( context->al_context );
 
@@ -998,7 +998,7 @@ namespace lumen {
 
         ALHX_ALContext* context;
 
-        if( Object_from_hx(_context, context) ) {
+        if( lumen::Object_from_hx(_context, context) ) {
 
             if(context && context->al_context) {
                 alcDestroyContext( context->al_context );
@@ -1016,7 +1016,7 @@ namespace lumen {
 
         ALHX_ALContext* context = new ALHX_ALContext(_al_context);
 
-        return Object_to_hx(context);
+        return lumen::Object_to_hx(context);
 
     } DEFINE_PRIM(alhx_alcGetCurrentContext, 0);
 
@@ -1024,13 +1024,13 @@ namespace lumen {
 
         ALHX_ALContext* context;
 
-        if( Object_from_hx(_context, context) ) {
+        if( lumen::Object_from_hx(_context, context) ) {
 
             ALCdevice* _al_device = alcGetContextsDevice( context->al_context );
 
             ALHX_ALDevice* device = new ALHX_ALDevice(_al_device);
 
-            return Object_to_hx(device);
+            return lumen::Object_to_hx(device);
 
         } //fetch context
 
@@ -1044,13 +1044,13 @@ namespace lumen {
         ALCdevice* _al_device = alcOpenDevice( _devicename == val_null ? 0 : val_string(_devicename) );
 
         if(!_al_device) {
-            lumen::log("/ lumen / failed to create AL device. \n");
+            printf("/ alhx / failed to create AL device. \n");
             return alloc_null();
         }
 
         ALHX_ALDevice* device = new ALHX_ALDevice(_al_device);
 
-        return Object_to_hx(device);
+        return lumen::Object_to_hx(device);
 
     } DEFINE_PRIM(alhx_alcOpenDevice, 1);
 
@@ -1058,7 +1058,7 @@ namespace lumen {
 
         ALHX_ALDevice* device;
 
-        if( Object_from_hx(_device, device) ) {
+        if( lumen::Object_from_hx(_device, device) ) {
 
             alcCloseDevice( device->al_device );
 
@@ -1073,7 +1073,7 @@ namespace lumen {
 
         ALHX_ALDevice* device;
 
-        if( Object_from_hx(_device, device) ) {
+        if( lumen::Object_from_hx(_device, device) ) {
 
             alcGetError( device->al_device );
 
@@ -1087,7 +1087,7 @@ namespace lumen {
 
         ALHX_ALDevice* device;
 
-        if( Object_from_hx(_device, device) ) {
+        if( lumen::Object_from_hx(_device, device) ) {
 
             return alloc_string( alcGetString(device->al_device, val_int(_param)) );
 
@@ -1101,7 +1101,7 @@ namespace lumen {
 
         ALHX_ALDevice* device;
 
-        if( Object_from_hx(_device, device) ) {
+        if( lumen::Object_from_hx(_device, device) ) {
 
             int count = val_int(_size);
             ALint* vals = new ALint[count];
@@ -1123,7 +1123,7 @@ namespace lumen {
     } DEFINE_PRIM(alhx_alcGetIntegerv, 3);
 
 
-} //namespace lumen
+} //alhx namespace
 
 extern "C" int lumen_audio_openal_register_prims() {
     return 0;
