@@ -78,37 +78,40 @@ import lumen.window.WindowSystem;
 
         } //window_create
 
-        override public function window_close( window:Window ) {
+        override public function window_close( _window:Window ) {
 
-            js.Browser.document.body.removeChild( window.handle );
+            js.Browser.document.body.removeChild( _window.handle );
 
         } //window_close
 
-        override public function window_update( window:Window ) {
+        override public function window_update( _window:Window ) {
 
-            var _rect = window.handle.getBoundingClientRect();
+            var _rect = _window.handle.getBoundingClientRect();
 
-                if(_rect.left != window.x || _rect.top != window.y) {
+                if(_rect.left != _window.x || _rect.top != _window.y) {
                     lib.dispatch_system_event({
                         type : SystemEventType.window,
                         window : {
                             type : WindowEventType.window_moved,
                             timestamp : lib.time,
-                            window_id : window.id,
+                            window_id : _window.id,
                             event : { x:_rect.left, y:_rect.top }
                         }
                     });
-                }else if(_rect.width != window.width || _rect.height != window.height) {
+                }else if(_rect.width != _window.width || _rect.height != _window.height) {
 
                     lib.dispatch_system_event({
                         type : SystemEventType.window,
                         window : {
                             type : WindowEventType.window_size_changed,
                             timestamp : lib.time,
-                            window_id : window.id,
+                            window_id : _window.id,
                             event : { x:_rect.width, y:_rect.height }
                         }
                     });
+
+                    // _window.handle.width = _rect.width;
+                    // _window.handle.height = _rect.height;
 
                 }
 
@@ -116,38 +119,38 @@ import lumen.window.WindowSystem;
 
         } //window_update
 
-        override public function window_render( window:Window ) {
+        override public function window_render( _window:Window ) {
 
-            var _window_gl_context = gl_contexts.get(window.id);
+            var _window_gl_context = gl_contexts.get(_window.id);
             if(lumen.render.gl.GL.current_context != _window_gl_context) {
                 lumen.render.gl.GL.current_context = _window_gl_context;
             }
 
         } //window_render
 
-        override public function window_swap( window:Window ) {
+        override public function window_swap( _window:Window ) {
 
             //empty because this concept is not possible in browser
 
         } //window_swap
 
-        override public function window_simple_message( window:Window, message:String, ?title:String="" ) {
+        override public function window_simple_message( _window:Window, message:String, ?title:String="" ) {
 
             js.Browser.window.alert( message );
 
         } //window_simple_message
 
-        override public function window_set_size( window:Window, w:Int, h:Int ) {
+        override public function window_set_size( _window:Window, w:Int, h:Int ) {
 
-            window.handle.style.width = '${w}px';
-            window.handle.style.height = '${h}px';
+            _window.handle.style.width = '${w}px';
+            _window.handle.style.height = '${h}px';
 
         } //window_set_size
 
-        override public function window_set_position( window:Window, x:Int, y:Int ) {
+        override public function window_set_position( _window:Window, x:Int, y:Int ) {
 
-            window.handle.style.left = '${x}px';
-            window.handle.style.top = '${y}px';
+            _window.handle.style.left = '${x}px';
+            _window.handle.style.top = '${y}px';
 
         } //window_set_position
 
@@ -193,38 +196,38 @@ import lumen.window.WindowSystem;
 
         } //get_real_window_position
 
-        override public function window_set_title( window:Window, title:String ) {
+        override public function window_set_title( _window:Window, title:String ) {
 
             js.Browser.document.title = title;
 
         } //window_set_title
 
-        override public function window_set_max_size( window:Window, w:Int, h:Int ) {
+        override public function window_set_max_size( _window:Window, w:Int, h:Int ) {
 
-            window.handle.style.maxWidth = '${w}px';
-            window.handle.style.maxHeight = '${h}px';
+            _window.handle.style.maxWidth = '${w}px';
+            _window.handle.style.maxHeight = '${h}px';
 
         } //window_set_max_size
 
-        override public function window_set_min_size( window:Window, w:Int, h:Int ) {
+        override public function window_set_min_size( _window:Window, w:Int, h:Int ) {
 
-            window.handle.style.minWidth = '${w}px';
-            window.handle.style.minHeight = '${h}px';
+            _window.handle.style.minWidth = '${w}px';
+            _window.handle.style.minHeight = '${h}px';
 
         } //window_set_min_size
 
             //:todo:
-        override public function window_grab( window:Window, grabbed:Bool ) {
+        override public function window_grab( _window:Window, grabbed:Bool ) {
 
             if(grabbed) {
                     //official api's first
-                if(window.handle.requestPointerLock == null) {
-                        if(untyped window.handle.webkitRequestPointerLock == null) {
-                            if(untyped window.handle.mozRequestPointerLock == null) {
+                if(_window.handle.requestPointerLock == null) {
+                        if(untyped _window.handle.webkitRequestPointerLock == null) {
+                            if(untyped _window.handle.mozRequestPointerLock == null) {
 
-                            } else { untyped window.handle.mozRequestPointerLock(); }
-                        } else { untyped window.handle.webkitRequestPointerLock(); }
-                } else { window.handle.requestPointerLock(); }
+                            } else { untyped _window.handle.mozRequestPointerLock(); }
+                        } else { untyped _window.handle.webkitRequestPointerLock(); }
+                } else { _window.handle.requestPointerLock(); }
 
             } else {
 
@@ -242,7 +245,7 @@ import lumen.window.WindowSystem;
         var _pre_fs_width : Int = 0;
         var _pre_fs_height : Int = 0;
 
-        override public function window_fullscreen( window:Window, fullscreen:Bool, fullscreen_desktop_mode:Int = 1 ) {
+        override public function window_fullscreen( _window:Window, fullscreen:Bool, fullscreen_desktop_mode:Int = 1 ) {
 
                 //as always browser support for newer features will be
                 //sporadic. Tested fullscreen against firefox/chrome/opera/safari latest
@@ -252,31 +255,35 @@ import lumen.window.WindowSystem;
                 if(fullscreen_desktop_mode == 1) {
 
                         //official api's first
-                    if(window.handle.requestFullscreen == null) {
-                        if(window.handle.requestFullScreen == null) {
-                            if(untyped window.handle.webkitRequestFullscreen == null) {
-                                if(untyped window.handle.mozRequestFullScreen == null) {
+                    if(_window.handle.requestFullscreen == null) {
+                        if(_window.handle.requestFullScreen == null) {
+                            if(untyped _window.handle.webkitRequestFullscreen == null) {
+                                if(untyped _window.handle.mozRequestFullScreen == null) {
 
-                                } else { untyped window.handle.mozRequestFullScreen(); }
-                            } else { untyped window.handle.webkitRequestFullscreen(); }
-                        } else { window.handle.requestFullScreen(0); }
-                    } else { window.handle.requestFullscreen(); }
+                                } else { untyped _window.handle.mozRequestFullScreen(); }
+                            } else { untyped _window.handle.webkitRequestFullscreen(); }
+                        } else { _window.handle.requestFullScreen(0); }
+                    } else { _window.handle.requestFullscreen(); }
 
                 } else {
 
-                    _pre_fs_padding = window.handle.style.padding;
-                    _pre_fs_margin = window.handle.style.margin;
-                    _pre_fs_s_width = window.handle.style.width;
-                    _pre_fs_s_height = window.handle.style.height;
-                    _pre_fs_width = window.handle.width;
-                    _pre_fs_height = window.handle.height;
+                    _pre_fs_padding = _window.handle.style.padding;
+                    _pre_fs_margin = _window.handle.style.margin;
+                    _pre_fs_s_width = _window.handle.style.width;
+                    _pre_fs_s_height = _window.handle.style.height;
+                    _pre_fs_width = _window.handle.width;
+                    _pre_fs_height = _window.handle.height;
 
-                    window.handle.style.margin = '0';
-                    window.handle.style.padding = '0';
-                    window.handle.style.width = js.Browser.window.innerWidth + 'px';
-                    window.handle.style.height = js.Browser.window.innerHeight + 'px';
-                    window.handle.width = js.Browser.window.innerWidth;
-                    window.handle.height = js.Browser.window.innerHeight;
+                    trace(js.Browser.window.innerWidth);
+                    trace(js.Browser.window.innerHeight);
+                    trace(js.Browser.window);
+
+                    _window.handle.style.margin = '0';
+                    _window.handle.style.padding = '0';
+                    _window.handle.style.width = js.Browser.window.innerWidth + 'px';
+                    _window.handle.style.height = js.Browser.window.innerHeight + 'px';
+                    _window.handle.width = js.Browser.window.innerWidth;
+                    _window.handle.height = js.Browser.window.innerHeight;
                 }
 
             } else {
@@ -285,12 +292,12 @@ import lumen.window.WindowSystem;
                     //currently no cancel full screen in fullscreen mode
                 } else {
 
-                    window.handle.style.padding = _pre_fs_padding;
-                    window.handle.style.margin = _pre_fs_margin;
-                    window.handle.style.width = _pre_fs_s_width;
-                    window.handle.style.height = _pre_fs_s_height;
-                    window.handle.width = _pre_fs_width;
-                    window.handle.height = _pre_fs_height;
+                    _window.handle.style.padding = _pre_fs_padding;
+                    _window.handle.style.margin = _pre_fs_margin;
+                    _window.handle.style.width = _pre_fs_s_width;
+                    _window.handle.style.height = _pre_fs_s_height;
+                    _window.handle.width = _pre_fs_width;
+                    _window.handle.height = _pre_fs_height;
 
                 }
 
@@ -298,7 +305,7 @@ import lumen.window.WindowSystem;
 
         } //window_fullscreen
 
-        override public function window_bordered( window:Window, bordered:Bool ) {
+        override public function window_bordered( _window:Window, bordered:Bool ) {
 
             //empty, window border has no such concept on browser
 
@@ -355,18 +362,18 @@ import lumen.window.WindowSystem;
         } //display_name
 
             /** Called to set up any listeners on the given window  */
-        override public function listen( window:Window ) {
+        override public function listen( _window:Window ) {
 
-            window.handle.addEventListener('mouseleave', on_internal_leave);
-            window.handle.addEventListener('mouseenter', on_internal_enter);
+            _window.handle.addEventListener('mouseleave', on_internal_leave);
+            _window.handle.addEventListener('mouseenter', on_internal_enter);
 
         } //listen
 
             /** Called to remove any listeners on the given window  */
-        override public function unlisten( window:Window ) {
+        override public function unlisten( _window:Window ) {
 
-            window.handle.removeEventListener('mouseleave', on_internal_leave);
-            window.handle.removeEventListener('mouseenter', on_internal_enter);
+            _window.handle.removeEventListener('mouseleave', on_internal_leave);
+            _window.handle.removeEventListener('mouseenter', on_internal_enter);
 
         } //unlisten
 
