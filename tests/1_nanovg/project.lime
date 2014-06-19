@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<project library="lumen">
+
+    <app main="Main" path="bin" file="lumen_nanovg" />
+
+    <source path="src" />
+
+    <meta title="nanovg test" package="com.lumenframework.samples" version="1.0.0" company="lumenframework" />
+
+    <window  width="800" height="600" orientation="landscape" fps="60" vsync="true" resizable="true" stencil-buffer="true"/>
+    <window fullscreen="true" borderless="true" if="mobile"/>
+
+    <assets path="assets" rename="assets" exclude="*.svg" />
+    <assets path="config.json" />
+
+    <haxedef name="HXCPP_FLOAT32" />
+
+    <haxelib name="lumen"/>
+    <haxelib name="hx-nanovg" />
+
+</project>

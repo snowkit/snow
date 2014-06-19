@@ -1,4 +1,4 @@
-package lumen.platform.html5.render.gl;
+package lumen.platform.html5.render.opengl;
 
 #if lumen_html5
 

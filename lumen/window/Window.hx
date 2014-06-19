@@ -3,10 +3,18 @@ package lumen.window;
 import lumen.types.Types;
 import lumen.window.Windowing;
 
-import lumen.render.gl.GL;
+import lumen.render.opengl.GL;
 
     //A window has it's own event loop
     //and allows opening and closing windows
+// @:buildXml('
+//    <files id="haxe">,
+//         <compilerflag value="-I${haxelib:lumen}/project/include/"/>
+//    </files>
+//    <target id="haxe">
+//         <vflag name="-framework" value="OpenGL" />
+//    </target>
+// ')
 class Window {
 
         /** the window id, for tracking events to each window */
@@ -176,8 +184,10 @@ class Window {
 
         } //has render handler
 
-        GL.clearColor( 0.12, 0.12, 0.12, 1.0 );
-        GL.clear( GL.COLOR_BUFFER_BIT );
+        GL.clearColor( Math.random(), 0.12, 0.12, 1.0 );
+        GL.clear(GL.COLOR_BUFFER_BIT);
+
+        // lumen.platform.native.render.opengl.GLN.clear( GL.COLOR_BUFFER_BIT );
 
         if(auto_swap) {
             swap();
