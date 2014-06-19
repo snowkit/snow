@@ -187,6 +187,11 @@ class Main extends lumen.AppFixedTimestep {
             app.window.fullscreen = !app.window.fullscreen;
         }
 
+            //ctrl enter to toggle pointer lock test
+        if( keycode == Key.RETURN && mod.ctrl ) {
+            app.window.grab = !app.window.grab;
+        }
+
         if( keycode == Key.ESCAPE ) {
             app.shutdown();
         }
@@ -217,7 +222,7 @@ class Main extends lumen.AppFixedTimestep {
 
     override function onmousemove( x:Int, y:Int, xrel:Int, yrel:Int, timestamp:Float, window_id:Int ) {
 
-        // trace('move $x / $y / $xrel / $yrel / $timestamp / $window_id');
+        trace('move $x / $y / $xrel / $yrel / $timestamp / $window_id');
 
         if(app.input.keydown(Key.SPACE)) {
             positionY = y - (size/2);
