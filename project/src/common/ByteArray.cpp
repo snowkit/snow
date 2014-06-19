@@ -140,4 +140,4 @@ namespace lumen {
 
     } //FromFile
 
-} //namespace lumen
+} //lumen namespace

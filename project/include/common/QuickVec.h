@@ -26,7 +26,7 @@ namespace lumen {
    class QuickVec {
 
       enum { QBufSize = QBUF_SIZE_ };
-   
+
    public:
       typedef T_ *iterator;
       typedef const T_ * const_iterator;
@@ -330,7 +330,7 @@ namespace lumen {
          memmove(mPtr + inPos + inN, mPtr + inPos, (mSize-inPos-inN) * sizeof(T_) );
          memcpy(mPtr+inPos,inValues,inN*sizeof(T_));
       }
-      
+
       bool operator == (const QuickVec<T_,QBUF_SIZE_> &inRHS) { return (*mPtr == *(inRHS.mPtr)); }
       bool operator != (const QuickVec<T_,QBUF_SIZE_> &inRHS) { return !(*mPtr == *(inRHS.mPtr)); }
 
@@ -414,7 +414,7 @@ namespace lumen {
             memcpy(mPtr,inRHS.mPtr,mSize*sizeof(T_));
          return *this;
       }
-      
+
       void DeleteAll() {
          for(int i=0;i<mSize;i++)
             DoDelete( mPtr[i] );

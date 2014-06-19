@@ -7,181 +7,174 @@
 
 namespace lumen {
 
-    struct SystemEvent;
-
-//core init systems
-
-    void init_core();
-    void shutdown_core();
-    void log(const char *fmt, ...);
-
-    const char* core_app_path();
-    const char* core_pref_path(const char* org, const char* app);
-
-        //implemented in subsystems
-    int init_core_aux();
-    int shutdown_core_aux();
-    int update_core_aux();
-
-        //implemented in platform files
-    void init_core_platform();
-    void shutdown_core_platform();
-    void update_core_platform();
-    void on_system_event_platform( const SystemEvent &event );
-
-
+        //externs
     extern int id_type;
 
-//core event handling
+//lumen systems
 
-    enum SystemEventType {
+    void log(const char *fmt, ...);
 
-            //lumen core events
+//lumen core systems
 
-        se_unknown                      = 0,
-        se_init                         = 1,
-        se_ready                        = 2,
-        se_update                       = 3,
-        se_shutdown                     = 4,
-        se_window                       = 5,
-        se_input                        = 6,
+    namespace core {
 
-            //lumen application events
+            //implemented in lumen
+        void init();
+        void shutdown();
+            //implemented in subsystems
+        int init_aux();
+        int shutdown_aux();
+        int update_aux();
+            //implemented in core
+        const char* app_path();
+        const char* pref_path(const char* org, const char* app);
 
-        se_quit                         = 7,
-        se_app_terminating              = 8,
-        se_app_lowmemory                = 9,
-        se_app_willenterbackground      = 10,
-        se_app_didenterbackground       = 11,
-        se_app_willenterforeground      = 12,
-        se_app_didenterforeground       = 13
+            //implemented in platform files
+        void init_platform();
+        void shutdown_platform();
+        void update_platform();
 
-    }; //SystemEvent
+    //local values
 
-    struct SystemEvent {
+        static bool shutting_down = false;
 
-        public:
-            SystemEventType type;
+    //core event handling
 
-        SystemEvent( SystemEventType _type = se_unknown )
-            : type(_type)
-                {}
+            //event types
+        enum SystemEventType {
 
-    };
+                //system events
 
-    typedef void (*SystemEventHandler)( SystemEvent &event );
+            se_unknown                      = 0,
+            se_init                         = 1,
+            se_ready                        = 2,
+            se_update                       = 3,
+            se_shutdown                     = 4,
+            se_window                       = 5,
+            se_input                        = 6,
 
-    inline static void core_event_handler( const SystemEvent &event ) {
+                //application events
 
-        value _event = alloc_empty_object();
+            se_quit                         = 7,
+            se_app_terminating              = 8,
+            se_app_lowmemory                = 9,
+            se_app_willenterbackground      = 10,
+            se_app_didenterbackground       = 11,
+            se_app_willenterforeground      = 12,
+            se_app_didenterforeground       = 13
 
-           alloc_field( _event, id_type, alloc_int( event.type ) );
+        }; //SystemEventType
 
-        val_call1( system_event_handler->get(), _event );
-
-    } //core_event_handler
-
-    static bool shutdown = false;
-
-    void dispatch_events();
-    void dispatch_system_event( SystemEventType _type );
-    void dispatch_system_event_type( SystemEventType _type );
-
-        //this will initiate auxilary systems as well
-        //as the core systems required to run lumen
-    inline void init_core() {
-
-            //call subsystem inits
-        int res = init_core_aux();
-
-            //if no success, quit now
-        if(res != 0) {
-            lumen::log("/ lumen / unrecoverable error. exit!");
-            exit(1);
-        }
-
-            //call platform inits
-        init_core_platform();
-
-    } //init_core
-
-    inline void shutdown_core() {
-
-            //tell everything we are shutting down
-        dispatch_system_event_type( se_shutdown );
-
-            //shutdown subsystems
-        shutdown_core_aux();
-
-            //shutdown platform
-        shutdown_core_platform();
-
-    } //shutdown_core
+            //forward declarations
+        void dispatch_event( const SystemEventType _type );
+        void on_system_event_platform( const SystemEventType event );
+            //convenience naming for a callback
+        typedef void (*SystemEventHandler)( const SystemEventType event );
 
 
-    inline void update_core() {
+        inline static void event_handler( const SystemEventType _type ) {
 
-        update_core_aux();
-        update_core_platform();
+            value _event = alloc_empty_object();
 
-    } //update_core
+               alloc_field( _event, id_type, alloc_int( _type ) );
 
-    inline void lumen_core_shutdown() {
+            val_call1( system_event_handler->get(), _event );
 
-        shutdown = true;
+        } //core_event_handler
 
-    } //lumen_core_shutdown
+            //this will initiate auxilary systems as well
+            //as the core systems required to run lumen
+        inline void init() {
 
-    inline void lumen_core_loop(void*) {
+                //call subsystem inits
+            int res = lumen::core::init_aux();
 
-        update_core();
-        dispatch_system_event_type( se_update );
+                //if no success, quit now
+            if(res != 0) {
+                lumen::log("/ lumen / unrecoverable error. exit!");
+                exit(1);
+            }
 
-    } //lumen_core_loop
+                //call platform inits
+            lumen::core::init_platform();
 
-        //this will start a main loop and start pumping events
-    inline void lumen_core_init() {
+        } //init
 
-            //init low level systems
-        init_core();
+        inline void shutdown() {
 
-            //allow haxe side to do any pre-ready init
-        dispatch_system_event_type( se_init );
+                //tell everything we are shutting down
+            lumen::core::dispatch_event( se_shutdown );
 
-            //tell haxe side we are ready
-        dispatch_system_event_type( se_ready );
+                //shutdown subsystems
+            lumen::core::shutdown_aux();
 
-            //run the main loop, if requested (should come from config, but that requires tools)
-        #ifdef LUMEN_CORE_LOOP
+                //shutdown platform
+            lumen::core::shutdown_platform();
 
-            while( !shutdown ) {
-                lumen_core_loop(NULL);
-            } //!shutdown
+        } //shutdown
 
-            shutdown_core();
-        #else
-            lumen::log("/ lumen / no main loop requested");
-        #endif
 
-    } //lumen_core_init
+        inline void update() {
 
-        //a convenience helper for dispatching a unadorned event in place
-    inline void dispatch_system_event_type( SystemEventType _type = se_unknown ) {
+            lumen::core::update_aux();
+            lumen::core::update_platform();
 
-        SystemEvent event(_type);
-        core_event_handler(event);
+        } //update_core
 
-    } //dispatch_system_event_type
+        inline void loop(void*) {
 
-    inline void dispatch_system_event( const SystemEvent &event ) {
+            lumen::core::update();
+                //tell the system/haxe
+            lumen::core::dispatch_event( se_update );
 
-            //tell the platform
-        on_system_event_platform(event);
+        } //loop
 
-        core_event_handler(event);
+    //external access interface functions
 
-    } //dispatch_events
+            //this will start a main loop and start pumping events
+        inline void lumen_init() {
 
-} //namespace lumen
+                //init low level systems
+            lumen::core::init();
+
+                //allow haxe side to do any pre-ready init
+            lumen::core::dispatch_event( se_init );
+
+                //tell haxe side we are ready
+            lumen::core::dispatch_event( se_ready );
+
+                //run the main loop, if requested (should come from config, but that requires tools)
+            #ifdef LUMEN_CORE_LOOP
+
+                while( !shutting_down ) {
+                    lumen::core::loop(NULL);
+                } //!shutdown
+
+                lumen::core::shutdown();
+
+            #else
+                lumen::log("/ lumen / no main loop requested");
+            #endif
+
+        } //lumen_core_init
+
+        inline void lumen_shutdown() {
+
+            shutting_down = true;
+
+        } //lumen_shutdown
+
+        inline void dispatch_event( const SystemEventType event ) {
+
+                //tell the platform
+            on_system_event_platform(event);
+
+            event_handler(event);
+
+        } //dispatch_system_event
+
+    } //core namespace
+
+} //lumen namespace
 
 #endif //LUMEN_LUMEN_CORE_H

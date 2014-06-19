@@ -64,7 +64,7 @@ extern double timestamp();
         system_event_handler = new AutoGCRoot(_on_event);
 
             //now init the core
-        lumen_core_init();
+        lumen::core::lumen_init();
 
         return alloc_null();
 
@@ -74,7 +74,7 @@ extern double timestamp();
     value lumen_shutdown() {
 
             //now shutdown the core
-        lumen_core_shutdown();
+        lumen::core::lumen_shutdown();
 
         return alloc_null();
 
@@ -99,14 +99,14 @@ extern double timestamp();
 
     value lumen_app_path() {
 
-        return alloc_string( core_app_path() );
+        return alloc_string( lumen::core::app_path() );
 
     } DEFINE_PRIM(lumen_app_path, 0);
 
 
     value lumen_pref_path(value _org, value _app) {
 
-        return alloc_string( core_pref_path( val_string(_org), val_string(_app) ) );
+        return alloc_string( lumen::core::pref_path( val_string(_org), val_string(_app) ) );
 
     } DEFINE_PRIM(lumen_pref_path, 2);
 
@@ -117,11 +117,10 @@ extern double timestamp();
 //render bindings
 
 
-extern int render_enable_vsync(bool enable);
 
     value lumen_render_enable_vsync( value _enable ) {
 
-        int result = render_enable_vsync( val_bool(_enable) );
+        int result = lumen::window::enable_vsync( val_bool(_enable) );
 
         return alloc_int( result );
 
@@ -134,60 +133,51 @@ extern int render_enable_vsync(bool enable);
 
 
 
-extern int          desktop_get_display_count();
-extern int          desktop_get_display_mode_count(int display);
-extern value        desktop_get_display_native_mode(int display);
-extern value        desktop_get_display_current_mode(int display);
-extern value        desktop_get_display_mode(int display, int mode_index);
-extern value        desktop_get_display_bounds(int display);
-extern const char*  desktop_get_display_name(int display);
-
-
     value lumen_desktop_get_display_count() {
 
-        return alloc_int(desktop_get_display_count());
+        return alloc_int( lumen::window::desktop_get_display_count() );
 
     } DEFINE_PRIM(lumen_desktop_get_display_count, 0);
 
 
     value lumen_desktop_get_display_mode_count(value _display) {
 
-        return alloc_int(desktop_get_display_mode_count( val_int(_display) ));
+        return alloc_int( lumen::window::desktop_get_display_mode_count( val_int(_display) ));
 
     } DEFINE_PRIM(lumen_desktop_get_display_mode_count, 1);
 
 
     value lumen_desktop_get_display_native_mode(value _display) {
 
-        return desktop_get_display_native_mode( val_int(_display) );
+        return lumen::window::desktop_get_display_native_mode( val_int(_display) );
 
     } DEFINE_PRIM(lumen_desktop_get_display_native_mode, 1);
 
 
     value lumen_desktop_get_display_current_mode(value _display) {
 
-        return desktop_get_display_current_mode( val_int(_display) );
+        return lumen::window::desktop_get_display_current_mode( val_int(_display) );
 
     } DEFINE_PRIM(lumen_desktop_get_display_current_mode, 1);
 
 
     value lumen_desktop_get_display_mode(value _display, value _mode_index) {
 
-        return desktop_get_display_mode( val_int(_display), val_int(_mode_index) );
+        return lumen::window::desktop_get_display_mode( val_int(_display), val_int(_mode_index) );
 
     } DEFINE_PRIM(lumen_desktop_get_display_mode, 2);
 
 
     value lumen_desktop_get_display_bounds(value _display) {
 
-        return desktop_get_display_bounds( val_int(_display) );
+        return lumen::window::desktop_get_display_bounds( val_int(_display) );
 
     } DEFINE_PRIM(lumen_desktop_get_display_bounds, 1);
 
 
     value lumen_desktop_get_display_name(value _display) {
 
-        return alloc_string( desktop_get_display_name( val_int(_display) ));
+        return alloc_string( lumen::window::desktop_get_display_name( val_int(_display) ));
 
     } DEFINE_PRIM(lumen_desktop_get_display_name, 1);
 
@@ -200,9 +190,6 @@ extern const char*  desktop_get_display_name(int display);
 
 
 
-extern void window_show_cursor(bool enable);
-
-
 
     value lumen_window_create( value _in_config, value _on_created ) {
 
@@ -210,9 +197,9 @@ extern void window_show_cursor(bool enable);
         AutoGCRoot *on_created = new AutoGCRoot( _on_created );
 
             //fetch window config from the haxe side
-        window_config config = window_config_from_hx(_in_config);
+        lumen::window::window_config config = lumen::window::window_config_from_hx(_in_config);
             //create the actual window
-        create_window( config, on_created );
+        lumen::window::create_window( config, on_created );
 
         return alloc_null();
 
@@ -221,7 +208,7 @@ extern void window_show_cursor(bool enable);
 
     value lumen_window_update( value _window ) {
 
-        LumenWindow* window = NULL;
+        lumen::window::Window* window = NULL;
 
         if( Object_from_hx(_window, window) ) {
 
@@ -236,7 +223,7 @@ extern void window_show_cursor(bool enable);
 
     value lumen_window_render( value _window ) {
 
-        LumenWindow* window = NULL;
+        lumen::window::Window* window = NULL;
 
         if( Object_from_hx(_window, window) ) {
 
@@ -251,7 +238,7 @@ extern void window_show_cursor(bool enable);
 
     value lumen_window_swap( value _window ) {
 
-        LumenWindow* window = NULL;
+        lumen::window::Window* window = NULL;
 
         if( Object_from_hx(_window, window) ) {
 
@@ -266,7 +253,7 @@ extern void window_show_cursor(bool enable);
 
     value lumen_window_close( value _window ) {
 
-        LumenWindow* window = NULL;
+        lumen::window::Window* window = NULL;
 
         if( Object_from_hx(_window, window) ) {
 
@@ -281,7 +268,7 @@ extern void window_show_cursor(bool enable);
 
     value lumen_window_simple_message( value _window, value _message, value _title ) {
 
-        LumenWindow* window = NULL;
+        lumen::window::Window* window = NULL;
 
         if( Object_from_hx(_window, window) ) {
 
@@ -296,7 +283,7 @@ extern void window_show_cursor(bool enable);
 
     value lumen_window_set_size(value _window, value _x, value _y) {
 
-        LumenWindow* window = NULL;
+        lumen::window::Window* window = NULL;
 
         if( Object_from_hx(_window, window) ) {
 
@@ -311,7 +298,7 @@ extern void window_show_cursor(bool enable);
 
     value lumen_window_set_position(value _window, value _x, value _y) {
 
-        LumenWindow* window = NULL;
+        lumen::window::Window* window = NULL;
 
         if( Object_from_hx(_window, window) ) {
 
@@ -326,7 +313,7 @@ extern void window_show_cursor(bool enable);
 
     value lumen_window_set_title(value _window, value _title) {
 
-        LumenWindow* window = NULL;
+        lumen::window::Window* window = NULL;
 
         if( Object_from_hx(_window, window) ) {
 
@@ -341,7 +328,7 @@ extern void window_show_cursor(bool enable);
 
     value lumen_window_set_max_size(value _window, value _x, value _y) {
 
-        LumenWindow* window = NULL;
+        lumen::window::Window* window = NULL;
 
         if( Object_from_hx(_window, window) ) {
 
@@ -356,7 +343,7 @@ extern void window_show_cursor(bool enable);
 
     value lumen_window_set_min_size(value _window, value _x, value _y) {
 
-        LumenWindow* window = NULL;
+        lumen::window::Window* window = NULL;
 
         if( Object_from_hx(_window, window) ) {
 
@@ -371,7 +358,7 @@ extern void window_show_cursor(bool enable);
 
     value lumen_window_grab(value _window, value _enable) {
 
-        LumenWindow* window = NULL;
+        lumen::window::Window* window = NULL;
 
         if( Object_from_hx(_window, window) ) {
 
@@ -386,7 +373,7 @@ extern void window_show_cursor(bool enable);
 
     value lumen_window_fullscreen( value _window, value _enable, value _flag ) {
 
-        LumenWindow* window = NULL;
+        lumen::window::Window* window = NULL;
 
         if( Object_from_hx(_window, window) ) {
 
@@ -401,7 +388,7 @@ extern void window_show_cursor(bool enable);
 
     value lumen_window_bordered(value _window, value _enable) {
 
-        LumenWindow* window = NULL;
+        lumen::window::Window* window = NULL;
 
         if( Object_from_hx(_window, window) ) {
 
@@ -416,7 +403,7 @@ extern void window_show_cursor(bool enable);
 
     value lumen_window_show_cursor(value _enable) {
 
-        window_show_cursor( val_bool(_enable) );
+        lumen::window::show_cursor( val_bool(_enable) );
 
         return alloc_null();
 
@@ -432,7 +419,7 @@ extern void window_show_cursor(bool enable);
 
     value lumen_gamepad_open( value _id ) {
 
-        input_gamepad_open(val_int(_id));
+        lumen::input::lumen_gamepad_open(val_int(_id));
 
         return alloc_null();
 
@@ -440,7 +427,7 @@ extern void window_show_cursor(bool enable);
 
     value lumen_gamepad_close( value _id ) {
 
-        input_gamepad_close(val_int(_id));
+        lumen::input::lumen_gamepad_close(val_int(_id));
 
         return alloc_null();
 
@@ -465,9 +452,9 @@ extern void window_show_cursor(bool enable);
             //the destination for the read, if any
         QuickVec<unsigned char> buffer;
             //the source data ogg info
-        OGG_file_source* ogg_source = NULL;
+        lumen::assets::audio::OGG_file_source* ogg_source = NULL;
 
-        bool success = audio_load_info_ogg( buffer, val_string(_id), ogg_source, do_read );
+        bool success = lumen::assets::audio::load_info_ogg( buffer, val_string(_id), ogg_source, do_read );
 
         if(!success) {
             return alloc_null();
@@ -496,11 +483,11 @@ extern void window_show_cursor(bool enable);
 
         value _handle = property_value(_info, id_handle);
 
-        OGG_file_source* ogg_source = NULL;
+        lumen::assets::audio::OGG_file_source* ogg_source = NULL;
 
         if( !val_is_null(_handle) && Object_from_hx(_handle, ogg_source) ) {
 
-            bool complete = audio_read_bytes_ogg( ogg_source, buffer, val_int(_start), val_int(_len) );
+            bool complete = lumen::assets::audio::read_bytes_ogg( ogg_source, buffer, val_int(_start), val_int(_len) );
 
             ByteArray data(buffer);
 
@@ -524,14 +511,14 @@ extern void window_show_cursor(bool enable);
     value lumen_assets_audio_seek_bytes_ogg( value _info, value _to ) {
 
         value _handle = property_value(_info, id_handle);
-        
-        OGG_file_source* ogg_source = NULL;
+
+        lumen::assets::audio::OGG_file_source* ogg_source = NULL;
 
         if( !val_is_null(_handle) && Object_from_hx(_handle, ogg_source) ) {
 
-            return alloc_bool(audio_seek_bytes_ogg( ogg_source, val_int(_to) )); 
-        
-        } 
+            return alloc_bool(lumen::assets::audio::seek_bytes_ogg( ogg_source, val_int(_to) ));
+
+        }
 
         return alloc_bool(false);
 
@@ -545,9 +532,9 @@ extern void window_show_cursor(bool enable);
             //the destination for the read, if any
         QuickVec<unsigned char> buffer;
             //the source information for the wav file
-        WAV_file_source* wav_source = NULL;
+        lumen::assets::audio::WAV_file_source* wav_source = NULL;
 
-        bool success = audio_load_info_wav( buffer, val_string(_id), wav_source, do_read );
+        bool success = lumen::assets::audio::load_info_wav( buffer, val_string(_id), wav_source, do_read );
 
         if(!success) {
             return alloc_null();
@@ -579,11 +566,11 @@ extern void window_show_cursor(bool enable);
 
         value _handle = property_value(_info, id_handle);
 
-        WAV_file_source* wav_source = NULL;
+        lumen::assets::audio::WAV_file_source* wav_source = NULL;
 
         if( !val_is_null(_handle) && Object_from_hx(_handle, wav_source) ) {
 
-            bool complete = audio_read_bytes_wav( wav_source, buffer, val_int(_start), val_int(_len) );
+            bool complete = lumen::assets::audio::read_bytes_wav( wav_source, buffer, val_int(_start), val_int(_len) );
 
             ByteArray data(buffer);
 
@@ -606,13 +593,13 @@ extern void window_show_cursor(bool enable);
     value lumen_assets_audio_seek_bytes_wav( value _info, value _to ) {
 
         value _handle = property_value(_info, id_handle);
-        
-        WAV_file_source* wav_source = NULL;
+
+        lumen::assets::audio::WAV_file_source* wav_source = NULL;
 
         if( !val_is_null(_handle) && Object_from_hx(_handle, wav_source) ) {
 
-            return alloc_bool(audio_seek_bytes_wav( wav_source, val_int(_to) )); 
-        
+            return alloc_bool(lumen::assets::audio::seek_bytes_wav( wav_source, val_int(_to) ));
+
         }
 
         return alloc_bool(false);
@@ -624,14 +611,14 @@ extern void window_show_cursor(bool enable);
 
 
     value lumen_assets_audio_load_info_pcm( value _id, value _do_read ) {
-            
+
         bool do_read = val_bool(_do_read);
             //the destination for the read, if any
         QuickVec<unsigned char> buffer;
             //the source information for the pcm file
-        PCM_file_source* pcm_source = NULL;
+        lumen::assets::audio::PCM_file_source* pcm_source = NULL;
 
-        bool success = audio_load_info_pcm( buffer, val_string(_id), pcm_source, do_read );
+        bool success = lumen::assets::audio::load_info_pcm( buffer, val_string(_id), pcm_source, do_read );
 
         if(!success) {
             return alloc_null();
@@ -663,11 +650,11 @@ extern void window_show_cursor(bool enable);
 
         value _handle = property_value(_info, id_handle);
 
-        PCM_file_source* pcm_source = NULL;
+        lumen::assets::audio::PCM_file_source* pcm_source = NULL;
 
         if( !val_is_null(_handle) && Object_from_hx(_handle, pcm_source) ) {
 
-            bool complete = audio_read_bytes_pcm( pcm_source, buffer, val_int(_start), val_int(_len) );
+            bool complete = lumen::assets::audio::read_bytes_pcm( pcm_source, buffer, val_int(_start), val_int(_len) );
 
             ByteArray data(buffer);
 
@@ -690,14 +677,14 @@ extern void window_show_cursor(bool enable);
     value lumen_assets_audio_seek_bytes_pcm( value _info, value _to ) {
 
         value _handle = property_value(_info, id_handle);
-        
-        PCM_file_source* pcm_source = NULL;
+
+        lumen::assets::audio::PCM_file_source* pcm_source = NULL;
 
         if( !val_is_null(_handle) && Object_from_hx(_handle, pcm_source) ) {
 
-            return alloc_bool(audio_seek_bytes_pcm( pcm_source, val_int(_to) )); 
-        
-        } 
+            return alloc_bool(lumen::assets::audio::seek_bytes_pcm( pcm_source, val_int(_to) ));
+
+        }
 
         return alloc_bool(false);
 
@@ -720,7 +707,7 @@ extern void window_show_cursor(bool enable);
         int w = 0, h = 0, bpp = 0, bpp_source = 0;
         int req_bpp = val_int(_req_bpp);
 
-        bool success = image_load_info( buffer, val_string(_id), &w, &h, &bpp, &bpp_source, req_bpp );
+        bool success = lumen::assets::image::load_info( buffer, val_string(_id), &w, &h, &bpp, &bpp_source, req_bpp );
 
         if(!success) {
             return alloc_null();
@@ -758,7 +745,7 @@ extern void window_show_cursor(bool enable);
 
     value lumen_iosrc_file_read(value _handle, value _dest, value _size, value _maxnum) {
 
-        iosrc_file* iosrc = NULL; 
+        iosrc_file* iosrc = NULL;
         QuickVec<unsigned char> buffer;
 
         if( Object_from_hx(_handle, iosrc) ) {
@@ -780,7 +767,7 @@ extern void window_show_cursor(bool enable);
 
 
     value lumen_iosrc_file_write(value _handle, value _data, value _size, value _num) {
-        
+
         iosrc_file* iosrc = NULL;
 
         if( Object_from_hx(_handle, iosrc) ) {
@@ -811,11 +798,11 @@ extern void window_show_cursor(bool enable);
 
 
     value lumen_iosrc_file_seek(value _handle, value _offset, value _whence) {
-        
+
         iosrc_file* iosrc = NULL;
 
         if( Object_from_hx(_handle, iosrc) ) {
-            
+
             int res = lumen::ioseek(iosrc->file_source, val_int(_offset), val_int(_whence));
 
             return alloc_int(res);
@@ -828,11 +815,11 @@ extern void window_show_cursor(bool enable);
 
 
     value lumen_iosrc_file_tell(value _handle) {
-        
+
         iosrc_file* iosrc = NULL;
 
         if( Object_from_hx(_handle, iosrc) ) {
-            
+
             int res = lumen::iotell(iosrc->file_source);
 
             return alloc_int(res);
@@ -845,11 +832,11 @@ extern void window_show_cursor(bool enable);
 
 
     value lumen_iosrc_file_close(value _handle) {
-                
+
         iosrc_file* iosrc = NULL;
 
         if( Object_from_hx(_handle, iosrc) ) {
-            
+
             int res = lumen::ioclose(iosrc->file_source);
 
             return alloc_int(res);
@@ -858,7 +845,7 @@ extern void window_show_cursor(bool enable);
 
         return alloc_int(-1);
 
-    } DEFINE_PRIM(lumen_iosrc_file_close, 1);    
+    } DEFINE_PRIM(lumen_iosrc_file_close, 1);
 
 
 
@@ -873,7 +860,7 @@ extern void window_show_cursor(bool enable);
        buffer input_buffer = val_to_buffer(input_value);
        buffer output_buffer = alloc_buffer_len(0);
 
-       Lzma::Encode(input_buffer, output_buffer);
+       native_toolkit_lzma::Lzma::Encode(input_buffer, output_buffer);
 
        return buffer_val(output_buffer);
 
@@ -884,7 +871,7 @@ extern void window_show_cursor(bool enable);
        buffer input_buffer = val_to_buffer(input_value);
        buffer output_buffer = alloc_buffer_len(0);
 
-       Lzma::Decode(input_buffer, output_buffer);
+       native_toolkit_lzma::Lzma::Decode(input_buffer, output_buffer);
 
        return buffer_val(output_buffer);
 
@@ -1025,5 +1012,5 @@ extern void window_show_cursor(bool enable);
 
 
 
-} //namespace lumen
+} //lumen namespace
 

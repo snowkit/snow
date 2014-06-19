@@ -4,21 +4,28 @@
 
 namespace lumen {
 
-    void init_core_platform() {
+    namespace core {
 
-    } //init_core_platform
 
-    void shutdown_core_platform() {
+        void init_platform() {
 
-    } //shutdown_core_platform
+        } //init_core_platform
 
-    void update_core_platform() {
+        void shutdown_platform() {
 
-    } //update_core_platform
+        } //shutdown_core_platform
 
-    void on_system_event_platform( const SystemEvent &event ) {
-    }
+        void update_platform() {
+
+        } //update_core_platform
+
+        void on_system_event_platform( const SystemEventType event ) {
+
+        } //on_system_event_platform
+
+
+    } //core namespace
 
 } //namespace lumen
 
-#endif
+#endif //IPHONE

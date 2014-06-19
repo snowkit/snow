@@ -63,12 +63,17 @@
       <!-- are we using SDL bindings? -->
    <set name="LUMEN_USE_SDL"     value="1"/>
 
+<!-- Porting only -->
+
+      <!-- Don't define this unless trying to test/implement the empty platform porting helpers -->
+   <!-- <set name="LUMEN_USE_EMPTY_PLATFORM" value="1" /> -->
+
 <!-- Library configs -->
 
    <!-- Ideally, I want to enclose these in an "unless" section as well, so you can use command line/builds to disable them -->
 
       <!-- should we build SDL files -->
-   <set name="LUMEN_LIB_SDL" value="1"/>
+   <set name="LUMEN_LIB_SDL" value="1" if="LUMEN_USE_SDL"/>
    <!-- enable this to build sdl as a .a file, and then link it (instead of embedded in the core code) -->
    <!-- <set name="LUMEN_LIB_SDL_STATIC_EXTERNAL" value="1" /> -->
    <!-- enable this to build sdl as a .so/.dll file, and then link it (instead of embedded in the core code) -->
@@ -131,12 +136,8 @@
          <!-- c++ defines -->
       <compilerflag value="-DHX_LUMEN"  />
       <compilerflag value="-DLUMEN_CORE_LOOP"         if="LUMEN_CORE_LOOP"/>
-      <compilerflag value="-DLUMEN_USE_OPENGL"        if="LUMEN_USE_OPENGL"/>
-      <compilerflag value="-DLUMEN_USE_OPENAL"        if="LUMEN_USE_OPENAL"/>
-      <compilerflag value="-DLUMEN_USE_SDL"           if="LUMEN_USE_SDL"/>
       <compilerflag value="-D__IPHONEOS__"            if="ios"/>
       <compilerflag value="-Wno-conversion"           if="linux"/>
-
 
    <!-- lumen sources -->
 
@@ -154,6 +155,7 @@
 
       <section if="LUMEN_USE_OPENGL">
 
+         <compilerflag value="-DLUMEN_USE_OPENGL" />
          <compilerflag value="-DGL_GLEXT_PROTOTYPES"     if="android"/>
          <compilerflag value="-DLUMEN_GLES"              if="android || ios"/>
 
@@ -163,11 +165,15 @@
 
       <section if="LUMEN_USE_OPENAL">
 
+         <compilerflag value="-DLUMEN_USE_OPENAL" />
+
          <file name="${SRC_DIR}/audio/openal/lumen_audio_openal.cpp" />
 
       </section>
 
       <section if="LUMEN_USE_SDL">
+
+         <compilerflag value="-DLUMEN_USE_SDL" />
 
             <!-- per platform configs preconfigured -->
         <compilerflag value="-I${NATIVE_TOOLKIT_PATH}/sdl/include/"/>
@@ -182,6 +188,16 @@
         <file name="${SRC_DIR}/input/sdl2/lumen_input_sdl2.cpp"/>
 
       </section>
+
+   <!-- Porting specific helper only -->
+
+   <section if="LUMEN_USE_EMPTY_PLATFORM">
+
+      <compilerflag value="-DLUMEN_USE_EMPTY_PLATFORM" />
+
+      <file name="${SRC_DIR}/lumen/empty/lumen_core_empty.cpp"/>
+
+   </section>
 
    <!-- Platform specific sources -->
 

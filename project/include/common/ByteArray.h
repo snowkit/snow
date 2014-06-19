@@ -50,7 +50,7 @@ namespace lumen {
 
    }; //ByteArray
 
-} //namespace lumen
+} //lumen namespace
 
 
 #endif //LIME_BYTE_ARRAY_H

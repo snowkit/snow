@@ -41,109 +41,115 @@ namespace lumen {
 
     std::map<std::string, jclass> jClassCache;
 
-    void init_core_platform() {
+    namespace core {
 
-        lumen::log("/ lumen / android core platform init");
-        jClassCache = std::map<std::string, jclass>();
 
-        JNIEnv *env = GetEnv();
-        env->GetJavaVM( &java_vm );
+        void init_platform() {
 
-        #ifdef LUMEN_USE_OPENAL
-            alcandroid_OnLoad( java_vm );
-        #endif
-
-    } //init_core_platform
-
-    void shutdown_core_platform() {
-
-        #ifdef LUMEN_USE_OPENAL
-            alcandroid_OnUnload( java_vm );
-        #endif
-
-    } //shutdown_core_platform
-
-    void update_core_platform() {
-
-    } //update_core_platform
-
-    void on_system_event_platform( const SystemEvent &event ) {
-
-        switch( event.type ) {
-
-            case se_app_didenterbackground: {
-                alcandroid_Suspend();
-                break;
-            }
-
-            case se_app_didenterforeground: {
-                alcandroid_Resume();
-                break;
-            }
-
-            default :{
-                return;
-            }
-        }
-
-    } //on_system_event
-
-    JNIEnv *GetEnv() {
-
-        return (JNIEnv*)SDL_AndroidGetJNIEnv();
-
-    } //JNIEnv
-
-    jclass FindClass(const char *className,bool inQuiet) {
-
-        std::string cppClassName(className);
-        jclass ret;
-
-        if(jClassCache[cppClassName]!=NULL) {
-
-            ret = jClassCache[cppClassName];
-
-        } else {
+            lumen::log("/ lumen / android core platform init");
+            jClassCache = std::map<std::string, jclass>();
 
             JNIEnv *env = GetEnv();
-            jclass tmp = env->FindClass(className);
+            env->GetJavaVM( &java_vm );
 
-            if (!tmp) {
-                if (inQuiet) {
-                    jthrowable exc = env->ExceptionOccurred();
-                    if (exc) {
-                        env->ExceptionClear();
-                    }
-                } else {
-                    CheckException(env);
+            #ifdef LUMEN_USE_OPENAL
+                alcandroid_OnLoad( java_vm );
+            #endif
+
+        } //init_platform
+
+        void shutdown_platform() {
+
+            #ifdef LUMEN_USE_OPENAL
+                alcandroid_OnUnload( java_vm );
+            #endif
+
+        } //shutdown_platform
+
+        void update_platform() {
+
+        } //update_platform
+
+        void on_system_event_platform( const SystemEventType event ) {
+
+            switch( event ) {
+
+                case se_app_didenterbackground: {
+                    alcandroid_Suspend();
+                    break;
                 }
 
-                return 0;
+                case se_app_didenterforeground: {
+                    alcandroid_Resume();
+                    break;
+                }
+
+                default :{
+                    return;
+                }
             }
 
-            ret = (jclass)env->NewGlobalRef(tmp);
-            jClassCache[cppClassName] = ret;
-            env->DeleteLocalRef(tmp);
-        }
+        } //on_system_event_platform
 
-        return ret;
+        JNIEnv *GetEnv() {
 
-    } //findClass
+            return (JNIEnv*)SDL_AndroidGetJNIEnv();
 
-    void CheckException(JNIEnv *env, bool inThrow) {
+        } //JNIEnv
 
-        jthrowable exc = env->ExceptionOccurred();
-        if (exc) {
-            env->ExceptionDescribe();
-            env->ExceptionClear();
+        jclass FindClass(const char *className,bool inQuiet) {
 
-            if (inThrow) {
-                val_throw(alloc_string("JNI Exception"));
+            std::string cppClassName(className);
+            jclass ret;
+
+            if(jClassCache[cppClassName]!=NULL) {
+
+                ret = jClassCache[cppClassName];
+
+            } else {
+
+                JNIEnv *env = GetEnv();
+                jclass tmp = env->FindClass(className);
+
+                if (!tmp) {
+                    if (inQuiet) {
+                        jthrowable exc = env->ExceptionOccurred();
+                        if (exc) {
+                            env->ExceptionClear();
+                        }
+                    } else {
+                        CheckException(env);
+                    }
+
+                    return 0;
+                }
+
+                ret = (jclass)env->NewGlobalRef(tmp);
+                jClassCache[cppClassName] = ret;
+                env->DeleteLocalRef(tmp);
             }
-        }
 
-    } //CheckException
+            return ret;
 
-} //namespace lumen
+        } //findClass
+
+        void CheckException(JNIEnv *env, bool inThrow) {
+
+            jthrowable exc = env->ExceptionOccurred();
+            if (exc) {
+                env->ExceptionDescribe();
+                env->ExceptionClear();
+
+                if (inThrow) {
+                    val_throw(alloc_string("JNI Exception"));
+                }
+            }
+
+        } //CheckException
+
+
+    } //core namespace
+
+} //lumen namespace
 
 #endif

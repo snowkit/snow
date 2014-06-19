@@ -70,6 +70,6 @@ namespace lumen {
     }; //iosrc_file
 
 
-} //namespace lumen
+} //lumen namespace
 
 #endif //LUMEN_LUMEN_IO_H

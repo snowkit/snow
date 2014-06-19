@@ -10,7 +10,7 @@ namespace lumen {
     class Object {
 
         public:
-            
+
             int ref_count;
 
         protected:
@@ -25,26 +25,26 @@ namespace lumen {
 
                 ref_count++;
 
-                return this; 
+                return this;
 
             } //grab
 
-            void drop() { 
-                
-                ref_count--; 
-                
+            void drop() {
+
+                ref_count--;
+
                 if( ref_count <= 0 ) {
-                    delete this; 
+                    delete this;
                 }
 
             } //drop
 
-            // virtual int getApiVersion() { 
-            //     return NME_API_VERSION; 
+            // virtual int getApiVersion() {
+            //     return NME_API_VERSION;
             // }
-        
+
     }; //Object
 
-} //namespace lumen
+} //lumen namespace
 
 #endif //LUMEN_HXOBJECT_H

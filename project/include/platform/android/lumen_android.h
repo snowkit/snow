@@ -37,6 +37,6 @@ namespace lumen {
     jclass FindClass(const char *className,bool inQuiet = false);
     void CheckException(JNIEnv *env, bool inThrow=true);
 
-} //namespace lumen
+} //lumen namespace
 
 #endif //LUMEN_ANDROID_H
