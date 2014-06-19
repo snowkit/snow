@@ -324,8 +324,8 @@ namespace lumen {
                 case SDL_WINDOWEVENT_RESIZED:
                 case SDL_WINDOWEVENT_SIZE_CHANGED: {
 
-                    alloc_field( _object, id_data1, alloc_int(event.window.data1) );
-                    alloc_field( _object, id_data2, alloc_int(event.window.data2) );
+                    alloc_field( _object, id_x, alloc_int(event.window.data1) );
+                    alloc_field( _object, id_y, alloc_int(event.window.data2) );
 
                     break;
 

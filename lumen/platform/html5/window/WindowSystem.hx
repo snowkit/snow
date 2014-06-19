@@ -37,6 +37,12 @@ import lumen.window.WindowSystem;
                 _handle.width = config.width;
                 _handle.height = config.height;
 
+                    //make sure it displays nicely
+                _handle.style.display = 'block';
+                _handle.style.position = 'relative';
+                _handle.style.margin = '2em auto 0 auto';
+                _handle.style.background = '#000';
+
                     //add it to the document
                 js.Browser.document.body.appendChild(_handle);
 
@@ -58,7 +64,10 @@ import lumen.window.WindowSystem;
 
                 //tell them and give the handle for later.
                 //:todo: work out window id's for multiple canvases
-            on_created(_handle, 1, config);
+            var _id = 1;
+            on_created(_handle, _id, config);
+                    //todo: hardcoded window id
+            _handle.setAttribute('id', 'window${_id}');
 
         } //window_create
 
@@ -70,6 +79,37 @@ import lumen.window.WindowSystem;
 
         override public function window_update( handle:WindowHandle ) {
 
+            var _rect = handle.getBoundingClientRect();
+            var _window : Window = lib.windowing.window_from_handle(handle);
+
+            if(_window != null) {
+                if(_rect.left != _window.x || _rect.top != _window.y) {
+                    lib.dispatch_system_event({
+                        type : SystemEventType.window,
+                        window : {
+                            type : WindowEventType.window_moved,
+                            timestamp : lib.time,
+                            window_id : 1,//_window.id,
+                            event : { x:_rect.left, y:_rect.top }
+                        }
+                    });
+                }else if(_rect.width != _window.width || _rect.height != _window.height) {
+
+                    lib.dispatch_system_event({
+                        type : SystemEventType.window,
+                        window : {
+                            type : WindowEventType.window_size_changed,
+                            timestamp : lib.time,
+                            window_id : 1,//_window.id,
+                            event : { x:_rect.width, y:_rect.height }
+                        }
+                    });
+
+                }
+            }
+
+            _rect = null;
+
         } //window_update
 
         override public function window_render( handle:WindowHandle ) {
@@ -77,6 +117,8 @@ import lumen.window.WindowSystem;
         } //window_render
 
         override public function window_swap( handle:WindowHandle ) {
+
+            //empty because this concept is not possible in browser
 
         } //window_swap
 
@@ -86,10 +128,21 @@ import lumen.window.WindowSystem;
 
         } //window_simple_message
 
-        override public function window_set_size( handle:WindowHandle, w:Int, h:Int ) {}
-        override public function window_set_position( handle:WindowHandle, x:Int, y:Int ) {}
+        override public function window_set_size( handle:WindowHandle, w:Int, h:Int ) {
 
-        public function get_real_window_position( handle:WindowHandle ) : WindowPosition {
+            handle.style.width = '${w}px';
+            handle.style.height = '${h}px';
+
+        } //window_set_size
+
+        override public function window_set_position( handle:WindowHandle, x:Int, y:Int ) {
+
+            handle.style.left = '${x}px';
+            handle.style.top = '${y}px';
+
+        } //window_set_position
+
+        public function get_real_window_position( handle:WindowHandle ) : { x:Int, y:Int } {
 
             // see the following link for this implementation
             // http://www.quirksmode.org/js/findpos.html
@@ -137,13 +190,17 @@ import lumen.window.WindowSystem;
 
         } //window_set_title
 
-            //:todo:
         override public function window_set_max_size( handle:WindowHandle, w:Int, h:Int ) {
+
+            handle.style.maxWidth = '${w}px';
+            handle.style.maxHeight = '${h}px';
 
         } //window_set_max_size
 
-            //:todo:
         override public function window_set_min_size( handle:WindowHandle, w:Int, h:Int ) {
+
+            handle.style.minWidth = '${w}px';
+            handle.style.minHeight = '${h}px';
 
         } //window_set_min_size
 
@@ -152,8 +209,66 @@ import lumen.window.WindowSystem;
 
         } //window_grab
 
-            //:todo:
+        var _pre_fs_padding : String = '0';
+        var _pre_fs_margin : String = '0';
+        var _pre_fs_s_width : String = '';
+        var _pre_fs_s_height : String = '';
+        var _pre_fs_width : Int = 0;
+        var _pre_fs_height : Int = 0;
+
         override public function window_fullscreen( handle:WindowHandle, fullscreen:Bool, fullscreen_desktop_mode:Int = 1 ) {
+
+                //as always browser support for newer features will be
+                //sporadic. Tested fullscreen against firefox/chrome/opera/safari latest
+                //all appear to work as expected, but have no cancel (user must press escape)
+            if(fullscreen) {
+
+                if(fullscreen_desktop_mode == 1) {
+
+                        //official api's first
+                    if(handle.requestFullscreen == null) {
+                        if(handle.requestFullScreen == null) {
+                            if(untyped handle.webkitRequestFullscreen == null) {
+                                if(untyped handle.mozRequestFullScreen == null) {
+
+                                } else { untyped handle.mozRequestFullScreen(); }
+                            } else { untyped handle.webkitRequestFullscreen(); }
+                        } else { handle.requestFullScreen(0); }
+                    } else { handle.requestFullscreen(); }
+
+                } else {
+
+                    _pre_fs_padding = handle.style.padding;
+                    _pre_fs_margin = handle.style.margin;
+                    _pre_fs_s_width = handle.style.width;
+                    _pre_fs_s_height = handle.style.height;
+                    _pre_fs_width = handle.width;
+                    _pre_fs_height = handle.height;
+
+                    handle.style.margin = '0';
+                    handle.style.padding = '0';
+                    handle.style.width = js.Browser.window.innerWidth + 'px';
+                    handle.style.height = js.Browser.window.innerHeight + 'px';
+                    handle.width = js.Browser.window.innerWidth;
+                    handle.height = js.Browser.window.innerHeight;
+                }
+
+            } else {
+
+                if(fullscreen_desktop_mode == 1) {
+                    //currently no cancel full screen in fullscreen mode
+                } else {
+
+                    handle.style.padding = _pre_fs_padding;
+                    handle.style.margin = _pre_fs_margin;
+                    handle.style.width = _pre_fs_s_width;
+                    handle.style.height = _pre_fs_s_height;
+                    handle.width = _pre_fs_width;
+                    handle.height = _pre_fs_height;
+
+                }
+
+            }
 
         } //window_fullscreen
 
@@ -233,17 +348,15 @@ import lumen.window.WindowSystem;
 
             // var _window : Window = lib.window.from_handle(_mouse_event)
 
-                //tell the window manager a window was left
-            var api_event : WindowEvent = {
-                type : WindowEventType.window_leave,
-                timestamp : _mouse_event.timeStamp,
-                window_id : 1,//_window.id,
-                event : _mouse_event
-            };
-
+                //tell the system
             lib.dispatch_system_event({
                 type : SystemEventType.window,
-                window : api_event
+                window : {
+                    type : WindowEventType.window_leave,
+                    timestamp : _mouse_event.timeStamp,
+                    window_id : 1,//_window.id,
+                    event : _mouse_event
+                }
             });
 
         } //on_internal_leave
@@ -252,17 +365,15 @@ import lumen.window.WindowSystem;
 
             // var _window : Window = lib.window.from_handle()
 
-                //tell the system a window was entered
-            var api_event : WindowEvent = {
-                type : WindowEventType.window_enter,
-                timestamp : _mouse_event.timeStamp,
-                window_id : 1,//_window.id,
-                event : _mouse_event
-            };
-
+                //tell the system
             lib.dispatch_system_event({
                 type : SystemEventType.window,
-                window : api_event
+                window : {
+                    type : WindowEventType.window_enter,
+                    timestamp : _mouse_event.timeStamp,
+                    window_id : 1,//_window.id,
+                    event : _mouse_event
+                }
             });
 
         } //on_internal_enter

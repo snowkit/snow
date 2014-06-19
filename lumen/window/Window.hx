@@ -106,7 +106,7 @@ class Window {
             case window_moved : {
 
                     internal_position = true;
-                set_position(_event.event.data1, _event.event.data2);
+                set_position(_event.event.x, _event.event.y);
                     internal_position = false;
 
             } //moved
@@ -114,7 +114,7 @@ class Window {
             case window_resized : {
 
                     internal_resize = true;
-                set_size(_event.event.data1, _event.event.data2);
+                set_size(_event.event.x, _event.event.y);
                     internal_resize = false;
 
             } //resized
@@ -122,7 +122,7 @@ class Window {
             case window_size_changed : {
 
                     internal_resize = true;
-                set_size(_event.event.data1, _event.event.data2);
+                set_size(_event.event.x, _event.event.y);
                     internal_resize = false;
 
             } //size_changed
@@ -327,7 +327,7 @@ class Window {
             manager.system.window_set_position( handle, x, y );
         }
 
-    } //set_xy
+    } //set_position
 
     function set_size( _width:Int, _height:Int ) {
 
