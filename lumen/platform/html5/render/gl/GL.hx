@@ -24,8 +24,8 @@ typedef GLTexture           = js.html.webgl.Texture;
 typedef GLUniformLocation   = js.html.webgl.UniformLocation;
 
 class GL {
-    
-    
+
+
     /* ClearBufferMask */
     public static inline var DEPTH_BUFFER_BIT               = 0x00000100;
     public static inline var STENCIL_BUFFER_BIT             = 0x00000400;
@@ -376,11 +376,11 @@ class GL {
     public static inline var VERTEX_ATTRIB_ARRAY_NORMALIZED     = 0x886A;
     public static inline var VERTEX_ATTRIB_ARRAY_POINTER        = 0x8645;
     public static inline var VERTEX_ATTRIB_ARRAY_BUFFER_BINDING = 0x889F;
-    
+
     /* Point Size */
     public static inline var VERTEX_PROGRAM_POINT_SIZE       = 0x8642;
     public static inline var POINT_SPRITE                    = 0x8861;
-    
+
     /* GLShader Source */
     public static inline var COMPILE_STATUS                 = 0x8B81;
 
@@ -444,1004 +444,1004 @@ class GL {
     public static inline var CONTEXT_LOST_WEBGL             = 0x9242;
     public static inline var UNPACK_COLORSPACE_CONVERSION_WEBGL = 0x9243;
     public static inline var BROWSER_DEFAULT_WEBGL          = 0x9244;
-    
-    
+
+
     public static var version(get_version, null):Int;
-    
-    public static var lumenContext:RenderingContext;
-    
-    
+
+    public static var current_context:RenderingContext;
+
+
     public static function versionString():String {
 
-        var ver = lumenContext.getParameter(VERSION);
-        var slver = lumenContext.getParameter(SHADING_LANGUAGE_VERSION);
-        var ren = lumenContext.getParameter(RENDERER);
-        var ven = lumenContext.getParameter(VENDOR);
+        var ver = current_context.getParameter(VERSION);
+        var slver = current_context.getParameter(SHADING_LANGUAGE_VERSION);
+        var ren = current_context.getParameter(RENDERER);
+        var ven = current_context.getParameter(VENDOR);
 
         return "/ " + ver + " / " + slver + " / " + ren + " / " + ven + " /";
     }
 
-    
+
     public static function activeTexture(texture:Int):Void {
-        
-        lumenContext.activeTexture(texture);
-        
-    }
-    
-    
-    public static function attachShader(program:GLProgram, shader:GLShader):Void {
-        
-        lumenContext.attachShader(program, shader);
-        
-    }
-    
-    
-    public static function bindAttribLocation(program:GLProgram, index:Int, name:String):Void {
-        
-        lumenContext.bindAttribLocation(program, index, name);
-        
+
+        current_context.activeTexture(texture);
+
     }
 
-    
+
+    public static function attachShader(program:GLProgram, shader:GLShader):Void {
+
+        current_context.attachShader(program, shader);
+
+    }
+
+
+    public static function bindAttribLocation(program:GLProgram, index:Int, name:String):Void {
+
+        current_context.bindAttribLocation(program, index, name);
+
+    }
+
+
     public static function bindBuffer(target:Int, buffer:GLBuffer):Void {
-        
-        lumenContext.bindBuffer(target, buffer);
-        
+
+        current_context.bindBuffer(target, buffer);
+
     }
-    
-    
+
+
     public static function bindFramebuffer(target:Int, framebuffer:GLFramebuffer):Void {
-        
-        lumenContext.bindFramebuffer(target, framebuffer);
-        
+
+        current_context.bindFramebuffer(target, framebuffer);
+
     }
-    
-    
+
+
     public static function bindRenderbuffer(target:Int, renderbuffer:GLRenderbuffer):Void {
-        
-        lumenContext.bindRenderbuffer(target, renderbuffer);
-        
+
+        current_context.bindRenderbuffer(target, renderbuffer);
+
     }
-    
-    
+
+
     public static function bindTexture(target:Int, texture:GLTexture):Void {
-        
-        lumenContext.bindTexture(target, texture);
-        
+
+        current_context.bindTexture(target, texture);
+
     }
-    
-    
+
+
     public static function blendColor(red:Float, green:Float, blue:Float, alpha:Float):Void {
-        
-        lumenContext.blendColor(red, green, blue, alpha);
-        
+
+        current_context.blendColor(red, green, blue, alpha);
+
     }
-    
-    
+
+
     public static function blendEquation(mode:Int):Void {
-        
-        lumenContext.blendEquation(mode);
-        
+
+        current_context.blendEquation(mode);
+
     }
-    
-    
+
+
     public static function blendEquationSeparate(modeRGB:Int, modeAlpha:Int):Void {
-        
-        lumenContext.blendEquationSeparate(modeRGB, modeAlpha);
-        
+
+        current_context.blendEquationSeparate(modeRGB, modeAlpha);
+
     }
-    
-    
+
+
     public static function blendFunc(sfactor:Int, dfactor:Int):Void {
-        
-        lumenContext.blendFunc(sfactor, dfactor);
-        
+
+        current_context.blendFunc(sfactor, dfactor);
+
     }
-    
-    
+
+
     public static function blendFuncSeparate(srcRGB:Int, dstRGB:Int, srcAlpha:Int, dstAlpha:Int):Void {
-        
-        lumenContext.blendFuncSeparate(srcRGB, dstRGB, srcAlpha, dstAlpha);
-        
+
+        current_context.blendFuncSeparate(srcRGB, dstRGB, srcAlpha, dstAlpha);
+
     }
-    
-    
+
+
     //public static function bufferData(target:Int, data:IMemoryRange, usage:Int):Void {
     public static function bufferData(target:Int, data:ArrayBufferView, usage:Int):Void {
-        
-        lumenContext.bufferData(target, data, usage);
-        
+
+        current_context.bufferData(target, data, usage);
+
     }
-    
-    
+
+
     public static function bufferSubData(target:Int, offset:Int, data:ArrayBufferView):Void {
-        
-        lumenContext.bufferSubData(target, offset, data);
-        
+
+        current_context.bufferSubData(target, offset, data);
+
     }
-    
-    
+
+
     public static function checkFramebufferStatus(target:Int):Int {
-        
-        return lumenContext.checkFramebufferStatus(target);
-        
+
+        return current_context.checkFramebufferStatus(target);
+
     }
-    
-    
+
+
     public static function clear(mask:Int):Void {
-        
-        lumenContext.clear(mask);
-        
+
+        current_context.clear(mask);
+
     }
-    
-    
+
+
     public static function clearColor(red:Float, green:Float, blue:Float, alpha:Float):Void {
-        
-        lumenContext.clearColor(red, green, blue, alpha);
-        
+
+        current_context.clearColor(red, green, blue, alpha);
+
     }
-    
-    
+
+
     public static function clearDepth(depth:Float):Void {
-        
-        lumenContext.clearDepth(depth);
-        
+
+        current_context.clearDepth(depth);
+
     }
-    
-    
+
+
     public static function clearStencil(s:Int):Void {
-        
-        lumenContext.clearStencil(s);
-        
+
+        current_context.clearStencil(s);
+
     }
-    
-    
+
+
     public static function colorMask(red:Bool, green:Bool, blue:Bool, alpha:Bool):Void {
-        
-        lumenContext.colorMask(red, green, blue, alpha);
-        
+
+        current_context.colorMask(red, green, blue, alpha);
+
     }
-    
-    
+
+
     public static function compileShader(shader:GLShader):Void {
-        
-        lumenContext.compileShader(shader);
-        
+
+        current_context.compileShader(shader);
+
     }
-    
-    
+
+
     public static function compressedTexImage2D(target:Int, level:Int, internalformat:Int, width:Int, height:Int, border:Int, data:ArrayBufferView):Void {
-        
-        lumenContext.compressedTexImage2D(target, level, internalformat, width, height, border, data);
-        
+
+        current_context.compressedTexImage2D(target, level, internalformat, width, height, border, data);
+
     }
-    
-    
+
+
     public static function compressedTexSubImage2D(target:Int, level:Int, xoffset:Int, yoffset:Int, width:Int, height:Int, format:Int, data:ArrayBufferView):Void {
-        
-        lumenContext.compressedTexSubImage2D(target, level, xoffset, yoffset, width, height, format, data);
-        
+
+        current_context.compressedTexSubImage2D(target, level, xoffset, yoffset, width, height, format, data);
+
     }
-    
-    
+
+
     public static function copyTexImage2D(target:Int, level:Int, internalformat:Int, x:Int, y:Int, width:Int, height:Int, border:Int):Void {
-        
-        lumenContext.copyTexImage2D(target, level, internalformat, x, y, width, height, border);
-        
+
+        current_context.copyTexImage2D(target, level, internalformat, x, y, width, height, border);
+
     }
-    
-    
+
+
     public static function copyTexSubImage2D(target:Int, level:Int, xoffset:Int, yoffset:Int, x:Int, y:Int, width:Int, height:Int):Void {
-        
-        lumenContext.copyTexSubImage2D(target, level, xoffset, yoffset, x, y, width, height);
-        
+
+        current_context.copyTexSubImage2D(target, level, xoffset, yoffset, x, y, width, height);
+
     }
-    
-    
+
+
     public static function createBuffer():GLBuffer {
-        
-        return lumenContext.createBuffer();
-        
+
+        return current_context.createBuffer();
+
     }
-    
-    
+
+
     public static function createFramebuffer():GLFramebuffer {
-        
-        return lumenContext.createFramebuffer();
-        
+
+        return current_context.createFramebuffer();
+
     }
-    
-    
+
+
     public static function createProgram():GLProgram {
-        
-        return lumenContext.createProgram();
-        
+
+        return current_context.createProgram();
+
     }
-    
-    
+
+
     public static function createRenderbuffer():GLRenderbuffer {
-        
-        return lumenContext.createRenderbuffer();
-        
+
+        return current_context.createRenderbuffer();
+
     }
-    
-    
+
+
     public static function createShader(type:Int):GLShader {
-        
-        return lumenContext.createShader(type);
-        
+
+        return current_context.createShader(type);
+
     }
-    
-    
+
+
     public static function createTexture():GLTexture {
-        
-        return lumenContext.createTexture();
-        
+
+        return current_context.createTexture();
+
     }
-    
-    
+
+
     public static function cullFace(mode:Int):Void {
-        
-        lumenContext.cullFace(mode);
-        
+
+        current_context.cullFace(mode);
+
     }
-    
-    
+
+
     public static function deleteBuffer(buffer:GLBuffer):Void {
-        
-        lumenContext.deleteBuffer(buffer);
-        
+
+        current_context.deleteBuffer(buffer);
+
     }
-    
-    
+
+
     public static function deleteFramebuffer(framebuffer:GLFramebuffer):Void {
-        
-        lumenContext.deleteFramebuffer(framebuffer);
-        
+
+        current_context.deleteFramebuffer(framebuffer);
+
     }
-    
-    
+
+
     public static function deleteProgram(program:GLProgram):Void {
-        
-        lumenContext.deleteProgram(program);
-        
+
+        current_context.deleteProgram(program);
+
     }
-    
-    
+
+
     public static function deleteRenderbuffer(renderbuffer:GLRenderbuffer):Void {
-        
-        lumenContext.deleteRenderbuffer(renderbuffer);
-        
+
+        current_context.deleteRenderbuffer(renderbuffer);
+
     }
-    
-    
+
+
     public static function deleteShader(shader:GLShader):Void {
-        
-        lumenContext.deleteShader(shader);
-        
+
+        current_context.deleteShader(shader);
+
     }
-    
-    
+
+
     public static function deleteTexture(texture:GLTexture):Void {
-        
-        lumenContext.deleteTexture(texture);
-        
+
+        current_context.deleteTexture(texture);
+
     }
-    
-    
+
+
     public static function depthFunc(func:Int):Void {
-        
-        lumenContext.depthFunc(func);
-        
+
+        current_context.depthFunc(func);
+
     }
-    
-    
+
+
     public static function depthMask(flag:Bool):Void {
-        
-        lumenContext.depthMask(flag);
-        
+
+        current_context.depthMask(flag);
+
     }
-    
-    
+
+
     public static function depthRange(zNear:Float, zFar:Float):Void {
-        
-        lumenContext.depthRange(zNear, zFar);
-        
+
+        current_context.depthRange(zNear, zFar);
+
     }
-    
-    
+
+
     public static function detachShader(program:GLProgram, shader:GLShader):Void {
-        
-        lumenContext.detachShader(program, shader);
-        
+
+        current_context.detachShader(program, shader);
+
     }
-    
-    
+
+
     public static function disable(cap:Int):Void {
-        
-        lumenContext.disable(cap);
-        
+
+        current_context.disable(cap);
+
     }
-    
-    
+
+
     public static function disableVertexAttribArray(index:Int):Void {
-        
-        lumenContext.disableVertexAttribArray(index);
-        
+
+        current_context.disableVertexAttribArray(index);
+
     }
-    
-    
+
+
     public static function drawArrays(mode:Int, first:Int, count:Int):Void {
-        
-        lumenContext.drawArrays(mode, first, count);
-        
+
+        current_context.drawArrays(mode, first, count);
+
     }
-    
-    
+
+
     public static function drawElements(mode:Int, count:Int, type:Int, offset:Int):Void {
-        
-        lumenContext.drawElements(mode, count, type, offset);
-        
+
+        current_context.drawElements(mode, count, type, offset);
+
     }
-    
-    
+
+
     public static function enable(cap:Int):Void {
-        
-        lumenContext.enable(cap);
-        
+
+        current_context.enable(cap);
+
     }
-    
-    
+
+
     public static function enableVertexAttribArray(index:Int):Void {
-        
-        lumenContext.enableVertexAttribArray(index);
-        
+
+        current_context.enableVertexAttribArray(index);
+
     }
-    
-    
+
+
     public static function finish():Void {
-        
-        lumenContext.finish();
-        
+
+        current_context.finish();
+
     }
-    
-    
+
+
     public static function flush():Void {
-        
-        lumenContext.flush();
-        
+
+        current_context.flush();
+
     }
-    
-    
+
+
     public static function framebufferRenderbuffer(target:Int, attachment:Int, renderbuffertarget:Int, renderbuffer:GLRenderbuffer):Void {
-        
-        lumenContext.framebufferRenderbuffer(target, attachment, renderbuffertarget, renderbuffer);
-        
+
+        current_context.framebufferRenderbuffer(target, attachment, renderbuffertarget, renderbuffer);
+
     }
-    
-    
+
+
     public static function framebufferTexture2D(target:Int, attachment:Int, textarget:Int, texture:GLTexture, level:Int):Void {
-        
-        lumenContext.framebufferTexture2D(target, attachment, textarget, texture, level);
-        
+
+        current_context.framebufferTexture2D(target, attachment, textarget, texture, level);
+
     }
-    
-    
+
+
     public static function frontFace(mode:Int):Void {
-        
-        lumenContext.frontFace(mode);
-        
+
+        current_context.frontFace(mode);
+
     }
-    
-    
+
+
     public static function generateMipmap(target:Int):Void {
-        
-        lumenContext.generateMipmap(target);
-        
+
+        current_context.generateMipmap(target);
+
     }
-    
-    
+
+
     public static function getActiveAttrib(program:GLProgram, index:Int):GLActiveInfo {
-        
-        return lumenContext.getActiveAttrib(program, index);
-        
+
+        return current_context.getActiveAttrib(program, index);
+
     }
-    
-    
+
+
     public static function getActiveUniform(program:GLProgram, index:Int):GLActiveInfo {
-        
-        return lumenContext.getActiveUniform(program, index);
-        
+
+        return current_context.getActiveUniform(program, index);
+
     }
-    
-    
+
+
     public static function getAttachedShaders(program:GLProgram):Array<GLShader> {
-        
-        return lumenContext.getAttachedShaders(program);
-        
+
+        return current_context.getAttachedShaders(program);
+
     }
-    
-    
+
+
     public static function getAttribLocation(program:GLProgram, name:String):Int {
-        
-        return lumenContext.getAttribLocation(program, name);
-        
+
+        return current_context.getAttribLocation(program, name);
+
     }
-    
-    
+
+
     public static function getBufferParameter(target:Int, pname:Int):Dynamic {
-        
-        return lumenContext.getBufferParameter(target, pname);
-        
+
+        return current_context.getBufferParameter(target, pname);
+
     }
-    
-    
+
+
     public static function getContextAttributes():GLContextAttributes {
-        
-        return lumenContext.getContextAttributes();
-        
+
+        return current_context.getContextAttributes();
+
     }
-    
-    
+
+
     public static function getError():Int {
-        
-        return lumenContext.getError();
-        
+
+        return current_context.getError();
+
     }
-    
-    
+
+
     public static function getExtension(name:String):Dynamic {
-        
-        return lumenContext.getExtension(name);
-        
+
+        return current_context.getExtension(name);
+
     }
-    
-    
+
+
     public static function getFramebufferAttachmentParameter(target:Int, attachment:Int, pname:Int):Dynamic {
-        
-        return lumenContext.getFramebufferAttachmentParameter(target, attachment, pname);
-        
+
+        return current_context.getFramebufferAttachmentParameter(target, attachment, pname);
+
     }
-    
-    
+
+
     public static function getParameter(pname:Int):Dynamic {
-        
-        return lumenContext.getParameter(pname);
-        
+
+        return current_context.getParameter(pname);
+
     }
-    
-    
+
+
     public static function getProgramInfoLog(program:GLProgram):String {
-        
-        return lumenContext.getProgramInfoLog(program);
-        
+
+        return current_context.getProgramInfoLog(program);
+
     }
-    
-    
+
+
     public static function getProgramParameter(program:GLProgram, pname:Int):Int {
-        
-        return lumenContext.getProgramParameter(program, pname);
-        
+
+        return current_context.getProgramParameter(program, pname);
+
     }
-    
-    
+
+
     public static function getRenderbufferParameter(target:Int, pname:Int):Dynamic {
-        
-        return lumenContext.getRenderbufferParameter(target, pname);
-        
+
+        return current_context.getRenderbufferParameter(target, pname);
+
     }
-    
-    
+
+
     public static function getShaderInfoLog(shader:GLShader):String {
-        
-        return lumenContext.getShaderInfoLog(shader);
-        
+
+        return current_context.getShaderInfoLog(shader);
+
     }
-    
-    
+
+
     public static function getShaderParameter(shader:GLShader, pname:Int):Int {
-        
-        return lumenContext.getShaderParameter(shader, pname);
-        
+
+        return current_context.getShaderParameter(shader, pname);
+
     }
-    
-    
+
+
     public static function getShaderPrecisionFormat(shadertype:Int, precisiontype:Int):ShaderPrecisionFormat {
-        
+
         // TODO
-        
+
         return null;
-        //return lumenContext.getShader
-        
+        //return current_context.getShader
+
     }
-    
-    
+
+
     public static function getShaderSource(shader:GLShader):String {
-        
-        return lumenContext.getShaderSource(shader);
-        
+
+        return current_context.getShaderSource(shader);
+
     }
-    
-    
+
+
     public static function getSupportedExtensions():Array<String> {
-        
+
         // TODO
-        
+
         return null;
-        //return lumenContext.getSuppo
-        
+        //return current_context.getSuppo
+
     }
-    
-    
+
+
     public static function getTexParameter(target:Int, pname:Int):Dynamic {
-        
-        return lumenContext.getTexParameter(target, pname);
-        
+
+        return current_context.getTexParameter(target, pname);
+
     }
-    
-    
-    public static function getUniform(program:GLProgram, location:GLUniformLocation):Dynamic { 
-        
-        return lumenContext.getUniform(program, location);
-        
+
+
+    public static function getUniform(program:GLProgram, location:GLUniformLocation):Dynamic {
+
+        return current_context.getUniform(program, location);
+
     }
-    
-    
+
+
     public static function getUniformLocation(program:GLProgram, name:String):GLUniformLocation {
-        
-        return lumenContext.getUniformLocation(program, name);
-        
+
+        return current_context.getUniformLocation(program, name);
+
     }
-    
-    
+
+
     public static function getVertexAttrib(index:Int, pname:Int):Dynamic {
-        
-        return lumenContext.getVertexAttrib(index, pname);
-        
+
+        return current_context.getVertexAttrib(index, pname);
+
     }
-    
-    
+
+
     public static function getVertexAttribOffset(index:Int, pname:Int):Int {
-        
-        return lumenContext.getVertexAttribOffset(index, pname);
-        
+
+        return current_context.getVertexAttribOffset(index, pname);
+
     }
-    
-    
+
+
     public static function hint(target:Int, mode:Int):Void {
-        
-        lumenContext.hint(target, mode);
-        
+
+        current_context.hint(target, mode);
+
     }
-    
-    
+
+
     public static function isBuffer(buffer:GLBuffer):Bool {
-        
-        return lumenContext.isBuffer(buffer);
-        
+
+        return current_context.isBuffer(buffer);
+
     }
-    
-    
+
+
     // This is non-static
     // public function isContextLost():Bool { return false; }
-    
-    
+
+
     public static function isEnabled(cap:Int):Bool {
-        
-        return lumenContext.isEnabled(cap);
-        
+
+        return current_context.isEnabled(cap);
+
     }
-    
-    
+
+
     public static function isFramebuffer(framebuffer:GLFramebuffer):Bool {
-        
-        return lumenContext.isFramebuffer(framebuffer);
-        
+
+        return current_context.isFramebuffer(framebuffer);
+
     }
-    
-    
+
+
     public static function isProgram(program:GLProgram):Bool {
-        
-        return lumenContext.isProgram(program);
-        
+
+        return current_context.isProgram(program);
+
     }
-    
-    
+
+
     public static function isRenderbuffer(renderbuffer:GLRenderbuffer):Bool {
-        
-        return lumenContext.isRenderbuffer(renderbuffer);
-        
+
+        return current_context.isRenderbuffer(renderbuffer);
+
     }
-    
-    
+
+
     public static function isShader(shader:GLShader):Bool {
-        
-        return lumenContext.isShader(shader);
-        
+
+        return current_context.isShader(shader);
+
     }
-    
-    
+
+
     public static function isTexture(texture:GLTexture):Bool {
-        
-        return lumenContext.isTexture(texture);
-        
+
+        return current_context.isTexture(texture);
+
     }
-    
-    
+
+
     public static function lineWidth(width:Float):Void {
-        
-        lumenContext.lineWidth(width);
-        
+
+        current_context.lineWidth(width);
+
     }
-    
-    
+
+
     public static function linkProgram(program:GLProgram):Void {
-        
-        lumenContext.linkProgram(program);
-        
+
+        current_context.linkProgram(program);
+
     }
-    
-    
+
+
     public static function pixelStorei(pname:Int, param:Int):Void {
-        
-        lumenContext.pixelStorei(pname, param);
-        
+
+        current_context.pixelStorei(pname, param);
+
     }
-    
-    
+
+
     public static function polygonOffset(factor:Float, units:Float):Void {
-        
-        lumenContext.polygonOffset(factor, units);
-        
+
+        current_context.polygonOffset(factor, units);
+
     }
-    
-    
+
+
     public static function readPixels(x:Int, y:Int, width:Int, height:Int, format:Int, type:Int, pixels:ArrayBufferView):Void {
-        
+
         // TODO: pixels? May need setting to work (canvas.getContext("experimental-webgl", {preserveDrawingBuffer: true});)
-        
-        lumenContext.readPixels(x, y, width, height, format, type, pixels);
-        
+
+        current_context.readPixels(x, y, width, height, format, type, pixels);
+
     }
-    
-    
+
+
     public static function renderbufferStorage(target:Int, internalformat:Int, width:Int, height:Int):Void {
-        
-        lumenContext.renderbufferStorage(target, internalformat, width, height);
-        
+
+        current_context.renderbufferStorage(target, internalformat, width, height);
+
     }
-    
-    
+
+
     public static function sampleCoverage(value:Float, invert:Bool):Void {
-        
-        lumenContext.sampleCoverage(value, invert);
-        
+
+        current_context.sampleCoverage(value, invert);
+
     }
-    
-    
+
+
     public static function scissor(x:Int, y:Int, width:Int, height:Int):Void {
-        
-        lumenContext.scissor(x, y, width, height);
-        
+
+        current_context.scissor(x, y, width, height);
+
     }
-    
-    
+
+
     public static function shaderSource(shader:GLShader, source:String):Void {
-        
-        lumenContext.shaderSource(shader, source);
-        
+
+        current_context.shaderSource(shader, source);
+
     }
-    
-    
+
+
     public static function stencilFunc(func:Int, ref:Int, mask:Int):Void {
-        
-        lumenContext.stencilFunc(func, ref, mask);
-        
+
+        current_context.stencilFunc(func, ref, mask);
+
     }
-    
-    
+
+
     public static function stencilFuncSeparate(face:Int, func:Int, ref:Int, mask:Int):Void {
-        
-        lumenContext.stencilFuncSeparate(face, func, ref, mask);
-        
+
+        current_context.stencilFuncSeparate(face, func, ref, mask);
+
     }
-    
-    
+
+
     public static function stencilMask(mask:Int):Void {
-        
-        lumenContext.stencilMask(mask);
-        
+
+        current_context.stencilMask(mask);
+
     }
-    
-    
+
+
     public static function stencilMaskSeparate(face:Int, mask:Int):Void {
-        
-        lumenContext.stencilMaskSeparate(face, mask);
-        
+
+        current_context.stencilMaskSeparate(face, mask);
+
     }
-    
-    
+
+
     public static function stencilOp(fail:Int, zfail:Int, zpass:Int):Void {
-        
-        lumenContext.stencilOp(fail, zfail, zpass);
-        
+
+        current_context.stencilOp(fail, zfail, zpass);
+
     }
-    
-    
+
+
     public static function stencilOpSeparate(face:Int, fail:Int, zfail:Int, zpass:Int):Void {
-        
-        lumenContext.stencilOpSeparate(face, fail, zfail, zpass);
-        
+
+        current_context.stencilOpSeparate(face, fail, zfail, zpass);
+
     }
-    
-    
+
+
     public static function texImage2D(target:Int, level:Int, internalformat:Int, width:Int, height:Int, border:Int, format:Int, type:Int, pixels:ArrayBufferView):Void {
-        
-        lumenContext.texImage2D(target, level, internalformat, width, height, border, format, type, pixels);
-        
+
+        current_context.texImage2D(target, level, internalformat, width, height, border, format, type, pixels);
+
     }
-    
-    
+
+
     public static function texParameterf(target:Int, pname:Int, param:Float):Void {
-        
-        lumenContext.texParameterf(target, pname, param);
-        
+
+        current_context.texParameterf(target, pname, param);
+
     }
-    
-    
+
+
     public static function texParameteri(target:Int, pname:Int, param:Int):Void {
-        
-        lumenContext.texParameteri(target, pname, param);
-        
+
+        current_context.texParameteri(target, pname, param);
+
     }
-    
-    
+
+
     public static function texSubImage2D(target:Int, level:Int, xoffset:Int, yoffset:Int, width:Int, height:Int, format:Int, type:Int, pixels:ArrayBufferView):Void {
-        
-        lumenContext.texSubImage2D(target, level, xoffset, yoffset, width, height, format, type, pixels);
-        
+
+        current_context.texSubImage2D(target, level, xoffset, yoffset, width, height, format, type, pixels);
+
     }
-    
-    
+
+
     public static function uniform1f(location:GLUniformLocation, x:Float):Void {
-        
-        lumenContext.uniform1f(location, x);
-        
+
+        current_context.uniform1f(location, x);
+
     }
-    
-    
+
+
     public static function uniform1fv(location:GLUniformLocation, x:Float32Array):Void {
-        
-        lumenContext.uniform1fv(location, x);
-        
+
+        current_context.uniform1fv(location, x);
+
     }
-    
-    
+
+
     public static function uniform1i(location:GLUniformLocation, x:Int):Void {
-        
-        lumenContext.uniform1i(location, x);
-        
+
+        current_context.uniform1i(location, x);
+
     }
-    
-    
+
+
     public static function uniform1iv(location:GLUniformLocation, v:Int32Array):Void {
-        
-        lumenContext.uniform1iv(location, v);
-        
+
+        current_context.uniform1iv(location, v);
+
     }
-    
-    
+
+
     public static function uniform2f(location:GLUniformLocation, x:Float, y:Float):Void {
-        
-        lumenContext.uniform2f(location, x, y);
-        
+
+        current_context.uniform2f(location, x, y);
+
     }
-    
-    
+
+
     public static function uniform2fv(location:GLUniformLocation, v:Float32Array):Void {
-        
-        lumenContext.uniform2fv(location, v);
-        
+
+        current_context.uniform2fv(location, v);
+
     }
-    
-    
+
+
     public static function uniform2i(location:GLUniformLocation, x:Int, y:Int):Void {
-        
-        lumenContext.uniform2i(location, x, y);
-        
+
+        current_context.uniform2i(location, x, y);
+
     }
-    
-    
+
+
     public static function uniform2iv(location:GLUniformLocation, v:Int32Array):Void {
-        
-        lumenContext.uniform2iv(location, v);
-        
+
+        current_context.uniform2iv(location, v);
+
     }
-    
-    
+
+
     public static function uniform3f(location:GLUniformLocation, x:Float, y:Float, z:Float):Void {
-        
-        lumenContext.uniform3f(location, x, y, z);
-        
+
+        current_context.uniform3f(location, x, y, z);
+
     }
-    
-    
+
+
     public static function uniform3fv(location:GLUniformLocation, v:Float32Array):Void {
-        
-        lumenContext.uniform3fv(location, v);
-        
+
+        current_context.uniform3fv(location, v);
+
     }
-    
-    
+
+
     public static function uniform3i(location:GLUniformLocation, x:Int, y:Int, z:Int):Void {
-        
-        lumenContext.uniform3i(location, x, y, z);
-        
+
+        current_context.uniform3i(location, x, y, z);
+
     }
-    
-    
+
+
     public static function uniform3iv(location:GLUniformLocation, v:Int32Array):Void {
-        
-        lumenContext.uniform3iv(location, v);
-        
+
+        current_context.uniform3iv(location, v);
+
     }
-    
-    
+
+
     public static function uniform4f(location:GLUniformLocation, x:Float, y:Float, z:Float, w:Float):Void {
-        
-        lumenContext.uniform4f(location, x, y, z, w);
-        
+
+        current_context.uniform4f(location, x, y, z, w);
+
     }
-    
-    
+
+
     public static function uniform4fv(location:GLUniformLocation, v:Float32Array):Void {
-        
-        lumenContext.uniform4fv(location, v);
-        
+
+        current_context.uniform4fv(location, v);
+
     }
-    
-    
+
+
     public static function uniform4i(location:GLUniformLocation, x:Int, y:Int, z:Int, w:Int):Void {
-        
-        lumenContext.uniform4i(location, x, y, z, w);
-        
+
+        current_context.uniform4i(location, x, y, z, w);
+
     }
-    
-    
+
+
     public static function uniform4iv(location:GLUniformLocation, v:Int32Array):Void {
-        
-        lumenContext.uniform4iv(location, v);
-        
+
+        current_context.uniform4iv(location, v);
+
     }
-    
-    
+
+
     public static function uniformMatrix2fv(location:GLUniformLocation, transpose:Bool, v:Float32Array):Void {
-        
-        lumenContext.uniformMatrix2fv(location, transpose, v);
-        
+
+        current_context.uniformMatrix2fv(location, transpose, v);
+
     }
-    
-    
+
+
     public static function uniformMatrix3fv(location:GLUniformLocation, transpose:Bool, v:Float32Array):Void {
-        
-        lumenContext.uniformMatrix3fv(location, transpose, v);
-        
+
+        current_context.uniformMatrix3fv(location, transpose, v);
+
     }
-    
-    
+
+
     public static function uniformMatrix4fv(location:GLUniformLocation, transpose:Bool, v:Float32Array):Void {
-        
-        lumenContext.uniformMatrix4fv(location, transpose, v);
-        
+
+        current_context.uniformMatrix4fv(location, transpose, v);
+
     }
-    
-    
+
+
     public static function uniformMatrix3D(location:GLUniformLocation, transpose:Bool, matrix:Matrix3D):Void {
-        
-        lumenContext.uniformMatrix4fv(location, transpose, new Float32Array(matrix.rawData));
-        
+
+        current_context.uniformMatrix4fv(location, transpose, new Float32Array(matrix.rawData));
+
     }
-    
-    
+
+
     public static function useProgram(program:GLProgram):Void {
-        
-        lumenContext.useProgram(program);
-        
+
+        current_context.useProgram(program);
+
     }
-    
-    
+
+
     public static function validateProgram(program:GLProgram):Void {
-        
-        lumenContext.validateProgram(program);
-        
+
+        current_context.validateProgram(program);
+
     }
-    
-    
+
+
     public static function vertexAttrib1f(indx:Int, x:Float):Void {
-        
-        lumenContext.vertexAttrib1f(indx, x);
-        
+
+        current_context.vertexAttrib1f(indx, x);
+
     }
-    
-    
+
+
     public static function vertexAttrib1fv(indx:Int, values:Float32Array):Void {
-        
-        lumenContext.vertexAttrib1fv(indx, values);
-        
+
+        current_context.vertexAttrib1fv(indx, values);
+
     }
-    
-    
+
+
     public static function vertexAttrib2f(indx:Int, x:Float, y:Float):Void {
-        
-        lumenContext.vertexAttrib2f(indx, x, y);
-        
+
+        current_context.vertexAttrib2f(indx, x, y);
+
     }
-    
-    
+
+
     public static function vertexAttrib2fv(indx:Int, values:Float32Array):Void {
-        
-        lumenContext.vertexAttrib2fv(indx, values);
-        
+
+        current_context.vertexAttrib2fv(indx, values);
+
     }
-    
-    
+
+
     public static function vertexAttrib3f(indx:Int, x:Float, y:Float, z:Float):Void {
-        
-        lumenContext.vertexAttrib3f(indx, x, y, z);
-        
+
+        current_context.vertexAttrib3f(indx, x, y, z);
+
     }
-    
-    
+
+
     public static function vertexAttrib3fv(indx:Int, values:Float32Array):Void {
-        
-        lumenContext.vertexAttrib3fv(indx, values);
-        
+
+        current_context.vertexAttrib3fv(indx, values);
+
     }
-    
-    
+
+
     public static function vertexAttrib4f(indx:Int, x:Float, y:Float, z:Float, w:Float):Void {
-        
-        lumenContext.vertexAttrib4f(indx, x, y, z, w);
-        
+
+        current_context.vertexAttrib4f(indx, x, y, z, w);
+
     }
-    
-    
+
+
     public static function vertexAttrib4fv(indx:Int, values:Float32Array):Void {
-        
-        lumenContext.vertexAttrib4fv(indx, values);
-        
+
+        current_context.vertexAttrib4fv(indx, values);
+
     }
-    
-    
+
+
     public static function vertexAttribPointer(indx:Int, size:Int, type:Int, normalized:Bool, stride:Int, offset:Int):Void {
-        
-        lumenContext.vertexAttribPointer(indx, size, type, normalized, stride, offset);
-        
+
+        current_context.vertexAttribPointer(indx, size, type, normalized, stride, offset);
+
     }
-    
-    
+
+
     public static function viewport(x:Int, y:Int, width:Int, height:Int):Void {
-        
-        lumenContext.viewport(x, y, width, height);
-        
+
+        current_context.viewport(x, y, width, height);
+
     }
-    
-    
-    
-    
+
+
+
+
     // Getters & Setters
 
     static function get_version():Int { return RenderingContext.VERSION; }
-   
+
 }
 
 
 typedef ShaderPrecisionFormat = {
-    
+
    rangeMin : Int,
    rangeMax : Int,
    precision : Int,
-   
+
 };
 
 #end //lumen_html5

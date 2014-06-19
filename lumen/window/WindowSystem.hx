@@ -46,31 +46,31 @@ import lumen.utils.AbstractClass;
             and the actual config that was used since the requested config could fail */
     public function window_create( config:WindowConfig, on_created: WindowHandle->Int->WindowConfig->Void );
         /** Close a given window handle */
-    public function window_close( handle:WindowHandle );
-        /** Update a given window handle */
-    public function window_update( handle:WindowHandle );
-        /** Render a given window handle */
-    public function window_render( handle:WindowHandle );
-        /** Swap a given window handle */
-    public function window_swap( handle:WindowHandle );
-        /** Display a message on a window handle */
-    public function window_simple_message( handle:WindowHandle, message:String, ?title:String="" );
-        /** Set the size of a window handle */
-    public function window_set_size( handle:WindowHandle, w:Int, h:Int );
-        /** Set the position of a window handle */
-    public function window_set_position( handle:WindowHandle, x:Int, y:Int );
-        /** Set the title of a window handle */
-    public function window_set_title( handle:WindowHandle, title:String );
-        /** Set the max size of a window handle */
-    public function window_set_max_size( handle:WindowHandle, w:Int, h:Int );
-        /** Set the min size of a window handle */
-    public function window_set_min_size( handle:WindowHandle, w:Int, h:Int );
-        /** Set the grab state of a window handle */
-    public function window_grab( handle:WindowHandle, grabbed:Bool );
-        /** Set the fullscreen state of a window handle */
-    public function window_fullscreen( handle:WindowHandle, fullscreen:Bool, fullscreen_desktop_mode:Int = 1 );
-        /** Set the bordered state of a window handle */
-    public function window_bordered( handle:WindowHandle, bordered:Bool );
+    public function window_close( window:Window );
+        /** Update a given window */
+    public function window_update( window:Window );
+        /** Render a given window */
+    public function window_render( window:Window );
+        /** Swap a given window */
+    public function window_swap( window:Window );
+        /** Display a message on a window */
+    public function window_simple_message( window:Window, message:String, ?title:String="" );
+        /** Set the size of a window */
+    public function window_set_size( window:Window, w:Int, h:Int );
+        /** Set the position of a window */
+    public function window_set_position( window:Window, x:Int, y:Int );
+        /** Set the title of a window */
+    public function window_set_title( window:Window, title:String );
+        /** Set the max size of a window */
+    public function window_set_max_size( window:Window, w:Int, h:Int );
+        /** Set the min size of a window */
+    public function window_set_min_size( window:Window, w:Int, h:Int );
+        /** Set the grab state of a window */
+    public function window_grab( window:Window, grabbed:Bool );
+        /** Set the fullscreen state of a window */
+    public function window_fullscreen( window:Window, fullscreen:Bool, fullscreen_desktop_mode:Int = 1 );
+        /** Set the bordered state of a window */
+    public function window_bordered( window:Window, bordered:Bool );
 
 
         /** Get the number of displays present */

@@ -154,10 +154,27 @@ class Main extends lumen.AppFixedTimestep {
         if(keycode == Key.KEY_w) {
             app.audio.pitch('wav', 1.5);
             sound3.play();
+
+            var w = app.windowing.create({
+                resizable : true,
+                width : 200, height:200,
+                x : 0x1FFF0000, y:0x1FFF0000,
+                title:'window ' + app.time
+            });
         }
 
         if(keycode == Key.KEY_p) {
             sound5.toggle();
+        }
+
+        if(keycode == Key.KEY_b) {
+            var w = app.windowing.create({
+                resizable : true, borderless:true,
+                width : 200, height:200,
+                x : 0x1FFF0000, y:0x1FFF0000,
+                title:'window ' + app.time
+            });
+
         }
 
         if(keycode == Key.KEY_r) {
@@ -222,7 +239,7 @@ class Main extends lumen.AppFixedTimestep {
 
     override function onmousemove( x:Int, y:Int, xrel:Int, yrel:Int, timestamp:Float, window_id:Int ) {
 
-        trace('move $x / $y / $xrel / $yrel / $timestamp / $window_id');
+        // trace('move $x / $y / $xrel / $yrel / $timestamp / $window_id');
 
         if(app.input.keydown(Key.SPACE)) {
             positionY = y - (size/2);
