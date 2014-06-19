@@ -151,7 +151,7 @@ class Window {
 
     @:noCompletion public function update() {
 
-        manager.system.window_update( handle );
+        manager.system.window_update( this );
 
     } //update
 
@@ -162,7 +162,7 @@ class Window {
             return;
         }
 
-        manager.system.window_render( handle );
+        manager.system.window_render( this );
 
         if(render_handler != null) {
 
@@ -188,21 +188,21 @@ class Window {
         /** Swap the back buffer of the window, call after rendering to update the window view */
     public function swap() {
 
-        manager.system.window_swap( handle );
+        manager.system.window_swap( this );
 
     } //swap
 
         /** Close the window */
     public function close() {
 
-        manager.system.window_close( handle );
+        manager.system.window_close( this );
 
     } //close
 
         /** Display a cross platform message on this window */
     public function simple_message( message:String, title:String="" ) {
 
-        manager.system.window_simple_message( handle, message, title );
+        manager.system.window_simple_message( this, message, title );
 
     } //simple_message
 
@@ -216,7 +216,7 @@ class Window {
     function set_fullscreen( _enable:Bool ) {
 
         if(handle != null) {
-            manager.system.window_fullscreen( handle, _enable, fullscreen_desktop ? 0 : 1  );
+            manager.system.window_fullscreen( this, _enable, fullscreen_desktop ? 0 : 1  );
         }
 
         return fullscreen = _enable;
@@ -256,7 +256,7 @@ class Window {
     function set_title( _title:String ) {
 
         if(handle != null) {
-            manager.system.window_set_title(handle, _title);
+            manager.system.window_set_title( this, _title );
         }
 
         return title = _title;
@@ -268,7 +268,7 @@ class Window {
         x = _x;
 
         if(handle != null && !internal_position) {
-            manager.system.window_set_position( handle, x, y );
+            manager.system.window_set_position( this, x, y );
         }
 
         return x;
@@ -280,7 +280,7 @@ class Window {
         y = _y;
 
         if(handle != null && !internal_position) {
-            manager.system.window_set_position( handle, x, y );
+            manager.system.window_set_position( this, x, y );
         }
 
         return y;
@@ -292,7 +292,7 @@ class Window {
         width = _width;
 
         if(handle != null && !internal_resize) {
-            manager.system.window_set_size( handle, width, height );
+            manager.system.window_set_size( this, width, height );
         }
 
         return width;
@@ -304,7 +304,7 @@ class Window {
         height = _height;
 
         if(handle != null && !internal_resize) {
-            manager.system.window_set_size( handle, width, height );
+            manager.system.window_set_size( this, width, height );
         }
 
         return height;
@@ -324,7 +324,7 @@ class Window {
 
             //this is never called
         if(handle != null && !internal_position) {
-            manager.system.window_set_position( handle, x, y );
+            manager.system.window_set_position( this, x, y );
         }
 
     } //set_position
@@ -341,7 +341,7 @@ class Window {
         internal_resize = last_internal_resize_flag;
 
         if(handle != null && !internal_resize) {
-            manager.system.window_set_size( handle, _width, _height );
+            manager.system.window_set_size( this, _width, _height );
         }
 
     } //set_size
@@ -349,7 +349,7 @@ class Window {
     function set_max_size( _size:{ x:Int, y:Int } ) : { x:Int, y:Int } {
 
         if(max_size != null && handle != null) {
-            manager.system.window_set_max_size( handle, _size.x, _size.y );
+            manager.system.window_set_max_size( this, _size.x, _size.y );
         }
 
         return max_size = _size;
@@ -359,7 +359,7 @@ class Window {
     function set_min_size( _size: { x:Int, y:Int } ) : { x:Int, y:Int } {
 
         if(min_size != null && handle != null) {
-            manager.system.window_set_min_size( handle, _size.x, _size.y );
+            manager.system.window_set_min_size( this, _size.x, _size.y );
         }
 
         return min_size = _size;
@@ -369,7 +369,7 @@ class Window {
     function set_bordered( _bordered:Bool ) : Bool {
 
         if(handle != null) {
-            manager.system.window_bordered(handle, _bordered);
+            manager.system.window_bordered( this, _bordered );
         }
 
         return bordered = _bordered;
@@ -379,7 +379,7 @@ class Window {
     function set_grab( _grab:Bool ) : Bool {
 
         if(handle != null) {
-            manager.system.window_grab(handle, _grab);
+            manager.system.window_grab( this, _grab );
         }
 
         return grab = _grab;

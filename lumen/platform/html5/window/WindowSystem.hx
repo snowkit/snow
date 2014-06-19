@@ -11,12 +11,14 @@ import lumen.window.WindowSystem;
         //Internal class handled by Windowing, a less concrete implementation of the window system
     @:noCompletion class WindowSystem extends WindowSystemBinding {
 
-        var gl_context : js.html.webgl.RenderingContext;
+        public var gl_contexts : Map<Int, js.html.webgl.RenderingContext>;
+        var seq_window : Int = 1;
 
         public function new( _manager:Windowing, _lib:Lumen ) {
 
             manager = _manager;
             lib = _lib;
+            gl_contexts = new Map();
 
         } //new
 
@@ -31,6 +33,7 @@ import lumen.window.WindowSystem;
 
         override public function window_create( config:WindowConfig, on_created: WindowHandle->Int->WindowConfig->Void ) {
 
+            var _window_id = seq_window;
             var _handle : js.html.CanvasElement = js.Browser.document.createCanvasElement();
 
                     //assign the sizes
@@ -47,14 +50,19 @@ import lumen.window.WindowSystem;
                 js.Browser.document.body.appendChild(_handle);
 
                 //:todo: These options, plus this context is singular atm, need to enforce or clarify this somehow
-            gl_context = _handle.getContextWebGL({ alpha:false, premultipliedAlpha:false });
-
-            if(gl_context == null) {
+            var _gl_context = _handle.getContextWebGL({ alpha:false, premultipliedAlpha:false });
+                //early out on no possible context
+            if(_gl_context == null) {
                 throw "WebGL is required to run this!";
             }
 
-                //assign the context so GL can work
-            lumen.render.gl.GL.lumenContext = gl_context;
+                //make sure there is one early
+            if(lumen.render.gl.GL.current_context == null) {
+                lumen.render.gl.GL.current_context = _gl_context;
+            }
+
+                //store it for activating later
+            gl_contexts.set(_window_id, _gl_context);
 
                 //get the real canvas position and give it to the config
             var _window_pos = get_real_window_position( _handle );
@@ -63,82 +71,83 @@ import lumen.window.WindowSystem;
                 config.y = _window_pos.y;
 
                 //tell them and give the handle for later.
-                //:todo: work out window id's for multiple canvases
-            var _id = 1;
-            on_created(_handle, _id, config);
-                    //todo: hardcoded window id
-            _handle.setAttribute('id', 'window${_id}');
+            on_created(_handle, _window_id, config);
+            _handle.setAttribute('id', 'window${_window_id}');
+
+            seq_window++;
 
         } //window_create
 
-        override public function window_close( handle:WindowHandle ) {
+        override public function window_close( window:Window ) {
 
-            js.Browser.document.body.removeChild(handle);
+            js.Browser.document.body.removeChild( window.handle );
 
         } //window_close
 
-        override public function window_update( handle:WindowHandle ) {
+        override public function window_update( window:Window ) {
 
-            var _rect = handle.getBoundingClientRect();
-            var _window : Window = lib.windowing.window_from_handle(handle);
+            var _rect = window.handle.getBoundingClientRect();
 
-            if(_window != null) {
-                if(_rect.left != _window.x || _rect.top != _window.y) {
+                if(_rect.left != window.x || _rect.top != window.y) {
                     lib.dispatch_system_event({
                         type : SystemEventType.window,
                         window : {
                             type : WindowEventType.window_moved,
                             timestamp : lib.time,
-                            window_id : 1,//_window.id,
+                            window_id : window.id,
                             event : { x:_rect.left, y:_rect.top }
                         }
                     });
-                }else if(_rect.width != _window.width || _rect.height != _window.height) {
+                }else if(_rect.width != window.width || _rect.height != window.height) {
 
                     lib.dispatch_system_event({
                         type : SystemEventType.window,
                         window : {
                             type : WindowEventType.window_size_changed,
                             timestamp : lib.time,
-                            window_id : 1,//_window.id,
+                            window_id : window.id,
                             event : { x:_rect.width, y:_rect.height }
                         }
                     });
 
                 }
-            }
 
             _rect = null;
 
         } //window_update
 
-        override public function window_render( handle:WindowHandle ) {
+        override public function window_render( window:Window ) {
+
+            var _window_gl_context = gl_contexts.get(window.id);
+            if(lumen.render.gl.GL.current_context != _window_gl_context) {
+                lumen.render.gl.GL.current_context = _window_gl_context;
+            }
 
         } //window_render
 
-        override public function window_swap( handle:WindowHandle ) {
+        override public function window_swap( window:Window ) {
 
             //empty because this concept is not possible in browser
 
         } //window_swap
 
-        override public function window_simple_message( handle:WindowHandle, message:String, ?title:String="" ) {
+        override public function window_simple_message( window:Window, message:String, ?title:String="" ) {
 
             js.Browser.window.alert( message );
 
         } //window_simple_message
 
-        override public function window_set_size( handle:WindowHandle, w:Int, h:Int ) {
+        override public function window_set_size( window:Window, w:Int, h:Int ) {
 
-            handle.style.width = '${w}px';
-            handle.style.height = '${h}px';
+            window.handle.style.width = '${w}px';
+            window.handle.style.height = '${h}px';
 
         } //window_set_size
 
-        override public function window_set_position( handle:WindowHandle, x:Int, y:Int ) {
+        override public function window_set_position( window:Window, x:Int, y:Int ) {
 
-            handle.style.left = '${x}px';
-            handle.style.top = '${y}px';
+            window.handle.style.left = '${x}px';
+            window.handle.style.top = '${y}px';
 
         } //window_set_position
 
@@ -184,38 +193,38 @@ import lumen.window.WindowSystem;
 
         } //get_real_window_position
 
-        override public function window_set_title( handle:WindowHandle, title:String ) {
+        override public function window_set_title( window:Window, title:String ) {
 
             js.Browser.document.title = title;
 
         } //window_set_title
 
-        override public function window_set_max_size( handle:WindowHandle, w:Int, h:Int ) {
+        override public function window_set_max_size( window:Window, w:Int, h:Int ) {
 
-            handle.style.maxWidth = '${w}px';
-            handle.style.maxHeight = '${h}px';
+            window.handle.style.maxWidth = '${w}px';
+            window.handle.style.maxHeight = '${h}px';
 
         } //window_set_max_size
 
-        override public function window_set_min_size( handle:WindowHandle, w:Int, h:Int ) {
+        override public function window_set_min_size( window:Window, w:Int, h:Int ) {
 
-            handle.style.minWidth = '${w}px';
-            handle.style.minHeight = '${h}px';
+            window.handle.style.minWidth = '${w}px';
+            window.handle.style.minHeight = '${h}px';
 
         } //window_set_min_size
 
             //:todo:
-        override public function window_grab( handle:WindowHandle, grabbed:Bool ) {
+        override public function window_grab( window:Window, grabbed:Bool ) {
 
             if(grabbed) {
                     //official api's first
-                if(handle.requestPointerLock == null) {
-                        if(untyped handle.webkitRequestPointerLock == null) {
-                            if(untyped handle.mozRequestPointerLock == null) {
+                if(window.handle.requestPointerLock == null) {
+                        if(untyped window.handle.webkitRequestPointerLock == null) {
+                            if(untyped window.handle.mozRequestPointerLock == null) {
 
-                            } else { untyped handle.mozRequestPointerLock(); }
-                        } else { untyped handle.webkitRequestPointerLock(); }
-                } else { handle.requestPointerLock(); }
+                            } else { untyped window.handle.mozRequestPointerLock(); }
+                        } else { untyped window.handle.webkitRequestPointerLock(); }
+                } else { window.handle.requestPointerLock(); }
 
             } else {
 
@@ -233,7 +242,7 @@ import lumen.window.WindowSystem;
         var _pre_fs_width : Int = 0;
         var _pre_fs_height : Int = 0;
 
-        override public function window_fullscreen( handle:WindowHandle, fullscreen:Bool, fullscreen_desktop_mode:Int = 1 ) {
+        override public function window_fullscreen( window:Window, fullscreen:Bool, fullscreen_desktop_mode:Int = 1 ) {
 
                 //as always browser support for newer features will be
                 //sporadic. Tested fullscreen against firefox/chrome/opera/safari latest
@@ -243,31 +252,31 @@ import lumen.window.WindowSystem;
                 if(fullscreen_desktop_mode == 1) {
 
                         //official api's first
-                    if(handle.requestFullscreen == null) {
-                        if(handle.requestFullScreen == null) {
-                            if(untyped handle.webkitRequestFullscreen == null) {
-                                if(untyped handle.mozRequestFullScreen == null) {
+                    if(window.handle.requestFullscreen == null) {
+                        if(window.handle.requestFullScreen == null) {
+                            if(untyped window.handle.webkitRequestFullscreen == null) {
+                                if(untyped window.handle.mozRequestFullScreen == null) {
 
-                                } else { untyped handle.mozRequestFullScreen(); }
-                            } else { untyped handle.webkitRequestFullscreen(); }
-                        } else { handle.requestFullScreen(0); }
-                    } else { handle.requestFullscreen(); }
+                                } else { untyped window.handle.mozRequestFullScreen(); }
+                            } else { untyped window.handle.webkitRequestFullscreen(); }
+                        } else { window.handle.requestFullScreen(0); }
+                    } else { window.handle.requestFullscreen(); }
 
                 } else {
 
-                    _pre_fs_padding = handle.style.padding;
-                    _pre_fs_margin = handle.style.margin;
-                    _pre_fs_s_width = handle.style.width;
-                    _pre_fs_s_height = handle.style.height;
-                    _pre_fs_width = handle.width;
-                    _pre_fs_height = handle.height;
+                    _pre_fs_padding = window.handle.style.padding;
+                    _pre_fs_margin = window.handle.style.margin;
+                    _pre_fs_s_width = window.handle.style.width;
+                    _pre_fs_s_height = window.handle.style.height;
+                    _pre_fs_width = window.handle.width;
+                    _pre_fs_height = window.handle.height;
 
-                    handle.style.margin = '0';
-                    handle.style.padding = '0';
-                    handle.style.width = js.Browser.window.innerWidth + 'px';
-                    handle.style.height = js.Browser.window.innerHeight + 'px';
-                    handle.width = js.Browser.window.innerWidth;
-                    handle.height = js.Browser.window.innerHeight;
+                    window.handle.style.margin = '0';
+                    window.handle.style.padding = '0';
+                    window.handle.style.width = js.Browser.window.innerWidth + 'px';
+                    window.handle.style.height = js.Browser.window.innerHeight + 'px';
+                    window.handle.width = js.Browser.window.innerWidth;
+                    window.handle.height = js.Browser.window.innerHeight;
                 }
 
             } else {
@@ -276,12 +285,12 @@ import lumen.window.WindowSystem;
                     //currently no cancel full screen in fullscreen mode
                 } else {
 
-                    handle.style.padding = _pre_fs_padding;
-                    handle.style.margin = _pre_fs_margin;
-                    handle.style.width = _pre_fs_s_width;
-                    handle.style.height = _pre_fs_s_height;
-                    handle.width = _pre_fs_width;
-                    handle.height = _pre_fs_height;
+                    window.handle.style.padding = _pre_fs_padding;
+                    window.handle.style.margin = _pre_fs_margin;
+                    window.handle.style.width = _pre_fs_s_width;
+                    window.handle.style.height = _pre_fs_s_height;
+                    window.handle.width = _pre_fs_width;
+                    window.handle.height = _pre_fs_height;
 
                 }
 
@@ -289,7 +298,7 @@ import lumen.window.WindowSystem;
 
         } //window_fullscreen
 
-        override public function window_bordered( handle:WindowHandle, bordered:Bool ) {
+        override public function window_bordered( window:Window, bordered:Bool ) {
 
             //empty, window border has no such concept on browser
 
@@ -364,7 +373,7 @@ import lumen.window.WindowSystem;
 
         function on_internal_leave( _mouse_event:js.html.MouseEvent ) {
 
-            // var _window : Window = lib.window.from_handle(_mouse_event)
+            var _window : Window = lib.windowing.window_from_handle(cast _mouse_event.target);
 
                 //tell the system
             lib.dispatch_system_event({
@@ -372,7 +381,7 @@ import lumen.window.WindowSystem;
                 window : {
                     type : WindowEventType.window_leave,
                     timestamp : _mouse_event.timeStamp,
-                    window_id : 1,//_window.id,
+                    window_id : _window.id,
                     event : _mouse_event
                 }
             });
@@ -381,7 +390,7 @@ import lumen.window.WindowSystem;
 
         function on_internal_enter( _mouse_event:js.html.MouseEvent ) {
 
-            // var _window : Window = lib.window.from_handle()
+            var _window : Window = lib.windowing.window_from_handle(cast _mouse_event.target);
 
                 //tell the system
             lib.dispatch_system_event({
@@ -389,7 +398,7 @@ import lumen.window.WindowSystem;
                 window : {
                     type : WindowEventType.window_enter,
                     timestamp : _mouse_event.timeStamp,
-                    window_id : 1,//_window.id,
+                    window_id : _window.id,
                     event : _mouse_event
                 }
             });
