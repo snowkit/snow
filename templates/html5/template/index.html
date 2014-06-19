@@ -8,33 +8,25 @@
 
         <style>
 
-            canvas {
-                display: block;
-                margin-left: auto;
-                margin-right: auto;
-                margin-top: 2em;
-                position: relative;
-                background: #000;
-            }
 
         </style>
-		
+
         <script type="text/javascript" src="./lib/modernizr.js"></script>
 
     </head>
 
     <body style="padding: 0; margin: 0; background-color: #111111;">
-        
+
 		::if linkedLibraries::
             ::foreach (linkedLibraries)::
 		<script type="text/javascript" src="::__current__::"></script>
             ::end::
         ::end::
 
-        <script type="text/javascript" src="./::APP_FILE::.js"></script>    
+        <script type="text/javascript" src="./::APP_FILE::.js"></script>
 
         <!-- <canvas id="lumen_canvas" tabindex="1" width="::WIN_WIDTH::" height="::WIN_HEIGHT::"> </canvas> -->
-        
+
     </body>
 
 </html>

@@ -78,11 +78,11 @@ typedef HTML5Gamepad = {
 
     function on_mousedown( _mouse_event:js.html.MouseEvent ) {
 
-        var _window : Window = lib.window.window_from_handle(cast _mouse_event.target);
+        var _window : Window = lib.windowing.window_from_handle(cast _mouse_event.target);
 
         manager.dispatch_mouse_down_event(
-            _mouse_event.pageX - _window.position.x,
-            _mouse_event.pageY - _window.position.y,
+            _mouse_event.pageX - _window.x,
+            _mouse_event.pageY - _window.y,
             _mouse_event.button,
             _mouse_event.timeStamp,
             _window.id
@@ -92,11 +92,11 @@ typedef HTML5Gamepad = {
 
     function on_mouseup( _mouse_event:js.html.MouseEvent ) {
 
-        var _window : Window = lib.window.window_from_handle(cast _mouse_event.target);
+        var _window : Window = lib.windowing.window_from_handle(cast _mouse_event.target);
 
         manager.dispatch_mouse_up_event(
-            _mouse_event.pageX - _window.position.x,
-            _mouse_event.pageY - _window.position.y,
+            _mouse_event.pageX - _window.x,
+            _mouse_event.pageY - _window.y,
             _mouse_event.button,
             _mouse_event.timeStamp,
             _window.id
@@ -106,11 +106,11 @@ typedef HTML5Gamepad = {
 
     function on_mousemove( _mouse_event:js.html.MouseEvent ) {
 
-        var _window : Window = lib.window.window_from_handle(cast _mouse_event.target);
+        var _window : Window = lib.windowing.window_from_handle(cast _mouse_event.target);
 
         manager.dispatch_mouse_move_event(
-            _mouse_event.pageX - _window.position.x,
-            _mouse_event.pageY - _window.position.y,
+            _mouse_event.pageX - _window.x,
+            _mouse_event.pageY - _window.y,
             _mouse_event.movementX,
             _mouse_event.movementY,
             _mouse_event.timeStamp,
@@ -122,7 +122,7 @@ typedef HTML5Gamepad = {
 
     function on_mousewheel( _wheel_event:js.html.WheelEvent ) {
 
-        var _window : Window = lib.window.window_from_handle(cast _wheel_event.target);
+        var _window : Window = lib.windowing.window_from_handle(cast _wheel_event.target);
 
         var _x : Int = 0;
         var _y : Int = 0;
