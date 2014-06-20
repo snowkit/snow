@@ -7,14 +7,6 @@ import lumen.render.opengl.GL;
 
     //A window has it's own event loop
     //and allows opening and closing windows
-// @:buildXml('
-//    <files id="haxe">,
-//         <compilerflag value="-I${haxelib:lumen}/project/include/"/>
-//    </files>
-//    <target id="haxe">
-//         <vflag name="-framework" value="OpenGL" />
-//    </target>
-// ')
 class Window {
 
         /** the window id, for tracking events to each window */

@@ -1,13 +1,6 @@
 #include <hx/CFFI.h>
 
-#if defined(HX_MACOS) || defined(IPHONE)
-    #include <OpenAL/al.h>
-    #include <OpenAL/alc.h>
-#else
-    #include "AL/al.h"
-    #include "AL/alc.h"
-#endif
-
+#include "audio/openal/lumen_openal.h"
 #include "hx_bindings.h"
 #include "lumen_core.h"
 #include "common/Object.h"
