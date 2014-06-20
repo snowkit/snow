@@ -6,7 +6,6 @@ import lumen.render.opengl.GL;
 import lumen.utils.ByteArray;
 import lumen.utils.UInt8Array;
 import lumen.utils.Float32Array;
-import lumen.utils.compat.Matrix3D;
 
 import lumen.window.Window;
 import lumen.input.Input;
@@ -38,6 +37,9 @@ class Main extends lumen.AppFixedTimestep {
     var positionY : Float = 0;
     var dirX : Float = 1;
     var speed : Float = 100;
+
+    var projectionMatrix : Float32Array;
+    var modelViewMatrix : Float32Array;
 
         //sound instances.
         //no need to track these,
@@ -487,11 +489,8 @@ class Main extends lumen.AppFixedTimestep {
         GL.clearColor(1.0, 0.5, 0.2, 1.0);
         GL.clear (GL.COLOR_BUFFER_BIT);
 
-        // var positionX = (app.window.width - size) / 2;
-        // var positionY = (app.window.height - size) / 2;
-
-        var projectionMatrix = Matrix3D.createOrtho (0, app.window.width, app.window.height, 0, 1000, -1000);
-        var modelViewMatrix = Matrix3D.create2D (positionX, positionY, 1, 0);
+        projectionMatrix = createOrthoMatrix( 0, app.window.width, app.window.height, 0, 1000, -1000 );
+        modelViewMatrix = create2DMatrix( positionX, positionY, 1, 0 );
 
         GL.useProgram (shaderProgram);
         GL.enableVertexAttribArray (vertexAttribute);
@@ -507,9 +506,9 @@ class Main extends lumen.AppFixedTimestep {
         GL.bindBuffer (GL.ARRAY_BUFFER, texCoordBuffer);
         GL.vertexAttribPointer (texCoordAttribute, 2, GL.FLOAT, false, 0, 0);
 
-        GL.uniformMatrix3D (projectionMatrixUniform, false, projectionMatrix);
-        GL.uniformMatrix3D (modelViewMatrixUniform, false, modelViewMatrix);
-        GL.uniform1i (imageUniform, 0);
+        GL.uniformMatrix4fv( projectionMatrixUniform, false, projectionMatrix );
+        GL.uniformMatrix4fv( modelViewMatrixUniform, false, modelViewMatrix );
+        GL.uniform1i( imageUniform, 0 );
 
         GL.drawArrays (GL.TRIANGLE_STRIP, 0, 4);
 
@@ -521,5 +520,36 @@ class Main extends lumen.AppFixedTimestep {
         GL.useProgram (null);
 
     } //render
+
+
+    function createOrthoMatrix( x0:Float, x1:Float,  y0:Float, y1:Float, zNear:Float, zFar:Float ) : Float32Array {
+
+        var sx = 1.0 / (x1 - x0);
+        var sy = 1.0 / (y1 - y0);
+        var sz = 1.0 / (zFar - zNear);
+
+        return new Float32Array([
+            2.0*sx,         0,              0,                  0,
+            0,              2.0*sy,         0,                  0,
+            0,              0,              -2.0*sz,            0,
+            - (x0+x1)*sx,   - (y0+y1)*sy,   - (zNear+zFar)*sz,  1,
+        ]);
+
+    } //createOrthoMatrix
+
+    function create2DMatrix( x:Float, y:Float, scale:Float = 1, rotation:Float = 0 ) {
+
+        var theta = rotation * Math.PI / 180.0;
+        var c = Math.cos(theta);
+        var s = Math.sin(theta);
+
+        return new Float32Array([
+            c*scale,  -s*scale,     0,      0,
+            s*scale,  c*scale,      0,      0,
+            0,        0,            1,      0,
+            x,        y,            0,      1
+        ]);
+
+    } //create2DMatrix
 
 } //Main

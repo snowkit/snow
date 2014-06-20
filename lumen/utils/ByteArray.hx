@@ -9,3 +9,12 @@ package lumen.utils;
 #else
    	typedef ByteArray = lumen.platform.native.utils.ByteArray;
 #end
+
+//Helpers
+
+@:noCompletion class Endian {
+
+    public static inline var BIG_ENDIAN : String = "bigEndian";
+    public static inline var LITTLE_ENDIAN : String = "littleEndian";
+
+}

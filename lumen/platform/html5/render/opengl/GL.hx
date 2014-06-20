@@ -2,7 +2,6 @@ package lumen.platform.html5.render.opengl;
 
 #if lumen_html5
 
-import lumen.utils.compat.Matrix3D;
 import lumen.utils.ByteArray;
 
 import js.html.webgl.RenderingContext;
@@ -1332,13 +1331,6 @@ class GL {
     public static function uniformMatrix4fv(location:GLUniformLocation, transpose:Bool, v:Float32Array):Void {
 
         current_context.uniformMatrix4fv(location, transpose, v);
-
-    }
-
-
-    public static function uniformMatrix3D(location:GLUniformLocation, transpose:Bool, matrix:Matrix3D):Void {
-
-        current_context.uniformMatrix4fv(location, transpose, new Float32Array(matrix.rawData));
 
     }
 

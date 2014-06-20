@@ -1,6 +1,5 @@
 package lumen.platform.native.render.opengl;
 
-import lumen.utils.compat.Matrix3D;
 import lumen.utils.ArrayBuffer;
 import lumen.utils.ArrayBufferView;
 import lumen.utils.Float32Array;
@@ -1176,11 +1175,6 @@ class GL {
     public static function uniformMatrix4fv(location:GLUniformLocation, transpose:Bool, v:Float32Array):Void
     {
         lumen_gl_uniform_matrix(location, transpose, v.getByteBuffer(), 4);
-    }
-
-    public static function uniformMatrix3D(location:GLUniformLocation, transpose:Bool, matrix:Matrix3D):Void
-    {
-        lumen_gl_uniform_matrix(location, transpose, Float32Array.fromMatrix(matrix).getByteBuffer() , 4);
     }
 
     public static function useProgram(program:GLProgram):Void

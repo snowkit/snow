@@ -9,8 +9,6 @@ package lumen.platform.html5.utils;
     import js.html.DataView;
     import js.html.Uint8Array;
 
-    import lumen.utils.compat.Endian;
-
     #if format
         import format.tools.Inflate;
     #end
@@ -494,25 +492,23 @@ package lumen.platform.html5.utils;
 
 
 
+        public static inline var BIG_ENDIAN : String = "bigEndian";
+        public static inline var LITTLE_ENDIAN : String = "littleEndian";
 
         // Getters & Setters
 
 
-
-
         inline private function get_bytesAvailable():Int { return length - position; }
-
 
         inline function get_endian():String {
 
-            return littleEndian ? Endian.LITTLE_ENDIAN : Endian.BIG_ENDIAN;
+            return (littleEndian) ? LITTLE_ENDIAN : BIG_ENDIAN;
 
         }
 
-
         inline function set_endian(endian:String):String {
 
-            littleEndian = (endian == Endian.LITTLE_ENDIAN);
+            littleEndian = (endian == LITTLE_ENDIAN);
             return endian;
 
         }
