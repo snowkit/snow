@@ -12,15 +12,16 @@ import lumen.utils.Int32Array;
 import lumen.utils.Float32Array;
 
 
-typedef GLActiveInfo        = js.html.webgl.ActiveInfo;
-typedef GLBuffer            = js.html.webgl.Buffer;
-typedef GLContextAttributes = js.html.webgl.ContextAttributes;
-typedef GLFramebuffer       = js.html.webgl.Framebuffer;
-typedef GLProgram           = js.html.webgl.Program;
-typedef GLRenderbuffer      = js.html.webgl.Renderbuffer;
-typedef GLShader            = js.html.webgl.Shader;
-typedef GLTexture           = js.html.webgl.Texture;
-typedef GLUniformLocation   = js.html.webgl.UniformLocation;
+typedef GLActiveInfo                = js.html.webgl.ActiveInfo;
+typedef GLBuffer                    = js.html.webgl.Buffer;
+typedef GLContextAttributes         = js.html.webgl.ContextAttributes;
+typedef GLFramebuffer               = js.html.webgl.Framebuffer;
+typedef GLProgram                   = js.html.webgl.Program;
+typedef GLRenderbuffer              = js.html.webgl.Renderbuffer;
+typedef GLShader                    = js.html.webgl.Shader;
+typedef GLTexture                   = js.html.webgl.Texture;
+typedef GLUniformLocation           = js.html.webgl.UniformLocation;
+typedef GLShaderPrecisionFormat     = js.html.webgl.ShaderPrecisionFormat;
 
 class GL {
 
@@ -945,12 +946,9 @@ class GL {
     }
 
 
-    public static function getShaderPrecisionFormat(shadertype:Int, precisiontype:Int):ShaderPrecisionFormat {
+    public static function getShaderPrecisionFormat(shadertype:Int, precisiontype:Int) : GLShaderPrecisionFormat {
 
-        // TODO
-
-        return null;
-        //return current_context.getShader
+        return current_context.getShaderPrecisionFormat(shadertype, precisiontype);
 
     }
 
@@ -962,12 +960,9 @@ class GL {
     }
 
 
-    public static function getSupportedExtensions():Array<String> {
+    public static function getSupportedExtensions() : Array<String> {
 
-        // TODO
-
-        return null;
-        //return current_context.getSuppo
+        return current_context.getSupportedExtensions();
 
     }
 
@@ -1426,14 +1421,5 @@ class GL {
     static function get_version():Int { return RenderingContext.VERSION; }
 
 }
-
-
-typedef ShaderPrecisionFormat = {
-
-   rangeMin : Int,
-   rangeMax : Int,
-   precision : Int,
-
-};
 
 #end //lumen_html5
