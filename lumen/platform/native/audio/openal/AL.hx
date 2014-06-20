@@ -566,54 +566,54 @@ class ALC {
 
 // contexts
 
-    public static function createContext(device:Dynamic, ?attrlist:Array<Int>) : Dynamic {
+    public static function createContext(device:Device, ?attrlist:Array<Int>) : Context {
         return alhx_alcCreateContext(device, attrlist);
     }
 
-    public static function makeContextCurrent(context:Dynamic) : Bool {
+    public static function makeContextCurrent(context:Context) : Bool {
         return alhx_alcMakeContextCurrent(context);
     }
 
-    public static function processContext(context:Dynamic) : Void {
+    public static function processContext(context:Context) : Void {
         alhx_alcProcessContext(context);
     }
 
-    public static function suspendContext(context:Dynamic) : Void {
+    public static function suspendContext(context:Context) : Void {
         alhx_alcSuspendContext(context);
     }
 
-    public static function destroyContext(context:Dynamic) : Void {
+    public static function destroyContext(context:Context) : Void {
         alhx_alcDestroyContext(context);
     }
 
-    public static function getCurrentContext() : Dynamic {
+    public static function getCurrentContext() : Context {
         return alhx_alcGetCurrentContext();
     }
 
-    public static function getContextsDevice(context:Dynamic) : Dynamic {
+    public static function getContextsDevice(context:Context) : Device {
         return alhx_alcGetContextsDevice(context);
     }
 
 // devices
 
 
-    public static function openDevice(?devicename:String) : Dynamic {
+    public static function openDevice(?devicename:String) : Device {
         return alhx_alcOpenDevice(devicename);
     }
 
-    public static function closeDevice(device:Dynamic) : Bool {
+    public static function closeDevice(device:Device) : Bool {
         return alhx_alcCloseDevice(device);
     }
 
-    public static function getError(device:Dynamic) : Int {
+    public static function getError(device:Device) : Int {
         return alhx_alcGetError(device);
     }
 
-    public static function getString(device:Dynamic, param:Int) : String {
+    public static function getString(device:Device, param:Int) : String {
         return alhx_alcGetString(device, param);
     }
 
-    public static function getIntegerv(device:Dynamic, param:Int, size:Int) : Array<Int> {
+    public static function getIntegerv(device:Device, param:Int, size:Int) : Array<Int> {
         return alhx_alcGetIntegerv(device, param, size);
     }
 
