@@ -126,7 +126,7 @@ import lumen.platform.native.audio.openal.OpenALHelper;
 
         var still_busy = true;
 
-        trace(' ${time}/${duration} | ${position}/${length} | ${buffers_left} ');
+        // trace(' ${time}/${duration} | ${position}/${length} | ${buffers_left} ');
 
 
         var processed_buffers : Int = AL.getSourcei(source, AL.BUFFERS_PROCESSED );
