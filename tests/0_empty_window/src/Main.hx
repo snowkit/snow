@@ -85,6 +85,7 @@ class Main extends lumen.AppFixedTimestep {
         trace("desktop native resolution of primary display : " + app.windowing.system.display_native_mode(0) );
 
         trace("OpenGL reports version " + GL.versionString());
+        trace("OpenGL reports extensions " + GL.getSupportedExtensions());
 
         initializeShaders();
         createBuffers();
@@ -134,7 +135,7 @@ class Main extends lumen.AppFixedTimestep {
         trace("sound5 : " + sound5.name);
 
         // sound4.loop();
-        sound5.loop();
+        // sound5.loop();
 
     } //ready
 

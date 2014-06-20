@@ -6,9 +6,7 @@ import lumen.utils.Float32Array;
 import lumen.utils.IMemoryRange;
 import lumen.utils.Int32Array;
 
-import lumen.render.opengl.GL.GLObject;
 import lumen.utils.Libs;
-
 
 
 typedef GLActiveInfo = {
@@ -20,14 +18,13 @@ typedef GLActiveInfo = {
 } //GLActiveInfo
 
 
-class GLBuffer extends GLObject {
+typedef GLShaderPrecisionFormat = {
 
-    override function getType ():String {
-        return "Buffer";
-    }
+    rangeMin : Int,
+    rangeMax : Int,
+    precision : Int,
 
-} //GLBuffer
-
+} //GLShaderPrecisionFormat
 
 typedef GLContextAttributes = {
 
@@ -41,48 +38,57 @@ typedef GLContextAttributes = {
 } //GLContextAttributes
 
 
-class GLFramebuffer extends GLObject {
-
-    override function getType () : String {
-        return "Framebuffer";
-    }
-
-} //GLFramebuffer
-
-
 typedef GLUniformLocation = Int;
 
+class GLObject {
 
-class GLProgram extends GLObject {
+        /** The native GL handle/id. read only */
+    public var id (default, null) : Int;
+        /** The invalidated state. read only */
+    @:isVar public var invalidated (default,set) : Bool;
 
-    public var shaders:Array<GLShader>;
+    public function new( id:Int ) {
 
-    public function new( version:Int, id:Dynamic ) {
-
-        super (version, id);
-        shaders = new Array<GLShader> ();
+        this.id = id;
 
     } //new
 
-    public function attach( shader:GLShader ) : Void {
-        shaders.push(shader);
-    } //attach
+    function toString() : String {
 
-    public function getShaders() : Array<GLShader> {
-        return shaders.copy();
-    } //getShaders
+        return "GLObject($id)";
 
-    override function getType ():String {
-        return "Program";
-    } //getType
+    } //toString
 
-} //GLProgram
+    function set_invalidated( value:Bool ) : Bool {
 
+        id = -1;
+        return invalidated = value;
+
+    } //set_invalidated
+
+} //GLObject
+
+class GLBuffer extends GLObject {
+
+    override function toString() : String {
+        return "GLBuffer(${id})";
+    } //toString
+
+} //GLBuffer
+
+
+class GLFramebuffer extends GLObject {
+
+    override function toString() : String {
+        return "GLFramebuffer(${id})";
+    } //toString
+
+} //GLFramebuffer
 
 class GLRenderbuffer extends GLObject {
 
-    override function getType ():String {
-        return "Renderbuffer";
+    override function toString() : String {
+        return "GLRenderbuffer(${id})";
     }
 
 } //GLRenderbuffer
@@ -90,8 +96,8 @@ class GLRenderbuffer extends GLObject {
 
 class GLShader extends GLObject {
 
-    override function getType ():String {
-        return "Shader";
+    override function toString() : String {
+        return "GLShader(${id})";
     }
 
 } //GLShader
@@ -99,13 +105,31 @@ class GLShader extends GLObject {
 
 class GLTexture extends GLObject {
 
-    override function getType ():String {
-        return "Texture";
+    override function toString() : String {
+        return "GLTexture(${id})";
     }
 
 } //GLTexture
 
 
+class GLProgram extends GLObject {
+
+    public var shaders : Array<GLShader>;
+
+    public function new( id:Int ) {
+
+        super( id );
+        shaders = [];
+
+    } //new
+
+    override function toString() : String {
+
+        return 'GLProgram(${id})';
+
+    } //toString
+
+} //GLProgram
 
 
 
@@ -527,8 +551,6 @@ class GL {
     public static inline var UNPACK_COLORSPACE_CONVERSION_WEBGL = 0x9243;
     public static inline var BROWSER_DEFAULT_WEBGL              = 0x9244;
 
-    public static var version(get_version, null):Int;
-
     public static function versionString():String {
         return lumen_gl_version();
     }
@@ -540,7 +562,7 @@ class GL {
 
     public static function attachShader(program:GLProgram, shader:GLShader):Void
     {
-        program.attach(shader);
+        program.shaders.push( shader );
         lumen_gl_attach_shader(program.id, shader.id);
     }
 
@@ -661,32 +683,32 @@ class GL {
 
     public static function createBuffer():GLBuffer
     {
-        return new GLBuffer(version, lumen_gl_create_buffer());
+        return new GLBuffer(lumen_gl_create_buffer());
     }
 
     public static function createFramebuffer():GLFramebuffer
     {
-        return new GLFramebuffer(version, lumen_gl_create_framebuffer());
+        return new GLFramebuffer(lumen_gl_create_framebuffer());
     }
 
     public static function createProgram():GLProgram
     {
-        return new GLProgram(version, lumen_gl_create_program());
+        return new GLProgram(lumen_gl_create_program());
     }
 
     public static function createRenderbuffer():GLRenderbuffer
     {
-        return new GLRenderbuffer(version, lumen_gl_create_render_buffer());
+        return new GLRenderbuffer(lumen_gl_create_render_buffer());
     }
 
     public static function createShader(type:Int):GLShader
     {
-        return new GLShader(version, lumen_gl_create_shader(type));
+        return new GLShader(lumen_gl_create_shader(type));
     }
 
     public static function createTexture():GLTexture
     {
-        return new GLTexture(version, lumen_gl_create_texture());
+        return new GLTexture(lumen_gl_create_texture());
     }
 
     public static function cullFace(mode:Int):Void
@@ -697,37 +719,37 @@ class GL {
     public static function deleteBuffer(buffer:GLBuffer):Void
     {
         lumen_gl_delete_buffer(buffer.id);
-        buffer.invalidate();
+        buffer.invalidated = true;
     }
 
     public static function deleteFramebuffer(framebuffer:GLFramebuffer):Void
     {
         lumen_gl_delete_framebuffer(framebuffer.id);
-        framebuffer.invalidate();
+        framebuffer.invalidated = true;
     }
 
     public static function deleteProgram(program:GLProgram):Void
     {
         lumen_gl_delete_program(program.id);
-        program.invalidate();
+        program.invalidated = true;
     }
 
     public static function deleteRenderbuffer(renderbuffer:GLRenderbuffer):Void
     {
         lumen_gl_delete_render_buffer(renderbuffer.id);
-        renderbuffer.invalidate();
+        renderbuffer.invalidated = true;
     }
 
     public static function deleteShader(shader:GLShader):Void
     {
         lumen_gl_delete_shader(shader.id);
-        shader.invalidate();
+        shader.invalidated = true;
     }
 
     public static function deleteTexture(texture:GLTexture):Void
     {
         lumen_gl_delete_texture(texture.id);
-        texture.invalidate();
+        texture.invalidated = true;
     }
 
     public static function depthFunc(func:Int):Void
@@ -822,7 +844,7 @@ class GL {
 
     public static function getAttachedShaders(program:GLProgram):Array<GLShader>
     {
-        return program.getShaders();
+        return program.shaders;
     }
 
     public static function getAttribLocation(program:GLProgram, name:String):Int
@@ -890,7 +912,7 @@ class GL {
         return lumen_gl_get_shader_parameter(shader.id, pname);
     }
 
-    public static function getShaderPrecisionFormat(shadertype:Int, precisiontype:Int):ShaderPrecisionFormat
+    public static function getShaderPrecisionFormat(shadertype:Int, precisiontype:Int) : GLShaderPrecisionFormat
     {
         return lumen_gl_get_shader_precision_format(shadertype, precisiontype);
     }
@@ -1391,13 +1413,4 @@ class GL {
 
 
 }
-
-
-typedef ShaderPrecisionFormat =
-{
-    rangeMin : Int,
-    rangeMax : Int,
-    precision : Int,
-
-};
 
