@@ -10,6 +10,8 @@ abstract Device(Dynamic) from Dynamic to Dynamic { }
 
 class AL {
 
+//defines
+
     public static var NONE : Int                                = 0;
     public static var FALSE : Int                               = 0;
     public static var TRUE : Int                                = 1;

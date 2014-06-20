@@ -40,7 +40,7 @@ class Windowing {
         var _window = new Window( this, _config );
 
             window_list.set( _window.id, _window );
-            window_handles.set(_window.handle, _window.id );
+            window_handles.set( _window.handle, _window.id );
             window_count++;
 
             //handle any window system specifics that have to happen
