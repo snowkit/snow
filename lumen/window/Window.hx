@@ -27,10 +27,11 @@ class Window {
     public var config : WindowConfig;
         /** the native window handle */
     public var handle : WindowHandle;
+
         /** the window event handler callback */
-    public var event_handler : WindowEvent->Void;
+    public var onevent : WindowEvent->Void;
         /** the window render handler callback */
-    public var render_handler : Window->Void;
+    public var onrender : Window->Void;
 
         /** The window title `(read/write)` */
     @:isVar public var title (get,set) : String = 'lumen window';
@@ -52,8 +53,8 @@ class Window {
         /** The window minimum size `(read/write)` */
     @:isVar public var min_size (get,set) : { x:Int, y:Int };
 
-        /** set this for fullscreen desktop mode, instead of fullscreen mode */
-    public var fullscreen_desktop : Bool = true;
+        /** set this for fullscreen windowed mode, instead of fullscreen mode */
+    public var windowed_fullscreen : Bool = true;
         /** set this if you want to control when a window swaps() where applicable */
     public var auto_swap : Bool = true;
 
@@ -71,7 +72,7 @@ class Window {
         asked_config = _config;
         config = _config;
 
-        manager.system.window_create( _config, on_window_created );
+        manager.system.create( _config, on_window_created );
 
     } //new
 
@@ -151,15 +152,15 @@ class Window {
 
         } //switch
 
-        if(event_handler != null) {
-            event_handler( _event );
+        if(onevent != null) {
+            onevent( _event );
         }
 
     } //on_event
 
     @:noCompletion public function update() {
 
-        manager.system.window_update( this );
+        manager.system.update( this );
 
     } //update
 
@@ -170,11 +171,11 @@ class Window {
             return;
         }
 
-        manager.system.window_render( this );
+        manager.system.render( this );
 
-        if(render_handler != null) {
+        if(onrender != null) {
 
-            render_handler( this );
+            onrender( this );
 
             if(auto_swap) {
                 swap();
@@ -198,21 +199,21 @@ class Window {
         /** Swap the back buffer of the window, call after rendering to update the window view */
     public function swap() {
 
-        manager.system.window_swap( this );
+        manager.system.swap( this );
 
     } //swap
 
         /** Close the window */
     public function close() {
 
-        manager.system.window_close( this );
+        manager.system.close( this );
 
     } //close
 
         /** Display a cross platform message on this window */
     public function simple_message( message:String, title:String="" ) {
 
-        manager.system.window_simple_message( this, message, title );
+        manager.system.simple_message( this, message, title );
 
     } //simple_message
 
@@ -226,7 +227,7 @@ class Window {
     function set_fullscreen( _enable:Bool ) {
 
         if(handle != null) {
-            manager.system.window_fullscreen( this, _enable, fullscreen_desktop ? 0 : 1  );
+            manager.system.fullscreen( this, _enable, windowed_fullscreen );
         }
 
         return fullscreen = _enable;
@@ -266,7 +267,7 @@ class Window {
     function set_title( _title:String ) {
 
         if(handle != null) {
-            manager.system.window_set_title( this, _title );
+            manager.system.set_title( this, _title );
         }
 
         return title = _title;
@@ -278,7 +279,7 @@ class Window {
         x = _x;
 
         if(handle != null && !internal_position) {
-            manager.system.window_set_position( this, x, y );
+            manager.system.set_position( this, x, y );
         }
 
         return x;
@@ -290,7 +291,7 @@ class Window {
         y = _y;
 
         if(handle != null && !internal_position) {
-            manager.system.window_set_position( this, x, y );
+            manager.system.set_position( this, x, y );
         }
 
         return y;
@@ -302,7 +303,7 @@ class Window {
         width = _width;
 
         if(handle != null && !internal_resize) {
-            manager.system.window_set_size( this, width, height );
+            manager.system.set_size( this, width, height );
         }
 
         return width;
@@ -314,7 +315,7 @@ class Window {
         height = _height;
 
         if(handle != null && !internal_resize) {
-            manager.system.window_set_size( this, width, height );
+            manager.system.set_size( this, width, height );
         }
 
         return height;
@@ -334,7 +335,7 @@ class Window {
 
             //this is never called
         if(handle != null && !internal_position) {
-            manager.system.window_set_position( this, x, y );
+            manager.system.set_position( this, x, y );
         }
 
     } //set_position
@@ -351,7 +352,7 @@ class Window {
         internal_resize = last_internal_resize_flag;
 
         if(handle != null && !internal_resize) {
-            manager.system.window_set_size( this, _width, _height );
+            manager.system.set_size( this, _width, _height );
         }
 
     } //set_size
@@ -359,7 +360,7 @@ class Window {
     function set_max_size( _size:{ x:Int, y:Int } ) : { x:Int, y:Int } {
 
         if(max_size != null && handle != null) {
-            manager.system.window_set_max_size( this, _size.x, _size.y );
+            manager.system.set_max_size( this, _size.x, _size.y );
         }
 
         return max_size = _size;
@@ -369,7 +370,7 @@ class Window {
     function set_min_size( _size: { x:Int, y:Int } ) : { x:Int, y:Int } {
 
         if(min_size != null && handle != null) {
-            manager.system.window_set_min_size( this, _size.x, _size.y );
+            manager.system.set_min_size( this, _size.x, _size.y );
         }
 
         return min_size = _size;
@@ -379,7 +380,7 @@ class Window {
     function set_bordered( _bordered:Bool ) : Bool {
 
         if(handle != null) {
-            manager.system.window_bordered( this, _bordered );
+            manager.system.bordered( this, _bordered );
         }
 
         return bordered = _bordered;
@@ -389,7 +390,7 @@ class Window {
     function set_grab( _grab:Bool ) : Bool {
 
         if(handle != null) {
-            manager.system.window_grab( this, _grab );
+            manager.system.grab( this, _grab );
         }
 
         return grab = _grab;

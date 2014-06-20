@@ -24,8 +24,8 @@ import lumen.utils.Libs;
     override public function init() {
     } //init
 
-    override public function update() {
-    } //update
+    override public function process() {
+    } //process
 
     override public function destroy() {
     } //destroy
@@ -36,59 +36,59 @@ import lumen.utils.Libs;
     @:noCompletion override public function unlisten( window:Window ) {
     } //unlisten
 
-    override public function window_create( config:WindowConfig, on_created: WindowHandle->Int->WindowConfig->Void ) {
+    override public function create( config:WindowConfig, on_created: WindowHandle->Int->WindowConfig->Void ) {
     	lumen_window_create( config, on_created );
     } //window_create
 
-    override public function window_close( window:Window ) {
+    override public function close( window:Window ) {
 		lumen_window_close( window.handle );
     } //window_close
 
-    override public function window_update( window:Window ) {
+    override public function update( window:Window ) {
 		lumen_window_update( window.handle );
     } //window_update
 
-    override public function window_render( window:Window ) {
+    override public function render( window:Window ) {
 		lumen_window_render( window.handle );
     } //window_render
 
-    override public function window_swap( window:Window ) {
+    override public function swap( window:Window ) {
 		lumen_window_swap( window.handle );
     } //window_swap
 
-    override public function window_simple_message( window:Window, message:String, ?title:String="" ) {
+    override public function simple_message( window:Window, message:String, ?title:String="" ) {
 		lumen_window_simple_message( window.handle, message, title );
     } //window_simple_message
 
-    override public function window_set_size( window:Window, w:Int, h:Int ) {
+    override public function set_size( window:Window, w:Int, h:Int ) {
     	lumen_window_set_size( window.handle, w, h );
     } //window_set_size
 
-    override public function window_set_position( window:Window, x:Int, y:Int ) {
+    override public function set_position( window:Window, x:Int, y:Int ) {
     	lumen_window_set_position( window.handle, x, y );
     } //window_set_position
 
-    override public function window_set_title( window:Window, title:String ) {
+    override public function set_title( window:Window, title:String ) {
     	lumen_window_set_title( window.handle, title );
     } //window_set_title
 
-    override public function window_set_max_size( window:Window, w:Int, h:Int ) {
+    override public function set_max_size( window:Window, w:Int, h:Int ) {
     	lumen_window_set_max_size( window.handle, w, h );
     } //window_set_max_size
 
-    override public function window_set_min_size( window:Window, w:Int, h:Int ) {
+    override public function set_min_size( window:Window, w:Int, h:Int ) {
     	lumen_window_set_min_size( window.handle, w, h );
     } //window_set_min_size
 
-    override public function window_grab( window:Window, grabbed:Bool ) {
+    override public function grab( window:Window, grabbed:Bool ) {
     	lumen_window_grab( window.handle, grabbed );
     } //window_grab
 
-    override public function window_fullscreen( window:Window, fullscreen:Bool, fullscreen_desktop_mode:Int = 1 ) {
-    	lumen_window_fullscreen( window.handle, fullscreen, fullscreen_desktop_mode );
+    override public function fullscreen( window:Window, fullscreen:Bool, windowed_fullscreen:Bool = true ) {
+    	lumen_window_fullscreen( window.handle, fullscreen, (windowed_fullscreen) ? 1 : 0 );
     } //window_fullscreen
 
-    override public function window_bordered( window:Window, bordered:Bool ) {
+    override public function bordered( window:Window, bordered:Bool ) {
     	lumen_window_bordered( window.handle, bordered );
     } //window_bordered
 

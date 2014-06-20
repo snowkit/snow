@@ -34,7 +34,7 @@ import lumen.utils.AbstractClass;
         /** Called when the window manager initializes this system */
     public function init();
         /** Called when the window manager updates this system */
-    public function update();
+    public function process();
         /** Called when the window manager destroys this system */
     public function destroy();
         /** Called to set up any listeners on the given window  */
@@ -44,33 +44,33 @@ import lumen.utils.AbstractClass;
 
         /** Create a window with config, calls on_created when complete passing the handle, the ID,
             and the actual config that was used since the requested config could fail */
-    public function window_create( config:WindowConfig, on_created: WindowHandle->Int->WindowConfig->Void );
+    public function create( config:WindowConfig, on_created: WindowHandle->Int->WindowConfig->Void );
         /** Close a given window handle */
-    public function window_close( window:Window );
+    public function close( window:Window );
         /** Update a given window */
-    public function window_update( window:Window );
+    public function update( window:Window );
         /** Render a given window */
-    public function window_render( window:Window );
+    public function render( window:Window );
         /** Swap a given window */
-    public function window_swap( window:Window );
+    public function swap( window:Window );
         /** Display a message on a window */
-    public function window_simple_message( window:Window, message:String, ?title:String="" );
+    public function simple_message( window:Window, message:String, ?title:String="" );
         /** Set the size of a window */
-    public function window_set_size( window:Window, w:Int, h:Int );
+    public function set_size( window:Window, w:Int, h:Int );
         /** Set the position of a window */
-    public function window_set_position( window:Window, x:Int, y:Int );
+    public function set_position( window:Window, x:Int, y:Int );
         /** Set the title of a window */
-    public function window_set_title( window:Window, title:String );
+    public function set_title( window:Window, title:String );
         /** Set the max size of a window */
-    public function window_set_max_size( window:Window, w:Int, h:Int );
+    public function set_max_size( window:Window, w:Int, h:Int );
         /** Set the min size of a window */
-    public function window_set_min_size( window:Window, w:Int, h:Int );
+    public function set_min_size( window:Window, w:Int, h:Int );
         /** Set the grab state of a window */
-    public function window_grab( window:Window, grabbed:Bool );
+    public function grab( window:Window, grabbed:Bool );
         /** Set the fullscreen state of a window */
-    public function window_fullscreen( window:Window, fullscreen:Bool, fullscreen_desktop_mode:Int = 1 );
+    public function fullscreen( window:Window, fullscreen:Bool, windowed_fullscreen:Bool = true );
         /** Set the bordered state of a window */
-    public function window_bordered( window:Window, bordered:Bool );
+    public function bordered( window:Window, bordered:Bool );
 
 
         /** Get the number of displays present */

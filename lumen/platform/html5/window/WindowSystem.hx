@@ -25,13 +25,13 @@ import lumen.window.WindowSystem;
         override public function init() {
         } //init
 
-        override public function update() {
-        } //update
+        override public function process() {
+        } //process
 
         override public function destroy() {
         } //destroy
 
-        override public function window_create( config:WindowConfig, on_created: WindowHandle->Int->WindowConfig->Void ) {
+        override public function create( config:WindowConfig, on_created: WindowHandle->Int->WindowConfig->Void ) {
 
             var _window_id = seq_window;
             var _handle : js.html.CanvasElement = js.Browser.document.createCanvasElement();
@@ -57,8 +57,8 @@ import lumen.window.WindowSystem;
             }
 
                 //make sure there is one early
-            if(lumen.render.gl.GL.current_context == null) {
-                lumen.render.gl.GL.current_context = _gl_context;
+            if(lumen.render.opengl.GL.current_context == null) {
+                lumen.render.opengl.GL.current_context = _gl_context;
             }
 
                 //store it for activating later
@@ -78,13 +78,13 @@ import lumen.window.WindowSystem;
 
         } //window_create
 
-        override public function window_close( _window:Window ) {
+        override public function close( _window:Window ) {
 
             js.Browser.document.body.removeChild( _window.handle );
 
         } //window_close
 
-        override public function window_update( _window:Window ) {
+        override public function update( _window:Window ) {
 
             var _rect = _window.handle.getBoundingClientRect();
 
@@ -119,35 +119,35 @@ import lumen.window.WindowSystem;
 
         } //window_update
 
-        override public function window_render( _window:Window ) {
+        override public function render( _window:Window ) {
 
             var _window_gl_context = gl_contexts.get(_window.id);
-            if(lumen.render.gl.GL.current_context != _window_gl_context) {
-                lumen.render.gl.GL.current_context = _window_gl_context;
+            if(lumen.render.opengl.GL.current_context != _window_gl_context) {
+                lumen.render.opengl.GL.current_context = _window_gl_context;
             }
 
         } //window_render
 
-        override public function window_swap( _window:Window ) {
+        override public function swap( _window:Window ) {
 
             //empty because this concept is not possible in browser
 
         } //window_swap
 
-        override public function window_simple_message( _window:Window, message:String, ?title:String="" ) {
+        override public function simple_message( _window:Window, message:String, ?title:String="" ) {
 
             js.Browser.window.alert( message );
 
         } //window_simple_message
 
-        override public function window_set_size( _window:Window, w:Int, h:Int ) {
+        override public function set_size( _window:Window, w:Int, h:Int ) {
 
             _window.handle.style.width = '${w}px';
             _window.handle.style.height = '${h}px';
 
         } //window_set_size
 
-        override public function window_set_position( _window:Window, x:Int, y:Int ) {
+        override public function set_position( _window:Window, x:Int, y:Int ) {
 
             _window.handle.style.left = '${x}px';
             _window.handle.style.top = '${y}px';
@@ -196,20 +196,20 @@ import lumen.window.WindowSystem;
 
         } //get_real_window_position
 
-        override public function window_set_title( _window:Window, title:String ) {
+        override public function set_title( _window:Window, title:String ) {
 
             js.Browser.document.title = title;
 
         } //window_set_title
 
-        override public function window_set_max_size( _window:Window, w:Int, h:Int ) {
+        override public function set_max_size( _window:Window, w:Int, h:Int ) {
 
             _window.handle.style.maxWidth = '${w}px';
             _window.handle.style.maxHeight = '${h}px';
 
         } //window_set_max_size
 
-        override public function window_set_min_size( _window:Window, w:Int, h:Int ) {
+        override public function set_min_size( _window:Window, w:Int, h:Int ) {
 
             _window.handle.style.minWidth = '${w}px';
             _window.handle.style.minHeight = '${h}px';
@@ -217,7 +217,7 @@ import lumen.window.WindowSystem;
         } //window_set_min_size
 
             //:todo:
-        override public function window_grab( _window:Window, grabbed:Bool ) {
+        override public function grab( _window:Window, grabbed:Bool ) {
 
             if(grabbed) {
                     //official api's first
@@ -245,14 +245,14 @@ import lumen.window.WindowSystem;
         var _pre_fs_width : Int = 0;
         var _pre_fs_height : Int = 0;
 
-        override public function window_fullscreen( _window:Window, fullscreen:Bool, fullscreen_desktop_mode:Int = 1 ) {
+        override public function fullscreen( _window:Window, fullscreen:Bool, windowed_fullscreen:Bool = true ) {
 
                 //as always browser support for newer features will be
                 //sporadic. Tested fullscreen against firefox/chrome/opera/safari latest
                 //all appear to work as expected, but have no cancel (user must press escape)
             if(fullscreen) {
 
-                if(fullscreen_desktop_mode == 1) {
+                if(!windowed_fullscreen) {
 
                         //official api's first
                     if(_window.handle.requestFullscreen == null) {
@@ -274,10 +274,6 @@ import lumen.window.WindowSystem;
                     _pre_fs_width = _window.handle.width;
                     _pre_fs_height = _window.handle.height;
 
-                    trace(js.Browser.window.innerWidth);
-                    trace(js.Browser.window.innerHeight);
-                    trace(js.Browser.window);
-
                     _window.handle.style.margin = '0';
                     _window.handle.style.padding = '0';
                     _window.handle.style.width = js.Browser.window.innerWidth + 'px';
@@ -288,7 +284,7 @@ import lumen.window.WindowSystem;
 
             } else {
 
-                if(fullscreen_desktop_mode == 1) {
+                if(!windowed_fullscreen) {
                     //currently no cancel full screen in fullscreen mode
                 } else {
 
@@ -305,7 +301,7 @@ import lumen.window.WindowSystem;
 
         } //window_fullscreen
 
-        override public function window_bordered( _window:Window, bordered:Bool ) {
+        override public function bordered( _window:Window, bordered:Bool ) {
 
             //empty, window border has no such concept on browser
 

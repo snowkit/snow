@@ -7,15 +7,15 @@ import lumen.types.Types;
 #if lumen_html5
 
     @:noCompletion class AssetSystem extends AssetSystemBinding {
-    	
+
         public function new( _manager:Assets ) {
             manager = _manager;
         }
 
     //images
-        
+
         function nearest_power_of_two(_value:Int) {
-            
+
             _value--;
 
             _value |= _value >> 1;
@@ -25,7 +25,7 @@ import lumen.types.Types;
             _value |= _value >> 16;
 
             _value++;
-            
+
             return _value;
 
         } //nearest_power_of_two
@@ -42,12 +42,12 @@ import lumen.types.Types;
                 var height_pot = nearest_power_of_two(image.height);
 
                 var tmp_canvas = js.Browser.document.createCanvasElement();
-                
-                    tmp_canvas.width = width_pot; 
+
+                    tmp_canvas.width = width_pot;
                     tmp_canvas.height = height_pot;
 
                 var tmp_context = tmp_canvas.getContext2d();
-                    
+
                     tmp_context.clearRect( 0,0, tmp_canvas.width, tmp_canvas.height );
                     tmp_context.drawImage( image, 0, 0, image.width, image.height );
 
@@ -80,7 +80,7 @@ import lumen.types.Types;
 
                     //cleanup
                 tmp_canvas = null; tmp_context = null; image_bytes = null;
-                
+
                     //append the listener
                 if(_onloaded != null) {
                     _onloaded( info );
@@ -89,7 +89,7 @@ import lumen.types.Types;
             } //image.onload
 
                 //source comes after the onload being set, for race conditions
-            image.src = _path;        
+            image.src = _path;
 
             return info;
 

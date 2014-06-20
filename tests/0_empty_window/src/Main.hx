@@ -113,7 +113,7 @@ class Main extends lumen.AppFixedTimestep {
         }
 
             //this is temp testing, just hook into the window render directly
-        app.window.render_handler = onrender;
+        app.window.onrender = onrender;
 
         next_tex_tick = texture_time;
 

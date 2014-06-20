@@ -6,7 +6,7 @@ import lumen.types.Types;
 
 
 @:noCompletion class AudioSystem extends AudioSystemBinding {
-	
+
     public function new( _manager:Audio, _lib:Lumen ) {
 
         manager = _manager;
@@ -18,9 +18,9 @@ import lumen.types.Types;
 
     } //init
 
-    override public function update() {
+    override public function process() {
 
-    } //update
+    } //process
 
     override public function destroy() {
 

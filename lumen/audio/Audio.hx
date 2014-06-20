@@ -203,7 +203,7 @@ class Audio {
     } //on_event
 
     @:noCompletion public function destroy() {
-        
+
         active = false;
 
         for(sound in sound_list) {
@@ -211,7 +211,7 @@ class Audio {
         }
 
         system.destroy();
-        
+
     } //destroy
 
     @:noCompletion public function update() {
@@ -228,7 +228,7 @@ class Audio {
             }
         }
 
-        system.update();
+        system.process();
 
     } //update
 
