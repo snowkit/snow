@@ -6,24 +6,20 @@ import lumen.utils.Libs;
 import haxe.io.Bytes;
 import haxe.io.BytesData;
 // import lumen.errors.EOFError; // Ensure that the neko->haxe callbacks are initialized
-import lumen.utils.compat.CompressionAlgorithm;
 import lumen.utils.IDataInput;
 
-#if !lumen_html5
-
-    #if neko
-        import neko.Lib;
-        import neko.zip.Compress;
-        import neko.zip.Uncompress;
-        import neko.zip.Flush;
-    #else
-        import cpp.Lib;
-        import cpp.zip.Compress;
-        import cpp.zip.Uncompress;
-        import cpp.zip.Flush;
-    #end
-
+#if neko
+    import neko.Lib;
+    import neko.zip.Compress;
+    import neko.zip.Uncompress;
+    import neko.zip.Flush;
+#else
+    import cpp.Lib;
+    import cpp.zip.Compress;
+    import cpp.zip.Uncompress;
+    import cpp.zip.Flush;
 #end
+
 
 class ByteArray extends Bytes implements ArrayAccess<Int> implements IDataInput implements IMemoryRange {
 
@@ -93,10 +89,8 @@ class ByteArray extends Bytes implements ArrayAccess<Int> implements IDataInput 
                 return inArray == null ? 0 : inArray.length;
             }
 
-            #if !lumen_html5
-                var init = Libs.load("lumen", "lumen_byte_array_init", 4);
-                init(factory, slen, resize, bytes);
-            #end //lumen_html5
+            var init = Libs.load("lumen", "lumen_byte_array_init", 4);
+                init( factory, slen, resize, bytes );
 
         }
     #end
@@ -127,9 +121,6 @@ class ByteArray extends Bytes implements ArrayAccess<Int> implements IDataInput 
         length = 0;
     }
 
-    #if !lumen_html5
-
-        //:todo:
 
     public function compress(algorithm:CompressionAlgorithm = null) {
 
@@ -170,8 +161,6 @@ class ByteArray extends Bytes implements ArrayAccess<Int> implements IDataInput 
     public function deflate() {
         compress(CompressionAlgorithm.DEFLATE);
     }
-
-    #end //!lumen_html5
 
     private function ensureElem(inSize:Int, inUpdateLenght:Bool) {
 
@@ -215,15 +204,11 @@ class ByteArray extends Bytes implements ArrayAccess<Int> implements IDataInput 
         return 0;
     }
 
-    #if !lumen_html5
-
     public function inflate() {
 
         uncompress(CompressionAlgorithm.DEFLATE);
 
     }
-
-    #end //!lumen_html5
 
     private inline function lumenFromBytes(inBytes:Bytes):Void {
 
@@ -271,23 +256,20 @@ class ByteArray extends Bytes implements ArrayAccess<Int> implements IDataInput 
 
     public function readDouble():Float {
 
-        #if !lumen_html5
+        if (position + 8 > length) {
+            ThrowEOFi();
+        }
 
-            if (position + 8 > length)
-                ThrowEOFi();
-
-            #if neko
+        #if neko
             var bytes = new Bytes(8, untyped __dollar__ssub(b, position, 8));
-            #elseif cpp
+        #elseif cpp
             var bytes = new Bytes(8, b.slice(position, position + 8));
-            #end
+        #end
 
-            position += 8;
-            return _double_of_bytes(bytes.b, bigEndian);
+        position += 8;
 
-        #end //!lumen_html5
+        return _double_of_bytes(bytes.b, bigEndian);
 
-        return 0.0;
     }
 
     #if !no_lumen_io
@@ -298,23 +280,20 @@ class ByteArray extends Bytes implements ArrayAccess<Int> implements IDataInput 
 
     public function readFloat():Float {
 
-        #if !lumen_html5
+        if (position + 4 > length) {
+            ThrowEOFi();
+        }
 
-            if (position + 4 > length)
-                ThrowEOFi();
-
-            #if neko
+        #if neko
             var bytes = new Bytes(4, untyped __dollar__ssub(b, position, 4));
-            #elseif cpp
+        #elseif cpp
             var bytes = new Bytes(4, b.slice(position, position + 4));
-            #end
+        #end
 
-            position += 4;
-            return _float_of_bytes(bytes.b, bigEndian);
+        position += 4;
 
-        #end //!lumen_html5
+        return _float_of_bytes(bytes.b, bigEndian);
 
-        return 0.0;
     }
 
     public function readInt():Int {
@@ -443,9 +422,6 @@ class ByteArray extends Bytes implements ArrayAccess<Int> implements IDataInput 
         return 0;
     }
 
-    #if !lumen_html5
-    //:todo:
-
     public function uncompress(algorithm:CompressionAlgorithm = null):Void {
 
         if (algorithm == null) algorithm = CompressionAlgorithm.GZIP;
@@ -486,8 +462,6 @@ class ByteArray extends Bytes implements ArrayAccess<Int> implements IDataInput 
         #end
     }
 
-    #end //!lumen_html5
-
     inline function write_uncheck(inByte:Int) {
         #if cpp
         untyped b.__unsafe_set(position++, inByte);
@@ -518,19 +492,16 @@ class ByteArray extends Bytes implements ArrayAccess<Int> implements IDataInput 
         blit(opos, bytes, inOffset, inLength);
     }
 
-    public function writeDouble(x:Float)
-    {
-        #if !lumen_html5
+    public function writeDouble(x:Float) {
 
-            #if neko
+        #if neko
             var bytes = new Bytes(8, _double_bytes(x, bigEndian));
-            #elseif cpp
+        #elseif cpp
             var bytes = Bytes.ofData(_double_bytes(x, bigEndian));
-            #end
+        #end
 
-            writeBytes(bytes);
+        writeBytes(bytes);
 
-        #end //!lumen_html5
     }
 
     #if !no_lumen_io
@@ -540,53 +511,49 @@ class ByteArray extends Bytes implements ArrayAccess<Int> implements IDataInput 
     #end
 
     public function writeFloat(x:Float) {
-        #if !lumen_html5
 
-            #if neko
+        #if neko
             var bytes = new Bytes(4, _float_bytes(x, bigEndian));
-            #elseif cpp
+        #elseif cpp
             var bytes = Bytes.ofData(_float_bytes(x, bigEndian));
-            #end
+        #end
 
-            writeBytes(bytes);
+        writeBytes(bytes);
 
-        #end //!lumen_html5
     }
 
     public function writeInt(value:Int) {
+
         ensureElem(position + 3, true);
 
-        if (bigEndian)
-        {
+        if (bigEndian) {
             write_uncheck(value >> 24);
             write_uncheck(value >> 16);
             write_uncheck(value >> 8);
             write_uncheck(value);
-
-        } else
-        {
+        } else {
             write_uncheck(value);
             write_uncheck(value >> 8);
             write_uncheck(value >> 16);
             write_uncheck(value >> 24);
         }
+
     }
 
     // public function writeMultiByte(value:String, charSet:String)
     // public function writeObject(object:*)
     public function writeShort(value:Int) {
+
         ensureElem(position + 1, true);
 
-        if (bigEndian)
-        {
+        if (bigEndian) {
             write_uncheck(value >> 8);
             write_uncheck(value);
-
-        } else
-        {
+        } else {
             write_uncheck(value);
             write_uncheck(value >> 8);
         }
+
     }
 
     public function writeUnsignedInt(value:Int) {
@@ -618,21 +585,35 @@ class ByteArray extends Bytes implements ArrayAccess<Int> implements IDataInput 
 
     }
 
+        //values
+    public static inline var BIG_ENDIAN : String = "bigEndian";
+    public static inline var LITTLE_ENDIAN : String = "littleEndian";
+
     // Getters & Setters
     private function get_bytesAvailable():Int { return length - position; }
     private function get_byteLength():Int { return length; }
-    private function get_endian():String { return bigEndian ? lumen.utils.compat.Endian.BIG_ENDIAN : lumen.utils.compat.Endian.LITTLE_ENDIAN; }
-    private function set_endian(s:String):String { bigEndian =(s == lumen.utils.compat.Endian.BIG_ENDIAN); return s; }
+    private function get_endian():String { return (bigEndian) ? BIG_ENDIAN : LITTLE_ENDIAN; }
+    private function set_endian(s:String):String { bigEndian =(s == BIG_ENDIAN); return s; }
 
     // Native Methods
     private static var _double_bytes =    Libs.load("std", "double_bytes", 2);
     private static var _double_of_bytes = Libs.load("std", "double_of_bytes", 2);
     private static var _float_bytes =     Libs.load("std", "float_bytes", 2);
     private static var _float_of_bytes =  Libs.load("std", "float_of_bytes", 2);
+
     #if !no_lumen_io
         private static var lumen_byte_array_overwrite_file =    Libs.load("lumen","lumen_byte_array_overwrite_file", 2);
         private static var lumen_byte_array_read_file =         Libs.load("lumen", "lumen_byte_array_read_file", 1);
     #end
+
     private static var lumen_lzma_encode = Libs.load("lumen", "lumen_lzma_encode", 1);
     private static var lumen_lzma_decode = Libs.load("lumen", "lumen_lzma_decode", 1);
+
+}
+
+enum CompressionAlgorithm {
+    DEFLATE;
+    ZLIB;
+    LZMA;
+    GZIP;
 }

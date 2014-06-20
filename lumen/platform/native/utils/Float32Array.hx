@@ -1,7 +1,5 @@
 package lumen.platform.native.utils;
 
-import lumen.utils.compat.Matrix3D;
-
 class Float32Array extends ArrayBufferView implements ArrayAccess<Float> {
 
     public var BYTES_PER_ELEMENT (default, null) : Int;
@@ -106,12 +104,6 @@ class Float32Array extends ArrayBufferView implements ArrayAccess<Float> {
         return new Float32Array(buffer, start << 2, end - start);
 
     } //subarray
-
-    public static function fromMatrix( matrix:Matrix3D ) : Float32Array {
-
-        return new Float32Array(matrix.rawData);
-
-    } //fromMatrix
 
     @:noCompletion @:keep inline public function __get( index:Int ):Float { return getFloat32(index << 2); }
     @:noCompletion @:keep inline public function __set( index:Int, value:Float ) { setFloat32(index << 2, value); }
