@@ -63,7 +63,7 @@ import lumen.platform.native.audio.openal.OpenALHelper;
         trace(info.data.length);
         if(info.data == null || info.data.length == 0) {
             trace('/ lumen / audio / ${name} cannot create sound, empty/null data provided!');
-            return;            
+            return;
         }
 
             //give the data from the sound info to the buffer
@@ -132,7 +132,7 @@ import lumen.platform.native.audio.openal.OpenALHelper;
     override function destroy() {
 
         stop();
-        
+
         AL.deleteSource(source);
         AL.deleteBuffer(buffer);
 
@@ -150,7 +150,7 @@ import lumen.platform.native.audio.openal.OpenALHelper;
     } //get_position
 
     override function get_time() : Float {
-        
+
         return AL.getSourcef(source, AL.SEC_OFFSET);
 
     } //get_position
@@ -188,7 +188,7 @@ import lumen.platform.native.audio.openal.OpenALHelper;
     } //set_looping
 
     override function set_position( _position:Int ) : Int {
-        
+
         AL.sourcef(source, AL.SAMPLE_OFFSET, _position);
 
         return position = _position;
@@ -196,7 +196,7 @@ import lumen.platform.native.audio.openal.OpenALHelper;
     } //set_position
 
     override function set_time( _time:Float ) : Float {
-        
+
         AL.sourcef(source, AL.SEC_OFFSET, _time);
 
         return time = _time;

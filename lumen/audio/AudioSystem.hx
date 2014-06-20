@@ -6,14 +6,14 @@ import lumen.Lumen;
 import lumen.utils.AbstractClass;
 
 #if lumen_html5
-    
+
     #if lumen_audio_howlerjs
         @:noCompletion typedef AudioSystem = lumen.platform.html5.audio.howlerjs.AudioSystem;
     #else
         @:noCompletion typedef AudioSystem = lumen.platform.html5.audio.AudioSystem;
     #end
 
-#else 
+#else
 
     #if lumen_audio_openal
         @:noCompletion typedef AudioSystem = lumen.platform.native.audio.openal.AudioSystem;
@@ -21,7 +21,7 @@ import lumen.utils.AbstractClass;
         @:noCompletion typedef AudioSystem = lumen.platform.native.audio.AudioSystem;
     #end //lumen_audio_openal
 
-#end 
+#end
 
 
 /** Internal audio system definition, interact with this system through `lumen.Audio`, not directly */

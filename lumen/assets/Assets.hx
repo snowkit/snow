@@ -7,7 +7,7 @@ import lumen.utils.Libs;
 import lumen.assets.AssetSystem;
 
 
-/** The asset system class gives you access to fetching and manipulating assets, 
+/** The asset system class gives you access to fetching and manipulating assets,
     caching/uncaching assets, and handles loading files and data cross platform */
 class Assets {
 
@@ -133,8 +133,8 @@ class Assets {
         if(exists(_id)) {
 
             if(options == null) {
-                options = { 
-                    components : 4, 
+                options = {
+                    components : 4,
                     onloaded : null
                 };
             } else {
@@ -145,7 +145,7 @@ class Assets {
 
             var asset = get(_id);
 
-            system.image_load_info( _path(asset), options.components, function( ?_image_info:ImageInfo ) { 
+            system.image_load_info( _path(asset), options.components, function( ?_image_info:ImageInfo ) {
 
                 if(_image_info == null) {
                     load_error(_id, "image info returned null");
@@ -251,7 +251,7 @@ class Assets {
 
 
     @:noCompletion public function audio_seek_source( _info:AudioInfo, _to:Int ) : Bool {
-        
+
         switch(_info.format) {
             case AudioFormatType.ogg:
                 return system.audio_seek_source_ogg(_info, _to);
