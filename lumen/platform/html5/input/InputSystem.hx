@@ -44,13 +44,13 @@ typedef HTML5Gamepad = {
 
     } //init
 
-    override public function update() {
+    override public function process() {
 
         if(gamepads_supported) {
             poll_gamepads();
         }
 
-    } //update
+    } //process
 
     override public function destroy() {
     } //destroy

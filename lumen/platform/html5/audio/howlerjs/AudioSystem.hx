@@ -9,9 +9,9 @@ import lumen.types.Types;
 
     } //init
 
-    override public function update() {
+    override public function process() {
 
-    } //update
+    } //process
 
     override public function destroy() {
 

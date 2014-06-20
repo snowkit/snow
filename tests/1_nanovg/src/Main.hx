@@ -29,7 +29,7 @@ class Main extends lumen.App {
 
         font = Nvg.createFont(vg, "FiraSans-Regular".c_str(), "assets/FiraSans-Regular.ttf".c_str());
 
-        app.window.render_handler = onrender;
+        app.window.onrender = onrender;
 
     } //ready
 

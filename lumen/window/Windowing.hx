@@ -99,7 +99,7 @@ class Windowing {
 
     @:noCompletion public function update() {
 
-        system.update();
+        system.process();
 
         for(window in window_list) {
             window.update();

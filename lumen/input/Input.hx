@@ -192,7 +192,7 @@ class Input {
 
     @:noCompletion public function update() {
 
-        system.update();
+        system.process();
 
             //remove any stale key pressed value
             //unless it wasn't alive for a full frame yet,

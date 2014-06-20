@@ -33,7 +33,7 @@ import lumen.utils.AbstractClass;
         /** Called by the audio manager when initiating this system*/
     public function init();
         /** Called by the audio manager when updating this system*/
-    public function update();
+    public function process();
         /** Called by the audio manager when destroying this system*/
     public function destroy();
         /** Called by the audio manager when suspending this system*/

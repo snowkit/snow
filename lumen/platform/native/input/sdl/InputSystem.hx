@@ -11,8 +11,8 @@ import lumen.input.Input;
     override public function init() {
     } //init
 
-    override public function update() {
-    } //update
+    override public function process() {
+    } //process
 
     override public function destroy() {
     } //destroy

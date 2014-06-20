@@ -31,7 +31,7 @@ import lumen.window.Window;
         /** Called when the input manager initiates this system */
     public function init();
         /** Called when the input manager updates this system */
-    public function update();
+    public function process();
         /** Called when the input manager destroys this system */
     public function destroy();
         /** Called when the input manager forwards an event to this system */

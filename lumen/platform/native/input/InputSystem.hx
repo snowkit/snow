@@ -19,8 +19,8 @@ import lumen.window.Window;
     override public function init() {
     } //init
 
-    override public function update() {
-    } //update
+    override public function process() {
+    } //process
 
     override public function destroy() {
     } //destroy
