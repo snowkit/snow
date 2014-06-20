@@ -81,7 +81,7 @@ import lumen.platform.native.audio.openal.OpenALHelper;
 
         if(_blob != null && _blob.data != null && _blob.data.length != 0) {
             AL.bufferData( _buffer, format, new Float32Array(_blob.data), _blob.data.length, info.rate ); AL.getError();
-        } 
+        }
 
         return _blob;
 
@@ -164,7 +164,7 @@ import lumen.platform.native.audio.openal.OpenALHelper;
                 if(looping) {
                         //if we are looping, we must seek to the beginning again
                     data_seek(0);
-                   
+
                 } else {
                     buffers_left--;
                     trace('another buffer down ${buffers_left}');
@@ -183,14 +183,14 @@ import lumen.platform.native.audio.openal.OpenALHelper;
             }
 
             processed_buffers--;
-        
+
         } //while
 
         var _al_play_state = AL.getSourcei(source, AL.SOURCE_STATE);
         if(_al_play_state != AL.PLAYING) {
             trace("/ lumen / ${name} update stream not needed, sound is not playing");
             still_busy = false;
-        }        
+        }
 
         return still_busy;
 
@@ -282,7 +282,7 @@ import lumen.platform.native.audio.openal.OpenALHelper;
         trace('/ lumen / audio / ${name} stopping stream / ${AL.getErrorMeaning(AL.getError())} ');
 
     } //stop
-    
+
     override function destroy() {
 
             //calls flush for us

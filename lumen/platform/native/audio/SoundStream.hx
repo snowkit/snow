@@ -2,13 +2,13 @@ package lumen.platform.native.audio;
 
 import lumen.audio.Audio;
 import lumen.types.Types;
-    
+
 
 class SoundStream extends lumen.audio.Sound {
 
 
         /** The length of bytes for a single buffer to queue up to stream. Default is `176400`, about 1 second in 16 bit mono. `todo` optionize */
-    public var buffer_length : Int = 176400; 
+    public var buffer_length : Int = 176400;
         /** The number of buffers to use in the queue for streaming. Default is `4` `todo` optionize */
     public var buffer_count : Int = 4; //:todo: optionize.
         /** The get function, assign a function here if you want to stream data to the source manually, like generative sound. */
@@ -18,8 +18,8 @@ class SoundStream extends lumen.audio.Sound {
 
 
     public function new( _manager:Audio, _name:String, _audio_info : AudioInfo ) {
-            
-        super(_manager, _name, _audio_info);    
+
+        super(_manager, _name, _audio_info);
 
         data_get = default_data_get;
         data_seek = default_data_seek;

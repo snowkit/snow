@@ -7,16 +7,16 @@ import lumen.utils.Libs;
 
 @:noCompletion class AssetSystem extends AssetSystemBinding {
 
-	public function new( _manager:Assets ) {
-		
+    public function new( _manager:Assets ) {
+
         manager = _manager;
 
-	} //new
+    } //new
 
 //images
-    
+
     override public function image_load_info( _path:String, ?_components:Int = 4, ?_onloaded:?ImageInfo->Void ) : ImageInfo {
-        
+
         var _native_info = lumen_assets_image_load_info( _path, _components );
 
         var info : ImageInfo = {
@@ -33,7 +33,7 @@ import lumen.utils.Libs;
         if(_onloaded != null) {
             _onloaded(info);
         } //_onloaded
-        
+
         _native_info = null;
 
         return info;

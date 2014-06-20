@@ -6,25 +6,25 @@ package lumen.utils.compat;
 import lumen.utils.compat.Vector;
 import lumen.utils.compat.Vector3D;
 
-@:noCompletion class Matrix3D 
+@:noCompletion class Matrix3D
 {
    public var determinant(get_determinant, null):Float;
    public var position(get_position, set_position):Vector3D;
    public var rawData:Vector<Float>;
 
-   public function new(?v:Vector<Float>) 
+   public function new(?v:Vector<Float>)
    {
-      if (v != null && v.length == 16) 
+      if (v != null && v.length == 16)
       {
          rawData = v;
 
-      } else 
+      } else
       {
          rawData = [1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0];
       }
    }
 
-   public function append(lhs:Matrix3D):Void 
+   public function append(lhs:Matrix3D):Void
    {
       var m111:Float = this.rawData[0], m121:Float = this.rawData[4], m131:Float = this.rawData[8], m141:Float = this.rawData[12],
          m112:Float = this.rawData[1], m122:Float = this.rawData[5], m132:Float = this.rawData[9], m142:Float = this.rawData[13],
@@ -56,11 +56,11 @@ import lumen.utils.compat.Vector3D;
       rawData[15] = m141 * m214 + m142 * m224 + m143 * m234 + m144 * m244;
    }
 
-   public function appendRotation(degrees:Float, axis:Vector3D, ?pivotPoint:Vector3D):Void 
+   public function appendRotation(degrees:Float, axis:Vector3D, ?pivotPoint:Vector3D):Void
    {
       var m = getAxisRotation(axis.x, axis.y, axis.z, degrees);
 
-      if (pivotPoint != null) 
+      if (pivotPoint != null)
       {
          var p = pivotPoint;
          m.appendTranslation(p.x, p.y, p.z);
@@ -69,24 +69,24 @@ import lumen.utils.compat.Vector3D;
       this.append(m);
    }
 
-   inline public function appendScale(xScale:Float, yScale:Float, zScale:Float):Void 
+   inline public function appendScale(xScale:Float, yScale:Float, zScale:Float):Void
    {
       this.append(new Matrix3D([xScale, 0.0, 0.0, 0.0, 0.0, yScale, 0.0, 0.0, 0.0, 0.0, zScale, 0.0, 0.0, 0.0, 0.0, 1.0]));
    }
 
-   inline public function appendTranslation(x:Float, y:Float, z:Float):Void 
+   inline public function appendTranslation(x:Float, y:Float, z:Float):Void
    {
       rawData[12] += x;
       rawData[13] += y;
       rawData[14] += z;
    }
 
-   inline public function clone():Matrix3D 
+   inline public function clone():Matrix3D
    {
       return new Matrix3D(this.rawData.copy());
    }
 
-   public static function create2D(x:Float, y:Float, scale:Float = 1, rotation:Float = 0) 
+   public static function create2D(x:Float, y:Float, scale:Float = 1, rotation:Float = 0)
    {
       var theta = rotation * Math.PI / 180.0;
       var c = Math.cos(theta);
@@ -100,7 +100,7 @@ import lumen.utils.compat.Vector3D;
       ]);
    }
 
-   public static function createABCD(a:Float, b:Float, c:Float, d:Float, tx:Float, ty:Float) 
+   public static function createABCD(a:Float, b:Float, c:Float, d:Float, tx:Float, ty:Float)
    {
       return new Matrix3D([
          a, b, 0, 0,
@@ -110,7 +110,7 @@ import lumen.utils.compat.Vector3D;
       ]);
    }
 
-   public static function createOrtho(x0:Float, x1:Float,  y0:Float, y1:Float, zNear:Float, zFar:Float) 
+   public static function createOrtho(x0:Float, x1:Float,  y0:Float, y1:Float, zNear:Float, zFar:Float)
    {
       var sx = 1.0 / (x1 - x0);
       var sy = 1.0 / (y1 - y0);
@@ -124,7 +124,7 @@ import lumen.utils.compat.Vector3D;
       ]);
    }
 
-   public function decompose():Vector<Vector3D> 
+   public function decompose():Vector<Vector3D>
    {
       var vec = new Vector<Vector3D>();
       var m = this.clone();
@@ -141,36 +141,36 @@ import lumen.utils.compat.Vector3D;
       scale.y = Math.sqrt(mr[4] * mr[4] + mr[5] * mr[5] + mr[6] * mr[6]);
       scale.z = Math.sqrt(mr[8] * mr[8] + mr[9] * mr[9] + mr[10] * mr[10]);
 
-      if (mr[0] * (mr[5] * mr[10] - mr[6] * mr[9]) - mr[1] * (mr[4] * mr[10] - mr[6] * mr[8]) + mr[2] * (mr[4] * mr[9] - mr[5] * mr[8]) < 0) 
+      if (mr[0] * (mr[5] * mr[10] - mr[6] * mr[9]) - mr[1] * (mr[4] * mr[10] - mr[6] * mr[8]) + mr[2] * (mr[4] * mr[9] - mr[5] * mr[8]) < 0)
       {
          scale.z = -scale.z;
       }
 
-      mr[0] /= scale.x; 
-      mr[1] /= scale.x; 
-      mr[2] /= scale.x; 
-      mr[4] /= scale.y; 
-      mr[5] /= scale.y; 
-      mr[6] /= scale.y; 
-      mr[8] /= scale.z; 
-      mr[9] /= scale.z; 
+      mr[0] /= scale.x;
+      mr[1] /= scale.x;
+      mr[2] /= scale.x;
+      mr[4] /= scale.y;
+      mr[5] /= scale.y;
+      mr[6] /= scale.y;
+      mr[8] /= scale.z;
+      mr[9] /= scale.z;
       mr[10] /= scale.z;
 
       var rot = new Vector3D();
 
       rot.y = Math.asin( -mr[2]);
 
-      var C = Math.cos(rot.y);      
-      if (C > 0) 
+      var C = Math.cos(rot.y);
+      if (C > 0)
       {
          rot.x = Math.atan2(mr[6], mr[10]);
          rot.z = Math.atan2(mr[1], mr[0]);
 
-      } else 
+      } else
       {
          rot.z = 0;
          rot.x = Math.atan2(mr[4], mr[5]);
-      } 
+      }
 
       vec.push(pos);
       vec.push(rot);
@@ -179,7 +179,7 @@ import lumen.utils.compat.Vector3D;
       return vec;
    }
 
-   inline public function deltaTransformVector(v:Vector3D):Vector3D 
+   inline public function deltaTransformVector(v:Vector3D):Vector3D
    {
       var x:Float = v.x, y:Float = v.y, z:Float = v.z;
       return new Vector3D(
@@ -189,7 +189,7 @@ import lumen.utils.compat.Vector3D;
       0);
    }
 
-   inline static public function getAxisRotation(x:Float, y:Float, z:Float, degrees:Float):Matrix3D 
+   inline static public function getAxisRotation(x:Float, y:Float, z:Float, degrees:Float):Matrix3D
    {
       var m = new Matrix3D();
 
@@ -219,7 +219,7 @@ import lumen.utils.compat.Vector3D;
       return m;
    }
 
-   inline public function identity():Void 
+   inline public function identity():Void
    {
       rawData[0] = 1;
       rawData[1] = 0;
@@ -239,11 +239,11 @@ import lumen.utils.compat.Vector3D;
       rawData[15] = 1;
    }
 
-   inline public static function interpolate(thisMat:Matrix3D, toMat:Matrix3D, percent:Float):Matrix3D 
+   inline public static function interpolate(thisMat:Matrix3D, toMat:Matrix3D, percent:Float):Matrix3D
    {
       var m = new Matrix3D();
 
-      for(i in 0...16) 
+      for(i in 0...16)
       {
          m.rawData[i] = thisMat.rawData[i] + (toMat.rawData[i] - thisMat.rawData[i]) * percent;
       }
@@ -251,20 +251,20 @@ import lumen.utils.compat.Vector3D;
       return m;
    }
 
-   inline public function interpolateTo(toMat:Matrix3D, percent:Float):Void 
+   inline public function interpolateTo(toMat:Matrix3D, percent:Float):Void
    {
-      for(i in 0...16) 
+      for(i in 0...16)
       {
          rawData[i] = rawData[i] + (toMat.rawData[i] - rawData[i]) * percent;
       }
    }
 
-   inline public function invert():Bool 
+   inline public function invert():Bool
    {
       var d = determinant;
       var invertable = Math.abs(d) > 0.00000000001;
 
-      if (invertable) 
+      if (invertable)
       {
          d = -1 / d;
          var m11:Float = rawData[0]; var m21:Float = rawData[4]; var m31:Float = rawData[8]; var m41:Float = rawData[12];
@@ -321,7 +321,7 @@ import lumen.utils.compat.Vector3D;
       if (vup.length > 0)
       {
          vup.normalized;
-      } else 
+      } else
       {
          vup = dir.x != 0 ? new phoenix.Vector(-dir.y,dir.x,0) : new phoenix.Vector(1,0,0);
       }
@@ -349,7 +349,7 @@ import lumen.utils.compat.Vector3D;
       return this;
    }
 */
-   inline public function prepend(rhs:Matrix3D):Void 
+   inline public function prepend(rhs:Matrix3D):Void
    {
       var m111:Float = rhs.rawData[0], m121:Float = rhs.rawData[4], m131:Float = rhs.rawData[8], m141:Float = rhs.rawData[12],
          m112:Float = rhs.rawData[1], m122:Float = rhs.rawData[5], m132:Float = rhs.rawData[9], m142:Float = rhs.rawData[13],
@@ -381,11 +381,11 @@ import lumen.utils.compat.Vector3D;
       rawData[15] = m141 * m214 + m142 * m224 + m143 * m234 + m144 * m244;
    }
 
-   inline public function prependRotation(degrees:Float, axis:Vector3D, ?pivotPoint:Vector3D):Void 
+   inline public function prependRotation(degrees:Float, axis:Vector3D, ?pivotPoint:Vector3D):Void
    {
       var m = getAxisRotation(axis.x, axis.y, axis.z, degrees);
 
-      if (pivotPoint != null) 
+      if (pivotPoint != null)
       {
          var p = pivotPoint;
          m.appendTranslation(p.x, p.y, p.z);
@@ -394,19 +394,19 @@ import lumen.utils.compat.Vector3D;
       this.prepend(m);
    }
 
-   inline public function prependScale(xScale:Float, yScale:Float, zScale:Float):Void 
+   inline public function prependScale(xScale:Float, yScale:Float, zScale:Float):Void
    {
       this.prepend(new Matrix3D([xScale, 0.0, 0.0, 0.0, 0.0, yScale, 0.0, 0.0, 0.0, 0.0, zScale, 0.0, 0.0, 0.0, 0.0, 1.0]));
    }
 
-   inline public function prependTranslation(x:Float, y:Float, z:Float):Void 
+   inline public function prependTranslation(x:Float, y:Float, z:Float):Void
    {
       var m = new Matrix3D();
       m.position = new Vector3D(x, y, z);
       this.prepend(m);
    }
 
-   public function recompose(components:Vector<Vector3D>):Bool 
+   public function recompose(components:Vector<Vector3D>):Bool
    {
       if (components.length < 3 || components[2].x == 0 || components[2].y == 0 || components[2].z == 0) return false;
 
@@ -427,7 +427,7 @@ import lumen.utils.compat.Vector3D;
       return true;
    }
 
-   inline public function transformVector(v:Vector3D):Vector3D 
+   inline public function transformVector(v:Vector3D):Vector3D
    {
       var x:Float = v.x, y:Float = v.y, z:Float = v.z;
       return new Vector3D(
@@ -437,10 +437,10 @@ import lumen.utils.compat.Vector3D;
       1);
    }
 
-   public function transformVectors(vin:Vector<Float>, vout:Vector<Float>):Void 
+   public function transformVectors(vin:Vector<Float>, vout:Vector<Float>):Void
    {
       var i = 0;
-      while(i + 3 <= vin.length) 
+      while(i + 3 <= vin.length)
       {
          var x:Float = vin[i], y:Float = vin[i + 1], z:Float = vin[i + 2];
          vout[i] = x * rawData[0] + y * rawData[4] + z * rawData[8] + rawData[12];
@@ -450,7 +450,7 @@ import lumen.utils.compat.Vector3D;
       }
    }
 
-   inline public function transpose():Void 
+   inline public function transpose():Void
    {
       var oRawData = rawData.copy();
       rawData[1] = oRawData[4];

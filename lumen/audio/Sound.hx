@@ -6,7 +6,7 @@ import lumen.types.Types;
 import lumen.utils.AbstractClass;
 
 #if lumen_html5
-    
+
     #if lumen_audio_howlerjs
         typedef Sound = lumen.platform.html5.audio.howlerjs.Sound;
         typedef SoundStream = lumen.platform.html5.audio.howlerjs.SoundStream;
@@ -15,7 +15,7 @@ import lumen.utils.AbstractClass;
         typedef SoundStream = lumen.platform.html5.audio.SoundStream;
     #end
 
-#else 
+#else
 
     #if lumen_audio_openal
         typedef Sound = lumen.platform.native.audio.openal.Sound;
@@ -23,14 +23,14 @@ import lumen.utils.AbstractClass;
     #else
         typedef Sound = lumen.platform.native.audio.Sound;
         typedef SoundStream = lumen.platform.native.audio.SoundStream;
-    #end 
+    #end
 
-#end 
+#end
 
 
 
 //The base class for a sound or sound stream instance.
-//This can't be abstract like the other bindings due to so much shared code, 
+//This can't be abstract like the other bindings due to so much shared code,
 //it's cleaner to keep this all in here instead
 
 @:noCompletion class SoundBinding {
@@ -79,16 +79,16 @@ import lumen.utils.AbstractClass;
 //Abstract functions implemented in concrete platform level
 
         /** Play this sound */
-    public function play() {} 
+    public function play() {}
         /** Loop this sound */
-    public function loop() {} 
+    public function loop() {}
         /** Stop this sound */
-    public function stop() {} 
+    public function stop() {}
         /** Pause this sound */
-    public function pause() {} 
+    public function pause() {}
         /** Destroy this sound and it's data */
-    public function destroy() {} 
-        
+    public function destroy() {}
+
 // Internal system events
 
     @:noCompletion public function internal_update() {}
@@ -111,17 +111,17 @@ import lumen.utils.AbstractClass;
 
         /** A helper for converting seconds to bytes for this sound source, using the format settings specific to this sound */
     public function seconds_to_bytes( _seconds:Float ) : Int {
-        
+
         var word = info.bits_per_sample == 16 ? 2 : 1;
         var sample_frames = (info.rate * info.channels * word);
 
         return Std.int(_seconds * sample_frames);
-    
+
     } //seconds_to_bytes
 
         /** Toggle this sound */
     public function toggle() {
-        
+
         playing = !playing;
 
         if(playing) {

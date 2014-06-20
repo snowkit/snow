@@ -6,5 +6,5 @@ package lumen.utils.compat;
     ZLIB;
     LZMA;
     GZIP;
-} 
+}
 

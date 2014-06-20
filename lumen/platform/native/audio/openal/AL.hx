@@ -82,7 +82,7 @@ class AL {
     public static function dopplerFactor(value:Float) : Void {
         alhx_DopplerFactor(value);
     }
-    
+
     public static function dopplerVelocity(value:Float) : Void {
         alhx_DopplerVelocity(value);
     }
@@ -151,13 +151,13 @@ class AL {
         return alhx_GetError();
     }
 
-// extensions 
+// extensions
 
     public static function isExtensionPresent(extname:String) : Bool {
         return alhx_IsExtensionPresent(extname);
     }
 
-        // :warn: not sure yet 
+        // :warn: not sure yet
     public static function getProcAddress(fname:String) : Dynamic {
         return null;
     }
@@ -433,7 +433,7 @@ class AL {
         if(error == OUT_OF_MEMORY)      {  return OUT_OF_MEMORY_MEANING;  }
 
         return "AL.NO_ERROR: No Error";
-        
+
     } //getErrorMeaning
 
 // bindings
@@ -455,7 +455,7 @@ class AL {
     static var alhx_GetInteger              = Libs.load("lumen", "alhx_GetInteger", 1);
     static var alhx_GetFloat                = Libs.load("lumen", "alhx_GetFloat", 1);
     static var alhx_GetDouble               = Libs.load("lumen", "alhx_GetDouble", 1);
-    
+
     static var alhx_GetError                = Libs.load("lumen", "alhx_GetError", 0);
     static var alhx_IsExtensionPresent      = Libs.load("lumen", "alhx_IsExtensionPresent", 1);
     static var alhx_GetProcAddress          = Libs.load("lumen", "alhx_GetProcAddress", 1);
