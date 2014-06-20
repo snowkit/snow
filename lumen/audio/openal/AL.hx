@@ -2,7 +2,7 @@ package lumen.audio.openal;
 
 #if lumen_html5
 
-    //OpenAL doesn't exist on html5 platforms so, this should throw a compiler error even attempting to include this
+    #error "OpenAL is not available on html5 browser platforms. Including this file on that platform is not possible."
 
 #else
 
