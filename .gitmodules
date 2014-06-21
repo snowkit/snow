@@ -1,33 +1,33 @@
 [submodule "project/src/libs/theora"]
 	path = project/src/libs/theora
-	url = git@github.com:native-toolkit/theora.git
+	url = https://github.com/native-toolkit/theora.git
 [submodule "project/src/libs/lzma"]
 	path = project/src/libs/lzma
-	url = git@github.com:native-toolkit/lzma.git
+	url = https://github.com/native-toolkit/lzma.git
 [submodule "project/src/libs/glew"]
 	path = project/src/libs/glew
-	url = git@github.com:native-toolkit/glew.git
+	url = https://github.com/native-toolkit/glew.git
 [submodule "project/src/libs/stb_image"]
 	path = project/src/libs/stb_image
-	url = git@github.com:native-toolkit/stb_image.git
+	url = https://github.com/native-toolkit/stb_image.git
 [submodule "project/src/libs/ogg"]
 	path = project/src/libs/ogg
-	url = git@github.com:native-toolkit/ogg.git
+	url = https://github.com/native-toolkit/ogg.git
 [submodule "project/src/libs/zlib"]
 	path = project/src/libs/zlib
-	url = git@github.com:native-toolkit/zlib.git
+	url = https://github.com/native-toolkit/zlib.git
 [submodule "project/src/libs/curl"]
 	path = project/src/libs/curl
-	url = git@github.com:native-toolkit/curl.git
+	url = https://github.com/native-toolkit/curl.git
 [submodule "project/src/libs/vorbis"]
 	path = project/src/libs/vorbis
-	url = git@github.com:native-toolkit/vorbis.git
+	url = https://github.com/native-toolkit/vorbis.git
 [submodule "project/src/libs/openal-android"]
 	path = project/src/libs/openal-android
-	url = git@github.com:native-toolkit/openal-android.git
+	url = https://github.com/native-toolkit/openal-android.git
 [submodule "project/src/libs/openal"]
 	path = project/src/libs/openal
-	url = git@github.com:native-toolkit/openal.git
+	url = https://github.com/native-toolkit/openal.git
 [submodule "project/src/libs/sdl"]
 	path = project/src/libs/sdl
-	url = git@github.com:native-toolkit/sdl.git
+	url = https://github.com/native-toolkit/sdl.git
