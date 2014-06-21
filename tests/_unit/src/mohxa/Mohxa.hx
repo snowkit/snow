@@ -48,7 +48,7 @@ class MohxaFailure {
     public function display(t:Int) {
         var _parsed = test.runner.strip_mohxa_calls(stack);
         for(item in _parsed) {
-            Sys.println( test.runner.tabs(t) + item );
+            Mohxa._log( test.runner.tabs(t) + item );
         }
     }
 
@@ -112,7 +112,7 @@ class MohxaTestSet extends MohxaRunnable {
         for(group in groups) {
             runner.current_depth = depth;
             runner.current_set = group;
-            Sys.println(runner.tabs(depth) + group.name );
+            Mohxa._log(runner.tabs(depth) + group.name );
             group.run();
             group._traverse();
         } //for each group
@@ -141,7 +141,11 @@ class Mohxa {
     public function new() {
         failures = new Map();
         create_root_set();
+        #if !js
         system_name = Sys.systemName();
+        #else
+        system_name = "Windows"; //disables console colors in browser
+        #end
         if(system_name == "Windows") {
             symbols = { ok: 'ok', err: '!!', dot: '>' };
         } else {
@@ -167,12 +171,12 @@ class Mohxa {
 
     public function log(e:Dynamic) {
         var _parsed = strip_mohxa_calls( haxe.CallStack.callStack() );
-        Sys.println( tabs(current_depth+2) + dim() + _parsed[0] + ': ' + e + reset() );
+        _log( tabs(current_depth+2) + dim() + _parsed[0] + ': ' + e + reset() );
     }
 
     public function run() {
 
-        Sys.println('\n');
+        _log('\n');
 
         failed = 0;
         total_time = haxe.Timer.stamp();
@@ -182,25 +186,25 @@ class Mohxa {
         total_time = (haxe.Timer.stamp() - total_time) * 1000;
         var n = Math.pow(10,3); total_time = (Std.int(total_time*n) / n);
 
-        Sys.println('\n');
+        _log('\n');
 
         if(failed > 0) {
-            Sys.println( error() + ' ' + failed + ' of ' + total + ' failed  (' + dim() + total_time + 'ms' + reset() + ') \n' );
+            _log( error() + ' ' + failed + ' of ' + total + ' failed  (' + dim() + total_time + 'ms' + reset() + ') \n' );
                 //display all failures
             var _f : Int = 0;
             for(failure in failures) {
-                Sys.println( tabs(1) + red() + _f  + ') ' + reset() + failure.test.name  );
-                Sys.println( tabs(2) + error() + dim() + ' because ' + reset() + red() + failure.details + reset() );
-                Sys.print( dim() );
+                _log( tabs(1) + red() + _f  + ') ' + reset() + failure.test.name  );
+                _log( tabs(2) + error() + dim() + ' because ' + reset() + red() + failure.details + reset() );
+                _log( dim(), true );
                 failure.display(3);
                 doreset();
                 _f++;
             }
         } else {
-            Sys.println( ok() + green() + ' ' + total + ' tests completed. ' +reset()+ dim() + ' (' + total_time + 'ms' + ')' + reset());
+            _log( ok() + green() + ' ' + total + ' tests completed. ' +reset()+ dim() + ' (' + total_time + 'ms' + ')' + reset());
         }
 
-        Sys.println('\n');
+        _log('\n');
 
         doreset();
 
@@ -209,13 +213,13 @@ class Mohxa {
 //Helpers
 
     @:noCompletion public function onfail( failure:MohxaFailure ) {
-        Sys.println( tabs(failure.test.set.depth+3) + error() + red() + ' fail (' + failed + ')'  + reset());
+        _log( tabs(failure.test.set.depth+3) + error() + red() + ' fail (' + failed + ')'  + reset());
         failures.set( failed, failure );
         failed++;
     }
 
     @:noCompletion public function onrun(t:MohxaTest) {
-        Sys.println( tabs(t.set.depth+2) + dim() + dot() + ' ' + t.name +  reset() );
+        _log( tabs(t.set.depth+2) + dim() + dot() + ' ' + t.name +  reset() );
     }
 
     @:noCompletion public function onpass(t:MohxaTest, runtime:Float ) {
@@ -226,7 +230,7 @@ class Mohxa {
             _time =  reset() + red() + ' (' + runtime + 'ms)';
         }
 
-        Sys.println( tabs(t.set.depth+3) + ok() + green() + ' pass' + _time + reset() );
+        _log( tabs(t.set.depth+3) + ok() + green() + ' pass' + _time + reset() );
     }
 
 //API
@@ -262,19 +266,19 @@ class Mohxa {
     public function equal(value:Dynamic, expected:Dynamic, ?tag:String = '') {
 
         if( value != expected ) {
-            Sys.println( tabs(current_set.depth+4) + error() + dim() + ' ' + ((tag.length>0) ? tag : '') + ' ' + reset() + red() + (value + ' != ' + expected) + reset() );
+            _log( tabs(current_set.depth+4) + error() + dim() + ' ' + ((tag.length>0) ? tag : '') + ' ' + reset() + red() + (value + ' != ' + expected) + reset() );
             throw (value + ' != ' + expected) + '  ' + ((tag.length>0) ? '('+tag+')' : '');
         } else {
-            Sys.println( tabs(current_set.depth+4) + ok() + dim() + ' ' + ((tag.length>0) ? tag : '') + reset() );  //' ' +reset() + green() + (value + ' == ' + expected) +
+            _log( tabs(current_set.depth+4) + ok() + dim() + ' ' + ((tag.length>0) ? tag : '') + reset() );  //' ' +reset() + green() + (value + ' == ' + expected) +
         }
     }
 
     public function notequal(value:Dynamic, unexpected:Dynamic, ?tag:String = '') {
         if( value == unexpected ) {
-            Sys.println( tabs(current_set.depth+4) + error() + dim() + ' ' + ((tag.length>0) ? tag : '') + ' ' +reset() + red() + (value + ' == ' + unexpected) + reset() );
+            _log( tabs(current_set.depth+4) + error() + dim() + ' ' + ((tag.length>0) ? tag : '') + ' ' +reset() + red() + (value + ' == ' + unexpected) + reset() );
             throw (value + ' == ' + unexpected) + '  ' + ((tag.length>0) ? '('+tag+')' : '');
         } else {
-            Sys.println( tabs(current_set.depth+4) + ok() + dim() + ' ' + ((tag.length>0) ? tag : '') + reset() );
+            _log( tabs(current_set.depth+4) + ok() + dim() + ' ' + ((tag.length>0) ? tag : '') + reset() );
         }
     }
 
@@ -282,25 +286,39 @@ class Mohxa {
 
     public function equalfloat(value:Float, expected:Float, ?tag:String = '') {
         if(!(Math.abs(expected - value) < epsilon)) {
-            Sys.println( tabs(current_set.depth+4) + error() + dim() + ' ' + ((tag.length>0) ? tag : '') + ' ' + reset() + red() + (value + ' != ' + expected) + reset() );
+            _log( tabs(current_set.depth+4) + error() + dim() + ' ' + ((tag.length>0) ? tag : '') + ' ' + reset() + red() + (value + ' != ' + expected) + reset() );
             throw (value + ' == ' + expected) + ' (float) ' + ((tag.length>0) ? '('+tag+')' : '');
         } else {
-            Sys.println( tabs(current_set.depth+4) + ok() + dim() + ' ' + ((tag.length>0) ? tag : '') + reset() );
+            _log( tabs(current_set.depth+4) + ok() + dim() + ' ' + ((tag.length>0) ? tag : '') + reset() );
         }
     }
 
     public function equalint(value:Int, expected:Int, ?tag:String = '') {
         if(Std.int(value) != Std.int(expected)) {
-            Sys.println( tabs(current_set.depth+4) + error() + dim() + ' ' + ((tag.length>0) ? tag : '') + ' ' + reset() + red() + (value + ' != ' + expected) + reset() );
+            _log( tabs(current_set.depth+4) + error() + dim() + ' ' + ((tag.length>0) ? tag : '') + ' ' + reset() + red() + (value + ' != ' + expected) + reset() );
             throw (value + ' == ' + expected) + ' (int) ' + ((tag.length>0) ? '('+tag+')' : '');
         } else {
-            Sys.println( tabs(current_set.depth+4) + ok() + dim() + ' ' + ((tag.length>0) ? tag : '') + reset() );
+            _log( tabs(current_set.depth+4) + ok() + dim() + ' ' + ((tag.length>0) ? tag : '') + reset() );
         }
+    }
+
+    @:noCompletion public static function _log(v:Dynamic, ?print:Bool = false) {
+        #if (cpp || neko)
+            if(!print) {
+                Sys.println(v);
+            } else {
+                Sys.print(v);
+            }
+        #elseif js
+            untyped __js__('console.log(v)');
+        #else
+            trace(v);
+        #end
     }
 
     public function tabs(t:Int) { var s = ''; for(i in 0 ... (t*2)) { s+=' '; } return s; }
 
-    function doreset()  { Sys.print(reset()); }
+    function doreset()  { _log(reset(), true); }
     function dot()      { return symbols.dot; }
     function reset()    { return (system_name == "Windows") ? '' : "\033[0m";  }
     function yellow()   { return (system_name == "Windows") ? '' : "\033[93m"; }
