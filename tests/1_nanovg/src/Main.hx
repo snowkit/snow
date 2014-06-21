@@ -16,9 +16,10 @@ class Main extends lumen.App {
 
     var vg:cpp.Pointer<NvgContext>;
     var font:Int;
+    var current_text : String = 'type to change this';
 
     var linearGradient:NvgPaint;
-    
+
     override function ready() {
 
         trace('/ HOST / ready');
@@ -53,10 +54,16 @@ class Main extends lumen.App {
             app.shutdown();
         }
 
+        if( keycode == Key.BACKSPACE ) {
+            current_text = current_text.substr(0,current_text.length-1);
+        }
+
     } //onkeyup
 
     override function ontextinput( text:String, start:Int, length:Int, type:TextEventType, timestamp:Float, window_id:Int ) {
-        trace(text);
+
+        current_text += text;
+
     }
 
     override function update( delta:Float ) {
@@ -91,7 +98,7 @@ class Main extends lumen.App {
         
         Nvg.fontFaceId(vg, font);
         Nvg.fillColor(vg, Nvg.rgba(255,0,0,255));
-        Nvg.text(vg, 50, 50, "LOOOK SOME TEXT!!!".c_str(), untyped __cpp__("NULL"));
+        Nvg.text(vg, 50, 50, current_text.c_str(), untyped __cpp__("NULL"));
         
 
         Nvg.fontSize(vg, 200.0);
