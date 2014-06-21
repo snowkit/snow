@@ -85,7 +85,7 @@ import lumen.utils.Libs;
     } //window_grab
 
     override public function fullscreen( window:Window, fullscreen:Bool, windowed_fullscreen:Bool = true ) {
-    	lumen_window_fullscreen( window.handle, fullscreen, (windowed_fullscreen) ? 1 : 0 );
+    	lumen_window_fullscreen( window.handle, fullscreen, (windowed_fullscreen) ? 0 : 1 );
     } //window_fullscreen
 
     override public function bordered( window:Window, bordered:Bool ) {
