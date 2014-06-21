@@ -8,9 +8,9 @@ import sys.io.File;
 class Helper {
 
     public static function remove_directory(directory:String):Void {
-        
+
         if (FileSystem.exists (directory) && FileSystem.isDirectory (directory)) {
-            
+
             for (file in FileSystem.readDirectory (directory)) {
                 var path = directory + "/" + file;
 
@@ -20,7 +20,7 @@ class Helper {
                     FileSystem.deleteFile (path);
                 }
             }
-            
+
             FileSystem.deleteDirectory (directory);
         }
 
@@ -40,7 +40,7 @@ class Helper {
                     if (ignoreRootFolder != "") {
                         dirs.shift ();
                     }
-                
+
                     var path = "";
                     var file = dirs.pop();
                     for( d in dirs ) {
@@ -48,14 +48,14 @@ class Helper {
                         PathHelper.mkdir (_dest + "/" + path);
                         path += "/";
                     }
-                
+
                     if( file == "" ) {
                         if( path != "" ) Run._trace("created " + path);
                         continue; // was just a directory
                     }
                     path += file;
                     Run._trace("unzip " + path);
-                
+
                     var data = haxe.zip.Reader.unzip(_entry);
                     var f = File.write (_dest + "/" + path, true);
                     f.write(data);
@@ -72,7 +72,7 @@ class Helper {
     static inline function read_line() {
         return Sys.stdin().readLine();
     } //read_line
-    
+
     private static function ask (question:String):String {
         while (true) {
             Run._trace(question + " [y/n/s/a]?");
@@ -88,7 +88,7 @@ class Helper {
 
     public static function git_push( pull_first:Bool=false ) {
 
-        if(pull_first) {            
+        if(pull_first) {
             git_pull();
             git_rebase();
         }
@@ -103,13 +103,13 @@ class Helper {
         var _args = ["pull"];
         return ProcessHelper.runCommand( Run.lumen_path, _command, _args, false );
     } //git_pull
-    
+
     public static function git_rebase() {
         var _command = "git";
         var _args = ["rebase"];
         return ProcessHelper.runCommand( Run.lumen_path, _command, _args, false );
     } //git_rebase
-    
+
     public static function git_log( ?_lines:Int=4 ) : String {
         var _command = "git";
         var _args = ["log", "--oneline", '${_lines}'];
@@ -129,11 +129,11 @@ class Helper {
     } //git_commit
 
     public static function download_file( remotePath:String, localPath:String = "", followingLocation:Bool = false) : String {
-        
+
         if (localPath == "") {
             localPath = haxe.io.Path.withoutDirectory(remotePath);
         }
-        
+
         if (!followingLocation && FileSystem.exists(localPath)) {
             var answer = ask("file found. use existing file?");
             if (answer != 'no') {
@@ -144,22 +144,22 @@ class Helper {
         var out = File.write(localPath, true);
         var progress = new Progress(out);
         var h = new Http(remotePath);
-        
+
         h.cnxTimeout = 30;
-        
+
         h.onError = function (e) {
             progress.close();
             FileSystem.deleteFile(localPath);
             Run._trace('downloading failed... ${e}');
             return;
         };
-        
+
         if (!followingLocation) {
             Run._trace('downloading ${localPath} from ${remotePath}...');
         }
-        
+
         h.customRequest (false, progress);
-        
+
         if (h.responseHeaders != null && h.responseHeaders.exists ("Location")) {
             var location = h.responseHeaders.get ("Location");
             if (location != remotePath) {
@@ -168,7 +168,7 @@ class Helper {
         }
 
         return '';
-        
+
     } //download_file
 
     public static function haxelib_current( haxelib:String ) : String {
@@ -185,7 +185,7 @@ class Helper {
         }
 
         return repo_version;
-        
+
     } //
 
     public static function haxelib_list() : String {
@@ -283,13 +283,13 @@ class Progress extends haxe.io.Output {
         var speed = (cur / time) / 1024;
         time = Std.int(time * 10) / 10;
         speed = Std.int(speed * 10) / 10;
-        
+
         // When the path is a redirect, we don't want to display that the download completed
-        
+
         if (cur > 400) {
             Run._trace("download complete : " + cur + " bytes in " + time + "s (" + speed + "KB/s)");
         }
-        
+
     }
 
     public override function prepare(m) {
