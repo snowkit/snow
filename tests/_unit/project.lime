@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<project library="lumen">
+
+    <app main="Main" path="bin" file="lumen_unit_tests" />
+
+    <source path="src" />
+
+    <meta title="lumen unit tests" package="com.lumenframework.samples" version="1.0.0" company="lumenframework" />
+
+    <window  width="100" height="100" orientation="landscape" fps="60" vsync="true" resizable="false" />
+
+    <assets path="assets" rename="assets" exclude="*.svg" />
+    <assets path="config.json" />
+
+        <!-- This is ONLY required for the tests to build on the automated server -->
+        <!-- usually, you just <haxelib name="lumen" /> and that's all -->
+    <include name="../../"/>
+
+</project>
