@@ -1,5 +1,6 @@
 package lumen.platform.native.utils;
 
+
 class Float32Array extends ArrayBufferView implements ArrayAccess<Float> {
 
     public var BYTES_PER_ELEMENT (default, null) : Int;

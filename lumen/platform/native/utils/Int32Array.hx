@@ -1,7 +1,6 @@
 package lumen.platform.native.utils;
 
 
-
 class Int32Array extends ArrayBufferView implements ArrayAccess<Int> {
 
 
