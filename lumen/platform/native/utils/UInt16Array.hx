@@ -1,7 +1,6 @@
 package lumen.platform.native.utils;
 
 
-
 class UInt16Array extends ArrayBufferView implements ArrayAccess<Int> {
 
 

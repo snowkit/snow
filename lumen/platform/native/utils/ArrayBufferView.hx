@@ -1,238 +1,235 @@
 package lumen.platform.native.utils;
 
-#if lumen_native
 
-    import lumen.platform.native.utils.ByteArray;
-    import lumen.utils.IMemoryRange;
+import lumen.platform.native.utils.ByteArray;
+import lumen.utils.IMemoryRange;
+
+#if cpp
+    import haxe.io.BytesData;
+#end
+
+class ArrayBufferView implements IMemoryRange {
+
+    public var buffer (default, null) : ByteArray;
+    public var byteOffset (default, null) : Int;
+    public var byteLength (default, null) : Int;
 
     #if cpp
-        import haxe.io.BytesData;
+    var bytes : BytesData;
     #end
 
-    class ArrayBufferView implements IMemoryRange {
+    function new( lengthOrBuffer:Dynamic, byteOffset:Int = 0, length:Null<Int> = null ) {
 
-        public var buffer (default, null) : ByteArray;
-        public var byteOffset (default, null) : Int;
-        public var byteLength (default, null) : Int;
+        if (Std.is(lengthOrBuffer, Int)) {
 
-        #if cpp
-        var bytes : BytesData;
-        #end
+            byteLength = Std.int(lengthOrBuffer);
+            this.byteOffset = 0;
+            buffer = new ArrayBuffer(Std.int(lengthOrBuffer));
 
-        function new( lengthOrBuffer:Dynamic, byteOffset:Int = 0, length:Null<Int> = null ) {
+        } else {
 
-            if (Std.is(lengthOrBuffer, Int)) {
+            buffer = lengthOrBuffer;
 
-                byteLength = Std.int(lengthOrBuffer);
-                this.byteOffset = 0;
-                buffer = new ArrayBuffer(Std.int(lengthOrBuffer));
-
-            } else {
-
-                buffer = lengthOrBuffer;
-
-                if (buffer == null) {
-                    throw "Invalid input buffer";
-                }
-
-                this.byteOffset = byteOffset;
-
-                if (byteOffset > buffer.length) {
-                    throw "Invalid starting position";
-                }
-
-                if (length == null) {
-                    byteLength = buffer.length - byteOffset;
-                } else {
-                    byteLength = length;
-
-                    if (byteLength + byteOffset > buffer.length) {
-                        throw "Invalid buffer length";
-                    }
-                }
-
+            if (buffer == null) {
+                throw "Invalid input buffer";
             }
 
-            buffer.bigEndian = false;
+            this.byteOffset = byteOffset;
 
-            #if cpp
-            bytes = buffer.getData();
-            #end
+            if (byteOffset > buffer.length) {
+                throw "Invalid starting position";
+            }
 
-        }
+            if (length == null) {
+                byteLength = buffer.length - byteOffset;
+            } else {
+                byteLength = length;
 
-        public function getByteBuffer() : ByteArray {
-
-            return buffer;
-
-        }
-
-        public function getLength() : Int {
-
-            return byteLength;
+                if (byteLength + byteOffset > buffer.length) {
+                    throw "Invalid buffer length";
+                }
+            }
 
         }
 
-        public function getStart() : Int {
+        buffer.bigEndian = false;
 
-            return byteOffset;
+        #if cpp
+        bytes = buffer.getData();
+        #end
 
-        }
+    }
 
-        inline public function getInt8( position:Int ) : Int {
+    public function getByteBuffer() : ByteArray {
 
-            #if cpp
-            return untyped __global__.__hxcpp_memory_get_byte(bytes, position + byteOffset);
-            #else
-            buffer.position = position + byteOffset;
-            return buffer.readByte();
-            #end
+        return buffer;
 
-        }
+    }
 
-        inline public function setInt8( position:Int, value:Int ) {
+    public function getLength() : Int {
 
-            #if cpp
-            untyped __global__.__hxcpp_memory_set_byte(bytes, position + byteOffset, value);
-            #else
-            buffer.position = position + byteOffset;
-            buffer.writeByte(value);
-            #end
+        return byteLength;
 
-        }
+    }
 
-        inline public function getUInt8( position:Int ) : Int {
+    public function getStart() : Int {
 
-            #if cpp
-            return untyped __global__.__hxcpp_memory_get_byte(bytes, position + byteOffset) & 0xff;
-            #else
-            buffer.position = position + byteOffset;
-            return buffer.readUnsignedByte();
-            #end
+        return byteOffset;
 
-        }
+    }
 
-        inline public function setUInt8( position:Int, value:Int ) {
+    inline public function getInt8( position:Int ) : Int {
 
-            #if cpp
-            untyped __global__.__hxcpp_memory_set_byte(bytes, position + byteOffset, value);
-            #else
-            buffer.position = position + byteOffset;
-            buffer.writeByte(value);
-            #end
+        #if cpp
+        return untyped __global__.__hxcpp_memory_get_byte(bytes, position + byteOffset);
+        #else
+        buffer.position = position + byteOffset;
+        return buffer.readByte();
+        #end
 
-        }
+    }
 
-        inline public function getInt16( position:Int ) : Int {
+    inline public function setInt8( position:Int, value:Int ) {
 
-            #if cpp
-            untyped return __global__.__hxcpp_memory_get_i16(bytes, position + byteOffset);
-            #else
-            buffer.position = position + byteOffset;
-            return buffer.readShort();
-            #end
+        #if cpp
+        untyped __global__.__hxcpp_memory_set_byte(bytes, position + byteOffset, value);
+        #else
+        buffer.position = position + byteOffset;
+        buffer.writeByte(value);
+        #end
 
-        }
+    }
 
-        inline public function setInt16( position:Int, value:Int ) {
+    inline public function getUInt8( position:Int ) : Int {
 
-            #if cpp
-            untyped __global__.__hxcpp_memory_set_i16(bytes, position + byteOffset, value);
-            #else
-            buffer.position = position + byteOffset;
-            buffer.writeShort(Std.int(value));
-            #end
+        #if cpp
+        return untyped __global__.__hxcpp_memory_get_byte(bytes, position + byteOffset) & 0xff;
+        #else
+        buffer.position = position + byteOffset;
+        return buffer.readUnsignedByte();
+        #end
 
-        }
+    }
 
-        inline public function getUInt16( position:Int ) : Int {
+    inline public function setUInt8( position:Int, value:Int ) {
 
-            #if cpp
-            untyped return __global__.__hxcpp_memory_get_ui16(bytes, position + byteOffset) & 0xffff;
-            #else
-            buffer.position = position + byteOffset;
-            return buffer.readUnsignedShort();
-            #end
+        #if cpp
+        untyped __global__.__hxcpp_memory_set_byte(bytes, position + byteOffset, value);
+        #else
+        buffer.position = position + byteOffset;
+        buffer.writeByte(value);
+        #end
 
-        }
+    }
 
-        inline public function setUInt16( position:Int, value:Int ) {
+    inline public function getInt16( position:Int ) : Int {
 
-            #if cpp
-            untyped __global__.__hxcpp_memory_set_ui16(bytes, position + byteOffset, value);
-            #else
-            buffer.position = position + byteOffset;
-            buffer.writeShort(Std.int(value));
-            #end
+        #if cpp
+        untyped return __global__.__hxcpp_memory_get_i16(bytes, position + byteOffset);
+        #else
+        buffer.position = position + byteOffset;
+        return buffer.readShort();
+        #end
 
-        }
+    }
 
-        inline public function getInt32( position:Int ) : Int {
+    inline public function setInt16( position:Int, value:Int ) {
 
-            #if cpp
-            untyped return __global__.__hxcpp_memory_get_i32(bytes, position + byteOffset);
-            #else
-            buffer.position = position + byteOffset;
-            return buffer.readInt();
-            #end
+        #if cpp
+        untyped __global__.__hxcpp_memory_set_i16(bytes, position + byteOffset, value);
+        #else
+        buffer.position = position + byteOffset;
+        buffer.writeShort(Std.int(value));
+        #end
 
-        }
+    }
 
-        inline public function setInt32( position:Int, value:Int ) {
+    inline public function getUInt16( position:Int ) : Int {
 
-            #if cpp
-            untyped __global__.__hxcpp_memory_set_i32(bytes, position + byteOffset, value);
-            #else
-            buffer.position = position + byteOffset;
-            buffer.writeInt(Std.int(value));
-            #end
+        #if cpp
+        untyped return __global__.__hxcpp_memory_get_ui16(bytes, position + byteOffset) & 0xffff;
+        #else
+        buffer.position = position + byteOffset;
+        return buffer.readUnsignedShort();
+        #end
 
-        }
+    }
 
-        inline public function getUInt32( position:Int ) : Int {
+    inline public function setUInt16( position:Int, value:Int ) {
 
-            #if cpp
-            untyped return __global__.__hxcpp_memory_get_ui32(bytes, position + byteOffset);
-            #else
-            buffer.position = position + byteOffset;
-            return buffer.readUnsignedInt();
-            #end
+        #if cpp
+        untyped __global__.__hxcpp_memory_set_ui16(bytes, position + byteOffset, value);
+        #else
+        buffer.position = position + byteOffset;
+        buffer.writeShort(Std.int(value));
+        #end
 
-        }
+    }
 
-        inline public function setUInt32( position:Int, value:Int ) {
+    inline public function getInt32( position:Int ) : Int {
 
-            #if cpp
-            untyped __global__.__hxcpp_memory_set_ui32(bytes, position + byteOffset, value);
-            #else
-            buffer.position = position + byteOffset;
-            buffer.writeUnsignedInt(Std.int(value));
-            #end
+        #if cpp
+        untyped return __global__.__hxcpp_memory_get_i32(bytes, position + byteOffset);
+        #else
+        buffer.position = position + byteOffset;
+        return buffer.readInt();
+        #end
 
-        }
+    }
 
-        inline public function getFloat32( position:Int ) : Float {
+    inline public function setInt32( position:Int, value:Int ) {
 
-            #if cpp
-            untyped return __global__.__hxcpp_memory_get_float(bytes, position + byteOffset);
-            #else
-            buffer.position = position + byteOffset;
-            return buffer.readFloat();
-            #end
+        #if cpp
+        untyped __global__.__hxcpp_memory_set_i32(bytes, position + byteOffset, value);
+        #else
+        buffer.position = position + byteOffset;
+        buffer.writeInt(Std.int(value));
+        #end
 
-        }
+    }
 
-        inline public function setFloat32( position:Int, value:Float ) {
+    inline public function getUInt32( position:Int ) : Int {
 
-            #if cpp
-            untyped __global__.__hxcpp_memory_set_float(bytes, position + byteOffset, value);
-            #else
-            buffer.position = position + byteOffset;
-            buffer.writeFloat(value);
-            #end
+        #if cpp
+        untyped return __global__.__hxcpp_memory_get_ui32(bytes, position + byteOffset);
+        #else
+        buffer.position = position + byteOffset;
+        return buffer.readUnsignedInt();
+        #end
 
-        }
+    }
 
-    } //ArrayBufferView
+    inline public function setUInt32( position:Int, value:Int ) {
 
-#end //lumen_native
+        #if cpp
+        untyped __global__.__hxcpp_memory_set_ui32(bytes, position + byteOffset, value);
+        #else
+        buffer.position = position + byteOffset;
+        buffer.writeUnsignedInt(Std.int(value));
+        #end
+
+    }
+
+    inline public function getFloat32( position:Int ) : Float {
+
+        #if cpp
+        untyped return __global__.__hxcpp_memory_get_float(bytes, position + byteOffset);
+        #else
+        buffer.position = position + byteOffset;
+        return buffer.readFloat();
+        #end
+
+    }
+
+    inline public function setFloat32( position:Int, value:Float ) {
+
+        #if cpp
+        untyped __global__.__hxcpp_memory_set_float(bytes, position + byteOffset, value);
+        #else
+        buffer.position = position + byteOffset;
+        buffer.writeFloat(value);
+        #end
+
+    }
+
+} //ArrayBufferView

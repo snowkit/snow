@@ -1,5 +1,6 @@
 package lumen.platform.native.utils;
 
+
 import lumen.utils.IMemoryRange;
 import lumen.utils.Libs;
 
@@ -7,6 +8,7 @@ import haxe.io.Bytes;
 import haxe.io.BytesData;
 // import lumen.errors.EOFError; // Ensure that the neko->haxe callbacks are initialized
 import lumen.utils.IDataInput;
+
 
 #if neko
     import neko.Lib;
