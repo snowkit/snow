@@ -332,7 +332,7 @@ class Window {
 
     } //set_position
 
-    function set_size( _width:Int, _height:Int ) {
+    public function set_size( _width:Int, _height:Int ) {
 
             //keep the flag
         var last_internal_resize_flag = internal_resize;
