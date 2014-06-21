@@ -16,7 +16,7 @@ class Main extends lumen.App {
 
     var vg:cpp.Pointer<NvgContext>;
     var font:Int;
-    var current_text : String = 'type to change this';
+    var current_text : String = 'type to change this ™';
 
     var linearGradient:NvgPaint;
 
@@ -55,7 +55,7 @@ class Main extends lumen.App {
         }
 
         if( keycode == Key.BACKSPACE ) {
-            current_text = current_text.substr(0,current_text.length-1);
+            current_text = haxe.Utf8.sub(current_text, 0,  haxe.Utf8.length(current_text)-1);
         }
 
     } //onkeyup
