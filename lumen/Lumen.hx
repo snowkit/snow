@@ -166,7 +166,7 @@ class Lumen {
 
             //:todo: this should be abstracted to the host in some way
             //load in the window size from the runtime config
-        if(config.runtime.window != null && config.runtime.window != false) {
+        if(config.runtime.window != null) {
 
             if(config.runtime.window.width != null) {
                 config.window.width = config.runtime.window.width;
@@ -179,9 +179,7 @@ class Lumen {
         } //runtime config window flag
 
             //now if they requested a window, let's open one
-        if(config.runtime.window != false) {
-            window = windowing.create( config.window );
-        }
+        window = windowing.create( config.window );
 
             //now ready
         is_ready = true;
