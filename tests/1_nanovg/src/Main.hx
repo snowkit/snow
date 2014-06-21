@@ -63,6 +63,16 @@ class Main extends lumen.App {
         }
 
 
+        if( keycode == Key.F1 ) {
+            app.window.width = 800;
+            app.window.height = 600;
+        }
+
+        if( keycode == Key.F2 ) {
+            app.window.width = 1024;
+            app.window.height = 768;
+        }
+
     } //onkeyup
 
     override function ontextinput( text:String, start:Int, length:Int, type:TextEventType, timestamp:Float, window_id:Int ) {
