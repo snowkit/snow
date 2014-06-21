@@ -16,6 +16,8 @@ class Main extends lumen.App {
 
     var vg:cpp.Pointer<NvgContext>;
     var font:Int;
+
+    var linearGradient:NvgPaint;
     
     override function ready() {
 
@@ -28,6 +30,8 @@ class Main extends lumen.App {
         vg = Nvg.createGL(512, 512, NvgMode.ANTIALIAS);
 
         font = Nvg.createFont(vg, "FiraSans-Regular".c_str(), "assets/FiraSans-Regular.ttf".c_str());
+
+        linearGradient = Nvg.linearGradient(vg, 0, 0, 500, 500, Nvg.rgba(255,192,0,255), Nvg.rgba(0,0,0,255));
 
         app.window.onrender = onrender;
 
@@ -81,7 +85,8 @@ class Main extends lumen.App {
         Nvg.rect(vg, 100,100, 500,300);
         Nvg.circle(vg, 120,120, 250);
         Nvg.pathWinding(vg, NvgSolidity.HOLE);   // Mark circle as a hole.
-        Nvg.fillColor(vg, Nvg.rgba(255,192,0,255));
+        //Nvg.fillColor(vg, Nvg.rgba(255,192,0,255));
+        Nvg.fillPaint(vg, linearGradient);
         Nvg.fill(vg);
         
         Nvg.fontFaceId(vg, font);
