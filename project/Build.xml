@@ -335,8 +335,7 @@
             <lib name="${HXCPP}/lib/${BINDIR}/liblinuxcompat.a" />
             <lib name="-lpthread" />
             <lib name="-lrt" />
-            <lib name="lib/${BINDIR}/libGL.so" />
-            <!-- <lib name="-lGL" />/ -->
+            <lib name="-lGL" />/
          </section> <!-- linux -->
 
          <section if="mac">
