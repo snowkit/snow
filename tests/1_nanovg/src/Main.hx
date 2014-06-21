@@ -38,6 +38,14 @@ class Main extends lumen.App {
 
     } //ready
 
+    override function onkeydown( keycode:Int, scancode:Int,_, mod:ModState, _,_ ) {
+
+        if( keycode == Key.BACKSPACE ) {
+            current_text = haxe.Utf8.sub(current_text, 0,  haxe.Utf8.length(current_text)-1);
+        }
+
+    }
+
     override function onkeyup( keycode:Int, scancode:Int,_, mod:ModState, _,_ ) {
 
             //alt enter to toggle fullscreen test
@@ -54,9 +62,6 @@ class Main extends lumen.App {
             app.shutdown();
         }
 
-        if( keycode == Key.BACKSPACE ) {
-            current_text = haxe.Utf8.sub(current_text, 0,  haxe.Utf8.length(current_text)-1);
-        }
 
     } //onkeyup
 
