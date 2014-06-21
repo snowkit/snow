@@ -15,7 +15,7 @@ class ArrayBufferView implements IMemoryRange {
     public var byteLength (default, null) : Int;
 
     #if cpp
-    var bytes : BytesData;
+        var bytes : BytesData;
     #end
 
     function new( lengthOrBuffer:Dynamic, byteOffset:Int = 0, length:Null<Int> = null ) {
@@ -55,7 +55,7 @@ class ArrayBufferView implements IMemoryRange {
         buffer.bigEndian = false;
 
         #if cpp
-        bytes = buffer.getData();
+            bytes = buffer.getData();
         #end
 
     }
@@ -81,10 +81,10 @@ class ArrayBufferView implements IMemoryRange {
     inline public function getInt8( position:Int ) : Int {
 
         #if cpp
-        return untyped __global__.__hxcpp_memory_get_byte(bytes, position + byteOffset);
+            return untyped __global__.__hxcpp_memory_get_byte(bytes, position + byteOffset);
         #else
-        buffer.position = position + byteOffset;
-        return buffer.readByte();
+            buffer.position = position + byteOffset;
+            return buffer.readByte();
         #end
 
     }
@@ -92,10 +92,10 @@ class ArrayBufferView implements IMemoryRange {
     inline public function setInt8( position:Int, value:Int ) {
 
         #if cpp
-        untyped __global__.__hxcpp_memory_set_byte(bytes, position + byteOffset, value);
+            untyped __global__.__hxcpp_memory_set_byte(bytes, position + byteOffset, value);
         #else
-        buffer.position = position + byteOffset;
-        buffer.writeByte(value);
+            buffer.position = position + byteOffset;
+            buffer.writeByte(value);
         #end
 
     }
@@ -103,10 +103,10 @@ class ArrayBufferView implements IMemoryRange {
     inline public function getUInt8( position:Int ) : Int {
 
         #if cpp
-        return untyped __global__.__hxcpp_memory_get_byte(bytes, position + byteOffset) & 0xff;
+            return untyped __global__.__hxcpp_memory_get_byte(bytes, position + byteOffset) & 0xff;
         #else
-        buffer.position = position + byteOffset;
-        return buffer.readUnsignedByte();
+            buffer.position = position + byteOffset;
+            return buffer.readUnsignedByte();
         #end
 
     }
@@ -114,10 +114,10 @@ class ArrayBufferView implements IMemoryRange {
     inline public function setUInt8( position:Int, value:Int ) {
 
         #if cpp
-        untyped __global__.__hxcpp_memory_set_byte(bytes, position + byteOffset, value);
+            untyped __global__.__hxcpp_memory_set_byte(bytes, position + byteOffset, value);
         #else
-        buffer.position = position + byteOffset;
-        buffer.writeByte(value);
+            buffer.position = position + byteOffset;
+            buffer.writeByte(value);
         #end
 
     }
@@ -125,10 +125,10 @@ class ArrayBufferView implements IMemoryRange {
     inline public function getInt16( position:Int ) : Int {
 
         #if cpp
-        untyped return __global__.__hxcpp_memory_get_i16(bytes, position + byteOffset);
+            untyped return __global__.__hxcpp_memory_get_i16(bytes, position + byteOffset);
         #else
-        buffer.position = position + byteOffset;
-        return buffer.readShort();
+            buffer.position = position + byteOffset;
+            return buffer.readShort();
         #end
 
     }
@@ -136,10 +136,10 @@ class ArrayBufferView implements IMemoryRange {
     inline public function setInt16( position:Int, value:Int ) {
 
         #if cpp
-        untyped __global__.__hxcpp_memory_set_i16(bytes, position + byteOffset, value);
+            untyped __global__.__hxcpp_memory_set_i16(bytes, position + byteOffset, value);
         #else
-        buffer.position = position + byteOffset;
-        buffer.writeShort(Std.int(value));
+            buffer.position = position + byteOffset;
+            buffer.writeShort(Std.int(value));
         #end
 
     }
@@ -147,10 +147,10 @@ class ArrayBufferView implements IMemoryRange {
     inline public function getUInt16( position:Int ) : Int {
 
         #if cpp
-        untyped return __global__.__hxcpp_memory_get_ui16(bytes, position + byteOffset) & 0xffff;
+            untyped return __global__.__hxcpp_memory_get_ui16(bytes, position + byteOffset) & 0xffff;
         #else
-        buffer.position = position + byteOffset;
-        return buffer.readUnsignedShort();
+            buffer.position = position + byteOffset;
+            return buffer.readUnsignedShort();
         #end
 
     }
@@ -158,10 +158,10 @@ class ArrayBufferView implements IMemoryRange {
     inline public function setUInt16( position:Int, value:Int ) {
 
         #if cpp
-        untyped __global__.__hxcpp_memory_set_ui16(bytes, position + byteOffset, value);
+            untyped __global__.__hxcpp_memory_set_ui16(bytes, position + byteOffset, value);
         #else
-        buffer.position = position + byteOffset;
-        buffer.writeShort(Std.int(value));
+            buffer.position = position + byteOffset;
+            buffer.writeShort(Std.int(value));
         #end
 
     }
@@ -169,10 +169,10 @@ class ArrayBufferView implements IMemoryRange {
     inline public function getInt32( position:Int ) : Int {
 
         #if cpp
-        untyped return __global__.__hxcpp_memory_get_i32(bytes, position + byteOffset);
+            untyped return __global__.__hxcpp_memory_get_i32(bytes, position + byteOffset);
         #else
-        buffer.position = position + byteOffset;
-        return buffer.readInt();
+            buffer.position = position + byteOffset;
+            return buffer.readInt();
         #end
 
     }
@@ -180,10 +180,10 @@ class ArrayBufferView implements IMemoryRange {
     inline public function setInt32( position:Int, value:Int ) {
 
         #if cpp
-        untyped __global__.__hxcpp_memory_set_i32(bytes, position + byteOffset, value);
+            untyped __global__.__hxcpp_memory_set_i32(bytes, position + byteOffset, value);
         #else
-        buffer.position = position + byteOffset;
-        buffer.writeInt(Std.int(value));
+            buffer.position = position + byteOffset;
+            buffer.writeInt(Std.int(value));
         #end
 
     }
@@ -191,10 +191,10 @@ class ArrayBufferView implements IMemoryRange {
     inline public function getUInt32( position:Int ) : Int {
 
         #if cpp
-        untyped return __global__.__hxcpp_memory_get_ui32(bytes, position + byteOffset);
+            untyped return __global__.__hxcpp_memory_get_ui32(bytes, position + byteOffset);
         #else
-        buffer.position = position + byteOffset;
-        return buffer.readUnsignedInt();
+            buffer.position = position + byteOffset;
+            return buffer.readUnsignedInt();
         #end
 
     }
@@ -202,10 +202,10 @@ class ArrayBufferView implements IMemoryRange {
     inline public function setUInt32( position:Int, value:Int ) {
 
         #if cpp
-        untyped __global__.__hxcpp_memory_set_ui32(bytes, position + byteOffset, value);
+            untyped __global__.__hxcpp_memory_set_ui32(bytes, position + byteOffset, value);
         #else
-        buffer.position = position + byteOffset;
-        buffer.writeUnsignedInt(Std.int(value));
+            buffer.position = position + byteOffset;
+            buffer.writeUnsignedInt(Std.int(value));
         #end
 
     }
@@ -213,10 +213,10 @@ class ArrayBufferView implements IMemoryRange {
     inline public function getFloat32( position:Int ) : Float {
 
         #if cpp
-        untyped return __global__.__hxcpp_memory_get_float(bytes, position + byteOffset);
+            untyped return __global__.__hxcpp_memory_get_float(bytes, position + byteOffset);
         #else
-        buffer.position = position + byteOffset;
-        return buffer.readFloat();
+            buffer.position = position + byteOffset;
+            return buffer.readFloat();
         #end
 
     }
@@ -224,10 +224,10 @@ class ArrayBufferView implements IMemoryRange {
     inline public function setFloat32( position:Int, value:Float ) {
 
         #if cpp
-        untyped __global__.__hxcpp_memory_set_float(bytes, position + byteOffset, value);
+            untyped __global__.__hxcpp_memory_set_float(bytes, position + byteOffset, value);
         #else
-        buffer.position = position + byteOffset;
-        buffer.writeFloat(value);
+            buffer.position = position + byteOffset;
+            buffer.writeFloat(value);
         #end
 
     }
