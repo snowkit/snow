@@ -5,7 +5,7 @@ package org.haxe.lime;
 public class Lime {
 
      static {
-         System.loadLibrary("lumen");
+         System.loadLibrary("snow");
      }
 
      public static final int ACTIVATE   = 1;

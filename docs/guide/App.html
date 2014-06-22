@@ -52,23 +52,23 @@
         <div class="content">
             <p><a href="../index.html"><img src="../images/logo.png" alt="Logo"></a></p>
 <hr>
-<h2 id="the-lumen-app">The lumen App</h2>
-<p>This is the base class for a basic lumen host application. This is what your game/app extends from. The most basic empty lumen application looks like this : </p>
-<pre><code><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyGame</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">lumen</span>.<span class="hljs-title">App</span> </span>{
+<h2 id="the-snow-app">The snow App</h2>
+<p>This is the base class for a basic snow host application. This is what your game/app extends from. The most basic empty snow application looks like this : </p>
+<pre><code><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyGame</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">snow</span>.<span class="hljs-title">App</span> </span>{
 
     <span class="hljs-keyword">override</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">ready</span><span class="hljs-params">()</span> </span>{
         <span class="hljs-keyword">trace</span>(<span class="hljs-string">"initialize game here"</span>);
     }
 
 }
-</code></pre><p>lumen handles system events, input events, window events (if you request/create a window) and updating your application/game each frame. It is highly configurable/flexible and allows you to subvert the default behavior in favor of your own implementations.</p>
-<p>That said - it does a lot for you already. Fixed timestep, variable timestep, no loop at all, these are all configurable options. Time scaling is also implemented on the lumen level, so that coding your games and applications becomes the focus for you.</p>
+</code></pre><p>snow handles system events, input events, window events (if you request/create a window) and updating your application/game each frame. It is highly configurable/flexible and allows you to subvert the default behavior in favor of your own implementations.</p>
+<p>That said - it does a lot for you already. Fixed timestep, variable timestep, no loop at all, these are all configurable options. Time scaling is also implemented on the snow level, so that coding your games and applications becomes the focus for you.</p>
 <h3 id="app-handlers">App handlers</h3>
-<p>These functions will be called by lumen for you, automatically and some of them can be configured.</p>
-<p><code>ready()</code> called when lumen is done, and you can initialize<br><code>update(delta:Float)</code> called once each frame, based on timing choices.<br><code>shutdown()</code> called when the application is shutting down, clean up here.   </p>
+<p>These functions will be called by snow for you, automatically and some of them can be configured.</p>
+<p><code>ready()</code> called when snow is done, and you can initialize<br><code>update(delta:Float)</code> called once each frame, based on timing choices.<br><code>shutdown()</code> called when the application is shutting down, clean up here.   </p>
 <h3 id="timing-options">Timing options</h3>
 <p><strong>Note: All times are in seconds</strong></p>
-<p>The default <code>lumen.App</code> implements fixed rate updates (capped) or uncapped updates, where either can have a fixed or variable timestep option for the delta time.  This means that the following is possible : </p>
+<p>The default <code>snow.App</code> implements fixed rate updates (capped) or uncapped updates, where either can have a fixed or variable timestep option for the delta time.  This means that the following is possible : </p>
 <ul>
 <li>force <code>33ms update time</code> (~30fps) and set <code>33ms fixed delta</code> for deterministic delta/loop time.</li>
 <li>force <code>33ms update time</code> and use <code>variable delta time</code> for any rendering speed sync</li>
@@ -79,7 +79,7 @@
 <p>Each of the methods below keep track of <code>delta_time</code> and <code>current_time</code>, where current_time is the simulation time according to the delta values (i.e relative to your sync, not to the system fixed time) and <code>delta_time</code> is always the time since the last frame.</p>
 <p>To set the <code>capped update</code> : set the value of <code>fixed_rate</code> to a time in seconds.<br>To set a <code>fixed delta</code> : set the value of <code>fixed_delta</code> to a time in seconds.</p>
 <h4 id="usage-of-update-delta-float-">Usage of update(delta:Float)</h4>
-<p>When you work on your game/app, you simply utilise the delta time passed into the update function, and the values in the <code>lumen.App</code> give you control over timescale in real time, so you don’t have to manage that. For example, when moving an object horizontally each frame, you would do the following : </p>
+<p>When you work on your game/app, you simply utilise the delta time passed into the update function, and the values in the <code>snow.App</code> give you control over timescale in real time, so you don’t have to manage that. For example, when moving an object horizontally each frame, you would do the following : </p>
 <pre><code><span class="hljs-keyword">override</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">update</span><span class="hljs-params">(delta:Float)</span> </span>{
     position.x += speed * delta;
 }
@@ -91,7 +91,7 @@ app.timescale = -<span class="hljs-number">1</span>;         <span class="hljs-c
 <h4 id="-fix-your-timestep-">“fix your timestep”</h4>
 <p><em>This section is optional, for the users that want this more advanced behavior.</em></p>
 <p>There is another type of update loop that is frequently desired, is a fixed time step with variable render rate, where the time frames are deterministic, and the frame rendering is interpolated when a render happens inbetween two updates. This link from Glenn Fiedler is where this method is well known from, <a href="http://gafferongames.com/game-physics/fix-your-timestep/">http://gafferongames.com/game-physics/fix-your-timestep/</a>. Another good example of the same system is explained here, with diagrams and more gameprogrammingpatterns.com/game-loop.html</p>
-<p>In order to use this approach, you instead extend <code>lumen.AppFixedTimestep</code>, and to interpolate the frames you render with “alpha time”, where the alpha time is calculated by : </p>
+<p>In order to use this approach, you instead extend <code>snow.AppFixedTimestep</code>, and to interpolate the frames you render with “alpha time”, where the alpha time is calculated by : </p>
 <p><code>var alpha_time = overflow / mspf;</code></p>
 <p>And then rendering with interpolated values, where <code>alpha_time</code> is the current % between two update calls, and you should render at that position instead.</p>
 <h2 id="todo">Todo</h2>

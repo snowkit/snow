@@ -1,22 +1,22 @@
 
-import lumen.Lumen;
+import snow.Snow;
 
-import lumen.render.opengl.GL;
+import snow.render.opengl.GL;
 
-import lumen.utils.ByteArray;
-import lumen.utils.UInt8Array;
-import lumen.utils.Float32Array;
+import snow.utils.ByteArray;
+import snow.utils.UInt8Array;
+import snow.utils.Float32Array;
 
-import lumen.window.Window;
-import lumen.input.Input;
+import snow.window.Window;
+import snow.input.Input;
 
-import lumen.types.Types;
-import lumen.assets.Assets;
-import lumen.App;
+import snow.types.Types;
+import snow.assets.Assets;
+import snow.App;
 
-import lumen.audio.Sound;
+import snow.audio.Sound;
 
-class Main extends lumen.AppFixedTimestep {
+class Main extends snow.AppFixedTimestep {
 
     var imageUniform:GLUniformLocation;
     var modelViewMatrixUniform:GLUniformLocation;
@@ -377,7 +377,7 @@ class Main extends lumen.AppFixedTimestep {
 
         var vertexShaderSource = "";
 
-        #if (android || lumen_html5)
+        #if (android || snow_html5)
             vertexShaderSource += "precision mediump float;";
         #end
 
@@ -408,7 +408,7 @@ class Main extends lumen.AppFixedTimestep {
 
         var fragmentShaderSource = "";
 
-        #if (mobile || lumen_html5)
+        #if (mobile || snow_html5)
             fragmentShaderSource += "precision mediump float;";
         #end
 

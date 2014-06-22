@@ -1,17 +1,17 @@
 import ::APP_MAIN::;
 
-import lumen.Lumen;
-import lumen.types.Types;
+import snow.Snow;
+import snow.types.Types;
 
 class ApplicationMain {
 
     public static var _host : ::APP_MAIN::;
-    public static var _lumen : Lumen;
+    public static var _snow : Snow;
 
     public static function main () {
 
             //Create the runtime
-        _lumen = new Lumen();
+        _snow = new Snow();
             //Create the app class, give it to the bootstrapper
         _host = new ::APP_MAIN::();
 
@@ -22,7 +22,7 @@ class ApplicationMain {
         trace(_config_data);
         trace(_config);
 
-        // trace(::CONFIG_LUMEN_WINDOW_WIDTH::);
+        // trace(::CONFIG_SNOW_WINDOW_WIDTH::);
         //SDL_WINDOWPOS_UNDEFINED 0x1FFF0000;
         //SDL_WINDOWPOS_CENTERED 0x2FFF0000;
 
@@ -48,7 +48,7 @@ class ApplicationMain {
         } //_window_config
 
             //Create the main config
-        var _config : LumenConfig = {
+        var _config : SnowConfig = {
 
             host            : _host,
             window          : _window_config,
@@ -58,7 +58,7 @@ class ApplicationMain {
         };
 
             //Start up
-        _lumen.init( _host, _config );
+        _snow.init( _host, _config );
 
     } //main
 

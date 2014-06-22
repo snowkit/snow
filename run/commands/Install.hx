@@ -1,7 +1,7 @@
 package commands;
 
 class Install {
-    
+
     public static function run() {
 
         var _command = 'install';
@@ -12,38 +12,38 @@ class Install {
 
         var _install = Run.args.get(_command);
 
-            //the three versions are 
+            //the three versions are
                 //stable : haxelib version
                 //dev : 'stable' development builds
                 //edge : 'bleeding edge' master
         switch(_install.value) {
             case 'dev':
-                install_lumen_dev();
+                install_snow_dev();
             case 'edge':
-                install_lumen_edge();
+                install_snow_edge();
             default:
                 if(_command != 'update') {
-                    install_lumen();
+                    install_snow();
                 } else {
-                    Run._trace('update requires `dev` or `edge`, run lumen with no arguments for usage');
+                    Run._trace('update requires `dev` or `edge`, run snow with no arguments for usage');
                 }
         }
 
     }
 
-    static function install_lumen() {
+    static function install_snow() {
 
-        //install lumen command
+        //install snow command
         Helper.haxelib_install('lime-tools');
         Helper.haxelib_install('hxcpp');
 
-    } //install_lumen
+    } //install_snow
 
-    static function install_lumen_dev() {
+    static function install_snow_dev() {
 
             //try and download the latest dev build
         var _latest_dev_link = haxe.Resource.getString("dev");
-        var _dev_regex = '(.*)(lumen.dev.)(.*)(.zip)';
+        var _dev_regex = '(.*)(snow.dev.)(.*)(.zip)';
         var _dev_ereg = new EReg(_dev_regex, 'gi');
 
         if(!_dev_ereg.match(_latest_dev_link)) {
@@ -55,14 +55,14 @@ class Install {
         var _version = _dev_ereg.matched(3);
         var _zip_name = _dev_ereg.matched(2);
 
-        var _ignore = ('lumen' + _zip_name + _version);
+        var _ignore = ('snow' + _zip_name + _version);
 
             //check if the current dev version exists in the haxelib path
         var _haxelib_root = Helper.haxelib_config_path();
-        var _haxelib_dest = _haxelib_root + 'lumen/dev/';
+        var _haxelib_dest = _haxelib_root + 'snow/dev/';
         var _dest_zip = _haxelib_dest + _version;
         var _haxelib_out_dest = _haxelib_dest + _version + '/';
-        
+
         var _version_exists = sys.FileSystem.exists( _dest_zip );
 
         if(_version_exists) {
@@ -83,23 +83,23 @@ class Install {
         sys.FileSystem.createDirectory(_haxelib_out_dest);
         Helper.unzip(_local_path, _dest_zip, _ignore);
 
-        var _result = Helper.haxelib_dev('lumen', _haxelib_out_dest);
+        var _result = Helper.haxelib_dev('snow', _haxelib_out_dest);
 
         Run._trace(_result);
 
-    } //install_lumen_dev
-    
-    static function install_lumen_edge() {
+    } //install_snow_dev
+
+    static function install_snow_edge() {
 
             //whether we want update or install
         var run_update = false;
 
             //used to see if it's installed in haxelib or dev etc
         var _haxelib_path = Helper.haxelib_config_path();
-        var _existing_version = Helper.haxelib_current('lumen');
+        var _existing_version = Helper.haxelib_current('snow');
 
             //first check if their dev path isn't set explicitly already
-        if( Run.lumen_path == _haxelib_path ) {
+        if( Run.snow_path == _haxelib_path ) {
             run_update = true;
         }
 
@@ -108,7 +108,7 @@ class Install {
             run_update = true;
         }
 
-        var _git_path = _haxelib_path + 'lumen/git/';
+        var _git_path = _haxelib_path + 'snow/git/';
         var _existing_git = sys.FileSystem.exists( _git_path );
 
         if(_existing_git) {
@@ -127,22 +127,22 @@ class Install {
             if( sys.FileSystem.exists(_no_braces + '.git') ) {
                 if(!Run.args.has('force')) {
                     Run._trace('updating...');
-                    Helper.haxelib_update('lumen');
+                    Helper.haxelib_update('snow');
                 } else {
-                    Helper.haxelib_install_git('lumen', Run.lumen_repo);
+                    Helper.haxelib_install_git('snow', Run.snow_repo);
                 }
             } else {
                 if(!Run.args.has('force')) {
-                    Run._trace('set version is not a git repo, can\'t clobber things etc. run `haxelib git lumen ${Run.lumen_repo}` or manually clone, if you want to use edge.');
+                    Run._trace('set version is not a git repo, can\'t clobber things etc. run `haxelib git snow ${Run.snow_repo}` or manually clone, if you want to use edge.');
                 } else {
-                    Helper.haxelib_install_git('lumen', Run.lumen_repo);
+                    Helper.haxelib_install_git('snow', Run.snow_repo);
                 }
             }
 
         } else {
-            Helper.haxelib_install_git('lumen', Run.lumen_repo);
+            Helper.haxelib_install_git('snow', Run.snow_repo);
         }
 
-    } //install_lumen_edge
+    } //install_snow_edge
 
 } //Install

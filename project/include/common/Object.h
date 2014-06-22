@@ -1,9 +1,8 @@
-#ifndef LUMEN_HXOBJECT_H
-#define LUMEN_HXOBJECT_H
+#ifndef _SNOW_HXOBJECT_H_
+#define _SNOW_HXOBJECT_H_
 
 
-namespace lumen {
-
+namespace snow {
 
 // native object wrapper tools
 
@@ -39,12 +38,8 @@ namespace lumen {
 
             } //drop
 
-            // virtual int getApiVersion() {
-            //     return NME_API_VERSION;
-            // }
-
     }; //Object
 
-} //lumen namespace
+} //snow namespace
 
-#endif //LUMEN_HXOBJECT_H
+#endif //_SNOW_HXOBJECT_H_

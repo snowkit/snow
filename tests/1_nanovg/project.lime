@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<project library="lumen">
+<project library="snow">
 
-    <app main="Main" path="bin" file="lumen_nanovg" />
+    <app main="Main" path="bin" file="snow_nanovg" />
 
     <source path="src" />
 
-    <meta title="nanovg test" package="com.lumenframework.samples" version="1.0.0" company="lumenframework" />
+    <meta title="nanovg test" package="com.snowframework.samples" version="1.0.0" company="snowframework" />
 
     <window  width="800" height="600" orientation="landscape" fps="60" vsync="true" resizable="true" stencil-buffer="true"/>
     <window fullscreen="true" borderless="true" if="mobile"/>
@@ -16,7 +16,7 @@
 
     <haxedef name="HXCPP_FLOAT32" />
 
-    <haxelib name="lumen"/>
+    <haxelib name="snow"/>
     <haxelib name="hx-nanovg" />
 
 </project>

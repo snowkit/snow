@@ -20,7 +20,7 @@ import android.graphics.*;
 import android.media.*;
 import android.hardware.*;
 
-//Custom :lumen: additions
+//Custom :snow: additions
 import org.haxe.HXCPP;
 
 /**
@@ -48,7 +48,7 @@ public class SDLActivity extends Activity {
 
     // Load the .so
     static {
-            //:lumen:
+            //:snow:
         ::foreach ndlls::
             System.loadLibrary ("::name::");
         ::end::
@@ -83,7 +83,7 @@ public class SDLActivity extends Activity {
         // So we can call stuff from static callbacks
         mSingleton = this;
 
-        //:lumen:
+        //:snow:
 
             requestWindowFeature (Window.FEATURE_NO_TITLE);
 
@@ -96,7 +96,7 @@ public class SDLActivity extends Activity {
 
             setVolumeControlStream(AudioManager.STREAM_MUSIC);
 
-        //:lumen:end
+        //:snow:end
 
         // Set up the surface
         mSurface = new SDLSurface(getApplication());
@@ -129,7 +129,7 @@ public class SDLActivity extends Activity {
         SDLActivity.handleResume();
     }
 
-        //:lumen:
+        //:snow:
     @Override protected void onStart () {
         super.onStart();
         ::if WIN_FULLSCREEN::::if (ANDROID_TARGET_SDK_VERSION >= 16)::
@@ -146,7 +146,7 @@ public class SDLActivity extends Activity {
 
         SDLActivity.mHasFocus = hasFocus;
         if (hasFocus) {
-                //:lumen:
+                //:snow:
             ::if (WIN_FULLSCREEN)::::if (ANDROID_TARGET_SDK_VERSION >= 19)::
                 hideSystemUi();
             ::end::::end::
@@ -155,7 +155,7 @@ public class SDLActivity extends Activity {
         }
     }
 
-    // :lumen: IMMERSIVE MODE SUPPORT
+    // :snow: IMMERSIVE MODE SUPPORT
         ::if (WIN_FULLSCREEN)::::if (ANDROID_TARGET_SDK_VERSION >= 19)::
         private void hideSystemUi() {
             View decorView = this.getWindow().getDecorView();
@@ -169,7 +169,7 @@ public class SDLActivity extends Activity {
                 | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
         }
         ::end::::end::
-    // :lumen:end
+    // :snow:end
 
     @Override
     public void onLowMemory() {
@@ -553,7 +553,7 @@ class SDLMain implements Runnable {
     public void run() {
         // Runs SDL_main()
         SDLActivity.nativeInit();
-            //:lumen:
+            //:snow:
         HXCPP.run ("ApplicationMain");
         //Log.v("SDL", "SDL thread terminated");
     }

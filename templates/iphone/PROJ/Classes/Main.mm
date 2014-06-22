@@ -1,7 +1,7 @@
 /*
  *  Main.mm
  *
- *  Boot code for lumen.
+ *  Boot code for snow.
  *
  */
 

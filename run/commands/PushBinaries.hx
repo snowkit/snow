@@ -4,10 +4,10 @@ class PushBinaries {
     
     public static function run() {
 
-        //lumen -push "ndlls/*" [-m "hello"]?
+        //snow -push "ndlls/*" [-m "hello"]?
 
         var _message = 'updating binaries';
-        var _path = Run.lumen_path + 'ndll/*';
+        var _path = Run.snow_path + 'ndll/*';
 
         var _push_value = Run.args.get('push').value;
         var _message_value = Run.args.get('m').value;

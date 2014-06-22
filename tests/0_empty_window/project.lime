@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<project library="lumen">
+<project library="snow">
 
-    <app main="Main" path="bin" file="lumen_empty" />
+    <app main="Main" path="bin" file="snow_empty" />
 
     <source path="src" />
 
-    <meta title="lumen empty" package="com.lumenframework.samples" version="1.0.0" company="lumenframework" />
+    <meta title="snow empty" package="com.snowframework.samples" version="1.0.0" company="snowframework" />
 
     <window  width="320" height="200" orientation="landscape" fps="60" vsync="true" resizable="true" />
     <window fullscreen="true" borderless="true" if="mobile"/>
@@ -15,11 +15,11 @@
     <assets path="config.json" />
 
         <!-- This is ONLY required for the tests to build on the automated server -->
-        <!-- usually, you just <haxelib name="lumen" /> and that's all -->
+        <!-- usually, you just <haxelib name="snow" /> and that's all -->
     <include name="../../"/>
 
-    <config:lumen>
+    <config:snow>
         <window width="20"/>
-    </config:lumen>
+    </config:snow>
 
 </project>

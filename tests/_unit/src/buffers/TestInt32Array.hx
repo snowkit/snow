@@ -1,8 +1,8 @@
-package lumen.unit.buffers;
+package snow.unit.buffers;
 
-import lumen.unit.UnitTest;
-import lumen.utils.ArrayBuffer;
-import lumen.utils.Int32Array;
+import snow.unit.UnitTest;
+import snow.utils.ArrayBuffer;
+import snow.utils.Int32Array;
 
 class TestInt32Array extends UnitTest
 {
