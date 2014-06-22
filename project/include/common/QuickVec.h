@@ -1,5 +1,5 @@
-#ifndef LUMEN_QUICK_VEC
-#define LUMEN_QUICK_VEC
+#ifndef _SNOW_QUICK_VEC_H_
+#define _SNOW_QUICK_VEC_H_
 
 #include <algorithm>
 #ifdef EPPC
@@ -9,7 +9,7 @@
 #endif
 #include <stdlib.h>
 
-namespace lumen {
+namespace snow {
 
    template<typename T>
    void DoDelete(T &item) { }
@@ -441,6 +441,6 @@ namespace lumen {
 
    };
 
-} // end namespace lumen
+} // snow namespace
 
-#endif
+#endif //_SNOW_QUICK_VEC_H_

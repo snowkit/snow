@@ -1,5 +1,5 @@
-#ifndef LIME_BYTE_ARRAY_H
-#define LIME_BYTE_ARRAY_H
+#ifndef _SNOW_BYTE_ARRAY_H_
+#define _SNOW_BYTE_ARRAY_H_
 
 #include "common/Object.h"
 #include "common/QuickVec.h"
@@ -7,7 +7,7 @@
 #include <stdio.h>
 
 
-namespace lumen {
+namespace snow {
 
    typedef unsigned char uint8;
 
@@ -50,7 +50,7 @@ namespace lumen {
 
    }; //ByteArray
 
-} //lumen namespace
+} //snow namespace
 
 
-#endif //LIME_BYTE_ARRAY_H
+#endif //_SNOW_BYTE_ARRAY_H_

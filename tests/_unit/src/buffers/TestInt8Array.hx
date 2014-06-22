@@ -1,7 +1,7 @@
 package buffers;
 
-import lumen.utils.ArrayBuffer;
-import lumen.utils.Int8Array;
+import snow.utils.ArrayBuffer;
+import snow.utils.Int8Array;
 
 class TestInt8Array extends mohxa.Mohxa {
 

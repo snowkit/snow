@@ -1,18 +1,18 @@
 
-import lumen.Lumen;
-import lumen.types.Types;
-import lumen.assets.Assets;
-import lumen.input.Input;
-import lumen.App;
+import snow.Snow;
+import snow.types.Types;
+import snow.assets.Assets;
+import snow.input.Input;
+import snow.App;
 
-import lumen.render.opengl.GL;
+import snow.render.opengl.GL;
 
 import hxnanovg.Nvg;
 using cpp.NativeString;
 
 
 @:buildXml("&<include name='${haxelib:hx-nanovg}/Build.xml'/>")
-class Main extends lumen.App {
+class Main extends snow.App {
 
     var vg:cpp.Pointer<NvgContext>;
     var font:Int;
@@ -94,7 +94,7 @@ class Main extends lumen.App {
     } //update
 
 
-    function onrender( window:lumen.window.Window ) {
+    function onrender( window:snow.window.Window ) {
 
         GL.viewport (0, 0, app.window.width, app.window.height);
         GL.clearColor (0.3, 0.3, 0.3, 1.0);

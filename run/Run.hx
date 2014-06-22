@@ -10,20 +10,20 @@ class Run {
     public static var args : ArgValues;
     public static var sys_arg_list : Array<String>;
 
-    public static var lumen_lib : Haxelib;
+    public static var snow_lib : Haxelib;
     public static var run_path : String;
-    public static var lumen_path : String;
-    public static var lumen_repo : String = 'https://github.com/underscorediscovery/lumen.git';
+    public static var snow_path : String;
+    public static var snow_repo : String = 'https://github.com/underscorediscovery/snow.git';
     public static var haxe_path : String;
 
     static function main() {
 
-        lumen_lib = new Haxelib('lumen');        
+        snow_lib = new Haxelib('snow');
         haxe_path = Sys.getEnv("HAXEPATH");
 
         if(haxe_path != null) {
             haxe_path = haxe.io.Path.addTrailingSlash(haxe_path);
-        } else { 
+        } else {
             haxe_path = '';
         }
 
@@ -36,25 +36,25 @@ class Run {
         args = ArgParser.parse( sys_arg_list );
 
 
-        if(args.has('lumen')) {
-            lumen_path = args.get('lumen').value;
-            sys_arg_list.remove('-lumen');
-            sys_arg_list.remove(lumen_path);
-            if(lumen_path == '') {
-                Run._trace('error : -lumen requires a path, `-lumen /path/to/lumen/root`');
+        if(args.has('snow')) {
+            snow_path = args.get('snow').value;
+            sys_arg_list.remove('-snow');
+            sys_arg_list.remove(snow_path);
+            if(snow_path == '') {
+                Run._trace('error : -snow requires a path, `-snow /path/to/snow/root`');
                 return;
             }
         } else {
-                //if an explicit lumen path was not set we ask haxelib for the path
-            lumen_path = PathHelper.getHaxelib( lumen_lib );
-            if(lumen_path == '') {
-                Run._trace('error : lumen path cannot be found from haxelib and no path was given. Use `haxelib [install|dev|git] lumen`, or pass the path with -lumen');
+                //if an explicit snow path was not set we ask haxelib for the path
+            snow_path = PathHelper.getHaxelib( snow_lib );
+            if(snow_path == '') {
+                Run._trace('error : snow path cannot be found from haxelib and no path was given. Use `haxelib [install|dev|git] snow`, or pass the path with -snow');
                 throw "config error";
             }
         }
 
             //make sure it has a trailing slash
-        lumen_path = haxe.io.Path.addTrailingSlash(lumen_path);        
+        snow_path = haxe.io.Path.addTrailingSlash(snow_path);
 
         if(!args.any || args.has('help') || args.has('usage')) {
             print_usage();
@@ -66,7 +66,7 @@ class Run {
             return;
         }
 
-        Run._trace('using lumen from ${lumen_path}');
+        Run._trace('using snow from ${snow_path}');
         Run._trace('    running from ${run_path}');
 
             //now handle internal commands
@@ -102,8 +102,8 @@ class Run {
     static function pass_to_tools() : Bool {
 
         var _command = ['run', 'lime-tools'].concat( sys_arg_list );
-        
-        Run._trace('running tools command haxelib ${_command.join(" ")}'); 
+
+        Run._trace('running tools command haxelib ${_command.join(" ")}');
 
         ProcessHelper.runCommand( run_path, 'haxelib', _command );
 
@@ -121,7 +121,7 @@ class Run {
     } //print_version
 
     public static function _trace(v:Dynamic, ?name:Bool=true) {
-        Sys.println( (name ? '/ lumen / ' : '') + v);
+        Sys.println( (name ? '/ snow / ' : '') + v);
     } //_trace
 
 } //Run

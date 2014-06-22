@@ -1,6 +1,6 @@
 
 
-class Main extends lumen.App {
+class Main extends snow.App {
 
     override public function ready() {
 

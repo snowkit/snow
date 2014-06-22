@@ -4,8 +4,8 @@
 
 <!-- defines -->
 
-    <haxedef name="lumen_html5" if="html5" />
-    <haxedef name="lumen_native" if="native" />
+    <haxedef name="snow_html5" if="html5" />
+    <haxedef name="snow_native" if="native" />
     <haxedef name="no-compilation" />
 
 <!-- binding configs -->
@@ -13,20 +13,20 @@
     <!-- audio specific bindings -->
 
         <!-- native -->
-            <set name="lumen_audio_openal" value="1" if="native" />
-            <haxedef name="lumen_audio_openal" if="lumen_audio_openal" />
+            <set name="snow_audio_openal" value="1" if="native" />
+            <haxedef name="snow_audio_openal" if="snow_audio_openal" />
 
         <!-- html5 -->
-            <set name="lumen_audio_howlerjs" value="1" if="html5" />
-            <haxedef name="lumen_audio_howlerjs" if="lumen_audio_howlerjs" />
+            <set name="snow_audio_howlerjs" value="1" if="html5" />
+            <haxedef name="snow_audio_howlerjs" if="snow_audio_howlerjs" />
 
     <!-- input specific bindings -->
-        <set name="lumen_input_sdl" value="1" if="native" />
-        <haxedef name="lumen_input_sdl" if="lumen_input_sdl" />
+        <set name="snow_input_sdl" value="1" if="native" />
+        <haxedef name="snow_input_sdl" if="snow_input_sdl" />
 
     <!-- window specific bindings -->
-        <set name="lumen_window_sdl" value="1" if="native" />
-        <haxedef name="lumen_window_sdl" if="lumen_window_sdl" />
+        <set name="snow_window_sdl" value="1" if="native" />
+        <haxedef name="snow_window_sdl" if="snow_window_sdl" />
 
 <!-- platform configs -->
 
@@ -56,11 +56,11 @@
 
     <!-- html5 deps -->
 
-        <dependency path="templates/html5-dependencies/howlerjs/howler.min.js" if="lumen_audio_howlerjs"/>
+        <dependency path="templates/html5-dependencies/howlerjs/howler.min.js" if="snow_audio_howlerjs"/>
 
     <!-- common dependency  -->
 
-        <ndll name="lumen"/>
+        <ndll name="snow"/>
 
     </section>
 

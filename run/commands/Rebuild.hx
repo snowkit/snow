@@ -47,9 +47,9 @@ class Rebuild {
             //because they are in the Run.args list.
             archs = [];
 
-            //for now we only rebuild lumen target,
+            //for now we only rebuild snow target,
             //but this will be configured for stuff later
-        var _path = Run.lumen_path + 'project/';
+        var _path = Run.snow_path + 'project/';
         var _debug = false;
 
             //run a clean up if requested

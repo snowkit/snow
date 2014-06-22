@@ -24,22 +24,22 @@
 
       <!-- included to import existing defines and built in defined values -->
    <include name="${HXCPP}/build-tool/BuildCommon.xml"/>
-      <!-- consistency, ios is a better define than iphone and should always be used in lumen instead -->
+      <!-- consistency, ios is a better define than iphone and should always be used in snow instead -->
    <set name="ios" value="1" if="iphone" />
 
       <!-- where to build from -->
-   <!-- <set name="LUMEN_ROOT" value="${haxelib:lumen}/project/" /> -->
-   <set name="LUMEN_ROOT" value="" />
+   <!-- <set name="SNOW_ROOT" value="${haxelib:snow}/project/" /> -->
+   <set name="SNOW_ROOT" value="" />
       <!-- paths -->
-   <set name="SRC_DIR" value="${LUMEN_ROOT}src" />
-   <set name="INC_DIR" value="${LUMEN_ROOT}include" />
+   <set name="SRC_DIR" value="${SNOW_ROOT}src" />
+   <set name="INC_DIR" value="${SNOW_ROOT}include" />
 
-   <set name="NATIVE_TOOLKIT_PATH" value="${LUMEN_ROOT}src/libs" />
+   <set name="NATIVE_TOOLKIT_PATH" value="${SNOW_ROOT}src/libs" />
 
-   <set name="LUMEN_INC_DIR" value="${LUMEN_ROOT}../include" />
+   <set name="SNOW_INC_DIR" value="${SNOW_ROOT}../include" />
    <set name="OUT_DIR" value="../ndll" />
       <!-- lib values -->
-   <set name="LIBNAME" value="lumen" />
+   <set name="LIBNAME" value="snow" />
    <set name="SLIBEXT" value=".lib" if="windows"/>
    <set name="SLIBEXT" value=".a" unless="windows"/>
    <set name="SHLIBEXT" value=".dll" if="windows"/>
@@ -54,73 +54,73 @@
 <!-- Build configs -->
 
 
-<!-- Core lumen configs -->
+<!-- Core snow configs -->
 
-   <set name="LUMEN_CORE_LOOP"   value="1"     unless="ios"/>
+   <set name="SNOW_CORE_LOOP"   value="1"     unless="ios"/>
       <!-- are we using OpenGL bindings? -->
-   <set name="LUMEN_USE_OPENGL"  value="1"/>
+   <set name="SNOW_USE_OPENGL"  value="1"/>
       <!-- are we using OpenAL bindings? -->
-   <set name="LUMEN_USE_OPENAL"  value="1"/>
+   <set name="SNOW_USE_OPENAL"  value="1"/>
       <!-- are we using SDL bindings? -->
-   <set name="LUMEN_USE_SDL"     value="1"/>
+   <set name="SNOW_USE_SDL"     value="1"/>
 
 <!-- Porting only -->
 
       <!-- Don't define this unless trying to test/implement the empty platform porting helpers -->
-   <!-- <set name="LUMEN_USE_EMPTY_PLATFORM" value="1" /> -->
+   <!-- <set name="SNOW_USE_EMPTY_PLATFORM" value="1" /> -->
 
 <!-- Library configs -->
 
    <!-- Ideally, I want to enclose these in an "unless" section as well, so you can use command line/builds to disable them -->
 
       <!-- should we build SDL files -->
-   <set name="LUMEN_LIB_SDL" value="1" if="LUMEN_USE_SDL"/>
+   <set name="SNOW_LIB_SDL" value="1" if="SNOW_USE_SDL"/>
    <!-- enable this to build sdl as a .a file, and then link it (instead of embedded in the core code) -->
-   <!-- <set name="LUMEN_LIB_SDL_STATIC_EXTERNAL" value="1" /> -->
+   <!-- <set name="SNOW_LIB_SDL_STATIC_EXTERNAL" value="1" /> -->
    <!-- enable this to build sdl as a .so/.dll file, and then link it (instead of embedded in the core code) -->
-   <!-- <set name="LUMEN_LIB_SDL_SHARED_EXTERNAL" value="1" /> -->
+   <!-- <set name="SNOW_LIB_SDL_SHARED_EXTERNAL" value="1" /> -->
 
       <!-- sometimes glew needs to be disabled because it can make null function pointers -->
-   <set name="LUMEN_LIB_GLEW" value="1" unless="android || ios"/>
+   <set name="SNOW_LIB_GLEW" value="1" unless="android || ios"/>
       <!-- always using OpenAL for main platforms by default -->
-   <set name="LUMEN_LIB_OPENAL" value="1"/>
+   <set name="SNOW_LIB_OPENAL" value="1"/>
       <!-- always using stb_image for main platforms by default -->
-   <set name="LUMEN_LIB_STB_IMAGE" value="1"/>
+   <set name="SNOW_LIB_STB_IMAGE" value="1"/>
       <!-- always including lzma for main platforms by default -->
-   <set name="LUMEN_LIB_LZMA" value="1" />
+   <set name="SNOW_LIB_LZMA" value="1" />
       <!-- always including zlib for main platforms by default, used by curl and other stuff -->
-   <set name="LUMEN_LIB_ZLIB" value="1" />
+   <set name="SNOW_LIB_ZLIB" value="1" />
 
       <!-- always including media libs for main platforms by default -->
-   <set name="LUMEN_LIB_OGG" value="1" />
-   <set name="LUMEN_LIB_THEORA" value="1" />
-   <set name="LUMEN_LIB_VORBIS" value="1" />
+   <set name="SNOW_LIB_OGG" value="1" />
+   <set name="SNOW_LIB_THEORA" value="1" />
+   <set name="SNOW_LIB_VORBIS" value="1" />
 
       <!-- always including curl for main platforms by default -->
-   <set name="LUMEN_LIB_CURL" value="1" />
+   <set name="SNOW_LIB_CURL" value="1" />
       <!-- default to using SSL, but can be toggled -->
-   <set name="NATIVE_TOOLKIT_CURL_SSL" value="1" if="LUMEN_LIB_CURL"/>
+   <set name="NATIVE_TOOLKIT_CURL_SSL" value="1" if="SNOW_LIB_CURL"/>
 
 <!-- Files/Sources -->
 
       <!-- include linked third party libs -->
-   <include name="${NATIVE_TOOLKIT_PATH}/glew/files.xml"             if="LUMEN_LIB_GLEW" />
-   <include name="${NATIVE_TOOLKIT_PATH}/stb_image/files.xml"        if="LUMEN_LIB_STB_IMAGE" />
-   <include name="${NATIVE_TOOLKIT_PATH}/ogg/files.xml"              if="LUMEN_LIB_OGG" />
-   <include name="${NATIVE_TOOLKIT_PATH}/theora/files.xml"           if="LUMEN_LIB_THEORA" />
-   <include name="${NATIVE_TOOLKIT_PATH}/vorbis/files.xml"           if="LUMEN_LIB_VORBIS" />
-   <include name="${NATIVE_TOOLKIT_PATH}/lzma/files.xml"             if="LUMEN_LIB_LZMA"/>
-   <include name="${NATIVE_TOOLKIT_PATH}/zlib/files.xml"             if="LUMEN_LIB_ZLIB"/>
-   <include name="${NATIVE_TOOLKIT_PATH}/curl/files.xml"             if="LUMEN_LIB_CURL" />
-   <include name="${NATIVE_TOOLKIT_PATH}/sdl/files.xml"              if="LUMEN_LIB_SDL"/>
+   <include name="${NATIVE_TOOLKIT_PATH}/glew/files.xml"             if="SNOW_LIB_GLEW" />
+   <include name="${NATIVE_TOOLKIT_PATH}/stb_image/files.xml"        if="SNOW_LIB_STB_IMAGE" />
+   <include name="${NATIVE_TOOLKIT_PATH}/ogg/files.xml"              if="SNOW_LIB_OGG" />
+   <include name="${NATIVE_TOOLKIT_PATH}/theora/files.xml"           if="SNOW_LIB_THEORA" />
+   <include name="${NATIVE_TOOLKIT_PATH}/vorbis/files.xml"           if="SNOW_LIB_VORBIS" />
+   <include name="${NATIVE_TOOLKIT_PATH}/lzma/files.xml"             if="SNOW_LIB_LZMA"/>
+   <include name="${NATIVE_TOOLKIT_PATH}/zlib/files.xml"             if="SNOW_LIB_ZLIB"/>
+   <include name="${NATIVE_TOOLKIT_PATH}/curl/files.xml"             if="SNOW_LIB_CURL" />
+   <include name="${NATIVE_TOOLKIT_PATH}/sdl/files.xml"              if="SNOW_LIB_SDL"/>
    <include name="${NATIVE_TOOLKIT_PATH}/openal-android/files.xml"   if="android"/>
    <include name="${NATIVE_TOOLKIT_PATH}/openal/files.xml"           unless="mac || ios || android"/>
 
-      <!-- lumen build files -->
-   <files id="lumen">
+      <!-- snow build files -->
+   <files id="snow">
 
          <!-- include paths -->
-      <compilerflag value="-I${LUMEN_INC_DIR}"/>
+      <compilerflag value="-I${SNOW_INC_DIR}"/>
       <compilerflag value="-I${INC_DIR}"/>
 
       <compilerflag value="-I${NATIVE_TOOLKIT_PATH}/glew/include/"/>
@@ -135,46 +135,46 @@
       <compilerflag value="-I${NATIVE_TOOLKIT_PATH}/openal/OpenAL32/include/"/>
 
          <!-- c++ defines -->
-      <compilerflag value="-DHX_LUMEN"  />
-      <compilerflag value="-DLUMEN_CORE_LOOP"         if="LUMEN_CORE_LOOP"/>
+      <compilerflag value="-DHX_SNOW"  />
+      <compilerflag value="-DSNOW_CORE_LOOP"         if="SNOW_CORE_LOOP"/>
       <compilerflag value="-D__IPHONEOS__"            if="ios"/>
       <compilerflag value="-Wno-conversion"           if="linux"/>
 
-   <!-- lumen sources -->
+   <!-- snow sources -->
 
          <!-- bindings -->
-      <file name="${SRC_DIR}/hx_bindings.cpp" />
+      <file name="${SRC_DIR}/snow_hx_bindings.cpp" />
          <!-- assets -->
-      <file name="${SRC_DIR}/assets/lumen_assets_image.cpp" />
-      <file name="${SRC_DIR}/assets/lumen_assets_audio.cpp" />
+      <file name="${SRC_DIR}/assets/snow_assets_image.cpp" />
+      <file name="${SRC_DIR}/assets/snow_assets_audio.cpp" />
          <!-- common utils -->
       <file name="${SRC_DIR}/common/ByteArray.cpp" />
-         <!-- lumen core -->
-      <file name="${SRC_DIR}/lumen/lumen_timestamp.cpp" />
+         <!-- snow core -->
+      <file name="${SRC_DIR}/snow/snow_timestamp.cpp" />
 
    <!-- core options -->
 
-      <section if="LUMEN_USE_OPENGL">
+      <section if="SNOW_USE_OPENGL">
 
-         <compilerflag value="-DLUMEN_USE_OPENGL" />
+         <compilerflag value="-DSNOW_USE_OPENGL" />
          <compilerflag value="-DGL_GLEXT_PROTOTYPES"     if="android"/>
-         <compilerflag value="-DLUMEN_GLES"              if="android || ios"/>
+         <compilerflag value="-DSNOW_GLES"              if="android || ios"/>
 
-         <file name="${SRC_DIR}/render/opengl/lumen_render_opengl.cpp" />
-
-      </section>
-
-      <section if="LUMEN_USE_OPENAL">
-
-         <compilerflag value="-DLUMEN_USE_OPENAL" />
-
-         <file name="${SRC_DIR}/audio/openal/lumen_audio_openal.cpp" />
+         <file name="${SRC_DIR}/render/opengl/snow_render_opengl.cpp" />
 
       </section>
 
-      <section if="LUMEN_USE_SDL">
+      <section if="SNOW_USE_OPENAL">
 
-         <compilerflag value="-DLUMEN_USE_SDL" />
+         <compilerflag value="-DSNOW_USE_OPENAL" />
+
+         <file name="${SRC_DIR}/audio/openal/snow_audio_openal.cpp" />
+
+      </section>
+
+      <section if="SNOW_USE_SDL">
+
+         <compilerflag value="-DSNOW_USE_SDL" />
 
             <!-- per platform configs preconfigured -->
         <compilerflag value="-I${NATIVE_TOOLKIT_PATH}/sdl/include/"/>
@@ -183,87 +183,87 @@
         <compilerflag value="-I${NATIVE_TOOLKIT_PATH}/sdl/include/configs/windows/"    if="windows"/>
         <compilerflag value="-I${NATIVE_TOOLKIT_PATH}/sdl/include/configs/mac/"        if="mac"/>
 
-        <file name="${SRC_DIR}/lumen/sdl2/lumen_core_sdl2.cpp" />
-        <file name="${SRC_DIR}/io/sdl2/lumen_io_sdl2.cpp" />
-        <file name="${SRC_DIR}/window/sdl2/lumen_window_sdl2.cpp"/>
-        <file name="${SRC_DIR}/input/sdl2/lumen_input_sdl2.cpp"/>
+        <file name="${SRC_DIR}/snow/sdl2/snow_core_sdl2.cpp" />
+        <file name="${SRC_DIR}/io/sdl2/snow_io_sdl2.cpp" />
+        <file name="${SRC_DIR}/window/sdl2/snow_window_sdl2.cpp"/>
+        <file name="${SRC_DIR}/input/sdl2/snow_input_sdl2.cpp"/>
 
       </section>
 
    <!-- Porting specific helper only -->
 
-   <section if="LUMEN_USE_EMPTY_PLATFORM">
+   <section if="SNOW_USE_EMPTY_PLATFORM">
 
-      <compilerflag value="-DLUMEN_USE_EMPTY_PLATFORM" />
+      <compilerflag value="-DSNOW_USE_EMPTY_PLATFORM" />
 
-      <file name="${SRC_DIR}/lumen/empty/lumen_empty_platform.cpp"/>
+      <file name="${SRC_DIR}/snow/empty/snow_empty_platform.cpp"/>
 
    </section>
 
    <!-- Platform specific sources -->
 
       <section if="mac">
-         <file name="${SRC_DIR}/platform/mac/lumen_mac.mm"/>
+         <file name="${SRC_DIR}/platform/mac/snow_mac.mm"/>
       </section>
 
       <section if="linux">
-         <file name="${SRC_DIR}/platform/linux/lumen_linux.cpp"/>
+         <file name="${SRC_DIR}/platform/linux/snow_linux.cpp"/>
       </section>
 
       <section if="windows">
-         <file name="${SRC_DIR}/platform/windows/lumen_windows.cpp"/>
+         <file name="${SRC_DIR}/platform/windows/snow_windows.cpp"/>
       </section>
 
       <section if="android">
-         <file name="${SRC_DIR}/platform/android/lumen_android.cpp"/>
+         <file name="${SRC_DIR}/platform/android/snow_android.cpp"/>
       </section>
 
       <section if="ios">
-         <file name="${SRC_DIR}/platform/ios/lumen_ios.mm"/>
+         <file name="${SRC_DIR}/platform/ios/snow_ios.mm"/>
       </section>
 
    <!-- Library specific flags -->
 
-      <section if="LUMEN_LIB_CURL">
+      <section if="SNOW_LIB_CURL">
          <include name="${NATIVE_TOOLKIT_PATH}/curl/defines.xml" />
       </section>
 
-      <section if="LUMEN_LIB_GLEW">
+      <section if="SNOW_LIB_GLEW">
          <include name="${NATIVE_TOOLKIT_PATH}/glew/defines.xml" />
       </section>
 
-      <section if="LUMEN_LIB_LZMA">
+      <section if="SNOW_LIB_LZMA">
          <include name="${NATIVE_TOOLKIT_PATH}/lzma/defines.xml" />
       </section>
 
-      <section if="LUMEN_LIB_OGG">
+      <section if="SNOW_LIB_OGG">
          <include name="${NATIVE_TOOLKIT_PATH}/ogg/defines.xml" />
       </section>
 
-      <section if="LUMEN_LIB_OPENAL">
+      <section if="SNOW_LIB_OPENAL">
 
          <include name="${NATIVE_TOOLKIT_PATH}/openal-android/defines.xml" if="android"/>
          <include name="${NATIVE_TOOLKIT_PATH}/openal/defines.xml" unless="mac || ios || android"/>
 
       </section>
 
-      <section if="LUMEN_LIB_SDL">
+      <section if="SNOW_LIB_SDL">
          <include name="${NATIVE_TOOLKIT_PATH}/sdl/defines.xml" />
       </section>
 
-      <section if="LUMEN_LIB_STB_IMAGE">
+      <section if="SNOW_LIB_STB_IMAGE">
          <include name="${NATIVE_TOOLKIT_PATH}/stb_image/defines.xml" />
       </section>
 
-      <section if="LUMEN_LIB_THEORA">
+      <section if="SNOW_LIB_THEORA">
          <include name="${NATIVE_TOOLKIT_PATH}/theora/defines.xml" />
       </section>
 
-      <section if="LUMEN_LIB_VORBIS">
+      <section if="SNOW_LIB_VORBIS">
          <include name="${NATIVE_TOOLKIT_PATH}/vorbis/defines.xml" />
       </section>
 
-      <section if="LUMEN_LIB_ZLIB">
+      <section if="SNOW_LIB_ZLIB">
          <include name="${NATIVE_TOOLKIT_PATH}/zlib/defines.xml" />
       </section>
 
@@ -275,38 +275,38 @@
 
 
 
-   <target id="lumen" output="${LIBPREFIX}${LIBNAME}${MSVC_LIB_VERSION}${DEBUGEXTRA}${LIBEXTRA}" tool="linker" toolid="${STD_MODULE_LINK}">
+   <target id="snow" output="${LIBPREFIX}${LIBNAME}${MSVC_LIB_VERSION}${DEBUGEXTRA}${LIBEXTRA}" tool="linker" toolid="${STD_MODULE_LINK}">
 
       <outdir name="${OUT_DIR}/${BINDIR}" />
 
 <!-- Build the libs -->
 
-      <files id="native-toolkit-glew"           if="LUMEN_LIB_GLEW"/>
-      <files id="native-toolkit-curl"           if="LUMEN_LIB_CURL"/>
-      <files id="native-toolkit-lzma"           if="LUMEN_LIB_LZMA"/>
-      <files id="native-toolkit-ogg"            if="LUMEN_LIB_OGG"/>
-      <files id="native-toolkit-stb_image"      if="LUMEN_LIB_STB_IMAGE"/>
-      <files id="native-toolkit-theora"         if="LUMEN_LIB_THEORA"/>
-      <files id="native-toolkit-vorbis"         if="LUMEN_LIB_VORBIS"/>
-      <files id="native-toolkit-zlib"           if="LUMEN_LIB_ZLIB"/>
-      <files id="native-toolkit-sdl"            if="LUMEN_LIB_SDL"      unless="LUMEN_LIB_SDL_STATIC_EXTERNAL || LUMEN_LIB_SDL_SHARED_EXTERNAL"/>
+      <files id="native-toolkit-glew"           if="SNOW_LIB_GLEW"/>
+      <files id="native-toolkit-curl"           if="SNOW_LIB_CURL"/>
+      <files id="native-toolkit-lzma"           if="SNOW_LIB_LZMA"/>
+      <files id="native-toolkit-ogg"            if="SNOW_LIB_OGG"/>
+      <files id="native-toolkit-stb_image"      if="SNOW_LIB_STB_IMAGE"/>
+      <files id="native-toolkit-theora"         if="SNOW_LIB_THEORA"/>
+      <files id="native-toolkit-vorbis"         if="SNOW_LIB_VORBIS"/>
+      <files id="native-toolkit-zlib"           if="SNOW_LIB_ZLIB"/>
+      <files id="native-toolkit-sdl"            if="SNOW_LIB_SDL"      unless="SNOW_LIB_SDL_STATIC_EXTERNAL || SNOW_LIB_SDL_SHARED_EXTERNAL"/>
 
-      <section if="LUMEN_LIB_OPENAL">
+      <section if="SNOW_LIB_OPENAL">
          <files id="native-toolkit-openal-android" if="android"/>
             <!-- mac and iOS have OpenAL.framework, and rather rely on system version than embedded one -->
          <files id="native-toolkit-openal" unless="mac || ios || android"/>
       </section>
 
-<!-- Build the lumen library -->
+<!-- Build the snow library -->
 
-         <!-- build the lumen sources -->
-      <files id="lumen"/>
+         <!-- build the snow sources -->
+      <files id="snow"/>
 
 <!-- Linking flags and libraries -->
 
-      <section if="LUMEN_LIB_SDL">
-         <lib name="${PRELIB}SDL2${POSTLIB}"       if="LUMEN_LIB_SDL_STATIC_EXTERNAL"/>
-         <lib name="${PRELIB}SDL2${POSTSHAREDLIB}" if="LUMEN_LIB_SDL_SHARED_EXTERNAL"/>
+      <section if="SNOW_LIB_SDL">
+         <lib name="${PRELIB}SDL2${POSTLIB}"       if="SNOW_LIB_SDL_STATIC_EXTERNAL"/>
+         <lib name="${PRELIB}SDL2${POSTSHAREDLIB}" if="SNOW_LIB_SDL_SHARED_EXTERNAL"/>
       </section>
 
       <section unless="static_link">
@@ -358,7 +358,7 @@
          </section>
 
          <section if="android">
-            <lib name="-Wl,--undefined=Java_org_libsdl_app_SDLActivity_nativeInit" if="LUMEN_USE_SDL"/>
+            <lib name="-Wl,--undefined=Java_org_libsdl_app_SDLActivity_nativeInit" if="SNOW_USE_SDL"/>
             <lib name="-ldl" />
             <lib name="-llog" />
             <lib name="-landroid" />
@@ -377,11 +377,11 @@
    <target id="default">
 
          <!-- if we have sdl set to build as static but not embedded, build it -->
-      <target id="libs-sdl" if="LUMEN_LIB_SDL_STATIC_EXTERNAL"/>
+      <target id="libs-sdl" if="SNOW_LIB_SDL_STATIC_EXTERNAL"/>
          <!-- if we have sdl set to build as shared, build it -->
-      <target id="libs-sdl-shared" if="LUMEN_LIB_SDL_SHARED_EXTERNAL"/>
+      <target id="libs-sdl-shared" if="SNOW_LIB_SDL_SHARED_EXTERNAL"/>
          <!--  -->
-      <target id="lumen" unless="no_lumen"/>
+      <target id="snow" unless="no_snow"/>
 
    </target>
 

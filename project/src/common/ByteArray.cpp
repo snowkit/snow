@@ -3,12 +3,12 @@
 
 #include "common/ByteArray.h"
 
-#include "lumen_core.h"
-#include "lumen_io.h"
+#include "snow_core.h"
+#include "snow_io.h"
 
 #include <string>
 
-namespace lumen {
+namespace snow {
 
 
     // --- ByteArray -----------------------------------------------------
@@ -18,7 +18,7 @@ namespace lumen {
     AutoGCRoot *gByteArrayResize = 0;
     AutoGCRoot *gByteArrayBytes = 0;
 
-    value lumen_byte_array_init(value inFactory, value inLen, value inResize, value inBytes) {
+    value snow_byte_array_init(value inFactory, value inLen, value inResize, value inBytes) {
 
         gByteArrayCreate = new AutoGCRoot(inFactory);
         gByteArrayLen = new AutoGCRoot(inLen);
@@ -27,7 +27,7 @@ namespace lumen {
 
         return alloc_null();
 
-    } DEFINE_PRIM(lumen_byte_array_init,4);
+    } DEFINE_PRIM(snow_byte_array_init,4);
 
 
     ByteArray::ByteArray() : mValue(0) {}
@@ -99,17 +99,17 @@ namespace lumen {
 
     int ByteArray::ToFile(const OSChar *inFilename, const ByteArray array) {
 
-        lumen::io::iosrc* file = lumen::io::iosrc_fromfile(inFilename, "wb");
+        snow::io::iosrc* file = snow::io::iosrc_fromfile(inFilename, "wb");
 
         if(!file) {
-            lumen::log("/ lumen / ByteArray::ToFile cannot open file for writing %s\n", inFilename );
+            snow::log("/ snow / ByteArray::ToFile cannot open file for writing %s\n", inFilename );
                 //0 means nothing was written
             return 0;
         }
 
-        int res = lumen::io::write( file, array.Bytes() , 1, array.Size() );
+        int res = snow::io::write( file, array.Bytes() , 1, array.Size() );
 
-        lumen::io::close(file);
+        snow::io::close(file);
 
         return res;
 
@@ -117,27 +117,27 @@ namespace lumen {
 
     ByteArray ByteArray::FromFile(const OSChar *inFilename) {
 
-        lumen::io::iosrc* file = lumen::io::iosrc_fromfile(inFilename, "rb");
+        snow::io::iosrc* file = snow::io::iosrc_fromfile(inFilename, "rb");
 
         if(!file) {
-            lumen::log("/ lumen / ByteArray::FromFile cannot open file for reading %s\n", inFilename );
+            snow::log("/ snow / ByteArray::FromFile cannot open file for reading %s\n", inFilename );
             return ByteArray();
         }
 
             //determine the length
-        lumen::io::seek(file, 0, lumen_seek_end);
-        int len = lumen::io::tell(file);
-        lumen::io::seek(file, 0, lumen_seek_set);
+        snow::io::seek(file, 0, snow_seek_end);
+        int len = snow::io::tell(file);
+        snow::io::seek(file, 0, snow_seek_set);
 
             //create a bytearray of the file size
         ByteArray result(len);
             //read the data into the buffer
-        int status = lumen::io::read(file, result.Bytes(), len, 1);
+        int status = snow::io::read(file, result.Bytes(), len, 1);
             //close the file
-        lumen::io::close(file);
+        snow::io::close(file);
 
         return result;
 
     } //FromFile
 
-} //lumen namespace
+} //snow namespace
