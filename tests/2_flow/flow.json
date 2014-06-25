@@ -1,0 +1,41 @@
+{
+  name : 'test_flow',
+  version : '1.0.0',
+  author : 'snowkit',
+
+  product : {
+
+    main : 'Main',
+    output : 'bin',
+    app : 'flow_test',
+    package : 'org.snowkit.flow',
+    codepaths : [ 'src' ],
+
+  },
+
+  build : {
+    dependencies : {
+      snow : '*',
+    }
+  },
+
+  files : {
+    config : 'config.json',
+    assets : 'assets/',
+  },
+
+  snow : {
+    window : {
+
+      width : 960,
+      height : 640,
+      orientation : 'landscape',
+      fps : 60,
+      vsync : true,
+      resizable : true
+
+    }
+
+  },
+
+}

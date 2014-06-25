@@ -1,0 +1,24 @@
+{
+  name : 'snow',
+  version : '1.0.0',
+  author : 'snowkit',
+
+  flow : {
+    build : {
+      app_boot : 'SnowApp',
+    }
+  },
+
+  files : {
+    if : {
+      mac : {
+        mac : 'templates/mac/ => ../'
+      }
+    }
+  },
+  build : {
+    files : {
+      haxe : 'templates/haxe/ => haxe/',
+    }
+  }
+}
