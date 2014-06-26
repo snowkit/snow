@@ -28,10 +28,8 @@ class Main extends snow.App {
 
         trace("OpenGL reports version " + GL.versionString());
 
-        vg = Nvg.createGL(512, 512, NvgMode.ANTIALIAS);
-
+        vg = Nvg.createGL(NvgMode.ANTIALIAS);
         font = Nvg.createFont(vg, "FiraSans-Regular".c_str(), "assets/FiraSans-Regular.ttf".c_str());
-
         linearGradient = Nvg.linearGradient(vg, 0, 0, 500, 500, Nvg.rgba(255,192,0,255), Nvg.rgba(0,0,0,255));
 
         app.window.onrender = onrender;
@@ -107,14 +105,12 @@ class Main extends snow.App {
         Nvg.rect(vg, 100,100, 500,300);
         Nvg.circle(vg, 120,120, 250);
         Nvg.pathWinding(vg, NvgSolidity.HOLE);   // Mark circle as a hole.
-        //Nvg.fillColor(vg, Nvg.rgba(255,192,0,255));
         Nvg.fillPaint(vg, linearGradient);
         Nvg.fill(vg);
         
         Nvg.fontFaceId(vg, font);
         Nvg.fillColor(vg, Nvg.rgba(255,0,0,255));
         Nvg.text(vg, 50, 50, current_text.c_str(), untyped __cpp__("NULL"));
-        
 
         Nvg.fontSize(vg, 200.0);
         Nvg.fontFaceId(vg, font);
