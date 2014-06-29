@@ -1,41 +1,62 @@
 {
-  name : 'test_flow',
-  version : '1.0.0',
-  author : 'snowkit',
 
-  product : {
+  project : {
+    name : 'test_flow',
+    version : '1.0.0',
+    author : 'snowkit',
 
-    main : 'Main',
-    output : 'bin',
-    app : 'flow_test',
-    package : 'org.snowkit.flow',
-    codepaths : [ 'src' ],
+    app : {
+      main : 'Main',
+      output : 'bin',
+      name : 'flow_test',
+      package : 'org.snowkit.flow',
+      codepaths : [ 'src' ],
+    },
 
-  },
+    build : {
+      dependencies : {
+        snow : '*',
+      },
+      defines : ['one=1', 'two = 2', 'some_define']
+    },
 
-  build : {
-    dependencies : {
-      snow : '*',
+    files : {
+      assets : 'assets/',
     }
-  },
 
-  files : {
-    config : 'config.json',
-    assets : 'assets/',
   },
 
   snow : {
     window : {
-
+      title : 'hello flow',
       width : 960,
       height : 640,
+      depth : true,
+      stencil : true,
+      antialiasing : 4,
       orientation : 'landscape',
       fps : 60,
       vsync : true,
-      resizable : true
-
+      resizable : true,
+      fullscreen : false,
+      borderless : false
     }
-
   },
+
+  if: {
+    "mac" : {
+      build: {
+        defines : ['ismac']
+      },
+      files : {
+        config : 'config.json => config.json'
+      }
+    },
+    "!mac && some_define" : {
+      build: {
+        defines : ['complex']
+      }
+    }
+  }
 
 }
