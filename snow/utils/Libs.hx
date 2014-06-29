@@ -121,6 +121,8 @@ class Libs {
             return "snow_browser_webgl";
         #end
 
+        return "unknown";
+
     } //get_system_name
 
 #if snow_html5
