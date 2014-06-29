@@ -27,7 +27,9 @@
   },
 
   snow : {
-    window : {}
+    window : {
+      title:'hello flow'
+    }
   },
 
   if: {

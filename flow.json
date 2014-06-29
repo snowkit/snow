@@ -46,6 +46,16 @@
 
 
   if:{
+    web : {
+      build: {
+        defines : ['snow_html5']
+      }
+    },
+    "mac || windows || linux || android || ios" : {
+      build: {
+        defines : ['snow_native']
+      }
+    },
     "mac && !flow_build_command_line":{
       files : {
         plists : { path:'flowtemplates/mac/ => ../', template:'project' }
