@@ -1,24 +1,32 @@
 {
-  name : 'snow',
-  version : '1.0.0',
-  author : 'snowkit',
 
   flow : {
     build : {
-      app_boot : 'SnowApp',
+      boot : 'SnowApp'
     }
   },
 
-  files : {
-    if : {
-      mac : {
-        mac : 'templates/mac/ => ../'
+  project : {
+
+    name : 'snow',
+    version : '1.0.0',
+    author : 'snowkit',
+
+    build : {
+      files : {
+        boot : { path:'flowtemplates/boot/SnowApp.hx => haxe/SnowApp.hx', template:['snow','project'] },
       }
     }
   },
-  build : {
-    files : {
-      haxe : 'templates/haxe/ => haxe/',
+
+
+  if:{
+    "mac && !flow_build_command_line":{
+      files : {
+        plists : { path:'flowtemplates/mac/ => ../', template:'project' }
+      },
     }
   }
+
+
 }
