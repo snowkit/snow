@@ -27,20 +27,7 @@
   },
 
   snow : {
-    window : {
-      title : 'hello flow',
-      width : 960,
-      height : 640,
-      depth : true,
-      stencil : true,
-      antialiasing : 4,
-      orientation : 'landscape',
-      fps : 60,
-      vsync : true,
-      resizable : true,
-      fullscreen : false,
-      borderless : false
-    }
+    window : {}
   },
 
   if: {

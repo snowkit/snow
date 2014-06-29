@@ -3,6 +3,31 @@
   flow : {
     build : {
       boot : 'SnowApp'
+    },
+    schema : {
+      snow : {
+        type : 'object',
+        default : { window:{} },
+        properties : {
+          window: {
+              type: 'object',
+              properties : {
+                title : { type:'string', default:'snow app' },
+                width : { type:'integer', default:1280 },
+                height : { type:'integer', default:720 },
+                depth : { type:'boolean', default:false },
+                stencil : { type:'boolean', default:false },
+                antialiasing : { type:'integer', default:2, pattern:'^[0248]$' },
+                orientation : { type:'string', default:'landscape', enum:['landscape', 'portrait', 'any'] },
+                fps : { type:'integer', default:60 },
+                vsync : { type:'boolean', default:true },
+                resizable : { type:'boolean', default:true },
+                fullscreen : { type:'boolean', default:false },
+                borderless : { type:'boolean', default:false }
+              }
+          },
+        }
+      }
     }
   },
 
