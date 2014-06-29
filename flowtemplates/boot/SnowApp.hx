@@ -18,19 +18,21 @@ class SnowApp {
         //SDL_WINDOWPOS_UNDEFINED 0x1FFF0000;
         //SDL_WINDOWPOS_CENTERED 0x2FFF0000;
 
-                //Create the window config
+        var _window_config = null;
+
         {{#with snow.window~}}
 
-            var _window_config = {
+                //Create the window config
+            _window_config = {
 
-                {{#if fullscreen}}fullscreen : {{fullscreen}}, {{~/if}}
-                {{#if resizable}}resizable : {{resizable}}, {{~/if}}
-                {{#if borderless}}borderless : {{borderless}}, {{~/if}}
-                {{#if antialiasing}}antialiasing : {{antialiasing}}, {{~/if}}
-                {{#if stencil}}stencil_buffer : {{stencil}}, {{~/if}}
-                {{#if depth}}depth_buffer : {{depth}}, {{~/if}}
-                {{#if vsync}}vsync : {{vsync}}, {{~/if}}
-                {{#if fps}}fps : {{fps}}, {{~/if}}
+                fullscreen : {{toString fullscreen}},
+                resizable : {{toString resizable}},
+                borderless : {{toString borderless}},
+                antialiasing : {{toString antialiasing}},
+                stencil_buffer : {{toString stencil}},
+                depth_buffer : {{toString depth}},
+                vsync : {{toString vsync}},
+                fps : {{fps}},
 
                 x               : Std.int(0x1FFF0000),
                 y               : Std.int(0x1FFF0000),
