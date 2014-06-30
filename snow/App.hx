@@ -113,18 +113,33 @@ import snow.types.Types;
 
         if(manifest_data != null && manifest_data.length != 0) {
 
-            var _list:Array<Dynamic> = haxe.Unserializer.run(manifest_data.toString());
+            #if lime-tools
+                var _list:Array<Dynamic> = haxe.Unserializer.run(manifest_data.toString());
 
-            for(asset in _list) {
+                for(asset in _list) {
 
-                asset_list.push({
-                    id : asset.id,
-                    path : asset.path,
-                    type : Std.string(asset.type).toLowerCase(),
-                    ext : haxe.io.Path.extension(asset.path)
-                });
+                    asset_list.push({
+                        id : asset.id,
+                        path : asset.path,
+                        type : Std.string(asset.type).toLowerCase(),
+                        ext : haxe.io.Path.extension(asset.path)
+                    });
+            #else
 
-            } //for each asset
+                var _list:Array<String> = haxe.Json.parse(manifest_data.toString());
+
+                for(asset in _list) {
+
+                    asset_list.push({
+                        id : asset,
+                        path : asset,
+                        type : haxe.io.Path.extension(asset),
+                        ext : haxe.io.Path.extension(asset)
+                    });
+
+                } //for each asset
+
+            #end
 
         } else { //manifest_data != null
             trace('/ snow / default asset manifest not found, or length was zero');
