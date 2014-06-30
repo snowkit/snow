@@ -48,12 +48,17 @@
   if:{
     web : {
       build: {
-        defines : ['snow_html5']
+        defines : ['snow_html5', 'snow_audio_howlerjs']
       }
     },
     "mac || windows || linux || android || ios" : {
       build: {
         defines : ['snow_native']
+      }
+    },
+    snow_native : {
+      build: {
+        defines : ['snow_audio_openal', 'snow_input_sdl', 'snow_window_sdl']
       }
     },
     "mac && !flow_build_command_line":{
