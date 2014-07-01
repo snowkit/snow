@@ -42,30 +42,49 @@
         boot : { path:'flowtemplates/boot/SnowApp.hx => haxe/SnowApp.hx', template:['snow','project'] },
       }
     }
+
   },
 
 
   if:{
-    web : {
-      build: {
-        defines : ['snow_html5', 'snow_audio_howlerjs']
-      }
+
+    "mac && !flow_build_command_line":{
+      files : {
+        plists : { path:'flowtemplates/mac/ => ../', template:'project' }
+      },
     },
+
     "mac || windows || linux || android || ios" : {
       build: {
         defines : ['snow_native']
       }
     },
+    web : {
+      build: {
+        defines : ['snow_html5']
+      }
+    },
+
+
+
+    snow_html5 : {
+      files : {
+        index : { path:'flowtemplates/web/index.html => index.html', template:'project' },
+        lib : 'flowtemplates/web/lib/ => lib/'
+      },
+      build : {
+        defines : ['snow_audio_howlerjs'],
+        files : {
+        }
+      }
+    },
+
     snow_native : {
       build: {
         defines : ['snow_audio_openal', 'snow_input_sdl', 'snow_window_sdl']
       }
-    },
-    "mac && !flow_build_command_line":{
-      files : {
-        plists : { path:'flowtemplates/mac/ => ../', template:'project' }
-      },
     }
+
   }
 
 
