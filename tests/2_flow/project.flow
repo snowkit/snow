@@ -21,7 +21,8 @@
     },
 
     files : {
-      assets : 'assets/',
+      config : 'config.json',
+      assets : 'assets/'
     }
 
   },
@@ -36,9 +37,6 @@
     "mac" : {
       build: {
         defines : ['ismac']
-      },
-      files : {
-        config : 'config.json => config.json'
       }
     },
     "!mac && some_define" : {

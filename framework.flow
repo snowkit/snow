@@ -17,7 +17,7 @@
                 height : { type:'integer', default:720 },
                 depth : { type:'boolean', default:false },
                 stencil : { type:'boolean', default:false },
-                antialiasing : { type:'integer', default:2, pattern:'^[0248]$' },
+                antialiasing : { type:'integer', default:0, pattern:'^[0248]$' },
                 orientation : { type:'string', default:'landscape', enum:['landscape', 'portrait', 'any'] },
                 fps : { type:'integer', default:60 },
                 vsync : { type:'boolean', default:true },
