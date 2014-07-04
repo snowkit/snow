@@ -161,22 +161,14 @@ class Snow {
             //fetch runtime config before we actually tell them to pre-ready init
         config.runtime = host.get_runtime_config();
 
+
+        _debug('/ snow / fetching window config', true);
+
+            //fetch runtime config before we actually tell them to pre-ready init
+        config.window = host.get_window_config();
+
             //disllow re-entry
         was_ready = true;
-
-            //:todo: this should be abstracted to the host in some way
-            //load in the window size from the runtime config
-        if(config.runtime.window != null) {
-
-            if(config.runtime.window.width != null) {
-                config.window.width = config.runtime.window.width;
-            }
-
-            if(config.runtime.window.height != null) {
-                config.window.height = config.runtime.window.height;
-            }
-
-        } //runtime config window flag
 
             //now if they requested a window, let's open one
         window = windowing.create( config.window );

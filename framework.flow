@@ -36,6 +36,7 @@
     name : 'snow',
     version : '1.0.0',
     author : 'snowkit',
+    title : 'snow app',
 
     build : {
       files : {
