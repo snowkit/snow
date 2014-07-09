@@ -27,25 +27,6 @@
       assets : 'assets/'
     }
 
-  },
-
-  snow : {
-    window : {
-      title:'hello flow'
-    }
-  },
-
-  if: {
-    "mac" : {
-      build: {
-        defines : ['ismac']
-      }
-    },
-    "!mac && some_define" : {
-      build: {
-        defines : ['complex']
-      }
-    }
   }
 
 }
