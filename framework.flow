@@ -2,7 +2,10 @@
 
   flow : {
     build : {
-      boot : 'SnowApp'
+      boot : 'SnowApp',
+      android : {
+        logcat_include : { "snow":"snow" }
+      }
     }
   },
 
