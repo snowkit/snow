@@ -657,6 +657,10 @@ class ByteArray extends Bytes implements ArrayAccess<Int> implements IDataInput 
 
             var init = Libs.load("snow", "snow_byte_array_init", 4);
 
+            if(init == null) {
+                throw "ByteArray cannot initialize because the function cannot be loaded from snow.";
+            }
+
                 init( factory, slen, resize, bytes );
 
         } //__init__
