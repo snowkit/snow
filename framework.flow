@@ -4,7 +4,7 @@
     build : {
       boot : 'SnowApp',
       android : {
-        logcat_include : { "snow":"snow" }
+        logcat_include : { snow:"snow", SDL:"SDL", openal:"OpenAL_SLES" }
       }
     }
   },
@@ -15,9 +15,19 @@
     version : '1.0.0',
     author : 'snowkit',
 
+    app : {
+      mobile : {
+        android : {
+          libs : {
+            native : { snow:'snow' }
+          }
+        }
+      }
+    },
+
     build : {
       files : {
-        boot : { path:'flowtemplates/boot/SnowApp.hx => haxe/SnowApp.hx', template:['project'] },
+        boot : { path:'flowtemplates/boot/SnowApp.hx => haxe/SnowApp.hx', template:'project' },
       }
     }
 
@@ -31,6 +41,31 @@
         plists : { path:'flowtemplates/mac/ => ../', template:'project' }
       },
     },
+
+    "android && arch-armv7" : {
+      build : {
+        files : {
+          libsnow : { path:"ndll/Android/libsnow-v7.so => project/libs/armeabi/libsnow.so" }
+        }
+      }
+    },
+
+    "android && arch-armv5" : {
+      build : {
+        files : {
+          libsnow : { path:"ndll/Android/libsnow.so => project/libs/armeabi/libsnow.so" }
+        }
+      }
+    },
+
+    "android && arch-x86" : {
+      build : {
+        files : {
+          libsnow : { path:"ndll/Android/libsnow-x86.so => project/libs/armeabi/libsnow.so" }
+        }
+      }
+    },
+
 
     android : {
       build: {
