@@ -245,14 +245,16 @@ class Main extends snow.AppFixedTimestep {
 
     override function ontouchup( x:Float, y:Float, touch_id:Int, timestamp:Float ) {
         trace('touch up; $x / $y / $touch_id / $timestamp');
+        sound1.play();
     }
 
     override function ontouchmove( x:Float, y:Float, dx:Float, dy:Float, touch_id:Int, timestamp:Float ) {
 
         trace('touch move; $x / $y / $dx / $dy / $touch_id / $timestamp ');
 
-        positionY = y - (size/2);
-        positionX = x - (size/2);
+            //touches are in NDC, so we convert to window size
+        positionX = (app.window.width*x) - (size/2);
+        positionY = (app.window.height*y) - (size/2);
         phys_posx = positionX;
 
     } //ontouchmove
