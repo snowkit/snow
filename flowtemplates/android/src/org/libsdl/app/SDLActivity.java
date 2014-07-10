@@ -48,12 +48,11 @@ public class SDLActivity extends Activity {
 
     // Load the .so
     static {
-            //:snow:
-        // ::foreach ndlls::
-            // System.loadLibrary ("::name::");
-        // ::end::
 
-        System.loadLibrary("{{project.app.name}}");
+        {{#each project.app.mobile.android.libs.native~}}
+            System.loadLibrary ("{{this}}");
+        {{~/each}}
+
     }
 
 
@@ -134,8 +133,7 @@ public class SDLActivity extends Activity {
 
         {{~#if project.app.mobile.fullscreen}}
             {{~#if project.app.mobile.android.sdk_target '>=' 19~}}
-                    //:snow:
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                if (Build.VERSION.SDK_INT >= 19) {
                     getWindow().getDecorView().setSystemUiVisibility(
                         View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN |
                         View.SYSTEM_UI_FLAG_LAYOUT_STABLE |
@@ -158,7 +156,9 @@ public class SDLActivity extends Activity {
 
             {{~#if project.app.mobile.fullscreen}}
                 {{~#if project.app.mobile.android.sdk_target '>=' 19}}
+                if (Build.VERSION.SDK_INT >= 19) {
                     hideSystemUi();
+                }
                 {{/if}}
             {{/if~}}
 
