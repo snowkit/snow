@@ -42,6 +42,12 @@
       },
     },
 
+    "windows && arch-32" : {
+      files : {
+        libsnow : { path:"ndll/Windows/snow.ndll => snow.ndll" }
+      }
+    },
+
     "android && arch-armv7" : {
       build : {
         files : {

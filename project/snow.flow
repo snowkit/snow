@@ -1,0 +1,10 @@
+{
+    project: {
+        name: 'snow',
+        version : '1.0.0',
+
+        lib : {
+
+        }
+    }
+}
