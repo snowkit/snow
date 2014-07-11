@@ -6,7 +6,9 @@
         <meta charset="utf-8">
         <title>{{project.app.title}}</title>
 
-        <script type="text/javascript" src="./lib/modernizr.js"></script>
+        {{#each project.app.web.libs~}}
+            <script type="text/javascript" src="{{this}}"></script>
+        {{~/each}}
 
     </head>
 
