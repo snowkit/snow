@@ -16,6 +16,11 @@
     author : 'snowkit',
 
     app : {
+      web : {
+        libs : {
+          modernizr : './lib/modernizr.js'
+        }
+      },
       mobile : {
         android : {
           libs : {
@@ -96,8 +101,8 @@
 
     snow_html5 : {
       files : {
-        index : { path:'flowtemplates/web/index.html => index.html', template:'project' },
-        lib : 'flowtemplates/web/lib/ => lib/'
+        index : { path:'flowtemplates/web/index.html => index.html', template:'project', not_listed:true },
+        lib : { path:'flowtemplates/web/lib/ => lib/', not_listed:true }
       },
       build : {
         defines : ['snow_audio_howlerjs'],
