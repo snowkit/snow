@@ -1,12 +1,12 @@
 -main ApplicationMain 
 -cp src
 -cp ../..
--D lumen_audio_openal
--D lumen_input_sdl
--D tools=1.4.0
--D lumen_window_sdl
+-D snow_input_sdl
+-D snow_window_sdl
+-D tools=1.5.5
+-D snow_native
 -D no-compilation
--D lumen_native
+-D snow_audio_openal
 -D mac
 -D desktop
 -cp bin/mac64/cpp/haxe

@@ -1,7 +1,7 @@
 { 
 	"input":"scribe.types.xml", 
-	"lime_project":"../tests/0_empty_window/project.lime", 
+	"lime_project":"/Users/sven/dev/snow/tests/0_empty_window/project.lime", 
 	"output":"generated_api.json", 
 	"force":true,
-	"allowed_packages":"lumen" 
+	"allowed_packages":"snow" 
 }

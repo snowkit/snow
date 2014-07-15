@@ -1,14 +1,14 @@
 {
-    "project_name" : "lumen",    
-    "project_git_url" : "http://github.com/underscorediscovery/lumen/",
+    "project_name" : "snow",
+    "project_git_url" : "http://github.com/underscorediscovery/snow/",
 
-    "style_path" : "./lumen/style/",
-    "template_path" : "./lumen/templates/",
-    "images_path" : "./lumen/images/",
-    "apis_path" : "./lumen/apis/api/",
-    "md_path" : "./lumen/md/",
+    "style_path" : "./snow/style/",
+    "template_path" : "./snow/templates/",
+    "images_path" : "./snow/images/",
+    "apis_path" : "./snow/apis/api/",
+    "md_path" : "./snow/md/",
 
-    "md_input": ["**/+(*.md)"], 
+    "md_input": ["**/+(*.md)"],
     "api_input" : ["**/+(*.json)"],
 
     "output_path" : "../docs/",
@@ -22,9 +22,13 @@
     "template_index" : "index.html",
     "api_partials" : [
         { "name": "type", "path":"api_partial_type.html"},
-        { "name": "args", "path":"api_partial_args.html"}
+        { "name": "args", "path":"api_partial_args.html"},
+        { "name": "package_node", "path":"api_partial_package_node.html"},
+        { "name": "package_list", "path":"api_partial_package_list.html"},
+        { "name": "package_list_items", "path":"api_partial_package_list_items.html"},
+        { "name": "package", "path":"api_partial_package.html"}
     ],
-    "api_packages" : ["lumen"],
+    "api_packages" : ["snow"],
     "api_exclude" : [],
 
     "git_features" : true,
