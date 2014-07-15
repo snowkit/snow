@@ -1,0 +1,44 @@
+
+[![Logo]({{{rel_path}}}images/logo.png)]({{{rel_path}}}api/index.html)
+
+---
+
+{{#item}}
+
+<h1>{{{name}}}</h1>
+<small>`{{{path}}}`</small>
+
+{{{doc}}}
+
+---
+
+`{{type}}`
+
+{{~#with superClass}}
+    {{~#unless @index}}extends {{/unless~}}
+    {{#if @index}}, {{/if~}}
+    <code><span>{{path}}</span></code>
+{{~/with~}}
+
+{{~#each interfaces}}
+    {{~#unless @index}}<br/>implements {{/unless~}}
+    {{#if @index}}, {{/if~}}
+    <code><span>{{path}}</span></code>
+{{~/each~}}
+
+{{#if meta}}
+<span class="meta">
+{{#each meta~}}
+    {{~#unless @index}}<br/>meta: {{/unless~}}
+    {{~#if @index}}, {{/if~}}
+    @{{name}}{{#if params.length}}({{params}}){{/if}}
+{{~/each}}
+</span>
+{{/if}}
+
+---
+
+&nbsp;
+&nbsp;
+
+{{/item}}
