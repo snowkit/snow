@@ -6,6 +6,8 @@ import snow.types.Types;
 import snow.window.Window;
 
 
+#if snow_html5
+
 typedef HTML5GamepadButton = {
     value : Float,
     pressed : Bool
@@ -645,3 +647,5 @@ typedef HTML5Gamepad = {
     } //browser_keycode_to_sdl
 
 } //InputSystem
+
+#end
