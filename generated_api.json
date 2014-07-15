@@ -3910,7 +3910,7 @@
          "path": "snow.types.AssetInfo",
          "type": "typedef",
          "params": [],
-         "doc": "Information for a single asset\n\n`id` : the asset id\n`path` : the location of the asset\n`ext` : the asset extension, if any\n`type` : a convenience type indicator",
+         "doc": "Information for a single asset",
          "isPrivate": false,
          "platforms": [
             "cpp"
@@ -3928,7 +3928,7 @@
                },
                "isStatic": false,
                "params": [],
-               "doc": null,
+               "doc": "a convenience type indicator",
                "get": "normal",
                "set": "normal",
                "platforms": [],
@@ -3946,7 +3946,7 @@
                },
                "isStatic": false,
                "params": [],
-               "doc": null,
+               "doc": "the location of the asset",
                "get": "normal",
                "set": "normal",
                "platforms": [],
@@ -3964,7 +3964,7 @@
                },
                "isStatic": false,
                "params": [],
-               "doc": null,
+               "doc": "the asset id",
                "get": "normal",
                "set": "normal",
                "platforms": [],
@@ -3982,7 +3982,7 @@
                },
                "isStatic": false,
                "params": [],
-               "doc": null,
+               "doc": "the asset extension, if any",
                "get": "normal",
                "set": "normal",
                "platforms": [],
@@ -4005,7 +4005,7 @@
                      },
                      "isStatic": false,
                      "params": [],
-                     "doc": null,
+                     "doc": "a convenience type indicator",
                      "get": "normal",
                      "set": "normal",
                      "platforms": [],
@@ -4023,7 +4023,7 @@
                      },
                      "isStatic": false,
                      "params": [],
-                     "doc": null,
+                     "doc": "the location of the asset",
                      "get": "normal",
                      "set": "normal",
                      "platforms": [],
@@ -4041,7 +4041,7 @@
                      },
                      "isStatic": false,
                      "params": [],
-                     "doc": null,
+                     "doc": "the asset id",
                      "get": "normal",
                      "set": "normal",
                      "platforms": [],
@@ -4059,7 +4059,7 @@
                      },
                      "isStatic": false,
                      "params": [],
-                     "doc": null,
+                     "doc": "the asset extension, if any",
                      "get": "normal",
                      "set": "normal",
                      "platforms": [],
@@ -6756,7 +6756,7 @@
          "members": [
             {
                "isOverride": false,
-               "line": 514,
+               "line": 512,
                "meta": [],
                "name": "we_unknown",
                "type": {
@@ -6776,7 +6776,7 @@
             },
             {
                "isOverride": false,
-               "line": 515,
+               "line": 513,
                "meta": [],
                "name": "we_created",
                "type": {
@@ -6796,7 +6796,7 @@
             },
             {
                "isOverride": false,
-               "line": 516,
+               "line": 514,
                "meta": [],
                "name": "we_shown",
                "type": {
@@ -6816,7 +6816,7 @@
             },
             {
                "isOverride": false,
-               "line": 517,
+               "line": 515,
                "meta": [],
                "name": "we_hidden",
                "type": {
@@ -6836,7 +6836,7 @@
             },
             {
                "isOverride": false,
-               "line": 518,
+               "line": 516,
                "meta": [],
                "name": "we_exposed",
                "type": {
@@ -6856,7 +6856,7 @@
             },
             {
                "isOverride": false,
-               "line": 519,
+               "line": 517,
                "meta": [],
                "name": "we_moved",
                "type": {
@@ -6876,7 +6876,7 @@
             },
             {
                "isOverride": false,
-               "line": 520,
+               "line": 518,
                "meta": [],
                "name": "we_resized",
                "type": {
@@ -6896,7 +6896,7 @@
             },
             {
                "isOverride": false,
-               "line": 521,
+               "line": 519,
                "meta": [],
                "name": "we_size_changed",
                "type": {
@@ -6916,7 +6916,7 @@
             },
             {
                "isOverride": false,
-               "line": 522,
+               "line": 520,
                "meta": [],
                "name": "we_minimized",
                "type": {
@@ -6936,7 +6936,7 @@
             },
             {
                "isOverride": false,
-               "line": 523,
+               "line": 521,
                "meta": [],
                "name": "we_maximized",
                "type": {
@@ -6956,7 +6956,7 @@
             },
             {
                "isOverride": false,
-               "line": 524,
+               "line": 522,
                "meta": [],
                "name": "we_restored",
                "type": {
@@ -6976,7 +6976,7 @@
             },
             {
                "isOverride": false,
-               "line": 525,
+               "line": 523,
                "meta": [],
                "name": "we_enter",
                "type": {
@@ -6996,7 +6996,7 @@
             },
             {
                "isOverride": false,
-               "line": 526,
+               "line": 524,
                "meta": [],
                "name": "we_leave",
                "type": {
@@ -7016,7 +7016,7 @@
             },
             {
                "isOverride": false,
-               "line": 527,
+               "line": 525,
                "meta": [],
                "name": "we_focus_gained",
                "type": {
@@ -7036,7 +7036,7 @@
             },
             {
                "isOverride": false,
-               "line": 528,
+               "line": 526,
                "meta": [],
                "name": "we_focus_lost",
                "type": {
@@ -7056,7 +7056,7 @@
             },
             {
                "isOverride": false,
-               "line": 529,
+               "line": 527,
                "meta": [],
                "name": "we_close",
                "type": {
@@ -7080,7 +7080,7 @@
          "methods": [
             {
                "isOverride": false,
-               "line": 534,
+               "line": 532,
                "meta": [],
                "name": "typed",
                "type": {
@@ -13607,7 +13607,7 @@
          "members": [
             {
                "isOverride": false,
-               "line": 467,
+               "line": 465,
                "meta": [],
                "name": "se_unknown",
                "type": {
@@ -13627,7 +13627,7 @@
             },
             {
                "isOverride": false,
-               "line": 468,
+               "line": 466,
                "meta": [],
                "name": "se_init",
                "type": {
@@ -13647,7 +13647,7 @@
             },
             {
                "isOverride": false,
-               "line": 469,
+               "line": 467,
                "meta": [],
                "name": "se_ready",
                "type": {
@@ -13667,7 +13667,7 @@
             },
             {
                "isOverride": false,
-               "line": 470,
+               "line": 468,
                "meta": [],
                "name": "se_update",
                "type": {
@@ -13687,7 +13687,7 @@
             },
             {
                "isOverride": false,
-               "line": 471,
+               "line": 469,
                "meta": [],
                "name": "se_shutdown",
                "type": {
@@ -13707,7 +13707,7 @@
             },
             {
                "isOverride": false,
-               "line": 472,
+               "line": 470,
                "meta": [],
                "name": "se_window",
                "type": {
@@ -13727,7 +13727,7 @@
             },
             {
                "isOverride": false,
-               "line": 473,
+               "line": 471,
                "meta": [],
                "name": "se_input",
                "type": {
@@ -13747,7 +13747,7 @@
             },
             {
                "isOverride": false,
-               "line": 477,
+               "line": 475,
                "meta": [],
                "name": "se_quit",
                "type": {
@@ -13767,7 +13767,7 @@
             },
             {
                "isOverride": false,
-               "line": 478,
+               "line": 476,
                "meta": [],
                "name": "se_app_terminating",
                "type": {
@@ -13787,7 +13787,7 @@
             },
             {
                "isOverride": false,
-               "line": 479,
+               "line": 477,
                "meta": [],
                "name": "se_app_lowmemory",
                "type": {
@@ -13807,7 +13807,7 @@
             },
             {
                "isOverride": false,
-               "line": 480,
+               "line": 478,
                "meta": [],
                "name": "se_app_willenterbackground",
                "type": {
@@ -13827,7 +13827,7 @@
             },
             {
                "isOverride": false,
-               "line": 481,
+               "line": 479,
                "meta": [],
                "name": "se_app_didenterbackground",
                "type": {
@@ -13847,7 +13847,7 @@
             },
             {
                "isOverride": false,
-               "line": 482,
+               "line": 480,
                "meta": [],
                "name": "se_app_willenterforeground",
                "type": {
@@ -13867,7 +13867,7 @@
             },
             {
                "isOverride": false,
-               "line": 483,
+               "line": 481,
                "meta": [],
                "name": "se_app_didenterforeground",
                "type": {
@@ -13891,7 +13891,7 @@
          "methods": [
             {
                "isOverride": false,
-               "line": 487,
+               "line": 485,
                "meta": [],
                "name": "typed",
                "type": {
@@ -14199,7 +14199,7 @@
          "methods": [
             {
                "isOverride": false,
-               "line": 95,
+               "line": 93,
                "meta": [],
                "name": "new",
                "type": {
@@ -21280,7 +21280,7 @@
          "methods": [
             {
                "isOverride": false,
-               "line": 77,
+               "line": 75,
                "meta": [],
                "name": "new",
                "type": {
@@ -21372,7 +21372,7 @@
          "methods": [
             {
                "isOverride": false,
-               "line": 46,
+               "line": 44,
                "meta": [],
                "name": "new",
                "type": {
@@ -23638,7 +23638,7 @@
          "methods": [
             {
                "isOverride": false,
-               "line": 58,
+               "line": 56,
                "meta": [],
                "name": "new",
                "type": {
@@ -26084,7 +26084,7 @@
          "methods": [
             {
                "isOverride": false,
-               "line": 33,
+               "line": 31,
                "meta": [],
                "name": "new",
                "type": {
@@ -44900,7 +44900,7 @@
          "members": [
             {
                "isOverride": false,
-               "line": 562,
+               "line": 560,
                "meta": [],
                "name": "ie_unknown",
                "type": {
@@ -44920,7 +44920,7 @@
             },
             {
                "isOverride": false,
-               "line": 563,
+               "line": 561,
                "meta": [],
                "name": "ie_key",
                "type": {
@@ -44940,7 +44940,7 @@
             },
             {
                "isOverride": false,
-               "line": 564,
+               "line": 562,
                "meta": [],
                "name": "ie_mouse",
                "type": {
@@ -44960,7 +44960,7 @@
             },
             {
                "isOverride": false,
-               "line": 565,
+               "line": 563,
                "meta": [],
                "name": "ie_touch",
                "type": {
@@ -44980,7 +44980,7 @@
             },
             {
                "isOverride": false,
-               "line": 566,
+               "line": 564,
                "meta": [],
                "name": "ie_joystick",
                "type": {
@@ -45000,7 +45000,7 @@
             },
             {
                "isOverride": false,
-               "line": 567,
+               "line": 565,
                "meta": [],
                "name": "ie_controller",
                "type": {
@@ -45024,7 +45024,7 @@
          "methods": [
             {
                "isOverride": false,
-               "line": 572,
+               "line": 570,
                "meta": [],
                "name": "typed",
                "type": {

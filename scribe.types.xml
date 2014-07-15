@@ -12802,17 +12802,24 @@ but they aren't specific to SDL so they are used generically</haxe_doc>
 	<typedef path="snow.render.opengl.GLUniformLocation" params="" file="../../snow/render/opengl/GL.hx" module="snow.render.opengl.GL"><t path="snow.platform.native.render.opengl.GLUniformLocation"/></typedef>
 	<typedef path="snow.types.AssetInfo" params="" file="../../snow/types/Types.hx" module="snow.types.Types">
 		<a>
-			<type><c path="String"/></type>
-			<path><c path="String"/></path>
-			<id><c path="String"/></id>
-			<ext><c path="String"/></ext>
+			<type>
+				<c path="String"/>
+				<haxe_doc>a convenience type indicator</haxe_doc>
+			</type>
+			<path>
+				<c path="String"/>
+				<haxe_doc>the location of the asset</haxe_doc>
+			</path>
+			<id>
+				<c path="String"/>
+				<haxe_doc>the asset id</haxe_doc>
+			</id>
+			<ext>
+				<c path="String"/>
+				<haxe_doc>the asset extension, if any</haxe_doc>
+			</ext>
 		</a>
-		<haxe_doc>Information for a single asset
-
-`id` : the asset id
-`path` : the location of the asset
-`ext` : the asset extension, if any
-`type` : a convenience type indicator</haxe_doc>
+		<haxe_doc>Information for a single asset</haxe_doc>
 	</typedef>
 	<class path="snow.types.Asset" params="" file="../../snow/types/Types.hx" module="snow.types.Types">
 		<id public="1">
@@ -12823,7 +12830,7 @@ but they aren't specific to SDL so they are used generically</haxe_doc>
 			<t path="snow.types.AssetInfo"/>
 			<haxe_doc>The `AssetInfo` of this asset</haxe_doc>
 		</info>
-		<new public="1" set="method" line="33"><f a="_info">
+		<new public="1" set="method" line="31"><f a="_info">
 	<t path="snow.types.AssetInfo"/>
 	<x path="Void"/>
 </f></new>
@@ -12835,7 +12842,7 @@ but they aren't specific to SDL so they are used generically</haxe_doc>
 			<t path="snow.utils.ByteArray"/>
 			<haxe_doc>The `ByteArray` this asset contains</haxe_doc>
 		</data>
-		<new public="1" set="method" line="46"><f a="_info:_data">
+		<new public="1" set="method" line="44"><f a="_info:_data">
 	<t path="snow.types.AssetInfo"/>
 	<t path="snow.utils.ByteArray"/>
 	<x path="Void"/>
@@ -12848,7 +12855,7 @@ but they aren't specific to SDL so they are used generically</haxe_doc>
 			<c path="String"/>
 			<haxe_doc>The `String` this asset contains</haxe_doc>
 		</text>
-		<new public="1" set="method" line="58"><f a="_info:_data">
+		<new public="1" set="method" line="56"><f a="_info:_data">
 	<t path="snow.types.AssetInfo"/>
 	<c path="String"/>
 	<x path="Void"/>
@@ -12877,7 +12884,7 @@ but they aren't specific to SDL so they are used generically</haxe_doc>
 			<t path="snow.types.ImageInfo"/>
 			<haxe_doc>The `ImageInfo` this asset contains</haxe_doc>
 		</data>
-		<new public="1" set="method" line="77"><f a="_info:_data">
+		<new public="1" set="method" line="75"><f a="_info:_data">
 	<t path="snow.types.AssetInfo"/>
 	<t path="snow.types.ImageInfo"/>
 	<x path="Void"/>
@@ -12903,7 +12910,7 @@ but they aren't specific to SDL so they are used generically</haxe_doc>
 			<t path="snow.types.AudioInfo"/>
 			<haxe_doc>The `AudioInfo` this asset contains</haxe_doc>
 		</data>
-		<new public="1" set="method" line="95"><f a="_info:_data">
+		<new public="1" set="method" line="93"><f a="_info:_data">
 	<t path="snow.types.AssetInfo"/>
 	<t path="snow.types.AudioInfo"/>
 	<x path="Void"/>
@@ -13307,44 +13314,44 @@ Values below are null unless the event `type` matches. _i.e_ if type is `window`
 		<haxe_doc>Input modifier state</haxe_doc>
 	</typedef>
 	<class path="snow.types.SystemEvents" params="" file="../../snow/types/Types.hx" module="snow.types.Types">
-		<se_unknown public="1" line="467" static="1"><x path="Int"/></se_unknown>
-		<se_init public="1" line="468" static="1"><x path="Int"/></se_init>
-		<se_ready public="1" line="469" static="1"><x path="Int"/></se_ready>
-		<se_update public="1" line="470" static="1"><x path="Int"/></se_update>
-		<se_shutdown public="1" line="471" static="1"><x path="Int"/></se_shutdown>
-		<se_window public="1" line="472" static="1"><x path="Int"/></se_window>
-		<se_input public="1" line="473" static="1"><x path="Int"/></se_input>
-		<se_quit public="1" line="477" static="1"><x path="Int"/></se_quit>
-		<se_app_terminating public="1" line="478" static="1"><x path="Int"/></se_app_terminating>
-		<se_app_lowmemory public="1" line="479" static="1"><x path="Int"/></se_app_lowmemory>
-		<se_app_willenterbackground public="1" line="480" static="1"><x path="Int"/></se_app_willenterbackground>
-		<se_app_didenterbackground public="1" line="481" static="1"><x path="Int"/></se_app_didenterbackground>
-		<se_app_willenterforeground public="1" line="482" static="1"><x path="Int"/></se_app_willenterforeground>
-		<se_app_didenterforeground public="1" line="483" static="1"><x path="Int"/></se_app_didenterforeground>
-		<typed public="1" set="method" line="487" static="1"><f a="type">
+		<se_unknown public="1" line="465" static="1"><x path="Int"/></se_unknown>
+		<se_init public="1" line="466" static="1"><x path="Int"/></se_init>
+		<se_ready public="1" line="467" static="1"><x path="Int"/></se_ready>
+		<se_update public="1" line="468" static="1"><x path="Int"/></se_update>
+		<se_shutdown public="1" line="469" static="1"><x path="Int"/></se_shutdown>
+		<se_window public="1" line="470" static="1"><x path="Int"/></se_window>
+		<se_input public="1" line="471" static="1"><x path="Int"/></se_input>
+		<se_quit public="1" line="475" static="1"><x path="Int"/></se_quit>
+		<se_app_terminating public="1" line="476" static="1"><x path="Int"/></se_app_terminating>
+		<se_app_lowmemory public="1" line="477" static="1"><x path="Int"/></se_app_lowmemory>
+		<se_app_willenterbackground public="1" line="478" static="1"><x path="Int"/></se_app_willenterbackground>
+		<se_app_didenterbackground public="1" line="479" static="1"><x path="Int"/></se_app_didenterbackground>
+		<se_app_willenterforeground public="1" line="480" static="1"><x path="Int"/></se_app_willenterforeground>
+		<se_app_didenterforeground public="1" line="481" static="1"><x path="Int"/></se_app_didenterforeground>
+		<typed public="1" set="method" line="485" static="1"><f a="type">
 	<x path="Int"/>
 	<e path="snow.types.SystemEventType"/>
 </f></typed>
 		<meta><m n=":noCompletion"/></meta>
 	</class>
 	<class path="snow.types.WindowEvents" params="" file="../../snow/types/Types.hx" module="snow.types.Types">
-		<we_unknown public="1" line="514" static="1"><x path="Int"/></we_unknown>
-		<we_created public="1" line="515" static="1"><x path="Int"/></we_created>
-		<we_shown public="1" line="516" static="1"><x path="Int"/></we_shown>
-		<we_hidden public="1" line="517" static="1"><x path="Int"/></we_hidden>
-		<we_exposed public="1" line="518" static="1"><x path="Int"/></we_exposed>
-		<we_moved public="1" line="519" static="1"><x path="Int"/></we_moved>
-		<we_resized public="1" line="520" static="1"><x path="Int"/></we_resized>
-		<we_size_changed public="1" line="521" static="1"><x path="Int"/></we_size_changed>
-		<we_minimized public="1" line="522" static="1"><x path="Int"/></we_minimized>
-		<we_maximized public="1" line="523" static="1"><x path="Int"/></we_maximized>
-		<we_restored public="1" line="524" static="1"><x path="Int"/></we_restored>
-		<we_enter public="1" line="525" static="1"><x path="Int"/></we_enter>
-		<we_leave public="1" line="526" static="1"><x path="Int"/></we_leave>
-		<we_focus_gained public="1" line="527" static="1"><x path="Int"/></we_focus_gained>
-		<we_focus_lost public="1" line="528" static="1"><x path="Int"/></we_focus_lost>
-		<we_close public="1" line="529" static="1"><x path="Int"/></we_close>
-		<typed public="1" set="method" line="534" static="1">
+		<we_unknown public="1" line="512" static="1"><x path="Int"/></we_unknown>
+		<we_created public="1" line="513" static="1"><x path="Int"/></we_created>
+		<we_shown public="1" line="514" static="1"><x path="Int"/></we_shown>
+		<we_hidden public="1" line="515" static="1"><x path="Int"/></we_hidden>
+		<we_exposed public="1" line="516" static="1"><x path="Int"/></we_exposed>
+		<we_moved public="1" line="517" static="1"><x path="Int"/></we_moved>
+		<we_resized public="1" line="518" static="1"><x path="Int"/></we_resized>
+		<we_size_changed public="1" line="519" static="1"><x path="Int"/></we_size_changed>
+		<we_minimized public="1" line="520" static="1"><x path="Int"/></we_minimized>
+		<we_maximized public="1" line="521" static="1"><x path="Int"/></we_maximized>
+		<we_restored public="1" line="522" static="1"><x path="Int"/></we_restored>
+		<we_enter public="1" line="523" static="1"><x path="Int"/></we_enter>
+		<we_leave public="1" line="524" static="1"><x path="Int"/></we_leave>
+		<we_focus_gained public="1" line="525" static="1"><x path="Int"/></we_focus_gained>
+		<we_focus_lost public="1" line="526" static="1"><x path="Int"/></we_focus_lost>
+		<we_close public="1" line="527" static="1"><x path="Int"/></we_close>
+		<typed public="1" set="method" line="532" static="1">
 			<f a="type">
 				<x path="Int"/>
 				<e path="snow.types.WindowEventType"/>
@@ -13354,13 +13361,13 @@ Values below are null unless the event `type` matches. _i.e_ if type is `window`
 		<meta><m n=":noCompletion"/></meta>
 	</class>
 	<class path="snow.types.InputEvents" params="" file="../../snow/types/Types.hx" module="snow.types.Types">
-		<ie_unknown public="1" line="562" static="1"><x path="Int"/></ie_unknown>
-		<ie_key public="1" line="563" static="1"><x path="Int"/></ie_key>
-		<ie_mouse public="1" line="564" static="1"><x path="Int"/></ie_mouse>
-		<ie_touch public="1" line="565" static="1"><x path="Int"/></ie_touch>
-		<ie_joystick public="1" line="566" static="1"><x path="Int"/></ie_joystick>
-		<ie_controller public="1" line="567" static="1"><x path="Int"/></ie_controller>
-		<typed public="1" set="method" line="572" static="1">
+		<ie_unknown public="1" line="560" static="1"><x path="Int"/></ie_unknown>
+		<ie_key public="1" line="561" static="1"><x path="Int"/></ie_key>
+		<ie_mouse public="1" line="562" static="1"><x path="Int"/></ie_mouse>
+		<ie_touch public="1" line="563" static="1"><x path="Int"/></ie_touch>
+		<ie_joystick public="1" line="564" static="1"><x path="Int"/></ie_joystick>
+		<ie_controller public="1" line="565" static="1"><x path="Int"/></ie_controller>
+		<typed public="1" set="method" line="570" static="1">
 			<f a="type">
 				<x path="Int"/>
 				<e path="snow.types.InputEventType"/>
