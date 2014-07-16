@@ -7,7 +7,7 @@ import snow.types.Types;
     //Note all times in snow are in seconds.
 
 /** The default type of application, with variable delta time, or fixed delta time, or a fixed frame rate. See the {App Guide} for complete details. */
-@:test1 @:test2 class App {
+@:test1('value1') @:test2('value2') class App {
 
 //Access to the snow API
 
