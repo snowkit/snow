@@ -7,19 +7,17 @@ import snow.utils.UInt8Array;
 
 /**
 Information for a single asset
-
-`id` : the asset id
-`path` : the location of the asset
-`ext` : the asset extension, if any
-`type` : a convenience type indicator
-
 */
 typedef AssetInfo = {
 
-    id : String,
-    path : String,
-    ext : String,
-    type : String
+        /** the asset id */
+    var id : String;
+        /** the location of the asset */
+    var path : String;
+        /** the asset extension, if any */
+    var ext : String;
+        /** a convenience type indicator */
+    var type : String;
 
 }
 
