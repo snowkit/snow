@@ -395,13 +395,19 @@
 					"\"$(SRCROOT)/::APP_FILE::/lib/i386-debug\"",
 					"\"$(SRCROOT)/::APP_FILE::/lib/i386\"",
 				);
+                FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+                    ::foreach frameworkSearchPaths:: "::__current__::",
+					::end::
+                );
 		        OTHER_LDFLAGS = (
 					::foreach ndlls:: "-l::name::",
 					::end::
 					::foreach linkedLibraries:: "-l::__current__::",
 					::end::
 					"-lApplicationMain",
-					::IOS_LINKER_FLAGS::
+					::foreach IOS_LINKER_FLAGS:: "::__current__::",
+					::end::
 				);
 			};
 			name = Debug;
@@ -427,13 +433,19 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/::APP_FILE::/lib/i386\"",
 				);
+                FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+                    ::foreach frameworkSearchPaths:: "::__current__::",
+					::end::
+                );
 				OTHER_LDFLAGS = (
 					::foreach ndlls:: "-l::name::",
 					::end::
 					::foreach linkedLibraries:: "-l::__current__::",
 					::end::
 					"-lApplicationMain",
-					::IOS_LINKER_FLAGS::
+					::foreach IOS_LINKER_FLAGS:: "::__current__::",
+					::end::
 				);
 			};
 			name = Release;
