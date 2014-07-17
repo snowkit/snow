@@ -61,6 +61,14 @@
       }
     },
 
+    "ios && arch-armv7" : {
+      build : {
+        files : {
+          libsnow : { path:"ndll/iPhone/libsnow.iphoneos-v7.a => project/{{app.name}}/libs/armv7/libsnow.a" }
+        }
+      }
+    },
+
     "android && arch-armv5" : {
       build : {
         files : {
@@ -82,6 +90,20 @@
       build: {
         files : {
           project : { path:"flowtemplates/android/ => project/", template:'project' }
+        }
+      }
+    },
+
+    ios : {
+      build: {
+        files : {
+          projectfile : { path:"flowtemplates/ios/snowapp.xcodeproj => project/{{app.name}}.xcodeproj", template:'project' },
+          classes : { path:"flowtemplates/ios/Classes => project/{{app.name}}/Classes", template:'project' },
+          sdl_headers : { path:"project/src/libs/sdl/include => project/{{app.name}}/Classes/sdl/" },
+          infoplist : { path:"flowtemplates/ios/snowapp-Info.plist => project/{{app.name}}/{{app.name}}-Info.plist", template:'project' },
+          prefixheader : { path:"flowtemplates/ios/snowapp-Prefix.pch => project/{{app.name}}/{{app.name}}-Prefix.pch", template:'project' },
+          entitlements : { path:"flowtemplates/ios/snowapp-Entitlements.plist => project/{{app.name}}/{{app.name}}-Entitlements.plist" },
+          images : { path:"flowtemplates/ios/Images.xcassets => project/{{app.name}}/Images.xcassets", template:'project' }
         }
       }
     },
