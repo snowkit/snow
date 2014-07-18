@@ -68,15 +68,6 @@
 
 
 <h3>Methods</h3> <hr/><span class="method apipage">
-            <a name="on_event"><a class="lift" href="#on_event">on\_event</a></a><code class="signature apipage">on\_event(\_event:snow.types.WindowEvent<span></span>) : Void</code><br/><span class="small_desc_flat"></span>
-        </span>
-    <span class="method apipage">
-            <a name="update"><a class="lift" href="#update">update</a></a><code class="signature apipage">update() : Void</code><br/><span class="small_desc_flat"></span>
-        </span>
-    <span class="method apipage">
-            <a name="render"><a class="lift" href="#render">render</a></a><code class="signature apipage">render() : Void</code><br/><span class="small_desc_flat"></span>
-        </span>
-    <span class="method apipage">
             <a name="swap"><a class="lift" href="#swap">swap</a></a><code class="signature apipage">swap() : Void</code><br/><span class="small_desc_flat">Swap the back buffer of the window, call after rendering to update the window view</span>
         </span>
     <span class="method apipage">

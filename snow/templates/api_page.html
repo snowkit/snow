@@ -45,7 +45,7 @@
 
 <h3>Members</h3> <hr/>
     {{~#each members~}}
-        {{~#if isPublic~}}
+        {{~#if (member_visible ../path 'members' name)~}}
             <span class="member apipage">
                 <a name="{{~name~}}"><a class="lift" href="#{{name}}">
                     {{~escape_markdown name~}}
@@ -76,7 +76,7 @@
 
 <h3>Properties</h3> <hr/>
     {{~#each properties~}}
-        {{~#if isPublic~}}
+        {{~#if (member_visible ../path 'properties' name)~}}
             <span class="member apipage">
                 <a name="{{~name~}}"><a class="lift" href="#{{name}}">
                     {{~escape_markdown name~}}
@@ -99,7 +99,7 @@
 
 <h3>Methods</h3> <hr/>
 {{~#each methods~}}
-    {{~#if isPublic~}}
+    {{~#if (member_visible ../path 'methods' name)~}}
         <span class="method apipage">
             <a name="{{~name~}}"><a class="lift" href="#{{name}}">
                 {{~escape_markdown name~}}
