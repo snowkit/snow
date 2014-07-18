@@ -22,6 +22,11 @@
         1EF0A83A121ADB8E003F2F59 /* Main.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1EF0A839121ADB8E003F2F59 /* Main.mm */; };
 		2619B0091978784F003DB9A7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2619B0081978784F003DB9A7 /* Images.xcassets */; };
 		2679E1C319787CA3001501C8 /* lib{{project.app.name}}.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2679E1C219787CA3001501C8 /* lib{{project.app.name}}.a */; };
+
+        {{#each project.app.mobile.ios.libs._native~}}
+            {{nodeRef}} /* lib{{name}}.a in Frameworks */ = {isa = PBXBuildFile; fileRef = {{fileRef}} /* lib{{name}}.a */; };
+        {{/each}}
+
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,8 +56,13 @@
         1EEEBAFF121BE2B30048A9DF /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1EF0A839121ADB8E003F2F59 /* Main.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Main.mm; path = {{project.app.name}}/Classes/Main.mm; sourceTree = SOURCE_ROOT; };
 		2619B0081978784F003DB9A7 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = {{project.app.name}}/Images.xcassets; sourceTree = "<group>"; };
-		2679E1C219787CA3001501C8 /* lib{{project.app.name}}.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = lib{{project.app.name}}.a; path = {{project.app.name}}/libs/{{arch}}/lib{{project.app.name}}.a; sourceTree = "<group>"; };
+        2679E1C219787CA3001501C8 /* lib{{project.app.name}}.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = lib{{project.app.name}}.a; path = {{project.app.name}}/libs/{{arch}}/lib{{project.app.name}}.a; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* {{project.app.name}}/{{project.app.name}}-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "{{project.app.name}}/{{project.app.name}}-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
+
+        {{#each project.app.mobile.ios.libs._native~}}
+            {{fileRef}} /* lib{{name}}.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = lib{{name}}.a; path = {{../project.app.name}}/libs/{{../arch}}/lib{{name}}.a; sourceTree = "<group>"; };
+        {{~/each}}
+
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +71,9 @@
             buildActionMask = 2147483647;
             files = (
 				2679E1C319787CA3001501C8 /* lib{{project.app.name}}.a in Frameworks */,
+                {{#each project.app.mobile.ios.libs._native~}}
+                    {{nodeRef}} /* lib{{name}}.a in Frameworks */,
+                {{~/each}}
                 1EEEBA9B121AF1C60048A9DF /* UIKit.framework in Frameworks */,
                 1EEEBAA3121AF2210048A9DF /* OpenAL.framework in Frameworks */,
                 1EEEBAA5121AF2210048A9DF /* OpenGLES.framework in Frameworks */,
@@ -98,6 +111,9 @@
             isa = PBXGroup;
             children = (
 				2679E1C219787CA3001501C8 /* lib{{project.app.name}}.a */,
+                {{#each project.app.mobile.ios.libs._native~}}
+                    {{fileRef}} /* lib{{name}}.a */,
+                {{~/each}}
                 1EEEBA9A121AF1C60048A9DF /* UIKit.framework */,
                 1EEEBAA2121AF2210048A9DF /* OpenAL.framework */,
                 1EEEBAA4121AF2210048A9DF /* OpenGLES.framework */,
@@ -174,7 +190,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				1EF0A883121AE1D2003F2F59 /* PBXTargetDependency */,
 			);
 			name = {{project.app.name}};
 			productName = {{project.app.name}};
@@ -242,31 +257,36 @@
             buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
                 GCC_PRECOMPILE_PREFIX_HEADER = YES;
                 GCC_PREFIX_HEADER = "{{project.app.name}}/{{project.app.name}}-Prefix.pch";
                 INFOPLIST_FILE = "{{project.app.name}}/{{project.app.name}}-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = {{project.app.mobile.ios.deployment_target}};
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/{{project.app.name}}/libs/{{arch}}",
 				);
                 "LIBRARY_SEARCH_PATHS[arch=armv6]" = (
                     "$(inherited)",
-                    "\"$(SRCROOT)/libs/armv6-debug\"",
-                    "\"$(SRCROOT)/libs/armv6\"",
+                    "\"$(SRCROOT)/{{project.app.name}}/libs/armv6-debug\"",
+                    "\"$(SRCROOT)/{{project.app.name}}/libs/armv6\"",
                 );
                 "LIBRARY_SEARCH_PATHS[arch=armv7]" = (
                     "$(inherited)",
-                    "\"$(SRCROOT)/libs/armv7-debug\"",
-                    "\"$(SRCROOT)/libs/armv7\"",
+                    "\"$(SRCROOT)/{{project.app.name}}/libs/armv7-debug\"",
+                    "\"$(SRCROOT)/{{project.app.name}}/libs/armv7\"",
                 );
                 "LIBRARY_SEARCH_PATHS[sdk=iphonesimulator*]" = (
                     "$(inherited)",
-                    "\"$(SRCROOT)/libs/i386-debug\"",
-                    "\"$(SRCROOT)/libs/i386\"",
+                    "\"$(SRCROOT)/{{project.app.name}}/libs/i386-debug\"",
+                    "\"$(SRCROOT)/{{project.app.name}}/libs/i386\"",
                 );
 				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = "{{project.app.mobile.ios._devices}}";
 				WRAPPER_EXTENSION = app;
             };
             name = Debug;
@@ -276,28 +296,33 @@
             buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
                 GCC_PRECOMPILE_PREFIX_HEADER = YES;
                 GCC_PREFIX_HEADER = "{{project.app.name}}/{{project.app.name}}-Prefix.pch";
                 INFOPLIST_FILE = "{{project.app.name}}/{{project.app.name}}-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = {{project.app.mobile.ios.deployment_target}};
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/{{project.app.name}}/libs/{{arch}}",
 				);
                 "LIBRARY_SEARCH_PATHS[arch=armv6]" = (
                     "$(inherited)",
-                    "\"$(SRCROOT)/libs/armv6\"",
+                    "\"$(SRCROOT)/{{project.app.name}}/libs/armv6\"",
                 );
                 "LIBRARY_SEARCH_PATHS[arch=armv7]" = (
                     "$(inherited)",
-                    "\"$(SRCROOT)/libs/armv7\"",
+                    "\"$(SRCROOT)/{{project.app.name}}/libs/armv7\"",
                 );
                 "LIBRARY_SEARCH_PATHS[sdk=iphonesimulator*]" = (
                     "$(inherited)",
-                    "\"$(SRCROOT)/libs/i386\"",
+                    "\"$(SRCROOT)/{{project.app.name}}/libs/i386\"",
                 );
 				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = "{{project.app.mobile.ios._devices}}";
 				WRAPPER_EXTENSION = app;
             };
             name = Release;
