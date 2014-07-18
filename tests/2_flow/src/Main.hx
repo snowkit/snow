@@ -67,6 +67,10 @@ class Main extends snow.AppFixedTimestep {
             }
         }
 
+        #if mobile
+            windowconf.fullscreen = true;
+        #end
+
         return windowconf;
 
     } //get_window_config

@@ -15,7 +15,7 @@
         <key>CFBundlePrimaryIcon</key>
         <dict>
             <key>CFBundleIconFiles</key>
-            <array></array>
+			<array/>
         </dict>
     </dict>
     <key>CFBundleIdentifier</key>
@@ -34,10 +34,16 @@
     <string>{{project.version}}</string>
     <key>LSRequiresIPhoneOS</key>
     <true/>
+	<key>UISupportedInterfaceOrientations</key>
+	<array>
+        {{~#each project.app.mobile._orientation}}
+		  <string>{{this}}</string>
+        {{~/each}}
+	</array>
     <key>UIStatusBarHidden</key>
     <{{toString project.app.mobile.fullscreen}}/>
     <key>UIViewControllerBasedStatusBarAppearance</key>
-    <{{toString project.app.mobile.fullscreen}}/>
+    <{{#if project.app.mobile.fullscreen}}false{{else}}true{{/if}}/>
     <key>UIRequiredDeviceCapabilities</key>
     <dict>
     </dict>
