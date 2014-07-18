@@ -74,6 +74,14 @@
       }
     },
 
+    "ios && arch-i386 && ios-sim" : {
+      build : {
+        files : {
+          libsnow : { path:"ndll/iPhone/libsnow.iphonesim.a => project/{{app.name}}/libs/i386/libsnow.a" }
+        }
+      }
+    },
+
     "android && arch-armv5" : {
       build : {
         files : {
