@@ -250,7 +250,7 @@ class AppFixedTimestep extends App {
 
         /** fixed simulation update speed */
     public var frame_time : Float = 0.0167;
-        /** the overflow of the updates. This is used to calculate the alpha time for rendering interpolation, `var alpha_time = overflow / frame_time;` */
+        /** the overflow of the updates. This is used internally, for you, to calculate the alpha time for rendering interpolation as follows `alpha = overflow / frame_time;` */
     public var overflow : Float = 0.0;
 
 
