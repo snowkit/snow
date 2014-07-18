@@ -27,10 +27,6 @@
                 <a name="BYTES_PER_ELEMENT"><a class="lift" href="#BYTES_PER_ELEMENT">BYTES\_PER\_ELEMENT</a></a><code class="signature apipage">BYTES\_PER\_ELEMENT : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
                 <a name="length"><a class="lift" href="#length">length</a></a><code class="signature apipage">length : [Int](#)</code><br/></span>
-            <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="__get"><a class="lift" href="#__get">\_\_get</a></a><code class="signature apipage">\_\_get : Int-&gt;Int</code><br/></span>
-            <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="__set"><a class="lift" href="#__set">\_\_set</a></a><code class="signature apipage">\_\_set : Int -&gt; Int-&gt;Void</code><br/></span>
             <span class="small_desc_flat"></span>
 
 

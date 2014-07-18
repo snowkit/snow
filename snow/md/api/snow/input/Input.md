@@ -78,30 +78,6 @@ Internal input system, accessed via `app.input`
     <span class="method apipage">
             <a name="dispatch_gamepad_device_event"><a class="lift" href="#dispatch_gamepad_device_event">dispatch\_gamepad\_device\_event</a></a><code class="signature apipage">dispatch\_gamepad\_device\_event(gamepad:Int<span></span>, type:snow.types.GamepadDeviceEventType<span></span>, timestamp:Float<span></span>) : Void</code><br/><span class="small_desc_flat"></span>
         </span>
-    <span class="method apipage">
-            <a name="listen"><a class="lift" href="#listen">listen</a></a><code class="signature apipage">listen(\_window:snow.window.Window<span></span>) : Void</code><br/><span class="small_desc_flat"></span>
-        </span>
-    <span class="method apipage">
-            <a name="unlisten"><a class="lift" href="#unlisten">unlisten</a></a><code class="signature apipage">unlisten(\_window:snow.window.Window<span></span>) : Void</code><br/><span class="small_desc_flat"></span>
-        </span>
-    <span class="method apipage">
-            <a name="on_event"><a class="lift" href="#on_event">on\_event</a></a><code class="signature apipage">on\_event(\_event:snow.types.SystemEvent<span></span>) : Void</code><br/><span class="small_desc_flat"></span>
-        </span>
-    <span class="method apipage">
-            <a name="on_gamepad_added"><a class="lift" href="#on_gamepad_added">on\_gamepad\_added</a></a><code class="signature apipage">on\_gamepad\_added(\_event:<span></span>) : Void</code><br/><span class="small_desc_flat"></span>
-        </span>
-    <span class="method apipage">
-            <a name="on_gamepad_removed"><a class="lift" href="#on_gamepad_removed">on\_gamepad\_removed</a></a><code class="signature apipage">on\_gamepad\_removed(\_event:<span></span>) : Void</code><br/><span class="small_desc_flat"></span>
-        </span>
-    <span class="method apipage">
-            <a name="update"><a class="lift" href="#update">update</a></a><code class="signature apipage">update() : Void</code><br/><span class="small_desc_flat"></span>
-        </span>
-    <span class="method apipage">
-            <a name="destroy"><a class="lift" href="#destroy">destroy</a></a><code class="signature apipage">destroy() : Void</code><br/><span class="small_desc_flat"></span>
-        </span>
-    <span class="method apipage">
-            <a name="new"><a class="lift" href="#new">new</a></a><code class="signature apipage">new(\_lib:snow.Snow<span></span>) : Void</code><br/><span class="small_desc_flat"></span>
-        </span>
     
 
 

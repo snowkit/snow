@@ -29,9 +29,7 @@ A window manager, accessed via `app.window`
                 <a name="window_handles"><a class="lift" href="#window_handles">window\_handles</a></a><code class="signature apipage">window\_handles : [Map](#)</code><br/></span>
             <span class="small_desc_flat">The list of window handles, pointing to id's in the `window_list`</span><span class="member apipage">
                 <a name="window_count"><a class="lift" href="#window_count">window\_count</a></a><code class="signature apipage">window\_count : [Int](#)</code><br/></span>
-            <span class="small_desc_flat">The number of windows in this manager</span><span class="member apipage">
-                <a name="system"><a class="lift" href="#system">system</a></a><code class="signature apipage">system : [snow.window.WindowSystem](#)</code><br/></span>
-            <span class="small_desc_flat">The concrete implementation of the window system</span>
+            <span class="small_desc_flat">The number of windows in this manager</span>
 
 
 
@@ -45,18 +43,6 @@ A window manager, accessed via `app.window`
         </span>
     <span class="method apipage">
             <a name="window_from_id"><a class="lift" href="#window_from_id">window\_from\_id</a></a><code class="signature apipage">window\_from\_id(\_id:Int<span></span>) : snow.window.Window</code><br/><span class="small_desc_flat"></span>
-        </span>
-    <span class="method apipage">
-            <a name="on_event"><a class="lift" href="#on_event">on\_event</a></a><code class="signature apipage">on\_event(\_event:snow.types.SystemEvent<span></span>) : Void</code><br/><span class="small_desc_flat"></span>
-        </span>
-    <span class="method apipage">
-            <a name="update"><a class="lift" href="#update">update</a></a><code class="signature apipage">update() : Void</code><br/><span class="small_desc_flat"></span>
-        </span>
-    <span class="method apipage">
-            <a name="destroy"><a class="lift" href="#destroy">destroy</a></a><code class="signature apipage">destroy() : Void</code><br/><span class="small_desc_flat"></span>
-        </span>
-    <span class="method apipage">
-            <a name="new"><a class="lift" href="#new">new</a></a><code class="signature apipage">new(\_lib:snow.Snow<span></span>) : Void</code><br/><span class="small_desc_flat"></span>
         </span>
     
 

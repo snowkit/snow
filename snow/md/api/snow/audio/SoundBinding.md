@@ -77,21 +77,6 @@
             <a name="destroy"><a class="lift" href="#destroy">destroy</a></a><code class="signature apipage">destroy() : Void</code><br/><span class="small_desc_flat">Destroy this sound and it's data</span>
         </span>
     <span class="method apipage">
-            <a name="internal_update"><a class="lift" href="#internal_update">internal\_update</a></a><code class="signature apipage">internal\_update() : Void</code><br/><span class="small_desc_flat"></span>
-        </span>
-    <span class="method apipage">
-            <a name="internal_play"><a class="lift" href="#internal_play">internal\_play</a></a><code class="signature apipage">internal\_play() : Void</code><br/><span class="small_desc_flat"></span>
-        </span>
-    <span class="method apipage">
-            <a name="internal_loop"><a class="lift" href="#internal_loop">internal\_loop</a></a><code class="signature apipage">internal\_loop() : Void</code><br/><span class="small_desc_flat"></span>
-        </span>
-    <span class="method apipage">
-            <a name="internal_stop"><a class="lift" href="#internal_stop">internal\_stop</a></a><code class="signature apipage">internal\_stop() : Void</code><br/><span class="small_desc_flat"></span>
-        </span>
-    <span class="method apipage">
-            <a name="internal_pause"><a class="lift" href="#internal_pause">internal\_pause</a></a><code class="signature apipage">internal\_pause() : Void</code><br/><span class="small_desc_flat"></span>
-        </span>
-    <span class="method apipage">
             <a name="bytes_to_seconds"><a class="lift" href="#bytes_to_seconds">bytes\_to\_seconds</a></a><code class="signature apipage">bytes\_to\_seconds(\_bytes:Int<span></span>) : Float</code><br/><span class="small_desc_flat">A helper for converting bytes to seconds for this sound source, using the format settings specific to this sound</span>
         </span>
     <span class="method apipage">

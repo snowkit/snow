@@ -11,7 +11,7 @@
     "md_input": ["**/+(*.md)"],
     "api_input" : ["**/+(*.json)"],
 
-    "output_path" : "../docs/",
+    "output_path" : "../snow_docs/",
     "images_output_path" : "images/",
 
     "api_out_md_path" : "api/",

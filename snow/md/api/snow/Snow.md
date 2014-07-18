@@ -39,13 +39,7 @@
                 <a name="has_shutdown"><a class="lift" href="#has_shutdown">has\_shutdown</a></a><code class="signature apipage">has\_shutdown : [Bool](#)</code><br/></span>
             <span class="small_desc_flat">Set if shut dow has completed</span><span class="member apipage">
                 <a name="window"><a class="lift" href="#window">window</a></a><code class="signature apipage">window : [snow.window.Window](#)</code><br/></span>
-            <span class="small_desc_flat">If the config specifies a default window, this is it</span><span class="member apipage">
-                <a name="log"><a class="lift" href="#log">log</a></a><code class="signature apipage">log : [Bool](#)</code><br/></span>
-            <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="verbose"><a class="lift" href="#verbose">verbose</a></a><code class="signature apipage">verbose : [Bool](#)</code><br/></span>
-            <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="more_verbose"><a class="lift" href="#more_verbose">more\_verbose</a></a><code class="signature apipage">more\_verbose : [Bool](#)</code><br/></span>
-            <span class="small_desc_flat"></span>
+            <span class="small_desc_flat">If the config specifies a default window, this is it</span>
 
 
 
@@ -58,25 +52,10 @@
 
 
 <h3>Methods</h3> <hr/><span class="method apipage">
-            <a name="init"><a class="lift" href="#init">init</a></a><code class="signature apipage">init(\_host:snow.App<span></span>, \_config:snow.types.SnowConfig<span></span>) : Void</code><br/><span class="small_desc_flat"></span>
-        </span>
-    <span class="method apipage">
             <a name="shutdown"><a class="lift" href="#shutdown">shutdown</a></a><code class="signature apipage">shutdown() : Void</code><br/><span class="small_desc_flat">Shutdown the engine and quit</span>
         </span>
     <span class="method apipage">
-            <a name="do_internal_update"><a class="lift" href="#do_internal_update">do\_internal\_update</a></a><code class="signature apipage">do\_internal\_update(dt:Float<span></span>) : Void</code><br/><span class="small_desc_flat"></span>
-        </span>
-    <span class="method apipage">
-            <a name="do_internal_render"><a class="lift" href="#do_internal_render">do\_internal\_render</a></a><code class="signature apipage">do\_internal\_render() : Void</code><br/><span class="small_desc_flat"></span>
-        </span>
-    <span class="method apipage">
             <a name="dispatch_system_event"><a class="lift" href="#dispatch_system_event">dispatch\_system\_event</a></a><code class="signature apipage">dispatch\_system\_event(\_event:snow.types.SystemEvent<span></span>) : Void</code><br/><span class="small_desc_flat"></span>
-        </span>
-    <span class="method apipage">
-            <a name="_debug"><a class="lift" href="#_debug">\_debug</a></a><code class="signature apipage">\_debug(value:<span></span>, \_verbose:Bool<span>=false</span>, \_more\_verbose:Bool<span>=false</span>) : Void</code><br/><span class="small_desc_flat"></span>
-        </span>
-    <span class="method apipage">
-            <a name="new"><a class="lift" href="#new">new</a></a><code class="signature apipage">new() : Void</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
             <a name="load"><a class="lift" href="#load">load</a></a><span class="inline-block static">static</span><code class="signature apipage">load(library:String<span></span>, method:String<span></span>, args:Int<span>=0</span>) : Dynamic</code><br/><span class="small_desc_flat">Loads a function out of a library</span>

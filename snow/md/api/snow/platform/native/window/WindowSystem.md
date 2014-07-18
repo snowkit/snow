@@ -41,12 +41,6 @@
             <a name="destroy"><a class="lift" href="#destroy">destroy</a></a><code class="signature apipage">destroy() : Void</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
-            <a name="listen"><a class="lift" href="#listen">listen</a></a><code class="signature apipage">listen(window:snow.window.Window<span></span>) : Void</code><br/><span class="small_desc_flat"></span>
-        </span>
-    <span class="method apipage">
-            <a name="unlisten"><a class="lift" href="#unlisten">unlisten</a></a><code class="signature apipage">unlisten(window:snow.window.Window<span></span>) : Void</code><br/><span class="small_desc_flat"></span>
-        </span>
-    <span class="method apipage">
             <a name="create"><a class="lift" href="#create">create</a></a><code class="signature apipage">create(config:snow.types.WindowConfig<span></span>, on\_created:<span></span>) : Void</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">

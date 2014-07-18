@@ -49,12 +49,6 @@ Internal input system, accessed through `snow.Input`, not directly
     <span class="method apipage">
             <a name="gamepad_remove"><a class="lift" href="#gamepad_remove">gamepad\_remove</a></a><code class="signature apipage">gamepad\_remove(id:Int<span></span>) : Void</code><br/><span class="small_desc_flat">Close a gamepad with this id</span>
         </span>
-    <span class="method apipage">
-            <a name="listen"><a class="lift" href="#listen">listen</a></a><code class="signature apipage">listen(window:snow.window.Window<span></span>) : Void</code><br/><span class="small_desc_flat">Listen for input events on the given window</span>
-        </span>
-    <span class="method apipage">
-            <a name="unlisten"><a class="lift" href="#unlisten">unlisten</a></a><code class="signature apipage">unlisten(window:snow.window.Window<span></span>) : Void</code><br/><span class="small_desc_flat">Stop listening for input events on the given window</span>
-        </span>
     
 
 

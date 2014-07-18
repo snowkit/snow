@@ -25921,7 +25921,7 @@
                },
                "isStatic": false,
                "params": [],
-               "doc": "the overflow of the updates. This is used to calculate the alpha time for rendering interpolation, `var alpha_time = overflow / frame_time;`",
+               "doc": "the overflow of the updates. This is used internally, for you, to calculate the alpha time for rendering interpolation as follows `alpha = overflow / frame_time;`",
                "get": "normal",
                "set": "normal",
                "platforms": [

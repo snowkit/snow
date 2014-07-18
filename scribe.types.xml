@@ -1324,7 +1324,7 @@
 		</frame_time>
 		<overflow public="1">
 			<x path="Float"/>
-			<haxe_doc>the overflow of the updates. This is used to calculate the alpha time for rendering interpolation, `var alpha_time = overflow / frame_time;`</haxe_doc>
+			<haxe_doc>the overflow of the updates. This is used internally, for you, to calculate the alpha time for rendering interpolation as follows `alpha = overflow / frame_time;`</haxe_doc>
 		</overflow>
 		<on_internal_init public="1" set="method" line="257" override="1">
 			<f a=""><x path="Void"/></f>

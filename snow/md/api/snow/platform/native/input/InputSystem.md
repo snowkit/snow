@@ -41,12 +41,6 @@
             <a name="destroy"><a class="lift" href="#destroy">destroy</a></a><code class="signature apipage">destroy() : Void</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
-            <a name="listen"><a class="lift" href="#listen">listen</a></a><code class="signature apipage">listen(window:snow.window.Window<span></span>) : Void</code><br/><span class="small_desc_flat"></span>
-        </span>
-    <span class="method apipage">
-            <a name="unlisten"><a class="lift" href="#unlisten">unlisten</a></a><code class="signature apipage">unlisten(window:snow.window.Window<span></span>) : Void</code><br/><span class="small_desc_flat"></span>
-        </span>
-    <span class="method apipage">
             <a name="on_event"><a class="lift" href="#on_event">on\_event</a></a><code class="signature apipage">on\_event(\_event:snow.types.InputEvent<span></span>) : Void</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
@@ -54,9 +48,6 @@
         </span>
     <span class="method apipage">
             <a name="gamepad_remove"><a class="lift" href="#gamepad_remove">gamepad\_remove</a></a><code class="signature apipage">gamepad\_remove(id:Int<span></span>) : Void</code><br/><span class="small_desc_flat"></span>
-        </span>
-    <span class="method apipage">
-            <a name="new"><a class="lift" href="#new">new</a></a><code class="signature apipage">new(\_manager:snow.input.Input<span></span>, \_lib:snow.Snow<span></span>) : Void</code><br/><span class="small_desc_flat"></span>
         </span>
     
 

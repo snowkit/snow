@@ -45,9 +45,6 @@ This class is a low level cross platform file access helper, that handles in bun
     <span class="method apipage">
             <a name="close"><a class="lift" href="#close">close</a></a><code class="signature apipage">close() : Dynamic</code><br/><span class="small_desc_flat">Close the file</span>
         </span>
-    <span class="method apipage">
-            <a name="new"><a class="lift" href="#new">new</a></a><code class="signature apipage">new(\_handle:<span></span>) : Void</code><br/><span class="small_desc_flat"></span>
-        </span>
     
 
 
