@@ -4,22 +4,18 @@
 extern "C" const char *hxRunLibrary();
 extern "C" void hxcpp_set_top_of_stack();
 
-::foreach ndlls::
- ::if (registerStatics)::
-     extern "C" int ::name::_register_prims();
- ::end::
-::end::
+{{#each project.app.mobile.ios.libs.native}}
+  extern "C" int {{this}}_register_prims();
+{{/each}}
 
 extern "C" int main(int argc, char *argv[]) {
 
     //printf("Starting ...\n" );
     hxcpp_set_top_of_stack();
 
-    ::foreach ndlls::
-     ::if (registerStatics)::
-      ::name::_register_prims();
-     ::end::
-    ::end::
+    {{#each project.app.mobile.ios.libs.native~}}
+        {{this}}_register_prims();
+    {{/each}}
 
     const char *err = NULL;
     err = hxRunLibrary();
