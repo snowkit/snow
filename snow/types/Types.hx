@@ -102,21 +102,24 @@ class AssetAudio extends Asset {
 The snow core configuration information
 
 `? host` : the bootstrapped application
-`? window` : the window config for a default window, if any
 `? run_loop` : whether or not the core should run a loop at all
+`? window` : the window config for a default window, if any
 `? runtime` : the user specific config read from json at runtime
 `? asset_data` : the raw list of assets. use the app.assets from Snow for access
 
 */
 typedef SnowConfig = {
 
-    ? host                  : App,
-    ? window                : WindowConfig,
+    host                    : App,
+
     ? run_loop              : Bool,
+
+    ? window                : WindowConfig,
     ? runtime               : Dynamic,
     ? asset_data            : Array<AssetInfo>
 
 } //SnowConfig
+
 
 /**
 Information about an image file/data
@@ -202,7 +205,7 @@ Window configuration information for creating windows
 `? fullscreen` : create in fullscreen
 `? resizable` : allow the window to be resized
 `? borderless` : create as a borderless window
-`? antialiasing` : a value of `2`, `4`, `8` or other valid antialiasing flags
+`? antialiasing` : a value of `0`, `2`, `4`, `8` or other valid antialiasing flags
 `? stencil_buffer` : create a stencil buffer (not per window)
 `? depth_buffer` : create a depth buffer (not per window)
 `? vsync` : enable vsync (not per window)

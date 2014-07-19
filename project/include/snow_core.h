@@ -132,7 +132,7 @@ namespace snow {
     //external access interface functions
 
             //this will start a main loop and start pumping events
-        inline void snow_init() {
+        inline void snow_init( bool run_loop = true ) {
 
                 //init low level systems
             snow::core::init();
@@ -143,8 +143,14 @@ namespace snow {
                 //tell haxe side we are ready
             snow::core::dispatch_event( se_ready );
 
-                //run the main loop, if requested (should come from config, but that requires tools)
-            #ifdef SNOW_CORE_LOOP
+                //on iOS the main loop
+                //is deferred until later
+            #ifdef IPHONE
+                run_loop = false;
+            #endif
+
+                //run the main loop, if requested
+            if(run_loop) {
 
                 while( !shutting_down ) {
                     snow::core::loop(NULL);
@@ -152,9 +158,11 @@ namespace snow {
 
                 snow::core::shutdown();
 
-            #else
+            } else {
+
                 snow::log("/ snow / no main loop requested");
-            #endif
+
+            }
 
         } //snow_core_init
 

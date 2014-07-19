@@ -16,13 +16,6 @@ class ApplicationMain {
         _host = new ::APP_MAIN::();
 
             //This is temporary because x/y are not passed in from lime-tools atm
-        var _config_data : String = '::CONFIG_DATA::';
-        var _config : Dynamic = haxe.Json.parse(_config_data);
-
-        trace(_config_data);
-        trace(_config);
-
-        // trace(::CONFIG_SNOW_WINDOW_WIDTH::);
         //SDL_WINDOWPOS_UNDEFINED 0x1FFF0000;
         //SDL_WINDOWPOS_CENTERED 0x2FFF0000;
 
@@ -58,7 +51,7 @@ class ApplicationMain {
         };
 
             //Start up
-        _snow.init( _host, _config );
+        _snow.init( _config );
 
     } //main
 

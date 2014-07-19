@@ -136,7 +136,7 @@
 
          <!-- c++ defines -->
       <compilerflag value="-DHX_SNOW"  />
-      <compilerflag value="-DSNOW_CORE_LOOP"         if="SNOW_CORE_LOOP"/>
+      <compilerflag value="-DSNOW_CORE_LOOP"          if="SNOW_CORE_LOOP"/>
       <compilerflag value="-D__IPHONEOS__"            if="ios"/>
       <compilerflag value="-Wno-conversion"           if="linux"/>
 
