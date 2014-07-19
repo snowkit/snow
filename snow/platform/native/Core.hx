@@ -2,7 +2,7 @@ package snow.platform.native;
 
 import snow.types.Types;
 
-/** Implemented in the platform specific concrete versions of this class */ 
+/** Implemented in the platform specific concrete versions of this class */
 @:noCompletion class Core extends snow.Core.CoreBinding {
 
 
@@ -12,7 +12,7 @@ import snow.types.Types;
 
         /** Called by the snow internals to intiialize the core and subsystems of the framework, with the event handler passed in for where to deliver system events */
     override public function init( _event_handler : SystemEvent->Void ) : Void {
-        snow_init( _event_handler );
+        snow_init( _event_handler, app.config.run_loop );
     } //init
 
         /** Called to explicitly shutdown the framework cleanly. Called by `quit` and `app_terminated` type events by the core, for example. */
@@ -35,7 +35,7 @@ import snow.types.Types;
         return snow_pref_path( _appname, _package );
     } //pref_path
 
-    static var snow_init       = snow.utils.Libs.load( "snow", "snow_init", 1 );
+    static var snow_init       = snow.utils.Libs.load( "snow", "snow_init", 2 );
     static var snow_shutdown   = snow.utils.Libs.load( "snow", "snow_shutdown", 0 );
     static var snow_timestamp  = snow.utils.Libs.load( "snow", "snow_timestamp", 0 );
 

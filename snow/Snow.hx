@@ -68,11 +68,24 @@ class Snow {
 
 //Internal API
 
-    @:noCompletion public function init( _host:App, _config : SnowConfig ) {
+    @:noCompletion public function init( __config : SnowConfig ) {
 
-        host = _host;
+        if(__config == null) {
+            throw "/ snow / init / failed due to null config passed in.";
+        }
+
+        if(__config.host == null) {
+            throw "/ snow / init / failed due to null config.host passed in.";
+        }
+
+        config = __config;
+
+        if(config.run_loop == null) {
+            config.run_loop = true;
+        }
+
+        host = config.host;
         host.app = this;
-        config = _config;
 
         core.init( on_event );
 

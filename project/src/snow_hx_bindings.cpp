@@ -58,17 +58,18 @@ namespace snow {
 extern double timestamp();
 
 
-    value snow_init( value _on_event ) {
+    value snow_init( value _on_event, value _run_loop ) {
 
             //fetch the callback for system events
         system_event_handler = new AutoGCRoot(_on_event);
+        bool run_loop = val_bool(_run_loop);
 
             //now init the core
-        snow::core::snow_init();
+        snow::core::snow_init( run_loop );
 
         return alloc_null();
 
-    } DEFINE_PRIM(snow_init, 1);
+    } DEFINE_PRIM(snow_init, 2);
 
 
     value snow_shutdown() {

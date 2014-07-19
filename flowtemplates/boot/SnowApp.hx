@@ -24,7 +24,7 @@ class SnowApp {
         };
 
             //Start up
-        _snow.init( _host, _config );
+        _snow.init( _config );
 
     } //main
 

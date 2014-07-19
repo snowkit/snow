@@ -256,6 +256,8 @@ class AppFixedTimestep extends App {
 
     @:noCompletion override public function on_internal_init() {
 
+        super.on_internal_init();
+
         frame_time = 1.0/60.0;
         last_frame_start = app.time;
 
