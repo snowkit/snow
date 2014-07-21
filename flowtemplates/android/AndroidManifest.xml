@@ -2,7 +2,7 @@
 
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="{{project.app.package}}"
-    {{#if project.build.number~}} android:versionCode={{project.build.number}} {{/if}}
+    {{#if project.build.number~}} android:versionCode="{{project.build.number}}"{{/if}}
     android:versionName="{{project.version}}"
     android:installLocation="{{project.app.mobile.android.install_location}}">
 
