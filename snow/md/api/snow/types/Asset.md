@@ -32,7 +32,7 @@ An asset base class. Get assets from the `Assets` class, via `app.assets`
 
 
 <h3>Methods</h3> <hr/><span class="method apipage">
-            <a name="new"><a class="lift" href="#new">new</a></a><code class="signature apipage">new(\_info:snow.types.AssetInfo<span></span>) : Void</code><br/><span class="small_desc_flat"></span>
+            <a name="new"><a class="lift" href="#new">new</a></a> <div class="clear"></div><code class="signature apipage">new(\_info:[snow.types.AssetInfo](#)<span></span>) : [Void](#)</code><br/><span class="small_desc_flat"></span>
         </span>
     
 

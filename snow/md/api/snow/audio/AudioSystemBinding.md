@@ -36,19 +36,19 @@ Internal audio system definition, interact with this system through `snow.Audio`
 
 
 <h3>Methods</h3> <hr/><span class="method apipage">
-            <a name="init"><a class="lift" href="#init">init</a></a><code class="signature apipage">init() : Void</code><br/><span class="small_desc_flat">Called by the audio manager when initiating this system</span>
+            <a name="init"><a class="lift" href="#init">init</a></a> <div class="clear"></div><code class="signature apipage">init() : [Void](#)</code><br/><span class="small_desc_flat">Called by the audio manager when initiating this system</span>
         </span>
     <span class="method apipage">
-            <a name="process"><a class="lift" href="#process">process</a></a><code class="signature apipage">process() : Void</code><br/><span class="small_desc_flat">Called by the audio manager when updating this system</span>
+            <a name="process"><a class="lift" href="#process">process</a></a> <div class="clear"></div><code class="signature apipage">process() : [Void](#)</code><br/><span class="small_desc_flat">Called by the audio manager when updating this system</span>
         </span>
     <span class="method apipage">
-            <a name="destroy"><a class="lift" href="#destroy">destroy</a></a><code class="signature apipage">destroy() : Void</code><br/><span class="small_desc_flat">Called by the audio manager when destroying this system</span>
+            <a name="destroy"><a class="lift" href="#destroy">destroy</a></a> <div class="clear"></div><code class="signature apipage">destroy() : [Void](#)</code><br/><span class="small_desc_flat">Called by the audio manager when destroying this system</span>
         </span>
     <span class="method apipage">
-            <a name="suspend"><a class="lift" href="#suspend">suspend</a></a><code class="signature apipage">suspend() : Void</code><br/><span class="small_desc_flat">Called by the audio manager when suspending this system</span>
+            <a name="suspend"><a class="lift" href="#suspend">suspend</a></a> <div class="clear"></div><code class="signature apipage">suspend() : [Void](#)</code><br/><span class="small_desc_flat">Called by the audio manager when suspending this system</span>
         </span>
     <span class="method apipage">
-            <a name="resume"><a class="lift" href="#resume">resume</a></a><code class="signature apipage">resume() : Void</code><br/><span class="small_desc_flat">Called by the audio manager when resuming this system</span>
+            <a name="resume"><a class="lift" href="#resume">resume</a></a> <div class="clear"></div><code class="signature apipage">resume() : [Void](#)</code><br/><span class="small_desc_flat">Called by the audio manager when resuming this system</span>
         </span>
     
 
