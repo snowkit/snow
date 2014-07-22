@@ -80,43 +80,43 @@
 
 
 <h3>Methods</h3> <hr/><span class="method apipage">
-            <a name="createContext"><a class="lift" href="#createContext">createContext</a></a><span class="inline-block static">static</span><code class="signature apipage">createContext(device:snow.platform.native.audio.openal.Device<span></span>, attrlist:Array<span>=null</span>) : snow.platform.native.audio.openal.Context</code><br/><span class="small_desc_flat"></span>
+            <a name="createContext"><a class="lift" href="#createContext">createContext</a></a> <span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">createContext(device:[snow.platform.native.audio.openal.Device](#)<span></span>, attrlist:[Array](#)&lt;[Int](#)&gt;<span>=null</span>) : [snow.platform.native.audio.openal.Context](#)</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
-            <a name="makeContextCurrent"><a class="lift" href="#makeContextCurrent">makeContextCurrent</a></a><span class="inline-block static">static</span><code class="signature apipage">makeContextCurrent(context:snow.platform.native.audio.openal.Context<span></span>) : Bool</code><br/><span class="small_desc_flat"></span>
+            <a name="makeContextCurrent"><a class="lift" href="#makeContextCurrent">makeContextCurrent</a></a> <span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">makeContextCurrent(context:[snow.platform.native.audio.openal.Context](#)<span></span>) : [Bool](#)</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
-            <a name="processContext"><a class="lift" href="#processContext">processContext</a></a><span class="inline-block static">static</span><code class="signature apipage">processContext(context:snow.platform.native.audio.openal.Context<span></span>) : Void</code><br/><span class="small_desc_flat"></span>
+            <a name="processContext"><a class="lift" href="#processContext">processContext</a></a> <span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">processContext(context:[snow.platform.native.audio.openal.Context](#)<span></span>) : [Void](#)</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
-            <a name="suspendContext"><a class="lift" href="#suspendContext">suspendContext</a></a><span class="inline-block static">static</span><code class="signature apipage">suspendContext(context:snow.platform.native.audio.openal.Context<span></span>) : Void</code><br/><span class="small_desc_flat"></span>
+            <a name="suspendContext"><a class="lift" href="#suspendContext">suspendContext</a></a> <span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">suspendContext(context:[snow.platform.native.audio.openal.Context](#)<span></span>) : [Void](#)</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
-            <a name="destroyContext"><a class="lift" href="#destroyContext">destroyContext</a></a><span class="inline-block static">static</span><code class="signature apipage">destroyContext(context:snow.platform.native.audio.openal.Context<span></span>) : Void</code><br/><span class="small_desc_flat"></span>
+            <a name="destroyContext"><a class="lift" href="#destroyContext">destroyContext</a></a> <span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">destroyContext(context:[snow.platform.native.audio.openal.Context](#)<span></span>) : [Void](#)</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
-            <a name="getCurrentContext"><a class="lift" href="#getCurrentContext">getCurrentContext</a></a><span class="inline-block static">static</span><code class="signature apipage">getCurrentContext() : snow.platform.native.audio.openal.Context</code><br/><span class="small_desc_flat"></span>
+            <a name="getCurrentContext"><a class="lift" href="#getCurrentContext">getCurrentContext</a></a> <span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">getCurrentContext() : [snow.platform.native.audio.openal.Context](#)</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
-            <a name="getContextsDevice"><a class="lift" href="#getContextsDevice">getContextsDevice</a></a><span class="inline-block static">static</span><code class="signature apipage">getContextsDevice(context:snow.platform.native.audio.openal.Context<span></span>) : snow.platform.native.audio.openal.Device</code><br/><span class="small_desc_flat"></span>
+            <a name="getContextsDevice"><a class="lift" href="#getContextsDevice">getContextsDevice</a></a> <span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">getContextsDevice(context:[snow.platform.native.audio.openal.Context](#)<span></span>) : [snow.platform.native.audio.openal.Device](#)</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
-            <a name="openDevice"><a class="lift" href="#openDevice">openDevice</a></a><span class="inline-block static">static</span><code class="signature apipage">openDevice(devicename:String<span>=null</span>) : snow.platform.native.audio.openal.Device</code><br/><span class="small_desc_flat"></span>
+            <a name="openDevice"><a class="lift" href="#openDevice">openDevice</a></a> <span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">openDevice(devicename:[String](#)<span>=null</span>) : [snow.platform.native.audio.openal.Device](#)</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
-            <a name="closeDevice"><a class="lift" href="#closeDevice">closeDevice</a></a><span class="inline-block static">static</span><code class="signature apipage">closeDevice(device:snow.platform.native.audio.openal.Device<span></span>) : Bool</code><br/><span class="small_desc_flat"></span>
+            <a name="closeDevice"><a class="lift" href="#closeDevice">closeDevice</a></a> <span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">closeDevice(device:[snow.platform.native.audio.openal.Device](#)<span></span>) : [Bool](#)</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
-            <a name="getError"><a class="lift" href="#getError">getError</a></a><span class="inline-block static">static</span><code class="signature apipage">getError(device:snow.platform.native.audio.openal.Device<span></span>) : Int</code><br/><span class="small_desc_flat"></span>
+            <a name="getError"><a class="lift" href="#getError">getError</a></a> <span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">getError(device:[snow.platform.native.audio.openal.Device](#)<span></span>) : [Int](#)</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
-            <a name="getString"><a class="lift" href="#getString">getString</a></a><span class="inline-block static">static</span><code class="signature apipage">getString(device:snow.platform.native.audio.openal.Device<span></span>, param:Int<span></span>) : String</code><br/><span class="small_desc_flat"></span>
+            <a name="getString"><a class="lift" href="#getString">getString</a></a> <span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">getString(device:[snow.platform.native.audio.openal.Device](#)<span></span>, param:[Int](#)<span></span>) : [String](#)</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
-            <a name="getIntegerv"><a class="lift" href="#getIntegerv">getIntegerv</a></a><span class="inline-block static">static</span><code class="signature apipage">getIntegerv(device:snow.platform.native.audio.openal.Device<span></span>, param:Int<span></span>, size:Int<span></span>) : Array</code><br/><span class="small_desc_flat"></span>
+            <a name="getIntegerv"><a class="lift" href="#getIntegerv">getIntegerv</a></a> <span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">getIntegerv(device:[snow.platform.native.audio.openal.Device](#)<span></span>, param:[Int](#)<span></span>, size:[Int](#)<span></span>) : [Array](#)&lt;[Int](#)&gt;</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
-            <a name="getErrorMeaning"><a class="lift" href="#getErrorMeaning">getErrorMeaning</a></a><span class="inline-block static">static</span><code class="signature apipage">getErrorMeaning(error:Int<span></span>) : String</code><br/><span class="small_desc_flat"></span>
+            <a name="getErrorMeaning"><a class="lift" href="#getErrorMeaning">getErrorMeaning</a></a> <span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">getErrorMeaning(error:[Int](#)<span></span>) : [String](#)</code><br/><span class="small_desc_flat"></span>
         </span>
     
 

@@ -44,7 +44,7 @@
 
 
 <h3>Methods</h3> <hr/><span class="method apipage">
-            <a name="typed"><a class="lift" href="#typed">typed</a></a><span class="inline-block static">static</span><code class="signature apipage">typed(type:Int<span></span>) : snow.types.InputEventType</code><br/><span class="small_desc_flat">returns a typed `InputEventType` from an integer ID, for communication between internal native + haxe code</span>
+            <a name="typed"><a class="lift" href="#typed">typed</a></a> <span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">typed(type:[Int](#)<span></span>) : [snow.types.InputEventType](#)</code><br/><span class="small_desc_flat">returns a typed `InputEventType` from an integer ID, for communication between internal native + haxe code</span>
         </span>
     
 

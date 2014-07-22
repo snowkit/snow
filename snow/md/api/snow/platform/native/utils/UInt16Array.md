@@ -32,13 +32,13 @@
 
 
 <h3>Methods</h3> <hr/><span class="method apipage">
-            <a name="set"><a class="lift" href="#set">set</a></a><code class="signature apipage">set(bufferOrArray:<span></span>, offset:Int<span>=0</span>) : Void</code><br/><span class="small_desc_flat"></span>
+            <a name="set"><a class="lift" href="#set">set</a></a> <div class="clear"></div><code class="signature apipage">set(bufferOrArray:[](#)<span></span>, offset:[Int](#)<span>=0</span>) : [Void](#)</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
-            <a name="subarray"><a class="lift" href="#subarray">subarray</a></a><code class="signature apipage">subarray(start:Int<span></span>, end:Int<span>=null</span>) : snow.platform.native.utils.UInt16Array</code><br/><span class="small_desc_flat"></span>
+            <a name="subarray"><a class="lift" href="#subarray">subarray</a></a> <div class="clear"></div><code class="signature apipage">subarray(start:[Int](#)<span></span>, end:[Int](#)<span>=null</span>) : [snow.platform.native.utils.UInt16Array](#)</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
-            <a name="new"><a class="lift" href="#new">new</a></a><code class="signature apipage">new(bufferOrArray:<span></span>, start:Int<span>=0</span>, length:Int<span>=null</span>) : Void</code><br/><span class="small_desc_flat"></span>
+            <a name="new"><a class="lift" href="#new">new</a></a> <div class="clear"></div><code class="signature apipage">new(bufferOrArray:[](#)<span></span>, start:[Int](#)<span>=0</span>, length:[Int](#)<span>=null</span>) : [Void](#)</code><br/><span class="small_desc_flat"></span>
         </span>
     
 

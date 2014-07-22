@@ -34,7 +34,7 @@ Read the {App Guide} for full info, and for even more information see : http://g
 
 
 <h3>Methods</h3> <hr/><span class="method apipage">
-            <a name="new"><a class="lift" href="#new">new</a></a><code class="signature apipage">new() : Void</code><br/><span class="small_desc_flat"></span>
+            <a name="new"><a class="lift" href="#new">new</a></a> <div class="clear"></div><code class="signature apipage">new() : [Void](#)</code><br/><span class="small_desc_flat"></span>
         </span>
     
 

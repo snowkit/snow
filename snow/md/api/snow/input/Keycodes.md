@@ -505,7 +505,7 @@ but they aren't specific to SDL so they are used generically
 
 
 <h3>Methods</h3> <hr/><span class="method apipage">
-            <a name="from_scan"><a class="lift" href="#from_scan">from\_scan</a></a><span class="inline-block static">static</span><code class="signature apipage">from\_scan(scancode:Int<span></span>) : Int</code><br/><span class="small_desc_flat">Convert a scancode to a keycode for comparison</span>
+            <a name="from_scan"><a class="lift" href="#from_scan">from\_scan</a></a> <span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">from\_scan(scancode:[Int](#)<span></span>) : [Int](#)</code><br/><span class="small_desc_flat">Convert a scancode to a keycode for comparison</span>
         </span>
     
 

@@ -2228,7 +2228,7 @@
          "path": "snow.types.WindowConfig",
          "type": "typedef",
          "params": [],
-         "doc": "Window configuration information for creating windows\n\n`? fullscreen` : create in fullscreen\n`? resizable` : allow the window to be resized\n`? borderless` : create as a borderless window\n`? antialiasing` : a value of `2`, `4`, `8` or other valid antialiasing flags\n`? stencil_buffer` : create a stencil buffer (not per window)\n`? depth_buffer` : create a depth buffer (not per window)\n`? vsync` : enable vsync (not per window)\n`? fps` : window max fps if any\n`? x` : window y at creation\n`? y` : window x at creation\n`? width` : window height at creation\n`? height` : window width at creation\n`? title` : window title\n`? orientation` : `Mobile specific` - window orientation setting",
+         "doc": "Window configuration information for creating windows\n\n`? fullscreen` : create in fullscreen\n`? resizable` : allow the window to be resized\n`? borderless` : create as a borderless window\n`? antialiasing` : a value of `0`, `2`, `4`, `8` or other valid antialiasing flags\n`? stencil_buffer` : create a stencil buffer (not per window)\n`? depth_buffer` : create a depth buffer (not per window)\n`? vsync` : enable vsync (not per window)\n`? fps` : window max fps if any\n`? x` : window y at creation\n`? y` : window x at creation\n`? width` : window height at creation\n`? height` : window width at creation\n`? title` : window title\n`? orientation` : `Mobile specific` - window orientation setting",
          "isPrivate": false,
          "platforms": [
             "cpp"
@@ -6086,7 +6086,7 @@
          "path": "snow.types.SnowConfig",
          "type": "typedef",
          "params": [],
-         "doc": "The snow core configuration information\n\n`? host` : the bootstrapped application\n`? window` : the window config for a default window, if any\n`? run_loop` : whether or not the core should run a loop at all\n`? runtime` : the user specific config read from json at runtime\n`? asset_data` : the raw list of assets. use the app.assets from Snow for access",
+         "doc": "The snow core configuration information\n\n`? host` : the bootstrapped application\n`? run_loop` : whether or not the core should run a loop at all\n`? window` : the window config for a default window, if any\n`? runtime` : the user specific config read from json at runtime\n`? asset_data` : the raw list of assets. use the app.assets from Snow for access",
          "isPrivate": false,
          "platforms": [
             "cpp"
@@ -6174,12 +6174,7 @@
             {
                "isOverride": false,
                "line": null,
-               "meta": [
-                  {
-                     "name": ":optional",
-                     "params": []
-                  }
-               ],
+               "meta": [],
                "name": "host",
                "type": {
                   "name": "snow.App",
@@ -6310,12 +6305,7 @@
                   {
                      "isOverride": false,
                      "line": null,
-                     "meta": [
-                        {
-                           "name": ":optional",
-                           "params": []
-                        }
-                     ],
+                     "meta": [],
                      "name": "host",
                      "type": {
                         "name": "snow.App",
@@ -6756,7 +6746,7 @@
          "members": [
             {
                "isOverride": false,
-               "line": 512,
+               "line": 515,
                "meta": [],
                "name": "we_unknown",
                "type": {
@@ -6776,7 +6766,7 @@
             },
             {
                "isOverride": false,
-               "line": 513,
+               "line": 516,
                "meta": [],
                "name": "we_created",
                "type": {
@@ -6796,7 +6786,7 @@
             },
             {
                "isOverride": false,
-               "line": 514,
+               "line": 517,
                "meta": [],
                "name": "we_shown",
                "type": {
@@ -6816,7 +6806,7 @@
             },
             {
                "isOverride": false,
-               "line": 515,
+               "line": 518,
                "meta": [],
                "name": "we_hidden",
                "type": {
@@ -6836,7 +6826,7 @@
             },
             {
                "isOverride": false,
-               "line": 516,
+               "line": 519,
                "meta": [],
                "name": "we_exposed",
                "type": {
@@ -6856,7 +6846,7 @@
             },
             {
                "isOverride": false,
-               "line": 517,
+               "line": 520,
                "meta": [],
                "name": "we_moved",
                "type": {
@@ -6876,7 +6866,7 @@
             },
             {
                "isOverride": false,
-               "line": 518,
+               "line": 521,
                "meta": [],
                "name": "we_resized",
                "type": {
@@ -6896,7 +6886,7 @@
             },
             {
                "isOverride": false,
-               "line": 519,
+               "line": 522,
                "meta": [],
                "name": "we_size_changed",
                "type": {
@@ -6916,7 +6906,7 @@
             },
             {
                "isOverride": false,
-               "line": 520,
+               "line": 523,
                "meta": [],
                "name": "we_minimized",
                "type": {
@@ -6936,7 +6926,7 @@
             },
             {
                "isOverride": false,
-               "line": 521,
+               "line": 524,
                "meta": [],
                "name": "we_maximized",
                "type": {
@@ -6956,7 +6946,7 @@
             },
             {
                "isOverride": false,
-               "line": 522,
+               "line": 525,
                "meta": [],
                "name": "we_restored",
                "type": {
@@ -6976,7 +6966,7 @@
             },
             {
                "isOverride": false,
-               "line": 523,
+               "line": 526,
                "meta": [],
                "name": "we_enter",
                "type": {
@@ -6996,7 +6986,7 @@
             },
             {
                "isOverride": false,
-               "line": 524,
+               "line": 527,
                "meta": [],
                "name": "we_leave",
                "type": {
@@ -7016,7 +7006,7 @@
             },
             {
                "isOverride": false,
-               "line": 525,
+               "line": 528,
                "meta": [],
                "name": "we_focus_gained",
                "type": {
@@ -7036,7 +7026,7 @@
             },
             {
                "isOverride": false,
-               "line": 526,
+               "line": 529,
                "meta": [],
                "name": "we_focus_lost",
                "type": {
@@ -7056,7 +7046,7 @@
             },
             {
                "isOverride": false,
-               "line": 527,
+               "line": 530,
                "meta": [],
                "name": "we_close",
                "type": {
@@ -7080,7 +7070,7 @@
          "methods": [
             {
                "isOverride": false,
-               "line": 532,
+               "line": 535,
                "meta": [],
                "name": "typed",
                "type": {
@@ -13607,7 +13597,7 @@
          "members": [
             {
                "isOverride": false,
-               "line": 465,
+               "line": 468,
                "meta": [],
                "name": "se_unknown",
                "type": {
@@ -13627,7 +13617,7 @@
             },
             {
                "isOverride": false,
-               "line": 466,
+               "line": 469,
                "meta": [],
                "name": "se_init",
                "type": {
@@ -13647,7 +13637,7 @@
             },
             {
                "isOverride": false,
-               "line": 467,
+               "line": 470,
                "meta": [],
                "name": "se_ready",
                "type": {
@@ -13667,7 +13657,7 @@
             },
             {
                "isOverride": false,
-               "line": 468,
+               "line": 471,
                "meta": [],
                "name": "se_update",
                "type": {
@@ -13687,7 +13677,7 @@
             },
             {
                "isOverride": false,
-               "line": 469,
+               "line": 472,
                "meta": [],
                "name": "se_shutdown",
                "type": {
@@ -13707,7 +13697,7 @@
             },
             {
                "isOverride": false,
-               "line": 470,
+               "line": 473,
                "meta": [],
                "name": "se_window",
                "type": {
@@ -13727,7 +13717,7 @@
             },
             {
                "isOverride": false,
-               "line": 471,
+               "line": 474,
                "meta": [],
                "name": "se_input",
                "type": {
@@ -13747,7 +13737,7 @@
             },
             {
                "isOverride": false,
-               "line": 475,
+               "line": 478,
                "meta": [],
                "name": "se_quit",
                "type": {
@@ -13767,7 +13757,7 @@
             },
             {
                "isOverride": false,
-               "line": 476,
+               "line": 479,
                "meta": [],
                "name": "se_app_terminating",
                "type": {
@@ -13787,7 +13777,7 @@
             },
             {
                "isOverride": false,
-               "line": 477,
+               "line": 480,
                "meta": [],
                "name": "se_app_lowmemory",
                "type": {
@@ -13807,7 +13797,7 @@
             },
             {
                "isOverride": false,
-               "line": 478,
+               "line": 481,
                "meta": [],
                "name": "se_app_willenterbackground",
                "type": {
@@ -13827,7 +13817,7 @@
             },
             {
                "isOverride": false,
-               "line": 479,
+               "line": 482,
                "meta": [],
                "name": "se_app_didenterbackground",
                "type": {
@@ -13847,7 +13837,7 @@
             },
             {
                "isOverride": false,
-               "line": 480,
+               "line": 483,
                "meta": [],
                "name": "se_app_willenterforeground",
                "type": {
@@ -13867,7 +13857,7 @@
             },
             {
                "isOverride": false,
-               "line": 481,
+               "line": 484,
                "meta": [],
                "name": "se_app_didenterforeground",
                "type": {
@@ -13891,7 +13881,7 @@
          "methods": [
             {
                "isOverride": false,
-               "line": 485,
+               "line": 488,
                "meta": [],
                "name": "typed",
                "type": {
@@ -25935,7 +25925,7 @@
          "methods": [
             {
                "isOverride": true,
-               "line": 257,
+               "line": 274,
                "meta": [
                   {
                      "name": ":noCompletion",
@@ -25964,7 +25954,7 @@
             },
             {
                "isOverride": true,
-               "line": 266,
+               "line": 285,
                "meta": [
                   {
                      "name": ":noCompletion",
@@ -25993,7 +25983,7 @@
             },
             {
                "isOverride": false,
-               "line": 249,
+               "line": 266,
                "meta": [],
                "name": "new",
                "type": {
@@ -27727,31 +27717,7 @@
             },
             {
                "isOverride": false,
-               "line": 109,
-               "meta": [],
-               "name": "get_default_window_config",
-               "type": {
-                  "args": [],
-                  "type": "CFunction",
-                  "return_type": {
-                     "name": "snow.types.WindowConfig",
-                     "type": "CTypedef",
-                     "params": []
-                  }
-               },
-               "isStatic": false,
-               "params": [],
-               "doc": "returns a already configured default value window config to set only specific values against in your get_window_config function",
-               "get": "normal",
-               "set": "method",
-               "platforms": [
-                  "cpp"
-               ],
-               "isPublic": true
-            },
-            {
-               "isOverride": false,
-               "line": 133,
+               "line": 100,
                "meta": [],
                "name": "get_window_config",
                "type": {
@@ -27765,7 +27731,7 @@
                },
                "isStatic": false,
                "params": [],
-               "doc": "override this with your own function to change window flags, only used by specifying that snow must create a default window",
+               "doc": "override this with your own function to change window flags, only used if specifying that snow must create a \"main\" window (default)",
                "get": "normal",
                "set": "method",
                "platforms": [
@@ -27775,7 +27741,7 @@
             },
             {
                "isOverride": false,
-               "line": 140,
+               "line": 107,
                "meta": [],
                "name": "get_asset_list",
                "type": {
@@ -27805,7 +27771,7 @@
             },
             {
                "isOverride": false,
-               "line": 191,
+               "line": 208,
                "meta": [
                   {
                      "name": ":noCompletion",
@@ -27834,7 +27800,7 @@
             },
             {
                "isOverride": false,
-               "line": 200,
+               "line": 217,
                "meta": [
                   {
                      "name": ":noCompletion",
@@ -27878,6 +27844,115 @@
                "isStatic": false,
                "params": [],
                "doc": "The default constructor of an App is empty, so you can override it if you want, but take note that this happens way before snow is ready for use. Use [ready](#ready) for entry point.",
+               "get": "normal",
+               "set": "method",
+               "platforms": [
+                  "cpp"
+               ],
+               "isPublic": true
+            },
+            {
+               "isOverride": false,
+               "line": 115,
+               "meta": [],
+               "name": "get_default_runtime_config",
+               "type": {
+                  "args": [
+                     {
+                        "name": "app",
+                        "t": {
+                           "name": "snow.Snow",
+                           "type": "CClass",
+                           "params": []
+                        },
+                        "opt": false,
+                        "value": null
+                     }
+                  ],
+                  "type": "CFunction",
+                  "return_type": {
+                     "type": "CDynamic"
+                  }
+               },
+               "isStatic": true,
+               "params": [],
+               "doc": "handles the default method of parsing a runtime config json,\n            To change this behavior override `get_runtime_config`. This is called by default in get_runtime_config.",
+               "get": "normal",
+               "set": "method",
+               "platforms": [
+                  "cpp"
+               ],
+               "isPublic": true
+            },
+            {
+               "isOverride": false,
+               "line": 131,
+               "meta": [],
+               "name": "get_default_asset_list",
+               "type": {
+                  "args": [
+                     {
+                        "name": "app",
+                        "t": {
+                           "name": "snow.Snow",
+                           "type": "CClass",
+                           "params": []
+                        },
+                        "opt": false,
+                        "value": null
+                     }
+                  ],
+                  "type": "CFunction",
+                  "return_type": {
+                     "name": "Array",
+                     "type": "CClass",
+                     "params": [
+                        {
+                           "name": "snow.types.AssetInfo",
+                           "type": "CTypedef",
+                           "params": []
+                        }
+                     ]
+                  }
+               },
+               "isStatic": true,
+               "params": [],
+               "doc": "handles the default method of parsing the file manifest list as json, stored in an array and returned.\n            To change this behavior override `get_asset_list`. This is called by default in get_asset_list.",
+               "get": "normal",
+               "set": "method",
+               "platforms": [
+                  "cpp"
+               ],
+               "isPublic": true
+            },
+            {
+               "isOverride": false,
+               "line": 180,
+               "meta": [],
+               "name": "get_default_window_config",
+               "type": {
+                  "args": [
+                     {
+                        "name": "app",
+                        "t": {
+                           "name": "snow.Snow",
+                           "type": "CClass",
+                           "params": []
+                        },
+                        "opt": false,
+                        "value": null
+                     }
+                  ],
+                  "type": "CFunction",
+                  "return_type": {
+                     "name": "snow.types.WindowConfig",
+                     "type": "CTypedef",
+                     "params": []
+                  }
+               },
+               "isStatic": true,
+               "params": [],
+               "doc": "returns a already configured default value window config to set only specific values against in your get_window_config function",
                "get": "normal",
                "set": "method",
                "platforms": [
@@ -44900,7 +44975,7 @@
          "members": [
             {
                "isOverride": false,
-               "line": 560,
+               "line": 563,
                "meta": [],
                "name": "ie_unknown",
                "type": {
@@ -44920,7 +44995,7 @@
             },
             {
                "isOverride": false,
-               "line": 561,
+               "line": 564,
                "meta": [],
                "name": "ie_key",
                "type": {
@@ -44940,7 +45015,7 @@
             },
             {
                "isOverride": false,
-               "line": 562,
+               "line": 565,
                "meta": [],
                "name": "ie_mouse",
                "type": {
@@ -44960,7 +45035,7 @@
             },
             {
                "isOverride": false,
-               "line": 563,
+               "line": 566,
                "meta": [],
                "name": "ie_touch",
                "type": {
@@ -44980,7 +45055,7 @@
             },
             {
                "isOverride": false,
-               "line": 564,
+               "line": 567,
                "meta": [],
                "name": "ie_joystick",
                "type": {
@@ -45000,7 +45075,7 @@
             },
             {
                "isOverride": false,
-               "line": 565,
+               "line": 568,
                "meta": [],
                "name": "ie_controller",
                "type": {
@@ -45024,7 +45099,7 @@
          "methods": [
             {
                "isOverride": false,
-               "line": 570,
+               "line": 573,
                "meta": [],
                "name": "typed",
                "type": {
@@ -59103,17 +59178,7 @@
                "type": {
                   "args": [
                      {
-                        "name": "_host",
-                        "t": {
-                           "name": "snow.App",
-                           "type": "CClass",
-                           "params": []
-                        },
-                        "opt": false,
-                        "value": null
-                     },
-                     {
-                        "name": "_config",
+                        "name": "__config",
                         "t": {
                            "name": "snow.types.SnowConfig",
                            "type": "CTypedef",
@@ -59142,7 +59207,7 @@
             },
             {
                "isOverride": false,
-               "line": 82,
+               "line": 95,
                "meta": [],
                "name": "shutdown",
                "type": {
@@ -59166,7 +59231,7 @@
             },
             {
                "isOverride": false,
-               "line": 97,
+               "line": 110,
                "meta": [],
                "name": "get_time",
                "type": {
@@ -59190,7 +59255,7 @@
             },
             {
                "isOverride": false,
-               "line": 103,
+               "line": 116,
                "meta": [],
                "name": "on_snow_init",
                "type": {
@@ -59214,7 +59279,7 @@
             },
             {
                "isOverride": false,
-               "line": 131,
+               "line": 144,
                "meta": [],
                "name": "on_snow_ready",
                "type": {
@@ -59238,7 +59303,7 @@
             },
             {
                "isOverride": false,
-               "line": 184,
+               "line": 197,
                "meta": [
                   {
                      "name": ":noCompletion",
@@ -59278,7 +59343,7 @@
             },
             {
                "isOverride": false,
-               "line": 190,
+               "line": 203,
                "meta": [
                   {
                      "name": ":noCompletion",
@@ -59307,7 +59372,7 @@
             },
             {
                "isOverride": false,
-               "line": 194,
+               "line": 207,
                "meta": [],
                "name": "on_snow_update",
                "type": {
@@ -59331,7 +59396,7 @@
             },
             {
                "isOverride": false,
-               "line": 205,
+               "line": 218,
                "meta": [],
                "name": "dispatch_system_event",
                "type": {
@@ -59366,7 +59431,7 @@
             },
             {
                "isOverride": false,
-               "line": 211,
+               "line": 224,
                "meta": [],
                "name": "on_event",
                "type": {
@@ -59401,7 +59466,7 @@
             },
             {
                "isOverride": false,
-               "line": 267,
+               "line": 280,
                "meta": [],
                "name": "get_uniqueid",
                "type": {
@@ -59425,7 +59490,7 @@
             },
             {
                "isOverride": false,
-               "line": 287,
+               "line": 300,
                "meta": [
                   {
                      "name": ":noCompletion",
@@ -59512,7 +59577,7 @@
             },
             {
                "isOverride": false,
-               "line": 274,
+               "line": 287,
                "meta": [],
                "name": "load",
                "type": {
@@ -67695,6 +67760,22 @@
                               "type": "CAbstract",
                               "params": []
                            }
+                        },
+                        "opt": false,
+                        "value": null
+                     },
+                     {
+                        "name": "",
+                        "t": {
+                           "name": "Null",
+                           "type": "CTypedef",
+                           "params": [
+                              {
+                                 "name": "Bool",
+                                 "type": "CAbstract",
+                                 "params": []
+                              }
+                           ]
                         },
                         "opt": false,
                         "value": null
