@@ -25,9 +25,9 @@ Information about an audio portion requested via assets
 
 
 <h3>Members</h3> <hr/><span class="member apipage">
-                <a name="data"><a class="lift" href="#data">data</a></a><code class="signature apipage">data : [snow.utils.ByteArray](#)</code><br/></span>
+                <a name="data"><a class="lift" href="#data">data</a></a><div class="clear"></div><code class="signature apipage">data : [snow.utils.ByteArray](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="complete"><a class="lift" href="#complete">complete</a></a><code class="signature apipage">complete : [Bool](#)</code><br/></span>
+                <a name="complete"><a class="lift" href="#complete">complete</a></a><div class="clear"></div><code class="signature apipage">complete : [Bool](#)</code><br/></span>
             <span class="small_desc_flat"></span>
 
 

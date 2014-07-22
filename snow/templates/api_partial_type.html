@@ -22,7 +22,11 @@
                 [{{~name}}](#)
             {{~/each~}}&gt;
         {{~else~}}
-            [{{name}}](#)
+            {{#if name~}}
+                [{{name}}](#)
+            {{~else~}}
+                [Dynamic](#)
+            {{~/if}}
         {{~/if}}
 
     {{~/if}}

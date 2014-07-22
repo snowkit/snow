@@ -26,9 +26,9 @@ Internal audio system definition, interact with this system through `snow.Audio`
 
 
 <h3>Members</h3> <hr/><span class="member apipage">
-                <a name="manager"><a class="lift" href="#manager">manager</a></a><code class="signature apipage">manager : [snow.audio.Audio](#)</code><br/></span>
+                <a name="manager"><a class="lift" href="#manager">manager</a></a><div class="clear"></div><code class="signature apipage">manager : [snow.audio.Audio](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="lib"><a class="lift" href="#lib">lib</a></a><code class="signature apipage">lib : [snow.Snow](#)</code><br/></span>
+                <a name="lib"><a class="lift" href="#lib">lib</a></a><div class="clear"></div><code class="signature apipage">lib : [snow.Snow](#)</code><br/></span>
             <span class="small_desc_flat"></span>
 
 

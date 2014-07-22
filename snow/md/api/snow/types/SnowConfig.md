@@ -28,15 +28,15 @@ The snow core configuration information
 
 
 <h3>Members</h3> <hr/><span class="member apipage">
-                <a name="window"><a class="lift" href="#window">window</a></a><code class="signature apipage">window : [Null](#)&lt;[snow.types.WindowConfig](#)&gt;</code><br/></span>
+                <a name="window"><a class="lift" href="#window">window</a></a><div class="clear"></div><code class="signature apipage">window : [Null](#)&lt;[snow.types.WindowConfig](#)&gt;</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="runtime"><a class="lift" href="#runtime">runtime</a></a><code class="signature apipage">runtime : [](#)</code><br/></span>
+                <a name="runtime"><a class="lift" href="#runtime">runtime</a></a><div class="clear"></div><code class="signature apipage">runtime : [Dynamic](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="run_loop"><a class="lift" href="#run_loop">run\_loop</a></a><code class="signature apipage">run\_loop : [Null](#)&lt;[Bool](#)&gt;</code><br/></span>
+                <a name="run_loop"><a class="lift" href="#run_loop">run\_loop</a></a><div class="clear"></div><code class="signature apipage">run\_loop : [Null](#)&lt;[Bool](#)&gt;</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="host"><a class="lift" href="#host">host</a></a><code class="signature apipage">host : [snow.App](#)</code><br/></span>
+                <a name="host"><a class="lift" href="#host">host</a></a><div class="clear"></div><code class="signature apipage">host : [snow.App](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="asset_data"><a class="lift" href="#asset_data">asset\_data</a></a><code class="signature apipage">asset\_data : [Array](#)&lt;[snow.types.AssetInfo](#)&gt;</code><br/></span>
+                <a name="asset_data"><a class="lift" href="#asset_data">asset\_data</a></a><div class="clear"></div><code class="signature apipage">asset\_data : [Array](#)&lt;[snow.types.AssetInfo](#)&gt;</code><br/></span>
             <span class="small_desc_flat"></span>
 
 

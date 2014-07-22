@@ -22,31 +22,31 @@
 
 
 <h3>Members</h3> <hr/><span class="member apipage">
-                <a name="host"><a class="lift" href="#host">host</a></a><code class="signature apipage">host : [snow.App](#)</code><br/></span>
+                <a name="host"><a class="lift" href="#host">host</a></a><div class="clear"></div><code class="signature apipage">host : [snow.App](#)</code><br/></span>
             <span class="small_desc_flat">The host application</span><span class="member apipage">
-                <a name="config"><a class="lift" href="#config">config</a></a><code class="signature apipage">config : [snow.types.SnowConfig](#)</code><br/></span>
+                <a name="config"><a class="lift" href="#config">config</a></a><div class="clear"></div><code class="signature apipage">config : [snow.types.SnowConfig](#)</code><br/></span>
             <span class="small_desc_flat">The configuration from the project file, runtime config and other configs</span><span class="member apipage">
-                <a name="windowing"><a class="lift" href="#windowing">windowing</a></a><code class="signature apipage">windowing : [snow.window.Windowing](#)</code><br/></span>
+                <a name="windowing"><a class="lift" href="#windowing">windowing</a></a><div class="clear"></div><code class="signature apipage">windowing : [snow.window.Windowing](#)</code><br/></span>
             <span class="small_desc_flat">The window manager</span><span class="member apipage">
-                <a name="input"><a class="lift" href="#input">input</a></a><code class="signature apipage">input : [snow.input.Input](#)</code><br/></span>
+                <a name="input"><a class="lift" href="#input">input</a></a><div class="clear"></div><code class="signature apipage">input : [snow.input.Input](#)</code><br/></span>
             <span class="small_desc_flat">The input system</span><span class="member apipage">
-                <a name="audio"><a class="lift" href="#audio">audio</a></a><code class="signature apipage">audio : [snow.audio.Audio](#)</code><br/></span>
+                <a name="audio"><a class="lift" href="#audio">audio</a></a><div class="clear"></div><code class="signature apipage">audio : [snow.audio.Audio](#)</code><br/></span>
             <span class="small_desc_flat">The audio system</span><span class="member apipage">
-                <a name="assets"><a class="lift" href="#assets">assets</a></a><code class="signature apipage">assets : [snow.assets.Assets](#)</code><br/></span>
+                <a name="assets"><a class="lift" href="#assets">assets</a></a><div class="clear"></div><code class="signature apipage">assets : [snow.assets.Assets](#)</code><br/></span>
             <span class="small_desc_flat">The asset system</span><span class="member apipage">
-                <a name="shutting_down"><a class="lift" href="#shutting_down">shutting\_down</a></a><code class="signature apipage">shutting\_down : [Bool](#)</code><br/></span>
+                <a name="shutting_down"><a class="lift" href="#shutting_down">shutting\_down</a></a><div class="clear"></div><code class="signature apipage">shutting\_down : [Bool](#)</code><br/></span>
             <span class="small_desc_flat">Set if shut down has commenced</span><span class="member apipage">
-                <a name="has_shutdown"><a class="lift" href="#has_shutdown">has\_shutdown</a></a><code class="signature apipage">has\_shutdown : [Bool](#)</code><br/></span>
+                <a name="has_shutdown"><a class="lift" href="#has_shutdown">has\_shutdown</a></a><div class="clear"></div><code class="signature apipage">has\_shutdown : [Bool](#)</code><br/></span>
             <span class="small_desc_flat">Set if shut dow has completed</span><span class="member apipage">
-                <a name="window"><a class="lift" href="#window">window</a></a><code class="signature apipage">window : [snow.window.Window](#)</code><br/></span>
+                <a name="window"><a class="lift" href="#window">window</a></a><div class="clear"></div><code class="signature apipage">window : [snow.window.Window](#)</code><br/></span>
             <span class="small_desc_flat">If the config specifies a default window, this is it</span>
 
 
 
 <h3>Properties</h3> <hr/><span class="member apipage">
-                <a name="time"><a class="lift" href="#time">time</a></a><code class="signature apipage">time : [Float](#)</code><br/></span>
+                <a name="time"><a class="lift" href="#time">time</a></a><div class="clear"></div><code class="signature apipage">time : [Float](#)</code><br/></span>
             <span class="small_desc_flat">The current timestamp</span><span class="member apipage">
-                <a name="uniqueid"><a class="lift" href="#uniqueid">uniqueid</a></a><code class="signature apipage">uniqueid : [String](#)</code><br/></span>
+                <a name="uniqueid"><a class="lift" href="#uniqueid">uniqueid</a></a><div class="clear"></div><code class="signature apipage">uniqueid : [String](#)</code><br/></span>
             <span class="small_desc_flat">Generate a unique ID to use</span>
 
 

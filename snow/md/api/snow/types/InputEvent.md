@@ -27,13 +27,13 @@ A system input event
 
 
 <h3>Members</h3> <hr/><span class="member apipage">
-                <a name="window_id"><a class="lift" href="#window_id">window\_id</a></a><code class="signature apipage">window\_id : [Null](#)&lt;[Int](#)&gt;</code><br/></span>
+                <a name="window_id"><a class="lift" href="#window_id">window\_id</a></a><div class="clear"></div><code class="signature apipage">window\_id : [Null](#)&lt;[Int](#)&gt;</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="type"><a class="lift" href="#type">type</a></a><code class="signature apipage">type : [snow.types.InputEventType](#)</code><br/></span>
+                <a name="type"><a class="lift" href="#type">type</a></a><div class="clear"></div><code class="signature apipage">type : [snow.types.InputEventType](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="timestamp"><a class="lift" href="#timestamp">timestamp</a></a><code class="signature apipage">timestamp : [Null](#)&lt;[Float](#)&gt;</code><br/></span>
+                <a name="timestamp"><a class="lift" href="#timestamp">timestamp</a></a><div class="clear"></div><code class="signature apipage">timestamp : [Null](#)&lt;[Float](#)&gt;</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="event"><a class="lift" href="#event">event</a></a><code class="signature apipage">event : [](#)</code><br/></span>
+                <a name="event"><a class="lift" href="#event">event</a></a><div class="clear"></div><code class="signature apipage">event : [Dynamic](#)</code><br/></span>
             <span class="small_desc_flat"></span>
 
 

@@ -22,139 +22,139 @@
 
 
 <h3>Members</h3> <hr/><span class="member apipage">
-                <a name="NONE"><a class="lift" href="#NONE">NONE</a></a><span class="inline-block static">static</span><code class="signature apipage">NONE : [Int](#)</code><br/></span>
+                <a name="NONE"><a class="lift" href="#NONE">NONE</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">NONE : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="FALSE"><a class="lift" href="#FALSE">FALSE</a></a><span class="inline-block static">static</span><code class="signature apipage">FALSE : [Int](#)</code><br/></span>
+                <a name="FALSE"><a class="lift" href="#FALSE">FALSE</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">FALSE : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="TRUE"><a class="lift" href="#TRUE">TRUE</a></a><span class="inline-block static">static</span><code class="signature apipage">TRUE : [Int](#)</code><br/></span>
+                <a name="TRUE"><a class="lift" href="#TRUE">TRUE</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">TRUE : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="SOURCE_RELATIVE"><a class="lift" href="#SOURCE_RELATIVE">SOURCE\_RELATIVE</a></a><span class="inline-block static">static</span><code class="signature apipage">SOURCE\_RELATIVE : [Int](#)</code><br/></span>
+                <a name="SOURCE_RELATIVE"><a class="lift" href="#SOURCE_RELATIVE">SOURCE\_RELATIVE</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">SOURCE\_RELATIVE : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="CONE_INNER_ANGLE"><a class="lift" href="#CONE_INNER_ANGLE">CONE\_INNER\_ANGLE</a></a><span class="inline-block static">static</span><code class="signature apipage">CONE\_INNER\_ANGLE : [Int](#)</code><br/></span>
+                <a name="CONE_INNER_ANGLE"><a class="lift" href="#CONE_INNER_ANGLE">CONE\_INNER\_ANGLE</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">CONE\_INNER\_ANGLE : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="CONE_OUTER_ANGLE"><a class="lift" href="#CONE_OUTER_ANGLE">CONE\_OUTER\_ANGLE</a></a><span class="inline-block static">static</span><code class="signature apipage">CONE\_OUTER\_ANGLE : [Int](#)</code><br/></span>
+                <a name="CONE_OUTER_ANGLE"><a class="lift" href="#CONE_OUTER_ANGLE">CONE\_OUTER\_ANGLE</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">CONE\_OUTER\_ANGLE : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="PITCH"><a class="lift" href="#PITCH">PITCH</a></a><span class="inline-block static">static</span><code class="signature apipage">PITCH : [Int](#)</code><br/></span>
+                <a name="PITCH"><a class="lift" href="#PITCH">PITCH</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">PITCH : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="POSITION"><a class="lift" href="#POSITION">POSITION</a></a><span class="inline-block static">static</span><code class="signature apipage">POSITION : [Int](#)</code><br/></span>
+                <a name="POSITION"><a class="lift" href="#POSITION">POSITION</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">POSITION : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="DIRECTION"><a class="lift" href="#DIRECTION">DIRECTION</a></a><span class="inline-block static">static</span><code class="signature apipage">DIRECTION : [Int](#)</code><br/></span>
+                <a name="DIRECTION"><a class="lift" href="#DIRECTION">DIRECTION</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">DIRECTION : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="VELOCITY"><a class="lift" href="#VELOCITY">VELOCITY</a></a><span class="inline-block static">static</span><code class="signature apipage">VELOCITY : [Int](#)</code><br/></span>
+                <a name="VELOCITY"><a class="lift" href="#VELOCITY">VELOCITY</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">VELOCITY : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="LOOPING"><a class="lift" href="#LOOPING">LOOPING</a></a><span class="inline-block static">static</span><code class="signature apipage">LOOPING : [Int](#)</code><br/></span>
+                <a name="LOOPING"><a class="lift" href="#LOOPING">LOOPING</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">LOOPING : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="BUFFER"><a class="lift" href="#BUFFER">BUFFER</a></a><span class="inline-block static">static</span><code class="signature apipage">BUFFER : [Int](#)</code><br/></span>
+                <a name="BUFFER"><a class="lift" href="#BUFFER">BUFFER</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">BUFFER : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="GAIN"><a class="lift" href="#GAIN">GAIN</a></a><span class="inline-block static">static</span><code class="signature apipage">GAIN : [Int](#)</code><br/></span>
+                <a name="GAIN"><a class="lift" href="#GAIN">GAIN</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">GAIN : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="MIN_GAIN"><a class="lift" href="#MIN_GAIN">MIN\_GAIN</a></a><span class="inline-block static">static</span><code class="signature apipage">MIN\_GAIN : [Int](#)</code><br/></span>
+                <a name="MIN_GAIN"><a class="lift" href="#MIN_GAIN">MIN\_GAIN</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">MIN\_GAIN : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="MAX_GAIN"><a class="lift" href="#MAX_GAIN">MAX\_GAIN</a></a><span class="inline-block static">static</span><code class="signature apipage">MAX\_GAIN : [Int](#)</code><br/></span>
+                <a name="MAX_GAIN"><a class="lift" href="#MAX_GAIN">MAX\_GAIN</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">MAX\_GAIN : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="ORIENTATION"><a class="lift" href="#ORIENTATION">ORIENTATION</a></a><span class="inline-block static">static</span><code class="signature apipage">ORIENTATION : [Int](#)</code><br/></span>
+                <a name="ORIENTATION"><a class="lift" href="#ORIENTATION">ORIENTATION</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">ORIENTATION : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="SOURCE_STATE"><a class="lift" href="#SOURCE_STATE">SOURCE\_STATE</a></a><span class="inline-block static">static</span><code class="signature apipage">SOURCE\_STATE : [Int](#)</code><br/></span>
+                <a name="SOURCE_STATE"><a class="lift" href="#SOURCE_STATE">SOURCE\_STATE</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">SOURCE\_STATE : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="INITIAL"><a class="lift" href="#INITIAL">INITIAL</a></a><span class="inline-block static">static</span><code class="signature apipage">INITIAL : [Int](#)</code><br/></span>
+                <a name="INITIAL"><a class="lift" href="#INITIAL">INITIAL</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">INITIAL : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="PLAYING"><a class="lift" href="#PLAYING">PLAYING</a></a><span class="inline-block static">static</span><code class="signature apipage">PLAYING : [Int](#)</code><br/></span>
+                <a name="PLAYING"><a class="lift" href="#PLAYING">PLAYING</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">PLAYING : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="PAUSED"><a class="lift" href="#PAUSED">PAUSED</a></a><span class="inline-block static">static</span><code class="signature apipage">PAUSED : [Int](#)</code><br/></span>
+                <a name="PAUSED"><a class="lift" href="#PAUSED">PAUSED</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">PAUSED : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="STOPPED"><a class="lift" href="#STOPPED">STOPPED</a></a><span class="inline-block static">static</span><code class="signature apipage">STOPPED : [Int](#)</code><br/></span>
+                <a name="STOPPED"><a class="lift" href="#STOPPED">STOPPED</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">STOPPED : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="BUFFERS_QUEUED"><a class="lift" href="#BUFFERS_QUEUED">BUFFERS\_QUEUED</a></a><span class="inline-block static">static</span><code class="signature apipage">BUFFERS\_QUEUED : [Int](#)</code><br/></span>
+                <a name="BUFFERS_QUEUED"><a class="lift" href="#BUFFERS_QUEUED">BUFFERS\_QUEUED</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">BUFFERS\_QUEUED : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="BUFFERS_PROCESSED"><a class="lift" href="#BUFFERS_PROCESSED">BUFFERS\_PROCESSED</a></a><span class="inline-block static">static</span><code class="signature apipage">BUFFERS\_PROCESSED : [Int](#)</code><br/></span>
+                <a name="BUFFERS_PROCESSED"><a class="lift" href="#BUFFERS_PROCESSED">BUFFERS\_PROCESSED</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">BUFFERS\_PROCESSED : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="REFERENCE_DISTANCE"><a class="lift" href="#REFERENCE_DISTANCE">REFERENCE\_DISTANCE</a></a><span class="inline-block static">static</span><code class="signature apipage">REFERENCE\_DISTANCE : [Int](#)</code><br/></span>
+                <a name="REFERENCE_DISTANCE"><a class="lift" href="#REFERENCE_DISTANCE">REFERENCE\_DISTANCE</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">REFERENCE\_DISTANCE : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="ROLLOFF_FACTOR"><a class="lift" href="#ROLLOFF_FACTOR">ROLLOFF\_FACTOR</a></a><span class="inline-block static">static</span><code class="signature apipage">ROLLOFF\_FACTOR : [Int](#)</code><br/></span>
+                <a name="ROLLOFF_FACTOR"><a class="lift" href="#ROLLOFF_FACTOR">ROLLOFF\_FACTOR</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">ROLLOFF\_FACTOR : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="CONE_OUTER_GAIN"><a class="lift" href="#CONE_OUTER_GAIN">CONE\_OUTER\_GAIN</a></a><span class="inline-block static">static</span><code class="signature apipage">CONE\_OUTER\_GAIN : [Int](#)</code><br/></span>
+                <a name="CONE_OUTER_GAIN"><a class="lift" href="#CONE_OUTER_GAIN">CONE\_OUTER\_GAIN</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">CONE\_OUTER\_GAIN : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="MAX_DISTANCE"><a class="lift" href="#MAX_DISTANCE">MAX\_DISTANCE</a></a><span class="inline-block static">static</span><code class="signature apipage">MAX\_DISTANCE : [Int](#)</code><br/></span>
+                <a name="MAX_DISTANCE"><a class="lift" href="#MAX_DISTANCE">MAX\_DISTANCE</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">MAX\_DISTANCE : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="SEC_OFFSET"><a class="lift" href="#SEC_OFFSET">SEC\_OFFSET</a></a><span class="inline-block static">static</span><code class="signature apipage">SEC\_OFFSET : [Int](#)</code><br/></span>
+                <a name="SEC_OFFSET"><a class="lift" href="#SEC_OFFSET">SEC\_OFFSET</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">SEC\_OFFSET : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="SAMPLE_OFFSET"><a class="lift" href="#SAMPLE_OFFSET">SAMPLE\_OFFSET</a></a><span class="inline-block static">static</span><code class="signature apipage">SAMPLE\_OFFSET : [Int](#)</code><br/></span>
+                <a name="SAMPLE_OFFSET"><a class="lift" href="#SAMPLE_OFFSET">SAMPLE\_OFFSET</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">SAMPLE\_OFFSET : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="BYTE_OFFSET"><a class="lift" href="#BYTE_OFFSET">BYTE\_OFFSET</a></a><span class="inline-block static">static</span><code class="signature apipage">BYTE\_OFFSET : [Int](#)</code><br/></span>
+                <a name="BYTE_OFFSET"><a class="lift" href="#BYTE_OFFSET">BYTE\_OFFSET</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">BYTE\_OFFSET : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="SOURCE_TYPE"><a class="lift" href="#SOURCE_TYPE">SOURCE\_TYPE</a></a><span class="inline-block static">static</span><code class="signature apipage">SOURCE\_TYPE : [Int](#)</code><br/></span>
+                <a name="SOURCE_TYPE"><a class="lift" href="#SOURCE_TYPE">SOURCE\_TYPE</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">SOURCE\_TYPE : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="STATIC"><a class="lift" href="#STATIC">STATIC</a></a><span class="inline-block static">static</span><code class="signature apipage">STATIC : [Int](#)</code><br/></span>
+                <a name="STATIC"><a class="lift" href="#STATIC">STATIC</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">STATIC : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="STREAMING"><a class="lift" href="#STREAMING">STREAMING</a></a><span class="inline-block static">static</span><code class="signature apipage">STREAMING : [Int](#)</code><br/></span>
+                <a name="STREAMING"><a class="lift" href="#STREAMING">STREAMING</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">STREAMING : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="UNDETERMINED"><a class="lift" href="#UNDETERMINED">UNDETERMINED</a></a><span class="inline-block static">static</span><code class="signature apipage">UNDETERMINED : [Int](#)</code><br/></span>
+                <a name="UNDETERMINED"><a class="lift" href="#UNDETERMINED">UNDETERMINED</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">UNDETERMINED : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="FORMAT_MONO8"><a class="lift" href="#FORMAT_MONO8">FORMAT\_MONO8</a></a><span class="inline-block static">static</span><code class="signature apipage">FORMAT\_MONO8 : [Int](#)</code><br/></span>
+                <a name="FORMAT_MONO8"><a class="lift" href="#FORMAT_MONO8">FORMAT\_MONO8</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">FORMAT\_MONO8 : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="FORMAT_MONO16"><a class="lift" href="#FORMAT_MONO16">FORMAT\_MONO16</a></a><span class="inline-block static">static</span><code class="signature apipage">FORMAT\_MONO16 : [Int](#)</code><br/></span>
+                <a name="FORMAT_MONO16"><a class="lift" href="#FORMAT_MONO16">FORMAT\_MONO16</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">FORMAT\_MONO16 : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="FORMAT_STEREO8"><a class="lift" href="#FORMAT_STEREO8">FORMAT\_STEREO8</a></a><span class="inline-block static">static</span><code class="signature apipage">FORMAT\_STEREO8 : [Int](#)</code><br/></span>
+                <a name="FORMAT_STEREO8"><a class="lift" href="#FORMAT_STEREO8">FORMAT\_STEREO8</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">FORMAT\_STEREO8 : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="FORMAT_STEREO16"><a class="lift" href="#FORMAT_STEREO16">FORMAT\_STEREO16</a></a><span class="inline-block static">static</span><code class="signature apipage">FORMAT\_STEREO16 : [Int](#)</code><br/></span>
+                <a name="FORMAT_STEREO16"><a class="lift" href="#FORMAT_STEREO16">FORMAT\_STEREO16</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">FORMAT\_STEREO16 : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="FREQUENCY"><a class="lift" href="#FREQUENCY">FREQUENCY</a></a><span class="inline-block static">static</span><code class="signature apipage">FREQUENCY : [Int](#)</code><br/></span>
+                <a name="FREQUENCY"><a class="lift" href="#FREQUENCY">FREQUENCY</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">FREQUENCY : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="BITS"><a class="lift" href="#BITS">BITS</a></a><span class="inline-block static">static</span><code class="signature apipage">BITS : [Int](#)</code><br/></span>
+                <a name="BITS"><a class="lift" href="#BITS">BITS</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">BITS : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="CHANNELS"><a class="lift" href="#CHANNELS">CHANNELS</a></a><span class="inline-block static">static</span><code class="signature apipage">CHANNELS : [Int](#)</code><br/></span>
+                <a name="CHANNELS"><a class="lift" href="#CHANNELS">CHANNELS</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">CHANNELS : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="SIZE"><a class="lift" href="#SIZE">SIZE</a></a><span class="inline-block static">static</span><code class="signature apipage">SIZE : [Int](#)</code><br/></span>
+                <a name="SIZE"><a class="lift" href="#SIZE">SIZE</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">SIZE : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="NO_ERROR"><a class="lift" href="#NO_ERROR">NO\_ERROR</a></a><span class="inline-block static">static</span><code class="signature apipage">NO\_ERROR : [Int](#)</code><br/></span>
+                <a name="NO_ERROR"><a class="lift" href="#NO_ERROR">NO\_ERROR</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">NO\_ERROR : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="INVALID_NAME"><a class="lift" href="#INVALID_NAME">INVALID\_NAME</a></a><span class="inline-block static">static</span><code class="signature apipage">INVALID\_NAME : [Int](#)</code><br/></span>
+                <a name="INVALID_NAME"><a class="lift" href="#INVALID_NAME">INVALID\_NAME</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">INVALID\_NAME : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="INVALID_ENUM"><a class="lift" href="#INVALID_ENUM">INVALID\_ENUM</a></a><span class="inline-block static">static</span><code class="signature apipage">INVALID\_ENUM : [Int](#)</code><br/></span>
+                <a name="INVALID_ENUM"><a class="lift" href="#INVALID_ENUM">INVALID\_ENUM</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">INVALID\_ENUM : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="INVALID_VALUE"><a class="lift" href="#INVALID_VALUE">INVALID\_VALUE</a></a><span class="inline-block static">static</span><code class="signature apipage">INVALID\_VALUE : [Int](#)</code><br/></span>
+                <a name="INVALID_VALUE"><a class="lift" href="#INVALID_VALUE">INVALID\_VALUE</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">INVALID\_VALUE : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="INVALID_OPERATION"><a class="lift" href="#INVALID_OPERATION">INVALID\_OPERATION</a></a><span class="inline-block static">static</span><code class="signature apipage">INVALID\_OPERATION : [Int](#)</code><br/></span>
+                <a name="INVALID_OPERATION"><a class="lift" href="#INVALID_OPERATION">INVALID\_OPERATION</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">INVALID\_OPERATION : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="OUT_OF_MEMORY"><a class="lift" href="#OUT_OF_MEMORY">OUT\_OF\_MEMORY</a></a><span class="inline-block static">static</span><code class="signature apipage">OUT\_OF\_MEMORY : [Int](#)</code><br/></span>
+                <a name="OUT_OF_MEMORY"><a class="lift" href="#OUT_OF_MEMORY">OUT\_OF\_MEMORY</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">OUT\_OF\_MEMORY : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="VENDOR"><a class="lift" href="#VENDOR">VENDOR</a></a><span class="inline-block static">static</span><code class="signature apipage">VENDOR : [Int](#)</code><br/></span>
+                <a name="VENDOR"><a class="lift" href="#VENDOR">VENDOR</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">VENDOR : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="VERSION"><a class="lift" href="#VERSION">VERSION</a></a><span class="inline-block static">static</span><code class="signature apipage">VERSION : [Int](#)</code><br/></span>
+                <a name="VERSION"><a class="lift" href="#VERSION">VERSION</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">VERSION : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="RENDERER"><a class="lift" href="#RENDERER">RENDERER</a></a><span class="inline-block static">static</span><code class="signature apipage">RENDERER : [Int](#)</code><br/></span>
+                <a name="RENDERER"><a class="lift" href="#RENDERER">RENDERER</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">RENDERER : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="EXTENSIONS"><a class="lift" href="#EXTENSIONS">EXTENSIONS</a></a><span class="inline-block static">static</span><code class="signature apipage">EXTENSIONS : [Int](#)</code><br/></span>
+                <a name="EXTENSIONS"><a class="lift" href="#EXTENSIONS">EXTENSIONS</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">EXTENSIONS : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="DOPPLER_FACTOR"><a class="lift" href="#DOPPLER_FACTOR">DOPPLER\_FACTOR</a></a><span class="inline-block static">static</span><code class="signature apipage">DOPPLER\_FACTOR : [Int](#)</code><br/></span>
+                <a name="DOPPLER_FACTOR"><a class="lift" href="#DOPPLER_FACTOR">DOPPLER\_FACTOR</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">DOPPLER\_FACTOR : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="SPEED_OF_SOUND"><a class="lift" href="#SPEED_OF_SOUND">SPEED\_OF\_SOUND</a></a><span class="inline-block static">static</span><code class="signature apipage">SPEED\_OF\_SOUND : [Int](#)</code><br/></span>
+                <a name="SPEED_OF_SOUND"><a class="lift" href="#SPEED_OF_SOUND">SPEED\_OF\_SOUND</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">SPEED\_OF\_SOUND : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="DOPPLER_VELOCITY"><a class="lift" href="#DOPPLER_VELOCITY">DOPPLER\_VELOCITY</a></a><span class="inline-block static">static</span><code class="signature apipage">DOPPLER\_VELOCITY : [Int](#)</code><br/></span>
+                <a name="DOPPLER_VELOCITY"><a class="lift" href="#DOPPLER_VELOCITY">DOPPLER\_VELOCITY</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">DOPPLER\_VELOCITY : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="DISTANCE_MODEL"><a class="lift" href="#DISTANCE_MODEL">DISTANCE\_MODEL</a></a><span class="inline-block static">static</span><code class="signature apipage">DISTANCE\_MODEL : [Int](#)</code><br/></span>
+                <a name="DISTANCE_MODEL"><a class="lift" href="#DISTANCE_MODEL">DISTANCE\_MODEL</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">DISTANCE\_MODEL : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="INVERSE_DISTANCE"><a class="lift" href="#INVERSE_DISTANCE">INVERSE\_DISTANCE</a></a><span class="inline-block static">static</span><code class="signature apipage">INVERSE\_DISTANCE : [Int](#)</code><br/></span>
+                <a name="INVERSE_DISTANCE"><a class="lift" href="#INVERSE_DISTANCE">INVERSE\_DISTANCE</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">INVERSE\_DISTANCE : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="INVERSE_DISTANCE_CLAMPED"><a class="lift" href="#INVERSE_DISTANCE_CLAMPED">INVERSE\_DISTANCE\_CLAMPED</a></a><span class="inline-block static">static</span><code class="signature apipage">INVERSE\_DISTANCE\_CLAMPED : [Int](#)</code><br/></span>
+                <a name="INVERSE_DISTANCE_CLAMPED"><a class="lift" href="#INVERSE_DISTANCE_CLAMPED">INVERSE\_DISTANCE\_CLAMPED</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">INVERSE\_DISTANCE\_CLAMPED : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="LINEAR_DISTANCE"><a class="lift" href="#LINEAR_DISTANCE">LINEAR\_DISTANCE</a></a><span class="inline-block static">static</span><code class="signature apipage">LINEAR\_DISTANCE : [Int](#)</code><br/></span>
+                <a name="LINEAR_DISTANCE"><a class="lift" href="#LINEAR_DISTANCE">LINEAR\_DISTANCE</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">LINEAR\_DISTANCE : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="LINEAR_DISTANCE_CLAMPED"><a class="lift" href="#LINEAR_DISTANCE_CLAMPED">LINEAR\_DISTANCE\_CLAMPED</a></a><span class="inline-block static">static</span><code class="signature apipage">LINEAR\_DISTANCE\_CLAMPED : [Int](#)</code><br/></span>
+                <a name="LINEAR_DISTANCE_CLAMPED"><a class="lift" href="#LINEAR_DISTANCE_CLAMPED">LINEAR\_DISTANCE\_CLAMPED</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">LINEAR\_DISTANCE\_CLAMPED : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="EXPONENT_DISTANCE"><a class="lift" href="#EXPONENT_DISTANCE">EXPONENT\_DISTANCE</a></a><span class="inline-block static">static</span><code class="signature apipage">EXPONENT\_DISTANCE : [Int](#)</code><br/></span>
+                <a name="EXPONENT_DISTANCE"><a class="lift" href="#EXPONENT_DISTANCE">EXPONENT\_DISTANCE</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">EXPONENT\_DISTANCE : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="EXPONENT_DISTANCE_CLAMPED"><a class="lift" href="#EXPONENT_DISTANCE_CLAMPED">EXPONENT\_DISTANCE\_CLAMPED</a></a><span class="inline-block static">static</span><code class="signature apipage">EXPONENT\_DISTANCE\_CLAMPED : [Int](#)</code><br/></span>
+                <a name="EXPONENT_DISTANCE_CLAMPED"><a class="lift" href="#EXPONENT_DISTANCE_CLAMPED">EXPONENT\_DISTANCE\_CLAMPED</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">EXPONENT\_DISTANCE\_CLAMPED : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="INVALID_NAME_MEANING"><a class="lift" href="#INVALID_NAME_MEANING">INVALID\_NAME\_MEANING</a></a><span class="inline-block static">static</span><code class="signature apipage">INVALID\_NAME\_MEANING : [String](#)</code><br/></span>
+                <a name="INVALID_NAME_MEANING"><a class="lift" href="#INVALID_NAME_MEANING">INVALID\_NAME\_MEANING</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">INVALID\_NAME\_MEANING : [String](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="INVALID_ENUM_MEANING"><a class="lift" href="#INVALID_ENUM_MEANING">INVALID\_ENUM\_MEANING</a></a><span class="inline-block static">static</span><code class="signature apipage">INVALID\_ENUM\_MEANING : [String](#)</code><br/></span>
+                <a name="INVALID_ENUM_MEANING"><a class="lift" href="#INVALID_ENUM_MEANING">INVALID\_ENUM\_MEANING</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">INVALID\_ENUM\_MEANING : [String](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="INVALID_VALUE_MEANING"><a class="lift" href="#INVALID_VALUE_MEANING">INVALID\_VALUE\_MEANING</a></a><span class="inline-block static">static</span><code class="signature apipage">INVALID\_VALUE\_MEANING : [String](#)</code><br/></span>
+                <a name="INVALID_VALUE_MEANING"><a class="lift" href="#INVALID_VALUE_MEANING">INVALID\_VALUE\_MEANING</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">INVALID\_VALUE\_MEANING : [String](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="INVALID_OPERATION_MEANING"><a class="lift" href="#INVALID_OPERATION_MEANING">INVALID\_OPERATION\_MEANING</a></a><span class="inline-block static">static</span><code class="signature apipage">INVALID\_OPERATION\_MEANING : [String](#)</code><br/></span>
+                <a name="INVALID_OPERATION_MEANING"><a class="lift" href="#INVALID_OPERATION_MEANING">INVALID\_OPERATION\_MEANING</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">INVALID\_OPERATION\_MEANING : [String](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="OUT_OF_MEMORY_MEANING"><a class="lift" href="#OUT_OF_MEMORY_MEANING">OUT\_OF\_MEMORY\_MEANING</a></a><span class="inline-block static">static</span><code class="signature apipage">OUT\_OF\_MEMORY\_MEANING : [String](#)</code><br/></span>
+                <a name="OUT_OF_MEMORY_MEANING"><a class="lift" href="#OUT_OF_MEMORY_MEANING">OUT\_OF\_MEMORY\_MEANING</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">OUT\_OF\_MEMORY\_MEANING : [String](#)</code><br/></span>
             <span class="small_desc_flat"></span>
 
 

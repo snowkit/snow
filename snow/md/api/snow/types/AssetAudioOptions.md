@@ -22,9 +22,9 @@ The options for an `AssetAudio` asset
 
 
 <h3>Members</h3> <hr/><span class="member apipage">
-                <a name="type"><a class="lift" href="#type">type</a></a><code class="signature apipage">type : [String](#)</code><br/></span>
+                <a name="type"><a class="lift" href="#type">type</a></a><div class="clear"></div><code class="signature apipage">type : [String](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="load"><a class="lift" href="#load">load</a></a><code class="signature apipage">load : [Null](#)&lt;[Bool](#)&gt;</code><br/></span>
+                <a name="load"><a class="lift" href="#load">load</a></a><div class="clear"></div><code class="signature apipage">load : [Null](#)&lt;[Bool](#)&gt;</code><br/></span>
             <span class="small_desc_flat"></span>
 
 

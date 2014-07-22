@@ -26,9 +26,9 @@ The openal specific implementation of SoundStream
 
 
 <h3>Members</h3> <hr/><span class="member apipage">
-                <a name="buffers"><a class="lift" href="#buffers">buffers</a></a><code class="signature apipage">buffers : [Array](#)&lt;[Int](#)&gt;</code><br/></span>
+                <a name="buffers"><a class="lift" href="#buffers">buffers</a></a><div class="clear"></div><code class="signature apipage">buffers : [Array](#)&lt;[Int](#)&gt;</code><br/></span>
             <span class="small_desc_flat">the sound buffer names</span><span class="member apipage">
-                <a name="buffers_left"><a class="lift" href="#buffers_left">buffers\_left</a></a><code class="signature apipage">buffers\_left : [Int](#)</code><br/></span>
+                <a name="buffers_left"><a class="lift" href="#buffers_left">buffers\_left</a></a><div class="clear"></div><code class="signature apipage">buffers\_left : [Int](#)</code><br/></span>
             <span class="small_desc_flat">remaining buffers to play</span>
 
 

@@ -26,7 +26,7 @@
 
 
 <h3>Members</h3> <hr/><span class="member apipage">
-                <a name="manager"><a class="lift" href="#manager">manager</a></a><code class="signature apipage">manager : [snow.assets.Assets](#)</code><br/></span>
+                <a name="manager"><a class="lift" href="#manager">manager</a></a><div class="clear"></div><code class="signature apipage">manager : [snow.assets.Assets](#)</code><br/></span>
             <span class="small_desc_flat"></span>
 
 

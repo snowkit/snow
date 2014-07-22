@@ -22,7 +22,7 @@ An asset that contains image file `data` as an `ImageInfo`. Get assets from the 
 
 
 <h3>Members</h3> <hr/><span class="member apipage">
-                <a name="data"><a class="lift" href="#data">data</a></a><code class="signature apipage">data : [snow.types.ImageInfo](#)</code><br/></span>
+                <a name="data"><a class="lift" href="#data">data</a></a><div class="clear"></div><code class="signature apipage">data : [snow.types.ImageInfo](#)</code><br/></span>
             <span class="small_desc_flat">The `ImageInfo` this asset contains</span>
 
 

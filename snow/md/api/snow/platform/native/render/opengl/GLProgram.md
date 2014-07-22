@@ -22,7 +22,7 @@
 
 
 <h3>Members</h3> <hr/><span class="member apipage">
-                <a name="shaders"><a class="lift" href="#shaders">shaders</a></a><code class="signature apipage">shaders : [Array](#)&lt;[snow.platform.native.render.opengl.GLShader](#)&gt;</code><br/></span>
+                <a name="shaders"><a class="lift" href="#shaders">shaders</a></a><div class="clear"></div><code class="signature apipage">shaders : [Array](#)&lt;[snow.platform.native.render.opengl.GLShader](#)&gt;</code><br/></span>
             <span class="small_desc_flat"></span>
 
 

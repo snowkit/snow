@@ -22,9 +22,9 @@
 
 
 <h3>Members</h3> <hr/><span class="member apipage">
-                <a name="system"><a class="lift" href="#system">system</a></a><code class="signature apipage">system : [snow.audio.AudioSystem](#)</code><br/></span>
+                <a name="system"><a class="lift" href="#system">system</a></a><div class="clear"></div><code class="signature apipage">system : [snow.audio.AudioSystem](#)</code><br/></span>
             <span class="small_desc_flat">The implementation of the current audio system</span><span class="member apipage">
-                <a name="active"><a class="lift" href="#active">active</a></a><code class="signature apipage">active : [Bool](#)</code><br/></span>
+                <a name="active"><a class="lift" href="#active">active</a></a><div class="clear"></div><code class="signature apipage">active : [Bool](#)</code><br/></span>
             <span class="small_desc_flat">Set to false to stop any and all processing in the audio system</span>
 
 

@@ -26,37 +26,37 @@
 
 
 <h3>Members</h3> <hr/><span class="member apipage">
-                <a name="manager"><a class="lift" href="#manager">manager</a></a><code class="signature apipage">manager : [snow.audio.Audio](#)</code><br/></span>
+                <a name="manager"><a class="lift" href="#manager">manager</a></a><div class="clear"></div><code class="signature apipage">manager : [snow.audio.Audio](#)</code><br/></span>
             <span class="small_desc_flat">The `Audio` system handling this sound</span><span class="member apipage">
-                <a name="info"><a class="lift" href="#info">info</a></a><code class="signature apipage">info : [snow.types.AudioInfo](#)</code><br/></span>
+                <a name="info"><a class="lift" href="#info">info</a></a><div class="clear"></div><code class="signature apipage">info : [snow.types.AudioInfo](#)</code><br/></span>
             <span class="small_desc_flat">The `AudioInfo` this sound is created from</span><span class="member apipage">
-                <a name="name"><a class="lift" href="#name">name</a></a><code class="signature apipage">name : [String](#)</code><br/></span>
+                <a name="name"><a class="lift" href="#name">name</a></a><div class="clear"></div><code class="signature apipage">name : [String](#)</code><br/></span>
             <span class="small_desc_flat">The name of this sound</span><span class="member apipage">
-                <a name="playing"><a class="lift" href="#playing">playing</a></a><code class="signature apipage">playing : [Bool](#)</code><br/></span>
+                <a name="playing"><a class="lift" href="#playing">playing</a></a><div class="clear"></div><code class="signature apipage">playing : [Bool](#)</code><br/></span>
             <span class="small_desc_flat">If the sound is playing</span><span class="member apipage">
-                <a name="paused"><a class="lift" href="#paused">paused</a></a><code class="signature apipage">paused : [Bool](#)</code><br/></span>
+                <a name="paused"><a class="lift" href="#paused">paused</a></a><div class="clear"></div><code class="signature apipage">paused : [Bool](#)</code><br/></span>
             <span class="small_desc_flat">If the sound is paused</span><span class="member apipage">
-                <a name="is_stream"><a class="lift" href="#is_stream">is\_stream</a></a><code class="signature apipage">is\_stream : [Bool](#)</code><br/></span>
+                <a name="is_stream"><a class="lift" href="#is_stream">is\_stream</a></a><div class="clear"></div><code class="signature apipage">is\_stream : [Bool](#)</code><br/></span>
             <span class="small_desc_flat">If the sound is a stream source</span>
 
 
 
 <h3>Properties</h3> <hr/><span class="member apipage">
-                <a name="pitch"><a class="lift" href="#pitch">pitch</a></a><code class="signature apipage">pitch : [Float](#)</code><br/></span>
+                <a name="pitch"><a class="lift" href="#pitch">pitch</a></a><div class="clear"></div><code class="signature apipage">pitch : [Float](#)</code><br/></span>
             <span class="small_desc_flat">The pitch of this sound</span><span class="member apipage">
-                <a name="volume"><a class="lift" href="#volume">volume</a></a><code class="signature apipage">volume : [Float](#)</code><br/></span>
+                <a name="volume"><a class="lift" href="#volume">volume</a></a><div class="clear"></div><code class="signature apipage">volume : [Float](#)</code><br/></span>
             <span class="small_desc_flat">The volume of this sound</span><span class="member apipage">
-                <a name="pan"><a class="lift" href="#pan">pan</a></a><code class="signature apipage">pan : [Float](#)</code><br/></span>
+                <a name="pan"><a class="lift" href="#pan">pan</a></a><div class="clear"></div><code class="signature apipage">pan : [Float](#)</code><br/></span>
             <span class="small_desc_flat">The pan of this sound. Pan only logically works on mono sounds, and is by default 2D sounds</span><span class="member apipage">
-                <a name="looping"><a class="lift" href="#looping">looping</a></a><code class="signature apipage">looping : [Bool](#)</code><br/></span>
+                <a name="looping"><a class="lift" href="#looping">looping</a></a><div class="clear"></div><code class="signature apipage">looping : [Bool](#)</code><br/></span>
             <span class="small_desc_flat">If the sound is looping or not</span><span class="member apipage">
-                <a name="position"><a class="lift" href="#position">position</a></a><code class="signature apipage">position : [Int](#)</code><br/></span>
+                <a name="position"><a class="lift" href="#position">position</a></a><div class="clear"></div><code class="signature apipage">position : [Int](#)</code><br/></span>
             <span class="small_desc_flat">The current playback position of this sound in `bytes`</span><span class="member apipage">
-                <a name="time"><a class="lift" href="#time">time</a></a><code class="signature apipage">time : [Float](#)</code><br/></span>
+                <a name="time"><a class="lift" href="#time">time</a></a><div class="clear"></div><code class="signature apipage">time : [Float](#)</code><br/></span>
             <span class="small_desc_flat">The current playback time of this sound in `seconds`</span><span class="member apipage">
-                <a name="length"><a class="lift" href="#length">length</a></a><code class="signature apipage">length : [Int](#)</code><br/></span>
+                <a name="length"><a class="lift" href="#length">length</a></a><div class="clear"></div><code class="signature apipage">length : [Int](#)</code><br/></span>
             <span class="small_desc_flat">The length of this sound in `seconds`</span><span class="member apipage">
-                <a name="duration"><a class="lift" href="#duration">duration</a></a><code class="signature apipage">duration : [Float](#)</code><br/></span>
+                <a name="duration"><a class="lift" href="#duration">duration</a></a><div class="clear"></div><code class="signature apipage">duration : [Float](#)</code><br/></span>
             <span class="small_desc_flat">The duration of this sound, in `bytes`</span>
 
 

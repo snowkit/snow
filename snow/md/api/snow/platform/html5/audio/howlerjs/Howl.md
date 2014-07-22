@@ -66,25 +66,25 @@
             <a name="pos3d"><a class="lift" href="#pos3d">pos3d</a></a> <div class="clear"></div><code class="signature apipage">pos3d(x:[Float](#)<span></span>, y:[Float](#)<span></span>, z:[Float](#)<span></span>, id:[String](#)<span></span>) : [Dynamic](#)</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
-            <a name="fade"><a class="lift" href="#fade">fade</a></a> <div class="clear"></div><code class="signature apipage">fade(from:[Float](#)<span></span>, to:[Float](#)<span></span>, len:[Float](#)<span></span>, callBack:[](#)<span></span>, id:[String](#)<span></span>) : [snow.platform.html5.audio.howlerjs.Howl](#)</code><br/><span class="small_desc_flat"></span>
+            <a name="fade"><a class="lift" href="#fade">fade</a></a> <div class="clear"></div><code class="signature apipage">fade(from:[Float](#)<span></span>, to:[Float](#)<span></span>, len:[Float](#)<span></span>, callBack:[Dynamic](#)<span></span>, id:[String](#)<span></span>) : [snow.platform.html5.audio.howlerjs.Howl](#)</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
-            <a name="fadeIn"><a class="lift" href="#fadeIn">fadeIn</a></a> <div class="clear"></div><code class="signature apipage">fadeIn(to:[Float](#)<span></span>, len:[Float](#)<span></span>, callBack:[](#)<span></span>) : [snow.platform.html5.audio.howlerjs.Howl](#)</code><br/><span class="small_desc_flat"></span>
+            <a name="fadeIn"><a class="lift" href="#fadeIn">fadeIn</a></a> <div class="clear"></div><code class="signature apipage">fadeIn(to:[Float](#)<span></span>, len:[Float](#)<span></span>, callBack:[Dynamic](#)<span></span>) : [snow.platform.html5.audio.howlerjs.Howl](#)</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
-            <a name="fadeOut"><a class="lift" href="#fadeOut">fadeOut</a></a> <div class="clear"></div><code class="signature apipage">fadeOut(to:[Float](#)<span></span>, len:[Float](#)<span></span>, calBack:[](#)<span></span>, id:[String](#)<span></span>) : [snow.platform.html5.audio.howlerjs.Howl](#)</code><br/><span class="small_desc_flat"></span>
+            <a name="fadeOut"><a class="lift" href="#fadeOut">fadeOut</a></a> <div class="clear"></div><code class="signature apipage">fadeOut(to:[Float](#)<span></span>, len:[Float](#)<span></span>, calBack:[Dynamic](#)<span></span>, id:[String](#)<span></span>) : [snow.platform.html5.audio.howlerjs.Howl](#)</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
-            <a name="on"><a class="lift" href="#on">on</a></a> <div class="clear"></div><code class="signature apipage">on(event:[String](#)<span></span>, fn:[](#)<span></span>) : [snow.platform.html5.audio.howlerjs.Howl](#)</code><br/><span class="small_desc_flat"></span>
+            <a name="on"><a class="lift" href="#on">on</a></a> <div class="clear"></div><code class="signature apipage">on(event:[String](#)<span></span>, fn:[Dynamic](#)<span></span>) : [snow.platform.html5.audio.howlerjs.Howl](#)</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
-            <a name="off"><a class="lift" href="#off">off</a></a> <div class="clear"></div><code class="signature apipage">off(event:[String](#)<span></span>, fn:[](#)<span></span>) : [snow.platform.html5.audio.howlerjs.Howl](#)</code><br/><span class="small_desc_flat"></span>
+            <a name="off"><a class="lift" href="#off">off</a></a> <div class="clear"></div><code class="signature apipage">off(event:[String](#)<span></span>, fn:[Dynamic](#)<span></span>) : [snow.platform.html5.audio.howlerjs.Howl](#)</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
             <a name="unload"><a class="lift" href="#unload">unload</a></a> <div class="clear"></div><code class="signature apipage">unload() : [Void](#)</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
-            <a name="new"><a class="lift" href="#new">new</a></a> <div class="clear"></div><code class="signature apipage">new(o:[](#)<span></span>) : [Void](#)</code><br/><span class="small_desc_flat"></span>
+            <a name="new"><a class="lift" href="#new">new</a></a> <div class="clear"></div><code class="signature apipage">new(o:[Dynamic](#)<span></span>) : [Void](#)</code><br/><span class="small_desc_flat"></span>
         </span>
     
 

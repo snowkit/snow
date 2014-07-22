@@ -22,7 +22,7 @@ An asset that contains `text` as a `String`. Get assets from the `Assets` class,
 
 
 <h3>Members</h3> <hr/><span class="member apipage">
-                <a name="text"><a class="lift" href="#text">text</a></a><code class="signature apipage">text : [String](#)</code><br/></span>
+                <a name="text"><a class="lift" href="#text">text</a></a><div class="clear"></div><code class="signature apipage">text : [String](#)</code><br/></span>
             <span class="small_desc_flat">The `String` this asset contains</span>
 
 

@@ -22,7 +22,7 @@ An asset that contains audio file `data` as an `AudioInfo`. Get assets from the 
 
 
 <h3>Members</h3> <hr/><span class="member apipage">
-                <a name="data"><a class="lift" href="#data">data</a></a><code class="signature apipage">data : [snow.types.AudioInfo](#)</code><br/></span>
+                <a name="data"><a class="lift" href="#data">data</a></a><div class="clear"></div><code class="signature apipage">data : [snow.types.AudioInfo](#)</code><br/></span>
             <span class="small_desc_flat">The `AudioInfo` this asset contains</span>
 
 

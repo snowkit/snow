@@ -23,7 +23,7 @@ This class is a low level cross platform file access helper, that handles in bun
 
 
 <h3>Members</h3> <hr/><span class="member apipage">
-                <a name="handle"><a class="lift" href="#handle">handle</a></a><code class="signature apipage">handle : [](#)</code><br/></span>
+                <a name="handle"><a class="lift" href="#handle">handle</a></a><div class="clear"></div><code class="signature apipage">handle : [Dynamic](#)</code><br/></span>
             <span class="small_desc_flat">The internal native file handle</span>
 
 
