@@ -41,6 +41,10 @@ li {
     color:#999;
 }
 
+img {
+    max-width: 45em;
+}
+
 b {
     color:#3c3c3c;
 }
@@ -91,8 +95,8 @@ a:hover {
 
 
 .lift {
-    margin-bottom: -0.4em;
     display: inline-block;
+    position: relative;
     margin-left: -0.5em;
 }
 
@@ -235,11 +239,12 @@ user-select: none;
     color:#242424;
     border:solid 1px rgba(0,0,0,0.1);
     font-size: 0.9em;
-    padding-bottom: 0.1em;
+    padding-bottom: 0.05em;
     padding-left: 0.4em;
     padding-right: 0.4em;
     border-radius: 0.2em;
     margin-left:0.5em;
+    vertical-align: bottom;
 }
 
 .member, .method, .property {
@@ -250,7 +255,7 @@ user-select: none;
 }
 
 .signature.apipage {
-    margin-top:1.6em;
+    margin-top:0.4em;
     margin-left: 0.5em;
     margin-bottom: 1.3em;
 }
