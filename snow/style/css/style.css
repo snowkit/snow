@@ -41,6 +41,10 @@ li {
     color:#999;
 }
 
+img {
+    max-width: 45em;
+}
+
 b {
     color:#3c3c3c;
 }
