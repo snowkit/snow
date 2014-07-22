@@ -23,11 +23,11 @@ The asset system class gives you access to fetching and manipulating assets,
 
 
 <h3>Members</h3> <hr/><span class="member apipage">
-                <a name="list"><a class="lift" href="#list">list</a></a><code class="signature apipage">list : [Map](#)&lt;[String](#), [snow.types.AssetInfo](#)&gt;</code><br/></span>
+                <a name="list"><a class="lift" href="#list">list</a></a><div class="clear"></div><code class="signature apipage">list : [Map](#)&lt;[String](#), [snow.types.AssetInfo](#)&gt;</code><br/></span>
             <span class="small_desc_flat">The list of assets in the system, added at startup by the `App` class, in the `get_asset_list` function</span><span class="member apipage">
-                <a name="assets_root"><a class="lift" href="#assets_root">assets\_root</a></a><code class="signature apipage">assets\_root : [String](#)</code><br/></span>
+                <a name="assets_root"><a class="lift" href="#assets_root">assets\_root</a></a><div class="clear"></div><code class="signature apipage">assets\_root : [String](#)</code><br/></span>
             <span class="small_desc_flat">If the assets are not relative to the runtime root path, this value can adjust all asset paths. This is automatically handled and exists to allow control.</span><span class="member apipage">
-                <a name="manifest_path"><a class="lift" href="#manifest_path">manifest\_path</a></a><code class="signature apipage">manifest\_path : [String](#)</code><br/></span>
+                <a name="manifest_path"><a class="lift" href="#manifest_path">manifest\_path</a></a><div class="clear"></div><code class="signature apipage">manifest\_path : [String](#)</code><br/></span>
             <span class="small_desc_flat">The manifest file to parse for the asset list. By default, this is set to `manifest` from the build tools but the `App` class can have a custom `get_asset_list` handler use this value.</span>
 
 

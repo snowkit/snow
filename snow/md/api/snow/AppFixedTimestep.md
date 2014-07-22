@@ -24,9 +24,9 @@ Read the {App Guide} for full info, and for even more information see : http://g
 
 
 <h3>Members</h3> <hr/><span class="member apipage">
-                <a name="frame_time"><a class="lift" href="#frame_time">frame\_time</a></a><code class="signature apipage">frame\_time : [Float](#)</code><br/></span>
+                <a name="frame_time"><a class="lift" href="#frame_time">frame\_time</a></a><div class="clear"></div><code class="signature apipage">frame\_time : [Float](#)</code><br/></span>
             <span class="small_desc_flat">fixed simulation update speed</span><span class="member apipage">
-                <a name="overflow"><a class="lift" href="#overflow">overflow</a></a><code class="signature apipage">overflow : [Float](#)</code><br/></span>
+                <a name="overflow"><a class="lift" href="#overflow">overflow</a></a><div class="clear"></div><code class="signature apipage">overflow : [Float](#)</code><br/></span>
             <span class="small_desc_flat">the overflow of the updates. This is used internally, for you, to calculate the alpha time for rendering interpolation as follows `alpha = overflow / frame_time;`</span>
 
 

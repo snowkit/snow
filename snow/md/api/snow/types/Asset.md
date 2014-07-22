@@ -22,9 +22,9 @@ An asset base class. Get assets from the `Assets` class, via `app.assets`
 
 
 <h3>Members</h3> <hr/><span class="member apipage">
-                <a name="id"><a class="lift" href="#id">id</a></a><code class="signature apipage">id : [String](#)</code><br/></span>
+                <a name="id"><a class="lift" href="#id">id</a></a><div class="clear"></div><code class="signature apipage">id : [String](#)</code><br/></span>
             <span class="small_desc_flat">The id of this asset like `assets/image.png`</span><span class="member apipage">
-                <a name="info"><a class="lift" href="#info">info</a></a><code class="signature apipage">info : [snow.types.AssetInfo](#)</code><br/></span>
+                <a name="info"><a class="lift" href="#info">info</a></a><div class="clear"></div><code class="signature apipage">info : [snow.types.AssetInfo](#)</code><br/></span>
             <span class="small_desc_flat">The `AssetInfo` of this asset</span>
 
 

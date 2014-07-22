@@ -24,9 +24,9 @@
 
 
 <h3>Properties</h3> <hr/><span class="member apipage">
-                <a name="bytesAvailable"><a class="lift" href="#bytesAvailable">bytesAvailable</a></a><code class="signature apipage">bytesAvailable : [Int](#)</code><br/></span>
+                <a name="bytesAvailable"><a class="lift" href="#bytesAvailable">bytesAvailable</a></a><div class="clear"></div><code class="signature apipage">bytesAvailable : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="endian"><a class="lift" href="#endian">endian</a></a><code class="signature apipage">endian : [String](#)</code><br/></span>
+                <a name="endian"><a class="lift" href="#endian">endian</a></a><div class="clear"></div><code class="signature apipage">endian : [String](#)</code><br/></span>
             <span class="small_desc_flat"></span>
 
 

@@ -26,11 +26,11 @@ The openal specific implementation of Sound
 
 
 <h3>Members</h3> <hr/><span class="member apipage">
-                <a name="source"><a class="lift" href="#source">source</a></a><code class="signature apipage">source : [Int](#)</code><br/></span>
+                <a name="source"><a class="lift" href="#source">source</a></a><div class="clear"></div><code class="signature apipage">source : [Int](#)</code><br/></span>
             <span class="small_desc_flat">the sound source name</span><span class="member apipage">
-                <a name="buffer"><a class="lift" href="#buffer">buffer</a></a><code class="signature apipage">buffer : [Int](#)</code><br/></span>
+                <a name="buffer"><a class="lift" href="#buffer">buffer</a></a><div class="clear"></div><code class="signature apipage">buffer : [Int](#)</code><br/></span>
             <span class="small_desc_flat">the sound buffer name</span><span class="member apipage">
-                <a name="format"><a class="lift" href="#format">format</a></a><code class="signature apipage">format : [Int](#)</code><br/></span>
+                <a name="format"><a class="lift" href="#format">format</a></a><div class="clear"></div><code class="signature apipage">format : [Int](#)</code><br/></span>
             <span class="small_desc_flat">mono8? stereo16?</span>
 
 

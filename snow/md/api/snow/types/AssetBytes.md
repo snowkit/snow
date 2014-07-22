@@ -22,7 +22,7 @@ An asset that contains byte `data` as a `ByteArray`. Get assets from the `Assets
 
 
 <h3>Members</h3> <hr/><span class="member apipage">
-                <a name="data"><a class="lift" href="#data">data</a></a><code class="signature apipage">data : [snow.utils.ByteArray](#)</code><br/></span>
+                <a name="data"><a class="lift" href="#data">data</a></a><div class="clear"></div><code class="signature apipage">data : [snow.utils.ByteArray](#)</code><br/></span>
             <span class="small_desc_flat">The `ByteArray` this asset contains</span>
 
 

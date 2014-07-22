@@ -26,27 +26,27 @@ The default type of application, with variable delta time, or fixed delta time, 
 
 
 <h3>Members</h3> <hr/><span class="member apipage">
-                <a name="app"><a class="lift" href="#app">app</a></a><code class="signature apipage">app : [snow.Snow](#)</code><br/></span>
+                <a name="app"><a class="lift" href="#app">app</a></a><div class="clear"></div><code class="signature apipage">app : [snow.Snow](#)</code><br/></span>
             <span class="small_desc_flat">use this to access the api features. *i.e* `app.assets.get_text(_id)`</span><span class="member apipage">
-                <a name="timescale"><a class="lift" href="#timescale">timescale</a></a><code class="signature apipage">timescale : [Float](#)</code><br/></span>
+                <a name="timescale"><a class="lift" href="#timescale">timescale</a></a><div class="clear"></div><code class="signature apipage">timescale : [Float](#)</code><br/></span>
             <span class="small_desc_flat">the scale of time</span><span class="member apipage">
-                <a name="fixed_delta"><a class="lift" href="#fixed_delta">fixed\_delta</a></a><code class="signature apipage">fixed\_delta : [Float](#)</code><br/></span>
+                <a name="fixed_delta"><a class="lift" href="#fixed_delta">fixed\_delta</a></a><div class="clear"></div><code class="signature apipage">fixed\_delta : [Float](#)</code><br/></span>
             <span class="small_desc_flat">if this is non zero this will be passed in</span><span class="member apipage">
-                <a name="fixed_rate"><a class="lift" href="#fixed_rate">fixed\_rate</a></a><code class="signature apipage">fixed\_rate : [Float](#)</code><br/></span>
+                <a name="fixed_rate"><a class="lift" href="#fixed_rate">fixed\_rate</a></a><div class="clear"></div><code class="signature apipage">fixed\_rate : [Float](#)</code><br/></span>
             <span class="small_desc_flat">if this is non zero, updates will be forced to this rate</span><span class="member apipage">
-                <a name="max_frame_time"><a class="lift" href="#max_frame_time">max\_frame\_time</a></a><code class="signature apipage">max\_frame\_time : [Float](#)</code><br/></span>
+                <a name="max_frame_time"><a class="lift" href="#max_frame_time">max\_frame\_time</a></a><div class="clear"></div><code class="signature apipage">max\_frame\_time : [Float](#)</code><br/></span>
             <span class="small_desc_flat">the maximum frame time</span><span class="member apipage">
-                <a name="delta_time"><a class="lift" href="#delta_time">delta\_time</a></a><code class="signature apipage">delta\_time : [Float](#)</code><br/></span>
+                <a name="delta_time"><a class="lift" href="#delta_time">delta\_time</a></a><div class="clear"></div><code class="signature apipage">delta\_time : [Float](#)</code><br/></span>
             <span class="small_desc_flat">the time the last frame took to run</span><span class="member apipage">
-                <a name="delta_sim"><a class="lift" href="#delta_sim">delta\_sim</a></a><code class="signature apipage">delta\_sim : [Float](#)</code><br/></span>
+                <a name="delta_sim"><a class="lift" href="#delta_sim">delta\_sim</a></a><div class="clear"></div><code class="signature apipage">delta\_sim : [Float](#)</code><br/></span>
             <span class="small_desc_flat">the simulated time the last frame took to run, relative to scale etc</span><span class="member apipage">
-                <a name="last_frame_start"><a class="lift" href="#last_frame_start">last\_frame\_start</a></a><code class="signature apipage">last\_frame\_start : [Float](#)</code><br/></span>
+                <a name="last_frame_start"><a class="lift" href="#last_frame_start">last\_frame\_start</a></a><div class="clear"></div><code class="signature apipage">last\_frame\_start : [Float](#)</code><br/></span>
             <span class="small_desc_flat">the start time of the last frame</span><span class="member apipage">
-                <a name="current_time"><a class="lift" href="#current_time">current\_time</a></a><code class="signature apipage">current\_time : [Float](#)</code><br/></span>
+                <a name="current_time"><a class="lift" href="#current_time">current\_time</a></a><div class="clear"></div><code class="signature apipage">current\_time : [Float](#)</code><br/></span>
             <span class="small_desc_flat">the current simulation time</span><span class="member apipage">
-                <a name="cur_frame_start"><a class="lift" href="#cur_frame_start">cur\_frame\_start</a></a><code class="signature apipage">cur\_frame\_start : [Float](#)</code><br/></span>
+                <a name="cur_frame_start"><a class="lift" href="#cur_frame_start">cur\_frame\_start</a></a><div class="clear"></div><code class="signature apipage">cur\_frame\_start : [Float](#)</code><br/></span>
             <span class="small_desc_flat">the start time of this frame</span><span class="member apipage">
-                <a name="alpha"><a class="lift" href="#alpha">alpha</a></a><code class="signature apipage">alpha : [Float](#)</code><br/></span>
+                <a name="alpha"><a class="lift" href="#alpha">alpha</a></a><div class="clear"></div><code class="signature apipage">alpha : [Float](#)</code><br/></span>
             <span class="small_desc_flat">the alpha time for a render between frame updates</span>
 
 
