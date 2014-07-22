@@ -56,7 +56,7 @@ class Main extends snow.AppFixedTimestep {
         //overriding the built in function to configure the default window
     override function get_window_config() : WindowConfig {
 
-        var windowconf : WindowConfig = get_default_window_config();
+        var windowconf : WindowConfig = snow.App.get_default_window_config( app );
 
         if(app.config.runtime.window != null) {
             if(app.config.runtime.window.width != null) {
