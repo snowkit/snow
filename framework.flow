@@ -58,6 +58,18 @@
       }
     },
 
+    "mac && arch-32" : {
+      files : {
+        libsnow : { path:"ndll/Mac/snow.ndll => ../MacOS/snow.ndll" }
+      }
+    },
+
+    "mac && arch-64" : {
+      files : {
+        libsnow : { path:"ndll/Mac64/snow.ndll => ../MacOS/snow.ndll" }
+      }
+    },
+
     "android && arch-armv7" : {
       build : {
         files : {
