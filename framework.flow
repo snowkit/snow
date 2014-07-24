@@ -48,25 +48,25 @@
 
     "mac && !flow_build_command_line":{
       files : {
-        plists : { path:'flowtemplates/mac/ => ../', template:'project' }
+        plists : { path:'flowtemplates/mac/ => ../', template:'project', not_listed:true }
       },
     },
 
     "windows && arch-32" : {
       files : {
-        libsnow : { path:"ndll/Windows/snow.ndll => snow.ndll" }
+        libsnow : { path:"ndll/Windows/snow.ndll => snow.ndll", not_listed:true }
       }
     },
 
     "mac && arch-32" : {
       files : {
-        libsnow : { path:"ndll/Mac/snow.ndll => ../MacOS/snow.ndll" }
+        libsnow : { path:"ndll/Mac/snow.ndll => ../MacOS/snow.ndll", not_listed:true }
       }
     },
 
     "mac && arch-64" : {
       files : {
-        libsnow : { path:"ndll/Mac64/snow.ndll => ../MacOS/snow.ndll" }
+        libsnow : { path:"ndll/Mac64/snow.ndll => ../MacOS/snow.ndll", not_listed:true }
       }
     },
 
