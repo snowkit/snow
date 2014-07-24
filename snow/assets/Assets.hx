@@ -5,6 +5,11 @@ import snow.types.Types;
 import snow.utils.ByteArray;
 import snow.utils.Libs;
 import snow.assets.AssetSystem;
+import snow.assets.AssetImage;
+import snow.assets.AssetText;
+import snow.assets.AssetBytes;
+import snow.assets.AssetAudio;
+
 
 
 /** The asset system class gives you access to fetching and manipulating assets,
@@ -17,6 +22,9 @@ class Assets {
     public var assets_root : String = '';
         /** The manifest file to parse for the asset list. By default, this is set to `manifest` from the build tools but the `App` class can have a custom `get_asset_list` handler use this value. */
     public var manifest_path : String = 'manifest';
+
+//internal
+
         /** The asset system platform implementation */
     @:noCompletion public var system : AssetSystem;
 
@@ -37,15 +45,13 @@ class Assets {
 
     } //new
 
-        /** Add an asset list to the system */
+        /** Add an asset info list to the system */
     public function add( _list:Array<AssetInfo> ) {
 
         for(_asset in _list) {
 
                 //we transform the types by extension for common files.
                 //these are just hints anyway, snow won't enforce them.
-                //unknown file formats will remain "binary" or "template" etc.
-                //:todo: ideally this can be gleaned from the enums?
             var images = ["psd", "bmp", "tga", "gif", "jpg", "png"];
             var sounds = ["pcm", "ogg", "wav"];
 
@@ -63,179 +69,171 @@ class Assets {
 
     } //add
 
-        /** Get an asset from the system */
+        /** Get an asset info for a given id */
     public function get( _id:String ) : AssetInfo {
 
         return list.get(_id);
 
     } //get
 
-        /** Check if an asset exists in the system */
-    public function exists( _id:String ) : Bool {
+        /** Check if an asset info exists in the list for a given id. */
+    public function listed( _id:String ) : Bool {
 
         return list.exists(_id);
 
+    } //listed
+
+        /** Check if an asset exists for a given id.
+            On web targets, there is no file exists check so unless it is stored in the asset list
+            this function will return false specyifying why. */
+    public function exists( _id:String, ?_strict:Bool=true ) : Bool {
+
+        return system.exists(_id, _strict);
+
     } //exists
 
-        /** Get the asset path for an asset, adjusted by platform, root etc. */
+
+        /** Get the asset path for an asset, adjusted by platform, root etc.
+            If it fails to find the asset the id is returned as is with the asset root prefixed. */
     public function path( _id:String ) : String {
 
-        if( exists(_id) ) {
-            return assets_root + get(_id).path;
+        if( listed(_id) ) {
+            return get(_id).path;
         }
 
-        return "";
+        return assets_root + _id;
 
     } //path
 
-        /** Get an asset as a `ByteArray`, used for binary assets */
-    public function get_bytes( _id:String ) : AssetBytes {
+
+        /** Get an asset as a `AssetBytes`, data stored as `ByteArray` used for binary assets. */
+    public function bytes( _id:String, ?options:AssetBytesOptions ) : AssetBytes {
 
         if(exists(_id)) {
 
-            var asset = get(_id);
-            var bytes_data = ByteArray.readFile( _path(asset) );
+            var info : AssetInfo = get(_id);
 
-            return new AssetBytes( asset, bytes_data );
+            if(info == null) {
+                info = info_from_id(_id, 'bytes');
+            }
 
-        } else {
+            var asset = new AssetBytes( this, info, options != null ? options.async : null );
+                asset.load( options != null ? options.onload : null );
+
+            return asset;
+
+        } else { //exists
             exists_error(_id);
         }
 
         return null;
 
-    } //get_bytes
+    } //bytes
 
-        /** Get an asset as a `String`, used for text based assets */
-    public function get_text( _id:String ) : AssetText {
+        /** Get an asset as a `AssetText`, data stored as `String`, used for text based assets */
+    public function text( _id:String, ?options:AssetTextOptions ) : AssetText {
 
-        //get_bytes will complain if it's missing
-        var bytes = get_bytes( _id );
+        if(exists(_id)) {
 
-        if(bytes != null) {
+            var info : AssetInfo = get(_id);
 
-                //if the bytes are null it failed and isn't a valid asset, so we return null
-            if(bytes.data == null) {
-                load_error(_id, "byte data was null");
-                return null;
+            if(info == null) {
+                info = info_from_id(_id, 'text');
             }
 
-            return new AssetText( bytes.info, bytes.data.toString() );
+            var asset = new AssetText( this, info, options != null ? options.async : null );
+                asset.load( options != null ? options.onload : null );
+
+            return asset;
+
+        } else { //exists
+            exists_error(_id);
         }
 
         return null;
 
-    } //get_text
+    } //text
 
-        /** Get an asset as a `AssetImage`, used for image files */
-    public function get_image( _id:String, ?options:AssetImageOptions ) : AssetImage {
+        /** Get an asset as a `AssetImage`, data stored as `ImageInfo`, used for image files */
+    public function image( _id:String, ?options:AssetImageOptions ) : AssetImage {
 
         if(exists(_id)) {
 
             if(options == null) {
-                options = {
-                    components : 4,
-                    onloaded : null
-                };
-            } else {
-                if(options.components == null) {
-                    options.components = 4;
-                }
+                options = { components : 4 };
             }
 
-            var asset = get(_id);
+            var info : AssetInfo = get(_id);
 
-            system.image_load_info( _path(asset), options.components, function( ?_image_info:ImageInfo ) {
+            if(info == null) {
+                info = info_from_id(_id, 'image');
+            }
 
-                if(_image_info == null) {
-                    load_error(_id, "image info returned null");
-                    if(options.onloaded != null) {
-                        options.onloaded(null);
-                    }
-                }
+            var comp = (options.components == null) ? 4 : options.components;
 
-                    //with images the bytes data could be null too, this is also an invalid asset
-                if(_image_info.data == null) {
-                    load_error(_id, "image info data was null");
-                    if(options.onloaded != null) {
-                        options.onloaded(null);
-                    }
-                }
+            var asset = new AssetImage( this, info, comp );
+                asset.load( options != null ? options.onload : null );
 
-                if(options.onloaded != null) {
-                    options.onloaded( new AssetImage( asset, _image_info ) );
-                }
+            return asset;
 
-            });
-
-        } else {
+        } else { //exists
             exists_error(_id);
         }
 
         return null;
 
-    } //get_image
+    } //image
 
         /** Get an asset as a `AssetAudio`, used for audio files */
-    public function get_audio( _id:String, ?options:AssetAudioOptions ) : AssetAudio {
+    public function audio( _id:String, ?options:AssetAudioOptions ) : AssetAudio {
 
         if(exists(_id)) {
 
-            var asset = get(_id);
-            var _audio_info : AudioInfo = null;
+            var info : AssetInfo = get(_id);
+
+            if(info == null) {
+                info = info_from_id(_id, 'audio');
+            }
 
                 //handle default options.
                 //type defaults to extension and
                 //load is true for loading the whole now,
                 //streaming sounds request false etc.
             if(options == null) {
-                options = { type:asset.ext, load:true }
+                options = { type:info.ext, load:true }
             } else {
                 if(options.type == null || options.type == "") {
-                    options.type = asset.ext;
-                }
-                if(options.load == null) {
-                    options.load = true;
+                    options.type = info.ext;
                 }
             }
+
+            var _type : AudioFormatType = AudioFormatType.unknown;
 
             switch(options.type) {
 
-                case 'wav' : {
-                    _audio_info = system.audio_load_wav( asset, options.load );
+                case 'wav':{
+                    _type = AudioFormatType.wav;
                 }
 
-                case 'ogg' : {
-                    _audio_info = system.audio_load_ogg( asset, options.load );
+                case 'ogg':{
+                    _type = AudioFormatType.ogg;
                 }
 
-                case 'pcm' : {
-                    _audio_info = system.audio_load_pcm( asset, options.load );
+                case 'pcm':{
+                    _type = AudioFormatType.pcm;
                 }
 
-                default : {
-                    load_error(_id, "unrecognised audio type (" + options.type + ")");
+                default: {
+                    load_error(_id, 'unrecognized audio format');
+                    return null;
                 }
 
-            } //switch options.type
+            } //options.type
 
-            if(_audio_info == null) {
-                load_error(_id, "audio info returned null");
-                return null;
-            }
+            var asset = new AssetAudio( this, info, _type, options.load );
+                asset.load( options != null ? options.onload : null );
 
-                //transform the format
-            if(Std.is(_audio_info.format, Int)) {
-                _audio_info.format = audio_format_from_int(cast _audio_info.format);
-            }
-
-                //with audio the bytes data could be null too, this is also an invalid asset
-            if(_audio_info.data == null) {
-                load_error(_id, "audio info data was null");
-                return null;
-            }
-
-            return new AssetAudio( asset, _audio_info );
+            return asset;
 
         } else {
             exists_error(_id);
@@ -243,56 +241,18 @@ class Assets {
 
         return null;
 
-    } //get_audio
-
-
-    //:todo: these are abstracted to allow for html5 building
-    //since these are currently talking to native only
-
-
-    @:noCompletion public function audio_seek_source( _info:AudioInfo, _to:Int ) : Bool {
-
-        switch(_info.format) {
-            case AudioFormatType.ogg:
-                return system.audio_seek_source_ogg(_info, _to);
-            case AudioFormatType.wav:
-                return system.audio_seek_source_wav(_info, _to);
-            case AudioFormatType.pcm:
-                return system.audio_seek_source_pcm(_info, _to);
-            default:
-                return false;
-        }
-
-        return false;
-
-    } //audio_seek_portion
-
-    @:noCompletion public function audio_load_portion( _info:AudioInfo, _start:Int, _len:Int ) : AudioDataBlob {
-
-        switch(_info.format) {
-            case AudioFormatType.ogg:
-                return system.audio_load_portion_ogg(_info, _start, _len);
-            case AudioFormatType.wav:
-                return system.audio_load_portion_wav(_info, _start, _len);
-            case AudioFormatType.pcm:
-                return system.audio_load_portion_pcm(_info, _start, _len);
-            default:
-                return null;
-        }
-
-        return null;
-
-    } //load_audio_portion_ogg
-
+    } //audio
 
 //Internal API
 
-        //a helper to get the full path without overhead,
-        //and to centralise this so that the root is always
-        //included in the requested path
-    @:noCompletion public function _path( _asset:AssetInfo ) : String {
-        return assets_root + _asset.path;
-    } //_path
+    function info_from_id(_id:String, _type:String) : AssetInfo {
+        return {
+            id : _id,
+            path : _id,
+            ext : haxe.io.Path.extension(_id),
+            type : _type
+        }
+    } //info_from_id
 
         //this is separate so we can defer the behavior later
     function exists_error( _id:String ) {
@@ -303,15 +263,5 @@ class Assets {
         trace('/ snow / asset / found "$_id" but it failed to load ($reason)' );
     } //load_error
 
-    function audio_format_from_int( _int:Int ) : AudioFormatType {
-
-        switch(_int) {
-            case 1: return AudioFormatType.ogg;
-            case 2: return AudioFormatType.wav;
-            case 3: return AudioFormatType.pcm;
-            default: return AudioFormatType.unknown;
-        }
-
-    } //audio_format_from_int
-
 } //Assets
+

@@ -12,6 +12,7 @@ import snow.input.Input;
 
 import snow.types.Types;
 import snow.assets.Assets;
+import snow.assets.AssetImage;
 import snow.App;
 
 import snow.audio.Sound;
@@ -71,6 +72,9 @@ class Main extends snow.AppFixedTimestep {
             windowconf.fullscreen = true;
         #end
 
+        windowconf.depth_buffer = true;
+        windowconf.stencil_buffer = true;
+
         return windowconf;
 
     } //get_window_config
@@ -128,8 +132,8 @@ class Main extends snow.AppFixedTimestep {
         ];
 
         for(f in files) {
-            app.assets.get_image( f, {
-                onloaded:function(image){
+            app.assets.image( f, {
+                onload:function(image:AssetImage){
                     if(image != null) {
                         trace('loaded $f with ${image.data.width}x${image.data.height}x${image.data.bpp} (source bpp:${image.data.bpp_source}) mem:${image.data.data.length}');
                         textures.push( createTexture( image ) );
@@ -161,7 +165,7 @@ class Main extends snow.AppFixedTimestep {
         trace("sound5 : " + sound5.name);
 
         // sound4.loop();
-        // sound5.loop();
+        sound5.loop();
 
     } //ready
 
@@ -242,7 +246,14 @@ class Main extends snow.AppFixedTimestep {
             app.shutdown();
         }
 
+        if( keycode == Key.KEY_c ) {
+            noclamp = !noclamp;
+            trace("no clamp: " + noclamp);
+        }
+
     } //onkeyup
+
+    var noclamp : Bool = true;
 
     override public function ontextinput( text:String, start:Int, length:Int, type:TextEventType, timestamp:Float, window_id:Int ) {
         // trace('text event; text:$text / start: $start / length: $length / type:$type / timestamp:${timestamp} / window: ${window_id}');
@@ -302,7 +313,7 @@ class Main extends snow.AppFixedTimestep {
 
 
     override function ongamepadaxis( gamepad:Int, axis:Int, value:Float, timestamp:Float ) {
-        if(Math.abs(value) > 0.5) {
+        if(Math.abs(value) > 0.2 || noclamp) {
             trace('axis; device: ${gamepad}, axis: ${axis}, value: ${value} timestamp: ${timestamp}');
         }
     } //ongamepadaxis

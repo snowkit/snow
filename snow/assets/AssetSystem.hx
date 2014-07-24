@@ -17,27 +17,25 @@ import snow.utils.AbstractClass;
 
     public var manager : Assets;
 
-        /** Image info loader */
-    public function image_load_info( _path:String, ?_components:Int = 4, ?_onloaded:?ImageInfo->Void ) : ImageInfo;
+//common
+        /** Return true if the asset exists or false if not.
+            If strict is enabled, it will only check the asset list, not on disk.
+            On web targets, this will return false for unlisted files */
+    public function exists( _id:String, ?_strict:Bool=true ) : Bool;
 
-        /** OGG specific info loader */
-    public function audio_load_ogg( asset:AssetInfo, ?load:Bool=true ) : AudioInfo;
-        /** OGG specific portion loader */
-    public function audio_load_portion_ogg( _info:AudioInfo, _start:Int, _len:Int ) : AudioDataBlob;
-        /** OGG specific seek handler */
-    public function audio_seek_source_ogg( _info:AudioInfo, _to:Int ) : Bool;
-        /** WAV specific info loader */
-    public function audio_load_wav( asset:AssetInfo, ?load:Bool=true ) : AudioInfo;
-        /** WAV specific portion loader */
-    public function audio_load_portion_wav( _info:AudioInfo, _start:Int, _len:Int ) : AudioDataBlob;
-        /** WAV specific seek handler */
-    public function audio_seek_source_wav( _info:AudioInfo, _to:Int ) : Bool;
-        /** PCM specific info loader */
-    public function audio_load_pcm( asset:AssetInfo, ?load:Bool=true ) : AudioInfo;
-        /** PCM specific portion loader */
-    public function audio_load_portion_pcm( _info:AudioInfo, _start:Int, _len:Int ) : AudioDataBlob;
-        /** PCM specific seek handler */
-    public function audio_seek_source_pcm( _info:AudioInfo, _to:Int ) : Bool;
+//image
+
+        /** Image info loader */
+    public function image_load_info( _path:String, ?_components:Int = 4, ?_onload:?ImageInfo->Void ) : ImageInfo;
+
+//audio
+
+        /** Audio info loader */
+    public function audio_load_info( _path:String, ?_format:AudioFormatType, ?_load:Bool = true, ?_onload:?AudioInfo->Void ) : AudioInfo;
+        /** Audio seek the specified audio info to the given position in bytes */
+    public function audio_seek_source( _info:AudioInfo, _to:Int ) : Bool;
+        /** Audio portion loading (used for streaming or splitting source files into multiple blobs). sizes are in bytes */
+    public function audio_load_portion( _info:AudioInfo, _start:Int, _len:Int ) : AudioDataBlob;
 
 
 } //AssetSystemBinding
