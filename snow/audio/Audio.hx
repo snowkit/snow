@@ -52,7 +52,7 @@ class Audio {
         var info : AudioInfo = null;
 
         if(asset != null) {
-            info = asset.data;
+            info = asset.audio;
         }
 
             //We always return a valid sound object, so code will be reliable

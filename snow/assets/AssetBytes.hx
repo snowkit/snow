@@ -7,11 +7,11 @@ import snow.utils.Libs;
 import snow.assets.AssetSystem;
 
 
-/**  An asset that contains byte `data` as a `ByteArray`. Get assets from the `Assets` class, via `app.assets` */
+/**  An asset that contains byte `bytes` as a `ByteArray`. Get assets from the `Assets` class, via `app.assets` */
 class AssetBytes extends Asset {
 
         /** The `ByteArray` this asset contains */
-    public var data : ByteArray;
+    public var bytes : ByteArray;
         /** Whether or not this bytes data will load syncronously */
     public var async : Bool = false;
 
@@ -28,11 +28,11 @@ class AssetBytes extends Asset {
 
         loaded = false;
             //clear any old data in case
-        data = null;
+        bytes = null;
             //load the new data
         ByteArray.readFile( info.path, async, function( result:ByteArray ) {
 
-            data = result;
+            bytes = result;
 
             loaded = true;
 
