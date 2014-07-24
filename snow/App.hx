@@ -11,7 +11,7 @@ import snow.types.Types;
 
 //Access to the snow API
 
-        /** use this to access the api features. *i.e* `app.assets.get_text(_id)` */
+        /** use this to access the api features. *i.e* `app.assets.text(_id)` */
     public var app : Snow;
 
 //Configurable values
@@ -116,14 +116,17 @@ import snow.types.Types;
 
             //we want to load the runtime config from a json file by default
             //:todo: this config name will be settable from project config
-        var config_data = app.assets.get_text('config.json');
+        var config_data = app.assets.text('config.json');
+
+        trace('derp');
 
             //only care if there is a config
-        if(config_data != null) {
+        if(config_data != null && config_data.text != null) {
             return haxe.Json.parse( config_data.text );
         }
 
         return {};
+
     } //get_default_runtime_config
 
         /** handles the default method of parsing the file manifest list as json, stored in an array and returned.
@@ -131,7 +134,7 @@ import snow.types.Types;
     public static function get_default_asset_list( app:Snow ) : Array<AssetInfo> {
 
         var asset_list : Array<AssetInfo> = [];
-        var manifest_data = ByteArray.readFile( app.assets.assets_root + app.assets.manifest_path );
+        var manifest_data = ByteArray.readFile( app.assets.assets_root + app.assets.manifest_path, false );
 
         if(manifest_data != null && manifest_data.length != 0) {
 
@@ -143,7 +146,7 @@ import snow.types.Types;
 
                     asset_list.push({
                         id : asset.id,
-                        path : asset.path,
+                        path : haxe.io.Path.join([app.assets.assets_root, asset.path]),
                         type : Std.string(asset.type).toLowerCase(),
                         ext : haxe.io.Path.extension(asset.path)
                     });
@@ -158,7 +161,7 @@ import snow.types.Types;
 
                     asset_list.push({
                         id : asset,
-                        path : asset,
+                        path : haxe.io.Path.join([app.assets.assets_root, asset]),
                         type : haxe.io.Path.extension(asset),
                         ext : haxe.io.Path.extension(asset)
                     });

@@ -12,6 +12,7 @@ import snow.input.Input;
 
 import snow.types.Types;
 import snow.assets.Assets;
+import snow.assets.AssetImage;
 import snow.App;
 
 import snow.audio.Sound;
@@ -119,8 +120,8 @@ class Main extends snow.AppFixedTimestep {
         ];
 
         for(f in files) {
-            app.assets.get_image( f, {
-                onloaded:function(image){
+            app.assets.image( f, {
+                onload:function(image:AssetImage){
                     if(image != null) {
                         trace('loaded $f with ${image.data.width}x${image.data.height}x${image.data.bpp} (source bpp:${image.data.bpp_source}) mem:${image.data.data.length}');
                         textures.push( createTexture( image ) );

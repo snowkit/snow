@@ -12,6 +12,14 @@ import snow.types.Types;
             manager = _manager;
         }
 
+    override public function exists( _id:String, ?_strict:Bool=true ) : Bool {
+
+        var listed = manager.listed(_id);
+
+        return listed;
+
+    } //exists
+
     //images
 
         function nearest_power_of_two(_value:Int) {
@@ -30,7 +38,7 @@ import snow.types.Types;
 
         } //nearest_power_of_two
 
-        override public function image_load_info( _path:String, ?_components:Int = 4, ?_onloaded:?ImageInfo->Void ) : ImageInfo {
+        override public function image_load_info( _path:String, ?_components:Int = 4, ?_onload:?ImageInfo->Void ) : ImageInfo {
 
                 //Create an image element to load the image source
             var image : js.html.ImageElement = js.Browser.document.createImageElement();
@@ -82,8 +90,8 @@ import snow.types.Types;
                 tmp_canvas = null; tmp_context = null; image_bytes = null;
 
                     //append the listener
-                if(_onloaded != null) {
-                    _onloaded( info );
+                if(_onload != null) {
+                    _onload( info );
                 }
 
             } //image.onload
@@ -95,45 +103,83 @@ import snow.types.Types;
 
         } //image_load_info
 
+    override public function audio_load_info( _path:String, ?_format:AudioFormatType, ?_load:Bool = true, ?_onload:?AudioInfo->Void ) : AudioInfo {
+        return null;
+    }
+
+    override public function audio_seek_source( _info:AudioInfo, _to:Int ) : Bool {
+
+        switch(_info.format) {
+            case AudioFormatType.ogg:
+                return audio_seek_source_ogg(_info, _to);
+            case AudioFormatType.wav:
+                return audio_seek_source_wav(_info, _to);
+            case AudioFormatType.pcm:
+                return audio_seek_source_pcm(_info, _to);
+            default:
+                return false;
+        }
+
+        return false;
+
+    } //audio_seek_source
+
+    override public function audio_load_portion( _info:AudioInfo, _start:Int, _len:Int ) : AudioDataBlob {
+
+        switch(_info.format) {
+            case AudioFormatType.ogg:
+                return audio_load_portion_ogg(_info, _start, _len);
+            case AudioFormatType.wav:
+                return audio_load_portion_wav(_info, _start, _len);
+            case AudioFormatType.pcm:
+                return audio_load_portion_pcm(_info, _start, _len);
+            default:
+                return null;
+        }
+
+        return null;
+
+    } //audio_load_portion
+
     //ogg
 
-        override public function audio_load_ogg( asset:AssetInfo, ?load:Bool=true ) : AudioInfo {
+        function audio_load_ogg( asset:AssetInfo, ?load:Bool=true ) : AudioInfo {
             return null;
         } //audio_load_ogg
 
-        override public function audio_load_portion_ogg( _info:AudioInfo, _start:Int, _len:Int ) : AudioDataBlob {
+        function audio_load_portion_ogg( _info:AudioInfo, _start:Int, _len:Int ) : AudioDataBlob {
             return null;
         } //load_audio_portion_ogg
 
-        override public function audio_seek_source_ogg( _info:AudioInfo, _to:Int ) : Bool {
+        function audio_seek_source_ogg( _info:AudioInfo, _to:Int ) : Bool {
             return false;
         } //audio_seek_source_ogg
 
     //wav
 
-        override public function audio_load_wav( asset:AssetInfo, ?load:Bool=true ) : AudioInfo {
+        function audio_load_wav( asset:AssetInfo, ?load:Bool=true ) : AudioInfo {
             return null;
         } //audio_load_wav
 
-        override public function audio_load_portion_wav( _info:AudioInfo, _start:Int, _len:Int ) : AudioDataBlob {
+        function audio_load_portion_wav( _info:AudioInfo, _start:Int, _len:Int ) : AudioDataBlob {
             return null;
         } //load_audio_portion_wav
 
-        override public function audio_seek_source_wav( _info:AudioInfo, _to:Int ) : Bool {
+        function audio_seek_source_wav( _info:AudioInfo, _to:Int ) : Bool {
             return false;
         } //audio_seek_source_ogg
 
     //pcm
 
-        override public function audio_load_pcm( asset:AssetInfo, ?load:Bool=true ) : AudioInfo {
+        function audio_load_pcm( asset:AssetInfo, ?load:Bool=true ) : AudioInfo {
             return null;
         } //audio_load_pcm
 
-        override public function audio_load_portion_pcm( _info:AudioInfo, _start:Int, _len:Int ) : AudioDataBlob {
+        function audio_load_portion_pcm( _info:AudioInfo, _start:Int, _len:Int ) : AudioDataBlob {
             return null;
         } //load_audio_portion_pcm
 
-        override public function audio_seek_source_pcm( _info:AudioInfo, _to:Int ) : Bool {
+        function audio_seek_source_pcm( _info:AudioInfo, _to:Int ) : Bool {
             return false;
         } //audio_seek_source_pcm
 

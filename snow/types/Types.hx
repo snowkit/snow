@@ -4,6 +4,10 @@ import snow.Snow;
 import snow.utils.ByteArray;
 import snow.utils.UInt8Array;
 
+import snow.assets.AssetImage;
+import snow.assets.AssetText;
+import snow.assets.AssetBytes;
+import snow.assets.AssetAudio;
 
 /**
 Information for a single asset
@@ -19,83 +23,44 @@ typedef AssetInfo = {
         /** a convenience type indicator */
     var type : String;
 
-}
+} //AssetInfo
 
-/**  An asset base class. Get assets from the `Assets` class, via `app.assets` */
-class Asset {
-        /** The id of this asset like `assets/image.png` */
-    public var id : String;
-        /** The `AssetInfo` of this asset */
-    public var info : AssetInfo;
+    /** A type to identify assets when stored as an Asset */
+enum AssetType {
 
-    public function new( _info:AssetInfo ) {
-        info = _info;
-        id = info.id;
-    } //new
+    bytes;
+    text;
+    image;
+    audio;
 
-} //Asset
+} //AssetType
 
 
-/**  An asset that contains byte `data` as a `ByteArray`. Get assets from the `Assets` class, via `app.assets` */
-class AssetBytes extends Asset {
+/**  The options for an `AssetBytes` asset. Get assets from the `Assets` class, via `app.assets` */
+typedef AssetBytesOptions = {
+    ? async : Bool,
+    ? onload : AssetBytes -> Void
+} //AssetBytesOptions
 
-        /** The `ByteArray` this asset contains */
-    public var data : ByteArray;
-    public function new( _info:AssetInfo, _data:ByteArray ) {
-        super( _info );
-        data = _data;
-    }
-
-} //AssetBytes
-
-/**  An asset that contains `text` as a `String`. Get assets from the `Assets` class, via `app.assets` */
-class AssetText extends Asset {
-
-        /** The `String` this asset contains */
-    public var text : String;
-    public function new( _info:AssetInfo, _data:String ) {
-        super( _info );
-        text = _data;
-    }
-
-} //AssetText
+/**  The options for an `AssetText` asset. Get assets from the `Assets` class, via `app.assets` */
+typedef AssetTextOptions = {
+    ? async : Bool,
+    ? onload : AssetText -> Void
+} //AssetTextOptions
 
 /**  The options for an `AssetImage` asset. Get assets from the `Assets` class, via `app.assets` */
 typedef AssetImageOptions = {
     ? components : Int,
-    ? onloaded : AssetImage -> Void
+    ? onload : AssetImage -> Void
 } //AssetImageOptions
-
-/**  An asset that contains image file `data` as an `ImageInfo`. Get assets from the `Assets` class, via `app.assets` */
-class AssetImage extends Asset {
-
-        /** The `ImageInfo` this asset contains */
-    public var data : ImageInfo;
-
-    public function new( _info:AssetInfo, _data:ImageInfo ) {
-        super( _info );
-        data = _data;
-    }
-
-} //AssetImage
 
 /**  The options for an `AssetAudio` asset */
 typedef AssetAudioOptions = {
     ? type : String,
-    ? load : Bool
+    ? load : Bool,
+    ? onload : AssetAudio -> Void
 } //AssetAudioOptions
 
-/**  An asset that contains audio file `data` as an `AudioInfo`. Get assets from the `Assets` class, via `app.assets` */
-class AssetAudio extends Asset {
-
-        /** The `AudioInfo` this asset contains */
-    public var data : AudioInfo;
-    public function new( _info:AssetInfo, _data:AudioInfo ) {
-        super( _info );
-        data = _data;
-    }
-
-} //AssetAudio
 
 
 /**

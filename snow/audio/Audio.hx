@@ -6,6 +6,7 @@ import snow.audio.Sound;
 import snow.audio.AudioSystem;
 
 import snow.assets.Assets;
+import snow.assets.AssetAudio;
 import snow.utils.ByteArray;
 
 class Audio {
@@ -47,7 +48,7 @@ class Audio {
         } //_name
 
             //try loading the sound asset, only reading the entire file if its not streaming
-        var asset : AssetAudio = lib.assets.get_audio( _id, { load:!streaming } );
+        var asset : AssetAudio = lib.assets.audio( _id, { load:!streaming } );
         var info : AudioInfo = null;
 
         if(asset != null) {
