@@ -728,6 +728,33 @@ extern double timestamp();
     } DEFINE_PRIM(snow_assets_image_load_info, 2);
 
 
+    value snow_assets_image_info_from_bytes( value _id, value _bytes, value _req_bpp ) {
+
+        QuickVec<unsigned char> buffer;
+
+        int w = 0, h = 0, bpp = 0, bpp_source = 0;
+        int req_bpp = val_int(_req_bpp);
+
+        bool success = snow::assets::image::info_from_bytes( buffer, ByteArray(_bytes), val_string(_id), &w, &h, &bpp, &bpp_source, req_bpp );
+
+        if(!success) {
+            return alloc_null();
+        }
+
+        value _object = alloc_empty_object();
+
+            alloc_field( _object, id_id, _id );
+            alloc_field( _object, id_width, alloc_int(w) );
+            alloc_field( _object, id_height, alloc_int(h) );
+            alloc_field( _object, id_bpp, alloc_int(bpp) );
+            alloc_field( _object, id_bpp_source, alloc_int(bpp_source) );
+            alloc_field( _object, id_data, ByteArray(buffer).mValue );
+
+        return _object;
+
+    } DEFINE_PRIM(snow_assets_image_info_from_bytes, 3);
+
+
 
 
 //io bindings

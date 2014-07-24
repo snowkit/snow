@@ -4,6 +4,7 @@ import snow.Snow;
 import snow.assets.Assets;
 import snow.types.Types;
 
+import snow.utils.ByteArray;
 import snow.utils.AbstractClass;
 
 
@@ -25,8 +26,10 @@ import snow.utils.AbstractClass;
 
 //image
 
-        /** Image info loader */
+        /** Image info load from file path */
     public function image_load_info( _path:String, ?_components:Int = 4, ?_onload:?ImageInfo->Void ) : ImageInfo;
+        /** Image info load from `ByteArray` */
+    public function image_info_from_bytes( _path:String, _bytes:ByteArray, ?_components:Int = 4 ) : ImageInfo;
 
 //audio
 

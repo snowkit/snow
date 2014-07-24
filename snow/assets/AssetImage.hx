@@ -45,4 +45,20 @@ class AssetImage extends Asset {
 
     } //load
 
+    public function load_from_bytes( bytes:ByteArray, ?onload:AssetImage->Void ) {
+
+        loaded = false;
+            //clear any old data in case
+        image = null;
+            //load the new data
+        image = assets.system.image_info_from_bytes( info.path, bytes, components );
+            //set flag since there is no load time for this
+        loaded = true;
+
+        if(onload != null) {
+            onload( this );
+        }
+
+    } //load
+
 } //AssetImage

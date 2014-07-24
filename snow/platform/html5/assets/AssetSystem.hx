@@ -103,6 +103,10 @@ import snow.types.Types;
 
         } //image_load_info
 
+    override public function image_info_from_bytes( _path:String, _bytes:ByteArray, ?_components:Int = 4 ) : ImageInfo {
+        return null;
+    }
+
     override public function audio_load_info( _path:String, ?_format:AudioFormatType, ?_load:Bool = true, ?_onload:?AudioInfo->Void ) : AudioInfo {
         return null;
     }
