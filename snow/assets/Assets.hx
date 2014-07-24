@@ -157,7 +157,9 @@ class Assets {
         /** Get an asset as a `AssetImage`, data stored as `ImageInfo`, used for image files */
     public function image( _id:String, ?options:AssetImageOptions ) : AssetImage {
 
-        if(exists(_id)) {
+        var from_bytes = options != null && options.bytes != null;
+
+        if(exists(_id) || from_bytes) {
 
             if(options == null) {
                 options = { components : 4 };
@@ -172,7 +174,12 @@ class Assets {
             var comp = (options.components == null) ? 4 : options.components;
 
             var asset = new AssetImage( this, info, comp );
-                asset.load( options != null ? options.onload : null );
+
+            if(!from_bytes) {
+                asset.load( options.onload );
+            } else {
+                asset.load_from_bytes( options.bytes, options.onload );
+            }
 
             return asset;
 

@@ -69,7 +69,7 @@ namespace snow {
                 //req_bpp == use this instead of the source
             bool load_info( QuickVec<unsigned char> &out_buffer, const char* _id, int* w, int* h, int* bpp, int* bpp_source, int req_bpp = 4 ) {
 
-                    //get a io file pointer to the image
+                //get a io file pointer to the image
                 snow::io::iosrc* src = snow::io::iosrc_fromfile(_id, "rb");
 
                 if(!src) {
@@ -86,6 +86,7 @@ namespace snow {
 
                 unsigned char *data = stbi_load_from_callbacks(&stbi_snow_callbacks, src, w, h, bpp_source, req_bpp);
 
+                    //we are done with the src
                 snow::io::close(src);
 
                 // snow::log("snow / image / w:%d h:%d source bpp:%d bpp:%d\n", *w, *h, *bpp_source, req_bpp);
@@ -115,6 +116,59 @@ namespace snow {
                 return true;
 
             } //load_info
+
+                //bpp == the resulting bits per pixel
+                //bpp == the source image bits per pixel
+                //req_bpp == use this instead of the source
+            bool info_from_bytes( QuickVec<unsigned char> &out_buffer, snow::ByteArray bytes, const char* _id, int *w, int *h, int* bpp, int* bpp_source, int req_bpp = 4) {
+
+                //get a io file pointer to the image
+                snow::io::iosrc* src = snow::io::iosrc_frommem( bytes.Bytes(), bytes.Size() );
+
+                if(!src) {
+                    snow::log("/ snow / cannot open bytes from %s", _id);
+                    return false;
+                }
+
+                    //always use callbacks because we use snow abstracted IO
+                stbi_io_callbacks stbi_snow_callbacks = {
+                   snow_stbi_read,
+                   snow_stbi_skip,
+                   snow_stbi_eof
+                };
+
+                unsigned char *data = stbi_load_from_callbacks(&stbi_snow_callbacks, src, w, h, bpp_source, req_bpp);
+
+                    //we are done with the src
+                snow::io::close(src);
+
+                // snow::log("snow / image / w:%d h:%d source bpp:%d bpp:%d\n", *w, *h, *bpp_source, req_bpp);
+
+                if(data != NULL) {
+
+                    int _w = *w;
+                    int _h = *h;
+                    int _bpp = *bpp_source;
+
+                        //if a requested bpp was given, override it
+                    if(req_bpp != 0) {
+                        _bpp = req_bpp;
+                    }
+
+                        //actual used bpp
+                    *bpp = _bpp;
+                        //work out the total length of the buffer
+                    unsigned int length = _w * _h * _bpp;
+                        //store it
+                    out_buffer.Set(data, length);
+                        //clean up used memory
+                    stbi_image_free(data);
+
+                } //data != NULL
+
+                return true;
+
+            } //info_from_bytes
 
         } //assets::image namespace
     } //assets namespace

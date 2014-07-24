@@ -4,6 +4,7 @@ import snow.assets.Assets;
 import snow.assets.AssetSystem;
 import snow.types.Types;
 import snow.utils.Libs;
+import snow.utils.ByteArray;
 
 @:noCompletion class AssetSystem extends AssetSystemBinding {
 
@@ -56,6 +57,27 @@ import snow.utils.Libs;
         return info;
 
     } //image_load_info
+
+    override public function image_info_from_bytes( _path:String, _bytes:ByteArray, ?_components:Int = 4 ) : ImageInfo {
+
+        var _native_info = snow_assets_image_info_from_bytes( _path, _bytes, _components );
+
+        var info : ImageInfo = {
+            id : _native_info.id,
+            bpp : _native_info.bpp,
+            width : _native_info.width,
+            height : _native_info.height,
+            width_actual : _native_info.width,
+            height_actual : _native_info.height,
+            bpp_source : _native_info.bpp_source,
+            data : new snow.utils.UInt8Array( _native_info.data )
+        };
+
+        _native_info = null;
+
+        return info;
+
+    } //image_info_from_bytes
 
 //audio
 
@@ -200,7 +222,8 @@ import snow.utils.Libs;
 //Native bindings
 
 
-    static var snow_assets_image_load_info       = Libs.load( "snow", "snow_assets_image_load_info", 2 );
+    static var snow_assets_image_load_info         = Libs.load( "snow", "snow_assets_image_load_info", 2 );
+    static var snow_assets_image_info_from_bytes   = Libs.load( "snow", "snow_assets_image_info_from_bytes", 3 );
 
     static var snow_assets_audio_load_info_ogg   = Libs.load( "snow", "snow_assets_audio_load_info_ogg", 2 );
     static var snow_assets_audio_read_bytes_ogg  = Libs.load( "snow", "snow_assets_audio_read_bytes_ogg", 3 );

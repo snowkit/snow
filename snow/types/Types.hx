@@ -51,7 +51,8 @@ typedef AssetTextOptions = {
 /**  The options for an `AssetImage` asset. Get assets from the `Assets` class, via `app.assets` */
 typedef AssetImageOptions = {
     ? components : Int,
-    ? onload : AssetImage -> Void
+    ? onload : AssetImage -> Void,
+    ? bytes : ByteArray
 } //AssetImageOptions
 
 /**  The options for an `AssetAudio` asset */

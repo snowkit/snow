@@ -118,8 +118,6 @@ import snow.types.Types;
             //:todo: this config name will be settable from project config
         var config_data = app.assets.text('config.json');
 
-        trace('derp');
-
             //only care if there is a config
         if(config_data != null && config_data.text != null) {
             return haxe.Json.parse( config_data.text );
