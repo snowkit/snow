@@ -133,10 +133,10 @@ class Main extends snow.AppFixedTimestep {
 
         for(f in files) {
             app.assets.image( f, {
-                onload:function(image:AssetImage){
-                    if(image != null) {
-                        trace('loaded $f with ${image.data.width}x${image.data.height}x${image.data.bpp} (source bpp:${image.data.bpp_source}) mem:${image.data.data.length}');
-                        textures.push( createTexture( image ) );
+                onload:function(asset:AssetImage){
+                    if(asset != null) {
+                        trace('loaded $f with ${asset.image.width}x${asset.image.height}x${asset.image.bpp} (source bpp:${asset.image.bpp_source}) mem:${asset.image.data.length}');
+                        textures.push( createTexture( asset ) );
                         if(current_texture == null) {
                             current_texture = textures[0];
                         }
@@ -398,12 +398,12 @@ class Main extends snow.AppFixedTimestep {
 
     } //onrender hook
 
-    function createTexture( image:AssetImage ):GLTexture {
+    function createTexture( asset:AssetImage ):GLTexture {
 
         var texture = GL.createTexture();
 
             GL.bindTexture (GL.TEXTURE_2D, texture);
-            GL.texImage2D (GL.TEXTURE_2D, 0, GL.RGBA, image.data.width, image.data.height, 0, GL.RGBA, GL.UNSIGNED_BYTE, image.data.data );
+            GL.texImage2D (GL.TEXTURE_2D, 0, GL.RGBA, asset.image.width, asset.image.height, 0, GL.RGBA, GL.UNSIGNED_BYTE, asset.image.data );
             GL.texParameteri (GL.TEXTURE_2D, GL.TEXTURE_MAG_FILTER, GL.NEAREST);
             GL.texParameteri (GL.TEXTURE_2D, GL.TEXTURE_MIN_FILTER, GL.NEAREST);
             GL.bindTexture (GL.TEXTURE_2D, null);

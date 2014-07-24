@@ -8,11 +8,11 @@ import snow.assets.Asset;
 import snow.assets.AssetSystem;
 
 
-/**  An asset that contains image file `data` as an `ImageInfo`. Get assets from the `Assets` class, via `app.assets` */
+/**  An asset that contains image file `image` as an `ImageInfo`. Get assets from the `Assets` class, via `app.assets` */
 class AssetImage extends Asset {
 
         /** The `ImageInfo` this asset contains */
-    public var data : ImageInfo;
+    public var image : ImageInfo;
         /** The requested components when loading this image */
     public var components : Int = 4;
 
@@ -29,11 +29,11 @@ class AssetImage extends Asset {
 
         loaded = false;
             //clear any old data in case
-        data = null;
+        image = null;
             //load the new data
         assets.system.image_load_info( info.path, components, function( ?_image:ImageInfo ) {
 
-            data = _image;
+            image = _image;
 
             loaded = true;
 
