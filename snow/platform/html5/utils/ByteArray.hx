@@ -157,18 +157,18 @@ package snow.platform.html5.utils;
 
         }
 
-            //:todo: should this be configured for async reads?
-        static public function readFile(_path:String):ByteArray {
+        static public function readFile(_path:String, ?async:Bool=false, ?onload:ByteArray->Void ) : ByteArray {
 
             var request = new js.html.XMLHttpRequest();
 
-                request.open("GET", _path, false);
+                request.open("GET", _path, async);
                 request.overrideMimeType('text/plain; charset=x-user-defined');
-                request.send(null);
 
-            var bytearray : ByteArray = new ByteArray();
-            var buffer : String = request.response;
-            var len : Int = buffer.length;
+            var finalize = function() {
+
+                var bytearray : ByteArray = new ByteArray();
+                var buffer : String = request.response;
+                var len : Int = buffer.length;
 
                 for( i in 0 ... len ) {
                     bytearray.writeByte(buffer.charCodeAt(i));
@@ -176,7 +176,26 @@ package snow.platform.html5.utils;
 
                 bytearray.position = 0;
 
-            return bytearray;
+                return bytearray;
+
+            } //finalize
+
+            request.onload = function(data) {
+
+                if(onload != null) {
+                    onload( finalize() );
+                }
+
+            } //onload
+
+            request.send();
+
+                //when doing sync we need to return the result
+            if(!async) {
+                return finalize();
+            }
+
+            return null;
 
         } //readFile
 

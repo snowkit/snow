@@ -617,9 +617,15 @@ class ByteArray extends Bytes implements ArrayAccess<Int> implements IDataInput 
 
     #if !snow_no_bytearray_io
 
-        static public function readFile(inString:String) : ByteArray {
+        static public function readFile( inString:String, ?async:Bool=false, ?onload:ByteArray->Void ) : ByteArray {
 
-            return snow_byte_array_read_file(inString);
+            var array = snow_byte_array_read_file(inString);
+
+            if(onload != null) {
+                onload(array);
+            }
+
+            return array;
 
         } //readFile
 
