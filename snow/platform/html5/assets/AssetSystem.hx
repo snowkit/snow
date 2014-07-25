@@ -3,6 +3,7 @@ package snow.platform.html5.assets;
 import snow.assets.Assets;
 import snow.assets.AssetSystem;
 import snow.types.Types;
+import snow.utils.ByteArray;
 
 #if snow_html5
 
