@@ -55,7 +55,7 @@ class GLObject {
 
     function toString() : String {
 
-        return "GLObject($id)";
+        return 'GLObject($id)';
 
     } //toString
 
@@ -71,7 +71,7 @@ class GLObject {
 class GLBuffer extends GLObject {
 
     override function toString() : String {
-        return "GLBuffer(${id})";
+        return 'GLBuffer($id)';
     } //toString
 
 } //GLBuffer
@@ -80,7 +80,7 @@ class GLBuffer extends GLObject {
 class GLFramebuffer extends GLObject {
 
     override function toString() : String {
-        return "GLFramebuffer(${id})";
+        return 'GLFramebuffer($id)';
     } //toString
 
 } //GLFramebuffer
@@ -88,7 +88,7 @@ class GLFramebuffer extends GLObject {
 class GLRenderbuffer extends GLObject {
 
     override function toString() : String {
-        return "GLRenderbuffer(${id})";
+        return 'GLRenderbuffer($id)';
     }
 
 } //GLRenderbuffer
@@ -97,7 +97,7 @@ class GLRenderbuffer extends GLObject {
 class GLShader extends GLObject {
 
     override function toString() : String {
-        return "GLShader(${id})";
+        return 'GLShader($id)';
     }
 
 } //GLShader
@@ -106,7 +106,7 @@ class GLShader extends GLObject {
 class GLTexture extends GLObject {
 
     override function toString() : String {
-        return "GLTexture(${id})";
+        return 'GLTexture($id)';
     }
 
 } //GLTexture
@@ -125,7 +125,7 @@ class GLProgram extends GLObject {
 
     override function toString() : String {
 
-        return 'GLProgram(${id})';
+        return 'GLProgram($id)';
 
     } //toString
 
