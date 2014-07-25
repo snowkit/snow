@@ -5,8 +5,17 @@
 #include "snow_platform.h"
 
 #include <string>
+#include <vector>
 
 namespace snow {
+
+        //not supported
+    namespace io {
+        std::vector<std::string> watched_paths;
+        bool init_filewatch(){ return false; }
+        void shutdown_filewatch(){}
+        void refresh_filewatch(){}
+    }
 
     namespace core {
 

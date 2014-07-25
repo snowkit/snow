@@ -759,6 +759,21 @@ extern double timestamp();
 
 //io bindings
 
+    value snow_io_add_watch(value _path) {
+
+        snow::io::add_watch( std::string(val_string(_path)) );
+
+        return alloc_null();
+
+    } DEFINE_PRIM(snow_io_add_watch, 1);
+
+    value snow_io_remove_watch(value _path) {
+
+        bool removed = snow::io::remove_watch( std::string(val_string(_path)) );
+
+        return alloc_bool(removed);
+
+    } DEFINE_PRIM(snow_io_remove_watch, 1);
 
     value snow_iosrc_from_file(value _id, value _mode) {
 
@@ -969,6 +984,9 @@ extern double timestamp();
     int id_timestamp;
     int id_data1;
     int id_data2;
+
+    int id_path;
+    int id_filewatch;
 
     int id_refresh_rate;
 

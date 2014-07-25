@@ -6,6 +6,7 @@
 
 #include <map>
 #include <string>
+#include <vector>
 
 #include "snow_core.h"
 #include "snow_platform.h"
@@ -40,6 +41,14 @@ static JavaVM* java_vm;
 #endif //SNOW_USE_SDL
 
 namespace snow {
+
+        //not supported
+    namespace io {
+        std::vector<std::string> watched_paths;
+        bool init_filewatch(){ return false; }
+        void shutdown_filewatch(){}
+        void refresh_filewatch(){}
+    }
 
     std::map<std::string, jclass> jClassCache;
 

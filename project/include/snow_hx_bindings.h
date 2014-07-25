@@ -33,6 +33,11 @@ namespace snow {
     extern int id_data1;
     extern int id_data2;
 
+        //io related
+
+    extern int id_path;
+    extern int id_filewatch;
+
         //display related
 
     extern int id_refresh_rate;
@@ -119,6 +124,11 @@ namespace snow {
         id_timestamp            = val_id("timestamp");
         id_data1                = val_id("data1");
         id_data2                = val_id("data2");
+
+            //io related flags
+
+        id_path                 = val_id("path");
+        id_filewatch            = val_id("filewatch");
 
             //display related flags
 

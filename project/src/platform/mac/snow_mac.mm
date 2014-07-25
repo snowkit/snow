@@ -44,7 +44,7 @@ namespace snow {
         std::string dialog_save(const std::string &title) {
             return std::string("");
         }
-        
+
     }
 
 } //namespace snow
