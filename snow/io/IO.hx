@@ -1,7 +1,9 @@
 package snow.io;
 
+import haxe.io.Path;
 import snow.utils.ByteArray;
 import snow.utils.Libs;
+import sys.FileSystem;
 
 /** This class is a low level cross platform file access helper, that handles in bundle assets etc.
     If you want a file, use `Assets` instead, unless really required. */
@@ -66,17 +68,37 @@ class IO {
         return new IOFile(handle);
     }
 
+    static function isAbsolute ( path : String ) : Bool {
+        if (StringTools.startsWith(path, '/')) return true;
+        if (path.charAt(2) == ':') return true;
+        return false;
+    }
+
+        //convert a path to absolute (if needed) and normalize, remove slash, etc
+    static function resolve( _path:String ) {
+
+        if(!isAbsolute(_path)) {
+            _path = FileSystem.fullPath(_path);
+        }
+
+        _path = Path.normalize(_path);
+        _path = Path.removeTrailingSlashes(_path);
+
+        return _path;
+
+    } //resolve
+
         /** Add a folder to a watch list for notifications when the contents of the folder change */
     public static function watch_add( _path:String ) {
         if(_path != null && _path.length > 0) {
-            snow_io_add_watch( _path );
+            snow_io_add_watch( resolve(_path) );
         }
     } //watch_add
 
         /** Remove a folder from the watch list */
     public static function watch_remove( _path:String ) {
         if(_path != null && _path.length > 0) {
-            snow_io_remove_watch( _path );
+            snow_io_remove_watch( resolve(_path) );
         }
     } //watch_remove
 
