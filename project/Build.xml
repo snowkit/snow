@@ -101,6 +101,9 @@
       <!-- default to using SSL, but can be toggled -->
    <set name="NATIVE_TOOLKIT_CURL_SSL" value="1" if="SNOW_LIB_CURL"/>
 
+      <!-- Disable to remove gtk dependency, but save/load dialogs will not show -->
+   <!-- <set name="SNOW_NO_GTK" value="1" /> -->
+
 <!-- Files/Sources -->
 
       <!-- include linked third party libs -->
@@ -207,6 +210,20 @@
       </section>
 
       <section if="linux">
+
+            <compilerflag value="-DSNOW_NO_GTK" if="SNOW_NO_GTK"/>
+            <!-- These are from `pkg-config --cflags gtk+-3.0` but hxcpp doesn't support that, so they are manually inserted -->
+            <compilerflag value="-I/usr/include/gtk-3.0" unless="SNOW_NO_GTK"/>
+            <compilerflag value="-I/usr/include/pango-1.0" unless="SNOW_NO_GTK"/>
+            <compilerflag value="-I/usr/include/gio-unix-2.0/" unless="SNOW_NO_GTK"/>
+            <compilerflag value="-I/usr/include/atk-1.0" unless="SNOW_NO_GTK"/>
+            <compilerflag value="-I/usr/include/cairo" unless="SNOW_NO_GTK"/>
+            <compilerflag value="-I/usr/include/gdk-pixbuf-2.0" unless="SNOW_NO_GTK"/>
+            <compilerflag value="-I/usr/include/freetype2" unless="SNOW_NO_GTK"/>
+            <compilerflag value="-I/usr/include/glib-2.0" unless="SNOW_NO_GTK"/>
+            <compilerflag value="-I/usr/lib/x86_64-linux-gnu/glib-2.0/include" unless="SNOW_NO_GTK"/>
+            <compilerflag value="-I/usr/include/pixman-1" unless="SNOW_NO_GTK"/>
+            <compilerflag value="-I/usr/include/libpng12" unless="SNOW_NO_GTK"/>
          <file name="${SRC_DIR}/platform/linux/snow_linux.cpp"/>
       </section>
 
@@ -335,7 +352,21 @@
             <lib name="${HXCPP}/lib/${BINDIR}/liblinuxcompat.a" />
             <lib name="-lpthread" />
             <lib name="-lrt" />
-            <lib name="-lGL" />/
+            <lib name="-lGL" />
+
+                <!-- These are from `pkg-config --libs gtk+-3.0` -->
+            <lib name="-lgtk-3"  unless="SNOW_NO_GTK"/>
+            <lib name="-lgdk-3" unless="SNOW_NO_GTK"/>
+            <lib name="-latk-1.0" unless="SNOW_NO_GTK"/>
+            <lib name="-lgio-2.0" unless="SNOW_NO_GTK"/>
+            <lib name="-lpangocairo-1.0" unless="SNOW_NO_GTK"/>
+            <lib name="-lgdk_pixbuf-2.0" unless="SNOW_NO_GTK"/>
+            <lib name="-lcairo-gobject" unless="SNOW_NO_GTK"/>
+            <lib name="-lpango-1.0" unless="SNOW_NO_GTK"/>
+            <lib name="-lcairo" unless="SNOW_NO_GTK"/>
+            <lib name="-lgobject-2.0" unless="SNOW_NO_GTK"/>
+            <lib name="-lglib-2.0"  unless="SNOW_NO_GTK"/>
+
          </section> <!-- linux -->
 
          <section if="mac">
