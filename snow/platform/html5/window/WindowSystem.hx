@@ -216,7 +216,6 @@ import snow.window.WindowSystem;
 
         } //window_set_min_size
 
-            //:todo:
         override public function grab( _window:Window, grabbed:Bool ) {
 
             if(grabbed) {

@@ -134,10 +134,6 @@ import snow.input.Input;
             // var _pressure = _event.event.pressure;
             // var _device_id = _event.event.touch_id;
 
-            //:todo: touch coordinates from SDL come through as NDC [-1..1] range
-            //so here we convert them back to the window scale, should we?
-            //maybe there is value in NDC?
-
             if(_state == TouchState.down) {
 
                 manager.dispatch_touch_down_event(
