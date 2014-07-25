@@ -17,7 +17,7 @@ import haxe.Log;
 
             time = _time;
             running_timers.push( this );
-            fire_at = time;
+            fire_at = stamp() + time;
             running = true;
 
         } //new
