@@ -7,10 +7,7 @@
 
 
 #include <CoreServices/CoreServices.h>
-
-// remove  kFSEventStreamEventFlagItemRemoved
-// create  kFSEventStreamEventFlagItemCreated
-// modify  kFSEventStreamEventFlagItemModified
+#include <unistd.h>
 
 namespace snow {
 
@@ -43,6 +40,7 @@ namespace snow {
         void stop_filewatch() {
 
             if( watcher ) {
+                FSEventStreamUnscheduleFromRunLoop( watcher, CFRunLoopGetCurrent(), kCFRunLoopDefaultMode );
                 FSEventStreamStop( watcher );
                 FSEventStreamInvalidate( watcher );
                 FSEventStreamRelease( watcher );
@@ -112,6 +110,19 @@ namespace snow {
 
         } //shutdown_filewatch
 
+        static bool path_exists( const std::string &path ) {
+
+            int res = access(path.c_str(), R_OK);
+            if (res < 0) {
+                if (errno == ENOENT) {
+                    return false;
+                }
+            }
+
+            return true;
+
+        } //path_exists
+
         static void filewatch_callback(
             ConstFSEventStreamRef streamRef,
             void *clientCallBackInfo,
@@ -123,7 +134,8 @@ namespace snow {
 
             for(size_t i = 0; i < numEvents; ++i) {
 
-                const char * path = ((char **) eventPaths)[i];
+                const char * _path = ((char **) eventPaths)[i];
+                std::string path( _path );
 
                 FSEventStreamEventFlags flag = eventFlags[i];
 
@@ -132,21 +144,52 @@ namespace snow {
 
                     FileWatchEventType _event_type = fe_unknown;
 
-                    if( flag & kFSEventStreamEventFlagItemModified ) {
-                        // snow::log("/ snow /     filewatch modify on path %s", path);
+                    snow::log("/ snow / filewatch event on path %s id %#010x", path.c_str(), eventFlags[i]);
+
+                        //if it was modified but not renamed, we can fire a modify ok
+                    if(  (flag & kFSEventStreamEventFlagItemModified) &&
+                        !(flag & kFSEventStreamEventFlagItemRenamed) &&
+                        !(flag & kFSEventStreamEventFlagItemCreated)
+                      ) {
+
+                        // snow::log("/ snow /     filewatch modify on path %s", path.c_str());
                         _event_type = fe_modify;
-                    } else if( (flag & kFSEventStreamEventFlagItemRemoved) || (flag & kFSEventStreamEventFlagItemRenamed) ) {
-                        // snow::log("/ snow /     filewatch remove on path %s", path);
+
+                        //if it was removed entirely (using rm or similar, it seems) this is ok, flag it
+                    } else if( flag & kFSEventStreamEventFlagItemRemoved ) {
+
+                        // snow::log("/ snow /     filewatch remove on path %s", path.c_str());
                         _event_type = fe_remove;
+
                     } else if( flag & kFSEventStreamEventFlagItemCreated ) {
-                        // snow::log("/ snow /     filewatch create on path %s", path);
+
+                        // snow::log("/ snow /     filewatch create on path %s", path.c_str());
                         _event_type = fe_create;
+
                     } else {
-                        // snow::log("/ snow / filewatch not watching event on path %s id %#010x", path, eventFlags[i]);
-                    }
+
+                            //renamed is really muddy on FSEvents, it's triggered for moves, deletes, creates, all kinds.
+
+                        if(flag & kFSEventStreamEventFlagItemRenamed) {
+
+                            bool exists = path_exists(path);
+
+                                //if it was renamed, but the given path does not exist, this counts to remove
+                                //and the counter, if it was renamed but does exist, this constitutes a create
+                            if(!exists) {
+                                _event_type = fe_remove;
+                            } else {
+                                _event_type = fe_create;
+                            }
+
+                        } else { //renamed
+                            // snow::log("/ snow / filewatch not watching event on path %s id %#010x", path.c_str(), eventFlags[i]);
+                        }
+
+                    } //else
 
                     if(_event_type != fe_unknown) {
-                        FileWatchEvent event( _event_type, snow::timestamp(), std::string(path) );
+                        FileWatchEvent event( _event_type, snow::timestamp(), path );
                         snow::io::dispatch_event( event );
                     }
 

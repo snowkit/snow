@@ -54,7 +54,7 @@ Sometimes new features are added that need testing ahead of stable release, you 
 Dev packages :
 
 _todo_
-
+libgtk-3-dev
 
 ###latest bleeding edge binary builds
 
