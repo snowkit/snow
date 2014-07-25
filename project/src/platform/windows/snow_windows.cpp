@@ -27,6 +27,21 @@ namespace snow {
 
     } //core namespace
 
+    namespace platform {
+            //:todo:
+        std::string dialog_folder(const std::string &title) {
+            return std::string("");
+        }
+
+        std::string dialog_open(const std::string &title) {
+            return std::string("");
+        }
+
+        std::string dialog_save(const std::string &title) {
+            return std::string("");
+        }
+    }
+
 } //snow namespace
 
 
