@@ -2,6 +2,9 @@
 
 
 #include "snow_core.h"
+#include "snow_platform.h"
+
+#include <string>
 
 namespace snow {
 

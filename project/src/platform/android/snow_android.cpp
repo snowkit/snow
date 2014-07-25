@@ -8,6 +8,8 @@
 #include <string>
 
 #include "snow_core.h"
+#include "snow_platform.h"
+
 #include "common/ByteArray.h"
 #include "platform/android/snow_android.h"
 #include "snow_io.h"
