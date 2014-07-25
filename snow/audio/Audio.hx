@@ -133,6 +133,19 @@ class Audio {
         }
     } //play
 
+        /** Loop a sound instance by name, indefinitely. Use stop to end it */
+    public function loop(_name:String) {
+
+        if(!active) {
+            return;
+        }
+
+        var sound = get(_name);
+        if(sound != null) {
+            sound.loop();
+        }
+    } //loop
+
         /** Pause a sound instance by name */
     public function pause(_name:String) {
 
