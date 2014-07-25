@@ -12,11 +12,12 @@ namespace snow {
 
     namespace core {
 
-
         void init_platform() {
 
-            gtk_init(NULL, NULL);
-            
+            #ifndef SNOW_NO_GTK
+                gtk_init(NULL, NULL);
+            #endif //SNOW_NO_GTK
+
         } //init_core_platform
 
         void shutdown_platform() {
@@ -55,11 +56,11 @@ namespace snow {
                     GTK_RESPONSE_ACCEPT,
                     NULL
                 );
-                    
-                    //:todo: Make these an array of consistent strings 
+
+                    //:todo: Make these an array of consistent strings
                     // and add a filter for each one in a loop
                 if(action != GTK_FILE_CHOOSER_ACTION_SELECT_FOLDER) {
-                        
+
                         //create a filter
                     GtkFileFilter *all_files_filter = gtk_file_filter_new();
                     gtk_file_filter_add_pattern(all_files_filter, "*");
@@ -93,7 +94,7 @@ namespace snow {
                 return open_gtk_dialog(GTK_FILE_CHOOSER_ACTION_OPEN, title);
             #else
                 return std::string("");
-            #endif 
+            #endif
         } //dialog_open
 
         std::string dialog_save(const std::string &title) {
@@ -101,7 +102,7 @@ namespace snow {
                 return open_gtk_dialog(GTK_FILE_CHOOSER_ACTION_SAVE, title);
             #else
                 return std::string("");
-            #endif 
+            #endif
         } //dialog_save
 
         std::string dialog_folder(const std::string &title) {
@@ -109,7 +110,7 @@ namespace snow {
                 return open_gtk_dialog(GTK_FILE_CHOOSER_ACTION_SELECT_FOLDER, title);
             #else
                 return std::string("");
-            #endif 
+            #endif
         } //dialog_folder
 
     }

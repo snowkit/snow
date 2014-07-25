@@ -207,12 +207,16 @@
 
       <section if="mac">
          <file name="${SRC_DIR}/platform/mac/snow_mac.mm"/>
+         <file name="${SRC_DIR}/platform/mac/snow_mac_filewatch.mm"/>
       </section>
 
       <section if="linux">
 
             <compilerflag value="-DSNOW_NO_GTK" if="SNOW_NO_GTK"/>
-            <!-- These are from `pkg-config --cflags gtk+-3.0` but hxcpp doesn't support that, so they are manually inserted -->
+
+               <!-- For the file dialoags. These are from `pkg-config --cflags gtk+-3.0` but
+                  hxcpp doesn't support that, so they are manually inserted -->
+
             <compilerflag value="-I/usr/include/gtk-3.0" unless="SNOW_NO_GTK"/>
             <compilerflag value="-I/usr/include/pango-1.0" unless="SNOW_NO_GTK"/>
             <compilerflag value="-I/usr/include/gio-unix-2.0/" unless="SNOW_NO_GTK"/>
@@ -224,11 +228,15 @@
             <compilerflag value="-I/usr/lib/x86_64-linux-gnu/glib-2.0/include" unless="SNOW_NO_GTK"/>
             <compilerflag value="-I/usr/include/pixman-1" unless="SNOW_NO_GTK"/>
             <compilerflag value="-I/usr/include/libpng12" unless="SNOW_NO_GTK"/>
+
          <file name="${SRC_DIR}/platform/linux/snow_linux.cpp"/>
+         <file name="${SRC_DIR}/platform/linux/snow_linux_filewatch.cpp"/>
+
       </section>
 
       <section if="windows">
          <file name="${SRC_DIR}/platform/windows/snow_windows.cpp"/>
+         <file name="${SRC_DIR}/platform/windows/snow_windows_filewatch.cpp"/>
       </section>
 
       <section if="android">

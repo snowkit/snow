@@ -165,7 +165,9 @@ class Main extends snow.AppFixedTimestep {
         trace("sound5 : " + sound5.name);
 
         // sound4.loop();
-        sound5.loop();
+        // sound5.loop();
+
+        snow.io.IO.watch_add('assets/');
 
     } //ready
 

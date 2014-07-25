@@ -214,7 +214,8 @@ typedef SystemEvent = {
 
     ? type : SystemEventType,
     ? window : WindowEvent,
-    ? input : InputEvent
+    ? input : InputEvent,
+    ? filewatch : FileWatchEvent
 
 } //SystemEvent
 
@@ -235,6 +236,15 @@ typedef WindowEvent = {
     ? event : Dynamic
 
 } //WindowEvent
+
+/** A file watch event */
+typedef FileWatchEvent = {
+
+    ? type : FileWatchEventType,
+    ? timestamp : Float,
+    ? path : String
+
+} //FileWatchEvent
 
 /**
 A system input event
@@ -301,9 +311,24 @@ enum SystemEventType {
     app_willenterforeground;
 /** An event for when the app enters the foreground, called by the OS (mobile specific) */
     app_didenterforeground;
+/** An event for when the a file watch notification occurs */
+    filewatch;
 
 
 } //SystemEventType
+
+enum FileWatchEventType {
+
+/** An unknown watch event */
+    unknown;
+/** An event for when the a file is modified */
+    modify;
+/** An event for when the a file is removed */
+    remove;
+/** An event for when the a file is created */
+    create;
+
+} //FileWatchEventType
 
 //Window stuff
 
@@ -448,6 +473,7 @@ typedef ModState = {
     public static var se_app_didenterbackground     = 11;
     public static var se_app_willenterforeground    = 12;
     public static var se_app_didenterforeground     = 13;
+    public static var se_filewatch                  = 14;
 
 //Helpers
 
@@ -467,6 +493,7 @@ typedef ModState = {
             if(type == se_app_didenterbackground)       return SystemEventType.app_didenterbackground;
             if(type == se_app_willenterforeground)      return SystemEventType.app_willenterforeground;
             if(type == se_app_didenterforeground)       return SystemEventType.app_didenterforeground;
+            if(type == se_filewatch)                    return SystemEventType.filewatch;
 
         return SystemEventType.unknown;
 
@@ -550,3 +577,28 @@ typedef ModState = {
     } //typed
 
 } //InputEvents
+
+@:noCompletion class FileWatchEvents {
+
+//File watch events
+
+        public static var fe_unknown                    = 0;
+        public static var fe_modify                     = 1;
+        public static var fe_remove                     = 2;
+        public static var fe_create                     = 3;
+
+//Helpers
+
+        /** returns a typed `InputEventType` from an integer ID, for communication between internal native + haxe code */
+    public static function typed(type:Int) : FileWatchEventType {
+
+            if(type == fe_unknown)      return FileWatchEventType.unknown;
+            if(type == fe_modify)       return FileWatchEventType.modify;
+            if(type == fe_remove)       return FileWatchEventType.remove;
+            if(type == fe_create)       return FileWatchEventType.create;
+
+        return FileWatchEventType.unknown;
+
+    } //typed
+
+} //FileWatchEvents

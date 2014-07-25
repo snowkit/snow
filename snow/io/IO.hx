@@ -66,6 +66,23 @@ class IO {
         return new IOFile(handle);
     }
 
+        /** Add a folder to a watch list for notifications when the contents of the folder change */
+    public static function watch_add( _path:String ) {
+        if(_path != null && _path.length > 0) {
+            snow_io_add_watch( _path );
+        }
+    } //watch_add
+
+        /** Remove a folder from the watch list */
+    public static function watch_remove( _path:String ) {
+        if(_path != null && _path.length > 0) {
+            snow_io_remove_watch( _path );
+        }
+    } //watch_remove
+
+    static var snow_io_add_watch        = Libs.load( "snow", "snow_io_add_watch", 1 );
+    static var snow_io_remove_watch     = Libs.load( "snow", "snow_io_remove_watch", 1 );
+
 #end //snow_native
 
 } //IO

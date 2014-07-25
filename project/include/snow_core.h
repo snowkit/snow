@@ -9,6 +9,10 @@ namespace snow {
 
         //externs
     extern int id_type;
+    namespace io {
+        bool init_filewatch();
+        void shutdown_filewatch();
+    }
 
 //snow systems
 
@@ -61,7 +65,9 @@ namespace snow {
             se_app_willenterbackground      = 10,
             se_app_didenterbackground       = 11,
             se_app_willenterforeground      = 12,
-            se_app_didenterforeground       = 13
+            se_app_didenterforeground       = 13,
+
+            se_filewatch                    = 14
 
         }; //SystemEventType
 
@@ -96,6 +102,7 @@ namespace snow {
             }
 
                 //call platform inits
+            snow::io::init_filewatch();
             snow::core::init_platform();
 
         } //init
@@ -109,6 +116,7 @@ namespace snow {
             snow::core::shutdown_aux();
 
                 //shutdown platform
+            snow::io::shutdown_filewatch();
             snow::core::shutdown_platform();
 
         } //shutdown
