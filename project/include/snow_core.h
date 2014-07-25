@@ -11,6 +11,7 @@ namespace snow {
     extern int id_type;
     namespace io {
         bool init_filewatch();
+        void update_filewatch();
         void shutdown_filewatch();
     }
 
@@ -125,6 +126,7 @@ namespace snow {
         inline void update() {
 
             snow::core::update_aux();
+            snow::io::update_filewatch();
             snow::core::update_platform();
 
         } //update_core

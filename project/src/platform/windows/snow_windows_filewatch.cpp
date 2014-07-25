@@ -25,6 +25,10 @@ namespace snow {
 
         } //refresh_filewatch
 
+        void update_filewatch() {
+
+        } //update_filewatch
+
         void shutdown_filewatch() {
 
 

@@ -14,6 +14,7 @@ namespace snow {
         std::vector<std::string> watched_paths;
         bool init_filewatch(){ return false; }
         void shutdown_filewatch(){}
+        void update_filewatch(){}
         void refresh_filewatch(){}
     }
 

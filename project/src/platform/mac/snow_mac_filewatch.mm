@@ -94,6 +94,9 @@ namespace snow {
 
         } //start_filewatch
 
+            //updated by runloop, not here
+        void update_filewatch() {}
+
         void refresh_filewatch() {
 
                 //stop the current filewatch,
