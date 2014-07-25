@@ -227,11 +227,11 @@ class Libs {
             #if cpp
 
                 var get_env = cpp.Lib.load ("std", "get_env", 1);
-                var debug = (get_env ("OPENFL_LOAD_DEBUG") != null);
+                var debug = (get_env ("SNOW_LOAD_DEBUG") != null);
 
             #else //# not cpp
 
-                var debug = (Sys.getEnv ("OPENFL_LOAD_DEBUG") !=null);
+                var debug = (Sys.getEnv ("SNOW_LOAD_DEBUG") !=null);
 
             #end //# if cpp
 
@@ -243,7 +243,7 @@ class Libs {
 
 
         #if snow_html5
-            //todo leverage console.log somehow?
+            //:todo : leverage console.log somehow?
         #end //snow_html5
 
     } //loaderTrace
