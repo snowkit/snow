@@ -45,7 +45,7 @@ import haxe.Log;
         /**
          * @private
          */
-        @:noCompletion public static function __process_timers() {
+        @:noCompletion public static function update() {
 
             var now = stamp();
 
@@ -58,10 +58,10 @@ import haxe.Log;
                 }
             } //all timers
 
-        } //__process_timers
+        } //update
 
             //From std/haxe/Timer.hx
-        public static function delay( _f:Void -> Void, _time:Int ) {
+        public static function delay( _time:Float, _f:Void -> Void ) {
 
             var t = new Timer( _time );
             t.run = function() {
@@ -82,7 +82,7 @@ import haxe.Log;
 
     } //Timer
 
-#else //lime_native
+#else //snow_native
 
     class Timer {
 
@@ -122,8 +122,8 @@ import haxe.Log;
 
 
             // This will delay the call to [f] for the given time. [f] will only be called once.
-        public static function delay( f : Void -> Void, time_ms : Int ) {
-            var t = new haxe.Timer(time_ms);
+        public static function delay( time : Float, f : Void -> Void) {
+            var t = new haxe.Timer(time*1000);
             t.run = function() {
                 t.stop();
                 f();

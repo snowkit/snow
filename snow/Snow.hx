@@ -1,10 +1,10 @@
 package snow;
 
-import haxe.Timer;
 
 import snow.App;
 import snow.types.Types;
 import snow.utils.ByteArray;
+import snow.utils.Timer;
 
 import snow.assets.Assets;
 import snow.input.Input;
@@ -209,6 +209,9 @@ class Snow {
         if(!is_ready) {
             return;
         }
+
+            //update any timers
+        Timer.update();
 
             //handle any internal updates
         host.on_internal_update();
