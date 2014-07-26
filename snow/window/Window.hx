@@ -72,6 +72,12 @@ class Window {
 
         id = _id;
         handle = _handle;
+
+        if(handle == null) {
+            trace("/ snow / failed to create window");
+            return;
+        }
+
         config = _config;
 
             //update the position and size
@@ -152,7 +158,9 @@ class Window {
 
     @:noCompletion public function update() {
 
-        manager.system.update( this );
+        if(handle != null) {
+            manager.system.update( this );
+        }
 
     } //update
 
@@ -160,6 +168,10 @@ class Window {
     @:noCompletion public function render() {
 
         if(minimized) {
+            return;
+        }
+
+        if(handle == null) {
             return;
         }
 
@@ -191,6 +203,10 @@ class Window {
         /** Swap the back buffer of the window, call after rendering to update the window view */
     public function swap() {
 
+        if(handle == null) {
+            return;
+        }
+
         manager.system.swap( this );
 
     } //swap
@@ -198,12 +214,20 @@ class Window {
         /** Close the window */
     public function close() {
 
+        if(handle == null) {
+            return;
+        }
+
         manager.system.close( this );
 
     } //close
 
         /** Display a cross platform message on this window */
     public function simple_message( message:String, title:String="" ) {
+
+        if(handle == null) {
+            return;
+        }
 
         manager.system.simple_message( this, message, title );
 
