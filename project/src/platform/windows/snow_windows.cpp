@@ -5,6 +5,8 @@
 
 #include <string>
 
+#include <shlobj.h>
+
 namespace snow {
 
     namespace core {
@@ -31,6 +33,8 @@ namespace snow {
     namespace io {
 
         void url_open(const std::string &url) {
+
+            ShellExecute(NULL, "open", url.c_str(), NULL, NULL, SW_SHOWNORMAL);
 
         } //url_open
 
