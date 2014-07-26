@@ -40,8 +40,13 @@ namespace snow {
 
         void url_open(const std::string &url) {
 
-            std::string cmd = "xdg-open " + url;
-            popen(cmd.c_str(), "r")
+                //run xdg-open, but forward stderr to stdout, and forward stdout to silent
+            std::string cmd = "/usr/bin/xdg-open " + url + " 2>&1 1>/dev/null";
+            FILE* res = popen(cmd.c_str(), "r");
+                //to be safe/clean
+            if(res) {
+                fclose(res);
+            }
 
         } //url_open
 
