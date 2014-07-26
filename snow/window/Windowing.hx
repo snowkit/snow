@@ -74,6 +74,61 @@ class Windowing {
 
     } //window_from_id
 
+//System helpers
+
+        /** Toggle vertical refresh. This is not window specific but context wide */
+    public function enable_vsync( _enable:Bool ) : Int {
+
+        return system.system_enable_vsync(_enable);
+
+    } //enable_vsync
+
+        /** Toggle the OS cursor. This is not window specific but system wide */
+    public function enable_cursor( _enable:Bool ) : Void {
+
+        system.system_enable_cursor(_enable);
+
+    } //enable_cursor
+
+//Desktop API
+    //note that these only make sense on some platforms but will
+    //try and return valid values either way. Use the window itself for info
+
+    /** Get the number of displays present */
+    public function display_count() : Int {
+        return system.display_count();
+    } //display_count
+
+        /** Get the number of display modes present */
+    public function display_mode_count( display:Int ) : Int {
+        return system.display_mode_count(display);
+    } //display_mode_count
+
+        /** Get the native mode information of the display by index */
+    public function display_native_mode( display:Int ) : DisplayMode {
+        return system.display_native_mode(display);
+    } //display_native_mode
+
+        /** Get the current mode information of the display by index */
+    public function display_current_mode( display:Int ) : DisplayMode {
+        return system.display_current_mode(display);
+    } //display_current_mode
+
+        /** Get the information from a specific mode index, the index obtrained from iterating with `display_mode_count` value */
+    public function display_mode( display:Int, mode_index:Int ) : DisplayMode {
+        return system.display_mode(display, mode_index);
+    } //display_mode
+
+        /** Get the bounds of the display by index */
+    public function display_bounds( display:Int ) : { x:Int, y:Int, width:Int, height:Int } {
+        return system.display_bounds(display);
+    } //display_bounds
+
+        /** Get the name of the display by index, where available */
+    public function display_name( display:Int ) : String {
+        return system.display_name(display);
+    } //display_name
+
 
 //Internal core API
 

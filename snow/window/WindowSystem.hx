@@ -72,6 +72,14 @@ import snow.utils.AbstractClass;
         /** Set the bordered state of a window */
     public function bordered( window:Window, bordered:Bool );
 
+//General
+
+        /** Toggle the OS cursor. This is not window specific but system wide */
+    public function system_enable_cursor( enable:Bool );
+        /** Toggle vertical refresh. This is not window specific but context wide, returns 0 on success or -1 if not supported */
+    public function system_enable_vsync( enable:Bool ) : Int;
+
+//Desktop
 
         /** Get the number of displays present */
     public function display_count() : Int;

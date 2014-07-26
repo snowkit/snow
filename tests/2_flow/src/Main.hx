@@ -72,8 +72,8 @@ class Main extends snow.AppFixedTimestep {
             windowconf.fullscreen = true;
         #end
 
-        windowconf.depth_buffer = true;
-        windowconf.stencil_buffer = true;
+        windowconf.depth_bits = 32;
+        windowconf.stencil_bits = 16;
 
         return windowconf;
 
@@ -95,24 +95,24 @@ class Main extends snow.AppFixedTimestep {
         if(app.config.runtime.texture_time != null) texture_time = app.config.runtime.texture_time;
         if(app.config.runtime.timescale != null) timescale = app.config.runtime.timescale;
 
-        var dcount : Int = app.windowing.system.display_count();
+        var dcount : Int = app.windowing.display_count();
         trace('A total of ${dcount} displays were found');
         for(i in 0 ... dcount) {
-            var bounds = app.windowing.system.display_bounds(i);
-            var name = app.windowing.system.display_name(i);
+            var bounds = app.windowing.display_bounds(i);
+            var name = app.windowing.display_name(i);
             trace('display ${i}, name: ${name} bounds: ${bounds} modes:' );
 
                 //get list of modes for this display
-            var modecount = app.windowing.system.display_mode_count(i);
+            var modecount = app.windowing.display_mode_count(i);
 
             for(j in 0 ... modecount) {
-                var mode = app.windowing.system.display_mode(i,j);
+                var mode = app.windowing.display_mode(i,j);
                 trace('\t\t ${mode.width} x ${mode.height}  @  ${mode.refresh_rate}hz ');
             }
 
         }
 
-        trace("desktop native resolution of primary display : " + app.windowing.system.display_native_mode(0) );
+        trace("desktop native resolution of primary display : " + app.windowing.display_native_mode(0) );
 
         trace("OpenGL reports version " + GL.versionString());
         trace("OpenGL reports extensions " + GL.getSupportedExtensions());
@@ -171,6 +171,11 @@ class Main extends snow.AppFixedTimestep {
 
     } //ready
 
+        //default is true in config
+    var vsync = true;
+        //default is shown obv
+    var cursor = true;
+
     override function onkeydown( keycode:Int, _,_,_,_,_ ) {
 
         // trace("key down : " + event);
@@ -200,6 +205,18 @@ class Main extends snow.AppFixedTimestep {
 
         if(keycode == Key.KEY_p) {
             sound5.toggle();
+        }
+
+        if(keycode == Key.KEY_m) {
+            cursor = !cursor;
+            app.windowing.enable_cursor( cursor );
+            trace("cursor enabled : " + cursor );
+        }
+
+        if(keycode == Key.KEY_v) {
+            vsync = !vsync;
+            app.windowing.enable_vsync( vsync );
+            trace("vsync enabled : " + vsync );
         }
 
         if(keycode == Key.KEY_b) {

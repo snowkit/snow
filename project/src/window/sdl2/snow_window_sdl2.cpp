@@ -121,9 +121,9 @@ namespace snow {
 
                 request_flags |= SDL_WINDOW_OPENGL;
 
-            if(_config.resizable)    { request_flags |= SDL_WINDOW_RESIZABLE;  }
-            if(_config.borderless)   { request_flags |= SDL_WINDOW_BORDERLESS; }
-            if(_config.fullscreen)   { request_flags |= SDL_WINDOW_FULLSCREEN; } //SDL_WINDOW_FULLSCREEN_DESKTOP;
+            if(config.resizable)    { request_flags |= SDL_WINDOW_RESIZABLE;  }
+            if(config.borderless)   { request_flags |= SDL_WINDOW_BORDERLESS; }
+            if(config.fullscreen)   { request_flags |= SDL_WINDOW_FULLSCREEN; } //SDL_WINDOW_FULLSCREEN_DESKTOP;
 
                 //opengl specifics
 
@@ -131,12 +131,12 @@ namespace snow {
             SDL_GL_SetAttribute(SDL_GL_GREEN_SIZE, 8);
             SDL_GL_SetAttribute(SDL_GL_BLUE_SIZE, 8);
 
-            if(_config.depth_buffer) {
-                SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 32 - (_config.stencil_buffer ? 8 : 0) );
+            if(config.depth_bits > 0) {
+                SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, config.depth_bits );
             }
 
-            if(_config.stencil_buffer) {
-                SDL_GL_SetAttribute(SDL_GL_STENCIL_SIZE, 8);
+            if(config.stencil_bits > 0) {
+                SDL_GL_SetAttribute(SDL_GL_STENCIL_SIZE, config.stencil_bits );
             }
 
             SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
@@ -147,21 +147,38 @@ namespace snow {
                 SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 0);
             #endif
 
-            if(_config.antialiasing != 0) {
-                SDL_GL_SetAttribute(SDL_GL_MULTISAMPLEBUFFERS, true );
-                SDL_GL_SetAttribute(SDL_GL_MULTISAMPLESAMPLES, _config.antialiasing );
+            if(config.antialiasing > 0) {
+                SDL_GL_SetAttribute(SDL_GL_MULTISAMPLEBUFFERS, 1 );
+                SDL_GL_SetAttribute(SDL_GL_MULTISAMPLESAMPLES, config.antialiasing );
             }
 
                 //now actually try and create a window
-            window = SDL_CreateWindow( _config.title.c_str(), _config.x, _config.y, _config.width, _config.height, request_flags );
+            window = SDL_CreateWindow( config.title.c_str(), config.x, config.y, config.width, config.height, request_flags );
 
-            // fetch ones actually used by window
+            // todo? fetch ones actually used by window...
+            //but there are just 3 (resizable, borderless and fs... and these "cant" fail)
             // real_flags = SDL_GetWindowFlags( window );
 
             if( !window ) {
-                snow::log( "/ snow / failed to create SDL window: %s\n", SDL_GetError());
-                on_created();
-                return;
+
+                snow::log( "/ snow / window failed to open with config, trying without AA : %s\n", SDL_GetError());
+
+                    //try without AA as this is a common cause of problems
+                SDL_GL_SetAttribute(SDL_GL_MULTISAMPLEBUFFERS, 0 );
+                SDL_GL_SetAttribute(SDL_GL_MULTISAMPLESAMPLES, 0 );
+
+                    //undo the local config for the aa, so it's sent back as off
+                config.antialiasing = 0;
+
+                    //try again
+                window = SDL_CreateWindow( _config.title.c_str(), _config.x, _config.y, _config.width, _config.height, request_flags );
+
+                if( !window ) {
+                    snow::log( "/ snow / failed to create SDL window: %s\n", SDL_GetError());
+                    on_created();
+                    return;
+                }
+
             } //!window
 
             SDL_GetWindowPosition( window, &config.x, &config.y );
@@ -187,15 +204,7 @@ namespace snow {
                     }
                 #endif //NATIVE_TOOLKIT_GLEW
 
-            }
-
-            int res = 0;
-
-            if(_config.vsync) {
-                res = SDL_GL_SetSwapInterval(1);
-            } else {
-                res = SDL_GL_SetSwapInterval(0);
-            }
+            } //!snow_gl_context
 
                 //on iOS we need to intercept the loop
             #ifdef IPHONE
@@ -342,7 +351,6 @@ namespace snow {
 
         void handle_event( SDL_Event &event ) {
 
-                //not a window event?
             if(event.type != SDL_WINDOWEVENT) {
                 return;
             }
@@ -559,6 +567,21 @@ namespace snow {
         } //desktop_get_display_name
 
 
+    //system helpers
+
+        void system_show_cursor(bool enable) {
+
+            SDL_ShowCursor( enable ? 1 : 0 );
+
+        } //system_show_cursor
+
+        int system_enable_vsync(bool enable) {
+
+            return SDL_GL_SetSwapInterval( enable ? 1 : 0 );
+
+        } //system_enable_vsync
+
+
     //Helpers
 
         int init_sdl() {
@@ -573,18 +596,6 @@ namespace snow {
 
         } //init_sdl
 
-
-        int enable_vsync(bool enable) {
-
-            return SDL_GL_SetSwapInterval( enable ? 1 : 0 );
-
-        } //enable_vsync
-
-        void show_cursor(bool enable) {
-
-            SDL_ShowCursor( enable ? 1 : 0 );
-
-        } //show_cursor
 
 
     } //window namespace

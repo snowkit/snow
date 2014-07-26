@@ -120,14 +120,22 @@ extern double timestamp();
 
 
 
-    value snow_render_enable_vsync( value _enable ) {
+    value snow_system_enable_vsync( value _enable ) {
 
-        int result = snow::window::enable_vsync( val_bool(_enable) );
+        int result = snow::window::system_enable_vsync( val_bool(_enable) );
 
         return alloc_int( result );
 
-    } DEFINE_PRIM(snow_render_enable_vsync, 1);
+    } DEFINE_PRIM(snow_system_enable_vsync, 1);
 
+
+    value snow_system_show_cursor(value _enable) {
+
+        snow::window::system_show_cursor( val_bool(_enable) );
+
+        return alloc_null();
+
+    } DEFINE_PRIM(snow_system_show_cursor, 1);
 
 
 
@@ -402,14 +410,6 @@ extern double timestamp();
 
     } DEFINE_PRIM(snow_window_bordered, 2);
 
-
-    value snow_window_show_cursor(value _enable) {
-
-        snow::window::show_cursor( val_bool(_enable) );
-
-        return alloc_null();
-
-    } DEFINE_PRIM(snow_window_show_cursor, 1);
 
 
 
@@ -1074,10 +1074,8 @@ extern double timestamp();
     int id_resizable;
     int id_borderless;
     int id_antialiasing;
-    int id_depth_buffer;
-    int id_stencil_buffer;
-    int id_vsync;
-    int id_fps;
+    int id_depth_bits;
+    int id_stencil_bits;
 
 
 

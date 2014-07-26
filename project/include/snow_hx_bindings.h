@@ -91,10 +91,8 @@ namespace snow {
     extern int id_resizable;
     extern int id_borderless;
     extern int id_antialiasing;
-    extern int id_depth_buffer;
-    extern int id_stencil_buffer;
-    extern int id_vsync;
-    extern int id_fps;
+    extern int id_depth_bits;
+    extern int id_stencil_bits;
 
     inline void snow_init_ids() {
 
@@ -183,10 +181,8 @@ namespace snow {
         id_resizable            = val_id("resizable");
         id_borderless           = val_id("borderless");
         id_antialiasing         = val_id("antialiasing");
-        id_depth_buffer         = val_id("depth_buffer");
-        id_stencil_buffer       = val_id("stencil_buffer");
-        id_vsync                = val_id("vsync");
-        id_fps                  = val_id("fps");
+        id_depth_bits           = val_id("depth_bits");
+        id_stencil_bits         = val_id("stencil_bits");
 
     } //snow_init_ids
 

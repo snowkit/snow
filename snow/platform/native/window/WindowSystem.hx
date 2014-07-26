@@ -93,6 +93,19 @@ import snow.utils.Libs;
     } //window_bordered
 
 
+//General
+
+        /** Toggle the OS cursor. This is not window specific but system wide */
+    override function system_enable_cursor( enable:Bool ) {
+        snow_system_show_cursor( enable );
+    } //system_enable_cursor
+
+        /** Toggle vertical refresh. This is not window specific but context wide */
+    override function system_enable_vsync( enable:Bool ) : Int {
+        return snow_system_enable_vsync( enable );
+    } //system_enable_vsync
+
+
 //Desktop only functions
 
 
@@ -142,6 +155,11 @@ import snow.utils.Libs;
     static var snow_window_grab            = Snow.load( "snow", "snow_window_grab", 2 );
     static var snow_window_fullscreen      = Snow.load( "snow", "snow_window_fullscreen", 3 );
     static var snow_window_bordered        = Snow.load( "snow", "snow_window_bordered", 2 );
+
+//system helpers
+
+    static var snow_system_show_cursor     = Snow.load("snow", "snow_system_show_cursor", 1);
+    static var snow_system_enable_vsync    = Snow.load("snow", "snow_system_enable_vsync", 1);
 
 //desktop only native bindings
 

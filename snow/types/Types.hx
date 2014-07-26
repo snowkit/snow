@@ -172,10 +172,8 @@ Window configuration information for creating windows
 `? resizable` : allow the window to be resized
 `? borderless` : create as a borderless window
 `? antialiasing` : a value of `0`, `2`, `4`, `8` or other valid antialiasing flags
-`? stencil_buffer` : create a stencil buffer (not per window)
-`? depth_buffer` : create a depth buffer (not per window)
-`? vsync` : enable vsync (not per window)
-`? fps` : window max fps if any
+`? stencil_bits` : create a stencil buffer (not per window, this is per context)
+`? depth_bits` : create a depth buffer (not per window, this is per context)
 `? x` : window y at creation
 `? y` : window x at creation
 `? width` : window height at creation
@@ -190,10 +188,8 @@ typedef WindowConfig = {
     ? resizable             : Bool,
     ? borderless            : Bool,
     ? antialiasing          : Int,
-    ? stencil_buffer        : Bool,
-    ? depth_buffer          : Bool,
-    ? vsync                 : Bool,
-    ? fps                   : Int,
+    ? stencil_bits          : Int,
+    ? depth_bits            : Int,
     ? x                     : Int,
     ? y                     : Int,
     ? width                 : Int,
