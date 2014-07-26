@@ -31,8 +31,6 @@ namespace snow {
                 SDL_Window* window;
                 SDL_Event window_event;
 
-                bool is_open;
-
                 ~WindowSDL2() {
 
                     if(window) {
@@ -44,7 +42,6 @@ namespace snow {
                 WindowSDL2()
                     : Window(), window_event()
                         {
-                            is_open = false;
                             r = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
                         }
                 //WindowSDL2
@@ -76,7 +73,6 @@ namespace snow {
             WindowSDL2* new_window = new WindowSDL2();
 
                 new_window->create( config, on_created );
-                new_window->closed = false;
 
             return new_window;
 
@@ -85,7 +81,9 @@ namespace snow {
 
         void WindowSDL2::simple_message( const char* message, const char* title ) {
 
-            if(closed) return;
+            if(closed) {
+                return;
+            }
 
             SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, title, message, window );
 
@@ -99,6 +97,7 @@ namespace snow {
 
         } //WindowSDL2::close
 
+
         void WindowSDL2::create( const window_config &_config, AutoGCRoot* _on_created ) {
 
                 //store these first
@@ -110,7 +109,7 @@ namespace snow {
             int err = snow::window::init_sdl();
             if (err == -1) {
                 snow::log("/ snow / could not initialize Video for SDL : %s\n", SDL_GetError());
-                on_created();
+                on_created( false );
                 return;
             }
 
@@ -125,7 +124,7 @@ namespace snow {
             if(config.borderless)   { request_flags |= SDL_WINDOW_BORDERLESS; }
             if(config.fullscreen)   { request_flags |= SDL_WINDOW_FULLSCREEN; } //SDL_WINDOW_FULLSCREEN_DESKTOP;
 
-                //opengl specifics
+                //opengl specifics, these all need to be set before create window
 
             SDL_GL_SetAttribute(SDL_GL_RED_SIZE, 8);
             SDL_GL_SetAttribute(SDL_GL_GREEN_SIZE, 8);
@@ -159,45 +158,98 @@ namespace snow {
             //but there are just 3 (resizable, borderless and fs... and these "cant" fail)
             // real_flags = SDL_GetWindowFlags( window );
 
+                //based on the code in SDL, the only reasons this can fail is
+                    // - no opengl at all (and we will always be requesting it so if that fails its game over)
+                    // - unable to load gl functions from library (same as no gl then)
+                    // - run out of memory to allocate a window (extremely unlikely but also game over)
+                    // - platform specific window failure, also unavoidable
             if( !window ) {
 
-                snow::log( "/ snow / window failed to open with config, trying without AA : %s\n", SDL_GetError());
-
-                    //try without AA as this is a common cause of problems
-                SDL_GL_SetAttribute(SDL_GL_MULTISAMPLEBUFFERS, 0 );
-                SDL_GL_SetAttribute(SDL_GL_MULTISAMPLESAMPLES, 0 );
-
-                    //undo the local config for the aa, so it's sent back as off
-                config.antialiasing = 0;
-
-                    //try again
-                window = SDL_CreateWindow( _config.title.c_str(), _config.x, _config.y, _config.width, _config.height, request_flags );
-
-                if( !window ) {
-                    snow::log( "/ snow / failed to create SDL window: %s\n", SDL_GetError());
-                    on_created();
-                    return;
-                }
+                snow::log( "/ snow / window failed to create for platform, cannot recover : %s\n", SDL_GetError());
+                on_created( false );
+                return;
 
             } //!window
 
             SDL_GetWindowPosition( window, &config.x, &config.y );
             SDL_GetWindowSize( window, &config.width, &config.height );
 
-            is_open = true;
             id = SDL_GetWindowID(window);
 
-                //now try creating the GL context
+                //now try creating the GL context,
+                //if one doesn't already exist
             if(!snow_gl_context) {
 
-                snow::log("/ snow / creating a GL context");
+                snow::log("/ snow / attempting to create a GL context...");
+
                 snow_gl_context = SDL_GL_CreateContext(window);
+
+                if( !snow_gl_context ) {
+
+                    snow::log("/ snow / failed to create GL context for windowing (window id %d): %s\n", id, SDL_GetError() );
+                    snow::log("/ snow / trying again in a safer mode (no AA)");
+
+                        //try without AA as this is a common cause of problems
+                    SDL_GL_SetAttribute(SDL_GL_MULTISAMPLEBUFFERS, 0);
+                    SDL_GL_SetAttribute(SDL_GL_MULTISAMPLESAMPLES, 0);
+                        //undo the local config for the aa, so it's sent back as off
+                    config.antialiasing = 0;
+
+                        //try again
+                    snow_gl_context = SDL_GL_CreateContext(window);
+
+                    if(!snow_gl_context) {
+
+                        snow::log("/ snow / failed to create GL context without AA (window id  %d): %s\n", id, SDL_GetError() );
+
+                            //if that fails, we try and run a diagnostic test
+                            //against no stencil / depth buffer, so we can log more useful information
+                        SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 0);
+                        SDL_GL_SetAttribute(SDL_GL_STENCIL_SIZE, 0 );
+
+                        snow_gl_context = SDL_GL_CreateContext(window);
+
+                            //if this succeeds we can at least log that there was a misconfigured depth/stencil buffer
+                        if(snow_gl_context) {
+                            snow::log("/ snow / diagnostic test with no stencil/depth passed, meaning your stencil/depth bit combo is invalid (requested stencil:%d, depth:%d)\n",
+                                config.stencil_bits, config.depth_bits );
+                        } else {
+                            snow::log("/ snow / diagnostic test with no stencil/depth failed as well %s\n", SDL_GetError() );
+                        }
+
+                        on_created( false );
+                        return;
+                    }
+
+                }
+
+                    //if we end up with a context
+                if(snow_gl_context) {
+
+                        //update the window config flags to what
+                        //SDL has actually given us in return
+
+                    int actual_aa = config.antialiasing;
+                    int actual_depth = config.depth_bits;
+                    int actual_stencil = config.stencil_bits;
+
+                        SDL_GL_GetAttribute(SDL_GL_MULTISAMPLESAMPLES, &actual_aa);
+                        SDL_GL_GetAttribute(SDL_GL_DEPTH_SIZE, &actual_depth);
+                        SDL_GL_GetAttribute(SDL_GL_STENCIL_SIZE, &actual_stencil);
+
+                    config.antialiasing = actual_aa;
+                    config.depth_bits = actual_depth;
+                    config.stencil_bits = actual_stencil;
+
+                    snow::log("/ snow / success in creating GL context for window %d\n", id);
+
+                }
 
                 #ifdef NATIVE_TOOLKIT_GLEW
                     int err = glewInit();
                     if(err != 0) {
                         snow::log("/ snow / failed to init glew?! %s\n", glewGetErrorString(err));
-                        on_created();
+                        on_created( false );
                         return;
                     } else {
                         snow::log("/ snow / GLEW init ok");
@@ -212,22 +264,15 @@ namespace snow {
                 SDL_iPhoneSetAnimationCallback(window, 1, snow::core::loop, NULL);
             #endif //IPHONE
 
-
-            if( !snow_gl_context ) {
-                snow::log("/ snow / failed to create GL context for window %d : %s\n", id, SDL_GetError() );
-                on_created();
-                return;
-            } else { //!window
-                snow::log("/ snow / success in creating GL context for window %d : \n", id);
-            }
-
-            on_created();
+            on_created( true );
 
         } //WindowSDL2::create
 
         void WindowSDL2::render() {
 
-            if(closed) return;
+            if(closed) {
+                return;
+            }
 
             if(this != current_gl_window) {
                 current_gl_window = this;
@@ -238,7 +283,9 @@ namespace snow {
 
         void WindowSDL2::swap() {
 
-            if(closed) return;
+            if(closed) {
+                return;
+            }
 
             SDL_GL_SwapWindow(window);
 
@@ -246,13 +293,17 @@ namespace snow {
 
         void WindowSDL2::update() {
 
-            if(closed) return;
+            if(closed) {
+                return;
+            }
 
         } //update
 
         void WindowSDL2::set_size(int x, int y) {
 
-            if(closed) return;
+            if(closed) {
+                return;
+            }
 
             SDL_SetWindowSize(window, x, y);
 
@@ -260,7 +311,9 @@ namespace snow {
 
         void WindowSDL2::set_position(int x, int y) {
 
-            if(closed) return;
+            if(closed) {
+                return;
+            }
 
             SDL_SetWindowPosition(window, x, y);
 
@@ -268,7 +321,9 @@ namespace snow {
 
         void WindowSDL2::set_title(const char* title) {
 
-            if(closed) return;
+            if(closed) {
+                return;
+            }
 
             SDL_SetWindowTitle(window, title);
 
@@ -276,7 +331,9 @@ namespace snow {
 
         void WindowSDL2::set_max_size(int x, int y) {
 
-            if(closed) return;
+            if(closed) {
+                return;
+            }
 
             SDL_SetWindowMaximumSize(window, x, y);
 
@@ -284,7 +341,9 @@ namespace snow {
 
         void WindowSDL2::set_min_size(int x, int y) {
 
-            if(closed) return;
+            if(closed) {
+                return;
+            }
 
             SDL_SetWindowMinimumSize(window, x, y);
 
@@ -292,7 +351,9 @@ namespace snow {
 
         void WindowSDL2::grab(bool enable) {
 
-            if(closed) return;
+            if(closed) {
+                return;
+            }
 
             SDL_SetWindowGrab( window, enable ? SDL_TRUE : SDL_FALSE);
 
@@ -300,7 +361,9 @@ namespace snow {
 
         void WindowSDL2::fullscreen(bool enable, int flags = 0) {
 
-            if(closed) return;
+            if(closed) {
+                return;
+            }
 
             int flag = enable ? SDL_WINDOW_FULLSCREEN_DESKTOP : 0;
 
@@ -314,7 +377,9 @@ namespace snow {
 
         void WindowSDL2::bordered(bool enable) {
 
-            if(closed) return;
+            if(closed) {
+                return;
+            }
 
             SDL_SetWindowBordered( window, enable ? SDL_TRUE : SDL_FALSE );
 

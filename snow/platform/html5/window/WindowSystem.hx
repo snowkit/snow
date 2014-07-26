@@ -325,6 +325,11 @@ import snow.window.WindowSystem;
 
 
             //:todo:
+        override public function display_count() : Int {
+            return 1;
+        }
+
+            //:todo:
         override public function display_mode_count( display:Int ) : Int {
             return 1;
         } //display_mode_count

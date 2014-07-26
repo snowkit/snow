@@ -185,15 +185,22 @@ namespace snow {
 
             protected:
 
-                void on_created() {
+                void on_created( bool success ) {
 
-                    created = true;
+                    created = success;
+                        //if success, closed is false
+                    closed = !success;
 
                     if(created_handler != NULL) {
 
-                        value _v_window = Object_to_hx( this );
-                        value _v_config = window_config_to_hx( config );
+                        value _v_window = alloc_null();
+                        value _v_config = alloc_null();
                         value _v_id = alloc_int(id);
+
+                        if(success) {
+                            _v_window = Object_to_hx( this );
+                            _v_config = window_config_to_hx( config );
+                        }
 
                         val_call3( created_handler->get(), _v_window, _v_id, _v_config);
 
