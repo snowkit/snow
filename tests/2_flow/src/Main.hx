@@ -217,6 +217,12 @@ class Main extends snow.AppFixedTimestep {
             trace('music reset');
         }
 
+        if(keycode == Key.KEY_o) {
+            trace(snow.io.IO.dialog_open());
+            trace(snow.io.IO.dialog_save());
+            trace(snow.io.IO.dialog_folder());
+        }
+
         if(keycode == Key.KEY_t) {
             var t = (sound5.duration*0.75);
             sound5.time = t;
