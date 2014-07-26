@@ -18,8 +18,9 @@ namespace snow {
         struct window_config;
         struct WindowEvent;
 
-        void            show_cursor(bool enable);
-        int             enable_vsync(bool enable);
+        int             system_enable_vsync(bool enable);
+        void            system_show_cursor(bool enable);
+
         int             desktop_get_display_count();
         int             desktop_get_display_mode_count(int display);
         value           desktop_get_display_native_mode(int display);
@@ -54,14 +55,12 @@ namespace snow {
 
             bool fullscreen;
             bool resizable;
-            bool vsync;
             bool borderless;
-            bool depth_buffer;
-            bool stencil_buffer;
+            bool depth_bits;
+            bool stencil_bits;
             bool multitouch;
 
             int antialiasing;
-            int fps;
             int x;
             int y;
             int width;
@@ -72,12 +71,10 @@ namespace snow {
                 title            = "snow";
                 fullscreen       = false;
                 resizable        = true;
-                vsync            = false;
                 borderless       = false;
-                depth_buffer     = false;
-                stencil_buffer   = false;
+                depth_bits       = 0;
+                stencil_bits     = 0;
                 antialiasing     = 0;
-                fps              = 60;
                 x                = 0;
                 y                = 0;
                 width            = 960;
@@ -90,12 +87,10 @@ namespace snow {
                 title = std::string(other.title);
                 fullscreen = other.fullscreen;
                 resizable = other.resizable;
-                vsync = other.vsync;
                 borderless = other.borderless;
-                depth_buffer = other.depth_buffer;
-                stencil_buffer = other.stencil_buffer;
+                depth_bits = other.depth_bits;
+                stencil_bits = other.stencil_bits;
                 antialiasing = other.antialiasing;
-                fps = other.fps;
                 x = other.x;
                 y = other.y;
                 width = other.width;
@@ -250,13 +245,11 @@ namespace snow {
 
                 alloc_field( _object, id_fullscreen, alloc_bool(config.fullscreen) );
                 alloc_field( _object, id_resizable, alloc_bool(config.resizable) );
-                alloc_field( _object, id_vsync, alloc_bool(config.vsync) );
                 alloc_field( _object, id_borderless, alloc_bool(config.borderless) );
-                alloc_field( _object, id_depth_buffer, alloc_bool(config.depth_buffer) );
-                alloc_field( _object, id_stencil_buffer, alloc_bool(config.stencil_buffer) );
+                alloc_field( _object, id_depth_bits, alloc_bool(config.depth_bits) );
+                alloc_field( _object, id_stencil_bits, alloc_bool(config.stencil_bits) );
 
                 alloc_field( _object, id_antialiasing, alloc_int(config.antialiasing) );
-                alloc_field( _object, id_fps, alloc_int(config.fps) );
                 alloc_field( _object, id_x, alloc_int(config.x) );
                 alloc_field( _object, id_y, alloc_int(config.y) );
                 alloc_field( _object, id_width, alloc_int(config.width) );
@@ -279,13 +272,11 @@ namespace snow {
 
                 config.fullscreen               = property_bool( _in_config, id_fullscreen, config.fullscreen );
                 config.resizable                = property_bool( _in_config, id_resizable, config.resizable );
-                config.vsync                    = property_bool( _in_config, id_vsync, config.vsync );
                 config.borderless               = property_bool( _in_config, id_borderless, config.borderless );
-                config.depth_buffer             = property_bool( _in_config, id_depth_buffer, config.depth_buffer );
-                config.stencil_buffer           = property_bool( _in_config, id_stencil_buffer, config.stencil_buffer );
 
+                config.depth_bits               = property_int( _in_config, id_depth_bits, config.depth_bits );
+                config.stencil_bits             = property_int( _in_config, id_stencil_bits, config.stencil_bits );
                 config.antialiasing             = property_int( _in_config, id_antialiasing, config.antialiasing );
-                config.fps                      = property_int( _in_config, id_fps, config.fps );
                 config.x                        = property_int( _in_config, id_x, config.x );
                 config.y                        = property_int( _in_config, id_y, config.y );
                 config.width                    = property_int( _in_config, id_width, config.width );

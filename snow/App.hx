@@ -186,10 +186,8 @@ import snow.types.Types;
             resizable : true,
             borderless : false,
             antialiasing : 0,
-            stencil_buffer : false,
-            depth_buffer : false,
-            vsync : true,
-            fps : 60,
+            stencil_bits : 0,
+            depth_bits : 0,
 
             x               : 0x1FFF0000,
             y               : 0x1FFF0000,

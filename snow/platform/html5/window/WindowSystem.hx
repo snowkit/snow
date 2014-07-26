@@ -306,10 +306,23 @@ import snow.window.WindowSystem;
 
         } //window_bordered
 
+            /** Toggle the OS cursor. This is not window specific but system wide */
+        override function system_enable_cursor( enable:Bool ) {
+
             //:todo:
-        override public function display_count() : Int {
-            return 1;
-        } //display_count
+
+        } //system_enable_cursor
+
+            /** Toggle vertical refresh. This is not window specific but context wide */
+        override function system_enable_vsync( enable:Bool ) : Int {
+
+            // :unsupported:  technically RAF is vsync but it's not a toggle,
+            //                and without it is terrible so, not doing that
+
+            return -1;
+
+        } //system_enable_vsync
+
 
             //:todo:
         override public function display_mode_count( display:Int ) : Int {
