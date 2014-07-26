@@ -72,9 +72,6 @@ class Main extends snow.AppFixedTimestep {
             windowconf.fullscreen = true;
         #end
 
-        windowconf.depth_bits = 32;
-        windowconf.stencil_bits = 16;
-
         return windowconf;
 
     } //get_window_config
@@ -119,6 +116,8 @@ class Main extends snow.AppFixedTimestep {
 
         initializeShaders();
         createBuffers();
+
+        trace("done with shaders and buffers");
 
         textures = [];
 
@@ -465,10 +464,13 @@ class Main extends snow.AppFixedTimestep {
                 gl_Position = uProjectionMatrix * uModelViewMatrix * vec4 (aVertexPosition, 1.0);
             }";
 
+        trace("about to create a shader");
         var vertexShader = GL.createShader (GL.VERTEX_SHADER);
 
+            
             GL.shaderSource (vertexShader, vertexShaderSource);
             GL.compileShader (vertexShader);
+            trace("done");
 
         if (GL.getShaderParameter (vertexShader, GL.COMPILE_STATUS) == 0) {
 

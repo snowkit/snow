@@ -131,11 +131,11 @@ namespace snow {
             SDL_GL_SetAttribute(SDL_GL_GREEN_SIZE, 8);
             SDL_GL_SetAttribute(SDL_GL_BLUE_SIZE, 8);
 
-            if(config.depth_bits != 0) {
+            if(config.depth_bits > 0) {
                 SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, config.depth_bits );
             }
 
-            if(config.stencil_bits != 0) {
+            if(config.stencil_bits > 0) {
                 SDL_GL_SetAttribute(SDL_GL_STENCIL_SIZE, config.stencil_bits );
             }
 

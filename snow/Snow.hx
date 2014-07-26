@@ -183,6 +183,9 @@ class Snow {
             //disllow re-entry
         was_ready = true;
 
+
+        _debug('/ snow / creating default window', true);
+
             //now if they requested a window, let's open one
         window = windowing.create( config.window );
 

@@ -17,6 +17,7 @@ namespace snow {
 
         class FileWatcherThread {
           public:
+            bool running;
             std::string path;
             HANDLE handle;
             HANDLE thread;
@@ -28,6 +29,7 @@ namespace snow {
             static DWORD WINAPI run_thread( void *watcher );
 
             FileWatcherThread(const std::string &_path) {
+                running = false;
                 path = std::string(_path);
                 buffer_size = 1024;
                 buffer = new BYTE[buffer_size];
@@ -56,6 +58,7 @@ namespace snow {
                     overlap.hEvent = CreateEvent(NULL, FALSE, FALSE, NULL);
 
                     DWORD threadid;
+                    running = true;
                     thread = CreateThread(NULL, 0, &run_thread, this, 0, &threadid);
 
                 } //!invalid handle
@@ -63,6 +66,9 @@ namespace snow {
             } //construct
 
             ~FileWatcherThread() {
+                
+                running = false;
+
                 ::LeaveCriticalSection(&critical);
                 ::DeleteCriticalSection(&critical);
 
@@ -77,77 +83,79 @@ namespace snow {
 
                 FileWatcherThread *watcher = (FileWatcherThread*)_watcher;
 
-                ReadDirectoryChangesW(
-                    watcher->handle, watcher->buffer, watcher->buffer_size, TRUE,
-                    FILE_NOTIFY_CHANGE_CREATION | FILE_NOTIFY_CHANGE_FILE_NAME | FILE_NOTIFY_CHANGE_LAST_WRITE,
-                    NULL, &watcher->overlap, NULL
-                );
 
-                WaitForSingleObject(watcher->overlap.hEvent, INFINITE);
+                while(watcher->running) {
 
-                    int seek = 0;
+                    ReadDirectoryChangesW(
+                        watcher->handle, watcher->buffer, watcher->buffer_size, TRUE,
+                        FILE_NOTIFY_CHANGE_CREATION | FILE_NOTIFY_CHANGE_FILE_NAME | FILE_NOTIFY_CHANGE_LAST_WRITE,
+                        NULL, &watcher->overlap, NULL
+                    );
 
-                    while(seek < watcher->buffer_size) {
+                    WaitForSingleObject(watcher->overlap.hEvent, INFINITE);
 
-                        PFILE_NOTIFY_INFORMATION notifier = PFILE_NOTIFY_INFORMATION(watcher->buffer + seek);
+                        int seek = 0;
 
-                        WCHAR szwFileName[MAX_PATH];
-                        int ulCount = notifier->FileNameLength/2;
-                        wcsncpy(szwFileName, notifier->FileName, ulCount);
-                        szwFileName[ulCount] = L'\0';
+                        while(seek < watcher->buffer_size) {
 
-                        std::wstring widepath(szwFileName);
-                        std::string path(widepath.begin(), widepath.end());
+                            PFILE_NOTIFY_INFORMATION notifier = PFILE_NOTIFY_INFORMATION(watcher->buffer + seek);
 
-                        FileWatchEventType _event_type = fe_unknown;
+                            WCHAR szwFileName[MAX_PATH];
+                            int ulCount = notifier->FileNameLength/2;
+                            wcsncpy(szwFileName, notifier->FileName, ulCount);
+                            szwFileName[ulCount] = L'\0';
 
-                            switch( notifier->Action ) {
+                            std::wstring widepath(szwFileName);
+                            std::string path(widepath.begin(), widepath.end());
 
-                                case FILE_ACTION_ADDED:{
-                                    _event_type = fe_create;
-                                    break;
+                            FileWatchEventType _event_type = fe_unknown;
+
+                                switch( notifier->Action ) {
+
+                                    case FILE_ACTION_ADDED:{
+                                        _event_type = fe_create;
+                                        break;
+                                    }
+
+                                    case FILE_ACTION_REMOVED:{
+                                        _event_type = fe_remove;
+                                        break;
+                                    }
+
+                                    case FILE_ACTION_MODIFIED:{
+                                        _event_type = fe_modify;
+                                        break;
+                                    }
+
+                                    case FILE_ACTION_RENAMED_OLD_NAME:{
+                                        _event_type = fe_remove;
+                                        break;
+                                    }
+                                    
+                                    case FILE_ACTION_RENAMED_NEW_NAME:{
+                                        _event_type = fe_create;
+                                        break;
+                                    }
+                                    
+                                } //switch
+
+                                if(_event_type != fe_unknown) {
+                                    FileWatchEvent event( _event_type, snow::timestamp(), (watcher->path+"/"+path) );
+                                    
+                                    ::EnterCriticalSection(&watcher->critical);
+                                        snow::io::dispatch_event( event );
+                                    ::LeaveCriticalSection(&watcher->critical);
                                 }
 
-                                case FILE_ACTION_REMOVED:{
-                                    _event_type = fe_remove;
-                                    break;
-                                }
+                            seek += notifier->NextEntryOffset;
 
-                                case FILE_ACTION_MODIFIED:{
-                                    _event_type = fe_modify;
-                                    break;
-                                }
-
-                                case FILE_ACTION_RENAMED_OLD_NAME:{
-                                    _event_type = fe_remove;
-                                    break;
-                                }
-                                
-                                case FILE_ACTION_RENAMED_NEW_NAME:{
-                                    _event_type = fe_create;
-                                    break;
-                                }
-                                
-                            } //switch
-
-                            if(_event_type != fe_unknown) {
-                                FileWatchEvent event( _event_type, snow::timestamp(), (watcher->path+"/"+path) );
-                                
-                                ::EnterCriticalSection(&watcher->critical);
-                                    snow::io::dispatch_event( event );
-                                ::LeaveCriticalSection(&watcher->critical);
+                            if(notifier->NextEntryOffset == 0) {
+                                break;
                             }
 
-                        seek += notifier->NextEntryOffset;
+                        } //seek < buffer size
 
-                        if(notifier->NextEntryOffset == 0) {
-                            break;
-                        }
-
-                    } //seek < buffer size
-
-                //done loop, but run it again
-                run_thread(_watcher);
+                    } //while running
 
                 return 0;
 

@@ -56,10 +56,10 @@ namespace snow {
             bool fullscreen;
             bool resizable;
             bool borderless;
-            bool depth_bits;
-            bool stencil_bits;
             bool multitouch;
 
+            int depth_bits;
+            int stencil_bits;
             int antialiasing;
             int x;
             int y;
@@ -246,9 +246,9 @@ namespace snow {
                 alloc_field( _object, id_fullscreen, alloc_bool(config.fullscreen) );
                 alloc_field( _object, id_resizable, alloc_bool(config.resizable) );
                 alloc_field( _object, id_borderless, alloc_bool(config.borderless) );
-                alloc_field( _object, id_depth_bits, alloc_bool(config.depth_bits) );
-                alloc_field( _object, id_stencil_bits, alloc_bool(config.stencil_bits) );
-
+                
+                alloc_field( _object, id_depth_bits, alloc_int(config.depth_bits) );
+                alloc_field( _object, id_stencil_bits, alloc_int(config.stencil_bits) );
                 alloc_field( _object, id_antialiasing, alloc_int(config.antialiasing) );
                 alloc_field( _object, id_x, alloc_int(config.x) );
                 alloc_field( _object, id_y, alloc_int(config.y) );
