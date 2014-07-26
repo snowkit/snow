@@ -86,6 +86,17 @@ class IO {
 
     } //watch_remove
 
+//url helper
+
+        /** Opens the specified url in the default browser */
+    public static function url_open( _url:String ) {
+
+        if(_url != null && _url.length > 0) {
+            snow_io_url_open( _url );
+        }
+
+    } //url_open
+
 //File dialogs, only available on platforms where it makes sense.
 
         /** Opens a file open dialog. Returns a blank string if they cancel or any error occurs. */
@@ -136,9 +147,11 @@ class IO {
     static var snow_io_add_watch        = Libs.load( "snow", "snow_io_add_watch", 1 );
     static var snow_io_remove_watch     = Libs.load( "snow", "snow_io_remove_watch", 1 );
 
-    static var snow_io_dialog_open     = Libs.load( "snow", "snow_io_dialog_open", 1 );
-    static var snow_io_dialog_save     = Libs.load( "snow", "snow_io_dialog_save", 1 );
-    static var snow_io_dialog_folder   = Libs.load( "snow", "snow_io_dialog_folder", 1 );
+    static var snow_io_url_open         = Libs.load( "snow", "snow_io_url_open", 1 );
+
+    static var snow_io_dialog_open      = Libs.load( "snow", "snow_io_dialog_open", 1 );
+    static var snow_io_dialog_save      = Libs.load( "snow", "snow_io_dialog_save", 1 );
+    static var snow_io_dialog_folder    = Libs.load( "snow", "snow_io_dialog_folder", 1 );
 
 #end //snow_native
 

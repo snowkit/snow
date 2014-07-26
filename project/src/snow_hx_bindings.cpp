@@ -18,7 +18,7 @@
 #include "snow_core.h"
 #include "snow_window.h"
 #include "snow_input.h"
-#include "snow_platform.h"
+#include "snow_io.h"
 
 #include "assets/snow_assets_audio.h"
 #include "assets/snow_assets_image.h"
@@ -761,11 +761,21 @@ extern double timestamp();
 //io bindings
 
 
+    //url helper
+
+        value snow_io_url_open(value _url) {
+
+            snow::io::url_open( std::string(val_string(_url)) );
+
+            return alloc_null();
+
+        } DEFINE_PRIM(snow_io_url_open, 1);
+
     //file dialogs
 
         value snow_io_dialog_open(value _title) {
 
-            std::string result = snow::platform::dialog_open( std::string(val_string(_title)) );
+            std::string result = snow::io::dialog_open( std::string(val_string(_title)) );
 
             return alloc_string( result.c_str() );
 
@@ -773,7 +783,7 @@ extern double timestamp();
 
         value snow_io_dialog_save(value _title) {
 
-            std::string result = snow::platform::dialog_save( std::string(val_string(_title)) );
+            std::string result = snow::io::dialog_save( std::string(val_string(_title)) );
 
             return alloc_string( result.c_str() );
 
@@ -781,7 +791,7 @@ extern double timestamp();
 
         value snow_io_dialog_folder(value _title) {
 
-            std::string result = snow::platform::dialog_folder( std::string(val_string(_title)) );
+            std::string result = snow::io::dialog_folder( std::string(val_string(_title)) );
 
             return alloc_string( result.c_str() );
 

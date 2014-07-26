@@ -2,21 +2,14 @@
 
 
 #include "snow_core.h"
-#include "snow_platform.h"
+#include "snow_io.h"
 
 #include <string>
 #include <vector>
 
-namespace snow {
+#import <UIKit/UIKit.h>
 
-        //not supported
-    namespace io {
-        std::vector<std::string> watched_paths;
-        bool init_filewatch(){ return false; }
-        void shutdown_filewatch(){}
-        void update_filewatch(){}
-        void refresh_filewatch(){}
-    }
+namespace snow {
 
     namespace core {
 
@@ -40,20 +33,27 @@ namespace snow {
 
     } //core namespace
 
-    namespace platform {
-            //:todo:
-        std::string dialog_folder(const std::string &title) {
-            return std::string("");
-        }
+    namespace io {
 
-        std::string dialog_open(const std::string &title) {
-            return std::string("");
-        }
+        void url_open(const std::string &url) {
 
-        std::string dialog_save(const std::string &title) {
-            return std::string("");
-        }
-    }
+            NSString *str = [[NSString alloc] initWithUTF8String:url.c_str()];
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];
+            [str release];
+
+        } //url_open
+
+            //not supported
+        std::vector<std::string> watched_paths;
+        bool init_filewatch(){ return false; }
+        void shutdown_filewatch(){}
+        void update_filewatch(){}
+        void refresh_filewatch(){}
+        std::string dialog_folder(const std::string &title){}
+        std::string dialog_open(const std::string &title){}
+        std::string dialog_save(const std::string &title){}
+
+    } //io namespace
 
 } //namespace snow
 
