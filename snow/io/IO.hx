@@ -3,7 +3,10 @@ package snow.io;
 import haxe.io.Path;
 import snow.utils.ByteArray;
 import snow.utils.Libs;
-import sys.FileSystem;
+
+#if snow_native
+    import sys.FileSystem;
+#end
 
 /** This class is a low level cross platform file access helper, that handles in bundle assets etc.
     If you want a file, use `Assets` instead, unless really required. */
@@ -58,6 +61,23 @@ class IOFile {
     If you want file access, use `Assets` instead, unless really required. */
 class IO {
 
+    //url helper //:todo: separate with IOSystem?
+
+        /** Opens the specified url in the default browser */
+    public static function url_open( _url:String ) {
+
+        if(_url != null && _url.length > 0) {
+            #if snow_native
+                snow_io_url_open( _url );
+            #end
+
+            #if snow_html5
+                js.Browser.window.open(_url, '_blank');
+            #end
+        }
+
+    } //url_open
+
 #if snow_native
 
     static var snow_iosrc_from_file = Libs.load( "snow", "snow_iosrc_from_file", 2 );
@@ -85,17 +105,6 @@ class IO {
         }
 
     } //watch_remove
-
-//url helper
-
-        /** Opens the specified url in the default browser */
-    public static function url_open( _url:String ) {
-
-        if(_url != null && _url.length > 0) {
-            snow_io_url_open( _url );
-        }
-
-    } //url_open
 
 //File dialogs, only available on platforms where it makes sense.
 
