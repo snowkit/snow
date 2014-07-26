@@ -10,6 +10,7 @@
 namespace snow {
 
     void log(const char *fmt, ...) {
+
         va_list ap;
 
         va_start(ap, fmt);
@@ -22,7 +23,8 @@ namespace snow {
         #endif
 
         va_end(ap);
-    }
+
+    } //log
 
 
         //externs
