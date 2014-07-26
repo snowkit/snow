@@ -72,6 +72,10 @@ class Main extends snow.AppFixedTimestep {
             windowconf.fullscreen = true;
         #end
 
+        // windowconf.antialiasing = 0;
+        // windowconf.depth_bits = 16;
+        // windowconf.stencil_bits = 8;
+
         return windowconf;
 
     } //get_window_config
@@ -166,7 +170,10 @@ class Main extends snow.AppFixedTimestep {
         // sound4.loop();
         // sound5.loop();
 
-        snow.io.IO.watch_add('assets/');
+
+        #if snow_native
+            snow.io.IO.watch_add('assets/');
+        #end
 
     } //ready
 
@@ -237,9 +244,11 @@ class Main extends snow.AppFixedTimestep {
         }
 
         if(keycode == Key.KEY_o) {
-            trace(snow.io.IO.dialog_open());
-            trace(snow.io.IO.dialog_save());
-            trace(snow.io.IO.dialog_folder());
+            #if snow_native
+                trace(snow.io.IO.dialog_open());
+                trace(snow.io.IO.dialog_save());
+                trace(snow.io.IO.dialog_folder());
+            #end
         }
 
         if(keycode == Key.KEY_t) {
@@ -467,10 +476,11 @@ class Main extends snow.AppFixedTimestep {
         trace("about to create a shader");
         var vertexShader = GL.createShader (GL.VERTEX_SHADER);
 
-            
+
             GL.shaderSource (vertexShader, vertexShaderSource);
             GL.compileShader (vertexShader);
-            trace("done");
+
+        trace("shader created without issue");
 
         if (GL.getShaderParameter (vertexShader, GL.COMPILE_STATUS) == 0) {
 
