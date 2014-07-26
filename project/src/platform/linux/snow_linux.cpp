@@ -41,7 +41,7 @@ namespace snow {
 
             std::string open_gtk_dialog(const GtkFileChooserAction &action, const std::string &title) {
 
-                std::string result("");
+                std::string result;
 
                 GtkWidget *dialog;
                 gint res;
@@ -93,7 +93,7 @@ namespace snow {
             #ifndef SNOW_NO_GTK
                 return open_gtk_dialog(GTK_FILE_CHOOSER_ACTION_OPEN, title);
             #else
-                return std::string("");
+                return std::string();
             #endif
         } //dialog_open
 
@@ -101,7 +101,7 @@ namespace snow {
             #ifndef SNOW_NO_GTK
                 return open_gtk_dialog(GTK_FILE_CHOOSER_ACTION_SAVE, title);
             #else
-                return std::string("");
+                return std::string();
             #endif
         } //dialog_save
 
@@ -109,7 +109,7 @@ namespace snow {
             #ifndef SNOW_NO_GTK
                 return open_gtk_dialog(GTK_FILE_CHOOSER_ACTION_SELECT_FOLDER, title);
             #else
-                return std::string("");
+                return std::string();
             #endif
         } //dialog_folder
 
