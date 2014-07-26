@@ -99,8 +99,6 @@ namespace snow {
                         std::wstring widepath(szwFileName);
                         std::string path(widepath.begin(), widepath.end());
 
-                        printf("event %d\n", notifier->Action);
-
                         FileWatchEventType _event_type = fe_unknown;
 
                             switch( notifier->Action ) {
