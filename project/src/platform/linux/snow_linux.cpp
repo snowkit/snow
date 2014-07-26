@@ -40,6 +40,9 @@ namespace snow {
 
         void url_open(const std::string &url) {
 
+            std::string cmd = "xdg-open " + url;
+            popen(cmd.c_str(), "r")
+
         } //url_open
 
     } //io namespace
