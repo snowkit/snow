@@ -57,7 +57,7 @@ class Snow {
         //if ready has completed, so systems can begin safely
     var is_ready : Bool = false;
         //the core platform instance to bind us
-    var core : Core;
+    @:noCompletion public static var core : Core;
 
     @:noCompletion public function new() {
 
@@ -188,6 +188,11 @@ class Snow {
 
             //now if they requested a window, let's open one
         window = windowing.create( config.window );
+
+            //failed to create?
+        if(window.handle == null) {
+            throw "/ snow / requested default window cannot be created. Cannot continue.";
+        }
 
             //now ready
         is_ready = true;
