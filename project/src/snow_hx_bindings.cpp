@@ -18,6 +18,7 @@
 #include "snow_core.h"
 #include "snow_window.h"
 #include "snow_input.h"
+#include "snow_platform.h"
 
 #include "assets/snow_assets_audio.h"
 #include "assets/snow_assets_image.h"
@@ -759,136 +760,168 @@ extern double timestamp();
 
 //io bindings
 
-    value snow_io_add_watch(value _path) {
 
-        snow::io::add_watch( std::string(val_string(_path)) );
+    //file dialogs
 
-        return alloc_null();
+        value snow_io_dialog_open(value _title) {
 
-    } DEFINE_PRIM(snow_io_add_watch, 1);
+            std::string result = snow::platform::dialog_open( std::string(val_string(_title)) );
 
-    value snow_io_remove_watch(value _path) {
+            return alloc_string( result.c_str() );
 
-        bool removed = snow::io::remove_watch( std::string(val_string(_path)) );
+        } DEFINE_PRIM(snow_io_dialog_open, 1);
 
-        return alloc_bool(removed);
+        value snow_io_dialog_save(value _title) {
 
-    } DEFINE_PRIM(snow_io_remove_watch, 1);
+            std::string result = snow::platform::dialog_save( std::string(val_string(_title)) );
 
-    value snow_iosrc_from_file(value _id, value _mode) {
+            return alloc_string( result.c_str() );
 
-        snow::io::iosrc_file* iosrc = new snow::io::iosrc_file();
+        } DEFINE_PRIM(snow_io_dialog_save, 1);
 
-        iosrc->file_source = snow::io::iosrc_fromfile( val_string(_id), val_string(_mode) );
+        value snow_io_dialog_folder(value _title) {
 
-        return Object_to_hx(iosrc);
+            std::string result = snow::platform::dialog_folder( std::string(val_string(_title)) );
 
-    } DEFINE_PRIM(snow_iosrc_from_file, 2);
+            return alloc_string( result.c_str() );
 
-
-    value snow_iosrc_file_read(value _handle, value _dest, value _size, value _maxnum) {
-
-        snow::io::iosrc_file* iosrc = NULL;
-        QuickVec<unsigned char> buffer;
-
-        if( Object_from_hx(_handle, iosrc) ) {
-
-            if(!val_is_null(_dest)) {
-
-                ByteArray dest(_dest);
-
-                int res = snow::io::read(iosrc->file_source, dest.Bytes(), val_int(_size), val_int(_maxnum));
-
-                return alloc_int(res);
-            }
-
-        } //object from hx
-
-        return alloc_int(-1);
-
-    } DEFINE_PRIM(snow_iosrc_file_read, 4);
+        } DEFINE_PRIM(snow_io_dialog_folder, 1);
 
 
-    value snow_iosrc_file_write(value _handle, value _data, value _size, value _num) {
+    //file notifications
 
-        snow::io::iosrc_file* iosrc = NULL;
+        value snow_io_add_watch(value _path) {
 
-        if( Object_from_hx(_handle, iosrc) ) {
+            snow::io::add_watch( std::string(val_string(_path)) );
 
-            if(!val_is_null(_data)) {
+            return alloc_null();
 
-                ByteArray data(_data);
+        } DEFINE_PRIM(snow_io_add_watch, 1);
 
-                long size = val_int(_size);
-                long num = val_int(_num);
-                long len = size * num;
+        value snow_io_remove_watch(value _path) {
 
-                if(data.Size() != len) {
-                    data.Resize(len);
+            bool removed = snow::io::remove_watch( std::string(val_string(_path)) );
+
+            return alloc_bool(removed);
+
+        } DEFINE_PRIM(snow_io_remove_watch, 1);
+
+    //file io
+
+        value snow_iosrc_from_file(value _id, value _mode) {
+
+            snow::io::iosrc_file* iosrc = new snow::io::iosrc_file();
+
+            iosrc->file_source = snow::io::iosrc_fromfile( val_string(_id), val_string(_mode) );
+
+            return Object_to_hx(iosrc);
+
+        } DEFINE_PRIM(snow_iosrc_from_file, 2);
+
+
+        value snow_iosrc_file_read(value _handle, value _dest, value _size, value _maxnum) {
+
+            snow::io::iosrc_file* iosrc = NULL;
+            QuickVec<unsigned char> buffer;
+
+            if( Object_from_hx(_handle, iosrc) ) {
+
+                if(!val_is_null(_dest)) {
+
+                    ByteArray dest(_dest);
+
+                    int res = snow::io::read(iosrc->file_source, dest.Bytes(), val_int(_size), val_int(_maxnum));
+
+                    return alloc_int(res);
                 }
 
-                int res = snow::io::write(iosrc->file_source, data.Bytes(), size, num);
+            } //object from hx
+
+            return alloc_int(-1);
+
+        } DEFINE_PRIM(snow_iosrc_file_read, 4);
+
+
+        value snow_iosrc_file_write(value _handle, value _data, value _size, value _num) {
+
+            snow::io::iosrc_file* iosrc = NULL;
+
+            if( Object_from_hx(_handle, iosrc) ) {
+
+                if(!val_is_null(_data)) {
+
+                    ByteArray data(_data);
+
+                    long size = val_int(_size);
+                    long num = val_int(_num);
+                    long len = size * num;
+
+                    if(data.Size() != len) {
+                        data.Resize(len);
+                    }
+
+                    int res = snow::io::write(iosrc->file_source, data.Bytes(), size, num);
+
+                    return alloc_int(res);
+
+                } //data != null
+
+            } //object from hx
+
+            return alloc_int(-1);
+
+        } DEFINE_PRIM(snow_iosrc_file_write, 4);
+
+
+        value snow_iosrc_file_seek(value _handle, value _offset, value _whence) {
+
+            snow::io::iosrc_file* iosrc = NULL;
+
+            if( Object_from_hx(_handle, iosrc) ) {
+
+                int res = snow::io::seek(iosrc->file_source, val_int(_offset), val_int(_whence));
 
                 return alloc_int(res);
 
-            } //data != null
+            } //object from hx
 
-        } //object from hx
+            return alloc_int(-1);
 
-        return alloc_int(-1);
-
-    } DEFINE_PRIM(snow_iosrc_file_write, 4);
+        } DEFINE_PRIM(snow_iosrc_file_seek, 3);
 
 
-    value snow_iosrc_file_seek(value _handle, value _offset, value _whence) {
+        value snow_iosrc_file_tell(value _handle) {
 
-        snow::io::iosrc_file* iosrc = NULL;
+            snow::io::iosrc_file* iosrc = NULL;
 
-        if( Object_from_hx(_handle, iosrc) ) {
+            if( Object_from_hx(_handle, iosrc) ) {
 
-            int res = snow::io::seek(iosrc->file_source, val_int(_offset), val_int(_whence));
+                int res = snow::io::tell(iosrc->file_source);
 
-            return alloc_int(res);
+                return alloc_int(res);
 
-        } //object from hx
+            } //object from hx
 
-        return alloc_int(-1);
+            return alloc_int(-1);
 
-    } DEFINE_PRIM(snow_iosrc_file_seek, 3);
-
-
-    value snow_iosrc_file_tell(value _handle) {
-
-        snow::io::iosrc_file* iosrc = NULL;
-
-        if( Object_from_hx(_handle, iosrc) ) {
-
-            int res = snow::io::tell(iosrc->file_source);
-
-            return alloc_int(res);
-
-        } //object from hx
-
-        return alloc_int(-1);
-
-    } DEFINE_PRIM(snow_iosrc_file_tell, 1);
+        } DEFINE_PRIM(snow_iosrc_file_tell, 1);
 
 
-    value snow_iosrc_file_close(value _handle) {
+        value snow_iosrc_file_close(value _handle) {
 
-        snow::io::iosrc_file* iosrc = NULL;
+            snow::io::iosrc_file* iosrc = NULL;
 
-        if( Object_from_hx(_handle, iosrc) ) {
+            if( Object_from_hx(_handle, iosrc) ) {
 
-            int res = snow::io::close(iosrc->file_source);
+                int res = snow::io::close(iosrc->file_source);
 
-            return alloc_int(res);
+                return alloc_int(res);
 
-        } //object from hx
+            } //object from hx
 
-        return alloc_int(-1);
+            return alloc_int(-1);
 
-    } DEFINE_PRIM(snow_iosrc_file_close, 1);
+        } DEFINE_PRIM(snow_iosrc_file_close, 1);
 
 
 

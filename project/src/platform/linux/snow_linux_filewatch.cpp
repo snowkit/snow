@@ -19,7 +19,7 @@ namespace snow {
 #define INOTIFY_BUFFER_SIZE (1024 * (INOTIFY_EVENT_SIZE + 16))
 
         std::vector<std::string> watched_paths;
-        
+
         std::map<int, std::string> watch_to_path;
         std::map<std::string, int> path_to_watch;
 
@@ -89,7 +89,7 @@ namespace snow {
 
                 //for each of the given paths we need to store
                 //a watch descriptor by path for removal later
-                //as well as to map which path is notifying us 
+                //as well as to map which path is notifying us
                 //in the callback, when it happens
 
                     //watch for creation, deletion, modification but only on added directories (files will notify from within those)
@@ -144,7 +144,7 @@ namespace snow {
         void update_filewatch() {
 
             #ifndef SNOW_NO_INOTIFY
-            
+
                 char buffer[INOTIFY_BUFFER_SIZE];
                 int length = 0;
                 int pos = 0;
@@ -154,7 +154,7 @@ namespace snow {
                 if(length > 0) {
 
                     while (pos < length) {
-                        
+
                         struct inotify_event *event;
 
                         event = (struct inotify_event *) &buffer[pos];
@@ -191,7 +191,7 @@ namespace snow {
                         } //is not a directory
 
                         pos += INOTIFY_EVENT_SIZE + event->len;
-                    
+
                     } //while pos < length
 
                 } //length > 0

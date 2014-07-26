@@ -68,6 +68,49 @@ class IO {
         return new IOFile(handle);
     }
 
+        /** Add a folder to a watch list for notifications when the contents of the folder change */
+    public static function watch_add( _path:String ) {
+
+        if(_path != null && _path.length > 0) {
+            snow_io_add_watch( resolve(_path) );
+        }
+
+    } //watch_add
+
+        /** Remove a folder from the watch list */
+    public static function watch_remove( _path:String ) {
+
+        if(_path != null && _path.length > 0) {
+            snow_io_remove_watch( resolve(_path) );
+        }
+
+    } //watch_remove
+
+//File dialogs, only available on platforms where it makes sense.
+
+        /** Opens a file open dialog. Returns a blank string if they cancel or any error occurs. */
+    public static function dialog_open( ?_title:String = "Select file" ) {
+
+        return snow_io_dialog_open( _title );
+
+    } //dialog_open
+
+        /** Opens a file save file dialog. Returns a blank string if they cancel or any error occurs. */
+    public static function dialog_save( ?_title:String = "Save file" ) {
+
+        return snow_io_dialog_save( _title );
+
+    } //dialog_save
+
+        /** Opens a file open folder select dialog. Returns a blank string if they cancel or any error occurs. */
+    public static function dialog_folder( ?_title:String = "Select folder" ) {
+
+        return snow_io_dialog_folder( _title );
+
+    } //dialog_folder
+
+//Internal
+
     static function isAbsolute ( path : String ) : Bool {
         if (StringTools.startsWith(path, '/')) return true;
         if (path.charAt(2) == ':') return true;
@@ -88,22 +131,14 @@ class IO {
 
     } //resolve
 
-        /** Add a folder to a watch list for notifications when the contents of the folder change */
-    public static function watch_add( _path:String ) {
-        if(_path != null && _path.length > 0) {
-            snow_io_add_watch( resolve(_path) );
-        }
-    } //watch_add
-
-        /** Remove a folder from the watch list */
-    public static function watch_remove( _path:String ) {
-        if(_path != null && _path.length > 0) {
-            snow_io_remove_watch( resolve(_path) );
-        }
-    } //watch_remove
+//Bindings
 
     static var snow_io_add_watch        = Libs.load( "snow", "snow_io_add_watch", 1 );
     static var snow_io_remove_watch     = Libs.load( "snow", "snow_io_remove_watch", 1 );
+
+    static var snow_io_dialog_open     = Libs.load( "snow", "snow_io_dialog_open", 1 );
+    static var snow_io_dialog_save     = Libs.load( "snow", "snow_io_dialog_save", 1 );
+    static var snow_io_dialog_folder   = Libs.load( "snow", "snow_io_dialog_folder", 1 );
 
 #end //snow_native
 
