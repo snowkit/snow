@@ -16,6 +16,16 @@ namespace snow {
 
     namespace io {
 
+//url helper
+
+        void url_open(const std::string &url);
+
+//file dialogs
+
+        std::string dialog_folder(const std::string &title);
+        std::string dialog_open(const std::string &title);
+        std::string dialog_save(const std::string &title);
+
 //file watching
 
         struct FileWatchEvent;

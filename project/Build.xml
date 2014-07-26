@@ -208,6 +208,7 @@
       <section if="mac">
          <file name="${SRC_DIR}/platform/mac/snow_mac.mm"/>
          <file name="${SRC_DIR}/platform/mac/snow_mac_filewatch.mm"/>
+         <file name="${SRC_DIR}/platform/mac/snow_mac_filedialogs.mm"/>
       </section>
 
       <section if="linux">
@@ -231,12 +232,14 @@
 
          <file name="${SRC_DIR}/platform/linux/snow_linux.cpp"/>
          <file name="${SRC_DIR}/platform/linux/snow_linux_filewatch.cpp"/>
+         <file name="${SRC_DIR}/platform/linux/snow_linux_filedialogs.cpp"/>
 
       </section>
 
       <section if="windows">
          <file name="${SRC_DIR}/platform/windows/snow_windows.cpp"/>
          <file name="${SRC_DIR}/platform/windows/snow_windows_filewatch.cpp"/>
+         <file name="${SRC_DIR}/platform/windows/snow_windows_filedialogs.cpp"/>
       </section>
 
       <section if="android">

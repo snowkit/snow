@@ -1,6 +1,5 @@
 
 #include "snow_core.h"
-#include "snow_platform.h"
 #include "snow_io.h"
 
 

@@ -209,12 +209,15 @@ class Main extends snow.AppFixedTimestep {
                 x : 0x1FFF0000, y:0x1FFF0000,
                 title:'window ' + app.time
             });
-
         }
 
         if(keycode == Key.KEY_r) {
             sound5.position = 0;
             trace('music reset');
+        }
+
+        if(keycode == Key.KEY_u) {
+            snow.io.IO.url_open("http://snowkit.org/");
         }
 
         if(keycode == Key.KEY_o) {
@@ -274,6 +277,10 @@ class Main extends snow.AppFixedTimestep {
     override function ontouchup( x:Float, y:Float, touch_id:Int, timestamp:Float ) {
         trace('touch up; $x / $y / $touch_id / $timestamp');
         sound1.play();
+
+        if(touch_id > 1) {
+            snow.io.IO.url_open("http://snowkit.org/");
+        }
     }
 
     override function ontouchmove( x:Float, y:Float, dx:Float, dy:Float, touch_id:Int, timestamp:Float ) {
