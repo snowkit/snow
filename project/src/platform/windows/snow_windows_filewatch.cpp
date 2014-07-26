@@ -23,6 +23,7 @@ namespace snow {
             OVERLAPPED overlap;
             BYTE* buffer;
             size_t buffer_size;
+            CRITICAL_SECTION critical;
 
             static DWORD WINAPI run_thread( void *watcher );
 
@@ -30,6 +31,14 @@ namespace snow {
                 path = std::string(_path);
                 buffer_size = 1024;
                 buffer = new BYTE[buffer_size];
+
+                    //I spitballed this 2048 spin count from reading some posts online
+                int _spincount = 2048;
+                #ifndef DEBUG
+                    ::InitializeCriticalSectionEx(&critical, _spincount, CRITICAL_SECTION_NO_DEBUG_INFO);
+                #else 
+                    ::InitializeCriticalSectionEx(&critical, _spincount, 0);
+                #endif
 
                 handle = ::CreateFile(
                     path.c_str(),
@@ -54,6 +63,9 @@ namespace snow {
             } //construct
 
             ~FileWatcherThread() {
+                ::LeaveCriticalSection(&critical);
+                ::DeleteCriticalSection(&critical);
+
                 ::CancelIo(handle);
                 ::CloseHandle(handle);
                 ::CloseHandle(thread);
@@ -122,7 +134,10 @@ namespace snow {
 
                             if(_event_type != fe_unknown) {
                                 FileWatchEvent event( _event_type, snow::timestamp(), (watcher->path+"/"+path) );
-                                snow::io::dispatch_event( event );
+                                
+                                ::EnterCriticalSection(&watcher->critical);
+                                    snow::io::dispatch_event( event );
+                                ::LeaveCriticalSection(&watcher->critical);
                             }
 
                         seek += notifier->NextEntryOffset;
