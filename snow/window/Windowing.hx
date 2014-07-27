@@ -90,6 +90,13 @@ class Windowing {
 
     } //enable_cursor
 
+        /** Lock the OS cursor to the foreground window. This hides the cursor and prevents it from leaving, reporting relative coordinates. */
+    public function enable_cursor_lock( _enable:Bool ) : Void {
+
+        system.system_lock_cursor(_enable);
+
+    } //enable_cursor
+
 //Desktop API
     //note that these only make sense on some platforms but will
     //try and return valid values either way. Use the window itself for info

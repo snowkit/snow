@@ -57,6 +57,7 @@ namespace snow {
         Window*         create_window( const window_config &config, AutoGCRoot* on_created ) { return NULL; }
         int             system_enable_vsync(const bool enable) { return 0; }
         void            system_show_cursor(const bool show) {}
+        void            system_lock_cursor(const bool enable) {}
         int             desktop_get_display_count() { return 0; }
         int             desktop_get_display_mode_count(int display) { return 0; }
         value           desktop_get_display_native_mode(int display) { return alloc_null(); }

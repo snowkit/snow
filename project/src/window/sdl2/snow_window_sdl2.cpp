@@ -58,9 +58,11 @@ namespace snow {
                 void set_title(const char* title);
                 void set_max_size(int x, int y);
                 void set_min_size(int x, int y);
-                void grab(bool enable);
                 void fullscreen(bool enable, int flags);
                 void bordered(bool enable);
+                    //cursor related
+                void grab(bool enable);
+                void set_cursor_position(int x, int y);
 
             private:
 
@@ -349,15 +351,6 @@ namespace snow {
 
         } //set_min_size
 
-        void WindowSDL2::grab(bool enable) {
-
-            if(closed) {
-                return;
-            }
-
-            SDL_SetWindowGrab( window, enable ? SDL_TRUE : SDL_FALSE);
-
-        } //grab
 
         void WindowSDL2::fullscreen(bool enable, int flags = 0) {
 
@@ -384,6 +377,29 @@ namespace snow {
             SDL_SetWindowBordered( window, enable ? SDL_TRUE : SDL_FALSE );
 
         } //bordered
+
+    //Cursor related
+
+        void WindowSDL2::grab(bool enable) {
+
+            if(closed) {
+                return;
+            }
+
+            SDL_SetWindowGrab( window, enable ? SDL_TRUE : SDL_FALSE);
+
+        } //grab
+
+        void WindowSDL2::set_cursor_position(int x, int y) {
+
+            if(closed) {
+                return;
+            }
+
+            SDL_WarpMouseInWindow( window, x, y);
+
+        } //set_cursor_position
+
 
     //Events
 
@@ -634,15 +650,21 @@ namespace snow {
 
     //system helpers
 
-        void system_show_cursor(bool enable) {
+        void system_lock_cursor(bool enable) {
 
-            SDL_ShowCursor( enable ? 1 : 0 );
+            SDL_SetRelativeMouseMode( enable ? SDL_TRUE : SDL_FALSE );
+
+        } //system_lock_cursor
+
+        void system_show_cursor(bool show) {
+
+            SDL_ShowCursor( show ? SDL_TRUE : SDL_FALSE );
 
         } //system_show_cursor
 
         int system_enable_vsync(bool enable) {
 
-            return SDL_GL_SetSwapInterval( enable ? 1 : 0 );
+            return SDL_GL_SetSwapInterval( enable ? SDL_TRUE : SDL_FALSE );
 
         } //system_enable_vsync
 

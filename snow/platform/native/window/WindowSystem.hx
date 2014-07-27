@@ -80,10 +80,6 @@ import snow.utils.Libs;
     	snow_window_set_min_size( window.handle, w, h );
     } //window_set_min_size
 
-    override public function grab( window:Window, grabbed:Bool ) {
-    	snow_window_grab( window.handle, grabbed );
-    } //window_grab
-
     override public function fullscreen( window:Window, fullscreen:Bool, windowed_fullscreen:Bool = true ) {
     	snow_window_fullscreen( window.handle, fullscreen, (windowed_fullscreen) ? 0 : 1 );
     } //window_fullscreen
@@ -92,8 +88,21 @@ import snow.utils.Libs;
     	snow_window_bordered( window.handle, bordered );
     } //window_bordered
 
+    override public function grab( window:Window, grabbed:Bool ) {
+        snow_window_grab( window.handle, grabbed );
+    } //window_grab
+
+    override public function set_cursor_position( window:Window, x:Int, y:Int ) {
+        snow_window_set_cursor_position( window.handle, x, y );
+    } //set_cursor_position
+
 
 //General
+
+        /** Lock the OS cursor to the foreground window. This hides the cursor and prevents it from leaving, reporting relative coordinates. */
+    override function system_lock_cursor( enable:Bool ) {
+        snow_system_lock_cursor( enable );
+    } //system_lock_cursor
 
         /** Toggle the OS cursor. This is not window specific but system wide */
     override function system_enable_cursor( enable:Bool ) {
@@ -141,25 +150,27 @@ import snow.utils.Libs;
 //Native bindings
 
 
-    static var snow_window_create          = Snow.load( "snow", "snow_window_create", 2 );
-    static var snow_window_close           = Snow.load( "snow", "snow_window_close", 1 );
-    static var snow_window_update          = Snow.load( "snow", "snow_window_update", 1 );
-    static var snow_window_render          = Snow.load( "snow", "snow_window_render", 1 );
-    static var snow_window_swap            = Snow.load( "snow", "snow_window_swap", 1 );
-    static var snow_window_simple_message  = Snow.load( "snow", "snow_window_simple_message", 3 );
-    static var snow_window_set_size        = Snow.load( "snow", "snow_window_set_size", 3 );
-    static var snow_window_set_position    = Snow.load( "snow", "snow_window_set_position", 3 );
-    static var snow_window_set_title       = Snow.load( "snow", "snow_window_set_title", 2 );
-    static var snow_window_set_max_size    = Snow.load( "snow", "snow_window_set_max_size", 3 );
-    static var snow_window_set_min_size    = Snow.load( "snow", "snow_window_set_min_size", 3 );
-    static var snow_window_grab            = Snow.load( "snow", "snow_window_grab", 2 );
-    static var snow_window_fullscreen      = Snow.load( "snow", "snow_window_fullscreen", 3 );
-    static var snow_window_bordered        = Snow.load( "snow", "snow_window_bordered", 2 );
+    static var snow_window_create                   = Snow.load( "snow", "snow_window_create", 2 );
+    static var snow_window_close                    = Snow.load( "snow", "snow_window_close", 1 );
+    static var snow_window_update                   = Snow.load( "snow", "snow_window_update", 1 );
+    static var snow_window_render                   = Snow.load( "snow", "snow_window_render", 1 );
+    static var snow_window_swap                     = Snow.load( "snow", "snow_window_swap", 1 );
+    static var snow_window_simple_message           = Snow.load( "snow", "snow_window_simple_message", 3 );
+    static var snow_window_set_size                 = Snow.load( "snow", "snow_window_set_size", 3 );
+    static var snow_window_set_position             = Snow.load( "snow", "snow_window_set_position", 3 );
+    static var snow_window_set_title                = Snow.load( "snow", "snow_window_set_title", 2 );
+    static var snow_window_set_max_size             = Snow.load( "snow", "snow_window_set_max_size", 3 );
+    static var snow_window_set_min_size             = Snow.load( "snow", "snow_window_set_min_size", 3 );
+    static var snow_window_fullscreen               = Snow.load( "snow", "snow_window_fullscreen", 3 );
+    static var snow_window_bordered                 = Snow.load( "snow", "snow_window_bordered", 2 );
+    static var snow_window_grab                     = Snow.load( "snow", "snow_window_grab", 2 );
+    static var snow_window_set_cursor_position      = Snow.load( "snow", "snow_window_set_cursor_position", 3 );
 
 //system helpers
 
-    static var snow_system_show_cursor     = Snow.load("snow", "snow_system_show_cursor", 1);
-    static var snow_system_enable_vsync    = Snow.load("snow", "snow_system_enable_vsync", 1);
+    static var snow_system_show_cursor              = Snow.load("snow", "snow_system_show_cursor", 1);
+    static var snow_system_lock_cursor              = Snow.load("snow", "snow_system_lock_cursor", 1);
+    static var snow_system_enable_vsync             = Snow.load("snow", "snow_system_enable_vsync", 1);
 
 //desktop only native bindings
 

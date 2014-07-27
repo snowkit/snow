@@ -137,6 +137,14 @@ extern double timestamp();
 
     } DEFINE_PRIM(snow_system_show_cursor, 1);
 
+    value snow_system_lock_cursor(value _enable) {
+
+        snow::window::system_lock_cursor( val_bool(_enable) );
+
+        return alloc_null();
+
+    } DEFINE_PRIM(snow_system_lock_cursor, 1);
+
 
 
 //display bindings
@@ -379,6 +387,20 @@ extern double timestamp();
         return alloc_null();
 
     } DEFINE_PRIM(snow_window_grab, 2);
+
+    value snow_window_set_cursor_position(value _window, value _x, value _y) {
+
+        snow::window::Window* window = NULL;
+
+        if( Object_from_hx(_window, window) ) {
+
+            window->set_cursor_position( val_int(_x), val_int(_y) );
+
+        } //fetch window
+
+        return alloc_null();
+
+    } DEFINE_PRIM(snow_window_set_cursor_position, 3);
 
 
     value snow_window_fullscreen( value _window, value _enable, value _flag ) {
