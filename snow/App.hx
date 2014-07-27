@@ -20,6 +20,8 @@ import snow.types.Types;
     public var timescale : Float = 1;
         /** if this is non zero this will be passed in */
     public var fixed_delta : Float = 0;
+        /** if this is non zero, rendering will be forced to this rate */
+    public var render_rate : Float = 1/60;
         /** if this is non zero, updates will be forced to this rate */
     public var fixed_rate : Float = 0;
         /** the maximum frame time */
@@ -28,9 +30,9 @@ import snow.types.Types;
 //Timing information
 
         /** the time the last frame took to run */
-    public var delta_time : Float = 0.016;
+    public var delta_time : Float = 1/60;
         /** the simulated time the last frame took to run, relative to scale etc */
-    public var delta_sim : Float = 0.016;
+    public var delta_sim : Float = 1/60;
         /** the start time of the last frame */
     public var last_frame_start : Float = 0.0;
         /** the current simulation time */
@@ -44,6 +46,8 @@ import snow.types.Types;
 
         /** for fixed_rate, the time when the next tick should occur around */
     var next_tick : Float = 0;
+        /** for fixed_rate, the time when the next tick should occur around */
+    var next_render : Float = 0;
 
 //override these in your game class
 
@@ -216,12 +220,12 @@ import snow.types.Types;
     @:noCompletion public function on_internal_update() {
 
         if(fixed_rate != 0) {
-                //we haven't reached the next frame yet?
-            if(app.time < next_tick) {
-                return;
-            } else {
-                //we have reached the next frame, update the tick
+            if(next_tick < app.time) {
+                    //we have reached the next frame, update the tick
                 next_tick = app.time + fixed_rate;
+            } else {
+                    //we haven't reached the next frame yet?
+                return;
             }
         } //fixed_rate
 
@@ -243,8 +247,14 @@ import snow.types.Types;
         current_time += used_delta;
             //do the internal systems update
         app.do_internal_update( used_delta );
-            //and finally call render
-        app.do_internal_render();
+
+            //and finally call render, if it's time
+        if(render_rate != 0) {
+            if(next_render < app.time) {
+                app.render();
+                next_render += render_rate;
+            }
+        }
 
         #if snow_native
 
@@ -308,7 +318,13 @@ class AppFixedTimestep extends App {
             //work this out before a render
         alpha = overflow / frame_time;
 
-        app.do_internal_render();
+            //and finally call render, if it's time
+        if(render_rate != 0) {
+            if(next_render < app.time) {
+                app.render();
+                next_render += render_rate;
+            }
+        }
 
         #if snow_native
 
