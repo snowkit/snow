@@ -49,7 +49,7 @@ import haxe.Log;
 
             for (timer in running_timers) {
                 if(timer.running) {
-                    if(now >= timer.fire_at) {
+                    if(timer.fire_at < now) {
                         timer.fire_at += timer.time;
                         timer.run();
                     } //now

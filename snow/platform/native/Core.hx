@@ -5,6 +5,7 @@ import snow.types.Types;
 /** Implemented in the platform specific concrete versions of this class */
 @:noCompletion class Core extends snow.Core.CoreBinding {
 
+    var start_timestamp : Float = 0.0;
 
     public function new( _app:Snow ) {
         app = _app;
@@ -12,6 +13,7 @@ import snow.types.Types;
 
         /** Called by the snow internals to intiialize the core and subsystems of the framework, with the event handler passed in for where to deliver system events */
     override public function init( _event_handler : SystemEvent->Void ) : Void {
+        start_timestamp = timestamp();
         snow_init( _event_handler, app.config.run_loop );
     } //init
 
@@ -22,7 +24,8 @@ import snow.types.Types;
 
         /** Get the most precise timestamp available on the platform, in seconds (time is always in seconds in snow) */
     override public function timestamp() : Float {
-        return snow_timestamp();
+        var now : Float = snow_timestamp();
+        return now - start_timestamp;
     } //timestamp
 
         /** Return the full path that the application is located */

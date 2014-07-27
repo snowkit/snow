@@ -106,7 +106,7 @@ class Window {
 
     @:noCompletion public function on_event( _event:WindowEvent ) {
 
-        trace("/ snow / window event " + id + " / " + _event.type + " / " + _event.event );
+        // trace("/ snow / window event " + id + " / " + _event.type + " / " + _event.event );
 
         switch(_event.type) {
 
