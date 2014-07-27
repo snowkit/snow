@@ -29,8 +29,10 @@ class Snow {
 
         /** The host application */
     public var host : App;
-        /** The configuration from the project file, runtime config and other configs */
-    public var config : SnowConfig;
+        /** The application configuration specifics (like window, runtime, and asset lists) */
+    public var config : AppConfig;
+        /** The configuration for snow itself, set via build project flags */
+    public var snow_config : SnowConfig;
 
 //Sub systems
 
@@ -68,23 +70,19 @@ class Snow {
 
 //Internal API
 
-    @:noCompletion public function init( __config : SnowConfig ) {
+    @:noCompletion public function init( _snow_config:SnowConfig, _host : App ) {
 
-        if(__config == null) {
-            throw "/ snow / init / failed due to null config passed in.";
-        }
+        snow_config = _snow_config;
 
-        if(__config.host == null) {
-            throw "/ snow / init / failed due to null config.host passed in.";
-        }
+        config = {
+            has_loop : true,
+            has_window : true,
+            runtime : {},
+            window : null,
+            assets : []
+        };
 
-        config = __config;
-
-        if(config.run_loop == null) {
-            config.run_loop = true;
-        }
-
-        host = config.host;
+        host = _host;
         host.app = this;
 
         core.init( on_event );
@@ -159,40 +157,49 @@ class Snow {
             assets = new Assets( this );
 
 
-        _debug('/ snow / fetching asset list "${assets.manifest_path}"' , true);
+        if(!snow_config.config_custom_assets){
 
+                //load the correct asset path from the snow config
+            assets.manifest_path = snow_config.config_assets_path;
 
-                //we fetch the a list from the host so they can override it
-            config.asset_data = host.get_asset_list();
+                //
+            _debug('/ snow / fetching asset list "${assets.manifest_path}"' , true);
+
+                //we fetch the a list from the manifest
+            config.assets = default_asset_list();
                 //then we add the list for the asset manager
-            assets.add( config.asset_data );
+            assets.add( config.assets );
 
+        } //custom assets
 
-        _debug('/ snow / fetching runtime config', true);
+        if(!snow_config.config_custom_runtime) {
+                //fetch from a config file, the custom
+            config.runtime = default_runtime_config();
+        }
 
+        config.window = default_window_config();
 
-            //fetch runtime config before we actually tell them to pre-ready init
-        config.runtime = host.get_runtime_config();
+        _debug('/ snow / fetching user config', true);
 
-
-        _debug('/ snow / fetching window config', true);
-
-            //fetch runtime config before we actually tell them to pre-ready init
-        config.window = host.get_window_config();
+            //request config changes, if any
+        config = host.config( config );
 
             //disllow re-entry
         was_ready = true;
 
-
         _debug('/ snow / creating default window', true);
 
             //now if they requested a window, let's open one
-        window = windowing.create( config.window );
+        if(config.has_window == true) {
 
-            //failed to create?
-        if(window.handle == null) {
-            throw "/ snow / requested default window cannot be created. Cannot continue.";
-        }
+            window = windowing.create( config.window );
+
+                //failed to create?
+            if(window.handle == null) {
+                throw "/ snow / requested default window cannot be created. Cannot continue.";
+            }
+
+        } //has_window
 
             //now ready
         is_ready = true;
@@ -203,10 +210,12 @@ class Snow {
     } //on_snow_ready
 
     @:noCompletion public function do_internal_update( dt:Float ) {
+
         input.update();
         audio.update();
         host.update( dt );
-    }
+
+    } //do_internal_update
 
         /** Called for you by snow, unless configured otherwise. Only call this manually if your render_rate is 0! */
     public function render() {
@@ -287,6 +296,121 @@ class Snow {
         } //switch _event.type
 
     } //on_event
+
+
+
+        /** handles the default method of parsing a runtime config json,
+            To change this behavior override `get_runtime_config`. This is called by default in get_runtime_config. */
+    function default_runtime_config() : Dynamic {
+
+            //we want to load the runtime config from a json file by default
+        var config_data = assets.text( snow_config.config_runtime_path );
+
+            //only care if there is a config
+        if(config_data != null && config_data.text != null) {
+
+            try {
+
+                var json = haxe.Json.parse( config_data.text );
+
+                trace('/ snow / config / ok / default runtime config');
+
+                return json;
+
+            } catch(e:Dynamic) {
+
+                trace('/ snow / config / failed / default runtime config failed to parse as JSON.');
+                    //:todo: should this throw? or continue without it?
+                    //i feel like a crash during your app runtime because of a missing config
+                    //or invalid config feels like black box errors rather than an explicit early out
+                throw e;
+                // return {};
+            }
+        }
+
+        return {};
+
+    } //default_runtime_config
+
+        /** handles the default method of parsing the file manifest list as json, stored in an array and returned. */
+    function default_asset_list() : Array<AssetInfo> {
+
+        var asset_list : Array<AssetInfo> = [];
+        var manifest_data = ByteArray.readFile( assets.assets_root + assets.manifest_path, false );
+
+        if(manifest_data != null && manifest_data.length != 0) {
+
+            #if lime_tools
+
+                var _list:Array<Dynamic> = haxe.Unserializer.run(manifest_data.toString());
+
+                for(asset in _list) {
+
+                    asset_list.push({
+                        id : asset.id,
+                        path : haxe.io.Path.join([assets.assets_root, asset.path]),
+                        type : Std.string(asset.type).toLowerCase(),
+                        ext : haxe.io.Path.extension(asset.path)
+                    });
+
+                } //for each asset
+
+            #else
+
+                var _list:Array<String> = haxe.Json.parse(manifest_data.toString());
+
+                for(asset in _list) {
+
+                    asset_list.push({
+                        id : asset,
+                        path : haxe.io.Path.join([assets.assets_root, asset]),
+                        type : haxe.io.Path.extension(asset),
+                        ext : haxe.io.Path.extension(asset)
+                    });
+
+                } //for each asset
+
+            #end
+
+            trace('/ snow / config / ok / default asset manifest');
+
+        } else { //manifest_data != null
+
+            trace('/ snow / config / failed / default asset manifest not found, or length was zero');
+
+        }
+
+        return asset_list;
+
+    } //default_asset_list
+
+
+        /** returns a default configured window config */
+    function default_window_config() : WindowConfig {
+
+        return {
+
+            #if mobile
+                fullscreen : true,
+            #else
+                fullscreen : false,
+            #end
+
+            resizable : true,
+            borderless : false,
+            antialiasing : 0,
+            stencil_bits : 0,
+            depth_bits : 0,
+
+            x               : 0x1FFF0000,
+            y               : 0x1FFF0000,
+            width           : 960,
+            height          : 640,
+            title           : "snow app"
+
+        };
+
+    } //default_window_config
 
 
 //Helpers

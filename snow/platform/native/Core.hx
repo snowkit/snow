@@ -14,7 +14,7 @@ import snow.types.Types;
         /** Called by the snow internals to intiialize the core and subsystems of the framework, with the event handler passed in for where to deliver system events */
     override public function init( _event_handler : SystemEvent->Void ) : Void {
         start_timestamp = timestamp();
-        snow_init( _event_handler, app.config.run_loop );
+        snow_init( _event_handler, app.config.has_loop );
     } //init
 
         /** Called to explicitly shutdown the framework cleanly. Called by `quit` and `app_terminated` type events by the core, for example. */

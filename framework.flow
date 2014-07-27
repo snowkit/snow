@@ -9,6 +9,15 @@
     }
   },
 
+  snow : {
+    config : {
+      custom_assets : false,
+      custom_runtime : false,
+      runtime_path : 'config.json',
+      assets_path : 'manifest'
+    }
+  },
+
   project : {
 
     name : 'snow',
@@ -37,7 +46,7 @@
 
     build : {
       files : {
-        boot : { path:'flowtemplates/boot/SnowApp.hx => haxe/SnowApp.hx', template:'project' },
+        boot : { path:'flowtemplates/boot/SnowApp.hx => haxe/SnowApp.hx', template:['project', 'snow'] },
       }
     }
 

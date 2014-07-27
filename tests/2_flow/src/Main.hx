@@ -54,31 +54,24 @@ class Main extends snow.AppFixedTimestep {
         //left or right pan?
     var left : Bool = false;
 
-        //overriding the built in function to configure the default window
-    override function get_window_config() : WindowConfig {
+    override function config( config:AppConfig ) : AppConfig {
 
-        var windowconf : WindowConfig = snow.App.get_default_window_config( app );
+            //here we can change the config.window and config.runtime values
+            //before they are used by the framework, i.e verifying the runtime config values
+            //and rejecting/updating invalid ones
 
-        if(app.config.runtime.window != null) {
-            if(app.config.runtime.window.width != null) {
-                windowconf.width = Std.int(app.config.runtime.window.width);
+        if(config.runtime.window != null) {
+            if(config.runtime.window.width != null) {
+                config.window.width = Std.int(config.runtime.window.width);
             }
-            if(app.config.runtime.window.height != null) {
-                windowconf.height = Std.int(app.config.runtime.window.height);
+            if(config.runtime.window.height != null) {
+                config.window.height = Std.int(config.runtime.window.height);
             }
         }
 
-        #if mobile
-            windowconf.fullscreen = true;
-        #end
+        return config;
 
-        // windowconf.antialiasing = 0;
-        // windowconf.depth_bits = 16;
-        // windowconf.stencil_bits = 8;
-
-        return windowconf;
-
-    } //get_window_config
+    } //config
 
     override public function ready() {
 

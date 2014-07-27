@@ -26,9 +26,9 @@ import snow.types.Types;
 
 
                 //Then if requested, start the main loop
-            //if( loop config set ) { :todo:
+            if(app.config.has_loop) {
                 request_update();
-            // }
+            }
 
             start_timestamp = timestamp();
 
