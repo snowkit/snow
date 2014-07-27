@@ -63,28 +63,36 @@ typedef AssetAudioOptions = {
 } //AssetAudioOptions
 
 
-
-/**
-The snow core configuration information
-
-`? host` : the bootstrapped application
-`? run_loop` : whether or not the core should run a loop at all
-`? window` : the window config for a default window, if any
-`? runtime` : the user specific config read from json at runtime
-`? asset_data` : the raw list of assets. use the app.assets from Snow for access
-
-*/
+/** Snow specific configurations, set from build config */
 typedef SnowConfig = {
 
-    host                    : App,
-
-    ? run_loop              : Bool,
-
-    ? window                : WindowConfig,
-    ? runtime               : Dynamic,
-    ? asset_data            : Array<AssetInfo>
+        /** The default place to find the asset manifest file, default: `manifest` */
+    @:optional var config_assets_path : String;
+        /** The default place to find the runtime config file, default: `config.json` */
+    @:optional var config_runtime_path : String;
+        /** If set, no default runtime config will be loaded (use `App.config` to load a config manually). default: false */
+    @:optional var config_custom_runtime : Bool;
+        /** If set, no default asset list will be loaded (use `App.config` to load a config manually). default: false */
+    @:optional var config_custom_assets : Bool;
 
 } //SnowConfig
+
+/** The application config info */
+typedef AppConfig = {
+
+        /** whether or not the core should run a loop at all, default: true */
+    @:optional var has_loop     : Bool;
+        /** whether or not to create and run a default window, default: true */
+    @:optional var has_window   : Bool;
+
+        /** the window config for the default window, if `has_window` is true. default: see `WindowConfig` docs*/
+    @:optional var window       : WindowConfig;
+        /** the user specific config, by default, read from a json file at runtime */
+    @:optional var runtime      : Dynamic;
+        /** the raw list of assets. use the app.assets from Snow for access to these. read from a manifest file by default */
+    @:optional var assets       : Array<AssetInfo>;
+
+} //AppConfig
 
 
 /**
@@ -165,41 +173,33 @@ typedef AudioDataBlob = {
 
 } //AudioDataBlob
 
-/**
-Window configuration information for creating windows
-
-`? fullscreen` : create in fullscreen
-`? resizable` : allow the window to be resized
-`? borderless` : create as a borderless window
-`? antialiasing` : a value of `0`, `2`, `4`, `8` or other valid antialiasing flags
-`? stencil_bits` : create a stencil buffer (not per window, this is per context)
-`? depth_bits` : create a depth buffer (not per window, this is per context)
-`? x` : window y at creation
-`? y` : window x at creation
-`? width` : window height at creation
-`? height` : window width at creation
-`? title` : window title
-`? orientation` : `Mobile specific` - window orientation setting
-
-*/
+/** Window configuration information for creating windows */
 typedef WindowConfig = {
 
-    ? fullscreen            : Bool,
-    ? resizable             : Bool,
-    ? borderless            : Bool,
-    ? antialiasing          : Int,
-    ? stencil_bits          : Int,
-    ? depth_bits            : Int,
-    ? x                     : Int,
-    ? y                     : Int,
-    ? width                 : Int,
-    ? height                : Int,
-    ? title                 : String,
-
-    ? orientation           : String,
-    ? multitouch_supported  : Bool,
-    ? multitouch            : Bool,
-    ? no_input              : Bool
+        /** create in fullscreen, default: false, `mobile` true */
+    @:optional var fullscreen   : Bool;
+        /** allow the window to be resized, default: true */
+    @:optional var resizable    : Bool;
+        /** create as a borderless window, default: false */
+    @:optional var borderless   : Bool;
+        /** a value of `0`, `2`, `4`, `8` or other valid antialiasing flags. default: 0 */
+    @:optional var antialiasing : Int;
+        /** create a stencil buffer at the specified bit depth (i.e `8` or `16` bit stencil buffer). default: 0 */
+    @:optional var stencil_bits : Int;
+        /** create a depth buffer at the specified bit depth (i.e `0` or `16` bit depth buffer) default: 0 */
+    @:optional var depth_bits   : Int;
+        /** window y at creation. Leave this alone to use the OS default. */
+    @:optional var x            : Int;
+        /** window x at creation. Leave this alone to use the OS default. */
+    @:optional var y            : Int;
+        /** window height at creation, default: 960 */
+    @:optional var width        : Int;
+        /** window width at creation, default: 640 */
+    @:optional var height       : Int;
+        /** window title, default: 'snow app' */
+    @:optional var title        : String;
+        /** disables input arriving at/from this window. default: false */
+    @:optional var no_input     : Bool;
 
 } //WindowConfig
 

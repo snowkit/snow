@@ -15,16 +15,17 @@ class ApplicationMain {
             //Create the app class, give it to the bootstrapper
         _host = new ::APP_MAIN::();
 
-            //Create the main config
-        var _config : SnowConfig = {
-
-            host            : _host,
-            run_loop        : true
-
+            //This should be set via build time configs
+            //but they aren't available just yet properly
+        var _snow_config : SnowConfig = {
+            config_custom_assets = false,
+            config_custom_runtime = false,
+            config_runtime_path = 'config.json',
+            config_assets_path = 'manifest'
         };
 
             //Start up
-        _snow.init( _config );
+        _snow.init( _snow_config, _host );
 
     } //main
 
