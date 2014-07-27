@@ -18,10 +18,10 @@ class ApplicationMain {
             //This should be set via build time configs
             //but they aren't available just yet properly
         var _snow_config : SnowConfig = {
-            config_custom_assets = false,
-            config_custom_runtime = false,
-            config_runtime_path = 'config.json',
-            config_assets_path = 'manifest'
+            config_custom_assets : false,
+            config_custom_runtime : false,
+            config_runtime_path : 'config.json',
+            config_assets_path : 'manifest'
         };
 
             //Start up
