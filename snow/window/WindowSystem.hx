@@ -65,17 +65,22 @@ import snow.utils.AbstractClass;
     public function set_max_size( window:Window, w:Int, h:Int );
         /** Set the min size of a window */
     public function set_min_size( window:Window, w:Int, h:Int );
-        /** Set the grab state of a window */
-    public function grab( window:Window, grabbed:Bool );
         /** Set the fullscreen state of a window */
     public function fullscreen( window:Window, fullscreen:Bool, windowed_fullscreen:Bool = true );
         /** Set the bordered state of a window */
     public function bordered( window:Window, bordered:Bool );
+//cursor
+        /** Set the grab state of a window */
+    public function grab( window:Window, grabbed:Bool );
+        /** Set the cursor position inside of a given window */
+    public function set_cursor_position( window:Window, x:Int, y:Int );
 
 //General
 
         /** Toggle the OS cursor. This is not window specific but system wide */
     public function system_enable_cursor( enable:Bool );
+        /** Lock the OS cursor to the foreground window. This hides the cursor and prevents it from leaving, reporting relative coordinates. */
+    public function system_lock_cursor( enable:Bool );
         /** Toggle vertical refresh. This is not window specific but context wide, returns 0 on success or -1 if not supported */
     public function system_enable_vsync( enable:Bool ) : Int;
 

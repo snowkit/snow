@@ -216,26 +216,7 @@ import snow.window.WindowSystem;
 
         } //window_set_min_size
 
-        override public function grab( _window:Window, grabbed:Bool ) {
 
-            if(grabbed) {
-                    //official api's first
-                if(_window.handle.requestPointerLock == null) {
-                        if(untyped _window.handle.webkitRequestPointerLock == null) {
-                            if(untyped _window.handle.mozRequestPointerLock == null) {
-
-                            } else { untyped _window.handle.mozRequestPointerLock(); }
-                        } else { untyped _window.handle.webkitRequestPointerLock(); }
-                } else { _window.handle.requestPointerLock(); }
-
-            } else {
-
-                //pointer lock cancel api not yet in browsers,
-                //user must press escape
-
-            }
-
-        } //window_grab
 
         var _pre_fs_padding : String = '0';
         var _pre_fs_margin : String = '0';
@@ -306,12 +287,47 @@ import snow.window.WindowSystem;
 
         } //window_bordered
 
+
+        override public function grab( _window:Window, grabbed:Bool ) {
+
+            if(grabbed) {
+                    //official api's first
+                if(_window.handle.requestPointerLock == null) {
+                        if(untyped _window.handle.webkitRequestPointerLock == null) {
+                            if(untyped _window.handle.mozRequestPointerLock == null) {
+
+                            } else { untyped _window.handle.mozRequestPointerLock(); }
+                        } else { untyped _window.handle.webkitRequestPointerLock(); }
+                } else { _window.handle.requestPointerLock(); }
+
+            } else {
+
+                //pointer lock cancel api not yet in browsers,
+                //user must press escape
+
+            }
+
+        } //window_grab
+
+        override public function set_cursor_position( _window:Window, x:Int, y:Int ) {
+
+            // :unsupported: for good reason.
+
+        } //set_cursor_position
+
             /** Toggle the OS cursor. This is not window specific but system wide */
         override function system_enable_cursor( enable:Bool ) {
 
             //:todo:
 
         } //system_enable_cursor
+
+            /** Lock the OS cursor to the foreground window. This hides the cursor and prevents it from leaving, reporting relative coordinates. */
+        override function system_lock_cursor( enable:Bool ) {
+
+            //:todo:
+
+        } //system_lock_cursor
 
             /** Toggle vertical refresh. This is not window specific but context wide */
         override function system_enable_vsync( enable:Bool ) : Int {

@@ -19,7 +19,8 @@ namespace snow {
         struct WindowEvent;
 
         int             system_enable_vsync(bool enable);
-        void            system_show_cursor(bool enable);
+        void            system_lock_cursor(bool enable);
+        void            system_show_cursor(bool show);
 
         int             desktop_get_display_count();
         int             desktop_get_display_mode_count(int display);
@@ -179,9 +180,11 @@ namespace snow {
                 virtual void set_title(const char* title) = 0;
                 virtual void set_max_size(int x, int y) = 0;
                 virtual void set_min_size(int x, int y) = 0;
-                virtual void grab(bool enable) = 0;
                 virtual void fullscreen(bool enable, int flags) = 0;
                 virtual void bordered(bool enable) = 0;
+                    //cursor related
+                virtual void grab(bool enable) = 0;
+                virtual void set_cursor_position(int x, int y) = 0;
 
             protected:
 

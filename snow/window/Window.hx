@@ -338,6 +338,14 @@ class Window {
 
     } //set_height
 
+    public function set_cursor_position( _x:Int, _y:Int ) {
+
+        if(handle != null) {
+            manager.system.set_cursor_position( this, _x, _y );
+        }
+
+    } //set_cursor_position
+
     public function set_position( _x:Int, _y:Int ) {
 
             //keep the flag
