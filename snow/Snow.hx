@@ -208,9 +208,12 @@ class Snow {
         host.update( dt );
     }
 
-    @:noCompletion public function do_internal_render() {
+        /** Called for you by snow, unless configured otherwise. Only call this manually if your render_rate is 0! */
+    public function render() {
+
         windowing.update();
-    }
+
+    } //render
 
     function on_snow_update() {
 
@@ -218,7 +221,7 @@ class Snow {
             return;
         }
 
-            //update any timers
+            //first update timers
         Timer.update();
 
             //handle any internal updates
