@@ -105,8 +105,35 @@ import snow.utils.ByteArray;
         } //image_load_info
 
     override public function image_info_from_bytes( _path:String, _bytes:ByteArray, ?_components:Int = 4 ) : ImageInfo {
-        return null;
-    }
+
+        if(_bytes == null) {
+            trace("/ snow / invalid bytes passed to image_info_from_bytes " + _path);
+            return null;
+        }
+
+            //Then we need it to be a BytesInput haxe.io.Input
+        var _raw_bytes : haxe.io.Bytes = ByteArray.toBytes(_bytes);
+            //now a byte input for format.png
+        var byte_input = new haxe.io.BytesInput(_raw_bytes, 0, _raw_bytes.length);
+            //get the raw data
+        var png_data = new snow.utils.format.png.Reader(byte_input).read();
+            //Extract the bytes from the png reader
+        var png_bytes = snow.utils.format.png.Tools.extract32(png_data);
+            //And the header information for infomation
+        var png_header = snow.utils.format.png.Tools.getHeader(png_data);
+
+        return {
+            id : _path,
+            bpp : _components,
+            width : png_header.width,
+            height : png_header.height,
+            width_actual : png_header.width,
+            height_actual : png_header.height,
+            bpp_source : png_header.colbits,
+            data : new snow.utils.UInt8Array(png_bytes.getData())
+        }
+
+    } //image_info_from_bytes
 
     override public function audio_load_info( _path:String, ?_format:AudioFormatType, ?_load:Bool = true, ?_onload:?AudioInfo->Void ) : AudioInfo {
         return null;
