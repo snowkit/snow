@@ -23,7 +23,7 @@ import snow.types.Types;
         /** if this is non zero, rendering will be forced to this rate */
     public var render_rate : Float = 1/60;
         /** if this is non zero, updates will be forced to this rate */
-    public var fixed_rate : Float = 0;
+    public var update_rate : Float = 0;
         /** the maximum frame time */
     public var max_frame_time : Float = 0.25;
 
@@ -44,9 +44,9 @@ import snow.types.Types;
 
 //Internal values
 
-        /** for fixed_rate, the time when the next tick should occur around */
+        /** for update_rate, the time when the next tick should occur around */
     var next_tick : Float = 0;
-        /** for fixed_rate, the time when the next tick should occur around */
+        /** for update_rate, the time when the next tick should occur around */
     var next_render : Float = 0;
 
 //override these in your game class
@@ -114,15 +114,15 @@ import snow.types.Types;
 
     @:noCompletion public function on_internal_update() {
 
-        if(fixed_rate != 0) {
+        if(update_rate != 0) {
             if(next_tick < app.time) {
                     //we have reached the next frame, update the tick
-                next_tick = app.time + fixed_rate;
+                next_tick = app.time + update_rate;
             } else {
                     //we haven't reached the next frame yet?
                 return;
             }
-        } //fixed_rate
+        } //update_rate
 
             //the start of this frame is now
         cur_frame_start = app.time;
