@@ -2,7 +2,7 @@
 #include "snow_core.h"
 #include "snow_io.h"
 
-
+#include <unistd.h>
 #include <sys/inotify.h>
 #include <string>
 #include <vector>
