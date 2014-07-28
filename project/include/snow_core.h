@@ -172,6 +172,11 @@ namespace snow {
 
                 snow::log("/ snow / no main loop requested");
 
+                #ifndef IPHONE
+                    snow::log("/ snow / shutting down ");
+                    snow::core::shutdown();
+                #endif //IPHONE
+
             }
 
         } //snow_core_init
