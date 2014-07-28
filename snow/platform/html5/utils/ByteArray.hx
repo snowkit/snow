@@ -104,9 +104,24 @@ package snow.platform.html5.utils;
             if (this.length < lengthToEnsure) this.length = lengthToEnsure;
         }
 
+        static public function toBytes(ba:ByteArray):Bytes {
 
-        static public function fromBytes(inBytes:Bytes)
-       {
+            if (ba == null) return null;
+            var bytes:Bytes = Bytes.alloc(ba.length);
+
+                ba.position = 0;
+
+                    for(_i in 0 ... bytes.length) {
+                        bytes.set(_i, ba.readUnsignedByte());
+                    }
+
+                ba.position = 0;
+
+            return bytes;
+
+        } //toBytes
+
+        static public function fromBytes(inBytes:Bytes) {
           var result = new ByteArray();
           result.snowFromBytes(inBytes);
           return result;
