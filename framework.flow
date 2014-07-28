@@ -11,6 +11,7 @@
 
   snow : {
     config : {
+      has_loop : true,
       custom_assets : false,
       custom_runtime : false,
       runtime_path : 'config.json',

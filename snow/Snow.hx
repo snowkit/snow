@@ -75,7 +75,6 @@ class Snow {
         snow_config = _snow_config;
 
         config = {
-            has_loop : true,
             has_window : true,
             runtime : {},
             window : null,
@@ -265,6 +264,7 @@ class Snow {
             audio.on_event( _event );
             windowing.on_event( _event );
             input.on_event( _event );
+            host.on_event( _event );
         }
 
         switch(_event.type) {

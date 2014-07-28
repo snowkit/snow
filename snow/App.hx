@@ -62,6 +62,8 @@ import snow.types.Types;
     public function update(dt:Float) {}
         /** Your exit point. Called for you when you should shut down your application */
     public function destroyed() {}
+        /** Low level event handler from snow core. Often handled by the subsystems so check there first. */
+    public function on_event( event:SystemEvent ) {}
 
         /** Called for you when a key is pressed down */
     public function onkeydown( keycode:Int, scancode:Int, repeat:Bool, mod:ModState, timestamp:Float, window_id:Int ) {}

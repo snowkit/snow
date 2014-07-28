@@ -16,6 +16,7 @@ class SnowApp {
         _host = new {{project.app.main}}();
 
         var _snow_config : SnowConfig = {
+            has_loop : {{toString snow.config.has_loop}},
             config_custom_assets : {{toString snow.config.custom_assets}},
             config_custom_runtime : {{toString snow.config.custom_runtime}},
             config_runtime_path : '{{toString snow.config.runtime_path}}',
