@@ -66,6 +66,8 @@ typedef AssetAudioOptions = {
 /** Snow specific configurations, set from build config */
 typedef SnowConfig = {
 
+        /** whether or not the core should run a loop at all, default: true */
+    @:optional var has_loop : Bool;
         /** The default place to find the asset manifest file, default: `manifest` */
     @:optional var config_assets_path : String;
         /** The default place to find the runtime config file, default: `config.json` */
@@ -80,8 +82,6 @@ typedef SnowConfig = {
 /** The application config info */
 typedef AppConfig = {
 
-        /** whether or not the core should run a loop at all, default: true */
-    @:optional var has_loop     : Bool;
         /** whether or not to create and run a default window, default: true */
     @:optional var has_window   : Bool;
 

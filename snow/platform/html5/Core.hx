@@ -26,7 +26,7 @@ import snow.types.Types;
 
 
                 //Then if requested, start the main loop
-            if(app.config.has_loop) {
+            if(app.snow_config.has_loop) {
                 request_update();
             }
 

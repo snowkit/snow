@@ -73,7 +73,16 @@ class Main extends snow.AppFixedTimestep {
 
     } //config
 
-    override public function ready() {
+    override function on_event( _event:SystemEvent ) {
+
+        if(_event.type == SystemEventType.filewatch) {
+            var type = FileWatchEvents.typed(cast _event.filewatch.type);
+            trace('File watch event type:${type}, path:${_event.filewatch.path} ts:${_event.filewatch.timestamp}');
+        }
+
+    } //on_event
+
+    override function ready() {
 
         trace('/ HOST / ready');
 
