@@ -55,6 +55,8 @@ Dev packages :
 
 _todo_
 libgtk-3-dev
+libgl1-mesa-dev
+libglu1-mesa-dev
 
 ###latest bleeding edge binary builds
 
