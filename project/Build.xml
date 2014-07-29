@@ -160,7 +160,7 @@
       <section if="SNOW_USE_OPENGL">
 
          <compilerflag value="-DSNOW_USE_OPENGL" />
-         <compilerflag value="-DGL_GLEXT_PROTOTYPES"     if="android"/>
+         <compilerflag value="-DGL_GLEXT_PROTOTYPES"/>
          <compilerflag value="-DSNOW_GLES"              if="android || ios"/>
 
          <file name="${SRC_DIR}/render/opengl/snow_render_opengl.cpp" />
