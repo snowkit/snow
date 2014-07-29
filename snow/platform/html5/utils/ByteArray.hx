@@ -198,7 +198,11 @@ package snow.platform.html5.utils;
             request.onload = function(data) {
 
                 if(onload != null) {
-                    onload( finalize() );
+                    if(request.status == 200) {
+                        onload( finalize() );
+                    } else {
+                        onload( null );
+                    }
                 }
 
             } //onload
@@ -207,7 +211,11 @@ package snow.platform.html5.utils;
 
                 //when doing sync we need to return the result
             if(!async) {
-                return finalize();
+                if(request.status == 200) {
+                    return finalize();
+                } else {
+                    return null;
+                }
             }
 
             return null;
