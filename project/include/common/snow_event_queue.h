@@ -63,7 +63,7 @@ namespace snow {
             event_node_t* tail = self->tail;
             event_node_t* next = tail->next;
 
-            if (tail == &self->stub) {
+            if( tail == &self->stub ) {
 
                 if (0 == next) {
                     return 0;
@@ -75,20 +75,19 @@ namespace snow {
 
             }
 
-            if(next) {
+            if( next ) {
                 self->tail = next;
                 return tail;
             }
 
             event_node_t* head = self->head;
-            if (tail != head) {
+            if( tail != head ) {
                 return 0;
             }
 
             eventqueue_push(self, &self->stub);
 
             next = tail->next;
-
             if( next ) {
                 self->tail = next;
                 return tail;
@@ -98,7 +97,9 @@ namespace snow {
 
         } //eventqueue_pop
 
-    }
-}
+
+    } // io namespace
+
+} // snow namespace
 
 #endif //_SNOW_IO_EVTQUEUE_H_
