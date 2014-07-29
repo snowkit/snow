@@ -14,8 +14,10 @@ namespace snow {
 
     namespace io {
 
+        static eventqueue_t filewatch_queue;
 
         class FileWatcherThread {
+
           public:
             bool running;
             std::string path;
@@ -29,6 +31,7 @@ namespace snow {
             static DWORD WINAPI run_thread( void *watcher );
 
             FileWatcherThread(const std::string &_path) {
+
                 running = false;
                 path = std::string(_path);
                 buffer_size = 1024;
@@ -38,7 +41,7 @@ namespace snow {
                 int _spincount = 2048;
                 #ifndef DEBUG
                     ::InitializeCriticalSectionEx(&critical, _spincount, CRITICAL_SECTION_NO_DEBUG_INFO);
-                #else 
+                #else
                     ::InitializeCriticalSectionEx(&critical, _spincount, 0);
                 #endif
 
@@ -66,7 +69,7 @@ namespace snow {
             } //construct
 
             ~FileWatcherThread() {
-                
+
                 running = false;
 
                 ::LeaveCriticalSection(&critical);
@@ -75,9 +78,11 @@ namespace snow {
                 ::CancelIo(handle);
                 ::CloseHandle(handle);
                 ::CloseHandle(thread);
-            }
 
-        };
+            } //~
+
+        }; //class FileWatcherThread
+
 
         DWORD WINAPI FileWatcherThread::run_thread( void *_watcher ) {
 
@@ -131,20 +136,20 @@ namespace snow {
                                     _event_type = fe_remove;
                                     break;
                                 }
-                                
+
                                 case FILE_ACTION_RENAMED_NEW_NAME:{
                                     _event_type = fe_create;
                                     break;
                                 }
-                                
+
                             } //switch
 
                             if(_event_type != fe_unknown) {
-                                
+
                                 // put into queue
                                 event_node_t* node = new event_node_t;
                                 node->event = new FileWatchEvent( _event_type, snow::timestamp(), (watcher->path+"/"+path) );
-                                eventqueue_push(&eventQueue, node);
+                                eventqueue_push(&filewatch_queue, node);
 
                             }
 
@@ -162,52 +167,6 @@ namespace snow {
 
         } //run_thread
 
-        eventqueue_t eventQueue;
-        void eventqueue_create(eventqueue_t* self)
-        {
-            self->head = &self->stub;
-            self->tail = &self->stub;
-            self->stub.next = 0;
-        }
-
-        void eventqueue_push(eventqueue_t* self, event_node_t* n)
-        {
-            n->next = 0;
-            event_node_t* prev = (event_node_t*)InterlockedExchangePointer((PVOID*)&self->head, (PVOID)n);
-            //(*)
-            prev->next = n;
-        }
-
-        event_node_t* eventqueue_pop(eventqueue_t* self)
-        {
-            event_node_t* tail = self->tail;
-            event_node_t* next = tail->next;
-            if (tail == &self->stub)
-            {
-                if (0 == next)
-                    return 0;
-                self->tail = next;
-                tail = next;
-                next = next->next;
-            }
-            if (next)
-            {
-                self->tail = next;
-                return tail;
-            }
-            event_node_t* head = self->head;
-            if (tail != head)
-                return 0;
-            eventqueue_push(self, &self->stub);
-            next = tail->next;
-            if (next)
-            {
-                self->tail = next;
-                return tail;
-            }
-            return 0;
-        }         
-
         std::vector<std::string> watched_paths;
         std::vector<FileWatcherThread*> watchers;
 
@@ -222,7 +181,7 @@ namespace snow {
         void start_filewatch(){
 
             // create our queue
-            eventqueue_create((eventqueue_t*)&eventQueue);
+            eventqueue_create((eventqueue_t*)&filewatch_queue);
 
             if(watched_paths.size() == 0) {
                 return;
@@ -253,7 +212,7 @@ namespace snow {
 
             for( ; it != watchers.end(); ++it) {
                 FileWatcherThread* watcher = *it;
-                if(watcher) { 
+                if(watcher) {
                     delete watcher;
                 }
             }
@@ -275,12 +234,13 @@ namespace snow {
 
             // clear the queue
             event_node_t* node;
-            while (node = eventqueue_pop(&eventQueue)) {
+            while( node = eventqueue_pop(&filewatch_queue) ) {
                 snow::io::dispatch_event( *node->event );
                 delete node->event;
                 delete node;
             }
-        }
+
+        } //update_filewatch
 
         void shutdown_filewatch() {
 

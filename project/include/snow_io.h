@@ -55,30 +55,6 @@ namespace snow {
 
         }; //FileWatchEvent
 
-            // highperf lockfree lifo eventqueue, based on:
-            // http://www.1024cores.net/home/lock-free-algorithms/queues/intrusive-mpsc-node-based-queue
-            // It's *almost* lockfree since it can block the consumer in (*) in theory, but even
-            // the consumer just waits till he can grab the item. the producers are not affected.
-        struct event_node_t
-        {
-            event_node_t* volatile  next;
-            FileWatchEvent* event;
-        }; // event_node_t
-
-        struct eventqueue_t
-        {
-            event_node_t* volatile  head;
-            event_node_t*           tail;
-            event_node_t            stub;
-
-        }; // eventqueue_t
-
-        void eventqueue_create(eventqueue_t* self);
-        void eventqueue_push(eventqueue_t* self, event_node_t* n);
-        event_node_t* eventqueue_pop(eventqueue_t* self); 
-
-        extern eventqueue_t eventQueue;
-
             //filled in by platform specific handlers
         bool init_filewatch();
         void shutdown_filewatch();
