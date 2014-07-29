@@ -10,7 +10,7 @@
     <application android:label="{{project.app.title}}"
                  android:debuggable="{{toString debug}}"
                  {{#if project.app.icon~}}
-                 android:icon="@drawable/icon"
+                 android:icon="@drawable/{{project.app._icon.dest}}"
                  {{/if~}}
                  android:allowBackup="true"
                  android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
