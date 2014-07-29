@@ -1,94 +1,104 @@
+#ifndef _SNOW_IO_EVTQUEUE_H_
+#define _SNOW_IO_EVTQUEUE_H_
+
+#ifdef HX_WINDOWS
+    #include <windows.h>
+#endif
+
+namespace snow {
+
+    namespace io {
+
+            // highperf lockfree lifo eventqueue, based on:
+            // http://www.1024cores.net/home/lock-free-algorithms/queues/intrusive-mpsc-node-based-queue
+            // It's *almost* lockfree since it can block the consumer in (*) in theory, but even
+            // the consumer just waits till he can grab the item. the producers are not affected.
+        struct event_node_t {
+
+            event_node_t* volatile  next;
+            FileWatchEvent* event;
+
+        }; // event_node_t
+
+        struct eventqueue_t {
+
+            event_node_t* volatile  head;
+            event_node_t*           tail;
+            event_node_t            stub;
+
+        }; // eventqueue_t
+
+        void            eventqueue_create(eventqueue_t* self);
+        void            eventqueue_push(eventqueue_t* self, event_node_t* node);
+        event_node_t*   eventqueue_pop(eventqueue_t* self);
 
 
-    #ifdef HX_WINDOWS
-        #include <windows.h>
-    #endif
+        inline void eventqueue_create(eventqueue_t* self) {
 
-        // highperf lockfree lifo eventqueue, based on:
-        // http://www.1024cores.net/home/lock-free-algorithms/queues/intrusive-mpsc-node-based-queue
-        // It's *almost* lockfree since it can block the consumer in (*) in theory, but even
-        // the consumer just waits till he can grab the item. the producers are not affected.
-    struct event_node_t {
+            self->head = &self->stub;
+            self->tail = &self->stub;
+            self->stub.next = 0;
 
-        event_node_t* volatile  next;
-        FileWatchEvent* event;
+        } //eventqueue_create
 
-    }; // event_node_t
+        inline void eventqueue_push(eventqueue_t* self, event_node_t* node) {
 
-    struct eventqueue_t {
+            node->next = 0;
 
-        event_node_t* volatile  head;
-        event_node_t*           tail;
-        event_node_t            stub;
+            #ifdef HX_WINDOWS
+                event_node_t* prev = (event_node_t*)InterlockedExchangePointer((PVOID*)&self->head, (PVOID)node);
+            #else
+                    //:todo:
+                #error "Not implemented"
+                event_node_t* prev = NULL;
+            #endif
 
-    }; // eventqueue_t
+            //(*)
+            prev->next = node;
 
-    void            eventqueue_create(eventqueue_t* self);
-    void            eventqueue_push(eventqueue_t* self, event_node_t* node);
-    event_node_t*   eventqueue_pop(eventqueue_t* self);
+        } //eventqueue_push
 
+        inline event_node_t* eventqueue_pop(eventqueue_t* self) {
 
-    inline void eventqueue_create(eventqueue_t* self) {
+            event_node_t* tail = self->tail;
+            event_node_t* next = tail->next;
 
-        self->head = &self->stub;
-        self->tail = &self->stub;
-        self->stub.next = 0;
+            if (tail == &self->stub) {
 
-    } //eventqueue_create
+                if (0 == next) {
+                    return 0;
+                }
 
-    inline void eventqueue_push(eventqueue_t* self, event_node_t* node) {
+                self->tail = next;
+                tail = next;
+                next = next->next;
 
-        node->next = 0;
+            }
 
-        #ifdef HX_WINDOWS
-            event_node_t* prev = (event_node_t*)InterlockedExchangePointer((PVOID*)&self->head, (PVOID)node);
-        #else
-                //:todo:
-            #error "Not implemented"
-            event_node_t* prev = NULL;
-        #endif
+            if(next) {
+                self->tail = next;
+                return tail;
+            }
 
-        //(*)
-        prev->next = node;
-
-    } //eventqueue_push
-
-    inline event_node_t* eventqueue_pop(eventqueue_t* self) {
-
-        event_node_t* tail = self->tail;
-        event_node_t* next = tail->next;
-
-        if (tail == &self->stub) {
-
-            if (0 == next) {
+            event_node_t* head = self->head;
+            if (tail != head) {
                 return 0;
             }
 
-            self->tail = next;
-            tail = next;
-            next = next->next;
+            eventqueue_push(self, &self->stub);
 
-        }
+            next = tail->next;
 
-        if(next) {
-            self->tail = next;
-            return tail;
-        }
+            if( next ) {
+                self->tail = next;
+                return tail;
+            }
 
-        event_node_t* head = self->head;
-        if (tail != head) {
             return 0;
-        }
 
-        eventqueue_push(self, &self->stub);
+        } //eventqueue_pop
 
-        next = tail->next;
+    }
+}
 
-        if( next ) {
-            self->tail = next;
-            return tail;
-        }
-
-        return 0;
-
-    } //eventqueue_pop
+#endif //_SNOW_IO_EVTQUEUE_H_
