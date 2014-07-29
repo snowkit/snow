@@ -1,6 +1,7 @@
 
 #include "snow_core.h"
 #include "snow_io.h"
+#include "common/snow_event_queue.h"
 
 
 #include <string>
