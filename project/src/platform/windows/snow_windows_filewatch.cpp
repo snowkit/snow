@@ -81,88 +81,132 @@ namespace snow {
 
         DWORD WINAPI FileWatcherThread::run_thread( void *_watcher ) {
 
-                FileWatcherThread *watcher = (FileWatcherThread*)_watcher;
+            FileWatcherThread *watcher = (FileWatcherThread*)_watcher;
 
 
-                while(watcher->running) {
+            while(watcher->running) {
 
-                    ReadDirectoryChangesW(
-                        watcher->handle, watcher->buffer, watcher->buffer_size, TRUE,
-                        FILE_NOTIFY_CHANGE_CREATION | FILE_NOTIFY_CHANGE_FILE_NAME | FILE_NOTIFY_CHANGE_LAST_WRITE,
-                        NULL, &watcher->overlap, NULL
-                    );
+                ReadDirectoryChangesW(
+                    watcher->handle, watcher->buffer, watcher->buffer_size, TRUE,
+                    FILE_NOTIFY_CHANGE_CREATION | FILE_NOTIFY_CHANGE_FILE_NAME | FILE_NOTIFY_CHANGE_LAST_WRITE,
+                    NULL, &watcher->overlap, NULL
+                );
 
-                    WaitForSingleObject(watcher->overlap.hEvent, INFINITE);
+                WaitForSingleObject(watcher->overlap.hEvent, INFINITE);
 
-                        int seek = 0;
+                    int seek = 0;
 
-                        while(seek < watcher->buffer_size) {
+                    while(seek < watcher->buffer_size) {
 
-                            PFILE_NOTIFY_INFORMATION notifier = PFILE_NOTIFY_INFORMATION(watcher->buffer + seek);
+                        PFILE_NOTIFY_INFORMATION notifier = PFILE_NOTIFY_INFORMATION(watcher->buffer + seek);
 
-                            WCHAR szwFileName[MAX_PATH];
-                            int ulCount = notifier->FileNameLength/2;
-                            wcsncpy(szwFileName, notifier->FileName, ulCount);
-                            szwFileName[ulCount] = L'\0';
+                        WCHAR szwFileName[MAX_PATH];
+                        int ulCount = notifier->FileNameLength/2;
+                        wcsncpy(szwFileName, notifier->FileName, ulCount);
+                        szwFileName[ulCount] = L'\0';
 
-                            std::wstring widepath(szwFileName);
-                            std::string path(widepath.begin(), widepath.end());
+                        std::wstring widepath(szwFileName);
+                        std::string path(widepath.begin(), widepath.end());
 
-                            FileWatchEventType _event_type = fe_unknown;
+                        FileWatchEventType _event_type = fe_unknown;
 
-                                switch( notifier->Action ) {
+                            switch( notifier->Action ) {
 
-                                    case FILE_ACTION_ADDED:{
-                                        _event_type = fe_create;
-                                        break;
-                                    }
-
-                                    case FILE_ACTION_REMOVED:{
-                                        _event_type = fe_remove;
-                                        break;
-                                    }
-
-                                    case FILE_ACTION_MODIFIED:{
-                                        _event_type = fe_modify;
-                                        break;
-                                    }
-
-                                    case FILE_ACTION_RENAMED_OLD_NAME:{
-                                        _event_type = fe_remove;
-                                        break;
-                                    }
-                                    
-                                    case FILE_ACTION_RENAMED_NEW_NAME:{
-                                        _event_type = fe_create;
-                                        break;
-                                    }
-                                    
-                                } //switch
-
-                                if(_event_type != fe_unknown) {
-                                    FileWatchEvent event( _event_type, snow::timestamp(), (watcher->path+"/"+path) );
-                                    
-                                    ::EnterCriticalSection(&watcher->critical);
-                                        snow::io::dispatch_event( event );
-                                    ::LeaveCriticalSection(&watcher->critical);
+                                case FILE_ACTION_ADDED:{
+                                    _event_type = fe_create;
+                                    break;
                                 }
 
-                            seek += notifier->NextEntryOffset;
+                                case FILE_ACTION_REMOVED:{
+                                    _event_type = fe_remove;
+                                    break;
+                                }
 
-                            if(notifier->NextEntryOffset == 0) {
-                                break;
+                                case FILE_ACTION_MODIFIED:{
+                                    _event_type = fe_modify;
+                                    break;
+                                }
+
+                                case FILE_ACTION_RENAMED_OLD_NAME:{
+                                    _event_type = fe_remove;
+                                    break;
+                                }
+                                
+                                case FILE_ACTION_RENAMED_NEW_NAME:{
+                                    _event_type = fe_create;
+                                    break;
+                                }
+                                
+                            } //switch
+
+                            if(_event_type != fe_unknown) {
+                                
+                                // put into queue
+                                event_node_t* node = new event_node_t;
+                                node->event = new FileWatchEvent( _event_type, snow::timestamp(), (watcher->path+"/"+path) );
+                                eventqueue_push(&eventQueue, node);
+
                             }
 
-                        } //seek < buffer size
+                        seek += notifier->NextEntryOffset;
 
-                    } //while running
+                        if(notifier->NextEntryOffset == 0) {
+                            break;
+                        }
 
+                    } //seek < buffer size
+
+                } //while running
+
+            return 0;
+
+        } //run_thread
+
+        eventqueue_t eventQueue;
+        void eventqueue_create(eventqueue_t* self)
+        {
+            self->head = &self->stub;
+            self->tail = &self->stub;
+            self->stub.next = 0;
+        }
+
+        void eventqueue_push(eventqueue_t* self, event_node_t* n)
+        {
+            n->next = 0;
+            event_node_t* prev = (event_node_t*)InterlockedExchangePointer((PVOID*)&self->head, (PVOID)n);
+            //(*)
+            prev->next = n;
+        }
+
+        event_node_t* eventqueue_pop(eventqueue_t* self)
+        {
+            event_node_t* tail = self->tail;
+            event_node_t* next = tail->next;
+            if (tail == &self->stub)
+            {
+                if (0 == next)
+                    return 0;
+                self->tail = next;
+                tail = next;
+                next = next->next;
+            }
+            if (next)
+            {
+                self->tail = next;
+                return tail;
+            }
+            event_node_t* head = self->head;
+            if (tail != head)
                 return 0;
-
-            } //run_thread
-
-
-
+            eventqueue_push(self, &self->stub);
+            next = tail->next;
+            if (next)
+            {
+                self->tail = next;
+                return tail;
+            }
+            return 0;
+        }         
 
         std::vector<std::string> watched_paths;
         std::vector<FileWatcherThread*> watchers;
@@ -176,6 +220,9 @@ namespace snow {
         } //init_filewatch
 
         void start_filewatch(){
+
+            // create our queue
+            eventqueue_create((eventqueue_t*)&eventQueue);
 
             if(watched_paths.size() == 0) {
                 return;
@@ -224,9 +271,15 @@ namespace snow {
 
         } //refresh_filewatch
 
-            //not used, as these run in a thread on windows
-            //per directory currently.
         void update_filewatch() {
+
+            // clear the queue
+            event_node_t* node;
+            while (node = eventqueue_pop(&eventQueue)) {
+                snow::io::dispatch_event( *node->event );
+                delete node->event;
+                delete node;
+            }
         }
 
         void shutdown_filewatch() {
