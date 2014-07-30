@@ -93,6 +93,8 @@ typedef AppConfig = {
     @:optional var assets       : Array<AssetInfo>;
         /** config specific to the web target */
     @:optional var web          : AppConfigWeb;
+        /** config specific to the web target */
+    @:optional var native       : AppConfigNative;
 
 } //AppConfig
 
@@ -100,6 +102,16 @@ typedef AppConfigWeb = {
 
         /** If true, right clicking will consume the event on the canvas. `event.preventDefault` is used. default: true*/
     @:optional var no_context_menu : Bool;
+
+} //AppConfigWeb
+
+typedef AppConfigNative = {
+
+        /** The default length of a single stream buffer in bytes. default:176400, This is ~1 sec in 16 bit mono. */
+    @:optional var audio_buffer_length : Int;
+
+        /** The default number of audio buffers to use for a single stream. Set no less than 2, as it's a queue. See `Audio` docs. default:4 */
+    @:optional var audio_buffer_count : Int;
 
 } //AppConfigWeb
 
