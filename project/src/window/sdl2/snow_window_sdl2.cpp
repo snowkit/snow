@@ -1,5 +1,6 @@
 
 #include "snow_window.h"
+#include "snow_platform.h"
 
 #include "SDL.h"
 #include "render/opengl/snow_opengl.h"
