@@ -319,12 +319,9 @@ class Snow {
 
             } catch(e:Dynamic) {
 
-                trace('/ snow / config / failed / default runtime config failed to parse as JSON.');
-                    //:todo: should this throw? or continue without it?
-                    //i feel like a crash during your app runtime because of a missing config
-                    //or invalid config feels like black box errors rather than an explicit early out
+                trace('/ snow / config / failed / default runtime config failed to parse as JSON. cannot recover.');
                 throw e;
-                // return {};
+
             }
         }
 
