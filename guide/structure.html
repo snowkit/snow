@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <title>snow - </title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <link rel="shortcut icon" href="../images/favicon.png" />
+
+        <link rel="stylesheet" type="text/css" href="../css/style.css" media="all">
+        <link rel="stylesheet" type="text/css" href="../css/code.css" media="all">
+        <link rel="stylesheet" type="text/css" href="../css/font.css" media="all">
+
+        <link rel="stylesheet" type="text/css" href="../css/tooltipster.css" media="all">
+        <link rel="stylesheet" type="text/css" href="../css/tooltipster-shadow.css" media="all">
+
+        <script src="../js/jquery-2.0.3.min.js"> </script>
+        <script src="../js/jquery.tooltipster.min.js"> </script>
+
+        <script>
+
+            $(document).ready(function() {
+
+                $('.section').css('display','none');
+                $('.readmore').click(function(e){
+                    var _child = $(this).parent().find('.section').first();
+                    var _opp = 'block';
+                    if( _child.css('display') == 'block' ) {
+                        _opp = 'none';
+                    } else {
+                    }
+                    _child.css('display', _opp);
+                });
+
+                $('div.sample').on('click', function(e){
+                        //get the data tag
+                    var content = $(this).attr('data-content');
+                        //remove clicking handler
+                    $(this).off('click');
+                        //replace the content!
+                    $(this).html('<iframe src="'+content+'" sandbox="allow-same-origin allow-scripts" style="overflow:hidden; scrollbar:none; border: 0; width:645px; height:450px;"></iframe> ')
+                });
+
+                $('.tooltip').tooltipster({
+                    theme:'tooltipster-shadow'
+                });
+
+            }); //document.ready
+
+        </script>
+    </head>
+
+    <body>
+        <div class="content">
+            <p><a href="" id="logo"><img src="../images/logo.png" /></a></p>
+<hr>
+<h2 id="structure">Structure</h2>
+<p>snow consists of three main layers :</p>
+<ul>
+<li><h4 id="api-layer">API layer</h4>
+</li>
+<li><h4 id="adapter-layer">adapter layer</h4>
+</li>
+<li><h4 id="support-layer">support layer</h4>
+</li>
+</ul>
+<p><strong>API</strong></p>
+<p>This is the user facing API that you as a snow user interact with.
+The API is where you access everything from that you would use in your app.</p>
+<p>It is written in haxe code, and resides in the <code>snow/</code> folder.</p>
+<p><strong>adapter layer</strong></p>
+<p>This is the code that adapts the API to the platform you are building for.</p>
+<p>It is also written in haxe code, and resides in the <code>snow/</code> folder.
+On native targets, this includes code to load functions from snow.ndll.
+On the web target, this includes code that interacts with the browser.</p>
+<p><strong>support layer</strong></p>
+<p>This is the low level platform specific code that interacts with the target.</p>
+<p>On <strong>web</strong>, this is written in haxe code, and resides in the <code>snow</code> folder (mostly in the adapter).</p>
+<p>On <strong>native</strong>, this is written in c++ - and is built into and loaded from <code>snow.ndll</code>.
+It resides in <code>project/src</code> and is compiled using <code>hxcpp</code></p>
+<hr>
+<p><img src="../images/structure.png" class="center"/></p>
+<hr>
+
+        </div>
+    </body>
+
+</html>

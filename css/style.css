@@ -219,7 +219,8 @@ a.liftsmall {
 
 p {
     color:#858585;
-    font-size: 1.1em;
+    font-size: 1.04em;
+    letter-spacing:0.012em;
     margin: 0.8em;
     margin-left:0.5em;
     line-height:1.4em;

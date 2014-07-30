@@ -92,7 +92,7 @@ It is built with no external dependencies, except for a build pipeline called <a
 <a href="./guide/four.html">four - interactivity</a> <br/>
 
 <br/>
-<strong>In depth guides</strong> <br/>
+<strong>Feature guides</strong> <br/>
 <br/>
 <a href="./guide/windowing.html">Windowing</a> | <a href="./guide/audio.html">Audio</a> | <a href="./guide/assets.html">Assets</a> | <a href="./guide/input.html">Input</a> | <a href="./guide/render.html">rendering</a> | <a href="./guide/io.html">IO</a> | <a href="./guide/utils.html">Utils</a>
 <br/>
@@ -101,39 +101,22 @@ It is built with no external dependencies, except for a build pipeline called <a
 <br/>
 <a href="./api/index.html">API reference</a>
 
+<br/>
+<br/>
+<strong>In depth guides</strong> <br/><br/>
+<a href="./guide/structure.html">structure - the snow architecture</a><br><a href="./guide/buildprocess.html">build process - how an app is made</a><br><a href="./guide/nativesupport.html">native code - build, modify, fix snow.ndll</a><br><a href="./guide/nativeporting.html">native code - porting to a new platform</a><br>
 </div>
 
 <hr>
 <p><a name="details"> &nbsp;</a></p>
 <h2>Details</h2>
 
-<h3 id="structure">Structure</h3>
-<p>snow consists of three main layers :</p>
-<ul>
-<li><h4 id="api-layer">API layer</h4>
-</li>
-<li><h4 id="adapter-layer">adapter layer</h4>
-</li>
-<li><h4 id="support-layer">support layer</h4>
-</li>
-</ul>
-<p><strong>API</strong></p>
-<p>This is the user facing API that you as a snow user interact with.
-The API is where you access everything from that you would use in your app.</p>
-<p>It is written in haxe code, and resides in the <code>snow/</code> folder.</p>
-<p><strong>adapter layer</strong></p>
-<p>This is the code that adapts the API to the platform you are building for.</p>
-<p>It is also written in haxe code, and resides in the <code>snow/</code> folder.
-On native targets, this includes code to load functions from snow.ndll.
-On the web target, this includes code that interacts with the browser.</p>
-<p><strong>support layer</strong></p>
-<p>This is the low level platform specific code that interacts with the target.</p>
-<p>On <strong>web</strong>, this is written in haxe code, and resides in the <code>snow</code> folder (mostly in the adapter).</p>
-<p>On <strong>native</strong>, this is written in c++ - and is built into and loaded from <code>snow.ndll</code>.
-It resides in <code>project/src</code> and is compiled using <code>hxcpp</code></p>
-<hr>
-<p><img src="./images/structure.png" class="center"/></p>
-<hr>
+<h3 id="features">Features</h3>
+<p><br/><br/><br/><br/></p>
+<h3 id="platforms">Platforms</h3>
+<p><br/><br/><br/><br/></p>
+<h3 id="gotchas">Gotchas</h3>
+<p><br/><br/><br/><br/></p>
 <p><a name="samples"> &nbsp;</a></p>
 <h2>Samples</h2>
 
