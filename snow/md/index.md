@@ -17,9 +17,6 @@ This means snow by default runs natively on **Mac**, **Windows**, **Linux** desk
 Haxe is an expressive, beautiful modern programming language that compiles it's own code into other languages. 
 This allows you, a user of haxe and thus snow - to build your code into the target platform code directly.
 
-For example native platforms would use c++, without you ever needing to write c++ code.
-Haxe exports to optimized javascript, so when you target a browser - it will run there too.
-
 <div class="breakout">
 
 [Get Started](#guide)
