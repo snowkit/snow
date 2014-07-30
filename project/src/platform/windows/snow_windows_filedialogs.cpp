@@ -28,7 +28,7 @@ namespace snow {
 
         std::string dialog_folder(const std::string &title) {
 
-            char path[MAX_PATH];
+            /*char path[MAX_PATH];
 
             BROWSEINFO bi = { 0 };
                 bi.lpszTitle = title.c_str();
@@ -47,8 +47,37 @@ namespace snow {
 
                 return std::string(path);
             }
+            */
+            char path[MAX_PATH];
+            LPWSTR wpath = NULL;
 
-            return std::string();
+            IFileDialog *pfd;
+            if (SUCCEEDED(CoCreateInstance(CLSID_FileOpenDialog, NULL, CLSCTX_INPROC_SERVER, IID_PPV_ARGS(&pfd))))
+            {
+                DWORD dwOptions;
+                if (SUCCEEDED(pfd->GetOptions(&dwOptions)))
+                {
+                    pfd->SetOptions(dwOptions | FOS_PICKFOLDERS);
+                }
+                if (SUCCEEDED(pfd->Show(NULL)))
+                {
+                    IShellItem *psi;
+                    if (SUCCEEDED(pfd->GetResult(&psi)))
+                    {
+                        if(!SUCCEEDED(psi->GetDisplayName(SIGDN_DESKTOPABSOLUTEPARSING, &wpath)))
+                        {
+                            MessageBox(NULL, "GetIDListName() failed", NULL, NULL);
+                        }
+                        psi->Release();
+                    }
+                }
+                pfd->Release();
+            }
+
+            wcstombs((char*)&path, (wchar_t*)wpath, MAX_PATH );
+            CoTaskMemFree(wpath);
+
+            return std::string(path);
 
         } //dialog_folder
 
