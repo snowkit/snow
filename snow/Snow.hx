@@ -81,6 +81,10 @@ class Snow {
             assets : [],
             web : {
                 no_context_menu : true
+            },
+            native : {
+                audio_buffer_length : 176400,
+                audio_buffer_count : 4
             }
         };
 
