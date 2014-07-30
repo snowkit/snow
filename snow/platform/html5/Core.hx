@@ -79,6 +79,8 @@ import snow.types.Types;
 
             } else {
 
+                trace('/ snow / warning : requestAnimationFrame not found, falling back to render_rate! render_rate:' + app.host.render_rate );
+
                     //schedule the callback again
                 js.Browser.window.setTimeout(function(){
 
@@ -91,7 +93,7 @@ import snow.types.Types;
                         //update the last frame stamp
                     _lf_timestamp = _now;
 
-                }, 15 ); //:todo: this value from timing values in config heh.
+                }, app.host.render_rate );
 
             } //no request anim frame
 
