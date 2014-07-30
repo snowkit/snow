@@ -1,17 +1,27 @@
 #ifdef HX_WINDOWS
 
-#include "snow_window.h"
 #include <windows.h>
+#include "SDL.h"
+#include "SDL_syswm.h"
+
+
 
 namespace snow {
     namespace platform {
         namespace window {
 
-            void load_icon(const snow::window::Window* _window) {
+            void load_icon(SDL_Window* _window) {
 
-                snow::window::WindowSDL2* sdl_window = reinterpret_cast<snow::window::WindowSDL2*>(_window);
+                SDL_SysWMinfo wminfo;
+                SDL_VERSION(&wminfo.version)
+                if (SDL_GetWindowWMInfo(_window,&wminfo)) {
 
-                //use SDL_Window* == sdl_window->window
+                	HINSTANCE handle = ::GetModuleHandle(NULL);
+                	HWND hwnd = wminfo.info.win.window;
+                	HICON icon = ::LoadIcon(handle, "IDI_MAIN_ICON");	
+
+                	::SetClassLong(hwnd, GCL_HICON, (LONG) icon);
+                }
 
             } //load_icon
 

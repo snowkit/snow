@@ -2,7 +2,7 @@
 #ifndef _SNOW_PLATFORM_H_
 #define _SNOW_PLATFORM_H_
 
-
+#include "SDL.h"
 #include "snow_window.h"
 
 namespace snow {
@@ -11,7 +11,7 @@ namespace snow {
 
             #ifdef HX_WINDOWS
 
-                void load_icon(const snow::window::Window* window);
+                void load_icon(SDL_Window* window);
 
             #endif
 
