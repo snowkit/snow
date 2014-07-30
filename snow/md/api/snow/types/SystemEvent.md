@@ -28,6 +28,8 @@ Values below are null unless the event `type` matches. _i.e_ if type is `window`
                 <a name="type"><a class="lift" href="#type">type</a></a><div class="clear"></div><code class="signature apipage">type : [snow.types.SystemEventType](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
                 <a name="input"><a class="lift" href="#input">input</a></a><div class="clear"></div><code class="signature apipage">input : [Null](#)&lt;[snow.types.InputEvent](#)&gt;</code><br/></span>
+            <span class="small_desc_flat"></span><span class="member apipage">
+                <a name="filewatch"><a class="lift" href="#filewatch">filewatch</a></a><div class="clear"></div><code class="signature apipage">filewatch : [Null](#)&lt;[snow.types.FileWatchEvent](#)&gt;</code><br/></span>
             <span class="small_desc_flat"></span>
 
 

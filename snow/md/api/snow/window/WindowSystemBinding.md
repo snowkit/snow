@@ -82,13 +82,25 @@ Internal class handled by `Windowing`, a less concrete implementation of the pla
             <a name="set_min_size"><a class="lift" href="#set_min_size">set\_min\_size</a></a> <div class="clear"></div><code class="signature apipage">set\_min\_size(window:[snow.window.Window](#)<span></span>, w:[Int](#)<span></span>, h:[Int](#)<span></span>) : [Void](#)</code><br/><span class="small_desc_flat">Set the min size of a window</span>
         </span>
     <span class="method apipage">
-            <a name="grab"><a class="lift" href="#grab">grab</a></a> <div class="clear"></div><code class="signature apipage">grab(window:[snow.window.Window](#)<span></span>, grabbed:[Bool](#)<span></span>) : [Void](#)</code><br/><span class="small_desc_flat">Set the grab state of a window</span>
-        </span>
-    <span class="method apipage">
             <a name="fullscreen"><a class="lift" href="#fullscreen">fullscreen</a></a> <div class="clear"></div><code class="signature apipage">fullscreen(window:[snow.window.Window](#)<span></span>, fullscreen:[Bool](#)<span></span>, windowed\_fullscreen:[Bool](#)<span>=true</span>) : [Void](#)</code><br/><span class="small_desc_flat">Set the fullscreen state of a window</span>
         </span>
     <span class="method apipage">
             <a name="bordered"><a class="lift" href="#bordered">bordered</a></a> <div class="clear"></div><code class="signature apipage">bordered(window:[snow.window.Window](#)<span></span>, bordered:[Bool](#)<span></span>) : [Void](#)</code><br/><span class="small_desc_flat">Set the bordered state of a window</span>
+        </span>
+    <span class="method apipage">
+            <a name="grab"><a class="lift" href="#grab">grab</a></a> <div class="clear"></div><code class="signature apipage">grab(window:[snow.window.Window](#)<span></span>, grabbed:[Bool](#)<span></span>) : [Void](#)</code><br/><span class="small_desc_flat">Set the grab state of a window</span>
+        </span>
+    <span class="method apipage">
+            <a name="set_cursor_position"><a class="lift" href="#set_cursor_position">set\_cursor\_position</a></a> <div class="clear"></div><code class="signature apipage">set\_cursor\_position(window:[snow.window.Window](#)<span></span>, x:[Int](#)<span></span>, y:[Int](#)<span></span>) : [Void](#)</code><br/><span class="small_desc_flat">Set the cursor position inside of a given window</span>
+        </span>
+    <span class="method apipage">
+            <a name="system_enable_cursor"><a class="lift" href="#system_enable_cursor">system\_enable\_cursor</a></a> <div class="clear"></div><code class="signature apipage">system\_enable\_cursor(enable:[Bool](#)<span></span>) : [Void](#)</code><br/><span class="small_desc_flat">Toggle the OS cursor. This is not window specific but system wide</span>
+        </span>
+    <span class="method apipage">
+            <a name="system_lock_cursor"><a class="lift" href="#system_lock_cursor">system\_lock\_cursor</a></a> <div class="clear"></div><code class="signature apipage">system\_lock\_cursor(enable:[Bool](#)<span></span>) : [Void](#)</code><br/><span class="small_desc_flat">Lock the OS cursor to the foreground window. This hides the cursor and prevents it from leaving, reporting relative coordinates.</span>
+        </span>
+    <span class="method apipage">
+            <a name="system_enable_vsync"><a class="lift" href="#system_enable_vsync">system\_enable\_vsync</a></a> <div class="clear"></div><code class="signature apipage">system\_enable\_vsync(enable:[Bool](#)<span></span>) : [Int](#)</code><br/><span class="small_desc_flat">Toggle vertical refresh. This is not window specific but context wide, returns 0 on success or -1 if not supported</span>
         </span>
     <span class="method apipage">
             <a name="display_count"><a class="lift" href="#display_count">display\_count</a></a> <div class="clear"></div><code class="signature apipage">display\_count() : [Int](#)</code><br/><span class="small_desc_flat">Get the number of displays present</span>

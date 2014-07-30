@@ -153,7 +153,7 @@
             <a name="fromBytes"><a class="lift" href="#fromBytes">fromBytes</a></a> <span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">fromBytes(inBytes:[haxe.io.Bytes](#)<span></span>) : [snow.platform.native.utils.ByteArray](#)</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
-            <a name="readFile"><a class="lift" href="#readFile">readFile</a></a> <span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">readFile(inString:[String](#)<span></span>) : [snow.platform.native.utils.ByteArray](#)</code><br/><span class="small_desc_flat"></span>
+            <a name="readFile"><a class="lift" href="#readFile">readFile</a></a> <span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">readFile(inString:[String](#)<span></span>, async:[Bool](#)<span>=false</span>, onload:[snow.platform.native.utils.ByteArray](#)&nbsp;-&gt; [Void](#)<span>=null</span>) : [snow.platform.native.utils.ByteArray](#)</code><br/><span class="small_desc_flat"></span>
         </span>
     
 
