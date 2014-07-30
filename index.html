@@ -74,7 +74,8 @@ This allows you, a user of haxe and thus snow - to build your code into the targ
 <p>snow embraces a minimal, straight arrow approach by exposing a variety of tools at your disposal,
 with as much consistency as possible across targets. This allows you to focus on yout code and not the platform code.</p>
 <p>snow is built as a facilitator only - it is focused on portability, clarity, consistency and maintainability.
-This allows you to build frameworks, games and applications without it getting in the way.</p>
+This allows you to build frameworks, games and applications without it getting in the way.
+This means that snow tries to avoid making assumptions, letting you decide your architecture.</p>
 <p>snow is also as self contained as possible.
 It is built with no external dependencies, except for a build pipeline called <a href="#">flow</a>, which makes the application.</p>
 <div class="guide">
@@ -106,19 +107,112 @@ It is built with no external dependencies, except for a build pipeline called <a
 </div>
 
 <hr>
-<p><a name="details"> &nbsp;</a></p>
-<h2>Details</h2>
-
-<h3 id="features">Features</h3>
+<p><a name="details"></p>
+<p><h2>Details</h2>
+</a></p>
+<p><a name="features"></p>
+<p><h3>Features</h3>
+</a></p>
+<p>On top of the comprehensive, full fledged <a href="http://api.haxe.org/">Haxe API</a>,</p>
+<p>-Windowing &amp; rendering</p>
+<ul>
+<li>consistent access to OpenGL API based on WebGL spec</li>
+<li>normal, borderless, fullscreen or resizable windows</li>
+<li><code>native</code> auto or manual window swap control</li>
+<li><code>desktop</code> multiple window support</li>
+<li><code>desktop</code> full access to display/mode info</li>
+</ul>
+<p>-Audio</p>
+<ul>
+<li>consistent high level api, with access to platform specific implementations</li>
+<li>named sound api, or object management <code>app.audio.play(&#39;sound&#39;)</code> vs <code>sound.play()</code></li>
+<li>pitch, pan, volume, position, duration properties</li>
+<li>play sound or stream sound, looped or not</li>
+<li>on complete handling</li>
+<li><code>native</code> full direct access to OpenAL API from haxe</li>
+<li><code>native</code> auto background thread toggle</li>
+</ul>
+<p>-Assets &amp; IO</p>
+<ul>
+<li>consistent api for loading assets across targets</li>
+<li>raw bytes, text, images and audio support</li>
+<li>async based api design to handle preloading easily (like on web)</li>
+<li><code>web</code> audio - <code>ogg</code>, <code>wav</code>, <code>mp3</code> (see <a href="#snags">snags</a>)</li>
+<li><code>web</code> images - <code>bmp</code>, <code>png</code>, <code>jpg</code>, <code>gif</code></li>
+<li><code>native</code> images - these ^ + <code>tga</code>, <code>psd</code></li>
+<li><code>native</code> audio - <code>ogg</code>, <code>wav</code>, <code>pcm</code></li>
+<li><code>native</code> consistent manual file IO for targets (like android) if needed</li>
+<li><code>desktop</code> OS file change notification events on any folder</li>
+<li><code>desktop</code> OS open/save/folder dialogs</li>
+</ul>
+<p>-Input</p>
+<ul>
+<li>complete events for mouse, keys, gamepad, touches</li>
+<li>text input events for handling localized text reliably</li>
+<li>keys - simple keycode/scancode access as well as text</li>
+<li>gamepad events api</li>
+<li>gamepad events for hot plugging/swapping devices at runtime</li>
+<li>immediate style access in addition to events handlers</li>
+<li><code>desktop</code> mouse - position, window lock, window grab, and visibility</li>
+<li><code>mobile</code> multitouch supported</li>
+</ul>
+<p>-Util</p>
+<ul>
+<li>(almost) full set of <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Typed_arrays">Typed Arrays</a> for use on all targets</li>
+<li>ByteArray util for handling bytes</li>
+<li>high res timestamps, and consistent Timer class for repeating/one off timer handlers on all targets</li>
+<li><code>native</code> access to ndll/dll endpoints compiled with hxcpp on all targets</li>
+</ul>
 <p><br/><br/><br/><br/></p>
-<h3 id="platforms">Platforms</h3>
+<p><a name="platforms"></p>
+<p><h3>Platform Details</h3>
+</a></p>
+<p><strong>web</strong></p>
+<ul>
+<li>render - direct WebGL canvas</li>
+<li>input - keys from page, mouse from element</li>
+<li>windowing - multiple “windows” have a distinct GL context each, as each is a new canvas (unavoidable)</li>
+<li>audio - by default handled by HowlerJS</li>
+<li>io - handled by httprequest</li>
+<li>assets - images loaded via <code>new Image()</code> and getImageData</li>
+<li>must be served from a server because of ^ (flow runs you a built in server for dev!)</li>
+</ul>
+<p><strong>native</strong></p>
+<ul>
+<li>all native targets use the latest SDL2 release, including mobile.</li>
+<li>all audio is handled by OpenAL by default</li>
+</ul>
+<p><strong>mac</strong></p>
+<ul>
+<li>io - cocoa file dialogs</li>
+<li>io - FSEvents file events</li>
+</ul>
+<p><strong>linux</strong></p>
+<ul>
+<li>io - GTK file dialogs</li>
+<li>io - inotify file events</li>
+</ul>
+<p><strong>windows</strong></p>
+<ul>
+<li>io - Windows file dialogs</li>
+<li>io - ReadDirectoryChangesW file events</li>
+</ul>
+<p><strong>android</strong></p>
+<ul>
+<li>detail</li>
+</ul>
+<p><strong>iOS</strong></p>
+<ul>
+<li>detail</li>
+</ul>
 <p><br/><br/><br/><br/></p>
-<h3 id="gotchas">Gotchas</h3>
+<p><a name="snags"></p>
+<p><h3>Snags</h3>
+</a></p>
 <p><br/><br/><br/><br/></p>
-<p><a name="samples"> &nbsp;</a></p>
-<h2>Samples</h2>
-
-
+<p><a name="samples"></p>
+<p><h2>Samples</h2>
+</a></p>
 
         </div>
     </body>
