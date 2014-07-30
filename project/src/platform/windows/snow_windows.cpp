@@ -2,6 +2,7 @@
 
 
 #include "snow_core.h"
+#include "snow_window.h"
 
 #include <string>
 
@@ -39,6 +40,20 @@ namespace snow {
         } //url_open
 
     } //io namespace
+
+    namespace platform {
+
+        namespace window {
+
+            void load_icon(const snow::window::Window* window) {
+
+                //use SDL_Window* == window->window
+
+            } //load_icon
+
+        } //window
+
+    }
 
 } //snow namespace
 
