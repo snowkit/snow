@@ -50,6 +50,9 @@
             <a name="play"><a class="lift" href="#play">play</a></a> <div class="clear"></div><code class="signature apipage">play(\_name:[String](#)<span></span>) : [Void](#)</code><br/><span class="small_desc_flat">Play a sound instance by name</span>
         </span>
     <span class="method apipage">
+            <a name="loop"><a class="lift" href="#loop">loop</a></a> <div class="clear"></div><code class="signature apipage">loop(\_name:[String](#)<span></span>) : [Void](#)</code><br/><span class="small_desc_flat">Loop a sound instance by name, indefinitely. Use stop to end it</span>
+        </span>
+    <span class="method apipage">
             <a name="pause"><a class="lift" href="#pause">pause</a></a> <div class="clear"></div><code class="signature apipage">pause(\_name:[String](#)<span></span>) : [Void](#)</code><br/><span class="small_desc_flat">Pause a sound instance by name</span>
         </span>
     <span class="method apipage">

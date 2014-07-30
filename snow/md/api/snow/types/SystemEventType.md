@@ -37,7 +37,8 @@ A typed system event
         <span class="small_desc_flat">An event for just before the app enters the background, called by the OS (mobile specific)</span><span class="member signature apipage">`app_didenterbackground`<br/> </span>
         <span class="small_desc_flat">An event for when the app enters the background, called by the OS (mobile specific)</span><span class="member signature apipage">`app_willenterforeground`<br/> </span>
         <span class="small_desc_flat">An event for just before the app enters the foreground, called by the OS (mobile specific)</span><span class="member signature apipage">`app_didenterforeground`<br/> </span>
-        <span class="small_desc_flat">An event for when the app enters the foreground, called by the OS (mobile specific)</span>
+        <span class="small_desc_flat">An event for when the app enters the foreground, called by the OS (mobile specific)</span><span class="member signature apipage">`filewatch`<br/> </span>
+        <span class="small_desc_flat">An event for when the a file watch notification occurs</span>
 
 
 

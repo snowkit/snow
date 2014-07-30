@@ -77,6 +77,9 @@
             <a name="simple_message"><a class="lift" href="#simple_message">simple\_message</a></a> <div class="clear"></div><code class="signature apipage">simple\_message(message:[String](#)<span></span>, title:[String](#)<span>=&#x27;&#x27;</span>) : [Void](#)</code><br/><span class="small_desc_flat">Display a cross platform message on this window</span>
         </span>
     <span class="method apipage">
+            <a name="set_cursor_position"><a class="lift" href="#set_cursor_position">set\_cursor\_position</a></a> <div class="clear"></div><code class="signature apipage">set\_cursor\_position(\_x:[Int](#)<span></span>, \_y:[Int](#)<span></span>) : [Void](#)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
             <a name="set_position"><a class="lift" href="#set_position">set\_position</a></a> <div class="clear"></div><code class="signature apipage">set\_position(\_x:[Int](#)<span></span>, \_y:[Int](#)<span></span>) : [Void](#)</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">

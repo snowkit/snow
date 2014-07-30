@@ -53,6 +53,8 @@
                 <a name="se_app_willenterforeground"><a class="lift" href="#se_app_willenterforeground">se\_app\_willenterforeground</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">se\_app\_willenterforeground : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
                 <a name="se_app_didenterforeground"><a class="lift" href="#se_app_didenterforeground">se\_app\_didenterforeground</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">se\_app\_didenterforeground : [Int](#)</code><br/></span>
+            <span class="small_desc_flat"></span><span class="member apipage">
+                <a name="se_filewatch"><a class="lift" href="#se_filewatch">se\_filewatch</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">se\_filewatch : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span>
 
 

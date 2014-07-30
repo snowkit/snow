@@ -24,8 +24,10 @@
 <h3>Members</h3> <hr/><span class="member apipage">
                 <a name="host"><a class="lift" href="#host">host</a></a><div class="clear"></div><code class="signature apipage">host : [snow.App](#)</code><br/></span>
             <span class="small_desc_flat">The host application</span><span class="member apipage">
-                <a name="config"><a class="lift" href="#config">config</a></a><div class="clear"></div><code class="signature apipage">config : [snow.types.SnowConfig](#)</code><br/></span>
-            <span class="small_desc_flat">The configuration from the project file, runtime config and other configs</span><span class="member apipage">
+                <a name="config"><a class="lift" href="#config">config</a></a><div class="clear"></div><code class="signature apipage">config : [snow.types.AppConfig](#)</code><br/></span>
+            <span class="small_desc_flat">The application configuration specifics (like window, runtime, and asset lists)</span><span class="member apipage">
+                <a name="snow_config"><a class="lift" href="#snow_config">snow\_config</a></a><div class="clear"></div><code class="signature apipage">snow\_config : [snow.types.SnowConfig](#)</code><br/></span>
+            <span class="small_desc_flat">The configuration for snow itself, set via build project flags</span><span class="member apipage">
                 <a name="windowing"><a class="lift" href="#windowing">windowing</a></a><div class="clear"></div><code class="signature apipage">windowing : [snow.window.Windowing](#)</code><br/></span>
             <span class="small_desc_flat">The window manager</span><span class="member apipage">
                 <a name="input"><a class="lift" href="#input">input</a></a><div class="clear"></div><code class="signature apipage">input : [snow.input.Input](#)</code><br/></span>
@@ -53,6 +55,9 @@
 
 <h3>Methods</h3> <hr/><span class="method apipage">
             <a name="shutdown"><a class="lift" href="#shutdown">shutdown</a></a> <div class="clear"></div><code class="signature apipage">shutdown() : [Void](#)</code><br/><span class="small_desc_flat">Shutdown the engine and quit</span>
+        </span>
+    <span class="method apipage">
+            <a name="render"><a class="lift" href="#render">render</a></a> <div class="clear"></div><code class="signature apipage">render() : [Void](#)</code><br/><span class="small_desc_flat">Called for you by snow, unless configured otherwise. Only call this manually if your render_rate is 0!</span>
         </span>
     <span class="method apipage">
             <a name="dispatch_system_event"><a class="lift" href="#dispatch_system_event">dispatch\_system\_event</a></a> <div class="clear"></div><code class="signature apipage">dispatch\_system\_event(\_event:[snow.types.SystemEvent](#)<span></span>) : [Void](#)</code><br/><span class="small_desc_flat"></span>

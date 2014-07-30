@@ -41,7 +41,7 @@
             <a name="measure"><a class="lift" href="#measure">measure</a></a> <span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">measure(f:[Dynamic](#)<span></span>, pos:[haxe.PosInfos](#)<span>=null</span>) : [measure.T](#)</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
-            <a name="delay"><a class="lift" href="#delay">delay</a></a> <span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">delay(\_f:[Dynamic](#)<span></span>, \_time:[Int](#)<span></span>) : [snow.utils.Timer](#)</code><br/><span class="small_desc_flat"></span>
+            <a name="delay"><a class="lift" href="#delay">delay</a></a> <span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">delay(\_time:[Float](#)<span></span>, \_f:[Dynamic](#)<span></span>) : [snow.utils.Timer](#)</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
             <a name="stamp"><a class="lift" href="#stamp">stamp</a></a> <span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">stamp() : [Float](#)</code><br/><span class="small_desc_flat"></span>
