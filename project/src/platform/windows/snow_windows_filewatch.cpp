@@ -175,14 +175,14 @@ namespace snow {
 
             snow::log("/ snow / initialized file watch ok");
 
+            // create our queue
+            eventqueue_create((eventqueue_t*)&filewatch_queue);
+
             return true;
 
         } //init_filewatch
 
         void start_filewatch(){
-
-            // create our queue
-            eventqueue_create((eventqueue_t*)&filewatch_queue);
 
             if(watched_paths.size() == 0) {
                 return;
