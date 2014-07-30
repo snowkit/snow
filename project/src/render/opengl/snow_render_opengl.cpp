@@ -72,9 +72,8 @@ namespace snow {
 
     value snow_gl_enable(value inCap) {
 
-        //#ifndef snow_FORCE_GLES2 ? //:todo:
         glEnable(val_int(inCap));
-        //#endif
+
         return alloc_null();
 
     } DEFINE_PRIM(snow_gl_enable,1);
@@ -82,9 +81,7 @@ namespace snow {
 
     value snow_gl_disable(value inCap) {
 
-        //#ifndef snow_FORCE_GLES2 //:todo:
         glDisable(val_int(inCap));
-        //#endif
 
         return alloc_null();
 
