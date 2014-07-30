@@ -1,6 +1,6 @@
 
 body,html {
-    font-family: cabin, helvetica, sans-serif;
+    font-family: helvetica, sans-serif;
     color:#3c3c3c;
 }
 
@@ -78,7 +78,7 @@ a:hover h2 {
 .guide a {
     font-size: 1.2em;
     display:inline-block;
-    margin: 0.3em;
+    margin: 0.2em;
 }
 
 .center {
