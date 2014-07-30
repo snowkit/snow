@@ -41,20 +41,6 @@ namespace snow {
 
     } //io namespace
 
-    namespace platform {
-
-        namespace window {
-
-            void load_icon(const snow::window::Window* window) {
-
-                //use SDL_Window* == window->window
-
-            } //load_icon
-
-        } //window
-
-    }
-
 } //snow namespace
 
 
