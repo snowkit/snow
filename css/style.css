@@ -12,7 +12,6 @@ h1,h2,h3,h4,h5,h6 {
     font-family: cabin, sans-serif;
     font-weight:bold;
     font-size:3em;
-    letter-spacing: -0.01em;
     margin: 0.2em;
     margin-left: 0em;
     padding: 0;
@@ -120,7 +119,7 @@ li {
 
 li {
     font-size: 1.0em;
-    letter-spacing: -0.02em;
+    letter-spacing: 0em;
     max-width: 80%;
     color:#607681;
 }
@@ -255,7 +254,7 @@ li code {
 p {
     color:#858585;
     font-size: 1.04em;
-    letter-spacing:0.012em;
+    letter-spacing:0.0em;
     margin: 0.8em;
     margin-left:0.5em;
     line-height:1.4em;
