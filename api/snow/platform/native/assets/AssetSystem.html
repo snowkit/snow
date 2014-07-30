@@ -1,17 +1,18 @@
 <!DOCTYPE html>
 <html>
-    
+
     <head>
+        <title>snow - </title>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
         <link rel="shortcut icon" href="../../../../../images/favicon.png" />
 
         <link rel="stylesheet" type="text/css" href="../../../../../css/style.css" media="all">
         <link rel="stylesheet" type="text/css" href="../../../../../css/code.css" media="all">
         <link rel="stylesheet" type="text/css" href="../../../../../css/font.css" media="all">
-        
+
         <link rel="stylesheet" type="text/css" href="../../../../../css/tooltipster.css" media="all">
         <link rel="stylesheet" type="text/css" href="../../../../../css/tooltipster-shadow.css" media="all">
-        
+
         <script src="../../../../../js/jquery-2.0.3.min.js"> </script>
         <script src="../../../../../js/jquery.tooltipster.min.js"> </script>
 
@@ -64,34 +65,22 @@
 &nbsp;</p>
 <p><h3>Members</h3> <hr/></p>
 <p><h3>Methods</h3> <hr/><span class="method apipage">
-            <a name="image_load_info"><a class="lift" href="#image_load_info">image_load_info</a></a> <div class="clear"></div><code class="signature apipage">image_load_info(_path:<a href="#">String</a><span></span>, _components:<a href="#">Int</a><span>=4</span>, _onloaded:<a href="#">snow.types.ImageInfo</a>&nbsp;-&gt; <a href="#">Void</a><span>=null</span>) : <a href="#">snow.types.ImageInfo</a></code><br/><span class="small_desc_flat"></span>
+            <a name="exists"><a class="lift" href="#exists">exists</a></a> <div class="clear"></div><code class="signature apipage">exists(_id:<a href="#">String</a><span></span>, _strict:<a href="#">Bool</a><span>=true</span>) : <a href="#">Bool</a></code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
-            <a name="audio_load_ogg"><a class="lift" href="#audio_load_ogg">audio_load_ogg</a></a> <div class="clear"></div><code class="signature apipage">audio_load_ogg(asset:<a href="#">snow.types.AssetInfo</a><span></span>, load:<a href="#">Bool</a><span>=true</span>) : <a href="#">snow.types.AudioInfo</a></code><br/><span class="small_desc_flat"></span>
+            <a name="image_load_info"><a class="lift" href="#image_load_info">image_load_info</a></a> <div class="clear"></div><code class="signature apipage">image_load_info(_path:<a href="#">String</a><span></span>, _components:<a href="#">Int</a><span>=4</span>, _onload:<a href="#">snow.types.ImageInfo</a>&nbsp;-&gt; <a href="#">Void</a><span>=null</span>) : <a href="#">snow.types.ImageInfo</a></code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
-            <a name="audio_load_portion_ogg"><a class="lift" href="#audio_load_portion_ogg">audio_load_portion_ogg</a></a> <div class="clear"></div><code class="signature apipage">audio_load_portion_ogg(_info:<a href="#">snow.types.AudioInfo</a><span></span>, _start:<a href="#">Int</a><span></span>, _len:<a href="#">Int</a><span></span>) : <a href="#">snow.types.AudioDataBlob</a></code><br/><span class="small_desc_flat"></span>
+            <a name="image_info_from_bytes"><a class="lift" href="#image_info_from_bytes">image_info_from_bytes</a></a> <div class="clear"></div><code class="signature apipage">image_info_from_bytes(_path:<a href="#">String</a><span></span>, _bytes:<a href="#">snow.utils.ByteArray</a><span></span>, _components:<a href="#">Int</a><span>=4</span>) : <a href="#">snow.types.ImageInfo</a></code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
-            <a name="audio_seek_source_ogg"><a class="lift" href="#audio_seek_source_ogg">audio_seek_source_ogg</a></a> <div class="clear"></div><code class="signature apipage">audio_seek_source_ogg(_info:<a href="#">snow.types.AudioInfo</a><span></span>, _to:<a href="#">Int</a><span></span>) : <a href="#">Bool</a></code><br/><span class="small_desc_flat"></span>
+            <a name="audio_load_info"><a class="lift" href="#audio_load_info">audio_load_info</a></a> <div class="clear"></div><code class="signature apipage">audio_load_info(_path:<a href="#">String</a><span></span>, _format:<a href="#">snow.types.AudioFormatType</a><span>=null</span>, _load:<a href="#">Bool</a><span>=true</span>, _onload:<a href="#">snow.types.AudioInfo</a>&nbsp;-&gt; <a href="#">Void</a><span>=null</span>) : <a href="#">snow.types.AudioInfo</a></code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
-            <a name="audio_load_wav"><a class="lift" href="#audio_load_wav">audio_load_wav</a></a> <div class="clear"></div><code class="signature apipage">audio_load_wav(asset:<a href="#">snow.types.AssetInfo</a><span></span>, load:<a href="#">Bool</a><span>=true</span>) : <a href="#">snow.types.AudioInfo</a></code><br/><span class="small_desc_flat"></span>
+            <a name="audio_seek_source"><a class="lift" href="#audio_seek_source">audio_seek_source</a></a> <div class="clear"></div><code class="signature apipage">audio_seek_source(_info:<a href="#">snow.types.AudioInfo</a><span></span>, _to:<a href="#">Int</a><span></span>) : <a href="#">Bool</a></code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
-            <a name="audio_load_portion_wav"><a class="lift" href="#audio_load_portion_wav">audio_load_portion_wav</a></a> <div class="clear"></div><code class="signature apipage">audio_load_portion_wav(_info:<a href="#">snow.types.AudioInfo</a><span></span>, _start:<a href="#">Int</a><span></span>, _len:<a href="#">Int</a><span></span>) : <a href="#">snow.types.AudioDataBlob</a></code><br/><span class="small_desc_flat"></span>
-        </span>
-    <span class="method apipage">
-            <a name="audio_seek_source_wav"><a class="lift" href="#audio_seek_source_wav">audio_seek_source_wav</a></a> <div class="clear"></div><code class="signature apipage">audio_seek_source_wav(_info:<a href="#">snow.types.AudioInfo</a><span></span>, _to:<a href="#">Int</a><span></span>) : <a href="#">Bool</a></code><br/><span class="small_desc_flat"></span>
-        </span>
-    <span class="method apipage">
-            <a name="audio_load_pcm"><a class="lift" href="#audio_load_pcm">audio_load_pcm</a></a> <div class="clear"></div><code class="signature apipage">audio_load_pcm(asset:<a href="#">snow.types.AssetInfo</a><span></span>, load:<a href="#">Bool</a><span>=true</span>) : <a href="#">snow.types.AudioInfo</a></code><br/><span class="small_desc_flat"></span>
-        </span>
-    <span class="method apipage">
-            <a name="audio_load_portion_pcm"><a class="lift" href="#audio_load_portion_pcm">audio_load_portion_pcm</a></a> <div class="clear"></div><code class="signature apipage">audio_load_portion_pcm(_info:<a href="#">snow.types.AudioInfo</a><span></span>, _start:<a href="#">Int</a><span></span>, _len:<a href="#">Int</a><span></span>) : <a href="#">snow.types.AudioDataBlob</a></code><br/><span class="small_desc_flat"></span>
-        </span>
-    <span class="method apipage">
-            <a name="audio_seek_source_pcm"><a class="lift" href="#audio_seek_source_pcm">audio_seek_source_pcm</a></a> <div class="clear"></div><code class="signature apipage">audio_seek_source_pcm(_info:<a href="#">snow.types.AudioInfo</a><span></span>, _to:<a href="#">Int</a><span></span>) : <a href="#">Bool</a></code><br/><span class="small_desc_flat"></span>
+            <a name="audio_load_portion"><a class="lift" href="#audio_load_portion">audio_load_portion</a></a> <div class="clear"></div><code class="signature apipage">audio_load_portion(_info:<a href="#">snow.types.AudioInfo</a><span></span>, _start:<a href="#">Int</a><span></span>, _len:<a href="#">Int</a><span></span>) : <a href="#">snow.types.AudioDataBlob</a></code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
             <a name="new"><a class="lift" href="#new">new</a></a> <div class="clear"></div><code class="signature apipage">new(_manager:<a href="#">snow.assets.Assets</a><span></span>) : <a href="#">Void</a></code><br/><span class="small_desc_flat"></span>

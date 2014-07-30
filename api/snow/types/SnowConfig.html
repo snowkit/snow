@@ -1,17 +1,18 @@
 <!DOCTYPE html>
 <html>
-    
+
     <head>
+        <title>snow - </title>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
         <link rel="shortcut icon" href="../../../images/favicon.png" />
 
         <link rel="stylesheet" type="text/css" href="../../../css/style.css" media="all">
         <link rel="stylesheet" type="text/css" href="../../../css/code.css" media="all">
         <link rel="stylesheet" type="text/css" href="../../../css/font.css" media="all">
-        
+
         <link rel="stylesheet" type="text/css" href="../../../css/tooltipster.css" media="all">
         <link rel="stylesheet" type="text/css" href="../../../css/tooltipster-shadow.css" media="all">
-        
+
         <script src="../../../js/jquery-2.0.3.min.js"> </script>
         <script src="../../../js/jquery.tooltipster.min.js"> </script>
 
@@ -54,28 +55,23 @@
 <hr>
 <p><h1>SnowConfig</h1>
 <small><code>snow.types.SnowConfig</code></small></p>
-<p>The snow core configuration information</p>
-<p><code>? host</code> : the bootstrapped application
-<code>? run_loop</code> : whether or not the core should run a loop at all
-<code>? window</code> : the window config for a default window, if any
-<code>? runtime</code> : the user specific config read from json at runtime
-<code>? asset_data</code> : the raw list of assets. use the app.assets from Snow for access</p>
+<p>Snow specific configurations, set from build config</p>
 <hr>
 <p><code>typedef</code></p>
 <hr>
 <p>&nbsp;
 &nbsp;</p>
 <p><h3>Members</h3> <hr/><span class="member apipage">
-                <a name="window"><a class="lift" href="#window">window</a></a><div class="clear"></div><code class="signature apipage">window : <a href="#">Null</a>&lt;<a href="#">snow.types.WindowConfig</a>&gt;</code><br/></span>
-            <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="runtime"><a class="lift" href="#runtime">runtime</a></a><div class="clear"></div><code class="signature apipage">runtime : <a href="#">Dynamic</a></code><br/></span>
-            <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="run_loop"><a class="lift" href="#run_loop">run_loop</a></a><div class="clear"></div><code class="signature apipage">run_loop : <a href="#">Null</a>&lt;<a href="#">Bool</a>&gt;</code><br/></span>
-            <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="host"><a class="lift" href="#host">host</a></a><div class="clear"></div><code class="signature apipage">host : <a href="#">snow.App</a></code><br/></span>
-            <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="asset_data"><a class="lift" href="#asset_data">asset_data</a></a><div class="clear"></div><code class="signature apipage">asset_data : <a href="#">Array</a>&lt;<a href="#">snow.types.AssetInfo</a>&gt;</code><br/></span>
-            <span class="small_desc_flat"></span></p>
+                <a name="has_loop"><a class="lift" href="#has_loop">has_loop</a></a><div class="clear"></div><code class="signature apipage">has_loop : <a href="#">Null</a>&lt;<a href="#">Bool</a>&gt;</code><br/></span>
+            <span class="small_desc_flat">whether or not the core should run a loop at all, default: true</span><span class="member apipage">
+                <a name="config_runtime_path"><a class="lift" href="#config_runtime_path">config_runtime_path</a></a><div class="clear"></div><code class="signature apipage">config_runtime_path : <a href="#">String</a></code><br/></span>
+            <span class="small_desc_flat">The default place to find the runtime config file, default: <code>config.json</code></span><span class="member apipage">
+                <a name="config_custom_runtime"><a class="lift" href="#config_custom_runtime">config_custom_runtime</a></a><div class="clear"></div><code class="signature apipage">config_custom_runtime : <a href="#">Null</a>&lt;<a href="#">Bool</a>&gt;</code><br/></span>
+            <span class="small_desc_flat">If set, no default runtime config will be loaded (use <code>App.config</code> to load a config manually). default: false</span><span class="member apipage">
+                <a name="config_custom_assets"><a class="lift" href="#config_custom_assets">config_custom_assets</a></a><div class="clear"></div><code class="signature apipage">config_custom_assets : <a href="#">Null</a>&lt;<a href="#">Bool</a>&gt;</code><br/></span>
+            <span class="small_desc_flat">If set, no default asset list will be loaded (use <code>App.config</code> to load a config manually). default: false</span><span class="member apipage">
+                <a name="config_assets_path"><a class="lift" href="#config_assets_path">config_assets_path</a></a><div class="clear"></div><code class="signature apipage">config_assets_path : <a href="#">String</a></code><br/></span>
+            <span class="small_desc_flat">The default place to find the asset manifest file, default: <code>manifest</code></span></p>
 <hr>
 <p>&nbsp;
 &nbsp;

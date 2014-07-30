@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <title>snow - </title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <link rel="shortcut icon" href="../../../../../images/favicon.png" />
+
+        <link rel="stylesheet" type="text/css" href="../../../../../css/style.css" media="all">
+        <link rel="stylesheet" type="text/css" href="../../../../../css/code.css" media="all">
+        <link rel="stylesheet" type="text/css" href="../../../../../css/font.css" media="all">
+
+        <link rel="stylesheet" type="text/css" href="../../../../../css/tooltipster.css" media="all">
+        <link rel="stylesheet" type="text/css" href="../../../../../css/tooltipster-shadow.css" media="all">
+
+        <script src="../../../../../js/jquery-2.0.3.min.js"> </script>
+        <script src="../../../../../js/jquery.tooltipster.min.js"> </script>
+
+        <script>
+
+            $(document).ready(function() {
+
+                $('.section').css('display','none');
+                $('.readmore').click(function(e){
+                    var _child = $(this).parent().find('.section').first();
+                    var _opp = 'block';
+                    if( _child.css('display') == 'block' ) {
+                        _opp = 'none';
+                    } else {
+                    }
+                    _child.css('display', _opp);
+                });
+
+                $('div.sample').on('click', function(e){
+                        //get the data tag
+                    var content = $(this).attr('data-content');
+                        //remove clicking handler
+                    $(this).off('click');
+                        //replace the content!
+                    $(this).html('<iframe src="'+content+'" sandbox="allow-same-origin allow-scripts" style="overflow:hidden; scrollbar:none; border: 0; width:645px; height:450px;"></iframe> ')
+                });
+
+                $('.tooltip').tooltipster({
+                    theme:'tooltipster-shadow'
+                });
+
+            }); //document.ready
+
+        </script>
+    </head>
+
+    <body>
+        <div class="content">
+            <p><a href="../../../../../api/index.html"><img src="../../../../../images/logo.png" alt="Logo"></a></p>
+<hr>
+<p><h1>Header</h1>
+<small><code>snow.utils.format.png.Header</code></small></p>
+<hr>
+<p><code>typedef</code></p>
+<hr>
+<p>&nbsp;
+&nbsp;</p>
+<p><h3>Members</h3> <hr/><span class="member apipage">
+                <a name="width"><a class="lift" href="#width">width</a></a><div class="clear"></div><code class="signature apipage">width : <a href="#">Int</a></code><br/></span>
+            <span class="small_desc_flat"></span><span class="member apipage">
+                <a name="interlaced"><a class="lift" href="#interlaced">interlaced</a></a><div class="clear"></div><code class="signature apipage">interlaced : <a href="#">Bool</a></code><br/></span>
+            <span class="small_desc_flat"></span><span class="member apipage">
+                <a name="height"><a class="lift" href="#height">height</a></a><div class="clear"></div><code class="signature apipage">height : <a href="#">Int</a></code><br/></span>
+            <span class="small_desc_flat"></span><span class="member apipage">
+                <a name="color"><a class="lift" href="#color">color</a></a><div class="clear"></div><code class="signature apipage">color : <a href="#">snow.utils.format.png.Color</a></code><br/></span>
+            <span class="small_desc_flat"></span><span class="member apipage">
+                <a name="colbits"><a class="lift" href="#colbits">colbits</a></a><div class="clear"></div><code class="signature apipage">colbits : <a href="#">Int</a></code><br/></span>
+            <span class="small_desc_flat"></span></p>
+<hr>
+<p>&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;</p>
+
+        </div>
+    </body>
+
+</html>

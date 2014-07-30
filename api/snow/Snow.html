@@ -1,17 +1,18 @@
 <!DOCTYPE html>
 <html>
-    
+
     <head>
+        <title>snow - </title>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
         <link rel="shortcut icon" href="../../images/favicon.png" />
 
         <link rel="stylesheet" type="text/css" href="../../css/style.css" media="all">
         <link rel="stylesheet" type="text/css" href="../../css/code.css" media="all">
         <link rel="stylesheet" type="text/css" href="../../css/font.css" media="all">
-        
+
         <link rel="stylesheet" type="text/css" href="../../css/tooltipster.css" media="all">
         <link rel="stylesheet" type="text/css" href="../../css/tooltipster-shadow.css" media="all">
-        
+
         <script src="../../js/jquery-2.0.3.min.js"> </script>
         <script src="../../js/jquery.tooltipster.min.js"> </script>
 
@@ -62,8 +63,10 @@
 <p><h3>Members</h3> <hr/><span class="member apipage">
                 <a name="host"><a class="lift" href="#host">host</a></a><div class="clear"></div><code class="signature apipage">host : <a href="#">snow.App</a></code><br/></span>
             <span class="small_desc_flat">The host application</span><span class="member apipage">
-                <a name="config"><a class="lift" href="#config">config</a></a><div class="clear"></div><code class="signature apipage">config : <a href="#">snow.types.SnowConfig</a></code><br/></span>
-            <span class="small_desc_flat">The configuration from the project file, runtime config and other configs</span><span class="member apipage">
+                <a name="config"><a class="lift" href="#config">config</a></a><div class="clear"></div><code class="signature apipage">config : <a href="#">snow.types.AppConfig</a></code><br/></span>
+            <span class="small_desc_flat">The application configuration specifics (like window, runtime, and asset lists)</span><span class="member apipage">
+                <a name="snow_config"><a class="lift" href="#snow_config">snow_config</a></a><div class="clear"></div><code class="signature apipage">snow_config : <a href="#">snow.types.SnowConfig</a></code><br/></span>
+            <span class="small_desc_flat">The configuration for snow itself, set via build project flags</span><span class="member apipage">
                 <a name="windowing"><a class="lift" href="#windowing">windowing</a></a><div class="clear"></div><code class="signature apipage">windowing : <a href="#">snow.window.Windowing</a></code><br/></span>
             <span class="small_desc_flat">The window manager</span><span class="member apipage">
                 <a name="input"><a class="lift" href="#input">input</a></a><div class="clear"></div><code class="signature apipage">input : <a href="#">snow.input.Input</a></code><br/></span>
@@ -85,6 +88,9 @@
             <span class="small_desc_flat">Generate a unique ID to use</span></p>
 <p><h3>Methods</h3> <hr/><span class="method apipage">
             <a name="shutdown"><a class="lift" href="#shutdown">shutdown</a></a> <div class="clear"></div><code class="signature apipage">shutdown() : <a href="#">Void</a></code><br/><span class="small_desc_flat">Shutdown the engine and quit</span>
+        </span>
+    <span class="method apipage">
+            <a name="render"><a class="lift" href="#render">render</a></a> <div class="clear"></div><code class="signature apipage">render() : <a href="#">Void</a></code><br/><span class="small_desc_flat">Called for you by snow, unless configured otherwise. Only call this manually if your render_rate is 0!</span>
         </span>
     <span class="method apipage">
             <a name="dispatch_system_event"><a class="lift" href="#dispatch_system_event">dispatch_system_event</a></a> <div class="clear"></div><code class="signature apipage">dispatch_system_event(_event:<a href="#">snow.types.SystemEvent</a><span></span>) : <a href="#">Void</a></code><br/><span class="small_desc_flat"></span>

@@ -1,17 +1,18 @@
 <!DOCTYPE html>
 <html>
-    
+
     <head>
+        <title>snow - </title>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
         <link rel="shortcut icon" href="../../../images/favicon.png" />
 
         <link rel="stylesheet" type="text/css" href="../../../css/style.css" media="all">
         <link rel="stylesheet" type="text/css" href="../../../css/code.css" media="all">
         <link rel="stylesheet" type="text/css" href="../../../css/font.css" media="all">
-        
+
         <link rel="stylesheet" type="text/css" href="../../../css/tooltipster.css" media="all">
         <link rel="stylesheet" type="text/css" href="../../../css/tooltipster-shadow.css" media="all">
-        
+
         <script src="../../../js/jquery-2.0.3.min.js"> </script>
         <script src="../../../js/jquery.tooltipster.min.js"> </script>
 
@@ -63,7 +64,25 @@
 &nbsp;</p>
 <p><h3>Members</h3> <hr/></p>
 <p><h3>Methods</h3> <hr/><span class="method apipage">
+            <a name="url_open"><a class="lift" href="#url_open">url_open</a></a> <span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">url_open(_url:<a href="#">String</a><span></span>) : <a href="#">Void</a></code><br/><span class="small_desc_flat">Opens the specified url in the default browser</span>
+        </span>
+    <span class="method apipage">
             <a name="from_file"><a class="lift" href="#from_file">from_file</a></a> <span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">from_file(_id:<a href="#">String</a><span></span>, _mode:<a href="#">String</a><span>=&#x27;rb&#x27;</span>) : <a href="#">snow.io.IOFile</a></code><br/><span class="small_desc_flat">Create an <code>IOFile</code> from a file path <code>_id</code>, this bypasses the <code>Asset</code> system path helpers.</span>
+        </span>
+    <span class="method apipage">
+            <a name="watch_add"><a class="lift" href="#watch_add">watch_add</a></a> <span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">watch_add(_path:<a href="#">String</a><span></span>) : <a href="#">Void</a></code><br/><span class="small_desc_flat">Add a folder to a watch list for notifications when the contents of the folder change</span>
+        </span>
+    <span class="method apipage">
+            <a name="watch_remove"><a class="lift" href="#watch_remove">watch_remove</a></a> <span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">watch_remove(_path:<a href="#">String</a><span></span>) : <a href="#">Void</a></code><br/><span class="small_desc_flat">Remove a folder from the watch list</span>
+        </span>
+    <span class="method apipage">
+            <a name="dialog_open"><a class="lift" href="#dialog_open">dialog_open</a></a> <span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">dialog_open(_title:<a href="#">String</a><span>=&#x27;Select file&#x27;</span>) : <a href="#">Dynamic</a></code><br/><span class="small_desc_flat">Opens a file open dialog. Returns a blank string if they cancel or any error occurs.</span>
+        </span>
+    <span class="method apipage">
+            <a name="dialog_save"><a class="lift" href="#dialog_save">dialog_save</a></a> <span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">dialog_save(_title:<a href="#">String</a><span>=&#x27;Save file&#x27;</span>) : <a href="#">Dynamic</a></code><br/><span class="small_desc_flat">Opens a file save file dialog. Returns a blank string if they cancel or any error occurs.</span>
+        </span>
+    <span class="method apipage">
+            <a name="dialog_folder"><a class="lift" href="#dialog_folder">dialog_folder</a></a> <span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">dialog_folder(_title:<a href="#">String</a><span>=&#x27;Select folder&#x27;</span>) : <a href="#">Dynamic</a></code><br/><span class="small_desc_flat">Opens a file open folder select dialog. Returns a blank string if they cancel or any error occurs.</span>
         </span></p>
 <hr>
 <p>&nbsp;

@@ -1,17 +1,18 @@
 <!DOCTYPE html>
 <html>
-    
+
     <head>
+        <title>snow - </title>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
         <link rel="shortcut icon" href="../../../images/favicon.png" />
 
         <link rel="stylesheet" type="text/css" href="../../../css/style.css" media="all">
         <link rel="stylesheet" type="text/css" href="../../../css/code.css" media="all">
         <link rel="stylesheet" type="text/css" href="../../../css/font.css" media="all">
-        
+
         <link rel="stylesheet" type="text/css" href="../../../css/tooltipster.css" media="all">
         <link rel="stylesheet" type="text/css" href="../../../css/tooltipster-shadow.css" media="all">
-        
+
         <script src="../../../js/jquery-2.0.3.min.js"> </script>
         <script src="../../../js/jquery.tooltipster.min.js"> </script>
 
@@ -77,6 +78,36 @@
         </span>
     <span class="method apipage">
             <a name="window_from_id"><a class="lift" href="#window_from_id">window_from_id</a></a> <div class="clear"></div><code class="signature apipage">window_from_id(_id:<a href="#">Int</a><span></span>) : <a href="#">snow.window.Window</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="enable_vsync"><a class="lift" href="#enable_vsync">enable_vsync</a></a> <div class="clear"></div><code class="signature apipage">enable_vsync(_enable:<a href="#">Bool</a><span></span>) : <a href="#">Int</a></code><br/><span class="small_desc_flat">Toggle vertical refresh. This is not window specific but context wide</span>
+        </span>
+    <span class="method apipage">
+            <a name="enable_cursor"><a class="lift" href="#enable_cursor">enable_cursor</a></a> <div class="clear"></div><code class="signature apipage">enable_cursor(_enable:<a href="#">Bool</a><span></span>) : <a href="#">Void</a></code><br/><span class="small_desc_flat">Toggle the OS cursor. This is not window specific but system wide</span>
+        </span>
+    <span class="method apipage">
+            <a name="enable_cursor_lock"><a class="lift" href="#enable_cursor_lock">enable_cursor_lock</a></a> <div class="clear"></div><code class="signature apipage">enable_cursor_lock(_enable:<a href="#">Bool</a><span></span>) : <a href="#">Void</a></code><br/><span class="small_desc_flat">Lock the OS cursor to the foreground window. This hides the cursor and prevents it from leaving, reporting relative coordinates.</span>
+        </span>
+    <span class="method apipage">
+            <a name="display_count"><a class="lift" href="#display_count">display_count</a></a> <div class="clear"></div><code class="signature apipage">display_count() : <a href="#">Int</a></code><br/><span class="small_desc_flat">Get the number of displays present</span>
+        </span>
+    <span class="method apipage">
+            <a name="display_mode_count"><a class="lift" href="#display_mode_count">display_mode_count</a></a> <div class="clear"></div><code class="signature apipage">display_mode_count(display:<a href="#">Int</a><span></span>) : <a href="#">Int</a></code><br/><span class="small_desc_flat">Get the number of display modes present</span>
+        </span>
+    <span class="method apipage">
+            <a name="display_native_mode"><a class="lift" href="#display_native_mode">display_native_mode</a></a> <div class="clear"></div><code class="signature apipage">display_native_mode(display:<a href="#">Int</a><span></span>) : <a href="#">snow.types.DisplayMode</a></code><br/><span class="small_desc_flat">Get the native mode information of the display by index</span>
+        </span>
+    <span class="method apipage">
+            <a name="display_current_mode"><a class="lift" href="#display_current_mode">display_current_mode</a></a> <div class="clear"></div><code class="signature apipage">display_current_mode(display:<a href="#">Int</a><span></span>) : <a href="#">snow.types.DisplayMode</a></code><br/><span class="small_desc_flat">Get the current mode information of the display by index</span>
+        </span>
+    <span class="method apipage">
+            <a name="display_mode"><a class="lift" href="#display_mode">display_mode</a></a> <div class="clear"></div><code class="signature apipage">display_mode(display:<a href="#">Int</a><span></span>, mode_index:<a href="#">Int</a><span></span>) : <a href="#">snow.types.DisplayMode</a></code><br/><span class="small_desc_flat">Get the information from a specific mode index, the index obtrained from iterating with <code>display_mode_count</code> value</span>
+        </span>
+    <span class="method apipage">
+            <a name="display_bounds"><a class="lift" href="#display_bounds">display_bounds</a></a> <div class="clear"></div><code class="signature apipage">display_bounds(display:<a href="#">Int</a><span></span>) : <a href="#">Dynamic</a></code><br/><span class="small_desc_flat">Get the bounds of the display by index</span>
+        </span>
+    <span class="method apipage">
+            <a name="display_name"><a class="lift" href="#display_name">display_name</a></a> <div class="clear"></div><code class="signature apipage">display_name(display:<a href="#">Int</a><span></span>) : <a href="#">String</a></code><br/><span class="small_desc_flat">Get the name of the display by index, where available</span>
         </span></p>
 <hr>
 <p>&nbsp;

@@ -1,17 +1,18 @@
 <!DOCTYPE html>
 <html>
-    
+
     <head>
+        <title>snow - </title>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
         <link rel="shortcut icon" href="../../../../../images/favicon.png" />
 
         <link rel="stylesheet" type="text/css" href="../../../../../css/style.css" media="all">
         <link rel="stylesheet" type="text/css" href="../../../../../css/code.css" media="all">
         <link rel="stylesheet" type="text/css" href="../../../../../css/font.css" media="all">
-        
+
         <link rel="stylesheet" type="text/css" href="../../../../../css/tooltipster.css" media="all">
         <link rel="stylesheet" type="text/css" href="../../../../../css/tooltipster-shadow.css" media="all">
-        
+
         <script src="../../../../../js/jquery-2.0.3.min.js"> </script>
         <script src="../../../../../js/jquery.tooltipster.min.js"> </script>
 
@@ -106,13 +107,25 @@
             <a name="set_min_size"><a class="lift" href="#set_min_size">set_min_size</a></a> <div class="clear"></div><code class="signature apipage">set_min_size(window:<a href="#">snow.window.Window</a><span></span>, w:<a href="#">Int</a><span></span>, h:<a href="#">Int</a><span></span>) : <a href="#">Void</a></code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
-            <a name="grab"><a class="lift" href="#grab">grab</a></a> <div class="clear"></div><code class="signature apipage">grab(window:<a href="#">snow.window.Window</a><span></span>, grabbed:<a href="#">Bool</a><span></span>) : <a href="#">Void</a></code><br/><span class="small_desc_flat"></span>
-        </span>
-    <span class="method apipage">
             <a name="fullscreen"><a class="lift" href="#fullscreen">fullscreen</a></a> <div class="clear"></div><code class="signature apipage">fullscreen(window:<a href="#">snow.window.Window</a><span></span>, fullscreen:<a href="#">Bool</a><span></span>, windowed_fullscreen:<a href="#">Bool</a><span>=true</span>) : <a href="#">Void</a></code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
             <a name="bordered"><a class="lift" href="#bordered">bordered</a></a> <div class="clear"></div><code class="signature apipage">bordered(window:<a href="#">snow.window.Window</a><span></span>, bordered:<a href="#">Bool</a><span></span>) : <a href="#">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="grab"><a class="lift" href="#grab">grab</a></a> <div class="clear"></div><code class="signature apipage">grab(window:<a href="#">snow.window.Window</a><span></span>, grabbed:<a href="#">Bool</a><span></span>) : <a href="#">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="set_cursor_position"><a class="lift" href="#set_cursor_position">set_cursor_position</a></a> <div class="clear"></div><code class="signature apipage">set_cursor_position(window:<a href="#">snow.window.Window</a><span></span>, x:<a href="#">Int</a><span></span>, y:<a href="#">Int</a><span></span>) : <a href="#">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="system_lock_cursor"><a class="lift" href="#system_lock_cursor">system_lock_cursor</a></a> <div class="clear"></div><code class="signature apipage">system_lock_cursor(enable:<a href="#">Bool</a><span></span>) : <a href="#">Void</a></code><br/><span class="small_desc_flat">Lock the OS cursor to the foreground window. This hides the cursor and prevents it from leaving, reporting relative coordinates.</span>
+        </span>
+    <span class="method apipage">
+            <a name="system_enable_cursor"><a class="lift" href="#system_enable_cursor">system_enable_cursor</a></a> <div class="clear"></div><code class="signature apipage">system_enable_cursor(enable:<a href="#">Bool</a><span></span>) : <a href="#">Void</a></code><br/><span class="small_desc_flat">Toggle the OS cursor. This is not window specific but system wide</span>
+        </span>
+    <span class="method apipage">
+            <a name="system_enable_vsync"><a class="lift" href="#system_enable_vsync">system_enable_vsync</a></a> <div class="clear"></div><code class="signature apipage">system_enable_vsync(enable:<a href="#">Bool</a><span></span>) : <a href="#">Int</a></code><br/><span class="small_desc_flat">Toggle vertical refresh. This is not window specific but context wide</span>
         </span>
     <span class="method apipage">
             <a name="display_count"><a class="lift" href="#display_count">display_count</a></a> <div class="clear"></div><code class="signature apipage">display_count() : <a href="#">Int</a></code><br/><span class="small_desc_flat"></span>
