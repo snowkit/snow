@@ -191,6 +191,9 @@
         <file name="${SRC_DIR}/window/sdl2/snow_window_sdl2.cpp"/>
         <file name="${SRC_DIR}/input/sdl2/snow_input_sdl2.cpp"/>
 
+            <!-- platform specific helpers -->
+        <file name="${SRC_DIR}/platform/windows/snow_windows_window_sdl2.cpp"          if="windows"/>
+
       </section>
 
    <!-- Porting specific helper only -->
