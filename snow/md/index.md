@@ -1,5 +1,5 @@
 
-[![Logo]({{{rel_path}}}images/logo.png)](index.html)
+<a href="" id="logo"><img src="{{{rel_path}}}images/logo.png" /></a>
 
 ---
 
@@ -54,7 +54,7 @@ It is built with no external dependencies, except for a build pipeline called [f
 [four - interactivity]({{{rel_path}}}guide/four.html) <br/>
 
 <br/>
-**In depth guides** <br/>
+**Feature guides** <br/>
 <br/>
 [Windowing]({{{rel_path}}}guide/windowing.html) | [Audio]({{{rel_path}}}guide/audio.html) | [Assets]({{{rel_path}}}guide/assets.html) | [Input]({{{rel_path}}}guide/input.html) | [rendering]({{{rel_path}}}guide/render.html) | [IO]({{{rel_path}}}guide/io.html) | [Utils]({{{rel_path}}}guide/utils.html)
 <br/>
@@ -63,6 +63,14 @@ It is built with no external dependencies, except for a build pipeline called [f
 <br/>
 [API reference]({{{rel_path}}}api/index.html)
 
+<br/>
+<br/>
+**In depth guides** <br/><br/>
+[structure - the snow architecture]({{{rel_path}}}guide/structure.html)   
+[build process - how an app is made]({{{rel_path}}}guide/buildprocess.html)   
+[native code - build, modify, fix snow.ndll]({{{rel_path}}}guide/nativesupport.html)   
+[native code - porting to a new platform]({{{rel_path}}}guide/nativeporting.html)   
+
 </div>
 
 ---
@@ -70,45 +78,14 @@ It is built with no external dependencies, except for a build pipeline called [f
 <a name="details"> &nbsp;</a>
 <h2>Details</h2>
 
-###Structure
+###Features
+<br/><br/><br/><br/>
 
-snow consists of three main layers :
+###Platforms
+<br/><br/><br/><br/>
 
-- #### API layer
-- #### adapter layer
-- #### support layer
-
-**API**
-
-This is the user facing API that you as a snow user interact with.
-The API is where you access everything from that you would use in your app.
-
-It is written in haxe code, and resides in the `snow/` folder.
-
-**adapter layer**
-
-This is the code that adapts the API to the platform you are building for.
-
-It is also written in haxe code, and resides in the `snow/` folder.
-On native targets, this includes code to load functions from snow.ndll.
-On the web target, this includes code that interacts with the browser.
-
-
-**support layer**
-
-This is the low level platform specific code that interacts with the target.
-
-On **web**, this is written in haxe code, and resides in the `snow` folder (mostly in the adapter).
-
-On **native**, this is written in c++ - and is built into and loaded from `snow.ndll`.
-It resides in `project/src` and is compiled using `hxcpp`
-
----
-
-<img src="{{{rel_path}}}images/structure.png" class="center"/>
-
----
-
+###Gotchas
+<br/><br/><br/><br/>
 
 <a name="samples"> &nbsp;</a>
 <h2>Samples</h2>
