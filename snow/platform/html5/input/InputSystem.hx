@@ -59,7 +59,6 @@ typedef HTML5Gamepad = {
 
     @:noCompletion override public function listen( window:Window ) {
 
-            //right click disable (:todo: should be optionized)
         window.handle.addEventListener('contextmenu', on_contextmenu );
 
         window.handle.addEventListener('mousedown', on_mousedown);
@@ -163,7 +162,9 @@ typedef HTML5Gamepad = {
 
     function on_contextmenu( _event:js.html.MouseEvent ) {
 
-        _event.preventDefault();
+        if(lib.config.web.no_context_menu) {
+            _event.preventDefault();
+        }
 
     } //on_contextmenu
 
