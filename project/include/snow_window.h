@@ -18,6 +18,7 @@ namespace snow {
         struct window_config;
         struct WindowEvent;
 
+
         int             system_enable_vsync(bool enable);
         void            system_lock_cursor(bool enable);
         void            system_show_cursor(bool show);
@@ -256,7 +257,7 @@ namespace snow {
                 alloc_field( _object, id_fullscreen, alloc_bool(config.fullscreen) );
                 alloc_field( _object, id_resizable, alloc_bool(config.resizable) );
                 alloc_field( _object, id_borderless, alloc_bool(config.borderless) );
-                
+
                 alloc_field( _object, id_depth_bits, alloc_int(config.depth_bits) );
                 alloc_field( _object, id_stencil_bits, alloc_int(config.stencil_bits) );
                 alloc_field( _object, id_antialiasing, alloc_int(config.antialiasing) );

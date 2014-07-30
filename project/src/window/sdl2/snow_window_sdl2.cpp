@@ -266,6 +266,10 @@ namespace snow {
                 SDL_iPhoneSetAnimationCallback(window, 1, snow::core::loop, NULL);
             #endif //IPHONE
 
+            #ifdef HX_WINDOWS
+                snow::platform::window::load_icon( window );
+            #endif
+
             on_created( true );
 
         } //WindowSDL2::create
