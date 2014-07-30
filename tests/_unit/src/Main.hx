@@ -1,22 +1,29 @@
 
+import snow.types.Types;
 
 class Main extends snow.App {
 
-    override public function ready() {
+    override function config( config:AppConfig ) {
 
-    //buffers
+        config.has_window = false;
 
-        new buffers.TestInt8Array();
+        return config;
 
+    } //config
 
+    override function ready() {
 
-        app.shutdown();
+        //buffers
+
+            new buffers.TestInt8Array();
+            // new buffers.TestInt16Array();
+            // new buffers.TestInt32Array();
+            // new buffers.TestUInt8Array();
+            // // new buffers.TestUInt8ClampedArray();
+            // new buffers.TestUInt16Array();
+            // new buffers.TestUInt32Array();
+
 
     } //ready
-
-    override public function destroyed() {
-
-
-    } //destroyed
 
 } //Main

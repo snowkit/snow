@@ -1,0 +1,31 @@
+{
+
+  snow : {
+    config :{
+      has_loop : false
+    }
+  },
+
+  project : {
+    name : 'Snow Unit Tests',
+    version : '1.0.0',
+    author : 'snowkit',
+
+    app : {
+      name : 'snow_unit_tests',
+      package : 'org.snowkit.snow',
+    },
+
+    build : {
+      dependencies : {
+        snow : '*',
+      }
+    },
+
+    files : {
+      assets : 'assets/'
+    }
+
+  }
+
+}
