@@ -222,9 +222,9 @@ typedef HTML5Gamepad = {
             ralt    : _key_event.altKey,
             lmeta   : _key_event.metaKey,
             rmeta   : _key_event.metaKey,
-            num     : false, //:todo:
-            caps    : false, //:todo:
-            mode    : false, //:todo:
+            num     : false, //:unsupported:
+            caps    : false, //:unsupported:
+            mode    : false, //:unsupported:
             ctrl    : _key_event.ctrlKey,
             shift   : _key_event.shiftKey,
             alt     : _key_event.altKey,
