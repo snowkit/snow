@@ -79,7 +79,7 @@ typedef SnowConfig = {
 
 } //SnowConfig
 
-/** The application config info */
+/** The runtime application config info */
 typedef AppConfig = {
 
         /** whether or not to create and run a default window, default: true */
@@ -91,8 +91,17 @@ typedef AppConfig = {
     @:optional var runtime      : Dynamic;
         /** the raw list of assets. use the app.assets from Snow for access to these. read from a manifest file by default */
     @:optional var assets       : Array<AssetInfo>;
+        /** config specific to the web target */
+    @:optional var web          : AppConfigWeb;
 
 } //AppConfig
+
+typedef AppConfigWeb = {
+
+        /** If true, right clicking will consume the event on the canvas. `event.preventDefault` is used. default: true*/
+    @:optional var no_context_menu : Bool;
+
+} //AppConfigWeb
 
 
 /**

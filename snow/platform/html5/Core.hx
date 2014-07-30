@@ -93,7 +93,7 @@ import snow.types.Types;
                         //update the last frame stamp
                     _lf_timestamp = _now;
 
-                }, app.host.render_rate );
+                }, Std.int(app.host.render_rate*1000.0) );
 
             } //no request anim frame
 

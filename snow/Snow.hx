@@ -78,7 +78,10 @@ class Snow {
             has_window : true,
             runtime : {},
             window : null,
-            assets : []
+            assets : [],
+            web : {
+                no_context_menu : true
+            }
         };
 
         host = _host;
