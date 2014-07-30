@@ -1,6 +1,6 @@
 
-#ifndef _SNOW_WINDOW_H_
-#define _SNOW_WINDOW_H_
+#ifndef _SNOW_PLATFORM_H_
+#define _SNOW_PLATFORM_H_
 
 
 #include "snow_window.h"
@@ -19,4 +19,4 @@ namespace snow {
     } //platform namespace
 } //snow namespace
 
-#endif //_SNOW_WINDOW_H_
+#endif //_SNOW_PLATFORM_H_
