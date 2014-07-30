@@ -29,7 +29,25 @@ h3 a {
 }
 
 h3 a:hover {
+    cursor: pointer;
     color:#6C6E6F;
+}
+
+a h3 {
+    color:#242424;
+}
+
+a:hover h3 {
+    cursor: pointer;
+    color:#06b4fb;
+}
+a h2 {
+    color:#242424;
+}
+
+a:hover h2 {
+    cursor: pointer;
+    color:#06b4fb;
 }
 
 
@@ -96,12 +114,15 @@ hr {
     border-top: 1px solid #ECECEC;
 }
 
+li {
+    line-height: 1.4em;
+}
 
 li {
-    font-size: 1em;
+    font-size: 1.06em;
     letter-spacing: -0.05em;
     max-width: 80%;
-    color:#999;
+    color:#97BACE;
 }
 
 img {
@@ -206,6 +227,15 @@ a.liftsmall {
     border: solid 1px #fcfcfc;
     font-size: 0.8em;
     padding:0.5em;
+}
+
+li code {
+    font-size: 0.8em;
+    padding: 0;
+    margin: 0;
+    border: 0;
+    background-color: transparent;
+    color:#f6007b;
 }
 
 .small-image {
