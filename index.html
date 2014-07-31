@@ -51,7 +51,11 @@
 
     <body>
         <div class="content">
-            <p><a href="./" id="logo"><img src="./images/logo.png" /></a></p>
+            <p><a href="./index.html" id="logo"><img src="./images/logo.png" /></a></p>
+<div class="topmenu">
+<a href="./api/index.html">api</a> . <a href="#guide">guide</a> <img src=".//images/github.png" alt="github">  <a href="https://github.com/underscorediscovery/snow">source</a> . <a href="https://github.com/underscorediscovery/snow/issues/">issues?</a>
+</div>
+
 <hr>
 <h2 id="about">About</h2>
 <p>snow is a light, pure and clean toolkit for building frameworks, applications and games using <a href="http://haxe.org">haxe</a>, targetting native platforms and browser.
@@ -103,6 +107,13 @@ It is built with no external dependencies, except for a build pipeline called <a
 <strong>API docs</strong><br/>
 <br/>
 <a href="./api/index.html">API reference</a>
+<br/>
+
+<strong>Development guides</strong><br/>
+<br/>
+<a href="./guide/contribute.html">want to help? - start here!</a> <br/>
+<a href="./guide/codedesign.html">playing nice - code/design conventions</a> <br/>
+<a href="./guide/structure.html">what goes where? - structure guide</a> <br/>
 
 <br/>
 <br/>
@@ -180,8 +191,17 @@ It is built with no external dependencies, except for a build pipeline called <a
 <hr>
 <p><a name="snags">
 <a href="#snags"><h3>Snags</h3></a>
-</a></p>
-<p><br/><br/><br/><br/></p>
+</a>
+The snag list below is a list of things that are known issues or inconsistencies across platforms to take note of.</p>
+<ul>
+<li><a href="https://github.com/underscorediscovery/snow/issues/10">#10</a> <code>native</code> audio - streaming is on the main thread</li>
+<li><a href="https://github.com/underscorediscovery/snow/issues/24">#24</a> <code>native</code> render - GLRenderbuffer and others don’t conform to WebGL spec</li>
+</ul>
+<p>For a full list of issues, open and resolved, refer to the <a href="https://github.com/underscorediscovery/snow/issues">github issue tracker</a> <br/>
+<br/>
+Transparent development is better for everyone, so please feel free to report issues and we will continue to keep working at them, and keeping you informed.<br/>
+And of course, if you want to resolve these issues for the benefit of the library, you are most welcome - read the <a href="./guide/contribute.html">contributor guide</a>.<br/></p>
+<p><br/><br/></p>
 <p><a name="samples">
 <a href="#samples"><h2>Samples</h2></a>
 </a></p>

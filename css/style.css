@@ -55,6 +55,21 @@ a:hover h2 {
     margin-left:2em;
 }
 
+.topmenu {
+    text-align: right;
+    margin-right: 0.9em;
+    margin-bottom: 0.5em;
+    display: block;
+    position: relative;
+    height: 1.5em;
+}
+
+.topmenu img {
+    display: inline-block;
+    height: 18px;
+    vertical-align: bottom;
+}
+
 #logo {
     width: 100%;
     display: block;
