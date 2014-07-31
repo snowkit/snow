@@ -49,14 +49,18 @@ import snow.window.WindowSystem;
                     //add it to the document
                 js.Browser.document.body.appendChild(_handle);
 
-                //:todo: These options, plus this context is singular atm, need to enforce or clarify this somehow
+                //:todo: These options need to be exposed and documented
             var _gl_context = _handle.getContextWebGL({ alpha:false, premultipliedAlpha:false });
                 //early out on no possible context
             if(_gl_context == null) {
-                throw "WebGL is required to run this!";
+                var msg =  'WebGL is required to run this!<br/><br/>';
+                    msg += 'visit http://get.webgl.org/ for help <br/>';
+                    msg += 'and contact the developer of the application';
+                internal_fallback(msg);
+                throw msg;
             }
 
-                //make sure there is one early
+                //make sure there is a set up context early
             if(snow.render.opengl.GL.current_context == null) {
                 snow.render.opengl.GL.current_context = _gl_context;
             }
@@ -69,6 +73,11 @@ import snow.window.WindowSystem;
 
                 config.x = _window_pos.x;
                 config.y = _window_pos.y;
+
+                //set the window title to the config title if there is one
+            if(config.title != null && config.title != '') {
+                js.Browser.document.title = config.title;
+            }
 
                 //tell them and give the handle for later.
             on_created(_handle, _window_id, config);
@@ -130,7 +139,8 @@ import snow.window.WindowSystem;
 
         override public function swap( _window:Window ) {
 
-            //empty because this concept is not possible in browser
+            //:unsupported:
+            //this concept is not possible in browser
 
         } //window_swap
 
@@ -265,7 +275,10 @@ import snow.window.WindowSystem;
             } else {
 
                 if(!windowed_fullscreen) {
+
+                    //:unsupported:
                     //currently no cancel full screen in fullscreen mode
+
                 } else {
 
                     _window.handle.style.padding = _pre_fs_padding;
@@ -283,7 +296,8 @@ import snow.window.WindowSystem;
 
         override public function bordered( _window:Window, bordered:Bool ) {
 
-            //empty, window border has no such concept on browser
+            //:unsupported:
+            //no such concept on browser
 
         } //window_bordered
 
@@ -302,6 +316,7 @@ import snow.window.WindowSystem;
 
             } else {
 
+                //:unsupported:
                 //pointer lock cancel api not yet in browsers,
                 //user must press escape
 
@@ -311,83 +326,110 @@ import snow.window.WindowSystem;
 
         override public function set_cursor_position( _window:Window, x:Int, y:Int ) {
 
-            // :unsupported: for good reason.
+            // :unsupported:
+            // for good reason.
 
         } //set_cursor_position
 
             /** Toggle the OS cursor. This is not window specific but system wide */
+        var cursor_style : js.html.Element;
         override function system_enable_cursor( enable:Bool ) {
 
-            //:todo:
+            if(cursor_style == null) {
+                cursor_style = js.Browser.document.createStyleElement();
+                cursor_style.innerHTML = '* { cursor:none; }';
+            }
+
+            if(enable) {
+                js.Browser.document.body.removeChild(cursor_style);
+            } else {
+                js.Browser.document.body.appendChild(cursor_style);
+            }
 
         } //system_enable_cursor
 
             /** Lock the OS cursor to the foreground window. This hides the cursor and prevents it from leaving, reporting relative coordinates. */
         override function system_lock_cursor( enable:Bool ) {
 
-            //:todo:
+            if(lib.window != null) {
+                grab(lib.window, enable);
+            }
 
         } //system_lock_cursor
 
             /** Toggle vertical refresh. This is not window specific but context wide */
         override function system_enable_vsync( enable:Bool ) : Int {
 
-            // :unsupported:  technically RAF is vsync but it's not a toggle,
-            //                and without it is terrible so, not doing that
+            // :unsupported:
+            //technically RAF is vsync but it's not a toggle,
+            //and without it is terrible so, not doing that
 
             return -1;
 
         } //system_enable_vsync
 
 
-            //:todo:
         override public function display_count() : Int {
-            return 1;
-        }
 
-            //:todo:
-        override public function display_mode_count( display:Int ) : Int {
+            //:unsupported:
             return 1;
+
+        } //display_count
+
+        override public function display_mode_count( display:Int ) : Int {
+
+            //:unsupported:
+            return 1;
+
         } //display_mode_count
 
-            //:todo:
         override public function display_native_mode( display:Int ) : DisplayMode {
+
+            //:unsupported:
+
             return {
                 format : 0,
                 refresh_rate : 0,
-                width : 0,
-                height : 0
+                width : js.Browser.window.screen.width,
+                height : js.Browser.window.screen.height
             };
+
         } //display_native_mode
 
-            //:todo:
         override public function display_current_mode( display:Int ) : DisplayMode {
-            return {
-                format : 0,
-                refresh_rate : 0,
-                width : 0,
-                height : 0
-            };
+
+            //:unsupported:
+            //will always return the default display mode
+
+            return display_native_mode(display);
+
         } //display_current_mode
 
-            //:todo:
         override public function display_mode( display:Int, mode_index:Int ) : DisplayMode {
-            return {
-                format : 0,
-                refresh_rate : 0,
-                width : 0,
-                height : 0
-            };
+
+            //:unsupported:
+            //will always return the default display mode
+
+            return display_native_mode(display);
+
         } //display_mode
 
-            //:todo:
+            //returns the size of the main window
         override public function display_bounds( display:Int ) : { x:Int, y:Int, width:Int, height:Int } {
-            return { x:0, y:0, width:0, height:0 };
+
+            return {
+                x : 0,
+                y : 0,
+                width : js.Browser.window.innerWidth,
+                height : js.Browser.window.innerHeight
+            };
+
         } //display_bounds
 
-            //:todo:
         override public function display_name( display:Int ) : String {
-            return 'Browser';
+
+            return js.Browser.navigator.vendor;
+
         } //display_name
 
             /** Called to set up any listeners on the given window  */
@@ -440,6 +482,39 @@ import snow.window.WindowSystem;
             });
 
         } //on_internal_enter
+
+        function internal_fallback( message:String ) {
+
+            var text_el : js.html.Element;
+            var overlay_el : js.html.Element;
+
+            text_el = js.Browser.document.createDivElement();
+            overlay_el = js.Browser.document.createDivElement();
+
+            text_el.style.marginLeft = 'auto';
+            text_el.style.marginRight = 'auto';
+            text_el.style.color = '#d3d3d3';
+            text_el.style.marginTop = '5em';
+            text_el.style.fontSize = '1.4em';
+            text_el.style.fontFamily = 'helvetica,sans-serif';
+            text_el.innerHTML = message;
+
+            overlay_el.style.top = '0';
+            overlay_el.style.left = '0';
+            overlay_el.style.width = '100%';
+            overlay_el.style.height = '100%';
+            overlay_el.style.display = 'block';
+            overlay_el.style.minWidth = '100%';
+            overlay_el.style.minHeight = '100%';
+            overlay_el.style.textAlign = 'center';
+            overlay_el.style.position = 'absolute';
+            overlay_el.style.background = 'rgba(1,1,1,0.90)';
+
+            overlay_el.appendChild(text_el);
+            js.Browser.document.body.appendChild(overlay_el);
+
+
+        }
 
     } //WindowSystemHTML5
 
