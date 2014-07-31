@@ -55,7 +55,7 @@
 <hr>
 <p><h1>AppConfig</h1>
 <small><code>snow.types.AppConfig</code></small></p>
-<p>The application config info</p>
+<p>The runtime application config info</p>
 <hr>
 <p><code>typedef</code></p>
 <hr>
@@ -64,8 +64,12 @@
 <p><h3>Members</h3> <hr/><span class="member apipage">
                 <a name="window"><a class="lift" href="#window">window</a></a><div class="clear"></div><code class="signature apipage">window : <a href="#">Null</a>&lt;<a href="#">snow.types.WindowConfig</a>&gt;</code><br/></span>
             <span class="small_desc_flat">the window config for the default window, if <code>has_window</code> is true. default: see <code>WindowConfig</code> docs</span><span class="member apipage">
+                <a name="web"><a class="lift" href="#web">web</a></a><div class="clear"></div><code class="signature apipage">web : <a href="#">Null</a>&lt;<a href="#">snow.types.AppConfigWeb</a>&gt;</code><br/></span>
+            <span class="small_desc_flat">config specific to the web target</span><span class="member apipage">
                 <a name="runtime"><a class="lift" href="#runtime">runtime</a></a><div class="clear"></div><code class="signature apipage">runtime : <a href="#">Dynamic</a></code><br/></span>
             <span class="small_desc_flat">the user specific config, by default, read from a json file at runtime</span><span class="member apipage">
+                <a name="native"><a class="lift" href="#native">native</a></a><div class="clear"></div><code class="signature apipage">native : <a href="#">Null</a>&lt;<a href="#">snow.types.AppConfigNative</a>&gt;</code><br/></span>
+            <span class="small_desc_flat">config specific to the web target</span><span class="member apipage">
                 <a name="has_window"><a class="lift" href="#has_window">has_window</a></a><div class="clear"></div><code class="signature apipage">has_window : <a href="#">Null</a>&lt;<a href="#">Bool</a>&gt;</code><br/></span>
             <span class="small_desc_flat">whether or not to create and run a default window, default: true</span><span class="member apipage">
                 <a name="assets"><a class="lift" href="#assets">assets</a></a><div class="clear"></div><code class="signature apipage">assets : <a href="#">Array</a>&lt;<a href="#">snow.types.AssetInfo</a>&gt;</code><br/></span>
