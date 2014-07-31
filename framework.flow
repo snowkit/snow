@@ -47,7 +47,7 @@
 
     build : {
       files : {
-        boot : { path:'flowtemplates/boot/SnowApp.hx => haxe/SnowApp.hx', template:['project', 'snow'] },
+        boot : { path:'flow/boot/SnowApp.hx => haxe/SnowApp.hx', template:['project', 'snow'] },
       }
     }
 
@@ -58,7 +58,7 @@
 
     "mac && !flow_build_command_line":{
       files : {
-        plists : { path:'flowtemplates/mac/ => ../', template:'project', not_listed:true }
+        plists : { path:'flow/mac/ => ../', template:'project', not_listed:true }
       },
     },
 
@@ -124,7 +124,7 @@
     android : {
       build: {
         files : {
-          project : { path:"flowtemplates/android/ => project/", template:'project' }
+          project : { path:"flow/android/ => project/", template:'project' }
         }
       }
     },
@@ -132,14 +132,13 @@
     ios : {
       build: {
         files : {
-          projectfile : { path:"flowtemplates/ios/snowapp.xcodeproj => project/{{app.name}}.xcodeproj", template:'project' },
-          classes : { path:"flowtemplates/ios/Classes => project/{{app.name}}/Classes", template:'project' },
+          projectfile : { path:"flow/ios/snowapp.xcodeproj => project/{{app.name}}.xcodeproj", template:'project' },
+          classes : { path:"flow/ios/Classes => project/{{app.name}}/Classes", template:'project' },
           sdl_headers : { path:"project/src/libs/sdl/include => project/{{app.name}}/Classes/sdl/" },
           sdl_config : { path:"project/src/libs/sdl/include/configs/default/SDL_config.h => project/{{app.name}}/Classes/sdl/SDL_config.h" },
-          infoplist : { path:"flowtemplates/ios/snowapp-Info.plist => project/{{app.name}}/{{app.name}}-Info.plist", template:'project' },
-          prefixheader : { path:"flowtemplates/ios/snowapp-Prefix.pch => project/{{app.name}}/{{app.name}}-Prefix.pch", template:'project' },
-          entitlements : { path:"flowtemplates/ios/snowapp-Entitlements.plist => project/{{app.name}}/{{app.name}}-Entitlements.plist" },
-          images : { path:"flowtemplates/ios/Images.xcassets => project/{{app.name}}/Images.xcassets", template:'project' }
+          infoplist : { path:"flow/ios/snowapp-Info.plist => project/{{app.name}}/{{app.name}}-Info.plist", template:'project' },
+          prefixheader : { path:"flow/ios/snowapp-Prefix.pch => project/{{app.name}}/{{app.name}}-Prefix.pch", template:'project' },
+          images : { path:"flow/ios/Images.xcassets => project/{{app.name}}/Images.xcassets", template:'project' }
         }
       }
     },
@@ -159,8 +158,8 @@
 
     snow_html5 : {
       files : {
-        index : { path:'flowtemplates/web/index.html => index.html', template:'project', not_listed:true },
-        lib : { path:'flowtemplates/web/lib/ => lib/', not_listed:true }
+        index : { path:'flow/web/index.html => index.html', template:'project', not_listed:true },
+        lib : { path:'flow/web/lib/ => lib/', not_listed:true }
       },
       build : {
         defines : ['snow_audio_howlerjs'],
