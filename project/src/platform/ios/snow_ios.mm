@@ -43,7 +43,7 @@ namespace snow {
 
         } //url_open
 
-            //not supported
+            //:unsupported:
         std::vector<std::string> watched_paths;
         bool init_filewatch(){ return false; }
         void shutdown_filewatch(){}
