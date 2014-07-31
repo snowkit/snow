@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <title>snow - </title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <link rel="shortcut icon" href="../images/favicon.png" />
+
+        <link rel="stylesheet" type="text/css" href="../css/style.css" media="all">
+        <link rel="stylesheet" type="text/css" href="../css/code.css" media="all">
+        <link rel="stylesheet" type="text/css" href="../css/font.css" media="all">
+
+        <link rel="stylesheet" type="text/css" href="../css/tooltipster.css" media="all">
+        <link rel="stylesheet" type="text/css" href="../css/tooltipster-shadow.css" media="all">
+
+        <script src="../js/jquery-2.0.3.min.js"> </script>
+        <script src="../js/jquery.tooltipster.min.js"> </script>
+
+        <script>
+
+            $(document).ready(function() {
+
+                $('.section').css('display','none');
+                $('.readmore').click(function(e){
+                    var _child = $(this).parent().find('.section').first();
+                    var _opp = 'block';
+                    if( _child.css('display') == 'block' ) {
+                        _opp = 'none';
+                    } else {
+                    }
+                    _child.css('display', _opp);
+                });
+
+                $('div.sample').on('click', function(e){
+                        //get the data tag
+                    var content = $(this).attr('data-content');
+                        //remove clicking handler
+                    $(this).off('click');
+                        //replace the content!
+                    $(this).html('<iframe src="'+content+'" sandbox="allow-same-origin allow-scripts" style="overflow:hidden; scrollbar:none; border: 0; width:645px; height:450px;"></iframe> ')
+                });
+
+                $('.tooltip').tooltipster({
+                    theme:'tooltipster-shadow'
+                });
+
+            }); //document.ready
+
+        </script>
+    </head>
+
+    <body>
+        <div class="content">
+            <p><a href="../" id="logo"><img src="../images/logo.png" /></a></p>
+<hr>
+<p><a name="platforms">
+<a href="#platforms"><h2>Platform Implementation Details</h2></a>
+</a></p>
+<p><a name="web"><a href="#web"><strong>web</strong></a></a></p>
+<ul>
+<li>render - direct WebGL canvas</li>
+<li>input - keys from page, mouse from element</li>
+<li>windowing - multiple “windows” separate GL context (unavoidable)</li>
+<li>audio - by default handled by HowlerJS</li>
+<li>io - handled by httprequest</li>
+<li>assets - images loaded via new Image(), and getImageData</li>
+<li>must be served over http due to this ^</li>
+<li>flow will run a built in dev server for you</li>
+</ul>
+<p><a name="native"><a href="#native"><strong>native</strong></a></a></p>
+<ul>
+<li>all native targets use the latest SDL2 release, including mobile.</li>
+<li>all audio is handled by OpenAL by default</li>
+<li>all assets are handled by SDL_RWOps</li>
+<li>image assets are handled by stb_image</li>
+<li>audio files use libvorbis, libogg and custom wav loader</li>
+</ul>
+<p><a name="mac"><a href="#mac"><strong>mac</strong></a></a></p>
+<ul>
+<li>render - OpenGL</li>
+<li>io - cocoa file dialogs</li>
+<li>io - FSEvents file events</li>
+<li>audio - native OpenAL.framework is used</li>
+</ul>
+<p><a name="linux"><a href="#linux"><strong>linux</strong></a></a></p>
+<ul>
+<li>render - OpenGL</li>
+<li>io - GTK file dialogs</li>
+<li>io - inotify file events</li>
+<li>audio - openalsoft is used</li>
+</ul>
+<p><a name="windows"><a href="#windows"><strong>windows</strong></a></a></p>
+<ul>
+<li>render - OpenGL</li>
+<li>io - Windows file dialogs</li>
+<li>io - ReadDirectoryChangesW file events</li>
+<li>audio - openalsoft is used</li>
+</ul>
+<p><a name="android"><a href="#android"><strong>android</strong></a></a></p>
+<ul>
+<li>render - OpenGLES2 (because of WebGL spec)</li>
+<li>audio - openalsoft based on apportable is used</li>
+</ul>
+<p><a name="ios"><a href="#ios"><strong>iOS</strong></a></a></p>
+<ul>
+<li>render - OpenGLES2 (because of WebGL spec)</li>
+<li>audio - native OpenAL.framework is used</li>
+</ul>
+<p><br/><br/></p>
+
+        </div>
+    </body>
+
+</html>
