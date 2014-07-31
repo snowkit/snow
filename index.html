@@ -53,7 +53,7 @@
         <div class="content">
             <p><a href="./index.html" id="logo"><img src="./images/logo.png" /></a></p>
 <div class="topmenu">
-<a href="./api/index.html">api</a> . <a href="#guide">guide</a> <img src=".//images/github.png" alt="github">  <a href="https://github.com/underscorediscovery/snow">source</a> . <a href="https://github.com/underscorediscovery/snow/issues/">issues?</a>
+<a href="./api/index.html">api</a> . <a href="#guide">guide</a> <img src=".//images/github.png" alt="github">  <a href="https://github.com/underscorediscovery/snow">source</a> . <a href="https://github.com/underscorediscovery/snow/issues/">issues</a>
 </div>
 
 <hr>
@@ -82,6 +82,7 @@ This allows you to build frameworks, games and applications without it getting i
 This means that snow tries to avoid making assumptions, letting you decide your architecture.</p>
 <p>snow is also as self contained as possible.
 It is built with no external dependencies, except for a build pipeline called <a href="#">flow</a>, which makes the application.</p>
+<p>snow has tests of various kinds, you can read more about the <a href="./guide/contribute.html#tests">testing approach</a> in the contributors guide.</p>
 <div class="guide">
 <a name="guide"> &nbsp;</a>
 <h2>Guide</h2>
@@ -108,12 +109,15 @@ It is built with no external dependencies, except for a build pipeline called <a
 <br/>
 <a href="./api/index.html">API reference</a>
 <br/>
+<br/>
 
 <strong>Development guides</strong><br/>
 <br/>
 <a href="./guide/contribute.html">want to help? - start here!</a> <br/>
-<a href="./guide/codedesign.html">playing nice - code/design conventions</a> <br/>
+<a href="./guide/contribute.html#tests">be reliable - help write tests</a> <br/>
+<a href="./guide/contribute.html#guides">the more you know - help write guides</a> <br/>
 <a href="./guide/structure.html">what goes where? - structure guide</a> <br/>
+<a href="./guide/codedesign.html">playing nice - code/design conventions</a> <br/>
 
 <br/>
 <br/>
@@ -195,7 +199,7 @@ It is built with no external dependencies, except for a build pipeline called <a
 The snag list below is a list of things that are known issues or inconsistencies across platforms to take note of.</p>
 <ul>
 <li><a href="https://github.com/underscorediscovery/snow/issues/10">#10</a> <code>native</code> audio - streaming is on the main thread</li>
-<li><a href="https://github.com/underscorediscovery/snow/issues/24">#24</a> <code>native</code> render - GLRenderbuffer and others don’t conform to WebGL spec</li>
+<li><a href="https://github.com/underscorediscovery/snow/issues/24">#24</a> <code>native</code> render - GLObject not conforming to WebGL spec</li>
 </ul>
 <p>For a full list of issues, open and resolved, refer to the <a href="https://github.com/underscorediscovery/snow/issues">github issue tracker</a> <br/>
 <br/>
