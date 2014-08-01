@@ -697,17 +697,17 @@
 	<class path="IntIterator" params="" file="/usr/lib/haxe/std/IntIterator.hx">
 		<min><x path="Int"/></min>
 		<max><x path="Int"/></max>
-		<hasNext public="1" get="inline" set="null" line="52">
+		<hasNext public="1" set="method" line="52">
 			<f a=""><x path="Bool"/></f>
 			<haxe_doc>Returns true if the iterator has other items, false otherwise.</haxe_doc>
 		</hasNext>
-		<next public="1" get="inline" set="null" line="61">
+		<next public="1" set="method" line="61">
 			<f a=""><x path="Int"/></f>
 			<haxe_doc>Moves to the next item of the iterator.
 
 		If this is called while hasNext() is false, the result is unspecified.</haxe_doc>
 		</next>
-		<new public="1" get="inline" set="null" line="44">
+		<new public="1" set="method" line="44">
 			<f a="min:max">
 				<x path="Int"/>
 				<x path="Int"/>
@@ -1519,7 +1519,7 @@
 	<x path="Float"/>
 	<x path="Float"/>
 	<x path="Float"/>
-	<c path="snow.platform.native.utils.Float32Array"/>
+	<t path="snow.utils.Float32Array"/>
 </f></create2DMatrix>
 		<new public="1" set="method" line="20"><f a=""><x path="Void"/></f></new>
 		<meta><m n=":keep"/></meta>
@@ -2069,7 +2069,7 @@
 	<class path="Math" params="" file="/usr/lib/haxe/std/Math.hx" extern="1">
 		<PI public="1" set="null" static="1">
 			<x path="Float"/>
-			<haxe_doc>Represents the ratio of the circumference of a circle to its diameter,
+			<haxe_doc>Represents the ratio of the circumference of a circle to its diameter, 
 		specified by the constant, π. `PI` is approximately 3.141592653589793.</haxe_doc>
 		</PI>
 		<NEGATIVE_INFINITY public="1" set="null" static="1">
@@ -2079,7 +2079,7 @@
 		For example, this is the result of -1.0 / 0.0.
 
 		Operations with NEGATIVE_INFINITY as an operand may result in
-		NEGATIVE_INFINITY, POSITIVE_INFINITY or NaN.
+		NEGATIVE_INFINITY, POSITIVE_INFINITY or NaN. 
 
 		If this constant is converted to an Int, e.g. through Std.int(), the
 		result is unspecified.</haxe_doc>
@@ -2091,7 +2091,7 @@
 		For example, this is the result of 1.0 / 0.0.
 
 		Operations with POSITIVE_INFINITY as an operand may result in
-		NEGATIVE_INFINITY, POSITIVE_INFINITY or NaN.
+		NEGATIVE_INFINITY, POSITIVE_INFINITY or NaN. 
 
 		If this constant is converted to an Int, e.g. through Std.int(), the
 		result is unspecified.</haxe_doc>
@@ -2112,7 +2112,7 @@
 		In order to test if a value is NaN, you should use Math.isNaN() function.
 
 		@php In PHP versions prior to 5.3.1 VC 9 there may be unexpected
-		results when performing arithmetic operations with NaN on Windows,
+		results when performing arithmetic operations with NaN on Windows, 
 		see [https://bugs.php.net/bug.php?id=42143]</haxe_doc>
 		</NaN>
 		<abs public="1" set="method" static="1">
@@ -2122,12 +2122,12 @@
 			</f>
 			<haxe_doc>Returns the absolute value of `v`.
 
-		If `v` is positive or 0, the result is unchanged. Otherwise the result
+		If `v` is positive or 0, the result is unchanged. Otherwise the result 
 		is -`v`.
-
-		If `v` is NEGATIVE_INFINITY or POSITIVE_INFINITY, the result is
+		
+		If `v` is NEGATIVE_INFINITY or POSITIVE_INFINITY, the result is 
 		POSITIVE_INFINITY.
-
+		
 		If `v` is NaN, the result is NaN.</haxe_doc>
 		</abs>
 		<min public="1" set="method" static="1">
@@ -2160,7 +2160,7 @@
 				<x path="Float"/>
 			</f>
 			<haxe_doc>Returns the trigonometric sine of the specified angle `v`, in radians.
-
+		
 		If `v` is NaN or infinite, the result is NaN.</haxe_doc>
 		</sin>
 		<cos public="1" set="method" static="1">
@@ -2169,7 +2169,7 @@
 				<x path="Float"/>
 			</f>
 			<haxe_doc>Returns the trigonometric cosine of the specified angle `v`, in radians.
-
+		
 		If `v` is NaN or infinite, the result is NaN.</haxe_doc>
 		</cos>
 		<tan public="1" set="method" static="1">
@@ -2178,7 +2178,7 @@
 				<x path="Float"/>
 			</f>
 			<haxe_doc>Returns the trigonometric tangent of the specified angle `v`, in radians.
-
+		
 		If `v` is NaN or infinite, the result is NaN.</haxe_doc>
 		</tan>
 		<asin public="1" set="method" static="1">
@@ -2187,7 +2187,7 @@
 				<x path="Float"/>
 			</f>
 			<haxe_doc>Returns the trigonometric arc of the specified angle `v`, in radians.
-
+		
 		If `v` is NaN or infinite, the result is NaN.</haxe_doc>
 		</asin>
 		<acos public="1" set="method" static="1">
@@ -2195,9 +2195,9 @@
 				<x path="Float"/>
 				<x path="Float"/>
 			</f>
-			<haxe_doc>Returns the trigonometric arc cosine of the specified angle `v`,
+			<haxe_doc>Returns the trigonometric arc cosine of the specified angle `v`, 
 		in radians.
-
+		
 		If `v` is NaN or infinite, the result is NaN.</haxe_doc>
 		</acos>
 		<atan public="1" set="method" static="1">
@@ -2205,9 +2205,9 @@
 				<x path="Float"/>
 				<x path="Float"/>
 			</f>
-			<haxe_doc>Returns the trigonometric arc tangent of the specified angle `v`,
+			<haxe_doc>Returns the trigonometric arc tangent of the specified angle `v`, 
 		in radians.
-
+		
 		If `v` is NaN or infinite, the result is NaN.</haxe_doc>
 		</atan>
 		<atan2 public="1" set="method" static="1">
@@ -2216,10 +2216,10 @@
 				<x path="Float"/>
 				<x path="Float"/>
 			</f>
-			<haxe_doc>Returns the trigonometric arc tangent whose tangent is the quotient of
+			<haxe_doc>Returns the trigonometric arc tangent whose tangent is the quotient of 
 		two specified numbers, in radians.
-
-		If parameter `x` or `y`  is NaN, NEGATIVE_INFINITY or POSITIVE_INFINITY,
+		
+		If parameter `x` or `y`  is NaN, NEGATIVE_INFINITY or POSITIVE_INFINITY, 
 		the result is NaN.</haxe_doc>
 		</atan2>
 		<exp public="1" set="method" static="1">
@@ -2228,9 +2228,9 @@
 				<x path="Float"/>
 			</f>
 			<haxe_doc>Returns Euler's number, raised to the power of `v`.
-
+		
 		exp(1.0) is approximately 2.718281828459.
-
+		
 		If `v` is POSITIVE_INFINITY, the result is POSITIVE_INFINITY.
 		If `v` is NEGATIVE_INFINITY, the result is 0.0.
 		If `v` is NaN, the result is NaN.</haxe_doc>
@@ -2241,11 +2241,11 @@
 				<x path="Float"/>
 			</f>
 			<haxe_doc>Returns the natural logarithm of `v`.
-
-		This is the mathematical inverse operation of exp,
+		
+		This is the mathematical inverse operation of exp, 
 		i.e. `log(exp(v)) == v` always holds.
-
-		If `v` is negative (including NEGATIVE_INFINITY) or NaN, the result
+		
+		If `v` is negative (including NEGATIVE_INFINITY) or NaN, the result 
 		is NaN.
 		If `v` is POSITIVE_INFINITY, the result is POSITIVE_INFINITY.
 		If `v` is 0.0, the result is NEGATIVE_INFINITY.</haxe_doc>
@@ -2264,8 +2264,8 @@
 				<x path="Float"/>
 			</f>
 			<haxe_doc>Returns the square root of `v`.
-
-		If `v` is negative (including NEGATIVE_INFINITY) or NaN, the result
+		
+		If `v` is negative (including NEGATIVE_INFINITY) or NaN, the result 
 		is NaN.
 		If `v` is POSITIVE_INFINITY, the result is POSITIVE_INFINITY.
 		If `v` is 0.0, the result is 0.0.</haxe_doc>
@@ -2276,8 +2276,8 @@
 				<x path="Int"/>
 			</f>
 			<haxe_doc>Rounds `v` to the nearest integer value.
-
-		If `v` is outside of the signed Int32 range, or is NaN, NEGATIVE_INFINITY
+		
+		If `v` is outside of the signed Int32 range, or is NaN, NEGATIVE_INFINITY 
 		or POSITIVE_INFINITY, the result is unspecified.</haxe_doc>
 		</round>
 		<floor public="1" set="method" static="1">
@@ -2287,7 +2287,7 @@
 			</f>
 			<haxe_doc>Returns the largest integer value that is not greater than `v`.
 
-		If `v` is outside of the signed Int32 range, or is NaN, NEGATIVE_INFINITY
+		If `v` is outside of the signed Int32 range, or is NaN, NEGATIVE_INFINITY 
 		or POSITIVE_INFINITY, the result is unspecified.</haxe_doc>
 		</floor>
 		<ceil public="1" set="method" static="1">
@@ -2297,12 +2297,12 @@
 			</f>
 			<haxe_doc>Returns the smallest integer value that is not less than `v`.
 
-		If `v` is outside of the signed Int32 range, or is NaN, NEGATIVE_INFINITY
+		If `v` is outside of the signed Int32 range, or is NaN, NEGATIVE_INFINITY 
 		or POSITIVE_INFINITY, the result is unspecified.</haxe_doc>
 		</ceil>
 		<random public="1" set="method" static="1">
 			<f a=""><x path="Float"/></f>
-			<haxe_doc>Returns a pseudo-random number which is greater than or equal to 0.0,
+			<haxe_doc>Returns a pseudo-random number which is greater than or equal to 0.0, 
 		and less than 1.0.</haxe_doc>
 		</random>
 		<ffloor public="1" set="method" static="1">
@@ -2312,7 +2312,7 @@
 			</f>
 			<haxe_doc>Returns the largest integer value that is not greater than `v`, as a Float.
 
-		If `v` is is NaN, NEGATIVE_INFINITY or POSITIVE_INFINITY,
+		If `v` is is NaN, NEGATIVE_INFINITY or POSITIVE_INFINITY, 
 		the result is unspecified.</haxe_doc>
 		</ffloor>
 		<fceil public="1" set="method" static="1">
@@ -2322,7 +2322,7 @@
 			</f>
 			<haxe_doc>Returns the smallest integer value that is not less than `v`, as a Float.
 
-		If `v` is is NaN, NEGATIVE_INFINITY or POSITIVE_INFINITY,
+		If `v` is is NaN, NEGATIVE_INFINITY or POSITIVE_INFINITY, 
 		the result is unspecified.</haxe_doc>
 		</fceil>
 		<fround public="1" set="method" static="1">
@@ -2332,7 +2332,7 @@
 			</f>
 			<haxe_doc>Rounds `v` to the nearest integer value, as a Float.
 
-		If `v` is is NaN, NEGATIVE_INFINITY or POSITIVE_INFINITY,
+		If `v` is is NaN, NEGATIVE_INFINITY or POSITIVE_INFINITY, 
 		the result is unspecified.</haxe_doc>
 		</fround>
 		<isFinite public="1" set="method" static="1">
@@ -2342,7 +2342,7 @@
 			</f>
 			<haxe_doc>Tells if `f` is a finite number.
 
-		If `f` is POSITIVE_INFINITY, NEGATIVE_INFINITY or NaN, the result
+		If `f` is POSITIVE_INFINITY, NEGATIVE_INFINITY or NaN, the result 
 		is false, otherwise the result is true.</haxe_doc>
 		</isFinite>
 		<isNaN public="1" set="method" static="1">
@@ -2352,12 +2352,12 @@
 			</f>
 			<haxe_doc>Tells if `f` is not a valid number.
 
-		If `f` is NaN, the result is true, otherwise the result is false.
+		If `f` is NaN, the result is true, otherwise the result is false. 
 		In particular, both POSITIVE_INFINITY and NEGATIVE_INFINITY are
 		not considered NaN.</haxe_doc>
 		</isNaN>
 		<haxe_doc>This class defines mathematical functions and constants.</haxe_doc>
-		<meta><m n=":include"><e>"hxMath.h"</e></m></meta>
+		<meta><m n=":include"><e>"hxMath"</e></m></meta>
 	</class>
 	<class path="Reflect" params="" file="/usr/lib/haxe/std/cpp/_std/Reflect.hx">
 		<hasField public="1" set="method" line="24" static="1">
@@ -3032,14 +3032,14 @@
 			</f>
 			<haxe_doc>Encode an URL by using the standard format.</haxe_doc>
 		</urlEncode>
-		<urlDecode public="1" set="method" line="63" static="1">
+		<urlDecode public="1" set="method" line="61" static="1">
 			<f a="s">
 				<c path="String"/>
 				<c path="String"/>
 			</f>
 			<haxe_doc>Decode an URL using the standard format.</haxe_doc>
 		</urlDecode>
-		<htmlEscape public="1" set="method" line="101" static="1">
+		<htmlEscape public="1" set="method" line="97" static="1">
 			<f a="s:?quotes" v=":null">
 				<c path="String"/>
 				<x path="Bool"/>
@@ -3058,7 +3058,7 @@
 		- `"` becomes `&quot`;
 		- `'` becomes `&#039`;]]></haxe_doc>
 		</htmlEscape>
-		<htmlUnescape public="1" set="method" line="120" static="1">
+		<htmlUnescape public="1" set="method" line="116" static="1">
 			<f a="s">
 				<c path="String"/>
 				<c path="String"/>
@@ -3076,7 +3076,7 @@
 		- `&quot;` becomes `"`
 		- `&#039;` becomes `'`]]></haxe_doc>
 		</htmlUnescape>
-		<startsWith public="1" set="method" line="131" static="1">
+		<startsWith public="1" set="method" line="127" static="1">
 			<f a="s:start">
 				<c path="String"/>
 				<c path="String"/>
@@ -3088,7 +3088,7 @@
 
 		If `start` is the empty String "", the result is true.</haxe_doc>
 		</startsWith>
-		<endsWith public="1" set="method" line="148" static="1">
+		<endsWith public="1" set="method" line="144" static="1">
 			<f a="s:end">
 				<c path="String"/>
 				<c path="String"/>
@@ -3100,7 +3100,7 @@
 
 		If `end` is the empty String "", the result is true.</haxe_doc>
 		</endsWith>
-		<isSpace public="1" set="method" line="169" static="1">
+		<isSpace public="1" set="method" line="165" static="1">
 			<f a="s:pos">
 				<c path="String"/>
 				<x path="Int"/>
@@ -3114,7 +3114,7 @@
 		If `s` is the empty String "", or if pos is not a valid position within
 		`s`, the result is false.</haxe_doc>
 		</isSpace>
-		<ltrim public="1" set="method" line="186" static="1">
+		<ltrim public="1" set="method" line="179" static="1">
 			<f a="s">
 				<c path="String"/>
 				<c path="String"/>
@@ -3127,7 +3127,7 @@
 		If `s` is the empty String "" or consists only of space characters, the
 		result is the empty String "".</haxe_doc>
 		</ltrim>
-		<rtrim public="1" set="method" line="211" static="1">
+		<rtrim public="1" set="method" line="204" static="1">
 			<f a="s">
 				<c path="String"/>
 				<c path="String"/>
@@ -3140,7 +3140,7 @@
 		If `s` is the empty String "" or consists only of space characters, the
 		result is the empty String "".</haxe_doc>
 		</rtrim>
-		<trim public="1" set="method" line="233" static="1">
+		<trim public="1" set="method" line="226" static="1">
 			<f a="s">
 				<c path="String"/>
 				<c path="String"/>
@@ -3149,7 +3149,7 @@
 
 		This is a convenience function for ltrim(rtrim(s)).</haxe_doc>
 		</trim>
-		<lpad public="1" set="method" line="255" static="1">
+		<lpad public="1" set="method" line="248" static="1">
 			<f a="s:c:l">
 				<c path="String"/>
 				<c path="String"/>
@@ -3167,7 +3167,7 @@
 
 		If `c` is null, the result is unspecified.</haxe_doc>
 		</lpad>
-		<rpad public="1" set="method" line="277" static="1">
+		<rpad public="1" set="method" line="270" static="1">
 			<f a="s:c:l">
 				<c path="String"/>
 				<c path="String"/>
@@ -3185,7 +3185,7 @@
 
 		If `c` is null, the result is unspecified.</haxe_doc>
 		</rpad>
-		<replace public="1" set="method" line="298" static="1">
+		<replace public="1" set="method" line="291" static="1">
 			<f a="s:sub:by">
 				<c path="String"/>
 				<c path="String"/>
@@ -3202,7 +3202,7 @@
 
 		If `sub` or `by` are null, the result is unspecified.</haxe_doc>
 		</replace>
-		<hex public="1" set="method" line="320" static="1">
+		<hex public="1" set="method" line="313" static="1">
 			<f a="n:?digits" v=":null">
 				<x path="Int"/>
 				<x path="Int"/>
@@ -3213,26 +3213,22 @@
 		If `digits` is specified, the resulting String is padded with "0" until
 		its length equals `digits`.</haxe_doc>
 		</hex>
-		<fastCodeAt public="1" get="inline" set="null" line="362" static="1">
+		<fastCodeAt public="1" get="inline" set="null" line="342" static="1">
 			<f a="s:index">
 				<c path="String"/>
 				<x path="Int"/>
 				<x path="Int"/>
 			</f>
-			<haxe_doc>Returns the character code at position `index` of String `s`, or an
-		end-of-file indicator at if `position` equals `s.length`.
+			<haxe_doc>Returns the character code at position `index` of String `s`.
 
-		This method is faster than String.charCodeAt() on some platforms, but
-		the result is unspecified if `index` is negative or greater than
-		`s.length`.
-
-		End of file status can be checked by calling `StringTools.isEof` with
-		the returned value as argument.
+		This method is faster than String.charCodeAt() on most platforms.
+		However, unlike String.charCodeAt(), the result is unspecified if
+		`index` is negative or exceeds `s.length`.
 
 		This operation is not guaranteed to work if `s` contains the \0
 		character.</haxe_doc>
 		</fastCodeAt>
-		<isEof public="1" get="inline" set="null" line="387" static="1">
+		<isEof public="1" get="inline" set="null" line="369" static="1">
 			<f a="c">
 				<x path="Int"/>
 				<x path="Bool"/>
@@ -3726,7 +3722,7 @@
 	class and enum instances.</haxe_doc>
 		<meta><m n=":coreApi"/></meta>
 	</class>
-	<class path="cpp.NativeArray" params="" file="/usr/lib/haxe/std/cpp/NativeArray.hx" extern="1">
+	<class path="cpp.NativeArray" params="" file="/usr/lib/haxe/std/cpp/NativeArray.hx">
 		<blit public="1" params="T" get="inline" set="null" line="5" static="1"><f a="ioDestArray:inDestElement:inSourceArray:inSourceElement:inElementCount">
 	<c path="Array"><c path="blit.T"/></c>
 	<x path="Int"/>
@@ -3746,18 +3742,18 @@
 	<x path="Int"/>
 	<c path="unsafeGet.T"/>
 </f></unsafeGet>
-		<unsafeSet public="1" params="T" get="inline" set="null" line="19" static="1"><f a="ioDestArray:inIndex:inValue">
+		<unsafeSet public="1" params="T" get="inline" set="null" line="18" static="1"><f a="ioDestArray:inIndex:inValue">
 	<c path="Array"><c path="unsafeSet.T"/></c>
 	<x path="Int"/>
 	<c path="unsafeSet.T"/>
 	<c path="unsafeSet.T"/>
 </f></unsafeSet>
-		<memcmp public="1" params="T" get="inline" set="null" line="23" static="1"><f a="inArrayA:inArrayB">
+		<memcmp public="1" params="T" get="inline" set="null" line="22" static="1"><f a="inArrayA:inArrayB">
 	<c path="Array"><c path="memcmp.T"/></c>
 	<c path="Array"><c path="memcmp.T"/></c>
 	<x path="Int"/>
 </f></memcmp>
-		<setSize public="1" params="T" get="inline" set="null" line="27" static="1"><f a="ioArray:inSize">
+		<setSize public="1" params="T" get="inline" set="null" line="26" static="1"><f a="ioArray:inSize">
 	<c path="Array"><c path="setSize.T"/></c>
 	<x path="Int"/>
 	<c path="Array"><c path="setSize.T"/></c>
@@ -4869,11 +4865,11 @@
 	<c path="Array"><c path="String"/></c>
 	<x path="Void"/>
 </f></fieldsString>
-		<quote set="method" line="154"><f a="s">
+		<quote set="method" line="153"><f a="s">
 	<c path="String"/>
 	<x path="Void"/>
 </f></quote>
-		<quoteUtf8 set="method" line="186"><f a="s">
+		<quoteUtf8 set="method" line="185"><f a="s">
 	<c path="String"/>
 	<x path="Void"/>
 </f></quoteUtf8>
@@ -4888,19 +4884,19 @@
 </f></new>
 	</class>
 	<class path="haxe.io.Bytes" params="" file="/usr/lib/haxe/std/haxe/io/Bytes.hx">
-		<alloc public="1" set="method" line="367" static="1"><f a="length">
+		<alloc public="1" set="method" line="357" static="1"><f a="length">
 	<x path="Int"/>
 	<c path="haxe.io.Bytes"/>
 </f></alloc>
-		<ofString public="1" set="method" line="394" static="1"><f a="s">
+		<ofString public="1" set="method" line="382" static="1"><f a="s">
 	<c path="String"/>
 	<c path="haxe.io.Bytes"/>
 </f></ofString>
-		<ofData public="1" set="method" line="452" static="1"><f a="b">
+		<ofData public="1" set="method" line="435" static="1"><f a="b">
 	<t path="haxe.io.BytesData"/>
 	<c path="haxe.io.Bytes"/>
 </f></ofData>
-		<fastGet public="1" get="inline" set="null" line="470" static="1">
+		<fastGet public="1" get="inline" set="null" line="453" static="1">
 			<f a="b:pos">
 				<t path="haxe.io.BytesData"/>
 				<x path="Int"/>
@@ -4915,57 +4911,57 @@
 	<x path="Int"/>
 	<x path="Int"/>
 </f></get>
-		<set public="1" get="inline" set="null" line="59"><f a="pos:v">
+		<set public="1" get="inline" set="null" line="57"><f a="pos:v">
 	<x path="Int"/>
 	<x path="Int"/>
 	<x path="Void"/>
 </f></set>
-		<blit public="1" set="method" line="79"><f a="pos:src:srcpos:len">
+		<blit public="1" set="method" line="75"><f a="pos:src:srcpos:len">
 	<x path="Int"/>
 	<c path="haxe.io.Bytes"/>
 	<x path="Int"/>
 	<x path="Int"/>
 	<x path="Void"/>
 </f></blit>
-		<fill public="1" set="method" line="114"><f a="pos:len:value">
+		<fill public="1" set="method" line="108"><f a="pos:len:value">
 	<x path="Int"/>
 	<x path="Int"/>
 	<x path="Int"/>
 	<x path="Void"/>
 </f></fill>
-		<sub public="1" set="method" line="133"><f a="pos:len">
+		<sub public="1" set="method" line="127"><f a="pos:len">
 	<x path="Int"/>
 	<x path="Int"/>
 	<c path="haxe.io.Bytes"/>
 </f></sub>
-		<compare public="1" set="method" line="161"><f a="other">
+		<compare public="1" set="method" line="153"><f a="other">
 	<c path="haxe.io.Bytes"/>
 	<x path="Int"/>
 </f></compare>
-		<getDouble public="1" set="method" line="211"><f a="pos">
+		<getDouble public="1" set="method" line="203"><f a="pos">
 	<x path="Int"/>
 	<x path="Float"/>
 </f></getDouble>
-		<getFloat public="1" set="method" line="226"><f a="pos">
+		<getFloat public="1" set="method" line="218"><f a="pos">
 	<x path="Int"/>
 	<x path="Float"/>
 </f></getFloat>
-		<setDouble public="1" set="method" line="241"><f a="pos:v">
+		<setDouble public="1" set="method" line="233"><f a="pos:v">
 	<x path="Int"/>
 	<x path="Float"/>
 	<x path="Void"/>
 </f></setDouble>
-		<setFloat public="1" set="method" line="255"><f a="pos:v">
+		<setFloat public="1" set="method" line="247"><f a="pos:v">
 	<x path="Int"/>
 	<x path="Float"/>
 	<x path="Void"/>
 </f></setFloat>
-		<getString public="1" set="method" line="269"><f a="pos:len">
+		<getString public="1" set="method" line="261"><f a="pos:len">
 	<x path="Int"/>
 	<x path="Int"/>
 	<c path="String"/>
 </f></getString>
-		<readString public="1" get="inline" set="null" line="324">
+		<readString public="1" get="inline" set="null" line="314">
 			<f a="pos:len">
 				<x path="Int"/>
 				<x path="Int"/>
@@ -4976,9 +4972,9 @@
 				<m n=":noCompletion"/>
 			</meta>
 		</readString>
-		<toString public="1" set="method" line="328"><f a=""><c path="String"/></f></toString>
-		<toHex public="1" set="method" line="349"><f a=""><c path="String"/></f></toHex>
-		<getData public="1" get="inline" set="null" line="363"><f a=""><t path="haxe.io.BytesData"/></f></getData>
+		<toString public="1" set="method" line="318"><f a=""><c path="String"/></f></toString>
+		<toHex public="1" set="method" line="339"><f a=""><c path="String"/></f></toHex>
+		<getData public="1" get="inline" set="null" line="353"><f a=""><t path="haxe.io.BytesData"/></f></getData>
 		<new set="method" line="33"><f a="length:b">
 	<x path="Int"/>
 	<t path="haxe.io.BytesData"/>
@@ -5099,14 +5095,14 @@
 			<x path="Int"/>
 			<haxe_doc>The length of the stream in bytes.</haxe_doc>
 		</length>
-		<get_position get="inline" set="null" line="63"><f a=""><x path="Int"/></f></get_position>
-		<get_length get="inline" set="null" line="71"><f a=""><x path="Int"/></f></get_length>
-		<set_position set="method" line="79"><f a="p">
+		<get_position get="inline" set="null" line="60"><f a=""><x path="Int"/></f></get_position>
+		<get_length get="inline" set="null" line="68"><f a=""><x path="Int"/></f></get_length>
+		<set_position set="method" line="76"><f a="p">
 	<x path="Int"/>
 	<x path="Int"/>
 </f></set_position>
-		<readByte public="1" set="method" line="90" override="1"><f a=""><x path="Int"/></f></readByte>
-		<readBytes public="1" set="method" line="111" override="1"><f a="buf:pos:len">
+		<readByte public="1" set="method" line="87" override="1"><f a=""><x path="Int"/></f></readByte>
+		<readBytes public="1" set="method" line="108" override="1"><f a="buf:pos:len">
 	<c path="haxe.io.Bytes"/>
 	<x path="Int"/>
 	<x path="Int"/>
@@ -5221,18 +5217,18 @@
 			<x path="Int"/>
 			<haxe_doc>The length of the stream in bytes.</haxe_doc>
 		</length>
-		<get_length get="inline" set="null" line="47"><f a=""><x path="Int"/></f></get_length>
-		<writeByte public="1" set="method" line="51" override="1"><f a="c">
+		<get_length get="inline" set="null" line="44"><f a=""><x path="Int"/></f></get_length>
+		<writeByte public="1" set="method" line="48" override="1"><f a="c">
 	<x path="Int"/>
 	<x path="Void"/>
 </f></writeByte>
-		<writeBytes public="1" set="method" line="59" override="1"><f a="buf:pos:len">
+		<writeBytes public="1" set="method" line="56" override="1"><f a="buf:pos:len">
 	<c path="haxe.io.Bytes"/>
 	<x path="Int"/>
 	<x path="Int"/>
 	<x path="Int"/>
 </f></writeBytes>
-		<getBytes public="1" set="method" line="116"><f a=""><c path="haxe.io.Bytes"/></f></getBytes>
+		<getBytes public="1" set="method" line="113"><f a=""><c path="haxe.io.Bytes"/></f></getBytes>
 		<new public="1" set="method" line="35"><f a=""><x path="Void"/></f></new>
 	</class>
 	<class path="haxe.io.Eof" params="" file="/usr/lib/haxe/std/haxe/io/Eof.hx">
@@ -5254,7 +5250,7 @@
 		<haxe_doc>The possible IO errors that can occur</haxe_doc>
 	</enum>
 	<class path="haxe.io.Path" params="" file="/usr/lib/haxe/std/haxe/io/Path.hx">
-		<withoutExtension public="1" set="method" line="123" static="1">
+		<withoutExtension public="1" set="method" line="117" static="1">
 			<f a="path">
 				<c path="String"/>
 				<c path="String"/>
@@ -5263,7 +5259,7 @@
 
 		If `path` is null, the result is unspecified.</haxe_doc>
 		</withoutExtension>
-		<withoutDirectory public="1" set="method" line="134" static="1">
+		<withoutDirectory public="1" set="method" line="128" static="1">
 			<f a="path">
 				<c path="String"/>
 				<c path="String"/>
@@ -5272,7 +5268,7 @@
 
 		If `path` is null, the result is unspecified.</haxe_doc>
 		</withoutDirectory>
-		<directory public="1" set="method" line="147" static="1">
+		<directory public="1" set="method" line="141" static="1">
 			<f a="path">
 				<c path="String"/>
 				<c path="String"/>
@@ -5283,7 +5279,7 @@
 
 		If `path` is null, the result is unspecified.</haxe_doc>
 		</directory>
-		<extension public="1" set="method" line="161" static="1">
+		<extension public="1" set="method" line="155" static="1">
 			<f a="path">
 				<c path="String"/>
 				<c path="String"/>
@@ -5294,7 +5290,7 @@
 
 		If `path` is null, the result is unspecified.</haxe_doc>
 		</extension>
-		<withExtension public="1" set="method" line="175" static="1">
+		<withExtension public="1" set="method" line="169" static="1">
 			<f a="path:ext">
 				<c path="String"/>
 				<c path="String"/>
@@ -5306,7 +5302,7 @@
 
 		If `path` or `ext` are null, the result is unspecified.</haxe_doc>
 		</withExtension>
-		<join public="1" set="method" line="189" static="1">
+		<join public="1" set="method" line="183" static="1">
 			<f a="paths">
 				<c path="Array"><c path="String"/></c>
 				<c path="String"/>
@@ -5318,7 +5314,7 @@
 
 		If `paths` is null, the result is unspecified.</haxe_doc>
 		</join>
-		<normalize public="1" set="method" line="210" static="1">
+		<normalize public="1" set="method" line="204" static="1">
 			<f a="path">
 				<c path="String"/>
 				<c path="String"/>
@@ -5394,7 +5390,7 @@
 			<x path="Bool"/>
 			<haxe_doc>True if the last directory separator is a backslash, false otherwise.</haxe_doc>
 		</backslash>
-		<toString public="1" set="method" line="114">
+		<toString public="1" set="method" line="108">
 			<f a=""><c path="String"/></f>
 			<haxe_doc>Returns a String representation of `this` path.
 
@@ -6350,7 +6346,7 @@ This uses a macro to allow this class to pretend to be abstract, and complain vi
 			<t path="snow.Core"/>
 			<meta><m n=":noCompletion"/></meta>
 		</core>
-		<load public="1" set="method" line="425" static="1">
+		<load public="1" set="method" line="429" static="1">
 			<f a="library:method:?args" v="::0">
 				<c path="String"/>
 				<c path="String"/>
@@ -6417,47 +6413,47 @@ This uses a macro to allow this class to pretend to be abstract, and complain vi
 			</f>
 			<meta><m n=":noCompletion"/></meta>
 		</init>
-		<shutdown public="1" set="method" line="92">
+		<shutdown public="1" set="method" line="99">
 			<f a=""><x path="Void"/></f>
 			<haxe_doc>Shutdown the engine and quit</haxe_doc>
 		</shutdown>
-		<get_time set="method" line="107"><f a=""><x path="Float"/></f></get_time>
-		<on_snow_init set="method" line="113"><f a=""><x path="Void"/></f></on_snow_init>
-		<on_snow_ready set="method" line="141"><f a=""><x path="Void"/></f></on_snow_ready>
-		<do_internal_update public="1" set="method" line="211">
+		<get_time set="method" line="114"><f a=""><x path="Float"/></f></get_time>
+		<on_snow_init set="method" line="120"><f a=""><x path="Void"/></f></on_snow_init>
+		<on_snow_ready set="method" line="148"><f a=""><x path="Void"/></f></on_snow_ready>
+		<do_internal_update public="1" set="method" line="218">
 			<f a="dt">
 				<x path="Float"/>
 				<x path="Void"/>
 			</f>
 			<meta><m n=":noCompletion"/></meta>
 		</do_internal_update>
-		<render public="1" set="method" line="220">
+		<render public="1" set="method" line="227">
 			<f a=""><x path="Void"/></f>
 			<haxe_doc>Called for you by snow, unless configured otherwise. Only call this manually if your render_rate is 0!</haxe_doc>
 		</render>
-		<on_snow_update set="method" line="226"><f a=""><x path="Void"/></f></on_snow_update>
-		<dispatch_system_event public="1" set="method" line="240"><f a="_event">
+		<on_snow_update set="method" line="233"><f a=""><x path="Void"/></f></on_snow_update>
+		<dispatch_system_event public="1" set="method" line="247"><f a="_event">
 	<t path="snow.types.SystemEvent"/>
 	<x path="Void"/>
 </f></dispatch_system_event>
-		<on_event set="method" line="246"><f a="_event">
+		<on_event set="method" line="253"><f a="_event">
 	<t path="snow.types.SystemEvent"/>
 	<x path="Void"/>
 </f></on_event>
-		<default_runtime_config set="method" line="304">
+		<default_runtime_config set="method" line="311">
 			<f a=""><d/></f>
 			<haxe_doc>handles the default method of parsing a runtime config json,
             To change this behavior override `get_runtime_config`. This is called by default in get_runtime_config.</haxe_doc>
 		</default_runtime_config>
-		<default_asset_list set="method" line="336">
+		<default_asset_list set="method" line="340">
 			<f a=""><c path="Array"><t path="snow.types.AssetInfo"/></c></f>
 			<haxe_doc>handles the default method of parsing the file manifest list as json, stored in an array and returned.</haxe_doc>
 		</default_asset_list>
-		<default_window_config set="method" line="389">
+		<default_window_config set="method" line="393">
 			<f a=""><t path="snow.types.WindowConfig"/></f>
 			<haxe_doc>returns a default configured window config</haxe_doc>
 		</default_window_config>
-		<get_uniqueid set="method" line="418"><f a=""><c path="String"/></f></get_uniqueid>
+		<get_uniqueid set="method" line="422"><f a=""><c path="String"/></f></get_uniqueid>
 		<log public="1">
 			<x path="Bool"/>
 			<meta><m n=":noCompletion"/></meta>
@@ -6470,7 +6466,7 @@ This uses a macro to allow this class to pretend to be abstract, and complain vi
 			<x path="Bool"/>
 			<meta><m n=":noCompletion"/></meta>
 		</more_verbose>
-		<_debug public="1" set="method" line="438">
+		<_debug public="1" set="method" line="442">
 			<f a="value:?_verbose:?_more_verbose" v=":false:false">
 				<d/>
 				<x path="Bool"/>
@@ -8916,11 +8912,11 @@ but they aren't specific to SDL so they are used generically</haxe_doc>
 		<extends path="snow.platform.native.audio.openal.Sound"/>
 		<buffer_length public="1">
 			<x path="Int"/>
-			<haxe_doc>The length of bytes for a single buffer to queue up to stream. Default is `176400`, about 1 second in 16 bit mono. `todo` optionize</haxe_doc>
+			<haxe_doc>The length of bytes for a single buffer to queue up to stream. default: 176400, about 1 second in 16 bit mono.</haxe_doc>
 		</buffer_length>
 		<buffer_count public="1">
 			<x path="Int"/>
-			<haxe_doc>The number of buffers to use in the queue for streaming. Default is `4` `todo` optionize</haxe_doc>
+			<haxe_doc>The number of buffers to use in the queue for streaming. default: 4`</haxe_doc>
 		</buffer_count>
 		<data_get public="1">
 			<f a=":">
@@ -8937,14 +8933,14 @@ but they aren't specific to SDL so they are used generically</haxe_doc>
 			</f>
 			<haxe_doc>The seek function, assign a function here if you want to stream data to the source manually, like generative sound.</haxe_doc>
 		</data_seek>
-		<default_data_seek set="method" line="30">
+		<default_data_seek set="method" line="33">
 			<f a="_to">
 				<x path="Int"/>
 				<x path="Bool"/>
 			</f>
 			<haxe_doc>Default data seek implementation for `SoundStream` uses `assets.system.audio_seek_source`</haxe_doc>
 		</default_data_seek>
-		<default_data_get set="method" line="37">
+		<default_data_get set="method" line="40">
 			<f a="_start:_length">
 				<x path="Int"/>
 				<x path="Int"/>
@@ -13309,11 +13305,21 @@ but they aren't specific to SDL so they are used generically</haxe_doc>
 				<meta><m n=":optional"/></meta>
 				<haxe_doc>the window config for the default window, if `has_window` is true. default: see `WindowConfig` docs</haxe_doc>
 			</window>
+			<web>
+				<t path="Null"><t path="snow.types.AppConfigWeb"/></t>
+				<meta><m n=":optional"/></meta>
+				<haxe_doc>config specific to the web target</haxe_doc>
+			</web>
 			<runtime>
 				<d/>
 				<meta><m n=":optional"/></meta>
 				<haxe_doc>the user specific config, by default, read from a json file at runtime</haxe_doc>
 			</runtime>
+			<native>
+				<t path="Null"><t path="snow.types.AppConfigNative"/></t>
+				<meta><m n=":optional"/></meta>
+				<haxe_doc>config specific to the web target</haxe_doc>
+			</native>
 			<has_window>
 				<t path="Null"><x path="Bool"/></t>
 				<meta><m n=":optional"/></meta>
@@ -13325,8 +13331,25 @@ but they aren't specific to SDL so they are used generically</haxe_doc>
 				<haxe_doc>the raw list of assets. use the app.assets from Snow for access to these. read from a manifest file by default</haxe_doc>
 			</assets>
 		</a>
-		<haxe_doc>The application config info</haxe_doc>
+		<haxe_doc>The runtime application config info</haxe_doc>
 	</typedef>
+	<typedef path="snow.types.AppConfigWeb" params="" file="../../snow/types/Types.hx" module="snow.types.Types"><a><no_context_menu>
+	<t path="Null"><x path="Bool"/></t>
+	<meta><m n=":optional"/></meta>
+	<haxe_doc>If true, right clicking will consume the event on the canvas. `event.preventDefault` is used. default: true</haxe_doc>
+</no_context_menu></a></typedef>
+	<typedef path="snow.types.AppConfigNative" params="" file="../../snow/types/Types.hx" module="snow.types.Types"><a>
+	<audio_buffer_length>
+		<t path="Null"><x path="Int"/></t>
+		<meta><m n=":optional"/></meta>
+		<haxe_doc>The default length of a single stream buffer in bytes. default:176400, This is ~1 sec in 16 bit mono.</haxe_doc>
+	</audio_buffer_length>
+	<audio_buffer_count>
+		<t path="Null"><x path="Int"/></t>
+		<meta><m n=":optional"/></meta>
+		<haxe_doc>The default number of audio buffers to use for a single stream. Set no less than 2, as it's a queue. See `Audio` docs. default:4</haxe_doc>
+	</audio_buffer_count>
+</a></typedef>
 	<typedef path="snow.types.ImageInfo" params="" file="../../snow/types/Types.hx" module="snow.types.Types">
 		<a>
 			<width_actual><x path="Int"/></width_actual>
@@ -13699,45 +13722,45 @@ Values below are null unless the event `type` matches. _i.e_ if type is `window`
 		<haxe_doc>Input modifier state</haxe_doc>
 	</typedef>
 	<class path="snow.types.SystemEvents" params="" file="../../snow/types/Types.hx" module="snow.types.Types">
-		<se_unknown public="1" line="455" static="1"><x path="Int"/></se_unknown>
-		<se_init public="1" line="456" static="1"><x path="Int"/></se_init>
-		<se_ready public="1" line="457" static="1"><x path="Int"/></se_ready>
-		<se_update public="1" line="458" static="1"><x path="Int"/></se_update>
-		<se_shutdown public="1" line="459" static="1"><x path="Int"/></se_shutdown>
-		<se_window public="1" line="460" static="1"><x path="Int"/></se_window>
-		<se_input public="1" line="461" static="1"><x path="Int"/></se_input>
-		<se_quit public="1" line="465" static="1"><x path="Int"/></se_quit>
-		<se_app_terminating public="1" line="466" static="1"><x path="Int"/></se_app_terminating>
-		<se_app_lowmemory public="1" line="467" static="1"><x path="Int"/></se_app_lowmemory>
-		<se_app_willenterbackground public="1" line="468" static="1"><x path="Int"/></se_app_willenterbackground>
-		<se_app_didenterbackground public="1" line="469" static="1"><x path="Int"/></se_app_didenterbackground>
-		<se_app_willenterforeground public="1" line="470" static="1"><x path="Int"/></se_app_willenterforeground>
-		<se_app_didenterforeground public="1" line="471" static="1"><x path="Int"/></se_app_didenterforeground>
-		<se_filewatch public="1" line="472" static="1"><x path="Int"/></se_filewatch>
-		<typed public="1" set="method" line="476" static="1"><f a="type">
+		<se_unknown public="1" line="476" static="1"><x path="Int"/></se_unknown>
+		<se_init public="1" line="477" static="1"><x path="Int"/></se_init>
+		<se_ready public="1" line="478" static="1"><x path="Int"/></se_ready>
+		<se_update public="1" line="479" static="1"><x path="Int"/></se_update>
+		<se_shutdown public="1" line="480" static="1"><x path="Int"/></se_shutdown>
+		<se_window public="1" line="481" static="1"><x path="Int"/></se_window>
+		<se_input public="1" line="482" static="1"><x path="Int"/></se_input>
+		<se_quit public="1" line="486" static="1"><x path="Int"/></se_quit>
+		<se_app_terminating public="1" line="487" static="1"><x path="Int"/></se_app_terminating>
+		<se_app_lowmemory public="1" line="488" static="1"><x path="Int"/></se_app_lowmemory>
+		<se_app_willenterbackground public="1" line="489" static="1"><x path="Int"/></se_app_willenterbackground>
+		<se_app_didenterbackground public="1" line="490" static="1"><x path="Int"/></se_app_didenterbackground>
+		<se_app_willenterforeground public="1" line="491" static="1"><x path="Int"/></se_app_willenterforeground>
+		<se_app_didenterforeground public="1" line="492" static="1"><x path="Int"/></se_app_didenterforeground>
+		<se_filewatch public="1" line="493" static="1"><x path="Int"/></se_filewatch>
+		<typed public="1" set="method" line="497" static="1"><f a="type">
 	<x path="Int"/>
 	<e path="snow.types.SystemEventType"/>
 </f></typed>
 		<meta><m n=":noCompletion"/></meta>
 	</class>
 	<class path="snow.types.WindowEvents" params="" file="../../snow/types/Types.hx" module="snow.types.Types">
-		<we_unknown public="1" line="504" static="1"><x path="Int"/></we_unknown>
-		<we_created public="1" line="505" static="1"><x path="Int"/></we_created>
-		<we_shown public="1" line="506" static="1"><x path="Int"/></we_shown>
-		<we_hidden public="1" line="507" static="1"><x path="Int"/></we_hidden>
-		<we_exposed public="1" line="508" static="1"><x path="Int"/></we_exposed>
-		<we_moved public="1" line="509" static="1"><x path="Int"/></we_moved>
-		<we_resized public="1" line="510" static="1"><x path="Int"/></we_resized>
-		<we_size_changed public="1" line="511" static="1"><x path="Int"/></we_size_changed>
-		<we_minimized public="1" line="512" static="1"><x path="Int"/></we_minimized>
-		<we_maximized public="1" line="513" static="1"><x path="Int"/></we_maximized>
-		<we_restored public="1" line="514" static="1"><x path="Int"/></we_restored>
-		<we_enter public="1" line="515" static="1"><x path="Int"/></we_enter>
-		<we_leave public="1" line="516" static="1"><x path="Int"/></we_leave>
-		<we_focus_gained public="1" line="517" static="1"><x path="Int"/></we_focus_gained>
-		<we_focus_lost public="1" line="518" static="1"><x path="Int"/></we_focus_lost>
-		<we_close public="1" line="519" static="1"><x path="Int"/></we_close>
-		<typed public="1" set="method" line="524" static="1">
+		<we_unknown public="1" line="525" static="1"><x path="Int"/></we_unknown>
+		<we_created public="1" line="526" static="1"><x path="Int"/></we_created>
+		<we_shown public="1" line="527" static="1"><x path="Int"/></we_shown>
+		<we_hidden public="1" line="528" static="1"><x path="Int"/></we_hidden>
+		<we_exposed public="1" line="529" static="1"><x path="Int"/></we_exposed>
+		<we_moved public="1" line="530" static="1"><x path="Int"/></we_moved>
+		<we_resized public="1" line="531" static="1"><x path="Int"/></we_resized>
+		<we_size_changed public="1" line="532" static="1"><x path="Int"/></we_size_changed>
+		<we_minimized public="1" line="533" static="1"><x path="Int"/></we_minimized>
+		<we_maximized public="1" line="534" static="1"><x path="Int"/></we_maximized>
+		<we_restored public="1" line="535" static="1"><x path="Int"/></we_restored>
+		<we_enter public="1" line="536" static="1"><x path="Int"/></we_enter>
+		<we_leave public="1" line="537" static="1"><x path="Int"/></we_leave>
+		<we_focus_gained public="1" line="538" static="1"><x path="Int"/></we_focus_gained>
+		<we_focus_lost public="1" line="539" static="1"><x path="Int"/></we_focus_lost>
+		<we_close public="1" line="540" static="1"><x path="Int"/></we_close>
+		<typed public="1" set="method" line="545" static="1">
 			<f a="type">
 				<x path="Int"/>
 				<e path="snow.types.WindowEventType"/>
@@ -13747,13 +13770,13 @@ Values below are null unless the event `type` matches. _i.e_ if type is `window`
 		<meta><m n=":noCompletion"/></meta>
 	</class>
 	<class path="snow.types.InputEvents" params="" file="../../snow/types/Types.hx" module="snow.types.Types">
-		<ie_unknown public="1" line="552" static="1"><x path="Int"/></ie_unknown>
-		<ie_key public="1" line="553" static="1"><x path="Int"/></ie_key>
-		<ie_mouse public="1" line="554" static="1"><x path="Int"/></ie_mouse>
-		<ie_touch public="1" line="555" static="1"><x path="Int"/></ie_touch>
-		<ie_joystick public="1" line="556" static="1"><x path="Int"/></ie_joystick>
-		<ie_controller public="1" line="557" static="1"><x path="Int"/></ie_controller>
-		<typed public="1" set="method" line="562" static="1">
+		<ie_unknown public="1" line="573" static="1"><x path="Int"/></ie_unknown>
+		<ie_key public="1" line="574" static="1"><x path="Int"/></ie_key>
+		<ie_mouse public="1" line="575" static="1"><x path="Int"/></ie_mouse>
+		<ie_touch public="1" line="576" static="1"><x path="Int"/></ie_touch>
+		<ie_joystick public="1" line="577" static="1"><x path="Int"/></ie_joystick>
+		<ie_controller public="1" line="578" static="1"><x path="Int"/></ie_controller>
+		<typed public="1" set="method" line="583" static="1">
 			<f a="type">
 				<x path="Int"/>
 				<e path="snow.types.InputEventType"/>
@@ -13763,11 +13786,11 @@ Values below are null unless the event `type` matches. _i.e_ if type is `window`
 		<meta><m n=":noCompletion"/></meta>
 	</class>
 	<class path="snow.types.FileWatchEvents" params="" file="../../snow/types/Types.hx" module="snow.types.Types">
-		<fe_unknown public="1" line="581" static="1"><x path="Int"/></fe_unknown>
-		<fe_modify public="1" line="582" static="1"><x path="Int"/></fe_modify>
-		<fe_remove public="1" line="583" static="1"><x path="Int"/></fe_remove>
-		<fe_create public="1" line="584" static="1"><x path="Int"/></fe_create>
-		<typed public="1" set="method" line="589" static="1">
+		<fe_unknown public="1" line="602" static="1"><x path="Int"/></fe_unknown>
+		<fe_modify public="1" line="603" static="1"><x path="Int"/></fe_modify>
+		<fe_remove public="1" line="604" static="1"><x path="Int"/></fe_remove>
+		<fe_create public="1" line="605" static="1"><x path="Int"/></fe_create>
+		<typed public="1" set="method" line="610" static="1">
 			<f a="type">
 				<x path="Int"/>
 				<e path="snow.types.FileWatchEventType"/>
@@ -14638,7 +14661,7 @@ Values below are null unless the event `type` matches. _i.e_ if type is `window`
 
 		If `path` is null, the result is unspecified.</haxe_doc>
 		</createDirectory>
-		<deleteFile public="1" set="method" line="83" static="1">
+		<deleteFile public="1" set="method" line="79" static="1">
 			<f a="path">
 				<c path="String"/>
 				<x path="Void"/>
@@ -14650,7 +14673,7 @@ Values below are null unless the event `type` matches. _i.e_ if type is `window`
 
 		If `path` is null, the result is unspecified.</haxe_doc>
 		</deleteFile>
-		<deleteDirectory public="1" set="method" line="88" static="1">
+		<deleteDirectory public="1" set="method" line="84" static="1">
 			<f a="path">
 				<c path="String"/>
 				<x path="Void"/>
@@ -14662,7 +14685,7 @@ Values below are null unless the event `type` matches. _i.e_ if type is `window`
 
 		If `path` is null, the result is unspecified.</haxe_doc>
 		</deleteDirectory>
-		<readDirectory public="1" set="method" line="93" static="1">
+		<readDirectory public="1" set="method" line="89" static="1">
 			<f a="path">
 				<c path="String"/>
 				<c path="Array"><c path="String"/></c>
@@ -14674,41 +14697,41 @@ Values below are null unless the event `type` matches. _i.e_ if type is `window`
 
 		If `path` is null, the result is unspecified.</haxe_doc>
 		</readDirectory>
-		<sys_exists line="97" static="1"><f a="">
+		<sys_exists line="93" static="1"><f a="">
 	<c path="String"/>
 	<x path="Bool"/>
 </f></sys_exists>
-		<file_delete line="98" static="1"><f a="">
+		<file_delete line="94" static="1"><f a="">
 	<c path="String"/>
 	<unknown/>
 </f></file_delete>
-		<sys_rename line="99" static="1"><f a=":">
+		<sys_rename line="95" static="1"><f a=":">
 	<c path="String"/>
 	<c path="String"/>
 	<unknown/>
 </f></sys_rename>
-		<sys_stat line="100" static="1"><f a="">
+		<sys_stat line="96" static="1"><f a="">
 	<c path="String"/>
 	<t path="sys.FileStat"/>
 </f></sys_stat>
-		<sys_file_type line="101" static="1"><f a="">
+		<sys_file_type line="97" static="1"><f a="">
 	<c path="String"/>
 	<c path="String"/>
 </f></sys_file_type>
-		<sys_create_dir line="102" static="1"><f a=":">
+		<sys_create_dir line="98" static="1"><f a=":">
 	<c path="String"/>
 	<x path="Int"/>
 	<unknown/>
 </f></sys_create_dir>
-		<sys_remove_dir line="103" static="1"><f a="">
+		<sys_remove_dir line="99" static="1"><f a="">
 	<c path="String"/>
 	<unknown/>
 </f></sys_remove_dir>
-		<sys_read_dir line="104" static="1"><f a="">
+		<sys_read_dir line="100" static="1"><f a="">
 	<c path="String"/>
 	<c path="Array"><c path="String"/></c>
 </f></sys_read_dir>
-		<file_full_path line="105" static="1"><f a="">
+		<file_full_path line="101" static="1"><f a="">
 	<c path="String"/>
 	<c path="String"/>
 </f></file_full_path>

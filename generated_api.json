@@ -3896,7 +3896,7 @@
          "path": "snow.types.AppConfig",
          "type": "typedef",
          "params": [],
-         "doc": "The application config info",
+         "doc": "The runtime application config info",
          "isPrivate": false,
          "platforms": [
             "cpp"
@@ -3940,6 +3940,35 @@
                      "params": []
                   }
                ],
+               "name": "web",
+               "type": {
+                  "name": "Null",
+                  "type": "CTypedef",
+                  "params": [
+                     {
+                        "name": "snow.types.AppConfigWeb",
+                        "type": "CTypedef",
+                        "params": []
+                     }
+                  ]
+               },
+               "isStatic": false,
+               "params": [],
+               "doc": "config specific to the web target",
+               "get": "normal",
+               "set": "normal",
+               "platforms": [],
+               "isPublic": true
+            },
+            {
+               "isOverride": false,
+               "line": null,
+               "meta": [
+                  {
+                     "name": ":optional",
+                     "params": []
+                  }
+               ],
                "name": "runtime",
                "type": {
                   "type": "CDynamic"
@@ -3947,6 +3976,35 @@
                "isStatic": false,
                "params": [],
                "doc": "the user specific config, by default, read from a json file at runtime",
+               "get": "normal",
+               "set": "normal",
+               "platforms": [],
+               "isPublic": true
+            },
+            {
+               "isOverride": false,
+               "line": null,
+               "meta": [
+                  {
+                     "name": ":optional",
+                     "params": []
+                  }
+               ],
+               "name": "native",
+               "type": {
+                  "name": "Null",
+                  "type": "CTypedef",
+                  "params": [
+                     {
+                        "name": "snow.types.AppConfigNative",
+                        "type": "CTypedef",
+                        "params": []
+                     }
+                  ]
+               },
+               "isStatic": false,
+               "params": [],
+               "doc": "config specific to the web target",
                "get": "normal",
                "set": "normal",
                "platforms": [],
@@ -4053,6 +4111,35 @@
                            "params": []
                         }
                      ],
+                     "name": "web",
+                     "type": {
+                        "name": "Null",
+                        "type": "CTypedef",
+                        "params": [
+                           {
+                              "name": "snow.types.AppConfigWeb",
+                              "type": "CTypedef",
+                              "params": []
+                           }
+                        ]
+                     },
+                     "isStatic": false,
+                     "params": [],
+                     "doc": "config specific to the web target",
+                     "get": "normal",
+                     "set": "normal",
+                     "platforms": [],
+                     "isPublic": true
+                  },
+                  {
+                     "isOverride": false,
+                     "line": null,
+                     "meta": [
+                        {
+                           "name": ":optional",
+                           "params": []
+                        }
+                     ],
                      "name": "runtime",
                      "type": {
                         "type": "CDynamic"
@@ -4060,6 +4147,35 @@
                      "isStatic": false,
                      "params": [],
                      "doc": "the user specific config, by default, read from a json file at runtime",
+                     "get": "normal",
+                     "set": "normal",
+                     "platforms": [],
+                     "isPublic": true
+                  },
+                  {
+                     "isOverride": false,
+                     "line": null,
+                     "meta": [
+                        {
+                           "name": ":optional",
+                           "params": []
+                        }
+                     ],
+                     "name": "native",
+                     "type": {
+                        "name": "Null",
+                        "type": "CTypedef",
+                        "params": [
+                           {
+                              "name": "snow.types.AppConfigNative",
+                              "type": "CTypedef",
+                              "params": []
+                           }
+                        ]
+                     },
+                     "isStatic": false,
+                     "params": [],
+                     "doc": "config specific to the web target",
                      "get": "normal",
                      "set": "normal",
                      "platforms": [],
@@ -5980,6 +6096,145 @@
             }
          }
       },
+      "snow.types.AppConfigNative": {
+         "module": "snow.types.Types",
+         "file": "../../snow/types/Types.hx",
+         "meta": [],
+         "name": "AppConfigNative",
+         "path": "snow.types.AppConfigNative",
+         "type": "typedef",
+         "params": [],
+         "doc": null,
+         "isPrivate": false,
+         "platforms": [
+            "cpp"
+         ],
+         "members": [
+            {
+               "isOverride": false,
+               "line": null,
+               "meta": [
+                  {
+                     "name": ":optional",
+                     "params": []
+                  }
+               ],
+               "name": "audio_buffer_length",
+               "type": {
+                  "name": "Null",
+                  "type": "CTypedef",
+                  "params": [
+                     {
+                        "name": "Int",
+                        "type": "CAbstract",
+                        "params": []
+                     }
+                  ]
+               },
+               "isStatic": false,
+               "params": [],
+               "doc": "The default length of a single stream buffer in bytes. default:176400, This is ~1 sec in 16 bit mono.",
+               "get": "normal",
+               "set": "normal",
+               "platforms": [],
+               "isPublic": true
+            },
+            {
+               "isOverride": false,
+               "line": null,
+               "meta": [
+                  {
+                     "name": ":optional",
+                     "params": []
+                  }
+               ],
+               "name": "audio_buffer_count",
+               "type": {
+                  "name": "Null",
+                  "type": "CTypedef",
+                  "params": [
+                     {
+                        "name": "Int",
+                        "type": "CAbstract",
+                        "params": []
+                     }
+                  ]
+               },
+               "isStatic": false,
+               "params": [],
+               "doc": "The default number of audio buffers to use for a single stream. Set no less than 2, as it's a queue. See `Audio` docs. default:4",
+               "get": "normal",
+               "set": "normal",
+               "platforms": [],
+               "isPublic": true
+            }
+         ],
+         "types": {
+            "cpp": {
+               "type": "CAnonymous",
+               "fields": [
+                  {
+                     "isOverride": false,
+                     "line": null,
+                     "meta": [
+                        {
+                           "name": ":optional",
+                           "params": []
+                        }
+                     ],
+                     "name": "audio_buffer_length",
+                     "type": {
+                        "name": "Null",
+                        "type": "CTypedef",
+                        "params": [
+                           {
+                              "name": "Int",
+                              "type": "CAbstract",
+                              "params": []
+                           }
+                        ]
+                     },
+                     "isStatic": false,
+                     "params": [],
+                     "doc": "The default length of a single stream buffer in bytes. default:176400, This is ~1 sec in 16 bit mono.",
+                     "get": "normal",
+                     "set": "normal",
+                     "platforms": [],
+                     "isPublic": true
+                  },
+                  {
+                     "isOverride": false,
+                     "line": null,
+                     "meta": [
+                        {
+                           "name": ":optional",
+                           "params": []
+                        }
+                     ],
+                     "name": "audio_buffer_count",
+                     "type": {
+                        "name": "Null",
+                        "type": "CTypedef",
+                        "params": [
+                           {
+                              "name": "Int",
+                              "type": "CAbstract",
+                              "params": []
+                           }
+                        ]
+                     },
+                     "isStatic": false,
+                     "params": [],
+                     "doc": "The default number of audio buffers to use for a single stream. Set no less than 2, as it's a queue. See `Audio` docs. default:4",
+                     "get": "normal",
+                     "set": "normal",
+                     "platforms": [],
+                     "isPublic": true
+                  }
+               ]
+            }
+         }
+      },
       "snow.render.opengl.GLShader": {
          "module": "snow.render.opengl.GL",
          "file": "../../snow/render/opengl/GL.hx",
@@ -6713,6 +6968,87 @@
                "name": "snow.platform.native.utils.ArrayBuffer",
                "type": "CTypedef",
                "params": []
+            }
+         }
+      },
+      "snow.types.AppConfigWeb": {
+         "module": "snow.types.Types",
+         "file": "../../snow/types/Types.hx",
+         "meta": [],
+         "name": "AppConfigWeb",
+         "path": "snow.types.AppConfigWeb",
+         "type": "typedef",
+         "params": [],
+         "doc": null,
+         "isPrivate": false,
+         "platforms": [
+            "cpp"
+         ],
+         "members": [
+            {
+               "isOverride": false,
+               "line": null,
+               "meta": [
+                  {
+                     "name": ":optional",
+                     "params": []
+                  }
+               ],
+               "name": "no_context_menu",
+               "type": {
+                  "name": "Null",
+                  "type": "CTypedef",
+                  "params": [
+                     {
+                        "name": "Bool",
+                        "type": "CAbstract",
+                        "params": []
+                     }
+                  ]
+               },
+               "isStatic": false,
+               "params": [],
+               "doc": "If true, right clicking will consume the event on the canvas. `event.preventDefault` is used. default: true",
+               "get": "normal",
+               "set": "normal",
+               "platforms": [],
+               "isPublic": true
+            }
+         ],
+         "types": {
+            "cpp": {
+               "type": "CAnonymous",
+               "fields": [
+                  {
+                     "isOverride": false,
+                     "line": null,
+                     "meta": [
+                        {
+                           "name": ":optional",
+                           "params": []
+                        }
+                     ],
+                     "name": "no_context_menu",
+                     "type": {
+                        "name": "Null",
+                        "type": "CTypedef",
+                        "params": [
+                           {
+                              "name": "Bool",
+                              "type": "CAbstract",
+                              "params": []
+                           }
+                        ]
+                     },
+                     "isStatic": false,
+                     "params": [],
+                     "doc": "If true, right clicking will consume the event on the canvas. `event.preventDefault` is used. default: true",
+                     "get": "normal",
+                     "set": "normal",
+                     "platforms": [],
+                     "isPublic": true
+                  }
+               ]
             }
          }
       },
@@ -8718,7 +9054,7 @@
          "members": [
             {
                "isOverride": false,
-               "line": 504,
+               "line": 525,
                "meta": [],
                "name": "we_unknown",
                "type": {
@@ -8738,7 +9074,7 @@
             },
             {
                "isOverride": false,
-               "line": 505,
+               "line": 526,
                "meta": [],
                "name": "we_created",
                "type": {
@@ -8758,7 +9094,7 @@
             },
             {
                "isOverride": false,
-               "line": 506,
+               "line": 527,
                "meta": [],
                "name": "we_shown",
                "type": {
@@ -8778,7 +9114,7 @@
             },
             {
                "isOverride": false,
-               "line": 507,
+               "line": 528,
                "meta": [],
                "name": "we_hidden",
                "type": {
@@ -8798,7 +9134,7 @@
             },
             {
                "isOverride": false,
-               "line": 508,
+               "line": 529,
                "meta": [],
                "name": "we_exposed",
                "type": {
@@ -8818,7 +9154,7 @@
             },
             {
                "isOverride": false,
-               "line": 509,
+               "line": 530,
                "meta": [],
                "name": "we_moved",
                "type": {
@@ -8838,7 +9174,7 @@
             },
             {
                "isOverride": false,
-               "line": 510,
+               "line": 531,
                "meta": [],
                "name": "we_resized",
                "type": {
@@ -8858,7 +9194,7 @@
             },
             {
                "isOverride": false,
-               "line": 511,
+               "line": 532,
                "meta": [],
                "name": "we_size_changed",
                "type": {
@@ -8878,7 +9214,7 @@
             },
             {
                "isOverride": false,
-               "line": 512,
+               "line": 533,
                "meta": [],
                "name": "we_minimized",
                "type": {
@@ -8898,7 +9234,7 @@
             },
             {
                "isOverride": false,
-               "line": 513,
+               "line": 534,
                "meta": [],
                "name": "we_maximized",
                "type": {
@@ -8918,7 +9254,7 @@
             },
             {
                "isOverride": false,
-               "line": 514,
+               "line": 535,
                "meta": [],
                "name": "we_restored",
                "type": {
@@ -8938,7 +9274,7 @@
             },
             {
                "isOverride": false,
-               "line": 515,
+               "line": 536,
                "meta": [],
                "name": "we_enter",
                "type": {
@@ -8958,7 +9294,7 @@
             },
             {
                "isOverride": false,
-               "line": 516,
+               "line": 537,
                "meta": [],
                "name": "we_leave",
                "type": {
@@ -8978,7 +9314,7 @@
             },
             {
                "isOverride": false,
-               "line": 517,
+               "line": 538,
                "meta": [],
                "name": "we_focus_gained",
                "type": {
@@ -8998,7 +9334,7 @@
             },
             {
                "isOverride": false,
-               "line": 518,
+               "line": 539,
                "meta": [],
                "name": "we_focus_lost",
                "type": {
@@ -9018,7 +9354,7 @@
             },
             {
                "isOverride": false,
-               "line": 519,
+               "line": 540,
                "meta": [],
                "name": "we_close",
                "type": {
@@ -9042,7 +9378,7 @@
          "methods": [
             {
                "isOverride": false,
-               "line": 524,
+               "line": 545,
                "meta": [],
                "name": "typed",
                "type": {
@@ -12182,7 +12518,7 @@
          "members": [
             {
                "isOverride": false,
-               "line": 581,
+               "line": 602,
                "meta": [],
                "name": "fe_unknown",
                "type": {
@@ -12202,7 +12538,7 @@
             },
             {
                "isOverride": false,
-               "line": 582,
+               "line": 603,
                "meta": [],
                "name": "fe_modify",
                "type": {
@@ -12222,7 +12558,7 @@
             },
             {
                "isOverride": false,
-               "line": 583,
+               "line": 604,
                "meta": [],
                "name": "fe_remove",
                "type": {
@@ -12242,7 +12578,7 @@
             },
             {
                "isOverride": false,
-               "line": 584,
+               "line": 605,
                "meta": [],
                "name": "fe_create",
                "type": {
@@ -12266,7 +12602,7 @@
          "methods": [
             {
                "isOverride": false,
-               "line": 589,
+               "line": 610,
                "meta": [],
                "name": "typed",
                "type": {
@@ -17826,7 +18162,7 @@
          "members": [
             {
                "isOverride": false,
-               "line": 455,
+               "line": 476,
                "meta": [],
                "name": "se_unknown",
                "type": {
@@ -17846,7 +18182,7 @@
             },
             {
                "isOverride": false,
-               "line": 456,
+               "line": 477,
                "meta": [],
                "name": "se_init",
                "type": {
@@ -17866,7 +18202,7 @@
             },
             {
                "isOverride": false,
-               "line": 457,
+               "line": 478,
                "meta": [],
                "name": "se_ready",
                "type": {
@@ -17886,7 +18222,7 @@
             },
             {
                "isOverride": false,
-               "line": 458,
+               "line": 479,
                "meta": [],
                "name": "se_update",
                "type": {
@@ -17906,7 +18242,7 @@
             },
             {
                "isOverride": false,
-               "line": 459,
+               "line": 480,
                "meta": [],
                "name": "se_shutdown",
                "type": {
@@ -17926,7 +18262,7 @@
             },
             {
                "isOverride": false,
-               "line": 460,
+               "line": 481,
                "meta": [],
                "name": "se_window",
                "type": {
@@ -17946,7 +18282,7 @@
             },
             {
                "isOverride": false,
-               "line": 461,
+               "line": 482,
                "meta": [],
                "name": "se_input",
                "type": {
@@ -17966,7 +18302,7 @@
             },
             {
                "isOverride": false,
-               "line": 465,
+               "line": 486,
                "meta": [],
                "name": "se_quit",
                "type": {
@@ -17986,7 +18322,7 @@
             },
             {
                "isOverride": false,
-               "line": 466,
+               "line": 487,
                "meta": [],
                "name": "se_app_terminating",
                "type": {
@@ -18006,7 +18342,7 @@
             },
             {
                "isOverride": false,
-               "line": 467,
+               "line": 488,
                "meta": [],
                "name": "se_app_lowmemory",
                "type": {
@@ -18026,7 +18362,7 @@
             },
             {
                "isOverride": false,
-               "line": 468,
+               "line": 489,
                "meta": [],
                "name": "se_app_willenterbackground",
                "type": {
@@ -18046,7 +18382,7 @@
             },
             {
                "isOverride": false,
-               "line": 469,
+               "line": 490,
                "meta": [],
                "name": "se_app_didenterbackground",
                "type": {
@@ -18066,7 +18402,7 @@
             },
             {
                "isOverride": false,
-               "line": 470,
+               "line": 491,
                "meta": [],
                "name": "se_app_willenterforeground",
                "type": {
@@ -18086,7 +18422,7 @@
             },
             {
                "isOverride": false,
-               "line": 471,
+               "line": 492,
                "meta": [],
                "name": "se_app_didenterforeground",
                "type": {
@@ -18106,7 +18442,7 @@
             },
             {
                "isOverride": false,
-               "line": 472,
+               "line": 493,
                "meta": [],
                "name": "se_filewatch",
                "type": {
@@ -18130,7 +18466,7 @@
          "methods": [
             {
                "isOverride": false,
-               "line": 476,
+               "line": 497,
                "meta": [],
                "name": "typed",
                "type": {
@@ -19200,7 +19536,7 @@
                },
                "isStatic": false,
                "params": [],
-               "doc": "The length of bytes for a single buffer to queue up to stream. Default is `176400`, about 1 second in 16 bit mono. `todo` optionize",
+               "doc": "The length of bytes for a single buffer to queue up to stream. default: 176400, about 1 second in 16 bit mono.",
                "get": "normal",
                "set": "normal",
                "platforms": [
@@ -19220,7 +19556,7 @@
                },
                "isStatic": false,
                "params": [],
-               "doc": "The number of buffers to use in the queue for streaming. Default is `4` `todo` optionize",
+               "doc": "The number of buffers to use in the queue for streaming. default: 4`",
                "get": "normal",
                "set": "normal",
                "platforms": [
@@ -19314,7 +19650,7 @@
          "methods": [
             {
                "isOverride": false,
-               "line": 30,
+               "line": 33,
                "meta": [],
                "name": "default_data_seek",
                "type": {
@@ -19349,7 +19685,7 @@
             },
             {
                "isOverride": false,
-               "line": 37,
+               "line": 40,
                "meta": [],
                "name": "default_data_get",
                "type": {
@@ -50703,7 +51039,7 @@
          "members": [
             {
                "isOverride": false,
-               "line": 552,
+               "line": 573,
                "meta": [],
                "name": "ie_unknown",
                "type": {
@@ -50723,7 +51059,7 @@
             },
             {
                "isOverride": false,
-               "line": 553,
+               "line": 574,
                "meta": [],
                "name": "ie_key",
                "type": {
@@ -50743,7 +51079,7 @@
             },
             {
                "isOverride": false,
-               "line": 554,
+               "line": 575,
                "meta": [],
                "name": "ie_mouse",
                "type": {
@@ -50763,7 +51099,7 @@
             },
             {
                "isOverride": false,
-               "line": 555,
+               "line": 576,
                "meta": [],
                "name": "ie_touch",
                "type": {
@@ -50783,7 +51119,7 @@
             },
             {
                "isOverride": false,
-               "line": 556,
+               "line": 577,
                "meta": [],
                "name": "ie_joystick",
                "type": {
@@ -50803,7 +51139,7 @@
             },
             {
                "isOverride": false,
-               "line": 557,
+               "line": 578,
                "meta": [],
                "name": "ie_controller",
                "type": {
@@ -50827,7 +51163,7 @@
          "methods": [
             {
                "isOverride": false,
-               "line": 562,
+               "line": 583,
                "meta": [],
                "name": "typed",
                "type": {
@@ -64815,7 +65151,7 @@
             },
             {
                "isOverride": false,
-               "line": 92,
+               "line": 99,
                "meta": [],
                "name": "shutdown",
                "type": {
@@ -64839,7 +65175,7 @@
             },
             {
                "isOverride": false,
-               "line": 107,
+               "line": 114,
                "meta": [],
                "name": "get_time",
                "type": {
@@ -64863,7 +65199,7 @@
             },
             {
                "isOverride": false,
-               "line": 113,
+               "line": 120,
                "meta": [],
                "name": "on_snow_init",
                "type": {
@@ -64887,7 +65223,7 @@
             },
             {
                "isOverride": false,
-               "line": 141,
+               "line": 148,
                "meta": [],
                "name": "on_snow_ready",
                "type": {
@@ -64911,7 +65247,7 @@
             },
             {
                "isOverride": false,
-               "line": 211,
+               "line": 218,
                "meta": [
                   {
                      "name": ":noCompletion",
@@ -64951,7 +65287,7 @@
             },
             {
                "isOverride": false,
-               "line": 220,
+               "line": 227,
                "meta": [],
                "name": "render",
                "type": {
@@ -64975,7 +65311,7 @@
             },
             {
                "isOverride": false,
-               "line": 226,
+               "line": 233,
                "meta": [],
                "name": "on_snow_update",
                "type": {
@@ -64999,7 +65335,7 @@
             },
             {
                "isOverride": false,
-               "line": 240,
+               "line": 247,
                "meta": [],
                "name": "dispatch_system_event",
                "type": {
@@ -65034,7 +65370,7 @@
             },
             {
                "isOverride": false,
-               "line": 246,
+               "line": 253,
                "meta": [],
                "name": "on_event",
                "type": {
@@ -65069,7 +65405,7 @@
             },
             {
                "isOverride": false,
-               "line": 304,
+               "line": 311,
                "meta": [],
                "name": "default_runtime_config",
                "type": {
@@ -65091,7 +65427,7 @@
             },
             {
                "isOverride": false,
-               "line": 336,
+               "line": 340,
                "meta": [],
                "name": "default_asset_list",
                "type": {
@@ -65121,7 +65457,7 @@
             },
             {
                "isOverride": false,
-               "line": 389,
+               "line": 393,
                "meta": [],
                "name": "default_window_config",
                "type": {
@@ -65145,7 +65481,7 @@
             },
             {
                "isOverride": false,
-               "line": 418,
+               "line": 422,
                "meta": [],
                "name": "get_uniqueid",
                "type": {
@@ -65169,7 +65505,7 @@
             },
             {
                "isOverride": false,
-               "line": 438,
+               "line": 442,
                "meta": [
                   {
                      "name": ":noCompletion",
@@ -65256,7 +65592,7 @@
             },
             {
                "isOverride": false,
-               "line": 425,
+               "line": 429,
                "meta": [],
                "name": "load",
                "type": {
@@ -76541,6 +76877,8 @@
       "snow.render.opengl.GLTexture",
       "snow.render.opengl.GLUniformLocation",
       "snow.types.AppConfig",
+      "snow.types.AppConfigNative",
+      "snow.types.AppConfigWeb",
       "snow.types.AssetAudioOptions",
       "snow.types.AssetBytesOptions",
       "snow.types.AssetImageOptions",
@@ -77066,6 +77404,8 @@
          "full": "snow.types",
          "typedefs": [
             "snow.types.AppConfig",
+            "snow.types.AppConfigNative",
+            "snow.types.AppConfigWeb",
             "snow.types.AssetAudioOptions",
             "snow.types.AssetBytesOptions",
             "snow.types.AssetImageOptions",
