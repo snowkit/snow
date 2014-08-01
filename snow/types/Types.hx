@@ -116,27 +116,25 @@ typedef AppConfigNative = {
 } //AppConfigWeb
 
 
-/**
-Information about an image file/data
-
-`id` : source asset id
-`bpp` : used bits per pixel
-`width` : image width
-`height` : image height
-`bpp_source` : source bits per pixel
-`data` : image data
-
-*/
+/** Information about an image file/data */
 typedef ImageInfo = {
 
-    id : String,
-    bpp : Int,
-    width : Int,
-    height : Int,
-    width_actual : Int,
-    height_actual : Int,
-    bpp_source : Int,
-    data : UInt8Array
+        /** source asset id */
+    var id : String;
+        /** image width from source image */
+    var width : Int;
+        /** image height from source image */
+    var height : Int;
+        /** The actual width, used when image is automatically padded to POT */
+    var width_actual : Int;
+        /** The actual height, used when image is automatically padded to POT */
+    var height_actual : Int;
+        /** used bits per pixel */
+    var bpp : Int;
+        /** source bits per pixel */
+    var bpp_source : Int;
+        /** image data */
+    var data : UInt8Array;
 
 } //ImageInfo
 
@@ -150,49 +148,42 @@ enum AudioFormatType {
 
 } //AudioFormatType
 
-/**
-Information about an audio file/data
-
-`id` : file source
-`format` : format
-`channels` : number of channels
-`rate` : hz rate
-`bitrate` : sound bitrate
-`bits_per_sample` : bits per sample, 8 / 16
-`data` : sound raw data,
-`length` : the file length in bytes
-`length_pcm` : the pcm uncompressed raw length in bytes
-`handle` : the native audio handle for later manipulation
-
-*/
+/** Information about an audio file/data */
 typedef AudioInfo = {
 
-    id : String,
-    format : AudioFormatType,
-    channels : Int,
-    rate : Int,
-    bitrate : Int,
-    bits_per_sample : Int,
-    data : ByteArray,
-    length : Int,
-    length_pcm : Int,
-    handle : Dynamic
+        /** file source id */
+    var id : String;
+        /** format */
+    var format : AudioFormatType;
+        /** number of channels */
+    var channels : Int;
+        /** hz rate */
+    var rate : Int;
+        /** sound bitrate */
+    var bitrate : Int;
+        /** bits per sample, 8 / 16 */
+    var bits_per_sample : Int;
+        /** sound raw data, */
+    var data : ByteArray;
+        /** the file length in bytes */
+    var length : Int;
+        /** the pcm uncompressed raw length in bytes */
+    var length_pcm : Int;
+        /** the native audio handle for later manipulation */
+    var handle : Dynamic;
 
 } //AudioInfo
 
-/**
-Information about an audio portion requested via assets
-
-`complete` : True if the file has reached the end in this blob
-`data` : The data stored in this blob
-
-*/
+/** Information about an audio portion requested via assets */
 typedef AudioDataBlob = {
 
-    data : ByteArray,
-    complete : Bool
+        /** True if the file has reached the end of the data in this blob */
+    var data : ByteArray;
+        /** The data stored in this blob */
+    var complete : Bool;
 
 } //AudioDataBlob
+
 
 /** Window configuration information for creating windows */
 typedef WindowConfig = {
@@ -224,60 +215,59 @@ typedef WindowConfig = {
 
 } //WindowConfig
 
-/**
-A system event.
-Values below are null unless the event `type` matches. _i.e_ if type is `window`, the `window` value is not null, and so on */
+/** A system event */
 typedef SystemEvent = {
 
-    ? type : SystemEventType,
-    ? window : WindowEvent,
-    ? input : InputEvent,
-    ? filewatch : FileWatchEvent
+        /** The type of system event this event is. */
+    @:optional var type : SystemEventType;
+        /** If type is `window` this will be populated, otherwise null */
+    @:optional var window : WindowEvent;
+        /** If type is `input` this will be populated, otherwise null */
+    @:optional var input : InputEvent;
+        /** If type is `filewatch` this will be populated, otherwise null */
+    @:optional var filewatch : FileWatchEvent;
 
 } //SystemEvent
 
-/**
-A system window event
-
-`? type` : The type of window event this was
-`? timestamp` : The time in seconds that this event occured, useful for deltas
-`? window_id` : The window id from which this event originated
-`? event` : The raw platform event data
-
-*/
+/** A system window event */
 typedef WindowEvent = {
 
-    ? type : WindowEventType,
-    ? timestamp : Float,
-    ? window_id : Int,
-    ? event : Dynamic
+        /** The type of window event this was */
+    @:optional var type : WindowEventType;
+        /** The time in seconds that this event occured, useful for deltas */
+    @:optional var timestamp : Float;
+        /** The window id from which this event originated */
+    @:optional var window_id : Int;
+        /** The raw platform event data, only useful if you are implementing
+            a new platform or lack access to data from the system that snow does not expose */
+    @:optional var event : Dynamic;
 
 } //WindowEvent
 
-/** A file watch event */
+/** A system file watch event */
 typedef FileWatchEvent = {
 
-    ? type : FileWatchEventType,
-    ? timestamp : Float,
-    ? path : String
+        /** The type of file watch event, modify/create/delete */
+    @:optional var type : FileWatchEventType;
+        /** The time in seconds when this event was fired */
+    @:optional var timestamp : Float;
+        /** The absolute path that was notifying */
+    @:optional var path : String;
 
 } //FileWatchEvent
 
-/**
-A system input event
-
-`? type` : The type of input event this was
-`? timestamp` : The time in seconds that this event occured, useful for deltas
-`? window_id` : The window id from which this event originated
-`? event` : The raw platform event data
-
-*/
+/** A system input event */
 typedef InputEvent = {
 
-    ? type : InputEventType,
-    ? timestamp : Float,
-    ? window_id : Int,
-    ? event : Dynamic
+        /** The type of input event this was */
+    @:optional var type : InputEventType;
+        /** The time in seconds that this event occured, useful for deltas */
+    @:optional var timestamp : Float;
+        /** The window id from which this event originated */
+    @:optional var window_id : Int;
+        /** The raw platform event data, only useful if you are implementing
+            a new platform or lack access to data from the system that snow does not expose */
+    @:optional var event : Dynamic;
 
 } //InputEvent
 
@@ -291,9 +281,9 @@ typedef DisplayMode = {
 
     /** A platform window handle */
 #if snow_html5
-typedef WindowHandle = js.html.CanvasElement;
+    typedef WindowHandle = js.html.CanvasElement;
 #else
-typedef WindowHandle = Dynamic;
+    typedef WindowHandle = Dynamic;
 #end //snow_html5
 
 
