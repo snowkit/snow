@@ -10,22 +10,25 @@ namespace snow {
     namespace io {
 
             //forward
-        std::string open_select_path( int type, const std::string &title );
+        std::string open_select_path( int type, const std::string &title, const std::vector<file_filter> &filters );
 
 
         std::string dialog_folder(const std::string &title) {
 
-            return open_select_path(1, title);
+                //dummy filter list, not used by folders
+            std::vector<file_filter> filters;
+
+            return open_select_path(1, title, filters);
 
         } //dialog_folder
 
-        std::string dialog_open(const std::string &title) {
+        std::string dialog_open(const std::string &title, const std::vector<file_filter> &filters) {
 
-            return open_select_path(0, title);
+            return open_select_path(0, title, filters);
 
         } //dialog_open
 
-        std::string dialog_save(const std::string &title) {
+        std::string dialog_save(const std::string &title, const std::vector<file_filter> &filters) {
 
             NSSavePanel *panel = [NSSavePanel savePanel];
 
@@ -56,7 +59,7 @@ namespace snow {
             //common helper,
                 //type 0 = open file
                 //type 1 = open folder
-        std::string open_select_path( int type, const std::string &title ) {
+        std::string open_select_path( int type, const std::string &title, const std::vector<file_filter> &filters ) {
 
             NSOpenPanel * panel = [NSOpenPanel openPanel];
 

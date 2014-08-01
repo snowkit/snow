@@ -12,17 +12,17 @@ namespace snow {
     namespace io {
 
             //forward
-        std::string open_select_file(int type, const std::string &title);
+        std::string open_select_file(int type, const std::string &title, const std::vector<file_filter> &filters);
 
-        std::string dialog_open(const std::string &title) {
+        std::string dialog_open(const std::string &title, const std::vector<file_filter> &filters) {
 
-            return open_select_file(0, title);
+            return open_select_file(0, title, filters);
 
         } //dialog_open
 
-        std::string dialog_save(const std::string &title) {
+        std::string dialog_save(const std::string &title, const std::vector<file_filter> &filters) {
 
-            return open_select_file(1, title);
+            return open_select_file(1, title, filters);
 
         } //dialog_save
 
@@ -84,7 +84,7 @@ namespace snow {
             //common helper
                 //type 0 == file open
                 //type 1 == file save
-        std::string open_select_file(int type, const std::string &title) {
+        std::string open_select_file(int type, const std::string &title, const std::vector<file_filter> &filters) {
 
             OPENFILENAME ofn;
             char path[MAX_PATH] = "";

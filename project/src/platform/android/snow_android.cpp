@@ -113,8 +113,8 @@ namespace snow {
         void update_filewatch(){}
         void refresh_filewatch(){}
         std::string dialog_folder(const std::string &title){}
-        std::string dialog_open(const std::string &title){}
-        std::string dialog_save(const std::string &title){}
+        std::string dialog_open(const std::string &title, const std::vector<file_filter> &filters){}
+        std::string dialog_save(const std::string &title, const std::vector<file_filter> &filters){}
 
     } //io namespace
 

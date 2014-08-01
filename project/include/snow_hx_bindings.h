@@ -4,6 +4,9 @@
 #include <hx/CFFI.h>
 #include "common/Object.h"
 
+#include <string>
+#include <vector>
+
 namespace snow {
 
 
@@ -37,6 +40,8 @@ namespace snow {
 
     extern int id_path;
     extern int id_filewatch;
+    extern int id_extension;
+    extern int id_desc;
 
         //display related
 
@@ -127,6 +132,8 @@ namespace snow {
 
         id_path                 = val_id("path");
         id_filewatch            = val_id("filewatch");
+        id_extension            = val_id("extension");
+        id_desc                 = val_id("desc");
 
             //display related flags
 
@@ -237,6 +244,26 @@ namespace snow {
 
     } //Object_from_hx
 
+// array conversion tools
+
+    inline std::vector<std::string> array_string(value _array) {
+
+        if(val_is_null(_array)) {
+            return std::vector<std::string>();
+        }
+
+        std::vector<std::string> list;
+        int count = val_array_size(_array);
+
+        for(int i = 0; i < count; ++i) {
+            value _item = val_array_i(_array, i);
+
+            list.push_back( std::string(val_string(_item)) );
+        }
+
+        return list;
+
+    } //array_string
 
 // property conversion tools
 
