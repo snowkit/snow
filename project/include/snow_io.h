@@ -11,6 +11,7 @@
 
 #include "common/ByteArray.h"
 #include "snow_core.h"
+#include "snow_hx_bindings.h"
 
 namespace snow {
 
@@ -22,9 +23,11 @@ namespace snow {
 
 //file dialogs
 
+        struct file_filter;
+
         std::string dialog_folder(const std::string &title);
-        std::string dialog_open(const std::string &title);
-        std::string dialog_save(const std::string &title);
+        std::string dialog_open(const std::string &title, const std::vector<file_filter> &filters);
+        std::string dialog_save(const std::string &title, const std::vector<file_filter> &filters);
 
 //file watching
 
@@ -41,6 +44,15 @@ namespace snow {
             fe_create                       = 3
 
         }; //FileWatchEventType
+
+
+            //a description of a filter for file dialogs, or other use
+        struct file_filter {
+
+            std::string extension;
+            std::string desc;
+
+        }; //file_filter
 
         struct FileWatchEvent {
 
@@ -118,6 +130,34 @@ namespace snow {
             snow::io::event_handler( event );
 
         } //dispatch_event
+
+        inline std::vector<snow::io::file_filter> file_filter_list_from_hx(value _list) {
+
+            if(val_is_null(_list)) {
+                return std::vector<snow::io::file_filter>();
+            }
+
+            std::vector<snow::io::file_filter> result;
+            int count = val_array_size(_list);
+
+            for(int i = 0; i < count; ++i) {
+
+                value _item = val_array_i(_list, i);
+
+                //_item is now an object with .extension and .desc
+
+                snow::io::file_filter filter;
+
+                    filter.extension = std::string(property_string(_item, id_extension, "*"));
+                    filter.desc = std::string(property_string(_item, id_desc, ""));
+
+                result.push_back(filter);
+
+            } //each item
+
+            return result;
+
+        } //file_filter_list_from_hx
 
 //file handling
 

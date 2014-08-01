@@ -58,16 +58,26 @@ import haxe.io.Path;
     //File dialogs, only available on platforms where it makes sense.
 
             /** Opens a file open dialog. Returns a blank string if they cancel or any error occurs. */
-        public static function dialog_open( ?_title:String = "Select file" ) {
+        public static function dialog_open( ?_title:String = "Select file", ?_filters:Array<FileFilter> ) {
 
-            return snow_io_dialog_open( _title );
+                //disallow null to the native code
+            if(_filters == null) {
+                _filters = [ { extension:'*', desc:'all files' } ];
+            }
+
+            return snow_io_dialog_open( _title, _filters );
 
         } //dialog_open
 
             /** Opens a file save file dialog. Returns a blank string if they cancel or any error occurs. */
-        public static function dialog_save( ?_title:String = "Save file" ) {
+        public static function dialog_save( ?_title:String = "Save file", ?_filters:Array<FileFilter> ) {
 
-            return snow_io_dialog_save( _title );
+                //disallow null to the native code
+            if(_filters == null) {
+                _filters = [ { extension:'*', desc:'all files' } ];
+            }
+
+            return snow_io_dialog_save( _title, _filters );
 
         } //dialog_save
 
@@ -119,8 +129,8 @@ import haxe.io.Path;
 
         static var snow_io_url_open         = Libs.load( "snow", "snow_io_url_open", 1 );
 
-        static var snow_io_dialog_open      = Libs.load( "snow", "snow_io_dialog_open", 1 );
-        static var snow_io_dialog_save      = Libs.load( "snow", "snow_io_dialog_save", 1 );
+        static var snow_io_dialog_open      = Libs.load( "snow", "snow_io_dialog_open", 2 );
+        static var snow_io_dialog_save      = Libs.load( "snow", "snow_io_dialog_save", 2 );
         static var snow_io_dialog_folder    = Libs.load( "snow", "snow_io_dialog_folder", 1 );
 
     } //IO

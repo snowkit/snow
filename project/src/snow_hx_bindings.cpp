@@ -28,7 +28,7 @@
 
 namespace snow {
 
-        //has id's etc been inited?
+        //have id's etc been inited?
     static int global_snow_init = false;
         //a "kind" type for native wrapped objects
     vkind global_snow_object_kind;
@@ -795,21 +795,23 @@ extern double timestamp();
 
     //file dialogs
 
-        value snow_io_dialog_open(value _title) {
+        value snow_io_dialog_open(value _title, value _filters) {
 
-            std::string result = snow::io::dialog_open( std::string(val_string(_title)) );
-
-            return alloc_string( result.c_str() );
-
-        } DEFINE_PRIM(snow_io_dialog_open, 1);
-
-        value snow_io_dialog_save(value _title) {
-
-            std::string result = snow::io::dialog_save( std::string(val_string(_title)) );
+            std::vector<snow::io::file_filter> filters = snow::io::file_filter_list_from_hx(_filters);
+            std::string result = snow::io::dialog_open( std::string(val_string(_title)), filters );
 
             return alloc_string( result.c_str() );
 
-        } DEFINE_PRIM(snow_io_dialog_save, 1);
+        } DEFINE_PRIM(snow_io_dialog_open, 2);
+
+        value snow_io_dialog_save(value _title, value _filters) {
+
+            std::vector<snow::io::file_filter> filters = snow::io::file_filter_list_from_hx(_filters);
+            std::string result = snow::io::dialog_save( std::string(val_string(_title)), filters );
+
+            return alloc_string( result.c_str() );
+
+        } DEFINE_PRIM(snow_io_dialog_save, 2);
 
         value snow_io_dialog_folder(value _title) {
 
@@ -1052,6 +1054,8 @@ extern double timestamp();
 
     int id_path;
     int id_filewatch;
+    int id_extension;
+    int id_desc;
 
     int id_refresh_rate;
 

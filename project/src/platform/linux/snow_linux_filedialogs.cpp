@@ -64,7 +64,7 @@ namespace snow {
 
         #endif //SNOW_NO_GTK
 
-        std::string dialog_open(const std::string &title) {
+        std::string dialog_open(const std::string &title, const std::vector<file_filter> &filters) {
             #ifndef SNOW_NO_GTK
                 return open_gtk_dialog(GTK_FILE_CHOOSER_ACTION_OPEN, title);
             #else
@@ -72,7 +72,7 @@ namespace snow {
             #endif
         } //dialog_open
 
-        std::string dialog_save(const std::string &title) {
+        std::string dialog_save(const std::string &title, const std::vector<file_filter> &filters) {
             #ifndef SNOW_NO_GTK
                 return open_gtk_dialog(GTK_FILE_CHOOSER_ACTION_SAVE, title);
             #else

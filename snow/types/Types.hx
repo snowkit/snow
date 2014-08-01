@@ -9,9 +9,7 @@ import snow.assets.AssetText;
 import snow.assets.AssetBytes;
 import snow.assets.AssetAudio;
 
-/**
-Information for a single asset
-*/
+/** Information for a single asset */
 typedef AssetInfo = {
 
         /** the asset id */
@@ -25,7 +23,7 @@ typedef AssetInfo = {
 
 } //AssetInfo
 
-    /** A type to identify assets when stored as an Asset */
+/** A type to identify assets when stored as an Asset */
 enum AssetType {
 
     bytes;
@@ -36,26 +34,29 @@ enum AssetType {
 } //AssetType
 
 
-/**  The options for an `AssetBytes` asset. Get assets from the `Assets` class, via `app.assets` */
+/** The options for an `AssetBytes` asset.
+    Get assets from the `Assets` class, via `app.assets` */
 typedef AssetBytesOptions = {
     ? async : Bool,
     ? onload : AssetBytes -> Void
 } //AssetBytesOptions
 
-/**  The options for an `AssetText` asset. Get assets from the `Assets` class, via `app.assets` */
+/** The options for an `AssetText` asset.
+    Get assets from the `Assets` class, via `app.assets` */
 typedef AssetTextOptions = {
     ? async : Bool,
     ? onload : AssetText -> Void
 } //AssetTextOptions
 
-/**  The options for an `AssetImage` asset. Get assets from the `Assets` class, via `app.assets` */
+/** The options for an `AssetImage` asset.
+    Get assets from the `Assets` class, via `app.assets` */
 typedef AssetImageOptions = {
     ? components : Int,
     ? onload : AssetImage -> Void,
     ? bytes : ByteArray
 } //AssetImageOptions
 
-/**  The options for an `AssetAudio` asset */
+/** The options for an `AssetAudio` asset */
 typedef AssetAudioOptions = {
     ? type : String,
     ? load : Bool,
@@ -114,6 +115,15 @@ typedef AppConfigNative = {
     @:optional var audio_buffer_count : Int;
 
 } //AppConfigWeb
+
+typedef FileFilter = {
+
+        /** An extension for the filter. i.e `md`, `txt`, `png` or a special `*` for any file type.  */
+    var extension:String;
+        /** An optional description for this filter i.e `markdown files`, `text files`, `all files` */
+    @:optional var desc:String;
+
+} //FileFilter
 
 
 /** Information about an image file/data */
