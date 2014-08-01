@@ -344,23 +344,6 @@ class Snow {
 
         if(manifest_data != null && manifest_data.length != 0) {
 
-            #if lime_tools
-
-                var _list:Array<Dynamic> = haxe.Unserializer.run(manifest_data.toString());
-
-                for(asset in _list) {
-
-                    asset_list.push({
-                        id : asset.id,
-                        path : haxe.io.Path.join([assets.assets_root, asset.path]),
-                        type : Std.string(asset.type).toLowerCase(),
-                        ext : haxe.io.Path.extension(asset.path)
-                    });
-
-                } //for each asset
-
-            #else
-
                 var _list:Array<String> = haxe.Json.parse(manifest_data.toString());
 
                 for(asset in _list) {
@@ -373,8 +356,6 @@ class Snow {
                     });
 
                 } //for each asset
-
-            #end
 
             trace('/ snow / config / ok / default asset manifest');
 
