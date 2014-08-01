@@ -1,6 +1,6 @@
 
 body,html {
-    font-family: cabin, sans-serif;
+    font-family: helvetica, sans-serif;
     color:#3c3c3c;
 }
 
@@ -12,7 +12,6 @@ h1,h2,h3,h4,h5,h6 {
     font-family: cabin, sans-serif;
     font-weight:bold;
     font-size:3em;
-    letter-spacing: -0.01em;
     margin: 0.2em;
     margin-left: 0em;
     padding: 0;
@@ -29,13 +28,46 @@ h3 a {
 }
 
 h3 a:hover {
+    cursor: pointer;
     color:#6C6E6F;
+}
+
+a h3 {
+    color:#242424;
+}
+
+a:hover h3 {
+    cursor: pointer;
+    color:#06b4fb;
+}
+a h2 {
+    color:#242424;
+}
+
+a:hover h2 {
+    cursor: pointer;
+    color:#06b4fb;
 }
 
 
 .package-root {
     margin-top:0.8em;
     margin-left:2em;
+}
+
+.topmenu {
+    text-align: right;
+    margin-right: 1.4em;
+    margin-bottom: 0.5em;
+    display: block;
+    position: relative;
+    height: 1.5em;
+}
+
+.topmenu img {
+    display: inline-block;
+    height: 18px;
+    vertical-align: bottom;
 }
 
 #logo {
@@ -61,7 +93,7 @@ h3 a:hover {
 .guide a {
     font-size: 1.2em;
     display:inline-block;
-    margin: 0.3em;
+    margin: 0.2em;
 }
 
 .center {
@@ -96,12 +128,15 @@ hr {
     border-top: 1px solid #ECECEC;
 }
 
+li {
+    line-height: 1.3em;
+}
 
 li {
-    font-size: 1em;
-    letter-spacing: -0.05em;
+    font-size: 1.0em;
+    letter-spacing: 0em;
     max-width: 80%;
-    color:#999;
+    color:#607681;
 }
 
 img {
@@ -208,6 +243,15 @@ a.liftsmall {
     padding:0.5em;
 }
 
+li code {
+    font-size: 0.8em;
+    padding: 0;
+    margin: 0;
+    border: 0;
+    background-color: transparent;
+    color:#f6007b;
+}
+
 .small-image {
     margin-left: auto;
     margin-right: auto;
@@ -225,10 +269,10 @@ a.liftsmall {
 p {
     color:#858585;
     font-size: 1.04em;
-    letter-spacing:0.012em;
+    letter-spacing:0.0em;
     margin: 0.8em;
     margin-left:0.5em;
-    line-height:1.4em;
+    line-height:1.3em;
 }
 
 .section {
