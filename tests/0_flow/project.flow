@@ -6,13 +6,9 @@
     author : 'snowkit',
 
     app : {
-      main : 'Main',
-      output : 'bin',
       name : 'flow_test',
       title : 'flow test application',
       package : 'org.snowkit.flow',
-      codepaths : [ 'src' ],
-
     },
 
     build : {
