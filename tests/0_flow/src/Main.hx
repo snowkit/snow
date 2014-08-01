@@ -174,7 +174,7 @@ class Main extends snow.AppFixedTimestep {
 
 
         #if snow_native
-            snow.io.IO.watch_add('assets/');
+            snow.platform.native.io.IOSystem.watch_add('assets/');
         #end
 
     } //ready
@@ -242,14 +242,14 @@ class Main extends snow.AppFixedTimestep {
         }
 
         if(keycode == Key.KEY_u) {
-            snow.io.IO.url_open("http://snowkit.org/");
+            app.io.url_open("http://snowkit.org/");
         }
 
         if(keycode == Key.KEY_o) {
             #if snow_native
-                trace(snow.io.IO.dialog_open());
-                trace(snow.io.IO.dialog_save());
-                trace(snow.io.IO.dialog_folder());
+                trace(snow.platform.native.io.IOSystem.dialog_open());
+                trace(snow.platform.native.io.IOSystem.dialog_save());
+                trace(snow.platform.native.io.IOSystem.dialog_folder());
             #end
         }
 
@@ -306,7 +306,7 @@ class Main extends snow.AppFixedTimestep {
         sound1.play();
 
         if(touch_id > 1) {
-            snow.io.IO.url_open("http://snowkit.org/");
+            app.io.url_open("http://snowkit.org/");
         }
     }
 

@@ -6,11 +6,12 @@ import snow.types.Types;
 import snow.utils.ByteArray;
 import snow.utils.Timer;
 
-import snow.assets.Assets;
+import snow.io.IO;
 import snow.input.Input;
 import snow.audio.Audio;
-import snow.window.Windowing;
+import snow.assets.Assets;
 import snow.window.Window;
+import snow.window.Windowing;
 
     //the platform core bindings
 import snow.Core;
@@ -36,14 +37,16 @@ class Snow {
 
 //Sub systems
 
-        /** The window manager */
-    public var windowing : Windowing;
+        /** The io system */
+    public var io : IO;
         /** The input system */
     public var input : Input;
-        /** The audio system */
-    public var audio : Audio;
         /** The asset system */
     public var assets : Assets;
+        /** The audio system */
+    public var audio : Audio;
+        /** The window manager */
+    public var windowing : Windowing;
 
         /** Set if shut down has commenced */
     public var shutting_down : Bool = false;
@@ -101,6 +104,7 @@ class Snow {
         shutting_down = true;
 
         host.destroyed();
+        io.destroy();
         audio.destroy();
         input.destroy();
         windowing.destroy();
@@ -111,7 +115,7 @@ class Snow {
 
     } //shutdown
 
-    function get_time() : Float {
+    inline function get_time() : Float {
 
         return core.timestamp();
 
@@ -157,10 +161,11 @@ class Snow {
 
 
                 //create the sub systems
-            windowing = new Windowing( this );
+            io = new IO( this );
             input = new Input( this );
             audio = new Audio( this );
             assets = new Assets( this );
+            windowing = new Windowing( this );
 
 
         if(!snow_config.config_custom_assets){
@@ -217,6 +222,7 @@ class Snow {
 
     @:noCompletion public function do_internal_update( dt:Float ) {
 
+        io.update();
         input.update();
         audio.update();
         host.update( dt );
@@ -268,6 +274,7 @@ class Snow {
             //all systems should get these basically...
             //cos of app lifecycles etc being here.
         if(is_ready) {
+            io.on_event( _event );
             audio.on_event( _event );
             windowing.on_event( _event );
             input.on_event( _event );
