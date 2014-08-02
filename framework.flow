@@ -26,6 +26,7 @@
     author : 'snowkit',
 
     app : {
+      icon : 'flow/icons/ => snow',
       web : {
         libs : {
           modernizr : './lib/modernizr.js'
