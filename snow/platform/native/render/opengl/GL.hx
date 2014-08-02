@@ -857,12 +857,19 @@ class GL {
         return snow_gl_get_buffer_paramerter(target, pname);
     }
 
-    public static function getContextAttributes():GLContextAttributes
+    public static function getContextAttributes() : GLContextAttributes
     {
-        var base = snow_gl_get_context_attributes();
-        base.premultipliedAlpha = false;
-        base.preserveDrawingBuffer = false;
-        return base;
+
+        var attr = {
+            alpha:true,
+            depth:false,
+            stencil:false,
+            antialias:false,
+            premultipliedAlpha:false,
+            preserveDrawingBuffer:false
+        }
+
+        return attr;
     }
 
     public static function getError():Int

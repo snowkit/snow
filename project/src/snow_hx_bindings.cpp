@@ -1128,6 +1128,10 @@ extern double timestamp();
     int id_resizable;
     int id_borderless;
     int id_antialiasing;
+    int id_red_bits;
+    int id_green_bits;
+    int id_blue_bits;
+    int id_alpha_bits;
     int id_depth_bits;
     int id_stencil_bits;
 

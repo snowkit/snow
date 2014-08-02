@@ -137,8 +137,8 @@ namespace snow {
             created_handler = _on_created;
                 //assign it now so we take a copy from the const
             config = _config;
-                //then try init sdl video system
 
+                //then try init sdl video system
             int err = snow::window::init_sdl();
             if (err == -1) {
                 snow::log("/ snow / could not initialize Video for SDL : %s\n", SDL_GetError());
@@ -159,9 +159,10 @@ namespace snow {
 
                 //opengl specifics, these all need to be set before create window
 
-            SDL_GL_SetAttribute(SDL_GL_RED_SIZE, 8);
-            SDL_GL_SetAttribute(SDL_GL_GREEN_SIZE, 8);
-            SDL_GL_SetAttribute(SDL_GL_BLUE_SIZE, 8);
+            SDL_GL_SetAttribute(SDL_GL_RED_SIZE,    config.red_bits);
+            SDL_GL_SetAttribute(SDL_GL_GREEN_SIZE,  config.green_bits);
+            SDL_GL_SetAttribute(SDL_GL_BLUE_SIZE,   config.blue_bits);
+            SDL_GL_SetAttribute(SDL_GL_ALPHA_SIZE,  config.alpha_bits);
 
             if(config.depth_bits > 0) {
                 SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, config.depth_bits );
@@ -187,10 +188,7 @@ namespace snow {
                 //now actually try and create a window
             window = SDL_CreateWindow( config.title.c_str(), config.x, config.y, config.width, config.height, request_flags );
 
-            // todo? fetch ones actually used by window...
-            //but there are just 3 (resizable, borderless and fs... and these "cant" fail)
-            // real_flags = SDL_GetWindowFlags( window );
-
+                //#21 proves this false. need to adjust.
                 //based on the code in SDL, the only reasons this can fail is
                     // - no opengl at all (and we will always be requesting it so if that fails its game over)
                     // - unable to load gl functions from library (same as no gl then)
@@ -266,11 +264,26 @@ namespace snow {
                     int actual_depth = config.depth_bits;
                     int actual_stencil = config.stencil_bits;
 
+                    int actual_red = config.red_bits;
+                    int actual_blue = config.blue_bits;
+                    int actual_green = config.green_bits;
+                    int actual_alpha = config.alpha_bits;
+
                         SDL_GL_GetAttribute(SDL_GL_MULTISAMPLESAMPLES, &actual_aa);
+
+                        SDL_GL_GetAttribute(SDL_GL_RED_SIZE, &actual_red);
+                        SDL_GL_GetAttribute(SDL_GL_GREEN_SIZE, &actual_green);
+                        SDL_GL_GetAttribute(SDL_GL_BLUE_SIZE, &actual_blue);
+                        SDL_GL_GetAttribute(SDL_GL_ALPHA_SIZE, &actual_alpha);
+
                         SDL_GL_GetAttribute(SDL_GL_DEPTH_SIZE, &actual_depth);
                         SDL_GL_GetAttribute(SDL_GL_STENCIL_SIZE, &actual_stencil);
 
                     config.antialiasing = actual_aa;
+                    config.red_bits = actual_red;
+                    config.green_bits = actual_green;
+                    config.blue_bits = actual_blue;
+                    config.alpha_bits = actual_alpha;
                     config.depth_bits = actual_depth;
                     config.stencil_bits = actual_stencil;
 
