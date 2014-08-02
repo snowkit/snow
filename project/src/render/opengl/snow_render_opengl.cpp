@@ -19,6 +19,31 @@
 
 namespace snow {
 
+        void snow_gl_set_context_attributes(
+            bool alpha, bool depth, bool stencil,
+            bool antialias, bool premultipliedAlpha, bool preserveDrawingBuffer);
+
+    namespace render {
+
+
+        //called from window code after making
+        //a window, to set the valid context state
+
+        void set_context_attributes(
+            int red_bits, int green_bits, int blue_bits, int alpha_bits,
+            int depth_bits, int stencil_bits, int antialiasing) {
+
+            snow::snow_gl_set_context_attributes(
+                alpha_bits != 0,
+                depth_bits != 0,
+                stencil_bits != 0,
+                antialiasing != 0,
+                false, false
+            );
+
+        } //set_context_attributes
+
+    }
 
     #define INT(a) val_int(arg[a])
 
@@ -105,18 +130,49 @@ namespace snow {
 
     } DEFINE_PRIM(snow_gl_line_width,1);
 
+    struct gl_context_attributes {
+        gl_context_attributes()
+            : alpha(false), depth(false), stencil(false), antialias(false),
+              premultipliedAlpha(false), preserveDrawingBuffer(false) {}
+
+        bool alpha;
+        bool depth;
+        bool stencil;
+        bool antialias;
+        bool premultipliedAlpha;
+        bool preserveDrawingBuffer;
+
+    };
+
+    static gl_context_attributes attr;
+    static value gl_context_val;
+
+    void snow_gl_set_context_attributes(
+        bool alpha, bool depth, bool stencil,
+        bool antialias, bool premultipliedAlpha, bool preserveDrawingBuffer) {
+
+            attr.alpha = alpha;
+            attr.depth = depth;
+            attr.stencil = stencil;
+            attr.antialias = antialias;
+            attr.premultipliedAlpha = premultipliedAlpha;
+            attr.preserveDrawingBuffer = preserveDrawingBuffer;
+
+        gl_context_val = alloc_null(); //kill existing for gc
+        gl_context_val = alloc_empty_object();
+
+           alloc_field(gl_context_val,val_id("alpha"),alloc_bool(alpha));
+           alloc_field(gl_context_val,val_id("depth"),alloc_bool(depth));
+           alloc_field(gl_context_val,val_id("stencil"),alloc_bool(stencil));
+           alloc_field(gl_context_val,val_id("antialias"),alloc_bool(antialias));
+           alloc_field(gl_context_val,val_id("premultipliedAlpha"),alloc_bool(premultipliedAlpha));
+           alloc_field(gl_context_val,val_id("preserveDrawingBuffer"),alloc_bool(preserveDrawingBuffer));
+
+    } //snow_gl_set_context_attributes
 
     value snow_gl_get_context_attributes() {
 
-        value result = alloc_empty_object( );
-
-           // TODO: //?//:todo:
-           alloc_field(result,val_id("alpha"),alloc_bool(true));
-           alloc_field(result,val_id("depth"),alloc_bool(true));
-           alloc_field(result,val_id("stencil"),alloc_bool(true));
-           alloc_field(result,val_id("antialias"),alloc_bool(true));
-
-        return result;
+        return gl_context_val;
 
     } DEFINE_PRIM(snow_gl_get_context_attributes,0);
 

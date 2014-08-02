@@ -859,17 +859,9 @@ class GL {
 
     public static function getContextAttributes() : GLContextAttributes
     {
-
-        var attr = {
-            alpha:true,
-            depth:false,
-            stencil:false,
-            antialias:false,
-            premultipliedAlpha:false,
-            preserveDrawingBuffer:false
-        }
-
-        return attr;
+            //:todo : according to spec, https://www.khronos.org/registry/webgl/specs/latest/1.0/#5.2
+            //there are some cases to handle when context is lost, which should either happen here
+        return snow_gl_get_context_attributes();
     }
 
     public static function getError():Int

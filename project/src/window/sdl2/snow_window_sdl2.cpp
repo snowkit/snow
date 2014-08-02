@@ -6,6 +6,7 @@
 #include "render/opengl/snow_opengl.h"
 
 #include "snow_core.h"
+#include "snow_render.h"
 #include <cstdlib>
 
 namespace snow {
@@ -286,6 +287,11 @@ namespace snow {
                     config.alpha_bits = actual_alpha;
                     config.depth_bits = actual_depth;
                     config.stencil_bits = actual_stencil;
+
+                    snow::render::set_context_attributes(
+                        actual_red, actual_green, actual_blue, actual_alpha,
+                        actual_depth, actual_stencil, actual_aa
+                    );
 
                     snow::log("/ snow / success in creating GL context for window %d\n", id);
 
