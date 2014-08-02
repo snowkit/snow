@@ -62,25 +62,25 @@
       },
     },
 
-    "windows && arch-32" : {
+    "windows && arch-32 && dynamic_snow" : {
       files : {
         libsnow : { path:"ndll/Windows/snow.ndll => snow.ndll", not_listed:true }
       }
     },
 
-    "mac && arch-32" : {
+    "mac && arch-32 && dynamic_snow" : {
       files : {
         libsnow : { path:"ndll/Mac/snow.ndll => ../MacOS/snow.ndll", not_listed:true }
       }
     },
 
-    "mac && arch-64" : {
+    "mac && arch-64 && dynamic_snow" : {
       files : {
         libsnow : { path:"ndll/Mac64/snow.ndll => ../MacOS/snow.ndll", not_listed:true }
       }
     },
 
-    "android && arch-armv7" : {
+    "android && arch-armv7 && dynamic_snow" : {
       build : {
         files : {
           libsnow : { path:"ndll/Android/libsnow-v7.so => project/libs/armeabi/libsnow.so" }
@@ -88,7 +88,7 @@
       }
     },
 
-    "ios && arch-armv7" : {
+    "ios && arch-armv7 && dynamic_snow" : {
       build : {
         files : {
           libsnow : { path:"ndll/iPhone/libsnow.iphoneos-v7.a => project/{{app.name}}/libs/armv7/libsnow.a" }
@@ -96,7 +96,7 @@
       }
     },
 
-    "ios && arch-i386 && ios-sim" : {
+    "ios && arch-i386 && ios-sim && dynamic_snow" : {
       build : {
         files : {
           libsnow : { path:"ndll/iPhone/libsnow.iphonesim.a => project/{{app.name}}/libs/i386/libsnow.a" }
@@ -104,7 +104,7 @@
       }
     },
 
-    "android && arch-armv5" : {
+    "android && arch-armv5 && dynamic_snow" : {
       build : {
         files : {
           libsnow : { path:"ndll/Android/libsnow.so => project/libs/armeabi/libsnow.so" }
@@ -112,7 +112,7 @@
       }
     },
 
-    "android && arch-x86" : {
+    "android && arch-x86 && dynamic_snow" : {
       build : {
         files : {
           libsnow : { path:"ndll/Android/libsnow-x86.so => project/libs/armeabi/libsnow.so" }
