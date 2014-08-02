@@ -43,7 +43,7 @@ import haxe.io.Path;
             /** Call this to add a directory to watch for file change notifications.
                 This is for directories only. Children files + sub folders children files will notify of change.
                 supports:`windows` `mac` `linux` only */
-            override public function watch_add( _path:String ) {
+            override public function watch_add( _path:String ) : Void {
 
                 if(_path != null && _path.length > 0) {
                     snow_io_add_watch( resolve(_path) );
@@ -53,7 +53,7 @@ import haxe.io.Path;
 
             /** Call this to remove a watched directory.
                 supports:`windows` `mac` `linux` only */
-            override public function watch_remove( _path:String ) {
+            override public function watch_remove( _path:String ) : Void {
 
                 if(_path != null && _path.length > 0) {
                     snow_io_remove_watch( resolve(_path) );
@@ -66,7 +66,7 @@ import haxe.io.Path;
             /** Call this to open a native platform file open dialog.
                 Returns a blank string if they cancel or any error occurs.
                 supports: `windows` `mac` `linux` */
-            override public function dialog_open( ?_title:String = "Select file", ?_filters:Array<FileFilter> ) {
+            override public function dialog_open( ?_title:String = "Select file", ?_filters:Array<FileFilter> ) : String {
 
                     //disallow null to the native code
                 if(_filters == null) {
@@ -80,7 +80,7 @@ import haxe.io.Path;
                 /** Call this to open a native platform file save dialog.
                     Returns a blank string if they cancel or any error occurs.
                     supports:`windows` `mac` `linux` */
-            override public function dialog_save( ?_title:String = "Save file", ?_filters:Array<FileFilter> ) {
+            override public function dialog_save( ?_title:String = "Save file", ?_filters:Array<FileFilter> ) : String {
 
                     //disallow null to the native code
                 if(_filters == null) {
@@ -94,7 +94,7 @@ import haxe.io.Path;
                 /** Call this to open a native platform folder select dialog.
                     Returns a blank string if they cancel or any error occurs.
                     supports:`windows` `mac` `linux` */
-            override public function dialog_folder( ?_title:String = "Select folder" ) {
+            override public function dialog_folder( ?_title:String = "Select folder" ) : String {
 
                 return snow_io_dialog_folder( _title );
 
