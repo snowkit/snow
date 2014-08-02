@@ -57,6 +57,22 @@ class Windowing {
 
     } //create
 
+        /** remove a window from the list, stop events, etc.
+            Called from window.destroy()! Don't use manually unless manually controlling the list. */
+    public function remove( _window:Window ) {
+
+        window_list.remove( _window.id );
+        window_handles.remove( _window.handle );
+        window_count--;
+
+        system.unlisten( _window );
+
+        if(_window.config.no_input == null || _window.config.no_input == false) {
+            lib.input.unlisten( _window );
+        }
+
+    } //remove
+
     public function window_from_handle( _handle:WindowHandle ) : Window {
 
         if(window_handles.exists(_handle)) {

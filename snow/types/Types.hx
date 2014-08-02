@@ -382,8 +382,10 @@ enum WindowEventType {
     window_focus_gained;
 /** A window has lost focus */
     window_focus_lost;
-/** A window is being closed */
+/** A window is being closed/hidden */
     window_close;
+/** A window is being destroyed */
+    window_destroy;
 
 } //WindowEventType
 
@@ -538,6 +540,7 @@ typedef ModState = {
     public static var we_focus_gained     = 13;
     public static var we_focus_lost       = 14;
     public static var we_close            = 15;
+    public static var we_destroy          = 16;
 
 //Helpers
 
@@ -559,6 +562,7 @@ typedef ModState = {
             if(type == we_focus_gained)   return WindowEventType.window_focus_gained;
             if(type == we_focus_lost)     return WindowEventType.window_focus_lost;
             if(type == we_close)          return WindowEventType.window_close;
+            if(type == we_destroy)        return WindowEventType.window_destroy;
 
         return WindowEventType.unknown;
 

@@ -49,8 +49,11 @@ class Window {
     public var windowed_fullscreen : Bool = true;
         /** set this if you want to control when a window swaps() where applicable */
     public var auto_swap : Bool = true;
+        /** A flag for whether this window is open or closed */
+    public var closed : Bool = true;
 
-        //internal minimized flag to avoid rendering when minimized
+        //internal minimized flag to avoid rendering when minimized.
+        //use on_event for this yourself
     var minimized : Bool = false;
     var internal_position : Bool = false;
     var internal_resize : Bool = false;
@@ -78,6 +81,7 @@ class Window {
             return;
         }
 
+        closed = false;
         config = _config;
 
             //update the position and size
@@ -158,7 +162,7 @@ class Window {
 
     @:noCompletion public function update() {
 
-        if(handle != null) {
+        if(handle != null && !closed) {
             manager.system.update( this );
         }
 
@@ -167,7 +171,7 @@ class Window {
 
     @:noCompletion public function render() {
 
-        if(minimized) {
+        if(minimized || closed) {
             return;
         }
 
@@ -189,10 +193,11 @@ class Window {
 
         } //has render handler
 
-        GL.clearColor( Math.random(), 0.12, 0.12, 1.0 );
-        GL.clear(GL.COLOR_BUFFER_BIT);
+            //If it doesn't have a render handler
+            //Render a red color so the user can tell
 
-        // snow.platform.native.render.opengl.GLN.clear( GL.COLOR_BUFFER_BIT );
+        GL.clearColor( 0.8, 0.12, 0.12, 1.0 );
+        GL.clear(GL.COLOR_BUFFER_BIT);
 
         if(auto_swap) {
             swap();
@@ -203,7 +208,7 @@ class Window {
         /** Swap the back buffer of the window, call after rendering to update the window view */
     public function swap() {
 
-        if(handle == null) {
+        if(handle == null || closed || minimized) {
             return;
         }
 
@@ -211,8 +216,27 @@ class Window {
 
     } //swap
 
-        /** Close the window */
+        /** Destroy the window. To recreate it create must be used, show will not work. */
+    public function destroy() {
+
+        closed = true;
+
+        if(handle == null) {
+            return;
+        }
+            //remove from the internal list
+        manager.remove(this);
+            //destroy system window
+        manager.system.destroy_window( this );
+            //clear handle as it's invalid
+        handle = null;
+
+    } //destroy
+
+        /** Close the window, hiding it (not destroying it). Calling show() will unhide it. */
     public function close() {
+
+        closed = true;
 
         if(handle == null) {
             return;
@@ -221,6 +245,19 @@ class Window {
         manager.system.close( this );
 
     } //close
+
+        /** Show the window, unhiding it. If destroyed, nothing happens. */
+    public function show() {
+
+        if(handle == null) {
+            return;
+        }
+
+        closed = false;
+
+        manager.system.show( this );
+
+    } //show
 
         /** Display a cross platform message on this window */
     public function simple_message( message:String, title:String="" ) {
@@ -340,7 +377,7 @@ class Window {
 
     public function set_cursor_position( _x:Int, _y:Int ) {
 
-        if(handle != null) {
+        if(handle != null && !closed) {
             manager.system.set_cursor_position( this, _x, _y );
         }
 

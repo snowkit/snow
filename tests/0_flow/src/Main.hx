@@ -174,7 +174,7 @@ class Main extends snow.AppFixedTimestep {
 
 
         #if desktop
-            app.io.watch_add('assets/');
+            app.io.system.watch_add('assets/');
         #end
 
     } //ready
@@ -184,6 +184,8 @@ class Main extends snow.AppFixedTimestep {
         //default is shown obv
     var cursor = true;
 
+    var window2 : Window;
+
     override function onkeydown( keycode:Int, _,_,_,_,_ ) {
 
         // trace("key down : " + event);
@@ -191,6 +193,16 @@ class Main extends snow.AppFixedTimestep {
             //console scan code should be universally next to 1
         if(keycode == Key.KEY_e) {
             sound1.play();
+        }
+
+        if(keycode == Key.KEY_h) {
+            if(window2 != null && window2.handle != null) {
+                if(window2.closed) {
+                    window2.show();
+                } else {
+                    window2.close();
+                }
+            }
         }
 
         if(keycode == Key.KEY_q) {
@@ -203,9 +215,14 @@ class Main extends snow.AppFixedTimestep {
             app.audio.pitch('wav', 1.5);
             sound3.play();
 
-            var w = app.windowing.create({
+            if(window2 != null) {
+                window2.destroy();
+                window2 = null;
+            }
+
+            window2 = app.windowing.create({
                 resizable : true,
-                width : 200, height:200,
+                width : 200+Std.random(200), height:200+Std.random(200),
                 x : 0x1FFF0000, y:0x1FFF0000,
                 title:'window ' + app.time
             });
@@ -247,9 +264,9 @@ class Main extends snow.AppFixedTimestep {
 
         if(keycode == Key.KEY_o) {
             #if desktop
-                trace(app.io.dialog_open());
-                trace(app.io.dialog_save());
-                trace(app.io.dialog_folder());
+                trace(app.io.system.dialog_open());
+                trace(app.io.system.dialog_save());
+                trace(app.io.system.dialog_folder());
             #end
         }
 

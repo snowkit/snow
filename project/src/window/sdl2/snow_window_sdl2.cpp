@@ -51,6 +51,8 @@ namespace snow {
                 void render();
                 void swap();
                 void close();
+                void show();
+                void destroy();
 
                 void create( const window_config &config, AutoGCRoot* _on_created );
                 void simple_message( const char* message, const char* title );
@@ -96,9 +98,37 @@ namespace snow {
 
             closed = true;
 
-            SDL_DestroyWindow(window);
+            SDL_HideWindow(window);
 
         } //WindowSDL2::close
+
+        void WindowSDL2::show() {
+
+            closed = false;
+
+            SDL_ShowWindow(window);
+
+        } //WindowSDL2::show
+
+        void WindowSDL2::destroy() {
+
+            closed = true;
+
+            SDL_DestroyWindow(window);
+
+                //fire an event as well
+            WindowEvent destroy_event;
+
+                destroy_event.timestamp = snow::timestamp();
+                destroy_event.type = we_destroy;
+                destroy_event.window_id = id;
+                destroy_event.event = alloc_null();
+
+            snow::window::dispatch_event( destroy_event );
+
+            window = NULL;
+
+        } //WindowSDL2::destroy
 
 
         void WindowSDL2::create( const window_config &_config, AutoGCRoot* _on_created ) {
