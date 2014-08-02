@@ -6,8 +6,8 @@ import snow.types.Types;
 class IO {
 
 
-    var lib : Snow;
-    var system : IOSystem;
+    @:noCompletion public var lib : Snow;
+    @:noCompletion public var system : IOSystem;
 
 
      @:noCompletion public function new( _lib:Snow ) {
