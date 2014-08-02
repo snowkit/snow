@@ -3,7 +3,7 @@ package snow.platform.native;
 @:cppFileCode( 'extern "C" void snow_register_prims();')
 @:buildXml("
 <target id='haxe'>
-  <lib name='${haxelib:snow}/ndll/${BINDIR}/libsnow-${MSVC_VER}${LIBEXTRA}${LIBEXT}'/>
+  <lib name='${haxelib:snow}/ndll/${BINDIR}/libsnow${MSVC_LIB_VERSION}${LIBEXTRA}${LIBEXT}'/>
 
     <section if='mac'>
         <vflag name='-l' value='iconv'/>
