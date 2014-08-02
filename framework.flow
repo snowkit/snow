@@ -47,6 +47,7 @@
     },
 
     build : {
+      defines : ['hxcpp_static_std'],
       files : {
         boot : { path:'flow/boot/SnowApp.hx => haxe/SnowApp.hx', template:['project', 'snow'] },
       }

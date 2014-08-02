@@ -2,11 +2,20 @@ package snow.platform.native;
 
 import snow.types.Types;
 
-//This uses hxcpp magic to import the std/zlib/regex modules
-import hxcpp.StaticRegexp;
-import hxcpp.StaticStd;
-import hxcpp.StaticZlib;
-import snow.platform.native.StaticSnow;
+#if hxcpp_static_std
+
+    //These use hxcpp magic to
+    //import the std/zlib/regex modules
+
+    import hxcpp.StaticRegexp;
+    import hxcpp.StaticStd;
+    import hxcpp.StaticZlib;
+
+#end //hxcpp_static_std
+
+#if !snow_dynamic_link
+    import snow.platform.native.StaticSnow;
+#end //snow_dynamic_link
 
 /** Implemented in the platform specific concrete versions of this class */
 @:noCompletion class Core extends snow.Core.CoreBinding {
