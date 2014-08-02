@@ -96,6 +96,10 @@ namespace snow {
     extern int id_resizable;
     extern int id_borderless;
     extern int id_antialiasing;
+    extern int id_red_bits;
+    extern int id_green_bits;
+    extern int id_blue_bits;
+    extern int id_alpha_bits;
     extern int id_depth_bits;
     extern int id_stencil_bits;
 
@@ -188,6 +192,10 @@ namespace snow {
         id_resizable            = val_id("resizable");
         id_borderless           = val_id("borderless");
         id_antialiasing         = val_id("antialiasing");
+        id_red_bits             = val_id("red_bits");
+        id_green_bits           = val_id("green_bits");
+        id_blue_bits            = val_id("blue_bits");
+        id_alpha_bits           = val_id("alpha_bits");
         id_depth_bits           = val_id("depth_bits");
         id_stencil_bits         = val_id("stencil_bits");
 

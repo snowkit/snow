@@ -206,10 +206,18 @@ typedef WindowConfig = {
     @:optional var borderless   : Bool;
         /** a value of `0`, `2`, `4`, `8` or other valid antialiasing flags. default: 0 */
     @:optional var antialiasing : Int;
-        /** create a stencil buffer at the specified bit depth (i.e `8` or `16` bit stencil buffer). default: 0 */
-    @:optional var stencil_bits : Int;
+        /** set the number of red bits for the rendering to use. Unless you need to change this, don't. default: 8 */
+    @:optional var red_bits   : Int;
+        /** set the number of green bits for the rendering to use. Unless you need to change this, don't. default: 8 */
+    @:optional var green_bits   : Int;
+        /** set the number of blue bits for the rendering to use. Unless you need to change this, don't. default: 8 */
+    @:optional var blue_bits   : Int;
+        /** set the number of alpha bits for the rendering to use. Unless you need to change this, don't. default: 8 */
+    @:optional var alpha_bits   : Int;
         /** create a depth buffer at the specified bit depth (i.e `0` or `16` bit depth buffer) default: 0 */
     @:optional var depth_bits   : Int;
+        /** create a stencil buffer at the specified bit depth (i.e `8` or `16` bit stencil buffer). default: 0 */
+    @:optional var stencil_bits : Int;
         /** window y at creation. Leave this alone to use the OS default. */
     @:optional var x            : Int;
         /** window x at creation. Leave this alone to use the OS default. */

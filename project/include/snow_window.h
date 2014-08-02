@@ -60,6 +60,10 @@ namespace snow {
             bool borderless;
             bool multitouch;
 
+            int red_bits;
+            int green_bits;
+            int blue_bits;
+            int alpha_bits;
             int depth_bits;
             int stencil_bits;
             int antialiasing;
@@ -74,6 +78,10 @@ namespace snow {
                 fullscreen       = false;
                 resizable        = true;
                 borderless       = false;
+                red_bits         = 8;
+                green_bits       = 8;
+                blue_bits        = 8;
+                alpha_bits       = 8;
                 depth_bits       = 0;
                 stencil_bits     = 0;
                 antialiasing     = 0;
@@ -90,6 +98,10 @@ namespace snow {
                 fullscreen = other.fullscreen;
                 resizable = other.resizable;
                 borderless = other.borderless;
+                red_bits = other.red_bits;
+                green_bits = other.green_bits;
+                blue_bits = other.blue_bits;
+                alpha_bits = other.alpha_bits;
                 depth_bits = other.depth_bits;
                 stencil_bits = other.stencil_bits;
                 antialiasing = other.antialiasing;
@@ -261,6 +273,10 @@ namespace snow {
                 alloc_field( _object, id_resizable, alloc_bool(config.resizable) );
                 alloc_field( _object, id_borderless, alloc_bool(config.borderless) );
 
+                alloc_field( _object, id_red_bits, alloc_int(config.red_bits) );
+                alloc_field( _object, id_green_bits, alloc_int(config.green_bits) );
+                alloc_field( _object, id_blue_bits, alloc_int(config.blue_bits) );
+                alloc_field( _object, id_alpha_bits, alloc_int(config.alpha_bits) );
                 alloc_field( _object, id_depth_bits, alloc_int(config.depth_bits) );
                 alloc_field( _object, id_stencil_bits, alloc_int(config.stencil_bits) );
                 alloc_field( _object, id_antialiasing, alloc_int(config.antialiasing) );
@@ -288,6 +304,10 @@ namespace snow {
                 config.resizable                = property_bool( _in_config, id_resizable, config.resizable );
                 config.borderless               = property_bool( _in_config, id_borderless, config.borderless );
 
+                config.red_bits                 = property_int( _in_config, id_red_bits, config.red_bits );
+                config.green_bits               = property_int( _in_config, id_green_bits, config.green_bits );
+                config.blue_bits                = property_int( _in_config, id_blue_bits, config.blue_bits );
+                config.alpha_bits               = property_int( _in_config, id_alpha_bits, config.alpha_bits );
                 config.depth_bits               = property_int( _in_config, id_depth_bits, config.depth_bits );
                 config.stencil_bits             = property_int( _in_config, id_stencil_bits, config.stencil_bits );
                 config.antialiasing             = property_int( _in_config, id_antialiasing, config.antialiasing );

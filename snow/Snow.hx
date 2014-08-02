@@ -391,8 +391,13 @@ class Snow {
             resizable : true,
             borderless : false,
             antialiasing : 0,
-            stencil_bits : 0,
+
+            red_bits : 2,
+            green_bits : 2,
+            blue_bits : 2,
+            alpha_bits : 8,
             depth_bits : 0,
+            stencil_bits : 0,
 
             x               : 0x1FFF0000,
             y               : 0x1FFF0000,
