@@ -14,8 +14,7 @@
     build : {
       dependencies : {
         snow : '*',
-      },
-      defines : ['one=1', 'two = 2', 'some_define']
+      }
     },
 
     files : {
@@ -23,6 +22,14 @@
       assets : 'assets/'
     }
 
+  },
+
+  if:{
+    web :{
+      build:{
+        flags : ['-dce full']
+      }
+    }
   }
 
 }
