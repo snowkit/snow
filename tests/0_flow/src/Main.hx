@@ -173,8 +173,8 @@ class Main extends snow.AppFixedTimestep {
         // sound5.loop();
 
 
-        #if snow_native
-            snow.platform.native.io.IOSystem.watch_add('assets/');
+        #if desktop
+            app.io.watch_add('assets/');
         #end
 
     } //ready
@@ -246,10 +246,10 @@ class Main extends snow.AppFixedTimestep {
         }
 
         if(keycode == Key.KEY_o) {
-            #if snow_native
-                trace(snow.platform.native.io.IOSystem.dialog_open());
-                trace(snow.platform.native.io.IOSystem.dialog_save());
-                trace(snow.platform.native.io.IOSystem.dialog_folder());
+            #if desktop
+                trace(app.io.dialog_open());
+                trace(app.io.dialog_save());
+                trace(app.io.dialog_folder());
             #end
         }
 
