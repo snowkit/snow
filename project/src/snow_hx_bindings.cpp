@@ -283,6 +283,34 @@ extern double timestamp();
 
     } DEFINE_PRIM(snow_window_close, 1);
 
+    value snow_window_show( value _window ) {
+
+        snow::window::Window* window = NULL;
+
+        if( Object_from_hx(_window, window) ) {
+
+            window->show();
+
+        } //fetch window
+
+        return alloc_null();
+
+    } DEFINE_PRIM(snow_window_show, 1);
+
+    value snow_window_destroy_window( value _window ) {
+
+        snow::window::Window* window = NULL;
+
+        if( Object_from_hx(_window, window) ) {
+
+            window->destroy();
+
+        } //fetch window
+
+        return alloc_null();
+
+    } DEFINE_PRIM(snow_window_destroy_window, 1);
+
 
     value snow_window_simple_message( value _window, value _message, value _title ) {
 

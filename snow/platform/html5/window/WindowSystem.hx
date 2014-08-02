@@ -87,11 +87,23 @@ import snow.window.WindowSystem;
 
         } //window_create
 
-        override public function close( _window:Window ) {
+        override public function destroy_window( _window:Window ) {
 
             js.Browser.document.body.removeChild( _window.handle );
 
-        } //window_close
+        } //destroy_window
+
+        override public function close( _window:Window ) {
+
+            _window.handle.style.display = 'none';
+
+        } //close
+
+        override public function show( _window:Window ) {
+
+            _window.handle.style.display = null;
+
+        } //show
 
         override public function update( _window:Window ) {
 

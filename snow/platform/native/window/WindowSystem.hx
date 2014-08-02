@@ -41,8 +41,16 @@ import snow.utils.Libs;
     } //window_create
 
     override public function close( window:Window ) {
-		snow_window_close( window.handle );
-    } //window_close
+        snow_window_close( window.handle );
+    } //close
+
+    override public function show( window:Window ) {
+        snow_window_show( window.handle );
+    } //show
+
+    override public function destroy_window( window:Window ) {
+		snow_window_destroy_window( window.handle );
+    } //destroy_window
 
     override public function update( window:Window ) {
 		snow_window_update( window.handle );
@@ -152,6 +160,8 @@ import snow.utils.Libs;
 
     static var snow_window_create                   = Snow.load( "snow", "snow_window_create", 2 );
     static var snow_window_close                    = Snow.load( "snow", "snow_window_close", 1 );
+    static var snow_window_show                     = Snow.load( "snow", "snow_window_show", 1 );
+    static var snow_window_destroy_window           = Snow.load( "snow", "snow_window_destroy_window", 1 );
     static var snow_window_update                   = Snow.load( "snow", "snow_window_update", 1 );
     static var snow_window_render                   = Snow.load( "snow", "snow_window_render", 1 );
     static var snow_window_swap                     = Snow.load( "snow", "snow_window_swap", 1 );

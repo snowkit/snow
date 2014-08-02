@@ -7,8 +7,11 @@
 
 namespace snow {
 
+    extern double timestamp();
+
         //externs
     extern int id_type;
+        //forward
     namespace io {
         bool init_filewatch();
         void update_filewatch();

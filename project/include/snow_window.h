@@ -122,7 +122,8 @@ namespace snow {
             we_leave            = 12,
             we_focus_gained     = 13,
             we_focus_lost       = 14,
-            we_close            = 15
+            we_close            = 15,
+            we_destroy          = 16
 
         }; //WindowEventType
 
@@ -175,6 +176,8 @@ namespace snow {
                 virtual void render() = 0;
                 virtual void swap() = 0;
                 virtual void close() = 0;
+                virtual void show() = 0;
+                virtual void destroy() = 0;
 
                 virtual void set_size(int x, int y) = 0;
                 virtual void set_position(int x, int y) = 0;
