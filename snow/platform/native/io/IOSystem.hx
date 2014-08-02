@@ -37,56 +37,70 @@ import haxe.io.Path;
 
     //Static public API functions specific to native/desktop.
 
-            /** Add a folder to a watch list for notifications when the contents of the folder change */
-        public static function watch_add( _path:String ) {
+        #if desktop
 
-            if(_path != null && _path.length > 0) {
-                snow_io_add_watch( resolve(_path) );
-            }
 
-        } //watch_add
+            /** Call this to add a directory to watch for file change notifications.
+                This is for directories only. Children files + sub folders children files will notify of change.
+                supports:`windows` `mac` `linux` only */
+            override public function watch_add( _path:String ) {
 
-            /** Remove a folder from the watch list */
-        public static function watch_remove( _path:String ) {
+                if(_path != null && _path.length > 0) {
+                    snow_io_add_watch( resolve(_path) );
+                }
 
-            if(_path != null && _path.length > 0) {
-                snow_io_remove_watch( resolve(_path) );
-            }
+            } //watch_add
 
-        } //watch_remove
+            /** Call this to remove a watched directory.
+                supports:`windows` `mac` `linux` only */
+            override public function watch_remove( _path:String ) {
 
-    //File dialogs, only available on platforms where it makes sense.
+                if(_path != null && _path.length > 0) {
+                    snow_io_remove_watch( resolve(_path) );
+                }
 
-            /** Opens a file open dialog. Returns a blank string if they cancel or any error occurs. */
-        public static function dialog_open( ?_title:String = "Select file", ?_filters:Array<FileFilter> ) {
+            } //watch_remove
 
-                //disallow null to the native code
-            if(_filters == null) {
-                _filters = [ { extension:'*', desc:'all files' } ];
-            }
+            //File dialogs, only available on platforms where it makes sense.
 
-            return snow_io_dialog_open( _title, _filters );
+            /** Call this to open a native platform file open dialog.
+                Returns a blank string if they cancel or any error occurs.
+                supports: `windows` `mac` `linux` */
+            override public function dialog_open( ?_title:String = "Select file", ?_filters:Array<FileFilter> ) {
 
-        } //dialog_open
+                    //disallow null to the native code
+                if(_filters == null) {
+                    _filters = [ { extension:'*', desc:'all files' } ];
+                }
 
-            /** Opens a file save file dialog. Returns a blank string if they cancel or any error occurs. */
-        public static function dialog_save( ?_title:String = "Save file", ?_filters:Array<FileFilter> ) {
+                return snow_io_dialog_open( _title, _filters );
 
-                //disallow null to the native code
-            if(_filters == null) {
-                _filters = [ { extension:'*', desc:'all files' } ];
-            }
+            } //dialog_open
 
-            return snow_io_dialog_save( _title, _filters );
+                /** Call this to open a native platform file save dialog.
+                    Returns a blank string if they cancel or any error occurs.
+                    supports:`windows` `mac` `linux` */
+            override public function dialog_save( ?_title:String = "Save file", ?_filters:Array<FileFilter> ) {
 
-        } //dialog_save
+                    //disallow null to the native code
+                if(_filters == null) {
+                    _filters = [ { extension:'*', desc:'all files' } ];
+                }
 
-            /** Opens a file open folder select dialog. Returns a blank string if they cancel or any error occurs. */
-        public static function dialog_folder( ?_title:String = "Select folder" ) {
+                return snow_io_dialog_save( _title, _filters );
 
-            return snow_io_dialog_folder( _title );
+            } //dialog_save
 
-        } //dialog_folder
+                /** Call this to open a native platform folder select dialog.
+                    Returns a blank string if they cancel or any error occurs.
+                    supports:`windows` `mac` `linux` */
+            override public function dialog_folder( ?_title:String = "Select folder" ) {
+
+                return snow_io_dialog_folder( _title );
+
+            } //dialog_folder
+
+        #end // desktop
 
     //Internal API
 
@@ -124,14 +138,19 @@ import haxe.io.Path;
 
     //Bindings
 
-        static var snow_io_add_watch        = Libs.load( "snow", "snow_io_add_watch", 1 );
-        static var snow_io_remove_watch     = Libs.load( "snow", "snow_io_remove_watch", 1 );
 
         static var snow_io_url_open         = Libs.load( "snow", "snow_io_url_open", 1 );
+
+    #if desktop
+
+        static var snow_io_add_watch        = Libs.load( "snow", "snow_io_add_watch", 1 );
+        static var snow_io_remove_watch     = Libs.load( "snow", "snow_io_remove_watch", 1 );
 
         static var snow_io_dialog_open      = Libs.load( "snow", "snow_io_dialog_open", 2 );
         static var snow_io_dialog_save      = Libs.load( "snow", "snow_io_dialog_save", 2 );
         static var snow_io_dialog_folder    = Libs.load( "snow", "snow_io_dialog_folder", 1 );
+
+    #end //desktop
 
     } //IO
 
