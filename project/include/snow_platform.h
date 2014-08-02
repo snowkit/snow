@@ -2,14 +2,17 @@
 #ifndef _SNOW_PLATFORM_H_
 #define _SNOW_PLATFORM_H_
 
-#include "SDL.h"
+#ifdef SNOW_USE_SDL
+    #include "SDL.h"
+#endif
+
 #include "snow_window.h"
 
 namespace snow {
     namespace platform {
         namespace window {
 
-            #ifdef HX_WINDOWS
+            #if defined(HX_WINDOWS) && defined(SNOW_USE_SDL)
 
                 void load_icon(SDL_Window* window);
 
