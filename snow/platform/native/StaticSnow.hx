@@ -23,6 +23,7 @@ package snow.platform.native;
     </section>
 
     <section if='windows'>
+
         <lib name='gdi32.lib' />
         <lib name='opengl32.lib' />
         <lib name='user32.lib' />
@@ -37,9 +38,11 @@ package snow.platform.native;
         <lib name='wldap32.lib' />
         <lib name='shell32.lib' />
         <lib name='comdlg32.lib' />
+
      </section>
 
     <section if='linux'>
+
         <lib name='${HXCPP}/lib/${BINDIR}/liblinuxcompat.a' />
         <lib name='-lpthread' />
         <lib name='-lrt' />
@@ -60,23 +63,12 @@ package snow.platform.native;
 
      </section>
 
-     <section if='android'>
-        <lib name='-Wl,--undefined=Java_org_libsdl_app_SDLActivity_nativeInit' if='SNOW_USE_SDL'/>
-        <lib name='-ldl' />
-        <lib name='-llog' />
-        <lib name='-landroid' />
-        <lib name='-lEGL' />
-        <lib name='-lGLESv2' />
-        <lib name='-lGLESv1_CM' />
-        <lib name='-lOpenSLES' />
-     </section> <!-- android -->
 </target>
 ")
-@:keep class StaticSnow
-{
-   static function __init__()
-   {
-     untyped __cpp__("snow_register_prims();");
-   }
-}
+
+@:keep class StaticSnow {
+    static function __init__() {
+        untyped __cpp__("snow_register_prims();");
+    } //__init__
+} //StaticSnow
 
