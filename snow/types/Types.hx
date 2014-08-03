@@ -158,6 +158,38 @@ enum AudioFormatType {
 
 } //AudioFormatType
 
+#if snow_audio_howlerjs
+
+        /** The platform specific implementation detail about the audio data */
+    typedef AudioDataInfo = {
+            /** */
+        var _unused : Bool;
+    } //AudioDataInfo
+
+#else
+
+        /** The platform specific implementation detail about the audio data */
+    typedef AudioDataInfo = {
+
+            /** the file length in bytes */
+        var length : Int;
+            /** the pcm uncompressed raw length in bytes */
+        var length_pcm : Int;
+            /** number of channels */
+        var channels : Int;
+            /** hz rate */
+        var rate : Int;
+            /** sound bitrate */
+        var bitrate : Int;
+            /** bits per sample, 8 / 16 */
+        var bits_per_sample : Int;
+            /** sound raw data */
+        var bytes : ByteArray;
+
+    } //AudioDataInfo
+
+#end //
+
 /** Information about an audio file/data */
 typedef AudioInfo = {
 
@@ -165,22 +197,10 @@ typedef AudioInfo = {
     var id : String;
         /** format */
     var format : AudioFormatType;
-        /** number of channels */
-    var channels : Int;
-        /** hz rate */
-    var rate : Int;
-        /** sound bitrate */
-    var bitrate : Int;
-        /** bits per sample, 8 / 16 */
-    var bits_per_sample : Int;
-        /** sound raw data, */
-    var data : ByteArray;
-        /** the file length in bytes */
-    var length : Int;
-        /** the pcm uncompressed raw length in bytes */
-    var length_pcm : Int;
-        /** the native audio handle for later manipulation */
-    var handle : Dynamic;
+        /** the platform audio data info */
+    var data : AudioDataInfo;
+        /** the platform audio handle for later manipulation */
+    var handle : AudioHandle;
 
 } //AudioInfo
 
@@ -188,7 +208,7 @@ typedef AudioInfo = {
 typedef AudioDataBlob = {
 
         /** True if the file has reached the end of the data in this blob */
-    var data : ByteArray;
+    var bytes : ByteArray;
         /** The data stored in this blob */
     var complete : Bool;
 
@@ -302,6 +322,13 @@ typedef DisplayMode = {
     typedef WindowHandle = js.html.CanvasElement;
 #else
     typedef WindowHandle = Dynamic;
+#end //snow_html5
+
+    /** A platform window handle */
+#if snow_audio_howlerjs
+    typedef AudioHandle = snow.platform.html5.audio.howlerjs.Howl;
+#else
+    typedef AudioHandle = Dynamic;
 #end //snow_html5
 
 

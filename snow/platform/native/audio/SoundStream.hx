@@ -17,9 +17,9 @@ class SoundStream extends snow.audio.Sound {
     public var data_seek : Int->Bool;
 
 
-    public function new( _manager:Audio, _name:String, _audio_info : AudioInfo ) {
+    public function new( _manager:Audio, _name:String ) {
 
-        super(_manager, _name, _audio_info);
+        super(_manager, _name);
 
         buffer_length = _manager.lib.config.native.audio_buffer_length;
         buffer_count = _manager.lib.config.native.audio_buffer_count;

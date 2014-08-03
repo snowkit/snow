@@ -47,37 +47,48 @@ class Audio {
             _name = lib.uniqueid;
         } //_name
 
-            //try loading the sound asset, only reading the entire file if its not streaming
-        var asset : AssetAudio = lib.assets.audio( _id, { load:!streaming } );
-        var info : AudioInfo = null;
-
-        if(asset != null) {
-            info = asset.audio;
-        }
-
             //We always return a valid sound object, so code will be reliable
             //even if the sound is unable to play etc.
 
-        var sound : Sound;
+        var sound : Sound = null;
 
-        if(!streaming) {
+            //try loading the sound asset, only reading the entire file if its not streaming
+        var _asset = lib.assets.audio( _id, { load:!streaming, onload:function(asset:AssetAudio) {
 
-            sound = new Sound(this, _name, info);
+                    Snow.next(function(){
+                        if(asset != null && sound != null) {
+                            sound.info = asset.audio;
+                        }
+                    });
 
-        } else {
+                } //onload
+            } //options
+        ); //audio
 
-            var sound_stream = new SoundStream(this, _name, info);
-                //we store the sounds in a separate list
-                //so that streams don't get bogged down by
-                //lots of sound effects. This means you have
-                //to remove it if not using the audio wrapper routes to cleanup
-            stream_list.set(_name, sound_stream);
-            sound = sound_stream;
+            //if it's a valid asset (it may still be loading the data)
+        if(_asset != null) {
 
-        } //streaming
+            if(!streaming) {
 
-            //store for later
-        sound_list.set(_name, sound);
+                sound = new Sound(this, _name);
+
+            } else {
+
+                var sound_stream = new SoundStream(this, _name);
+                    //we store the sounds in a separate list
+                    //so that streams don't get bogged down by
+                    //lots of sound effects. This means you have
+                    //to remove it if not using the audio wrapper routes to cleanup
+                stream_list.set(_name, sound_stream);
+                    //set the higher typed one for return
+                sound = sound_stream;
+
+            } //streaming
+
+                //store for later
+            sound_list.set(_name, sound);
+
+        } //_asset
 
         return sound;
 

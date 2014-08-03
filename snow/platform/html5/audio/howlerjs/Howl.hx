@@ -15,8 +15,8 @@ package snow.platform.html5.audio.howlerjs;
     function volume(vol:Float, ?id:String):Dynamic; // returns Howl or current volume (Float)
     function loop(loop:Bool):Dynamic; // returns Howl or current looping value (Bool)
     function sprite(sprite:SpriteParams):Dynamic; // Returns Howl or current sprite
-    function pos(pos:Float, ?id:String):Dynamic; // returns Howl or current playback position (Float)
-    function pos3d(x:Float, y:Float, z:Float, ?id:String):Dynamic; // returns Howl or current 3D position (Array<Float>)
+    function pos(?pos:Float, ?id:String):Dynamic; // returns Howl or current playback position (Float)
+    function pos3d(?x:Float, ?y:Float, ?z:Float, ?id:String):Dynamic; // returns Howl or current 3D position (Array<Float>)
     function fade(from:Float, to:Float, len:Float, ?callBack:Void->Void, ?id:String):Howl;
     function fadeIn(to:Float, len:Float, callBack:Void->Void):Howl;
     function fadeOut(to:Float, len:Float, calBack:Void->Void, ?id:String):Howl;

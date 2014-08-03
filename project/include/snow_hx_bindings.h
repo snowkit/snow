@@ -25,6 +25,7 @@ namespace snow {
     extern int id_text;
     extern int id_length;
     extern int id_data;
+    extern int id_bytes;
     extern int id_handle;
     extern int id_complete;
 
@@ -121,6 +122,7 @@ namespace snow {
         id_text                 = val_id("text");
         id_length               = val_id("length");
         id_data                 = val_id("data");
+        id_bytes                = val_id("bytes");
         id_handle               = val_id("handle");
         id_complete             = val_id("complete");
 

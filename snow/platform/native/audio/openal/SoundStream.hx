@@ -18,31 +18,49 @@ import snow.platform.native.audio.openal.OpenALHelper;
     public var buffers_left : Int = 0;
 
 
-    public function new( _manager:Audio, _name:String, _audio_info : AudioInfo ) {
+    public function new( _manager:Audio, _name:String ) {
 
-        super(_manager, _name, _audio_info);
+        super(_manager, _name);
 
         is_stream = true;
 
-        if(info == null) {
+    } //new
 
-            trace('/ snow / not creating sound, _audio_info was null');
+//Internal API
 
-            return;
+    override function set_info( _info : AudioInfo ) : AudioInfo {
 
-        } else {
+
+            //if preexisting,
+        if(info != null) {
+            destroy();
+        }
+
+            //flag as done for gc
+        info = null;
+
+            //now
+        if(_info == null) {
+
+            trace("/ snow / not creating sound, info was null");
+
+            return info;
+
+        }
+
+            //store the new sound
+        info = _info;
+
 
             trace('/ snow / creating sound / ${name} / ${info.id} / ${info.format}');
 
-            trace('/ snow /\t > rate : ${info.rate}');
-            trace('/ snow /\t > channels : ${info.channels}');
-            trace('/ snow /\t > bitrate : ${info.bitrate}');
-            trace('/ snow /\t > bits_per_sample : ${info.bits_per_sample}');
-            trace('/ snow /\t > file length : ${info.length}');
-            trace('/ snow /\t > byte length: ${info.length_pcm}');
-            trace('/ snow /\t > duration : $duration');
-
-        }
+            // trace('/ snow /\t > rate : ${info.data.rate}');
+            // trace('/ snow /\t > channels : ${info.data.channels}');
+            // trace('/ snow /\t > bitrate : ${info.data.bitrate}');
+            // trace('/ snow /\t > bits_per_sample : ${info.data.bits_per_sample}');
+            // trace('/ snow /\t > file length : ${info.data.length}');
+            // trace('/ snow /\t > byte length: ${info.data.length_pcm}');
+            // trace('/ snow /\t > duration : $duration');
 
             //generate a source
         source = AL.genSource();
@@ -68,9 +86,10 @@ import snow.platform.native.audio.openal.OpenALHelper;
 
         trace('/ snow / audio / ${name} buffered data / ${AL.getErrorMeaning(AL.getError())} ');
 
-    } //new
 
-//Internal API
+        return info;
+
+    } //set_info
 
         //will try and fill the buffer, will return false if there
         //was no data to get (i.e end of file )
@@ -79,8 +98,8 @@ import snow.platform.native.audio.openal.OpenALHelper;
             //try to read the data into the buffer, the -1 means "from current"
         var _blob : AudioDataBlob = data_get( -1, buffer_length );
 
-        if(_blob != null && _blob.data != null && _blob.data.length != 0) {
-            AL.bufferData( _buffer, format, new Float32Array(_blob.data), _blob.data.length, info.rate ); AL.getError();
+        if(_blob != null && _blob.bytes != null && _blob.bytes.length != 0) {
+            AL.bufferData( _buffer, format, new Float32Array(_blob.bytes), _blob.bytes.length, info.data.rate ); AL.getError();
         }
 
         return _blob;
@@ -177,7 +196,7 @@ import snow.platform.native.audio.openal.OpenALHelper;
 
             } //complete
 
-            if(!skip_queue && blob.data.length != 0) {
+            if(!skip_queue && blob.bytes.length != 0) {
                 AL.sourceQueueBuffer(source, _buffer);
                 trace("requeue buffer ");
             }

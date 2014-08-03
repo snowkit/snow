@@ -215,26 +215,20 @@ class Assets {
             }
 
             var _type : AudioFormatType = AudioFormatType.unknown;
-
             switch(options.type) {
-
-                case 'wav':{
+                case 'wav': {
                     _type = AudioFormatType.wav;
                 }
-
                 case 'ogg':{
                     _type = AudioFormatType.ogg;
                 }
-
                 case 'pcm':{
                     _type = AudioFormatType.pcm;
                 }
-
                 default: {
                     load_error(_id, 'unrecognized audio format');
                     return null;
                 }
-
             } //options.type
 
             var asset = new AssetAudio( this, info, _type, options.load );
