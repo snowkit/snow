@@ -37,8 +37,6 @@ import snow.utils.AbstractClass;
 
         /** The `Audio` system handling this sound */
     public var manager : Audio;
-        /** The `AudioInfo` this sound is created from */
-    public var info : AudioInfo;
         /** The name of this sound */
     public var name : String = '';
 
@@ -49,6 +47,8 @@ import snow.utils.AbstractClass;
         /** If the sound is a stream source */
     public var is_stream : Bool = false;
 
+        /** The `AudioInfo` this sound is created from. When assigning this it will clean up and set itself to this info instead. */
+    @:isVar public var info     (get,set) : AudioInfo;
         /** The pitch of this sound */
     @:isVar public var pitch    (get,set) : Float = 1.0;
         /** The volume of this sound */
@@ -57,22 +57,17 @@ import snow.utils.AbstractClass;
     @:isVar public var pan      (get,set) : Float = 0.0;
         /** If the sound is looping or not */
     @:isVar public var looping  (get,set) : Bool = false;
-        /** The current playback position of this sound in `bytes` */
-    @:isVar public var position (get,set) : Int = 0;
         /** The current playback time of this sound in `seconds` */
     @:isVar public var time     (get,set) : Float = 0.0;
-        /** The length of this sound in `seconds` */
-    @:isVar public var length   (get,never) : Int = 0;
         /** The duration of this sound, in `bytes` */
     @:isVar public var duration (get,never) : Float = 0.0;
 
 //Construct
 
-    public function new( _manager:Audio, _name:String, _audio_info : AudioInfo ) {
+    public function new( _manager:Audio, _name:String ) {
 
         name = _name;
         manager = _manager;
-        info = _audio_info;
 
     } //new
 
@@ -99,26 +94,6 @@ import snow.utils.AbstractClass;
 
 //Shared implementations
 
-        /** A helper for converting bytes to seconds for this sound source, using the format settings specific to this sound */
-    public function bytes_to_seconds( _bytes:Int ) : Float {
-
-        var word = info.bits_per_sample == 16 ? 2 : 1;
-        var sample_frames = (info.rate * info.channels * word);
-
-        return _bytes / sample_frames;
-
-    } //bytes_to_seconds
-
-        /** A helper for converting seconds to bytes for this sound source, using the format settings specific to this sound */
-    public function seconds_to_bytes( _seconds:Float ) : Int {
-
-        var word = info.bits_per_sample == 16 ? 2 : 1;
-        var sample_frames = (info.rate * info.channels * word);
-
-        return Std.int(_seconds * sample_frames);
-
-    } //seconds_to_bytes
-
         /** Toggle this sound */
     public function toggle() {
 
@@ -136,6 +111,14 @@ import snow.utils.AbstractClass;
 
     } //toggle
 
+    function get_info() : AudioInfo {
+        return info;
+    }
+
+    function set_info( _info:AudioInfo ) : AudioInfo {
+        return info = _info;
+    }
+
     function get_pan() : Float {
         return pan;
     } //get_pan
@@ -152,22 +135,14 @@ import snow.utils.AbstractClass;
         return looping;
     } //get_looping
 
-    function get_position() : Int {
-        return position;
-    } //get_position
-
     function get_time() : Float {
         return time;
     } //get_time
 
-    function get_length() : Int {
-        return info.length_pcm;
-    } //get_length
-
+        //overridden in platform concrete
     function get_duration() : Float {
-        return bytes_to_seconds(length);
+        return 0;
     } //get_duration
-
 
     function set_pan( _pan:Float ) : Float {
         return pan = _pan;
@@ -180,10 +155,6 @@ import snow.utils.AbstractClass;
     function set_volume( _volume:Float ) : Float {
         return volume = _volume;
     } //set_volume
-
-    function set_position( _position:Int ) : Int {
-        return position = _position;
-    } //set_position
 
     function set_time( _time:Float ) : Float {
         return time = _time;

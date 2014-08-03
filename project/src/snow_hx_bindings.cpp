@@ -512,18 +512,25 @@ extern double timestamp();
             return alloc_null();
         } //!success
 
+        ByteArray data(buffer);
+
         value _object = alloc_empty_object();
 
             alloc_field( _object, id_id, _id );
             alloc_field( _object, id_format, alloc_int( 1 )); //1 here is ogg
-            alloc_field( _object, id_channels, alloc_int( ogg_source->info->channels ));
-            alloc_field( _object, id_rate, alloc_int( ogg_source->info->rate ));
-            alloc_field( _object, id_bitrate, alloc_int( ogg_source->info->bitrate_nominal ));
-            alloc_field( _object, id_bits_per_sample, alloc_int( 16 ) ); //:todo: optionize?
-            alloc_field( _object, id_data, ByteArray(buffer).mValue );
-            alloc_field( _object, id_length, alloc_int(ogg_source->length) );
-            alloc_field( _object, id_length_pcm, alloc_int(ogg_source->length_pcm) );
             alloc_field( _object, id_handle, Object_to_hx(ogg_source) );
+
+            value _dataobject = alloc_empty_object();
+
+                alloc_field( _dataobject, id_channels, alloc_int( ogg_source->info->channels ));
+                alloc_field( _dataobject, id_rate, alloc_int( ogg_source->info->rate ));
+                alloc_field( _dataobject, id_bitrate, alloc_int( ogg_source->info->bitrate_nominal ));
+                alloc_field( _dataobject, id_bits_per_sample, alloc_int( 16 ) ); //:todo: optionize?
+                alloc_field( _dataobject, id_bytes, data.mValue );
+                alloc_field( _dataobject, id_length, alloc_int(ogg_source->length) );
+                alloc_field( _dataobject, id_length_pcm, alloc_int(ogg_source->length_pcm) );
+
+            alloc_field( _object, id_data, _dataobject );
 
         return _object;
 
@@ -545,7 +552,7 @@ extern double timestamp();
 
             value _object = alloc_empty_object();
 
-                alloc_field( _object, id_data, data.mValue );
+                alloc_field( _object, id_bytes, data.mValue );
                 alloc_field( _object, id_complete, alloc_bool(complete) );
 
             return _object;
@@ -597,15 +604,20 @@ extern double timestamp();
         value _object = alloc_empty_object();
 
             alloc_field( _object, id_id, _id );
-            alloc_field( _object, id_channels, alloc_int(wav_source->channels) );
-            alloc_field( _object, id_rate, alloc_int(wav_source->rate) );
             alloc_field( _object, id_format, alloc_int(2) ); //2 here is wav
-            alloc_field( _object, id_bitrate, alloc_int(wav_source->bitrate) );
-            alloc_field( _object, id_bits_per_sample, alloc_int(wav_source->bits_per_sample) );
-            alloc_field( _object, id_data, data.mValue );
-            alloc_field( _object, id_length, alloc_int(wav_source->length) );
-            alloc_field( _object, id_length_pcm, alloc_int(wav_source->length_pcm) );
             alloc_field( _object, id_handle, Object_to_hx(wav_source) );
+
+            value _dataobject = alloc_empty_object();
+
+                alloc_field( _dataobject, id_channels, alloc_int(wav_source->channels) );
+                alloc_field( _dataobject, id_rate, alloc_int(wav_source->rate) );
+                alloc_field( _dataobject, id_bitrate, alloc_int(wav_source->bitrate) );
+                alloc_field( _dataobject, id_bits_per_sample, alloc_int(wav_source->bits_per_sample) );
+                alloc_field( _dataobject, id_bytes, data.mValue );
+                alloc_field( _dataobject, id_length, alloc_int(wav_source->length) );
+                alloc_field( _dataobject, id_length_pcm, alloc_int(wav_source->length_pcm) );
+
+            alloc_field( _object, id_data, _dataobject );
 
         return _object;
 
@@ -628,7 +640,7 @@ extern double timestamp();
 
             value _object = alloc_empty_object();
 
-                alloc_field( _object, id_data, data.mValue );
+                alloc_field( _object, id_bytes, data.mValue );
                 alloc_field( _object, id_complete, alloc_bool(complete) );
 
             return _object;
@@ -681,15 +693,20 @@ extern double timestamp();
         value _object = alloc_empty_object();
 
             alloc_field( _object, id_id, _id );
-            alloc_field( _object, id_channels, alloc_int(pcm_source->channels) );
-            alloc_field( _object, id_rate, alloc_int(pcm_source->rate) );
             alloc_field( _object, id_format, alloc_int(3) ); //3 here is pcm
-            alloc_field( _object, id_bitrate, alloc_int(pcm_source->bitrate) );
-            alloc_field( _object, id_bits_per_sample, alloc_int(pcm_source->bits_per_sample) );
-            alloc_field( _object, id_data, data.mValue );
-            alloc_field( _object, id_length, alloc_int(pcm_source->length) );
-            alloc_field( _object, id_length_pcm, alloc_int(pcm_source->length_pcm) );
             alloc_field( _object, id_handle, Object_to_hx(pcm_source) );
+
+            value _dataobject = alloc_empty_object();
+
+                alloc_field( _dataobject, id_channels, alloc_int(pcm_source->channels) );
+                alloc_field( _dataobject, id_rate, alloc_int(pcm_source->rate) );
+                alloc_field( _dataobject, id_bitrate, alloc_int(pcm_source->bitrate) );
+                alloc_field( _dataobject, id_bits_per_sample, alloc_int(pcm_source->bits_per_sample) );
+                alloc_field( _dataobject, id_bytes, data.mValue );
+                alloc_field( _dataobject, id_length, alloc_int(pcm_source->length) );
+                alloc_field( _dataobject, id_length_pcm, alloc_int(pcm_source->length_pcm) );
+
+            alloc_field( _object, id_data, _dataobject );
 
         return _object;
 
@@ -712,7 +729,7 @@ extern double timestamp();
 
             value _object = alloc_empty_object();
 
-                alloc_field( _object, id_data, data.mValue );
+                alloc_field( _object, id_bytes, data.mValue );
                 alloc_field( _object, id_complete, alloc_bool(complete) );
 
             return _object;
@@ -1071,6 +1088,7 @@ extern double timestamp();
     int id_text;
     int id_length;
     int id_data;
+    int id_bytes;
     int id_handle;
     int id_complete;
 

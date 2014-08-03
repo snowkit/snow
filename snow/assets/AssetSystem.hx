@@ -35,10 +35,15 @@ import snow.utils.AbstractClass;
 
         /** Audio info loader */
     public function audio_load_info( _path:String, ?_format:AudioFormatType, ?_load:Bool = true, ?_onload:?AudioInfo->Void ) : AudioInfo;
-        /** Audio seek the specified audio info to the given position in bytes */
+
+#if snow_native
+
+        /** Audio seek the specified audio info to the given position in bytes. `native` only */
     public function audio_seek_source( _info:AudioInfo, _to:Int ) : Bool;
-        /** Audio portion loading (used for streaming or splitting source files into multiple blobs). sizes are in bytes */
+        /** Audio portion loading (used for streaming or splitting source files into multiple blobs). sizes are in bytes. `native` only */
     public function audio_load_portion( _info:AudioInfo, _start:Int, _len:Int ) : AudioDataBlob;
+
+#end //snow_native
 
 
 } //AssetSystemBinding

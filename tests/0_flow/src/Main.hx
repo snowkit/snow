@@ -159,17 +159,17 @@ class Main extends snow.AppFixedTimestep {
 
         positionY = (app.window.height - size) / 2;
 
-        sound1 = app.audio.create("assets/sound.pcm");
+        sound1 = app.audio.create("assets/sound.pcm" );
         sound2 = app.audio.create("assets/sound.ogg", 'ogg');
         sound3 = app.audio.create("assets/sound.wav", 'wav');
-        sound4 = app.audio.create("assets/music.wav", 'wav_stream', true);
+        // sound4 = app.audio.create("assets/music.wav", 'wav_stream', true);
         sound5 = app.audio.create("assets/music.ogg", 'ogg_stream', true);
 
-        trace("sound1 : " + sound1.name);
-        trace("sound2 : " + sound2.name);
-        trace("sound3 : " + sound3.name);
-        trace("sound4 : " + sound4.name);
-        trace("sound5 : " + sound5.name);
+        // trace("sound1 : " + sound1.name);
+        // trace("sound2 : " + sound2.name);
+        // trace("sound3 : " + sound3.name);
+        // trace("sound4 : " + sound4.name);
+        // trace("sound5 : " + sound5.name);
 
         // sound4.loop();
         // sound5.loop();
@@ -187,6 +187,7 @@ class Main extends snow.AppFixedTimestep {
     var cursor = true;
 
     var window2 : Window;
+    var loope : Bool = false;
 
     override function onkeydown( keycode:Int, _,_,_,_,_ ) {
 
@@ -194,7 +195,18 @@ class Main extends snow.AppFixedTimestep {
 
             //console scan code should be universally next to 1
         if(keycode == Key.KEY_e) {
-            sound1.play();
+            app.audio.play('ogg');
+            trace(sound1.duration);
+            trace(sound1.time);
+        }
+
+        if(keycode == Key.KEY_l) {
+            loope = !loope;
+            if(loope) {
+                app.audio.loop('ogg');
+            } else {
+                app.audio.stop('ogg');
+            }
         }
 
         if(keycode == Key.KEY_h) {
@@ -209,6 +221,7 @@ class Main extends snow.AppFixedTimestep {
 
         if(keycode == Key.KEY_q) {
             left = !left;
+            trace(sound2.pan);
             sound2.pan = left ? -1 : 1;
             sound2.play();
         }
@@ -256,7 +269,7 @@ class Main extends snow.AppFixedTimestep {
         }
 
         if(keycode == Key.KEY_r) {
-            sound5.position = 0;
+            sound5.time = 0;
             trace('music reset');
         }
 
@@ -400,6 +413,10 @@ class Main extends snow.AppFixedTimestep {
         positionX = phys_posx;
 
         phys_posx += (speed * dirX * delta);
+
+        if(sound5 != null && sound5.playing) {
+            // trace(sound5.time);
+        }
 
         if(current_texture != null) {
 

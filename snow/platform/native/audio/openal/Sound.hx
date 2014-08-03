@@ -19,62 +19,9 @@ import snow.platform.native.audio.openal.OpenALHelper;
         /** mono8? stereo16? */
     public var format : Int;
 
-    public function new( _manager:Audio, _name:String, _audio_info : AudioInfo ) {
+    public function new( _manager:Audio, _name:String ) {
 
-        super(_manager, _name, _audio_info);
-
-        if(info == null) {
-
-            trace("/ snow / not creating sound, _audio_info was null");
-
-            return;
-
-        } else {
-
-            trace('/ snow / creating sound / ${name} / ${info.id} / ${info.format}');
-
-            trace("/ snow /\t > rate : " + info.rate);
-            trace("/ snow /\t > channels : " + info.channels);
-            trace("/ snow /\t > bitrate : " + info.bitrate);
-            trace("/ snow /\t > bits_per_sample : " + info.bits_per_sample);
-            trace("/ snow /\t > file length : " + info.length);
-            trace("/ snow /\t > byte length: " + info.length_pcm);
-            trace("/ snow /\t > duration : " + duration);
-
-        }
-
-        source = AL.genSource();
-
-            trace('/ snow / audio / ${name} generating source for sound / ${AL.getErrorMeaning(AL.getError())} ');
-
-            //ask the shared openal helper function
-        OpenALHelper.default_source_setup( source );
-
-            //generate a buffer for this sound
-        buffer = AL.genBuffer();
-
-            trace('/ snow / audio / ${name} generating buffer for sound / ${AL.getErrorMeaning(AL.getError())} ');
-
-            //ask the helper to determine the format
-        format = OpenALHelper.determine_format( info );
-
-            //check that we have valid data info
-        trace(info.data);
-        trace(info.data.length);
-        if(info.data == null || info.data.length == 0) {
-            trace('/ snow / audio / ${name} cannot create sound, empty/null data provided!');
-            return;
-        }
-
-            //give the data from the sound info to the buffer
-        AL.bufferData(buffer, format, new Float32Array(info.data), info.data.length, info.rate );
-
-            trace('/ snow / audio / ${name} buffered data / ${AL.getErrorMeaning(AL.getError())} ');
-
-            //give the buffer to the source
-        AL.sourcei(source, AL.BUFFER, buffer);
-
-            trace('/ snow / audio / ${name} assigning buffer to source / ${AL.getErrorMeaning(AL.getError())} ');
+        super(_manager, _name);
 
     } //new
 
@@ -140,6 +87,74 @@ import snow.platform.native.audio.openal.OpenALHelper;
 
 
 //getters / setters
+
+    override function set_info( _info:AudioInfo ) : AudioInfo {
+
+            //if preexisting,
+        if(info != null) {
+            destroy();
+        }
+
+            //flag as done for gc
+        info = null;
+
+            //now
+        if(_info == null) {
+
+            trace("/ snow / not creating sound, info was null");
+
+            return info;
+
+        }
+
+            //store the new sound
+        info = _info;
+
+        trace('/ snow / creating sound / ${name} / ${info.id} / ${info.format}');
+
+            // trace("/ snow /\t > rate : " + info.data.rate);
+            // trace("/ snow /\t > channels : " + info.data.channels);
+            // trace("/ snow /\t > bitrate : " + info.data.bitrate);
+            // trace("/ snow /\t > bits_per_sample : " + info.data.bits_per_sample);
+            // trace("/ snow /\t > file length : " + info.data.length);
+            // trace("/ snow /\t > byte length: " + info.data.length_pcm);
+            // trace("/ snow /\t > duration : " + duration);
+
+        source = AL.genSource();
+
+            trace('/ snow / audio / ${name} generating source for sound / ${AL.getErrorMeaning(AL.getError())} ');
+
+            //ask the shared openal helper function
+        OpenALHelper.default_source_setup( source );
+
+            //generate a buffer for this sound
+        buffer = AL.genBuffer();
+
+            trace('/ snow / audio / ${name} generating buffer for sound / ${AL.getErrorMeaning(AL.getError())} ');
+
+            //ask the helper to determine the format
+        format = OpenALHelper.determine_format( info );
+
+            //check that we have valid data info
+        if(info.data.bytes == null || info.data.bytes.length == 0) {
+            trace('/ snow / audio / ${name} cannot create sound, empty/null data provided!');
+            return info;
+        }
+
+            //give the data from the sound info to the buffer
+        AL.bufferData(buffer, format, new Float32Array(info.data.bytes), info.data.bytes.length, info.data.rate );
+
+            trace('/ snow / audio / ${name} buffered data / ${AL.getErrorMeaning(AL.getError())} ');
+
+            //give the buffer to the source
+        AL.sourcei(source, AL.BUFFER, buffer);
+
+            trace('/ snow / audio / ${name} assigning buffer to source / ${AL.getErrorMeaning(AL.getError())} ');
+
+
+        return info;
+
+    } //set_info
 
     static var half_pi : Float = 1.5707;
 

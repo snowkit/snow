@@ -28,8 +28,8 @@ import snow.audio.openal.AL;
         var format = AL.FORMAT_MONO16;
 
                 //if 2+ channels, it's stereo
-            if(_info.channels > 1) {
-                if(_info.bits_per_sample == 8) {
+            if(_info.data.channels > 1) {
+                if(_info.data.bits_per_sample == 8) {
                     format = AL.FORMAT_STEREO8;
                     trace("/ snow /\t > format : STEREO 8");
                 } else {
@@ -37,7 +37,7 @@ import snow.audio.openal.AL;
                     trace("/ snow /\t > format : STEREO 16");
                 }
             } else { //mono
-                if(_info.bits_per_sample == 8) {
+                if(_info.data.bits_per_sample == 8) {
                     format = AL.FORMAT_MONO8;
                     trace("/ snow /\t > format : MONO 8");
                 } else {
