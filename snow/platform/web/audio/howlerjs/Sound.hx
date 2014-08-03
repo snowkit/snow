@@ -155,20 +155,27 @@ class Sound extends snow.platform.web.audio.Sound {
         if(info != null && info.handle != null) {
             info.handle.stop();
         } //
+
     } //stop
 
         /** Pause this sound */
     override public function pause() {
+
         if(info != null && info.handle != null) {
             info.handle.pause();
         } //
-    }
+
+    } //pause
 
         /** Destroy this sound and it's data */
     override public function destroy() {
+
         if(info != null && info.handle != null) {
             info.handle.unload();
         } //
-    }
+
+        manager.kill(this);
+
+    } //destroy
 
 } //Sound
