@@ -12,8 +12,9 @@ typedef Scan = snow.input.Keycodes.Scancodes;
 /** Internal input system, accessed via `app.input` */
 class Input {
 
-    var lib : Snow;
-    var platform : InputSystem;
+        /** access to snow from subsystems */
+    @:noCompletion public var lib : Snow;
+    @:noCompletion public var platform : InputSystem;
 
         //this is the enum based flags for keypressed/keyreleased/keydown
     var key_code_down : Map<Int, Bool>;
