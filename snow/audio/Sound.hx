@@ -122,7 +122,7 @@ import snow.utils.AbstractClass;
     public function stop() {}
         /** Pause this sound */
     public function pause() {}
-        /** Destroy this sound and it's data */
+        /** Destroy this sound and it's data. */
     public function destroy() {}
 
 // Internal system events

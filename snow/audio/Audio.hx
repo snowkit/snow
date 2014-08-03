@@ -93,6 +93,28 @@ class Audio {
 
     } //create
 
+        /** Destroy a sound instance by name. Use sound_instance.destroy() if you have an instance. */
+    public function uncreate( _name:String ) {
+
+        var _sound = sound_list.get(_name);
+
+        if(_sound == null) {
+            trace('/ snow / can\'t find sound, unable to uncreate, use create first: ${_name}');
+        } //_sound
+
+            //kill the sound
+        _sound.destroy();
+
+    } //uncreate
+
+    @:noCompletion public function kill( _sound:Sound ) {
+
+        handles.remove(_sound.info.handle);
+        sound_list.remove(_sound.name);
+        stream_list.remove(_sound.name);
+
+    } //kill
+
         /** Get a sound instance by name */
     public function get( _name:String ) : Sound {
 

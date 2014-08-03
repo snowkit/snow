@@ -83,6 +83,8 @@ import snow.platform.native.audio.openal.OpenALHelper;
         AL.deleteSource(source);
         AL.deleteBuffer(buffer);
 
+        manager.kill(this);
+
     } //destroy
 
 //internal
