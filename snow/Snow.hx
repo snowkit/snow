@@ -68,6 +68,7 @@ class Snow {
 
             //We create the core as a concrete platform version of the core
         core = new Core( this );
+        next_list = [];
 
     } //new
 
@@ -244,6 +245,19 @@ class Snow {
 
             //first update timers
         Timer.update();
+
+            //fire any next tick
+        if(next_list.length > 0) {
+
+                //avoid allocating on the run loop
+                //as much as possible so no iterator
+            for(i in 0 ... next_list.length) {
+                next_list[i]();
+            }
+
+            next_list.splice(0, next_list.length);
+
+        } //next_list.length
 
             //handle any internal updates
         host.on_internal_update();
@@ -424,6 +438,18 @@ class Snow {
         return snow.utils.Libs.load( library, method, args );
 
     } //load
+
+
+    static var next_list : Array<Void->Void>;
+        /** Call a function at the start of the next frame,
+            useful for async calls in a sync context, allowing the sync function to return safely before the onload is fired. */
+    public static function next( func: Void->Void ) {
+
+        if(func != null) {
+            next_list.push(func);
+        }
+
+    } //next
 
 //Debug helpers
 
