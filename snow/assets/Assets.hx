@@ -22,6 +22,8 @@ class Assets {
     public var assets_root : String = '';
         /** The manifest file to parse for the asset list. By default, this is set to `manifest` from the build tools but the `App` class can have a custom `get_asset_list` handler use this value. */
     public var manifest_path : String = 'manifest';
+        /** The default approach to finding assets, overridable in each get call, this value will be used if the flag is not specified. */
+    public var strict : Bool = true;
 
 //internal
 
@@ -109,7 +111,14 @@ class Assets {
         /** Get an asset as a `AssetBytes`, data stored as `ByteArray` used for binary assets. */
     public function bytes( _id:String, ?options:AssetBytesOptions ) : AssetBytes {
 
-        if(exists(_id)) {
+        var _strict = strict;
+
+        if(options != null && options.strict != null) {
+            _strict = options.strict;
+        }
+
+
+        if(exists(_id, _strict)) {
 
             var info : AssetInfo = get(_id);
 
@@ -133,7 +142,14 @@ class Assets {
         /** Get an asset as a `AssetText`, data stored as `String`, used for text based assets */
     public function text( _id:String, ?options:AssetTextOptions ) : AssetText {
 
-        if(exists(_id)) {
+        var _strict = strict;
+
+        if(options != null && options.strict != null) {
+            _strict = options.strict;
+        }
+
+
+        if(exists(_id, _strict)) {
 
             var info : AssetInfo = get(_id);
 
@@ -157,9 +173,15 @@ class Assets {
         /** Get an asset as a `AssetImage`, data stored as `ImageInfo`, used for image files */
     public function image( _id:String, ?options:AssetImageOptions ) : AssetImage {
 
+        var _strict = strict;
         var from_bytes = options != null && options.bytes != null;
 
-        if(exists(_id) || from_bytes) {
+        if(options != null && options.strict != null) {
+            _strict = options.strict;
+        }
+
+
+        if(exists(_id, _strict) || from_bytes) {
 
             if(options == null) {
                 options = { components : 4 };
@@ -194,7 +216,14 @@ class Assets {
         /** Get an asset as a `AssetAudio`, used for audio files */
     public function audio( _id:String, ?options:AssetAudioOptions ) : AssetAudio {
 
-        if(exists(_id)) {
+        var _strict = strict;
+
+        if(options != null && options.strict != null) {
+            _strict = options.strict;
+        }
+
+
+        if(exists(_id, _strict)) {
 
             var info : AssetInfo = get(_id);
 

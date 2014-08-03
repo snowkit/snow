@@ -37,6 +37,7 @@ enum AssetType {
 /** The options for an `AssetBytes` asset.
     Get assets from the `Assets` class, via `app.assets` */
 typedef AssetBytesOptions = {
+    ? strict : Bool,
     ? async : Bool,
     ? onload : AssetBytes -> Void
 } //AssetBytesOptions
@@ -44,6 +45,7 @@ typedef AssetBytesOptions = {
 /** The options for an `AssetText` asset.
     Get assets from the `Assets` class, via `app.assets` */
 typedef AssetTextOptions = {
+    ? strict : Bool,
     ? async : Bool,
     ? onload : AssetText -> Void
 } //AssetTextOptions
@@ -51,6 +53,7 @@ typedef AssetTextOptions = {
 /** The options for an `AssetImage` asset.
     Get assets from the `Assets` class, via `app.assets` */
 typedef AssetImageOptions = {
+    ? strict : Bool,
     ? components : Int,
     ? onload : AssetImage -> Void,
     ? bytes : ByteArray
@@ -58,6 +61,7 @@ typedef AssetImageOptions = {
 
 /** The options for an `AssetAudio` asset */
 typedef AssetAudioOptions = {
+    ? strict : Bool,
     ? type : String,
     ? load : Bool,
     ? onload : AssetAudio -> Void
