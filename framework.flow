@@ -155,13 +155,13 @@
     },
     web : {
       build: {
-        defines : ['snow_html5']
+        defines : ['snow_web']
       }
     },
 
 
 
-    snow_html5 : {
+    snow_web : {
       files : {
         index : { path:'flow/web/index.html => index.html', template:'project', not_listed:true },
         modernizr : { path:'flow/web/lib/modernizr.hs => lib/modernizr.js', not_listed:true },
@@ -174,7 +174,7 @@
       }
     },
 
-    "snow_html5 && debug" : {
+    "snow_web && debug" : {
       files : {
         howlerjs : { path:'flow/web/lib/howler.js => lib/howler.js', not_listed:true },
       }

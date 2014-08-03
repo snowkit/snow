@@ -36,24 +36,32 @@ import snow.utils.ByteArray;
     override public function image_load_info( _path:String, ?_components:Int = 4, ?_onload:?ImageInfo->Void ) : ImageInfo {
 
         var _native_info = snow_assets_image_load_info( _path, _components );
+        var info : ImageInfo = null;
 
-        var info : ImageInfo = {
-            id : _native_info.id,
-            bpp : _native_info.bpp,
-            width : _native_info.width,
-            height : _native_info.height,
-            width_actual : _native_info.width,
-            height_actual : _native_info.height,
-            bpp_source : _native_info.bpp_source,
-            data : new snow.utils.UInt8Array( _native_info.data )
-        };
+        if(_native_info != null) {
+
+            info = {
+                id : _native_info.id,
+                bpp : _native_info.bpp,
+                width : _native_info.width,
+                height : _native_info.height,
+                width_actual : _native_info.width,
+                height_actual : _native_info.height,
+                bpp_source : _native_info.bpp_source,
+                data : new snow.utils.UInt8Array( _native_info.data )
+            };
+
+        } //native_info != null
+
 
         if(_onload != null) {
-            _onload(info);
+            _onload( info );
         } //_onload
 
+            //clean up if any
         _native_info = null;
 
+            //return result
         return info;
 
     } //image_load_info

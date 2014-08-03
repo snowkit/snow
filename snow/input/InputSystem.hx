@@ -8,9 +8,9 @@ import snow.utils.AbstractClass;
 import snow.window.Window;
 
 
-#if snow_html5
+#if snow_web
 
-    @:noCompletion typedef InputSystem = snow.platform.html5.input.InputSystem;
+    @:noCompletion typedef InputSystem = snow.platform.web.input.InputSystem;
 
 #else
 

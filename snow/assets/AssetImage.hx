@@ -31,11 +31,12 @@ class AssetImage extends Asset {
             //clear any old data in case
         image = null;
             //load the new data
-        assets.system.image_load_info( info.path, components, function( ?_image:ImageInfo ) {
+        assets.platform.image_load_info( info.path, components, function( ?_image:ImageInfo ) {
 
-            image = _image;
-
-            loaded = true;
+            if(_image != null) {
+                image = _image;
+                loaded = true;
+            }
 
             if(onload != null) {
                 onload( this );
@@ -51,7 +52,7 @@ class AssetImage extends Asset {
             //clear any old data in case
         image = null;
             //load the new data
-        image = assets.system.image_info_from_bytes( info.path, bytes, components );
+        image = assets.platform.image_info_from_bytes( info.path, bytes, components );
             //set flag since there is no load time for this
         loaded = true;
 

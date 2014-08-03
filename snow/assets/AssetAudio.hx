@@ -31,7 +31,7 @@ class AssetAudio extends Asset {
             //clear any old data in case
         audio = null;
             //load the new data
-        assets.system.audio_load_info( info.path, format, load_full, function( ?_audio:AudioInfo ) {
+        assets.platform.audio_load_info( info.path, format, load_full, function( ?_audio:AudioInfo ) {
 
             audio = _audio;
 

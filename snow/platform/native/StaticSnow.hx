@@ -5,7 +5,7 @@ package snow.platform.native;
 
 <set name='MSVC_LIB_VERSION' value='-${MSVC_VER}' if='windows'/>
 <target id='haxe'>
-  <lib name='${haxelib:snow}/ndll/${BINDIR}/libsnow${MSVC_LIB_VERSION}${LIBEXTRA}${LIBEXT}'/>
+  <lib name='${haxelib:snow}/ndll/${BINDIR}/libsnow${DBG}${MSVC_LIB_VERSION}${LIBEXTRA}${LIBEXT}'/>
 
     <section if='mac'>
         <vflag name='-l' value='iconv'/>
@@ -68,6 +68,7 @@ package snow.platform.native;
 
 @:keep class StaticSnow {
     static function __init__() {
+        var s = 'fuc';
         untyped __cpp__("snow_register_prims();");
     } //__init__
 } //StaticSnow

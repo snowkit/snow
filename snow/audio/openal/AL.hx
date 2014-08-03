@@ -1,8 +1,8 @@
 package snow.audio.openal;
 
-#if snow_html5
+#if snow_web
 
-    #error "OpenAL is not available on html5 browser platforms. Including this file on that platform is not possible."
+    #error "OpenAL is not available on web browser platforms. Including this file on that platform is not possible."
 
 #else
 

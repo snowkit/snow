@@ -3,15 +3,15 @@ package snow;
 import snow.utils.AbstractClass;
 import snow.types.Types;
 
-#if snow_html5
+#if snow_web
 
-   @:noCompletion typedef Core = snow.platform.html5.Core;
+   @:noCompletion typedef Core = snow.platform.web.Core;
 
 #else
 
    @:noCompletion typedef Core = snow.platform.native.Core;
 
-#end //snow_html5
+#end //snow_web
 
 
 /**

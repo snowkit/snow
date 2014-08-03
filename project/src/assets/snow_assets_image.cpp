@@ -7,7 +7,6 @@
 
 #include "assets/snow_assets_image.h"
 
-
 namespace snow {
     namespace assets {
         namespace image {
@@ -111,7 +110,12 @@ namespace snow {
                         //clean up used memory
                     stbi_image_free(data);
 
-                } //data != NULL
+                } else { //data != NULL
+
+                    snow::log("snow / image unable to be loaded by snow: %s reason: %s", _id, stbi_failure_reason());
+                    return false;
+
+                }
 
                 return true;
 

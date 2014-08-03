@@ -32,14 +32,14 @@ class SoundStream extends snow.audio.Sound {
         /** Default data seek implementation for `SoundStream` uses `assets.system.audio_seek_source` */
     function default_data_seek( _to:Int ) : Bool {
 
-        return manager.lib.assets.system.audio_seek_source( info, _to );
+        return manager.lib.assets.platform.audio_seek_source( info, _to );
 
     } //default_data_seek
 
         /** Default data get implementation for `SoundStream` uses `assets.system.audio_load_portion` */
     function default_data_get( _start:Int, _length:Int ) : AudioDataBlob {
 
-        return manager.lib.assets.system.audio_load_portion( info, _start, _length );
+        return manager.lib.assets.platform.audio_load_portion( info, _start, _length );
 
     } //default_data_get
 

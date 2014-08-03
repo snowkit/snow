@@ -322,18 +322,18 @@ typedef DisplayMode = {
 }
 
     /** A platform window handle */
-#if snow_html5
+#if snow_web
     typedef WindowHandle = js.html.CanvasElement;
 #else
     typedef WindowHandle = Dynamic;
-#end //snow_html5
+#end //snow_web
 
     /** A platform window handle */
 #if snow_audio_howlerjs
-    typedef AudioHandle = snow.platform.html5.audio.howlerjs.Howl;
+    typedef AudioHandle = snow.platform.web.audio.howlerjs.Howl;
 #else
     typedef AudioHandle = Dynamic;
-#end //snow_html5
+#end //snow_web
 
 
 /** A typed system event */

@@ -18,7 +18,7 @@ class Windowing {
         /** The number of windows in this manager */
     public var window_count : Int = 0;
         /** The concrete implementation of the window system */
-    @:noCompletion public var system : WindowSystem;
+    @:noCompletion public var platform : WindowSystem;
 
     @:noCompletion public function new( _lib:Snow ) {
 
@@ -26,9 +26,9 @@ class Windowing {
         window_list = new Map();
         window_handles = new Map();
 
-        system = new WindowSystem(this, lib);
+        platform = new WindowSystem(this, lib);
 
-        system.init();
+        platform.init();
 
     } //new
 
@@ -45,7 +45,7 @@ class Windowing {
 
             //handle any window system specifics that have to happen
             //to this window when creating it, like enter/leave events
-        system.listen( _window );
+        platform.listen( _window );
 
             //unless requested not to, give this window to the input
             //system to listen for events and dispatch them as needed
@@ -65,7 +65,7 @@ class Windowing {
         window_handles.remove( _window.handle );
         window_count--;
 
-        system.unlisten( _window );
+        platform.unlisten( _window );
 
         if(_window.config.no_input == null || _window.config.no_input == false) {
             lib.input.unlisten( _window );
@@ -95,21 +95,21 @@ class Windowing {
         /** Toggle vertical refresh. This is not window specific but context wide */
     public function enable_vsync( _enable:Bool ) : Int {
 
-        return system.system_enable_vsync(_enable);
+        return platform.system_enable_vsync(_enable);
 
     } //enable_vsync
 
         /** Toggle the OS cursor. This is not window specific but system wide */
     public function enable_cursor( _enable:Bool ) : Void {
 
-        system.system_enable_cursor(_enable);
+        platform.system_enable_cursor(_enable);
 
     } //enable_cursor
 
         /** Lock the OS cursor to the foreground window. This hides the cursor and prevents it from leaving, reporting relative coordinates. */
     public function enable_cursor_lock( _enable:Bool ) : Void {
 
-        system.system_lock_cursor(_enable);
+        platform.system_lock_cursor(_enable);
 
     } //enable_cursor
 
@@ -119,37 +119,37 @@ class Windowing {
 
     /** Get the number of displays present */
     public function display_count() : Int {
-        return system.display_count();
+        return platform.display_count();
     } //display_count
 
         /** Get the number of display modes present */
     public function display_mode_count( display:Int ) : Int {
-        return system.display_mode_count(display);
+        return platform.display_mode_count(display);
     } //display_mode_count
 
         /** Get the native mode information of the display by index */
     public function display_native_mode( display:Int ) : DisplayMode {
-        return system.display_native_mode(display);
+        return platform.display_native_mode(display);
     } //display_native_mode
 
         /** Get the current mode information of the display by index */
     public function display_current_mode( display:Int ) : DisplayMode {
-        return system.display_current_mode(display);
+        return platform.display_current_mode(display);
     } //display_current_mode
 
         /** Get the information from a specific mode index, the index obtrained from iterating with `display_mode_count` value */
     public function display_mode( display:Int, mode_index:Int ) : DisplayMode {
-        return system.display_mode(display, mode_index);
+        return platform.display_mode(display, mode_index);
     } //display_mode
 
         /** Get the bounds of the display by index */
     public function display_bounds( display:Int ) : { x:Int, y:Int, width:Int, height:Int } {
-        return system.display_bounds(display);
+        return platform.display_bounds(display);
     } //display_bounds
 
         /** Get the name of the display by index, where available */
     public function display_name( display:Int ) : String {
-        return system.display_name(display);
+        return platform.display_name(display);
     } //display_name
 
 
@@ -177,7 +177,7 @@ class Windowing {
 
     @:noCompletion public function update() {
 
-        system.process();
+        platform.process();
 
         for(window in window_list) {
             window.update();
@@ -191,7 +191,7 @@ class Windowing {
 
     @:noCompletion public function destroy() {
 
-        system.destroy();
+        platform.destroy();
 
     } //destroy
 

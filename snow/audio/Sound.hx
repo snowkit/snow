@@ -5,14 +5,14 @@ import snow.types.Types;
 
 import snow.utils.AbstractClass;
 
-#if snow_html5
+#if snow_web
 
     #if snow_audio_howlerjs
-        typedef Sound = snow.platform.html5.audio.howlerjs.Sound;
-        typedef SoundStream = snow.platform.html5.audio.howlerjs.SoundStream;
+        typedef Sound = snow.platform.web.audio.howlerjs.Sound;
+        typedef SoundStream = snow.platform.web.audio.howlerjs.SoundStream;
     #else
-        typedef Sound = snow.platform.html5.audio.Sound;
-        typedef SoundStream = snow.platform.html5.audio.SoundStream;
+        typedef Sound = snow.platform.web.audio.Sound;
+        typedef SoundStream = snow.platform.web.audio.SoundStream;
     #end
 
 #else
