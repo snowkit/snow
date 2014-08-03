@@ -2,6 +2,8 @@ package snow.platform.native;
 
 @:cppFileCode( 'extern "C" void snow_register_prims();')
 @:buildXml("
+
+<set name='MSVC_LIB_VERSION' value='-${MSVC_VER}'/>
 <target id='haxe'>
   <lib name='${haxelib:snow}/ndll/${BINDIR}/libsnow${MSVC_LIB_VERSION}${LIBEXTRA}${LIBEXT}'/>
 
