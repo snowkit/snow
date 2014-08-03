@@ -25,4 +25,14 @@ import snow.types.Types;
 
     } //resume
 
+        //called by howler js as it forces specifying the on end handler
+        //when loading the sound... not at any point later,
+        //so we use this and the internal map to get a Sound and handle
+    public function _on_end(handle:AudioHandle) {
+        var sound = manager.handles.get(handle);
+        if(sound != null) {
+            sound.emit('end');
+        }
+    }
+
 } //AudioSystem

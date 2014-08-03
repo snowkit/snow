@@ -30,7 +30,10 @@ class Sound extends snow.platform.web.audio.Sound {
 
             //store the new sound
         info = _info;
+        loaded = true;
 
+            //handle listeners
+        emit('load');
 
             trace('/ snow / creating sound / ${name} / ${info.id} / ${info.format}');
 

@@ -85,6 +85,22 @@ import snow.platform.native.audio.openal.OpenALHelper;
 
     } //destroy
 
+//internal
+
+    override function internal_update() {
+
+        if(!playing) {
+            return;
+        }
+
+        var _al_play_state = AL.getSourcei(source, AL.SOURCE_STATE);
+
+        if(_al_play_state != AL.PLAYING) {
+            playing = false;
+            emit('end');
+        }
+
+    } //internal_update
 
 //getters / setters
 
@@ -109,6 +125,7 @@ import snow.platform.native.audio.openal.OpenALHelper;
 
             //store the new sound
         info = _info;
+        loaded = true;
 
         trace('/ snow / creating sound / ${name} / ${info.id} / ${info.format}');
 
@@ -151,6 +168,8 @@ import snow.platform.native.audio.openal.OpenALHelper;
 
             trace('/ snow / audio / ${name} assigning buffer to source / ${AL.getErrorMeaning(AL.getError())} ');
 
+            //handle onload handlers
+        emit('load');
 
         return info;
 

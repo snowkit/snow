@@ -160,10 +160,10 @@ class Main extends snow.AppFixedTimestep {
         positionY = (app.window.height - size) / 2;
 
         sound1 = app.audio.create("assets/sound.pcm" );
-        sound2 = app.audio.create("assets/sound.ogg", 'ogg');
+        sound2 = app.audio.create("assets/200308__liveware__sony-nex-7-double-shutter.ogg", 'ogg');
         sound3 = app.audio.create("assets/sound.wav", 'wav');
         // sound4 = app.audio.create("assets/music.wav", 'wav_stream', true);
-        sound5 = app.audio.create("assets/music.ogg", 'ogg_stream', true);
+        sound5 = app.audio.create("assets/244028__lennyboy__rain001.ogg", 'ogg_stream', true);
 
         // trace("sound1 : " + sound1.name);
         // trace("sound2 : " + sound2.name);
@@ -171,8 +171,18 @@ class Main extends snow.AppFixedTimestep {
         // trace("sound4 : " + sound4.name);
         // trace("sound5 : " + sound5.name);
 
-        // sound4.loop();
-        // sound5.loop();
+        sound5.on('load', function(s:Sound){
+            trace('sound 5 loaded');
+            s.loop();
+        });
+
+        sound5.on('end', function(s:Sound){
+            trace('loop ended');
+        });
+
+        sound2.on('end', function(s:Sound) {
+            trace('onend sound2!');
+        });
 
 
         #if desktop
@@ -196,8 +206,6 @@ class Main extends snow.AppFixedTimestep {
             //console scan code should be universally next to 1
         if(keycode == Key.KEY_e) {
             app.audio.play('ogg');
-            trace(sound1.duration);
-            trace(sound1.time);
         }
 
         if(keycode == Key.KEY_l) {
@@ -221,7 +229,6 @@ class Main extends snow.AppFixedTimestep {
 
         if(keycode == Key.KEY_q) {
             left = !left;
-            trace(sound2.pan);
             sound2.pan = left ? -1 : 1;
             sound2.play();
         }
