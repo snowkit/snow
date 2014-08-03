@@ -6,11 +6,6 @@
 #include <android/log.h>
 #include <hx/CFFI.h>
 
-#ifdef __GNUC__
-    #define JAVA_EXPORT __attribute__ ((visibility("default"))) JNIEXPORT
-#else
-    #define JAVA_EXPORT JNIEXPORT
-#endif
 
 namespace snow {
 
