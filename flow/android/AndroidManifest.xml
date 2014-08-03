@@ -7,7 +7,7 @@
     android:installLocation="{{project.app.mobile.android.install_location}}">
 
     <!--  -->
-    <application android:label="{{project.app.title}}"
+    <application android:label="{{project.name}}"
                  android:debuggable="{{toString debug}}"
                  {{#if project.app.icon~}}
                  android:icon="@drawable/{{project.app._icon.dest}}"
@@ -16,7 +16,7 @@
                  android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
                  android:hardwareAccelerated="true" >
         <activity android:name="MainActivity"
-                  android:label="{{project.app.title}}"
+                  android:label="{{project.name}}"
                   android:launchMode="singleTask"
                   android:screenOrientation="sensor{{upperFirst project.app.mobile.orientation}}"
                   android:configChanges="keyboardHidden|orientation|screenSize|screenLayout"
