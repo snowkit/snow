@@ -20,6 +20,7 @@ class Audio {
 
     var sound_list : Map<String, Sound>;
     var stream_list : Map<String, SoundStream>;
+    @:noCompletion public var handles : Map<AudioHandle, Sound>;
 
     @:noCompletion public function new( _lib:Snow ) {
 
@@ -31,6 +32,7 @@ class Audio {
 
         sound_list = new Map();
         stream_list = new Map();
+        handles = new Map();
 
         active = true;
 
@@ -48,7 +50,7 @@ class Audio {
         } //_name
 
             //We always return a valid sound object, so code will be reliable
-            //even if the sound is unable to play etc.
+            //even if the sound is unable to play etc
 
         var sound : Sound = null;
 
@@ -57,6 +59,7 @@ class Audio {
 
                     Snow.next(function(){
                         if(asset != null && sound != null) {
+                            handles.set(asset.audio.handle, sound);
                             sound.info = asset.audio;
                         }
                     });
@@ -65,8 +68,6 @@ class Audio {
             } //options
         ); //audio
 
-            //if it's a valid asset (it may still be loading the data)
-        if(_asset != null) {
 
             if(!streaming) {
 
@@ -75,8 +76,8 @@ class Audio {
             } else {
 
                 var sound_stream = new SoundStream(this, _name);
-                    //we store the sounds in a separate list
-                    //so that streams don't get bogged down by
+                    //we store the streams in a separate list
+                    //so that they don't get bogged down by
                     //lots of sound effects. This means you have
                     //to remove it if not using the audio wrapper routes to cleanup
                 stream_list.set(_name, sound_stream);
@@ -87,8 +88,6 @@ class Audio {
 
                 //store for later
             sound_list.set(_name, sound);
-
-        } //_asset
 
         return sound;
 
@@ -245,9 +244,7 @@ class Audio {
             return;
         }
 
-            //update the streaming sounds
-            //they may or may not do anything
-        for(_sound in stream_list) {
+        for(_sound in sound_list) {
             if(_sound.playing) {
                 _sound.internal_update();
             }

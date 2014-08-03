@@ -142,8 +142,6 @@ import snow.utils.ByteArray;
 
         override public function audio_load_info( _path:String, ?_format:AudioFormatType, ?_load:Bool = true, ?_onload:?AudioInfo->Void ) : AudioInfo {
 
-            var sound : Howl = null;
-
             var info : AudioInfo = {
                 format:_format,
                 id:_path, handle:null, data:null
@@ -152,8 +150,11 @@ import snow.utils.ByteArray;
             info.handle = new Howl({
                 urls: [_path],
                     //this seems to not work as intended
-                    //when skipping sounds. :todo: test on server
+                    //when skipping sounds. :todo : test on server
                 // buffer : !_load,
+                onend : function() {
+                    manager.lib.audio.platform._on_end(info.handle);
+                },
                 onload : function(){
                     if(_onload != null) {
                         _onload(info);

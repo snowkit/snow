@@ -44,6 +44,8 @@ import snow.utils.AbstractClass;
     public var playing : Bool = false;
         /** If the sound is paused */
     public var paused : Bool = false;
+        /** If the sound is loaded or ready to use */
+    public var loaded : Bool = false;
         /** If the sound is a stream source */
     public var is_stream : Bool = false;
 
@@ -62,12 +64,51 @@ import snow.utils.AbstractClass;
         /** The duration of this sound, in `bytes` */
     @:isVar public var duration (get,never) : Float = 0.0;
 
+
+    @:noCompletion public function emit(_event:String) {
+        switch(_event) {
+            case 'end':
+                do_onend();
+            case 'load':
+                do_onload();
+            default:
+                trace('/ snow / sound has no event {$_event}');
+        } //_event
+    } //emit
+
+    public function on(_event:String, _handler:Sound->Void) {
+        switch(_event) {
+            case 'end':
+                onend_list.push(_handler);
+            case 'load':
+                add_onload(_handler);
+            default:
+                trace('/ snow / sound has no event {$_event}');
+        } //_event
+    } //emit
+
+    public function off(_event:String, _handler:Sound->Void) {
+        switch(_event) {
+            case 'end':
+                onend_list.remove(_handler);
+            case 'load':
+                onload_list.remove(_handler);
+            default:
+                trace('/ snow / sound has no event {$_event}');
+        } //_event
+    } //off
+
+    var onload_list : Array<Sound->Void>;
+    var onend_list : Array<Sound->Void>;
+
 //Construct
 
     public function new( _manager:Audio, _name:String ) {
 
         name = _name;
         manager = _manager;
+        onload_list = [];
+        onend_list = [];
 
     } //new
 
@@ -110,6 +151,38 @@ import snow.utils.AbstractClass;
         }
 
     } //toggle
+
+    function add_onload( _onload:Sound->Void ) {
+
+            //too late, just call immediately
+        if(loaded) {
+            _onload(cast this);
+        } else {
+            onload_list.push(_onload);
+        }
+
+        return _onload;
+
+    } //set_onload
+
+    @:noCompletion public function do_onload() {
+
+        for(_f in onload_list) {
+            _f(cast this);
+        }
+
+        onload_list = null;
+        onload_list = [];
+
+    } //do_onload
+
+    @:noCompletion public function do_onend() {
+
+        for(_f in onend_list) {
+            _f(cast this);
+        }
+
+    } //onend_list
 
     function get_info() : AudioInfo {
         return info;
