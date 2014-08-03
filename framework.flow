@@ -164,7 +164,7 @@
     snow_web : {
       files : {
         index : { path:'flow/web/index.html => index.html', template:'project', not_listed:true },
-        modernizr : { path:'flow/web/lib/modernizr.hs => lib/modernizr.js', not_listed:true },
+        modernizr : { path:'flow/web/lib/modernizr.js => lib/modernizr.js', not_listed:true },
         howlerjs : { path:'flow/web/lib/howler.min.js => lib/howler.js', not_listed:true },
       },
       build : {
