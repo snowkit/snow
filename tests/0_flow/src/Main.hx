@@ -244,6 +244,7 @@ class Main extends snow.AppFixedTimestep {
         }
 
         if(keycode == Key.KEY_p) {
+            sound5.volume = 0.3+(Math.random());
             sound5.toggle();
         }
 
