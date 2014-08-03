@@ -40,6 +40,7 @@ class Sound extends snow.platform.html5.audio.Sound {
 
 
     var pan_dirty : Bool = false;
+    var volume_dirty : Bool = false;
 
     override function set_pan(_pan:Float) : Float {
 
@@ -48,6 +49,14 @@ class Sound extends snow.platform.html5.audio.Sound {
         return pan = _pan;
 
     } //set_pan
+
+    override function set_volume(_volume:Float) : Float {
+
+            volume_dirty = true;
+
+        return volume = _volume;
+
+    } //set_volume
 
 
     override function set_pitch( _pitch:Float ) : Float {
@@ -105,6 +114,10 @@ class Sound extends snow.platform.html5.audio.Sound {
                 info.handle.pos3d(pan);
             }
 
+            if(volume_dirty) {
+                info.handle.volume(volume);
+            }
+
         }  //has info
 
     } //play
@@ -122,6 +135,9 @@ class Sound extends snow.platform.html5.audio.Sound {
                 //see note in play()
             if(pan_dirty) {
                 info.handle.pos3d(pan);
+            }
+            if(volume_dirty) {
+                info.handle.volume(volume);
             }
 
         } //has info
