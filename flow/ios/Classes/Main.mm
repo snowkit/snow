@@ -10,7 +10,6 @@ extern "C" void hxcpp_set_top_of_stack();
 
 extern "C" int main(int argc, char *argv[]) {
 
-    //printf("Starting ...\n" );
     hxcpp_set_top_of_stack();
 
     {{#each project.app.mobile.ios.libs.native~}}
