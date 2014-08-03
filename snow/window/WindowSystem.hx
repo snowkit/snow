@@ -28,8 +28,8 @@ import snow.utils.AbstractClass;
 */
 @:noCompletion class WindowSystemBinding implements AbstractClass {
 
-    var manager : Windowing;
-    var lib : Snow;
+    public var manager : Windowing;
+    public var lib : Snow;
 
         /** Called when the window manager initializes this system */
     public function init();

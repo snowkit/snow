@@ -25,8 +25,8 @@ import snow.window.Window;
 /** Internal input system, accessed through `snow.Input`, not directly */
 @:noCompletion class InputSystemBinding implements AbstractClass {
 
-    var manager : Input;
-    var lib : Snow;
+    public var manager : Input;
+    public var lib : Snow;
 
         /** Called when the input manager initiates this system */
     public function init();

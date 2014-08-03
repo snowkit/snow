@@ -16,8 +16,8 @@ import snow.types.Types;
 
 class IOSystemBinding implements AbstractClass {
 
-    var manager : IO;
-    var lib : Snow;
+    public var manager : IO;
+    public var lib : Snow;
 
         /** Called when the IO manager initiates this system */
     public function init();

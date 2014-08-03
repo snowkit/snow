@@ -29,8 +29,8 @@ class Assets {
 
         /** The asset system platform implementation */
     @:noCompletion public var platform : AssetSystem;
-
-    var lib : Snow;
+        /** access to snow from subsystems */
+    @:noCompletion public var lib : Snow;
 
     public function new( _lib:Snow ) {
 
