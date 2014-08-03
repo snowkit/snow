@@ -7,6 +7,6 @@
     "version": "1.0.0-alpha.1",
 
     "contributors": [ "underscorediscovery" ],
-    "tags": [ "cpp", "html5", "webgl", "snow", "opengl", "openal", "sdl2", "android", "ios", "mac", "windows", "linux" ],
+    "tags": [ "cpp", "html5", "web", "webgl", "snow", "opengl", "openal", "sdl2", "android", "ios", "mac", "windows", "linux", "native" ],
     "dependencies": { }
 }

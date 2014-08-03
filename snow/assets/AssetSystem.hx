@@ -8,8 +8,8 @@ import snow.utils.ByteArray;
 import snow.utils.AbstractClass;
 
 
-#if snow_html5
-    @:noCompletion typedef AssetSystem = snow.platform.html5.assets.AssetSystem;
+#if snow_web
+    @:noCompletion typedef AssetSystem = snow.platform.web.assets.AssetSystem;
 #else
     @:noCompletion typedef AssetSystem = snow.platform.native.assets.AssetSystem;
 #end

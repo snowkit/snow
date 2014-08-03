@@ -12,7 +12,7 @@ import snow.utils.ByteArray;
 class Audio {
 
         /** The implementation of the current audio system */
-    public var system : AudioSystem;
+    public var platform : AudioSystem;
         /** Set to false to stop any and all processing in the audio system */
     public var active : Bool = false;
         //for external access to the library by the systems
@@ -25,9 +25,9 @@ class Audio {
 
         lib = _lib;
 
-        system = new AudioSystem(this, lib);
+        platform = new AudioSystem(this, lib);
 
-        system.init();
+        platform.init();
 
         sound_list = new Map();
         stream_list = new Map();
@@ -211,13 +211,13 @@ class Audio {
                 sound.internal_pause();
             }
 
-            system.suspend();
+            platform.suspend();
 
         } else if(_event.type == SystemEventType.app_willenterforeground) {
 
             active = true;
 
-            system.resume();
+            platform.resume();
 
             for(sound in stream_list) {
                 sound.internal_play();
@@ -235,7 +235,7 @@ class Audio {
             sound.destroy();
         }
 
-        system.destroy();
+        platform.destroy();
 
     } //destroy
 
@@ -253,7 +253,7 @@ class Audio {
             }
         }
 
-        system.process();
+        platform.process();
 
     } //update
 

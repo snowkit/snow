@@ -5,12 +5,12 @@ import snow.Snow;
 
 import snow.utils.AbstractClass;
 
-#if snow_html5
+#if snow_web
 
     #if snow_audio_howlerjs
-        @:noCompletion typedef AudioSystem = snow.platform.html5.audio.howlerjs.AudioSystem;
+        @:noCompletion typedef AudioSystem = snow.platform.web.audio.howlerjs.AudioSystem;
     #else
-        @:noCompletion typedef AudioSystem = snow.platform.html5.audio.AudioSystem;
+        @:noCompletion typedef AudioSystem = snow.platform.web.audio.AudioSystem;
     #end
 
 #else

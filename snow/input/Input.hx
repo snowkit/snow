@@ -13,7 +13,7 @@ typedef Scan = snow.input.Keycodes.Scancodes;
 class Input {
 
     var lib : Snow;
-    var system : InputSystem;
+    var platform : InputSystem;
 
         //this is the enum based flags for keypressed/keyreleased/keydown
     var key_code_down : Map<Int, Bool>;
@@ -24,9 +24,9 @@ class Input {
 
         lib = _lib;
 
-        system = new InputSystem(this, lib);
+        platform = new InputSystem(this, lib);
 
-        system.init();
+        platform.init();
 
         key_code_pressed = new Map();
         key_code_down = new Map();
@@ -160,39 +160,39 @@ class Input {
 
     @:noCompletion public function listen( _window:Window ) {
 
-        system.listen(_window);
+        platform.listen(_window);
 
     } //listen
 
     @:noCompletion public function unlisten( _window:Window ) {
 
-        system.unlisten(_window);
+        platform.unlisten(_window);
 
     } //unlisten
 
     @:noCompletion public function on_event( _event:SystemEvent ) {
 
         if(_event.type == SystemEventType.input) {
-            system.on_event( _event.input );
+            platform.on_event( _event.input );
         } //only input events
 
     } //on_event
 
     @:noCompletion public function on_gamepad_added( _event:Dynamic ) {
 
-        system.gamepad_add( _event.which );
+        platform.gamepad_add( _event.which );
 
     } //on_gamepad_added
 
     @:noCompletion public function on_gamepad_removed( _event:Dynamic ) {
 
-        system.gamepad_remove( _event.which );
+        platform.gamepad_remove( _event.which );
 
     } //on_gamepad_removed
 
     @:noCompletion public function update() {
 
-        system.process();
+        platform.process();
 
             //remove any stale key pressed value
             //unless it wasn't alive for a full frame yet,
@@ -226,7 +226,7 @@ class Input {
 
     @:noCompletion public function destroy() {
 
-        system.destroy();
+        platform.destroy();
 
     } //destroy
 

@@ -116,47 +116,46 @@ class Libs {
             #end
         #end
 
-        #if snow_html5
-            // /todo/ get browser info here?
-            return "snow_browser_webgl";
+        #if snow_web
+            return js.Browser.navigator.userAgent;
         #end
 
         return "unknown";
 
     } //get_system_name
 
-#if snow_html5
+#if snow_web
 
-    public static var _html5_libs:Map<String,Dynamic>;
+    public static var _web_libs:Map<String,Dynamic>;
 
-    public static function html5_add_lib( library:String, root:Dynamic ) {
+    public static function web_add_lib( library:String, root:Dynamic ) {
 
-        if(_html5_libs == null) {
-            _html5_libs = new Map<String,Dynamic>();
+        if(_web_libs == null) {
+            _web_libs = new Map<String,Dynamic>();
         }
 
-        _html5_libs.set( library, root );
+        _web_libs.set( library, root );
 
         return true;
 
-    } //html5_add_lib
+    } //web_add_lib
 
-    public static function html5_lib_load(library:String, method:String) {
+    public static function web_lib_load(library:String, method:String) {
 
-        if(_html5_libs == null) {
-             _html5_libs = new Map<String,Dynamic>();
+        if(_web_libs == null) {
+             _web_libs = new Map<String,Dynamic>();
         }
 
-        var _root = _html5_libs.get(library);
+        var _root = _web_libs.get(library);
         if(_root != null) {
             return Reflect.field(_root, method);
         }
 
         return null;
 
-    } //html5_lib_load
+    } //web_lib_load
 
-#end //snow_html5
+#end //snow_web
 
     public static function load (library:String, method:String, args:Int = 0):Dynamic {
 
@@ -164,12 +163,12 @@ class Libs {
             return cpp.Lib.load( library, method, args );
         #end
 
-        #if snow_html5
-            var found_in_html5_libs = html5_lib_load( library, method );
-            if(found_in_html5_libs) {
-                return found_in_html5_libs;
+        #if snow_web
+            var found_in_web_libs = web_lib_load( library, method );
+            if(found_in_web_libs) {
+                return found_in_web_libs;
             }
-        #end //snow_html5
+        #end //snow_web
 
         if (__moduleNames == null) __moduleNames = new Map<String, String> ();
         if (__moduleNames.exists (library)) {
@@ -242,9 +241,9 @@ class Libs {
         #end //snow_native
 
 
-        #if snow_html5
+        #if snow_web
             //:todo : leverage console.log somehow?
-        #end //snow_html5
+        #end //snow_web
 
     } //loaderTrace
 

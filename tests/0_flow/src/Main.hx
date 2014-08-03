@@ -176,7 +176,7 @@ class Main extends snow.AppFixedTimestep {
 
 
         #if desktop
-            app.io.system.watch_add('assets/');
+            app.io.platform.watch_add('assets/');
         #end
 
     } //ready
@@ -280,9 +280,9 @@ class Main extends snow.AppFixedTimestep {
 
         if(keycode == Key.KEY_o) {
             #if desktop
-                trace(app.io.system.dialog_open());
-                trace(app.io.system.dialog_save());
-                trace(app.io.system.dialog_folder());
+                trace(app.io.platform.dialog_open());
+                trace(app.io.platform.dialog_save());
+                trace(app.io.platform.dialog_folder());
             #end
         }
 
@@ -495,7 +495,7 @@ class Main extends snow.AppFixedTimestep {
 
         var vertexShaderSource = "";
 
-        #if (android || snow_html5)
+        #if (android || web)
             vertexShaderSource += "precision mediump float;";
         #end
 
@@ -530,7 +530,7 @@ class Main extends snow.AppFixedTimestep {
 
         var fragmentShaderSource = "";
 
-        #if (mobile || snow_html5)
+        #if (mobile || web)
             fragmentShaderSource += "precision mediump float;";
         #end
 

@@ -28,7 +28,7 @@ class Assets {
 //internal
 
         /** The asset system platform implementation */
-    @:noCompletion public var system : AssetSystem;
+    @:noCompletion public var platform : AssetSystem;
 
     var lib : Snow;
 
@@ -43,7 +43,7 @@ class Assets {
 
         lib = _lib;
         list = new Map();
-        system = new AssetSystem(this);
+        platform = new AssetSystem(this);
 
     } //new
 
@@ -90,7 +90,7 @@ class Assets {
             this function will return false specyifying why. */
     public function exists( _id:String, ?_strict:Bool=true ) : Bool {
 
-        return system.exists(_id, _strict);
+        return platform.exists(_id, _strict);
 
     } //exists
 

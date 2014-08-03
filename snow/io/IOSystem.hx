@@ -3,9 +3,9 @@ package snow.io;
 import snow.utils.AbstractClass;
 import snow.types.Types;
 
-#if snow_html5
+#if snow_web
 
-    @:noCompletion typedef IOSystem = snow.platform.html5.io.IOSystem;
+    @:noCompletion typedef IOSystem = snow.platform.web.io.IOSystem;
 
 #else
 

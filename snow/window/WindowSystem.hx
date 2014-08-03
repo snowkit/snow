@@ -7,9 +7,9 @@ import snow.window.Windowing;
 
 import snow.utils.AbstractClass;
 
-#if snow_html5
+#if snow_web
 
-    @:noCompletion typedef WindowSystem = snow.platform.html5.window.WindowSystem;
+    @:noCompletion typedef WindowSystem = snow.platform.web.window.WindowSystem;
 
 #else
 
