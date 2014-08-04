@@ -77,19 +77,86 @@ class GLBuffer extends GLObject {
 } //GLBuffer
 
 
-class GLFramebuffer extends GLObject {
+class GLFBO extends GLObject {
 
     override function toString() : String {
         return 'GLFramebuffer($id)';
     } //toString
 
-} //GLFramebuffer
+} //GLFBO
 
-class GLRenderbuffer extends GLObject {
+class GLRBO extends GLObject {
 
     override function toString() : String {
         return 'GLRenderbuffer($id)';
     }
+
+} //GLRBO
+
+
+abstract GLFramebuffer(GLFBO) {
+
+    public var id (get,never) : Int;
+    public var invalidated (get,set) : Bool;
+
+    inline public function new(_id:Int) {
+        this = new GLFBO(_id);
+    } //new
+
+    inline function get_id() : Int {
+        return this.id;
+    } //get_id
+
+    inline function get_invalidated() : Bool {
+        return this.invalidated;
+    } //get_invalidated
+
+    inline function set_invalidated(_invalidated:Bool) : Bool {
+        return this.invalidated = _invalidated;
+    } //set_invalidated
+
+    @:from
+    inline static public function fromInt(_id:Int) {
+        return new GLFramebuffer(_id);
+    } //fromInt
+
+    @:from
+    inline static public function fromDynamic(_id:Dynamic) {
+        return new GLFramebuffer(Std.int(_id));
+    } //fromDynamic
+
+} //GLFramebuffer
+
+abstract GLRenderbuffer(GLRBO) {
+
+    public var id (get,never) : Int;
+    public var invalidated (get,set) : Bool;
+
+    inline public function new(_id:Int) {
+        this = new GLRBO(_id);
+    } //new
+
+    inline function get_id() : Int {
+        return this.id;
+    } //get_id
+
+    inline function get_invalidated() : Bool {
+        return this.invalidated;
+    } //get_invalidated
+
+    inline function set_invalidated(_invalidated:Bool) : Bool {
+        return this.invalidated = _invalidated;
+    } //set_invalidated
+
+    @:from
+    inline static public function fromInt(_id:Int) {
+        return new GLRenderbuffer(_id);
+    } //fromInt
+
+    @:from
+    inline static public function fromDynamic(_id:Dynamic) {
+        return new GLRenderbuffer(Std.int(_id));
+    } //fromDynamic
 
 } //GLRenderbuffer
 
