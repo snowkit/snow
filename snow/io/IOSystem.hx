@@ -46,7 +46,7 @@ class IOSystemBinding implements AbstractClass {
             /** Call this to open a native platform file save dialog.
                 Returns a blank string if they cancel or any error occurs.
                 supports:`windows` `mac` `linux` */
-        public function dialog_save( ?_title:String = "Save file", ?_filters:Array<FileFilter> ) : String;
+        public function dialog_save( ?_title:String = "Save file", ?_filter:FileFilter ) : String;
             /** Call this to open a native platform folder select dialog.
                 Returns a blank string if they cancel or any error occurs.
                 supports:`windows` `mac` `linux` */

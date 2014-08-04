@@ -70,7 +70,7 @@ import haxe.io.Path;
 
                     //disallow null to the native code
                 if(_filters == null) {
-                    _filters = [ { extension:'*', desc:'all files' } ];
+                    _filters = [];
                 }
 
                 return snow_io_dialog_open( _title, _filters );
@@ -80,11 +80,15 @@ import haxe.io.Path;
                 /** Call this to open a native platform file save dialog.
                     Returns a blank string if they cancel or any error occurs.
                     supports:`windows` `mac` `linux` */
-            override public function dialog_save( ?_title:String = "Save file", ?_filters:Array<FileFilter> ) : String {
+            override public function dialog_save( ?_title:String = "Save file", ?_filter:FileFilter ) : String {
 
-                    //disallow null to the native code
-                if(_filters == null) {
-                    _filters = [ { extension:'*', desc:'all files' } ];
+                    //sending as an array simplifies common
+                    //code on the native side, but a single extension
+                    //for a save dialog is logical, or no filter for all files.
+                var _filters : Array<FileFilter> = [];
+
+                if(_filter != null) {
+                    _filters.push(_filter);
                 }
 
                 return snow_io_dialog_save( _title, _filters );

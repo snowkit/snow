@@ -36,7 +36,26 @@ namespace snow {
             [panel setAllowsOtherFileTypes:YES];
             [panel setExtensionHidden:YES];
 
-            [panel setTitle: [NSString stringWithCString:title.c_str() encoding:[NSString defaultCStringEncoding]] ];
+                    //only if there are any filters, add them
+                if(filters.size()) {
+
+                    NSMutableArray *type_list = [[NSMutableArray alloc] init];
+
+                        std::vector<file_filter>::const_iterator it = filters.begin();
+
+                            for( ; it != filters.end(); ++it ) {
+
+                                [type_list addObject:[NSString stringWithUTF8String:(*it).extension.c_str()]];
+
+                            } //each filter
+
+                        [panel setAllowedFileTypes:type_list];
+
+                    [type_list release];
+
+                } //filters.size
+
+            [panel setTitle: [NSString stringWithUTF8String:title.c_str()] ];
 
             NSInteger clicked = [panel runModal];
 
@@ -69,16 +88,34 @@ namespace snow {
             if(type == 0) {
                 [panel setCanChooseDirectories:NO];
                 [panel setCanChooseFiles:YES];
+
+                    //only if there are any filters, add them
+                if(filters.size()) {
+
+                    NSMutableArray *type_list = [[NSMutableArray alloc] init];
+
+                        std::vector<file_filter>::const_iterator it = filters.begin();
+
+                            for( ; it != filters.end(); ++it ) {
+
+                                [type_list addObject:[NSString stringWithUTF8String:(*it).extension.c_str()]];
+
+                            } //each filter
+
+                        [panel setAllowedFileTypes:type_list];
+
+                    [type_list release];
+
+                } //filters.size
+
             } else if(type == 1) {
                 [panel setCanChooseDirectories:YES];
                 [panel setCanChooseFiles:NO];
             }
 
-            [panel setTitle: [NSString stringWithCString:title.c_str() encoding:[NSString defaultCStringEncoding]] ];
+            [panel setTitle: [NSString stringWithUTF8String:title.c_str()] ];
 
-            // NSArray *fileTypes = [NSArray arrayWithObjects:@"ext1",@"ext2",nil];
-
-            NSInteger clicked = [ panel runModalForDirectory:NSHomeDirectory() file:nil types:nil ];
+            NSInteger clicked = [panel runModal];
 
             if(clicked == NSOKButton) {
 

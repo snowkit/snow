@@ -287,8 +287,8 @@ class Main extends snow.AppFixedTimestep {
 
         if(keycode == Key.KEY_o) {
             #if desktop
-                trace(app.io.platform.dialog_open());
-                trace(app.io.platform.dialog_save());
+                app.io.platform.dialog_open('Select a thing', [{extension:'txt', desc:'text files'}, {extension:'cpp', desc:'cpp files'}]);
+                trace(app.io.platform.dialog_save('Save a thing', {extension:'flow'}));
                 trace(app.io.platform.dialog_folder());
             #end
         }
