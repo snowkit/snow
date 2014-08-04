@@ -217,7 +217,7 @@ import snow.platform.native.audio.openal.OpenALHelper;
 
         return still_busy;
 
-    } //should_update
+    } //update_stream
 
     override function internal_update() {
 
