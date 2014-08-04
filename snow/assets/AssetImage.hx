@@ -39,7 +39,12 @@ class AssetImage extends Asset {
             }
 
             if(onload != null) {
-                onload( this );
+                    //push to next frame so functions can
+                    //return when running in sync i.e onload would happen
+                    //before the function has event returned
+                Snow.next(function(){
+                    onload( this );
+                });
             }
 
         });
