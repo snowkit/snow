@@ -451,7 +451,7 @@ namespace snow {
 
             if(gamepad_list.count(id) > 0) {
 
-                SDL_GameControllerClose( _gamepad );
+                SDL_GameControllerClose( gamepad_list[id] );
                 gamepad_list.erase( id );
 
             } //_gamepad
