@@ -26,58 +26,77 @@ namespace snow {
 
         } //dialog_save
 
+        std::string lpw_to_stdstring(const LPWSTR str, UINT page = CP_ACP) {
+            
+            std::string result; char* cstr = 0; 
+            int len;
+
+            len = WideCharToMultiByte(page, 0, str, -1, 0,  0, 0, 0);
+            if (len > 0) {
+                cstr = new char[len];
+                int res = WideCharToMultiByte(page, 0, str, -1, cstr, len, 0, 0);
+                if (res != 0) {
+                    cstr[len-1] = 0;
+                    result = std::string(cstr);
+                }
+                delete [] cstr;
+            }
+            
+            return result;
+
+        } //lpw_to_stdstring
+
         std::string dialog_folder(const std::string &title) {
 
-            /*char path[MAX_PATH];
+            std::string path;
+            
+            HRESULT hr = CoInitializeEx(NULL, COINIT_APARTMENTTHREADED | COINIT_DISABLE_OLE1DDE);
 
-            BROWSEINFO bi = { 0 };
-                bi.lpszTitle = title.c_str();
+            if(SUCCEEDED(hr)) {
 
-            LPITEMIDLIST path_id_list = SHBrowseForFolder( &bi );
+                IFileDialog *folder_dialog;
 
-            if ( path_id_list ) {
+                hr = CoCreateInstance(CLSID_FileOpenDialog, NULL, CLSCTX_ALL, IID_IFileOpenDialog, reinterpret_cast<void**>(&folder_dialog));
 
-                SHGetPathFromIDList ( path_id_list, path );
+                if(SUCCEEDED(hr)) {
 
-                IMalloc * imalloc = 0;
-                if ( SUCCEEDED( SHGetMalloc( &imalloc )) ) {
-                    imalloc->Free( path_id_list );
-                    imalloc->Release();
-                }
-
-                return std::string(path);
-            }
-            */
-            char path[MAX_PATH];
-            LPWSTR wpath = NULL;
-
-            IFileDialog *pfd;
-            if (SUCCEEDED(CoCreateInstance(CLSID_FileOpenDialog, NULL, CLSCTX_INPROC_SERVER, IID_PPV_ARGS(&pfd))))
-            {
-                DWORD dwOptions;
-                if (SUCCEEDED(pfd->GetOptions(&dwOptions)))
-                {
-                    pfd->SetOptions(dwOptions | FOS_PICKFOLDERS);
-                }
-                if (SUCCEEDED(pfd->Show(NULL)))
-                {
-                    IShellItem *psi;
-                    if (SUCCEEDED(pfd->GetResult(&psi)))
-                    {
-                        if(!SUCCEEDED(psi->GetDisplayName(SIGDN_DESKTOPABSOLUTEPARSING, &wpath)))
-                        {
-                            MessageBox(NULL, "GetIDListName() failed", NULL, NULL);
-                        }
-                        psi->Release();
+                    DWORD folder_options;
+                    if (SUCCEEDED(folder_dialog->GetOptions(&folder_options))) {
+                        folder_dialog->SetOptions(folder_options | FOS_PICKFOLDERS);
                     }
-                }
-                pfd->Release();
-            }
 
-            wcstombs((char*)&path, (wchar_t*)wpath, MAX_PATH );
-            CoTaskMemFree(wpath);
+                    hr = folder_dialog->Show(NULL);
 
-            return std::string(path);
+                    if(SUCCEEDED(hr)) {
+
+                        IShellItem *_item;
+                        hr = folder_dialog->GetResult(&_item);
+
+                        if(SUCCEEDED(hr)) {
+                            
+                            LPWSTR selected_path = NULL;
+                            hr = _item->GetDisplayName(SIGDN_DESKTOPABSOLUTEPARSING, &selected_path);
+
+                            if(SUCCEEDED(hr)) {
+                                path = lpw_to_stdstring(selected_path);
+                                CoTaskMemFree(selected_path);
+                            }
+
+                            _item->Release();
+
+                        } //get result
+
+                    } //show
+
+                    folder_dialog->Release();
+
+                } //create folder dialog
+
+                CoUninitialize();
+
+            } //coinitialize
+
+            return path;
 
         } //dialog_folder
 
@@ -100,7 +119,28 @@ namespace snow {
 
                 //:todo:
             // ofn.lpstrDefExt = "*";
-            ofn.lpstrFilter = "All Files (*.*)\0*.*\0";
+            if(filters.size()) {
+
+                std::vector<file_filter>::const_iterator it = filters.begin();
+                std::string final = "";
+                for( ; it != filters.end(); ++it) {
+
+                    file_filter filter = (*it);
+
+                        final += filter.desc + " (*." + filter.extension + ")";
+                        final.push_back('\0');
+                        final += "*." + filter.extension;
+                        final.push_back('\0');
+
+                } //each filter
+
+                    //implicit extra \0 here from c_str
+                ofn.lpstrFilter = final.c_str();
+
+            } else {
+                ofn.lpstrFilter = "All Files (*.*)\0*.*\0";    
+            }
+            
 
             if(type == 0) {
 
