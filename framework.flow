@@ -83,6 +83,18 @@
       }
     },
 
+    "linux && arch-32 && snow_dynamic_link" : {
+      files : {
+        libsnow : { path:"ndll/Linux/snow.ndll => snow.ndll", not_listed:true }
+      }
+    },
+
+    "linux && arch-64 && snow_dynamic_link" : {
+      files : {
+        libsnow : { path:"ndll/Linux64/snow.ndll => snow.ndll", not_listed:true }
+      }
+    },
+
     "android && arch-armv7 && snow_dynamic_link" : {
       build : {
         files : {
@@ -126,7 +138,6 @@
 
     android : {
       build: {
-        defines : ['snow_dynamic_link'],
         files : {
           project : { path:"flow/android/ => project/", template:'project' }
         }
@@ -144,6 +155,12 @@
           prefixheader : { path:"flow/ios/snowapp-Prefix.pch => project/{{app.name}}/{{app.name}}-Prefix.pch", template:'project' },
           images : { path:"flow/ios/Images.xcassets => project/{{app.name}}/Images.xcassets", template:'project' }
         }
+      }
+    },
+
+    "android || linux" : {
+      build : {
+        defines : ['snow_dynamic_link']
       }
     },
 
