@@ -449,9 +449,7 @@ namespace snow {
 
         void snow_gamepad_close( int id ) {
 
-            SDL_GameController* _gamepad = gamepad_list[id];
-
-            if(_gamepad) {
+            if(gamepad_list.count(id) > 0) {
 
                 SDL_GameControllerClose( _gamepad );
                 gamepad_list.erase( id );
