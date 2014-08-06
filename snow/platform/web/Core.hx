@@ -2,6 +2,12 @@ package snow.platform.web;
 
 import snow.types.Types;
 
+import snow.Log.log;
+import snow.Log._debug;
+import snow.Log._verbose;
+import snow.Log._verboser;
+
+
 #if snow_web
 
     /** Implemented in the platform specific concrete versions of this class */
@@ -79,7 +85,7 @@ import snow.types.Types;
 
             } else {
 
-                trace('/ snow / warning : requestAnimationFrame not found, falling back to render_rate! render_rate:' + app.host.render_rate );
+                log('warning : requestAnimationFrame not found, falling back to render_rate! render_rate:' + app.host.render_rate );
 
                     //schedule the callback again
                 js.Browser.window.setTimeout(function(){

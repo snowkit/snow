@@ -3,8 +3,15 @@ package snow.platform.native.audio.openal;
 import snow.types.Types;
 import snow.audio.openal.AL;
 
+import snow.Log.log;
+import snow.Log._debug;
+import snow.Log._verbose;
+import snow.Log._verboser;
+
 /** Internal helper class for interaction with OpenAL. */
-@:noCompletion class OpenALHelper {
+@:noCompletion
+@:log_as('audio')
+class OpenALHelper {
 
         /** Set up a source using default values for PITCH, GAIN, POSITION, VELOCITY, and LOOPING */
     public static function default_source_setup( source:Int ) {
@@ -31,18 +38,18 @@ import snow.audio.openal.AL;
             if(_info.data.channels > 1) {
                 if(_info.data.bits_per_sample == 8) {
                     format = AL.FORMAT_STEREO8;
-                    trace("/ snow /\t > format : STEREO 8");
+                    _debug("\t > format : STEREO 8");
                 } else {
                     format = AL.FORMAT_STEREO16;
-                    trace("/ snow /\t > format : STEREO 16");
+                    _debug("\t > format : STEREO 16");
                 }
             } else { //mono
                 if(_info.data.bits_per_sample == 8) {
                     format = AL.FORMAT_MONO8;
-                    trace("/ snow /\t > format : MONO 8");
+                    _debug("\t > format : MONO 8");
                 } else {
                     format = AL.FORMAT_MONO16;
-                    trace("/ snow /\t > format : MONO 16");
+                    _debug("\t > format : MONO 16");
                 }
             }
 

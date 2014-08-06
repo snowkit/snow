@@ -470,18 +470,18 @@ namespace snow {
 
             int err = SDL_InitSubSystem(SDL_INIT_GAMECONTROLLER);
             if (err == -1) {
-                snow::log("/ snow / Could not initialize controller for SDL : %s\n", SDL_GetError());
+                snow::log(1, "/ snow / Could not initialize controller for SDL : %s\n", SDL_GetError());
             }
 
             err = SDL_InitSubSystem(SDL_INIT_JOYSTICK);
             if (err == -1) {
-                snow::log("/ snow / Could not initialize joystick for SDL : %s\n", SDL_GetError());
+                snow::log(1, "/ snow / Could not initialize joystick for SDL : %s\n", SDL_GetError());
             }
 
             #ifndef SDL_HAPTIC_DISABLED
                 err = SDL_InitSubSystem(SDL_INIT_HAPTIC);
                 if (err == -1) {
-                    snow::log("/ snow / warning only / Could not initialize haptic feedback for SDL. This is not critical. : %s\n", SDL_GetError());
+                    snow::log(2, "/ snow / warning only / Could not initialize haptic feedback for SDL. This is not critical. : %s\n", SDL_GetError());
                 }
             #endif //SDL_HAPTIC_DISABLED
 

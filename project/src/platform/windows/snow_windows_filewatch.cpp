@@ -173,7 +173,7 @@ namespace snow {
 
         bool init_filewatch() {
 
-            snow::log("/ snow / initialized file watch ok");
+            snow::log(1, "/ snow / initialized file watch ok");
 
             // create our queue
             eventqueue_create((eventqueue_t*)&filewatch_queue);
@@ -199,7 +199,7 @@ namespace snow {
 
             } //each watched path
 
-            snow::log("/ snow / filewatch started");
+            snow::log(1, "/ snow / filewatch started");
 
         } //start_filewatch
 
@@ -220,7 +220,7 @@ namespace snow {
 
             watchers.clear();
 
-            snow::log("/ snow / filewatch stopped");
+            snow::log(1, "/ snow / filewatch stopped");
 
         } //stop_filewatch
 
@@ -247,7 +247,7 @@ namespace snow {
 
             stop_filewatch();
 
-            snow::log("/ snow / filewatch shutdown");
+            snow::log(1, "/ snow / filewatch shutdown");
 
         } //shutdown_filewatch
 

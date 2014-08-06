@@ -59,14 +59,21 @@ namespace snow {
 extern double timestamp();
 
 
-    value snow_init( value _on_event, value _run_loop ) {
+    value snow_init( value _on_event, value _init_config ) {
 
             //fetch the callback for system events
         system_event_handler = new AutoGCRoot(_on_event);
-        bool run_loop = val_bool(_run_loop);
+
+            //fetch config values
+        bool has_loop = property_bool(_init_config, id_has_loop, true);
+        snow::log_level = property_int(_init_config, id_log_level, 1);
+
+        if(snow::log_level > 1) {
+            printf("/ snow / log level set to %d\n", snow::log_level);
+        }
 
             //now init the core
-        snow::core::snow_init( run_loop );
+        snow::core::snow_init( has_loop );
 
         return alloc_null();
 
@@ -1091,6 +1098,8 @@ extern double timestamp();
     int id_bytes;
     int id_handle;
     int id_complete;
+    int id_has_loop;
+    int id_log_level;
 
     int id_window;
     int id_window_id;

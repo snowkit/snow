@@ -16,6 +16,11 @@ import snow.window.Windowing;
     //the platform core bindings
 import snow.Core;
 
+import snow.Log.log;
+import snow.Log._debug;
+import snow.Log._verbose;
+import snow.Log._verboser;
+
 class Snow {
 
 //Property accessors
@@ -125,7 +130,7 @@ class Snow {
 
     function on_snow_init() {
 
-        _debug('/ snow / initializing - ', true);
+        _debug('initializing - ');
 
             //ensure that we are in the correct location for asset loading
 
@@ -133,18 +138,18 @@ class Snow {
 
             var app_path = core.app_path();
 
-            _debug('/ snow / setting up app path ${app_path}', true);
+            _debug('setting up app path ${app_path}');
 
             Sys.setCwd( app_path );
 
             #if !mobile
-                _debug('/ snow / setting up pref path', true);
+                _debug('setting up pref path');
                 core.pref_path('snow','default');
             #end //mobile
 
         #end //snow_native
 
-        _debug('/ snow / pre ready, init host', true);
+        _debug('pre ready, init host');
 
             //any app pre ready init can be handled in here
         host.on_internal_init();
@@ -154,12 +159,12 @@ class Snow {
     function on_snow_ready() {
 
         if(was_ready) {
-            _debug("/ snow / firing ready event repeatedly is not ideal...");
+            log("firing ready event repeatedly is not ideal...");
             return;
         }
 
 
-        _debug('/ snow / ready, setting up additional systems...');
+        _debug('ready, setting up additional systems...');
 
 
                 //create the sub systems
@@ -176,7 +181,7 @@ class Snow {
             assets.manifest_path = snow_config.config_assets_path;
 
                 //
-            _debug('/ snow / fetching asset list "${assets.manifest_path}"' , true);
+            _debug('fetching asset list "${assets.manifest_path}"');
 
                 //we fetch the a list from the manifest
             config.assets = default_asset_list();
@@ -192,7 +197,7 @@ class Snow {
 
         config.window = default_window_config();
 
-        _debug('/ snow / fetching user config', true);
+        _debug('fetching user config');
 
             //request config changes, if any
         config = host.config( config );
@@ -200,7 +205,7 @@ class Snow {
             //disllow re-entry
         was_ready = true;
 
-        _debug('/ snow / creating default window', true);
+        _debug('creating default window');
 
             //now if they requested a window, let's open one
         if(config.has_window == true) {
@@ -209,7 +214,7 @@ class Snow {
 
                 //failed to create?
             if(window.handle == null) {
-                throw "/ snow / requested default window cannot be created. Cannot continue.";
+                throw "requested default window cannot be created. Cannot continue.";
             }
 
         } //has_window
@@ -285,7 +290,11 @@ class Snow {
             _event.type != SystemEventType.input
 
         ) {
-            trace( "/ snow / system event : " + _event );
+            _debug( "system event : " + _event );
+        }
+
+        if( _event.type != SystemEventType.update ) {
+            _verboser( "system event : " + _event );
         }
 
             //all systems should get these basically...
@@ -317,7 +326,7 @@ class Snow {
             } //quit
 
             case SystemEventType.shutdown: {
-                _debug('/ snow / Goodbye.');
+                log('Goodbye.');
             } //shutdown
 
             default: {
@@ -344,13 +353,13 @@ class Snow {
 
                 var json = haxe.Json.parse( config_data.text );
 
-                trace('/ snow / config / ok / default runtime config');
+                _debug('config / ok / default runtime config');
 
                 return json;
 
             } catch(e:Dynamic) {
 
-                trace('/ snow / config / failed / default runtime config failed to parse as JSON. cannot recover.');
+                log('config / failed / default runtime config failed to parse as JSON. cannot recover.');
                 throw e;
 
             }
@@ -381,11 +390,11 @@ class Snow {
 
                 } //for each asset
 
-            trace('/ snow / config / ok / default asset manifest');
+            _debug('config / ok / default asset manifest');
 
         } else { //manifest_data != null
 
-            trace('/ snow / config / failed / default asset manifest not found, or length was zero');
+            log('config / failed / default asset manifest not found, or length was zero');
 
         }
 
@@ -453,30 +462,6 @@ class Snow {
         }
 
     } //next
-
-//Debug helpers
-
-    // #if debug
-
-        @:noCompletion public var log : Bool = true;
-        @:noCompletion public var verbose : Bool = true;
-        @:noCompletion public var more_verbose : Bool = false;
-        @:noCompletion public function _debug(value:Dynamic, _verbose:Bool = false, _more_verbose:Bool = false) {
-            if(log) {
-                if(verbose && _verbose && !_more_verbose) {
-                    trace(value);
-                } else
-                if(more_verbose && _more_verbose) {
-                    trace(value);
-                } else {
-                    if(!_verbose && !_more_verbose) {
-                        trace(value);
-                    }
-                } //elses
-            } //log
-        } //_debug
-
-    // #end //debug
 
 } //Snow
 

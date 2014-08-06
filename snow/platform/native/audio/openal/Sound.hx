@@ -7,9 +7,15 @@ import snow.utils.Float32Array;
 import snow.audio.openal.AL;
 import snow.platform.native.audio.openal.OpenALHelper;
 
+import snow.Log.log;
+import snow.Log._debug;
+import snow.Log._verbose;
+import snow.Log._verboser;
 
 /** The openal specific implementation of Sound */
-@:noCompletion class Sound extends snow.platform.native.audio.Sound {
+@:noCompletion
+@:log_as('audio')
+class Sound extends snow.platform.native.audio.Sound {
 
 
         /** the sound source name */
@@ -38,7 +44,7 @@ import snow.platform.native.audio.openal.OpenALHelper;
 
         AL.sourcePlay(source);
 
-        trace('/ snow / audio / ${name} playing sound / ${AL.getErrorMeaning(AL.getError())} ');
+        _debug('${name} playing sound / ${AL.getErrorMeaning(AL.getError())} ');
 
     } //play
 
@@ -52,7 +58,7 @@ import snow.platform.native.audio.openal.OpenALHelper;
 
         AL.sourcePlay(source);
 
-        trace('/ snow / audio / ${name} looping sound / ${AL.getErrorMeaning(AL.getError())} ');
+        _debug('${name} looping sound / ${AL.getErrorMeaning(AL.getError())} ');
 
     } //loop
 
@@ -62,7 +68,7 @@ import snow.platform.native.audio.openal.OpenALHelper;
 
         AL.sourcePause(source);
 
-        trace('/ snow / audio / ${name} pausing sound / ${AL.getErrorMeaning(AL.getError())} ');
+        _debug('${name} pausing sound / ${AL.getErrorMeaning(AL.getError())} ');
 
     } //pause
 
@@ -72,7 +78,7 @@ import snow.platform.native.audio.openal.OpenALHelper;
 
         AL.sourceStop(source);
 
-        trace('/ snow / audio / ${name} stopping sound / ${AL.getErrorMeaning(AL.getError())} ');
+        _debug('${name} stopping sound / ${AL.getErrorMeaning(AL.getError())} ');
 
     } //stop
 
@@ -108,8 +114,6 @@ import snow.platform.native.audio.openal.OpenALHelper;
 
     override function set_info( _info:AudioInfo ) : AudioInfo {
 
-        trace("setting info", _info);
-
             //if preexisting,
         if(info != null) {
             destroy();
@@ -121,7 +125,7 @@ import snow.platform.native.audio.openal.OpenALHelper;
             //now
         if(_info == null) {
 
-            trace("/ snow / not creating sound, info was null");
+            log("not creating sound, info was null!");
 
             return info;
 
@@ -131,19 +135,19 @@ import snow.platform.native.audio.openal.OpenALHelper;
         info = _info;
         loaded = true;
 
-        trace('/ snow / creating sound / ${name} / ${info.id} / ${info.format}');
+        _debug('creating sound / ${name} / ${info.id} / ${info.format}');
 
-            // trace("/ snow /\t > rate : " + info.data.rate);
-            // trace("/ snow /\t > channels : " + info.data.channels);
-            // trace("/ snow /\t > bitrate : " + info.data.bitrate);
-            // trace("/ snow /\t > bits_per_sample : " + info.data.bits_per_sample);
-            // trace("/ snow /\t > file length : " + info.data.length);
-            // trace("/ snow /\t > byte length: " + info.data.length_pcm);
-            // trace("/ snow /\t > duration : " + duration);
+            _debug("\t > rate : " + info.data.rate);
+            _debug("\t > channels : " + info.data.channels);
+            _debug("\t > bitrate : " + info.data.bitrate);
+            _debug("\t > bits_per_sample : " + info.data.bits_per_sample);
+            _debug("\t > file length : " + info.data.length);
+            _debug("\t > byte length: " + info.data.length_pcm);
+            _debug("\t > duration : " + duration);
 
         source = AL.genSource();
 
-            trace('/ snow / audio / ${name} generating source for sound / ${AL.getErrorMeaning(AL.getError())} ');
+            _debug('${name} generating source for sound / ${AL.getErrorMeaning(AL.getError())} ');
 
             //ask the shared openal helper function
         OpenALHelper.default_source_setup( source );
@@ -151,26 +155,26 @@ import snow.platform.native.audio.openal.OpenALHelper;
             //generate a buffer for this sound
         buffer = AL.genBuffer();
 
-            trace('/ snow / audio / ${name} generating buffer for sound / ${AL.getErrorMeaning(AL.getError())} ');
+            _debug('${name} generating buffer for sound / ${AL.getErrorMeaning(AL.getError())} ');
 
             //ask the helper to determine the format
         format = OpenALHelper.determine_format( info );
 
             //check that we have valid data info
         if(info.data.bytes == null || info.data.bytes.length == 0) {
-            trace('/ snow / audio / ${name} cannot create sound, empty/null data provided!');
+            _debug('${name} cannot create sound, empty/null data provided!');
             return info;
         }
 
             //give the data from the sound info to the buffer
         AL.bufferData(buffer, format, new Float32Array(info.data.bytes), info.data.bytes.length, info.data.rate );
 
-            trace('/ snow / audio / ${name} buffered data / ${AL.getErrorMeaning(AL.getError())} ');
+            _debug('${name} buffered data / ${AL.getErrorMeaning(AL.getError())} ');
 
             //give the buffer to the source
         AL.sourcei(source, AL.BUFFER, buffer);
 
-            trace('/ snow / audio / ${name} assigning buffer to source / ${AL.getErrorMeaning(AL.getError())} ');
+            _debug('${name} assigning buffer to source / ${AL.getErrorMeaning(AL.getError())} ');
 
             //handle onload handlers
         emit('load');

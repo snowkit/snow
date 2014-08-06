@@ -3,6 +3,11 @@ package snow.platform.web.audio.howlerjs;
 import snow.audio.Audio;
 import snow.types.Types;
 
+import snow.Log.log;
+import snow.Log._debug;
+import snow.Log._verbose;
+import snow.Log._verboser;
+
 
 class Sound extends snow.platform.web.audio.Sound {
 
@@ -24,7 +29,7 @@ class Sound extends snow.platform.web.audio.Sound {
 
                 //now
             if(_info == null) {
-                trace("/ snow / not creating sound, info was null");
+                log("not creating sound, info was null");
                 return info;
             }
 
@@ -35,7 +40,7 @@ class Sound extends snow.platform.web.audio.Sound {
             //handle listeners
         emit('load');
 
-            trace('/ snow / creating sound / ${name} / ${info.id} / ${info.format}');
+            _debug('creating sound / ${name} / ${info.id} / ${info.format}');
 
         return info;
 

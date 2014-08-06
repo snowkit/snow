@@ -22,7 +22,7 @@ namespace snow {
 
                 int readtotal = snow::io::tell(src) - before;
 
-                // snow::log("stbi read  %d / %d", size, readtotal );
+                snow::log(5, "/ snow / stbi read  %d / %d", size, readtotal );
 
                 return readtotal;
 
@@ -33,7 +33,7 @@ namespace snow {
 
                 snow::io::iosrc* src = (snow::io::iosrc*)user;
 
-                // snow::log("stbi skip %d ", n);
+                snow::log(5, "/ snow / stbi skip %d ", n);
 
                 snow::io::seek(src, n, snow_seek_cur);
 
@@ -53,7 +53,7 @@ namespace snow {
                     //reset the seek
                 snow::io::seek(src, current, snow_seek_set);
 
-                // snow::log("stbi eof? %d / %d / %d", current, size, current > size);
+                snow::log(5, "/ snow / stbi eof? %d / %d / %d", current, size, current > size);
 
                 if(current >= size) {
                     return 1;
@@ -72,7 +72,7 @@ namespace snow {
                 snow::io::iosrc* src = snow::io::iosrc_fromfile(_id, "rb");
 
                 if(!src) {
-                    snow::log("/ snow / cannot open image file from %s", _id);
+                    snow::log(1, "/ snow / cannot open image file from %s", _id);
                     return false;
                 }
 
@@ -88,7 +88,7 @@ namespace snow {
                     //we are done with the src
                 snow::io::close(src);
 
-                // snow::log("snow / image / w:%d h:%d source bpp:%d bpp:%d\n", *w, *h, *bpp_source, req_bpp);
+                snow::log(2, "/ snow / image / w:%d h:%d source bpp:%d bpp:%d\n", *w, *h, *bpp_source, req_bpp);
 
                 if(data != NULL) {
 
@@ -112,7 +112,7 @@ namespace snow {
 
                 } else { //data != NULL
 
-                    snow::log("snow / image unable to be loaded by snow: %s reason: %s", _id, stbi_failure_reason());
+                    snow::log(1, "/ snow / image unable to be loaded by snow: %s reason: %s", _id, stbi_failure_reason());
                     return false;
 
                 }
@@ -130,7 +130,7 @@ namespace snow {
                 snow::io::iosrc* src = snow::io::iosrc_frommem( bytes.Bytes(), bytes.Size() );
 
                 if(!src) {
-                    snow::log("/ snow / cannot open bytes from %s", _id);
+                    snow::log(1, "/ snow / cannot open bytes from %s", _id);
                     return false;
                 }
 
@@ -146,7 +146,7 @@ namespace snow {
                     //we are done with the src
                 snow::io::close(src);
 
-                // snow::log("snow / image / w:%d h:%d source bpp:%d bpp:%d\n", *w, *h, *bpp_source, req_bpp);
+                snow::log(2, "/ snow / image / w:%d h:%d source bpp:%d bpp:%d\n", *w, *h, *bpp_source, req_bpp);
 
                 if(data != NULL) {
 

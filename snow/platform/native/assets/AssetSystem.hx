@@ -6,6 +6,11 @@ import snow.types.Types;
 import snow.utils.Libs;
 import snow.utils.ByteArray;
 
+import snow.Log.log;
+import snow.Log._debug;
+import snow.Log._verbose;
+import snow.Log._verboser;
+
 @:noCompletion class AssetSystem extends AssetSystemBinding {
 
     public function new( _manager:Assets ) {
@@ -113,7 +118,7 @@ import snow.utils.ByteArray;
             } //switch _format
 
             if(info == null) {
-                trace(_path + " audio info returned null");
+                log(_path + " audio info returned null");
                 return null;
             }
 
@@ -124,7 +129,7 @@ import snow.utils.ByteArray;
 
                 //with audio the bytes data could be null too, this is also an invalid asset
             if(info.data == null) {
-                trace(_path + " audio info data was null");
+                log(_path + " audio info data was null");
                 return null;
             }
 

@@ -14,6 +14,7 @@ import snow.types.Types;
 import snow.assets.Assets;
 import snow.assets.AssetImage;
 import snow.App;
+import snow.Log.log;
 
 import snow.audio.Sound;
 
@@ -76,17 +77,17 @@ class Main extends snow.AppFixedTimestep {
 
         if(_event.type == SystemEventType.filewatch) {
             var type = FileWatchEvents.typed(cast _event.filewatch.type);
-            trace('File watch event type:${type}, path:${_event.filewatch.path} ts:${_event.filewatch.timestamp}');
+            log('File watch event type:${type}, path:${_event.filewatch.path} ts:${_event.filewatch.timestamp}');
         }
 
     } //on_event
 
     override function ready() {
 
-        trace('/ HOST / ready');
+        log('/ HOST / ready');
 
-        trace(GL.getContextAttributes());
-        trace("app config is loaded as : " + app.config.runtime );
+        log(GL.getContextAttributes());
+        log("app config is loaded as : " + app.config.runtime );
 
         if(app.config.runtime.size != null) size = app.config.runtime.size;
         if(app.config.runtime.movespeed != null) speed = app.config.runtime.movespeed;
@@ -94,11 +95,11 @@ class Main extends snow.AppFixedTimestep {
         if(app.config.runtime.timescale != null) timescale = app.config.runtime.timescale;
 
         var dcount : Int = app.windowing.display_count();
-        trace('A total of ${dcount} displays were found');
+        log('A total of ${dcount} displays were found');
         for(i in 0 ... dcount) {
             var bounds = app.windowing.display_bounds(i);
             var name = app.windowing.display_name(i);
-            trace('display ${i}, name: ${name} bounds: ${bounds} modes:' );
+            log('display ${i}, name: ${name} bounds: ${bounds} modes:' );
 
                 //get list of modes for this display
             var modecount = app.windowing.display_mode_count(i);
@@ -109,18 +110,18 @@ class Main extends snow.AppFixedTimestep {
                 modes += ' | ${mode.width} x ${mode.height}  @  ${mode.refresh_rate}hz';
             }
 
-            trace(modes);
+            log(modes);
 
         }
 
-        trace("desktop native resolution of primary display : " + app.windowing.display_native_mode(0) );
-        trace("OpenGL reports version " + GL.versionString());
-        // trace("OpenGL reports extensions " + GL.getSupportedExtensions());
+        log("desktop native resolution of primary display : " + app.windowing.display_native_mode(0) );
+        log("OpenGL reports version " + GL.versionString());
+        // log("OpenGL reports extensions " + GL.getSupportedExtensions());
 
         initializeShaders();
         createBuffers();
 
-        trace("done with shaders and buffers");
+        log("done with shaders and buffers");
 
         textures = [];
 
@@ -137,7 +138,7 @@ class Main extends snow.AppFixedTimestep {
             app.assets.image( f, {
                 onload:function(asset:AssetImage){
                     if(asset != null) {
-                        trace('loaded $f with ${asset.image.width}x${asset.image.height}x${asset.image.bpp} (source bpp:${asset.image.bpp_source}) mem:${asset.image.data.length}');
+                        log('loaded $f with ${asset.image.width}x${asset.image.height}x${asset.image.bpp} (source bpp:${asset.image.bpp_source}) mem:${asset.image.data.length}');
                         textures.push( createTexture( asset ) );
                         if(current_texture == null) {
                             current_texture = textures[0];
@@ -159,22 +160,22 @@ class Main extends snow.AppFixedTimestep {
         sound3 = app.audio.create("assets/sound.wav", 'wav');
         sound5 = app.audio.create("assets/244028__lennyboy__rain001.ogg", 'ogg_stream', true);
 
-        // trace("sound1 : " + sound1.name);
-        // trace("sound2 : " + sound2.name);
-        // trace("sound3 : " + sound3.name);
-        // trace("sound5 : " + sound5.name);
+        // log("sound1 : " + sound1.name);
+        // log("sound2 : " + sound2.name);
+        // log("sound3 : " + sound3.name);
+        // log("sound5 : " + sound5.name);
 
         sound5.on('load', function(s:Sound){
-            trace('sound 5 loaded');
+            log('sound 5 loaded');
             s.loop();
         });
 
         sound5.on('end', function(s:Sound){
-            trace('loop ended');
+            log('loop ended');
         });
 
         sound2.on('end', function(s:Sound) {
-            trace('onend sound2!');
+            log('onend sound2!');
         });
 
 
@@ -194,7 +195,7 @@ class Main extends snow.AppFixedTimestep {
 
     override function onkeydown( keycode:Int, _,_,_,_,_ ) {
 
-        // trace("key down : " + event);
+        // log("key down : " + event);
 
             //console scan code should be universally next to 1
         if(keycode == Key.key_e) {
@@ -251,13 +252,13 @@ class Main extends snow.AppFixedTimestep {
         if(keycode == Key.key_m) {
             cursor = !cursor;
             app.windowing.enable_cursor( cursor );
-            trace("cursor enabled : " + cursor );
+            log("cursor enabled : " + cursor );
         }
 
         if(keycode == Key.key_v) {
             vsync = !vsync;
             app.windowing.enable_vsync( vsync );
-            trace("vsync enabled : " + vsync );
+            log("vsync enabled : " + vsync );
         }
 
         if(keycode == Key.key_b) {
@@ -271,7 +272,7 @@ class Main extends snow.AppFixedTimestep {
 
         if(keycode == Key.key_r) {
             sound5.position = 0;
-            trace('music reset');
+            log('music reset');
         }
 
         if(keycode == Key.key_u) {
@@ -281,15 +282,15 @@ class Main extends snow.AppFixedTimestep {
         if(keycode == Key.key_o) {
             #if desktop
                 app.io.platform.dialog_open('Select a thing', [{extension:'txt', desc:'text files'}, {extension:'cpp', desc:'cpp files'}]);
-                trace(app.io.platform.dialog_save('Save a thing', {extension:'flow'}));
-                trace(app.io.platform.dialog_folder());
+                log(app.io.platform.dialog_save('Save a thing', {extension:'flow'}));
+                log(app.io.platform.dialog_folder());
             #end
         }
 
         if(keycode == Key.key_t) {
             var t = (sound5.duration*0.75);
             sound5.position = t;
-            trace('set to ${sound5.duration}*0.75 | music 75% ' + t);
+            log('set to ${sound5.duration}*0.75 | music 75% ' + t);
         }
 
         if(keycode == Key.backquote) {
@@ -301,7 +302,7 @@ class Main extends snow.AppFixedTimestep {
 
     override function onkeyup( keycode:Int, _,_, mod:ModState, _,_ ) {
 
-        // trace("onkeyup " + event);
+        // log("onkeyup " + event);
 
             //alt enter to toggle fullscreen test
         if( keycode == Key.enter && mod.alt ) {
@@ -319,7 +320,7 @@ class Main extends snow.AppFixedTimestep {
 
         if( keycode == Key.key_c ) {
             noclamp = !noclamp;
-            trace("no clamp: " + noclamp);
+            log("no clamp: " + noclamp);
         }
 
     } //onkeyup
@@ -327,15 +328,15 @@ class Main extends snow.AppFixedTimestep {
     var noclamp : Bool = true;
 
     override public function ontextinput( text:String, start:Int, length:Int, type:TextEventType, timestamp:Float, window_id:Int ) {
-        // trace('text event; text:$text / start: $start / length: $length / type:$type / timestamp:${timestamp} / window: ${window_id}');
+        // log('text event; text:$text / start: $start / length: $length / type:$type / timestamp:${timestamp} / window: ${window_id}');
     } //ontextinput
 
     override function ontouchdown( x:Float, y:Float, touch_id:Int, timestamp:Float ) {
-        trace('touch down; $x / $y / $touch_id / $timestamp');
+        log('touch down; $x / $y / $touch_id / $timestamp');
     }
 
     override function ontouchup( x:Float, y:Float, touch_id:Int, timestamp:Float ) {
-        trace('touch up; $x / $y / $touch_id / $timestamp');
+        log('touch up; $x / $y / $touch_id / $timestamp');
         sound1.play();
 
         if(touch_id > 1) {
@@ -345,7 +346,7 @@ class Main extends snow.AppFixedTimestep {
 
     override function ontouchmove( x:Float, y:Float, dx:Float, dy:Float, touch_id:Int, timestamp:Float ) {
 
-        trace('touch move; $x / $y / $dx / $dy / $touch_id / $timestamp ');
+        log('touch move; $x / $y / $dx / $dy / $touch_id / $timestamp ');
 
             //touches are in NDC, so we convert to window size
         positionX = (app.window.width*x) - (size/2);
@@ -356,7 +357,7 @@ class Main extends snow.AppFixedTimestep {
 
     override function onmousemove( x:Int, y:Int, xrel:Int, yrel:Int, timestamp:Float, window_id:Int ) {
 
-        // trace('move $x / $y / $xrel / $yrel / $timestamp / $window_id');
+        // log('move $x / $y / $xrel / $yrel / $timestamp / $window_id');
 
         if(app.input.keydown(Key.space)) {
             positionY = y - (size/2);
@@ -368,7 +369,7 @@ class Main extends snow.AppFixedTimestep {
 
     override function onmouseup( x:Int, y:Int, button:Int, timestamp:Float, window_id:Int ) {
 
-        // trace('mouse up $x $y $button $timestamp $window_id');
+        // log('mouse up $x $y $button $timestamp $window_id');
 
         #if !mobile
             positionY = y - (size/2);
@@ -379,30 +380,30 @@ class Main extends snow.AppFixedTimestep {
     } //onmouseup
 
     override function onmousedown( x:Int, y:Int, button:Int, timestamp:Float, window_id:Int ) {
-        // trace('mouse down $x $y $button $timestamp $window_id');
+        // log('mouse down $x $y $button $timestamp $window_id');
     } //onmousedown
 
     override function onmousewheel(  x:Int, y:Int, timestamp:Float, window_id:Int ) {
-        // trace('mouse wheel $x $y $timestamp $window_id');
+        // log('mouse wheel $x $y $timestamp $window_id');
     } //onmousewheel
 
 
     override function ongamepadaxis( gamepad:Int, axis:Int, value:Float, timestamp:Float ) {
         if(Math.abs(value) > 0.2 || noclamp) {
-            trace('axis; device: ${gamepad}, axis: ${axis}, value: ${value} timestamp: ${timestamp}');
+            log('axis; device: ${gamepad}, axis: ${axis}, value: ${value} timestamp: ${timestamp}');
         }
     } //ongamepadaxis
 
     override function ongamepadbuttonup( gamepad:Int, button:Int, value:Float, timestamp:Float ) {
-        trace('button up; device: ${gamepad}, button: ${button} value: ${value} timestamp:  ${timestamp}');
+        log('button up; device: ${gamepad}, button: ${button} value: ${value} timestamp:  ${timestamp}');
     } //ongamepadbuttonup
 
     override function ongamepadbuttondown( gamepad:Int, button:Int, value:Float, timestamp:Float ) {
-        trace('button down; device: ${gamepad}, button: ${button} value: ${value} timestamp:  ${timestamp}');
+        log('button down; device: ${gamepad}, button: ${button} value: ${value} timestamp:  ${timestamp}');
     } //ongamepadbuttondown
 
     override function ongamepaddevice( gamepad:Int, type:GamepadDeviceEventType, timestamp:Float ) {
-        trace('device event; device: ${gamepad}, type: ${type} timestamp: ${timestamp}');
+        log('device event; device: ${gamepad}, type: ${type} timestamp: ${timestamp}');
     } //ongamepaddevice
 
 
@@ -416,7 +417,7 @@ class Main extends snow.AppFixedTimestep {
         phys_posx += (speed * dirX * delta);
 
         if(sound5 != null && sound5.playing) {
-            // trace(sound5.time);
+            // log(sound5.time);
         }
 
         if(current_texture != null) {
@@ -442,23 +443,23 @@ class Main extends snow.AppFixedTimestep {
         } //current_texture != null
 
         if(app.input.keyreleased(Key.space)) {
-            trace('space released');
+            log('space released');
         }
 
         if(app.input.keypressed(Key.space)) {
-            trace('space pressed');
+            log('space pressed');
         }
 
         if(app.input.mousereleased(3)) {
-            trace('right mouse released');
+            log('right mouse released');
         }
 
         if(app.input.mousepressed(3)) {
-            trace('right mouse pressed');
+            log('right mouse pressed');
         }
 
         if(app.input.mousedown(2)) {
-            trace('mid mouse down');
+            log('mid mouse down');
         }
 
     } //update
@@ -529,14 +530,14 @@ class Main extends snow.AppFixedTimestep {
                 gl_Position = uProjectionMatrix * uModelViewMatrix * vec4 (aVertexPosition, 1.0);
             }";
 
-        trace("about to create a shader");
+        log("about to create a shader");
         var vertexShader = GL.createShader (GL.VERTEX_SHADER);
 
 
             GL.shaderSource (vertexShader, vertexShaderSource);
             GL.compileShader (vertexShader);
 
-        trace("shader created without issue");
+        log("shader created without issue");
 
         if (GL.getShaderParameter (vertexShader, GL.COMPILE_STATUS) == 0) {
 

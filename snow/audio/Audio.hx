@@ -9,6 +9,11 @@ import snow.assets.Assets;
 import snow.assets.AssetAudio;
 import snow.utils.ByteArray;
 
+import snow.Log.log;
+import snow.Log._debug;
+import snow.Log._verbose;
+import snow.Log._verboser;
+
 class Audio {
 
         /** access to platform specific implementation */
@@ -103,7 +108,7 @@ class Audio {
         var _sound = sound_list.get(_name);
 
         if(_sound == null) {
-            trace('/ snow / can\'t find sound, unable to uncreate, use create first: ${_name}');
+            log('can\'t find sound, unable to uncreate, use create first: ${_name}');
         } //_sound
 
             //kill the sound
@@ -133,7 +138,7 @@ class Audio {
         var _sound = sound_list.get(_name);
 
         if(_sound == null) {
-            trace('/ snow / sound not found, use create first: ${_name}');
+            log('sound not found, use create first: ${_name}');
         } //_sound
 
         return _sound;

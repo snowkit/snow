@@ -56,7 +56,7 @@ namespace snow {
                         }
                     }
 
-                    snow::log("/ snow / could not initialize inotify file watch : %s\n", reason.c_str());
+                    snow::log(1, "/ snow / could not initialize inotify file watch : %s\n", reason.c_str());
 
                     return false;
 
@@ -64,7 +64,7 @@ namespace snow {
 
             #endif //SNOW_NO_INOTIFY
 
-            snow::log("/ snow / initialized file watch ok");
+            snow::log(2, "/ snow / initialized file watch ok");
 
             return true;
 
@@ -74,12 +74,12 @@ namespace snow {
 
                 //don't attempt to start twice
             if(watch_to_path.size() > 0) {
-                snow::log("/ snow / cannot start filewatch twice, this is less than ideal");
+                snow::log(1, "/ snow / cannot start filewatch twice, this is less than ideal");
                 return;
             }
 
             if(watched_paths.size() == 0) {
-                snow::log("/ snow / not starting filewatch, no paths in list");
+                snow::log(2, "/ snow / not starting filewatch, no paths in list");
                 return;
             }
 
@@ -105,7 +105,7 @@ namespace snow {
 
             #endif //SNOW_NO_INOTIFY
 
-            snow::log("/ snow / filewatch started");
+            snow::log(2, "/ snow / filewatch started");
 
         } //start_filewatch
 

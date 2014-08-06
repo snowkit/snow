@@ -10,7 +10,10 @@ import snow.assets.AssetText;
 import snow.assets.AssetBytes;
 import snow.assets.AssetAudio;
 
-
+import snow.Log.log;
+import snow.Log._debug;
+import snow.Log._verbose;
+import snow.Log._verboser;
 
 /** The asset system class gives you access to fetching and manipulating assets,
     handling loading files and data in a consistent cross platform way */
@@ -287,11 +290,11 @@ class Assets {
 
         //this is separate so we can defer the behavior later
     function exists_error( _id:String ) {
-        trace('/ snow / asset / not found "$_id"' );
+        log('not found "$_id"' );
     } //exists_error
 
     function load_error( _id:String, ?reason:String = "unknown" ) {
-        trace('/ snow / asset / found "$_id" but it failed to load ($reason)' );
+        log('found "$_id" but it failed to load ($reason)' );
     } //load_error
 
 

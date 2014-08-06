@@ -9,7 +9,13 @@
 
 namespace snow {
 
-    void log(const char *fmt, ...) {
+    int log_level = 1;
+
+    void log(int _level, const char *fmt, ...) {
+
+        if(_level > log_level) {
+            return;
+        }
 
         va_list ap;
 
@@ -140,7 +146,7 @@ namespace snow {
             int res = SDL_Init(SDL_INIT_TIMER);
 
             if(res != 0) {
-                snow::log("/ snow / failed to initialize SDL at all : %d %s", res, SDL_GetError());
+                snow::log(1, "/ snow / failed to initialize SDL at all : %d %s", res, SDL_GetError());
             }
 
                 //add a listener for the core events that the system (iOS/Android for example)

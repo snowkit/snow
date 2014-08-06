@@ -1074,12 +1074,9 @@ class GL {
 
     static function load(inName:String, inArgCount:Int):Dynamic
     {
-        try
-        {
+        try {
             return Libs.load("snow", inName, inArgCount);
-
-        } catch(e:Dynamic)
-        {
+        } catch(e:Dynamic) {
             trace(e);
             return null;
         }

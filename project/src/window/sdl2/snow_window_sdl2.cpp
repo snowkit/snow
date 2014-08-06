@@ -142,7 +142,7 @@ namespace snow {
                 //then try init sdl video system
             int err = snow::window::init_sdl();
             if (err == -1) {
-                snow::log("/ snow / could not initialize Video for SDL : %s\n", SDL_GetError());
+                snow::log(1, "/ snow / could not initialize Video for SDL : %s\n", SDL_GetError());
                 on_created( false );
                 return;
             }
@@ -175,6 +175,9 @@ namespace snow {
 
             SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
 
+            // SDL_GL_SetAttribute(SDL_GL_ACCELERATED_VISUAL, 1);
+            // SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
+
             #ifdef SNOW_GLES
                 SDL_GL_SetAttribute(SDL_GL_RETAINED_BACKING, 1);
                 SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 2);
@@ -197,7 +200,7 @@ namespace snow {
                     // - platform specific window failure, also unavoidable
             if( !window ) {
 
-                snow::log( "/ snow / window failed to create for platform, cannot recover : %s\n", SDL_GetError());
+                snow::log(1, "/ snow / window failed to create for platform, cannot recover : %s\n", SDL_GetError());
                 on_created( false );
                 return;
 
@@ -212,14 +215,14 @@ namespace snow {
                 //if one doesn't already exist
             if(!snow_gl_context) {
 
-                snow::log("/ snow / attempting to create a GL context...");
+                snow::log(2, "/ snow / attempting to create a GL context...");
 
                 snow_gl_context = SDL_GL_CreateContext(window);
 
                 if( !snow_gl_context ) {
 
-                    snow::log("/ snow / failed to create GL context for windowing (window id %d): %s\n", id, SDL_GetError() );
-                    snow::log("/ snow / trying again in a safer mode (no AA)");
+                    snow::log(1, "/ snow / failed to create GL context for windowing (window id %d): %s\n", id, SDL_GetError() );
+                    snow::log(1, "/ snow / trying again in a safer mode (no AA)");
 
                         //try without AA as this is a common cause of problems
                     SDL_GL_SetAttribute(SDL_GL_MULTISAMPLEBUFFERS, 0);
@@ -232,7 +235,7 @@ namespace snow {
 
                     if(!snow_gl_context) {
 
-                        snow::log("/ snow / failed to create GL context without AA (window id  %d): %s\n", id, SDL_GetError() );
+                        snow::log(1, "/ snow / failed to create GL context without AA (window id  %d): %s\n", id, SDL_GetError() );
 
                             //if that fails, we try and run a diagnostic test
                             //against no stencil / depth buffer, so we can log more useful information
@@ -243,10 +246,10 @@ namespace snow {
 
                             //if this succeeds we can at least log that there was a misconfigured depth/stencil buffer
                         if(snow_gl_context) {
-                            snow::log("/ snow / diagnostic test with no stencil/depth passed, meaning your stencil/depth bit combo is invalid (requested stencil:%d, depth:%d)\n",
+                            snow::log(1, "/ snow / diagnostic test with no stencil/depth passed, meaning your stencil/depth bit combo is invalid (requested stencil:%d, depth:%d)\n",
                                 config.stencil_bits, config.depth_bits );
                         } else {
-                            snow::log("/ snow / diagnostic test with no stencil/depth failed as well %s\n", SDL_GetError() );
+                            snow::log(1, "/ snow / diagnostic test with no stencil/depth failed as well %s\n", SDL_GetError() );
                         }
 
                         on_created( false );
@@ -293,18 +296,18 @@ namespace snow {
                         actual_depth, actual_stencil, actual_aa
                     );
 
-                    snow::log("/ snow / success in creating GL context for window %d\n", id);
+                    snow::log(2, "/ snow / success in creating GL context for window %d\n", id);
 
                 }
 
                 #ifdef NATIVE_TOOLKIT_GLEW
                     int err = glewInit();
                     if(err != 0) {
-                        snow::log("/ snow / failed to init glew?! %s\n", glewGetErrorString(err));
+                        snow::log(1, "/ snow / failed to init glew?! %s\n", glewGetErrorString(err));
                         on_created( false );
                         return;
                     } else {
-                        snow::log("/ snow / GLEW init ok");
+                        snow::log(2, "/ snow / GLEW init ok");
                     }
                 #endif //NATIVE_TOOLKIT_GLEW
 
@@ -312,7 +315,7 @@ namespace snow {
 
                 //on iOS we need to intercept the loop
             #ifdef IPHONE
-                snow::log("/ snow / requesting main loop for iOS");
+                snow::log(1, "/ snow / requesting main loop for iOS");
                 SDL_iPhoneSetAnimationCallback(window, 1, snow::core::loop, NULL);
             #endif //IPHONE
 
