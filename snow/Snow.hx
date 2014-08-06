@@ -64,6 +64,7 @@ class Snow {
         //the core platform instance to bind us
     @:noCompletion public static var core : Core;
 
+
     @:noCompletion public function new() {
 
             //We create the core as a concrete platform version of the core
@@ -249,13 +250,15 @@ class Snow {
             //fire any next tick
         if(next_list.length > 0) {
 
+                //to avoid culling ones adding during a next call
+            var _pre_next_length = next_list.length;
                 //avoid allocating on the run loop
                 //as much as possible so no iterator
             for(i in 0 ... next_list.length) {
                 next_list[i]();
             }
 
-            next_list.splice(0, next_list.length);
+            next_list.splice(0, _pre_next_length);
 
         } //next_list.length
 
