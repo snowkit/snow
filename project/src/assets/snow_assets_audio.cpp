@@ -163,8 +163,9 @@ namespace snow {
                     seek_bytes_ogg( ogg_source, start );
                 }
 
-                    //resize to fit the requested length
-                out_buffer.resize(_read_len);
+                    //resize to fit the requested length, but pad it slightly to align
+                long byte_gap = (_read_len & 0x03);
+                out_buffer.resize(_read_len + byte_gap);
 
                 bool reading = true;
                 long bytes_left = _read_len;
@@ -200,7 +201,8 @@ namespace snow {
                     //we need the buffer length to reflect the real size,
                     //just in case it read shorter than requested
                 if(total_read != _read_len) {
-                    out_buffer.resize(total_read);
+                    long byte_gap = (_read_len & 0x03);
+                    out_buffer.resize(total_read+byte_gap);
                 }
 
                 return complete;
@@ -487,7 +489,8 @@ namespace snow {
                     snow::log("/ snow / wav / reading %d bytes from %d", _read_len, start);
 
                         //resize to fit the requested/remaining length
-                    out_buffer.resize(_read_len);
+                    long byte_gap = (_read_len & 0x03);
+                    out_buffer.resize(_read_len+byte_gap);
 
                         //read from the wav source
                     long elements_read = snow::io::read( wav_source->file_source, (char*)out_buffer.begin(), _read_len, n_elements);
@@ -592,7 +595,8 @@ namespace snow {
                     snow::log("/ snow / pcm / reading %d bytes from %d", _read_len, start);
 
                         //resize to fit the requested/remaining length
-                    out_buffer.resize(_read_len);
+                    long byte_gap = (_read_len & 0x03);
+                    out_buffer.resize(_read_len+byte_gap);
 
                         //read from the pcm source
                     long elements_read = snow::io::read( pcm_source->file_source, (char*)out_buffer.begin(), _read_len, n_elements);
