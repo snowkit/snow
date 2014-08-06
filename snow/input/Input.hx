@@ -17,6 +17,7 @@ class Input {
 
         /** access to snow from subsystems */
     @:noCompletion public var lib : Snow;
+        /** access to platform implementation */
     @:noCompletion public var platform : InputSystem;
 
         //this is the keycode based flags for keypressed/keyreleased/keydown
@@ -40,6 +41,7 @@ class Input {
     var gamepad_button_released : Map<Int, MapIntBool >;
     var gamepad_axis_values : Map<Int, MapIntFloat >;
 
+        /** constructed internally, use `app.input` */
     @:noCompletion public function new( _lib:Snow ) {
 
         lib = _lib;
@@ -162,25 +164,7 @@ class Input {
 
         } //gamepaddown
 
-        /** manually dispatch a keyboard event through the system, delivered to the app handlers, internal and external */
-    public function dispatch_key_up_event( keycode:Int, scancode:Int, repeat:Bool, mod:ModState, timestamp:Float, window_id:Int ) {
-
-            //flag it as released but unprocessed
-        key_code_released.set(keycode, false);
-            //remove the down flag
-        key_code_down.remove(keycode);
-
-            //flag it as released but unprocessed
-        scan_code_released.set(scancode, false);
-            //remove the down flag
-        scan_code_down.remove(scancode);
-
-
-            //dispatch the event
-        lib.host.onkeyup(keycode, scancode, repeat, mod, timestamp, window_id);
-
-    } //dispatch_key_up_event
-
+        /** manually dispatch a key down event through the system, delivered to the app handlers, internal and external */
     public function dispatch_key_down_event( keycode:Int, scancode:Int, repeat:Bool, mod:ModState, timestamp:Float, window_id:Int ) {
 
             //only do the realtime flags if not key repeat
@@ -200,6 +184,25 @@ class Input {
 
     } //dispatch_key_down_event
 
+        /** manually dispatch a key up event through the system, delivered to the app handlers, internal and external */
+    public function dispatch_key_up_event( keycode:Int, scancode:Int, repeat:Bool, mod:ModState, timestamp:Float, window_id:Int ) {
+
+            //flag it as released but unprocessed
+        key_code_released.set(keycode, false);
+            //remove the down flag
+        key_code_down.remove(keycode);
+
+            //flag it as released but unprocessed
+        scan_code_released.set(scancode, false);
+            //remove the down flag
+        scan_code_down.remove(scancode);
+
+
+            //dispatch the event
+        lib.host.onkeyup(keycode, scancode, repeat, mod, timestamp, window_id);
+
+    } //dispatch_key_up_event
+
         /** manually dispatch a text event through the system, delivered to the app handlers, internal and external */
     public function dispatch_text_event( text:String, start:Int, length:Int, type:TextEventType, timestamp:Float, window_id:Int ) {
 
@@ -207,12 +210,15 @@ class Input {
 
     } //dispatch_text_event
 
+
+        /** manually dispatch a mouse move event through the system, delivered to the app handlers, internal and external */
     public function dispatch_mouse_move_event( x:Int, y:Int, xrel:Int, yrel:Int, timestamp:Float, window_id:Int ) {
 
         lib.host.onmousemove( x, y, xrel, yrel, timestamp, window_id );
 
     } //dispatch_mouse_move_event
 
+        /** manually dispatch a mouse button down event through the system, delivered to the app handlers, internal and external */
     public function dispatch_mouse_down_event( x:Int, y:Int, button:Int, timestamp:Float, window_id:Int ) {
 
             //flag the button as pressed, but unprocessed (false)
@@ -225,6 +231,7 @@ class Input {
 
     } //dispatch_mouse_down_event
 
+        /** manually dispatch a mouse button up event through the system, delivered to the app handlers, internal and external */
     public function dispatch_mouse_up_event( x:Int, y:Int, button:Int, timestamp:Float, window_id:Int ) {
 
             //flag it as released but unprocessed
@@ -237,32 +244,35 @@ class Input {
 
     } //dispatch_mouse_up_event
 
+        /** manually dispatch a mouse wheel event through the system, delivered to the app handlers, internal and external */
     public function dispatch_mouse_wheel_event( x:Int, y:Int, timestamp:Float, window_id:Int ) {
 
         lib.host.onmousewheel( x, y, timestamp, window_id );
 
     } //dispatch_mouse_wheel_event
 
-        /** manually dispatch a touch event through the system, delivered to the app handlers, internal and external */
+        /** manually dispatch a touch down through the system, delivered to the app handlers, internal and external */
     public function dispatch_touch_down_event( x:Float, y:Float, touch_id:Int, timestamp:Float ) {
 
         lib.host.ontouchdown( x, y, touch_id, timestamp );
 
     } //dispatch_touch_down_event
 
+        /** manually dispatch a touch up through the system, delivered to the app handlers, internal and external */
     public function dispatch_touch_up_event( x:Float, y:Float, touch_id:Int, timestamp:Float ) {
 
         lib.host.ontouchup( x, y, touch_id, timestamp );
 
     } //dispatch_touch_up_event
 
+        /** manually dispatch a touch move through the system, delivered to the app handlers, internal and external */
     public function dispatch_touch_move_event( x:Float, y:Float, dx:Float, dy:Float, touch_id:Int, timestamp:Float ) {
 
         lib.host.ontouchmove( x, y, dx, dy, touch_id, timestamp );
 
     } //dispatch_touch_move_event
 
-        /** manually dispatch a gamepad event through the system, delivered to the app handlers, internal and external */
+        /** manually dispatch a gamepad axis event through the system, delivered to the app handlers, internal and external */
     public function dispatch_gamepad_axis_event( gamepad:Int, axis:Int, value:Float, timestamp:Float ) {
 
             //if not existing, add it's map
@@ -277,6 +287,7 @@ class Input {
 
     } //dispatch_gamepad_axis_event
 
+        /** manually dispatch a gamepad button down event through the system, delivered to the app handlers, internal and external */
     public function dispatch_gamepad_button_down_event( gamepad:Int, button:Int, value:Float, timestamp:Float ) {
 
             //if not existing, add it's map
@@ -298,6 +309,7 @@ class Input {
 
     } //dispatch_gamepad_button_down_event
 
+        /** manually dispatch a gamepad button up event through the system, delivered to the app handlers, internal and external */
     public function dispatch_gamepad_button_up_event( gamepad:Int, button:Int, value:Float, timestamp:Float ) {
 
            //if not existing, add it's map, this should never happen,
@@ -319,6 +331,7 @@ class Input {
 
     } //dispatch_gamepad_button_up_event
 
+        /** manually dispatch a gamepad device event through the system, delivered to the app handlers, internal and external */
     public function dispatch_gamepad_device_event( gamepad:Int, type:GamepadDeviceEventType, timestamp:Float ) {
 
         lib.host.ongamepaddevice( gamepad, type, timestamp );
@@ -327,19 +340,21 @@ class Input {
 
 //Interal API
 
-
+        /** Attach to a window to listen for input from it */
     @:noCompletion public function listen( _window:Window ) {
 
         platform.listen(_window);
 
     } //listen
 
+        /** Detach a listening window, stopping listening of input from it */
     @:noCompletion public function unlisten( _window:Window ) {
 
         platform.unlisten(_window);
 
     } //unlisten
 
+        /** Called when a system event is dispatched through the core */
     @:noCompletion public function on_event( _event:SystemEvent ) {
 
         if(_event.type == SystemEventType.input) {
@@ -348,18 +363,21 @@ class Input {
 
     } //on_event
 
+        /** Called when a gamepad is added, in order to handle any platform details */
     @:noCompletion public function on_gamepad_added( _event:Dynamic ) {
 
         platform.gamepad_add( _event.which );
 
     } //on_gamepad_added
 
+        /** Called when a gamepad is removed, in order to handle any platform details */
     @:noCompletion public function on_gamepad_removed( _event:Dynamic ) {
 
         platform.gamepad_remove( _event.which );
 
     } //on_gamepad_removed
 
+        /** Handle any input related processing, called by Snow */
     @:noCompletion public function update() {
 
         platform.process();
@@ -370,13 +388,16 @@ class Input {
 
     } //update
 
+        /** Destroy and clean up etc. */
     @:noCompletion public function destroy() {
 
         platform.destroy();
 
     } //destroy
 
+//internal
 
+        /** update mouse pressed/released/down states */
     function _update_mousestate() {
 
         for(_code in mouse_button_pressed.keys()){
@@ -401,6 +422,7 @@ class Input {
 
     } //_update_mousestate
 
+        /** update gamepad pressed/released/down/axis states */
     function _update_gamepadstate() {
 
         for(_gamepad_pressed in gamepad_button_pressed){
@@ -429,6 +451,7 @@ class Input {
 
     } //_update_gamepadstate
 
+        /** update key pressed/released/down states */
     function _update_keystate() {
 
             //remove any stale key pressed value
@@ -486,6 +509,7 @@ class Input {
         } //each scan_code_released
 
     } //_update_keystate
+
 
 } //Input
 

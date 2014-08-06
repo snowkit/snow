@@ -9,17 +9,20 @@ import snow.window.WindowSystem;
 /** A window manager, accessed via `app.window` */
 class Windowing {
 
-    public var lib : Snow;
-
         /** The list of windows in this manager */
     public var window_list : Map<Int, Window>;
         /** The list of window handles, pointing to id's in the `window_list` */
     public var window_handles : Map<WindowHandle, Int>;
         /** The number of windows in this manager */
     public var window_count : Int = 0;
+
+        /** access to snow for subsystems/windows */
+    @:noCompletion public var lib : Snow;
         /** The concrete implementation of the window system */
     @:noCompletion public var platform : WindowSystem;
 
+
+        /** constructed internally, use `app.windowing` */
     @:noCompletion public function new( _lib:Snow ) {
 
         lib = _lib;
@@ -34,7 +37,7 @@ class Windowing {
 
 //Public facing API
 
-        /** Create a window with the given config */
+        /** Create a window with the given config. */
     public function create( _config:WindowConfig ) : Window {
 
         var _window = new Window( this, _config );
@@ -57,9 +60,9 @@ class Windowing {
 
     } //create
 
-        /** remove a window from the list, stop events, etc.
+        /** Remove a window from the system, stopping events, etc.
             Called from window.destroy()! Don't use manually unless manually controlling the list. */
-    public function remove( _window:Window ) {
+    @:noCompletion public function remove( _window:Window ) {
 
         window_list.remove( _window.id );
         window_handles.remove( _window.handle );
@@ -73,7 +76,8 @@ class Windowing {
 
     } //remove
 
-    public function window_from_handle( _handle:WindowHandle ) : Window {
+        /** Get a window instance from an window handle. */
+    @:noCompletion public function window_from_handle( _handle:WindowHandle ) : Window {
 
         if(window_handles.exists(_handle)) {
             var _id = window_handles.get(_handle);
@@ -84,7 +88,8 @@ class Windowing {
 
     } //window_from_handle
 
-    public function window_from_id( _id:Int ) : Window {
+        /** Get a window instance from an ID. */
+    @:noCompletion public function window_from_id( _id:Int ) : Window {
 
         return window_list.get(_id);
 
@@ -99,7 +104,7 @@ class Windowing {
 
     } //enable_vsync
 
-        /** Toggle the OS cursor. This is not window specific but system wide */
+        /** Toggle the OS cursor. This is not window specific but application wide, when inside a window, the OS cursor is hidden. */
     public function enable_cursor( _enable:Bool ) : Void {
 
         platform.system_enable_cursor(_enable);
@@ -117,7 +122,7 @@ class Windowing {
     //note that these only make sense on some platforms but will
     //try and return valid values either way. Use the window itself for info
 
-    /** Get the number of displays present */
+        /** Get the number of displays present */
     public function display_count() : Int {
         return platform.display_count();
     } //display_count
@@ -137,7 +142,7 @@ class Windowing {
         return platform.display_current_mode(display);
     } //display_current_mode
 
-        /** Get the information from a specific mode index, the index obtrained from iterating with `display_mode_count` value */
+        /** Get the information from a specific mode index, the index is obtained by iterating with a `display_mode_count` as the loop value */
     public function display_mode( display:Int, mode_index:Int ) : DisplayMode {
         return platform.display_mode(display, mode_index);
     } //display_mode
@@ -155,7 +160,7 @@ class Windowing {
 
 //Internal core API
 
-
+        /** Called by Snow when a system event is dispatched */
     @:noCompletion public function on_event( _event:SystemEvent ) {
 
         if(_event.type == SystemEventType.window) {
@@ -175,6 +180,7 @@ class Windowing {
 
     } //on_event
 
+        /** Called by Snow, process any window handling */
     @:noCompletion public function update() {
 
         platform.process();
@@ -189,6 +195,7 @@ class Windowing {
 
     } //update
 
+        /** Called by Snow, destroy everything. */
     @:noCompletion public function destroy() {
 
         platform.destroy();

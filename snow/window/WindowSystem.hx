@@ -73,6 +73,7 @@ import snow.utils.AbstractClass;
     public function fullscreen( window:Window, fullscreen:Bool, fullscreen_desktop:Bool = true );
         /** Set the bordered state of a window */
     public function bordered( window:Window, bordered:Bool );
+
 //cursor
         /** Set the grab state of a window */
     public function grab( window:Window, grabbed:Bool );

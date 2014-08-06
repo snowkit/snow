@@ -70,24 +70,24 @@ class Sound extends snow.platform.web.audio.Sound {
 
     } //set_pitch
 
-    override function set_time( _time:Float ) : Float {
+    override function set_position( _position:Float ) : Float {
 
         if(info != null && info.handle != null) {
-            info.handle.pos(_time);
+            info.handle.pos(_position);
         }
 
-        return time = _time;
+        return position = _position;
 
-    } //set_time
+    } //set_position
 
-    override function get_time() : Float {
+    override function get_position() : Float {
 
         if(info != null && info.handle != null) {
             return info.handle.pos();
         } //has info
 
-        return time;
-    } //get_time
+        return position;
+    } //get_position
 
         //will return 0 if the info is not set yet i.e loading
     override function get_duration() : Float {

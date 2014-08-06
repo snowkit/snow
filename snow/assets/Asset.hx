@@ -3,7 +3,8 @@ package snow.assets;
 import snow.assets.Assets;
 import snow.types.Types;
 
-/**  An asset base class. Get assets from the `Assets` class, via `app.assets` */
+
+/**  An asset base class. Get assets from the `app.assets` */
 class Asset {
 
 
@@ -15,17 +16,11 @@ class Asset {
     public var info : AssetInfo;
         /** The concrete type this asset holds (useful when handling as Asset base class) */
     public var type : AssetType;
-        /** Whether or not to persist this asset in the cache when it is cleared normally.
-            default false. */
-    public var persist : Bool = false;
-        /** Whether or not to cache this asset for subsequent calls to `get_*` functions.
-            Prevents multiple IO accesses, but data is stored in memory.
-            default true. */
-    public var cache : Bool = true;
         /** True if this asset has completely loaded. Only changed through `load` and when load completes */
     public var loaded : Bool = false;
 
 
+        /** Called from subclasses, by `app.assets` */
     public function new( _assets:Assets, _info:AssetInfo ) {
 
         assets = _assets;
@@ -33,5 +28,6 @@ class Asset {
         id = info.id;
 
     } //new
+
 
 } //Asset
