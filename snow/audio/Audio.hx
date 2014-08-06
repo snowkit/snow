@@ -58,7 +58,9 @@ class Audio {
 
         var sound : Sound = null;
 
-            //try loading the sound asset, only reading the entire file if its not streaming
+            //try loading the sound asset, only reading the entire file if its not streaming,
+            //this on load handler is called in the next frame if the load is sync, so that,
+            //the return code happens immediately giving back the instance.
         var _asset = lib.assets.audio( _id, { load:!streaming, onload:function(asset:AssetAudio) {
 
                     if(asset != null && sound != null) {
@@ -108,6 +110,22 @@ class Audio {
         _sound.destroy();
 
     } //uncreate
+
+        /** Listen for a event on a named sound. `load` and `end` are valid events. */
+    public function on( _name:String, _event:String, _handler:Sound->Void ) {
+        var sound = get(_name);
+        if(sound != null) {
+            sound.on(_event, _handler);
+        }
+    } //on
+
+        /** Remove a listener for a event on a named sound. see `on` */
+    public function off( _name:String, _event:String, _handler:Sound->Void ) {
+        var sound = get(_name);
+        if(sound != null) {
+            sound.off(_event, _handler);
+        }
+    } //off
 
         /** Get a sound instance by name */
     public function get( _name:String ) : Sound {
