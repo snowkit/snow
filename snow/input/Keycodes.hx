@@ -12,274 +12,284 @@ but they aren't specific to SDL so they are used generically */
 
         /** Convert a keycode to string */
     public static function name( keycode : Int ) : String {
-        if ((keycode & Scancodes.MASK) != 0)
+
+        if ((keycode & Scancodes.MASK) != 0) {
             return Scancodes.name(keycode &~ Scancodes.MASK);
+        }
 
         switch(keycode) {
-            case Keycodes.RETURN:    return Scancodes.name(Scancodes.RETURN);
-            case Keycodes.ESCAPE:    return Scancodes.name(Scancodes.ESCAPE);
-            case Keycodes.BACKSPACE: return Scancodes.name(Scancodes.BACKSPACE);
-            case Keycodes.TAB:       return Scancodes.name(Scancodes.TAB);
-            case Keycodes.SPACE:     return Scancodes.name(Scancodes.SPACE);
-            case Keycodes.DELETE:    return Scancodes.name(Scancodes.DELETE);
-            default:
+
+            case Keycodes.enter:     return Scancodes.name(Scancodes.enter);
+            case Keycodes.escape:    return Scancodes.name(Scancodes.escape);
+            case Keycodes.backspace: return Scancodes.name(Scancodes.backspace);
+            case Keycodes.tab:       return Scancodes.name(Scancodes.tab);
+            case Keycodes.space:     return Scancodes.name(Scancodes.space);
+            case Keycodes.delete:    return Scancodes.name(Scancodes.delete);
+
+            default: {
+
                 var decoder = new haxe.Utf8();
-                decoder.addChar(keycode);
+                    decoder.addChar(keycode);
+
                 return decoder.toString();
-        }
-    } //name    
 
-    public static var UNKNOWN : Int                     = 0;
+            } //default
 
-    public static var RETURN : Int                      = 13;
-    public static var ESCAPE : Int                      = 27;
-    public static var BACKSPACE : Int                   = 8;
-    public static var TAB : Int                         = 9;
-    public static var SPACE : Int                       = 32;
-    public static var EXCLAIM : Int                     = 33;
-    public static var QUOTEDBL : Int                    = 34;
-    public static var HASH : Int                        = 35;
-    public static var PERCENT : Int                     = 37;
-    public static var DOLLAR : Int                      = 36;
-    public static var AMPERSAND : Int                   = 38;
-    public static var QUOTE : Int                       = 39;
-    public static var LEFTPAREN : Int                   = 40;
-    public static var RIGHTPAREN : Int                  = 41;
-    public static var ASTERISK : Int                    = 42;
-    public static var PLUS : Int                        = 43;
-    public static var COMMA : Int                       = 44;
-    public static var MINUS : Int                       = 45;
-    public static var PERIOD : Int                      = 46;
-    public static var SLASH : Int                       = 47;
-    public static var KEY_0 : Int                       = 48;
-    public static var KEY_1 : Int                       = 49;
-    public static var KEY_2 : Int                       = 50;
-    public static var KEY_3 : Int                       = 51;
-    public static var KEY_4 : Int                       = 52;
-    public static var KEY_5 : Int                       = 53;
-    public static var KEY_6 : Int                       = 54;
-    public static var KEY_7 : Int                       = 55;
-    public static var KEY_8 : Int                       = 56;
-    public static var KEY_9 : Int                       = 57;
-    public static var COLON : Int                       = 58;
-    public static var SEMICOLON : Int                   = 59;
-    public static var LESS : Int                        = 60;
-    public static var EQUALS : Int                      = 61;
-    public static var GREATER : Int                     = 62;
-    public static var QUESTION : Int                    = 63;
-    public static var AT : Int                          = 64;
+        } //switch(keycode)
+
+    } //name
+
+    public static var unknown : Int                     = 0;
+
+    public static var enter : Int                       = 13;
+    public static var escape : Int                      = 27;
+    public static var backspace : Int                   = 8;
+    public static var tab : Int                         = 9;
+    public static var space : Int                       = 32;
+    public static var exclaim : Int                     = 33;
+    public static var quotedbl : Int                    = 34;
+    public static var hash : Int                        = 35;
+    public static var percent : Int                     = 37;
+    public static var dollar : Int                      = 36;
+    public static var ampersand : Int                   = 38;
+    public static var quote : Int                       = 39;
+    public static var leftparen : Int                   = 40;
+    public static var rightparen : Int                  = 41;
+    public static var asterisk : Int                    = 42;
+    public static var plus : Int                        = 43;
+    public static var comma : Int                       = 44;
+    public static var minus : Int                       = 45;
+    public static var period : Int                      = 46;
+    public static var slash : Int                       = 47;
+    public static var key_0 : Int                       = 48;
+    public static var key_1 : Int                       = 49;
+    public static var key_2 : Int                       = 50;
+    public static var key_3 : Int                       = 51;
+    public static var key_4 : Int                       = 52;
+    public static var key_5 : Int                       = 53;
+    public static var key_6 : Int                       = 54;
+    public static var key_7 : Int                       = 55;
+    public static var key_8 : Int                       = 56;
+    public static var key_9 : Int                       = 57;
+    public static var colon : Int                       = 58;
+    public static var semicolon : Int                   = 59;
+    public static var less : Int                        = 60;
+    public static var equals : Int                      = 61;
+    public static var greater : Int                     = 62;
+    public static var question : Int                    = 63;
+    public static var at : Int                          = 64;
     /*
        Skip uppercase letters
      */
-    public static var LEFTBRACKET : Int                 = 91;
-    public static var BACKSLASH : Int                   = 92;
-    public static var RIGHTBRACKET : Int                = 93;
-    public static var CARET : Int                       = 94;
-    public static var UNDERSCORE : Int                  = 95;
-    public static var BACKQUOTE : Int                   = 96;
-    public static var KEY_a : Int                       = 97;
-    public static var KEY_b : Int                       = 98;
-    public static var KEY_c : Int                       = 99;
-    public static var KEY_d : Int                       = 100;
-    public static var KEY_e : Int                       = 101;
-    public static var KEY_f : Int                       = 102;
-    public static var KEY_g : Int                       = 103;
-    public static var KEY_h : Int                       = 104;
-    public static var KEY_i : Int                       = 105;
-    public static var KEY_j : Int                       = 106;
-    public static var KEY_k : Int                       = 107;
-    public static var KEY_l : Int                       = 108;
-    public static var KEY_m : Int                       = 109;
-    public static var KEY_n : Int                       = 110;
-    public static var KEY_o : Int                       = 111;
-    public static var KEY_p : Int                       = 112;
-    public static var KEY_q : Int                       = 113;
-    public static var KEY_r : Int                       = 114;
-    public static var KEY_s : Int                       = 115;
-    public static var KEY_t : Int                       = 116;
-    public static var KEY_u : Int                       = 117;
-    public static var KEY_v : Int                       = 118;
-    public static var KEY_w : Int                       = 119;
-    public static var KEY_x : Int                       = 120;
-    public static var KEY_y : Int                       = 121;
-    public static var KEY_z : Int                       = 122;
+    public static var leftbracket : Int                 = 91;
+    public static var backslash : Int                   = 92;
+    public static var rightbracket : Int                = 93;
+    public static var caret : Int                       = 94;
+    public static var underscore : Int                  = 95;
+    public static var backquote : Int                   = 96;
+    public static var key_a : Int                       = 97;
+    public static var key_b : Int                       = 98;
+    public static var key_c : Int                       = 99;
+    public static var key_d : Int                       = 100;
+    public static var key_e : Int                       = 101;
+    public static var key_f : Int                       = 102;
+    public static var key_g : Int                       = 103;
+    public static var key_h : Int                       = 104;
+    public static var key_i : Int                       = 105;
+    public static var key_j : Int                       = 106;
+    public static var key_k : Int                       = 107;
+    public static var key_l : Int                       = 108;
+    public static var key_m : Int                       = 109;
+    public static var key_n : Int                       = 110;
+    public static var key_o : Int                       = 111;
+    public static var key_p : Int                       = 112;
+    public static var key_q : Int                       = 113;
+    public static var key_r : Int                       = 114;
+    public static var key_s : Int                       = 115;
+    public static var key_t : Int                       = 116;
+    public static var key_u : Int                       = 117;
+    public static var key_v : Int                       = 118;
+    public static var key_w : Int                       = 119;
+    public static var key_x : Int                       = 120;
+    public static var key_y : Int                       = 121;
+    public static var key_z : Int                       = 122;
 
-    public static var CAPSLOCK : Int             = from_scan(Scancodes.CAPSLOCK);
+    public static var capslock : Int             = from_scan(Scancodes.capslock);
 
-    public static var F1 : Int                   = from_scan(Scancodes.F1);
-    public static var F2 : Int                   = from_scan(Scancodes.F2);
-    public static var F3 : Int                   = from_scan(Scancodes.F3);
-    public static var F4 : Int                   = from_scan(Scancodes.F4);
-    public static var F5 : Int                   = from_scan(Scancodes.F5);
-    public static var F6 : Int                   = from_scan(Scancodes.F6);
-    public static var F7 : Int                   = from_scan(Scancodes.F7);
-    public static var F8 : Int                   = from_scan(Scancodes.F8);
-    public static var F9 : Int                   = from_scan(Scancodes.F9);
-    public static var F10 : Int                  = from_scan(Scancodes.F10);
-    public static var F11 : Int                  = from_scan(Scancodes.F11);
-    public static var F12 : Int                  = from_scan(Scancodes.F12);
+    public static var f1 : Int                   = from_scan(Scancodes.f1);
+    public static var f2 : Int                   = from_scan(Scancodes.f2);
+    public static var f3 : Int                   = from_scan(Scancodes.f3);
+    public static var f4 : Int                   = from_scan(Scancodes.f4);
+    public static var f5 : Int                   = from_scan(Scancodes.f5);
+    public static var f6 : Int                   = from_scan(Scancodes.f6);
+    public static var f7 : Int                   = from_scan(Scancodes.f7);
+    public static var f8 : Int                   = from_scan(Scancodes.f8);
+    public static var f9 : Int                   = from_scan(Scancodes.f9);
+    public static var f10 : Int                  = from_scan(Scancodes.f10);
+    public static var f11 : Int                  = from_scan(Scancodes.f11);
+    public static var f12 : Int                  = from_scan(Scancodes.f12);
 
-    public static var PRINTSCREEN : Int          = from_scan(Scancodes.PRINTSCREEN);
-    public static var SCROLLLOCK : Int           = from_scan(Scancodes.SCROLLLOCK);
-    public static var PAUSE : Int                = from_scan(Scancodes.PAUSE);
-    public static var INSERT : Int               = from_scan(Scancodes.INSERT);
-    public static var HOME : Int                 = from_scan(Scancodes.HOME);
-    public static var PAGEUP : Int               = from_scan(Scancodes.PAGEUP);
-    public static var DELETE : Int               = 127;
-    public static var END : Int                  = from_scan(Scancodes.END);
-    public static var PAGEDOWN : Int             = from_scan(Scancodes.PAGEDOWN);
-    public static var RIGHT : Int                = from_scan(Scancodes.RIGHT);
-    public static var LEFT : Int                 = from_scan(Scancodes.LEFT);
-    public static var DOWN : Int                 = from_scan(Scancodes.DOWN);
-    public static var UP : Int                   = from_scan(Scancodes.UP);
+    public static var printscreen : Int          = from_scan(Scancodes.printscreen);
+    public static var scrolllock : Int           = from_scan(Scancodes.scrolllock);
+    public static var pause : Int                = from_scan(Scancodes.pause);
+    public static var insert : Int               = from_scan(Scancodes.insert);
+    public static var home : Int                 = from_scan(Scancodes.home);
+    public static var pageup : Int               = from_scan(Scancodes.pageup);
+    public static var delete : Int               = 127;
+    public static var end : Int                  = from_scan(Scancodes.end);
+    public static var pagedown : Int             = from_scan(Scancodes.pagedown);
+    public static var right : Int                = from_scan(Scancodes.right);
+    public static var left : Int                 = from_scan(Scancodes.left);
+    public static var down : Int                 = from_scan(Scancodes.down);
+    public static var up : Int                   = from_scan(Scancodes.up);
 
-    public static var NUMLOCKCLEAR : Int         = from_scan(Scancodes.NUMLOCKCLEAR);
-    public static var KP_DIVIDE : Int            = from_scan(Scancodes.KP_DIVIDE);
-    public static var KP_MULTIPLY : Int          = from_scan(Scancodes.KP_MULTIPLY);
-    public static var KP_MINUS : Int             = from_scan(Scancodes.KP_MINUS);
-    public static var KP_PLUS : Int              = from_scan(Scancodes.KP_PLUS);
-    public static var KP_ENTER : Int             = from_scan(Scancodes.KP_ENTER);
-    public static var KP_1 : Int                 = from_scan(Scancodes.KP_1);
-    public static var KP_2 : Int                 = from_scan(Scancodes.KP_2);
-    public static var KP_3 : Int                 = from_scan(Scancodes.KP_3);
-    public static var KP_4 : Int                 = from_scan(Scancodes.KP_4);
-    public static var KP_5 : Int                 = from_scan(Scancodes.KP_5);
-    public static var KP_6 : Int                 = from_scan(Scancodes.KP_6);
-    public static var KP_7 : Int                 = from_scan(Scancodes.KP_7);
-    public static var KP_8 : Int                 = from_scan(Scancodes.KP_8);
-    public static var KP_9 : Int                 = from_scan(Scancodes.KP_9);
-    public static var KP_0 : Int                 = from_scan(Scancodes.KP_0);
-    public static var KP_PERIOD : Int            = from_scan(Scancodes.KP_PERIOD);
+    public static var numlockclear : Int         = from_scan(Scancodes.numlockclear);
+    public static var kp_divide : Int            = from_scan(Scancodes.kp_divide);
+    public static var kp_multiply : Int          = from_scan(Scancodes.kp_multiply);
+    public static var kp_minus : Int             = from_scan(Scancodes.kp_minus);
+    public static var kp_plus : Int              = from_scan(Scancodes.kp_plus);
+    public static var kp_enter : Int             = from_scan(Scancodes.kp_enter);
+    public static var kp_1 : Int                 = from_scan(Scancodes.kp_1);
+    public static var kp_2 : Int                 = from_scan(Scancodes.kp_2);
+    public static var kp_3 : Int                 = from_scan(Scancodes.kp_3);
+    public static var kp_4 : Int                 = from_scan(Scancodes.kp_4);
+    public static var kp_5 : Int                 = from_scan(Scancodes.kp_5);
+    public static var kp_6 : Int                 = from_scan(Scancodes.kp_6);
+    public static var kp_7 : Int                 = from_scan(Scancodes.kp_7);
+    public static var kp_8 : Int                 = from_scan(Scancodes.kp_8);
+    public static var kp_9 : Int                 = from_scan(Scancodes.kp_9);
+    public static var kp_0 : Int                 = from_scan(Scancodes.kp_0);
+    public static var kp_period : Int            = from_scan(Scancodes.kp_period);
 
-    public static var APPLICATION : Int          = from_scan(Scancodes.APPLICATION);
-    public static var POWER : Int                = from_scan(Scancodes.POWER);
-    public static var KP_EQUALS : Int            = from_scan(Scancodes.KP_EQUALS);
-    public static var F13 : Int                  = from_scan(Scancodes.F13);
-    public static var F14 : Int                  = from_scan(Scancodes.F14);
-    public static var F15 : Int                  = from_scan(Scancodes.F15);
-    public static var F16 : Int                  = from_scan(Scancodes.F16);
-    public static var F17 : Int                  = from_scan(Scancodes.F17);
-    public static var F18 : Int                  = from_scan(Scancodes.F18);
-    public static var F19 : Int                  = from_scan(Scancodes.F19);
-    public static var F20 : Int                  = from_scan(Scancodes.F20);
-    public static var F21 : Int                  = from_scan(Scancodes.F21);
-    public static var F22 : Int                  = from_scan(Scancodes.F22);
-    public static var F23 : Int                  = from_scan(Scancodes.F23);
-    public static var F24 : Int                  = from_scan(Scancodes.F24);
-    public static var EXECUTE : Int              = from_scan(Scancodes.EXECUTE);
-    public static var HELP : Int                 = from_scan(Scancodes.HELP);
-    public static var MENU : Int                 = from_scan(Scancodes.MENU);
-    public static var SELECT : Int               = from_scan(Scancodes.SELECT);
-    public static var STOP : Int                 = from_scan(Scancodes.STOP);
-    public static var AGAIN : Int                = from_scan(Scancodes.AGAIN);
-    public static var UNDO : Int                 = from_scan(Scancodes.UNDO);
-    public static var CUT : Int                  = from_scan(Scancodes.CUT);
-    public static var COPY : Int                 = from_scan(Scancodes.COPY);
-    public static var PASTE : Int                = from_scan(Scancodes.PASTE);
-    public static var FIND : Int                 = from_scan(Scancodes.FIND);
-    public static var MUTE : Int                 = from_scan(Scancodes.MUTE);
-    public static var VOLUMEUP : Int             = from_scan(Scancodes.VOLUMEUP);
-    public static var VOLUMEDOWN : Int           = from_scan(Scancodes.VOLUMEDOWN);
-    public static var KP_COMMA : Int             = from_scan(Scancodes.KP_COMMA);
-    public static var KP_EQUALSAS400 : Int       = from_scan(Scancodes.KP_EQUALSAS400);
+    public static var application : Int          = from_scan(Scancodes.application);
+    public static var power : Int                = from_scan(Scancodes.power);
+    public static var kp_equals : Int            = from_scan(Scancodes.kp_equals);
+    public static var f13 : Int                  = from_scan(Scancodes.f13);
+    public static var f14 : Int                  = from_scan(Scancodes.f14);
+    public static var f15 : Int                  = from_scan(Scancodes.f15);
+    public static var f16 : Int                  = from_scan(Scancodes.f16);
+    public static var f17 : Int                  = from_scan(Scancodes.f17);
+    public static var f18 : Int                  = from_scan(Scancodes.f18);
+    public static var f19 : Int                  = from_scan(Scancodes.f19);
+    public static var f20 : Int                  = from_scan(Scancodes.f20);
+    public static var f21 : Int                  = from_scan(Scancodes.f21);
+    public static var f22 : Int                  = from_scan(Scancodes.f22);
+    public static var f23 : Int                  = from_scan(Scancodes.f23);
+    public static var f24 : Int                  = from_scan(Scancodes.f24);
+    public static var execute : Int              = from_scan(Scancodes.execute);
+    public static var help : Int                 = from_scan(Scancodes.help);
+    public static var menu : Int                 = from_scan(Scancodes.menu);
+    public static var select : Int               = from_scan(Scancodes.select);
+    public static var stop : Int                 = from_scan(Scancodes.stop);
+    public static var again : Int                = from_scan(Scancodes.again);
+    public static var undo : Int                 = from_scan(Scancodes.undo);
+    public static var cut : Int                  = from_scan(Scancodes.cut);
+    public static var copy : Int                 = from_scan(Scancodes.copy);
+    public static var paste : Int                = from_scan(Scancodes.paste);
+    public static var find : Int                 = from_scan(Scancodes.find);
+    public static var mute : Int                 = from_scan(Scancodes.mute);
+    public static var volumeup : Int             = from_scan(Scancodes.volumeup);
+    public static var volumedown : Int           = from_scan(Scancodes.volumedown);
+    public static var kp_comma : Int             = from_scan(Scancodes.kp_comma);
+    public static var kp_equalsas400 : Int       = from_scan(Scancodes.kp_equalsas400);
 
-    public static var ALTERASE : Int             = from_scan(Scancodes.ALTERASE);
-    public static var SYSREQ : Int               = from_scan(Scancodes.SYSREQ);
-    public static var CANCEL : Int               = from_scan(Scancodes.CANCEL);
-    public static var CLEAR : Int                = from_scan(Scancodes.CLEAR);
-    public static var PRIOR : Int                = from_scan(Scancodes.PRIOR);
-    public static var RETURN2 : Int              = from_scan(Scancodes.RETURN2);
-    public static var SEPARATOR : Int            = from_scan(Scancodes.SEPARATOR);
-    public static var OUT : Int                  = from_scan(Scancodes.OUT);
-    public static var OPER : Int                 = from_scan(Scancodes.OPER);
-    public static var CLEARAGAIN : Int           = from_scan(Scancodes.CLEARAGAIN);
-    public static var CRSEL : Int                = from_scan(Scancodes.CRSEL);
-    public static var EXSEL : Int                = from_scan(Scancodes.EXSEL);
+    public static var alterase : Int             = from_scan(Scancodes.alterase);
+    public static var sysreq : Int               = from_scan(Scancodes.sysreq);
+    public static var cancel : Int               = from_scan(Scancodes.cancel);
+    public static var clear : Int                = from_scan(Scancodes.clear);
+    public static var prior : Int                = from_scan(Scancodes.prior);
+    public static var return2 : Int              = from_scan(Scancodes.return2);
+    public static var separator : Int            = from_scan(Scancodes.separator);
+    public static var out : Int                  = from_scan(Scancodes.out);
+    public static var oper : Int                 = from_scan(Scancodes.oper);
+    public static var clearagain : Int           = from_scan(Scancodes.clearagain);
+    public static var crsel : Int                = from_scan(Scancodes.crsel);
+    public static var exsel : Int                = from_scan(Scancodes.exsel);
 
-    public static var KP_00 : Int                = from_scan(Scancodes.KP_00);
-    public static var KP_000 : Int               = from_scan(Scancodes.KP_000);
-    public static var THOUSANDSSEPARATOR : Int   = from_scan(Scancodes.THOUSANDSSEPARATOR);
-    public static var DECIMALSEPARATOR : Int     = from_scan(Scancodes.DECIMALSEPARATOR);
-    public static var CURRENCYUNIT : Int         = from_scan(Scancodes.CURRENCYUNIT);
-    public static var CURRENCYSUBUNIT : Int      = from_scan(Scancodes.CURRENCYSUBUNIT);
-    public static var KP_LEFTPAREN : Int         = from_scan(Scancodes.KP_LEFTPAREN);
-    public static var KP_RIGHTPAREN : Int        = from_scan(Scancodes.KP_RIGHTPAREN);
-    public static var KP_LEFTBRACE : Int         = from_scan(Scancodes.KP_LEFTBRACE);
-    public static var KP_RIGHTBRACE : Int        = from_scan(Scancodes.KP_RIGHTBRACE);
-    public static var KP_TAB : Int               = from_scan(Scancodes.KP_TAB);
-    public static var KP_BACKSPACE : Int         = from_scan(Scancodes.KP_BACKSPACE);
-    public static var KP_A : Int                 = from_scan(Scancodes.KP_A);
-    public static var KP_B : Int                 = from_scan(Scancodes.KP_B);
-    public static var KP_C : Int                 = from_scan(Scancodes.KP_C);
-    public static var KP_D : Int                 = from_scan(Scancodes.KP_D);
-    public static var KP_E : Int                 = from_scan(Scancodes.KP_E);
-    public static var KP_F : Int                 = from_scan(Scancodes.KP_F);
-    public static var KP_XOR : Int               = from_scan(Scancodes.KP_XOR);
-    public static var KP_POWER : Int             = from_scan(Scancodes.KP_POWER);
-    public static var KP_PERCENT : Int           = from_scan(Scancodes.KP_PERCENT);
-    public static var KP_LESS : Int              = from_scan(Scancodes.KP_LESS);
-    public static var KP_GREATER : Int           = from_scan(Scancodes.KP_GREATER);
-    public static var KP_AMPERSAND : Int         = from_scan(Scancodes.KP_AMPERSAND);
-    public static var KP_DBLAMPERSAND : Int      = from_scan(Scancodes.KP_DBLAMPERSAND);
-    public static var KP_VERTICALBAR : Int       = from_scan(Scancodes.KP_VERTICALBAR);
-    public static var KP_DBLVERTICALBAR : Int    = from_scan(Scancodes.KP_DBLVERTICALBAR);
-    public static var KP_COLON : Int             = from_scan(Scancodes.KP_COLON);
-    public static var KP_HASH : Int              = from_scan(Scancodes.KP_HASH);
-    public static var KP_SPACE : Int             = from_scan(Scancodes.KP_SPACE);
-    public static var KP_AT : Int                = from_scan(Scancodes.KP_AT);
-    public static var KP_EXCLAM : Int            = from_scan(Scancodes.KP_EXCLAM);
-    public static var KP_MEMSTORE : Int          = from_scan(Scancodes.KP_MEMSTORE);
-    public static var KP_MEMRECALL : Int         = from_scan(Scancodes.KP_MEMRECALL);
-    public static var KP_MEMCLEAR : Int          = from_scan(Scancodes.KP_MEMCLEAR);
-    public static var KP_MEMADD : Int            = from_scan(Scancodes.KP_MEMADD);
-    public static var KP_MEMSUBTRACT : Int       = from_scan(Scancodes.KP_MEMSUBTRACT);
-    public static var KP_MEMMULTIPLY : Int       = from_scan(Scancodes.KP_MEMMULTIPLY);
-    public static var KP_MEMDIVIDE : Int         = from_scan(Scancodes.KP_MEMDIVIDE);
-    public static var KP_PLUSMINUS : Int         = from_scan(Scancodes.KP_PLUSMINUS);
-    public static var KP_CLEAR : Int             = from_scan(Scancodes.KP_CLEAR);
-    public static var KP_CLEARENTRY : Int        = from_scan(Scancodes.KP_CLEARENTRY);
-    public static var KP_BINARY : Int            = from_scan(Scancodes.KP_BINARY);
-    public static var KP_OCTAL : Int             = from_scan(Scancodes.KP_OCTAL);
-    public static var KP_DECIMAL : Int           = from_scan(Scancodes.KP_DECIMAL);
-    public static var KP_HEXADECIMAL : Int       = from_scan(Scancodes.KP_HEXADECIMAL);
+    public static var kp_00 : Int                = from_scan(Scancodes.kp_00);
+    public static var kp_000 : Int               = from_scan(Scancodes.kp_000);
+    public static var thousandsseparator : Int   = from_scan(Scancodes.thousandsseparator);
+    public static var decimalseparator : Int     = from_scan(Scancodes.decimalseparator);
+    public static var currencyunit : Int         = from_scan(Scancodes.currencyunit);
+    public static var currencysubunit : Int      = from_scan(Scancodes.currencysubunit);
+    public static var kp_leftparen : Int         = from_scan(Scancodes.kp_leftparen);
+    public static var kp_rightparen : Int        = from_scan(Scancodes.kp_rightparen);
+    public static var kp_leftbrace : Int         = from_scan(Scancodes.kp_leftbrace);
+    public static var kp_rightbrace : Int        = from_scan(Scancodes.kp_rightbrace);
+    public static var kp_tab : Int               = from_scan(Scancodes.kp_tab);
+    public static var kp_backspace : Int         = from_scan(Scancodes.kp_backspace);
+    public static var kp_a : Int                 = from_scan(Scancodes.kp_a);
+    public static var kp_b : Int                 = from_scan(Scancodes.kp_b);
+    public static var kp_c : Int                 = from_scan(Scancodes.kp_c);
+    public static var kp_d : Int                 = from_scan(Scancodes.kp_d);
+    public static var kp_e : Int                 = from_scan(Scancodes.kp_e);
+    public static var kp_f : Int                 = from_scan(Scancodes.kp_f);
+    public static var kp_xor : Int               = from_scan(Scancodes.kp_xor);
+    public static var kp_power : Int             = from_scan(Scancodes.kp_power);
+    public static var kp_percent : Int           = from_scan(Scancodes.kp_percent);
+    public static var kp_less : Int              = from_scan(Scancodes.kp_less);
+    public static var kp_greater : Int           = from_scan(Scancodes.kp_greater);
+    public static var kp_ampersand : Int         = from_scan(Scancodes.kp_ampersand);
+    public static var kp_dblampersand : Int      = from_scan(Scancodes.kp_dblampersand);
+    public static var kp_verticalbar : Int       = from_scan(Scancodes.kp_verticalbar);
+    public static var kp_dblverticalbar : Int    = from_scan(Scancodes.kp_dblverticalbar);
+    public static var kp_colon : Int             = from_scan(Scancodes.kp_colon);
+    public static var kp_hash : Int              = from_scan(Scancodes.kp_hash);
+    public static var kp_space : Int             = from_scan(Scancodes.kp_space);
+    public static var kp_at : Int                = from_scan(Scancodes.kp_at);
+    public static var kp_exclam : Int            = from_scan(Scancodes.kp_exclam);
+    public static var kp_memstore : Int          = from_scan(Scancodes.kp_memstore);
+    public static var kp_memrecall : Int         = from_scan(Scancodes.kp_memrecall);
+    public static var kp_memclear : Int          = from_scan(Scancodes.kp_memclear);
+    public static var kp_memadd : Int            = from_scan(Scancodes.kp_memadd);
+    public static var kp_memsubtract : Int       = from_scan(Scancodes.kp_memsubtract);
+    public static var kp_memmultiply : Int       = from_scan(Scancodes.kp_memmultiply);
+    public static var kp_memdivide : Int         = from_scan(Scancodes.kp_memdivide);
+    public static var kp_plusminus : Int         = from_scan(Scancodes.kp_plusminus);
+    public static var kp_clear : Int             = from_scan(Scancodes.kp_clear);
+    public static var kp_clearentry : Int        = from_scan(Scancodes.kp_clearentry);
+    public static var kp_binary : Int            = from_scan(Scancodes.kp_binary);
+    public static var kp_octal : Int             = from_scan(Scancodes.kp_octal);
+    public static var kp_decimal : Int           = from_scan(Scancodes.kp_decimal);
+    public static var kp_hexadecimal : Int       = from_scan(Scancodes.kp_hexadecimal);
 
-    public static var LCTRL : Int                = from_scan(Scancodes.LCTRL);
-    public static var LSHIFT : Int               = from_scan(Scancodes.LSHIFT);
-    public static var LALT : Int                 = from_scan(Scancodes.LALT);
-    public static var LMETA : Int                = from_scan(Scancodes.LMETA);
-    public static var RCTRL : Int                = from_scan(Scancodes.RCTRL);
-    public static var RSHIFT : Int               = from_scan(Scancodes.RSHIFT);
-    public static var RALT : Int                 = from_scan(Scancodes.RALT);
-    public static var RMETA : Int                = from_scan(Scancodes.RMETA);
+    public static var lctrl : Int                = from_scan(Scancodes.lctrl);
+    public static var lshift : Int               = from_scan(Scancodes.lshift);
+    public static var lalt : Int                 = from_scan(Scancodes.lalt);
+    public static var lmeta : Int                = from_scan(Scancodes.lmeta);
+    public static var rctrl : Int                = from_scan(Scancodes.rctrl);
+    public static var rshift : Int               = from_scan(Scancodes.rshift);
+    public static var ralt : Int                 = from_scan(Scancodes.ralt);
+    public static var rmeta : Int                = from_scan(Scancodes.rmeta);
 
-    public static var MODE : Int                 = from_scan(Scancodes.MODE);
+    public static var mode : Int                 = from_scan(Scancodes.mode);
 
-    public static var AUDIONEXT : Int            = from_scan(Scancodes.AUDIONEXT);
-    public static var AUDIOPREV : Int            = from_scan(Scancodes.AUDIOPREV);
-    public static var AUDIOSTOP : Int            = from_scan(Scancodes.AUDIOSTOP);
-    public static var AUDIOPLAY : Int            = from_scan(Scancodes.AUDIOPLAY);
-    public static var AUDIOMUTE : Int            = from_scan(Scancodes.AUDIOMUTE);
-    public static var MEDIASELECT : Int          = from_scan(Scancodes.MEDIASELECT);
-    public static var WWW : Int                  = from_scan(Scancodes.WWW);
-    public static var MAIL : Int                 = from_scan(Scancodes.MAIL);
-    public static var CALCULATOR : Int           = from_scan(Scancodes.CALCULATOR);
-    public static var COMPUTER : Int             = from_scan(Scancodes.COMPUTER);
-    public static var AC_SEARCH : Int            = from_scan(Scancodes.AC_SEARCH);
-    public static var AC_HOME : Int              = from_scan(Scancodes.AC_HOME);
-    public static var AC_BACK : Int              = from_scan(Scancodes.AC_BACK);
-    public static var AC_FORWARD : Int           = from_scan(Scancodes.AC_FORWARD);
-    public static var AC_STOP : Int              = from_scan(Scancodes.AC_STOP);
-    public static var AC_REFRESH : Int           = from_scan(Scancodes.AC_REFRESH);
-    public static var AC_BOOKMARKS : Int         = from_scan(Scancodes.AC_BOOKMARKS);
+    public static var audionext : Int            = from_scan(Scancodes.audionext);
+    public static var audioprev : Int            = from_scan(Scancodes.audioprev);
+    public static var audiostop : Int            = from_scan(Scancodes.audiostop);
+    public static var audioplay : Int            = from_scan(Scancodes.audioplay);
+    public static var audiomute : Int            = from_scan(Scancodes.audiomute);
+    public static var mediaselect : Int          = from_scan(Scancodes.mediaselect);
+    public static var www : Int                  = from_scan(Scancodes.www);
+    public static var mail : Int                 = from_scan(Scancodes.mail);
+    public static var calculator : Int           = from_scan(Scancodes.calculator);
+    public static var computer : Int             = from_scan(Scancodes.computer);
+    public static var ac_search : Int            = from_scan(Scancodes.ac_search);
+    public static var ac_home : Int              = from_scan(Scancodes.ac_home);
+    public static var ac_back : Int              = from_scan(Scancodes.ac_back);
+    public static var ac_forward : Int           = from_scan(Scancodes.ac_forward);
+    public static var ac_stop : Int              = from_scan(Scancodes.ac_stop);
+    public static var ac_refresh : Int           = from_scan(Scancodes.ac_refresh);
+    public static var ac_bookmarks : Int         = from_scan(Scancodes.ac_bookmarks);
 
-    public static var BRIGHTNESSDOWN : Int       = from_scan(Scancodes.BRIGHTNESSDOWN);
-    public static var BRIGHTNESSUP : Int         = from_scan(Scancodes.BRIGHTNESSUP);
-    public static var DISPLAYSWITCH : Int        = from_scan(Scancodes.DISPLAYSWITCH);
-    public static var KBDILLUMTOGGLE : Int       = from_scan(Scancodes.KBDILLUMTOGGLE);
-    public static var KBDILLUMDOWN : Int         = from_scan(Scancodes.KBDILLUMDOWN);
-    public static var KBDILLUMUP : Int           = from_scan(Scancodes.KBDILLUMUP);
-    public static var EJECT : Int                = from_scan(Scancodes.EJECT);
-    public static var SLEEP : Int                = from_scan(Scancodes.SLEEP);
+    public static var brightnessdown : Int       = from_scan(Scancodes.brightnessdown);
+    public static var brightnessup : Int         = from_scan(Scancodes.brightnessup);
+    public static var displayswitch : Int        = from_scan(Scancodes.displayswitch);
+    public static var kbdillumtoggle : Int       = from_scan(Scancodes.kbdillumtoggle);
+    public static var kbdillumdown : Int         = from_scan(Scancodes.kbdillumdown);
+    public static var kbdillumup : Int           = from_scan(Scancodes.kbdillumup);
+    public static var eject : Int                = from_scan(Scancodes.eject);
+    public static var sleep : Int                = from_scan(Scancodes.sleep);
 
 } //Keycodes
 
@@ -288,61 +298,75 @@ but they aren't specific to SDL so they are used generically */
 but they aren't specific to SDL so they are used generically */
 @:noCompletion class Scancodes {
 
+        /** Convert a scancode to a name */
+    public static function name( scancode : Int ) : String {
+
+        var res = null;
+
+        if (scancode >= 0 && scancode < scancode_names.length) {
+            res = scancode_names[scancode];
+        }
+
+        return res != null ? res : "";
+
+    } //name
+
+        //special value remains caps
     public static var MASK:Int                      = (1<<30);
 
-    public static var UNKNOWN : Int                 = 0;
+    public static var unknown : Int                 = 0;
 
        // Usage page 0x07
        // These values are from usage page 0x07 (USB keyboard page).
 
-    public static var KEY_A : Int                   = 4;
-    public static var KEY_B : Int                   = 5;
-    public static var KEY_C : Int                   = 6;
-    public static var KEY_D : Int                   = 7;
-    public static var KEY_E : Int                   = 8;
-    public static var KEY_F : Int                   = 9;
-    public static var KEY_G : Int                   = 10;
-    public static var KEY_H : Int                   = 11;
-    public static var KEY_I : Int                   = 12;
-    public static var KEY_J : Int                   = 13;
-    public static var KEY_K : Int                   = 14;
-    public static var KEY_L : Int                   = 15;
-    public static var KEY_M : Int                   = 16;
-    public static var KEY_N : Int                   = 17;
-    public static var KEY_O : Int                   = 18;
-    public static var KEY_P : Int                   = 19;
-    public static var KEY_Q : Int                   = 20;
-    public static var KEY_R : Int                   = 21;
-    public static var KEY_S : Int                   = 22;
-    public static var KEY_T : Int                   = 23;
-    public static var KEY_U : Int                   = 24;
-    public static var KEY_V : Int                   = 25;
-    public static var KEY_W : Int                   = 26;
-    public static var KEY_X : Int                   = 27;
-    public static var KEY_Y : Int                   = 28;
-    public static var KEY_Z : Int                   = 29;
+    public static var key_a : Int                   = 4;
+    public static var key_b : Int                   = 5;
+    public static var key_c : Int                   = 6;
+    public static var key_d : Int                   = 7;
+    public static var key_e : Int                   = 8;
+    public static var key_f : Int                   = 9;
+    public static var key_g : Int                   = 10;
+    public static var key_h : Int                   = 11;
+    public static var key_i : Int                   = 12;
+    public static var key_j : Int                   = 13;
+    public static var key_k : Int                   = 14;
+    public static var key_l : Int                   = 15;
+    public static var key_m : Int                   = 16;
+    public static var key_n : Int                   = 17;
+    public static var key_o : Int                   = 18;
+    public static var key_p : Int                   = 19;
+    public static var key_q : Int                   = 20;
+    public static var key_r : Int                   = 21;
+    public static var key_s : Int                   = 22;
+    public static var key_t : Int                   = 23;
+    public static var key_u : Int                   = 24;
+    public static var key_v : Int                   = 25;
+    public static var key_w : Int                   = 26;
+    public static var key_x : Int                   = 27;
+    public static var key_y : Int                   = 28;
+    public static var key_z : Int                   = 29;
 
-    public static var KEY_1 : Int                   = 30;
-    public static var KEY_2 : Int                   = 31;
-    public static var KEY_3 : Int                   = 32;
-    public static var KEY_4 : Int                   = 33;
-    public static var KEY_5 : Int                   = 34;
-    public static var KEY_6 : Int                   = 35;
-    public static var KEY_7 : Int                   = 36;
-    public static var KEY_8 : Int                   = 37;
-    public static var KEY_9 : Int                   = 38;
-    public static var KEY_0 : Int                   = 39;
+    public static var key_1 : Int                   = 30;
+    public static var key_2 : Int                   = 31;
+    public static var key_3 : Int                   = 32;
+    public static var key_4 : Int                   = 33;
+    public static var key_5 : Int                   = 34;
+    public static var key_6 : Int                   = 35;
+    public static var key_7 : Int                   = 36;
+    public static var key_8 : Int                   = 37;
+    public static var key_9 : Int                   = 38;
+    public static var key_0 : Int                   = 39;
 
-    public static var RETURN : Int                  = 40;
-    public static var ESCAPE : Int                  = 41;
-    public static var BACKSPACE : Int               = 42;
-    public static var TAB : Int                     = 43;
-    public static var SPACE : Int                   = 44;
+    public static var enter : Int                   = 40;
+    public static var escape : Int                  = 41;
+    public static var backspace : Int               = 42;
+    public static var tab : Int                     = 43;
+    public static var space : Int                   = 44;
 
-    public static var MINUS : Int                   = 45;
-    public static var EQUALS : Int                  = 46;
-    public static var LEFTBRACKET : Int             = 47;
-    public static var RIGHTBRACKET : Int            = 48;
+    public static var minus : Int                   = 45;
+    public static var equals : Int                  = 46;
+    public static var leftbracket : Int             = 47;
+    public static var rightbracket : Int            = 48;
 
 /** Located at the lower left of the return
     key on ISO keyboards and at the right end
@@ -358,7 +382,7 @@ but they aren't specific to SDL so they are used generically */
     layout, and ASTERISK and MICRO SIGN in a
     French Windows layout.
 */
-    public static var BACKSLASH : Int               = 49;
+    public static var backslash : Int               = 49;
 
 /** ISO USB keyboards actually use this code
     instead of 49 for the same key, but all
@@ -372,9 +396,9 @@ but they aren't specific to SDL so they are used generically */
     will never generate it with most (all?)
     keyboards.
 */
-    public static var NONUSHASH : Int          = 50;
-    public static var SEMICOLON : Int          = 51;
-    public static var APOSTROPHE : Int         = 52;
+    public static var nonushash : Int          = 50;
+    public static var semicolon : Int          = 51;
+    public static var apostrophe : Int         = 52;
 
 /** Located in the top left corner (on both ANSI
     and ISO keyboards). Produces GRAVE ACCENT and
@@ -393,60 +417,60 @@ but they aren't specific to SDL so they are used generically */
     SIGN in a Swiss German, German, or French Mac
     layout on ANSI keyboards.
 */
-    public static var GRAVE : Int              = 53;
-    public static var COMMA : Int              = 54;
-    public static var PERIOD : Int             = 55;
-    public static var SLASH : Int              = 56;
+    public static var grave : Int              = 53;
+    public static var comma : Int              = 54;
+    public static var period : Int             = 55;
+    public static var slash : Int              = 56;
 
-    public static var CAPSLOCK : Int           = 57;
+    public static var capslock : Int           = 57;
 
-    public static var F1 : Int                 = 58;
-    public static var F2 : Int                 = 59;
-    public static var F3 : Int                 = 60;
-    public static var F4 : Int                 = 61;
-    public static var F5 : Int                 = 62;
-    public static var F6 : Int                 = 63;
-    public static var F7 : Int                 = 64;
-    public static var F8 : Int                 = 65;
-    public static var F9 : Int                 = 66;
-    public static var F10 : Int                = 67;
-    public static var F11 : Int                = 68;
-    public static var F12 : Int                = 69;
+    public static var f1 : Int                 = 58;
+    public static var f2 : Int                 = 59;
+    public static var f3 : Int                 = 60;
+    public static var f4 : Int                 = 61;
+    public static var f5 : Int                 = 62;
+    public static var f6 : Int                 = 63;
+    public static var f7 : Int                 = 64;
+    public static var f8 : Int                 = 65;
+    public static var f9 : Int                 = 66;
+    public static var f10 : Int                = 67;
+    public static var f11 : Int                = 68;
+    public static var f12 : Int                = 69;
 
-    public static var PRINTSCREEN : Int        = 70;
-    public static var SCROLLLOCK : Int         = 71;
-    public static var PAUSE : Int              = 72;
+    public static var printscreen : Int        = 70;
+    public static var scrolllock : Int         = 71;
+    public static var pause : Int              = 72;
 
 /** insert on PC, help on some Mac keyboards (but does send code 73, not 117) */
-    public static var INSERT : Int             = 73;
-    public static var HOME : Int               = 74;
-    public static var PAGEUP : Int             = 75;
-    public static var DELETE : Int             = 76;
-    public static var END : Int                = 77;
-    public static var PAGEDOWN : Int           = 78;
-    public static var RIGHT : Int              = 79;
-    public static var LEFT : Int               = 80;
-    public static var DOWN : Int               = 81;
-    public static var UP : Int                 = 82;
+    public static var insert : Int             = 73;
+    public static var home : Int               = 74;
+    public static var pageup : Int             = 75;
+    public static var delete : Int             = 76;
+    public static var end : Int                = 77;
+    public static var pagedown : Int           = 78;
+    public static var right : Int              = 79;
+    public static var left : Int               = 80;
+    public static var down : Int               = 81;
+    public static var up : Int                 = 82;
 
 /** num lock on PC, clear on Mac keyboards */
-    public static var NUMLOCKCLEAR : Int       = 83;
-    public static var KP_DIVIDE : Int          = 84;
-    public static var KP_MULTIPLY : Int        = 85;
-    public static var KP_MINUS : Int           = 86;
-    public static var KP_PLUS : Int            = 87;
-    public static var KP_ENTER : Int           = 88;
-    public static var KP_1 : Int               = 89;
-    public static var KP_2 : Int               = 90;
-    public static var KP_3 : Int               = 91;
-    public static var KP_4 : Int               = 92;
-    public static var KP_5 : Int               = 93;
-    public static var KP_6 : Int               = 94;
-    public static var KP_7 : Int               = 95;
-    public static var KP_8 : Int               = 96;
-    public static var KP_9 : Int               = 97;
-    public static var KP_0 : Int               = 98;
-    public static var KP_PERIOD : Int          = 99;
+    public static var numlockclear : Int       = 83;
+    public static var kp_divide : Int          = 84;
+    public static var kp_multiply : Int        = 85;
+    public static var kp_minus : Int           = 86;
+    public static var kp_plus : Int            = 87;
+    public static var kp_enter : Int           = 88;
+    public static var kp_1 : Int               = 89;
+    public static var kp_2 : Int               = 90;
+    public static var kp_3 : Int               = 91;
+    public static var kp_4 : Int               = 92;
+    public static var kp_5 : Int               = 93;
+    public static var kp_6 : Int               = 94;
+    public static var kp_7 : Int               = 95;
+    public static var kp_8 : Int               = 96;
+    public static var kp_9 : Int               = 97;
+    public static var kp_0 : Int               = 98;
+    public static var kp_period : Int          = 99;
 
 
 /** This is the additional key that ISO
@@ -459,211 +483,202 @@ but they aren't specific to SDL so they are used generically */
     LESS-THAN SIGN and GREATER-THAN SIGN
     in a Swiss German, German, or French
     layout. */
-    public static var NONUSBACKSLASH : Int     = 100;
+    public static var nonusbackslash : Int     = 100;
 
 /** windows contextual menu, compose */
-    public static var APPLICATION : Int        = 101;
+    public static var application : Int        = 101;
 
 /** The USB document says this is a status flag,
     not a physical key - but some Mac keyboards
     do have a power key. */
-    public static var POWER : Int              = 102;
-    public static var KP_EQUALS : Int          = 103;
-    public static var F13 : Int                = 104;
-    public static var F14 : Int                = 105;
-    public static var F15 : Int                = 106;
-    public static var F16 : Int                = 107;
-    public static var F17 : Int                = 108;
-    public static var F18 : Int                = 109;
-    public static var F19 : Int                = 110;
-    public static var F20 : Int                = 111;
-    public static var F21 : Int                = 112;
-    public static var F22 : Int                = 113;
-    public static var F23 : Int                = 114;
-    public static var F24 : Int                = 115;
-    public static var EXECUTE : Int            = 116;
-    public static var HELP : Int               = 117;
-    public static var MENU : Int               = 118;
-    public static var SELECT : Int             = 119;
-    public static var STOP : Int               = 120;
+    public static var power : Int              = 102;
+    public static var kp_equals : Int          = 103;
+    public static var f13 : Int                = 104;
+    public static var f14 : Int                = 105;
+    public static var f15 : Int                = 106;
+    public static var f16 : Int                = 107;
+    public static var f17 : Int                = 108;
+    public static var f18 : Int                = 109;
+    public static var f19 : Int                = 110;
+    public static var f20 : Int                = 111;
+    public static var f21 : Int                = 112;
+    public static var f22 : Int                = 113;
+    public static var f23 : Int                = 114;
+    public static var f24 : Int                = 115;
+    public static var execute : Int            = 116;
+    public static var help : Int               = 117;
+    public static var menu : Int               = 118;
+    public static var select : Int             = 119;
+    public static var stop : Int               = 120;
 
 /** redo */
-    public static var AGAIN : Int              = 121;
-    public static var UNDO : Int               = 122;
-    public static var CUT : Int                = 123;
-    public static var COPY : Int               = 124;
-    public static var PASTE : Int              = 125;
-    public static var FIND : Int               = 126;
-    public static var MUTE : Int               = 127;
-    public static var VOLUMEUP : Int           = 128;
-    public static var VOLUMEDOWN : Int         = 129;
+    public static var again : Int              = 121;
+    public static var undo : Int               = 122;
+    public static var cut : Int                = 123;
+    public static var copy : Int               = 124;
+    public static var paste : Int              = 125;
+    public static var find : Int               = 126;
+    public static var mute : Int               = 127;
+    public static var volumeup : Int           = 128;
+    public static var volumedown : Int         = 129;
 
 // not sure whether there's a reason to enable these
-//     public static var LOCKINGCAPSLOCK = 130,
-//     public static var LOCKINGNUMLOCK = 131,
-//     public static var LOCKINGSCROLLLOCK = 132,
+//     public static var lockingcapslock = 130,
+//     public static var lockingnumlock = 131,
+//     public static var lockingscrolllock = 132,
 
-    public static var KP_COMMA : Int           = 133;
-    public static var KP_EQUALSAS400 : Int     = 134;
+    public static var kp_comma : Int           = 133;
+    public static var kp_equalsas400 : Int     = 134;
 
 /** used on Asian keyboards; see footnotes in USB doc */
-    public static var INTERNATIONAL1 : Int     = 135;
-    public static var INTERNATIONAL2 : Int     = 136;
+    public static var international1 : Int     = 135;
+    public static var international2 : Int     = 136;
 
 /** Yen */
-    public static var INTERNATIONAL3 : Int     = 137;
-    public static var INTERNATIONAL4 : Int     = 138;
-    public static var INTERNATIONAL5 : Int     = 139;
-    public static var INTERNATIONAL6 : Int     = 140;
-    public static var INTERNATIONAL7 : Int     = 141;
-    public static var INTERNATIONAL8 : Int     = 142;
-    public static var INTERNATIONAL9 : Int     = 143;
+    public static var international3 : Int     = 137;
+    public static var international4 : Int     = 138;
+    public static var international5 : Int     = 139;
+    public static var international6 : Int     = 140;
+    public static var international7 : Int     = 141;
+    public static var international8 : Int     = 142;
+    public static var international9 : Int     = 143;
 /** Hangul/English toggle */
-    public static var LANG1 : Int              = 144;
+    public static var lang1 : Int              = 144;
 /** Hanja conversion */
-    public static var LANG2 : Int              = 145;
+    public static var lang2 : Int              = 145;
 /** Katakana */
-    public static var LANG3 : Int              = 146;
+    public static var lang3 : Int              = 146;
 /** Hiragana */
-    public static var LANG4 : Int              = 147;
+    public static var lang4 : Int              = 147;
 /** Zenkaku/Hankaku */
-    public static var LANG5 : Int              = 148;
+    public static var lang5 : Int              = 148;
 /** reserved */
-    public static var LANG6 : Int              = 149;
+    public static var lang6 : Int              = 149;
 /** reserved */
-    public static var LANG7 : Int              = 150;
+    public static var lang7 : Int              = 150;
 /** reserved */
-    public static var LANG8 : Int              = 151;
+    public static var lang8 : Int              = 151;
 /** reserved */
-    public static var LANG9 : Int              = 152;
+    public static var lang9 : Int              = 152;
 /** Erase-Eaze */
-    public static var ALTERASE : Int           = 153;
-    public static var SYSREQ : Int             = 154;
-    public static var CANCEL : Int             = 155;
-    public static var CLEAR : Int              = 156;
-    public static var PRIOR : Int              = 157;
-    public static var RETURN2 : Int            = 158;
-    public static var SEPARATOR : Int          = 159;
-    public static var OUT : Int                = 160;
-    public static var OPER : Int               = 161;
-    public static var CLEARAGAIN : Int         = 162;
-    public static var CRSEL : Int              = 163;
-    public static var EXSEL : Int              = 164;
+    public static var alterase : Int           = 153;
+    public static var sysreq : Int             = 154;
+    public static var cancel : Int             = 155;
+    public static var clear : Int              = 156;
+    public static var prior : Int              = 157;
+    public static var return2 : Int            = 158;
+    public static var separator : Int          = 159;
+    public static var out : Int                = 160;
+    public static var oper : Int               = 161;
+    public static var clearagain : Int         = 162;
+    public static var crsel : Int              = 163;
+    public static var exsel : Int              = 164;
 
-    public static var KP_00 : Int              = 176;
-    public static var KP_000 : Int             = 177;
-    public static var THOUSANDSSEPARATOR : Int = 178;
-    public static var DECIMALSEPARATOR : Int   = 179;
-    public static var CURRENCYUNIT : Int       = 180;
-    public static var CURRENCYSUBUNIT : Int    = 181;
-    public static var KP_LEFTPAREN : Int       = 182;
-    public static var KP_RIGHTPAREN : Int      = 183;
-    public static var KP_LEFTBRACE : Int       = 184;
-    public static var KP_RIGHTBRACE : Int      = 185;
-    public static var KP_TAB : Int             = 186;
-    public static var KP_BACKSPACE : Int       = 187;
-    public static var KP_A : Int               = 188;
-    public static var KP_B : Int               = 189;
-    public static var KP_C : Int               = 190;
-    public static var KP_D : Int               = 191;
-    public static var KP_E : Int               = 192;
-    public static var KP_F : Int               = 193;
-    public static var KP_XOR : Int             = 194;
-    public static var KP_POWER : Int           = 195;
-    public static var KP_PERCENT : Int         = 196;
-    public static var KP_LESS : Int            = 197;
-    public static var KP_GREATER : Int         = 198;
-    public static var KP_AMPERSAND : Int       = 199;
-    public static var KP_DBLAMPERSAND : Int    = 200;
-    public static var KP_VERTICALBAR : Int     = 201;
-    public static var KP_DBLVERTICALBAR : Int  = 202;
-    public static var KP_COLON : Int           = 203;
-    public static var KP_HASH : Int            = 204;
-    public static var KP_SPACE : Int           = 205;
-    public static var KP_AT : Int              = 206;
-    public static var KP_EXCLAM : Int          = 207;
-    public static var KP_MEMSTORE : Int        = 208;
-    public static var KP_MEMRECALL : Int       = 209;
-    public static var KP_MEMCLEAR : Int        = 210;
-    public static var KP_MEMADD : Int          = 211;
-    public static var KP_MEMSUBTRACT : Int     = 212;
-    public static var KP_MEMMULTIPLY : Int     = 213;
-    public static var KP_MEMDIVIDE : Int       = 214;
-    public static var KP_PLUSMINUS : Int       = 215;
-    public static var KP_CLEAR : Int           = 216;
-    public static var KP_CLEARENTRY : Int      = 217;
-    public static var KP_BINARY : Int          = 218;
-    public static var KP_OCTAL : Int           = 219;
-    public static var KP_DECIMAL : Int         = 220;
-    public static var KP_HEXADECIMAL : Int     = 221;
+    public static var kp_00 : Int              = 176;
+    public static var kp_000 : Int             = 177;
+    public static var thousandsseparator : Int = 178;
+    public static var decimalseparator : Int   = 179;
+    public static var currencyunit : Int       = 180;
+    public static var currencysubunit : Int    = 181;
+    public static var kp_leftparen : Int       = 182;
+    public static var kp_rightparen : Int      = 183;
+    public static var kp_leftbrace : Int       = 184;
+    public static var kp_rightbrace : Int      = 185;
+    public static var kp_tab : Int             = 186;
+    public static var kp_backspace : Int       = 187;
+    public static var kp_a : Int               = 188;
+    public static var kp_b : Int               = 189;
+    public static var kp_c : Int               = 190;
+    public static var kp_d : Int               = 191;
+    public static var kp_e : Int               = 192;
+    public static var kp_f : Int               = 193;
+    public static var kp_xor : Int             = 194;
+    public static var kp_power : Int           = 195;
+    public static var kp_percent : Int         = 196;
+    public static var kp_less : Int            = 197;
+    public static var kp_greater : Int         = 198;
+    public static var kp_ampersand : Int       = 199;
+    public static var kp_dblampersand : Int    = 200;
+    public static var kp_verticalbar : Int     = 201;
+    public static var kp_dblverticalbar : Int  = 202;
+    public static var kp_colon : Int           = 203;
+    public static var kp_hash : Int            = 204;
+    public static var kp_space : Int           = 205;
+    public static var kp_at : Int              = 206;
+    public static var kp_exclam : Int          = 207;
+    public static var kp_memstore : Int        = 208;
+    public static var kp_memrecall : Int       = 209;
+    public static var kp_memclear : Int        = 210;
+    public static var kp_memadd : Int          = 211;
+    public static var kp_memsubtract : Int     = 212;
+    public static var kp_memmultiply : Int     = 213;
+    public static var kp_memdivide : Int       = 214;
+    public static var kp_plusminus : Int       = 215;
+    public static var kp_clear : Int           = 216;
+    public static var kp_clearentry : Int      = 217;
+    public static var kp_binary : Int          = 218;
+    public static var kp_octal : Int           = 219;
+    public static var kp_decimal : Int         = 220;
+    public static var kp_hexadecimal : Int     = 221;
 
-    public static var LCTRL : Int              = 224;
-    public static var LSHIFT : Int             = 225;
+    public static var lctrl : Int              = 224;
+    public static var lshift : Int             = 225;
 /** alt, option */
-    public static var LALT : Int               = 226;
+    public static var lalt : Int               = 226;
 /** windows, command (apple), meta */
-    public static var LMETA : Int              = 227;
-    public static var RCTRL : Int              = 228;
-    public static var RSHIFT : Int             = 229;
+    public static var lmeta : Int              = 227;
+    public static var rctrl : Int              = 228;
+    public static var rshift : Int             = 229;
 /** alt gr, option */
-    public static var RALT : Int               = 230;
+    public static var ralt : Int               = 230;
 /** windows, command (apple), meta */
-    public static var RMETA : Int              = 231;
+    public static var rmeta : Int              = 231;
 
 /** Not sure if this is really not covered
     by any of the above, but since there's a
     special KMOD_MODE for it I'm adding it here */
-    public static var MODE : Int               = 257;
+    public static var mode : Int               = 257;
 
 
     //
     //    Usage page 0x0C
     //    These values are mapped from usage page 0x0C (USB consumer page).
 
-    public static var AUDIONEXT : Int          = 258;
-    public static var AUDIOPREV : Int          = 259;
-    public static var AUDIOSTOP : Int          = 260;
-    public static var AUDIOPLAY : Int          = 261;
-    public static var AUDIOMUTE : Int          = 262;
-    public static var MEDIASELECT : Int        = 263;
-    public static var WWW : Int                = 264;
-    public static var MAIL : Int               = 265;
-    public static var CALCULATOR : Int         = 266;
-    public static var COMPUTER : Int           = 267;
-    public static var AC_SEARCH : Int          = 268;
-    public static var AC_HOME : Int            = 269;
-    public static var AC_BACK : Int            = 270;
-    public static var AC_FORWARD : Int         = 271;
-    public static var AC_STOP : Int            = 272;
-    public static var AC_REFRESH : Int         = 273;
-    public static var AC_BOOKMARKS : Int       = 274;
+    public static var audionext : Int          = 258;
+    public static var audioprev : Int          = 259;
+    public static var audiostop : Int          = 260;
+    public static var audioplay : Int          = 261;
+    public static var audiomute : Int          = 262;
+    public static var mediaselect : Int        = 263;
+    public static var www : Int                = 264;
+    public static var mail : Int               = 265;
+    public static var calculator : Int         = 266;
+    public static var computer : Int           = 267;
+    public static var ac_search : Int          = 268;
+    public static var ac_home : Int            = 269;
+    public static var ac_back : Int            = 270;
+    public static var ac_forward : Int         = 271;
+    public static var ac_stop : Int            = 272;
+    public static var ac_refresh : Int         = 273;
+    public static var ac_bookmarks : Int       = 274;
 
       // Walther keys
       // These are values that Christian Walther added (for mac keyboard?).
 
-    public static var BRIGHTNESSDOWN : Int     = 275;
-    public static var BRIGHTNESSUP : Int       = 276;
+    public static var brightnessdown : Int     = 275;
+    public static var brightnessup : Int       = 276;
 
 /** display mirroring/dual display switch, video mode switch */
-    public static var DISPLAYSWITCH : Int      = 277;
+    public static var displayswitch : Int      = 277;
 
-    public static var KBDILLUMTOGGLE : Int     = 278;
-    public static var KBDILLUMDOWN : Int       = 279;
-    public static var KBDILLUMUP : Int         = 280;
-    public static var EJECT : Int              = 281;
-    public static var SLEEP : Int              = 282;
+    public static var kbdillumtoggle : Int     = 278;
+    public static var kbdillumdown : Int       = 279;
+    public static var kbdillumup : Int         = 280;
+    public static var eject : Int              = 281;
+    public static var sleep : Int              = 282;
 
-    public static var APP1 : Int               = 283;
-    public static var APP2 : Int               = 284;
-
-/** Convert a scancode to a name */
-    public static function name( scancode : Int ) : String {
-        var res = null;
-        if (scancode >= 0 && scancode < scancode_names.length) {
-            res = scancode_names[scancode];
-        }        
-        return res != null ? res : "";
-    } //name
+    public static var app1 : Int               = 283;
+    public static var app2 : Int               = 284;
 
     static var scancode_names:Array<String> = [
         null, null, null, null,
@@ -895,7 +910,7 @@ but they aren't specific to SDL so they are used generically */
         "KBDIllumUp",
         "Eject",
         "Sleep",
-    ];
+    ]; //scancode names
 
 
 } //Scancodes
