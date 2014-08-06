@@ -7,13 +7,13 @@ but they aren't specific to SDL so they are used generically */
 
         /** Convert a scancode to a keycode for comparison */
     public static function from_scan( scancode : Int ) : Int {
-        return (scancode | (1<<30));
+        return (scancode | Scancodes.MASK);
     } //from_scan
 
         /** Convert a keycode to string */
     public static function name( keycode : Int ) : String {
-        if ((keycode & (1<<30)) != 0)
-            return Scancodes.name(keycode &~ (1<<30));
+        if ((keycode & Scancodes.MASK) != 0)
+            return Scancodes.name(keycode &~ Scancodes.MASK);
 
         switch(keycode) {
             case Keycodes.RETURN:    return Scancodes.name(Scancodes.RETURN);
@@ -287,6 +287,8 @@ but they aren't specific to SDL so they are used generically */
 /** The scancode class. The values below come directly from SDL header include files,
 but they aren't specific to SDL so they are used generically */
 @:noCompletion class Scancodes {
+
+    public static var MASK:Int                      = (1<<30);
 
     public static var UNKNOWN : Int                 = 0;
 
