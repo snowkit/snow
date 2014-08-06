@@ -45,8 +45,8 @@ class Window {
         /** The window minimum size `(read/write)` */
     @:isVar public var min_size (get,set) : { x:Int, y:Int };
 
-        /** set this for fullscreen windowed mode, instead of fullscreen mode */
-    public var windowed_fullscreen : Bool = true;
+        /** set this for fullscreen desktop mode, i.e created at the full desktop resolution */
+    public var fullscreen_desktop : Bool = true;
         /** set this if you want to control when a window swaps() where applicable */
     public var auto_swap : Bool = true;
         /** A flag for whether this window is open or closed */
@@ -280,7 +280,7 @@ class Window {
     function set_fullscreen( _enable:Bool ) {
 
         if(handle != null) {
-            manager.platform.fullscreen( this, _enable, windowed_fullscreen );
+            manager.platform.fullscreen( this, _enable, fullscreen_desktop );
         }
 
         return fullscreen = _enable;

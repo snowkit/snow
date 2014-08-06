@@ -70,7 +70,7 @@ import snow.utils.AbstractClass;
         /** Set the min size of a window */
     public function set_min_size( window:Window, w:Int, h:Int );
         /** Set the fullscreen state of a window */
-    public function fullscreen( window:Window, fullscreen:Bool, windowed_fullscreen:Bool = true );
+    public function fullscreen( window:Window, fullscreen:Bool, fullscreen_desktop:Bool = true );
         /** Set the bordered state of a window */
     public function bordered( window:Window, bordered:Bool );
 //cursor
