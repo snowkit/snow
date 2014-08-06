@@ -659,7 +659,7 @@ but they aren't specific to SDL so they are used generically */
 /** Convert a scancode to a name */
     public static function name( scancode : Int ) : String {
         var res = null;
-        if (scancode>=0 && scancode < scancode_names.length) {
+        if (scancode >= 0 && scancode < scancode_names.length) {
             res = scancode_names[scancode];
         }        
         return res != null ? res : "";
