@@ -9,6 +9,8 @@ import snow.window.Window;
 typedef Key = snow.input.Keycodes.Keycodes;
 typedef Scan = snow.input.Keycodes.Scancodes;
 
+typedef MapIntBool = Map<Int, Bool>;
+
 /** Internal input system, accessed via `app.input` */
 class Input {
 
@@ -17,19 +19,24 @@ class Input {
     @:noCompletion public var platform : InputSystem;
 
         //this is the keycode based flags for keypressed/keyreleased/keydown
-    var key_code_down : Map<Int, Bool>;
-    var key_code_pressed : Map<Int, Bool>;
-    var key_code_released : Map<Int, Bool>;
+    var key_code_down : MapIntBool;
+    var key_code_pressed : MapIntBool;
+    var key_code_released : MapIntBool;
 
         //this is the scancode based flags for scanpressed/scanreleased/scandown
-    var scan_code_down : Map<Int, Bool>;
-    var scan_code_pressed : Map<Int, Bool>;
-    var scan_code_released : Map<Int, Bool>;
+    var scan_code_down : MapIntBool;
+    var scan_code_pressed : MapIntBool;
+    var scan_code_released : MapIntBool;
 
         //this is the mouse button based flags for mousepressed/mousereleased/mousedown
-    var mouse_button_down : Map<Int, Bool>;
-    var mouse_button_pressed : Map<Int, Bool>;
-    var mouse_button_released : Map<Int, Bool>;
+    var mouse_button_down : MapIntBool;
+    var mouse_button_pressed : MapIntBool;
+    var mouse_button_released : MapIntBool;
+
+        //this is the gamepad button based flags for gamepadpressed/gamepadreleased/gamepaddown
+    var gamepad_button_down : Map<Int, MapIntBool >;
+    var gamepad_button_pressed : Map<Int, MapIntBool >;
+    var gamepad_button_released : Map<Int, MapIntBool >;
 
     @:noCompletion public function new( _lib:Snow ) {
 
@@ -53,6 +60,11 @@ class Input {
             mouse_button_pressed = new Map();
             mouse_button_down = new Map();
             mouse_button_released = new Map();
+
+        //gamepad
+            gamepad_button_pressed = new Map();
+            gamepad_button_down = new Map();
+            gamepad_button_released = new Map();
 
     } //new
 
@@ -108,6 +120,32 @@ class Input {
         public function mousedown( _button:Int ) {
            return mouse_button_down.exists(_button);
         } //mousedown
+
+    //Gamepad immediate style access
+
+            /** returns true if the mouse button was pressed in the latest frame */
+        public function gamepadpressed( _gamepad:Int, _button:Int ) {
+
+            var _gamepad_state = gamepad_button_pressed.get(_gamepad);
+            return _gamepad_state != null ? _gamepad_state.exists(_button) : false;
+
+        } //keypressed
+
+            /** returns true if the gamepad button was released in the latest frame */
+        public function gamepadreleased( _gamepad:Int, _button:Int ) {
+
+            var _gamepad_state = gamepad_button_released.get(_gamepad);
+            return _gamepad_state != null ? _gamepad_state.exists(_button) : false;
+
+        } //gamepadreleased
+
+            /** returns true if the gamepad button value is down at the time of calling this */
+        public function gamepaddown( _gamepad:Int, _button:Int ) {
+
+           var _gamepad_state = gamepad_button_down.get(_gamepad);
+            return _gamepad_state != null ? _gamepad_state.exists(_button) : false;
+
+        } //gamepaddown
 
         /** manually dispatch a keyboard event through the system, delivered to the app handlers, internal and external */
     public function dispatch_key_up_event( keycode:Int, scancode:Int, repeat:Bool, mod:ModState, timestamp:Float, window_id:Int ) {
@@ -218,11 +256,41 @@ class Input {
 
     public function dispatch_gamepad_button_down_event( gamepad:Int, button:Int, value:Float, timestamp:Float ) {
 
+            //if not existing, add it's map
+        if(!gamepad_button_pressed.exists(gamepad)) {
+            gamepad_button_pressed.set(gamepad, new Map());
+        }
+
+        if(!gamepad_button_down.exists(gamepad)) {
+            gamepad_button_down.set(gamepad, new Map());
+        }
+
+            //flag it as released but unprocessed
+        gamepad_button_pressed.get(gamepad).set(button, false);
+            //flag it as down, because gamepadup removes it
+        gamepad_button_down.get(gamepad).set(button, true);
+
+
         lib.host.ongamepadbuttondown( gamepad, button, value, timestamp );
 
     } //dispatch_gamepad_button_down_event
 
     public function dispatch_gamepad_button_up_event( gamepad:Int, button:Int, value:Float, timestamp:Float ) {
+
+           //if not existing, add it's map, this should never happen,
+           //but rather be safe than crashy. :todo:shipping:
+        if(!gamepad_button_released.exists(gamepad)) {
+            gamepad_button_released.set(gamepad, new Map());
+        }
+
+        if(!gamepad_button_down.exists(gamepad)) {
+            gamepad_button_down.set(gamepad, new Map());
+        }
+
+            //flag it as released but unprocessed
+        gamepad_button_released.get(gamepad).set(button, false);
+            //flag it as down, because gamepadup removes it
+        gamepad_button_down.get(gamepad).remove(button);
 
         lib.host.ongamepadbuttonup( gamepad, button, value, timestamp );
 
@@ -274,6 +342,7 @@ class Input {
         platform.process();
 
         _update_keystate();
+        _update_gamepadstate();
         _update_mousestate();
 
     } //update
@@ -308,6 +377,34 @@ class Input {
         } //each mouse_button_released
 
     } //_update_mousestate
+
+    function _update_gamepadstate() {
+
+        for(_gamepad_pressed in gamepad_button_pressed){
+            for(_button in _gamepad_pressed.keys()) {
+
+                if(_gamepad_pressed.get(_button)){
+                    _gamepad_pressed.remove(_button);
+                } else {
+                    _gamepad_pressed.set(_button, true);
+                }
+
+            } //each _gamepad_pressed
+        } //each gamepad_button_pressed
+
+        for(_gamepad_released in gamepad_button_released){
+            for(_button in _gamepad_released.keys()) {
+
+                if(_gamepad_released.get(_button)){
+                    _gamepad_released.remove(_button);
+                } else {
+                    _gamepad_released.set(_button, true);
+                }
+
+            } //each _gamepad_released
+        } //each gamepad_button_released
+
+    } //_update_gamepadstate
 
     function _update_keystate() {
 
