@@ -13,8 +13,9 @@ import snow.assets.AssetAudio;
 
 
 /** The asset system class gives you access to fetching and manipulating assets,
-    caching/uncaching assets, and handles loading files and data cross platform */
+    handling loading files and data in a consistent cross platform way */
 class Assets {
+
 
         /** The list of assets in the system, added at startup by the `App` class, in the `get_asset_list` function */
     public var list : Map<String, AssetInfo>;
@@ -25,14 +26,14 @@ class Assets {
         /** The default approach to finding assets, overridable in each get call, this value will be used if the flag is not specified. */
     public var strict : Bool = true;
 
-//internal
-
-        /** The asset system platform implementation */
+        /** access to platform implementation */
     @:noCompletion public var platform : AssetSystem;
         /** access to snow from subsystems */
     @:noCompletion public var lib : Snow;
 
-    public function new( _lib:Snow ) {
+
+        /** constructed internally, use `app.assets` */
+    @:noCompletion public function new( _lib:Snow ) {
 
         #if ios
                 //This is because of how the files are put into the xcode project
@@ -63,7 +64,7 @@ class Assets {
                 _asset.type = 'sound';
             }
 
-            lib._debug('/ snow /    added asset ${_asset.id} at ${_asset.path} (${_asset.type}) ');
+            // lib._debug('/ snow /    added asset ${_asset.id} at ${_asset.path} (${_asset.type}) ');
 
             list.set(_asset.id, _asset);
 
@@ -293,5 +294,5 @@ class Assets {
         trace('/ snow / asset / found "$_id" but it failed to load ($reason)' );
     } //load_error
 
-} //Assets
 
+} //Assets

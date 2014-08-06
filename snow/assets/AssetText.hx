@@ -10,12 +10,14 @@ import snow.assets.AssetSystem;
 /**  An asset that contains `text` as a `String`. Get assets from the `Assets` class, via `app.assets` */
 class AssetText extends Asset {
 
+
         /** The `String` this asset contains */
     public var text : String;
-        /** Whether or not this bytes data will load syncronously */
+        /** Whether or not this bytes data will load syncronously. Used in `load` only. */
     public var async : Bool = false;
 
 
+        /** Called from `app.assets.text` */
     public function new( _assets:Assets, _info:AssetInfo, ?_async:Bool=false ) {
 
         super( _assets, _info );
@@ -24,6 +26,8 @@ class AssetText extends Asset {
 
     } //new
 
+        /** Called from `app.assets.text`, or manually, if reloading the asset data at a later point.
+            Note this function calls the onload handler in the next frame, so sync code can return. */
     public function load( ?onload:AssetText->Void ) {
 
         loaded = false;
@@ -39,7 +43,9 @@ class AssetText extends Asset {
             loaded = true;
 
             if(onload != null) {
-                onload( this );
+                Snow.next(function(){
+                    onload( this );
+                });
             }
 
         }); //readFile

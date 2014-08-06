@@ -48,7 +48,6 @@ class Main extends snow.AppFixedTimestep {
     var sound1 : Sound;
     var sound2 : Sound;
     var sound3 : Sound;
-    var sound4 : Sound;
     var sound5 : Sound;
 
         //left or right pan?
@@ -87,12 +86,6 @@ class Main extends snow.AppFixedTimestep {
         trace('/ HOST / ready');
 
         trace(GL.getContextAttributes());
-
-        var r : EReg = ~/world/;
-        var str = "hello world";
-        trace(r.match(str)); // true : 'world' was found in the string
-        trace(r.match("hello !")); // false
-
         trace("app config is loaded as : " + app.config.runtime );
 
         if(app.config.runtime.size != null) size = app.config.runtime.size;
@@ -110,17 +103,19 @@ class Main extends snow.AppFixedTimestep {
                 //get list of modes for this display
             var modecount = app.windowing.display_mode_count(i);
 
+            var modes = 'modes ';
             for(j in 0 ... modecount) {
                 var mode = app.windowing.display_mode(i,j);
-                trace('\t\t ${mode.width} x ${mode.height}  @  ${mode.refresh_rate}hz ');
+                modes += ' | ${mode.width} x ${mode.height}  @  ${mode.refresh_rate}hz';
             }
+
+            trace(modes);
 
         }
 
         trace("desktop native resolution of primary display : " + app.windowing.display_native_mode(0) );
-
         trace("OpenGL reports version " + GL.versionString());
-        trace("OpenGL reports extensions " + GL.getSupportedExtensions());
+        // trace("OpenGL reports extensions " + GL.getSupportedExtensions());
 
         initializeShaders();
         createBuffers();
@@ -162,13 +157,11 @@ class Main extends snow.AppFixedTimestep {
         sound1 = app.audio.create("assets/sound.pcm" );
         sound2 = app.audio.create("assets/200308__liveware__sony-nex-7-double-shutter.ogg", 'ogg');
         sound3 = app.audio.create("assets/sound.wav", 'wav');
-        // sound4 = app.audio.create("assets/music.wav", 'wav_stream', true);
         sound5 = app.audio.create("assets/244028__lennyboy__rain001.ogg", 'ogg_stream', true);
 
         // trace("sound1 : " + sound1.name);
         // trace("sound2 : " + sound2.name);
         // trace("sound3 : " + sound3.name);
-        // trace("sound4 : " + sound4.name);
         // trace("sound5 : " + sound5.name);
 
         sound5.on('load', function(s:Sound){
@@ -277,7 +270,7 @@ class Main extends snow.AppFixedTimestep {
         }
 
         if(keycode == Key.key_r) {
-            sound5.time = 0;
+            sound5.position = 0;
             trace('music reset');
         }
 
@@ -295,7 +288,7 @@ class Main extends snow.AppFixedTimestep {
 
         if(keycode == Key.key_t) {
             var t = (sound5.duration*0.75);
-            sound5.time = t;
+            sound5.position = t;
             trace('set to ${sound5.duration}*0.75 | music 75% ' + t);
         }
 

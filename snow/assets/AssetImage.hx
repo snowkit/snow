@@ -11,12 +11,14 @@ import snow.assets.AssetSystem;
 /**  An asset that contains image file `image` as an `ImageInfo`. Get assets from the `Assets` class, via `app.assets` */
 class AssetImage extends Asset {
 
+
         /** The `ImageInfo` this asset contains */
     public var image : ImageInfo;
-        /** The requested components when loading this image */
+        /** The requested components when loading this image. */
     public var components : Int = 4;
 
 
+        /** Called from `app.assets` */
     public function new( _assets:Assets, _info:AssetInfo, ?_components:Int=4 ) {
 
         super( _assets, _info );
@@ -25,6 +27,8 @@ class AssetImage extends Asset {
 
     } //new
 
+        /** Called from `app.assets.image`, or manually, if reloading the asset data at a later point.
+            Note this function calls the onload handler in the next frame, so sync code can return.*/
     public function load( ?onload:AssetImage->Void ) {
 
         loaded = false;
@@ -39,9 +43,6 @@ class AssetImage extends Asset {
             }
 
             if(onload != null) {
-                    //push to next frame so functions can
-                    //return when running in sync i.e onload would happen
-                    //before the function has event returned
                 Snow.next(function(){
                     onload( this );
                 });
@@ -51,6 +52,8 @@ class AssetImage extends Asset {
 
     } //load
 
+        /** Called from `app.assets.image`, or manually, if reloading the asset data at a later point.
+            Note this function calls the onload handler in the next frame, so sync code can return. */
     public function load_from_bytes( bytes:ByteArray, ?onload:AssetImage->Void ) {
 
         loaded = false;
@@ -58,13 +61,16 @@ class AssetImage extends Asset {
         image = null;
             //load the new data
         image = assets.platform.image_info_from_bytes( info.path, bytes, components );
-            //set flag since there is no load time for this
+            //set flag since there is no load time for this, usually sync
         loaded = true;
 
         if(onload != null) {
-            onload( this );
+            Snow.next(function(){
+                onload( this );
+            });
         }
 
     } //load
+
 
 } //AssetImage

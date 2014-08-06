@@ -14,11 +14,7 @@ import snow.types.Types;
 #end //snow_web
 
 
-/**
-Implemented in the platform specific concrete versions of this class.
-
-This uses a macro to allow this class to pretend to be abstract, and complain via compiler errors if the specific functions are missing.
- */
+/** Implemented in the platform specific concrete versions of this class. */
 @:noCompletion class CoreBinding implements AbstractClass {
 
         //The snow instance

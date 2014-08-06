@@ -10,12 +10,14 @@ import snow.assets.AssetSystem;
 /**  An asset that contains byte `bytes` as a `ByteArray`. Get assets from the `Assets` class, via `app.assets` */
 class AssetBytes extends Asset {
 
+
         /** The `ByteArray` this asset contains */
     public var bytes : ByteArray;
-        /** Whether or not this bytes data will load syncronously */
+        /** Whether or not this bytes data will load syncronously. Used in `load` only. */
     public var async : Bool = false;
 
 
+        /** Called from `app.assets` */
     public function new( _assets:Assets, _info:AssetInfo, ?_async:Bool=false ) {
 
         super( _assets, _info );
@@ -24,6 +26,8 @@ class AssetBytes extends Asset {
 
     } //new
 
+        /** Called from `app.assets.bytes`, or manually, if reloading the asset data at a later point.
+            Note this function calls the onload handler in the next frame, so sync code can return. */
     public function load( ?onload:AssetBytes->Void ) {
 
         loaded = false;
@@ -37,7 +41,9 @@ class AssetBytes extends Asset {
             loaded = true;
 
             if(onload != null) {
-                onload( this );
+                Snow.next(function(){
+                    onload( this );
+                });
             }
 
         }); //readFile
