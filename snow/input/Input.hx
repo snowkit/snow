@@ -10,6 +10,7 @@ typedef Key = snow.input.Keycodes.Keycodes;
 typedef Scan = snow.input.Keycodes.Scancodes;
 
 typedef MapIntBool = Map<Int, Bool>;
+typedef MapIntFloat = Map<Int, Float>;
 
 /** Internal input system, accessed via `app.input` */
 class Input {
@@ -37,6 +38,7 @@ class Input {
     var gamepad_button_down : Map<Int, MapIntBool >;
     var gamepad_button_pressed : Map<Int, MapIntBool >;
     var gamepad_button_released : Map<Int, MapIntBool >;
+    var gamepad_axis_values : Map<Int, MapIntFloat >;
 
     @:noCompletion public function new( _lib:Snow ) {
 
@@ -65,6 +67,7 @@ class Input {
             gamepad_button_pressed = new Map();
             gamepad_button_down = new Map();
             gamepad_button_released = new Map();
+            gamepad_axis_values = new Map();
 
     } //new
 
@@ -75,56 +78,56 @@ class Input {
     //Key immediate style access
 
             /** returns true if the `Key` value was pressed in the latest frame */
-        public function keypressed( _code:Int ) {
+        public function keypressed( _code:Int ) : Bool {
             return key_code_pressed.exists(_code);
         } //keypressed
 
             /** returns true if the `Key` value was released in the latest frame */
-        public function keyreleased( _code:Int ) {
+        public function keyreleased( _code:Int ) : Bool {
             return key_code_released.exists(_code);
         } //keyreleased
 
             /** returns true if the `Key` value is down at the time of calling this */
-        public function keydown( _code:Int ) {
+        public function keydown( _code:Int ) : Bool {
            return key_code_down.exists(_code);
         } //keydown
 
             /** returns true if the `Scan` value was pressed in the latest frame */
-        public function scanpressed( _code:Int ) {
+        public function scanpressed( _code:Int ) : Bool {
             return scan_code_pressed.exists(_code);
         } //scanpressed
 
             /** returns true if the `Scan` value was released in the latest frame */
-        public function scanreleased( _code:Int ) {
+        public function scanreleased( _code:Int ) : Bool {
             return scan_code_released.exists(_code);
         } //scanreleased
 
             /** returns true if the `Scan` value is down at the time of calling this */
-        public function scandown( _code:Int ) {
+        public function scandown( _code:Int ) : Bool {
            return scan_code_down.exists(_code);
         } //keydown
 
     //Mouse immediate style access
 
             /** returns true if the mouse button was pressed in the latest frame */
-        public function mousepressed( _button:Int ) {
+        public function mousepressed( _button:Int ) : Bool {
             return mouse_button_pressed.exists(_button);
         } //keypressed
 
             /** returns true if the mouse button was released in the latest frame */
-        public function mousereleased( _button:Int ) {
+        public function mousereleased( _button:Int ) : Bool {
             return mouse_button_released.exists(_button);
         } //mousereleased
 
             /** returns true if the mouse button value is down at the time of calling this */
-        public function mousedown( _button:Int ) {
+        public function mousedown( _button:Int ) : Bool {
            return mouse_button_down.exists(_button);
         } //mousedown
 
     //Gamepad immediate style access
 
             /** returns true if the mouse button was pressed in the latest frame */
-        public function gamepadpressed( _gamepad:Int, _button:Int ) {
+        public function gamepadpressed( _gamepad:Int, _button:Int ) : Bool {
 
             var _gamepad_state = gamepad_button_pressed.get(_gamepad);
             return _gamepad_state != null ? _gamepad_state.exists(_button) : false;
@@ -132,7 +135,7 @@ class Input {
         } //keypressed
 
             /** returns true if the gamepad button was released in the latest frame */
-        public function gamepadreleased( _gamepad:Int, _button:Int ) {
+        public function gamepadreleased( _gamepad:Int, _button:Int ) : Bool {
 
             var _gamepad_state = gamepad_button_released.get(_gamepad);
             return _gamepad_state != null ? _gamepad_state.exists(_button) : false;
@@ -140,10 +143,22 @@ class Input {
         } //gamepadreleased
 
             /** returns true if the gamepad button value is down at the time of calling this */
-        public function gamepaddown( _gamepad:Int, _button:Int ) {
+        public function gamepaddown( _gamepad:Int, _button:Int ) : Bool {
 
            var _gamepad_state = gamepad_button_down.get(_gamepad);
             return _gamepad_state != null ? _gamepad_state.exists(_button) : false;
+
+        } //gamepaddown
+
+            /** returns true if the gamepad button value is down at the time of calling this */
+        public function gamepadaxis( _gamepad:Int, _axis:Int ) : Float {
+
+           var _gamepad_state = gamepad_axis_values.get(_gamepad);
+            if(_gamepad_state.exists(_axis)) {
+                return _gamepad_state.get(_axis);
+            }
+
+            return 0;
 
         } //gamepaddown
 
@@ -249,6 +264,14 @@ class Input {
 
         /** manually dispatch a gamepad event through the system, delivered to the app handlers, internal and external */
     public function dispatch_gamepad_axis_event( gamepad:Int, axis:Int, value:Float, timestamp:Float ) {
+
+            //if not existing, add it's map
+        if(!gamepad_axis_values.exists(gamepad)) {
+            gamepad_axis_values.set(gamepad, new Map());
+        }
+
+            //update the axis value
+        gamepad_axis_values.get(gamepad).set(axis, value);
 
         lib.host.ongamepadaxis( gamepad, axis, value, timestamp );
 
