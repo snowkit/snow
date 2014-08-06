@@ -456,6 +456,18 @@ class Main extends snow.AppFixedTimestep {
             trace('space pressed');
         }
 
+        if(app.input.mousereleased(3)) {
+            trace('right mouse released');
+        }
+
+        if(app.input.mousepressed(3)) {
+            trace('right mouse pressed');
+        }
+
+        if(app.input.mousedown(2)) {
+            trace('mid mouse down');
+        }
+
     } //update
 
 
@@ -506,8 +518,13 @@ class Main extends snow.AppFixedTimestep {
             vertexShaderSource += "precision mediump float;";
         #end
 
+        // #if (desktop)
+        //     vertexShaderSource += '#version 140\n';
+        // #end
+
         vertexShaderSource +=
-            "attribute vec3 aVertexPosition;
+            "
+            attribute vec3 aVertexPosition;
             attribute vec2 aTexCoord;
             varying vec2 vTexCoord;
 
@@ -541,12 +558,16 @@ class Main extends snow.AppFixedTimestep {
             fragmentShaderSource += "precision mediump float;";
         #end
 
+        // #if (desktop)
+        //     fragmentShaderSource += '#version 140\n';
+        // #end
+
         fragmentShaderSource +=
             "varying vec2 vTexCoord;
             uniform sampler2D uImage0;
 
             void main(void) {
-                gl_FragColor = texture2D (uImage0, vTexCoord);
+                gl_FragColor = texture2D(uImage0, vTexCoord);
             }";
 
         var fragmentShader = GL.createShader (GL.FRAGMENT_SHADER);

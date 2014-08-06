@@ -16,10 +16,20 @@ class Input {
     @:noCompletion public var lib : Snow;
     @:noCompletion public var platform : InputSystem;
 
-        //this is the enum based flags for keypressed/keyreleased/keydown
+        //this is the keycode based flags for keypressed/keyreleased/keydown
     var key_code_down : Map<Int, Bool>;
     var key_code_pressed : Map<Int, Bool>;
     var key_code_released : Map<Int, Bool>;
+
+        //this is the scancode based flags for scanpressed/scanreleased/scandown
+    var scan_code_down : Map<Int, Bool>;
+    var scan_code_pressed : Map<Int, Bool>;
+    var scan_code_released : Map<Int, Bool>;
+
+        //this is the mouse button based flags for mousepressed/mousereleased/mousedown
+    var mouse_button_down : Map<Int, Bool>;
+    var mouse_button_pressed : Map<Int, Bool>;
+    var mouse_button_released : Map<Int, Bool>;
 
     @:noCompletion public function new( _lib:Snow ) {
 
@@ -29,9 +39,20 @@ class Input {
 
         platform.init();
 
-        key_code_pressed = new Map();
-        key_code_down = new Map();
-        key_code_released = new Map();
+        //keys
+
+            key_code_pressed = new Map();
+            key_code_down = new Map();
+            key_code_released = new Map();
+
+            scan_code_pressed = new Map();
+            scan_code_down = new Map();
+            scan_code_released = new Map();
+
+        //mouse
+            mouse_button_pressed = new Map();
+            mouse_button_down = new Map();
+            mouse_button_released = new Map();
 
     } //new
 
@@ -39,20 +60,54 @@ class Input {
 //Public facing API
 
 
-        /** returns true if the `Key` value was pressed in the latest frame */
-    public function keypressed( _code:Int ) {
-        return key_code_pressed.exists(_code);
-    } //keypressed
+    //Key immediate style access
 
-        /** returns true if the `Key` value was released in the latest frame */
-    public function keyreleased( _code:Int ) {
-        return key_code_released.exists(_code);
-    } //keyreleased
+            /** returns true if the `Key` value was pressed in the latest frame */
+        public function keypressed( _code:Int ) {
+            return key_code_pressed.exists(_code);
+        } //keypressed
 
-        /** returns true if the `Key` value is down at the time of calling this */
-    public function keydown( _code:Int ) {
-       return key_code_down.exists(_code);
-    } //keydown
+            /** returns true if the `Key` value was released in the latest frame */
+        public function keyreleased( _code:Int ) {
+            return key_code_released.exists(_code);
+        } //keyreleased
+
+            /** returns true if the `Key` value is down at the time of calling this */
+        public function keydown( _code:Int ) {
+           return key_code_down.exists(_code);
+        } //keydown
+
+            /** returns true if the `Scan` value was pressed in the latest frame */
+        public function scanpressed( _code:Int ) {
+            return scan_code_pressed.exists(_code);
+        } //scanpressed
+
+            /** returns true if the `Scan` value was released in the latest frame */
+        public function scanreleased( _code:Int ) {
+            return scan_code_released.exists(_code);
+        } //scanreleased
+
+            /** returns true if the `Scan` value is down at the time of calling this */
+        public function scandown( _code:Int ) {
+           return scan_code_down.exists(_code);
+        } //keydown
+
+    //Mouse immediate style access
+
+            /** returns true if the mouse button was pressed in the latest frame */
+        public function mousepressed( _button:Int ) {
+            return mouse_button_pressed.exists(_button);
+        } //keypressed
+
+            /** returns true if the mouse button was released in the latest frame */
+        public function mousereleased( _button:Int ) {
+            return mouse_button_released.exists(_button);
+        } //mousereleased
+
+            /** returns true if the mouse button value is down at the time of calling this */
+        public function mousedown( _button:Int ) {
+           return mouse_button_down.exists(_button);
+        } //mousedown
 
         /** manually dispatch a keyboard event through the system, delivered to the app handlers, internal and external */
     public function dispatch_key_up_event( keycode:Int, scancode:Int, repeat:Bool, mod:ModState, timestamp:Float, window_id:Int ) {
@@ -61,6 +116,13 @@ class Input {
         key_code_released.set(keycode, false);
             //remove the down flag
         key_code_down.remove(keycode);
+
+            //flag it as released but unprocessed
+        scan_code_released.set(scancode, false);
+            //remove the down flag
+        scan_code_down.remove(scancode);
+
+
             //dispatch the event
         lib.host.onkeyup(keycode, scancode, repeat, mod, timestamp, window_id);
 
@@ -74,6 +136,10 @@ class Input {
             key_code_pressed.set(keycode, false);
                 //flag it as down, because keyup removes it
             key_code_down.set(keycode, true);
+                //flag the scan as pressed, but unprocessed (false)
+            scan_code_pressed.set(scancode, false);
+                //flag it as down, because keyup removes it
+            scan_code_down.set(scancode, true);
         }
 
             //forward the event
@@ -96,11 +162,23 @@ class Input {
 
     public function dispatch_mouse_down_event( x:Int, y:Int, button:Int, timestamp:Float, window_id:Int ) {
 
+            //flag the button as pressed, but unprocessed (false)
+        mouse_button_pressed.set(button, false);
+            //flag it as down, because mouseup removes it
+        mouse_button_down.set(button, true);
+
+
         lib.host.onmousedown( x, y, button, timestamp, window_id );
 
     } //dispatch_mouse_down_event
 
     public function dispatch_mouse_up_event( x:Int, y:Int, button:Int, timestamp:Float, window_id:Int ) {
+
+            //flag it as released but unprocessed
+        mouse_button_released.set(button, false);
+            //remove the down flag
+        mouse_button_down.remove(button);
+
 
         lib.host.onmouseup( x, y, button, timestamp, window_id );
 
@@ -195,33 +273,8 @@ class Input {
 
         platform.process();
 
-            //remove any stale key pressed value
-            //unless it wasn't alive for a full frame yet,
-            //then flag it so that it may be
-        for(_code in key_code_pressed.keys()){
-
-            var _flag : Bool = key_code_pressed.get(_code);
-            if(_flag){
-                key_code_pressed.remove(_code);
-            } else {
-                key_code_pressed.set(_code, true);
-            }
-
-        } //each pressed_code
-
-            //remove any stale key released value
-            //unless it wasn't alive for a full frame yet,
-            //then flag it so that it may be
-        for(_code in key_code_released.keys()){
-
-            var _flag : Bool = key_code_released.get(_code);
-            if(_flag){
-                key_code_released.remove(_code);
-            } else {
-                key_code_released.set(_code, true);
-            }
-
-        } //each pressed_code
+        _update_keystate();
+        _update_mousestate();
 
     } //update
 
@@ -230,6 +283,89 @@ class Input {
         platform.destroy();
 
     } //destroy
+
+
+    function _update_mousestate() {
+
+        for(_code in mouse_button_pressed.keys()){
+
+            if(mouse_button_pressed.get(_code)){
+                mouse_button_pressed.remove(_code);
+            } else {
+                mouse_button_pressed.set(_code, true);
+            }
+
+        } //each mouse_button_pressed
+
+        for(_code in mouse_button_released.keys()){
+
+            if(mouse_button_released.get(_code)){
+                mouse_button_released.remove(_code);
+            } else {
+                mouse_button_released.set(_code, true);
+            }
+
+        } //each mouse_button_released
+
+    } //_update_mousestate
+
+    function _update_keystate() {
+
+            //remove any stale key pressed value
+            //unless it wasn't alive for a full frame yet,
+            //then flag it so that it may be
+        for(_code in key_code_pressed.keys()){
+
+            if(key_code_pressed.get(_code)){
+                key_code_pressed.remove(_code);
+            } else {
+                key_code_pressed.set(_code, true);
+            }
+
+        } //each key_code_pressed
+
+            //remove any stale key released value
+            //unless it wasn't alive for a full frame yet,
+            //then flag it so that it may be
+        for(_code in key_code_released.keys()){
+
+            if(key_code_released.get(_code)){
+                key_code_released.remove(_code);
+            } else {
+                key_code_released.set(_code, true);
+            }
+
+        } //each key_code_released
+
+    //scans
+
+            //remove any stale key pressed value
+            //unless it wasn't alive for a full frame yet,
+            //then flag it so that it may be
+        for(_code in scan_code_pressed.keys()){
+
+            if(scan_code_pressed.get(_code)){
+                scan_code_pressed.remove(_code);
+            } else {
+                scan_code_pressed.set(_code, true);
+            }
+
+        } //each scan_code_pressed
+
+            //remove any stale key released value
+            //unless it wasn't alive for a full frame yet,
+            //then flag it so that it may be
+        for(_code in scan_code_released.keys()){
+
+            if(scan_code_released.get(_code)){
+                scan_code_released.remove(_code);
+            } else {
+                scan_code_released.set(_code, true);
+            }
+
+        } //each scan_code_released
+
+    } //_update_keystate
 
 } //Input
 
