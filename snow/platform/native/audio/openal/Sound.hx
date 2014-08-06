@@ -108,6 +108,8 @@ import snow.platform.native.audio.openal.OpenALHelper;
 
     override function set_info( _info:AudioInfo ) : AudioInfo {
 
+        trace("setting info", _info);
+
             //if preexisting,
         if(info != null) {
             destroy();
@@ -179,13 +181,13 @@ import snow.platform.native.audio.openal.OpenALHelper;
 
     static var half_pi : Float = 1.5707;
 
-    override function get_position() : Int {
+    override function get_position_bytes() : Int {
 
         return Std.int(AL.getSourcef(source, AL.SAMPLE_OFFSET));
 
-    } //get_position
+    } //get_position_bytes
 
-    override function get_time() : Float {
+    override function get_position() : Float {
 
         return AL.getSourcef(source, AL.SEC_OFFSET);
 
@@ -223,20 +225,20 @@ import snow.platform.native.audio.openal.OpenALHelper;
 
     } //set_looping
 
-    override function set_position( _position:Int ) : Int {
+    override function set_position_bytes( _position_bytes:Int ) : Int {
 
-        AL.sourcef(source, AL.SAMPLE_OFFSET, _position);
+        AL.sourcef(source, AL.SAMPLE_OFFSET, _position_bytes);
+
+        return position_bytes = _position_bytes;
+
+    } //set_position_bytes
+
+    override function set_position( _position:Float ) : Float {
+
+        AL.sourcef(source, AL.SEC_OFFSET, _position);
 
         return position = _position;
 
     } //set_position
-
-    override function set_time( _time:Float ) : Float {
-
-        AL.sourcef(source, AL.SEC_OFFSET, _time);
-
-        return time = _time;
-
-    } //set_time
 
 } //Sound

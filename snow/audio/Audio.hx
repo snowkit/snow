@@ -11,17 +11,21 @@ import snow.utils.ByteArray;
 
 class Audio {
 
-        /** The implementation of the current audio system */
+        /** access to platform specific implementation */
     public var platform : AudioSystem;
         /** Set to false to stop any and all processing in the audio system */
     public var active : Bool = false;
-        //for external access to the library by the systems
+
+        /** for external access to the library by the systems */
     @:noCompletion public var lib : Snow;
-
-    var sound_list : Map<String, Sound>;
-    var stream_list : Map<String, SoundStream>;
+        /** for mapping native handles to Sound instances. Use the `app.audio` to manipulate preferably. */
     @:noCompletion public var handles : Map<AudioHandle, Sound>;
+        /** for mapping named sounds to Sound instances. Use the `app.audio` to manipulate preferably. */
+    @:noCompletion public var sound_list : Map<String, Sound>;
+        /** for mapping named streams to SoundStream instances. Use the `app.audio` to manipulate preferably. */
+    @:noCompletion public var stream_list : Map<String, SoundStream>;
 
+        /** constructed internally, use `app.audio` */
     @:noCompletion public function new( _lib:Snow ) {
 
         lib = _lib;
@@ -57,12 +61,10 @@ class Audio {
             //try loading the sound asset, only reading the entire file if its not streaming
         var _asset = lib.assets.audio( _id, { load:!streaming, onload:function(asset:AssetAudio) {
 
-                    Snow.next(function(){
-                        if(asset != null && sound != null) {
-                            handles.set(asset.audio.handle, sound);
-                            sound.info = asset.audio;
-                        }
-                    });
+                    if(asset != null && sound != null) {
+                        handles.set(asset.audio.handle, sound);
+                        sound.info = asset.audio;
+                    }
 
                 } //onload
             } //options
@@ -93,7 +95,7 @@ class Audio {
 
     } //create
 
-        /** Destroy a sound instance by name. Use sound_instance.destroy() if you have an instance. */
+        /** Destroy a sound instance by name. Use sound_instance.destroy() if you have an instance already. */
     public function uncreate( _name:String ) {
 
         var _sound = sound_list.get(_name);
@@ -106,14 +108,6 @@ class Audio {
         _sound.destroy();
 
     } //uncreate
-
-    @:noCompletion public function kill( _sound:Sound ) {
-
-        handles.remove(_sound.info.handle);
-        sound_list.remove(_sound.name);
-        stream_list.remove(_sound.name);
-
-    } //kill
 
         /** Get a sound instance by name */
     public function get( _name:String ) : Sound {
@@ -128,29 +122,71 @@ class Audio {
 
     } //get
 
-        /** Set the volume of a sound instance by name */
-    public function volume( _name:String, _volume:Float ) {
+        /** Get/Set the volume of a sound instance by name.
+            Leave the second argument blank to return the current value. */
+    public function volume( _name:String, ?_volume:Float ) : Float {
         var sound = get(_name);
         if(sound != null) {
-            sound.volume = _volume;
+            if(_volume != null) {
+                return sound.volume = _volume;
+            } else {
+                return sound.volume;
+            }
         }
+        return 0;
     } //volume
 
-        /** Set the pan of a sound instance by name */
-    public function pan( _name:String, _pan:Float ) {
+        /** Get/Set the pan of a sound instance by name
+            Leave the second argument blank to return the current value.  */
+    public function pan( _name:String, ?_pan:Float ) {
         var sound = get(_name);
         if(sound != null) {
-            sound.pan = _pan;
+            if(_pan != null) {
+                return sound.pan = _pan;
+            } else {
+                return sound.pan;
+            }
         }
+        return 0;
     } //pan
 
-        /** Set the pitch of a sound instance by name */
-    public function pitch( _name:String, _pitch:Float ) {
+        /** Get/Set the pitch of a sound instance by name
+            Leave the second argument blank to return the current value.  */
+    public function pitch( _name:String, ?_pitch:Float ) {
         var sound = get(_name);
         if(sound != null) {
-            sound.pitch = _pitch;
+            if(_pitch != null) {
+                return sound.pitch = _pitch;
+            } else {
+                return sound.pitch;
+            }
         }
+        return 0;
     } //pitch
+
+        /** Get/Set the position **in seconds** of a sound instance by name.
+            Leave the second argument blank to return the current value.  */
+    public function position( _name:String, ?_position:Float ) {
+        var sound = get(_name);
+        if(sound != null) {
+            if(_position != null) {
+                return sound.position = _position;
+            } else {
+                return sound.position;
+            }
+        }
+        return 0;
+    } //position
+
+        /** Get the duration of a sound instance by name.
+            Duration is set from the sound instance, so it is read only. */
+    public function duration( _name:String ) {
+        var sound = get(_name);
+        if(sound != null) {
+            return sound.duration;
+        }
+        return 0;
+    } //duration
 
         /** Play a sound instance by name */
     public function play(_name:String) {
@@ -220,8 +256,16 @@ class Audio {
 
 //Internal API
 
+        /** Stop managing a sound instance */
+    @:noCompletion public function kill( _sound:Sound ) {
 
-        //system events
+        handles.remove(_sound.info.handle);
+        sound_list.remove(_sound.name);
+        stream_list.remove(_sound.name);
+
+    } //kill
+
+        /** Called by Snow when a system event is dispatched */
     @:noCompletion public function on_event( _event:SystemEvent ) {
 
         if(_event.type == SystemEventType.app_willenterbackground) {
@@ -248,6 +292,7 @@ class Audio {
 
     } //on_event
 
+        /** Called by Snow, cleans up sounds/system */
     @:noCompletion public function destroy() {
 
         active = false;
@@ -260,6 +305,7 @@ class Audio {
 
     } //destroy
 
+        /** Called by Snow, update any sounds / streams */
     @:noCompletion public function update() {
 
         if(!active) {
@@ -275,7 +321,6 @@ class Audio {
         platform.process();
 
     } //update
-
 
 
 } //Audio

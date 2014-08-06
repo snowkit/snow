@@ -57,11 +57,11 @@ import snow.utils.AbstractClass;
     @:isVar public var volume   (get,set) : Float = 1.0;
         /** The pan of this sound. Pan only logically works on mono sounds, and is by default 2D sounds  */
     @:isVar public var pan      (get,set) : Float = 0.0;
-        /** If the sound is looping or not */
+        /** If the sound is looping or not. Use `loop()` to change this. */
     @:isVar public var looping  (get,set) : Bool = false;
-        /** The current playback time of this sound in `seconds` */
-    @:isVar public var time     (get,set) : Float = 0.0;
-        /** The duration of this sound, in `bytes` */
+        /** The current playback position of this sound in `seconds` */
+    @:isVar public var position  (get,set) : Float = 0.0;
+        /** The duration of this sound, in `seconds` */
     @:isVar public var duration (get,never) : Float = 0.0;
 
 
@@ -152,37 +152,7 @@ import snow.utils.AbstractClass;
 
     } //toggle
 
-    function add_onload( _onload:Sound->Void ) {
-
-            //too late, just call immediately
-        if(loaded) {
-            _onload(cast this);
-        } else {
-            onload_list.push(_onload);
-        }
-
-        return _onload;
-
-    } //set_onload
-
-    @:noCompletion public function do_onload() {
-
-        for(_f in onload_list) {
-            _f(cast this);
-        }
-
-        onload_list = null;
-        onload_list = [];
-
-    } //do_onload
-
-    @:noCompletion public function do_onend() {
-
-        for(_f in onend_list) {
-            _f(cast this);
-        }
-
-    } //onend_list
+//Getters/setters
 
     function get_info() : AudioInfo {
         return info;
@@ -208,9 +178,9 @@ import snow.utils.AbstractClass;
         return looping;
     } //get_looping
 
-    function get_time() : Float {
-        return time;
-    } //get_time
+    function get_position() : Float {
+        return position;
+    } //get_position
 
         //overridden in platform concrete
     function get_duration() : Float {
@@ -229,13 +199,45 @@ import snow.utils.AbstractClass;
         return volume = _volume;
     } //set_volume
 
-    function set_time( _time:Float ) : Float {
-        return time = _time;
-    } //set_time
+    function set_position( _position:Float ) : Float {
+        return position = _position;
+    } //set_position
 
     function set_looping( _looping:Bool ) : Bool {
         return looping = _looping;
     } //set_looping
 
+//Internal API
 
+    @:noCompletion public function do_onload() {
+
+        for(_f in onload_list) {
+            _f(cast this);
+        }
+
+        onload_list = null;
+        onload_list = [];
+
+    } //do_onload
+
+    @:noCompletion public function do_onend() {
+
+        for(_f in onend_list) {
+            _f(cast this);
+        }
+
+    } //onend_list
+
+    function add_onload( _onload:Sound->Void ) {
+
+            //too late, just call immediately
+        if(loaded) {
+            _onload(cast this);
+        } else {
+            onload_list.push(_onload);
+        }
+
+        return _onload;
+
+    } //add_onload
 } //Sound
