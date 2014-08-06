@@ -65,6 +65,11 @@
       <!-- are we using SDL bindings? -->
    <set name="SNOW_USE_SDL"     value="1"/>
 
+      <!-- are we using gtk3 or 2 for file dialogs, or none? -->
+   <!-- <set name="SNOW_USE_GTK2"    value="1"/> -->
+   <set name="SNOW_USE_GTK3"    value="1"/>
+   <!-- <set name="SNOW_NO_GTK"    value="1"/> -->
+
 <!-- Porting only -->
 
       <!-- Don't define this unless trying to test/implement the empty platform porting helpers -->
@@ -219,20 +224,29 @@
 
             <compilerflag value="-DSNOW_NO_GTK" if="SNOW_NO_GTK"/>
 
-               <!-- For the file dialoags. These are from `pkg-config --cflags gtk+-3.0` but
+               <!-- For the file dialogs. These are from `pkg-config --cflags gtk+-3.0` and `pkg-config --cflags gtk+-2.0` but
                   hxcpp doesn't support that, so they are manually inserted -->
 
-            <compilerflag value="-I/usr/include/gtk-3.0" unless="SNOW_NO_GTK"/>
-            <compilerflag value="-I/usr/include/pango-1.0" unless="SNOW_NO_GTK"/>
-            <compilerflag value="-I/usr/include/gio-unix-2.0/" unless="SNOW_NO_GTK"/>
+                  <!-- gtk 3 only -->
+            <compilerflag value="-I/usr/include/gtk-3.0" unless="SNOW_NO_GTK" if="SNOW_USE_GTK3"/>
+            <compilerflag value="-I/usr/lib/x86_64-linux-gnu/glib-2.0/include" unless="SNOW_NO_GTK" if="SNOW_USE_GTK3"/>
+               
+                  <!-- gtk 2 and 3 -->
+            <compilerflag value="-I/usr/include/libpng12" unless="SNOW_NO_GTK"/>
             <compilerflag value="-I/usr/include/atk-1.0" unless="SNOW_NO_GTK"/>
             <compilerflag value="-I/usr/include/cairo" unless="SNOW_NO_GTK"/>
             <compilerflag value="-I/usr/include/gdk-pixbuf-2.0" unless="SNOW_NO_GTK"/>
+            <compilerflag value="-I/usr/include/pango-1.0" unless="SNOW_NO_GTK"/>
+            <compilerflag value="-I/usr/include/gio-unix-2.0/" unless="SNOW_NO_GTK"/>
             <compilerflag value="-I/usr/include/freetype2" unless="SNOW_NO_GTK"/>
             <compilerflag value="-I/usr/include/glib-2.0" unless="SNOW_NO_GTK"/>
-            <compilerflag value="-I/usr/lib/x86_64-linux-gnu/glib-2.0/include" unless="SNOW_NO_GTK"/>
             <compilerflag value="-I/usr/include/pixman-1" unless="SNOW_NO_GTK"/>
-            <compilerflag value="-I/usr/include/libpng12" unless="SNOW_NO_GTK"/>
+
+               <!-- gtk 2 only -->
+            <compilerflag value="-I/usr/include/gtk-2.0" unless="SNOW_NO_GTK" if="SNOW_USE_GTK2"/> 
+            <compilerflag value="-I/usr/lib/x86_64-linux-gnu/gtk-2.0/include" unless="SNOW_NO_GTK" if="SNOW_USE_GTK2"/> 
+            <compilerflag value="-I/usr/lib/x86_64-linux-gnu/glib-2.0/include" unless="SNOW_NO_GTK" if="SNOW_USE_GTK2"/> 
+            <compilerflag value="-I/usr/include/harfbuzz" unless="SNOW_NO_GTK" if="SNOW_USE_GTK2"/>
 
          <file name="${SRC_DIR}/platform/linux/snow_linux.cpp"/>
          <file name="${SRC_DIR}/platform/linux/snow_linux_filewatch.cpp"/>
@@ -370,17 +384,26 @@
             <lib name="-lGL" />
 
                 <!-- These are from `pkg-config --libs gtk+-3.0` -->
-            <lib name="-lgtk-3"  unless="SNOW_NO_GTK"/>
-            <lib name="-lgdk-3" unless="SNOW_NO_GTK"/>
+            <lib name="-lgtk-3"  unless="SNOW_NO_GTK" if="SNOW_USE_GTK3"/>
+            <lib name="-lgdk-3" unless="SNOW_NO_GTK" if="SNOW_USE_GTK3"/>
+            <lib name="-lcairo-gobject" unless="SNOW_NO_GTK" if="SNOW_USE_GTK3"/>
+               
+               <!-- from both gtk3 and gtk2 -->
             <lib name="-latk-1.0" unless="SNOW_NO_GTK"/>
             <lib name="-lgio-2.0" unless="SNOW_NO_GTK"/>
             <lib name="-lpangocairo-1.0" unless="SNOW_NO_GTK"/>
             <lib name="-lgdk_pixbuf-2.0" unless="SNOW_NO_GTK"/>
-            <lib name="-lcairo-gobject" unless="SNOW_NO_GTK"/>
             <lib name="-lpango-1.0" unless="SNOW_NO_GTK"/>
             <lib name="-lcairo" unless="SNOW_NO_GTK"/>
             <lib name="-lgobject-2.0" unless="SNOW_NO_GTK"/>
             <lib name="-lglib-2.0"  unless="SNOW_NO_GTK"/>
+
+               <!-- These are from `pkg-config --libs gtk+-2.0` -->
+            <lib name="-lgtk-x11-2.0" unless="SNOW_NO_GTK" if="SNOW_USE_GTK2"/> 
+            <lib name="-lgdk-x11-2.0" unless="SNOW_NO_GTK" if="SNOW_USE_GTK2"/> 
+            <lib name="-lpangoft2-1.0" unless="SNOW_NO_GTK" if="SNOW_USE_GTK2"/> 
+            <lib name="-lfontconfig" unless="SNOW_NO_GTK" if="SNOW_USE_GTK2"/> 
+            <lib name="-lfreetype" unless="SNOW_NO_GTK" if="SNOW_USE_GTK2"/>
 
          </section> <!-- linux -->
 

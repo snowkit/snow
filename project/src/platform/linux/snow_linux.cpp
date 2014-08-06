@@ -15,10 +15,6 @@ namespace snow {
 
         void init_platform() {
 
-            #ifndef SNOW_NO_GTK
-                gtk_init(NULL, NULL);
-            #endif //SNOW_NO_GTK
-
         } //init_core_platform
 
         void shutdown_platform() {
