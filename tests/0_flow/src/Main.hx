@@ -204,11 +204,11 @@ class Main extends snow.AppFixedTimestep {
         // trace("key down : " + event);
 
             //console scan code should be universally next to 1
-        if(keycode == Key.KEY_e) {
+        if(keycode == Key.key_e) {
             app.audio.play('ogg');
         }
 
-        if(keycode == Key.KEY_l) {
+        if(keycode == Key.key_l) {
             loope = !loope;
             if(loope) {
                 app.audio.loop('ogg');
@@ -217,7 +217,7 @@ class Main extends snow.AppFixedTimestep {
             }
         }
 
-        if(keycode == Key.KEY_h) {
+        if(keycode == Key.key_h) {
             if(window2 != null && window2.handle != null) {
                 if(window2.closed) {
                     window2.show();
@@ -227,13 +227,13 @@ class Main extends snow.AppFixedTimestep {
             }
         }
 
-        if(keycode == Key.KEY_q) {
+        if(keycode == Key.key_q) {
             left = !left;
             sound2.pan = left ? -1 : 1;
             sound2.play();
         }
 
-        if(keycode == Key.KEY_w) {
+        if(keycode == Key.key_w) {
             app.audio.pitch('wav', 1.5);
             sound3.play();
 
@@ -250,24 +250,24 @@ class Main extends snow.AppFixedTimestep {
             });
         }
 
-        if(keycode == Key.KEY_p) {
+        if(keycode == Key.key_p) {
             sound5.volume = 0.3+(Math.random());
             sound5.toggle();
         }
 
-        if(keycode == Key.KEY_m) {
+        if(keycode == Key.key_m) {
             cursor = !cursor;
             app.windowing.enable_cursor( cursor );
             trace("cursor enabled : " + cursor );
         }
 
-        if(keycode == Key.KEY_v) {
+        if(keycode == Key.key_v) {
             vsync = !vsync;
             app.windowing.enable_vsync( vsync );
             trace("vsync enabled : " + vsync );
         }
 
-        if(keycode == Key.KEY_b) {
+        if(keycode == Key.key_b) {
             var w = app.windowing.create({
                 resizable : true, borderless:true,
                 width : 200, height:200,
@@ -276,16 +276,16 @@ class Main extends snow.AppFixedTimestep {
             });
         }
 
-        if(keycode == Key.KEY_r) {
+        if(keycode == Key.key_r) {
             sound5.time = 0;
             trace('music reset');
         }
 
-        if(keycode == Key.KEY_u) {
+        if(keycode == Key.key_u) {
             app.io.url_open("http://snowkit.org/");
         }
 
-        if(keycode == Key.KEY_o) {
+        if(keycode == Key.key_o) {
             #if desktop
                 app.io.platform.dialog_open('Select a thing', [{extension:'txt', desc:'text files'}, {extension:'cpp', desc:'cpp files'}]);
                 trace(app.io.platform.dialog_save('Save a thing', {extension:'flow'}));
@@ -293,13 +293,13 @@ class Main extends snow.AppFixedTimestep {
             #end
         }
 
-        if(keycode == Key.KEY_t) {
+        if(keycode == Key.key_t) {
             var t = (sound5.duration*0.75);
             sound5.time = t;
             trace('set to ${sound5.duration}*0.75 | music 75% ' + t);
         }
 
-        if(keycode == Key.BACKQUOTE) {
+        if(keycode == Key.backquote) {
             app.audio.pitch('wav', 0.5);
             sound3.play();
         }
@@ -311,20 +311,20 @@ class Main extends snow.AppFixedTimestep {
         // trace("onkeyup " + event);
 
             //alt enter to toggle fullscreen test
-        if( keycode == Key.RETURN && mod.alt ) {
+        if( keycode == Key.enter && mod.alt ) {
             app.window.fullscreen = !app.window.fullscreen;
         }
 
             //ctrl enter to toggle pointer lock test
-        if( keycode == Key.RETURN && mod.ctrl ) {
+        if( keycode == Key.enter && mod.ctrl ) {
             app.window.grab = !app.window.grab;
         }
 
-        if( keycode == Key.ESCAPE ) {
+        if( keycode == Key.escape ) {
             app.shutdown();
         }
 
-        if( keycode == Key.KEY_c ) {
+        if( keycode == Key.key_c ) {
             noclamp = !noclamp;
             trace("no clamp: " + noclamp);
         }
@@ -365,7 +365,7 @@ class Main extends snow.AppFixedTimestep {
 
         // trace('move $x / $y / $xrel / $yrel / $timestamp / $window_id');
 
-        if(app.input.keydown(Key.SPACE)) {
+        if(app.input.keydown(Key.space)) {
             positionY = y - (size/2);
             positionX = x - (size/2);
             phys_posx = positionX;
@@ -448,11 +448,11 @@ class Main extends snow.AppFixedTimestep {
 
         } //current_texture != null
 
-        if(app.input.keyreleased(Key.SPACE)) {
+        if(app.input.keyreleased(Key.space)) {
             trace('space released');
         }
 
-        if(app.input.keypressed(Key.SPACE)) {
+        if(app.input.keypressed(Key.space)) {
             trace('space pressed');
         }
 
