@@ -247,14 +247,14 @@ import snow.window.WindowSystem;
         var _pre_fs_width : Int = 0;
         var _pre_fs_height : Int = 0;
 
-        override public function fullscreen( _window:Window, fullscreen:Bool, windowed_fullscreen:Bool = true ) {
+        override public function fullscreen( _window:Window, fullscreen:Bool, fullscreen_desktop:Bool = true ) {
 
                 //as always browser support for newer features will be
                 //sporadic. Tested fullscreen against firefox/chrome/opera/safari latest
                 //all appear to work as expected, but have no cancel (user must press escape)
             if(fullscreen) {
 
-                if(!windowed_fullscreen) {
+                if(!fullscreen_desktop) {
 
                         //official api's first
                     if(_window.handle.requestFullscreen == null) {
@@ -286,7 +286,7 @@ import snow.window.WindowSystem;
 
             } else {
 
-                if(!windowed_fullscreen) {
+                if(!fullscreen_desktop) {
 
                     //:unsupported:
                     //currently no cancel full screen in fullscreen mode
