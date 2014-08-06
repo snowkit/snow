@@ -148,7 +148,7 @@ import snow.platform.native.audio.openal.OpenALHelper;
 
         var still_busy = true;
 
-        // trace(' ${time}/${duration} | ${position}/${length} | ${buffers_left} ');
+        // trace(' ${position}/${duration} | ${position_bytes}/${length} | ${buffers_left} ');
 
 
         var processed_buffers : Int = AL.getSourcei(source, AL.BUFFERS_PROCESSED );
@@ -167,7 +167,7 @@ import snow.platform.native.audio.openal.OpenALHelper;
 
             current_time += bytes_to_seconds( _buffer_size );
 
-            // trace('    > buffer was done / ${_buffer} / size / ${_buffer_size} / current_time / ${current_time} / time / ${time}');
+            // trace('    > buffer was done / ${_buffer} / size / ${_buffer_size} / current_time / ${current_time} / position / ${position}');
 
                 //repopulate this empty buffer,
                 //if it succeeds, then throw it back at the end of
@@ -177,7 +177,7 @@ import snow.platform.native.audio.openal.OpenALHelper;
             var skip_queue = (!looping && blob.complete);
 
                 //make sure the time resets correctly when looping
-            if(time >= duration && looping) {
+            if(position >= duration && looping) {
                 current_time = 0;
                 emit('end');
             }
@@ -305,7 +305,7 @@ import snow.platform.native.audio.openal.OpenALHelper;
         AL.sourceStop(source);
 
         flush_queue();
-        time = 0;
+        position = 0;
 
         trace('/ snow / audio / ${name} stopping stream / ${AL.getErrorMeaning(AL.getError())} ');
 
@@ -334,20 +334,20 @@ import snow.platform.native.audio.openal.OpenALHelper;
 
     var current_time : Float = 0;
 
-    override function get_position() : Int {
+    override function get_position_bytes() : Int {
 
-        return seconds_to_bytes(time);
+        return seconds_to_bytes(position);
 
-    } //get_position
+    } //get_position_bytes
 
-    override function get_time() : Float {
+    override function get_position() : Float {
 
-        // return bytes_to_seconds(position);
+        // return bytes_to_seconds(position_bytes);
         var _pos_sec : Float = AL.getSourcef(source, AL.SEC_OFFSET);
 
         return current_time + _pos_sec;
 
-    } //get_time
+    } //get_position
 
     override function set_pan( _pan:Float ) : Float {
 
@@ -373,13 +373,13 @@ import snow.platform.native.audio.openal.OpenALHelper;
 
     } //set_volume
 
-    override function set_position( _position:Int ) : Int {
+    override function set_position_bytes( _position_bytes:Int ) : Int {
 
-        time = bytes_to_seconds(_position);
+        position = bytes_to_seconds(_position_bytes);
 
-        return position = _position;
+        return position_bytes = _position_bytes;
 
-    } //set_position
+    } //set_position_bytes
 
     override function set_looping( _looping:Bool ) : Bool {
 
@@ -387,7 +387,7 @@ import snow.platform.native.audio.openal.OpenALHelper;
 
     } //set_looping
 
-    override function set_time( _time:Float ) : Float {
+    override function set_position( _position:Float ) : Float {
 
             //stop source so it lets go of buffers
         AL.sourceStop(source);
@@ -395,22 +395,22 @@ import snow.platform.native.audio.openal.OpenALHelper;
         flush_queue();
 
             //sanity checks
-        if(_time < 0) { _time = 0; }
-        if(_time > duration) { _time = duration; }
+        if(_position < 0) { _position = 0; }
+        if(_position > duration) { _position = duration; }
 
-        current_time = _time;
+        current_time = _position;
 
             //fill up the first buffers again, seeking there first
-        init_queue( seconds_to_bytes(_time) );
+        init_queue( seconds_to_bytes(_position) );
 
             //and, if it was playing, play it
         if(playing) {
             AL.sourcePlay(source);
         }
 
-        return time = _time;
+        return position = _position;
 
-    } //set_time
+    } //set_position
 
 
 } //SoundStream

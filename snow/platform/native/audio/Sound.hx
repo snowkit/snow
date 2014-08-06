@@ -8,10 +8,10 @@ import snow.types.Types;
 class Sound extends snow.audio.Sound.SoundBinding {
 
 
-        /** The length of this sound in `seconds` */
-    @:isVar public var length   (get,never) : Int = 0;
+        /** The length of this sound in `bytes` */
+    @:isVar public var length_bytes   (get,never) : Int = 0;
         /** The current playback position of this sound in `bytes` */
-    @:isVar public var position (get,set) : Int = 0;
+    @:isVar public var position_bytes (get,set) : Int = 0;
 
 
     /** A helper for converting bytes to seconds for this sound source, using the format settings specific to this sound */
@@ -34,20 +34,20 @@ class Sound extends snow.audio.Sound.SoundBinding {
 
     } //seconds_to_bytes
 
-    function get_position() : Int {
-        return position;
-    } //get_position
+    function get_position_bytes() : Int {
+        return position_bytes;
+    } //get_position_bytes
 
-    function set_position(_pos) : Int {
-        return position = _pos;
-    } //set_position
+    function set_position_bytes(_position_bytes) : Int {
+        return position_bytes = _position_bytes;
+    } //set_position_bytes
 
-    function get_length() : Int {
+    function get_length_bytes() : Int {
         return info.data.length_pcm;
-    } //get_length
+    } //get_length_bytes
 
     override function get_duration() : Float {
-        return bytes_to_seconds(length);
+        return bytes_to_seconds(length_bytes);
     } //get_duration
 
 } //Sound
