@@ -7,9 +7,15 @@ import snow.utils.Float32Array;
 import snow.audio.openal.AL;
 import snow.platform.native.audio.openal.OpenALHelper;
 
+import snow.Log.log;
+import snow.Log._debug;
+import snow.Log._verbose;
+import snow.Log._verboser;
 
 /** The openal specific implementation of SoundStream */
-@:noCompletion class SoundStream extends snow.platform.native.audio.SoundStream {
+@:noCompletion
+@:log_as('audio')
+class SoundStream extends snow.platform.native.audio.SoundStream {
 
 
         /** the sound buffer names */
@@ -42,7 +48,7 @@ import snow.platform.native.audio.openal.OpenALHelper;
             //now
         if(_info == null) {
 
-            trace("/ snow / not creating sound, info was null");
+            log("not creating sound, info was null");
 
             return info;
 
@@ -53,15 +59,15 @@ import snow.platform.native.audio.openal.OpenALHelper;
         loaded = true;
 
 
-            trace('/ snow / creating sound / ${name} / ${info.id} / ${info.format}');
+            _debug('creating sound / ${name} / ${info.id} / ${info.format}');
 
-            // trace('/ snow /\t > rate : ${info.data.rate}');
-            // trace('/ snow /\t > channels : ${info.data.channels}');
-            // trace('/ snow /\t > bitrate : ${info.data.bitrate}');
-            // trace('/ snow /\t > bits_per_sample : ${info.data.bits_per_sample}');
-            // trace('/ snow /\t > file length : ${info.data.length}');
-            // trace('/ snow /\t > byte length: ${info.data.length_pcm}');
-            // trace('/ snow /\t > duration : $duration');
+            _debug('\t > rate : ${info.data.rate}');
+            _debug('\t > channels : ${info.data.channels}');
+            _debug('\t > bitrate : ${info.data.bitrate}');
+            _debug('\t > bits_per_sample : ${info.data.bits_per_sample}');
+            _debug('\t > file length : ${info.data.length}');
+            _debug('\t > byte length: ${info.data.length_pcm}');
+            _debug('\t > duration : $duration');
 
             //generate a source
         source = AL.genSource();
@@ -69,15 +75,15 @@ import snow.platform.native.audio.openal.OpenALHelper;
             //default source properties
         OpenALHelper.default_source_setup( source );
 
-            trace('/ snow / audio / ${name} generating source for sound / ${AL.getErrorMeaning(AL.getError())} ');
+            _debug('${name} generating source for sound / ${AL.getErrorMeaning(AL.getError())} ');
 
             //four streaming buffers to cycle.
         buffers = AL.genBuffers(buffer_count);
 
-            trace('/ snow / audio / ${name} generating ${buffer_count} buffers for sound / ${AL.getErrorMeaning(AL.getError())} ');
+            _debug('${name} generating ${buffer_count} buffers for sound / ${AL.getErrorMeaning(AL.getError())} ');
 
         for(b in buffers) {
-            trace('/ snow /    > buffer id ${b}');
+            _debug('/ snow /    > buffer id ${b}');
         }
 
         format = OpenALHelper.determine_format( info );
@@ -85,7 +91,7 @@ import snow.platform.native.audio.openal.OpenALHelper;
             //fill the first set of buffers up
         init_queue();
 
-        trace('/ snow / audio / ${name} buffered data / ${AL.getErrorMeaning(AL.getError())} ');
+        _debug('${name} buffered data / ${AL.getErrorMeaning(AL.getError())} ');
 
             //handle onload handlers
         emit('load');
@@ -135,7 +141,7 @@ import snow.platform.native.audio.openal.OpenALHelper;
 
         var queued = AL.getSourcei(source, AL.BUFFERS_QUEUED);
 
-        // trace('/ snow / audio / ${name} flushing queued buffers ' + queued);
+        _debug('${name} flushing queued buffers ' + queued);
 
         for(i in 0 ... queued) {
             AL.sourceUnqueueBuffer( source );
@@ -148,8 +154,7 @@ import snow.platform.native.audio.openal.OpenALHelper;
 
         var still_busy = true;
 
-        // trace(' ${position}/${duration} | ${position_bytes}/${length} | ${buffers_left} ');
-
+        _verboser(' ${position}/${duration} | ${position_bytes}/${length_bytes} | ${buffers_left} ');
 
         var processed_buffers : Int = AL.getSourcei(source, AL.BUFFERS_PROCESSED );
 
@@ -167,7 +172,7 @@ import snow.platform.native.audio.openal.OpenALHelper;
 
             current_time += bytes_to_seconds( _buffer_size );
 
-            // trace('    > buffer was done / ${_buffer} / size / ${_buffer_size} / current_time / ${current_time} / position / ${position}');
+            _verbose('    > buffer was done / ${_buffer} / size / ${_buffer_size} / current_time / ${current_time} / position / ${position}');
 
                 //repopulate this empty buffer,
                 //if it succeeds, then throw it back at the end of
@@ -190,7 +195,7 @@ import snow.platform.native.audio.openal.OpenALHelper;
 
                 } else {
                     buffers_left--;
-                    // trace('another buffer down ${buffers_left}');
+                    _verbose('another buffer down ${buffers_left}');
                     if(buffers_left < 0) {
                         still_busy = false;
                     } else {
@@ -202,7 +207,7 @@ import snow.platform.native.audio.openal.OpenALHelper;
 
             if(!skip_queue && blob.bytes.length != 0) {
                 AL.sourceQueueBuffer(source, _buffer);
-                // trace("requeue buffer ");
+                _verbose("requeue buffer ");
             }
 
             processed_buffers--;
@@ -211,7 +216,7 @@ import snow.platform.native.audio.openal.OpenALHelper;
 
         var _al_play_state = AL.getSourcei(source, AL.SOURCE_STATE);
         if(_al_play_state != AL.PLAYING) {
-            trace('/ snow / ${name} update stream not needed, sound is not playing');
+            _debug('${name} update stream not needed, sound is not playing');
             still_busy = false;
         }
 
@@ -226,7 +231,7 @@ import snow.platform.native.audio.openal.OpenALHelper;
         }
 
         if(!update_stream()) {
-            trace('/ snow / audio / ${name} streaming sound complete');
+            _debug('${name} streaming sound complete');
             emit('end');
             stop();
         }
@@ -266,7 +271,7 @@ import snow.platform.native.audio.openal.OpenALHelper;
 
         AL.sourcePlay(source);
 
-        trace('/ snow / audio / ${name} playing sound / ${AL.getErrorMeaning(AL.getError())} ');
+        _debug('${name} playing sound / ${AL.getErrorMeaning(AL.getError())} ');
 
     } //play
 
@@ -281,7 +286,7 @@ import snow.platform.native.audio.openal.OpenALHelper;
 
         AL.sourcePlay(source);
 
-        trace('/ snow / audio / ${name} looping sound / ${AL.getErrorMeaning(AL.getError())} ');
+        _debug('${name} looping sound / ${AL.getErrorMeaning(AL.getError())} ');
 
     } //loop
 
@@ -292,7 +297,7 @@ import snow.platform.native.audio.openal.OpenALHelper;
 
         AL.sourcePause(source);
 
-        trace('/ snow / audio / ${name} pausing sound / ${AL.getErrorMeaning(AL.getError())} ');
+        _debug('${name} pausing sound / ${AL.getErrorMeaning(AL.getError())} ');
 
         flush_queue();
 
@@ -307,7 +312,7 @@ import snow.platform.native.audio.openal.OpenALHelper;
         flush_queue();
         position = 0;
 
-        trace('/ snow / audio / ${name} stopping stream / ${AL.getErrorMeaning(AL.getError())} ');
+        _debug('${name} stopping stream / ${AL.getErrorMeaning(AL.getError())} ');
 
     } //stop
 
@@ -318,11 +323,11 @@ import snow.platform.native.audio.openal.OpenALHelper;
 
         AL.deleteSource(source);
 
-        trace('/ snow / audio / ${name} destroying stream source / ${AL.getErrorMeaning(AL.getError())} ');
+        _debug('${name} destroying stream source / ${AL.getErrorMeaning(AL.getError())} ');
 
         AL.deleteBuffers(buffers);
 
-        trace('/ snow / audio / ${name} destroying stream buffers / ${AL.getErrorMeaning(AL.getError())} ');
+        _debug('${name} destroying stream buffers / ${AL.getErrorMeaning(AL.getError())} ');
 
         manager.kill(this);
 

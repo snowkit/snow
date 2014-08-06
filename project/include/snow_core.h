@@ -20,7 +20,8 @@ namespace snow {
 
 //snow systems
 
-    void log(const char *fmt, ...);
+    extern int log_level;
+    void log(int _level, const char *fmt, ...);
 
 //snow core systems
 
@@ -101,7 +102,7 @@ namespace snow {
 
                 //if no success, quit now
             if(res != 0) {
-                snow::log("/ snow / unrecoverable error. exit!");
+                snow::log(1, "/ snow / unrecoverable error. exit!");
                 exit(1);
             }
 
@@ -173,10 +174,10 @@ namespace snow {
 
             } else {
 
-                snow::log("/ snow / no main loop requested");
+                snow::log(2, "/ snow / no main loop requested");
 
                 #ifndef IPHONE
-                    snow::log("/ snow / shutting down ");
+                    snow::log(2, "/ snow / shutting down ");
                     snow::core::shutdown();
                 #endif //IPHONE
 

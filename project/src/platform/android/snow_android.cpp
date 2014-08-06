@@ -46,7 +46,7 @@ namespace snow {
 
         void init_platform() {
 
-            snow::log("/ snow / android core platform init");
+            snow::log(1, "/ snow / android core platform init");
 
             JNIEnv *env = GetEnv();
             env->GetJavaVM( &java_vm );

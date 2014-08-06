@@ -102,7 +102,7 @@ namespace snow {
         snow::io::iosrc* file = snow::io::iosrc_fromfile(inFilename, "wb");
 
         if(!file) {
-            snow::log("/ snow / ByteArray::ToFile cannot open file for writing %s\n", inFilename );
+            snow::log(1, "/ snow / ByteArray::ToFile cannot open file for writing %s\n", inFilename );
                 //0 means nothing was written
             return 0;
         }
@@ -120,7 +120,7 @@ namespace snow {
         snow::io::iosrc* file = snow::io::iosrc_fromfile(inFilename, "rb");
 
         if(!file) {
-            snow::log("/ snow / ByteArray::FromFile cannot open file for reading %s\n", inFilename );
+            snow::log(1, "/ snow / ByteArray::FromFile cannot open file for reading %s\n", inFilename );
             return ByteArray();
         }
 

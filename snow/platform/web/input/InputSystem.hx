@@ -5,6 +5,11 @@ import snow.input.InputSystem;
 import snow.types.Types;
 import snow.window.Window;
 
+import snow.Log.log;
+import snow.Log._debug;
+import snow.Log._verbose;
+import snow.Log._verboser;
+
 
 #if snow_web
 
@@ -22,7 +27,9 @@ typedef WebGamepad = {
 }
 
 
-@:noCompletion class InputSystem extends InputSystemBinding {
+@:noCompletion
+@:log_as('input')
+class InputSystem extends InputSystemBinding {
 
     var active_gamepads : Map<Int, WebGamepad>;
     var gamepads_supported : Bool = false;
@@ -403,7 +410,7 @@ typedef WebGamepad = {
     function fail_gamepads() {
 
         gamepads_supported = false;
-        trace("/ snow / Gamepads are not supported in this browser :(");
+        log("Gamepads are not supported in this browser :(");
 
     } //fail_gamepads
 
@@ -441,7 +448,7 @@ typedef WebGamepad = {
 
     function convert_scancode(_keycode:Int) : Int {
 
-        var scan:Int = Scan.UNKNOWN;
+        var scan:Int = Scan.unknown;
         if (_keycode >= 1024) {
             scan = _keycode - 1024;
         } else {

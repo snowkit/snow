@@ -5,6 +5,11 @@ import snow.types.Types;
 
 import snow.utils.AbstractClass;
 
+import snow.Log.log;
+import snow.Log._debug;
+import snow.Log._verbose;
+import snow.Log._verboser;
+
 #if snow_web
 
     #if snow_audio_howlerjs
@@ -72,7 +77,7 @@ import snow.utils.AbstractClass;
             case 'load':
                 do_onload();
             default:
-                trace('/ snow / sound has no event {$_event}');
+                log('no event {$_event}');
         } //_event
     } //emit
 
@@ -83,7 +88,7 @@ import snow.utils.AbstractClass;
             case 'load':
                 add_onload(_handler);
             default:
-                trace('/ snow / sound has no event {$_event}');
+                log('no event {$_event}');
         } //_event
     } //emit
 
@@ -94,7 +99,7 @@ import snow.utils.AbstractClass;
             case 'load':
                 onload_list.remove(_handler);
             default:
-                trace('/ snow / sound has no event {$_event}');
+                log('no event {$_event}');
         } //_event
     } //off
 

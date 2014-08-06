@@ -5,6 +5,11 @@ import snow.window.Windowing;
 
 import snow.render.opengl.GL;
 
+import snow.Log.log;
+import snow.Log._debug;
+import snow.Log._verbose;
+import snow.Log._verboser;
+
     //A window has it's own event loop
     //and allows opening and closing windows
 class Window {
@@ -77,7 +82,7 @@ class Window {
         handle = _handle;
 
         if(handle == null) {
-            trace("/ snow / failed to create window");
+            log("failed to create window");
             return;
         }
 
@@ -103,14 +108,14 @@ class Window {
             event : {}
         });
 
-        trace("/ snow / created window with id: " + id);
-        trace('/ snow / updating real window config for $id is ' + _config);
+        _debug("created window with id: " + id);
+        _debug('updating real window config for $id is ' + _config);
 
     } //on_window_created
 
     @:noCompletion public function on_event( _event:WindowEvent ) {
 
-        // trace("/ snow / window event " + id + " / " + _event.type + " / " + _event.event );
+        _verbose("window event " + id + " / " + _event.type + " / " + _event.event );
 
         switch(_event.type) {
 

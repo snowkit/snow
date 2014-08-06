@@ -37,7 +37,7 @@ namespace snow {
 
                 if(!ogg_source->file_source) {
 
-                    snow::log("/ snow / cannot open ogg file from %s", _id);
+                    snow::log(1, "/ snow / cannot open ogg file from %s", _id);
                     delete ogg_source;
                     ogg_source = NULL;
 
@@ -61,7 +61,7 @@ namespace snow {
                     ogg_source = NULL;
 
                     std::string s = ogg_error_string(result);
-                    snow::log("/ snow / %s result:%d   code:%s \n", "ogg file failed to open!?", result, s.c_str());
+                    snow::log(1, "/ snow / %s result:%d   code:%s \n", "ogg file failed to open!?", result, s.c_str());
 
                     return false;
 
@@ -77,20 +77,21 @@ namespace snow {
 
                 seek_bytes_ogg(ogg_source, 0);
 
-                    // snow::log("version         %d \n",     ogg_source->info->version);
-                    // snow::log("channels        %d \n",     ogg_source->info->channels);
-                    // snow::log("rate (hz)       %lu \n",    ogg_source->info->rate);
-                    // snow::log("bitrate         %lu \n",    ogg_source->info->bitrate_nominal);
-                    // snow::log("bitrate upper   %lu \n",    ogg_source->info->bitrate_upper);
-                    // snow::log("bitrate lower   %lu \n",    ogg_source->info->bitrate_lower);
-                    // snow::log("bitrate window  %lu \n",    ogg_source->info->bitrate_window);
-                    // snow::log("vendor          %s \n",     ogg_source->comments->vendor);
-                    // snow::log("length          %lld \n",   (long long)ogg_source->length);
-                    // snow::log("uncompressed    %lld \n",   (long long)total_length);
+                    snow::log(3, "/ snow /       version         %d \n",     ogg_source->info->version);
+                    snow::log(3, "/ snow /       channels        %d \n",     ogg_source->info->channels);
+                    snow::log(3, "/ snow /       rate (hz)       %lu \n",    ogg_source->info->rate);
+                    snow::log(3, "/ snow /       bitrate         %lu \n",    ogg_source->info->bitrate_nominal);
+                    snow::log(3, "/ snow /       bitrate upper   %lu \n",    ogg_source->info->bitrate_upper);
+                    snow::log(3, "/ snow /       bitrate lower   %lu \n",    ogg_source->info->bitrate_lower);
+                    snow::log(3, "/ snow /       bitrate window  %lu \n",    ogg_source->info->bitrate_window);
+                    snow::log(3, "/ snow /       vendor          %s \n",     ogg_source->comments->vendor);
+                    snow::log(3, "/ snow /       length          %lld \n",   (long long)ogg_source->length);
+                    snow::log(3, "/ snow /       uncompressed    %lld \n",   (long long)total_length);
+                    snow::log(3, "/ snow /       comments:\n");
 
-                // for(int i = 0; i < ogg_source->comments->comments; i++) {
-                //     snow::log("\t%s\n",  ogg_source->comments->user_comments[i]);
-                // }
+                for(int i = 0; i < ogg_source->comments->comments; i++) {
+                    snow::log(3, "/ snow /           %s\n",  ogg_source->comments->user_comments[i]);
+                }
 
                     //use the reader to read it, if requested
                 if(read) {
@@ -107,7 +108,7 @@ namespace snow {
 
                 if(ogg_source) {
 
-                    // snow::log("seeking in %s ogg source to %d/%d (%f)", ogg_source->source_name.c_str(), to, ogg_source->length_pcm, (float)to / (float)ogg_source->length_pcm);
+                    snow::log(3, "/ snow / seeking in %s ogg source to %d/%d (%f)", ogg_source->source_name.c_str(), to, ogg_source->length_pcm, (float)to / (float)ogg_source->length_pcm);
 
                         //:todo: ogg is always 16?
                     long to_samples = to/16;
@@ -118,19 +119,19 @@ namespace snow {
                     if(res != 0) {
 
                         if(res == OV_ENOSEEK) {
-                            snow::log("/ snow / audio / ogg seek error %s", "OV_ENOSEEK");
+                            snow::log(1, "/ snow / audio / ogg seek error %s", "OV_ENOSEEK");
                         }
                         if(res == OV_EINVAL) {
-                            snow::log("/ snow / audio / ogg seek error %s", "OV_EINVAL");
+                            snow::log(1, "/ snow / audio / ogg seek error %s", "OV_EINVAL");
                         }
                         if(res == OV_EREAD) {
-                            snow::log("/ snow / audio / ogg seek error %s", "OV_EREAD");
+                            snow::log(1, "/ snow / audio / ogg seek error %s", "OV_EREAD");
                         }
                         if(res == OV_EFAULT) {
-                            snow::log("/ snow / audio / ogg seek error %s", "OV_EFAULT");
+                            snow::log(1, "/ snow / audio / ogg seek error %s", "OV_EFAULT");
                         }
                         if(res == OV_EBADLINK) {
-                            snow::log("/ snow / audio / ogg seek error %s", "OV_EBADLINK");
+                            snow::log(1, "/ snow / audio / ogg seek error %s", "OV_EBADLINK");
                         }
 
                         return false;
@@ -253,7 +254,7 @@ namespace snow {
 
                 OGG_file_source *source = (OGG_file_source*)datasource;
 
-                // snow::log("ogg closing the file source for %s", source->source_name.c_str());
+                snow::log(2, "/ snow / ogg closing the file source for %s", source->source_name.c_str());
 
                 return snow::io::close(source->file_source);
 
@@ -343,7 +344,7 @@ namespace snow {
                 wav_source->file_source = snow::io::iosrc_fromfile(_id, "rb");
 
                 if (!wav_source->file_source) {
-                    snow::log("/ snow / cannot open wav file from %s", _id);
+                    snow::log(1, "/ snow / cannot open wav file from %s", _id);
                     return false;
                 }
 
@@ -355,7 +356,7 @@ namespace snow {
 
                     //check for RIFF and WAVE tag in memory
                 if( !wav_confirm_header(riff_header) ) {
-                    snow::log("%s : %s\n", _id, "RIFF or WAVE header not found, is this a WAV file?");
+                    snow::log(1, "/ snow / %s : %s\n", _id, "RIFF or WAVE header not found, is this a WAV file?");
                     return false;
                 } //!wav header
 
@@ -373,7 +374,7 @@ namespace snow {
                     result = snow::io::read(wav_source->file_source, &wave_format, sizeof(WAVE_Format), 1);
 
                     if (result != 1) {
-                        snow::log("%s : %s\n", _id, "Invalid WAV format!");
+                        snow::log(1, "/ snow / %s : %s\n", _id, "Invalid WAV format!");
                         return false;
                     }
 
@@ -404,7 +405,7 @@ namespace snow {
                     result = snow::io::read(wav_source->file_source, &wave_data, sizeof(WAVE_Data), 1);
 
                     if (result != 1) {
-                        snow::log("%s : %s\n", _id, "Invalid WAV data header");
+                        snow::log(1, "/ snow / %s : %s\n", _id, "Invalid WAV data header");
                         return false;
                     }
 
@@ -449,7 +450,7 @@ namespace snow {
                 if(wav_source) {
 
                         //start at the wav data for seeking, ignoring the header stuff now
-                    snow::log("jumping to %d+%d/%d", wav_source->data_start, to, wav_source->length_pcm);
+                    snow::log(3, "/ snow / wav jumping to %d+%d/%d", wav_source->data_start, to, wav_source->length_pcm);
                     snow::io::seek(wav_source->file_source, wav_source->data_start + to, snow_seek_set);
 
                     return true;
@@ -467,7 +468,7 @@ namespace snow {
                 bool complete = false;
 
                 if(start != -1) {
-                    snow::log("/ snow / wav / start was %d, skipping there first", start);
+                    snow::log(3, "/ snow / wav / start was %d, skipping there first", start);
                     seek_bytes_wav( wav_source, start );
                 }
 
@@ -486,7 +487,7 @@ namespace snow {
 
                 if(_read_len > 0) {
 
-                    snow::log("/ snow / wav / reading %d bytes from %d", _read_len, start);
+                    snow::log(2, "/ snow / wav / reading %d bytes from %d", _read_len, start);
 
                         //resize to fit the requested/remaining length
                     long byte_gap = (_read_len & 0x03);
@@ -501,7 +502,7 @@ namespace snow {
                         complete = true;
                     } //elements_read == 0
 
-                    snow::log("/ snow / wav / total read %d bytes, complete? %d", _read_len, complete);
+                    snow::log(2, "/ snow / wav / total read %d bytes, complete? %d", _read_len, complete);
 
                 } //_read_len > 0
 
@@ -524,7 +525,7 @@ namespace snow {
                 pcm_source->file_source = snow::io::iosrc_fromfile(_id, "rb");
 
                 if (!pcm_source->file_source) {
-                    snow::log("/ snow / cannot open pcm file from %s", _id);
+                    snow::log(1, "/ snow / cannot open pcm file from %s", _id);
                     return false;
                 }
 
@@ -574,7 +575,7 @@ namespace snow {
                 bool complete = false;
 
                 if(start != -1) {
-                    snow::log("/ snow / pcm / start was %d, skipping there first", start);
+                    snow::log(3, "/ snow / pcm / start was %d, skipping there first", start);
                     seek_bytes_pcm( pcm_source, start );
                 }
 
@@ -592,7 +593,7 @@ namespace snow {
 
                 if(_read_len > 0) {
 
-                    snow::log("/ snow / pcm / reading %d bytes from %d", _read_len, start);
+                    snow::log(2, "/ snow / pcm / reading %d bytes from %d", _read_len, start);
 
                         //resize to fit the requested/remaining length
                     long byte_gap = (_read_len & 0x03);
@@ -607,7 +608,7 @@ namespace snow {
                         complete = true;
                     } //elements_read == 0
 
-                    snow::log("/ snow / pcm / total read %d bytes, complete? %d", _read_len, complete);
+                    snow::log(2, "/ snow / pcm / total read %d bytes, complete? %d", _read_len, complete);
 
                 } //_read_len > 0
 

@@ -28,6 +28,8 @@ namespace snow {
     extern int id_bytes;
     extern int id_handle;
     extern int id_complete;
+    extern int id_has_loop;
+    extern int id_log_level;
 
         //window related
 
@@ -125,6 +127,8 @@ namespace snow {
         id_bytes                = val_id("bytes");
         id_handle               = val_id("handle");
         id_complete             = val_id("complete");
+        id_has_loop             = val_id("has_loop");
+        id_log_level            = val_id("log_level");
 
             //window related flags
 

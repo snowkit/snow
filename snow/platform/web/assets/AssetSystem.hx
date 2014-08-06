@@ -5,6 +5,11 @@ import snow.assets.AssetSystem;
 import snow.types.Types;
 import snow.utils.ByteArray;
 
+import snow.Log.log;
+import snow.Log._debug;
+import snow.Log._verbose;
+import snow.Log._verboser;
+
 #if snow_web
 
 
@@ -12,7 +17,9 @@ import snow.utils.ByteArray;
         import snow.platform.web.audio.howlerjs.Howl;
     #end //snow_audio_howlerjs
 
-    @:noCompletion class AssetSystem extends AssetSystemBinding {
+    @:noCompletion
+    @:log_as('assets')
+    class AssetSystem extends AssetSystemBinding {
 
         public function new( _manager:Assets ) {
             manager = _manager;
@@ -76,7 +83,7 @@ import snow.utils.ByteArray;
                         var tips = '- textures served from file:/// throw security errors\n';
                             tips += '- textures served over http:// work for cross origin byte requests';
 
-                        trace(tips);
+                        log(tips);
                         throw e;
 
                     } //catch
@@ -112,7 +119,7 @@ import snow.utils.ByteArray;
         override public function image_info_from_bytes( _path:String, _bytes:ByteArray, ?_components:Int = 4 ) : ImageInfo {
 
             if(_bytes == null) {
-                trace("/ snow / invalid bytes passed to image_info_from_bytes " + _path);
+                log("invalid bytes passed to image_info_from_bytes " + _path);
                 return null;
             }
 

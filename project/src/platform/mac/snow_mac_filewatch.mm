@@ -30,7 +30,7 @@ namespace snow {
 
         bool init_filewatch() {
 
-            snow::log("/ snow / initialized file watch ok");
+            snow::log(2, "/ snow / initialized file watch ok");
             return true;
 
         } //init_filewatch
@@ -53,12 +53,12 @@ namespace snow {
 
                 //don't attempt to start twice
             if(watcher) {
-                snow::log("/ snow / cannot start filewatch twice, this is less than ideal");
+                snow::log(1, "/ snow / cannot start filewatch twice, this is less than ideal");
                 return;
             }
 
             if(watched_paths.size() == 0) {
-                snow::log("/ snow / not starting filewatch, no paths in list");
+                snow::log(2, "/ snow / not starting filewatch, no paths in list");
                 return;
             }
 
@@ -80,14 +80,14 @@ namespace snow {
             );
 
             if(!watcher) {
-                snow::log("/ snow / filewatch failed to start");
+                snow::log(1, "/ snow / filewatch failed to start");
                 return;
             }
 
             FSEventStreamScheduleWithRunLoop( watcher, CFRunLoopGetCurrent(), kCFRunLoopDefaultMode );
             FSEventStreamStart( watcher );
 
-            snow::log("/ snow / filewatch started");
+            snow::log(2, "/ snow / filewatch started");
 
         } //start_filewatch
 
@@ -143,7 +143,7 @@ namespace snow {
 
                     FileWatchEventType _event_type = fe_unknown;
 
-                    snow::log("/ snow / filewatch event on path %s id %#010x", path.c_str(), eventFlags[i]);
+                    snow::log(3, "/ snow / filewatch event on path %s id %#010x", path.c_str(), eventFlags[i]);
 
                         //if it was modified but not renamed, we can fire a modify ok
                     if(  (flag & kFSEventStreamEventFlagItemModified) &&
@@ -151,18 +151,18 @@ namespace snow {
                         !(flag & kFSEventStreamEventFlagItemCreated)
                       ) {
 
-                        // snow::log("/ snow /     filewatch modify on path %s", path.c_str());
+                        snow::log(2, "/ snow /     filewatch modify on path %s", path.c_str());
                         _event_type = fe_modify;
 
                         //if it was removed entirely (using rm or similar, it seems) this is ok, flag it
                     } else if( flag & kFSEventStreamEventFlagItemRemoved ) {
 
-                        // snow::log("/ snow /     filewatch remove on path %s", path.c_str());
+                        snow::log(2, "/ snow /     filewatch remove on path %s", path.c_str());
                         _event_type = fe_remove;
 
                     } else if( flag & kFSEventStreamEventFlagItemCreated ) {
 
-                        // snow::log("/ snow /     filewatch create on path %s", path.c_str());
+                        snow::log(2, "/ snow /     filewatch create on path %s", path.c_str());
                         _event_type = fe_create;
 
                     } else {
@@ -182,7 +182,7 @@ namespace snow {
                             }
 
                         } else { //renamed
-                            // snow::log("/ snow / filewatch not watching event on path %s id %#010x", path.c_str(), eventFlags[i]);
+                            snow::log(3, "/ snow / filewatch not watching event on path %s id %#010x", path.c_str(), eventFlags[i]);
                         }
 
                     } //else
@@ -195,7 +195,7 @@ namespace snow {
                 } else {
 
                         //verbose
-                    // snow::log("/ snow / filewatch not watching event on path %s id %#010x", path, eventFlags[i]);
+                    snow::log(3, "/ snow / filewatch not watching event on path %s id %#010x", path.c_str(), eventFlags[i]);
 
                 }
 

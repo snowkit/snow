@@ -8,28 +8,34 @@ import snow.audio.openal.AL;
 import snow.audio.openal.AL.Context;
 import snow.audio.openal.AL.Device;
 
+import snow.Log.log;
+import snow.Log._debug;
+import snow.Log._verbose;
+import snow.Log._verboser;
 
     /** Internal audio system implementation for OpenAL, interact with this system through `snow.Audio`, not directly */
-@:noCompletion class AudioSystem extends snow.platform.native.audio.AudioSystem {
+@:noCompletion
+@:log_as('audio')
+class AudioSystem extends snow.platform.native.audio.AudioSystem {
 
     var device : Device;
     var context : Context;
 
     override public function init() {
 
-            trace('/ snow / audio / init ');
+            _debug('init');
 
         device = ALC.openDevice();
 
-            trace('/ snow / audio / created device / ${device} / ${ AL.getErrorMeaning(AL.getError()) }');
+            _debug('created device / ${device} / ${ AL.getErrorMeaning(AL.getError()) }');
 
         context = ALC.createContext(device, null);
 
-            trace('/ snow / audio / created context / ${context} / ${ AL.getErrorMeaning(AL.getError()) }');
+            _debug('created context / ${context} / ${ AL.getErrorMeaning(AL.getError()) }');
 
         ALC.makeContextCurrent( context );
 
-            trace('/ snow / audio / set current / ${ AL.getErrorMeaning(AL.getError()) }');
+            _debug('set current / ${ AL.getErrorMeaning(AL.getError()) }');
 
     } //init
 
@@ -39,13 +45,13 @@ import snow.audio.openal.AL.Device;
         ALC.destroyContext( context );
         ALC.closeDevice( device );
 
-            trace('/ snow / audio / destroying device / ${ AL.getErrorMeaning(AL.getError()) }');
+            _debug('destroying device / ${ AL.getErrorMeaning(AL.getError()) }');
 
     } //destroy
 
     override public function suspend() {
 
-            trace('/ snow / audio / suspending context ');
+            _debug('suspending context ');
 
         ALC.suspendContext( context );
         ALC.makeContextCurrent( null );
@@ -54,7 +60,7 @@ import snow.audio.openal.AL.Device;
 
     override public function resume() {
 
-            trace('/ snow / audio / resuming context ');
+            _debug('resuming context ');
 
         ALC.processContext( context );
         ALC.makeContextCurrent( context );
