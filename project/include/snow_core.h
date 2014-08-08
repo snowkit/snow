@@ -72,7 +72,7 @@ namespace snow {
             se_app_willenterforeground      = 12,
             se_app_didenterforeground       = 13,
 
-            se_filewatch                    = 14
+            se_file                         = 14
 
         }; //SystemEventType
 

@@ -1108,7 +1108,7 @@ extern double timestamp();
     int id_data2;
 
     int id_path;
-    int id_filewatch;
+    int id_file;
     int id_extension;
     int id_desc;
 

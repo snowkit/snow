@@ -161,7 +161,7 @@ namespace snow {
                         //only handle files from here
                         if( !(event->mask & IN_ISDIR) ) {
 
-                            FileWatchEventType _event_type = fe_unknown;
+                            FileEventType _event_type = fe_unknown;
 
                             if(event->len) {
 
@@ -181,7 +181,7 @@ namespace snow {
                                 }
 
                                 if(_event_type != fe_unknown) {
-                                    FileWatchEvent event( _event_type, snow::timestamp(), (root + "/" + path) );
+                                    FileEvent event( _event_type, snow::timestamp(), (root + "/" + path) );
                                     snow::io::dispatch_event( event );
                                 }
 
