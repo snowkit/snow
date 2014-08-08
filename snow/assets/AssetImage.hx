@@ -43,9 +43,9 @@ class AssetImage extends Asset {
             }
 
             if(onload != null) {
-                Snow.next(function(){
+                // Snow.next(function(){
                     onload( this );
-                });
+                // });
             }
 
         });
@@ -65,9 +65,9 @@ class AssetImage extends Asset {
         loaded = true;
 
         if(onload != null) {
-            Snow.next(function(){
+            // Snow.next(function(){
                 onload( this );
-            });
+            // });
         }
 
     } //load
