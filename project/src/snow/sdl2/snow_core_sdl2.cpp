@@ -43,6 +43,10 @@ namespace snow {
         extern void handle_event( SDL_Event &event );
     }
 
+    namespace io {
+        extern void handle_event( SDL_Event &event );
+    }
+
     namespace core {
 
             //forward
@@ -119,10 +123,12 @@ namespace snow {
 
             while( SDL_PollEvent( &sdl_event ) ) {
 
-                    //check if this is a window event and dispatch it
-                snow::window::handle_event( sdl_event );
                     //check if this is an input event and dispatch it
                 snow::input::handle_event( sdl_event );
+                    //check if this is a window event and dispatch it
+                snow::window::handle_event( sdl_event );
+                    //check if this is an io event and dispatch it
+                snow::io::handle_event( sdl_event );
                     //check if this is a system level event
                 snow::core::handle_event( sdl_event );
 
@@ -152,6 +158,14 @@ namespace snow {
                 //add a listener for the core events that the system (iOS/Android for example)
                 //might want handled immediately, the NULL is no user data passed in (not needed)
             SDL_AddEventWatch(system_event_watch, NULL);
+
+                    //if on a desktop platform, enable drop file notifications
+                #if defined(HX_WINDOWS) || defined(HX_LINUX) || defined(HX_MACOS)
+
+                    snow::log(3, "/ snow / enabled file drop events");
+                    SDL_EventState(SDL_DROPFILE, SDL_ENABLE);
+
+                #endif //mac/windows/linux
 
             return res;
 

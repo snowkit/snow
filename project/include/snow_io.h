@@ -31,19 +31,20 @@ namespace snow {
 
 //file watching
 
-        struct FileWatchEvent;
-        void dispatch_event( const FileWatchEvent &event );
+        struct FileEvent;
+        void dispatch_event( const FileEvent &event );
 
             //plausible file watch events
-        enum FileWatchEventType {
+        enum FileEventType {
 
             fe_unknown                      = 0,
 
             fe_modify                       = 1,
             fe_remove                       = 2,
-            fe_create                       = 3
+            fe_create                       = 3,
+            fe_drop                         = 4
 
-        }; //FileWatchEventType
+        }; //FileEventType
 
 
             //a description of a filter for file dialogs, or other use
@@ -54,18 +55,18 @@ namespace snow {
 
         }; //file_filter
 
-        struct FileWatchEvent {
+        struct FileEvent {
 
             public:
-                FileWatchEventType type;
+                FileEventType type;
                 double timestamp;
                 std::string path;
 
-            FileWatchEvent( FileWatchEventType _type = fe_unknown, double _timestamp = 0.0, const std::string &_path = std::string() )
+            FileEvent( FileEventType _type = fe_unknown, double _timestamp = 0.0, const std::string &_path = std::string() )
                 : type(_type), timestamp(_timestamp), path(_path)
                     { }
 
-        }; //FileWatchEvent
+        }; //FileEvent
 
             //filled in by platform specific handlers
         bool init_filewatch();
@@ -105,7 +106,7 @@ namespace snow {
 
     //Helper dispatch io events through the core event handler
 
-        inline static void event_handler( const FileWatchEvent &event ) {
+        inline static void event_handler( const FileEvent &event ) {
 
             value _event = alloc_empty_object();
 
@@ -116,16 +117,16 @@ namespace snow {
             value _system_event = alloc_empty_object();
 
                     //event type is always se_input event
-                alloc_field( _system_event, id_type, alloc_int( core::se_filewatch ) );
+                alloc_field( _system_event, id_type, alloc_int( core::se_file ) );
                     //store the .filewatch value
-                alloc_field( _system_event, id_filewatch, _event );
+                alloc_field( _system_event, id_file, _event );
 
                 //finally, call the handler
             val_call1( system_event_handler->get(), _system_event );
 
         } //io event_handler
 
-        inline void dispatch_event( const FileWatchEvent &event ) {
+        inline void dispatch_event( const FileEvent &event ) {
 
             snow::io::event_handler( event );
 

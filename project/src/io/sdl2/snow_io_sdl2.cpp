@@ -7,6 +7,42 @@ namespace snow {
 
     namespace io {
 
+        void handle_event( SDL_Event &event ) {
+
+            //for now, we don't want to manage events
+            //unless we really need to for allocation sake etc
+
+            if(event.type != SDL_DROPFILE) {
+                return;
+            }
+
+            FileEvent new_event;
+
+            switch(event.type) {
+
+                case SDL_DROPFILE: {
+
+                    new_event.type = fe_drop;
+
+                    char* dropped_path = event.drop.file;
+
+                        new_event.path = std::string(dropped_path);
+
+                    snow::log(3, "/ snow / file drop event %s", new_event.path.c_str());
+
+                    SDL_free(dropped_path);
+
+                    break;
+                } //drop
+
+            } //switch(event.type)
+
+            new_event.timestamp = snow::timestamp();
+                //dispatch the event!
+            snow::io::dispatch_event( new_event );
+
+        } //handle_event
+
         iosrc* iosrc_fromfile(const char *file, const char *mode) {
             return SDL_RWFromFile(file, mode);
         } //iofromfile

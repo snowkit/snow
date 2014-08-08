@@ -114,7 +114,7 @@ namespace snow {
                         std::wstring widepath(szwFileName);
                         std::string path(widepath.begin(), widepath.end());
 
-                        FileWatchEventType _event_type = fe_unknown;
+                        FileEventType _event_type = fe_unknown;
 
                             switch( notifier->Action ) {
 
@@ -149,7 +149,7 @@ namespace snow {
 
                                 // put into queue
                                 event_node_t* node = new event_node_t;
-                                node->event = new FileWatchEvent( _event_type, snow::timestamp(), (watcher->path+"/"+path) );
+                                node->event = new FileEvent( _event_type, snow::timestamp(), (watcher->path+"/"+path) );
                                 eventqueue_push(&filewatch_queue, node);
 
                             }

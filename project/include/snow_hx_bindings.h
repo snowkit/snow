@@ -42,7 +42,7 @@ namespace snow {
         //io related
 
     extern int id_path;
-    extern int id_filewatch;
+    extern int id_file;
     extern int id_extension;
     extern int id_desc;
 
@@ -141,7 +141,7 @@ namespace snow {
             //io related flags
 
         id_path                 = val_id("path");
-        id_filewatch            = val_id("filewatch");
+        id_file                 = val_id("file");
         id_extension            = val_id("extension");
         id_desc                 = val_id("desc");
 

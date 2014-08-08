@@ -16,7 +16,7 @@ namespace snow {
         struct event_node_t {
 
             event_node_t* volatile  next;
-            FileWatchEvent* event;
+            FileEvent* event;
 
         }; // event_node_t
 

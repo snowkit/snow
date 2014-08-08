@@ -141,7 +141,7 @@ namespace snow {
                     //only listen for files
                 if(flag & kFSEventStreamEventFlagItemIsFile) {
 
-                    FileWatchEventType _event_type = fe_unknown;
+                    FileEventType _event_type = fe_unknown;
 
                     snow::log(3, "/ snow / filewatch event on path %s id %#010x", path.c_str(), eventFlags[i]);
 
@@ -188,7 +188,7 @@ namespace snow {
                     } //else
 
                     if(_event_type != fe_unknown) {
-                        FileWatchEvent event( _event_type, snow::timestamp(), path );
+                        FileEvent event( _event_type, snow::timestamp(), path );
                         snow::io::dispatch_event( event );
                     }
 

@@ -266,8 +266,8 @@ typedef SystemEvent = {
     @:optional var window : WindowEvent;
         /** If type is `input` this will be populated, otherwise null */
     @:optional var input : InputEvent;
-        /** If type is `filewatch` this will be populated, otherwise null */
-    @:optional var filewatch : FileWatchEvent;
+        /** If type is `file` this will be populated, otherwise null */
+    @:optional var file : FileEvent;
 
 } //SystemEvent
 
@@ -287,16 +287,16 @@ typedef WindowEvent = {
 } //WindowEvent
 
 /** A system file watch event */
-typedef FileWatchEvent = {
+typedef FileEvent = {
 
         /** The type of file watch event, modify/create/delete */
-    @:optional var type : FileWatchEventType;
+    @:optional var type : FileEventType;
         /** The time in seconds when this event was fired */
     @:optional var timestamp : Float;
         /** The absolute path that was notifying */
     @:optional var path : String;
 
-} //FileWatchEvent
+} //FileEvent
 
 /** A system input event */
 typedef InputEvent = {
@@ -368,12 +368,12 @@ enum SystemEventType {
 /** An event for when the app enters the foreground, called by the OS (mobile specific) */
     app_didenterforeground;
 /** An event for when the a file watch notification occurs */
-    filewatch;
+    file;
 
 
 } //SystemEventType
 
-enum FileWatchEventType {
+enum FileEventType {
 
 /** An unknown watch event */
     unknown;
@@ -383,8 +383,10 @@ enum FileWatchEventType {
     remove;
 /** An event for when the a file is created */
     create;
+/** An event for when the a file is dropped on a window */
+    drop;
 
-} //FileWatchEventType
+} //FileEventType
 
 //Window stuff
 
@@ -531,7 +533,7 @@ typedef ModState = {
     public static var se_app_didenterbackground     = 11;
     public static var se_app_willenterforeground    = 12;
     public static var se_app_didenterforeground     = 13;
-    public static var se_filewatch                  = 14;
+    public static var se_file                       = 14;
 
 //Helpers
 
@@ -551,7 +553,7 @@ typedef ModState = {
             if(type == se_app_didenterbackground)       return SystemEventType.app_didenterbackground;
             if(type == se_app_willenterforeground)      return SystemEventType.app_willenterforeground;
             if(type == se_app_didenterforeground)       return SystemEventType.app_didenterforeground;
-            if(type == se_filewatch)                    return SystemEventType.filewatch;
+            if(type == se_file)                         return SystemEventType.file;
 
         return SystemEventType.unknown;
 
@@ -638,7 +640,7 @@ typedef ModState = {
 
 } //InputEvents
 
-@:noCompletion class FileWatchEvents {
+@:noCompletion class FileEvents {
 
 //File watch events
 
@@ -646,19 +648,21 @@ typedef ModState = {
         public static var fe_modify                     = 1;
         public static var fe_remove                     = 2;
         public static var fe_create                     = 3;
+        public static var fe_drop                       = 4;
 
 //Helpers
 
-        /** returns a typed `InputEventType` from an integer ID, for communication between internal native + haxe code */
-    public static function typed(type:Int) : FileWatchEventType {
+        /** returns a typed `FileEvent` from an integer ID, for communication between internal native + haxe code */
+    public static function typed(type:Int) : FileEventType {
 
-            if(type == fe_unknown)      return FileWatchEventType.unknown;
-            if(type == fe_modify)       return FileWatchEventType.modify;
-            if(type == fe_remove)       return FileWatchEventType.remove;
-            if(type == fe_create)       return FileWatchEventType.create;
+            if(type == fe_unknown)      return FileEventType.unknown;
+            if(type == fe_modify)       return FileEventType.modify;
+            if(type == fe_remove)       return FileEventType.remove;
+            if(type == fe_create)       return FileEventType.create;
+            if(type == fe_drop)         return FileEventType.drop;
 
-        return FileWatchEventType.unknown;
+        return FileEventType.unknown;
 
     } //typed
 
-} //FileWatchEvents
+} //FileEvents
