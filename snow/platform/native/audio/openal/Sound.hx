@@ -75,8 +75,12 @@ class Sound extends snow.platform.native.audio.Sound {
     override public function stop() {
 
         playing = false;
+        loop_count = 0;
 
         AL.sourceStop(source);
+
+            //notify listeners
+        emit('end');
 
         _debug('${name} stopping sound / ${AL.getErrorMeaning(AL.getError())} ');
 
@@ -102,8 +106,7 @@ class Sound extends snow.platform.native.audio.Sound {
         }
 
         var _al_play_state = AL.getSourcei(source, AL.SOURCE_STATE);
-
-        if(_al_play_state != AL.PLAYING) {
+        if(_al_play_state == AL.STOPPED) {
             playing = false;
             emit('end');
         }
@@ -223,7 +226,11 @@ class Sound extends snow.platform.native.audio.Sound {
 
     override function set_looping( _looping:Bool ) : Bool {
 
-        AL.sourcef( source, AL.LOOPING, _looping ? AL.TRUE : AL.FALSE );
+        log('${name} pre looping / ${AL.getErrorMeaning(AL.getError())} ');
+
+        AL.sourcei( source, AL.LOOPING, _looping ? AL.TRUE : AL.FALSE );
+
+        log('${name} set looping on sound source / ${AL.getErrorMeaning(AL.getError())} ');
 
         return looping = _looping;
 
