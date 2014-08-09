@@ -75,7 +75,6 @@ class Sound extends snow.platform.native.audio.Sound {
     override public function stop() {
 
         playing = false;
-        loop_count = 0;
 
         AL.sourceStop(source);
 
