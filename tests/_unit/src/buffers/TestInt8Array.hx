@@ -193,7 +193,7 @@ class TestInt8Array extends mohxa.Mohxa {
 
             var x = new Int8Array(bin.getBytes());
 
-            it('should be correctly constructed from n elements and set using Array Access', function(){
+            it('should be correctly constructed from 1 element, and this element should be 128', function(){
                 equal(1, x.length, "length == 1");
                 equal( 128, x[0], 'element [0] == 128' );
             });
