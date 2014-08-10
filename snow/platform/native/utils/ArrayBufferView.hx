@@ -10,7 +10,7 @@ import snow.utils.IMemoryRange;
 
 class ArrayBufferView implements IMemoryRange {
 
-    public var buffer (default, default) : ByteArray;
+    public var buffer (default, null) : ByteArray;
     public var byteOffset (default, null) : Int;
     public var byteLength (default, null) : Int;
 
