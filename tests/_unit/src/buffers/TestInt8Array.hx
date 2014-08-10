@@ -183,6 +183,23 @@ class TestInt8Array extends mohxa.Mohxa {
 
         }); //test8
 
+        describe('Int8Array test09', function(){
+
+            log('creating x = Int8Array(haxe.io.Bytes([128]))');
+
+            var bin = new haxe.io.BytesOutput();
+            
+            bin.writeByte(128);
+
+            var x = new Int8Array(bin.getBytes());
+
+            it('should be correctly constructed from n elements and set using Array Access', function(){
+                equal(1, x.length, "length == 1");
+                equal( 128, x[0], 'element [0] == 17' );
+            });
+
+        }); //test9        
+
         run();
 
     } //new
