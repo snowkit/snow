@@ -195,7 +195,7 @@ class TestInt8Array extends mohxa.Mohxa {
 
             it('should be correctly constructed from n elements and set using Array Access', function(){
                 equal(1, x.length, "length == 1");
-                equal( 128, x[0], 'element [0] == 17' );
+                equal( 128, x[0], 'element [0] == 128' );
             });
 
         }); //test9        
