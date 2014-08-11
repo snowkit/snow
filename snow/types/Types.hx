@@ -9,6 +9,10 @@ import snow.assets.AssetText;
 import snow.assets.AssetBytes;
 import snow.assets.AssetAudio;
 
+typedef Key = snow.input.Keycodes.Keycodes;
+typedef Scan = snow.input.Keycodes.Scancodes;
+
+
 /** Information for a single asset */
 typedef AssetInfo = {
 

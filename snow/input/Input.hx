@@ -5,10 +5,6 @@ import snow.input.InputSystem;
 import snow.window.Window;
 
 
-    //API usage clarity
-typedef Key = snow.input.Keycodes.Keycodes;
-typedef Scan = snow.input.Keycodes.Scancodes;
-
 typedef MapIntBool = Map<Int, Bool>;
 typedef MapIntFloat = Map<Int, Float>;
 
