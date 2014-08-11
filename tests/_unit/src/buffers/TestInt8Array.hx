@@ -185,17 +185,17 @@ class TestInt8Array extends mohxa.Mohxa {
 
         describe('Int8Array test09', function(){
 
-            log('creating x = Int8Array(haxe.io.Bytes([128]))');
+            log('creating x = Int8Array(ByteArray(1))');
 
-            var bin = new haxe.io.BytesOutput();
+            var bin = new snow.utils.ByteArray(1);
             
-            bin.writeByte(128);
+            bin.writeByte(23);
 
-            var x = new Int8Array(bin.getBytes());
+            var x = new Int8Array(bin);
 
-            it('should be correctly constructed from 1 element, and this element should be 128', function(){
+            it('should be correctly constructed from 1 element, and this element should be 23', function(){
                 equal(1, x.length, "length == 1");
-                equal( 128, x[0], 'element [0] == 128' );
+                equal( 23, x[0], 'element [0] == 23' );
             });
 
         }); //test9        
