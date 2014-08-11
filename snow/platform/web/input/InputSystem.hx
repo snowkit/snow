@@ -158,9 +158,12 @@ class InputSystem extends InputSystemBinding {
             _x = Std.int(-_wheel_event.wheelDeltaX/3);
         }
 
+            //the /16 here is the default em size of a web page
+            //because native scrolls in lines, and web scrolls in pixels,
+            //sometimes, fuuu
         manager.dispatch_mouse_wheel_event(
-            _x,
-            _y,
+            Math.round(_x/16),
+            Math.round(_y/16),
             _wheel_event.timeStamp,
             _window.id
         );

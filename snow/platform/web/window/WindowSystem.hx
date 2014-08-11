@@ -345,6 +345,7 @@ import snow.window.WindowSystem;
 
             /** Toggle the OS cursor. This is not window specific but system wide */
         var cursor_style : js.html.Element;
+        var _cursor_visible : Bool = true;
         override function system_enable_cursor( enable:Bool ) {
 
             if(cursor_style == null) {
@@ -352,9 +353,11 @@ import snow.window.WindowSystem;
                 cursor_style.innerHTML = '* { cursor:none; }';
             }
 
-            if(enable) {
+            if(enable && !_cursor_visible) {
+                _cursor_visible = true;
                 js.Browser.document.body.removeChild(cursor_style);
-            } else {
+            } else if(!enable && _cursor_visible) {
+                _cursor_visible = false;
                 js.Browser.document.body.appendChild(cursor_style);
             }
 
