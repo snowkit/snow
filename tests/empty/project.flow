@@ -1,0 +1,26 @@
+{
+
+  project : {
+    name : 'empty',
+    version : '1.0.0',
+    author : 'snowkit',
+
+    app : {
+      name : 'snow_empty',
+      package : 'org.snowkit.snow',
+    },
+
+    build : {
+      dependencies : {
+        snow : '*',
+      }
+    },
+
+    files : {
+      config : 'config.json',
+      assets : 'assets/'
+    }
+
+  }
+
+}
