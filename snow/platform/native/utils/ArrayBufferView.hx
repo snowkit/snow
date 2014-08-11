@@ -18,7 +18,7 @@ class ArrayBufferView implements IMemoryRange {
         var bytes : BytesData;
     #end
 
-    function new( lengthOrBuffer:Dynamic, byteOffset:Int = 0, length:Null<Int> = null ) {
+    function new(lengthOrBuffer:Dynamic, byteOffset:Int = 0, length:Null<Int> = null ) {
 
         if (Std.is(lengthOrBuffer, Int)) {
 
@@ -27,6 +27,10 @@ class ArrayBufferView implements IMemoryRange {
             buffer = new ArrayBuffer(Std.int(lengthOrBuffer));
 
         } else {
+
+            if (Type.getClass(lengthOrBuffer) == haxe.io.Bytes) {
+                throw "ArrayBuffer (i.e ByteArray) is required";
+            }
 
             buffer = lengthOrBuffer;
 
