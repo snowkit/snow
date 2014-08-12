@@ -321,7 +321,7 @@
 
 
 
-   <target id="snow" output="${LIBPREFIX}${LIBNAME}${MSVC_LIB_VERSION}${DEBUGEXTRA}${LIBEXTRA}" tool="linker" toolid="${STD_MODULE_LINK}">
+   <target id="snow" output="${LIBPREFIX}${LIBNAME}${DEBUGEXTRA}${LIBEXTRA}" tool="linker" toolid="${STD_MODULE_LINK}">
 
       <outdir name="${OUT_DIR}/${BINDIR}" />
 
