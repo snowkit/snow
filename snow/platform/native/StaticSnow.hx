@@ -4,8 +4,9 @@ package snow.platform.native;
 @:buildXml("
 
 <set name='MSVC_LIB_VERSION' value='-${MSVC_VER}' if='windows'/>
+<set name='DEBUG_SNOW' value='${DBG}' if='debug_snow'/>
 <target id='haxe'>
-  <lib name='${haxelib:snow}/ndll/${BINDIR}/libsnow${MSVC_LIB_VERSION}${DBG}${LIBEXTRA}${LIBEXT}'/>
+  <lib name='${haxelib:snow}/ndll/${BINDIR}/libsnow${DEBUG_SNOW}${LIBEXTRA}${LIBEXT}'/>
 
     <section if='mac'>
         <vflag name='-l' value='iconv'/>
