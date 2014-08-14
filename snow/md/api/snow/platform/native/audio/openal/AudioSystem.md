@@ -14,7 +14,7 @@ Internal audio system implementation for OpenAL, interact with this system throu
 
 `class`extends <code><span>snow.platform.native.audio.AudioSystem</span></code>
 <span class="meta">
-<br/>meta: @:build(&#x27;???&#x27;), @:autoBuild(&#x27;???&#x27;), @:noCompletion
+<br/>meta: @:build(&#x27;???&#x27;), @:autoBuild(&#x27;???&#x27;), @:noCompletion, @:log_as(&quot;audio&quot;)
 </span>
 
 

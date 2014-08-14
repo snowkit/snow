@@ -39,7 +39,8 @@ A typed window event
         <span class="small_desc_flat">A window is left by a mouse</span><span class="member signature apipage">`window_focus_gained`<br/> </span>
         <span class="small_desc_flat">A window has gained focus</span><span class="member signature apipage">`window_focus_lost`<br/> </span>
         <span class="small_desc_flat">A window has lost focus</span><span class="member signature apipage">`window_close`<br/> </span>
-        <span class="small_desc_flat">A window is being closed</span>
+        <span class="small_desc_flat">A window is being closed/hidden</span><span class="member signature apipage">`window_destroy`<br/> </span>
+        <span class="small_desc_flat">A window is being destroyed</span>
 
 
 

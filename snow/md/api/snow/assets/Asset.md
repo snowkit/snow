@@ -8,7 +8,7 @@
 <h1>Asset</h1>
 <small>`snow.assets.Asset`</small>
 
-An asset base class. Get assets from the `Assets` class, via `app.assets`
+An asset base class. Get assets from the `app.assets`
 
 ---
 
@@ -30,13 +30,6 @@ An asset base class. Get assets from the `Assets` class, via `app.assets`
             <span class="small_desc_flat">The `AssetInfo` of this asset</span><span class="member apipage">
                 <a name="type"><a class="lift" href="#type">type</a></a><div class="clear"></div><code class="signature apipage">type : [snow.types.AssetType](#)</code><br/></span>
             <span class="small_desc_flat">The concrete type this asset holds (useful when handling as Asset base class)</span><span class="member apipage">
-                <a name="persist"><a class="lift" href="#persist">persist</a></a><div class="clear"></div><code class="signature apipage">persist : [Bool](#)</code><br/></span>
-            <span class="small_desc_flat">Whether or not to persist this asset in the cache when it is cleared normally.
-            default false.</span><span class="member apipage">
-                <a name="cache"><a class="lift" href="#cache">cache</a></a><div class="clear"></div><code class="signature apipage">cache : [Bool](#)</code><br/></span>
-            <span class="small_desc_flat">Whether or not to cache this asset for subsequent calls to `get_*` functions.
-            Prevents multiple IO accesses, but data is stored in memory.
-            default true.</span><span class="member apipage">
                 <a name="loaded"><a class="lift" href="#loaded">loaded</a></a><div class="clear"></div><code class="signature apipage">loaded : [Bool](#)</code><br/></span>
             <span class="small_desc_flat">True if this asset has completely loaded. Only changed through `load` and when load completes</span>
 
@@ -45,7 +38,7 @@ An asset base class. Get assets from the `Assets` class, via `app.assets`
 
 
 <h3>Methods</h3> <hr/><span class="method apipage">
-            <a name="new"><a class="lift" href="#new">new</a></a> <div class="clear"></div><code class="signature apipage">new(\_assets:[snow.assets.Assets](#)<span></span>, \_info:[snow.types.AssetInfo](#)<span></span>) : [Void](#)</code><br/><span class="small_desc_flat"></span>
+            <a name="new"><a class="lift" href="#new">new</a></a> <div class="clear"></div><code class="signature apipage">new(\_assets:[snow.assets.Assets](#)<span></span>, \_info:[snow.types.AssetInfo](#)<span></span>) : [Void](#)</code><br/><span class="small_desc_flat">Called from subclasses, by `app.assets`</span>
         </span>
     
 

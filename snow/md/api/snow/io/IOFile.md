@@ -24,7 +24,17 @@ This class is a low level cross platform file access helper, that handles in bun
 
 <h3>Members</h3> <hr/><span class="member apipage">
                 <a name="handle"><a class="lift" href="#handle">handle</a></a><div class="clear"></div><code class="signature apipage">handle : [Dynamic](#)</code><br/></span>
-            <span class="small_desc_flat">The internal native file handle</span>
+            <span class="small_desc_flat">The internal native file handle</span><span class="member apipage">
+                <a name="snow_iosrc_file_read"><a class="lift" href="#snow_iosrc_file_read">snow\_iosrc\_file\_read</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">snow\_iosrc\_file\_read : [](#)&nbsp; -&gt; [snow.utils.ByteArray](#)&nbsp; -&gt; [Int](#)&nbsp; -&gt; [Int](#)&nbsp;-&gt; [](#)</code><br/></span>
+            <span class="small_desc_flat"></span><span class="member apipage">
+                <a name="snow_iosrc_file_write"><a class="lift" href="#snow_iosrc_file_write">snow\_iosrc\_file\_write</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">snow\_iosrc\_file\_write : [](#)&nbsp; -&gt; [snow.utils.ByteArray](#)&nbsp; -&gt; [Int](#)&nbsp; -&gt; [Int](#)&nbsp;-&gt; [](#)</code><br/></span>
+            <span class="small_desc_flat"></span><span class="member apipage">
+                <a name="snow_iosrc_file_seek"><a class="lift" href="#snow_iosrc_file_seek">snow\_iosrc\_file\_seek</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">snow\_iosrc\_file\_seek : [](#)&nbsp; -&gt; [Int](#)&nbsp; -&gt; [Int](#)&nbsp;-&gt; [](#)</code><br/></span>
+            <span class="small_desc_flat"></span><span class="member apipage">
+                <a name="snow_iosrc_file_tell"><a class="lift" href="#snow_iosrc_file_tell">snow\_iosrc\_file\_tell</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">snow\_iosrc\_file\_tell : [](#)&nbsp;-&gt; [](#)</code><br/></span>
+            <span class="small_desc_flat"></span><span class="member apipage">
+                <a name="snow_iosrc_file_close"><a class="lift" href="#snow_iosrc_file_close">snow\_iosrc\_file\_close</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">snow\_iosrc\_file\_close : [](#)&nbsp;-&gt; [](#)</code><br/></span>
+            <span class="small_desc_flat"></span>
 
 
 

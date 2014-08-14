@@ -24,9 +24,9 @@
 
 
 <h3>Properties</h3> <hr/><span class="member apipage">
-                <a name="BYTES_PER_ELEMENT"><a class="lift" href="#BYTES_PER_ELEMENT">BYTES\_PER\_ELEMENT</a></a><div class="clear"></div><code class="signature apipage">BYTES\_PER\_ELEMENT : [Int](#)</code><br/></span>
+                <a name="BYTES_PER_ELEMENT"><a class="lift" href="#BYTES_PER_ELEMENT">BYTES\_PER\_ELEMENT</a></a> <div class="clear"></div><code class="signature apipage">BYTES\_PER\_ELEMENT : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="length"><a class="lift" href="#length">length</a></a><div class="clear"></div><code class="signature apipage">length : [Int](#)</code><br/></span>
+                <a name="length"><a class="lift" href="#length">length</a></a> <div class="clear"></div><code class="signature apipage">length : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span>
 
 

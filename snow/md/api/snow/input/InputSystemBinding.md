@@ -25,7 +25,11 @@ Internal input system, accessed through `snow.Input`, not directly
 
 
 
-<h3>Members</h3> <hr/>
+<h3>Members</h3> <hr/><span class="member apipage">
+                <a name="manager"><a class="lift" href="#manager">manager</a></a><div class="clear"></div><code class="signature apipage">manager : [snow.input.Input](#)</code><br/></span>
+            <span class="small_desc_flat"></span><span class="member apipage">
+                <a name="lib"><a class="lift" href="#lib">lib</a></a><div class="clear"></div><code class="signature apipage">lib : [snow.Snow](#)</code><br/></span>
+            <span class="small_desc_flat"></span>
 
 
 

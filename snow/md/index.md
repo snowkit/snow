@@ -6,20 +6,27 @@
 </div>
 
 ---
+<div class="version">current version [notes](https://github.com/underscorediscovery/snow/releases/tag/1.0.0-beta) `1.0.0-beta`</div>
 
+<br/>
 ##About
 
-snow is a light, pure and clean toolkit for building frameworks, applications and games using [haxe](http://haxe.org), targeting native platforms and browser.
+**snow** is a light, pure and clean toolkit for building frameworks, applications and games using [haxe](http://haxe.org), targeting native platforms and web browser.
 This means snow by default runs natively on **Mac**, **Windows**, **Linux** desktops, as well as **iOS** and **Android** devices. It also runs directly in the **Web** browser using webgl.
 
 &nbsp;_how?_
+
 
 &nbsp;
 
 [ <img src="{{{rel_path}}}images/haxe.png" target="_blank" class="small-image"/> ](http://haxe.org)   
 
-Haxe is an expressive, beautiful modern programming language that compiles it's own code into other languages. 
-This allows you, a user of haxe and thus snow - to build your code into the target platform code directly.
+<span class="haxedesc">Haxe is an expressive, beautiful modern programming language <br/>
+      that compiles it's own code into other languages. <a href="http://haxe.org/" target="_blank"> learn more</a> </span>
+
+<br/>
+
+---
 
 <div class="breakout">
 
@@ -33,17 +40,21 @@ This allows you, a user of haxe and thus snow - to build your code into the targ
 
 ##Design
 
-snow embraces a minimal, straight arrow approach by exposing a variety of tools at your disposal,
-with as much consistency as possible across targets. This allows you to focus on yout code and not the platform code.
+**snow embraces a minimal design.**   
+&emsp; This means snow is to the point and does what it is designed for only.   
+&emsp; This includes exposing tools to you with as much consistency as possible across platforms.   
+&emsp; This allows you to focus on your code, and not platform details as much.   
 
-snow is built as a facilitator only - it is focused on portability, clarity, consistency and maintainability.
-This allows you to build frameworks, games and applications without it getting in the way.
-This means that snow tries to avoid making assumptions, letting you decide your architecture.
+**snow is built as a facilitator.**    
+&emsp; This means that snow tries to avoid making assumptions, letting you decide your architecture.   
+&emsp; This allows you to build frameworks, games and applications without it getting in the way.   
+&emsp; This means snow is focused on portability, clarity, consistency and maintainability.   
 
-snow is also as self contained as possible.
-It is built with no external dependencies, except for a build pipeline called [flow](#), which makes the application.
+**snow is as self contained as possible.**   
+&emsp; There are no current external dependencies, except for a build pipeline called [flow](#).   
 
-snow has tests of various kinds, you can read more about the [testing approach]({{{rel_path}}}guide/contribute.html#tests) in the contributors guide.
+**snow strives to be reliable.**   
+&emsp; There are tests of various kinds, you can read about the [testing approach]({{{rel_path}}}guide/contribute.html#tests) in the guide.
 
 
 <div class="guide">
@@ -52,20 +63,18 @@ snow has tests of various kinds, you can read more about the [testing approach](
 
 **Setup guides**<br/>
 <br/>
-[Setup]({{{rel_path}}}guide/Setup.html) <br/>
+[Setup]({{{rel_path}}}guide/setup.html) <br/>
 
 <br/><br/>
 **Starter guides**<br/>
 <br/>
 [one - start here]({{{rel_path}}}guide/one.html) <br/>
 [two - life of a snow app]({{{rel_path}}}guide/two.html) <br/>
-[three - dealing with assets]({{{rel_path}}}guide/three.html) <br/>
-[four - interactivity]({{{rel_path}}}guide/four.html) <br/>
 
 <br/>
 **Feature guides** <br/>
 <br/>
-[Windowing]({{{rel_path}}}guide/windowing.html) | [Audio]({{{rel_path}}}guide/audio.html) | [Assets]({{{rel_path}}}guide/assets.html) | [Input]({{{rel_path}}}guide/input.html) | [rendering]({{{rel_path}}}guide/render.html) | [IO]({{{rel_path}}}guide/io.html) | [Utils]({{{rel_path}}}guide/utils.html)
+[windowing]({{{rel_path}}}guide/windowing.html) | [audio]({{{rel_path}}}guide/audio.html) | [assets]({{{rel_path}}}guide/assets.html) | [input]({{{rel_path}}}guide/input.html) | [render]({{{rel_path}}}guide/render.html) | [IO]({{{rel_path}}}guide/io.html) | [utils]({{{rel_path}}}guide/utils.html)
 <br/>
 <br/>
 **API docs**<br/>
@@ -77,18 +86,17 @@ snow has tests of various kinds, you can read more about the [testing approach](
 **Development guides**<br/>
 <br/>
 [want to help? - start here!]({{{rel_path}}}guide/contribute.html) <br/>
-[be reliable - help write tests]({{{rel_path}}}guide/contribute.html#tests) <br/>
+[being reliable - help write tests]({{{rel_path}}}guide/contribute.html#tests) <br/>
 [the more you know - help write guides]({{{rel_path}}}guide/contribute.html#guides) <br/>
 [what goes where? - structure guide]({{{rel_path}}}guide/structure.html) <br/>
-[playing nice - code/design conventions]({{{rel_path}}}guide/codedesign.html) <br/>
+[playing nice - code/design conventions]({{{rel_path}}}guide/code.html) <br/>
 
 <br/>
 <br/>
 **In depth guides** <br/><br/>
-[structure - the snow architecture]({{{rel_path}}}guide/structure.html)   
-[build process - how an app is made]({{{rel_path}}}guide/buildprocess.html)   
-[native code - build, modify, fix snow.ndll]({{{rel_path}}}guide/nativesupport.html)   
-[native code - porting to a new platform]({{{rel_path}}}guide/nativeporting.html)   
+[native code - build, modify, fix snow]({{{rel_path}}}guide/native-layer.html)   
+`todo` ~~build process - how an app is made~~   
+`todo` ~~native code - porting to a new platform~~   
 
 </div>
 
@@ -124,43 +132,43 @@ On top of the comprehensive, full fledged <a href="http://api.haxe.org/" target=
    - `native` auto background thread toggle
 
 <a name="assets"><a href="#assets">**assets and io**</a></a>
-   - consistent api for loading assets across targets
+   - consistent api for loading assets across platforms
    - raw bytes, text, images and audio support
-   - async based api design to handle preloading easily (like on web)
+   - async based api design to handle preloading easily
+   - strict loading on a list or per file basis
    - `web` audio - ogg, wav, mp3 (see [snags](#snags))
    - `web` images - bmp, png, jpg, gif
    - `native` images - these ^ + tga, psd
    - `native` audio - ogg, wav, pcm
-   - `native` consistent manual file IO for targets (like android) if needed
+   - `native` consistent manual file IO for platforms (like android) if needed
    - `desktop` OS file change notification events on any folder
    - `desktop` OS open/save/folder dialogs
 
 <a name="input"><a href="#input">**input**</a></a>
-   - complete events for mouse, keys, gamepad, touches
+   - complete callbacks for for mouse, keys, gamepad, touches
    - text input events for handling localized text reliably
-   - keys - simple keycode/scancode access as well as text
-   - gamepad events api
+   - keys - spec based keycode/scancode access/conversion
    - gamepad events for hot plugging/swapping devices at runtime
-   - immediate style access in addition to events handlers
-   - `desktop` mouse - position, window lock, window grab, and visibility
+   - immediate style access in addition to event callbacks
+   - `desktop` mouse - set position, window lock, window grab, and visibility
    - `mobile` multitouch supported
 
 <a name="util"><a href="#util">**util**</a></a>
-   - (almost) full set of [Typed Arrays](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Typed_arrays) for use on all targets
+   - complete set (-1) of [Typed Arrays](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Typed_arrays) for use on all platforms
    - ByteArray util for handling bytes
-   - high res timestamps, consistent Timer for repeat/once handlers for all targets
+   - high res timestamps, consistent Timer for repeat/once handlers for all platforms
    - open a url in the default browser
-   - `native` access to ndll/dll endpoints compiled with hxcpp on all targets
+   - `native` access to ndll/dll endpoints compiled with hxcpp on native platforms
 
 ---
 
 <h3>Further details</h3>
 
-[**Build pipeline details**]({{{rel_path}}}guide/builddetails.html) <br/>
-&emsp; &emsp; [compiling]({{{rel_path}}}guide/builddetails.html#compiling) | [project format]({{{rel_path}}}guide/builddetails.html#project) | [architectures]({{{rel_path}}}guide/builddetails.html#arch)
+[**Build pipeline details**]({{{rel_path}}}guide/build-details.html) <br/>
+&emsp; &emsp; [compiling]({{{rel_path}}}guide/build-details.html#compiling) | [project format]({{{rel_path}}}guide/build-details.html#project) | [architectures]({{{rel_path}}}guide/build-details.html#arch)
 
-[**Platform implementation details**]({{{rel_path}}}guide/platformfaq.html) <br/>
-&emsp; &emsp; [web]({{{rel_path}}}guide/platformfaq.html#web) | [mac]({{{rel_path}}}guide/platformfaq.html#mac) | [windows]({{{rel_path}}}guide/platformfaq.html#windows) | [linux]({{{rel_path}}}guide/platformfaq.html#linux) | [android]({{{rel_path}}}guide/platformfaq.html#android) | [ios]({{{rel_path}}}guide/platformfaq.html#ios) 
+[**Platform implementation details**]({{{rel_path}}}guide/platform-faq.html) <br/>
+&emsp; &emsp; [web]({{{rel_path}}}guide/platform-faq.html#web) | [mac]({{{rel_path}}}guide/platform-faq.html#mac) | [windows]({{{rel_path}}}guide/platform-faq.html#windows) | [linux]({{{rel_path}}}guide/platform-faq.html#linux) | [android]({{{rel_path}}}guide/platform-faq.html#android) | [ios]({{{rel_path}}}guide/platform-faq.html#ios) 
 
 ---
 <a name="snags">
@@ -169,14 +177,11 @@ On top of the comprehensive, full fledged <a href="http://api.haxe.org/" target=
 The snag list below is a list of things that are known issues or inconsistencies across platforms to take note of.
 
 - [#10](https://github.com/underscorediscovery/snow/issues/10) `native` audio - streaming is on the main thread
-- [#24](https://github.com/underscorediscovery/snow/issues/24) `native` render - GLObject not conforming to WebGL spec
+- [#25](https://github.com/underscorediscovery/snow/issues/25) `android` utils - url_open not implemented yet
 
 For a full list of issues, open and resolved, refer to the [github issue tracker](https://github.com/underscorediscovery/snow/issues) <br/>
 <br/>
-Transparent development is better for everyone, so please feel free to report issues and we will continue to keep working at them, and keeping you informed.<br/>
-And of course, if you want to resolve these issues for the benefit of the library, you are most welcome - read the [contributor guide]({{{rel_path}}}guide/contribute.html).<br/>
-
-<br/><br/>
+<br/>
 
 <a name="samples">
 <a href="#samples"><h2>Samples</h2></a>

@@ -22,8 +22,8 @@
 
 
 <h3>Members</h3> <hr/><span class="member apipage">
-                <a name="system"><a class="lift" href="#system">system</a></a><div class="clear"></div><code class="signature apipage">system : [snow.audio.AudioSystem](#)</code><br/></span>
-            <span class="small_desc_flat">The implementation of the current audio system</span><span class="member apipage">
+                <a name="platform"><a class="lift" href="#platform">platform</a></a><div class="clear"></div><code class="signature apipage">platform : [snow.audio.AudioSystem](#)</code><br/></span>
+            <span class="small_desc_flat">access to platform specific implementation</span><span class="member apipage">
                 <a name="active"><a class="lift" href="#active">active</a></a><div class="clear"></div><code class="signature apipage">active : [Bool](#)</code><br/></span>
             <span class="small_desc_flat">Set to false to stop any and all processing in the audio system</span>
 
@@ -35,16 +35,36 @@
             <a name="create"><a class="lift" href="#create">create</a></a> <div class="clear"></div><code class="signature apipage">create(\_id:[String](#)<span></span>, \_name:[String](#)<span>=&#x27;&#x27;</span>, streaming:[Bool](#)<span>=false</span>) : [snow.audio.Sound](#)</code><br/><span class="small_desc_flat">Create a sound for playing. If no name is given, a unique id is assigned. Use the sound instance or the public api by name.</span>
         </span>
     <span class="method apipage">
+            <a name="uncreate"><a class="lift" href="#uncreate">uncreate</a></a> <div class="clear"></div><code class="signature apipage">uncreate(\_name:[String](#)<span></span>) : [Void](#)</code><br/><span class="small_desc_flat">Destroy a sound instance by name. Use sound_instance.destroy() if you have an instance already.</span>
+        </span>
+    <span class="method apipage">
+            <a name="on"><a class="lift" href="#on">on</a></a> <div class="clear"></div><code class="signature apipage">on(\_name:[String](#)<span></span>, \_event:[String](#)<span></span>, \_handler:[snow.audio.Sound](#)&nbsp;-&gt; [Void](#)<span></span>) : [Void](#)</code><br/><span class="small_desc_flat">Listen for a event on a named sound. `load` and `end` are valid events.</span>
+        </span>
+    <span class="method apipage">
+            <a name="off"><a class="lift" href="#off">off</a></a> <div class="clear"></div><code class="signature apipage">off(\_name:[String](#)<span></span>, \_event:[String](#)<span></span>, \_handler:[snow.audio.Sound](#)&nbsp;-&gt; [Void](#)<span></span>) : [Void](#)</code><br/><span class="small_desc_flat">Remove a listener for a event on a named sound. see `on`</span>
+        </span>
+    <span class="method apipage">
             <a name="get"><a class="lift" href="#get">get</a></a> <div class="clear"></div><code class="signature apipage">get(\_name:[String](#)<span></span>) : [snow.audio.Sound](#)</code><br/><span class="small_desc_flat">Get a sound instance by name</span>
         </span>
     <span class="method apipage">
-            <a name="volume"><a class="lift" href="#volume">volume</a></a> <div class="clear"></div><code class="signature apipage">volume(\_name:[String](#)<span></span>, \_volume:[Float](#)<span></span>) : [Void](#)</code><br/><span class="small_desc_flat">Set the volume of a sound instance by name</span>
+            <a name="volume"><a class="lift" href="#volume">volume</a></a> <div class="clear"></div><code class="signature apipage">volume(\_name:[String](#)<span></span>, \_volume:[Float](#)<span>=null</span>) : [Float](#)</code><br/><span class="small_desc_flat">Get/Set the volume of a sound instance by name.
+            Leave the second argument blank to return the current value.</span>
         </span>
     <span class="method apipage">
-            <a name="pan"><a class="lift" href="#pan">pan</a></a> <div class="clear"></div><code class="signature apipage">pan(\_name:[String](#)<span></span>, \_pan:[Float](#)<span></span>) : [Void](#)</code><br/><span class="small_desc_flat">Set the pan of a sound instance by name</span>
+            <a name="pan"><a class="lift" href="#pan">pan</a></a> <div class="clear"></div><code class="signature apipage">pan(\_name:[String](#)<span></span>, \_pan:[Float](#)<span>=null</span>) : [Float](#)</code><br/><span class="small_desc_flat">Get/Set the pan of a sound instance by name
+            Leave the second argument blank to return the current value.</span>
         </span>
     <span class="method apipage">
-            <a name="pitch"><a class="lift" href="#pitch">pitch</a></a> <div class="clear"></div><code class="signature apipage">pitch(\_name:[String](#)<span></span>, \_pitch:[Float](#)<span></span>) : [Void](#)</code><br/><span class="small_desc_flat">Set the pitch of a sound instance by name</span>
+            <a name="pitch"><a class="lift" href="#pitch">pitch</a></a> <div class="clear"></div><code class="signature apipage">pitch(\_name:[String](#)<span></span>, \_pitch:[Float](#)<span>=null</span>) : [Float](#)</code><br/><span class="small_desc_flat">Get/Set the pitch of a sound instance by name
+            Leave the second argument blank to return the current value.</span>
+        </span>
+    <span class="method apipage">
+            <a name="position"><a class="lift" href="#position">position</a></a> <div class="clear"></div><code class="signature apipage">position(\_name:[String](#)<span></span>, \_position:[Float](#)<span>=null</span>) : [Float](#)</code><br/><span class="small_desc_flat">Get/Set the position **in seconds** of a sound instance by name.
+            Leave the second argument blank to return the current value.</span>
+        </span>
+    <span class="method apipage">
+            <a name="duration"><a class="lift" href="#duration">duration</a></a> <div class="clear"></div><code class="signature apipage">duration(\_name:[String](#)<span></span>) : [Float](#)</code><br/><span class="small_desc_flat">Get the duration of a sound instance by name.
+            Duration is set from the sound instance, so it is read only.</span>
         </span>
     <span class="method apipage">
             <a name="play"><a class="lift" href="#play">play</a></a> <div class="clear"></div><code class="signature apipage">play(\_name:[String](#)<span></span>) : [Void](#)</code><br/><span class="small_desc_flat">Play a sound instance by name</span>

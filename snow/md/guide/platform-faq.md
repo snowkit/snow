@@ -1,5 +1,4 @@
-
-<a href="{{{rel_path}}}index.html" id="logo"><img src="{{{rel_path}}}images/logo.png" /></a>
+[![Logo]({{{rel_path}}}images/logo.png)]({{{rel_path}}}index.html#guide)
 
 ---
 
@@ -52,3 +51,12 @@
 - audio - native OpenAL.framework is used
 
 <br/><br/>
+
+---
+
+##Back
+
+[To the guide]({{{rel_path}}}index.html#guide)
+
+<br/><br/><br/>
+<br/><br/><br/>

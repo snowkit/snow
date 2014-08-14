@@ -2,6 +2,7 @@
 body,html {
     font-family: helvetica, sans-serif;
     color:#3c3c3c;
+    /*font-size: 0.95em;*/
 }
 
 strong {
@@ -49,10 +50,13 @@ a:hover h2 {
     color:#06b4fb;
 }
 
+.package-root span {
+    padding-left: 0.5em;
+}
 
 .package-root {
     margin-top:0.8em;
-    margin-left:2em;
+    margin-left:1em;
 }
 
 .topmenu {
@@ -69,6 +73,15 @@ a:hover h2 {
     height: 18px;
     vertical-align: bottom;
 }
+
+
+.haxedesc {
+    text-align: left;
+    width: 100%;
+    position: relative;
+    display: block;
+}
+
 
 #logo {
     width: 100%;
@@ -94,6 +107,7 @@ a:hover h2 {
     font-size: 1.2em;
     display:inline-block;
     margin: 0.2em;
+    color:#058FC8;
 }
 
 .center {
@@ -252,27 +266,51 @@ li code {
     color:#f6007b;
 }
 
+
+.version {
+    color:#CFCFCF;
+    font-size: 0.75em;
+    text-align: right;
+    margin-right: 1.7em;
+    margin-bottom: -2.5em;
+    vertical-align: middle;
+}
+.version code {
+    padding: 0;
+    padding-top: 0.1em;
+    padding-bottom: 0.2em;
+    padding-left: 0.3em;
+    padding-right: 0.3em;
+    margin-top: -0.05em;
+}
+
+
 .small-image {
     margin-left: auto;
     margin-right: auto;
     display: block;
+    float:left;
     position: relative;
     width: auto;
-    height: 4.4em;
+    margin-right: 1em;
+    height: 3.5em;
+    text-align: left;
+    vertical-align: baseline;
+    z-index: 1;
 }
 
 .indent {
-    padding-left: 1.5em;
+    padding-left: 1.1em;
     display: block;
 }
 
 p {
     color:#858585;
-    font-size: 1.04em;
+    font-size: 1.0em;
     letter-spacing:0.0em;
     margin: 0.8em;
     margin-left:0.5em;
-    line-height:1.3em;
+    line-height:1.5em;
 }
 
 .section {

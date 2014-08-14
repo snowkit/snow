@@ -26,7 +26,11 @@ Internal class handled by `Windowing`, a less concrete implementation of the pla
 
 
 
-<h3>Members</h3> <hr/>
+<h3>Members</h3> <hr/><span class="member apipage">
+                <a name="manager"><a class="lift" href="#manager">manager</a></a><div class="clear"></div><code class="signature apipage">manager : [snow.window.Windowing](#)</code><br/></span>
+            <span class="small_desc_flat"></span><span class="member apipage">
+                <a name="lib"><a class="lift" href="#lib">lib</a></a><div class="clear"></div><code class="signature apipage">lib : [snow.Snow](#)</code><br/></span>
+            <span class="small_desc_flat"></span>
 
 
 
@@ -52,7 +56,13 @@ Internal class handled by `Windowing`, a less concrete implementation of the pla
             and the actual config that was used since the requested config could fail</span>
         </span>
     <span class="method apipage">
-            <a name="close"><a class="lift" href="#close">close</a></a> <div class="clear"></div><code class="signature apipage">close(window:[snow.window.Window](#)<span></span>) : [Void](#)</code><br/><span class="small_desc_flat">Close a given window handle</span>
+            <a name="close"><a class="lift" href="#close">close</a></a> <div class="clear"></div><code class="signature apipage">close(window:[snow.window.Window](#)<span></span>) : [Void](#)</code><br/><span class="small_desc_flat">Close a given window</span>
+        </span>
+    <span class="method apipage">
+            <a name="show"><a class="lift" href="#show">show</a></a> <div class="clear"></div><code class="signature apipage">show(window:[snow.window.Window](#)<span></span>) : [Void](#)</code><br/><span class="small_desc_flat">reopen this window once closed. Destroyed windows cannot be reopened, it must use create again</span>
+        </span>
+    <span class="method apipage">
+            <a name="destroy_window"><a class="lift" href="#destroy_window">destroy\_window</a></a> <div class="clear"></div><code class="signature apipage">destroy\_window(window:[snow.window.Window](#)<span></span>) : [Void](#)</code><br/><span class="small_desc_flat">Close a given window</span>
         </span>
     <span class="method apipage">
             <a name="update"><a class="lift" href="#update">update</a></a> <div class="clear"></div><code class="signature apipage">update(window:[snow.window.Window](#)<span></span>) : [Void](#)</code><br/><span class="small_desc_flat">Update a given window</span>
@@ -82,7 +92,7 @@ Internal class handled by `Windowing`, a less concrete implementation of the pla
             <a name="set_min_size"><a class="lift" href="#set_min_size">set\_min\_size</a></a> <div class="clear"></div><code class="signature apipage">set\_min\_size(window:[snow.window.Window](#)<span></span>, w:[Int](#)<span></span>, h:[Int](#)<span></span>) : [Void](#)</code><br/><span class="small_desc_flat">Set the min size of a window</span>
         </span>
     <span class="method apipage">
-            <a name="fullscreen"><a class="lift" href="#fullscreen">fullscreen</a></a> <div class="clear"></div><code class="signature apipage">fullscreen(window:[snow.window.Window](#)<span></span>, fullscreen:[Bool](#)<span></span>, windowed\_fullscreen:[Bool](#)<span>=true</span>) : [Void](#)</code><br/><span class="small_desc_flat">Set the fullscreen state of a window</span>
+            <a name="fullscreen"><a class="lift" href="#fullscreen">fullscreen</a></a> <div class="clear"></div><code class="signature apipage">fullscreen(window:[snow.window.Window](#)<span></span>, fullscreen:[Bool](#)<span></span>, fullscreen\_desktop:[Bool](#)<span>=true</span>) : [Void](#)</code><br/><span class="small_desc_flat">Set the fullscreen state of a window</span>
         </span>
     <span class="method apipage">
             <a name="bordered"><a class="lift" href="#bordered">bordered</a></a> <div class="clear"></div><code class="signature apipage">bordered(window:[snow.window.Window](#)<span></span>, bordered:[Bool](#)<span></span>) : [Void](#)</code><br/><span class="small_desc_flat">Set the bordered state of a window</span>

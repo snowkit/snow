@@ -26,7 +26,7 @@
 
 
 <h3>Properties</h3> <hr/><span class="member apipage">
-                <a name="run"><a class="lift" href="#run">run</a></a><div class="clear"></div><code class="signature apipage">run : [Dynamic](#)</code><br/></span>
+                <a name="run"><a class="lift" href="#run">run</a></a> <div class="clear"></div><code class="signature apipage">run : [Dynamic](#)</code><br/></span>
             <span class="small_desc_flat"></span>
 
 
