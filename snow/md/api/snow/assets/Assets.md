@@ -9,7 +9,7 @@
 <small>`snow.assets.Assets`</small>
 
 The asset system class gives you access to fetching and manipulating assets,
-    caching/uncaching assets, and handles loading files and data cross platform
+    handling loading files and data in a consistent cross platform way
 
 ---
 
@@ -28,7 +28,9 @@ The asset system class gives you access to fetching and manipulating assets,
                 <a name="assets_root"><a class="lift" href="#assets_root">assets\_root</a></a><div class="clear"></div><code class="signature apipage">assets\_root : [String](#)</code><br/></span>
             <span class="small_desc_flat">If the assets are not relative to the runtime root path, this value can adjust all asset paths. This is automatically handled and exists to allow control.</span><span class="member apipage">
                 <a name="manifest_path"><a class="lift" href="#manifest_path">manifest\_path</a></a><div class="clear"></div><code class="signature apipage">manifest\_path : [String](#)</code><br/></span>
-            <span class="small_desc_flat">The manifest file to parse for the asset list. By default, this is set to `manifest` from the build tools but the `App` class can have a custom `get_asset_list` handler use this value.</span>
+            <span class="small_desc_flat">The manifest file to parse for the asset list. By default, this is set to `manifest` from the build tools but the `App` class can have a custom `get_asset_list` handler use this value.</span><span class="member apipage">
+                <a name="strict"><a class="lift" href="#strict">strict</a></a><div class="clear"></div><code class="signature apipage">strict : [Bool](#)</code><br/></span>
+            <span class="small_desc_flat">The default approach to finding assets, overridable in each get call, this value will be used if the flag is not specified.</span>
 
 
 
@@ -63,9 +65,6 @@ The asset system class gives you access to fetching and manipulating assets,
         </span>
     <span class="method apipage">
             <a name="audio"><a class="lift" href="#audio">audio</a></a> <div class="clear"></div><code class="signature apipage">audio(\_id:[String](#)<span></span>, options:[snow.types.AssetAudioOptions](#)<span>=null</span>) : [snow.assets.AssetAudio](#)</code><br/><span class="small_desc_flat">Get an asset as a `AssetAudio`, used for audio files</span>
-        </span>
-    <span class="method apipage">
-            <a name="new"><a class="lift" href="#new">new</a></a> <div class="clear"></div><code class="signature apipage">new(\_lib:[snow.Snow](#)<span></span>) : [Void](#)</code><br/><span class="small_desc_flat"></span>
         </span>
     
 

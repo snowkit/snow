@@ -14,7 +14,7 @@ The openal specific implementation of SoundStream
 
 `class`extends <code><span>snow.platform.native.audio.SoundStream</span></code>
 <span class="meta">
-<br/>meta: @:noCompletion
+<br/>meta: @:noCompletion, @:log_as(&quot;audio&quot;)
 </span>
 
 
@@ -60,7 +60,7 @@ The openal specific implementation of SoundStream
             <a name="destroy"><a class="lift" href="#destroy">destroy</a></a> <div class="clear"></div><code class="signature apipage">destroy() : [Void](#)</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
-            <a name="new"><a class="lift" href="#new">new</a></a> <div class="clear"></div><code class="signature apipage">new(\_manager:[snow.audio.Audio](#)<span></span>, \_name:[String](#)<span></span>, \_audio\_info:[snow.types.AudioInfo](#)<span></span>) : [Void](#)</code><br/><span class="small_desc_flat"></span>
+            <a name="new"><a class="lift" href="#new">new</a></a> <div class="clear"></div><code class="signature apipage">new(\_manager:[snow.audio.Audio](#)<span></span>, \_name:[String](#)<span></span>) : [Void](#)</code><br/><span class="small_desc_flat"></span>
         </span>
     
 

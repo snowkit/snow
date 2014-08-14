@@ -14,7 +14,7 @@ Internal helper class for interaction with OpenAL.
 
 `class`
 <span class="meta">
-<br/>meta: @:noCompletion
+<br/>meta: @:noCompletion, @:log_as(&quot;audio&quot;)
 </span>
 
 

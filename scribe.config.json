@@ -1,6 +1,6 @@
 { 
 	"input":"scribe.types.xml", 
-	"lime_project":"/Users/sven/dev/snow/tests/0_empty_window/project.lime", 
+	"flow_project":"/Users/sven/dev/snow/tests/empty/project.flow", 
 	"output":"generated_api.json", 
 	"force":true,
 	"allowed_packages":"snow" 

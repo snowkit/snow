@@ -47,6 +47,12 @@
             <a name="close"><a class="lift" href="#close">close</a></a> <div class="clear"></div><code class="signature apipage">close(window:[snow.window.Window](#)<span></span>) : [Void](#)</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
+            <a name="show"><a class="lift" href="#show">show</a></a> <div class="clear"></div><code class="signature apipage">show(window:[snow.window.Window](#)<span></span>) : [Void](#)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="destroy_window"><a class="lift" href="#destroy_window">destroy\_window</a></a> <div class="clear"></div><code class="signature apipage">destroy\_window(window:[snow.window.Window](#)<span></span>) : [Void](#)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
             <a name="update"><a class="lift" href="#update">update</a></a> <div class="clear"></div><code class="signature apipage">update(window:[snow.window.Window](#)<span></span>) : [Void](#)</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
@@ -74,7 +80,7 @@
             <a name="set_min_size"><a class="lift" href="#set_min_size">set\_min\_size</a></a> <div class="clear"></div><code class="signature apipage">set\_min\_size(window:[snow.window.Window](#)<span></span>, w:[Int](#)<span></span>, h:[Int](#)<span></span>) : [Void](#)</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
-            <a name="fullscreen"><a class="lift" href="#fullscreen">fullscreen</a></a> <div class="clear"></div><code class="signature apipage">fullscreen(window:[snow.window.Window](#)<span></span>, fullscreen:[Bool](#)<span></span>, windowed\_fullscreen:[Bool](#)<span>=true</span>) : [Void](#)</code><br/><span class="small_desc_flat"></span>
+            <a name="fullscreen"><a class="lift" href="#fullscreen">fullscreen</a></a> <div class="clear"></div><code class="signature apipage">fullscreen(window:[snow.window.Window](#)<span></span>, fullscreen:[Bool](#)<span></span>, fullscreen\_desktop:[Bool](#)<span>=true</span>) : [Void](#)</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
             <a name="bordered"><a class="lift" href="#bordered">bordered</a></a> <div class="clear"></div><code class="signature apipage">bordered(window:[snow.window.Window](#)<span></span>, bordered:[Bool](#)<span></span>) : [Void](#)</code><br/><span class="small_desc_flat"></span>

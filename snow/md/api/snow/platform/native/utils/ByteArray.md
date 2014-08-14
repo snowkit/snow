@@ -30,25 +30,25 @@
 
 
 <h3>Properties</h3> <hr/><span class="member apipage">
-                <a name="bytesAvailable"><a class="lift" href="#bytesAvailable">bytesAvailable</a></a><div class="clear"></div><code class="signature apipage">bytesAvailable : [Int](#)</code><br/></span>
+                <a name="bytesAvailable"><a class="lift" href="#bytesAvailable">bytesAvailable</a></a> <div class="clear"></div><code class="signature apipage">bytesAvailable : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="endian"><a class="lift" href="#endian">endian</a></a><div class="clear"></div><code class="signature apipage">endian : [String](#)</code><br/></span>
+                <a name="endian"><a class="lift" href="#endian">endian</a></a> <div class="clear"></div><code class="signature apipage">endian : [String](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="byteLength"><a class="lift" href="#byteLength">byteLength</a></a><div class="clear"></div><code class="signature apipage">byteLength : [Int](#)</code><br/></span>
+                <a name="byteLength"><a class="lift" href="#byteLength">byteLength</a></a> <div class="clear"></div><code class="signature apipage">byteLength : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="__get"><a class="lift" href="#__get">\_\_get</a></a><div class="clear"></div><code class="signature apipage">\_\_get : [Int](#)&nbsp;-&gt; [Int](#)</code><br/></span>
+                <a name="__get"><a class="lift" href="#__get">\_\_get</a></a> <div class="clear"></div><code class="signature apipage">\_\_get : [Int](#)&nbsp;-&gt; [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="__set"><a class="lift" href="#__set">\_\_set</a></a><div class="clear"></div><code class="signature apipage">\_\_set : [Int](#)&nbsp; -&gt; [Int](#)&nbsp;-&gt; [Void](#)</code><br/></span>
+                <a name="__set"><a class="lift" href="#__set">\_\_set</a></a> <div class="clear"></div><code class="signature apipage">\_\_set : [Int](#)&nbsp; -&gt; [Int](#)&nbsp;-&gt; [Void](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="readBoolean"><a class="lift" href="#readBoolean">readBoolean</a></a><div class="clear"></div><code class="signature apipage">readBoolean : [Dynamic](#)</code><br/></span>
+                <a name="readBoolean"><a class="lift" href="#readBoolean">readBoolean</a></a> <div class="clear"></div><code class="signature apipage">readBoolean : [Dynamic](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="readByte"><a class="lift" href="#readByte">readByte</a></a><div class="clear"></div><code class="signature apipage">readByte : [Dynamic](#)</code><br/></span>
+                <a name="readByte"><a class="lift" href="#readByte">readByte</a></a> <div class="clear"></div><code class="signature apipage">readByte : [Dynamic](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="readMultiByte"><a class="lift" href="#readMultiByte">readMultiByte</a></a><div class="clear"></div><code class="signature apipage">readMultiByte : [Int](#)&nbsp; -&gt; [String](#)&nbsp;-&gt; [String](#)</code><br/></span>
+                <a name="readMultiByte"><a class="lift" href="#readMultiByte">readMultiByte</a></a> <div class="clear"></div><code class="signature apipage">readMultiByte : [Int](#)&nbsp; -&gt; [String](#)&nbsp;-&gt; [String](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="readUnsignedByte"><a class="lift" href="#readUnsignedByte">readUnsignedByte</a></a><div class="clear"></div><code class="signature apipage">readUnsignedByte : [Dynamic](#)</code><br/></span>
+                <a name="readUnsignedByte"><a class="lift" href="#readUnsignedByte">readUnsignedByte</a></a> <div class="clear"></div><code class="signature apipage">readUnsignedByte : [Dynamic](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="writeByte"><a class="lift" href="#writeByte">writeByte</a></a><div class="clear"></div><code class="signature apipage">writeByte : [Int](#)&nbsp;-&gt; [Void](#)</code><br/></span>
+                <a name="writeByte"><a class="lift" href="#writeByte">writeByte</a></a> <div class="clear"></div><code class="signature apipage">writeByte : [Int](#)&nbsp;-&gt; [Void](#)</code><br/></span>
             <span class="small_desc_flat"></span>
 
 

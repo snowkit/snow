@@ -24,9 +24,9 @@
 
 
 <h3>Properties</h3> <hr/><span class="member apipage">
-                <a name="id"><a class="lift" href="#id">id</a></a><div class="clear"></div><code class="signature apipage">id : [Int](#)</code><br/></span>
+                <a name="id"><a class="lift" href="#id">id</a></a> <div class="clear"></div><code class="signature apipage">id : [Int](#)</code><br/></span>
             <span class="small_desc_flat">The native GL handle/id. read only</span><span class="member apipage">
-                <a name="invalidated"><a class="lift" href="#invalidated">invalidated</a></a><div class="clear"></div><code class="signature apipage">invalidated : [Bool](#)</code><br/></span>
+                <a name="invalidated"><a class="lift" href="#invalidated">invalidated</a></a> <div class="clear"></div><code class="signature apipage">invalidated : [Bool](#)</code><br/></span>
             <span class="small_desc_flat">The invalidated state. read only</span>
 
 

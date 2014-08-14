@@ -1,5 +1,5 @@
 
-[![Logo]({{{rel_path}}}images/logo.png)]({{{rel_path}}}index.html)
+[![Logo]({{{rel_path}}}images/logo.png)]({{{rel_path}}}index.html#guide)
 
 ---
 
@@ -81,5 +81,11 @@ And then rendering with interpolated values, where `alpha_time` is the current %
 tests / examples 
 
 
-&nbsp;
-&nbsp;
+---
+
+##Back
+
+[To the guide]({{{rel_path}}}index.html#guide)
+
+<br/><br/><br/>
+<br/><br/><br/>

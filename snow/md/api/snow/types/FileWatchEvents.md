@@ -26,13 +26,13 @@
 
 
 <h3>Members</h3> <hr/><span class="member apipage">
-                <a name="fe_unknown"><a class="lift" href="#fe_unknown">fe\_unknown</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">fe\_unknown : [Int](#)</code><br/></span>
+                <a name="fe_unknown"><a class="lift" href="#fe_unknown">fe\_unknown</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">fe\_unknown : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="fe_modify"><a class="lift" href="#fe_modify">fe\_modify</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">fe\_modify : [Int](#)</code><br/></span>
+                <a name="fe_modify"><a class="lift" href="#fe_modify">fe\_modify</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">fe\_modify : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="fe_remove"><a class="lift" href="#fe_remove">fe\_remove</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">fe\_remove : [Int](#)</code><br/></span>
+                <a name="fe_remove"><a class="lift" href="#fe_remove">fe\_remove</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">fe\_remove : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="fe_create"><a class="lift" href="#fe_create">fe\_create</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">fe\_create : [Int](#)</code><br/></span>
+                <a name="fe_create"><a class="lift" href="#fe_create">fe\_create</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">fe\_create : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span>
 
 

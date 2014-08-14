@@ -28,14 +28,16 @@
             <span class="small_desc_flat">The application configuration specifics (like window, runtime, and asset lists)</span><span class="member apipage">
                 <a name="snow_config"><a class="lift" href="#snow_config">snow\_config</a></a><div class="clear"></div><code class="signature apipage">snow\_config : [snow.types.SnowConfig](#)</code><br/></span>
             <span class="small_desc_flat">The configuration for snow itself, set via build project flags</span><span class="member apipage">
-                <a name="windowing"><a class="lift" href="#windowing">windowing</a></a><div class="clear"></div><code class="signature apipage">windowing : [snow.window.Windowing](#)</code><br/></span>
-            <span class="small_desc_flat">The window manager</span><span class="member apipage">
+                <a name="io"><a class="lift" href="#io">io</a></a><div class="clear"></div><code class="signature apipage">io : [snow.io.IO](#)</code><br/></span>
+            <span class="small_desc_flat">The io system</span><span class="member apipage">
                 <a name="input"><a class="lift" href="#input">input</a></a><div class="clear"></div><code class="signature apipage">input : [snow.input.Input](#)</code><br/></span>
             <span class="small_desc_flat">The input system</span><span class="member apipage">
-                <a name="audio"><a class="lift" href="#audio">audio</a></a><div class="clear"></div><code class="signature apipage">audio : [snow.audio.Audio](#)</code><br/></span>
-            <span class="small_desc_flat">The audio system</span><span class="member apipage">
                 <a name="assets"><a class="lift" href="#assets">assets</a></a><div class="clear"></div><code class="signature apipage">assets : [snow.assets.Assets](#)</code><br/></span>
             <span class="small_desc_flat">The asset system</span><span class="member apipage">
+                <a name="audio"><a class="lift" href="#audio">audio</a></a><div class="clear"></div><code class="signature apipage">audio : [snow.audio.Audio](#)</code><br/></span>
+            <span class="small_desc_flat">The audio system</span><span class="member apipage">
+                <a name="windowing"><a class="lift" href="#windowing">windowing</a></a><div class="clear"></div><code class="signature apipage">windowing : [snow.window.Windowing](#)</code><br/></span>
+            <span class="small_desc_flat">The window manager</span><span class="member apipage">
                 <a name="shutting_down"><a class="lift" href="#shutting_down">shutting\_down</a></a><div class="clear"></div><code class="signature apipage">shutting\_down : [Bool](#)</code><br/></span>
             <span class="small_desc_flat">Set if shut down has commenced</span><span class="member apipage">
                 <a name="has_shutdown"><a class="lift" href="#has_shutdown">has\_shutdown</a></a><div class="clear"></div><code class="signature apipage">has\_shutdown : [Bool](#)</code><br/></span>
@@ -46,9 +48,9 @@
 
 
 <h3>Properties</h3> <hr/><span class="member apipage">
-                <a name="time"><a class="lift" href="#time">time</a></a><div class="clear"></div><code class="signature apipage">time : [Float](#)</code><br/></span>
+                <a name="time"><a class="lift" href="#time">time</a></a> <div class="clear"></div><code class="signature apipage">time : [Float](#)</code><br/></span>
             <span class="small_desc_flat">The current timestamp</span><span class="member apipage">
-                <a name="uniqueid"><a class="lift" href="#uniqueid">uniqueid</a></a><div class="clear"></div><code class="signature apipage">uniqueid : [String](#)</code><br/></span>
+                <a name="uniqueid"><a class="lift" href="#uniqueid">uniqueid</a></a> <div class="clear"></div><code class="signature apipage">uniqueid : [String](#)</code><br/></span>
             <span class="small_desc_flat">Generate a unique ID to use</span>
 
 
@@ -64,6 +66,10 @@
         </span>
     <span class="method apipage">
             <a name="load"><a class="lift" href="#load">load</a></a> <span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">load(library:[String](#)<span></span>, method:[String](#)<span></span>, args:[Int](#)<span>=0</span>) : [Dynamic](#)</code><br/><span class="small_desc_flat">Loads a function out of a library</span>
+        </span>
+    <span class="method apipage">
+            <a name="next"><a class="lift" href="#next">next</a></a> <span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">next(func:[Dynamic](#)<span></span>) : [Void](#)</code><br/><span class="small_desc_flat">Call a function at the start of the next frame,
+            useful for async calls in a sync context, allowing the sync function to return safely before the onload is fired.</span>
         </span>
     
 

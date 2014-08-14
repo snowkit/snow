@@ -34,18 +34,26 @@ Window configuration information for creating windows
             <span class="small_desc_flat">create a stencil buffer at the specified bit depth (i.e `8` or `16` bit stencil buffer). default: 0</span><span class="member apipage">
                 <a name="resizable"><a class="lift" href="#resizable">resizable</a></a><div class="clear"></div><code class="signature apipage">resizable : [Null](#)&lt;[Bool](#)&gt;</code><br/></span>
             <span class="small_desc_flat">allow the window to be resized, default: true</span><span class="member apipage">
+                <a name="red_bits"><a class="lift" href="#red_bits">red\_bits</a></a><div class="clear"></div><code class="signature apipage">red\_bits : [Null](#)&lt;[Int](#)&gt;</code><br/></span>
+            <span class="small_desc_flat">set the number of red bits for the rendering to use. Unless you need to change this, don't. default: 8</span><span class="member apipage">
                 <a name="no_input"><a class="lift" href="#no_input">no\_input</a></a><div class="clear"></div><code class="signature apipage">no\_input : [Null](#)&lt;[Bool](#)&gt;</code><br/></span>
             <span class="small_desc_flat">disables input arriving at/from this window. default: false</span><span class="member apipage">
                 <a name="height"><a class="lift" href="#height">height</a></a><div class="clear"></div><code class="signature apipage">height : [Null](#)&lt;[Int](#)&gt;</code><br/></span>
             <span class="small_desc_flat">window width at creation, default: 640</span><span class="member apipage">
+                <a name="green_bits"><a class="lift" href="#green_bits">green\_bits</a></a><div class="clear"></div><code class="signature apipage">green\_bits : [Null](#)&lt;[Int](#)&gt;</code><br/></span>
+            <span class="small_desc_flat">set the number of green bits for the rendering to use. Unless you need to change this, don't. default: 8</span><span class="member apipage">
                 <a name="fullscreen"><a class="lift" href="#fullscreen">fullscreen</a></a><div class="clear"></div><code class="signature apipage">fullscreen : [Null](#)&lt;[Bool](#)&gt;</code><br/></span>
             <span class="small_desc_flat">create in fullscreen, default: false, `mobile` true</span><span class="member apipage">
                 <a name="depth_bits"><a class="lift" href="#depth_bits">depth\_bits</a></a><div class="clear"></div><code class="signature apipage">depth\_bits : [Null](#)&lt;[Int](#)&gt;</code><br/></span>
             <span class="small_desc_flat">create a depth buffer at the specified bit depth (i.e `0` or `16` bit depth buffer) default: 0</span><span class="member apipage">
                 <a name="borderless"><a class="lift" href="#borderless">borderless</a></a><div class="clear"></div><code class="signature apipage">borderless : [Null](#)&lt;[Bool](#)&gt;</code><br/></span>
             <span class="small_desc_flat">create as a borderless window, default: false</span><span class="member apipage">
+                <a name="blue_bits"><a class="lift" href="#blue_bits">blue\_bits</a></a><div class="clear"></div><code class="signature apipage">blue\_bits : [Null](#)&lt;[Int](#)&gt;</code><br/></span>
+            <span class="small_desc_flat">set the number of blue bits for the rendering to use. Unless you need to change this, don't. default: 8</span><span class="member apipage">
                 <a name="antialiasing"><a class="lift" href="#antialiasing">antialiasing</a></a><div class="clear"></div><code class="signature apipage">antialiasing : [Null](#)&lt;[Int](#)&gt;</code><br/></span>
-            <span class="small_desc_flat">a value of `0`, `2`, `4`, `8` or other valid antialiasing flags. default: 0</span>
+            <span class="small_desc_flat">a value of `0`, `2`, `4`, `8` or other valid antialiasing flags. default: 0</span><span class="member apipage">
+                <a name="alpha_bits"><a class="lift" href="#alpha_bits">alpha\_bits</a></a><div class="clear"></div><code class="signature apipage">alpha\_bits : [Null](#)&lt;[Int](#)&gt;</code><br/></span>
+            <span class="small_desc_flat">set the number of alpha bits for the rendering to use. Unless you need to change this, don't. default: 8</span>
 
 
 

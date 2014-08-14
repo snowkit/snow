@@ -1,5 +1,4 @@
-
-<a href="{{{rel_path}}}index.html" id="logo"><img src="{{{rel_path}}}images/logo.png" /></a>
+[![Logo]({{{rel_path}}}images/logo.png)]({{{rel_path}}}index.html#guide)
 
 ---
 
@@ -20,3 +19,13 @@
 - `windows` 32 bit [only](https://github.com/underscorediscovery/snow/issues/18)
 - `android` armv7, armv5, x86
 - `ios` armv7a, armv6, simulator(i386)
+
+
+---
+
+##Back
+
+[To the guide]({{{rel_path}}}index.html#guide)
+
+<br/><br/><br/>
+<br/><br/><br/>

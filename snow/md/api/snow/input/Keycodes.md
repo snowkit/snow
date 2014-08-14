@@ -27,477 +27,477 @@ but they aren't specific to SDL so they are used generically
 
 
 <h3>Members</h3> <hr/><span class="member apipage">
-                <a name="UNKNOWN"><a class="lift" href="#UNKNOWN">UNKNOWN</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">UNKNOWN : [Int](#)</code><br/></span>
+                <a name="unknown"><a class="lift" href="#unknown">unknown</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">unknown : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="RETURN"><a class="lift" href="#RETURN">RETURN</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">RETURN : [Int](#)</code><br/></span>
+                <a name="enter"><a class="lift" href="#enter">enter</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">enter : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="ESCAPE"><a class="lift" href="#ESCAPE">ESCAPE</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">ESCAPE : [Int](#)</code><br/></span>
+                <a name="escape"><a class="lift" href="#escape">escape</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">escape : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="BACKSPACE"><a class="lift" href="#BACKSPACE">BACKSPACE</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">BACKSPACE : [Int](#)</code><br/></span>
+                <a name="backspace"><a class="lift" href="#backspace">backspace</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">backspace : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="TAB"><a class="lift" href="#TAB">TAB</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">TAB : [Int](#)</code><br/></span>
+                <a name="tab"><a class="lift" href="#tab">tab</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">tab : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="SPACE"><a class="lift" href="#SPACE">SPACE</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">SPACE : [Int](#)</code><br/></span>
+                <a name="space"><a class="lift" href="#space">space</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">space : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="EXCLAIM"><a class="lift" href="#EXCLAIM">EXCLAIM</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">EXCLAIM : [Int](#)</code><br/></span>
+                <a name="exclaim"><a class="lift" href="#exclaim">exclaim</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">exclaim : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="QUOTEDBL"><a class="lift" href="#QUOTEDBL">QUOTEDBL</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">QUOTEDBL : [Int](#)</code><br/></span>
+                <a name="quotedbl"><a class="lift" href="#quotedbl">quotedbl</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">quotedbl : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="HASH"><a class="lift" href="#HASH">HASH</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">HASH : [Int](#)</code><br/></span>
+                <a name="hash"><a class="lift" href="#hash">hash</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">hash : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="PERCENT"><a class="lift" href="#PERCENT">PERCENT</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">PERCENT : [Int](#)</code><br/></span>
+                <a name="percent"><a class="lift" href="#percent">percent</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">percent : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="DOLLAR"><a class="lift" href="#DOLLAR">DOLLAR</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">DOLLAR : [Int](#)</code><br/></span>
+                <a name="dollar"><a class="lift" href="#dollar">dollar</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">dollar : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="AMPERSAND"><a class="lift" href="#AMPERSAND">AMPERSAND</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">AMPERSAND : [Int](#)</code><br/></span>
+                <a name="ampersand"><a class="lift" href="#ampersand">ampersand</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">ampersand : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="QUOTE"><a class="lift" href="#QUOTE">QUOTE</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">QUOTE : [Int](#)</code><br/></span>
+                <a name="quote"><a class="lift" href="#quote">quote</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">quote : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="LEFTPAREN"><a class="lift" href="#LEFTPAREN">LEFTPAREN</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">LEFTPAREN : [Int](#)</code><br/></span>
+                <a name="leftparen"><a class="lift" href="#leftparen">leftparen</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">leftparen : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="RIGHTPAREN"><a class="lift" href="#RIGHTPAREN">RIGHTPAREN</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">RIGHTPAREN : [Int](#)</code><br/></span>
+                <a name="rightparen"><a class="lift" href="#rightparen">rightparen</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">rightparen : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="ASTERISK"><a class="lift" href="#ASTERISK">ASTERISK</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">ASTERISK : [Int](#)</code><br/></span>
+                <a name="asterisk"><a class="lift" href="#asterisk">asterisk</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">asterisk : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="PLUS"><a class="lift" href="#PLUS">PLUS</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">PLUS : [Int](#)</code><br/></span>
+                <a name="plus"><a class="lift" href="#plus">plus</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">plus : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="COMMA"><a class="lift" href="#COMMA">COMMA</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">COMMA : [Int](#)</code><br/></span>
+                <a name="comma"><a class="lift" href="#comma">comma</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">comma : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="MINUS"><a class="lift" href="#MINUS">MINUS</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">MINUS : [Int](#)</code><br/></span>
+                <a name="minus"><a class="lift" href="#minus">minus</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">minus : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="PERIOD"><a class="lift" href="#PERIOD">PERIOD</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">PERIOD : [Int](#)</code><br/></span>
+                <a name="period"><a class="lift" href="#period">period</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">period : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="SLASH"><a class="lift" href="#SLASH">SLASH</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">SLASH : [Int](#)</code><br/></span>
+                <a name="slash"><a class="lift" href="#slash">slash</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">slash : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="KEY_0"><a class="lift" href="#KEY_0">KEY\_0</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">KEY\_0 : [Int](#)</code><br/></span>
+                <a name="key_0"><a class="lift" href="#key_0">key\_0</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">key\_0 : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="KEY_1"><a class="lift" href="#KEY_1">KEY\_1</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">KEY\_1 : [Int](#)</code><br/></span>
+                <a name="key_1"><a class="lift" href="#key_1">key\_1</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">key\_1 : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="KEY_2"><a class="lift" href="#KEY_2">KEY\_2</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">KEY\_2 : [Int](#)</code><br/></span>
+                <a name="key_2"><a class="lift" href="#key_2">key\_2</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">key\_2 : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="KEY_3"><a class="lift" href="#KEY_3">KEY\_3</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">KEY\_3 : [Int](#)</code><br/></span>
+                <a name="key_3"><a class="lift" href="#key_3">key\_3</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">key\_3 : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="KEY_4"><a class="lift" href="#KEY_4">KEY\_4</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">KEY\_4 : [Int](#)</code><br/></span>
+                <a name="key_4"><a class="lift" href="#key_4">key\_4</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">key\_4 : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="KEY_5"><a class="lift" href="#KEY_5">KEY\_5</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">KEY\_5 : [Int](#)</code><br/></span>
+                <a name="key_5"><a class="lift" href="#key_5">key\_5</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">key\_5 : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="KEY_6"><a class="lift" href="#KEY_6">KEY\_6</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">KEY\_6 : [Int](#)</code><br/></span>
+                <a name="key_6"><a class="lift" href="#key_6">key\_6</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">key\_6 : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="KEY_7"><a class="lift" href="#KEY_7">KEY\_7</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">KEY\_7 : [Int](#)</code><br/></span>
+                <a name="key_7"><a class="lift" href="#key_7">key\_7</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">key\_7 : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="KEY_8"><a class="lift" href="#KEY_8">KEY\_8</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">KEY\_8 : [Int](#)</code><br/></span>
+                <a name="key_8"><a class="lift" href="#key_8">key\_8</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">key\_8 : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="KEY_9"><a class="lift" href="#KEY_9">KEY\_9</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">KEY\_9 : [Int](#)</code><br/></span>
+                <a name="key_9"><a class="lift" href="#key_9">key\_9</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">key\_9 : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="COLON"><a class="lift" href="#COLON">COLON</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">COLON : [Int](#)</code><br/></span>
+                <a name="colon"><a class="lift" href="#colon">colon</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">colon : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="SEMICOLON"><a class="lift" href="#SEMICOLON">SEMICOLON</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">SEMICOLON : [Int](#)</code><br/></span>
+                <a name="semicolon"><a class="lift" href="#semicolon">semicolon</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">semicolon : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="LESS"><a class="lift" href="#LESS">LESS</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">LESS : [Int](#)</code><br/></span>
+                <a name="less"><a class="lift" href="#less">less</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">less : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="EQUALS"><a class="lift" href="#EQUALS">EQUALS</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">EQUALS : [Int](#)</code><br/></span>
+                <a name="equals"><a class="lift" href="#equals">equals</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">equals : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="GREATER"><a class="lift" href="#GREATER">GREATER</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">GREATER : [Int](#)</code><br/></span>
+                <a name="greater"><a class="lift" href="#greater">greater</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">greater : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="QUESTION"><a class="lift" href="#QUESTION">QUESTION</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">QUESTION : [Int](#)</code><br/></span>
+                <a name="question"><a class="lift" href="#question">question</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">question : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="AT"><a class="lift" href="#AT">AT</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">AT : [Int](#)</code><br/></span>
+                <a name="at"><a class="lift" href="#at">at</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">at : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="LEFTBRACKET"><a class="lift" href="#LEFTBRACKET">LEFTBRACKET</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">LEFTBRACKET : [Int](#)</code><br/></span>
+                <a name="leftbracket"><a class="lift" href="#leftbracket">leftbracket</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">leftbracket : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="BACKSLASH"><a class="lift" href="#BACKSLASH">BACKSLASH</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">BACKSLASH : [Int](#)</code><br/></span>
+                <a name="backslash"><a class="lift" href="#backslash">backslash</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">backslash : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="RIGHTBRACKET"><a class="lift" href="#RIGHTBRACKET">RIGHTBRACKET</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">RIGHTBRACKET : [Int](#)</code><br/></span>
+                <a name="rightbracket"><a class="lift" href="#rightbracket">rightbracket</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">rightbracket : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="CARET"><a class="lift" href="#CARET">CARET</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">CARET : [Int](#)</code><br/></span>
+                <a name="caret"><a class="lift" href="#caret">caret</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">caret : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="UNDERSCORE"><a class="lift" href="#UNDERSCORE">UNDERSCORE</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">UNDERSCORE : [Int](#)</code><br/></span>
+                <a name="underscore"><a class="lift" href="#underscore">underscore</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">underscore : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="BACKQUOTE"><a class="lift" href="#BACKQUOTE">BACKQUOTE</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">BACKQUOTE : [Int](#)</code><br/></span>
+                <a name="backquote"><a class="lift" href="#backquote">backquote</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">backquote : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="KEY_a"><a class="lift" href="#KEY_a">KEY\_a</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">KEY\_a : [Int](#)</code><br/></span>
+                <a name="key_a"><a class="lift" href="#key_a">key\_a</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">key\_a : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="KEY_b"><a class="lift" href="#KEY_b">KEY\_b</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">KEY\_b : [Int](#)</code><br/></span>
+                <a name="key_b"><a class="lift" href="#key_b">key\_b</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">key\_b : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="KEY_c"><a class="lift" href="#KEY_c">KEY\_c</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">KEY\_c : [Int](#)</code><br/></span>
+                <a name="key_c"><a class="lift" href="#key_c">key\_c</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">key\_c : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="KEY_d"><a class="lift" href="#KEY_d">KEY\_d</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">KEY\_d : [Int](#)</code><br/></span>
+                <a name="key_d"><a class="lift" href="#key_d">key\_d</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">key\_d : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="KEY_e"><a class="lift" href="#KEY_e">KEY\_e</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">KEY\_e : [Int](#)</code><br/></span>
+                <a name="key_e"><a class="lift" href="#key_e">key\_e</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">key\_e : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="KEY_f"><a class="lift" href="#KEY_f">KEY\_f</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">KEY\_f : [Int](#)</code><br/></span>
+                <a name="key_f"><a class="lift" href="#key_f">key\_f</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">key\_f : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="KEY_g"><a class="lift" href="#KEY_g">KEY\_g</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">KEY\_g : [Int](#)</code><br/></span>
+                <a name="key_g"><a class="lift" href="#key_g">key\_g</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">key\_g : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="KEY_h"><a class="lift" href="#KEY_h">KEY\_h</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">KEY\_h : [Int](#)</code><br/></span>
+                <a name="key_h"><a class="lift" href="#key_h">key\_h</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">key\_h : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="KEY_i"><a class="lift" href="#KEY_i">KEY\_i</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">KEY\_i : [Int](#)</code><br/></span>
+                <a name="key_i"><a class="lift" href="#key_i">key\_i</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">key\_i : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="KEY_j"><a class="lift" href="#KEY_j">KEY\_j</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">KEY\_j : [Int](#)</code><br/></span>
+                <a name="key_j"><a class="lift" href="#key_j">key\_j</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">key\_j : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="KEY_k"><a class="lift" href="#KEY_k">KEY\_k</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">KEY\_k : [Int](#)</code><br/></span>
+                <a name="key_k"><a class="lift" href="#key_k">key\_k</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">key\_k : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="KEY_l"><a class="lift" href="#KEY_l">KEY\_l</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">KEY\_l : [Int](#)</code><br/></span>
+                <a name="key_l"><a class="lift" href="#key_l">key\_l</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">key\_l : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="KEY_m"><a class="lift" href="#KEY_m">KEY\_m</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">KEY\_m : [Int](#)</code><br/></span>
+                <a name="key_m"><a class="lift" href="#key_m">key\_m</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">key\_m : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="KEY_n"><a class="lift" href="#KEY_n">KEY\_n</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">KEY\_n : [Int](#)</code><br/></span>
+                <a name="key_n"><a class="lift" href="#key_n">key\_n</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">key\_n : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="KEY_o"><a class="lift" href="#KEY_o">KEY\_o</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">KEY\_o : [Int](#)</code><br/></span>
+                <a name="key_o"><a class="lift" href="#key_o">key\_o</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">key\_o : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="KEY_p"><a class="lift" href="#KEY_p">KEY\_p</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">KEY\_p : [Int](#)</code><br/></span>
+                <a name="key_p"><a class="lift" href="#key_p">key\_p</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">key\_p : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="KEY_q"><a class="lift" href="#KEY_q">KEY\_q</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">KEY\_q : [Int](#)</code><br/></span>
+                <a name="key_q"><a class="lift" href="#key_q">key\_q</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">key\_q : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="KEY_r"><a class="lift" href="#KEY_r">KEY\_r</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">KEY\_r : [Int](#)</code><br/></span>
+                <a name="key_r"><a class="lift" href="#key_r">key\_r</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">key\_r : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="KEY_s"><a class="lift" href="#KEY_s">KEY\_s</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">KEY\_s : [Int](#)</code><br/></span>
+                <a name="key_s"><a class="lift" href="#key_s">key\_s</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">key\_s : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="KEY_t"><a class="lift" href="#KEY_t">KEY\_t</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">KEY\_t : [Int](#)</code><br/></span>
+                <a name="key_t"><a class="lift" href="#key_t">key\_t</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">key\_t : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="KEY_u"><a class="lift" href="#KEY_u">KEY\_u</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">KEY\_u : [Int](#)</code><br/></span>
+                <a name="key_u"><a class="lift" href="#key_u">key\_u</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">key\_u : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="KEY_v"><a class="lift" href="#KEY_v">KEY\_v</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">KEY\_v : [Int](#)</code><br/></span>
+                <a name="key_v"><a class="lift" href="#key_v">key\_v</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">key\_v : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="KEY_w"><a class="lift" href="#KEY_w">KEY\_w</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">KEY\_w : [Int](#)</code><br/></span>
+                <a name="key_w"><a class="lift" href="#key_w">key\_w</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">key\_w : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="KEY_x"><a class="lift" href="#KEY_x">KEY\_x</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">KEY\_x : [Int](#)</code><br/></span>
+                <a name="key_x"><a class="lift" href="#key_x">key\_x</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">key\_x : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="KEY_y"><a class="lift" href="#KEY_y">KEY\_y</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">KEY\_y : [Int](#)</code><br/></span>
+                <a name="key_y"><a class="lift" href="#key_y">key\_y</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">key\_y : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="KEY_z"><a class="lift" href="#KEY_z">KEY\_z</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">KEY\_z : [Int](#)</code><br/></span>
+                <a name="key_z"><a class="lift" href="#key_z">key\_z</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">key\_z : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="CAPSLOCK"><a class="lift" href="#CAPSLOCK">CAPSLOCK</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">CAPSLOCK : [Int](#)</code><br/></span>
+                <a name="capslock"><a class="lift" href="#capslock">capslock</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">capslock : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="F1"><a class="lift" href="#F1">F1</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">F1 : [Int](#)</code><br/></span>
+                <a name="f1"><a class="lift" href="#f1">f1</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">f1 : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="F2"><a class="lift" href="#F2">F2</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">F2 : [Int](#)</code><br/></span>
+                <a name="f2"><a class="lift" href="#f2">f2</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">f2 : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="F3"><a class="lift" href="#F3">F3</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">F3 : [Int](#)</code><br/></span>
+                <a name="f3"><a class="lift" href="#f3">f3</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">f3 : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="F4"><a class="lift" href="#F4">F4</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">F4 : [Int](#)</code><br/></span>
+                <a name="f4"><a class="lift" href="#f4">f4</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">f4 : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="F5"><a class="lift" href="#F5">F5</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">F5 : [Int](#)</code><br/></span>
+                <a name="f5"><a class="lift" href="#f5">f5</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">f5 : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="F6"><a class="lift" href="#F6">F6</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">F6 : [Int](#)</code><br/></span>
+                <a name="f6"><a class="lift" href="#f6">f6</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">f6 : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="F7"><a class="lift" href="#F7">F7</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">F7 : [Int](#)</code><br/></span>
+                <a name="f7"><a class="lift" href="#f7">f7</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">f7 : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="F8"><a class="lift" href="#F8">F8</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">F8 : [Int](#)</code><br/></span>
+                <a name="f8"><a class="lift" href="#f8">f8</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">f8 : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="F9"><a class="lift" href="#F9">F9</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">F9 : [Int](#)</code><br/></span>
+                <a name="f9"><a class="lift" href="#f9">f9</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">f9 : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="F10"><a class="lift" href="#F10">F10</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">F10 : [Int](#)</code><br/></span>
+                <a name="f10"><a class="lift" href="#f10">f10</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">f10 : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="F11"><a class="lift" href="#F11">F11</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">F11 : [Int](#)</code><br/></span>
+                <a name="f11"><a class="lift" href="#f11">f11</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">f11 : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="F12"><a class="lift" href="#F12">F12</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">F12 : [Int](#)</code><br/></span>
+                <a name="f12"><a class="lift" href="#f12">f12</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">f12 : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="PRINTSCREEN"><a class="lift" href="#PRINTSCREEN">PRINTSCREEN</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">PRINTSCREEN : [Int](#)</code><br/></span>
+                <a name="printscreen"><a class="lift" href="#printscreen">printscreen</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">printscreen : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="SCROLLLOCK"><a class="lift" href="#SCROLLLOCK">SCROLLLOCK</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">SCROLLLOCK : [Int](#)</code><br/></span>
+                <a name="scrolllock"><a class="lift" href="#scrolllock">scrolllock</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">scrolllock : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="PAUSE"><a class="lift" href="#PAUSE">PAUSE</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">PAUSE : [Int](#)</code><br/></span>
+                <a name="pause"><a class="lift" href="#pause">pause</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">pause : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="INSERT"><a class="lift" href="#INSERT">INSERT</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">INSERT : [Int](#)</code><br/></span>
+                <a name="insert"><a class="lift" href="#insert">insert</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">insert : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="HOME"><a class="lift" href="#HOME">HOME</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">HOME : [Int](#)</code><br/></span>
+                <a name="home"><a class="lift" href="#home">home</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">home : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="PAGEUP"><a class="lift" href="#PAGEUP">PAGEUP</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">PAGEUP : [Int](#)</code><br/></span>
+                <a name="pageup"><a class="lift" href="#pageup">pageup</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">pageup : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="DELETE"><a class="lift" href="#DELETE">DELETE</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">DELETE : [Int](#)</code><br/></span>
+                <a name="delete"><a class="lift" href="#delete">delete</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">delete : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="END"><a class="lift" href="#END">END</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">END : [Int](#)</code><br/></span>
+                <a name="end"><a class="lift" href="#end">end</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">end : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="PAGEDOWN"><a class="lift" href="#PAGEDOWN">PAGEDOWN</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">PAGEDOWN : [Int](#)</code><br/></span>
+                <a name="pagedown"><a class="lift" href="#pagedown">pagedown</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">pagedown : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="RIGHT"><a class="lift" href="#RIGHT">RIGHT</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">RIGHT : [Int](#)</code><br/></span>
+                <a name="right"><a class="lift" href="#right">right</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">right : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="LEFT"><a class="lift" href="#LEFT">LEFT</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">LEFT : [Int](#)</code><br/></span>
+                <a name="left"><a class="lift" href="#left">left</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">left : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="DOWN"><a class="lift" href="#DOWN">DOWN</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">DOWN : [Int](#)</code><br/></span>
+                <a name="down"><a class="lift" href="#down">down</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">down : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="UP"><a class="lift" href="#UP">UP</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">UP : [Int](#)</code><br/></span>
+                <a name="up"><a class="lift" href="#up">up</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">up : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="NUMLOCKCLEAR"><a class="lift" href="#NUMLOCKCLEAR">NUMLOCKCLEAR</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">NUMLOCKCLEAR : [Int](#)</code><br/></span>
+                <a name="numlockclear"><a class="lift" href="#numlockclear">numlockclear</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">numlockclear : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="KP_DIVIDE"><a class="lift" href="#KP_DIVIDE">KP\_DIVIDE</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">KP\_DIVIDE : [Int](#)</code><br/></span>
+                <a name="kp_divide"><a class="lift" href="#kp_divide">kp\_divide</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">kp\_divide : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="KP_MULTIPLY"><a class="lift" href="#KP_MULTIPLY">KP\_MULTIPLY</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">KP\_MULTIPLY : [Int](#)</code><br/></span>
+                <a name="kp_multiply"><a class="lift" href="#kp_multiply">kp\_multiply</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">kp\_multiply : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="KP_MINUS"><a class="lift" href="#KP_MINUS">KP\_MINUS</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">KP\_MINUS : [Int](#)</code><br/></span>
+                <a name="kp_minus"><a class="lift" href="#kp_minus">kp\_minus</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">kp\_minus : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="KP_PLUS"><a class="lift" href="#KP_PLUS">KP\_PLUS</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">KP\_PLUS : [Int](#)</code><br/></span>
+                <a name="kp_plus"><a class="lift" href="#kp_plus">kp\_plus</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">kp\_plus : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="KP_ENTER"><a class="lift" href="#KP_ENTER">KP\_ENTER</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">KP\_ENTER : [Int](#)</code><br/></span>
+                <a name="kp_enter"><a class="lift" href="#kp_enter">kp\_enter</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">kp\_enter : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="KP_1"><a class="lift" href="#KP_1">KP\_1</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">KP\_1 : [Int](#)</code><br/></span>
+                <a name="kp_1"><a class="lift" href="#kp_1">kp\_1</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">kp\_1 : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="KP_2"><a class="lift" href="#KP_2">KP\_2</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">KP\_2 : [Int](#)</code><br/></span>
+                <a name="kp_2"><a class="lift" href="#kp_2">kp\_2</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">kp\_2 : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="KP_3"><a class="lift" href="#KP_3">KP\_3</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">KP\_3 : [Int](#)</code><br/></span>
+                <a name="kp_3"><a class="lift" href="#kp_3">kp\_3</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">kp\_3 : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="KP_4"><a class="lift" href="#KP_4">KP\_4</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">KP\_4 : [Int](#)</code><br/></span>
+                <a name="kp_4"><a class="lift" href="#kp_4">kp\_4</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">kp\_4 : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="KP_5"><a class="lift" href="#KP_5">KP\_5</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">KP\_5 : [Int](#)</code><br/></span>
+                <a name="kp_5"><a class="lift" href="#kp_5">kp\_5</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">kp\_5 : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="KP_6"><a class="lift" href="#KP_6">KP\_6</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">KP\_6 : [Int](#)</code><br/></span>
+                <a name="kp_6"><a class="lift" href="#kp_6">kp\_6</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">kp\_6 : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="KP_7"><a class="lift" href="#KP_7">KP\_7</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">KP\_7 : [Int](#)</code><br/></span>
+                <a name="kp_7"><a class="lift" href="#kp_7">kp\_7</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">kp\_7 : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="KP_8"><a class="lift" href="#KP_8">KP\_8</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">KP\_8 : [Int](#)</code><br/></span>
+                <a name="kp_8"><a class="lift" href="#kp_8">kp\_8</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">kp\_8 : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="KP_9"><a class="lift" href="#KP_9">KP\_9</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">KP\_9 : [Int](#)</code><br/></span>
+                <a name="kp_9"><a class="lift" href="#kp_9">kp\_9</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">kp\_9 : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="KP_0"><a class="lift" href="#KP_0">KP\_0</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">KP\_0 : [Int](#)</code><br/></span>
+                <a name="kp_0"><a class="lift" href="#kp_0">kp\_0</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">kp\_0 : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="KP_PERIOD"><a class="lift" href="#KP_PERIOD">KP\_PERIOD</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">KP\_PERIOD : [Int](#)</code><br/></span>
+                <a name="kp_period"><a class="lift" href="#kp_period">kp\_period</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">kp\_period : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="APPLICATION"><a class="lift" href="#APPLICATION">APPLICATION</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">APPLICATION : [Int](#)</code><br/></span>
+                <a name="application"><a class="lift" href="#application">application</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">application : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="POWER"><a class="lift" href="#POWER">POWER</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">POWER : [Int](#)</code><br/></span>
+                <a name="power"><a class="lift" href="#power">power</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">power : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="KP_EQUALS"><a class="lift" href="#KP_EQUALS">KP\_EQUALS</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">KP\_EQUALS : [Int](#)</code><br/></span>
+                <a name="kp_equals"><a class="lift" href="#kp_equals">kp\_equals</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">kp\_equals : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="F13"><a class="lift" href="#F13">F13</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">F13 : [Int](#)</code><br/></span>
+                <a name="f13"><a class="lift" href="#f13">f13</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">f13 : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="F14"><a class="lift" href="#F14">F14</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">F14 : [Int](#)</code><br/></span>
+                <a name="f14"><a class="lift" href="#f14">f14</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">f14 : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="F15"><a class="lift" href="#F15">F15</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">F15 : [Int](#)</code><br/></span>
+                <a name="f15"><a class="lift" href="#f15">f15</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">f15 : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="F16"><a class="lift" href="#F16">F16</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">F16 : [Int](#)</code><br/></span>
+                <a name="f16"><a class="lift" href="#f16">f16</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">f16 : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="F17"><a class="lift" href="#F17">F17</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">F17 : [Int](#)</code><br/></span>
+                <a name="f17"><a class="lift" href="#f17">f17</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">f17 : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="F18"><a class="lift" href="#F18">F18</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">F18 : [Int](#)</code><br/></span>
+                <a name="f18"><a class="lift" href="#f18">f18</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">f18 : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="F19"><a class="lift" href="#F19">F19</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">F19 : [Int](#)</code><br/></span>
+                <a name="f19"><a class="lift" href="#f19">f19</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">f19 : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="F20"><a class="lift" href="#F20">F20</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">F20 : [Int](#)</code><br/></span>
+                <a name="f20"><a class="lift" href="#f20">f20</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">f20 : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="F21"><a class="lift" href="#F21">F21</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">F21 : [Int](#)</code><br/></span>
+                <a name="f21"><a class="lift" href="#f21">f21</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">f21 : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="F22"><a class="lift" href="#F22">F22</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">F22 : [Int](#)</code><br/></span>
+                <a name="f22"><a class="lift" href="#f22">f22</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">f22 : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="F23"><a class="lift" href="#F23">F23</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">F23 : [Int](#)</code><br/></span>
+                <a name="f23"><a class="lift" href="#f23">f23</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">f23 : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="F24"><a class="lift" href="#F24">F24</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">F24 : [Int](#)</code><br/></span>
+                <a name="f24"><a class="lift" href="#f24">f24</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">f24 : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="EXECUTE"><a class="lift" href="#EXECUTE">EXECUTE</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">EXECUTE : [Int](#)</code><br/></span>
+                <a name="execute"><a class="lift" href="#execute">execute</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">execute : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="HELP"><a class="lift" href="#HELP">HELP</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">HELP : [Int](#)</code><br/></span>
+                <a name="help"><a class="lift" href="#help">help</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">help : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="MENU"><a class="lift" href="#MENU">MENU</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">MENU : [Int](#)</code><br/></span>
+                <a name="menu"><a class="lift" href="#menu">menu</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">menu : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="SELECT"><a class="lift" href="#SELECT">SELECT</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">SELECT : [Int](#)</code><br/></span>
+                <a name="select"><a class="lift" href="#select">select</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">select : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="STOP"><a class="lift" href="#STOP">STOP</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">STOP : [Int](#)</code><br/></span>
+                <a name="stop"><a class="lift" href="#stop">stop</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">stop : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="AGAIN"><a class="lift" href="#AGAIN">AGAIN</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">AGAIN : [Int](#)</code><br/></span>
+                <a name="again"><a class="lift" href="#again">again</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">again : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="UNDO"><a class="lift" href="#UNDO">UNDO</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">UNDO : [Int](#)</code><br/></span>
+                <a name="undo"><a class="lift" href="#undo">undo</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">undo : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="CUT"><a class="lift" href="#CUT">CUT</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">CUT : [Int](#)</code><br/></span>
+                <a name="cut"><a class="lift" href="#cut">cut</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">cut : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="COPY"><a class="lift" href="#COPY">COPY</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">COPY : [Int](#)</code><br/></span>
+                <a name="copy"><a class="lift" href="#copy">copy</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">copy : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="PASTE"><a class="lift" href="#PASTE">PASTE</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">PASTE : [Int](#)</code><br/></span>
+                <a name="paste"><a class="lift" href="#paste">paste</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">paste : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="FIND"><a class="lift" href="#FIND">FIND</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">FIND : [Int](#)</code><br/></span>
+                <a name="find"><a class="lift" href="#find">find</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">find : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="MUTE"><a class="lift" href="#MUTE">MUTE</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">MUTE : [Int](#)</code><br/></span>
+                <a name="mute"><a class="lift" href="#mute">mute</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">mute : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="VOLUMEUP"><a class="lift" href="#VOLUMEUP">VOLUMEUP</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">VOLUMEUP : [Int](#)</code><br/></span>
+                <a name="volumeup"><a class="lift" href="#volumeup">volumeup</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">volumeup : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="VOLUMEDOWN"><a class="lift" href="#VOLUMEDOWN">VOLUMEDOWN</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">VOLUMEDOWN : [Int](#)</code><br/></span>
+                <a name="volumedown"><a class="lift" href="#volumedown">volumedown</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">volumedown : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="KP_COMMA"><a class="lift" href="#KP_COMMA">KP\_COMMA</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">KP\_COMMA : [Int](#)</code><br/></span>
+                <a name="kp_comma"><a class="lift" href="#kp_comma">kp\_comma</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">kp\_comma : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="KP_EQUALSAS400"><a class="lift" href="#KP_EQUALSAS400">KP\_EQUALSAS400</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">KP\_EQUALSAS400 : [Int](#)</code><br/></span>
+                <a name="kp_equalsas400"><a class="lift" href="#kp_equalsas400">kp\_equalsas400</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">kp\_equalsas400 : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="ALTERASE"><a class="lift" href="#ALTERASE">ALTERASE</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">ALTERASE : [Int](#)</code><br/></span>
+                <a name="alterase"><a class="lift" href="#alterase">alterase</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">alterase : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="SYSREQ"><a class="lift" href="#SYSREQ">SYSREQ</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">SYSREQ : [Int](#)</code><br/></span>
+                <a name="sysreq"><a class="lift" href="#sysreq">sysreq</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">sysreq : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="CANCEL"><a class="lift" href="#CANCEL">CANCEL</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">CANCEL : [Int](#)</code><br/></span>
+                <a name="cancel"><a class="lift" href="#cancel">cancel</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">cancel : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="CLEAR"><a class="lift" href="#CLEAR">CLEAR</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">CLEAR : [Int](#)</code><br/></span>
+                <a name="clear"><a class="lift" href="#clear">clear</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">clear : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="PRIOR"><a class="lift" href="#PRIOR">PRIOR</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">PRIOR : [Int](#)</code><br/></span>
+                <a name="prior"><a class="lift" href="#prior">prior</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">prior : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="RETURN2"><a class="lift" href="#RETURN2">RETURN2</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">RETURN2 : [Int](#)</code><br/></span>
+                <a name="return2"><a class="lift" href="#return2">return2</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">return2 : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="SEPARATOR"><a class="lift" href="#SEPARATOR">SEPARATOR</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">SEPARATOR : [Int](#)</code><br/></span>
+                <a name="separator"><a class="lift" href="#separator">separator</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">separator : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="OUT"><a class="lift" href="#OUT">OUT</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">OUT : [Int](#)</code><br/></span>
+                <a name="out"><a class="lift" href="#out">out</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">out : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="OPER"><a class="lift" href="#OPER">OPER</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">OPER : [Int](#)</code><br/></span>
+                <a name="oper"><a class="lift" href="#oper">oper</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">oper : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="CLEARAGAIN"><a class="lift" href="#CLEARAGAIN">CLEARAGAIN</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">CLEARAGAIN : [Int](#)</code><br/></span>
+                <a name="clearagain"><a class="lift" href="#clearagain">clearagain</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">clearagain : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="CRSEL"><a class="lift" href="#CRSEL">CRSEL</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">CRSEL : [Int](#)</code><br/></span>
+                <a name="crsel"><a class="lift" href="#crsel">crsel</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">crsel : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="EXSEL"><a class="lift" href="#EXSEL">EXSEL</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">EXSEL : [Int](#)</code><br/></span>
+                <a name="exsel"><a class="lift" href="#exsel">exsel</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">exsel : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="KP_00"><a class="lift" href="#KP_00">KP\_00</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">KP\_00 : [Int](#)</code><br/></span>
+                <a name="kp_00"><a class="lift" href="#kp_00">kp\_00</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">kp\_00 : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="KP_000"><a class="lift" href="#KP_000">KP\_000</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">KP\_000 : [Int](#)</code><br/></span>
+                <a name="kp_000"><a class="lift" href="#kp_000">kp\_000</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">kp\_000 : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="THOUSANDSSEPARATOR"><a class="lift" href="#THOUSANDSSEPARATOR">THOUSANDSSEPARATOR</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">THOUSANDSSEPARATOR : [Int](#)</code><br/></span>
+                <a name="thousandsseparator"><a class="lift" href="#thousandsseparator">thousandsseparator</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">thousandsseparator : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="DECIMALSEPARATOR"><a class="lift" href="#DECIMALSEPARATOR">DECIMALSEPARATOR</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">DECIMALSEPARATOR : [Int](#)</code><br/></span>
+                <a name="decimalseparator"><a class="lift" href="#decimalseparator">decimalseparator</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">decimalseparator : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="CURRENCYUNIT"><a class="lift" href="#CURRENCYUNIT">CURRENCYUNIT</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">CURRENCYUNIT : [Int](#)</code><br/></span>
+                <a name="currencyunit"><a class="lift" href="#currencyunit">currencyunit</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">currencyunit : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="CURRENCYSUBUNIT"><a class="lift" href="#CURRENCYSUBUNIT">CURRENCYSUBUNIT</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">CURRENCYSUBUNIT : [Int](#)</code><br/></span>
+                <a name="currencysubunit"><a class="lift" href="#currencysubunit">currencysubunit</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">currencysubunit : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="KP_LEFTPAREN"><a class="lift" href="#KP_LEFTPAREN">KP\_LEFTPAREN</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">KP\_LEFTPAREN : [Int](#)</code><br/></span>
+                <a name="kp_leftparen"><a class="lift" href="#kp_leftparen">kp\_leftparen</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">kp\_leftparen : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="KP_RIGHTPAREN"><a class="lift" href="#KP_RIGHTPAREN">KP\_RIGHTPAREN</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">KP\_RIGHTPAREN : [Int](#)</code><br/></span>
+                <a name="kp_rightparen"><a class="lift" href="#kp_rightparen">kp\_rightparen</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">kp\_rightparen : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="KP_LEFTBRACE"><a class="lift" href="#KP_LEFTBRACE">KP\_LEFTBRACE</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">KP\_LEFTBRACE : [Int](#)</code><br/></span>
+                <a name="kp_leftbrace"><a class="lift" href="#kp_leftbrace">kp\_leftbrace</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">kp\_leftbrace : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="KP_RIGHTBRACE"><a class="lift" href="#KP_RIGHTBRACE">KP\_RIGHTBRACE</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">KP\_RIGHTBRACE : [Int](#)</code><br/></span>
+                <a name="kp_rightbrace"><a class="lift" href="#kp_rightbrace">kp\_rightbrace</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">kp\_rightbrace : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="KP_TAB"><a class="lift" href="#KP_TAB">KP\_TAB</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">KP\_TAB : [Int](#)</code><br/></span>
+                <a name="kp_tab"><a class="lift" href="#kp_tab">kp\_tab</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">kp\_tab : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="KP_BACKSPACE"><a class="lift" href="#KP_BACKSPACE">KP\_BACKSPACE</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">KP\_BACKSPACE : [Int](#)</code><br/></span>
+                <a name="kp_backspace"><a class="lift" href="#kp_backspace">kp\_backspace</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">kp\_backspace : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="KP_A"><a class="lift" href="#KP_A">KP\_A</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">KP\_A : [Int](#)</code><br/></span>
+                <a name="kp_a"><a class="lift" href="#kp_a">kp\_a</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">kp\_a : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="KP_B"><a class="lift" href="#KP_B">KP\_B</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">KP\_B : [Int](#)</code><br/></span>
+                <a name="kp_b"><a class="lift" href="#kp_b">kp\_b</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">kp\_b : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="KP_C"><a class="lift" href="#KP_C">KP\_C</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">KP\_C : [Int](#)</code><br/></span>
+                <a name="kp_c"><a class="lift" href="#kp_c">kp\_c</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">kp\_c : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="KP_D"><a class="lift" href="#KP_D">KP\_D</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">KP\_D : [Int](#)</code><br/></span>
+                <a name="kp_d"><a class="lift" href="#kp_d">kp\_d</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">kp\_d : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="KP_E"><a class="lift" href="#KP_E">KP\_E</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">KP\_E : [Int](#)</code><br/></span>
+                <a name="kp_e"><a class="lift" href="#kp_e">kp\_e</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">kp\_e : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="KP_F"><a class="lift" href="#KP_F">KP\_F</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">KP\_F : [Int](#)</code><br/></span>
+                <a name="kp_f"><a class="lift" href="#kp_f">kp\_f</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">kp\_f : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="KP_XOR"><a class="lift" href="#KP_XOR">KP\_XOR</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">KP\_XOR : [Int](#)</code><br/></span>
+                <a name="kp_xor"><a class="lift" href="#kp_xor">kp\_xor</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">kp\_xor : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="KP_POWER"><a class="lift" href="#KP_POWER">KP\_POWER</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">KP\_POWER : [Int](#)</code><br/></span>
+                <a name="kp_power"><a class="lift" href="#kp_power">kp\_power</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">kp\_power : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="KP_PERCENT"><a class="lift" href="#KP_PERCENT">KP\_PERCENT</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">KP\_PERCENT : [Int](#)</code><br/></span>
+                <a name="kp_percent"><a class="lift" href="#kp_percent">kp\_percent</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">kp\_percent : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="KP_LESS"><a class="lift" href="#KP_LESS">KP\_LESS</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">KP\_LESS : [Int](#)</code><br/></span>
+                <a name="kp_less"><a class="lift" href="#kp_less">kp\_less</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">kp\_less : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="KP_GREATER"><a class="lift" href="#KP_GREATER">KP\_GREATER</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">KP\_GREATER : [Int](#)</code><br/></span>
+                <a name="kp_greater"><a class="lift" href="#kp_greater">kp\_greater</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">kp\_greater : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="KP_AMPERSAND"><a class="lift" href="#KP_AMPERSAND">KP\_AMPERSAND</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">KP\_AMPERSAND : [Int](#)</code><br/></span>
+                <a name="kp_ampersand"><a class="lift" href="#kp_ampersand">kp\_ampersand</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">kp\_ampersand : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="KP_DBLAMPERSAND"><a class="lift" href="#KP_DBLAMPERSAND">KP\_DBLAMPERSAND</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">KP\_DBLAMPERSAND : [Int](#)</code><br/></span>
+                <a name="kp_dblampersand"><a class="lift" href="#kp_dblampersand">kp\_dblampersand</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">kp\_dblampersand : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="KP_VERTICALBAR"><a class="lift" href="#KP_VERTICALBAR">KP\_VERTICALBAR</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">KP\_VERTICALBAR : [Int](#)</code><br/></span>
+                <a name="kp_verticalbar"><a class="lift" href="#kp_verticalbar">kp\_verticalbar</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">kp\_verticalbar : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="KP_DBLVERTICALBAR"><a class="lift" href="#KP_DBLVERTICALBAR">KP\_DBLVERTICALBAR</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">KP\_DBLVERTICALBAR : [Int](#)</code><br/></span>
+                <a name="kp_dblverticalbar"><a class="lift" href="#kp_dblverticalbar">kp\_dblverticalbar</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">kp\_dblverticalbar : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="KP_COLON"><a class="lift" href="#KP_COLON">KP\_COLON</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">KP\_COLON : [Int](#)</code><br/></span>
+                <a name="kp_colon"><a class="lift" href="#kp_colon">kp\_colon</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">kp\_colon : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="KP_HASH"><a class="lift" href="#KP_HASH">KP\_HASH</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">KP\_HASH : [Int](#)</code><br/></span>
+                <a name="kp_hash"><a class="lift" href="#kp_hash">kp\_hash</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">kp\_hash : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="KP_SPACE"><a class="lift" href="#KP_SPACE">KP\_SPACE</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">KP\_SPACE : [Int](#)</code><br/></span>
+                <a name="kp_space"><a class="lift" href="#kp_space">kp\_space</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">kp\_space : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="KP_AT"><a class="lift" href="#KP_AT">KP\_AT</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">KP\_AT : [Int](#)</code><br/></span>
+                <a name="kp_at"><a class="lift" href="#kp_at">kp\_at</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">kp\_at : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="KP_EXCLAM"><a class="lift" href="#KP_EXCLAM">KP\_EXCLAM</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">KP\_EXCLAM : [Int](#)</code><br/></span>
+                <a name="kp_exclam"><a class="lift" href="#kp_exclam">kp\_exclam</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">kp\_exclam : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="KP_MEMSTORE"><a class="lift" href="#KP_MEMSTORE">KP\_MEMSTORE</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">KP\_MEMSTORE : [Int](#)</code><br/></span>
+                <a name="kp_memstore"><a class="lift" href="#kp_memstore">kp\_memstore</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">kp\_memstore : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="KP_MEMRECALL"><a class="lift" href="#KP_MEMRECALL">KP\_MEMRECALL</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">KP\_MEMRECALL : [Int](#)</code><br/></span>
+                <a name="kp_memrecall"><a class="lift" href="#kp_memrecall">kp\_memrecall</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">kp\_memrecall : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="KP_MEMCLEAR"><a class="lift" href="#KP_MEMCLEAR">KP\_MEMCLEAR</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">KP\_MEMCLEAR : [Int](#)</code><br/></span>
+                <a name="kp_memclear"><a class="lift" href="#kp_memclear">kp\_memclear</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">kp\_memclear : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="KP_MEMADD"><a class="lift" href="#KP_MEMADD">KP\_MEMADD</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">KP\_MEMADD : [Int](#)</code><br/></span>
+                <a name="kp_memadd"><a class="lift" href="#kp_memadd">kp\_memadd</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">kp\_memadd : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="KP_MEMSUBTRACT"><a class="lift" href="#KP_MEMSUBTRACT">KP\_MEMSUBTRACT</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">KP\_MEMSUBTRACT : [Int](#)</code><br/></span>
+                <a name="kp_memsubtract"><a class="lift" href="#kp_memsubtract">kp\_memsubtract</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">kp\_memsubtract : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="KP_MEMMULTIPLY"><a class="lift" href="#KP_MEMMULTIPLY">KP\_MEMMULTIPLY</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">KP\_MEMMULTIPLY : [Int](#)</code><br/></span>
+                <a name="kp_memmultiply"><a class="lift" href="#kp_memmultiply">kp\_memmultiply</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">kp\_memmultiply : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="KP_MEMDIVIDE"><a class="lift" href="#KP_MEMDIVIDE">KP\_MEMDIVIDE</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">KP\_MEMDIVIDE : [Int](#)</code><br/></span>
+                <a name="kp_memdivide"><a class="lift" href="#kp_memdivide">kp\_memdivide</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">kp\_memdivide : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="KP_PLUSMINUS"><a class="lift" href="#KP_PLUSMINUS">KP\_PLUSMINUS</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">KP\_PLUSMINUS : [Int](#)</code><br/></span>
+                <a name="kp_plusminus"><a class="lift" href="#kp_plusminus">kp\_plusminus</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">kp\_plusminus : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="KP_CLEAR"><a class="lift" href="#KP_CLEAR">KP\_CLEAR</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">KP\_CLEAR : [Int](#)</code><br/></span>
+                <a name="kp_clear"><a class="lift" href="#kp_clear">kp\_clear</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">kp\_clear : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="KP_CLEARENTRY"><a class="lift" href="#KP_CLEARENTRY">KP\_CLEARENTRY</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">KP\_CLEARENTRY : [Int](#)</code><br/></span>
+                <a name="kp_clearentry"><a class="lift" href="#kp_clearentry">kp\_clearentry</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">kp\_clearentry : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="KP_BINARY"><a class="lift" href="#KP_BINARY">KP\_BINARY</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">KP\_BINARY : [Int](#)</code><br/></span>
+                <a name="kp_binary"><a class="lift" href="#kp_binary">kp\_binary</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">kp\_binary : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="KP_OCTAL"><a class="lift" href="#KP_OCTAL">KP\_OCTAL</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">KP\_OCTAL : [Int](#)</code><br/></span>
+                <a name="kp_octal"><a class="lift" href="#kp_octal">kp\_octal</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">kp\_octal : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="KP_DECIMAL"><a class="lift" href="#KP_DECIMAL">KP\_DECIMAL</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">KP\_DECIMAL : [Int](#)</code><br/></span>
+                <a name="kp_decimal"><a class="lift" href="#kp_decimal">kp\_decimal</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">kp\_decimal : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="KP_HEXADECIMAL"><a class="lift" href="#KP_HEXADECIMAL">KP\_HEXADECIMAL</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">KP\_HEXADECIMAL : [Int](#)</code><br/></span>
+                <a name="kp_hexadecimal"><a class="lift" href="#kp_hexadecimal">kp\_hexadecimal</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">kp\_hexadecimal : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="LCTRL"><a class="lift" href="#LCTRL">LCTRL</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">LCTRL : [Int](#)</code><br/></span>
+                <a name="lctrl"><a class="lift" href="#lctrl">lctrl</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">lctrl : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="LSHIFT"><a class="lift" href="#LSHIFT">LSHIFT</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">LSHIFT : [Int](#)</code><br/></span>
+                <a name="lshift"><a class="lift" href="#lshift">lshift</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">lshift : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="LALT"><a class="lift" href="#LALT">LALT</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">LALT : [Int](#)</code><br/></span>
+                <a name="lalt"><a class="lift" href="#lalt">lalt</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">lalt : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="LMETA"><a class="lift" href="#LMETA">LMETA</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">LMETA : [Int](#)</code><br/></span>
+                <a name="lmeta"><a class="lift" href="#lmeta">lmeta</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">lmeta : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="RCTRL"><a class="lift" href="#RCTRL">RCTRL</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">RCTRL : [Int](#)</code><br/></span>
+                <a name="rctrl"><a class="lift" href="#rctrl">rctrl</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">rctrl : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="RSHIFT"><a class="lift" href="#RSHIFT">RSHIFT</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">RSHIFT : [Int](#)</code><br/></span>
+                <a name="rshift"><a class="lift" href="#rshift">rshift</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">rshift : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="RALT"><a class="lift" href="#RALT">RALT</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">RALT : [Int](#)</code><br/></span>
+                <a name="ralt"><a class="lift" href="#ralt">ralt</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">ralt : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="RMETA"><a class="lift" href="#RMETA">RMETA</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">RMETA : [Int](#)</code><br/></span>
+                <a name="rmeta"><a class="lift" href="#rmeta">rmeta</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">rmeta : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="MODE"><a class="lift" href="#MODE">MODE</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">MODE : [Int](#)</code><br/></span>
+                <a name="mode"><a class="lift" href="#mode">mode</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">mode : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="AUDIONEXT"><a class="lift" href="#AUDIONEXT">AUDIONEXT</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">AUDIONEXT : [Int](#)</code><br/></span>
+                <a name="audionext"><a class="lift" href="#audionext">audionext</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">audionext : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="AUDIOPREV"><a class="lift" href="#AUDIOPREV">AUDIOPREV</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">AUDIOPREV : [Int](#)</code><br/></span>
+                <a name="audioprev"><a class="lift" href="#audioprev">audioprev</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">audioprev : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="AUDIOSTOP"><a class="lift" href="#AUDIOSTOP">AUDIOSTOP</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">AUDIOSTOP : [Int](#)</code><br/></span>
+                <a name="audiostop"><a class="lift" href="#audiostop">audiostop</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">audiostop : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="AUDIOPLAY"><a class="lift" href="#AUDIOPLAY">AUDIOPLAY</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">AUDIOPLAY : [Int](#)</code><br/></span>
+                <a name="audioplay"><a class="lift" href="#audioplay">audioplay</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">audioplay : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="AUDIOMUTE"><a class="lift" href="#AUDIOMUTE">AUDIOMUTE</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">AUDIOMUTE : [Int](#)</code><br/></span>
+                <a name="audiomute"><a class="lift" href="#audiomute">audiomute</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">audiomute : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="MEDIASELECT"><a class="lift" href="#MEDIASELECT">MEDIASELECT</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">MEDIASELECT : [Int](#)</code><br/></span>
+                <a name="mediaselect"><a class="lift" href="#mediaselect">mediaselect</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">mediaselect : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="WWW"><a class="lift" href="#WWW">WWW</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">WWW : [Int](#)</code><br/></span>
+                <a name="www"><a class="lift" href="#www">www</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">www : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="MAIL"><a class="lift" href="#MAIL">MAIL</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">MAIL : [Int](#)</code><br/></span>
+                <a name="mail"><a class="lift" href="#mail">mail</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">mail : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="CALCULATOR"><a class="lift" href="#CALCULATOR">CALCULATOR</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">CALCULATOR : [Int](#)</code><br/></span>
+                <a name="calculator"><a class="lift" href="#calculator">calculator</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">calculator : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="COMPUTER"><a class="lift" href="#COMPUTER">COMPUTER</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">COMPUTER : [Int](#)</code><br/></span>
+                <a name="computer"><a class="lift" href="#computer">computer</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">computer : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="AC_SEARCH"><a class="lift" href="#AC_SEARCH">AC\_SEARCH</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">AC\_SEARCH : [Int](#)</code><br/></span>
+                <a name="ac_search"><a class="lift" href="#ac_search">ac\_search</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">ac\_search : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="AC_HOME"><a class="lift" href="#AC_HOME">AC\_HOME</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">AC\_HOME : [Int](#)</code><br/></span>
+                <a name="ac_home"><a class="lift" href="#ac_home">ac\_home</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">ac\_home : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="AC_BACK"><a class="lift" href="#AC_BACK">AC\_BACK</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">AC\_BACK : [Int](#)</code><br/></span>
+                <a name="ac_back"><a class="lift" href="#ac_back">ac\_back</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">ac\_back : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="AC_FORWARD"><a class="lift" href="#AC_FORWARD">AC\_FORWARD</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">AC\_FORWARD : [Int](#)</code><br/></span>
+                <a name="ac_forward"><a class="lift" href="#ac_forward">ac\_forward</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">ac\_forward : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="AC_STOP"><a class="lift" href="#AC_STOP">AC\_STOP</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">AC\_STOP : [Int](#)</code><br/></span>
+                <a name="ac_stop"><a class="lift" href="#ac_stop">ac\_stop</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">ac\_stop : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="AC_REFRESH"><a class="lift" href="#AC_REFRESH">AC\_REFRESH</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">AC\_REFRESH : [Int](#)</code><br/></span>
+                <a name="ac_refresh"><a class="lift" href="#ac_refresh">ac\_refresh</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">ac\_refresh : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="AC_BOOKMARKS"><a class="lift" href="#AC_BOOKMARKS">AC\_BOOKMARKS</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">AC\_BOOKMARKS : [Int](#)</code><br/></span>
+                <a name="ac_bookmarks"><a class="lift" href="#ac_bookmarks">ac\_bookmarks</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">ac\_bookmarks : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="BRIGHTNESSDOWN"><a class="lift" href="#BRIGHTNESSDOWN">BRIGHTNESSDOWN</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">BRIGHTNESSDOWN : [Int](#)</code><br/></span>
+                <a name="brightnessdown"><a class="lift" href="#brightnessdown">brightnessdown</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">brightnessdown : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="BRIGHTNESSUP"><a class="lift" href="#BRIGHTNESSUP">BRIGHTNESSUP</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">BRIGHTNESSUP : [Int](#)</code><br/></span>
+                <a name="brightnessup"><a class="lift" href="#brightnessup">brightnessup</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">brightnessup : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="DISPLAYSWITCH"><a class="lift" href="#DISPLAYSWITCH">DISPLAYSWITCH</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">DISPLAYSWITCH : [Int](#)</code><br/></span>
+                <a name="displayswitch"><a class="lift" href="#displayswitch">displayswitch</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">displayswitch : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="KBDILLUMTOGGLE"><a class="lift" href="#KBDILLUMTOGGLE">KBDILLUMTOGGLE</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">KBDILLUMTOGGLE : [Int](#)</code><br/></span>
+                <a name="kbdillumtoggle"><a class="lift" href="#kbdillumtoggle">kbdillumtoggle</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">kbdillumtoggle : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="KBDILLUMDOWN"><a class="lift" href="#KBDILLUMDOWN">KBDILLUMDOWN</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">KBDILLUMDOWN : [Int](#)</code><br/></span>
+                <a name="kbdillumdown"><a class="lift" href="#kbdillumdown">kbdillumdown</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">kbdillumdown : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="KBDILLUMUP"><a class="lift" href="#KBDILLUMUP">KBDILLUMUP</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">KBDILLUMUP : [Int](#)</code><br/></span>
+                <a name="kbdillumup"><a class="lift" href="#kbdillumup">kbdillumup</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">kbdillumup : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="EJECT"><a class="lift" href="#EJECT">EJECT</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">EJECT : [Int](#)</code><br/></span>
+                <a name="eject"><a class="lift" href="#eject">eject</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">eject : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="SLEEP"><a class="lift" href="#SLEEP">SLEEP</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">SLEEP : [Int](#)</code><br/></span>
+                <a name="sleep"><a class="lift" href="#sleep">sleep</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">sleep : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span>
 
 
@@ -506,6 +506,9 @@ but they aren't specific to SDL so they are used generically
 
 <h3>Methods</h3> <hr/><span class="method apipage">
             <a name="from_scan"><a class="lift" href="#from_scan">from\_scan</a></a> <span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">from\_scan(scancode:[Int](#)<span></span>) : [Int](#)</code><br/><span class="small_desc_flat">Convert a scancode to a keycode for comparison</span>
+        </span>
+    <span class="method apipage">
+            <a name="name"><a class="lift" href="#name">name</a></a> <span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">name(keycode:[Int](#)<span></span>) : [String](#)</code><br/><span class="small_desc_flat">Convert a keycode to string</span>
         </span>
     
 
