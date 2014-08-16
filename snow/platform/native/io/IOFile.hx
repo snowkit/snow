@@ -1,4 +1,7 @@
-package platform.native.io;
+package snow.platform.native.io;
+
+import snow.utils.ByteArray;
+import snow.utils.Libs;
 
 #if snow_native
 

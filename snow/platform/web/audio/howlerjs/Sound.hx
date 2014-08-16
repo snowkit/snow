@@ -8,6 +8,7 @@ import snow.Log._debug;
 import snow.Log._verbose;
 import snow.Log._verboser;
 
+#if snow_web
 
 class Sound extends snow.platform.web.audio.Sound {
 
@@ -184,3 +185,5 @@ class Sound extends snow.platform.web.audio.Sound {
     } //destroy
 
 } //Sound
+
+#end //snow_web
