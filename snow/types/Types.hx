@@ -478,37 +478,37 @@ enum GamepadDeviceEventType {
 /** Input modifier state */
 typedef ModState = {
 
-        /** `none` : no modifiers are down */
+        /** no modifiers are down */
     var none : Bool;
-        /** `lshift` : left shift key is down */
+        /** left shift key is down */
     var lshift : Bool;
-        /** `rshift` : right shift key is down */
+        /** right shift key is down */
     var rshift : Bool;
-        /** `lctrl` : left ctrl key is down */
+        /** left ctrl key is down */
     var lctrl : Bool;
-        /** `rctrl` : right ctrl key is down */
+        /** right ctrl key is down */
     var rctrl : Bool;
-        /** `lalt` : left alt/option key is down */
+        /** left alt/option key is down */
     var lalt : Bool;
-        /** `ralt` : right alt/option key is down */
+        /** right alt/option key is down */
     var ralt : Bool;
-        /** `lmeta` : left windows/command key is down */
+        /** left windows/command key is down */
     var lmeta : Bool;
-        /** `rmeta` : right windows/command key is down */
+        /** right windows/command key is down */
     var rmeta : Bool;
-        /** `num` : numlock is enabled */
+        /** numlock is enabled */
     var num : Bool;
-        /** `caps` : capslock is enabled */
+        /** capslock is enabled */
     var caps : Bool;
-        /** `mode` : mode key is down */
+        /** mode key is down */
     var mode : Bool;
-        /** `ctrl` : left or right ctrl key is down */
+        /** left or right ctrl key is down */
     var ctrl : Bool;
-        /** `shift` : left or right shift key is down */
+        /** left or right shift key is down */
     var shift : Bool;
-        /** `alt` : left or right alt/option key is down */
+        /** left or right alt/option key is down */
     var alt : Bool;
-        /** `meta` : left or right windows/command key is down */
+        /** left or right windows/command key is down */
     var meta : Bool;
 
 } //ModState
