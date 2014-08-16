@@ -37,6 +37,16 @@ This means snow by default runs natively on **Mac**, **Windows**, **Linux** desk
 </div>
 
 ---
+##Beta
+
+Please note   
+The documentation is a constant work in progress and will continue to be finalized prior to 1.0.0.
+
+snow is currently considered beta which means there may be bugs, inconsistencies or very rarely imcomplete implementations of things.
+It is still considered fairly stable and is being used by multiple frameworks and games,
+but there are things to tighten up before 1.0.0 release happens officially.
+
+---
 
 ##Design
 
@@ -56,6 +66,17 @@ This means snow by default runs natively on **Mac**, **Windows**, **Linux** desk
 **snow strives to be reliable.**   
 &emsp; There are tests of various kinds, you can read about the [testing approach]({{{rel_path}}}guide/contribute.html#tests) in the guide.
 
+**snow has high standards.**   
+&emsp; From code quality, clarity and portability to documentation to samples.
+
+---
+
+##History and why
+
+For a fuller history and why snow and flow were created, [read this blog post here](http://notes.underscorediscovery.com/snow).
+
+
+---
 
 <div class="guide">
 <a name="guide"> &nbsp;</a>
@@ -165,7 +186,7 @@ On top of the comprehensive, full fledged <a href="http://api.haxe.org/" target=
 <h3>Further details</h3>
 
 [**Build pipeline details**]({{{rel_path}}}guide/build-details.html) <br/>
-&emsp; &emsp; [compiling]({{{rel_path}}}guide/build-details.html#compiling) | [project format]({{{rel_path}}}guide/build-details.html#project) | [architectures]({{{rel_path}}}guide/build-details.html#arch)
+&emsp; &emsp; [project format]({{{rel_path}}}guide/build-details.html#project) | [architectures]({{{rel_path}}}guide/build-details.html#arch)
 
 [**Platform implementation details**]({{{rel_path}}}guide/platform-faq.html) <br/>
 &emsp; &emsp; [web]({{{rel_path}}}guide/platform-faq.html#web) | [mac]({{{rel_path}}}guide/platform-faq.html#mac) | [windows]({{{rel_path}}}guide/platform-faq.html#windows) | [linux]({{{rel_path}}}guide/platform-faq.html#linux) | [android]({{{rel_path}}}guide/platform-faq.html#android) | [ios]({{{rel_path}}}guide/platform-faq.html#ios) 

@@ -14,6 +14,8 @@ The following is a list of things that are important :
 - testing on various platforms
 - writing ground truth tests
 - writing tutorials/guides
+- adding backends (audio, render)
+- porting to new platforms
 
 ---
 
