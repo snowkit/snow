@@ -190,7 +190,9 @@ class Windowing {
         }
 
         for(window in window_list) {
-            window.render();
+            if(window.auto_render) {
+                window.render();
+            }
         }
 
     } //update

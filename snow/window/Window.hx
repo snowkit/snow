@@ -52,8 +52,10 @@ class Window {
 
         /** set this for fullscreen desktop mode, i.e created at the full desktop resolution */
     public var fullscreen_desktop : Bool = true;
-        /** set this if you want to control when a window swaps() where applicable */
+        /** set this if you want to control when a window calls swap() */
     public var auto_swap : Bool = true;
+        /** set this if you want to control when a window calls render() */
+    public var auto_render : Bool = true;
         /** A flag for whether this window is open or closed */
     public var closed : Bool = true;
 
@@ -71,6 +73,15 @@ class Window {
         manager = _manager;
         asked_config = _config;
         config = _config;
+
+            //default to OS defined window position
+        if(config.x == null) {
+            config.x = 0x1FFF0000;
+        }
+
+        if(config.y == null) {
+            config.y = 0x1FFF0000;
+        }
 
         manager.platform.create( _config, on_window_created );
 
@@ -174,7 +185,8 @@ class Window {
     } //update
 
 
-    @:noCompletion public function render() {
+        /** Called for you automatically, unless auto_render is disabled. */
+    public function render() {
 
         if(minimized || closed) {
             return;
