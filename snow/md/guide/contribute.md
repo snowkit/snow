@@ -27,7 +27,7 @@ Testing often serves different purposes in different ways,
 some tests are automated, some are not. Some are interactive, some are not.
 
 The general consensus here is that everything should have a ground truth available to test against.   
-This means that some tests are automated, some are not. Automated tests run in their natural habitat, not in isolation, where possible. 
+Automated tests run in their natural habitat, not in isolation, where possible. 
 For this reason the tests are written using snow itself, as the best place to test snow application code, is in a snow application.
 
 **There are no TDD zealots living in these parts**, and no homes for zealots available.   

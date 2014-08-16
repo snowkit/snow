@@ -58,7 +58,10 @@ Through your flow file, you can request that the snow app does not enter the loo
 This can be really useful for running unit tests in their natural habitat, rather than in isolation.   
 It can also be useful when creating command line tools or converters that do not require a loop at all.
 
-To read more about the snow config itself, see the [snow config api docs]({{{rel_path}}}api/snow/types/SnowConfig.html).
+### The snow config
+
+To read more about the snow config itself, see the [snow config api docs]({{{rel_path}}}api/snow/types/SnowConfig.html).   
+This config is set at build time from a [flow file]({{{rel_path}}}guide/build-details.html#project).
 
 ---
 
