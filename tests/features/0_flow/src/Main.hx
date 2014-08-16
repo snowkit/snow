@@ -239,7 +239,6 @@ class Main extends snow.AppFixedTimestep {
             window2 = app.windowing.create({
                 resizable : true,
                 width : 200+Std.random(200), height:200+Std.random(200),
-                x : 0x1FFF0000, y:0x1FFF0000,
                 title:'window ' + app.time
             });
         }

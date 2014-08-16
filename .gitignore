@@ -6,6 +6,7 @@ thumbs.db
 .thumbs.db?
 obj/
 builds/
+bin/
 users/
 docs
 ./docs
