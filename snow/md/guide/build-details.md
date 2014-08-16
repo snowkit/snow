@@ -6,9 +6,6 @@
 <a href="#top"><h2>Build pipeline details</h2></a>
 </a>
 
-<a name="compiling"><a href="#compiling">**compiling**</a></a>
-- uses haxe :todo:
-
 <a name="project"><a href="#project">**project format**</a></a>
 - The project format is 100% powered by [flow](http://snowkit.org/flow), 
   which has full documentation [here](http://snowkit.org/flow/docs/project)

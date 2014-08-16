@@ -50,6 +50,21 @@ override function ready() {
 } //ready
 ```
 
+
+### Desktop specific file watch and file drop API
+
+snow supports live OS file change notifications on any folder using the platform specific functions on desktop.   
+
+This allows hot reloading of asset files, as soon as the change, are removed, or are created on disk.
+
+The [asset guide]({{{rel_path}}}guide/assets.html) explains reloading an asset once it changes.
+
+snow also supports **file drop** notifications, which happen when a file is dropped onto your application icon (mac) or window (linux/windows). 
+
+All of these events are lower level, and are handled directly by listening for the `override function on_event( event:SystemEvent )` in your app.
+
+A higher level API with callbacks is on the roadmap too.
+
 ---
 
 ##Back
