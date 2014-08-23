@@ -88,10 +88,11 @@ class InputSystem extends InputSystemBinding {
 
         var _window : Window = lib.windowing.window_from_handle(cast _mouse_event.target);
 
+            //buttons are 1 index, on native, so we increase button
         manager.dispatch_mouse_down_event(
             _mouse_event.pageX - _window.x,
             _mouse_event.pageY - _window.y,
-            _mouse_event.button,
+            _mouse_event.button+1,
             _mouse_event.timeStamp,
             _window.id
         );
@@ -105,7 +106,7 @@ class InputSystem extends InputSystemBinding {
         manager.dispatch_mouse_up_event(
             _mouse_event.pageX - _window.x,
             _mouse_event.pageY - _window.y,
-            _mouse_event.button,
+            _mouse_event.button+1,
             _mouse_event.timeStamp,
             _window.id
         );
