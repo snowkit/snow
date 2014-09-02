@@ -92,9 +92,9 @@ class App {
         /** Called for you when a connected gamepad axis moves, use `which` to determine gamepad id */
     public function ongamepadaxis( gamepad:Int, axis:Int, value:Float, timestamp:Float ) {}
         /** Called for you when a connected gamepad button is pressed, use `which` to determine gamepad id */
-    public function ongamepadbuttondown( gamepad:Int, button:Int, value:Float, timestamp:Float ) {}
+    public function ongamepaddown( gamepad:Int, button:Int, value:Float, timestamp:Float ) {}
         /** Called for you when a connected gamepad button is released, use `which` to determine gamepad id */
-    public function ongamepadbuttonup( gamepad:Int, button:Int, value:Float, timestamp:Float ) {}
+    public function ongamepadup( gamepad:Int, button:Int, value:Float, timestamp:Float ) {}
         /** Called for you when a gamepad is connected or disconnected, use `which` to determine gamepad id */
     public function ongamepaddevice( gamepad:Int, type:GamepadDeviceEventType, timestamp:Float ) {}
 
