@@ -301,7 +301,7 @@ class Input {
         gamepad_button_down.get(gamepad).set(button, true);
 
 
-        lib.host.ongamepadbuttondown( gamepad, button, value, timestamp );
+        lib.host.ongamepaddown( gamepad, button, value, timestamp );
 
     } //dispatch_gamepad_button_down_event
 
@@ -323,7 +323,7 @@ class Input {
             //flag it as down, because gamepadup removes it
         gamepad_button_down.get(gamepad).remove(button);
 
-        lib.host.ongamepadbuttonup( gamepad, button, value, timestamp );
+        lib.host.ongamepadup( gamepad, button, value, timestamp );
 
     } //dispatch_gamepad_button_up_event
 

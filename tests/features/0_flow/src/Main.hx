@@ -393,11 +393,11 @@ class Main extends snow.AppFixedTimestep {
         }
     } //ongamepadaxis
 
-    override function ongamepadbuttonup( gamepad:Int, button:Int, value:Float, timestamp:Float ) {
+    override function ongamepadup( gamepad:Int, button:Int, value:Float, timestamp:Float ) {
         log('button up; device: ${gamepad}, button: ${button} value: ${value} timestamp:  ${timestamp}');
     } //ongamepadbuttonup
 
-    override function ongamepadbuttondown( gamepad:Int, button:Int, value:Float, timestamp:Float ) {
+    override function ongamepaddown( gamepad:Int, button:Int, value:Float, timestamp:Float ) {
         log('button down; device: ${gamepad}, button: ${button} value: ${value} timestamp:  ${timestamp}');
     } //ongamepadbuttondown
 

@@ -7,7 +7,6 @@
 
     app : {
       name : 'flow_test',
-      title : 'flow test application',
       package : 'org.snowkit.flow',
     },
 
@@ -22,14 +21,6 @@
       assets : 'assets/'
     }
 
-  },
-
-  if:{
-    web :{
-      build:{
-        flags : ['-dce full']
-      }
-    }
   }
 
 }
