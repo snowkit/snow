@@ -43,9 +43,9 @@ class AssetImage extends Asset {
             }
 
             if(onload != null) {
-                Snow.next(function(){
+                // Snow.next(function(){
                     onload( this );
-                });
+                // });
             }
 
         });
