@@ -18,6 +18,7 @@ import snow.Log._verboser;
         public function new( _app:Snow ) {
 
             app = _app;
+            start_timestamp = timestamp();
 
         } //new
 
@@ -35,8 +36,6 @@ import snow.Log._verboser;
             if(app.snow_config.has_loop) {
                 request_update();
             }
-
-            start_timestamp = timestamp();
 
         } //init
 
