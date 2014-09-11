@@ -30,7 +30,8 @@
       web : {
         libs : {
           modernizr : './lib/modernizr.js',
-          howler : './lib/howler.js'
+          howler : './lib/howler.js',
+          tga : './lib/tga.js'
         }
       },
       mobile : {
@@ -183,6 +184,7 @@
         index : { path:'flow/web/index.html => index.html', template:'project', not_listed:true },
         modernizr : { path:'flow/web/lib/modernizr.js => lib/modernizr.js', not_listed:true },
         howlerjs : { path:'flow/web/lib/howler.min.js => lib/howler.js', not_listed:true },
+        tga : { path:'flow/web/lib/tga.min.js => lib/tga.js', not_listed:true },
       },
       build : {
         defines : ['snow_audio_howlerjs'],
@@ -194,6 +196,7 @@
     "snow_web && debug" : {
       files : {
         howlerjs : { path:'flow/web/lib/howler.js => lib/howler.js', not_listed:true },
+        tga : { path:'flow/web/lib/tga.js => lib/tga.js', not_listed:true },
       }
     },
 
