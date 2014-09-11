@@ -6,6 +6,7 @@ import snow.types.Types;
 import snow.utils.ByteArray;
 
 import snow.platform.web.assets.tga.TGA;
+import snow.platform.web.assets.psd.PSD;
 
 import snow.Log.log;
 import snow.Log._debug;
@@ -62,6 +63,8 @@ import snow.Log._verboser;
                         return image_load_info_generic(_path, _components, _onload);
                     case "tga":
                         return image_load_info_tga(_path, _components, _onload);
+                    case "psd":
+                        return image_load_info_psd(_path, _components, _onload);
                 }
 
                 return null;
@@ -71,7 +74,7 @@ import snow.Log._verboser;
                 /** Let the browser handle this detail */
             function image_load_info_generic( _path:String, ?_components:Int=4, ?_onload:?ImageInfo->Void ) : ImageInfo {
 
-                    //Create an image element to load the image source
+                //Create an image element to load the image source
                 var image : js.html.ImageElement = js.Browser.document.createImageElement();
                 var info : ImageInfo = null;
 
@@ -79,32 +82,7 @@ import snow.Log._verboser;
 
                     var width_pot = nearest_power_of_two(image.width);
                     var height_pot = nearest_power_of_two(image.height);
-
-                    var tmp_canvas = js.Browser.document.createCanvasElement();
-
-                        tmp_canvas.width = width_pot;
-                        tmp_canvas.height = height_pot;
-
-                    var tmp_context = tmp_canvas.getContext2d();
-
-                        tmp_context.clearRect( 0,0, tmp_canvas.width, tmp_canvas.height );
-                        tmp_context.drawImage( image, 0, 0, image.width, image.height );
-
-                    var image_bytes = null;
-
-                    try {
-
-                        image_bytes = tmp_context.getImageData( 0, 0, tmp_canvas.width, tmp_canvas.height );
-
-                    } catch(e:Dynamic) {
-
-                        var tips = '- textures served from file:/// throw security errors\n';
-                            tips += '- textures served over http:// work for cross origin byte requests';
-
-                        log(tips);
-                        throw e;
-
-                    } //catch
+                    var image_bytes = POT_Uint8Array_from_image(image.width, image.height, width_pot, height_pot, image);
 
                     info = {
                         id : _path,
@@ -118,7 +96,7 @@ import snow.Log._verboser;
                     };
 
                         //cleanup
-                    tmp_canvas = null; tmp_context = null; image_bytes = null;
+                    image_bytes = null;
 
                         //append the listener
                     if(_onload != null) {
@@ -144,32 +122,7 @@ import snow.Log._verboser;
 
                         var width_pot = nearest_power_of_two(image.header.width);
                         var height_pot = nearest_power_of_two(image.header.height);
-
-                        var tmp_canvas = js.Browser.document.createCanvasElement();
-
-                            tmp_canvas.width = width_pot;
-                            tmp_canvas.height = height_pot;
-
-                        var tmp_context = tmp_canvas.getContext2d();
-
-                            tmp_context.clearRect( 0,0, tmp_canvas.width, tmp_canvas.height );
-                            tmp_context.drawImage( image.getCanvas(), 0, 0, image.header.width, image.header.height );
-
-                        var image_bytes = null;
-
-                        try {
-
-                            image_bytes = tmp_context.getImageData( 0, 0, tmp_canvas.width, tmp_canvas.height );
-
-                        } catch(e:Dynamic) {
-
-                            var tips = '- textures served from file:/// throw security errors\n';
-                                tips += '- textures served over http:// work for cross origin byte requests';
-
-                            log(tips);
-                            throw e;
-
-                        } //catch
+                        var image_bytes = POT_Uint8Array_from_image(image.header.width, image.header.height, width_pot, height_pot, image.getCanvas());
 
                             //todo: bpp?
 
@@ -185,7 +138,7 @@ import snow.Log._verboser;
                         };
 
                             //cleanup
-                        tmp_canvas = null; tmp_context = null; image_bytes = null;
+                        image_bytes = null;
 
                             //append the listener
                         if(_onload != null) {
@@ -197,6 +150,84 @@ import snow.Log._verboser;
                 return info;
 
             } //image_load_info_tga
+
+            function POT_Uint8Array_from_image(_width_pot:Int, _height_pot:Int, _width:Int, _height:Int, _source:js.html.Element) {
+
+                var tmp_canvas = js.Browser.document.createCanvasElement();
+
+                    tmp_canvas.width = _width_pot;
+                    tmp_canvas.height = _height_pot;
+
+                var tmp_context = tmp_canvas.getContext2d();
+
+                    tmp_context.clearRect( 0,0, tmp_canvas.width, tmp_canvas.height );
+                    tmp_context.drawImage( cast _source, 0, 0, _width, _height );
+
+                var image_bytes = null;
+
+                try {
+
+                    image_bytes = tmp_context.getImageData( 0, 0, tmp_canvas.width, tmp_canvas.height );
+
+                } catch(e:Dynamic) {
+
+                    var tips = '- textures served from file:/// throw security errors\n';
+                        tips += '- textures served over http:// work for cross origin byte requests';
+
+                    log(tips);
+                    throw e;
+
+                } //catch
+
+                    //cleanup
+                tmp_canvas = null; tmp_context = null;
+
+                return image_bytes;
+
+            } //POT_Uint8Array_from_image
+
+            function image_load_info_psd(_path:String, ?_components:Int=4, ?_onload:?ImageInfo->Void ) : ImageInfo {
+
+                var info : ImageInfo = null;
+
+                    var image = new PSD();
+
+                    image.open(_path, function(psdimage){
+
+                        var png_then = function(png_image) {
+
+                            var width_pot = nearest_power_of_two(psdimage.header.width);
+                            var height_pot = nearest_power_of_two(psdimage.header.height);
+                            var image_bytes = POT_Uint8Array_from_image(psdimage.header.width, psdimage.header.height, width_pot, height_pot, png_image);
+
+                            info = {
+                                id : _path,
+                                bpp : 4,
+                                width : psdimage.header.width,
+                                height : psdimage.header.height,
+                                width_actual : width_pot,
+                                height_actual : height_pot,
+                                bpp_source : 4,
+                                data : new snow.utils.UInt8Array( image_bytes.data )
+                            };
+
+                                //cleanup
+                            image_bytes = null;
+
+                                //append the listener
+                            if(_onload != null) {
+                                _onload( info );
+                            }
+
+                        }
+
+                        untyped psdimage.image.toPng().then(png_then);
+
+                    });
+
+                return info;
+
+            } //image_load_info_psd
 
         override public function image_info_from_bytes( _path:String, _bytes:ByteArray, ?_components:Int = 4 ) : ImageInfo {
 

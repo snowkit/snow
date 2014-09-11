@@ -11,6 +11,7 @@
     },
 
     build : {
+      defines:['snow_web_psd'],
       dependencies : {
         snow : '*',
       }
