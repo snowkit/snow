@@ -5,6 +5,8 @@ import snow.assets.AssetSystem;
 import snow.types.Types;
 import snow.utils.ByteArray;
 
+import snow.platform.web.assets.tga.TGA;
+
 import snow.Log.log;
 import snow.Log._debug;
 import snow.Log._verbose;
@@ -52,6 +54,22 @@ import snow.Log._verboser;
             } //nearest_power_of_two
 
             override public function image_load_info( _path:String, ?_components:Int = 4, ?_onload:?ImageInfo->Void ) : ImageInfo {
+
+                var ext : String = haxe.io.Path.extension(_path);
+
+                switch(ext) {
+                    default:
+                        return image_load_info_generic(_path, _components, _onload);
+                    case "tga":
+                        return image_load_info_tga(_path, _components, _onload);
+                }
+
+                return null;
+
+            } //image_load_info
+
+                /** Let the browser handle this detail */
+            function image_load_info_generic( _path:String, ?_components:Int=4, ?_onload:?ImageInfo->Void ) : ImageInfo {
 
                     //Create an image element to load the image source
                 var image : js.html.ImageElement = js.Browser.document.createImageElement();
@@ -114,7 +132,71 @@ import snow.Log._verboser;
 
                 return info;
 
-            } //image_load_info
+            } //image_load_info_generic
+
+            function image_load_info_tga( _path:String, ?_components:Int=4, ?_onload:?ImageInfo->Void ) : ImageInfo {
+
+                var info : ImageInfo = null;
+
+                    var image = new TGA();
+
+                    image.open(_path, function(data){
+
+                        var width_pot = nearest_power_of_two(image.header.width);
+                        var height_pot = nearest_power_of_two(image.header.height);
+
+                        var tmp_canvas = js.Browser.document.createCanvasElement();
+
+                            tmp_canvas.width = width_pot;
+                            tmp_canvas.height = height_pot;
+
+                        var tmp_context = tmp_canvas.getContext2d();
+
+                            tmp_context.clearRect( 0,0, tmp_canvas.width, tmp_canvas.height );
+                            tmp_context.drawImage( image.getCanvas(), 0, 0, image.header.width, image.header.height );
+
+                        var image_bytes = null;
+
+                        try {
+
+                            image_bytes = tmp_context.getImageData( 0, 0, tmp_canvas.width, tmp_canvas.height );
+
+                        } catch(e:Dynamic) {
+
+                            var tips = '- textures served from file:/// throw security errors\n';
+                                tips += '- textures served over http:// work for cross origin byte requests';
+
+                            log(tips);
+                            throw e;
+
+                        } //catch
+
+                            //todo: bpp?
+
+                        info = {
+                            id : _path,
+                            bpp : 4,
+                            width : image.header.width,
+                            height : image.header.height,
+                            width_actual : width_pot,
+                            height_actual : height_pot,
+                            bpp_source : 4,
+                            data : new snow.utils.UInt8Array( image_bytes.data )
+                        };
+
+                            //cleanup
+                        tmp_canvas = null; tmp_context = null; image_bytes = null;
+
+                            //append the listener
+                        if(_onload != null) {
+                            _onload( info );
+                        }
+
+                    });
+
+                return info;
+
+            } //image_load_info_tga
 
         override public function image_info_from_bytes( _path:String, _bytes:ByteArray, ?_components:Int = 4 ) : ImageInfo {
 
