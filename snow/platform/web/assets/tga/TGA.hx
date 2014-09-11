@@ -37,4 +37,4 @@ extern class TGA {
     public function getDataURL( ?_mime:String='image/png' ) : String;
     public function getImageData() : js.html.ImageData;
 
-} //TGA.hx
+} //TGA

@@ -200,6 +200,25 @@
       }
     },
 
+    "snow_web_psd" : {
+      app : {
+        web : {
+          libs : {
+            psd : './lib/psd.js'
+          }
+        }
+      },
+      files:{
+        psd : { path:'flow/web/lib/psd.min.js => lib/psd.js', not_listed:true },
+      }
+    },
+
+    "snow_web_psd && debug" : {
+      files:{
+        psd : { path:'flow/web/lib/psd.js => lib/psd.js', not_listed:true },
+      }
+    },
+
     snow_native : {
       build: {
         defines : ['snow_audio_openal', 'snow_input_sdl', 'snow_window_sdl']
