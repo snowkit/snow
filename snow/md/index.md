@@ -40,9 +40,9 @@ This means snow by default runs natively on **Mac**, **Windows**, **Linux** desk
 ##Beta
 
 Please note   
-The documentation is a constant work in progress and will continue to be finalized prior to 1.0.0.
+The documentation is a constant work in progress and will continue to be finalized prior to 1.0.0 final.
 
-snow is currently considered beta which means there may be bugs, inconsistencies or very rarely imcomplete implementations of things.
+snow is currently considered beta, which means there may be bugs, inconsistencies or very rarely incomplete implementations of things.
 It is still considered fairly stable and is being used by multiple frameworks and games,
 but there are things to tighten up before 1.0.0 release happens officially.
 
@@ -157,9 +157,8 @@ On top of the comprehensive, full fledged <a href="http://api.haxe.org/" target=
    - raw bytes, text, images and audio support
    - async based api design to handle preloading easily
    - strict loading on a list or per file basis
+   - images - bmp, png, jpg, gif, tga, psd
    - `web` audio - ogg, wav, mp3 (see [snags](#snags))
-   - `web` images - bmp, png, jpg, gif
-   - `native` images - these ^ + tga, psd
    - `native` audio - ogg, wav, pcm
    - `native` consistent manual file IO for platforms (like android) if needed
    - `desktop` OS file change notification events on any folder
