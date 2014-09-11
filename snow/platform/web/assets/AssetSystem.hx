@@ -116,9 +116,12 @@ import snow.Log._verboser;
 
                 var info : ImageInfo = null;
 
-                    var image = new TGA();
 
-                    image.open(_path, function(data){
+                    ByteArray.readFile(_path, true, function(data:ByteArray) {
+
+                        var uint = new snow.utils.UInt8Array( data.getData() );
+                        var image = new TGA();
+                            image.load( uint );
 
                         var width_pot = nearest_power_of_two(image.header.width);
                         var height_pot = nearest_power_of_two(image.header.height);
@@ -146,6 +149,11 @@ import snow.Log._verboser;
                         }
 
                     });
+
+                        //this uses something firefox doesn't like
+                    // image.open(_path, function(data){
+
+                    // });
 
                 return info;
 
