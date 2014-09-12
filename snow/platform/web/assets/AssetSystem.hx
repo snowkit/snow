@@ -159,7 +159,7 @@ import snow.Log._verboser;
 
             } //image_load_info_tga
 
-            function POT_Uint8Array_from_image(_width_pot:Int, _height_pot:Int, _width:Int, _height:Int, _source:js.html.Element) {
+            function POT_Uint8Array_from_image(_width:Int, _height:Int, _width_pot:Int, _height_pot:Int, _source:js.html.Element) {
 
                 var tmp_canvas = js.Browser.document.createCanvasElement();
 
