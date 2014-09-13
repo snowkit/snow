@@ -288,6 +288,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "{{project.app.mobile.ios._devices}}";
+                VALID_ARCHS = "armv7 armv7a";
 				WRAPPER_EXTENSION = app;
             };
             name = Debug;
@@ -325,6 +326,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "{{project.app.mobile.ios._devices}}";
+                VALID_ARCHS = "armv7 armv7a";
 				WRAPPER_EXTENSION = app;
             };
             name = Release;
@@ -391,6 +393,7 @@
                 GCC_WARN_UNUSED_VARIABLE = YES;
                 OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
                 SDKROOT = iphoneos;
+                ONLY_ACTIVE_ARCH = YES;
                 VALIDATE_PRODUCT = YES;
             };
             name = Release;

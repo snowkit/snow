@@ -104,7 +104,7 @@
       }
     },
 
-    "ios && arch-armv7 && snow_dynamic_link" : {
+    "ios && arch-armv7" : {
       build : {
         files : {
           libsnow : { path:"ndll/iPhone/libsnow.iphoneos-v7.a => project/{{app.name}}/libs/armv7/libsnow.a" }
@@ -112,7 +112,7 @@
       }
     },
 
-    "ios && arch-i386 && ios-sim && snow_dynamic_link" : {
+    "ios && arch-i386 && ios-sim" : {
       build : {
         files : {
           libsnow : { path:"ndll/iPhone/libsnow.iphonesim.a => project/{{app.name}}/libs/i386/libsnow.a" }
