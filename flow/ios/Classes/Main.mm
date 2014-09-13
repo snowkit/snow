@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include "./sdl/SDL_main.h"
 
 extern "C" const char *hxRunLibrary();
 extern "C" void hxcpp_set_top_of_stack();
@@ -8,7 +7,7 @@ extern "C" void hxcpp_set_top_of_stack();
   extern "C" int {{this}}_register_prims();
 {{/each}}
 
-extern "C" int main(int argc, char *argv[]) {
+extern "C" int SDL_main(int argc, char *argv[]) {
 
     hxcpp_set_top_of_stack();
 
