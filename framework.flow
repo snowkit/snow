@@ -104,22 +104,6 @@
       }
     },
 
-    "ios && arch-armv7" : {
-      build : {
-        files : {
-          libsnow : { path:"ndll/iPhone/libsnow.iphoneos-v7.a => project/{{app.name}}/libs/armv7/libsnow.a" }
-        }
-      }
-    },
-
-    "ios && arch-i386 && ios-sim" : {
-      build : {
-        files : {
-          libsnow : { path:"ndll/iPhone/libsnow.iphonesim.a => project/{{app.name}}/libs/i386/libsnow.a" }
-        }
-      }
-    },
-
     "android && arch-armv5 && snow_dynamic_link" : {
       build : {
         files : {
@@ -148,10 +132,11 @@
     ios : {
       build: {
         files : {
+          libsnow : { path:"ndll/iPhone/libsnow.iphoneos-v7.a => project/{{app.name}}/libs/armv7/libsnow.a" },
+          libsnow_sim : { path:"ndll/iPhone/libsnow.iphonesim.a => project/{{app.name}}/libs/i386/libsnow.a" },
+
           projectfile : { path:"flow/ios/snowapp.xcodeproj => project/{{app.name}}.xcodeproj", template:'project' },
           classes : { path:"flow/ios/Classes => project/{{app.name}}/Classes", template:'project' },
-          sdl_headers : { path:"project/src/libs/sdl/include => project/{{app.name}}/Classes/sdl/" },
-          sdl_config : { path:"project/src/libs/sdl/include/configs/default/SDL_config.h => project/{{app.name}}/Classes/sdl/SDL_config.h" },
           infoplist : { path:"flow/ios/snowapp-Info.plist => project/{{app.name}}/{{app.name}}-Info.plist", template:'project' },
           prefixheader : { path:"flow/ios/snowapp-Prefix.pch => project/{{app.name}}/{{app.name}}-Prefix.pch", template:'project' },
           images : { path:"flow/ios/Images.xcassets => project/{{app.name}}/Images.xcassets", template:'project' }
