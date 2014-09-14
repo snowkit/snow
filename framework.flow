@@ -129,17 +129,22 @@
       }
     },
 
+    "ios && ios-xcode-project" : {
+      build: {
+        files : {
+          projectfile : { path:"flow/ios/snowapp.xcodeproj => ../../ios.project/{{app.name}}.xcodeproj", template:'project' },
+          classes : { path:"flow/ios/Classes => ../../ios.project/project/Classes", template:'project' },
+          infoplist : { path:"flow/ios/snowapp-Info.plist => ../../ios.project/project/project-Info.plist", template:'project' },
+          prefixheader : { path:"flow/ios/snowapp-Prefix.pch => ../../ios.project/project/project-Prefix.pch", template:'project' }
+        }
+      }
+    },
+
     ios : {
       build: {
         files : {
-          libsnow : { path:"ndll/iPhone/libsnow.iphoneos-v7.a => project/{{app.name}}/libs/armv7/libsnow.a" },
-          libsnow_sim : { path:"ndll/iPhone/libsnow.iphonesim.a => project/{{app.name}}/libs/i386/libsnow.a" },
-
-          projectfile : { path:"flow/ios/snowapp.xcodeproj => project/{{app.name}}.xcodeproj", template:'project' },
-          classes : { path:"flow/ios/Classes => project/{{app.name}}/Classes", template:'project' },
-          infoplist : { path:"flow/ios/snowapp-Info.plist => project/{{app.name}}/{{app.name}}-Info.plist", template:'project' },
-          prefixheader : { path:"flow/ios/snowapp-Prefix.pch => project/{{app.name}}/{{app.name}}-Prefix.pch", template:'project' },
-          images : { path:"flow/ios/Images.xcassets => project/{{app.name}}/Images.xcassets", template:'project' }
+          libsnow : { path:"ndll/iPhone/libsnow.iphoneos-v7.a => ../../ios.project/project/libs/armv7/libsnow.a" },
+          libsnow_sim : { path:"ndll/iPhone/libsnow.iphonesim.a => ../../ios.project/project/libs/i386/libsnow.a" },
         }
       }
     },

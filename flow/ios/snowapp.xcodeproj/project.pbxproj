@@ -7,7 +7,7 @@
     objects = {
 
 /* Begin PBXBuildFile section */
-		1E2E17AD131E8B5D0048F3C7 /* {{project.app.name}}/assets in Resources */ = {isa = PBXBuildFile; fileRef = 1E2E17A5131E8B5D0048F3C7 /* {{project.app.name}}/assets */; };
+		1E2E17AD131E8B5D0048F3C7 /* project/assets in Resources */ = {isa = PBXBuildFile; fileRef = 1E2E17A5131E8B5D0048F3C7 /* project/assets */; };
         1EEEBA9B121AF1C60048A9DF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1EEEBA9A121AF1C60048A9DF /* UIKit.framework */; };
         1EEEBAA3121AF2210048A9DF /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1EEEBAA2121AF2210048A9DF /* OpenAL.framework */; };
         1EEEBAA5121AF2210048A9DF /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1EEEBAA4121AF2210048A9DF /* OpenGLES.framework */; };
@@ -21,28 +21,12 @@
         1EEEBB00121BE2B30048A9DF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1EEEBAFF121BE2B30048A9DF /* Foundation.framework */; };
         1EF0A83A121ADB8E003F2F59 /* Main.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1EF0A839121ADB8E003F2F59 /* Main.mm */; };
 		2619B0091978784F003DB9A7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2619B0081978784F003DB9A7 /* Images.xcassets */; };
-		2679E1C319787CA3001501C8 /* lib{{project.app.name}}.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2679E1C219787CA3001501C8 /* lib{{project.app.name}}.a */; };
-
-        {{#each project.app.mobile.ios.libs._native~}}
-            {{nodeRef}} /* lib{{name}}.a in Frameworks */ = {isa = PBXBuildFile; fileRef = {{fileRef}} /* lib{{name}}.a */; };
-        {{/each}}
 
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-        1EF0A882121AE1D2003F2F59 /* PBXContainerItemProxy */ = {
-            isa = PBXContainerItemProxy;
-            containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
-            proxyType = 1;
-            remoteGlobalIDString = 1EF0A87F121AE1CE003F2F59;
-            remoteInfo = "Build Haxe";
-        };
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXFileReference section */
 		1D6058910D05DD3D006BFB54 /* {{project.app.name}}.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = {{project.app.name}}.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		1E2E17A5131E8B5D0048F3C7 /* {{project.app.name}}/assets */ = {isa = PBXFileReference; lastKnownFileType = folder; path = {{project.app.name}}/assets; sourceTree = "<group>"; };
-		1E2E17A5141E8B5D0048F3C7 /* haxe/build */ = {isa = PBXFileReference; lastKnownFileType = folder; path = haxe/build; sourceTree = SOURCE_ROOT; };
+		1E2E17A5131E8B5D0048F3C7 /* project/assets */ = {isa = PBXFileReference; lastKnownFileType = folder; path = project/assets; sourceTree = "<group>"; };
         1EEEBA9A121AF1C60048A9DF /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
         1EEEBAA2121AF2210048A9DF /* OpenAL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenAL.framework; path = System/Library/Frameworks/OpenAL.framework; sourceTree = SDKROOT; };
         1EEEBAA4121AF2210048A9DF /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -54,14 +38,9 @@
         1EEEBAFB121BE2980048A9DF /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
         1EEEBAFD121BE2980048A9DF /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
         1EEEBAFF121BE2B30048A9DF /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		1EF0A839121ADB8E003F2F59 /* Main.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Main.mm; path = {{project.app.name}}/Classes/Main.mm; sourceTree = SOURCE_ROOT; };
-		2619B0081978784F003DB9A7 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = {{project.app.name}}/Images.xcassets; sourceTree = "<group>"; };
-        2679E1C219787CA3001501C8 /* lib{{project.app.name}}.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = lib{{project.app.name}}.a; path = {{project.app.name}}/libs/{{arch}}/lib{{project.app.name}}.a; sourceTree = "<group>"; };
-		8D1107310486CEB800E47090 /* {{project.app.name}}/{{project.app.name}}-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "{{project.app.name}}/{{project.app.name}}-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
-
-        {{#each project.app.mobile.ios.libs._native~}}
-            {{fileRef}} /* lib{{name}}.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = lib{{name}}.a; path = {{../project.app.name}}/libs/{{../arch}}/lib{{name}}.a; sourceTree = "<group>"; };
-        {{~/each}}
+		1EF0A839121ADB8E003F2F59 /* Main.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Main.mm; path = project/Classes/Main.mm; sourceTree = SOURCE_ROOT; };
+		2619B0081978784F003DB9A7 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = project/Images.xcassets; sourceTree = "<group>"; };
+		8D1107310486CEB800E47090 /* project/project-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "project/project-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 
 /* End PBXFileReference section */
 
@@ -70,10 +49,6 @@
             isa = PBXFrameworksBuildPhase;
             buildActionMask = 2147483647;
             files = (
-				2679E1C319787CA3001501C8 /* lib{{project.app.name}}.a in Frameworks */,
-                {{#each project.app.mobile.ios.libs._native~}}
-                    {{nodeRef}} /* lib{{name}}.a in Frameworks */,
-                {{~/each}}
                 1EEEBA9B121AF1C60048A9DF /* UIKit.framework in Frameworks */,
                 1EEEBAA3121AF2210048A9DF /* OpenAL.framework in Frameworks */,
                 1EEEBAA5121AF2210048A9DF /* OpenGLES.framework in Frameworks */,
@@ -110,10 +85,6 @@
         1EEEBA99121AF18B0048A9DF /* Frameworks */ = {
             isa = PBXGroup;
             children = (
-				2679E1C219787CA3001501C8 /* lib{{project.app.name}}.a */,
-                {{#each project.app.mobile.ios.libs._native~}}
-                    {{fileRef}} /* lib{{name}}.a */,
-                {{~/each}}
                 1EEEBA9A121AF1C60048A9DF /* UIKit.framework */,
                 1EEEBAA2121AF2210048A9DF /* OpenAL.framework */,
                 1EEEBAA4121AF2210048A9DF /* OpenGLES.framework */,
@@ -153,36 +124,20 @@
             isa = PBXGroup;
             children = (
 				2619B0081978784F003DB9A7 /* Images.xcassets */,
-				8D1107310486CEB800E47090 /* {{project.app.name}}/{{project.app.name}}-Info.plist */,
-				1E2E17A5131E8B5D0048F3C7 /* {{project.app.name}}/assets */,
+				8D1107310486CEB800E47090 /* project/project-Info.plist */,
+				1E2E17A5131E8B5D0048F3C7 /* project/assets */,
             );
             name = Resources;
             sourceTree = "<group>";
         };
 /* End PBXGroup section */
 
-/* Begin PBXLegacyTarget section */
-        1EF0A87F121AE1CE003F2F59 /* Build Haxe */ = {
-            isa = PBXLegacyTarget;
-            buildArgumentsString = "";
-            buildConfigurationList = 1EF0A885121AE21C003F2F59 /* Build configuration list for PBXLegacyTarget "Build Haxe" */;
-            buildPhases = (
-            );
-            buildToolPath = make;
-			buildWorkingDirectory = haxe;
-            dependencies = (
-            );
-            name = "Build Haxe";
-            passBuildSettingsInEnvironment = 1;
-            productName = "Build Haxe";
-        };
-/* End PBXLegacyTarget section */
-
 /* Begin PBXNativeTarget section */
 		1D6058900D05DD3D006BFB54 /* {{project.app.name}} */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "{{project.app.name}}" */;
 			buildPhases = (
+				26CE64D519C4D0EA00ED5864 /* ShellScript */,
 				1D60588D0D05DD3D006BFB54 /* Resources */,
 				1D60588E0D05DD3D006BFB54 /* Sources */,
 				1D60588F0D05DD3D006BFB54 /* Frameworks */,
@@ -215,7 +170,6 @@
             projectRoot = "";
             targets = (
                 1D6058900D05DD3D006BFB54 /* "{{project.app.name}}" */,
-                1EF0A87F121AE1CE003F2F59 /* Build Haxe */,
             );
         };
 /* End PBXProject section */
@@ -225,12 +179,28 @@
             isa = PBXResourcesBuildPhase;
             buildActionMask = 2147483647;
             files = (
-				1E2E17AD131E8B5D0048F3C7 /* {{project.app.name}}/assets in Resources */,
+				1E2E17AD131E8B5D0048F3C7 /* project/assets in Resources */,
 				2619B0091978784F003DB9A7 /* Images.xcassets in Resources */,
             );
             runOnlyForDeploymentPostprocessing = 0;
         };
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		26CE64D519C4D0EA00ED5864 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "haxelib run flow build ios --project-root ../";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
         1D60588E0D05DD3D006BFB54 /* Sources */ = {
@@ -243,14 +213,6 @@
         };
 /* End PBXSourcesBuildPhase section */
 
-/* Begin PBXTargetDependency section */
-        1EF0A883121AE1D2003F2F59 /* PBXTargetDependency */ = {
-            isa = PBXTargetDependency;
-            target = 1EF0A87F121AE1CE003F2F59 /* Build Haxe */;
-            targetProxy = 1EF0A882121AE1D2003F2F59 /* PBXContainerItemProxy */;
-        };
-/* End PBXTargetDependency section */
-
 /* Begin XCBuildConfiguration section */
 		1D6058940D05DD3E006BFB54 /* Debug */ = {
             isa = XCBuildConfiguration;
@@ -262,29 +224,25 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
                 GCC_PRECOMPILE_PREFIX_HEADER = YES;
-                GCC_PREFIX_HEADER = "{{project.app.name}}/{{project.app.name}}-Prefix.pch";
-                INFOPLIST_FILE = "{{project.app.name}}/{{project.app.name}}-Info.plist";
+                GCC_PREFIX_HEADER = "project/project-Prefix.pch";
+                INFOPLIST_FILE = "project/project-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = {{project.app.mobile.ios.deployment_target}};
 				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/{{project.app.name}}/libs/{{arch}}",
+					"$(PROJECT_DIR)/project/libs/{{arch}}",
 				);
                 "LIBRARY_SEARCH_PATHS[arch=armv6]" = (
-                    "$(inherited)",
-                    "\"$(SRCROOT)/{{project.app.name}}/libs/armv6-debug\"",
-                    "\"$(SRCROOT)/{{project.app.name}}/libs/armv6\"",
+                    "\"$(SRCROOT)/project/libs/armv6-debug\"",
+                    "\"$(SRCROOT)/project/libs/armv6\"",
                 );
                 "LIBRARY_SEARCH_PATHS[arch=armv7]" = (
-                    "$(inherited)",
-                    "\"$(SRCROOT)/{{project.app.name}}/libs/armv7-debug\"",
-                    "\"$(SRCROOT)/{{project.app.name}}/libs/armv7\"",
+                    "\"$(SRCROOT)/project/libs/armv7-debug\"",
+                    "\"$(SRCROOT)/project/libs/armv7\"",
                 );
                 "LIBRARY_SEARCH_PATHS[sdk=iphonesimulator*]" = (
-                    "$(inherited)",
-                    "\"$(SRCROOT)/{{project.app.name}}/libs/i386-debug\"",
-                    "\"$(SRCROOT)/{{project.app.name}}/libs/i386\"",
+                    "\"$(SRCROOT)/project/libs/i386-debug\"",
+                    "\"$(SRCROOT)/project/libs/i386\"",
                 );
-				OTHER_LDFLAGS = "";
+				OTHER_LDFLAGS = "{{project.app.mobile.ios.ldflags}}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "{{project.app.mobile.ios._devices}}";
@@ -303,62 +261,32 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
                 GCC_PRECOMPILE_PREFIX_HEADER = YES;
-                GCC_PREFIX_HEADER = "{{project.app.name}}/{{project.app.name}}-Prefix.pch";
-                INFOPLIST_FILE = "{{project.app.name}}/{{project.app.name}}-Info.plist";
+                GCC_PREFIX_HEADER = "project/project-Prefix.pch";
+                INFOPLIST_FILE = "project/project-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = {{project.app.mobile.ios.deployment_target}};
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/{{project.app.name}}/libs/{{arch}}",
+					"$(PROJECT_DIR)/project/libs/{{arch}}",
 				);
                 "LIBRARY_SEARCH_PATHS[arch=armv6]" = (
                     "$(inherited)",
-                    "\"$(SRCROOT)/{{project.app.name}}/libs/armv6\"",
+                    "\"$(SRCROOT)/project/libs/armv6\"",
                 );
                 "LIBRARY_SEARCH_PATHS[arch=armv7]" = (
                     "$(inherited)",
-                    "\"$(SRCROOT)/{{project.app.name}}/libs/armv7\"",
+                    "\"$(SRCROOT)/project/libs/armv7\"",
                 );
                 "LIBRARY_SEARCH_PATHS[sdk=iphonesimulator*]" = (
                     "$(inherited)",
-                    "\"$(SRCROOT)/{{project.app.name}}/libs/i386\"",
+                    "\"$(SRCROOT)/project/libs/i386\"",
                 );
-				OTHER_LDFLAGS = "";
+				OTHER_LDFLAGS = "{{project.app.mobile.ios.ldflags}}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "{{project.app.mobile.ios._devices}}";
                 VALID_ARCHS = "armv7 armv7a";
 				WRAPPER_EXTENSION = app;
-            };
-            name = Release;
         };
-		1EF0A880121AE1CE003F2F59 /* Debug */ = {
-            isa = XCBuildConfiguration;
-            buildSettings = {
-                COPY_PHASE_STRIP = NO;
-                GCC_C_LANGUAGE_STANDARD = gnu99;
-                GCC_DYNAMIC_NO_PIC = NO;
-                GCC_OPTIMIZATION_LEVEL = 0;
-                GCC_PREPROCESSOR_DEFINITIONS = (
-                    "DEBUG=1",
-                    "$(inherited)",
-                );
-                GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-                GCC_WARN_ABOUT_RETURN_TYPE = YES;
-                GCC_WARN_UNINITIALIZED_AUTOS = YES;
-                GCC_WARN_UNUSED_VARIABLE = YES;
-            };
-            name = Debug;
-        };
-		1EF0A881121AE1CE003F2F59 /* Release */ = {
-            isa = XCBuildConfiguration;
-            buildSettings = {
-                COPY_PHASE_STRIP = YES;
-                GCC_C_LANGUAGE_STANDARD = gnu99;
-                GCC_WARN_ABOUT_RETURN_TYPE = YES;
-                GCC_WARN_UNINITIALIZED_AUTOS = YES;
-                GCC_WARN_UNUSED_VARIABLE = YES;
-                ZERO_LINK = NO;
-            };
             name = Release;
         };
 		C01FCF4F08A954540054247B /* Debug */ = {
@@ -406,15 +334,6 @@
             buildConfigurations = (
 				1D6058940D05DD3E006BFB54 /* Debug */,
 				1D6058950D05DD3E006BFB54 /* Release */,
-            );
-            defaultConfigurationIsVisible = 0;
-            defaultConfigurationName = Release;
-        };
-		1EF0A885121AE21C003F2F59 /* Build configuration list for PBXLegacyTarget "Build Haxe" */ = {
-            isa = XCConfigurationList;
-            buildConfigurations = (
-				1EF0A880121AE1CE003F2F59 /* Debug */,
-				1EF0A881121AE1CE003F2F59 /* Release */,
             );
             defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
