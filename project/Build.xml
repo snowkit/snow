@@ -81,6 +81,7 @@
 
       <!-- should we build SDL files -->
    <set name="SNOW_LIB_SDL" value="1" if="SNOW_USE_SDL"/>
+   <set name="NATIVE_TOOLKIT_SDL_STATIC" value="1" if="SNOW_USE_SDL"/>
    <!-- enable this to build sdl as a .a file, and then link it (instead of embedded in the core code) -->
    <!-- <set name="SNOW_LIB_SDL_STATIC_EXTERNAL" value="1" /> -->
    <!-- enable this to build sdl as a .so/.dll file, and then link it (instead of embedded in the core code) -->
