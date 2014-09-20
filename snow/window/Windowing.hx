@@ -209,14 +209,23 @@ class Windowing {
 
 } //Windowing
 
-private class WindowHandleMap extends haxe.ds.BalancedTree<WindowHandle,Int> {
 
-    override function compare(k1:WindowHandle, k2:WindowHandle) {
-        if(k1 == null) return 1;
-        if(k2 == null) return 1;
-        if(k1 == k2) return 0;
-        if(k1 < k2) return -1;
-        return 1;
-    }
+#if snow_web
 
-} //WindowHandleMap
+    private typedef WindowHandleMap = Map<WindowHandle, Int>;
+
+#else
+
+    private class WindowHandleMap extends haxe.ds.BalancedTree<WindowHandle,Int> {
+
+        override function compare(k1:WindowHandle, k2:WindowHandle) {
+            if(k1 == null) return 1;
+            if(k2 == null) return 1;
+            if(k1 == k2) return 0;
+            if(k1 < k2) return -1;
+            return 1;
+        }
+
+    } //WindowHandleMap
+
+#end

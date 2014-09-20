@@ -15,17 +15,6 @@ import snow.Log._debug;
 import snow.Log._verbose;
 import snow.Log._verboser;
 
-private class AudioHandleMap extends haxe.ds.BalancedTree<AudioHandle,Sound> {
-
-    override function compare(k1:AudioHandle, k2:AudioHandle) {
-        if(k1 == null) return 1;
-        if(k2 == null) return 1;
-        if(k1 == k2) return 0;
-        if(k1 < k2) return -1;
-        return 1;
-    }
-
-} //AudioHandleMap
 
 class Audio {
 
@@ -360,3 +349,24 @@ class Audio {
 
 
 } //Audio
+
+
+#if snow_web
+
+    private typedef AudioHandleMap = Map<AudioHandle, Sound>;
+
+#else
+
+    private class AudioHandleMap extends haxe.ds.BalancedTree<AudioHandle,Sound> {
+
+        override function compare(k1:AudioHandle, k2:AudioHandle) {
+            if(k1 == null) return 1;
+            if(k2 == null) return 1;
+            if(k1 == k2) return 0;
+            if(k1 < k2) return -1;
+            return 1;
+        }
+
+    } //AudioHandleMap
+
+#end
