@@ -7,6 +7,8 @@ Created for http://snowkit.org/snow
 MIT License
 */
 
+#if js
+
 typedef TGAHeader = {
     idLength : Int,
     colorMapType : Int,
@@ -38,3 +40,5 @@ extern class TGA {
     public function getImageData() : js.html.ImageData;
 
 } //TGA
+
+#end //js
