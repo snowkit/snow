@@ -1,13 +1,13 @@
 {
 
   project : {
-    name : 'test_flow',
+    name : 'snow test',
     version : '1.0.0',
     author : 'snowkit',
 
     app : {
-      name : 'flow_test',
-      package : 'org.snowkit.flow',
+      name : 'snow_test',
+      package : 'org.snowkit.snowtest',
     },
 
     build : {
