@@ -1,5 +1,6 @@
 package snow.audio;
 
+import haxe.ds.BalancedTree;
 import snow.types.Types;
 
 import snow.audio.Sound;
@@ -14,6 +15,18 @@ import snow.Log._debug;
 import snow.Log._verbose;
 import snow.Log._verboser;
 
+private class AudioHandleMap extends haxe.ds.BalancedTree<AudioHandle,Sound> {
+
+    override function compare(k1:AudioHandle, k2:AudioHandle) {
+        if(k1 == null) return 1;
+        if(k2 == null) return 1;
+        if(k1 == k2) return 0;
+        if(k1 < k2) return -1;
+        return 1;
+    }
+
+} //AudioHandleMap
+
 class Audio {
 
         /** access to platform specific implementation */
@@ -24,7 +37,7 @@ class Audio {
         /** for external access to the library by the systems */
     @:noCompletion public var lib : Snow;
         /** for mapping native handles to Sound instances. Use the `app.audio` to manipulate preferably. */
-    @:noCompletion public var handles : Map<AudioHandle, Sound>;
+    @:noCompletion public var handles : AudioHandleMap;
         /** for mapping named sounds to Sound instances. Use the `app.audio` to manipulate preferably. */
     @:noCompletion public var sound_list : Map<String, Sound>;
         /** for mapping named streams to SoundStream instances. Use the `app.audio` to manipulate preferably. */
@@ -41,7 +54,7 @@ class Audio {
 
         sound_list = new Map();
         stream_list = new Map();
-        handles = new Map();
+        handles = new AudioHandleMap();
 
         active = true;
 

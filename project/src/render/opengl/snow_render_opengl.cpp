@@ -3,6 +3,10 @@
 #define NEKO_COMPATIBLE
 #endif
 
+/*
+   Portions adapted from https://github.com/haxenme/nme/
+*/
+
 #include <hx/CFFI.h>
 
 #ifdef ANDROID
@@ -1874,7 +1878,6 @@ namespace snow {
 
     value snow_gl_generate_mipmap(value inTarget) {
 
-          //:todo: no fail safe
         glGenerateMipmap(val_int(inTarget));
 
         return alloc_null();

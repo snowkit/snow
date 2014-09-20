@@ -329,14 +329,14 @@ typedef DisplayMode = {
 #if snow_web
     typedef WindowHandle = js.html.CanvasElement;
 #else
-    typedef WindowHandle = Dynamic;
+    typedef WindowHandle = Null<Float>;
 #end //snow_web
 
     /** A platform window handle */
 #if snow_audio_howlerjs
     typedef AudioHandle = snow.platform.web.audio.howlerjs.Howl;
 #else
-    typedef AudioHandle = Dynamic;
+    typedef AudioHandle = Null<Float>;
 #end //snow_web
 
 

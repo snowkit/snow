@@ -2,7 +2,6 @@
 #define _SNOW_HX_BINDINGS_H_
 
 #include <hx/CFFI.h>
-#include "common/Object.h"
 
 #include <string>
 #include <vector>
@@ -11,7 +10,6 @@ namespace snow {
 
 
         //externs
-    extern vkind global_snow_object_kind;
     extern AutoGCRoot *system_event_handler;
 
         //id's
@@ -108,10 +106,6 @@ namespace snow {
 
     inline void snow_init_ids() {
 
-            //global
-
-        kind_share( &global_snow_object_kind, "snow::Object");
-
             //more common flags
 
         id_id                   = val_id("id");
@@ -206,57 +200,6 @@ namespace snow {
         id_stencil_bits         = val_id("stencil_bits");
 
     } //snow_init_ids
-
-    inline value Object_to_hx( Object *object ) {
-
-       struct releaser {
-
-            static void release_object(value _in_object) {
-
-                if( val_is_kind(_in_object, global_snow_object_kind) ) {
-
-                    Object *obj = (Object *)val_to_kind( _in_object, global_snow_object_kind );
-
-                    if(obj) {
-                        obj->drop();
-                    }
-
-                } //if is global_snow_object_kind
-
-            } //release_object
-
-       }; //releaser
-
-            //increase references
-        object->grab();
-
-            //create the haxe abstract for returning
-        value result = alloc_abstract( global_snow_object_kind, object );
-            //tell the gc to collect this object from the releaser struct callback
-        val_gc( result, releaser::release_object );
-
-        return result;
-
-    } //Object_to_hx
-
-
-    template<typename T> bool Object_from_hx( value _in_object, T *&_out_object) {
-
-        _out_object = 0;
-
-                //check if it's the right kind of object first
-            if ( !val_is_kind( _in_object, global_snow_object_kind) ) {
-                return false;
-            }
-
-                //fetch the wrapped Object
-           Object *object = (Object *)val_to_kind(_in_object,global_snow_object_kind);
-                //cast to the type given and set the out reference
-            _out_object = dynamic_cast<T*>( object );
-
-        return _out_object != NULL;
-
-    } //Object_from_hx
 
 // array conversion tools
 

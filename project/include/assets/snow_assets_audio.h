@@ -3,7 +3,6 @@
 
 #include <string>
 
-#include "common/Object.h"
 #include "common/QuickVec.h"
 
 #include "snow_io.h"
@@ -49,7 +48,7 @@ namespace snow {
 
         //OGG file source
 
-            class OGG_file_source : public Object {
+            class OGG_file_source {
 
                 public:
                     snow::io::iosrc*   file_source;
@@ -79,7 +78,7 @@ namespace snow {
 
         //WAV file source
 
-            class WAV_file_source : public Object {
+            class WAV_file_source {
 
                 public:
                     snow::io::iosrc*   file_source;
@@ -112,7 +111,7 @@ namespace snow {
 
         //PCM file source
 
-            class PCM_file_source : public Object {
+            class PCM_file_source {
 
                 public:
                     snow::io::iosrc*   file_source;

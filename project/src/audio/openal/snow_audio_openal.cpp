@@ -3,41 +3,20 @@
 #include "audio/openal/snow_openal.h"
 #include "snow_hx_bindings.h"
 #include "snow_core.h"
-#include "common/Object.h"
+#include "common/snow_hx.h"
 #include "common/ByteArray.h"
 
+/**
+    "ALHX" bindings for haxe <-> OpenAL.
+    Copyright Sven Bergström 2014
+    MIT license
+*/
+
+/**
+    These go in order that the API has them listed
+    in the specification, and are grouped by the same layout.
+*/
 namespace alhx {
-
-    class ALHX_ALDevice : public snow::Object {
-        public:
-            ALCdevice *al_device;
-
-            ALHX_ALDevice(ALCdevice *_device) {
-                al_device = _device;
-            }
-
-            ~ALHX_ALDevice() {
-                if(al_device) {
-                    alcCloseDevice(al_device);
-                }
-            }
-    };
-
-    class ALHX_ALContext : public snow::Object {
-        public:
-            ALCcontext *al_context;
-
-            ALHX_ALContext(ALCcontext *_context) {
-                al_context = _context;
-            }
-
-            ~ALHX_ALContext() {
-                if(al_context) {
-                    alcDestroyContext(al_context);
-                }
-            }
-    };
-
 
     value alhx_DopplerFactor(value _value) {
 
@@ -169,36 +148,52 @@ namespace alhx {
     } DEFINE_PRIM(alhx_GetDoublev, 2);
 
     value alhx_GetBoolean(value _param) {
+
         return alloc_bool( alGetBoolean(val_int(_param)) );
+
     } DEFINE_PRIM(alhx_GetBoolean, 1);
 
     value alhx_GetInteger(value _param) {
+
         return alloc_int( alGetInteger(val_int(_param)) );
+
     } DEFINE_PRIM(alhx_GetInteger, 1);
 
     value alhx_GetFloat(value _param) {
+
         return alloc_float( alGetFloat(val_int(_param)) );
+
     } DEFINE_PRIM(alhx_GetFloat, 1);
 
     value alhx_GetDouble(value _param) {
+
         return alloc_float( (float)alGetDouble(val_int(_param)) );
+
     } DEFINE_PRIM(alhx_GetDouble, 1);
 
 
     value alhx_GetError() {
+
         return alloc_int( alGetError() );
+
     } DEFINE_PRIM(alhx_GetError, 0);
 
     value alhx_IsExtensionPresent(value _extname) {
+
         return alloc_bool( alIsExtensionPresent(val_string(_extname)) );
+
     } DEFINE_PRIM(alhx_IsExtensionPresent, 1);
 
     value alhx_GetProcAddress(value _fname) {
+
         return alloc_null();  //:todo:
+
     } DEFINE_PRIM(alhx_GetProcAddress, 1);
 
     value alhx_GetEnumValue(value _ename) {
+
         return alloc_int( alGetEnumValue(val_string(_ename)) );
+
     } DEFINE_PRIM(alhx_GetEnumValue, 1);
 
 
@@ -349,6 +344,7 @@ namespace alhx {
     } DEFINE_PRIM(alhx_GetListeneriv, 2);
 
 // --- > not official api
+// --- > added by me for convenience
 
     value alhx_GenSource() {
 
@@ -720,7 +716,8 @@ namespace alhx {
 
     } DEFINE_PRIM(alhx_IsBuffer, 1);
 
-//unofficial api
+// --- > not official api
+// --- > added by me for convenience
 
     value alhx_GenBuffer() {
 
@@ -742,18 +739,18 @@ namespace alhx {
 
     } DEFINE_PRIM(alhx_DeleteBuffer, 1);
 
-// // end unofficial api
+// --- >
 
     value alhx_BufferData(value _buffer, value _format, value _data, value _size, value _freq) {
 
         snow::ByteArray bytes(_data);
-        int bytesize = bytes.Size();
 
+        int bytesize = bytes.Size();
         const float *data = (float *)bytes.Bytes();
-        int n_elems = bytesize / sizeof(float);
 
             //since size is explicitly passed in,
             //we are going to use that, but the calculated count is n_elems>>2;
+        // int n_elems = bytesize / sizeof(float);
         int count = val_int(_size);
 
         alBufferData( val_int(_buffer), val_int(_format), data, count, val_int(_freq) );
@@ -914,22 +911,24 @@ namespace alhx {
 
     value alhx_alcCreateContext(value _device, value _attrlist) {
 
-        ALHX_ALDevice* device;
 
-        if( snow::Object_from_hx(_device, device) ) {
+        ALCdevice* device = (ALCdevice*)(intptr_t)val_float( _device );
+
+        if( device ) {
 
             int* attrlist = val_array_int(_attrlist);
 
-            ALCcontext *_al_context = alcCreateContext( device->al_device, attrlist );
+            ALCcontext* context = alcCreateContext( device, attrlist );
 
-            if(!_al_context) {
-                printf("/ alhx / failed to create AL context\n");
+            if( !context ) {
+
+                snow::log(1, "/ alhx / failed to create AL context");
+
                 return alloc_null();
-            }
 
-            ALHX_ALContext* context = new ALHX_ALContext(_al_context);
+            } //!context
 
-            return snow::Object_to_hx(context);
+            return snow::to_hx<ALCcontext>( context );
 
         } //fetch device
 
@@ -939,19 +938,18 @@ namespace alhx {
 
     value alhx_alcMakeContextCurrent(value _context) {
 
-        ALHX_ALContext* context;
-
         if(val_is_null(_context)) {
 
+                //explicit nulling context is disable current
             alcMakeContextCurrent( NULL );
 
         } else {
 
-            if( snow::Object_from_hx(_context, context) ) {
+            ALCcontext* context = snow::from_hx<ALCcontext>( _context );
 
-                alcMakeContextCurrent( context->al_context );
-
-            } 
+            if( context ) {
+                alcMakeContextCurrent( context );
+            }
 
         } //null passed in
 
@@ -961,13 +959,11 @@ namespace alhx {
 
     value alhx_alcProcessContext(value _context) {
 
-        ALHX_ALContext* context;
+        ALCcontext* context = snow::from_hx<ALCcontext>( _context );
 
-        if( snow::Object_from_hx(_context, context) ) {
-
-            alcProcessContext( context->al_context );
-
-        } //fetch context
+        if( context ) {
+            alcProcessContext( context );
+        }
 
         return alloc_null();
 
@@ -975,13 +971,11 @@ namespace alhx {
 
     value alhx_alcSuspendContext(value _context) {
 
-        ALHX_ALContext* context;
+        ALCcontext* context = snow::from_hx<ALCcontext>( _context );
 
-        if( snow::Object_from_hx(_context, context) ) {
-
-            alcSuspendContext( context->al_context );
-
-        } //fetch context
+        if( context ) {
+            alcSuspendContext( context );
+        }
 
         return alloc_null();
 
@@ -989,15 +983,11 @@ namespace alhx {
 
     value alhx_alcDestroyContext(value _context) {
 
-        ALHX_ALContext* context;
+        ALCcontext* context = snow::from_hx<ALCcontext>( _context );
 
-        if( snow::Object_from_hx(_context, context) ) {
-
-            if(context && context->al_context) {
-                alcDestroyContext( context->al_context );
-            }
-
-        } //fetch context
+        if( context ) {
+            alcDestroyContext( context );
+        }
 
         return alloc_null();
 
@@ -1005,27 +995,31 @@ namespace alhx {
 
     value alhx_alcGetCurrentContext() {
 
-        ALCcontext *_al_context = alcGetCurrentContext();
+        ALCcontext* context = alcGetCurrentContext();
 
-        ALHX_ALContext* context = new ALHX_ALContext(_al_context);
+        if( context ) {
+            return snow::to_hx<ALCcontext>( context );
+        }
 
-        return snow::Object_to_hx(context);
+        return alloc_null();
 
     } DEFINE_PRIM(alhx_alcGetCurrentContext, 0);
 
     value alhx_alcGetContextsDevice(value _context) {
 
-        ALHX_ALContext* context;
+        ALCcontext* context = snow::from_hx<ALCcontext>( _context );
 
-        if( snow::Object_from_hx(_context, context) ) {
+        if( context ) {
 
-            ALCdevice* _al_device = alcGetContextsDevice( context->al_context );
+            ALCdevice* device = alcGetContextsDevice( context );
 
-            ALHX_ALDevice* device = new ALHX_ALDevice(_al_device);
+            if( device ) {
+                return snow::to_hx<ALCdevice>( device );
+            } else {
+                return alloc_null();
+            }
 
-            return snow::Object_to_hx(device);
-
-        } //fetch context
+        } //context
 
         return alloc_null();
 
@@ -1034,28 +1028,27 @@ namespace alhx {
 
     value alhx_alcOpenDevice(value _devicename) {
 
-        ALCdevice* _al_device = alcOpenDevice( _devicename == val_null ? 0 : val_string(_devicename) );
+        ALCdevice* device = alcOpenDevice( _devicename == val_null ? 0 : val_string(_devicename) );
 
-        if(!_al_device) {
-            printf("/ alhx / failed to create AL device. \n");
+        if( !device ) {
+
+            snow::log(1, "/ alhx / failed to create AL device.");
+
             return alloc_null();
-        }
 
-        ALHX_ALDevice* device = new ALHX_ALDevice(_al_device);
+        } //!device
 
-        return snow::Object_to_hx(device);
+        return snow::to_hx<ALCdevice>( device );
 
     } DEFINE_PRIM(alhx_alcOpenDevice, 1);
 
     value alhx_alcCloseDevice(value _device) {
 
-        ALHX_ALDevice* device;
+        ALCdevice* device = snow::from_hx<ALCdevice>( _device );
 
-        if( snow::Object_from_hx(_device, device) ) {
-
-            alcCloseDevice( device->al_device );
-
-        } //fetch device
+        if( device ) {
+            alcCloseDevice( device );
+        }
 
         return alloc_null();
 
@@ -1064,13 +1057,11 @@ namespace alhx {
 
     value alhx_alcGetError(value _device) {
 
-        ALHX_ALDevice* device;
+        ALCdevice* device = snow::from_hx<ALCdevice>( _device );
 
-        if( snow::Object_from_hx(_device, device) ) {
-
-            alcGetError( device->al_device );
-
-        } //fetch device
+        if( device ) {
+            return alloc_int( alcGetError( device ) );
+        }
 
         return alloc_null();
 
@@ -1078,13 +1069,11 @@ namespace alhx {
 
     value alhx_alcGetString(value _device, value _param) {
 
-        ALHX_ALDevice* device;
+        ALCdevice* device = snow::from_hx<ALCdevice>( _device );
 
-        if( snow::Object_from_hx(_device, device) ) {
-
-            return alloc_string( alcGetString(device->al_device, val_int(_param)) );
-
-        } //fetch device
+        if( device ) {
+            return alloc_string( alcGetString(device, val_int(_param)) );
+        }
 
         return alloc_null();
 
@@ -1092,14 +1081,14 @@ namespace alhx {
 
     value alhx_alcGetIntegerv(value _device, value _param, value _size) {
 
-        ALHX_ALDevice* device;
+        ALCdevice* device = snow::from_hx<ALCdevice>( _device );
 
-        if( snow::Object_from_hx(_device, device) ) {
+        if( device ) {
 
             int count = val_int(_size);
             ALint* vals = new ALint[count];
 
-            alcGetIntegerv( device->al_device, val_int(_param), count, vals );
+            alcGetIntegerv( device, val_int(_param), count, vals );
 
             value result = alloc_array(count);
 
@@ -1114,7 +1103,6 @@ namespace alhx {
         return alloc_null();
 
     } DEFINE_PRIM(alhx_alcGetIntegerv, 3);
-
 
 } //alhx namespace
 

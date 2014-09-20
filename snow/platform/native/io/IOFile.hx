@@ -5,14 +5,16 @@ import snow.utils.Libs;
 
 #if snow_native
 
+    abstract IOFileHandle(Float) from Float to Float { }
+
     /** This class is a low level cross platform file access helper, that handles in bundle assets etc.
         If you want a file, use `Assets` instead, unless really required. */
     class IOFile {
 
             /** The internal native file handle */
-        public var handle : Dynamic;
+        public var handle : IOFileHandle;
 
-        @:noCompletion public function new( _handle:Dynamic ) {
+        @:noCompletion public function new( _handle:IOFileHandle ) {
             handle = _handle;
         } //new
 

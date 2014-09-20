@@ -3,7 +3,6 @@
 #endif
 
 #if defined(HX_WINDOWS) || defined(HX_MACOS) || defined(HX_LINUX)
-// Include neko glue....
 #define NEKO_COMPATIBLE
 #endif
 
@@ -24,14 +23,13 @@
 #include "assets/snow_assets_image.h"
 
 #include "common/ByteArray.h"
+#include "common/snow_hx.h"
 #include "lzma.h"
 
 namespace snow {
 
         //have id's etc been inited?
     static int global_snow_init = false;
-        //a "kind" type for native wrapped objects
-    vkind global_snow_object_kind;
         //core event haxe callback handler
         //a core system event handler implementation (defined in snow_hx_bindings.h)
     AutoGCRoot *system_event_handler = 0;
@@ -233,13 +231,11 @@ extern double timestamp();
 
     value snow_window_update( value _window ) {
 
-        snow::window::Window* window = NULL;
+        snow::window::Window* window = snow::from_hx<snow::window::Window>(_window);
 
-        if( Object_from_hx(_window, window) ) {
-
+        if( window ) {
             window->update();
-
-        } //fetch window
+        }
 
         return alloc_null();
 
@@ -248,13 +244,11 @@ extern double timestamp();
 
     value snow_window_render( value _window ) {
 
-        snow::window::Window* window = NULL;
+        snow::window::Window* window = snow::from_hx<snow::window::Window>(_window);
 
-        if( Object_from_hx(_window, window) ) {
-
+        if( window ) {
             window->render();
-
-        } //fetch window
+        }
 
         return alloc_null();
 
@@ -263,13 +257,11 @@ extern double timestamp();
 
     value snow_window_swap( value _window ) {
 
-        snow::window::Window* window = NULL;
+        snow::window::Window* window = snow::from_hx<snow::window::Window>(_window);
 
-        if( Object_from_hx(_window, window) ) {
-
+        if( window ) {
             window->swap();
-
-        } //fetch window
+        }
 
         return alloc_null();
 
@@ -278,13 +270,11 @@ extern double timestamp();
 
     value snow_window_close( value _window ) {
 
-        snow::window::Window* window = NULL;
+        snow::window::Window* window = snow::from_hx<snow::window::Window>(_window);
 
-        if( Object_from_hx(_window, window) ) {
-
+        if( window ) {
             window->close();
-
-        } //fetch window
+        }
 
         return alloc_null();
 
@@ -292,13 +282,11 @@ extern double timestamp();
 
     value snow_window_show( value _window ) {
 
-        snow::window::Window* window = NULL;
+        snow::window::Window* window = snow::from_hx<snow::window::Window>(_window);
 
-        if( Object_from_hx(_window, window) ) {
-
-            window->show();
-
-        } //fetch window
+    if( window ) {
+           window->show();
+        }
 
         return alloc_null();
 
@@ -306,13 +294,11 @@ extern double timestamp();
 
     value snow_window_destroy_window( value _window ) {
 
-        snow::window::Window* window = NULL;
+        snow::window::Window* window = snow::from_hx<snow::window::Window>(_window);
 
-        if( Object_from_hx(_window, window) ) {
-
+        if( window ) {
             window->destroy();
-
-        } //fetch window
+        }
 
         return alloc_null();
 
@@ -321,13 +307,11 @@ extern double timestamp();
 
     value snow_window_simple_message( value _window, value _message, value _title ) {
 
-        snow::window::Window* window = NULL;
+        snow::window::Window* window = snow::from_hx<snow::window::Window>(_window);
 
-        if( Object_from_hx(_window, window) ) {
-
+        if( window ) {
             window->simple_message( val_string(_message), val_string(_title) );
-
-        } //fetch window
+        }
 
         return alloc_null();
 
@@ -336,13 +320,11 @@ extern double timestamp();
 
     value snow_window_set_size(value _window, value _x, value _y) {
 
-        snow::window::Window* window = NULL;
+        snow::window::Window* window = snow::from_hx<snow::window::Window>(_window);
 
-        if( Object_from_hx(_window, window) ) {
-
+        if( window ) {
             window->set_size( val_int(_x), val_int(_y) );
-
-        } //fetch window
+        }
 
         return alloc_null();
 
@@ -351,13 +333,11 @@ extern double timestamp();
 
     value snow_window_set_position(value _window, value _x, value _y) {
 
-        snow::window::Window* window = NULL;
+        snow::window::Window* window = snow::from_hx<snow::window::Window>(_window);
 
-        if( Object_from_hx(_window, window) ) {
-
+        if( window ) {
             window->set_position( val_int(_x), val_int(_y) );
-
-        } //fetch window
+        }
 
         return alloc_null();
 
@@ -366,13 +346,11 @@ extern double timestamp();
 
     value snow_window_set_title(value _window, value _title) {
 
-        snow::window::Window* window = NULL;
+        snow::window::Window* window = snow::from_hx<snow::window::Window>(_window);
 
-        if( Object_from_hx(_window, window) ) {
-
+        if( window ) {
             window->set_title( val_string(_title) );
-
-        } //fetch window
+        }
 
         return alloc_null();
 
@@ -381,13 +359,11 @@ extern double timestamp();
 
     value snow_window_set_max_size(value _window, value _x, value _y) {
 
-        snow::window::Window* window = NULL;
+        snow::window::Window* window = snow::from_hx<snow::window::Window>(_window);
 
-        if( Object_from_hx(_window, window) ) {
-
+        if( window ) {
             window->set_max_size( val_int(_x), val_int(_y) );
-
-        } //fetch window
+        }
 
         return alloc_null();
 
@@ -396,13 +372,11 @@ extern double timestamp();
 
     value snow_window_set_min_size(value _window, value _x, value _y) {
 
-        snow::window::Window* window = NULL;
+        snow::window::Window* window = snow::from_hx<snow::window::Window>(_window);
 
-        if( Object_from_hx(_window, window) ) {
-
+        if( window ) {
             window->set_min_size( val_int(_x), val_int(_y) );
-
-        } //fetch window
+        }
 
         return alloc_null();
 
@@ -411,13 +385,11 @@ extern double timestamp();
 
     value snow_window_grab(value _window, value _enable) {
 
-        snow::window::Window* window = NULL;
+        snow::window::Window* window = snow::from_hx<snow::window::Window>(_window);
 
-        if( Object_from_hx(_window, window) ) {
-
+        if( window ) {
             window->grab( val_bool(_enable) );
-
-        } //fetch window
+        }
 
         return alloc_null();
 
@@ -425,13 +397,11 @@ extern double timestamp();
 
     value snow_window_set_cursor_position(value _window, value _x, value _y) {
 
-        snow::window::Window* window = NULL;
+        snow::window::Window* window = snow::from_hx<snow::window::Window>(_window);
 
-        if( Object_from_hx(_window, window) ) {
-
+        if( window ) {
             window->set_cursor_position( val_int(_x), val_int(_y) );
-
-        } //fetch window
+        }
 
         return alloc_null();
 
@@ -440,13 +410,11 @@ extern double timestamp();
 
     value snow_window_fullscreen( value _window, value _enable, value _flag ) {
 
-        snow::window::Window* window = NULL;
+        snow::window::Window* window = snow::from_hx<snow::window::Window>(_window);
 
-        if( Object_from_hx(_window, window) ) {
-
+        if( window ) {
             window->fullscreen( val_bool(_enable), val_int(_flag) );
-
-        } //fetch window
+        }
 
         return alloc_null();
 
@@ -455,13 +423,11 @@ extern double timestamp();
 
     value snow_window_bordered(value _window, value _enable) {
 
-        snow::window::Window* window = NULL;
+        snow::window::Window* window = snow::from_hx<snow::window::Window>(_window);
 
-        if( Object_from_hx(_window, window) ) {
-
+        if( window ) {
             window->bordered( val_bool(_enable) );
-
-        } //fetch window
+        }
 
         return alloc_null();
 
@@ -525,7 +491,8 @@ extern double timestamp();
 
             alloc_field( _object, id_id, _id );
             alloc_field( _object, id_format, alloc_int( 1 )); //1 here is ogg
-            alloc_field( _object, id_handle, Object_to_hx(ogg_source) );
+
+            alloc_field( _object, id_handle, snow::to_hx<snow::assets::audio::OGG_file_source>( ogg_source ) );
 
             value _dataobject = alloc_empty_object();
 
@@ -549,9 +516,9 @@ extern double timestamp();
 
         value _handle = property_value(_info, id_handle);
 
-        snow::assets::audio::OGG_file_source* ogg_source = NULL;
+        snow::assets::audio::OGG_file_source* ogg_source = snow::from_hx<snow::assets::audio::OGG_file_source>(_handle);
 
-        if( !val_is_null(_handle) && Object_from_hx(_handle, ogg_source) ) {
+        if( !val_is_null(_handle) && ogg_source ) {
 
             bool complete = snow::assets::audio::read_bytes_ogg( ogg_source, buffer, val_int(_start), val_int(_len) );
 
@@ -578,9 +545,9 @@ extern double timestamp();
 
         value _handle = property_value(_info, id_handle);
 
-        snow::assets::audio::OGG_file_source* ogg_source = NULL;
+        snow::assets::audio::OGG_file_source* ogg_source = snow::from_hx<snow::assets::audio::OGG_file_source>(_handle);
 
-        if( !val_is_null(_handle) && Object_from_hx(_handle, ogg_source) ) {
+        if( !val_is_null(_handle) && ogg_source ) {
 
             return alloc_bool(snow::assets::audio::seek_bytes_ogg( ogg_source, val_int(_to) ));
 
@@ -612,7 +579,8 @@ extern double timestamp();
 
             alloc_field( _object, id_id, _id );
             alloc_field( _object, id_format, alloc_int(2) ); //2 here is wav
-            alloc_field( _object, id_handle, Object_to_hx(wav_source) );
+
+            alloc_field( _object, id_handle, snow::to_hx<snow::assets::audio::WAV_file_source>( wav_source ) );
 
             value _dataobject = alloc_empty_object();
 
@@ -637,9 +605,9 @@ extern double timestamp();
 
         value _handle = property_value(_info, id_handle);
 
-        snow::assets::audio::WAV_file_source* wav_source = NULL;
+        snow::assets::audio::WAV_file_source* wav_source = snow::from_hx<snow::assets::audio::WAV_file_source>(_handle);
 
-        if( !val_is_null(_handle) && Object_from_hx(_handle, wav_source) ) {
+        if( !val_is_null(_handle) && wav_source ) {
 
             bool complete = snow::assets::audio::read_bytes_wav( wav_source, buffer, val_int(_start), val_int(_len) );
 
@@ -665,9 +633,9 @@ extern double timestamp();
 
         value _handle = property_value(_info, id_handle);
 
-        snow::assets::audio::WAV_file_source* wav_source = NULL;
+        snow::assets::audio::WAV_file_source* wav_source = snow::from_hx<snow::assets::audio::WAV_file_source>(_handle);
 
-        if( !val_is_null(_handle) && Object_from_hx(_handle, wav_source) ) {
+        if( !val_is_null(_handle) && wav_source ) {
 
             return alloc_bool(snow::assets::audio::seek_bytes_wav( wav_source, val_int(_to) ));
 
@@ -701,7 +669,8 @@ extern double timestamp();
 
             alloc_field( _object, id_id, _id );
             alloc_field( _object, id_format, alloc_int(3) ); //3 here is pcm
-            alloc_field( _object, id_handle, Object_to_hx(pcm_source) );
+
+            alloc_field( _object, id_handle, snow::to_hx<snow::assets::audio::PCM_file_source>( pcm_source ) );
 
             value _dataobject = alloc_empty_object();
 
@@ -726,9 +695,9 @@ extern double timestamp();
 
         value _handle = property_value(_info, id_handle);
 
-        snow::assets::audio::PCM_file_source* pcm_source = NULL;
+        snow::assets::audio::PCM_file_source* pcm_source = snow::from_hx<snow::assets::audio::PCM_file_source>(_handle);
 
-        if( !val_is_null(_handle) && Object_from_hx(_handle, pcm_source) ) {
+        if( !val_is_null(_handle) && pcm_source ) {
 
             bool complete = snow::assets::audio::read_bytes_pcm( pcm_source, buffer, val_int(_start), val_int(_len) );
 
@@ -754,9 +723,9 @@ extern double timestamp();
 
         value _handle = property_value(_info, id_handle);
 
-        snow::assets::audio::PCM_file_source* pcm_source = NULL;
+        snow::assets::audio::PCM_file_source* pcm_source = snow::from_hx<snow::assets::audio::PCM_file_source>(_handle);
 
-        if( !val_is_null(_handle) && Object_from_hx(_handle, pcm_source) ) {
+        if( !val_is_null(_handle) && pcm_source ) {
 
             return alloc_bool(snow::assets::audio::seek_bytes_pcm( pcm_source, val_int(_to) ));
 
@@ -900,17 +869,17 @@ extern double timestamp();
 
             iosrc->file_source = snow::io::iosrc_fromfile( val_string(_id), val_string(_mode) );
 
-            return Object_to_hx(iosrc);
+            return snow::to_hx<snow::io::iosrc_file>( iosrc );
 
         } DEFINE_PRIM(snow_iosrc_from_file, 2);
 
 
         value snow_iosrc_file_read(value _handle, value _dest, value _size, value _maxnum) {
 
-            snow::io::iosrc_file* iosrc = NULL;
+            snow::io::iosrc_file* iosrc = snow::from_hx<snow::io::iosrc_file>( _handle );
             QuickVec<unsigned char> buffer;
 
-            if( Object_from_hx(_handle, iosrc) ) {
+            if( iosrc ) {
 
                 if(!val_is_null(_dest)) {
 
@@ -930,9 +899,9 @@ extern double timestamp();
 
         value snow_iosrc_file_write(value _handle, value _data, value _size, value _num) {
 
-            snow::io::iosrc_file* iosrc = NULL;
+            snow::io::iosrc_file* iosrc = snow::from_hx<snow::io::iosrc_file>( _handle );
 
-            if( Object_from_hx(_handle, iosrc) ) {
+            if( iosrc ) {
 
                 if(!val_is_null(_data)) {
 
@@ -961,9 +930,9 @@ extern double timestamp();
 
         value snow_iosrc_file_seek(value _handle, value _offset, value _whence) {
 
-            snow::io::iosrc_file* iosrc = NULL;
+            snow::io::iosrc_file* iosrc = snow::from_hx<snow::io::iosrc_file>( _handle );
 
-            if( Object_from_hx(_handle, iosrc) ) {
+            if( iosrc ) {
 
                 int res = snow::io::seek(iosrc->file_source, val_int(_offset), val_int(_whence));
 
@@ -978,9 +947,9 @@ extern double timestamp();
 
         value snow_iosrc_file_tell(value _handle) {
 
-            snow::io::iosrc_file* iosrc = NULL;
+            snow::io::iosrc_file* iosrc = snow::from_hx<snow::io::iosrc_file>( _handle );
 
-            if( Object_from_hx(_handle, iosrc) ) {
+            if( iosrc ) {
 
                 int res = snow::io::tell(iosrc->file_source);
 
@@ -995,9 +964,9 @@ extern double timestamp();
 
         value snow_iosrc_file_close(value _handle) {
 
-            snow::io::iosrc_file* iosrc = NULL;
+            snow::io::iosrc_file* iosrc = snow::from_hx<snow::io::iosrc_file>( _handle );
 
-            if( Object_from_hx(_handle, iosrc) ) {
+            if( iosrc ) {
 
                 int res = snow::io::close(iosrc->file_source);
 

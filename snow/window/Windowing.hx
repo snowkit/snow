@@ -6,13 +6,15 @@ import snow.utils.Libs;
 
 import snow.window.WindowSystem;
 
+
+
 /** A window manager, accessed via `app.window` */
 class Windowing {
 
         /** The list of windows in this manager */
     public var window_list : Map<Int, Window>;
         /** The list of window handles, pointing to id's in the `window_list` */
-    public var window_handles : Map<WindowHandle, Int>;
+    public var window_handles : WindowHandleMap;
         /** The number of windows in this manager */
     public var window_count : Int = 0;
 
@@ -27,7 +29,7 @@ class Windowing {
 
         lib = _lib;
         window_list = new Map();
-        window_handles = new Map();
+        window_handles = new WindowHandleMap();
 
         platform = new WindowSystem(this, lib);
 
@@ -206,3 +208,15 @@ class Windowing {
 
 
 } //Windowing
+
+private class WindowHandleMap extends haxe.ds.BalancedTree<WindowHandle,Int> {
+
+    override function compare(k1:WindowHandle, k2:WindowHandle) {
+        if(k1 == null) return 1;
+        if(k2 == null) return 1;
+        if(k1 == k2) return 0;
+        if(k1 < k2) return -1;
+        return 1;
+    }
+
+} //WindowHandleMap
