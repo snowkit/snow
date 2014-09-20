@@ -3,7 +3,6 @@
 
 #include <string>
 
-#include "common/Object.h"
 #include "common/QuickVec.h"
 #include "common/ByteArray.h"
 

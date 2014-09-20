@@ -1,5 +1,6 @@
 
 //This is an empty implementation of the snow core functions.
+// possibly work in progress
 //When porting to a new platform,
 //      > make a new folder in src/<impl>/<platform>/
 //      > implement the required functions as needed

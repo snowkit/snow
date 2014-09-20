@@ -194,7 +194,7 @@ namespace snow {
         long int close(iosrc* src);
 
 
-        class iosrc_file : public snow::Object {
+        class iosrc_file {
 
             public:
                 iosrc*              file_source;

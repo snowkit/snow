@@ -1,11 +1,13 @@
 #ifndef _SNOW_BYTE_ARRAY_H_
 #define _SNOW_BYTE_ARRAY_H_
 
-#include "common/Object.h"
 #include "common/QuickVec.h"
 
 #include <stdio.h>
 
+/*
+   Portions adapted from https://github.com/haxenme/nme/
+*/
 
 namespace snow {
 

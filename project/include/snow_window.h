@@ -5,9 +5,9 @@
 
 #include <hx/CFFI.h>
 
-#include "common/Object.h"
 #include "snow_hx_bindings.h"
 #include "snow_core.h"
+#include "common/snow_hx.h"
 
 namespace snow {
 
@@ -154,11 +154,10 @@ namespace snow {
 
         };
 
-            //Base window class, inheriting from Object in snow_hx_bindings so
-            //that it can be wrapped in a haxe abstract and passed to hx.
+            //Base window class
             //Window managers inherit from this, like SDL2.
 
-        class Window : public Object {
+        class Window {
 
             public:
 
@@ -217,7 +216,7 @@ namespace snow {
                         value _v_id = alloc_int(id);
 
                         if(success) {
-                            _v_window = Object_to_hx( this );
+                            _v_window = snow::to_hx<snow::window::Window>( this );
                             _v_config = window_config_to_hx( config );
                         }
 

@@ -5,7 +5,6 @@
 
 #include <hx/CFFI.h>
 
-#include "common/Object.h"
 #include "snow_hx_bindings.h"
 #include "snow_core.h"
 

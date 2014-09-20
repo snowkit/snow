@@ -5,8 +5,8 @@ import snow.utils.Float32Array;
 import snow.utils.IMemoryRange;
 
 
-abstract Context(Dynamic) from Dynamic to Dynamic { }
-abstract Device(Dynamic) from Dynamic to Dynamic { }
+abstract Context(Null<Float>) from Null<Float> to Null<Float> { }
+abstract Device(Null<Float>) from Null<Float> to Null<Float> { }
 
 class AL {
 
