@@ -6,6 +6,8 @@ package snow.audio.howlerjs;
 
 #else
 
-    #error "HowlerJS is only available on web browser platforms. Including this file on other platforms is not possible."
+    #if !display
+        #error "HowlerJS is only available on web browser platforms. Including this file on other platforms is not possible."
+    #end
 
 #end
