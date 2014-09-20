@@ -1,5 +1,8 @@
-
 #include <hx/CFFI.h>
+
+/*
+   Portions adapted from https://github.com/haxenme/nme/
+*/
 
 #include "common/ByteArray.h"
 
