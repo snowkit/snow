@@ -20,16 +20,19 @@
     "api_template" : "api_page.html",
     "api_index_template" : "api_index.html",
     "template_index" : "index.html",
+    "api_packages" : ["snow"],
+    "api_packages_ignore" : [],
+    "api_classes" : [],
     "api_partials" : [
         { "name": "type", "path":"api_partial_type.html"},
+        { "name": "omnibar", "path":"api_partial_omnibar.html"},
+        { "name": "type_page", "path":"api_partial_type_page.html"},
         { "name": "args", "path":"api_partial_args.html"},
         { "name": "package_node", "path":"api_partial_package_node.html"},
         { "name": "package_list", "path":"api_partial_package_list.html"},
         { "name": "package_list_items", "path":"api_partial_package_list_items.html"},
         { "name": "package", "path":"api_partial_package.html"}
     ],
-    "api_packages" : ["snow"],
-    "api_exclude" : [],
 
     "git_features" : true,
     "force_full" : true,
