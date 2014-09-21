@@ -1,8 +1,12 @@
-{{^isPrivate}}
 
 {{#with full~}}
+{{#unless (hidden_package .) ~}}
 
-    <a name="{{.}}"><h3> [{{without_package (escape_markdown .)}}](#{{.}}) </h3></a>
+    {{#if . '==' '_empty_'~}}
+        <a name="empty"><h5> [_no package_](#empty) </h5></a>
+    {{~else~}}
+        <a name="{{.}}"><h3> [{{without_package (escape_markdown .)}}](#{{.}}) </h3></a>
+    {{~/if}}
 
     {{~#each (names_in_package .) ~}}
         {{#name_visible .~}}
@@ -10,12 +14,9 @@
         {{~/name_visible}}
     {{~/each}}
 
+{{~/unless}}
 {{/with}}
 
-
 {{#each packages~}}
-    {{>package_list_items}}
+    {{~>package_list_items~}}
 {{/each}}
-
-
-{{/isPrivate}}

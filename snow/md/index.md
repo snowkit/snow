@@ -6,12 +6,13 @@
 </div>
 
 ---
-<div class="version">current version [notes](https://github.com/underscorediscovery/snow/releases/tag/1.0.0-beta) `1.0.0-beta`</div>
+<script src="{{{rel_path}}}js/release.version.js"> </script>
+<div class="version">current version <a href="#" id="version_notes_link" target="_blank">notes</a> <code> <a id="version_tag" target="_blank" href="#"> latest </a></code> </div>
 
 <br/>
 ##About
 
-**snow** is a light, pure and clean toolkit for building frameworks, applications and games using [haxe](http://haxe.org), targeting native platforms and web browser.
+**snow** is a free, <a href="https://github.com/underscorediscovery/snow/blob/master/LICENSE.md" data-tooltip="MIT license" class="tooltip">open source</a> light, pure and clean toolkit for building frameworks, applications and games using [haxe](http://haxe.org), targeting native platforms and web browser.
 This means snow by default runs natively on **Mac**, **Windows**, **Linux** desktops, as well as **iOS** and **Android** devices. It also runs directly in the **Web** browser using webgl.
 
 &nbsp;_how?_
@@ -37,14 +38,18 @@ This means snow by default runs natively on **Mac**, **Windows**, **Linux** desk
 </div>
 
 ---
-##Beta
 
+###Alpha
+
+<small>
 Please note   
-The documentation is a constant work in progress and will continue to be finalized prior to 1.0.0 final.
 
-snow is currently considered beta, which means there may be bugs, inconsistencies or very rarely incomplete implementations of things.
+snow is currently considered alpha, which means there may be bugs, inconsistencies, incomplete implementations, and possible minor API changes.
 It is still considered fairly stable and is being used by multiple frameworks and games,
-but there are things to tighten up before 1.0.0 release happens officially.
+but there are things to tighten up before 1.0.0 release can be called final. 
+
+Join us in developing and testing the framework and tools, below.
+</small>
 
 ---
 
@@ -71,10 +76,20 @@ but there are things to tighten up before 1.0.0 release happens officially.
 
 ---
 
-##History and why
+##Reasons
 
-For a fuller history and why snow and flow were created, [read this blog post here](http://notes.underscorediscovery.com/snow).
+For a short intro to why snow was created, [read this blog post here](http://notes.underscorediscovery.com/snow).
 
+
+##Editor support
+
+Where possible, full code completion and building from the editor is supplied.
+
+[Sublime Text](https://underscorediscovery.github.io/flow/guide/sublimetext.html) (mac/windows/linux) <br/><br/>
+[![](images/plugins/1.png)](https://underscorediscovery.github.io/flow/guide/sublimetext.html)
+
+[FlashDevelop](https://underscorediscovery.github.io/flow/guide/flashdevelop.html) (windows only)<br/><br/>
+[![](images/plugins/5.png)](https://underscorediscovery.github.io/flow/guide/sublimetext.html)
 
 ---
 
@@ -122,6 +137,7 @@ For a fuller history and why snow and flow were created, [read this blog post he
 </div>
 
 ---
+
 
 <a name="details">
 <a href="#details"><h2>Details</h2></a>
@@ -206,5 +222,15 @@ For a full list of issues, open and resolved, refer to the [github issue tracker
 <a name="samples">
 <a href="#samples"><h2>Samples</h2></a>
 </a>
+
+
+---
+
+[feedback](https://github.com/underscorediscovery/snow/issues)
+<br/>
+<br/>
+<br/>
+<br/>
+<small class="trademark"> All trademarks and registered trademarks are the property of their respective owners.</small>
 
 
