@@ -62,9 +62,9 @@ class App {
         /** Your update loop. Called every frame for you. The dt value depends on the timing configuration (see the {App Guide}) */
     public function update(dt:Float) {}
         /** Your exit point. Called for you when you should shut down your application */
-    public function destroyed() {}
+    public function ondestroy() {}
         /** Low level event handler from snow core. Often handled by the subsystems so check there first. */
-    public function on_event( event:SystemEvent ) {}
+    public function onevent( event:SystemEvent ) {}
 
         /** Called for you when a key is pressed down */
     public function onkeydown( keycode:Int, scancode:Int, repeat:Bool, mod:ModState, timestamp:Float, window_id:Int ) {}
