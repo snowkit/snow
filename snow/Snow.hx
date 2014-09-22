@@ -110,7 +110,7 @@ class Snow {
 
         shutting_down = true;
 
-        host.destroyed();
+        host.ondestroy();
         io.destroy();
         audio.destroy();
         input.destroy();
@@ -304,7 +304,7 @@ class Snow {
             audio.on_event( _event );
             windowing.on_event( _event );
             input.on_event( _event );
-            host.on_event( _event );
+            host.onevent( _event );
         }
 
         switch(_event.type) {
