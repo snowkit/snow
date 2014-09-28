@@ -5,7 +5,7 @@ package snow.utils;
 
 
 #if snow_web
-    typedef UIntClamped8Array = snow.platform.web.utils.UInt8ClampedArray;
+    typedef UInt8ClampedArray = snow.platform.web.utils.UInt8ClampedArray;
 #else
-    typedef UIntClamped8Array = snow.platform.native.utils.UInt8ClampedArray;
+    typedef UInt8ClampedArray = snow.platform.native.utils.UInt8ClampedArray;
 #end
