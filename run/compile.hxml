@@ -1,7 +1,0 @@
--main Run.hx
--neko ../run.n
--lib lime-tools
--cp src
--resource usage@usage
--resource version@version
--resource dev@dev
