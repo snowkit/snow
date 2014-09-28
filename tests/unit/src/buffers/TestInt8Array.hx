@@ -91,7 +91,7 @@ class TestInt8Array extends mohxa.Mohxa {
 
                 x[0] = -2;
 
-                equal(17, y[0], 'y element [0] == -2');
+                equal(17, y[0], 'y element [0] == 17');
 
             });
 
@@ -129,9 +129,9 @@ class TestInt8Array extends mohxa.Mohxa {
 
             it('should set from normal int array', function(){
 
-                equal(18, x[3]);
-                equal(93, x[4]);
-                equal(42, x[5]);
+                equal(18, x[3], 'x[3] == 18');
+                equal(93, x[4], 'x[4] == 93');
+                equal(42, x[5], 'x[5] == 42');
 
             });
 
@@ -149,9 +149,9 @@ class TestInt8Array extends mohxa.Mohxa {
 
             it('should set from other Int8Array', function(){
 
-                equal(18, x[3]);
-                equal(93, x[4]);
-                equal(42, x[5]);
+                equal(18, x[3], 'x[3] == 18');
+                equal(93, x[4], 'x[4] == 93');
+                equal(42, x[5], 'x[5] == 42');
 
             });
 
@@ -188,7 +188,7 @@ class TestInt8Array extends mohxa.Mohxa {
             log('creating x = Int8Array(ByteArray(1))');
 
             var bin = new snow.utils.ByteArray(1);
-            
+
             bin.writeByte(23);
 
             var x = new Int8Array(bin);
@@ -198,11 +198,8 @@ class TestInt8Array extends mohxa.Mohxa {
                 equal( 23, x[0], 'element [0] == 23' );
             });
 
-        }); //test9        
-
-        run();
+        }); //test9
 
     } //new
-
 
 } //TestInt8Array
