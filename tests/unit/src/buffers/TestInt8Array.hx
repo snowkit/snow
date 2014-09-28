@@ -3,6 +3,12 @@ package buffers;
 import snow.utils.ArrayBuffer;
 import snow.utils.Int8Array;
 
+/**
+    Copyright 2014 Sven Bergström, Thomas Hourdel, Michael Bickel
+    Created for snow https://github.com/underscorediscovery/snow
+    License MIT
+**/
+
 class TestInt8Array extends mohxa.Mohxa {
 
     public function new() {
