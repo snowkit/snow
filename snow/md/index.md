@@ -89,6 +89,9 @@ Where possible, full code completion and building from the editor is supplied.
 [![](images/plugins/1.png)](https://underscorediscovery.github.io/flow/guide/sublimetext.html)
 
 [FlashDevelop](https://underscorediscovery.github.io/flow/guide/flashdevelop.html) (windows only)<br/><br/>
+
+template is in `setup/`, but here is a [Download link](https://github.com/underscorediscovery/snow/blob/master/setup/snow_FlashDevelopTemplate.fdz?raw=true)   
+
 [![](images/plugins/5.png)](https://underscorediscovery.github.io/flow/guide/sublimetext.html)
 
 ---
@@ -97,9 +100,19 @@ Where possible, full code completion and building from the editor is supplied.
 <a name="guide"> &nbsp;</a>
 <h2>Guide</h2>
 
-**Setup guides**<br/>
+**Setup guide**<br/>
 <br/>
-[Setup]({{{rel_path}}}guide/setup.html) <br/>
+
+**Install from git** <br/>   
+
+`haxelib git snow https://github.com/underscorediscovery/snow.git`<br/>
+
+<br/>
+**OR** <br/>
+<br/>
+
+`git clone https://github.com/underscorediscovery/snow.git` <br/><br/>
+`haxelib dev snow /path/to/snow/` <br/><br/>
 
 <br/><br/>
 **Starter guides**<br/>
