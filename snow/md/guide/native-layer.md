@@ -6,7 +6,16 @@
 
 On native platforms, snow is built using c++ code and is bound via the haxe api. You can read the [structure guide]({{{rel_path}}}guide/structure.html) for more insight here.
 
-**Note** that you do not need to recompile snow to use it! There are prebuilt versions bundled for each platform alongside the code.
+##Note 
+you **do not** need to recompile snow to use it! There are prebuilt versions bundled for each platform alongside the code.
+
+### Auto fetch dependencies
+
+snow uses git submodules to hold dependency libs. **These are required to build snow.**
+
+To fetch them, simply run `git submodule update --init` from **within the snow folder**
+
+This will ensure all build dependencies are fetched.
 
 ### Recompile snow native code
 
