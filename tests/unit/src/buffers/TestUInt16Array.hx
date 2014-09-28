@@ -3,6 +3,12 @@ package buffers;
 import snow.utils.ArrayBuffer;
 import snow.utils.UInt16Array;
 
+/**
+    Copyright Sven Bergström, Thomas Hourdel 2014
+    Created for snow https://github.com/underscorediscovery/snow
+    License MIT
+**/
+
 class TestUInt16Array extends mohxa.Mohxa {
 
     public function new() {
