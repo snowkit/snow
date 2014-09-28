@@ -6,5 +6,15 @@
         lib : {
 
         }
+    },
+
+    if:{
+        "mac || windows": {
+            build:{
+                hxcpp: {
+                    flags:['-Dstatic_link']
+                }
+            }
+        }
     }
 }
