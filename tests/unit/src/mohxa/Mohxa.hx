@@ -1,5 +1,6 @@
 ﻿package mohxa;
-    //Simple test runner with simple logging
+
+    //Simple test runner with simple logging, nested tests, and more
     //MIT License, based on https://github.com/visionmedia/mocha
 
 typedef MohxaHandler = Void->Void;
@@ -126,12 +127,14 @@ class MohxaTestSet extends MohxaRunnable {
 
 class Mohxa {
 
+    public var failed : Int = 0;
+    public var total : Int = 0;
+    public var total_time : Float = 0;
+
     var test_sets : Mohxa.MohxaTestSet;
     var symbols : Dynamic;
-    var failed : Int = 0;
+
     var failures : Map<Int, MohxaFailure>;
-    var total : Int = 0;
-    var total_time : Float = 0;
     var system_name : String = '';
 
     public var current_depth : Int = 0;
@@ -152,13 +155,20 @@ class Mohxa {
             symbols = { ok: '✓', err: '✖', dot: '▸' };
         }
     } //new
+
     function create_root_set() {
+
         current_set = test_sets = new Mohxa.MohxaTestSet(this, '', null);
+
         test_sets.init();
+
     } //create_root_set
 
+
     public function strip_mohxa_calls(list:Array<haxe.CallStack.StackItem>) : Array<String> {
+
         var results = [];
+
         for(item in list) {
             var _params = item.getParameters();
             if( Std.string(_params[1]).indexOf('Mohxa.hx') == -1) {
@@ -167,12 +177,16 @@ class Mohxa {
         }
 
         return results;
-    }
+
+    } //strip_mohxa_calls
 
     public function log(e:Dynamic) {
+
         var _parsed = strip_mohxa_calls( haxe.CallStack.callStack() );
+
         _log( tabs(current_depth+2) + dim() + _parsed[0] + ': ' + e + reset() );
-    }
+
+    } //log
 
     public function run() {
 
@@ -262,8 +276,8 @@ class Mohxa {
         current_set.afterEach = handler;
     }
 
-
-    public function equal(value:Dynamic, expected:Dynamic, ?tag:String = '') {
+    @:generic
+    public function equal<T>(value:T, expected:T, ?tag:String = '') {
 
         if( value != expected ) {
             _log( tabs(current_set.depth+4) + error() + dim() + ' ' + ((tag.length>0) ? tag : '') + ' ' + reset() + red() + (value + ' != ' + expected) + reset() );
@@ -273,7 +287,8 @@ class Mohxa {
         }
     }
 
-    public function notequal(value:Dynamic, unexpected:Dynamic, ?tag:String = '') {
+    @:generic
+    public function notequal<T>(value:T, unexpected:T, ?tag:String = '') {
         if( value == unexpected ) {
             _log( tabs(current_set.depth+4) + error() + dim() + ' ' + ((tag.length>0) ? tag : '') + ' ' +reset() + red() + (value + ' == ' + unexpected) + reset() );
             throw (value + ' == ' + unexpected) + '  ' + ((tag.length>0) ? '('+tag+')' : '');

@@ -1,5 +1,6 @@
 
 import snow.types.Types;
+import mohxa.Mohxa;
 
 class Main extends snow.App {
 
@@ -11,19 +12,48 @@ class Main extends snow.App {
 
     } //config
 
+    var failed : Int = 0;
+    var total : Int = 0;
+    var time : Float = 0;
+
     override function ready() {
+
 
         //buffers
 
-            new buffers.TestInt8Array();
-            // new buffers.TestInt16Array();
-            // new buffers.TestInt32Array();
-            // new buffers.TestUInt8Array();
-            // // new buffers.TestUInt8ClampedArray();
-            // new buffers.TestUInt16Array();
-            // new buffers.TestUInt32Array();
+            //int
+                run(new buffers.TestInt8Array());
+                run(new buffers.TestInt16Array());
+                run(new buffers.TestInt32Array());
+                run(new buffers.TestUInt8Array());
+                run(new buffers.TestUInt8ClampedArray());
+                run(new buffers.TestUInt16Array());
+                run(new buffers.TestUInt32Array());
+            //float
+                run(new buffers.TestFloat32Array());
 
+
+        trace('completed $total tests, $failed failures (${time}ms)');
+
+        #if snow_native
+            var code = failed > 0 ? 1 : 0;
+            Sys.exit( code );
+        #else
+            if(failed > 0) {
+                throw 'tests failed';
+            }
+        #end
 
     } //ready
+
+    function run<T:Mohxa>(instance:T) {
+
+        instance.run();
+
+        total += instance.total;
+        failed += instance.failed;
+        time += instance.total_time;
+
+    }
 
 } //Main
