@@ -1,3 +1,8 @@
+/*
+    Copyright Sven Bergström, Micheal Bickel 2014
+    created for snow https://github.com/underscorediscovery/snow
+    MIT license
+*/
 
 #include "snow_core.h"
 #include "snow_io.h"

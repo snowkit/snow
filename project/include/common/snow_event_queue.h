@@ -1,3 +1,10 @@
+/*
+    Copyright Sven Bergström, Michael Bickel 2014
+    see blog post references inline
+    created for snow https://github.com/underscorediscovery/snow
+    MIT license
+*/
+
 #ifndef _SNOW_IO_EVTQUEUE_H_
 #define _SNOW_IO_EVTQUEUE_H_
 

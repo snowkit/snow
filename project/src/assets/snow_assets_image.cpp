@@ -1,3 +1,8 @@
+/*
+    Copyright Sven Bergström 2014
+    created for snow https://github.com/underscorediscovery/snow
+    MIT license
+*/
 
 #include "stb_image.h"
 #include "common/ByteArray.h"
@@ -6,6 +11,7 @@
 #include "snow_io.h"
 
 #include "assets/snow_assets_image.h"
+
 
 namespace snow {
     namespace assets {

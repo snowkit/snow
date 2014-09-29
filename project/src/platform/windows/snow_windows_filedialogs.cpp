@@ -1,3 +1,9 @@
+/*
+    Copyright Sven Bergström 2014
+    created for snow https://github.com/underscorediscovery/snow
+    MIT license
+*/
+
 #include "snow_core.h"
 #include "snow_io.h"
 
@@ -27,8 +33,8 @@ namespace snow {
         } //dialog_save
 
         std::string lpw_to_stdstring(const LPWSTR str, UINT page = CP_ACP) {
-            
-            std::string result; char* cstr = 0; 
+
+            std::string result; char* cstr = 0;
             int len;
 
             len = WideCharToMultiByte(page, 0, str, -1, 0,  0, 0, 0);
@@ -41,7 +47,7 @@ namespace snow {
                 }
                 delete [] cstr;
             }
-            
+
             return result;
 
         } //lpw_to_stdstring
@@ -49,7 +55,7 @@ namespace snow {
         std::string dialog_folder(const std::string &title) {
 
             std::string path;
-            
+
             HRESULT hr = CoInitializeEx(NULL, COINIT_APARTMENTTHREADED | COINIT_DISABLE_OLE1DDE);
 
             if(SUCCEEDED(hr)) {
@@ -73,7 +79,7 @@ namespace snow {
                         hr = folder_dialog->GetResult(&_item);
 
                         if(SUCCEEDED(hr)) {
-                            
+
                             LPWSTR selected_path = NULL;
                             hr = _item->GetDisplayName(SIGDN_DESKTOPABSOLUTEPARSING, &selected_path);
 
@@ -138,9 +144,9 @@ namespace snow {
                 ofn.lpstrFilter = final.c_str();
 
             } else {
-                ofn.lpstrFilter = "All Files (*.*)\0*.*\0";    
+                ofn.lpstrFilter = "All Files (*.*)\0*.*\0";
             }
-            
+
 
             if(type == 0) {
 

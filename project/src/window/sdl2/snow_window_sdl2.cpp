@@ -1,3 +1,9 @@
+/*
+    Copyright Sven Bergström 2014
+    created for snow https://github.com/underscorediscovery/snow
+    MIT license
+*/
+
 
 #include "snow_window.h"
 #include "snow_platform.h"

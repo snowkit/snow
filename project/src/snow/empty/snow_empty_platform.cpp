@@ -1,4 +1,10 @@
+/*
+    Copyright Sven Bergström 2014
+    created for snow https://github.com/underscorediscovery/snow
+    MIT license
+*/
 
+//WIP
 //This is an empty implementation of the snow core functions.
 // possibly work in progress
 //When porting to a new platform,
