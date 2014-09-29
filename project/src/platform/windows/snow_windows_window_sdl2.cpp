@@ -1,3 +1,9 @@
+/*
+    Copyright Sven Bergström 2014
+    created for snow https://github.com/underscorediscovery/snow
+    MIT license
+*/
+
 #ifdef HX_WINDOWS
 
 #include <windows.h>

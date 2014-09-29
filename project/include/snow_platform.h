@@ -1,3 +1,8 @@
+/*
+    Copyright Sven Bergström 2014
+    created for snow https://github.com/underscorediscovery/snow
+    MIT license
+*/
 
 #ifndef _SNOW_PLATFORM_H_
 #define _SNOW_PLATFORM_H_

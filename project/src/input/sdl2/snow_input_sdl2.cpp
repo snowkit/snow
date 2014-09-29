@@ -1,3 +1,8 @@
+/*
+    Copyright Sven Bergström 2014
+    created for snow https://github.com/underscorediscovery/snow
+    MIT license
+*/
 
 #include "snow_input.h"
 
@@ -5,6 +10,7 @@
 #include "SDL.h"
 
 #include <map>
+
 
 namespace snow {
 

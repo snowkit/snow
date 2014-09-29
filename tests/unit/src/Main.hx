@@ -1,12 +1,11 @@
-
-import snow.types.Types;
-import mohxa.Mohxa;
-
 /**
     Copyright Sven Bergström, Thomas Hourdel 2014
     Created for snow https://github.com/underscorediscovery/snow
     License MIT
 **/
+
+import snow.types.Types;
+import mohxa.Mohxa;
 
 class Main extends snow.App {
 

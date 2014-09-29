@@ -1,3 +1,9 @@
+/*
+    Copyright Sven Bergström 2014
+    Portions of wav decoding referenced below inline
+    created for snow https://github.com/underscorediscovery/snow
+    MIT license
+*/
 
 #include "assets/snow_assets_audio.h"
 

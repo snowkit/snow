@@ -1,8 +1,11 @@
-#include <hx/CFFI.h>
-
 /*
-   Portions adapted from https://github.com/haxenme/nme/
+    Copyright Sven Bergström 2014
+    Portions adapted from https://github.com/haxenme/nme/
+    created for snow https://github.com/underscorediscovery/snow
+    MIT license
 */
+
+#include <hx/CFFI.h>
 
 #include "common/ByteArray.h"
 

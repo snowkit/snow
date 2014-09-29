@@ -1,9 +1,13 @@
+/*
+    Copyright Sven Bergström 2014
+    Adapted from https://github.com/haxenme/nme/
+    adapted for snow https://github.com/underscorediscovery/snow
+    MIT license
+*/
+
+
 #ifndef _SNOW_QUICK_VEC_H_
 #define _SNOW_QUICK_VEC_H_
-
-/*
-   Adapted from https://github.com/haxenme/nme/
-*/
 
 #include <algorithm>
 #ifdef EPPC

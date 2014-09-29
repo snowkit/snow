@@ -1,3 +1,10 @@
+/*
+    Copyright Sven Bergström 2014
+    Portions adapted from https://github.com/haxenme/nme/
+    adapted for snow https://github.com/underscorediscovery/snow
+    MIT license
+*/
+
 
 #ifdef HX_WINDOWS
 

@@ -1,6 +1,3 @@
-#ifndef _SNOW_HX_H_
-#define _SNOW_HX_H_
-
 /**
     Convert a pointer to haxe and back
     Copyright Sven Bergström 2014
@@ -26,6 +23,10 @@
            but seems even with flags forced for HXCPP_CPP11
            i'm not seeing it found in builds on mac latest etc
 */
+
+
+#ifndef _SNOW_HX_H_
+#define _SNOW_HX_H_
 
 #include <stdint.h>
 

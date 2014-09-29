@@ -1,3 +1,10 @@
+/*
+    Copyright Sven Bergström 2014
+    Portions adapted from https://github.com/haxenme/nme/
+    created for snow https://github.com/underscorediscovery/snow
+    MIT license
+*/
+
 #ifndef _SNOW_BYTE_ARRAY_H_
 #define _SNOW_BYTE_ARRAY_H_
 
@@ -5,50 +12,45 @@
 
 #include <stdio.h>
 
-/*
-   Portions adapted from https://github.com/haxenme/nme/
-*/
-
 namespace snow {
 
-   typedef unsigned char uint8;
+    typedef unsigned char uint8;
 
-      //this was //HX_WINDOWS,
-      //but we aren't using _wfopen by
-      //default anymore
-   #if 0
+        //this was //HX_WINDOWS,
+        //but we aren't using _wfopen by
+        //default anymore right now
+    #if 0
 
-         typedef wchar_t OSChar;
-         #define val_os_string val_wstring
+        typedef wchar_t OSChar;
+        #define val_os_string val_wstring
 
-   #else
+    #else
 
-         typedef char OSChar;
-         #define val_os_string val_string
+        typedef char OSChar;
+        #define val_os_string val_string
 
-   #endif
+    #endif
 
-   // If you put this structure on the stack, then you do not have to worry about GC.
-   // If you store this in a heap structure, then you will need to use GC roots for mValue...
-   struct ByteArray {
+    // If you put this structure on the stack, then you do not have to worry about GC.
+    // If you store this in a heap structure, then you will need to use GC roots for mValue...
+    struct ByteArray {
 
-      ByteArray(int inSize);
-      ByteArray(const ByteArray &inRHS);
-      ByteArray();
-      ByteArray(struct _value *Value);
-      ByteArray(const QuickVec<unsigned char>  &inValue);
+        ByteArray(int inSize);
+        ByteArray(const ByteArray &inRHS);
+        ByteArray();
+        ByteArray(struct _value *Value);
+        ByteArray(const QuickVec<unsigned char>  &inValue);
 
-      void          Resize(int inSize);
-      int           Size() const;
-      unsigned char *Bytes();
-      const unsigned char *Bytes() const;
-      bool          Ok() { return mValue!=0; }
+        void                    Resize(int inSize);
+        int                     Size() const;
+        unsigned char*          Bytes();
+        const unsigned char*    Bytes() const;
+        bool                    Ok() { return mValue!=0; }
 
+        struct _value *mValue;
 
-      struct _value *mValue;
-
-      static ByteArray FromFile(const OSChar *inFilename);
-      static int ToFile(const OSChar *inFilename, const ByteArray array);
+        static ByteArray        FromFile(const OSChar *inFilename);
+        static int              ToFile(const OSChar *inFilename, const ByteArray array);
 
    }; //ByteArray
 

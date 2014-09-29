@@ -1,11 +1,17 @@
+/*
+    Copyright Sven Bergström, Hugh Sanderson and other contributors 2013, 2014
+    Portions adapted from https://github.com/haxenme/nme/
+    adapted and cleaned up for snow https://github.com/underscorediscovery/snow
+    MIT license
+*/
+
+
+
 #if defined(HX_WINDOWS) || defined(HX_MACOS) || defined(HX_LINUX)
 // Include neko glue....
 #define NEKO_COMPATIBLE
 #endif
 
-/*
-   Portions adapted from https://github.com/haxenme/nme/
-*/
 
 #include <hx/CFFI.h>
 

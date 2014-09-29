@@ -1,3 +1,10 @@
+/*
+    "ALHX" (ahleh-ks) bindings for haxe <-> OpenAL.
+    Copyright Sven Bergström 2014
+    created for snow https://github.com/underscorediscovery/snow
+    MIT license
+*/
+
 #include <hx/CFFI.h>
 
 #include "audio/openal/snow_openal.h"
@@ -5,12 +12,6 @@
 #include "snow_core.h"
 #include "common/snow_hx.h"
 #include "common/ByteArray.h"
-
-/**
-    "ALHX" bindings for haxe <-> OpenAL.
-    Copyright Sven Bergström 2014
-    MIT license
-*/
 
 /**
     These go in order that the API has them listed
