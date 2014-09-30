@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <title>snow - </title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <link rel="shortcut icon" href="../images/favicon.png" />
+
+        <link rel="stylesheet" type="text/css" href="../css/style.css" media="all">
+        <link rel="stylesheet" type="text/css" href="../css/code.css" media="all">
+        <link rel="stylesheet" type="text/css" href="../css/font.css" media="all">
+
+        <link rel="stylesheet" type="text/css" href="../css/tooltipster.css" media="all">
+        <link rel="stylesheet" type="text/css" href="../css/tooltipster-shadow.css" media="all">
+
+        <script src="../js/jquery-2.0.3.min.js"> </script>
+        <script src="../js/jquery.tooltipster.min.js"> </script>
+
+        <script>
+
+            $(document).ready(function() {
+
+                $('.section').css('display','none');
+                $('.readmore').click(function(e){
+                    var _child = $(this).parent().find('.section').first();
+                    var _opp = 'block';
+                    if( _child.css('display') == 'block' ) {
+                        _opp = 'none';
+                    } else {
+                    }
+                    _child.css('display', _opp);
+                });
+
+                $('div.sample').on('click', function(e){
+                        //get the data tag
+                    var content = $(this).attr('data-content');
+                        //remove clicking handler
+                    $(this).off('click');
+                        //replace the content!
+                    $(this).html('<iframe src="'+content+'" sandbox="allow-same-origin allow-scripts" style="overflow:hidden; scrollbar:none; border: 0; width:645px; height:450px;"></iframe> ')
+                });
+
+                $('.tooltip').each(function(e){
+                    var c = $(this).attr('data-tooltip');
+                    $(this).tooltipster({
+                        content:$('<span>' + c + '</span>'),
+                        interactive:true,
+                    theme:'tooltipster-shadow'
+                    });
+                });
+
+            }); //document.ready
+
+        </script>
+    </head>
+
+    <body>
+        <div class="content">
+            <p><a href="../index.html#guide"><img src="../images/logo.png" alt="Logo"></a></p>
+<hr>
+<h2 id="contributing">Contributing</h2>
+<h3 id="things-you-can-do">Things you can do</h3>
+<p>As snow is a community project, it is imperative that the community take part as it increases the value, reliability, and longevity of the project.   </p>
+<p>The following is a list of things that are important :</p>
+<ul>
+<li>finding bugs</li>
+<li>testing on various platforms</li>
+<li>writing ground truth tests</li>
+<li>writing tutorials/guides</li>
+<li>adding backends (audio, render)</li>
+<li>porting to new platforms</li>
+</ul>
+<hr>
+<p><a name="tests"><a href="#tests"><h3>Contributing tests</h3></a></a></p>
+<h4 id="how-snow-is-tested">How snow is tested</h4>
+<p>Testing in snow is a flexible and open endeavour.<br>Testing often serves different purposes in different ways,<br>some tests are automated, some are not. Some are interactive, some are not.</p>
+<p>The general consensus here is that everything should have a ground truth available to test against.<br>Automated tests run in their natural habitat, not in isolation, where possible. 
+For this reason the tests are written using snow itself, as the best place to test snow application code, is in a snow application.</p>
+<p><strong>There are no TDD zealots living in these parts</strong>, and no homes for zealots available.<br>However, there is a desire to provide battle tested, provable code.</p>
+<p>Inside the <code>tests</code> folder contains the following structure.</p>
+<p><strong>features/</strong>   </p>
+<ul>
+<li>Contains demos and tests that help debug framework features.<br>If a bug is reported, it is often tested against these feature tests as a baseline.   </li>
+</ul>
+<p><strong>unit/</strong>   </p>
+<ul>
+<li>Automated code based validation covering critical systems where applicable.    </li>
+</ul>
+<p><strong>utils/</strong>   </p>
+<ul>
+<li>Tests that cover things in the framework that don’t fit elsewhere   </li>
+</ul>
+<p><strong>wip/</strong>   </p>
+<ul>
+<li>This folder is basically a test bed for developing code that might be promoted to <em>features</em> later. 
+These may or may not work, and should always be maintained against the current version or repo. Legacy tests are not kept in the repo.   </li>
+</ul>
+<h4 id="how-to-submit-a-new-test">How to submit a new test</h4>
+<p>Commit or submit a pull request for the test into the wip folder.<br>This allows the community and others in the situation/feature/test to weigh in on the matter, 
+and allows code review/accountability to be handled gracefully,<br>without losing access the valuable contribution for users or developers alike.</p>
+<p>Once everyone involved is happy, the test will be promoted to the correct folder. </p>
+<h4 id="appending-or-patching-an-existing-test">Appending or patching an existing test</h4>
+<p>Commit or submit a pull request for the patch as normal, and discussions can be opened either in the issue list or on the comment thread of that commit (preferably in the issue list as it is more visible).</p>
+<hr>
+<p><a name="guides"><a href="#guides"><h3>Contributing guides</h3></a></a></p>
+<h4 id="how-to-submit-a-guide">How to submit a guide</h4>
+<p><strong>Submit a pull request</strong> for the markdown file, following the structure in <a href="https://github.com/underscorediscovery/snow/tree/docs-src/snow/md/guide">the existing guides</a>, and <strong>open an issue</strong> tagged guide to discuss the guide if you are looking for feedback.</p>
+<hr>
+<p><a name="code"><a href="#code"><h3>Contributing code</h3></a></a></p>
+<p>Read the code <a href="../guide/code.html">convention/design</a> document.<br>Submit a pull request or commit.<br>Open an issue to discuss the contribution, if you want feedback.</p>
+<hr>
+<h2 id="back">Back</h2>
+<p><a href="../index.html#guide">To the guide</a></p>
+<p><br/><br/><br/>
+<br/><br/><br/></p>
+
+        </div>
+    </body>
+
+</html>

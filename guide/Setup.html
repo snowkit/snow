@@ -40,8 +40,13 @@
                     $(this).html('<iframe src="'+content+'" sandbox="allow-same-origin allow-scripts" style="overflow:hidden; scrollbar:none; border: 0; width:645px; height:450px;"></iframe> ')
                 });
 
-                $('.tooltip').tooltipster({
+                $('.tooltip').each(function(e){
+                    var c = $(this).attr('data-tooltip');
+                    $(this).tooltipster({
+                        content:$('<span>' + c + '</span>'),
+                        interactive:true,
                     theme:'tooltipster-shadow'
+                    });
                 });
 
             }); //document.ready
@@ -51,9 +56,14 @@
 
     <body>
         <div class="content">
-            <p><a href="../index.html"><img src="../images/logo.png" alt="Logo"></a></p>
+            <p><a href="../index.html#guide"><img src="../images/logo.png" alt="Logo"></a></p>
 <hr>
 <h2 id="setup">Setup</h2>
+<hr>
+<h2 id="back">Back</h2>
+<p><a href="../index.html#guide">To the guide</a></p>
+<p><br/><br/><br/>
+<br/><br/><br/></p>
 
         </div>
     </body>

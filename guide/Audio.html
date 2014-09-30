@@ -40,8 +40,13 @@
                     $(this).html('<iframe src="'+content+'" sandbox="allow-same-origin allow-scripts" style="overflow:hidden; scrollbar:none; border: 0; width:645px; height:450px;"></iframe> ')
                 });
 
-                $('.tooltip').tooltipster({
+                $('.tooltip').each(function(e){
+                    var c = $(this).attr('data-tooltip');
+                    $(this).tooltipster({
+                        content:$('<span>' + c + '</span>'),
+                        interactive:true,
                     theme:'tooltipster-shadow'
+                    });
                 });
 
             }); //document.ready
@@ -51,9 +56,58 @@
 
     <body>
         <div class="content">
-            <p><a href="../index.html"><img src="../images/logo.png" alt="Logo"></a></p>
+            <p><a href="../index.html#guide"><img src="../images/logo.png" alt="Logo"></a></p>
 <hr>
 <h2 id="audio">Audio</h2>
+<h3 id="goals">Goals</h3>
+<p>As audio is complex, platform specific, and often audio engine specific in nature - snow strives for the simple goal :</p>
+<ul>
+<li>a set of high level API end points across platform where possible</li>
+<li>support for the best formats for the platform as possible</li>
+<li>support for accessing the underlying audio engine for deeper control/access</li>
+</ul>
+<p>For example, on <strong>native platforms</strong> by default OpenAL is used.<br>The high level API allows you to stream audio, playback loops of music seamlessly and play sound effects with settings like pan, pitch, volume and controlling the position of the playback manually.
+But, you are not limited by the high level API if you are shipping on native platforms. You have direct and full access to the OpenAL API from your haxe code to be able to create more complex use of the audio engine, if you need it.</p>
+<p>The same applies to web, HowlerJS is used by default, and you can access it through the platform specifics as you see fit.</p>
+<h3 id="feature-parity">Feature Parity</h3>
+<p>snow tries it’s best to map features of the high level API to all platforms consistently. As audio is one of the newer and more complex features of modern web, there are browsers and implementations that do not support the full set of features or audio formats, but as soon as they do, snow will continually follow along and strive for parity.</p>
+<p><strong>However</strong>, in modern browsers like Chrome, all features of the native audio map 1:1 to the features on web.</p>
+<h3 id="using-the-high-level-api">Using the high level API</h3>
+<p>The audio API consists of two approaches to interact with the sounds that are created through it.   </p>
+<p>All sounds are first <strong>create</strong>d, and then the sound instance is used to play and manipulate the sound. The approaches available are </p>
+<ul>
+<li>named sound api</li>
+<li>sound instance api</li>
+</ul>
+<p>This may seem confusing, but in event driven systems, a named sound api might be more ideal than instance based, and in coupled environments, sound instances might be preferred. This allows a wider set of use cases to allow seamless integration into your game or application.</p>
+<p>What does these mean?</p>
+<p>Take the following example. A sound instance is created, and then it is played when it is done loading. In both cases, the exact same outcome happens. One method requires the sound itself, the other doesn’t. It’s up to you to pick which you prefer, and use whatever makes sense to your application.</p>
+<pre><code><span class="hljs-keyword">override</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">ready</span><span class="hljs-params">()</span> </span>{
+
+    <span class="hljs-keyword">var</span> sound : Sound = app.audio.create(<span class="hljs-string">'assets/sound.ogg'</span>, <span class="hljs-string">'soundname'</span>);
+
+        <span class="hljs-comment">//this is the instance method</span>
+    sound.on(<span class="hljs-string">'load'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">( _sound:Sound )</span> </span>{
+        sound.play();
+    });
+
+        <span class="hljs-comment">//this is the 'named api' method</span>
+    app.audio.on(<span class="hljs-string">'soundname'</span>, <span class="hljs-string">'load'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">( _sound:Sound )</span> </span>{
+        app.audio.play(<span class="hljs-string">'soundname'</span>);
+    });
+
+} <span class="hljs-comment">//ready</span>
+</code></pre><hr>
+<h3 id="accessing-the-platform-or-engine-specific-features">Accessing the platform or engine specific features</h3>
+<p>For OpenAL on native platforms, you would <strong>import snow.audio.openal.AL;</strong> and use <strong>AL</strong>, <strong>ALC</strong> api functions to interact with the API. The API mirrors the official API of OpenAL with the exception of some helpers to make things simpler (like genSource instead of genSources will return a single source id) and with the exception of the naming, instead of <strong>alSourceStop</strong> you would call <strong>AL.sourceStop</strong>. Instead of <strong>AL_ORIENTATION</strong> it becomes <strong>AL.ORIENTATION</strong> and so on.</p>
+<p>For HowlerJS on the web platform, you would access the <strong>Howl</strong> and <strong>Howler</strong> classes from the <strong>snow.audio.howlerjs</strong> package.</p>
+<p>For all platforms, the <strong><a href="../api/snow/audio/Sound.html">Sound</a></strong> instance has a <strong>info:<a href="../api/snow/types/AudioInfo.html">AudioInfo</a></strong> node, which contains the platform specific handle of the sound on it. For web, this is the howl instance, and for native on OpenAL, this is the source ID.</p>
+<p>The concrete implementations for each platform reside in <strong>snow/platform/native/audio/</strong> and <strong>snow/platform/web/audio/</strong> respectively.</p>
+<hr>
+<h2 id="back">Back</h2>
+<p><a href="../index.html#guide">To the guide</a></p>
+<p><br/><br/><br/>
+<br/><br/><br/></p>
 
         </div>
     </body>

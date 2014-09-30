@@ -40,8 +40,13 @@
                     $(this).html('<iframe src="'+content+'" sandbox="allow-same-origin allow-scripts" style="overflow:hidden; scrollbar:none; border: 0; width:645px; height:450px;"></iframe> ')
                 });
 
-                $('.tooltip').tooltipster({
+                $('.tooltip').each(function(e){
+                    var c = $(this).attr('data-tooltip');
+                    $(this).tooltipster({
+                        content:$('<span>' + c + '</span>'),
+                        interactive:true,
                     theme:'tooltipster-shadow'
+                    });
                 });
 
             }); //document.ready
@@ -52,41 +57,79 @@
     <body>
         <div class="content">
             <p><a href="../../../api/index.html"><img src="../../../images/logo.png" alt="Logo"></a></p>
-<hr>
+<p><hr/>
+<a href="#" id="search_bar" onclick="return;"><div> search API <em>(or start typing anywhere)</em> </div></a></p>
+<hr/>
+
+<script src="../../../js/omnibar.js"> </script>
+<link rel="stylesheet" type="text/css" href="../../../css/omnibar.css" media="all">
+
+<div id="omnibar"> <a href="#" onclick="return" id="omnibar_close"></a> <input id="omnibar_text" type="text" placeholder="search types..."></input></div>
+<script  id="typelist" data-relpath="../../../" data-types="snow.App,snow.AppFixedTimestep,snow.Core,snow.CoreBinding,snow.Log,snow.Snow,snow.assets.Asset,snow.assets.AssetAudio,snow.assets.AssetBytes,snow.assets.AssetImage,snow.assets.AssetSystem,snow.assets.AssetSystemBinding,snow.assets.AssetText,snow.assets.Assets,snow.audio.Audio,snow.audio.AudioSystem,snow.audio.AudioSystemBinding,snow.audio.Sound,snow.audio.SoundBinding,snow.audio.SoundStream,snow.audio._Audio.AudioHandleMap,snow.audio.openal.AL,snow.audio.openal.ALC,snow.audio.openal.Context,snow.audio.openal.Device,snow.input.Input,snow.input.InputSystem,snow.input.InputSystemBinding,snow.input.Keycodes,snow.input.MapIntBool,snow.input.MapIntFloat,snow.input.Scancodes,snow.io.IO,snow.io.IOSystem,snow.io.IOSystemBinding,snow.platform.native.Core,snow.platform.native.StaticSnow,snow.platform.native.assets.AssetSystem,snow.platform.native.audio.AudioSystem,snow.platform.native.audio.Sound,snow.platform.native.audio.SoundStream,snow.platform.native.audio.openal.AL,snow.platform.native.audio.openal.ALC,snow.platform.native.audio.openal.AudioSystem,snow.platform.native.audio.openal.Context,snow.platform.native.audio.openal.Device,snow.platform.native.audio.openal.OpenALHelper,snow.platform.native.audio.openal.Sound,snow.platform.native.audio.openal.SoundStream,snow.platform.native.audio.openal._AL.Context_Impl_,snow.platform.native.audio.openal._AL.Device_Impl_,snow.platform.native.input.InputSystem,snow.platform.native.input.sdl.ControllerEventType,snow.platform.native.input.sdl.GamepadEventTypes,snow.platform.native.input.sdl.InputSystem,snow.platform.native.input.sdl.KeyEventType,snow.platform.native.input.sdl.KeyEventTypes,snow.platform.native.input.sdl.ModValue,snow.platform.native.input.sdl.MouseEventType,snow.platform.native.input.sdl.MouseEventTypes,snow.platform.native.input.sdl.TouchEventTypes,snow.platform.native.input.sdl.TouchState,snow.platform.native.io.IOFile,snow.platform.native.io.IOFileHandle,snow.platform.native.io.IOSystem,snow.platform.native.io._IOFile.IOFileHandle_Impl_,snow.platform.native.render.opengl.GL,snow.platform.native.render.opengl.GLActiveInfo,snow.platform.native.render.opengl.GLBuffer,snow.platform.native.render.opengl.GLContextAttributes,snow.platform.native.render.opengl.GLFBO,snow.platform.native.render.opengl.GLFramebuffer,snow.platform.native.render.opengl.GLObject,snow.platform.native.render.opengl.GLProgram,snow.platform.native.render.opengl.GLRBO,snow.platform.native.render.opengl.GLRenderbuffer,snow.platform.native.render.opengl.GLShader,snow.platform.native.render.opengl.GLShaderPrecisionFormat,snow.platform.native.render.opengl.GLTexture,snow.platform.native.render.opengl.GLUniformLocation,snow.platform.native.render.opengl._GL.GLFramebuffer_Impl_,snow.platform.native.render.opengl._GL.GLRenderbuffer_Impl_,snow.platform.native.utils.ArrayBuffer,snow.platform.native.utils.ArrayBufferView,snow.platform.native.utils.ByteArray,snow.platform.native.utils.Compression,snow.platform.native.utils.Float32Array,snow.platform.native.utils.Int16Array,snow.platform.native.utils.Int32Array,snow.platform.native.utils.Int8Array,snow.platform.native.utils.UInt16Array,snow.platform.native.utils.UInt32Array,snow.platform.native.utils.UInt8Array,snow.platform.native.utils.UInt8ClampedArray,snow.platform.native.window.WindowSystem,snow.platform.native.window.sdl.WindowSystem,snow.platform.web.assets.psd.PSD,snow.platform.web.audio.AudioSystem,snow.platform.web.audio.Sound,snow.platform.web.audio.SoundStream,snow.platform.web.audio.howlerjs.AudioParams,snow.platform.web.audio.howlerjs.AudioSystem,snow.platform.web.audio.howlerjs.Howl,snow.platform.web.audio.howlerjs.Howler,snow.platform.web.audio.howlerjs.SoundStream,snow.platform.web.audio.howlerjs.SpriteParams,snow.render.opengl.GL,snow.render.opengl.GLActiveInfo,snow.render.opengl.GLBuffer,snow.render.opengl.GLContextAttributes,snow.render.opengl.GLFramebuffer,snow.render.opengl.GLProgram,snow.render.opengl.GLRenderbuffer,snow.render.opengl.GLShader,snow.render.opengl.GLTexture,snow.render.opengl.GLUniformLocation,snow.types.AppConfig,snow.types.AppConfigNative,snow.types.AppConfigWeb,snow.types.AssetAudioOptions,snow.types.AssetBytesOptions,snow.types.AssetImageOptions,snow.types.AssetInfo,snow.types.AssetTextOptions,snow.types.AssetType,snow.types.AudioDataBlob,snow.types.AudioDataInfo,snow.types.AudioFormatType,snow.types.AudioHandle,snow.types.AudioInfo,snow.types.DisplayMode,snow.types.FileEvent,snow.types.FileEventType,snow.types.FileEvents,snow.types.FileFilter,snow.types.GamepadDeviceEventType,snow.types.ImageInfo,snow.types.InputEvent,snow.types.InputEventType,snow.types.InputEvents,snow.types.Key,snow.types.ModState,snow.types.Scan,snow.types.SnowConfig,snow.types.SystemEvent,snow.types.SystemEventType,snow.types.SystemEvents,snow.types.TextEventType,snow.types.WindowConfig,snow.types.WindowEvent,snow.types.WindowEventType,snow.types.WindowEvents,snow.types.WindowHandle,snow.utils.AbstractClass,snow.utils.AbstractClassBuilder,snow.utils.ArrayBuffer,snow.utils.ArrayBufferView,snow.utils.ByteArray,snow.utils.Float32Array,snow.utils.IDataInput,snow.utils.IMemoryRange,snow.utils.Int16Array,snow.utils.Int32Array,snow.utils.Int8Array,snow.utils.Libs,snow.utils.Timer,snow.utils.UInt16Array,snow.utils.UInt32Array,snow.utils.UInt8Array,snow.utils.UInt8ClampedArray,snow.utils._AbstractClass.StringMap,snow.utils.format.png.Chunk,snow.utils.format.png.Color,snow.utils.format.png.Data,snow.utils.format.png.Header,snow.utils.format.png.Reader,snow.utils.format.png.Tools,snow.utils.format.png.Writer,snow.utils.format.tools.Adler32,snow.utils.format.tools.Deflate,snow.utils.format.tools.HuffTools,snow.utils.format.tools.Huffman,snow.utils.format.tools.Inflate,snow.utils.format.tools.InflateImpl,snow.utils.format.tools.MemoryBytes,snow.utils.format.tools._InflateImpl.State,snow.utils.format.tools._InflateImpl.Window,snow.window.Window,snow.window.WindowSystem,snow.window.WindowSystemBinding,snow.window.Windowing,snow.window._Windowing.WindowHandleMap"></script>
+
+
 <p><h1>WindowConfig</h1>
 <small><code>snow.types.WindowConfig</code></small></p>
 <p>Window configuration information for creating windows</p>
-<hr>
+<hr/>
+
 <p><code>typedef</code></p>
-<hr>
+<hr/>
+
+
 <p>&nbsp;
 &nbsp;</p>
 <p><h3>Members</h3> <hr/><span class="member apipage">
-                <a name="y"><a class="lift" href="#y">y</a></a><div class="clear"></div><code class="signature apipage">y : <a href="#">Null</a>&lt;<a href="#">Int</a>&gt;</code><br/></span>
-            <span class="small_desc_flat">window x at creation. Leave this alone to use the OS default.</span><span class="member apipage">
-                <a name="x"><a class="lift" href="#x">x</a></a><div class="clear"></div><code class="signature apipage">x : <a href="#">Null</a>&lt;<a href="#">Int</a>&gt;</code><br/></span>
-            <span class="small_desc_flat">window y at creation. Leave this alone to use the OS default.</span><span class="member apipage">
-                <a name="width"><a class="lift" href="#width">width</a></a><div class="clear"></div><code class="signature apipage">width : <a href="#">Null</a>&lt;<a href="#">Int</a>&gt;</code><br/></span>
-            <span class="small_desc_flat">window height at creation, default: 960</span><span class="member apipage">
-                <a name="title"><a class="lift" href="#title">title</a></a><div class="clear"></div><code class="signature apipage">title : <a href="#">String</a></code><br/></span>
-            <span class="small_desc_flat">window title, default: ‘snow app’</span><span class="member apipage">
-                <a name="stencil_bits"><a class="lift" href="#stencil_bits">stencil_bits</a></a><div class="clear"></div><code class="signature apipage">stencil_bits : <a href="#">Null</a>&lt;<a href="#">Int</a>&gt;</code><br/></span>
-            <span class="small_desc_flat">create a stencil buffer at the specified bit depth (i.e <code>8</code> or <code>16</code> bit stencil buffer). default: 0</span><span class="member apipage">
-                <a name="resizable"><a class="lift" href="#resizable">resizable</a></a><div class="clear"></div><code class="signature apipage">resizable : <a href="#">Null</a>&lt;<a href="#">Bool</a>&gt;</code><br/></span>
-            <span class="small_desc_flat">allow the window to be resized, default: true</span><span class="member apipage">
-                <a name="no_input"><a class="lift" href="#no_input">no_input</a></a><div class="clear"></div><code class="signature apipage">no_input : <a href="#">Null</a>&lt;<a href="#">Bool</a>&gt;</code><br/></span>
-            <span class="small_desc_flat">disables input arriving at/from this window. default: false</span><span class="member apipage">
-                <a name="height"><a class="lift" href="#height">height</a></a><div class="clear"></div><code class="signature apipage">height : <a href="#">Null</a>&lt;<a href="#">Int</a>&gt;</code><br/></span>
-            <span class="small_desc_flat">window width at creation, default: 640</span><span class="member apipage">
-                <a name="fullscreen"><a class="lift" href="#fullscreen">fullscreen</a></a><div class="clear"></div><code class="signature apipage">fullscreen : <a href="#">Null</a>&lt;<a href="#">Bool</a>&gt;</code><br/></span>
-            <span class="small_desc_flat">create in fullscreen, default: false, <code>mobile</code> true</span><span class="member apipage">
-                <a name="depth_bits"><a class="lift" href="#depth_bits">depth_bits</a></a><div class="clear"></div><code class="signature apipage">depth_bits : <a href="#">Null</a>&lt;<a href="#">Int</a>&gt;</code><br/></span>
-            <span class="small_desc_flat">create a depth buffer at the specified bit depth (i.e <code>0</code> or <code>16</code> bit depth buffer) default: 0</span><span class="member apipage">
-                <a name="borderless"><a class="lift" href="#borderless">borderless</a></a><div class="clear"></div><code class="signature apipage">borderless : <a href="#">Null</a>&lt;<a href="#">Bool</a>&gt;</code><br/></span>
-            <span class="small_desc_flat">create as a borderless window, default: false</span><span class="member apipage">
-                <a name="antialiasing"><a class="lift" href="#antialiasing">antialiasing</a></a><div class="clear"></div><code class="signature apipage">antialiasing : <a href="#">Null</a>&lt;<a href="#">Int</a>&gt;</code><br/></span>
-            <span class="small_desc_flat">a value of <code>0</code>, <code>2</code>, <code>4</code>, <code>8</code> or other valid antialiasing flags. default: 0</span></p>
-<hr>
+                <a name="y"><a class="lift" href="#y">y</a></a><div class="clear"></div>
+                <code class="signature apipage">y : <a href="http://api.haxe.org/Null.html">Null</a>&lt;<a href="http://api.haxe.org/Int.html">Int</a>&gt;</code><br/></span>
+            <span class="small_desc_flat">window x at creation. Leave this alone to use the OS default.</span><br/><span class="member apipage">
+                <a name="x"><a class="lift" href="#x">x</a></a><div class="clear"></div>
+                <code class="signature apipage">x : <a href="http://api.haxe.org/Null.html">Null</a>&lt;<a href="http://api.haxe.org/Int.html">Int</a>&gt;</code><br/></span>
+            <span class="small_desc_flat">window y at creation. Leave this alone to use the OS default.</span><br/><span class="member apipage">
+                <a name="width"><a class="lift" href="#width">width</a></a><div class="clear"></div>
+                <code class="signature apipage">width : <a href="http://api.haxe.org/Null.html">Null</a>&lt;<a href="http://api.haxe.org/Int.html">Int</a>&gt;</code><br/></span>
+            <span class="small_desc_flat">window height at creation, default: 960</span><br/><span class="member apipage">
+                <a name="title"><a class="lift" href="#title">title</a></a><div class="clear"></div>
+                <code class="signature apipage">title : <a href="http://api.haxe.org/String.html">String</a></code><br/></span>
+            <span class="small_desc_flat">window title, default: ‘snow app’</span><br/><span class="member apipage">
+                <a name="stencil_bits"><a class="lift" href="#stencil_bits">stencil_bits</a></a><div class="clear"></div>
+                <code class="signature apipage">stencil_bits : <a href="http://api.haxe.org/Null.html">Null</a>&lt;<a href="http://api.haxe.org/Int.html">Int</a>&gt;</code><br/></span>
+            <span class="small_desc_flat">create a stencil buffer at the specified bit depth (i.e <code>8</code> or <code>16</code> bit stencil buffer). default: 0</span><br/><span class="member apipage">
+                <a name="resizable"><a class="lift" href="#resizable">resizable</a></a><div class="clear"></div>
+                <code class="signature apipage">resizable : <a href="http://api.haxe.org/Null.html">Null</a>&lt;<a href="http://api.haxe.org/Bool.html">Bool</a>&gt;</code><br/></span>
+            <span class="small_desc_flat">allow the window to be resized, default: true</span><br/><span class="member apipage">
+                <a name="red_bits"><a class="lift" href="#red_bits">red_bits</a></a><div class="clear"></div>
+                <code class="signature apipage">red_bits : <a href="http://api.haxe.org/Null.html">Null</a>&lt;<a href="http://api.haxe.org/Int.html">Int</a>&gt;</code><br/></span>
+            <span class="small_desc_flat">set the number of red bits for the rendering to use. Unless you need to change this, don’t. default: 8</span><br/><span class="member apipage">
+                <a name="no_input"><a class="lift" href="#no_input">no_input</a></a><div class="clear"></div>
+                <code class="signature apipage">no_input : <a href="http://api.haxe.org/Null.html">Null</a>&lt;<a href="http://api.haxe.org/Bool.html">Bool</a>&gt;</code><br/></span>
+            <span class="small_desc_flat">disables input arriving at/from this window. default: false</span><br/><span class="member apipage">
+                <a name="height"><a class="lift" href="#height">height</a></a><div class="clear"></div>
+                <code class="signature apipage">height : <a href="http://api.haxe.org/Null.html">Null</a>&lt;<a href="http://api.haxe.org/Int.html">Int</a>&gt;</code><br/></span>
+            <span class="small_desc_flat">window width at creation, default: 640</span><br/><span class="member apipage">
+                <a name="green_bits"><a class="lift" href="#green_bits">green_bits</a></a><div class="clear"></div>
+                <code class="signature apipage">green_bits : <a href="http://api.haxe.org/Null.html">Null</a>&lt;<a href="http://api.haxe.org/Int.html">Int</a>&gt;</code><br/></span>
+            <span class="small_desc_flat">set the number of green bits for the rendering to use. Unless you need to change this, don’t. default: 8</span><br/><span class="member apipage">
+                <a name="fullscreen"><a class="lift" href="#fullscreen">fullscreen</a></a><div class="clear"></div>
+                <code class="signature apipage">fullscreen : <a href="http://api.haxe.org/Null.html">Null</a>&lt;<a href="http://api.haxe.org/Bool.html">Bool</a>&gt;</code><br/></span>
+            <span class="small_desc_flat">create in fullscreen, default: false, <code>mobile</code> true</span><br/><span class="member apipage">
+                <a name="depth_bits"><a class="lift" href="#depth_bits">depth_bits</a></a><div class="clear"></div>
+                <code class="signature apipage">depth_bits : <a href="http://api.haxe.org/Null.html">Null</a>&lt;<a href="http://api.haxe.org/Int.html">Int</a>&gt;</code><br/></span>
+            <span class="small_desc_flat">create a depth buffer at the specified bit depth (i.e <code>0</code> or <code>16</code> bit depth buffer) default: 0</span><br/><span class="member apipage">
+                <a name="borderless"><a class="lift" href="#borderless">borderless</a></a><div class="clear"></div>
+                <code class="signature apipage">borderless : <a href="http://api.haxe.org/Null.html">Null</a>&lt;<a href="http://api.haxe.org/Bool.html">Bool</a>&gt;</code><br/></span>
+            <span class="small_desc_flat">create as a borderless window, default: false</span><br/><span class="member apipage">
+                <a name="blue_bits"><a class="lift" href="#blue_bits">blue_bits</a></a><div class="clear"></div>
+                <code class="signature apipage">blue_bits : <a href="http://api.haxe.org/Null.html">Null</a>&lt;<a href="http://api.haxe.org/Int.html">Int</a>&gt;</code><br/></span>
+            <span class="small_desc_flat">set the number of blue bits for the rendering to use. Unless you need to change this, don’t. default: 8</span><br/><span class="member apipage">
+                <a name="antialiasing"><a class="lift" href="#antialiasing">antialiasing</a></a><div class="clear"></div>
+                <code class="signature apipage">antialiasing : <a href="http://api.haxe.org/Null.html">Null</a>&lt;<a href="http://api.haxe.org/Int.html">Int</a>&gt;</code><br/></span>
+            <span class="small_desc_flat">a value of <code>0</code>, <code>2</code>, <code>4</code>, <code>8</code> or other valid antialiasing flags. default: 0</span><br/><span class="member apipage">
+                <a name="alpha_bits"><a class="lift" href="#alpha_bits">alpha_bits</a></a><div class="clear"></div>
+                <code class="signature apipage">alpha_bits : <a href="http://api.haxe.org/Null.html">Null</a>&lt;<a href="http://api.haxe.org/Int.html">Int</a>&gt;</code><br/></span>
+            <span class="small_desc_flat">set the number of alpha bits for the rendering to use. Unless you need to change this, don’t. default: 8</span><br/></p>
+<hr/>
+
 <p>&nbsp;
 &nbsp;
 &nbsp;

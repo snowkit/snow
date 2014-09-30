@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <title>snow - </title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <link rel="shortcut icon" href="../images/favicon.png" />
+
+        <link rel="stylesheet" type="text/css" href="../css/style.css" media="all">
+        <link rel="stylesheet" type="text/css" href="../css/code.css" media="all">
+        <link rel="stylesheet" type="text/css" href="../css/font.css" media="all">
+
+        <link rel="stylesheet" type="text/css" href="../css/tooltipster.css" media="all">
+        <link rel="stylesheet" type="text/css" href="../css/tooltipster-shadow.css" media="all">
+
+        <script src="../js/jquery-2.0.3.min.js"> </script>
+        <script src="../js/jquery.tooltipster.min.js"> </script>
+
+        <script>
+
+            $(document).ready(function() {
+
+                $('.section').css('display','none');
+                $('.readmore').click(function(e){
+                    var _child = $(this).parent().find('.section').first();
+                    var _opp = 'block';
+                    if( _child.css('display') == 'block' ) {
+                        _opp = 'none';
+                    } else {
+                    }
+                    _child.css('display', _opp);
+                });
+
+                $('div.sample').on('click', function(e){
+                        //get the data tag
+                    var content = $(this).attr('data-content');
+                        //remove clicking handler
+                    $(this).off('click');
+                        //replace the content!
+                    $(this).html('<iframe src="'+content+'" sandbox="allow-same-origin allow-scripts" style="overflow:hidden; scrollbar:none; border: 0; width:645px; height:450px;"></iframe> ')
+                });
+
+                $('.tooltip').each(function(e){
+                    var c = $(this).attr('data-tooltip');
+                    $(this).tooltipster({
+                        content:$('<span>' + c + '</span>'),
+                        interactive:true,
+                    theme:'tooltipster-shadow'
+                    });
+                });
+
+            }); //document.ready
+
+        </script>
+    </head>
+
+    <body>
+        <div class="content">
+            <p><a href="../index.html#guide"><img src="../images/logo.png" alt="Logo"></a></p>
+<hr>
+<h2 id="rendering">Rendering</h2>
+<h3 id="opengl">OpenGL</h3>
+<p>Currently, rendering is handled by OpenGL on all platforms, using a shared API based on the WebGL specifications.</p>
+<p>This does not exclude using higher level OpenGL features on platforms that support it, but it does mean that the majority of rendering code can be identical across <strong>all platforms</strong>. 
+The majority of the bindings and implementations were originally from <a href="http://github.com/haxenme/nme">nme</a> and were modified and changed to suit snow and it’s goals.</p>
+<p>To use the GL features, you simply <strong>import snow.render.opengl.GL;</strong> and all the classes, types and methods are available to you.  </p>
+<p>All features of GL (except the types) are accessed via the GL class as static functions and values. 
+For example to clear the screen, <strong>GL.clear( GL.COLOR_BUFFER_BIT )</strong> would be called.</p>
+<p>Rendering functions should be called within your <a href="../guide/windowing.html">window</a> <strong>onrender</strong> function and as soon as <strong>ready</strong> is called, if a default window was requested, you may call OpenGL functions.</p>
+<h3 id="learning-opengl">Learning OpenGL</h3>
+<p>The bindings and API map to WebGL specification, so most WebGL tutorials would translate fairly seamlessly through minor syntax changes.   </p>
+<p>This document is not aiming to teach OpenGL as this is a task unto itself, so the following resources might be of interest if you are just entering the OpenGL space. Be warned, that many tutorials on the internet feature outdated API calls and are not suited to modern rendering on modern hardware, so be sure that the tutorials you are reading conform to OpenGL 3.x+, OpenGL ES 2.0+, or WebGL specification and above.</p>
+<p>In all tutorials, you may skip all the boilerplate on window + context creation and focus purely on rendering and onward. There are MANY tutorials online, so you should have no trouble finding more.</p>
+<p>The linked resources conform to these requirements :</p>
+<ul>
+<li><a href="http://learningwebgl.com/blog/?page_id=1217">http://learningwebgl.com/blog/?page_id=1217</a></li>
+<li><a href="http://open.gl/">http://open.gl/</a></li>
+<li><a href="http://www.opengl-tutorial.org/">http://www.opengl-tutorial.org/</a></li>
+<li><a href="http://tomdalling.com/blog/category/modern-opengl/">http://tomdalling.com/blog/category/modern-opengl/</a></li>
+<li><a href="http://duriansoftware.com/joe/An-intro-to-modern-OpenGL.-Table-of-Contents.html">http://duriansoftware.com/joe/An-intro-to-modern-OpenGL.-Table-of-Contents.html</a></li>
+<li><a href="http://code.tutsplus.com/articles/webgl-essentials-part-i--net-25856">http://code.tutsplus.com/articles/webgl-essentials-part-i--net-25856</a></li>
+</ul>
+<h3 id="important-notes-on-portability">Important notes on portability</h3>
+<p>snow is designed to expose and offer you access to a rendering API on the platform that it is running on. This means that OpenGL may not be available on a near future target specifically, but a different API might be. This means that generally speaking (as is good common sense programming of graphical applications) you should be abstracting your rendering functions into discrete places such that the backend can be changed with minimal effort.</p>
+<p>Of course, if you only plan on targetting platforms that support OpenGL, you may use it to the fullest extent without concern for portability.
+Currently, it runs the same on iOS, Android, Web, Mac, Windows and Linux, so you can go pretty far with the assumption of OpenGL only.</p>
+<h3 id="future-implementations">Future implementations</h3>
+<p>As snow is designed to handle multiple rendering options, there are plans on the roadmap to expose higher level OpenGL functions for desktops (like OpenGL 3.x and 4.x specific functions), as well as, when the time comes and OpenGL ES 3.0 and WebGL 2.0 become available and usable, bindings and access to the rendering features will be made available.</p>
+<p><strong>We are always open to getting help with this</strong>.</p>
+<p>Currently, the snow development team has no direct goals or need for a DirectX binding implementation. If the community would need/want this, binding ANGLE, or DirectX api’s in a similar fashion would not be discouraged, and if the implementations align with the snow API and goals would most certainly be considered for inclusion of the official API.</p>
+<hr>
+<h2 id="back">Back</h2>
+<p><a href="../index.html#guide">To the guide</a></p>
+<p><br/><br/><br/>
+<br/><br/><br/></p>
+
+        </div>
+    </body>
+
+</html>

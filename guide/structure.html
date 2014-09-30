@@ -40,8 +40,13 @@
                     $(this).html('<iframe src="'+content+'" sandbox="allow-same-origin allow-scripts" style="overflow:hidden; scrollbar:none; border: 0; width:645px; height:450px;"></iframe> ')
                 });
 
-                $('.tooltip').tooltipster({
+                $('.tooltip').each(function(e){
+                    var c = $(this).attr('data-tooltip');
+                    $(this).tooltipster({
+                        content:$('<span>' + c + '</span>'),
+                        interactive:true,
                     theme:'tooltipster-shadow'
+                    });
                 });
 
             }); //document.ready
@@ -51,7 +56,7 @@
 
     <body>
         <div class="content">
-            <p><a href="" id="logo"><img src="../images/logo.png" /></a></p>
+            <p><a href="../index.html#guide"><img src="../images/logo.png" alt="Logo"></a></p>
 <hr>
 <h2 id="structure">Structure</h2>
 <p>snow consists of three main layers :</p>
@@ -63,23 +68,26 @@
 <li><h4 id="support-layer">support layer</h4>
 </li>
 </ul>
-<p><strong>API</strong></p>
-<p>This is the user facing API that you as a snow user interact with.
-The API is where you access everything from that you would use in your app.</p>
-<p>It is written in haxe code, and resides in the <code>snow/</code> folder.</p>
-<p><strong>adapter layer</strong></p>
+<h3 id="api">API</h3>
+<p>This is the user facing API that you as a snow user interact with.<br>The API is where you access everything from that you would use in your app.</p>
+<p>It is written in haxe code, and resides in the <strong>snow/</strong> folder.</p>
+<h3 id="adapter-layer">adapter layer</h3>
 <p>This is the code that adapts the API to the platform you are building for.</p>
-<p>It is also written in haxe code, and resides in the <code>snow/</code> folder.
-On native targets, this includes code to load functions from snow.ndll.
-On the web target, this includes code that interacts with the browser.</p>
-<p><strong>support layer</strong></p>
+<p>It is also written in haxe code, and resides in the <strong>snow/</strong> folder.<br>On native targets, this includes code to load functions from snow.ndll.<br>On the web target, this includes code that interacts with the browser.   </p>
+<h3 id="support-layer">support layer</h3>
 <p>This is the low level platform specific code that interacts with the target.</p>
-<p>On <strong>web</strong>, this is written in haxe code, and resides in the <code>snow</code> folder (mostly in the adapter).</p>
-<p>On <strong>native</strong>, this is written in c++ - and is built into and loaded from <code>snow.ndll</code>.
-It resides in <code>project/src</code> and is compiled using <code>hxcpp</code></p>
+<p><strong>web</strong><br>This is written in haxe code, and resides in the <strong>snow</strong> folder (mostly in the adapter).</p>
+<p><strong>native</strong><br>This is written in c++ - and is built into and loaded from <strong>snow native code</strong>.
+It resides in <strong>project/src</strong> and is compiled using <strong>hxcpp</strong></p>
 <hr>
+<p><br/></p>
 <p><img src="../images/structure.png" class="center"/></p>
+<p><br/></p>
 <hr>
+<h2 id="back">Back</h2>
+<p><a href="../index.html#guide">To the guide</a></p>
+<p><br/><br/><br/>
+<br/><br/><br/></p>
 
         </div>
     </body>

@@ -40,8 +40,13 @@
                     $(this).html('<iframe src="'+content+'" sandbox="allow-same-origin allow-scripts" style="overflow:hidden; scrollbar:none; border: 0; width:645px; height:450px;"></iframe> ')
                 });
 
-                $('.tooltip').tooltipster({
+                $('.tooltip').each(function(e){
+                    var c = $(this).attr('data-tooltip');
+                    $(this).tooltipster({
+                        content:$('<span>' + c + '</span>'),
+                        interactive:true,
                     theme:'tooltipster-shadow'
+                    });
                 });
 
             }); //document.ready
@@ -51,9 +56,47 @@
 
     <body>
         <div class="content">
-            <p><a href="../index.html"><img src="../images/logo.png" alt="Logo"></a></p>
+            <p><a href="../index.html#guide"><img src="../images/logo.png" alt="Logo"></a></p>
 <hr>
 <h2 id="utils">Utils</h2>
+<p>The utilities folder is for features that don’t quite fit elsewhere in the framework, and often map to platform specific bindings.</p>
+<p>This guide will give a brief overview of the more public facing utilities as there are many and may seem overwhelming.<br>A good amount of these utilities were originally sourced from <a href="http://github.com/haxenme/nme">nme</a> and <a href="http://github.com/openfl/lime">lime</a>, but have since been refactored, fixed up and tests written for the classes in question.</p>
+<p>In all cases, the API docs will elaborate their features, and the tests/unit/ folder in snow has the use cases and test cases for the code.</p>
+<h3 id="timer">Timer</h3>
+<p>This is a simple timer class for repeating or single fire callbacks on a timer.</p>
+<h3 id="libs">Libs</h3>
+<p>The libs class is for loading native functions out of hxcpp build “ndll” files.</p>
+<h3 id="abstract-class">Abstract Class</h3>
+<p>From <a href="http://www.onthewings.net/">Andy Li</a>, it’s described as : </p>
+<blockquote>
+<p>Old school abstract class.<br>Classes that implement it, and their sub-classes, will be able to declare abstract methods (methods that without body).
+There will be a check in compile-time such that no public constructor is allowed without all abstract methods implemented.</p>
+</blockquote>
+<h3 id="typed-arrays">Typed arrays</h3>
+<p>These <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Typed_arrays">arrays</a> are a flexible and useful set of arrays for use with bytes and data. They are used to map bytes from your application to the rendering pipeline or GPU for example, as they implement some interfaces that make this simpler for everything.</p>
+<p>It’s important to note that as these arrays leverage the haxe types, it is possible that the exact sizes and memory use may differ to their original spec, but the implementation and usage matches spec in full.</p>
+<p>The following typed arrays are supported</p>
+<ul>
+<li>Int8Array</li>
+<li>Uint8Array</li>
+<li>Uint8ClampedArray</li>
+<li>Int16Array</li>
+<li>Uint16Array</li>
+<li>Int32Array</li>
+<li>Uint32Array</li>
+<li>Float32Array</li>
+</ul>
+<p>The following typed arrays are not implemented due to blocking reasons, <a href="https://github.com/underscorediscovery/snow/issues/17">follow the issue list updates</a></p>
+<ul>
+<li>Float64Array</li>
+</ul>
+<h3 id="bytearray">ByteArray</h3>
+<p>This is a ByteArray that is the low level means of sending data around, when not using the Typed arrays. For example, on native, there is a ByteArray counterpart and operations that can be optimized through native calls will go through native code where applicable.</p>
+<hr>
+<h2 id="back">Back</h2>
+<p><a href="../index.html#guide">To the guide</a></p>
+<p><br/><br/><br/>
+<br/><br/><br/></p>
 
         </div>
     </body>

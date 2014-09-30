@@ -40,8 +40,13 @@
                     $(this).html('<iframe src="'+content+'" sandbox="allow-same-origin allow-scripts" style="overflow:hidden; scrollbar:none; border: 0; width:645px; height:450px;"></iframe> ')
                 });
 
-                $('.tooltip').tooltipster({
+                $('.tooltip').each(function(e){
+                    var c = $(this).attr('data-tooltip');
+                    $(this).tooltipster({
+                        content:$('<span>' + c + '</span>'),
+                        interactive:true,
                     theme:'tooltipster-shadow'
+                    });
                 });
 
             }); //document.ready
@@ -51,9 +56,96 @@
 
     <body>
         <div class="content">
-            <p><a href="../index.html"><img src="../images/logo.png" alt="Logo"></a></p>
+            <p><a href="../index.html#guide"><img src="../images/logo.png" alt="Logo"></a></p>
 <hr>
 <h2 id="windowing">Windowing</h2>
+<p>The windowing system handles anything related to the display, and the application windows.   </p>
+<h3 id="the-default-window">The default window</h3>
+<p>By default, snow will create a window for you, which can be configured through the <strong>config</strong> function override in your app, which is discussed in guide <a href="../guide/one.html">one</a>.   </p>
+<p>The default window config is stored against the <strong>app.config.window</strong> node for later reference, and doesn’t affect the window after <strong>config</strong> happens.   </p>
+<p>To change the properties or state of the window, you would use the window instance directly, from <strong>app.window</strong>. 
+This allows you to change things like the title, the window decorations, fullscreen state, changing the position or size of a window after it is created.   </p>
+<p>The same applies for windows that you create manually, the window instance is used to manage the window, including removing the window through <strong>destroy</strong>.</p>
+<h4 id="disable-the-default-window">Disable the default window</h4>
+<p>There are times a window is not desired, for example, on a headless server or for command line applications. 
+To bypass creating the default window, you would set the flag <strong>has_window</strong> on the <strong>AppConfig</strong> in the config function to false.</p>
+<p>You can see an example of this in the <strong>tests/unit/</strong> folder, where the application runs without a window, or a main loop.</p>
+<hr>
+<pre><code><span class="hljs-keyword">override</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">config</span><span class="hljs-params">( config:AppConfig )</span> </span>{
+
+    config.has_window = <span class="hljs-literal">false</span>;
+
+    <span class="hljs-keyword">return</span> config;
+
+} <span class="hljs-comment">//config</span>
+</code></pre><hr>
+<h4 id="rendering-and-window-events">Rendering and Window Events</h4>
+<p>To listen for window events, you assign an <strong>onevent</strong> handler directly to the window. Likewise, for rendering, you assign an <strong>onrender</strong> handler to the window that will be called whenever the window is being rendered. </p>
+<p>Only call rendering commands within here, as the function ensures that the window is current for drawing into, and ensures that drawing happens in order with the window swapping (unless you handle this manually, see advanced control below).</p>
+<p>An example of rendering and event callbacks, <a href="../api/snow/types/WindowEventType.html">window events</a> and <a href="api/snow/window/Window.html">window</a> docs.</p>
+<hr>
+<pre><code><span class="hljs-keyword">override</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">ready</span><span class="hljs-params">()</span> </span>{
+
+    app.window.onrender = on_render;
+    app.window.onevent = on_window_event;
+
+} <span class="hljs-comment">//ready</span>
+
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">on_render</span><span class="hljs-params">( window:Window )</span> </span>{
+
+    <span class="hljs-comment">// ...draw stuff</span>
+
+} <span class="hljs-comment">//on_render</span>
+
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">on_window_event</span><span class="hljs-params">( event:WindowEvent )</span> </span>{
+
+    <span class="hljs-keyword">switch</span>(event.type) {
+
+        <span class="hljs-keyword">case</span> WindowEventType.window_resized: {
+            <span class="hljs-comment">//handle resizing</span>
+        }
+
+        <span class="hljs-keyword">case</span> WindowEventType.window_focus_gained: {
+            <span class="hljs-comment">//handle focus change</span>
+        }
+
+    } <span class="hljs-comment">//switch type</span>
+
+} <span class="hljs-comment">//on_window_event</span>
+</code></pre><hr>
+<h4 id="advanced-control">Advanced control</h4>
+<p>By default, windows will swap automatically, but this can be disabled through the <strong>window.auto_swap = false;</strong> flag, and you must call <strong>window.swap()</strong> when you want it to swap the buffers.
+Also by default, windows will call render automatically, along with the rest of the windows. To control the window rendering manually, disable the <strong>window.auto_render</strong> flag and call <strong>window.render</strong> manually.</p>
+<p>This is of course not required, and is for advanced use only.</p>
+<h3 id="windowing-features">Windowing features</h3>
+<p>The <strong>app.windowing</strong> instance on the other hand, is the window manager. This tracks the existing windows, 
+and exposes api functions for the desktop and systems to use to handle vertical sync, the system cursor state, 
+or anything that is not directly related to a window in particular. </p>
+<p>Anything related to a window would be from the window instance, everything else is from the window manager.</p>
+<p>You can see the full list of options from the <a href="../api/snow/window/Windowing.html">windowing api docs</a>.</p>
+<p>Take note that some functions are platform specific, such as the name of the display on web is going to be the browser name, not the physical display name and so on.</p>
+<hr>
+<h4 id="creating-multiple-windows">Creating multiple windows</h4>
+<p>To create a window, simply call <strong>app.windowing.create( window_config:WindowConfig )</strong> with the requested config. 
+This config is a request, and not all features might be honored by the OS window system, or the platform. 
+To find out what config you really obtained, the returned <em>Window</em> instance has a <strong>config</strong> and an <strong>asked_config</strong> node for comparison.</p>
+<pre><code><span class="hljs-keyword">override</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">ready</span><span class="hljs-params">()</span> </span>{
+
+    <span class="hljs-keyword">var</span> window2 : Window = app.windowing.create({
+        title:<span class="hljs-string">'second window'</span>,
+        resizable : <span class="hljs-literal">true</span>,
+        width : <span class="hljs-number">320</span>,
+        height : <span class="hljs-number">420</span>
+    });
+
+} <span class="hljs-comment">//ready</span>
+</code></pre><hr>
+<h2 id="back">Back</h2>
+<p><a href="../index.html#guide">To the guide</a></p>
+<p><br/><br/><br/>
+<br/><br/><br/></p>
 
         </div>
     </body>

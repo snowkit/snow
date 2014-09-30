@@ -40,8 +40,13 @@
                     $(this).html('<iframe src="'+content+'" sandbox="allow-same-origin allow-scripts" style="overflow:hidden; scrollbar:none; border: 0; width:645px; height:450px;"></iframe> ')
                 });
 
-                $('.tooltip').tooltipster({
+                $('.tooltip').each(function(e){
+                    var c = $(this).attr('data-tooltip');
+                    $(this).tooltipster({
+                        content:$('<span>' + c + '</span>'),
+                        interactive:true,
                     theme:'tooltipster-shadow'
+                    });
                 });
 
             }); //document.ready
@@ -52,288 +57,117 @@
     <body>
         <div class="content">
             <p><a href="../index.html"><img src="../images/logo.png" alt="Logo"></a></p>
+<p><hr/>
+<a href="#" id="search_bar" onclick="return;"><div> search API <em>(or start typing anywhere)</em> </div></a></p>
 <hr/>
+
+<script src="../js/omnibar.js"> </script>
+<link rel="stylesheet" type="text/css" href="../css/omnibar.css" media="all">
+
+<div id="omnibar"> <a href="#" onclick="return" id="omnibar_close"></a> <input id="omnibar_text" type="text" placeholder="search types..."></input></div>
+<script  id="typelist" data-relpath="../" data-types="snow.App,snow.AppFixedTimestep,snow.Core,snow.CoreBinding,snow.Log,snow.Snow,snow.assets.Asset,snow.assets.AssetAudio,snow.assets.AssetBytes,snow.assets.AssetImage,snow.assets.AssetSystem,snow.assets.AssetSystemBinding,snow.assets.AssetText,snow.assets.Assets,snow.audio.Audio,snow.audio.AudioSystem,snow.audio.AudioSystemBinding,snow.audio.Sound,snow.audio.SoundBinding,snow.audio.SoundStream,snow.audio._Audio.AudioHandleMap,snow.audio.openal.AL,snow.audio.openal.ALC,snow.audio.openal.Context,snow.audio.openal.Device,snow.input.Input,snow.input.InputSystem,snow.input.InputSystemBinding,snow.input.Keycodes,snow.input.MapIntBool,snow.input.MapIntFloat,snow.input.Scancodes,snow.io.IO,snow.io.IOSystem,snow.io.IOSystemBinding,snow.platform.native.Core,snow.platform.native.StaticSnow,snow.platform.native.assets.AssetSystem,snow.platform.native.audio.AudioSystem,snow.platform.native.audio.Sound,snow.platform.native.audio.SoundStream,snow.platform.native.audio.openal.AL,snow.platform.native.audio.openal.ALC,snow.platform.native.audio.openal.AudioSystem,snow.platform.native.audio.openal.Context,snow.platform.native.audio.openal.Device,snow.platform.native.audio.openal.OpenALHelper,snow.platform.native.audio.openal.Sound,snow.platform.native.audio.openal.SoundStream,snow.platform.native.audio.openal._AL.Context_Impl_,snow.platform.native.audio.openal._AL.Device_Impl_,snow.platform.native.input.InputSystem,snow.platform.native.input.sdl.ControllerEventType,snow.platform.native.input.sdl.GamepadEventTypes,snow.platform.native.input.sdl.InputSystem,snow.platform.native.input.sdl.KeyEventType,snow.platform.native.input.sdl.KeyEventTypes,snow.platform.native.input.sdl.ModValue,snow.platform.native.input.sdl.MouseEventType,snow.platform.native.input.sdl.MouseEventTypes,snow.platform.native.input.sdl.TouchEventTypes,snow.platform.native.input.sdl.TouchState,snow.platform.native.io.IOFile,snow.platform.native.io.IOFileHandle,snow.platform.native.io.IOSystem,snow.platform.native.io._IOFile.IOFileHandle_Impl_,snow.platform.native.render.opengl.GL,snow.platform.native.render.opengl.GLActiveInfo,snow.platform.native.render.opengl.GLBuffer,snow.platform.native.render.opengl.GLContextAttributes,snow.platform.native.render.opengl.GLFBO,snow.platform.native.render.opengl.GLFramebuffer,snow.platform.native.render.opengl.GLObject,snow.platform.native.render.opengl.GLProgram,snow.platform.native.render.opengl.GLRBO,snow.platform.native.render.opengl.GLRenderbuffer,snow.platform.native.render.opengl.GLShader,snow.platform.native.render.opengl.GLShaderPrecisionFormat,snow.platform.native.render.opengl.GLTexture,snow.platform.native.render.opengl.GLUniformLocation,snow.platform.native.render.opengl._GL.GLFramebuffer_Impl_,snow.platform.native.render.opengl._GL.GLRenderbuffer_Impl_,snow.platform.native.utils.ArrayBuffer,snow.platform.native.utils.ArrayBufferView,snow.platform.native.utils.ByteArray,snow.platform.native.utils.Compression,snow.platform.native.utils.Float32Array,snow.platform.native.utils.Int16Array,snow.platform.native.utils.Int32Array,snow.platform.native.utils.Int8Array,snow.platform.native.utils.UInt16Array,snow.platform.native.utils.UInt32Array,snow.platform.native.utils.UInt8Array,snow.platform.native.utils.UInt8ClampedArray,snow.platform.native.window.WindowSystem,snow.platform.native.window.sdl.WindowSystem,snow.platform.web.assets.psd.PSD,snow.platform.web.audio.AudioSystem,snow.platform.web.audio.Sound,snow.platform.web.audio.SoundStream,snow.platform.web.audio.howlerjs.AudioParams,snow.platform.web.audio.howlerjs.AudioSystem,snow.platform.web.audio.howlerjs.Howl,snow.platform.web.audio.howlerjs.Howler,snow.platform.web.audio.howlerjs.SoundStream,snow.platform.web.audio.howlerjs.SpriteParams,snow.render.opengl.GL,snow.render.opengl.GLActiveInfo,snow.render.opengl.GLBuffer,snow.render.opengl.GLContextAttributes,snow.render.opengl.GLFramebuffer,snow.render.opengl.GLProgram,snow.render.opengl.GLRenderbuffer,snow.render.opengl.GLShader,snow.render.opengl.GLTexture,snow.render.opengl.GLUniformLocation,snow.types.AppConfig,snow.types.AppConfigNative,snow.types.AppConfigWeb,snow.types.AssetAudioOptions,snow.types.AssetBytesOptions,snow.types.AssetImageOptions,snow.types.AssetInfo,snow.types.AssetTextOptions,snow.types.AssetType,snow.types.AudioDataBlob,snow.types.AudioDataInfo,snow.types.AudioFormatType,snow.types.AudioHandle,snow.types.AudioInfo,snow.types.DisplayMode,snow.types.FileEvent,snow.types.FileEventType,snow.types.FileEvents,snow.types.FileFilter,snow.types.GamepadDeviceEventType,snow.types.ImageInfo,snow.types.InputEvent,snow.types.InputEventType,snow.types.InputEvents,snow.types.Key,snow.types.ModState,snow.types.Scan,snow.types.SnowConfig,snow.types.SystemEvent,snow.types.SystemEventType,snow.types.SystemEvents,snow.types.TextEventType,snow.types.WindowConfig,snow.types.WindowEvent,snow.types.WindowEventType,snow.types.WindowEvents,snow.types.WindowHandle,snow.utils.AbstractClass,snow.utils.AbstractClassBuilder,snow.utils.ArrayBuffer,snow.utils.ArrayBufferView,snow.utils.ByteArray,snow.utils.Float32Array,snow.utils.IDataInput,snow.utils.IMemoryRange,snow.utils.Int16Array,snow.utils.Int32Array,snow.utils.Int8Array,snow.utils.Libs,snow.utils.Timer,snow.utils.UInt16Array,snow.utils.UInt32Array,snow.utils.UInt8Array,snow.utils.UInt8ClampedArray,snow.utils._AbstractClass.StringMap,snow.utils.format.png.Chunk,snow.utils.format.png.Color,snow.utils.format.png.Data,snow.utils.format.png.Header,snow.utils.format.png.Reader,snow.utils.format.png.Tools,snow.utils.format.png.Writer,snow.utils.format.tools.Adler32,snow.utils.format.tools.Deflate,snow.utils.format.tools.HuffTools,snow.utils.format.tools.Huffman,snow.utils.format.tools.Inflate,snow.utils.format.tools.InflateImpl,snow.utils.format.tools.MemoryBytes,snow.utils.format.tools._InflateImpl.State,snow.utils.format.tools._InflateImpl.Window,snow.window.Window,snow.window.WindowSystem,snow.window.WindowSystemBinding,snow.window.Windowing,snow.window._Windowing.WindowHandleMap"></script>
 
 <h2 id="packages">Packages</h2>
 <h4 class="package-root"><a href="#snow">snow</a></h4>
 
 <p>&emsp;&emsp;
-<span class="indent inline-block"> <a href="#snow.assets">assets</a> </span><span class="indent inline-block"> <a href="#snow.audio">audio</a> </span><span class="indent inline-block"> <a href="#snow.input">input</a> </span><span class="indent inline-block"> <a href="#snow.io">io</a> </span><span class="indent inline-block"> <a href="#snow.platform">platform</a> </span><span class="indent inline-block"> <a href="#snow.render">render</a> </span><span class="indent inline-block"> <a href="#snow.types">types</a> </span><span class="indent inline-block"> <a href="#snow.utils">utils</a> </span><span class="indent inline-block"> <a href="#snow.window">window</a> </span><br/></p>
-<hr>
+<span class="package_item inline-block"> <a href="#snow.assets">assets</a> </span><span class="package_item inline-block"> <a href="#snow.audio">audio</a> </span><span class="package_item inline-block"> <a href="#snow.input">input</a> </span><span class="package_item inline-block"> <a href="#snow.io">io</a> </span><span class="package_item inline-block"> <a href="#snow.platform">platform</a> </span><span class="package_item inline-block"> <a href="#snow.render">render</a> </span><span class="package_item inline-block"> <a href="#snow.types">types</a> </span><span class="package_item inline-block"> <a href="#snow.utils">utils</a> </span><span class="package_item inline-block"> <a href="#snow.window">window</a> </span>
+<br/><hr/></p>
 <h2 id="types">Types</h2>
-<p><a name="snow"><h3> <a href="#snow">snow</a> </h3></a><div class="package-node">&bull; <a href="snow/App.html">App</a> </div> <br/><div class="package-node">&bull; <a href="snow/AppFixedTimestep.html">AppFixedTimestep</a> </div> <br/><div class="package-node">&bull; <a href="snow/Snow.html">Snow</a> </div> <br/></p>
+<p>   <a name="empty"><h5> <a href="#empty"><em>no package</em></a> </h5></a></p>
+<p><a name="snow"><h3> <a href="#snow">snow</a> </h3></a><div class="package-node">&bull; <a href="snow/App.html">App</a> </div> <br/><div class="package-node">&bull; <a href="snow/AppFixedTimestep.html">AppFixedTimestep</a> </div> <br/><div class="package-node">&bull; <a href="snow/Log.html">Log</a> </div> <br/><div class="package-node">&bull; <a href="snow/Snow.html">Snow</a> </div> <br/></p>
 <div class="indent">
 
-<a name="snow.assets"><h3> <a href="#snow.assets">assets</a> </h3></a><div class="package-node">&bull; <a href="snow/assets/Asset.html">Asset</a> </div><br/><div class="package-node">&bull; <a href="snow/assets/AssetAudio.html">AssetAudio</a> </div><br/><div class="package-node">&bull; <a href="snow/assets/AssetBytes.html">AssetBytes</a> </div><br/><div class="package-node">&bull; <a href="snow/assets/AssetImage.html">AssetImage</a> </div><br/><div class="package-node">&bull; <a href="snow/assets/AssetText.html">AssetText</a> </div><br/><div class="package-node">&bull; <a href="snow/assets/Assets.html">Assets</a> </div><br/>
-
-
-
-</div>
-
-
-
-
-<div class="indent">
-
-<a name="snow.audio"><h3> <a href="#snow.audio">audio</a> </h3></a><div class="package-node">&bull; <a href="snow/audio/Audio.html">Audio</a> </div><br/><div class="package-node">&bull; <a href="snow/audio/Sound.html">Sound</a> </div><br/><div class="package-node">&bull; <a href="snow/audio/SoundStream.html">SoundStream</a> </div><br/>
-
-<div class="indent">
-
-
-<a name="snow.audio.openal"><h3> <a href="#snow.audio.openal">openal</a> </h3></a><div class="package-node">&bull; <a href="snow/audio/openal/AL.html">AL</a> </div> <br/><div class="package-node">&bull; <a href="snow/audio/openal/ALC.html">ALC</a> </div> <br/><div class="package-node">&bull; <a href="snow/audio/openal/Context.html">Context</a> </div> <br/><div class="package-node">&bull; <a href="snow/audio/openal/Device.html">Device</a> </div> <br/>
-
-
-
-
-
-
-
-
-</div>
-
-<p></div></p>
-<div class="indent">
-
-<a name="snow.input"><h3> <a href="#snow.input">input</a> </h3></a><div class="package-node">&bull; <a href="snow/input/Input.html">Input</a> </div><br/><div class="package-node">&bull; <a href="snow/input/Key.html">Key</a> </div><br/><div class="package-node">&bull; <a href="snow/input/Scan.html">Scan</a> </div><br/>
-
-
-
-</div>
-
-
-
-
-<div class="indent">
-
-<a name="snow.io"><h3> <a href="#snow.io">io</a> </h3></a><div class="package-node">&bull; <a href="snow/io/IO.html">IO</a> </div><br/><div class="package-node">&bull; <a href="snow/io/IOFile.html">IOFile</a> </div><br/>
-
-
-
-</div>
-
-
-
-
-<div class="indent">
-
-<a name="snow.platform"><h3> <a href="#snow.platform">platform</a> </h3></a>
-
-<div class="indent">
-
-
-<a name="snow.platform.html5"><h3> <a href="#snow.platform.html5">html5</a> </h3></a>
-
-
-
-
-
-
-<div class="indent">
-
-<a name="snow.platform.html5.audio"><h3> <a href="#snow.platform.html5.audio">audio</a> </h3></a><div class="package-node">&bull; <a href="snow/platform/html5/audio/Sound.html">Sound</a> </div><br/><div class="package-node">&bull; <a href="snow/platform/html5/audio/SoundStream.html">SoundStream</a> </div><br/>
-
-<div class="indent">
-
-
-<a name="snow.platform.html5.audio.howlerjs"><h3> <a href="#snow.platform.html5.audio.howlerjs">howlerjs</a> </h3></a><div class="package-node">&bull; <a href="snow/platform/html5/audio/howlerjs/AudioParams.html">AudioParams</a> </div> <br/><div class="package-node">&bull; <a href="snow/platform/html5/audio/howlerjs/Howl.html">Howl</a> </div> <br/><div class="package-node">&bull; <a href="snow/platform/html5/audio/howlerjs/Howler.html">Howler</a> </div> <br/><div class="package-node">&bull; <a href="snow/platform/html5/audio/howlerjs/Sound.html">Sound</a> </div> <br/><div class="package-node">&bull; <a href="snow/platform/html5/audio/howlerjs/SoundStream.html">SoundStream</a> </div> <br/><div class="package-node">&bull; <a href="snow/platform/html5/audio/howlerjs/SpriteParams.html">SpriteParams</a> </div> <br/>
-
-
-
-
-
-
-
-
-</div>
-
-<p></div></p>
+<p><a name="snow.assets"><h3> <a href="#snow.assets">assets</a> </h3></a><div class="package-node">&bull; <a href="snow/assets/Asset.html">Asset</a> </div><br/><div class="package-node">&bull; <a href="snow/assets/AssetAudio.html">AssetAudio</a> </div><br/><div class="package-node">&bull; <a href="snow/assets/AssetBytes.html">AssetBytes</a> </div><br/><div class="package-node">&bull; <a href="snow/assets/AssetImage.html">AssetImage</a> </div><br/><div class="package-node">&bull; <a href="snow/assets/AssetText.html">AssetText</a> </div><br/><div class="package-node">&bull; <a href="snow/assets/Assets.html">Assets</a> </div><br/></p>
 <p></div><div class="indent"></p>
-<p><a name="snow.platform.native"><h3> <a href="#snow.platform.native">native</a> </h3></a></p>
+<p><a name="snow.audio"><h3> <a href="#snow.audio">audio</a> </h3></a><div class="package-node">&bull; <a href="snow/audio/Audio.html">Audio</a> </div><br/><div class="package-node">&bull; <a href="snow/audio/Sound.html">Sound</a> </div><br/><div class="package-node">&bull; <a href="snow/audio/SoundStream.html">SoundStream</a> </div><br/></p>
 <div class="indent">
 
-<a name="snow.platform.native.assets"><h3> <a href="#snow.platform.native.assets">assets</a> </h3></a>
-
-
-
+<p></div><div class="indent">
+<a name="snow.audio.openal"><h3> <a href="#snow.audio.openal">openal</a> </h3></a><div class="package-node">&bull; <a href="snow/audio/openal/AL.html">AL</a> </div> <br/><div class="package-node">&bull; <a href="snow/audio/openal/ALC.html">ALC</a> </div> <br/><div class="package-node">&bull; <a href="snow/audio/openal/Context.html">Context</a> </div> <br/><div class="package-node">&bull; <a href="snow/audio/openal/Device.html">Device</a> </div> <br/>
 </div>
-
-
-
-
+</div><div class="indent"></p>
+<p><a name="snow.input"><h3> <a href="#snow.input">input</a> </h3></a><div class="package-node">&bull; <a href="snow/input/Input.html">Input</a> </div><br/><div class="package-node">&bull; <a href="snow/input/MapIntBool.html">MapIntBool</a> </div><br/><div class="package-node">&bull; <a href="snow/input/MapIntFloat.html">MapIntFloat</a> </div><br/></p>
+<p></div><div class="indent"></p>
+<p><a name="snow.io"><h3> <a href="#snow.io">io</a> </h3></a><div class="package-node">&bull; <a href="snow/io/IO.html">IO</a> </div><br/><div class="package-node">&bull; <a href="snow/io/IOSystemBinding.html">IOSystemBinding</a> </div><br/></p>
+<p></div><div class="indent"></p>
+<p><a name="snow.platform"><h3> <a href="#snow.platform">platform</a> </h3></a></p>
+<p><div class="indent">
+<a name="snow.platform.native"><h3> <a href="#snow.platform.native">native</a> </h3></a><div class="package-node">&bull; <a href="snow/platform/native/StaticSnow.html">StaticSnow</a> </div> <br/></p>
 <div class="indent">
 
-<a name="snow.platform.native.audio"><h3> <a href="#snow.platform.native.audio">audio</a> </h3></a><div class="package-node">&bull; <a href="snow/platform/native/audio/Sound.html">Sound</a> </div><br/><div class="package-node">&bull; <a href="snow/platform/native/audio/SoundStream.html">SoundStream</a> </div><br/>
-
-<div class="indent">
-
-
+<p><a name="snow.platform.native.assets"><h3> <a href="#snow.platform.native.assets">assets</a> </h3></a></p>
+<p></div><div class="indent"></p>
+<p><a name="snow.platform.native.audio"><h3> <a href="#snow.platform.native.audio">audio</a> </h3></a><div class="package-node">&bull; <a href="snow/platform/native/audio/Sound.html">Sound</a> </div><br/><div class="package-node">&bull; <a href="snow/platform/native/audio/SoundStream.html">SoundStream</a> </div><br/></p>
+<p><div class="indent">
 <a name="snow.platform.native.audio.openal"><h3> <a href="#snow.platform.native.audio.openal">openal</a> </h3></a><div class="package-node">&bull; <a href="snow/platform/native/audio/openal/AL.html">AL</a> </div> <br/><div class="package-node">&bull; <a href="snow/platform/native/audio/openal/ALC.html">ALC</a> </div> <br/><div class="package-node">&bull; <a href="snow/platform/native/audio/openal/Context.html">Context</a> </div> <br/><div class="package-node">&bull; <a href="snow/platform/native/audio/openal/Device.html">Device</a> </div> <br/>
-
-
-
-
-
-
-
-
-
-
 </div>
-
-<p></div></p>
-<div class="indent">
-
-<a name="snow.platform.native.input"><h3> <a href="#snow.platform.native.input">input</a> </h3></a>
-
-<div class="indent">
-
-
+</div><div class="indent"></p>
+<p><a name="snow.platform.native.input"><h3> <a href="#snow.platform.native.input">input</a> </h3></a></p>
+<p><div class="indent">
 <a name="snow.platform.native.input.sdl"><h3> <a href="#snow.platform.native.input.sdl">sdl</a> </h3></a>
-
-
-
-
-
-
-
-
 </div>
-
-<p></div></p>
+</div><div class="indent"></p>
+<p><a name="snow.platform.native.io"><h3> <a href="#snow.platform.native.io">io</a> </h3></a><div class="package-node">&bull; <a href="snow/platform/native/io/IOFile.html">IOFile</a> </div><br/><div class="package-node">&bull; <a href="snow/platform/native/io/IOFileHandle.html">IOFileHandle</a> </div><br/><div class="package-node">&bull; <a href="snow/platform/native/io/IOSystem.html">IOSystem</a> </div><br/></p>
 <div class="indent">
 
-<a name="snow.platform.native.render"><h3> <a href="#snow.platform.native.render">render</a> </h3></a>
-
-<div class="indent">
-
-
-<a name="snow.platform.native.render.opengl"><h3> <a href="#snow.platform.native.render.opengl">opengl</a> </h3></a><div class="package-node">&bull; <a href="snow/platform/native/render/opengl/GL.html">GL</a> </div> <br/><div class="package-node">&bull; <a href="snow/platform/native/render/opengl/GLActiveInfo.html">GLActiveInfo</a> </div> <br/><div class="package-node">&bull; <a href="snow/platform/native/render/opengl/GLBuffer.html">GLBuffer</a> </div> <br/><div class="package-node">&bull; <a href="snow/platform/native/render/opengl/GLContextAttributes.html">GLContextAttributes</a> </div> <br/><div class="package-node">&bull; <a href="snow/platform/native/render/opengl/GLFramebuffer.html">GLFramebuffer</a> </div> <br/><div class="package-node">&bull; <a href="snow/platform/native/render/opengl/GLObject.html">GLObject</a> </div> <br/><div class="package-node">&bull; <a href="snow/platform/native/render/opengl/GLProgram.html">GLProgram</a> </div> <br/><div class="package-node">&bull; <a href="snow/platform/native/render/opengl/GLRenderbuffer.html">GLRenderbuffer</a> </div> <br/><div class="package-node">&bull; <a href="snow/platform/native/render/opengl/GLShader.html">GLShader</a> </div> <br/><div class="package-node">&bull; <a href="snow/platform/native/render/opengl/GLShaderPrecisionFormat.html">GLShaderPrecisionFormat</a> </div> <br/><div class="package-node">&bull; <a href="snow/platform/native/render/opengl/GLTexture.html">GLTexture</a> </div> <br/><div class="package-node">&bull; <a href="snow/platform/native/render/opengl/GLUniformLocation.html">GLUniformLocation</a> </div> <br/>
-
-
-
-
-
-
-
-
+<p></div>
+</div><div class="indent"></p>
+<p><a name="snow.platform.native.render"><h3> <a href="#snow.platform.native.render">render</a> </h3></a></p>
+<p><div class="indent">
+<a name="snow.platform.native.render.opengl"><h3> <a href="#snow.platform.native.render.opengl">opengl</a> </h3></a><div class="package-node">&bull; <a href="snow/platform/native/render/opengl/GL.html">GL</a> </div> <br/><div class="package-node">&bull; <a href="snow/platform/native/render/opengl/GLActiveInfo.html">GLActiveInfo</a> </div> <br/><div class="package-node">&bull; <a href="snow/platform/native/render/opengl/GLBuffer.html">GLBuffer</a> </div> <br/><div class="package-node">&bull; <a href="snow/platform/native/render/opengl/GLContextAttributes.html">GLContextAttributes</a> </div> <br/><div class="package-node">&bull; <a href="snow/platform/native/render/opengl/GLFBO.html">GLFBO</a> </div> <br/><div class="package-node">&bull; <a href="snow/platform/native/render/opengl/GLFramebuffer.html">GLFramebuffer</a> </div> <br/><div class="package-node">&bull; <a href="snow/platform/native/render/opengl/GLObject.html">GLObject</a> </div> <br/><div class="package-node">&bull; <a href="snow/platform/native/render/opengl/GLProgram.html">GLProgram</a> </div> <br/><div class="package-node">&bull; <a href="snow/platform/native/render/opengl/GLRBO.html">GLRBO</a> </div> <br/><div class="package-node">&bull; <a href="snow/platform/native/render/opengl/GLRenderbuffer.html">GLRenderbuffer</a> </div> <br/><div class="package-node">&bull; <a href="snow/platform/native/render/opengl/GLShader.html">GLShader</a> </div> <br/><div class="package-node">&bull; <a href="snow/platform/native/render/opengl/GLShaderPrecisionFormat.html">GLShaderPrecisionFormat</a> </div> <br/><div class="package-node">&bull; <a href="snow/platform/native/render/opengl/GLTexture.html">GLTexture</a> </div> <br/><div class="package-node">&bull; <a href="snow/platform/native/render/opengl/GLUniformLocation.html">GLUniformLocation</a> </div> <br/>
 </div>
-
-<p></div></p>
-<div class="indent">
-
-<a name="snow.platform.native.utils"><h3> <a href="#snow.platform.native.utils">utils</a> </h3></a><div class="package-node">&bull; <a href="snow/platform/native/utils/ArrayBuffer.html">ArrayBuffer</a> </div><br/><div class="package-node">&bull; <a href="snow/platform/native/utils/ArrayBufferView.html">ArrayBufferView</a> </div><br/><div class="package-node">&bull; <a href="snow/platform/native/utils/ByteArray.html">ByteArray</a> </div><br/><div class="package-node">&bull; <a href="snow/platform/native/utils/Compression.html">Compression</a> </div><br/><div class="package-node">&bull; <a href="snow/platform/native/utils/Float32Array.html">Float32Array</a> </div><br/><div class="package-node">&bull; <a href="snow/platform/native/utils/Int16Array.html">Int16Array</a> </div><br/><div class="package-node">&bull; <a href="snow/platform/native/utils/Int32Array.html">Int32Array</a> </div><br/><div class="package-node">&bull; <a href="snow/platform/native/utils/Int8Array.html">Int8Array</a> </div><br/><div class="package-node">&bull; <a href="snow/platform/native/utils/UInt16Array.html">UInt16Array</a> </div><br/><div class="package-node">&bull; <a href="snow/platform/native/utils/UInt32Array.html">UInt32Array</a> </div><br/><div class="package-node">&bull; <a href="snow/platform/native/utils/UInt8Array.html">UInt8Array</a> </div><br/>
-
-
-
-</div>
-
-
-
-
-<div class="indent">
-
-<a name="snow.platform.native.window"><h3> <a href="#snow.platform.native.window">window</a> </h3></a>
-
-<div class="indent">
-
-
+</div><div class="indent"></p>
+<p><a name="snow.platform.native.utils"><h3> <a href="#snow.platform.native.utils">utils</a> </h3></a><div class="package-node">&bull; <a href="snow/platform/native/utils/ArrayBuffer.html">ArrayBuffer</a> </div><br/><div class="package-node">&bull; <a href="snow/platform/native/utils/ArrayBufferView.html">ArrayBufferView</a> </div><br/><div class="package-node">&bull; <a href="snow/platform/native/utils/ByteArray.html">ByteArray</a> </div><br/><div class="package-node">&bull; <a href="snow/platform/native/utils/Compression.html">Compression</a> </div><br/><div class="package-node">&bull; <a href="snow/platform/native/utils/Float32Array.html">Float32Array</a> </div><br/><div class="package-node">&bull; <a href="snow/platform/native/utils/Int16Array.html">Int16Array</a> </div><br/><div class="package-node">&bull; <a href="snow/platform/native/utils/Int32Array.html">Int32Array</a> </div><br/><div class="package-node">&bull; <a href="snow/platform/native/utils/Int8Array.html">Int8Array</a> </div><br/><div class="package-node">&bull; <a href="snow/platform/native/utils/UInt16Array.html">UInt16Array</a> </div><br/><div class="package-node">&bull; <a href="snow/platform/native/utils/UInt32Array.html">UInt32Array</a> </div><br/><div class="package-node">&bull; <a href="snow/platform/native/utils/UInt8Array.html">UInt8Array</a> </div><br/><div class="package-node">&bull; <a href="snow/platform/native/utils/UInt8ClampedArray.html">UInt8ClampedArray</a> </div><br/></p>
+<p></div><div class="indent"></p>
+<p><a name="snow.platform.native.window"><h3> <a href="#snow.platform.native.window">window</a> </h3></a></p>
+<p><div class="indent">
 <a name="snow.platform.native.window.sdl"><h3> <a href="#snow.platform.native.window.sdl">sdl</a> </h3></a>
-
-
-
-
-
-
-
-
 </div>
-
-<p></div></p>
-<p></div></p>
-<p></div></p>
+</div></div><div class="indent">
+<a name="snow.platform.web"><h3> <a href="#snow.platform.web">web</a> </h3></a></p>
 <div class="indent">
 
-<a name="snow.render"><h3> <a href="#snow.render">render</a> </h3></a>
-
-<div class="indent">
-
-
+<p><a name="snow.platform.web.assets"><h3> <a href="#snow.platform.web.assets">assets</a> </h3></a></p>
+<p><div class="indent">
+<a name="snow.platform.web.assets.psd"><h3> <a href="#snow.platform.web.assets.psd">psd</a> </h3></a><div class="package-node">&bull; <a href="snow/platform/web/assets/psd/PSD.html">PSD</a> </div> <br/>
+</div>
+</div><div class="indent"></p>
+<p><a name="snow.platform.web.audio"><h3> <a href="#snow.platform.web.audio">audio</a> </h3></a><div class="package-node">&bull; <a href="snow/platform/web/audio/Sound.html">Sound</a> </div><br/><div class="package-node">&bull; <a href="snow/platform/web/audio/SoundStream.html">SoundStream</a> </div><br/></p>
+<p><div class="indent">
+<a name="snow.platform.web.audio.howlerjs"><h3> <a href="#snow.platform.web.audio.howlerjs">howlerjs</a> </h3></a><div class="package-node">&bull; <a href="snow/platform/web/audio/howlerjs/AudioParams.html">AudioParams</a> </div> <br/><div class="package-node">&bull; <a href="snow/platform/web/audio/howlerjs/Howl.html">Howl</a> </div> <br/><div class="package-node">&bull; <a href="snow/platform/web/audio/howlerjs/Howler.html">Howler</a> </div> <br/><div class="package-node">&bull; <a href="snow/platform/web/audio/howlerjs/SoundStream.html">SoundStream</a> </div> <br/><div class="package-node">&bull; <a href="snow/platform/web/audio/howlerjs/SpriteParams.html">SpriteParams</a> </div> <br/>
+</div>
+</div></div>
+</div><div class="indent"></p>
+<p><a name="snow.render"><h3> <a href="#snow.render">render</a> </h3></a></p>
+<p><div class="indent">
 <a name="snow.render.opengl"><h3> <a href="#snow.render.opengl">opengl</a> </h3></a><div class="package-node">&bull; <a href="snow/render/opengl/GL.html">GL</a> </div> <br/><div class="package-node">&bull; <a href="snow/render/opengl/GLActiveInfo.html">GLActiveInfo</a> </div> <br/><div class="package-node">&bull; <a href="snow/render/opengl/GLBuffer.html">GLBuffer</a> </div> <br/><div class="package-node">&bull; <a href="snow/render/opengl/GLContextAttributes.html">GLContextAttributes</a> </div> <br/><div class="package-node">&bull; <a href="snow/render/opengl/GLFramebuffer.html">GLFramebuffer</a> </div> <br/><div class="package-node">&bull; <a href="snow/render/opengl/GLProgram.html">GLProgram</a> </div> <br/><div class="package-node">&bull; <a href="snow/render/opengl/GLRenderbuffer.html">GLRenderbuffer</a> </div> <br/><div class="package-node">&bull; <a href="snow/render/opengl/GLShader.html">GLShader</a> </div> <br/><div class="package-node">&bull; <a href="snow/render/opengl/GLTexture.html">GLTexture</a> </div> <br/><div class="package-node">&bull; <a href="snow/render/opengl/GLUniformLocation.html">GLUniformLocation</a> </div> <br/>
-
-
-
-
-
-
-
-
 </div>
-
-<p></div></p>
+</div><div class="indent"></p>
+<p><a name="snow.types"><h3> <a href="#snow.types">types</a> </h3></a><div class="package-node">&bull; <a href="snow/types/AppConfig.html">AppConfig</a> </div><br/><div class="package-node">&bull; <a href="snow/types/AppConfigNative.html">AppConfigNative</a> </div><br/><div class="package-node">&bull; <a href="snow/types/AppConfigWeb.html">AppConfigWeb</a> </div><br/><div class="package-node">&bull; <a href="snow/types/AssetAudioOptions.html">AssetAudioOptions</a> </div><br/><div class="package-node">&bull; <a href="snow/types/AssetBytesOptions.html">AssetBytesOptions</a> </div><br/><div class="package-node">&bull; <a href="snow/types/AssetImageOptions.html">AssetImageOptions</a> </div><br/><div class="package-node">&bull; <a href="snow/types/AssetInfo.html">AssetInfo</a> </div><br/><div class="package-node">&bull; <a href="snow/types/AssetTextOptions.html">AssetTextOptions</a> </div><br/><div class="package-node">&bull; <a href="snow/types/AssetType.html">AssetType</a> </div><br/><div class="package-node">&bull; <a href="snow/types/AudioDataBlob.html">AudioDataBlob</a> </div><br/><div class="package-node">&bull; <a href="snow/types/AudioDataInfo.html">AudioDataInfo</a> </div><br/><div class="package-node">&bull; <a href="snow/types/AudioFormatType.html">AudioFormatType</a> </div><br/><div class="package-node">&bull; <a href="snow/types/AudioHandle.html">AudioHandle</a> </div><br/><div class="package-node">&bull; <a href="snow/types/AudioInfo.html">AudioInfo</a> </div><br/><div class="package-node">&bull; <a href="snow/types/DisplayMode.html">DisplayMode</a> </div><br/><div class="package-node">&bull; <a href="snow/types/FileEvent.html">FileEvent</a> </div><br/><div class="package-node">&bull; <a href="snow/types/FileEventType.html">FileEventType</a> </div><br/><div class="package-node">&bull; <a href="snow/types/FileFilter.html">FileFilter</a> </div><br/><div class="package-node">&bull; <a href="snow/types/GamepadDeviceEventType.html">GamepadDeviceEventType</a> </div><br/><div class="package-node">&bull; <a href="snow/types/ImageInfo.html">ImageInfo</a> </div><br/><div class="package-node">&bull; <a href="snow/types/InputEvent.html">InputEvent</a> </div><br/><div class="package-node">&bull; <a href="snow/types/InputEventType.html">InputEventType</a> </div><br/><div class="package-node">&bull; <a href="snow/types/Key.html">Key</a> </div><br/><div class="package-node">&bull; <a href="snow/types/ModState.html">ModState</a> </div><br/><div class="package-node">&bull; <a href="snow/types/Scan.html">Scan</a> </div><br/><div class="package-node">&bull; <a href="snow/types/SnowConfig.html">SnowConfig</a> </div><br/><div class="package-node">&bull; <a href="snow/types/SystemEvent.html">SystemEvent</a> </div><br/><div class="package-node">&bull; <a href="snow/types/SystemEventType.html">SystemEventType</a> </div><br/><div class="package-node">&bull; <a href="snow/types/TextEventType.html">TextEventType</a> </div><br/><div class="package-node">&bull; <a href="snow/types/WindowConfig.html">WindowConfig</a> </div><br/><div class="package-node">&bull; <a href="snow/types/WindowEvent.html">WindowEvent</a> </div><br/><div class="package-node">&bull; <a href="snow/types/WindowEventType.html">WindowEventType</a> </div><br/><div class="package-node">&bull; <a href="snow/types/WindowHandle.html">WindowHandle</a> </div><br/></p>
+<p></div><div class="indent"></p>
+<p><a name="snow.utils"><h3> <a href="#snow.utils">utils</a> </h3></a><div class="package-node">&bull; <a href="snow/utils/AbstractClass.html">AbstractClass</a> </div><br/><div class="package-node">&bull; <a href="snow/utils/ArrayBuffer.html">ArrayBuffer</a> </div><br/><div class="package-node">&bull; <a href="snow/utils/ArrayBufferView.html">ArrayBufferView</a> </div><br/><div class="package-node">&bull; <a href="snow/utils/ByteArray.html">ByteArray</a> </div><br/><div class="package-node">&bull; <a href="snow/utils/Float32Array.html">Float32Array</a> </div><br/><div class="package-node">&bull; <a href="snow/utils/IDataInput.html">IDataInput</a> </div><br/><div class="package-node">&bull; <a href="snow/utils/IMemoryRange.html">IMemoryRange</a> </div><br/><div class="package-node">&bull; <a href="snow/utils/Int16Array.html">Int16Array</a> </div><br/><div class="package-node">&bull; <a href="snow/utils/Int32Array.html">Int32Array</a> </div><br/><div class="package-node">&bull; <a href="snow/utils/Int8Array.html">Int8Array</a> </div><br/><div class="package-node">&bull; <a href="snow/utils/Libs.html">Libs</a> </div><br/><div class="package-node">&bull; <a href="snow/utils/Timer.html">Timer</a> </div><br/><div class="package-node">&bull; <a href="snow/utils/UInt16Array.html">UInt16Array</a> </div><br/><div class="package-node">&bull; <a href="snow/utils/UInt32Array.html">UInt32Array</a> </div><br/><div class="package-node">&bull; <a href="snow/utils/UInt8Array.html">UInt8Array</a> </div><br/><div class="package-node">&bull; <a href="snow/utils/UInt8ClampedArray.html">UInt8ClampedArray</a> </div><br/></p>
 <div class="indent">
 
-<a name="snow.types"><h3> <a href="#snow.types">types</a> </h3></a><div class="package-node">&bull; <a href="snow/types/AppConfig.html">AppConfig</a> </div><br/><div class="package-node">&bull; <a href="snow/types/AppConfigNative.html">AppConfigNative</a> </div><br/><div class="package-node">&bull; <a href="snow/types/AppConfigWeb.html">AppConfigWeb</a> </div><br/><div class="package-node">&bull; <a href="snow/types/AssetAudioOptions.html">AssetAudioOptions</a> </div><br/><div class="package-node">&bull; <a href="snow/types/AssetBytesOptions.html">AssetBytesOptions</a> </div><br/><div class="package-node">&bull; <a href="snow/types/AssetImageOptions.html">AssetImageOptions</a> </div><br/><div class="package-node">&bull; <a href="snow/types/AssetInfo.html">AssetInfo</a> </div><br/><div class="package-node">&bull; <a href="snow/types/AssetTextOptions.html">AssetTextOptions</a> </div><br/><div class="package-node">&bull; <a href="snow/types/AssetType.html">AssetType</a> </div><br/><div class="package-node">&bull; <a href="snow/types/AudioDataBlob.html">AudioDataBlob</a> </div><br/><div class="package-node">&bull; <a href="snow/types/AudioFormatType.html">AudioFormatType</a> </div><br/><div class="package-node">&bull; <a href="snow/types/AudioInfo.html">AudioInfo</a> </div><br/><div class="package-node">&bull; <a href="snow/types/DisplayMode.html">DisplayMode</a> </div><br/><div class="package-node">&bull; <a href="snow/types/FileWatchEvent.html">FileWatchEvent</a> </div><br/><div class="package-node">&bull; <a href="snow/types/FileWatchEventType.html">FileWatchEventType</a> </div><br/><div class="package-node">&bull; <a href="snow/types/GamepadDeviceEventType.html">GamepadDeviceEventType</a> </div><br/><div class="package-node">&bull; <a href="snow/types/ImageInfo.html">ImageInfo</a> </div><br/><div class="package-node">&bull; <a href="snow/types/InputEvent.html">InputEvent</a> </div><br/><div class="package-node">&bull; <a href="snow/types/InputEventType.html">InputEventType</a> </div><br/><div class="package-node">&bull; <a href="snow/types/ModState.html">ModState</a> </div><br/><div class="package-node">&bull; <a href="snow/types/SnowConfig.html">SnowConfig</a> </div><br/><div class="package-node">&bull; <a href="snow/types/SystemEvent.html">SystemEvent</a> </div><br/><div class="package-node">&bull; <a href="snow/types/SystemEventType.html">SystemEventType</a> </div><br/><div class="package-node">&bull; <a href="snow/types/TextEventType.html">TextEventType</a> </div><br/><div class="package-node">&bull; <a href="snow/types/WindowConfig.html">WindowConfig</a> </div><br/><div class="package-node">&bull; <a href="snow/types/WindowEvent.html">WindowEvent</a> </div><br/><div class="package-node">&bull; <a href="snow/types/WindowEventType.html">WindowEventType</a> </div><br/><div class="package-node">&bull; <a href="snow/types/WindowHandle.html">WindowHandle</a> </div><br/>
-
-
-
-</div>
-
-
-
-
+<p></div><div class="indent">
+<a name="snow.utils.format"><h3> <a href="#snow.utils.format">format</a> </h3></a></p>
 <div class="indent">
 
-<a name="snow.utils"><h3> <a href="#snow.utils">utils</a> </h3></a><div class="package-node">&bull; <a href="snow/utils/AbstractClass.html">AbstractClass</a> </div><br/><div class="package-node">&bull; <a href="snow/utils/ArrayBuffer.html">ArrayBuffer</a> </div><br/><div class="package-node">&bull; <a href="snow/utils/ArrayBufferView.html">ArrayBufferView</a> </div><br/><div class="package-node">&bull; <a href="snow/utils/ByteArray.html">ByteArray</a> </div><br/><div class="package-node">&bull; <a href="snow/utils/Float32Array.html">Float32Array</a> </div><br/><div class="package-node">&bull; <a href="snow/utils/IDataInput.html">IDataInput</a> </div><br/><div class="package-node">&bull; <a href="snow/utils/IMemoryRange.html">IMemoryRange</a> </div><br/><div class="package-node">&bull; <a href="snow/utils/Int16Array.html">Int16Array</a> </div><br/><div class="package-node">&bull; <a href="snow/utils/Int32Array.html">Int32Array</a> </div><br/><div class="package-node">&bull; <a href="snow/utils/Int8Array.html">Int8Array</a> </div><br/><div class="package-node">&bull; <a href="snow/utils/Libs.html">Libs</a> </div><br/><div class="package-node">&bull; <a href="snow/utils/Timer.html">Timer</a> </div><br/><div class="package-node">&bull; <a href="snow/utils/UInt16Array.html">UInt16Array</a> </div><br/><div class="package-node">&bull; <a href="snow/utils/UInt32Array.html">UInt32Array</a> </div><br/><div class="package-node">&bull; <a href="snow/utils/UInt8Array.html">UInt8Array</a> </div><br/>
-
+<p><a name="snow.utils.format.png"><h3> <a href="#snow.utils.format.png">png</a> </h3></a><div class="package-node">&bull; <a href="snow/utils/format/png/Chunk.html">Chunk</a> </div><br/><div class="package-node">&bull; <a href="snow/utils/format/png/Color.html">Color</a> </div><br/><div class="package-node">&bull; <a href="snow/utils/format/png/Data.html">Data</a> </div><br/><div class="package-node">&bull; <a href="snow/utils/format/png/Header.html">Header</a> </div><br/><div class="package-node">&bull; <a href="snow/utils/format/png/Reader.html">Reader</a> </div><br/><div class="package-node">&bull; <a href="snow/utils/format/png/Tools.html">Tools</a> </div><br/><div class="package-node">&bull; <a href="snow/utils/format/png/Writer.html">Writer</a> </div><br/></p>
+<p></div><div class="indent"></p>
+<p><a name="snow.utils.format.tools"><h3> <a href="#snow.utils.format.tools">tools</a> </h3></a><div class="package-node">&bull; <a href="snow/utils/format/tools/Adler32.html">Adler32</a> </div><br/><div class="package-node">&bull; <a href="snow/utils/format/tools/Deflate.html">Deflate</a> </div><br/><div class="package-node">&bull; <a href="snow/utils/format/tools/HuffTools.html">HuffTools</a> </div><br/><div class="package-node">&bull; <a href="snow/utils/format/tools/Huffman.html">Huffman</a> </div><br/><div class="package-node">&bull; <a href="snow/utils/format/tools/Inflate.html">Inflate</a> </div><br/><div class="package-node">&bull; <a href="snow/utils/format/tools/InflateImpl.html">InflateImpl</a> </div><br/><div class="package-node">&bull; <a href="snow/utils/format/tools/MemoryBytes.html">MemoryBytes</a> </div><br/></p>
 <div class="indent">
 
-</div><div class="indent">
-
-
-<a name="snow.utils.format"><h3> <a href="#snow.utils.format">format</a> </h3></a>
-
-
-
-
-
-
+<p></div>
+</div></div>
+</div><div class="indent"></p>
+<p><a name="snow.window"><h3> <a href="#snow.window">window</a> </h3></a><div class="package-node">&bull; <a href="snow/window/Window.html">Window</a> </div><br/><div class="package-node">&bull; <a href="snow/window/Windowing.html">Windowing</a> </div><br/></p>
 <div class="indent">
 
-<a name="snow.utils.format.png"><h3> <a href="#snow.utils.format.png">png</a> </h3></a><div class="package-node">&bull; <a href="snow/utils/format/png/Chunk.html">Chunk</a> </div><br/><div class="package-node">&bull; <a href="snow/utils/format/png/Color.html">Color</a> </div><br/><div class="package-node">&bull; <a href="snow/utils/format/png/Data.html">Data</a> </div><br/><div class="package-node">&bull; <a href="snow/utils/format/png/Header.html">Header</a> </div><br/><div class="package-node">&bull; <a href="snow/utils/format/png/Reader.html">Reader</a> </div><br/><div class="package-node">&bull; <a href="snow/utils/format/png/Tools.html">Tools</a> </div><br/><div class="package-node">&bull; <a href="snow/utils/format/png/Writer.html">Writer</a> </div><br/>
+<p></div>
+</div><br/></p>
+<hr/>
 
-
-
-</div>
-
-
-
-
-<div class="indent">
-
-<a name="snow.utils.format.tools"><h3> <a href="#snow.utils.format.tools">tools</a> </h3></a><div class="package-node">&bull; <a href="snow/utils/format/tools/Adler32.html">Adler32</a> </div><br/><div class="package-node">&bull; <a href="snow/utils/format/tools/Deflate.html">Deflate</a> </div><br/><div class="package-node">&bull; <a href="snow/utils/format/tools/HuffTools.html">HuffTools</a> </div><br/><div class="package-node">&bull; <a href="snow/utils/format/tools/Huffman.html">Huffman</a> </div><br/><div class="package-node">&bull; <a href="snow/utils/format/tools/Inflate.html">Inflate</a> </div><br/><div class="package-node">&bull; <a href="snow/utils/format/tools/InflateImpl.html">InflateImpl</a> </div><br/><div class="package-node">&bull; <a href="snow/utils/format/tools/MemoryBytes.html">MemoryBytes</a> </div><br/>
-
-<div class="indent">
-
-</div>
-
-<p></div></p>
-<p></div></p>
-<p></div></p>
-<div class="indent">
-
-<a name="snow.window"><h3> <a href="#snow.window">window</a> </h3></a><div class="package-node">&bull; <a href="snow/window/Window.html">Window</a> </div><br/><div class="package-node">&bull; <a href="snow/window/Windowing.html">Windowing</a> </div><br/>
-
-
-
-</div>
-
-
-
-
-
-
-<p><br/></p>
-<hr>
 <p>&nbsp;
 &nbsp;</p>
 

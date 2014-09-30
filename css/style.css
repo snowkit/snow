@@ -2,6 +2,7 @@
 body,html {
     font-family: helvetica, sans-serif;
     color:#3c3c3c;
+    /*font-size: 0.95em;*/
 }
 
 strong {
@@ -49,15 +50,28 @@ a:hover h2 {
     color:#06b4fb;
 }
 
+#search_bar {
+    display: block;
+    width: 100%;
+    height: 2.2em;
+    line-height: 2.4em;
+    padding-left:3em;
+    background:url(../images/search.png);
+    background-repeat:no-repeat;
+}
+
+.package-root span {
+    padding-left: 0.5em;
+}
 
 .package-root {
     margin-top:0.8em;
-    margin-left:2em;
+    margin-left:1em;
 }
 
 .topmenu {
     text-align: right;
-    margin-right: 1.4em;
+    margin-right: 1.1em;
     margin-bottom: 0.5em;
     display: block;
     position: relative;
@@ -68,6 +82,49 @@ a:hover h2 {
     display: inline-block;
     height: 18px;
     vertical-align: bottom;
+}
+
+
+.version {
+    border-top: 1px solid rgba(0,0,0,0);
+    color:#CFCFCF;
+    font-size: 0.75em;
+    text-align: right;
+    margin-right: 1.7em;
+    margin-bottom: -2.5em;
+    margin-top: 1em;
+    vertical-align: middle;
+    position: relative;
+    display: block;
+}
+
+.version code {
+    padding: 0;
+    padding-top: 0.1em;
+    padding-bottom: 0.2em;
+    padding-right: 0.5em;
+    /*margin-top: -0.05em;*/
+}
+
+.haxedesc {
+    text-align: right;
+    width: 100%;
+    position: relative;
+    display: block;
+}
+
+.small-image {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    float:right;
+    position: relative;
+    width: auto;
+    margin-left: 0.5em;
+    height: 3em;
+    text-align: right;
+    vertical-align: baseline;
+    z-index: 1;
 }
 
 #logo {
@@ -94,6 +151,7 @@ a:hover h2 {
     font-size: 1.2em;
     display:inline-block;
     margin: 0.2em;
+    color:#058FC8;
 }
 
 .center {
@@ -153,7 +211,7 @@ b {
 
 a {
     text-decoration: none;
-    font-size: 0.95em;
+    font-size: 1em;
     color:#06b4fb;
     border:0;
     outline: 0;
@@ -212,7 +270,7 @@ a.liftsmall {
     line-height: 1.4em;
     margin-left: 1em;
     margin-right: 0.5em;
-    font-size: 0.85em;
+    font-size: 0.9em;
     top: -0.6em;
     margin-bottom: 1em;
     opacity: 0.8;
@@ -252,18 +310,18 @@ li code {
     color:#f6007b;
 }
 
-.small-image {
-    margin-left: auto;
-    margin-right: auto;
-    display: block;
-    position: relative;
-    width: auto;
-    height: 4.4em;
-}
+
 
 .indent {
-    padding-left: 1.5em;
+    padding-left: 1em;
     display: block;
+}
+
+.package_item {
+    margin: 0;
+    padding: 0;
+    text-align: justify;
+    white-space: pre;
 }
 
 p {
@@ -333,6 +391,7 @@ user-select: none;
     margin-right: 0.9em;
     position: relative;
     display: inline-block;
+    vertical-align: middle;
 }
 
 .content {
@@ -376,6 +435,7 @@ user-select: none;
     margin-top:0.4em;
     margin-left: 0.5em;
     margin-bottom: 1.3em;
+    display: inline-block;
 }
 
 .small_desc_flat code {
@@ -397,12 +457,16 @@ user-select: none;
 
 .inherited {
     cursor: pointer;
-    font-size:0.5em;
-    font-family:'dsm',monospace;
-    border-radius:0.1em;
-    height:auto; margin: 0.1em;
-    margin-right:0.1em;
+    font-size: 0.5em;
+    font-family: 'dsm',monospace;
+    border-radius: 0.1em;
+    height: 1.5em;
+    margin: 0.1em;
+    margin-right: 0.1em;
     padding-left: 0.5em;
+    top: -0.3em;
+    margin-left: 1em;
+    position: relative;
     padding-right: 0.5em;
     color:#f6007b; border:solid 1px rgba(39,40,34,0.3);
 }

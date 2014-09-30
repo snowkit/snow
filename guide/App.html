@@ -40,8 +40,13 @@
                     $(this).html('<iframe src="'+content+'" sandbox="allow-same-origin allow-scripts" style="overflow:hidden; scrollbar:none; border: 0; width:645px; height:450px;"></iframe> ')
                 });
 
-                $('.tooltip').tooltipster({
+                $('.tooltip').each(function(e){
+                    var c = $(this).attr('data-tooltip');
+                    $(this).tooltipster({
+                        content:$('<span>' + c + '</span>'),
+                        interactive:true,
                     theme:'tooltipster-shadow'
+                    });
                 });
 
             }); //document.ready
@@ -51,7 +56,7 @@
 
     <body>
         <div class="content">
-            <p><a href="../index.html"><img src="../images/logo.png" alt="Logo"></a></p>
+            <p><a href="../index.html#guide"><img src="../images/logo.png" alt="Logo"></a></p>
 <hr>
 <h2 id="the-snow-app">The snow App</h2>
 <p>This is the base class for a basic snow host application. This is what your game/app extends from. The most basic empty snow application looks like this : </p>
@@ -97,8 +102,11 @@ app.timescale = -<span class="hljs-number">1</span>;         <span class="hljs-c
 <p>And then rendering with interpolated values, where <code>alpha_time</code> is the current % between two update calls, and you should render at that position instead.</p>
 <h2 id="todo">Todo</h2>
 <p>tests / examples </p>
-<p>&nbsp;
-&nbsp;</p>
+<hr>
+<h2 id="back">Back</h2>
+<p><a href="../index.html#guide">To the guide</a></p>
+<p><br/><br/><br/>
+<br/><br/><br/></p>
 
         </div>
     </body>

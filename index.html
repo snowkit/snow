@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <title>snow - </title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <link rel="shortcut icon" href="./images/favicon.png" />
+
+        <link rel="stylesheet" type="text/css" href="./css/style.css" media="all">
+        <link rel="stylesheet" type="text/css" href="./css/code.css" media="all">
+        <link rel="stylesheet" type="text/css" href="./css/font.css" media="all">
+
+        <link rel="stylesheet" type="text/css" href="./css/tooltipster.css" media="all">
+        <link rel="stylesheet" type="text/css" href="./css/tooltipster-shadow.css" media="all">
+
+        <script src="./js/jquery-2.0.3.min.js"> </script>
+        <script src="./js/jquery.tooltipster.min.js"> </script>
+
+        <script>
+
+            $(document).ready(function() {
+
+                $('.section').css('display','none');
+                $('.readmore').click(function(e){
+                    var _child = $(this).parent().find('.section').first();
+                    var _opp = 'block';
+                    if( _child.css('display') == 'block' ) {
+                        _opp = 'none';
+                    } else {
+                    }
+                    _child.css('display', _opp);
+                });
+
+                $('div.sample').on('click', function(e){
+                        //get the data tag
+                    var content = $(this).attr('data-content');
+                        //remove clicking handler
+                    $(this).off('click');
+                        //replace the content!
+                    $(this).html('<iframe src="'+content+'" sandbox="allow-same-origin allow-scripts" style="overflow:hidden; scrollbar:none; border: 0; width:645px; height:450px;"></iframe> ')
+                });
+
+                $('.tooltip').each(function(e){
+                    var c = $(this).attr('data-tooltip');
+                    $(this).tooltipster({
+                        content:$('<span>' + c + '</span>'),
+                        interactive:true,
+                    theme:'tooltipster-shadow'
+                    });
+                });
+
+            }); //document.ready
+
+        </script>
+    </head>
+
+    <body>
+        <div class="content">
+            <p><a href="./index.html" id="logo"><img src="./images/logo.png" /></a></p>
+<div class="topmenu">
+<a href="./api/index.html">api</a> . <a href="#guide">guide</a> <img src=".//images/github.png" alt="github">  <a href="https://github.com/underscorediscovery/snow">source</a> . <a href="https://github.com/underscorediscovery/snow/issues/">issues</a>
+</div>
+
+<hr>
+<p><script src="./js/release.version.js"> </script></p>
+<div class="version">current version <a href="#" id="version_notes_link" target="_blank">notes</a> <code> <a id="version_tag" target="_blank" href="#"> latest </a></code> </div>
+
+<p><br/></p>
+<h2 id="about">About</h2>
+<p><strong>snow</strong> is a free, <a href="https://github.com/underscorediscovery/snow/blob/master/LICENSE.md" data-tooltip="MIT license" class="tooltip">open source</a> light, pure and clean toolkit for building frameworks, applications and games using <a href="http://haxe.org">haxe</a>, targeting native platforms and web browser.
+This means snow by default runs natively on <strong>Mac</strong>, <strong>Windows</strong>, <strong>Linux</strong> desktops, as well as <strong>iOS</strong> and <strong>Android</strong> devices. It also runs directly in the <strong>Web</strong> browser using webgl.</p>
+<p>&nbsp;<em>how?</em></p>
+<p>&nbsp;</p>
+<p><a href="http://haxe.org"> <img src="./images/haxe.png" target="_blank" class="small-image"/> </a>   </p>
+<p><span class="haxedesc">Haxe is an expressive, beautiful modern programming language <br/>
+      that compiles it’s own code into other languages. <a href="http://haxe.org/" target="_blank"> learn more</a> </span></p>
+<p><br/></p>
+<hr>
+<div class="breakout">
+
+<a href="#guide">Get Started</a>
+<a href="#details">More Details</a>
+<a href="#samples">View Samples</a>
+
+</div>
+
+<hr>
+<h3 id="alpha">Alpha</h3>
+<p><small>
+Please note   </p>
+<p>snow is currently considered alpha, which means there may be bugs, inconsistencies, incomplete implementations, and possible minor API changes.
+It is still considered fairly stable and is being used by multiple frameworks and games,
+but there are things to tighten up before 1.0.0 release can be called final. </p>
+<p>Join us in developing and testing the framework and tools, below.
+</small></p>
+<hr>
+<h2 id="design">Design</h2>
+<p><strong>snow embraces a minimal design.</strong><br>&emsp; This means snow is to the point and does what it is designed for only.<br>&emsp; This includes exposing tools to you with as much consistency as possible across platforms.<br>&emsp; This allows you to focus on your code, and not platform details as much.   </p>
+<p><strong>snow is built as a facilitator.</strong><br>&emsp; This means that snow tries to avoid making assumptions, letting you decide your architecture.<br>&emsp; This allows you to build frameworks, games and applications without it getting in the way.<br>&emsp; This means snow is focused on portability, clarity, consistency and maintainability.   </p>
+<p><strong>snow is as self contained as possible.</strong><br>&emsp; There are no current external dependencies, except for a build pipeline called <a href="#">flow</a>.   </p>
+<p><strong>snow strives to be reliable.</strong><br>&emsp; There are tests of various kinds, you can read about the <a href="./guide/contribute.html#tests">testing approach</a> in the guide.</p>
+<p><strong>snow has high standards.</strong><br>&emsp; From code quality, clarity and portability to documentation to samples.</p>
+<hr>
+<h2 id="reasons">Reasons</h2>
+<p>For a short intro to why snow was created, <a href="http://notes.underscorediscovery.com/snow">read this blog post here</a>.</p>
+<h2 id="editor-support">Editor support</h2>
+<p>Where possible, full code completion and building from the editor is supplied.</p>
+<p><a href="https://underscorediscovery.github.io/flow/guide/sublimetext.html">Sublime Text</a> (mac/windows/linux) <br/><br/>
+<a href="https://underscorediscovery.github.io/flow/guide/sublimetext.html"><img src="images/plugins/1.png" alt=""></a></p>
+<p><a href="https://underscorediscovery.github.io/flow/guide/flashdevelop.html">FlashDevelop</a> (windows only)<br/><br/></p>
+<p>template is in <code>setup/</code>, but here is a <a href="https://github.com/underscorediscovery/snow/blob/master/setup/snow_FlashDevelopTemplate.fdz?raw=true">Download link</a>   </p>
+<p><a href="https://underscorediscovery.github.io/flow/guide/sublimetext.html"><img src="images/plugins/5.png" alt=""></a></p>
+<hr>
+<div class="guide">
+<a name="guide"> &nbsp;</a>
+<h2>Guide</h2>
+
+<strong>Setup guide</strong><br/>
+<br/>
+
+<strong>Install from git</strong> <br/><br>
+<code>haxelib git snow https://github.com/underscorediscovery/snow.git</code><br/>
+
+<br/>
+<strong>OR</strong> <br/>
+<br/>
+
+<code>git clone https://github.com/underscorediscovery/snow.git</code> <br/><br/>
+<code>haxelib dev snow /path/to/snow/</code> <br/><br/>
+
+<br/><br/>
+<strong>Starter guides</strong><br/>
+<br/>
+<a href="./guide/one.html">one - start here</a> <br/>
+<a href="./guide/two.html">two - life of a snow app</a> <br/>
+
+<br/>
+<strong>Feature guides</strong> <br/>
+<br/>
+<a href="./guide/windowing.html">windowing</a> | <a href="./guide/audio.html">audio</a> | <a href="./guide/assets.html">assets</a> | <a href="./guide/input.html">input</a> | <a href="./guide/render.html">render</a> | <a href="./guide/io.html">IO</a> | <a href="./guide/utils.html">utils</a>
+<br/>
+<br/>
+<strong>API docs</strong><br/>
+<br/>
+<a href="./api/index.html">API reference</a>
+<br/>
+<br/>
+
+<strong>Development guides</strong><br/>
+<br/>
+<a href="./guide/contribute.html">want to help? - start here!</a> <br/>
+<a href="./guide/contribute.html#tests">being reliable - help write tests</a> <br/>
+<a href="./guide/contribute.html#guides">the more you know - help write guides</a> <br/>
+<a href="./guide/structure.html">what goes where? - structure guide</a> <br/>
+<a href="./guide/code.html">playing nice - code/design conventions</a> <br/>
+
+<br/>
+<br/>
+<strong>In depth guides</strong> <br/><br/>
+<a href="./guide/native-layer.html">native code - build, modify, fix snow</a><br><code>todo</code> <del>build process - how an app is made</del><br><code>todo</code> <del>native code - porting to a new platform</del><br>
+</div>
+
+<hr>
+<p><a name="details">
+<a href="#details"><h2>Details</h2></a>
+</a></p>
+<p><a href="#features"><strong>Features</strong></a>  <br/>
+&emsp; &emsp; <a href="#render">render</a> | <a href="#audio">audio</a> | <a href="#assets">assets</a> | <a href="#input">input</a> | <a href="#util">util</a>  <br/><br/></p>
+<p><a name="features">
+<a href="#features"><h3>Features</h3></a>
+</a></p>
+<p>On top of the comprehensive, full fledged <a href="http://api.haxe.org/" target="_blank">Haxe API</a>,</p>
+<p><a name="render"><a href="#render"><strong>windowing &amp; rendering</strong></a></a></p>
+<ul>
+<li>consistent access to OpenGL API based on WebGL spec</li>
+<li>normal, borderless, fullscreen or resizable windows</li>
+<li><code>native</code> auto or manual window swap control</li>
+<li><code>desktop</code> multiple window support</li>
+<li><code>desktop</code> full access to display/mode info</li>
+</ul>
+<p><a name="audio"><a href="#audio"><strong>audio</strong></a></a></p>
+<ul>
+<li>consistent high level api, with access to platform specific implementations</li>
+<li>named sound api, or object management play(‘sound’) vs sound.play()</li>
+<li>pitch, pan, volume, position, duration properties</li>
+<li>play sound or stream sound, looped or not</li>
+<li>on complete handling</li>
+<li><code>native</code> full direct access to OpenAL API from haxe</li>
+<li><code>native</code> auto background thread toggle</li>
+</ul>
+<p><a name="assets"><a href="#assets"><strong>assets and io</strong></a></a></p>
+<ul>
+<li>consistent api for loading assets across platforms</li>
+<li>raw bytes, text, images and audio support</li>
+<li>async based api design to handle preloading easily</li>
+<li>strict loading on a list or per file basis</li>
+<li>images - bmp, png, jpg, gif, tga, psd</li>
+<li><code>web</code> audio - ogg, wav, mp3 (see <a href="#snags">snags</a>)</li>
+<li><code>native</code> audio - ogg, wav, pcm</li>
+<li><code>native</code> consistent manual file IO for platforms (like android) if needed</li>
+<li><code>desktop</code> OS file change notification events on any folder</li>
+<li><code>desktop</code> OS open/save/folder dialogs</li>
+</ul>
+<p><a name="input"><a href="#input"><strong>input</strong></a></a></p>
+<ul>
+<li>complete callbacks for for mouse, keys, gamepad, touches</li>
+<li>text input events for handling localized text reliably</li>
+<li>keys - spec based keycode/scancode access/conversion</li>
+<li>gamepad events for hot plugging/swapping devices at runtime</li>
+<li>immediate style access in addition to event callbacks</li>
+<li><code>desktop</code> mouse - set position, window lock, window grab, and visibility</li>
+<li><code>mobile</code> multitouch supported</li>
+</ul>
+<p><a name="util"><a href="#util"><strong>util</strong></a></a></p>
+<ul>
+<li>complete set (-1) of <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Typed_arrays">Typed Arrays</a> for use on all platforms</li>
+<li>ByteArray util for handling bytes</li>
+<li>high res timestamps, consistent Timer for repeat/once handlers for all platforms</li>
+<li>open a url in the default browser</li>
+<li><code>native</code> access to ndll/dll endpoints compiled with hxcpp on native platforms</li>
+</ul>
+<hr>
+<h3>Further details</h3>
+
+<p><a href="./guide/build-details.html"><strong>Build pipeline details</strong></a> <br/>
+&emsp; &emsp; <a href="./guide/build-details.html#project">project format</a> | <a href="./guide/build-details.html#arch">architectures</a></p>
+<p><a href="./guide/platform-faq.html"><strong>Platform implementation details</strong></a> <br/>
+&emsp; &emsp; <a href="./guide/platform-faq.html#web">web</a> | <a href="./guide/platform-faq.html#mac">mac</a> | <a href="./guide/platform-faq.html#windows">windows</a> | <a href="./guide/platform-faq.html#linux">linux</a> | <a href="./guide/platform-faq.html#android">android</a> | <a href="./guide/platform-faq.html#ios">ios</a> </p>
+<hr>
+<p><a name="snags">
+<a href="#snags"><h3>Snags</h3></a>
+</a>
+The snag list below is a list of things that are known issues or inconsistencies across platforms to take note of.</p>
+<ul>
+<li><a href="https://github.com/underscorediscovery/snow/issues/10">#10</a> <code>native</code> audio - streaming is on the main thread</li>
+<li><a href="https://github.com/underscorediscovery/snow/issues/25">#25</a> <code>android</code> utils - url_open not implemented yet</li>
+</ul>
+<p>For a full list of issues, open and resolved, refer to the <a href="https://github.com/underscorediscovery/snow/issues">github issue tracker</a> <br/>
+<br/>
+<br/></p>
+<p><a name="samples">
+<a href="#samples"><h2>Samples</h2></a>
+</a></p>
+<hr>
+<p><a href="https://github.com/underscorediscovery/snow/issues">feedback</a>
+<br/>
+<br/>
+<br/>
+<br/>
+<small class="trademark"> All trademarks and registered trademarks are the property of their respective owners.</small></p>
+
+        </div>
+    </body>
+
+</html>

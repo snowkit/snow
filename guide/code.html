@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <title>snow - </title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <link rel="shortcut icon" href="../images/favicon.png" />
+
+        <link rel="stylesheet" type="text/css" href="../css/style.css" media="all">
+        <link rel="stylesheet" type="text/css" href="../css/code.css" media="all">
+        <link rel="stylesheet" type="text/css" href="../css/font.css" media="all">
+
+        <link rel="stylesheet" type="text/css" href="../css/tooltipster.css" media="all">
+        <link rel="stylesheet" type="text/css" href="../css/tooltipster-shadow.css" media="all">
+
+        <script src="../js/jquery-2.0.3.min.js"> </script>
+        <script src="../js/jquery.tooltipster.min.js"> </script>
+
+        <script>
+
+            $(document).ready(function() {
+
+                $('.section').css('display','none');
+                $('.readmore').click(function(e){
+                    var _child = $(this).parent().find('.section').first();
+                    var _opp = 'block';
+                    if( _child.css('display') == 'block' ) {
+                        _opp = 'none';
+                    } else {
+                    }
+                    _child.css('display', _opp);
+                });
+
+                $('div.sample').on('click', function(e){
+                        //get the data tag
+                    var content = $(this).attr('data-content');
+                        //remove clicking handler
+                    $(this).off('click');
+                        //replace the content!
+                    $(this).html('<iframe src="'+content+'" sandbox="allow-same-origin allow-scripts" style="overflow:hidden; scrollbar:none; border: 0; width:645px; height:450px;"></iframe> ')
+                });
+
+                $('.tooltip').each(function(e){
+                    var c = $(this).attr('data-tooltip');
+                    $(this).tooltipster({
+                        content:$('<span>' + c + '</span>'),
+                        interactive:true,
+                    theme:'tooltipster-shadow'
+                    });
+                });
+
+            }); //document.ready
+
+        </script>
+    </head>
+
+    <body>
+        <div class="content">
+            <p><a href="../index.html#guide"><img src="../images/logo.png" alt="Logo"></a></p>
+<hr>
+<h2 id="code-design">Code design</h2>
+<p>Code is designed for portability, maintainability and clarity.<br>Naming should be clear and concise, not overly verbose.   </p>
+<h2 id="code-conventions">Code conventions</h2>
+<p>General conventions to follow.</p>
+<ul>
+<li><strong>code is for humans ONLY.</strong> write it that way.</li>
+<li><strong>always</strong> always use braces. no exceptions.</li>
+<li>egyption style braces (same line open, close inline)</li>
+<li>closing brace comments when size of scope is more than a few lines</li>
+<li>closing brace comments on functions, classes, typedefs etc (as, these grow)</li>
+<li>single line code is not good. use multiple lines, they are free.</li>
+<li>try to comment WHY not what, code should be self describing</li>
+<li>always descriptive names, a, b, c are not names.</li>
+</ul>
+<pre><code><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">example</span><span class="hljs-params">()</span> </span>{
+
+        <span class="hljs-comment">//bad. no braces, single line code.</span>
+    <span class="hljs-keyword">if</span>(<span class="hljs-literal">true</span>) <span class="hljs-keyword">return</span>;
+
+        <span class="hljs-comment">//good</span>
+    <span class="hljs-keyword">if</span>(<span class="hljs-literal">true</span>) {
+        <span class="hljs-keyword">return</span>;
+    }
+
+} <span class="hljs-comment">//example</span>
+</code></pre><hr>
+<h4 id="classes">Classes</h4>
+<ul>
+<li>public variables always first</li>
+<li>after public variables, group properties together</li>
+<li>private variables next</li>
+<li>methods - constructor/init first, then destroy/cleanup</li>
+<li>methods - public facing api higher up</li>
+<li>methods - internal api next</li>
+<li>methods - private/internal/utility functions last</li>
+</ul>
+<p>class format guidelines</p>
+<ul>
+<li>two lines gap<ul>
+<li>between imports and package</li>
+<li>between imports and class declaration</li>
+<li>between class declaration and member declaration</li>
+<li>between member declaration and functions</li>
+<li>between last function and close brace</li>
+</ul>
+</li>
+<li>one line gap at the end of the file</li>
+</ul>
+<pre><code><span class="hljs-keyword">package</span> example;
+
+
+<span class="hljs-keyword">import</span> things;
+<span class="hljs-keyword">import</span> more;
+
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Example</span> </span>{
+
+
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">var</span> one : Int;
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">var</span> two : Bool;
+
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">var</span> property (get,set) : String;
+
+    <span class="hljs-keyword">var</span> three : String;
+
+
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">new</span><span class="hljs-params">()</span> </span>{
+
+    } <span class="hljs-comment">//new</span>
+
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">destroy</span><span class="hljs-params">()</span> </span>{
+
+    } <span class="hljs-comment">//destroy</span>
+
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">internal</span><span class="hljs-params">()</span> </span>{
+
+    } <span class="hljs-comment">//internal</span>
+
+
+} <span class="hljs-comment">//Example</span>
+</code></pre><hr>
+<h2 id="back">Back</h2>
+<p><a href="../index.html#guide">To the guide</a></p>
+<p><br/><br/><br/>
+<br/><br/><br/></p>
+
+        </div>
+    </body>
+
+</html>

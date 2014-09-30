@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <title>snow - </title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <link rel="shortcut icon" href="../images/favicon.png" />
+
+        <link rel="stylesheet" type="text/css" href="../css/style.css" media="all">
+        <link rel="stylesheet" type="text/css" href="../css/code.css" media="all">
+        <link rel="stylesheet" type="text/css" href="../css/font.css" media="all">
+
+        <link rel="stylesheet" type="text/css" href="../css/tooltipster.css" media="all">
+        <link rel="stylesheet" type="text/css" href="../css/tooltipster-shadow.css" media="all">
+
+        <script src="../js/jquery-2.0.3.min.js"> </script>
+        <script src="../js/jquery.tooltipster.min.js"> </script>
+
+        <script>
+
+            $(document).ready(function() {
+
+                $('.section').css('display','none');
+                $('.readmore').click(function(e){
+                    var _child = $(this).parent().find('.section').first();
+                    var _opp = 'block';
+                    if( _child.css('display') == 'block' ) {
+                        _opp = 'none';
+                    } else {
+                    }
+                    _child.css('display', _opp);
+                });
+
+                $('div.sample').on('click', function(e){
+                        //get the data tag
+                    var content = $(this).attr('data-content');
+                        //remove clicking handler
+                    $(this).off('click');
+                        //replace the content!
+                    $(this).html('<iframe src="'+content+'" sandbox="allow-same-origin allow-scripts" style="overflow:hidden; scrollbar:none; border: 0; width:645px; height:450px;"></iframe> ')
+                });
+
+                $('.tooltip').each(function(e){
+                    var c = $(this).attr('data-tooltip');
+                    $(this).tooltipster({
+                        content:$('<span>' + c + '</span>'),
+                        interactive:true,
+                    theme:'tooltipster-shadow'
+                    });
+                });
+
+            }); //document.ready
+
+        </script>
+    </head>
+
+    <body>
+        <div class="content">
+            <p><a href="../index.html#guide"><img src="../images/logo.png" alt="Logo"></a></p>
+<hr>
+<h2 id="two-life-of-a-snow-app">two - life of a snow app</h2>
+<p>This guide assumes you have read guide <a href="../guide/one.html">one</a>.</p>
+<h3 id="application-lifecycle">Application lifecycle</h3>
+<p>The following is what happens by default, with a snow app.<br>Highlighted functions are overridden in your app.</p>
+<hr>
+<ul>
+<li>snow entry<ul>
+<li><code>config</code></li>
+<li><code>ready</code></li>
+<li>loop<ul>
+<li><code>update(delta:Float)</code></li>
+<li><code>on_event(event:SystemEvent)</code></li>
+</ul>
+</li>
+<li><code>destroyed</code></li>
+</ul>
+</li>
+<li>snow shutdown</li>
+</ul>
+<hr>
+<p>config and ready were discussed in guide <a href="../guide/one.html">one</a>, so we move onto</p>
+<h4 id="loop">loop</h4>
+<p><strong><code>update</code></strong><br>By default, a snow app will run a loop and call your update function until it shuts down.   </p>
+<p>The delta value is the difference in time (seconds) between the last update and this update.<br>This is used for many aspects of realtime applications and is discussed in the <a href="../guide/app.html">app detail guide</a>.   </p>
+<p><strong><code>on_event</code></strong><br>For lower level events handling only.   </p>
+<p>This is called whenever a system event comes through from the platform, of any kind.<br>It is useful if you want to handle events yourself, should you need to.   </p>
+<p>This is referenced here for completeness, and is discussed in the <a href="../guide/events.html">events detail guide</a>.<br><strong>You don’t need to use this for window, input and other higher level events</strong>. </p>
+<h4 id="destroyed">destroyed</h4>
+<p>This function is called whenever snow gets a shutdown event.<br>These events can happen from the system, from snow itself, or from your application.</p>
+<p>From this function, make sure you clean up and destroy everything as there is no coming back from here.</p>
+<h3 id="important-notes">Important notes</h3>
+<p>The above loop structure is “by default”, which as you may suspect, can be configured.<br>Through your flow file, you can request that the snow app does not enter the loop, and simply executes the same cycle, excluding the loop portion.</p>
+<p>This can be really useful for running unit tests in their natural habitat, rather than in isolation.<br>It can also be useful when creating command line tools or converters that do not require a loop at all.</p>
+<h3 id="the-snow-config">The snow config</h3>
+<p>To read more about the snow config itself, see the <a href="../api/snow/types/SnowConfig.html">snow config api docs</a>.<br>This config is set at build time from a <a href="../guide/build-details.html#project">flow file</a>.</p>
+<hr>
+<h2 id="moving-forward">Moving forward</h2>
+<p>To find out more about the features and details, <a href="../index.html#guide">jump back to the guide</a></p>
+<p><br/><br/><br/>
+<br/><br/><br/></p>
+
+        </div>
+    </body>
+
+</html>

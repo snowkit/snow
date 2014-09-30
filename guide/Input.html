@@ -40,8 +40,13 @@
                     $(this).html('<iframe src="'+content+'" sandbox="allow-same-origin allow-scripts" style="overflow:hidden; scrollbar:none; border: 0; width:645px; height:450px;"></iframe> ')
                 });
 
-                $('.tooltip').tooltipster({
+                $('.tooltip').each(function(e){
+                    var c = $(this).attr('data-tooltip');
+                    $(this).tooltipster({
+                        content:$('<span>' + c + '</span>'),
+                        interactive:true,
                     theme:'tooltipster-shadow'
+                    });
                 });
 
             }); //document.ready
@@ -51,9 +56,110 @@
 
     <body>
         <div class="content">
-            <p><a href="../index.html"><img src="../images/logo.png" alt="Logo"></a></p>
+            <p><a href="../index.html#guide"><img src="../images/logo.png" alt="Logo"></a></p>
 <hr>
-<h2 id="input">Input</h2>
+<h2 id="handling-input">Handling input</h2>
+<p>snow is setup to handle input directly from the source, as it happens.<br>The way input is delivered to you, is through a set of functions in your app that you override, like with <code>ready</code> and <code>update</code> and so on.</p>
+<p>snow has support for multitouch events, gamepad/controller events, keyboard and text events, as well as mouse events. </p>
+<p><strong>note</strong><br>As snow is a low level framework, it does not make assumptions about data structures and tries to avoid unnecessary allocations.
+For this reason, the functions may have many arguments but are intentionally lean and are for you to architect whichever way you see fit.   </p>
+<h3 id="simple">simple</h3>
+<p>As input events are fairly straight forward, the code below will illustrate the signatures and not much more. 
+For full documentation on each of the functions see the API reference.</p>
+<hr>
+<p>Below we simply log the events as they happen.    </p>
+<p>Since some of the information here is secondary, like timestamp and window id,<br>Those arguments are ignored with the haxe _ construct for clarity.<br>The full arguments all include <code>timestamp:Float</code>, <code>window_id:Int</code> except where noted.</p>
+<h3 id="mouse-events">Mouse events</h3>
+<hr>
+<pre><code><span class="hljs-keyword">override</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">onmousedown</span><span class="hljs-params">( x:Int, y:Int, button:Int, _ , _ )</span> </span>{
+    log(<span class="hljs-string">'mouse down / $x / $y / $button'</span>);
+}
+
+<span class="hljs-keyword">override</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">onmouseup</span><span class="hljs-params">( x:Int, y:Int, button:Int, _ , _ )</span> </span>{
+    log(<span class="hljs-string">'mouse up / $x / $y / $button'</span>);
+}
+
+<span class="hljs-keyword">override</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">onmousewheel</span><span class="hljs-params">( x:Int, y:Int, _ , _ )</span> </span>{
+    log(<span class="hljs-string">'mouse wheel / $x / $y'</span>);
+}
+
+<span class="hljs-keyword">override</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">onmousemove</span><span class="hljs-params">( x:Int, y:Int, xrel:Int, yrel:Int, _ , _ )</span> </span>{
+    log(<span class="hljs-string">'mouse move / $x / $y / $xrel / $yrel'</span>);
+}
+</code></pre><hr>
+<h3 id="key-and-text-events">Key and text events</h3>
+<hr>
+<pre><code><span class="hljs-keyword">override</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">onkeydown</span><span class="hljs-params">( key:Int, scan:Int, repeat:Bool, mod:ModState, _ , _ )</span> </span>{
+    log(<span class="hljs-string">'key up / $key / $scan / $repeat / $mod'</span>);
+}
+
+<span class="hljs-keyword">override</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">onkeyup</span><span class="hljs-params">( key:Int, scan:Int, repeat:Bool, mod:ModState, _ , _ )</span> </span>{
+    log(<span class="hljs-string">'key up / $key / $scan / $repeat / $mod'</span>);
+}
+
+<span class="hljs-keyword">override</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">ontextinput</span><span class="hljs-params">( text:String, start:Int, length:Int, type:TextEventType, _ , _ )</span> </span>{
+    log(<span class="hljs-string">'text input / $text / $start / $length / $type'</span>);
+}
+</code></pre><hr>
+<h3 id="touch-events">Touch events</h3>
+<p>since touch events happen on the main window, they have no window_id.</p>
+<hr>
+<pre><code>
+<span class="hljs-keyword">override</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">ontouchdown</span><span class="hljs-params">( x:Float, y:Float, touch_id:Int, _ )</span> </span>{
+    log(<span class="hljs-string">'touch down / $x / $y / $touch_id'</span>);
+}
+
+<span class="hljs-keyword">override</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">ontouchup</span><span class="hljs-params">( x:Float, y:Float, touch_id:Int, _ )</span> </span>{
+    log(<span class="hljs-string">'touch up / $x / $y / $touch_id'</span>);
+}
+
+<span class="hljs-keyword">override</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">ontouchmove</span><span class="hljs-params">( x:Float, y:Float, dx:Float, dy:Float, touch_id:Int, _ )</span> </span>{
+    log(<span class="hljs-string">'touch move / $x / $y / $dx / $dy / $touch_id'</span>);
+}
+</code></pre><hr>
+<h3 id="gamepad-events">Gamepad events</h3>
+<p>since gamepad events are not associated with a window, they have no window_id either.<br>gamepad device events are things like removing/adding gamepads at runtime.</p>
+<hr>
+<pre><code>
+<span class="hljs-keyword">override</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">ongamepadaxis</span><span class="hljs-params">( gamepad:Int, axis:Int, value:Float, _ )</span> </span>{
+    log(<span class="hljs-string">'gamepad / $gamepad / $axis / $value'</span>)
+}
+
+<span class="hljs-keyword">override</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">ongamepadbuttondown</span><span class="hljs-params">( gamepad:Int, button:Int, value:Float, _ )</span> </span>{
+    log(<span class="hljs-string">'gamepad / $gamepad / $button / $value'</span>)
+}
+
+<span class="hljs-keyword">override</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">ongamepadbuttonup</span><span class="hljs-params">( gamepad:Int, button:Int, value:Float, _ )</span> </span>{
+    log(<span class="hljs-string">'gamepad / $gamepad / $button / $value'</span>)
+}
+
+<span class="hljs-keyword">override</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">ongamepaddevice</span><span class="hljs-params">( gamepad:Int, type:GamepadDeviceEventType, _ )</span> </span>{
+    log(<span class="hljs-string">'gamepad / $gamepad / $type'</span>)
+}
+</code></pre><hr>
+<h3 id="immediate-style-handlers">Immediate style handlers</h3>
+<p>From the app variable you can access the <code>app.input</code> handler and query the immediate state of input whenever you like, for that frame.</p>
+<p>The following list of functions are how you would query them, and are documented in the <a href="../api">API docs</a>.</p>
+<pre><code>    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">keypressed</span><span class="hljs-params">( _code:Int )</span> <span class="hljs-type">: Bool</span></span>;
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">keyreleased</span><span class="hljs-params">( _code:Int )</span> <span class="hljs-type">: Bool</span></span>;
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">keydown</span><span class="hljs-params">( _code:Int )</span> <span class="hljs-type">: Bool</span></span>;
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">scanpressed</span><span class="hljs-params">( _code:Int )</span> <span class="hljs-type">: Bool</span></span>;
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">scanreleased</span><span class="hljs-params">( _code:Int )</span> <span class="hljs-type">: Bool</span></span>;
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">scandown</span><span class="hljs-params">( _code:Int )</span> <span class="hljs-type">: Bool</span></span>;
+
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">mousepressed</span><span class="hljs-params">( _button:Int )</span> <span class="hljs-type">: Bool</span></span>;
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">mousereleased</span><span class="hljs-params">( _button:Int )</span> <span class="hljs-type">: Bool</span></span>;
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">mousedown</span><span class="hljs-params">( _button:Int )</span> <span class="hljs-type">: Bool</span></span>;
+
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">gamepadpressed</span><span class="hljs-params">( _gamepad:Int, _button:Int )</span> <span class="hljs-type">: Bool</span></span>;
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">gamepadreleased</span><span class="hljs-params">( _gamepad:Int, _button:Int )</span> <span class="hljs-type">: Bool</span></span>;
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">gamepaddown</span><span class="hljs-params">( _gamepad:Int, _button:Int )</span> <span class="hljs-type">: Bool</span></span>;
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">gamepadaxis</span><span class="hljs-params">( _gamepad:Int, _axis:Int )</span> <span class="hljs-type">: Float</span></span>;
+</code></pre><hr>
+<h2 id="back">Back</h2>
+<p><a href="../index.html#guide">To the guide</a></p>
+<p><br/><br/><br/>
+<br/><br/><br/></p>
 
         </div>
     </body>

@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <title>snow - </title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <link rel="shortcut icon" href="../images/favicon.png" />
+
+        <link rel="stylesheet" type="text/css" href="../css/style.css" media="all">
+        <link rel="stylesheet" type="text/css" href="../css/code.css" media="all">
+        <link rel="stylesheet" type="text/css" href="../css/font.css" media="all">
+
+        <link rel="stylesheet" type="text/css" href="../css/tooltipster.css" media="all">
+        <link rel="stylesheet" type="text/css" href="../css/tooltipster-shadow.css" media="all">
+
+        <script src="../js/jquery-2.0.3.min.js"> </script>
+        <script src="../js/jquery.tooltipster.min.js"> </script>
+
+        <script>
+
+            $(document).ready(function() {
+
+                $('.section').css('display','none');
+                $('.readmore').click(function(e){
+                    var _child = $(this).parent().find('.section').first();
+                    var _opp = 'block';
+                    if( _child.css('display') == 'block' ) {
+                        _opp = 'none';
+                    } else {
+                    }
+                    _child.css('display', _opp);
+                });
+
+                $('div.sample').on('click', function(e){
+                        //get the data tag
+                    var content = $(this).attr('data-content');
+                        //remove clicking handler
+                    $(this).off('click');
+                        //replace the content!
+                    $(this).html('<iframe src="'+content+'" sandbox="allow-same-origin allow-scripts" style="overflow:hidden; scrollbar:none; border: 0; width:645px; height:450px;"></iframe> ')
+                });
+
+                $('.tooltip').each(function(e){
+                    var c = $(this).attr('data-tooltip');
+                    $(this).tooltipster({
+                        content:$('<span>' + c + '</span>'),
+                        interactive:true,
+                    theme:'tooltipster-shadow'
+                    });
+                });
+
+            }); //document.ready
+
+        </script>
+    </head>
+
+    <body>
+        <div class="content">
+            <p><a href="../index.html#guide"><img src="../images/logo.png" alt="Logo"></a></p>
+<hr>
+<h2 id="one-start-here">one - start here</h2>
+<p>This guide assumes you have <a href="../guide/setup.html">installed and setup snow already</a>.</p>
+<p>A snow app is composed of the following pieces at minimum.<br>In this guide, we will call the example application <em>my_app</em>.   </p>
+<hr>
+<ul>
+<li>my_app<ul>
+<li><code>assets/</code></li>
+<li><code>src/Main.hx</code></li>
+<li><code>project.flow</code></li>
+</ul>
+</li>
+</ul>
+<hr>
+<p><code>assets/</code> this is for any project assets. This folder is not required.<br><code>src/Main.hx</code> this is entry point of the app, and extends the <em>snow.App</em> class.<br><code>project.flow</code> this is a description for the build pipeline to generate our app.   </p>
+<h3 id="building-the-application">Building the application</h3>
+<p>snow uses <a href="http://snowkit.org/flow">flow</a> to build it’s applications.<br>From your project directory (cd <em>my_app</em>), you use the <strong>flow build</strong> command.<br>This will read the project.flow file, and generate your application into the <strong>bin/</strong> folder.</p>
+<p>If you wanted to build <em>and</em> run the application, use <strong>flow run</strong>.   </p>
+<p><a href="http://snowkit.org/flow">flow</a> has it’s own extensive documentation on it’s features, but for now we can continue!<br>From here on, the guide will use <code>flow run</code> to build and run the app when suggested.</p>
+<h3 id="the-entry-point">The entry point</h3>
+<p>If you ran the application, you should have seen a blank window, with the title ‘snow app’.<br>We will get to configure this shortly, as this requires changing <code>Main.hx</code>, the entry point.</p>
+<p>Here is a very simple snow app:</p>
+<pre><code><span class="hljs-keyword">import</span> snow.Log.log;
+<span class="hljs-keyword">import</span> snow.types.Types;
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Main</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">snow</span>.<span class="hljs-title">App</span> </span>{
+
+    <span class="hljs-keyword">override</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">config</span><span class="hljs-params">( config:AppConfig )</span> </span>{
+
+        <span class="hljs-keyword">return</span> config;
+
+    } <span class="hljs-comment">//config</span>
+
+    <span class="hljs-keyword">override</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">ready</span><span class="hljs-params">()</span> </span>{
+
+        log(<span class="hljs-string">'ready'</span>);
+
+    } <span class="hljs-comment">//ready</span>
+
+} <span class="hljs-comment">//Main</span>
+</code></pre><hr>
+<h4 id="ready">ready</h4>
+<p>This function is where you start coding your application.<br>In here, snow is ready and all features and systems are available from this point forward.   </p>
+<h4 id="config">config</h4>
+<p>There is only one function that happens before ready - the <code>config</code> function.<br>The config function is used by snow to handle changes you might want to do to the default and runtime config of your application, before ready is called.</p>
+<p>What this means is that the following order of events takes place :</p>
+<ul>
+<li>snow entry point<ul>
+<li>set up snow systems</li>
+<li>load default configs</li>
+<li>request <code>config</code> from app</li>
+<li>apply (possibly modified) config</li>
+</ul>
+</li>
+<li><code>ready</code><ul>
+<li>your application code</li>
+</ul>
+</li>
+</ul>
+<h3 id="change-the-config-slightly">Change the config slightly</h3>
+<p>Let’s modify the window title, to better reflect the application we are building.<br>Notice how we modify the existing config, and then return it?<br>This let’s you intercept values and ensure they are what you intended later.<br>For now, just set the window title and <code>flow run</code>.</p>
+<pre><code><span class="hljs-keyword">override</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">config</span><span class="hljs-params">( config:AppConfig )</span> </span>{
+
+    config.window.title = <span class="hljs-string">'my_app - a guide example'</span>;
+
+    <span class="hljs-keyword">return</span> config;
+
+} <span class="hljs-comment">//config</span>
+</code></pre><h3 id="accessing-the-snow-features-and-api">Accessing the snow features and API</h3>
+<p>To access the features of the API from within your application, you use the <code>app</code> variable which is available because you extended <code>snow.App</code> itself. The app variable is actually pointing at the snow instance so that you can use its API in a very simple form.</p>
+<p>For example, say you wanted show a message on the default window, you would ask <code>app.window</code> to show a message.</p>
+<pre><code><span class="hljs-keyword">override</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">ready</span><span class="hljs-params">()</span> </span>{
+
+    app.window.simple_message(<span class="hljs-string">'app is ready!'</span>);
+
+} <span class="hljs-comment">//ready</span>
+</code></pre><hr>
+<h4 id="important-endpoints">Important endpoints</h4>
+<p>From the API, some of the more important ones will be </p>
+<p>methods and properties</p>
+<ul>
+<li>app.shutdown() <code>quit the app</code></li>
+<li>app.time <code>current timestamp</code></li>
+</ul>
+<p>members</p>
+<ul>
+<li>app.assets <code>load and manage assets</code></li>
+<li>app.config <code>read only after config callback</code></li>
+<li>app.io <code>platform independent and specific io helpers</code></li>
+<li>app.input <code>input handler</code></li>
+<li>app.audio <code>audio system</code></li>
+<li>app.windowing <code>windowing system</code></li>
+<li>app.window <code>the default window</code></li>
+</ul>
+<hr>
+<h2 id="moving-forward">Moving forward</h2>
+<p>This may seem short and simple, but understanding how the application fits together will allow you to architect applications however best fits your needs.</p>
+<p>In guide <a href="../guide/two.html">two</a> the application lifecycle and other important functions like <code>update</code> are introduced.</p>
+<p>Or, go back <a href="../index.html#guide">to the guide</a></p>
+<p><br/><br/><br/>
+<br/><br/><br/>
+<br/><br/><br/></p>
+
+        </div>
+    </body>
+
+</html>

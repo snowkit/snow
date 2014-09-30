@@ -40,8 +40,13 @@
                     $(this).html('<iframe src="'+content+'" sandbox="allow-same-origin allow-scripts" style="overflow:hidden; scrollbar:none; border: 0; width:645px; height:450px;"></iframe> ')
                 });
 
-                $('.tooltip').tooltipster({
+                $('.tooltip').each(function(e){
+                    var c = $(this).attr('data-tooltip');
+                    $(this).tooltipster({
+                        content:$('<span>' + c + '</span>'),
+                        interactive:true,
                     theme:'tooltipster-shadow'
+                    });
                 });
 
             }); //document.ready
@@ -51,9 +56,53 @@
 
     <body>
         <div class="content">
-            <p><a href="../index.html"><img src="../images/logo.png" alt="Logo"></a></p>
+            <p><a href="../index.html#guide"><img src="../images/logo.png" alt="Logo"></a></p>
 <hr>
 <h2 id="assets">Assets</h2>
+<p>The snow assets API takes care of loading assets for you across platforms.</p>
+<p>As snow is designed to not make any assumptions, the loading of assets is set up to be flexible, allowing simple use but also controlled, advanced uses like reloading assets from disk at a later time, cacheing and so on.</p>
+<p>The assets manager will not cache any assets for you, as this is an assumption that snow should not be making.</p>
+<h3 id="the-asset-list">The asset list</h3>
+<p>By default, snow uses a small file that lists the assets in your application, which is output from <a href="http://snowkit.org/flow/">flow</a>. This file simply contains a small json file describing the list of files in your application folder. Once the application starts, the asset list is loaded, and stored in the asset manager. This list is later used to query if an asset is <em>found</em> by the system, <strong>unless</strong> strict mode is disabled for that query, or the entire system.</p>
+<p>You can request that snow does not load this file, and you can request that flow not generate the file, if you so wish. This allows you to manually insert files using <strong>app.assets.add</strong> and you can do as you wish with regards to the loading or not loading of the list of assets.</p>
+<p><strong>Take note</strong> that on <code>web</code>, there is no concept of “does this file exist” without heavy cost (http request is very expensive for this concept). This means that the list inside of the asset manager is used to determine if a file is found or not on web.</p>
+<p>To disable the asset list, see the <a href="../api/snow/types/SnowConfig.html">snow config API docs</a>.</p>
+<h3 id="the-asset-types">The asset types</h3>
+<p>The asset system allows the loading of <strong>bytes</strong>, <strong>image</strong>, <strong>text</strong> and <strong>audio</strong> types. All of these functions are built with async loading in mind, and by default bytes and text will be forced to synchronous loading, which can be changed in the options to the functions.</p>
+<p>The way the AssetBytes, AssetText, AssetAudio and AssetImage works is that each of the types that the asset manager returns will have an accompanying data object.</p>
+<ul>
+<li>AssetBytes - <code>asset.bytes : ByteArray</code></li>
+<li>AssetText - <code>asset.text : String</code></li>
+<li>AssetAudio - <code>asset.audio : AudioInfo</code></li>
+<li>AssetImage - <code>asset.image : ImageInfo</code></li>
+</ul>
+<h3 id="loading-assets">Loading assets</h3>
+<p>When requesting an asset the following rules take place : </p>
+<ul>
+<li>if the asset does not exist, null is returned.</li>
+<li>if the asset exists, a valid Asset type is returned.</li>
+<li>the valid Asset type will only populate it’s <em>data</em> node once it is done loading.</li>
+<li>each asset request has an accompanying options which has an onload handler to pass in.</li>
+</ul>
+<p>When considering if an asset exists or not, the following takes place :</p>
+<ul>
+<li>if <code>app.assets.strict == true</code> or the options strict flag is set, the asset list is authorative on existing files, an asset load can still fail if the list has an missing fail, returning null or the data node will be null upon loading.</li>
+<li>if <code>app.assets.strict == false</code> or the options strict flag is set to false, the disk is checked using normal filesystem exists calls, this allows loading absolute paths from anywhere and is for tools and applications that load user content.</li>
+<li>on web, if strict mode is disabled, the exists function always returns false if the file is not listed in the asset list.</li>
+</ul>
+<p>It is the responsibility of the application to confirm validity and protect user data when using assets, strict or unstrict. The strict mode simply aids in confirming assets are loaded from the developers intent, not whether the file is valid, etc.</p>
+<h3 id="reloading-assets">Reloading assets</h3>
+<p>Once the asset is done loading, and you have used it’s data / information, it is possible to retain the Asset instance, without disposing of it, and later request that it repopulate its data node for reuse.</p>
+<p>A simple example of this is when reloading an image that has changed on disk, using the IO file watch events on desktop.</p>
+<p>The Asset class types are very lightweight, but an image submitted to the GPU has already served it’s purpose, so it’s memory should be freed.</p>
+<p>This is done by setting the AssetImage instance <strong>image</strong> node to null, i.e <code>asset.image = null;</code>. This allows the GC to clear memory from the image in RAM, but you may need it again to resubmit this image to the GPU if the file has changed on disk.</p>
+<p>In this case, the <code>asset.load( _oncomplete )</code> function may be called directly, and when it is complete, if successful, the data object will be repopulated, allowing you to use <code>asset.image</code> once again. As soon as you have resubmitted the data, you can once again nullify the data node, keeping the asset in tact.</p>
+<p>This allows flexible caching and management of assets with a low footprint and retains the information needed to reload an asset, like the path of the asset itself and so on.</p>
+<hr>
+<h2 id="back">Back</h2>
+<p><a href="../index.html#guide">To the guide</a></p>
+<p><br/><br/><br/>
+<br/><br/><br/></p>
 
         </div>
     </body>

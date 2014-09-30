@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <title>snow - </title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <link rel="shortcut icon" href="../images/favicon.png" />
+
+        <link rel="stylesheet" type="text/css" href="../css/style.css" media="all">
+        <link rel="stylesheet" type="text/css" href="../css/code.css" media="all">
+        <link rel="stylesheet" type="text/css" href="../css/font.css" media="all">
+
+        <link rel="stylesheet" type="text/css" href="../css/tooltipster.css" media="all">
+        <link rel="stylesheet" type="text/css" href="../css/tooltipster-shadow.css" media="all">
+
+        <script src="../js/jquery-2.0.3.min.js"> </script>
+        <script src="../js/jquery.tooltipster.min.js"> </script>
+
+        <script>
+
+            $(document).ready(function() {
+
+                $('.section').css('display','none');
+                $('.readmore').click(function(e){
+                    var _child = $(this).parent().find('.section').first();
+                    var _opp = 'block';
+                    if( _child.css('display') == 'block' ) {
+                        _opp = 'none';
+                    } else {
+                    }
+                    _child.css('display', _opp);
+                });
+
+                $('div.sample').on('click', function(e){
+                        //get the data tag
+                    var content = $(this).attr('data-content');
+                        //remove clicking handler
+                    $(this).off('click');
+                        //replace the content!
+                    $(this).html('<iframe src="'+content+'" sandbox="allow-same-origin allow-scripts" style="overflow:hidden; scrollbar:none; border: 0; width:645px; height:450px;"></iframe> ')
+                });
+
+                $('.tooltip').each(function(e){
+                    var c = $(this).attr('data-tooltip');
+                    $(this).tooltipster({
+                        content:$('<span>' + c + '</span>'),
+                        interactive:true,
+                    theme:'tooltipster-shadow'
+                    });
+                });
+
+            }); //document.ready
+
+        </script>
+    </head>
+
+    <body>
+        <div class="content">
+            <p><a href="../index.html#guide"><img src="../images/logo.png" alt="Logo"></a></p>
+<hr>
+<h2 id="build-modify-fix-the-native-support-layer">Build, modify, fix the native support layer</h2>
+<p>On native platforms, snow is built using c++ code and is bound via the haxe api. You can read the <a href="../guide/structure.html">structure guide</a> for more insight here.</p>
+<h2 id="note">Note</h2>
+<p>you <strong>do not</strong> need to recompile snow to use it! There are prebuilt versions bundled for each platform alongside the code.</p>
+<h3 id="auto-fetch-dependencies">Auto fetch dependencies</h3>
+<p>snow uses git submodules to hold dependency libs. <strong>These are required to build snow.</strong></p>
+<p>To fetch them, simply run <code>git submodule update --init</code> from <strong>within the snow folder</strong></p>
+<p>This will ensure all build dependencies are fetched.</p>
+<h3 id="recompile-snow-native-code">Recompile snow native code</h3>
+<p>If something has been changed in the native layer, chances are the code will need to be rebuilt. To do this is very simple, you use flow.</p>
+<ul>
+<li><code>cd path/to/snow/project/</code> and then <code>flow build &lt;target&gt;</code> OR</li>
+<li><code>flow build &lt;target&gt; --project path/to/snow/project/snow.flow</code></li>
+</ul>
+<p>The first command is like running your project from it’s working folder. The second, runs the rebuild from anywhere using the explicit project path to tell flow what to build.</p>
+<p>In both cases, target is the platform for which you want to build. If you wanted to rebuild the platform you are on, it can be ommitted.</p>
+<h3 id="notes">Notes</h3>
+<p>Sometimes, when modifying the snow code, you may change code inside of a header file, and hxcpp will not know that it has been modified (as it builds cpp/c files). This means that if you modify snow_core.h you will likely have to touch or save snow_hx_bindings.cpp so that hxcpp will compile the new library with the updated change.</p>
+<p>This is being investigated to be made simpler.</p>
+<h3 id="platform-notes">Platform Notes</h3>
+<ul>
+<li><code>mac</code> - snow is linked statically, as libsnow.a</li>
+<li><code>windows</code> - snow is linked statically as libsnow.lib</li>
+<li><code>linux</code> - snow is linked dynamically as snow.ndll due to GTK dependencies</li>
+<li><code>ios</code> - snow is linked statically as libsnow.a</li>
+<li><code>android</code> - snow is linked dynamically as libsnow.so</li>
+</ul>
+<h3 id="platform-requirements">Platform requirements</h3>
+<p>The only platform that has requirements above the regular builds, is linux.</p>
+<p>To rebuild snow on linux, you will additionally need to install</p>
+<p><code>libgtk-3-dev</code></p>
+<p>or define SNOW_NO_GTK to avoid the dependency using the snow/project/Build.xml</p>
+
+        </div>
+    </body>
+
+</html>

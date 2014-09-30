@@ -40,8 +40,13 @@
                     $(this).html('<iframe src="'+content+'" sandbox="allow-same-origin allow-scripts" style="overflow:hidden; scrollbar:none; border: 0; width:645px; height:450px;"></iframe> ')
                 });
 
-                $('.tooltip').tooltipster({
+                $('.tooltip').each(function(e){
+                    var c = $(this).attr('data-tooltip');
+                    $(this).tooltipster({
+                        content:$('<span>' + c + '</span>'),
+                        interactive:true,
                     theme:'tooltipster-shadow'
+                    });
                 });
 
             }); //document.ready
@@ -51,9 +56,50 @@
 
     <body>
         <div class="content">
-            <p><a href="../index.html"><img src="../images/logo.png" alt="Logo"></a></p>
+            <p><a href="../index.html#guide"><img src="../images/logo.png" alt="Logo"></a></p>
 <hr>
 <h2 id="io">IO</h2>
+<h3 id="io-platform-features">IO platform features</h3>
+<p>As IO is often largely platform specific, most of the features in this class are available on certain platforms or sets of platforms.</p>
+<p>For example, when attempting to use the native OS file dialogs, they will only exist on desktop platforms, as they do not exist elsewhere.</p>
+<p>To alleviate frustration with missing API nodes, the IO functions are nested one depth below the user facing API in the <code>app.io.platform</code> instance instead. This means for example, if you wanted to use a file open dialog you would call <code>app.io.platform.dialog_open()</code> instead of <code>app.io.dialog_open</code>.</p>
+<p>The full documentation of <a href="../api/snow/io/IO.html">public facing</a> and <a href="../api/snow/io/IOSystemBinding.html">platform specific</a> are linked here.</p>
+<h3 id="io-and-files">IO and files</h3>
+<p><strong>Remember that 99.9% of the time you should be using the <a href="../guide/assets.html">assets</a> class for IO!</strong></p>
+<h4 id="use-app-assets-bytes-file-name-">use <code>app.assets.bytes(&#39;file.name&#39;);</code></h4>
+<p>For if you really want low level file access,<br>Know that haxe has it’s own set of <a href="http://api.haxe.org/haxe/io/index.html">IO classes</a>,<br>and that writing and reading files through haxe is possible and safe, on platforms where it makes sense. </p>
+<p>However, haxe io doesn’t necessarily account for platforms where file IO is non-standard. The current only example of this is on Android, where file IO is handled from inside of the APK file at runtime.</p>
+<p>Luckily, snow handles the details internally through SDL, and you can access reading file operations from the IOFile class, in the following way :</p>
+<h3 id="use-the-assets-rel_path-guide-assets-html-system-for-io-">Use the <a href="../guide/assets.html">assets</a> system for IO!</h3>
+<p>This is purely a low level example</p>
+<pre><code><span class="hljs-keyword">override</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">ready</span><span class="hljs-params">()</span> </span>{
+
+    <span class="hljs-comment">//import snow.platform.native.io.IOFile;</span>
+
+        <span class="hljs-comment">// _id:String, ?_mode:String="rb"</span>
+        <span class="hljs-comment">// the mode matches c++ file IO modes</span>
+
+    <span class="hljs-keyword">var</span> file : IOFile = IOFile.from_file( <span class="hljs-string">'file.name'</span>, <span class="hljs-string">'rb'</span> );
+
+    <span class="hljs-comment">//file.read</span>
+    <span class="hljs-comment">//file.write</span>
+    <span class="hljs-comment">//file.seek</span>
+    <span class="hljs-comment">//file.tell</span>
+    <span class="hljs-comment">//file.close</span>
+
+} <span class="hljs-comment">//ready</span>
+</code></pre><h3 id="desktop-specific-file-watch-and-file-drop-api">Desktop specific file watch and file drop API</h3>
+<p>snow supports live OS file change notifications on any folder using the platform specific functions on desktop.   </p>
+<p>This allows hot reloading of asset files, as soon as the change, are removed, or are created on disk.</p>
+<p>The <a href="../guide/assets.html">asset guide</a> explains reloading an asset once it changes.</p>
+<p>snow also supports <strong>file drop</strong> notifications, which happen when a file is dropped onto your application icon (mac) or window (linux/windows). </p>
+<p>All of these events are lower level, and are handled directly by listening for the <code>override function on_event( event:SystemEvent )</code> in your app.</p>
+<p>A higher level API with callbacks is on the roadmap too.</p>
+<hr>
+<h2 id="back">Back</h2>
+<p><a href="../index.html#guide">To the guide</a></p>
+<p><br/><br/><br/>
+<br/><br/><br/></p>
 
         </div>
     </body>

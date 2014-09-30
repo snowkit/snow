@@ -40,8 +40,13 @@
                     $(this).html('<iframe src="'+content+'" sandbox="allow-same-origin allow-scripts" style="overflow:hidden; scrollbar:none; border: 0; width:645px; height:450px;"></iframe> ')
                 });
 
-                $('.tooltip').tooltipster({
+                $('.tooltip').each(function(e){
+                    var c = $(this).attr('data-tooltip');
+                    $(this).tooltipster({
+                        content:$('<span>' + c + '</span>'),
+                        interactive:true,
                     theme:'tooltipster-shadow'
+                    });
                 });
 
             }); //document.ready
@@ -51,9 +56,29 @@
 
     <body>
         <div class="content">
-            <p><a href="../index.html"><img src="../images/logo.png" alt="Logo"></a></p>
+            <p><a href="../index.html#guide"><img src="../images/logo.png" alt="Logo"></a></p>
 <hr>
-<h2 id="rendering">Rendering</h2>
+<p><a name="top">
+<a href="#top"><h2>Build pipeline details</h2></a>
+</a></p>
+<p><a name="project"><a href="#project"><strong>project format</strong></a></a></p>
+<ul>
+<li>The project format is 100% powered by <a href="http://snowkit.org/flow">flow</a>, 
+which has full documentation <a href="http://snowkit.org/flow/docs/project">here</a></li>
+</ul>
+<p><a name="arch"><a href="#arch"><strong>architectures</strong></a></a></p>
+<ul>
+<li><code>mac</code> 64 bit, 32 bit</li>
+<li><code>linux</code> 64 bit, 32 bit</li>
+<li><code>windows</code> 32 bit <a href="https://github.com/underscorediscovery/snow/issues/18">only</a></li>
+<li><code>android</code> armv7, armv5, x86</li>
+<li><code>ios</code> armv7a, armv6, simulator(i386)</li>
+</ul>
+<hr>
+<h2 id="back">Back</h2>
+<p><a href="../index.html#guide">To the guide</a></p>
+<p><br/><br/><br/>
+<br/><br/><br/></p>
 
         </div>
     </body>
