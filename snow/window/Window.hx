@@ -112,6 +112,10 @@ class Window {
         height = _config.height;
             internal_resize = false;
 
+        #if mobile
+        set_fullscreen(fullscreen);
+        #end
+
         on_event({
             type:WindowEventType.window_created,
             window_id : _id,
