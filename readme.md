@@ -1,3 +1,3 @@
-![snow](docs/images/logo.png)
+![snow](snow.png)
 
 #### https://snowkit.org/
