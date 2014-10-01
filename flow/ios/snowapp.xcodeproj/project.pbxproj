@@ -269,15 +269,14 @@
 					"$(PROJECT_DIR)/project/libs/{{arch}}",
 				);
                 "LIBRARY_SEARCH_PATHS[arch=armv6]" = (
-                    "$(inherited)",
                     "\"$(SRCROOT)/project/libs/armv6\"",
+                    "$(inherited)",
                 );
                 "LIBRARY_SEARCH_PATHS[arch=armv7]" = (
-                    "$(inherited)",
                     "\"$(SRCROOT)/project/libs/armv7\"",
+                    "$(inherited)",
                 );
                 "LIBRARY_SEARCH_PATHS[sdk=iphonesimulator*]" = (
-                    "$(inherited)",
                     "\"$(SRCROOT)/project/libs/i386\"",
                 );
 				OTHER_LDFLAGS = "{{project.app.mobile.ios.ldflags}}";
