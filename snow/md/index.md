@@ -23,7 +23,7 @@ This means snow by default runs natively on **Mac**, **Windows**, **Linux** desk
 [ <img src="{{{rel_path}}}images/haxe.png" target="_blank" class="small-image"/> ](http://haxe.org)   
 
 <span class="haxedesc">Haxe is an expressive, beautiful modern programming language <br/>
-      that compiles it's own code into other languages. <a href="http://haxe.org/" target="_blank"> learn more</a> </span>
+      that compiles its own code into other languages. <a href="http://haxe.org/" target="_blank"> learn more</a> </span>
 
 <br/>
 
