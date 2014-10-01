@@ -418,9 +418,9 @@ class Snow {
             borderless : false,
             antialiasing : 0,
 
-            red_bits : 2,
-            green_bits : 2,
-            blue_bits : 2,
+            red_bits : 8,
+            green_bits : 8,
+            blue_bits : 8,
             alpha_bits : 8,
             depth_bits : 0,
             stencil_bits : 0,
