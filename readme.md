@@ -1,3 +1,3 @@
 ![snow](snow.png)
 
-#### https://snowkit.org/
+#### https://snowkit.org/snow
