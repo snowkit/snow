@@ -25,7 +25,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		1D6058910D05DD3D006BFB54 /* {{project.app.name}}.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = {{project.app.name}}.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1D6058910D05DD3D006BFB54 /* {{project.app.name}}.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "{{project.app.name}}.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1E2E17A5131E8B5D0048F3C7 /* project/assets */ = {isa = PBXFileReference; lastKnownFileType = folder; path = project/assets; sourceTree = "<group>"; };
         1EEEBA9A121AF1C60048A9DF /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
         1EEEBAA2121AF2210048A9DF /* OpenAL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenAL.framework; path = System/Library/Frameworks/OpenAL.framework; sourceTree = SDKROOT; };
@@ -146,8 +146,8 @@
 			);
 			dependencies = (
 			);
-			name = {{project.app.name}};
-			productName = {{project.app.name}};
+			name = "{{project.app.name}}";
+			productName = "{{project.app.name}}";
 			productReference = 1D6058910D05DD3D006BFB54 /* {{project.app.name}}.app */;
 			productType = "com.apple.product-type.application";
 		};
@@ -242,7 +242,7 @@
                     "\"$(SRCROOT)/project/libs/i386-debug\"",
                     "\"$(SRCROOT)/project/libs/i386\"",
                 );
-				OTHER_LDFLAGS = "{{project.app.mobile.ios.ldflags}}";
+				OTHER_LDFLAGS = "{{{project.app.mobile.ios.ldflags}}}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "{{project.app.mobile.ios._devices}}";
@@ -279,7 +279,7 @@
                 "LIBRARY_SEARCH_PATHS[sdk=iphonesimulator*]" = (
                     "\"$(SRCROOT)/project/libs/i386\"",
                 );
-				OTHER_LDFLAGS = "{{project.app.mobile.ios.ldflags}}";
+				OTHER_LDFLAGS = "{{{project.app.mobile.ios.ldflags}}}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "{{project.app.mobile.ios._devices}}";
