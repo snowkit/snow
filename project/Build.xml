@@ -69,6 +69,11 @@
    <!-- <set name="SNOW_USE_GTK2"    value="1"/> -->
    <set name="SNOW_USE_GTK3"    value="1"/>
    <!-- <set name="SNOW_NO_GTK"    value="1"/> -->
+   <set name="SNOW_GTK_PATH" value="/usr/lib/x86_64-linux-gnu/gtk-2.0" if="HXCPP_M64"/>
+   <set name="SNOW_GTK_GLIB_PATH" value="/usr/lib/x86_64-linux-gnu/glib-2.0" if="HXCPP_M64"/>
+
+   <set name="SNOW_GTK_PATH" value="/usr/lib/i386-linux-gnu/gtk-2.0" unless="HXCPP_M64"/>
+   <set name="SNOW_GTK_GLIB_PATH" value="/usr/lib/i386-linux-gnu/glib-2.0" unless="HXCPP_M64"/>
 
 <!-- Porting only -->
 
@@ -225,12 +230,13 @@
 
             <compilerflag value="-DSNOW_NO_GTK" if="SNOW_NO_GTK"/>
 
+
                <!-- For the file dialogs. These are from `pkg-config --cflags gtk+-3.0` and `pkg-config --cflags gtk+-2.0` but
                   hxcpp doesn't support that, so they are manually inserted -->
 
                   <!-- gtk 3 only -->
             <compilerflag value="-I/usr/include/gtk-3.0" unless="SNOW_NO_GTK" if="SNOW_USE_GTK3"/>
-            <compilerflag value="-I/usr/lib/x86_64-linux-gnu/glib-2.0/include" unless="SNOW_NO_GTK" if="SNOW_USE_GTK3"/>
+            <compilerflag value="-I${SNOW_GTK_GLIB_PATH}/include" unless="SNOW_NO_GTK" if="SNOW_USE_GTK3"/>
                
                   <!-- gtk 2 and 3 -->
             <compilerflag value="-I/usr/include/libpng12" unless="SNOW_NO_GTK"/>
@@ -245,8 +251,8 @@
 
                <!-- gtk 2 only -->
             <compilerflag value="-I/usr/include/gtk-2.0" unless="SNOW_NO_GTK" if="SNOW_USE_GTK2"/> 
-            <compilerflag value="-I/usr/lib/x86_64-linux-gnu/gtk-2.0/include" unless="SNOW_NO_GTK" if="SNOW_USE_GTK2"/> 
-            <compilerflag value="-I/usr/lib/x86_64-linux-gnu/glib-2.0/include" unless="SNOW_NO_GTK" if="SNOW_USE_GTK2"/> 
+            <compilerflag value="-I${SNOW_GTK_PATH}/include" unless="SNOW_NO_GTK" if="SNOW_USE_GTK2"/> 
+            <compilerflag value="-I${SNOW_GTK_GLIB_PATH}/include" unless="SNOW_NO_GTK" if="SNOW_USE_GTK2"/> 
             <compilerflag value="-I/usr/include/harfbuzz" unless="SNOW_NO_GTK" if="SNOW_USE_GTK2"/>
 
          <file name="${SRC_DIR}/platform/linux/snow_linux.cpp"/>
