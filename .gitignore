@@ -8,8 +8,5 @@ obj/
 builds/
 bin/
 users/
-docs
-./docs
-./docs/
-docs/
-samples/_tests_builds_/0_empty_window/upx.exe
+ios.project
+*.xcuserstate
