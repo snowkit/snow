@@ -441,6 +441,8 @@ namespace snow {
         } //handle_input_event
 
 
+    //Gamepad external api
+
         void snow_gamepad_open( int id ) {
 
             SDL_GameController* _gamepad = SDL_GameControllerOpen( id );
@@ -463,6 +465,36 @@ namespace snow {
             } //_gamepad
 
         } //snow_gamepad_close
+
+
+    //Text input external api
+
+        void snow_text_start() {
+
+            SDL_StartTextInput();
+
+        } //snow_text_start
+
+        void snow_text_stop() {
+
+            SDL_StopTextInput();
+
+        } //snow_text_stop
+
+        void snow_text_rect( const int x, const int y, const int w, const int h ) {
+
+            SDL_Rect rect;
+
+                rect.x = x;
+                rect.y = y;
+                rect.w = w;
+                rect.h = h;
+
+            SDL_SetTextInputRect( &rect );
+
+        } //snow_text_rect
+
+
 
     //Helpers
 

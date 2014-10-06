@@ -84,6 +84,20 @@ class InputSystem extends InputSystemBinding {
     override public function on_event( _event : InputEvent ) {
     } //on_event
 
+
+    override public function text_input_start() {
+        // :unsupported: :todo:
+    } //text_input_start
+
+    override public function text_input_stop() {
+        // :unsupported: :todo:
+    } //text_input_stop
+
+    override public function text_input_rect(x:Int, y:Int, w:Int, h:Int) {
+        // :unsupported: :todo:
+    } //text_input_rect
+
+
     function on_mousedown( _mouse_event:js.html.MouseEvent ) {
 
         var _window : Window = lib.windowing.window_from_handle(cast _mouse_event.target);

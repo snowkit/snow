@@ -36,6 +36,14 @@ import snow.window.Window;
     public function destroy();
         /** Called when the input manager forwards an event to this system */
     public function on_event( _event : InputEvent );
+
+        /** Start a system text input state, this includes soft keyboard on mobile. on some platforms like web this does nothing (yet?) */
+    public function text_input_start();
+        /** End a system text input state, this includes soft keyboard on mobile. on some platforms like web this does nothing (yet?) */
+    public function text_input_stop();
+        /** In a system text input state, this determines the area that is accepting input. */
+    public function text_input_rect(x:Int, y:Int, w:Int, h:Int);
+
         /** Open a gamepad with this id */
     public function gamepad_add(id:Int);
         /** Close a gamepad with this id */
