@@ -465,6 +465,36 @@ extern double timestamp();
     } DEFINE_PRIM(snow_gamepad_close, 1)
 
 
+    //text input
+
+
+    value snow_input_text_start() {
+
+        snow::input::snow_text_start();
+
+        return alloc_null();
+
+    } DEFINE_PRIM(snow_input_text_start, 0)
+
+
+    value snow_input_text_stop() {
+
+        snow::input::snow_text_stop();
+
+        return alloc_null();
+
+    } DEFINE_PRIM(snow_input_text_stop, 0)
+
+
+    value snow_input_text_rect( value _x, value _y, value _w, value _h ) {
+
+        snow::input::snow_text_rect( val_int(_x), val_int(_y), val_int(_w), val_int(_h) );
+
+        return alloc_null();
+
+    } DEFINE_PRIM(snow_input_text_rect, 4)
+
+
 
 
 

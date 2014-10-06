@@ -21,8 +21,13 @@ namespace snow {
         struct InputEvent;
 
         void dispatch_event( const InputEvent &event );
+            //gamepads
         void snow_gamepad_open( const int id );
         void snow_gamepad_close( const int id );
+            //text input
+        void snow_text_start();
+        void snow_text_stop();
+        void snow_text_rect( const int x, const int y, const int w, const int h );
 
             //plausible input events
         enum InputEventType {

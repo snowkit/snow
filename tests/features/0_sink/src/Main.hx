@@ -193,9 +193,20 @@ class Main extends snow.AppFixedTimestep {
     var window2 : Window;
     var loope : Bool = false;
 
+    var showing_keyboard : Bool = false;
+
     override function onkeydown( keycode:Int, _,_,_,_,_ ) {
 
-        // log("key down : " + event);
+        log("key down : " + keycode);
+
+        trace(keycode == Key.enter);
+        trace(showing_keyboard);
+
+        if(keycode == Key.enter && showing_keyboard) {
+            trace("hiding keyboard");
+            app.input.platform.text_input_stop();
+            showing_keyboard = false;
+        }
 
             //console scan code should be universally next to 1
         if(keycode == Key.key_e) {
@@ -327,30 +338,41 @@ class Main extends snow.AppFixedTimestep {
     var noclamp : Bool = true;
 
     override public function ontextinput( text:String, start:Int, length:Int, type:TextEventType, timestamp:Float, window_id:Int ) {
-        // log('text event; text:$text / start: $start / length: $length / type:$type / timestamp:${timestamp} / window: ${window_id}');
+        log('text event; text:$text / start: $start / length: $length / type:$type / timestamp:${timestamp} / window: ${window_id}');
     } //ontextinput
 
     override function ontouchdown( x:Float, y:Float, touch_id:Int, timestamp:Float ) {
-        log('touch down; $x / $y / $touch_id / $timestamp');
+        // log('touch down; $x / $y / $touch_id / $timestamp');
     }
 
     override function ontouchup( x:Float, y:Float, touch_id:Int, timestamp:Float ) {
-        log('touch up; $x / $y / $touch_id / $timestamp');
+        // log('touch up; $x / $y / $touch_id / $timestamp');
         sound1.play();
 
-        if(touch_id > 1) {
-            app.io.url_open("http://snowkit.org/");
-        }
+        // if(touch_id > 1) {
+            // app.io.url_open("http://snowkit.org/");
+        // }
     }
 
     override function ontouchmove( x:Float, y:Float, dx:Float, dy:Float, touch_id:Int, timestamp:Float ) {
 
-        log('touch move; $x / $y / $dx / $dy / $touch_id / $timestamp ');
+        // log('touch move; $x / $y / $dx / $dy / $touch_id / $timestamp ');
 
             //touches are in NDC, so we convert to window size
         positionX = (app.window.width*x) - (size/2);
         positionY = (app.window.height*y) - (size/2);
         phys_posx = positionX;
+
+            //top 10% of the screen shows keyboard
+        if(y > 0.9) {
+            // if(!showing_keyboard){
+                trace("showing keyboard");
+                var tenth = Std.int(app.window.height*0.1);
+                app.input.platform.text_input_rect(0, app.window.height - tenth, app.window.width, tenth );
+                app.input.platform.text_input_start();
+                showing_keyboard = true;
+            // }
+        }
 
     } //ontouchmove
 
