@@ -45,7 +45,10 @@ namespace snow {
 
             NSString *str = [[NSString alloc] initWithUTF8String:url.c_str()];
             [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];
-            [str release];
+
+            #ifndef OBJC_ARC
+                [str release];
+            #endif
 
         } //url_open
 
