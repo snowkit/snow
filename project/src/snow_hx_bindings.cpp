@@ -1171,7 +1171,9 @@ extern double timestamp();
 
     #ifdef STATIC_LINK
         extern "C" int snow_opengl_sdl2_register_prims();
-        extern "C" int snow_audio_openal_register_prims();
+        #ifdef SNOW_USE_OPENAL
+            extern "C" int snow_audio_openal_register_prims();
+        #endif //SNOW_USE_OPENAL
     #endif //STATIC_LINK
 
     extern "C" int snow_register_prims() {
@@ -1180,7 +1182,9 @@ extern double timestamp();
 
             #ifdef STATIC_LINK
                 snow_opengl_sdl2_register_prims();
-                snow_audio_openal_register_prims();
+                #ifdef SNOW_USE_OPENAL
+                    snow_audio_openal_register_prims();
+                #endif //SNOW_USE_OPENAL
             #endif
 
         return 0;
