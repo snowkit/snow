@@ -268,7 +268,8 @@ import snow.Log._verboser;
 
         } //image_info_from_bytes
 
-        override public function audio_load_info( _path:String, ?_format:AudioFormatType, ?_load:Bool = true, ?_onload:?AudioInfo->Void ) : AudioInfo {
+            //format is AudioFormatType
+        override public function audio_load_info( _path:String, ?_format:Int, ?_load:Bool = true, ?_onload:?AudioInfo->Void ) : AudioInfo {
 
             var info : AudioInfo = {
                 format:_format,
