@@ -247,7 +247,7 @@ class Assets {
                 }
             }
 
-            var _type : AudioFormatType = AudioFormatType.unknown;
+            var _type : Int = AudioFormatType.unknown;
             switch(options.type) {
                 case 'wav': {
                     _type = AudioFormatType.wav;

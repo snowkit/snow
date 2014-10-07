@@ -157,12 +157,20 @@ typedef ImageInfo = {
 } //ImageInfo
 
 /** The type of audio format */
-enum AudioFormatType {
+class AudioFormatType {
 
-    unknown;
-    ogg;
-    wav;
-    pcm;
+    public static inline var unknown : Int = 0;
+    public static inline var ogg : Int = 1;
+    public static inline var wav : Int = 2;
+    public static inline var pcm : Int = 3;
+
+    static var names = [
+        'unknown', 'ogg', 'wav', 'pcm'
+    ];
+
+    public static function to_string( _type:Int ) {
+        return names[ _type ];
+    }
 
 } //AudioFormatType
 
@@ -203,8 +211,8 @@ typedef AudioInfo = {
 
         /** file source id */
     var id : String;
-        /** format */
-    var format : AudioFormatType;
+        /** format. Use AudioFormatType */
+    var format : Int;
         /** the platform audio data info */
     var data : AudioDataInfo;
         /** the platform audio handle for later manipulation */

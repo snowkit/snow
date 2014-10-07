@@ -94,8 +94,8 @@ import snow.Log._verboser;
 
 //audio
 
-
-    override public function audio_load_info( _path:String, ?_format:AudioFormatType, ?_load:Bool = true, ?_onload:?AudioInfo->Void ) : AudioInfo {
+        //format is AudioFormatType
+    override public function audio_load_info( _path:String, ?_format:Int, ?_load:Bool = true, ?_onload:?AudioInfo->Void ) : AudioInfo {
 
         var info : AudioInfo = null;
 
@@ -120,11 +120,6 @@ import snow.Log._verboser;
             if(info == null) {
                 log(_path + " audio info returned null");
                 return null;
-            }
-
-                //transform the format
-            if(Std.is(info.format, Int)) {
-                info.format = audio_format_from_int(cast info.format);
             }
 
                 //with audio the bytes data could be null too, this is also an invalid asset
@@ -217,19 +212,6 @@ import snow.Log._verboser;
         return snow_assets_audio_seek_bytes_pcm( _info, _to );
     } //audio_seek_source_pcm
 
-
-//internal
-
-    function audio_format_from_int( _int:Int ) : AudioFormatType {
-
-        switch(_int) {
-            case 1: return AudioFormatType.ogg;
-            case 2: return AudioFormatType.wav;
-            case 3: return AudioFormatType.pcm;
-            default: return AudioFormatType.unknown;
-        }
-
-    } //audio_format_from_int
 
 
 //Native bindings
