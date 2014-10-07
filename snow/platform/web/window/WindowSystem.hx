@@ -113,7 +113,7 @@ import snow.window.WindowSystem;
                     lib.dispatch_system_event({
                         type : SystemEventType.window,
                         window : {
-                            type : WindowEventType.window_moved,
+                            type : WindowEventType.moved,
                             timestamp : lib.time,
                             window_id : _window.id,
                             event : { x:_rect.left, y:_rect.top }
@@ -124,7 +124,7 @@ import snow.window.WindowSystem;
                     lib.dispatch_system_event({
                         type : SystemEventType.window,
                         window : {
-                            type : WindowEventType.window_size_changed,
+                            type : WindowEventType.size_changed,
                             timestamp : lib.time,
                             window_id : _window.id,
                             event : { x:_rect.width, y:_rect.height }
@@ -472,7 +472,7 @@ import snow.window.WindowSystem;
             lib.dispatch_system_event({
                 type : SystemEventType.window,
                 window : {
-                    type : WindowEventType.window_leave,
+                    type : WindowEventType.leave,
                     timestamp : _mouse_event.timeStamp,
                     window_id : _window.id,
                     event : _mouse_event
@@ -489,7 +489,7 @@ import snow.window.WindowSystem;
             lib.dispatch_system_event({
                 type : SystemEventType.window,
                 window : {
-                    type : WindowEventType.window_enter,
+                    type : WindowEventType.enter,
                     timestamp : _mouse_event.timeStamp,
                     window_id : _window.id,
                     event : _mouse_event
