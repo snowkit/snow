@@ -196,7 +196,7 @@ import snow.input.Input;
 
         //Device events
 
-                var _type : GamepadDeviceEventType = null;
+                var _type : GamepadDeviceEventType = GamepadDeviceEventType.unknown;
 
                 if(_gamepad_event.type == ControllerEventType.added) {
 
@@ -273,105 +273,73 @@ import snow.input.Input;
 } //InputSystem
 
 
-@:noCompletion class KeyEventType {
+@:enum abstract KeyEventType(Int) {
 
         /** A key down event */
-    public static inline var down : Int        = 768;
+    var down        = 768;
         /** A key up event */
-    public static inline var up : Int          = 769;
+    var up          = 769;
         /** A text input text edit event */
-    public static inline var textedit : Int    = 770;
+    var textedit    = 770;
         /** A text input typing event */
-    public static inline var textinput : Int   = 771;
-
-    static var names = [
-        'down', 'up', 'textedit', 'textinput'
-    ];
-
-    public static function to_string( _type:Int ) {
-        return names[ _type ];
-    }
+    var textinput   = 771;
 
 } //KeyEventTypes
 
-@:noCompletion class ControllerEventType {
+@:enum abstract ControllerEventType(Int) {
 
         /** a gamepad axis movement event */
-    public static inline var axis : Int            = 1616;
+    var axis            = 1616;
         /** a gamepad button pressed event */
-    public static inline var button_down : Int     = 1617;
+    var button_down     = 1617;
         /** a gamepad button released event */
-    public static inline var button_up : Int       = 1618;
+    var button_up       = 1618;
         /** a gamepad connected event */
-    public static inline var added : Int           = 1619;
+    var added           = 1619;
         /** a gamepad disconnected event */
-    public static inline var removed : Int         = 1620;
+    var removed         = 1620;
         /** a gamepad remapped event */
-    public static inline var remapped : Int        = 1621;
-
-    static var names = [
-        'axis', 'button_down', 'button_up', 'added', 'removed', 'remapped'
-    ];
-
-    public static function to_string( _type:Int ) {
-        return names[ _type ];
-    }
+    var remapped        = 1621;
 
 } //ControllerEventType
 
-@:noCompletion class TouchEventType {
+@:enum abstract TouchEventType(Int) {
 
         /** A touch has begun */
-    public static inline var down      : Int = 1792;
+    var down    = 1792;
         /** A touch has ended */
-    public static inline var up        : Int = 1793;
+    var up      = 1793;
         /** A touch is moving */
-    public static inline var move      : Int = 1794;
+    var move    = 1794;
 
-    static var names = [
-        'down', 'up', 'move'
-    ];
+} //TouchEventType
 
-    public static function to_string( _type:Int ) {
-        return names[ _type ];
-    }
-
-} //TouchEventTypes
-
-@:noCompletion class MouseEventType {
+@:enum abstract MouseEventType(Int) {
 
         /** A mouse moved event */
-    public static inline var move  : Int     = 1024;
+    var move    = 1024;
         /** A mouse button pressed event */
-    public static inline var down  : Int     = 1025;
+    var down    = 1025;
         /** A mouse button released event */
-    public static inline var up    : Int     = 1026;
+    var up      = 1026;
         /** A mouse wheel or scroll event */
-    public static inline var wheel : Int     = 1027;
-
-    static var names = [
-        'move', 'down', 'up', 'wheel'
-    ];
-
-    public static function to_string( _type:Int ) {
-        return names[ _type ];
-    }
+    var wheel   = 1027;
 
 } //MouseEventTypes
 
-@:noCompletion class ModValue {
+@:enum abstract ModValue(Int) {
 
-    public static var NONE         = 0x0000;
-    public static var LSHIFT       = 0x0001;
-    public static var RSHIFT       = 0x0002;
-    public static var LCTRL        = 0x0040;
-    public static var RCTRL        = 0x0080;
-    public static var LALT         = 0x0100;
-    public static var RALT         = 0x0200;
-    public static var LMETA        = 0x0400;
-    public static var RMETA        = 0x0800;
-    public static var NUM          = 0x1000;
-    public static var CAPS         = 0x2000;
-    public static var MODE         = 0x4000;
+    var NONE    = 0x0000;
+    var LSHIFT  = 0x0001;
+    var RSHIFT  = 0x0002;
+    var LCTRL   = 0x0040;
+    var RCTRL   = 0x0080;
+    var LALT    = 0x0100;
+    var RALT    = 0x0200;
+    var LMETA   = 0x0400;
+    var RMETA   = 0x0800;
+    var NUM     = 0x1000;
+    var CAPS    = 0x2000;
+    var MODE    = 0x4000;
 
 } //ModValue

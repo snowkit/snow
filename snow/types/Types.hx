@@ -28,12 +28,12 @@ typedef AssetInfo = {
 } //AssetInfo
 
 /** A type to identify assets when stored as an Asset */
-enum AssetType {
+@:enum abstract AssetType(Int) {
 
-    bytes;
-    text;
-    image;
-    audio;
+    var bytes   = 0;
+    var text    = 1;
+    var image   = 2;
+    var audio   = 3;
 
 } //AssetType
 
@@ -157,20 +157,12 @@ typedef ImageInfo = {
 } //ImageInfo
 
 /** The type of audio format */
-class AudioFormatType {
+@:enum abstract AudioFormatType(Int) {
 
-    public static inline var unknown : Int = 0;
-    public static inline var ogg : Int = 1;
-    public static inline var wav : Int = 2;
-    public static inline var pcm : Int = 3;
-
-    static var names = [
-        'unknown', 'ogg', 'wav', 'pcm'
-    ];
-
-    public static function to_string( _type:Int ) {
-        return names[ _type ];
-    }
+    var unknown  = 0;
+    var ogg      = 1;
+    var wav      = 2;
+    var pcm      = 3;
 
 } //AudioFormatType
 
@@ -273,7 +265,7 @@ typedef WindowConfig = {
 typedef SystemEvent = {
 
         /** The type of system event this event is. SystemEventType */
-    @:optional var type : Int;
+    @:optional var type : SystemEventType;
         /** If type is `window` this will be populated, otherwise null */
     @:optional var window : WindowEvent;
         /** If type is `input` this will be populated, otherwise null */
@@ -287,7 +279,7 @@ typedef SystemEvent = {
 typedef WindowEvent = {
 
         /** The type of window event this was. Use WindowEventType */
-    @:optional var type : Int;
+    @:optional var type : WindowEventType;
         /** The time in seconds that this event occured, useful for deltas */
     @:optional var timestamp : Float;
         /** The window id from which this event originated */
@@ -302,7 +294,7 @@ typedef WindowEvent = {
 typedef FileEvent = {
 
         /** The type of file watch event, modify/create/delete. Use FileEventType */
-    @:optional var type : Int;
+    @:optional var type : FileEventType;
         /** The time in seconds when this event was fired */
     @:optional var timestamp : Float;
         /** The absolute path that was notifying */
@@ -314,7 +306,7 @@ typedef FileEvent = {
 typedef InputEvent = {
 
         /** The type of input event this was. Use InputEventType */
-    @:optional var type : Int;
+    @:optional var type : InputEventType;
         /** The time in seconds that this event occured, useful for deltas */
     @:optional var timestamp : Float;
         /** The window id from which this event originated */
@@ -350,24 +342,28 @@ typedef DisplayMode = {
 
 
 /** A text specific event event type */
-enum TextEventType {
+@:enum abstract TextEventType(Int) {
 
+/** An unknown text event */
+    var unknown    = 0;
 /** An edit text typing event */
-    edit;
+    var edit    = 1;
 /** An input text typing event */
-    input;
+    var input   = 2;
 
 } //TextEventType
 
 /** A gamepad device event type */
-enum GamepadDeviceEventType {
+@:enum abstract GamepadDeviceEventType(Int) {
 
+/** A unknown device event */
+    var unknown             = 0;
 /** A device added event */
-    device_added;
+    var device_added        = 1;
 /** A device removed event */
-    device_removed;
+    var device_removed      = 2;
 /** A device was remapped */
-    device_remapped;
+    var device_remapped     = 3;
 
 } //GamepadDeviceEventType
 
@@ -413,165 +409,131 @@ typedef ModState = {
 
 //Conversion helpers for native <-> snow events
 
-@:noCompletion class SystemEventType {
+@:enum abstract SystemEventType(Int) {
 
         //snow core events
         //from native :
         //se_unknown, se_init, se_ready, se_update, se_shutdown, se_window, se_input
 
         /** An unknown system event */
-    public static inline var unknown                    = 0;
+    var unknown                    = 0;
         /** An internal system init event */
-    public static inline var init                       = 1;
+    var init                       = 1;
         /** An internal system ready event */
-    public static inline var ready                      = 2;
+    var ready                      = 2;
         /** An internal system update event */
-    public static inline var update                     = 3;
+    var update                     = 3;
         /** An system shutdown event */
-    public static inline var shutdown                   = 4;
+    var shutdown                   = 4;
         /** An system window event */
-    public static inline var window                     = 5;
+    var window                     = 5;
         /** An system input event */
-    public static inline var input                      = 6;
+    var input                      = 6;
 
         //snow application events
 
         /** An system quit event. Initiated by user, can be cancelled/ignored */
-    public static inline var quit                       = 7;
+    var quit                       = 7;
         /** An system terminating event, called by the OS (mobile specific) */
-    public static inline var app_terminating            = 8;
+    var app_terminating            = 8;
         /** An system low memory event, clear memory if you can. Called by the OS (mobile specific) */
-    public static inline var app_lowmemory              = 9;
+    var app_lowmemory              = 9;
         /** An event for just before the app enters the background, called by the OS (mobile specific) */
-    public static inline var app_willenterbackground    = 10;
+    var app_willenterbackground    = 10;
         /** An event for when the app enters the background, called by the OS (mobile specific) */
-    public static inline var app_didenterbackground     = 11;
+    var app_didenterbackground     = 11;
         /** An event for just before the app enters the foreground, called by the OS (mobile specific) */
-    public static inline var app_willenterforeground    = 12;
+    var app_willenterforeground    = 12;
         /** An event for when the app enters the foreground, called by the OS (mobile specific) */
-    public static inline var app_didenterforeground     = 13;
+    var app_didenterforeground     = 13;
         /** An event for when the a file watch notification occurs */
-    public static inline var file                       = 14;
+    var file                       = 14;
 
-    static var names = [
-        'unknown', 'init', 'ready', 'update', 'shutdown',
-        'window', 'input', 'quit', 'app_terminating', 'app_lowmemory',
-        'app_willenterbackground', 'app_didenterbackground',
-        'app_willenterforeground', 'app_didenterforeground', 'file'
-    ];
-
-    public static function to_string( _type:Int ) {
-        return names[_type];
-    }
 
 } //SystemEvents
 
-@:noCompletion class WindowEventType {
+@:enum abstract WindowEventType(Int) {
 
         //window events,
         // from native :
         // we_unknown, we_created, we_shown, we_hidden, we_exposed, we_moved, we_resized, we_size_changed, we_minimized, we_maximized, we_restored, we_enter, we_leave, we_focus_gained, we_focus_lost, we_close, we_destroy
 
         /** An unknown window event */
-    public static inline var unknown          = 0;
+    var unknown          = 0;
         /** A window is created */
-    public static inline var created          = 1;
+    var created          = 1;
         /** A window is shown */
-    public static inline var shown            = 2;
+    var shown            = 2;
         /** A window is hidden */
-    public static inline var hidden           = 3;
+    var hidden           = 3;
         /** A window is exposed */
-    public static inline var exposed          = 4;
+    var exposed          = 4;
         /** A window is moved */
-    public static inline var moved            = 5;
+    var moved            = 5;
         /** A window is resized, by the user or code. */
-    public static inline var resized          = 6;
+    var resized          = 6;
         /** A window is resized, by the OS or internals. */
-    public static inline var size_changed     = 7;
+    var size_changed     = 7;
         /** A window is minimized */
-    public static inline var minimized        = 8;
+    var minimized        = 8;
         /** A window is maximized */
-    public static inline var maximized        = 9;
+    var maximized        = 9;
         /** A window is restored */
-    public static inline var restored         = 10;
+    var restored         = 10;
         /** A window is entered by a mouse */
-    public static inline var enter            = 11;
+    var enter            = 11;
         /** A window is left by a mouse */
-    public static inline var leave            = 12;
+    var leave            = 12;
         /** A window has gained focus */
-    public static inline var focus_gained     = 13;
+    var focus_gained     = 13;
         /** A window has lost focus */
-    public static inline var focus_lost       = 14;
+    var focus_lost       = 14;
         /** A window is being closed/hidden */
-    public static inline var close            = 15;
+    var close            = 15;
         /** A window is being destroyed */
-    public static inline var destroy          = 16;
+    var destroy          = 16;
 
-    static var names = [
-        'unknown', 'created', 'shown', 'hidden', 'exposed',
-        'moved', 'resized', 'size_changed', 'minimized',
-        'maximized', 'restored', 'enter', 'leave',
-        'focus_gained', 'focus_lost', 'close', 'destroy'
-    ];
 
-    public static function to_string( _type:Int ) {
-        return names[_type];
-    }
+} //WindowEvent
 
-} //WindowEvents
-
-@:noCompletion class InputEventType {
+@:enum abstract InputEventType(Int) {
 
         //Input events
         //from native :
         //ie_unknown, ie_key, ie_mouse, ie_touch, ie_joystick, ie_controller
 
         /** An unknown input event */
-    public static inline var unknown        = 0;
+    var unknown        = 0;
         /** An keyboard input event */
-    public static inline var key            = 1;
+    var key            = 1;
         /** An mouse input event */
-    public static inline var mouse          = 2;
+    var mouse          = 2;
         /** An touch input event */
-    public static inline var touch          = 3;
+    var touch          = 3;
         /** An joystick input event. On mobile, accellerometer is a joystick (for now) */
-    public static inline var joystick       = 4;
+    var joystick       = 4;
         /** An controller input event. Use these instead of joystick on desktop. */
-    public static inline var controller     = 5;
+    var controller     = 5;
 
-    static var names = [
-        'unknown', 'key', 'mouse', 'touch', 'joystick', 'controller'
-    ];
 
-    public static function to_string( _type:Int ) {
-        return names[_type];
-    }
+} //InputEvent
 
-} //InputEvents
-
-@:noCompletion class FileEventType {
+@:enum abstract FileEventType(Int) {
 
         //File watch events
         //from native :
         //fe_unknown, fe_modify, fe_remove, fe_create, fe_drop
 
         /** An unknown watch event */
-    public static inline var unknown    = 0;
+    var unknown    = 0;
         /** An event for when the a file is modified */
-    public static inline var modify     = 1;
+    var modify     = 1;
         /** An event for when the a file is removed */
-    public static inline var remove     = 2;
+    var remove     = 2;
         /** An event for when the a file is created */
-    public static inline var create     = 3;
+    var create     = 3;
         /** An event for when the a file is dropped on a window */
-    public static inline var drop       = 4;
+    var drop       = 4;
 
-    static var names = [
-        'unknown', 'modify', 'remove', 'create', 'drop'
-    ];
 
-    public static function to_string( _type:Int ) {
-        return names[_type];
-    }
-
-} //FileEvents
+} //FileEvent

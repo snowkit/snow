@@ -13,14 +13,14 @@ class AssetAudio extends Asset {
 
         /** The `AudioInfo` this asset contains */
     public var audio : AudioInfo;
-        /** The audio format of this asset. see AudioFormatType */
-    public var format : Int;
+        /** The audio format of this asset. */
+    public var format : AudioFormatType;
         /** Whether or not this asset is to be loaded in full (or alternatively, streamed). Used from `load` only. */
     public var load_full : Bool = true;
 
 
-        /** Created from `app.assets.audio`. see AudioFormatType also. */
-    public function new( _assets:Assets, _info:AssetInfo, _format:Int, ?_load:Bool=true ) {
+        /** Created from `app.assets.audio`.  */
+    public function new( _assets:Assets, _info:AssetInfo, _format:AudioFormatType, ?_load:Bool=true ) {
 
         super( _assets, _info );
         type = AssetType.audio;

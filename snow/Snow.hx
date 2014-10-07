@@ -287,7 +287,7 @@ class Snow {
             _event.type != SystemEventType.input
 
         ) {
-            _debug( "system event : " + _event + ' / ' + SystemEventType.to_string(_event.type) );
+            _debug( "system event : " + _event + ' / ' + _event.type );
         }
 
         if( _event.type != SystemEventType.update ) {

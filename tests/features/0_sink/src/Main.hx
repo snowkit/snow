@@ -76,7 +76,7 @@ class Main extends snow.AppFixedTimestep {
     override function onevent( _event:SystemEvent ) {
 
         if(_event.type == SystemEventType.file) {
-            var type = FileEventType.to_string(_event.file.type);
+            var type = _event.file.type;
             log('File event type:${type}, path:${_event.file.path} ts:${_event.file.timestamp}');
         }
 
@@ -198,9 +198,6 @@ class Main extends snow.AppFixedTimestep {
     override function onkeydown( keycode:Int, _,_,_,_,_ ) {
 
         log("key down : " + keycode);
-
-        trace(keycode == Key.enter);
-        trace(showing_keyboard);
 
         if(keycode == Key.enter && showing_keyboard) {
             trace("hiding keyboard");

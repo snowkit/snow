@@ -94,8 +94,7 @@ import snow.Log._verboser;
 
 //audio
 
-        //format is AudioFormatType
-    override public function audio_load_info( _path:String, ?_format:Int, ?_load:Bool = true, ?_onload:?AudioInfo->Void ) : AudioInfo {
+    override public function audio_load_info( _path:String, ?_format:AudioFormatType, ?_load:Bool = true, ?_onload:?AudioInfo->Void ) : AudioInfo {
 
         var info : AudioInfo = null;
 
