@@ -157,7 +157,7 @@ typedef ImageInfo = {
 } //ImageInfo
 
 /** The type of audio format */
-@:enum abstract AudioFormatType(Int) {
+@:enum abstract AudioFormatType(Int) from Int to Int {
 
     var unknown  = 0;
     var ogg      = 1;
