@@ -7,7 +7,7 @@
 
 ---
 <script src="{{{rel_path}}}js/release.version.js"> </script>
-<div class="version">current version <a href="#" id="version_notes_link" target="_blank">notes</a> <code> <a id="version_tag" target="_blank" href="#"> latest </a></code> </div>
+<div class="version">current version <a href="https://github.com/underscorediscovery/snow" id="version_notes_link" target="_blank">notes</a> <code> <a id="version_tag" target="_blank" href="https://github.com/underscorediscovery/snow"> master </a></code> </div>
 
 <br/>
 ##About
@@ -78,7 +78,7 @@ Join us in developing and testing the framework and tools, below.
 
 ##Reasons
 
-For a short intro to why snow was created, [read this blog post here](http://notes.underscorediscovery.com/snow).
+For a short intro to why snowkit was created, [read this blog post here](http://notes.underscorediscovery.com/why-snowkit).
 
 
 ##Editor support
@@ -90,9 +90,9 @@ Where possible, full code completion and building from the editor is supplied.
 
 [FlashDevelop](https://underscorediscovery.github.io/flow/guide/flashdevelop.html) (windows only)<br/><br/>
 
-template is in `setup/`, but here is a [Download link](https://github.com/underscorediscovery/snow/blob/master/setup/snow_FlashDevelopTemplate.fdz?raw=true)   
+template is at [snowkit-fd](https://github.com/Chman/Snowkit-FD), and here is a [Download link](https://github.com/Chman/Snowkit-FD/blob/master/SnowkitTemplate.fdz?raw=true)   
 
-[![](images/plugins/5.png)](https://underscorediscovery.github.io/flow/guide/sublimetext.html)
+[![](images/plugins/5.png)](https://underscorediscovery.github.io/flow/guide/flashdevelop.html)
 
 ---
 
