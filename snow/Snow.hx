@@ -280,9 +280,6 @@ class Snow {
 
     function on_event( _event:SystemEvent ) {
 
-        if(Std.is(_event.type, Int)) {
-            _event.type = SystemEvents.typed( cast _event.type );
-        }
 
         if( _event.type != SystemEventType.update &&
             _event.type != SystemEventType.unknown &&
@@ -290,7 +287,7 @@ class Snow {
             _event.type != SystemEventType.input
 
         ) {
-            _debug( "system event : " + _event );
+            _debug( "system event : " + _event + ' / ' + SystemEventType.to_string(_event.type) );
         }
 
         if( _event.type != SystemEventType.update ) {

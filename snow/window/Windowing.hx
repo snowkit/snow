@@ -169,11 +169,8 @@ class Windowing {
 
             var _window_event = _event.window;
 
-            if(Std.is(_window_event.type, Int)) {
-                _window_event.type = WindowEvents.typed( cast _window_event.type );
-            }
-
             var _window = window_list.get( _window_event.window_id );
+
             if(_window != null) {
                 _window.on_event( _window_event );
             }

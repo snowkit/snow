@@ -76,7 +76,7 @@ class Main extends snow.AppFixedTimestep {
     override function onevent( _event:SystemEvent ) {
 
         if(_event.type == SystemEventType.file) {
-            var type = FileEvents.typed(cast _event.file.type);
+            var type = FileEventType.to_string(_event.file.type);
             log('File event type:${type}, path:${_event.file.path} ts:${_event.file.timestamp}');
         }
 
