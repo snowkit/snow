@@ -71,17 +71,9 @@ import snow.input.Input;
 
         super.on_event( _event );
 
-        if(Std.is(_event.type, Int)) {
-            _event.type = InputEvents.typed( cast _event.type );
-        }
-
     //Key events
 
-        if(_event.type == key) {
-
-            if(Std.is(_event.event.type, Int)) {
-                _event.event.type = KeyEventTypes.typed(_event.event.type);
-            }
+        if(_event.type == InputEventType.key) {
 
             var _key_event = _event.event;
 
@@ -113,7 +105,7 @@ import snow.input.Input;
                     _event.event.text,
                     (_event.event.start == null) ? 0 : _event.event.start,
                     (_event.event.length == null) ? 0 : _event.event.length,
-                    (_event.event.type == textedit) ? TextEventType.edit : TextEventType.input,
+                    (_event.event.type == KeyEventType.textedit) ? TextEventType.edit : TextEventType.input,
                     _event.timestamp,
                     _event.window_id
                 );
@@ -122,11 +114,7 @@ import snow.input.Input;
 
     //Touch events
 
-        } else if(_event.type == touch) {
-
-            if(Std.is(_event.event.type, Int)) {
-                _event.event.type = TouchEventTypes.typed(_event.event.type);
-            }
+        } else if(_event.type == InputEventType.touch) {
 
             var _state = _event.event.type;
 
@@ -134,7 +122,7 @@ import snow.input.Input;
             // var _pressure = _event.event.pressure;
             // var _device_id = _event.event.touch_id;
 
-            if(_state == TouchState.down) {
+            if(_state == TouchEventType.down) {
 
                 manager.dispatch_touch_down_event(
                     _event.event.x,
@@ -143,7 +131,7 @@ import snow.input.Input;
                     _event.timestamp
                 );
 
-            } else if(_state == TouchState.up) {
+            } else if(_state == TouchEventType.up) {
 
                 manager.dispatch_touch_up_event(
                     _event.event.x,
@@ -152,7 +140,7 @@ import snow.input.Input;
                     _event.timestamp
                 );
 
-            } else if(_state == TouchState.move) {
+            } else if(_state == TouchEventType.move) {
 
                 manager.dispatch_touch_move_event(
                     _event.event.x,
@@ -167,11 +155,7 @@ import snow.input.Input;
 
     //Gamepad events
 
-        } else if(_event.type == controller) {
-
-            if(Std.is(_event.event.type, Int)) {
-                _event.event.type = GamepadEventTypes.typed(_event.event.type);
-            }
+        } else if(_event.type == InputEventType.controller) {
 
             var _gamepad_event = _event.event;
 
@@ -238,11 +222,7 @@ import snow.input.Input;
 
     //Mouse events
 
-        } else if(_event.type == mouse) {
-
-            if(Std.is(_event.event.type, Int)) {
-                _event.event.type = MouseEventTypes.typed(_event.event.type);
-            }
+        } else if(_event.type == InputEventType.mouse) {
 
             if(_event.event.type == MouseEventType.move) {
 
@@ -293,120 +273,89 @@ import snow.input.Input;
 } //InputSystem
 
 
-@:noCompletion enum KeyEventType {
-    unknown;
-    down;
-    up;
-    textedit;
-    textinput;
-}
+@:noCompletion class KeyEventType {
 
-@:noCompletion enum MouseEventType {
-    unknown;
-    move;
-    down;
-    up;
-    wheel;
-}
+        /** A key down event */
+    public static inline var down : Int        = 768;
+        /** A key up event */
+    public static inline var up : Int          = 769;
+        /** A text input text edit event */
+    public static inline var textedit : Int    = 770;
+        /** A text input typing event */
+    public static inline var textinput : Int   = 771;
 
-@:noCompletion enum ControllerEventType {
-    unknown;
-    button_up;
-    button_down;
-    axis;
-    added;
-    removed;
-    remapped;
-}
+    static var names = [
+        'down', 'up', 'textedit', 'textinput'
+    ];
 
-@:noCompletion enum TouchState {
-
-    unknown;
-    down;
-    up;
-    move;
-
-} //TouchState
-
-@:noCompletion class KeyEventTypes {
-
-    static var ke_down : Int        = 768;
-    static var ke_up : Int          = 769;
-    static var ke_textedit : Int    = 770;
-    static var ke_textinput : Int   = 771;
-
-    public static function typed(ke_type:Int) : KeyEventType {
-
-        if(ke_type == ke_down)      return KeyEventType.down;
-        if(ke_type == ke_up)        return KeyEventType.up;
-        if(ke_type == ke_textedit)  return KeyEventType.textedit;
-        if(ke_type == ke_textinput) return KeyEventType.textinput;
-
-        return KeyEventType.unknown;
-
-    } //typed
+    public static function to_string( _type:Int ) {
+        return names[ _type ];
+    }
 
 } //KeyEventTypes
 
-@:noCompletion class GamepadEventTypes {
+@:noCompletion class ControllerEventType {
 
-    static var ge_axis : Int            = 1616;
-    static var ge_button_down : Int     = 1617;
-    static var ge_button_up : Int       = 1618;
-    static var ge_added : Int           = 1619;
-    static var ge_removed : Int         = 1620;
-    static var ge_remapped : Int        = 1621;
+        /** a gamepad axis movement event */
+    public static inline var axis : Int            = 1616;
+        /** a gamepad button pressed event */
+    public static inline var button_down : Int     = 1617;
+        /** a gamepad button released event */
+    public static inline var button_up : Int       = 1618;
+        /** a gamepad connected event */
+    public static inline var added : Int           = 1619;
+        /** a gamepad disconnected event */
+    public static inline var removed : Int         = 1620;
+        /** a gamepad remapped event */
+    public static inline var remapped : Int        = 1621;
 
-    public static function typed(ge_type:Int) : ControllerEventType {
+    static var names = [
+        'axis', 'button_down', 'button_up', 'added', 'removed', 'remapped'
+    ];
 
-        if(ge_type == ge_axis)          return ControllerEventType.axis;
-        if(ge_type == ge_button_down)   return ControllerEventType.button_down;
-        if(ge_type == ge_button_up)     return ControllerEventType.button_up;
-        if(ge_type == ge_added)         return ControllerEventType.added;
-        if(ge_type == ge_removed)       return ControllerEventType.removed;
-        if(ge_type == ge_remapped)      return ControllerEventType.remapped;
+    public static function to_string( _type:Int ) {
+        return names[ _type ];
+    }
 
-        return ControllerEventType.unknown;
+} //ControllerEventType
 
-    } //typed
+@:noCompletion class TouchEventType {
 
-} //GamepadEventTypes
+        /** A touch has begun */
+    public static inline var down      : Int = 1792;
+        /** A touch has ended */
+    public static inline var up        : Int = 1793;
+        /** A touch is moving */
+    public static inline var move      : Int = 1794;
 
-@:noCompletion class TouchEventTypes {
+    static var names = [
+        'down', 'up', 'move'
+    ];
 
-    static var te_down      : Int = 1792;
-    static var te_up        : Int = 1793;
-    static var te_move      : Int = 1794;
-
-    public static function typed(te_type:Int) : TouchState {
-
-        if(te_type == te_down)      return TouchState.down;
-        if(te_type == te_up)        return TouchState.up;
-        if(te_type == te_move)      return TouchState.move;
-
-        return TouchState.unknown;
-
-    } //typed
+    public static function to_string( _type:Int ) {
+        return names[ _type ];
+    }
 
 } //TouchEventTypes
 
-@:noCompletion class MouseEventTypes {
+@:noCompletion class MouseEventType {
 
-    static var me_move  : Int     = 1024;
-    static var me_down  : Int     = 1025;
-    static var me_up    : Int     = 1026;
-    static var me_wheel : Int     = 1027;
+        /** A mouse moved event */
+    public static inline var move  : Int     = 1024;
+        /** A mouse button pressed event */
+    public static inline var down  : Int     = 1025;
+        /** A mouse button released event */
+    public static inline var up    : Int     = 1026;
+        /** A mouse wheel or scroll event */
+    public static inline var wheel : Int     = 1027;
 
-    public static function typed(me_type:Int) : MouseEventType {
+    static var names = [
+        'move', 'down', 'up', 'wheel'
+    ];
 
-        if(me_type == me_move)      return MouseEventType.move;
-        if(me_type == me_down)      return MouseEventType.down;
-        if(me_type == me_up)        return MouseEventType.up;
-        if(me_type == me_wheel)     return MouseEventType.wheel;
-
-        return MouseEventType.unknown;
-
-    } //typed
+    public static function to_string( _type:Int ) {
+        return names[ _type ];
+    }
 
 } //MouseEventTypes
 

@@ -117,7 +117,7 @@ class Window {
         #end
 
         on_event({
-            type:WindowEventType.window_created,
+            type:WindowEventType.created,
             window_id : _id,
             timestamp : manager.lib.time,
             event : {}
@@ -134,7 +134,7 @@ class Window {
 
         switch(_event.type) {
 
-            case window_moved : {
+            case WindowEventType.moved : {
 
                     internal_position = true;
                 set_position(_event.event.x, _event.event.y);
@@ -142,7 +142,7 @@ class Window {
 
             } //moved
 
-            case window_resized : {
+            case WindowEventType.resized : {
 
                     internal_resize = true;
                 set_size(_event.event.x, _event.event.y);
@@ -150,7 +150,7 @@ class Window {
 
             } //resized
 
-            case window_size_changed : {
+            case WindowEventType.size_changed : {
 
                     internal_resize = true;
                 set_size(_event.event.x, _event.event.y);
@@ -158,13 +158,13 @@ class Window {
 
             } //size_changed
 
-            case window_minimized : {
+            case WindowEventType.minimized : {
 
                 minimized = true;
 
             } //minimized
 
-            case window_restored : {
+            case WindowEventType.restored : {
 
                 minimized = false;
 
