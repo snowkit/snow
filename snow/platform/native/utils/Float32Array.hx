@@ -106,7 +106,31 @@ class Float32Array extends ArrayBufferView implements ArrayAccess<Float> {
 
     } //subarray
 
-    @:noCompletion @:keep inline public function __get( index:Int ):Float { return getFloat32(index << 2); }
-    @:noCompletion @:keep inline public function __set( index:Int, value:Float ) { setFloat32(index << 2, value); }
+    @:noCompletion public inline function __get_d( index:Int ) : Float {
+        #if cpp
+            untyped return __global__.__hxcpp_memory_get_float(bytes, (index << 2) + byteOffset);
+        #else
+            return getFloat32(index << 2);
+        #end
+    }
+
+    @:noCompletion public inline function __set_d( index:Int, value:Float ) {
+        #if cpp
+            untyped __global__.__hxcpp_memory_set_float(bytes, (index << 2) + byteOffset, value);
+        #else
+            setFloat32(index << 2, value);
+        #end
+    }
+
+        //ArrayAccess<Float> implementation
+        //trying to shortcut the direct call to setFloat32 for performance
+
+    @:noCompletion @:keep inline public function __get( index:Int ):Float { 
+        return getFloat32(index << 2);
+    }
+
+    @:noCompletion @:keep inline public function __set( index:Int, value:Float ) { 
+        setFloat32(index << 2, value);
+    }
 
 } //Float32Array
