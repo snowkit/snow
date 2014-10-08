@@ -34,7 +34,7 @@ class ByteArray extends Bytes implements ArrayAccess<Int> implements IDataInput 
         private var alloced:Int;
     #end
 
-    public function new(inSize = 0) {
+    public inline function new(inSize = 0) {
 
         bigEndian = true;
         position = 0;
@@ -85,13 +85,13 @@ class ByteArray extends Bytes implements ArrayAccess<Int> implements IDataInput 
 
     } //__set array access arr[n] =
 
-    public function asString() : String {
+    public inline function asString() : String {
 
         return readUTFBytes(length);
 
     } //asString
 
-    public function checkData(inLength:Int) : Void {
+    public inline function checkData(inLength:Int) : Void {
 
         if (inLength + position > length) {
             ThrowEOFi();
@@ -99,7 +99,7 @@ class ByteArray extends Bytes implements ArrayAccess<Int> implements IDataInput 
 
     } //checkData
 
-    public function clear() : Void {
+    public inline function clear() : Void {
 
         position = 0;
         length = 0;
@@ -203,7 +203,7 @@ class ByteArray extends Bytes implements ArrayAccess<Int> implements IDataInput 
 
     } //inflate
 
-    static public function fromBytes(inBytes:Bytes) : ByteArray {
+    static inline public function fromBytes(inBytes:Bytes) : ByteArray {
 
         var result = new ByteArray( -1 );
 
@@ -213,27 +213,27 @@ class ByteArray extends Bytes implements ArrayAccess<Int> implements IDataInput 
 
     } //fromBytes
 
-    public function getLength() : Int {
+    public inline function getLength() : Int {
 
         return length;
 
     } //getLength
 
         // IMemoryRange
-    public function getByteBuffer() : ByteArray {
+    public inline function getByteBuffer() : ByteArray {
 
         return this;
 
     } //getByteBuffer
 
-    public function getStart() : Int {
+    public inline function getStart() : Int {
 
         return 0;
 
     } //getStart
 
 
-    public function setLength(inLength:Int):Void {
+    public inline function setLength(inLength:Int):Void {
 
         if (inLength > 0) {
             ensureElem(inLength - 1, false);
@@ -244,7 +244,7 @@ class ByteArray extends Bytes implements ArrayAccess<Int> implements IDataInput 
     } //setLength
 
         // ArrayBuffer interface
-    public function slice(inBegin:Int, ?inEnd:Int):ByteArray {
+    public inline function slice(inBegin:Int, ?inEnd:Int):ByteArray {
 
         var begin = inBegin;
 
@@ -302,7 +302,7 @@ class ByteArray extends Bytes implements ArrayAccess<Int> implements IDataInput 
 
     } //readByte
 
-    public function readBytes( outData:ByteArray, inOffset:Int = 0, inLen:Int = 0 ) : Void {
+    public inline function readBytes( outData:ByteArray, inOffset:Int = 0, inLen:Int = 0 ) : Void {
 
         if (inLen == 0) {
             inLen = length - position;
@@ -335,7 +335,7 @@ class ByteArray extends Bytes implements ArrayAccess<Int> implements IDataInput 
 
     } //readBytes
 
-    public function readDouble() : Float {
+    public inline function readDouble() : Float {
 
         if (position + 8 > length) {
             ThrowEOFi();
@@ -353,7 +353,7 @@ class ByteArray extends Bytes implements ArrayAccess<Int> implements IDataInput 
 
     } //readDouble
 
-    public function readFloat() : Float {
+    public inline function readFloat() : Float {
 
         if (position + 4 > length) {
             ThrowEOFi();
@@ -371,7 +371,7 @@ class ByteArray extends Bytes implements ArrayAccess<Int> implements IDataInput 
 
     } //readFloat
 
-    public function readInt() : Int {
+    public inline function readInt() : Int {
 
         var ch1 = readUnsignedByte();
         var ch2 = readUnsignedByte();
@@ -392,7 +392,7 @@ class ByteArray extends Bytes implements ArrayAccess<Int> implements IDataInput 
 
     } //readMultiByte
 
-    public function readShort() : Int {
+    public inline function readShort() : Int {
 
         var ch1 = readUnsignedByte();
         var ch2 = readUnsignedByte();
@@ -414,7 +414,7 @@ class ByteArray extends Bytes implements ArrayAccess<Int> implements IDataInput 
 
     } //readUnsignedByte
 
-    public function readUnsignedInt() : Int {
+    public inline function readUnsignedInt() : Int {
 
         var ch1 = readUnsignedByte();
         var ch2 = readUnsignedByte();
@@ -428,7 +428,7 @@ class ByteArray extends Bytes implements ArrayAccess<Int> implements IDataInput 
 
     } //readUnsignedInt
 
-    public function readUnsignedShort() : Int {
+    public inline function readUnsignedShort() : Int {
 
         var ch1 = readUnsignedByte();
         var ch2 = readUnsignedByte();
@@ -440,7 +440,7 @@ class ByteArray extends Bytes implements ArrayAccess<Int> implements IDataInput 
 
     } //readUnsignedShort
 
-    public function readUTF() : String {
+    public inline function readUTF() : String {
 
         var len = readUnsignedShort();
 
@@ -448,7 +448,7 @@ class ByteArray extends Bytes implements ArrayAccess<Int> implements IDataInput 
 
     } //readUTF
 
-    public function readUTFBytes(inLen:Int) : String {
+    public inline function readUTFBytes(inLen:Int) : String {
 
         if (position + inLen > length) {
             ThrowEOFi();
@@ -486,7 +486,7 @@ class ByteArray extends Bytes implements ArrayAccess<Int> implements IDataInput 
 
     } //write_uncheck
 
-    public function writeBoolean( value:Bool ) : Void {
+    public inline function writeBoolean( value:Bool ) : Void {
 
         writeByte( value ? 1 : 0 );
 
@@ -504,7 +504,7 @@ class ByteArray extends Bytes implements ArrayAccess<Int> implements IDataInput 
 
     } //writeByte
 
-    public function writeBytes( bytes:Bytes, inOffset:Int = 0, inLength:Int = 0 ) : Void {
+    public inline function writeBytes( bytes:Bytes, inOffset:Int = 0, inLength:Int = 0 ) : Void {
 
         if (inLength == 0) {
             inLength = bytes.length - inOffset;
@@ -519,7 +519,7 @@ class ByteArray extends Bytes implements ArrayAccess<Int> implements IDataInput 
 
     } //writeBytes
 
-    public function writeDouble( x:Float ) : Void {
+    public inline function writeDouble( x:Float ) : Void {
 
         #if neko
             var bytes = new Bytes(8, std_double_bytes(x, bigEndian));
@@ -531,7 +531,7 @@ class ByteArray extends Bytes implements ArrayAccess<Int> implements IDataInput 
 
     } //writeDouble
 
-    public function writeFloat(x:Float) : Void {
+    public inline function writeFloat(x:Float) : Void {
 
         #if neko
             var bytes = new Bytes(4, std_float_bytes(x, bigEndian));
@@ -543,7 +543,7 @@ class ByteArray extends Bytes implements ArrayAccess<Int> implements IDataInput 
 
     } //writeFloat
 
-    public function writeInt( value:Int ) : Void {
+    public inline function writeInt( value:Int ) : Void {
 
         ensureElem(position + 3, true);
 
@@ -567,7 +567,7 @@ class ByteArray extends Bytes implements ArrayAccess<Int> implements IDataInput 
         //not possible?
     // public function writeObject(object:*)
 
-    public function writeShort( value:Int ) : Void {
+    public inline function writeShort( value:Int ) : Void {
 
         ensureElem(position + 1, true);
 
@@ -581,13 +581,13 @@ class ByteArray extends Bytes implements ArrayAccess<Int> implements IDataInput 
 
     } //writeShort
 
-    public function writeUnsignedInt(value:Int) : Void {
+    public inline function writeUnsignedInt(value:Int) : Void {
 
         writeInt( value );
 
     } //writeUnsignedInt
 
-    public function writeUTF( s:String ) : Void {
+    public inline function writeUTF( s:String ) : Void {
 
         #if neko
             var bytes = new Bytes(s.length, untyped s.__s);
@@ -600,7 +600,7 @@ class ByteArray extends Bytes implements ArrayAccess<Int> implements IDataInput 
 
     } //writeUTF
 
-    public function writeUTFBytes( s:String ) : Void {
+    public inline function writeUTFBytes( s:String ) : Void {
 
         #if neko
             var bytes = new Bytes(s.length, untyped s.__s);
@@ -617,7 +617,7 @@ class ByteArray extends Bytes implements ArrayAccess<Int> implements IDataInput 
 
     #if !snow_no_bytearray_io
 
-        static public function readFile( inString:String, ?async:Bool=false, ?onload:ByteArray->Void ) : ByteArray {
+        static inline public function readFile( inString:String, ?async:Bool=false, ?onload:ByteArray->Void ) : ByteArray {
 
             var array = snow_byte_array_read_file(inString);
 
@@ -629,7 +629,7 @@ class ByteArray extends Bytes implements ArrayAccess<Int> implements IDataInput 
 
         } //readFile
 
-        public function writeFile(inString:String):Void {
+        public inline function writeFile(inString:String):Void {
 
             snow_byte_array_overwrite_file( inString, this );
 
@@ -675,7 +675,7 @@ class ByteArray extends Bytes implements ArrayAccess<Int> implements IDataInput 
 
 //Internal
 
-    function ensureElem(inSize:Int, inUpdateLength:Bool) : Void {
+    inline function ensureElem(inSize:Int, inUpdateLength:Bool) : Void {
 
         var len = inSize + 1;
 
@@ -714,7 +714,7 @@ class ByteArray extends Bytes implements ArrayAccess<Int> implements IDataInput 
     } //internal_from_bytes
 
 
-    function ThrowEOFi() : Int {
+    inline function ThrowEOFi() : Int {
 
         throw "/ ByteArray / EOFError";
 
@@ -726,19 +726,19 @@ class ByteArray extends Bytes implements ArrayAccess<Int> implements IDataInput 
     public static inline var LITTLE_ENDIAN : String = "littleEndian";
 
     // Getters & Setters
-    function get_bytesAvailable():Int {
+    inline function get_bytesAvailable():Int {
         return length - position;
     }
 
-    function get_byteLength():Int {
+    inline function get_byteLength():Int {
         return length;
     }
 
-    function get_endian() : String {
+    inline function get_endian() : String {
         return (bigEndian) ? BIG_ENDIAN : LITTLE_ENDIAN;
     } //get_endian
 
-    function set_endian(s:String):String {
+    inline function set_endian(s:String):String {
 
         bigEndian = (s == BIG_ENDIAN);
 
