@@ -18,7 +18,7 @@ class ArrayBufferView implements IMemoryRange {
         var bytes : BytesData;
     #end
 
-    function new(lengthOrBuffer:Dynamic, byteOffset:Int = 0, length:Null<Int> = null ) {
+    inline function new(lengthOrBuffer:Dynamic, byteOffset:Int = 0, length:Null<Int> = null ) {
 
         if (Std.is(lengthOrBuffer, Int)) {
 
@@ -64,19 +64,19 @@ class ArrayBufferView implements IMemoryRange {
 
     }
 
-    public function getByteBuffer() : ByteArray {
+    public inline function getByteBuffer() : ByteArray {
 
         return buffer;
 
     }
 
-    public function getLength() : Int {
+    public inline function getLength() : Int {
 
         return byteLength;
 
     }
 
-    public function getStart() : Int {
+    public inline function getStart() : Int {
 
         return byteOffset;
 
