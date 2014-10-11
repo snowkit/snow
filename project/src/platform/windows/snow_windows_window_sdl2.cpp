@@ -26,7 +26,7 @@ namespace snow {
                 	HWND hwnd = wminfo.info.win.window;
                 	HICON icon = ::LoadIcon(handle, "IDI_MAIN_ICON");	
 
-                	::SetClassLong(hwnd, GCL_HICON, (LONG) icon);
+                	::SetClassLong(hwnd, GCLP_HICON, (LONG) icon);
                 }
 
             } //load_icon
