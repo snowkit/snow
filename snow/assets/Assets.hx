@@ -279,7 +279,7 @@ class Assets {
 
 //Internal API
 
-    function info_from_id(_id:String, _type:String) : AssetInfo {
+    @:noCompletion public function info_from_id(_id:String, _type:String) : AssetInfo {
         return {
             id : _id,
             path : _id,
