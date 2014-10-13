@@ -72,5 +72,33 @@ class AssetImage extends Asset {
 
     } //load
 
+        /** Create an image asset from a pre-existing decoded image info */
+    public function load_from_pixels( _id:String, _width:Int, _height:Int, _pixels: snow.utils.UInt8Array, ?onload:AssetImage->Void ) {
+
+        loaded = false;
+            //clear old data
+        image = null;
+            //image info
+        image = {
+            id : _id,
+            width : _width,
+            width_actual : _width,
+            height : _height,
+            height_actual : _height,
+            bpp : 4, //:todo :
+            bpp_source : 4,
+            data : _pixels
+        };
+
+        loaded = true;
+
+        if(onload != null) {
+            // Snow.next(function(){
+                onload( this );
+            // });
+        }
+
+    } //load_from_info
+
 
 } //AssetImage
