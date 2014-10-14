@@ -97,6 +97,51 @@ class InputSystem extends InputSystemBinding {
         // :unsupported: :todo:
     } //text_input_rect
 
+    function on_textinput( _key_event:js.html.KeyboardEvent ) {
+
+            var letter:String = "";
+
+            switch(_key_event.keyCode)
+            {
+                case 65: letter = "A";
+                case 66: letter = "B";
+                case 67: letter = "C";
+                case 68: letter = "D";
+                case 69: letter = "E";
+                case 70: letter = "F";
+                case 71: letter = "G";
+                case 72: letter = "H";
+                case 73: letter = "I";
+                case 74: letter = "J";
+                case 75: letter = "K";
+                case 76: letter = "L";
+                case 77: letter = "M";
+                case 78: letter = "N";
+                case 79: letter = "O";
+                case 80: letter = "P";
+                case 81: letter = "Q";
+                case 82: letter = "R";
+                case 83: letter = "S";
+                case 84: letter = "T";
+                case 85: letter = "U";
+                case 86: letter = "V";
+                case 87: letter = "W";
+                case 88: letter = "X";
+                case 89: letter = "Y";
+                case 90: letter = "Z";
+            }
+
+            //window id is 1 because keys come from the page, so always the main window
+        manager.dispatch_text_event(
+            letter,
+            0,
+            3,
+            TextEventType.input,
+            _key_event.timeStamp,
+            1
+        );
+        
+    } //on_textinput
 
     function on_mousedown( _mouse_event:js.html.MouseEvent ) {
 
