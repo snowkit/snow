@@ -69,7 +69,6 @@ package snow.platform.native;
 
 @:keep class StaticSnow {
     static function __init__() {
-        var s = 'fuc';
         untyped __cpp__("snow_register_prims();");
     } //__init__
 } //StaticSnow
