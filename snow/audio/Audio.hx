@@ -290,30 +290,61 @@ class Audio {
 
     } //kill
 
+    @:noCompletion public function suspend() {
+
+        if(!active) {
+            return;
+        }
+
+        log("suspending sound context");
+
+        active = false;
+
+        for(sound in stream_list) {
+            sound.internal_pause();
+        }
+
+        platform.suspend();
+
+    } //suspend
+
+    @:noCompletion public function resume() {
+
+        if(active) {
+            return;
+        }
+
+        log("resuming sound context");
+
+        active = true;
+
+        platform.resume();
+
+        for(sound in stream_list) {
+            sound.internal_play();
+        }
+
+    } //resume
+
+
         /** Called by Snow when a system event is dispatched */
     @:noCompletion public function on_event( _event:SystemEvent ) {
 
         if(_event.type == SystemEventType.app_willenterbackground) {
-
-            active = false;
-
-            for(sound in stream_list) {
-                sound.internal_pause();
-            }
-
-            platform.suspend();
-
+            suspend();
         } else if(_event.type == SystemEventType.app_willenterforeground) {
+            resume();
+        }
 
-            active = true;
-
-            platform.resume();
-
-            for(sound in stream_list) {
-                sound.internal_play();
+        if(_event.type == SystemEventType.window) {
+            switch(_event.window.type) {
+                case WindowEventType.focus_lost:
+                    suspend();
+                case WindowEventType.focus_gained:
+                    resume();
+                default:
             }
-
-        } //willenterforeground
+        } //_event.type == window
 
     } //on_event
 
