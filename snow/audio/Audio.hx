@@ -336,15 +336,19 @@ class Audio {
             resume();
         }
 
-        if(_event.type == SystemEventType.window) {
-            switch(_event.window.type) {
-                case WindowEventType.focus_lost:
-                    suspend();
-                case WindowEventType.focus_gained:
-                    resume();
-                default:
-            }
-        } //_event.type == window
+        #if mobile
+
+            if(_event.type == SystemEventType.window) {
+                switch(_event.window.type) {
+                    case WindowEventType.focus_lost:
+                        suspend();
+                    case WindowEventType.focus_gained:
+                        resume();
+                    default:
+                }
+            } //_event.type == window
+
+        #end //mobile
 
     } //on_event
 
