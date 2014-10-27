@@ -50,5 +50,21 @@ class AssetBytes extends Asset {
 
     } //load
 
+    public function load_from_bytes( _bytes:ByteArray, ?onload:AssetBytes->Void ) {
+
+        loaded = false;
+
+            bytes = _bytes;
+
+        loaded = true;
+
+        if(onload != null) {
+            Snow.next(function(){
+                onload( this );
+            });
+        }
+
+    } //load_from_bytes
+
 
 } //AssetBytes

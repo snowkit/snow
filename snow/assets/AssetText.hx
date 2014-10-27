@@ -52,5 +52,21 @@ class AssetText extends Asset {
 
     } //load
 
+    public function load_from_string( _string:String, ?onload:AssetText->Void ) {
+
+        loaded = false;
+
+            text = _string;
+
+            if(onload != null) {
+                Snow.next(function(){
+                    onload( this );
+                });
+            }
+
+        loaded = true;
+
+    } //load_from_string
+
 
 } //AssetText

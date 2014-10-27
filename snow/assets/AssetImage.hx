@@ -34,6 +34,7 @@ class AssetImage extends Asset {
         loaded = false;
             //clear any old data in case
         image = null;
+
             //load the new data
         assets.platform.image_load_info( info.path, components, function( ?_image:ImageInfo ) {
 
@@ -43,60 +44,61 @@ class AssetImage extends Asset {
             }
 
             if(onload != null) {
-                // Snow.next(function(){
+                Snow.next(function(){
                     onload( this );
-                // });
+                });
             }
 
-        });
+        }); //image_load_info
 
     } //load
 
-        /** Called from `app.assets.image`, or manually, if reloading the asset data at a later point.
-            Note this function calls the onload handler in the next frame, so sync code can return. */
+        /** Called from `app.assets.image`, or manually, if reloading the asset data at a later point. This is a synchronous call */
     public function load_from_bytes( bytes:ByteArray, ?onload:AssetImage->Void ) {
 
         loaded = false;
-            //clear any old data in case
-        image = null;
-            //load the new data
-        image = assets.platform.image_info_from_bytes( info.path, bytes, components );
-            //set flag since there is no load time for this, usually sync
-        loaded = true;
 
-        if(onload != null) {
-            Snow.next(function(){
-                onload( this );
-            });
-        }
+                //clear old reference
+            image = null;
+                //load the new data
+            image = assets.platform.image_info_from_bytes( info.path, bytes, components );
+
+            if(onload != null) {
+                Snow.next(function(){
+                    onload( this );
+                });
+            }
+
+        loaded = true;
 
     } //load
 
-        /** Create an image asset from a pre-existing decoded image info */
+        /** Create an image asset from a pre-existing decoded image info. This is a synchronous call */
     public function load_from_pixels( _id:String, _width:Int, _height:Int, _pixels: snow.utils.UInt8Array, ?onload:AssetImage->Void ) {
 
         loaded = false;
-            //clear old data
-        image = null;
-            //image info
-        image = {
-            id : _id,
-            width : _width,
-            width_actual : _width,
-            height : _height,
-            height_actual : _height,
-            bpp : 4, //:todo :
-            bpp_source : 4,
-            data : _pixels
-        };
+
+                //clear old reference
+            image = null;
+                //image info
+            image = {
+                id : _id,
+                width : _width,
+                width_actual : _width,
+                height : _height,
+                height_actual : _height,
+                bpp : 4, //:todo :
+                bpp_source : 4,
+                data : _pixels
+            };
+
+            if(onload != null) {
+                Snow.next(function(){
+                    onload( this );
+                });
+            }
 
         loaded = true;
-
-        if(onload != null) {
-            // Snow.next(function(){
-                onload( this );
-            // });
-        }
 
     } //load_from_info
 
