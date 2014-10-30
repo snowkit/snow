@@ -43,9 +43,7 @@ class AssetText extends Asset {
             loaded = true;
 
             if(onload != null) {
-                Snow.next(function(){
-                    onload( this );
-                });
+                onload( this );
             }
 
         }); //readFile
