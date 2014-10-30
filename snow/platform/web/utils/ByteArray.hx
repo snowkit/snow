@@ -157,13 +157,13 @@ package snow.platform.web.utils;
         public static function snowOfBuffer(buffer:ArrayBuffer):ByteArray {
 
             var bytes = new ByteArray();
-            bytes.length = bytes.allocated ;//= buffer.byteLength; todo
-            bytes.data = untyped __new__("DataView", buffer);
-            bytes.byteView = untyped __new__("Uint8Array", buffer);
+                bytes.length = buffer.byteLength;
+                bytes.data = untyped __new__("DataView", buffer);
+                bytes.byteView = untyped __new__("Uint8Array", buffer);
+
             return bytes;
 
-        }
-
+        } //snowOfBuffer
 
         public inline function snowSet(pos:Int, v:Int):Void {
 
@@ -175,23 +175,39 @@ package snow.platform.web.utils;
         static public function readFile(_path:String, ?async:Bool=false, ?onload:ByteArray->Void ) : ByteArray {
 
             var request = new js.html.XMLHttpRequest();
-
                 request.open("GET", _path, async);
                 request.overrideMimeType('text/plain; charset=x-user-defined');
 
+                //only async can set the type it seems
+            if(async) {
+                request.responseType = 'arraybuffer';
+            }
+
+                //the final resulting bytearray
+            var result : ByteArray = null;
+                //this is in case onload is called in sync mode
+                //avoiding running finalize twice as it's brute forcey
+            var finalized = false;
+                //finalize the data to the bytearray
             var finalize = function() {
 
-                var bytearray : ByteArray = new ByteArray();
-                var buffer : String = request.response;
-                var len : Int = buffer.length;
+                if(!finalized) {
 
-                for( i in 0 ... len ) {
-                    bytearray.writeByte(buffer.charCodeAt(i));
-                }
+                    if(!async) {
 
-                bytearray.position = 0;
+                        result = new ByteArray();
+                        result.writeUTFBytes(request.response);
+                        result.position = 0;
 
-                return bytearray;
+                    } else {
+
+                        result = ByteArray.snowOfBuffer(request.response);
+
+                    } //async
+
+                } //!finalized
+
+                return result;
 
             } //finalize
 
@@ -209,7 +225,7 @@ package snow.platform.web.utils;
 
             request.send();
 
-                //when doing sync we need to return the result
+                //when doing sync return the result
             if(!async) {
                 if(request.status == 200) {
                     return finalize();
