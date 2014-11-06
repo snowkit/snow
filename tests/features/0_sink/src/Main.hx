@@ -197,8 +197,7 @@ class Main extends snow.AppFixedTimestep {
 
     override function onkeydown( keycode:Int, scancode:Int,_,_,_,_ ) {
 
-        log('scan code name: ${Scan.name(scancode)}' );
-        log('key down : $keycode / scan code : $scancode');
+        log('key down : $keycode / scan code : $scancode / scan name : ${Scan.name(scancode)}');
 
         if(keycode == Key.enter && showing_keyboard) {
             trace("hiding keyboard");
@@ -308,9 +307,9 @@ class Main extends snow.AppFixedTimestep {
 
     } //onkeydown
 
-    override function onkeyup( keycode:Int, _,_, mod:ModState, _,_ ) {
+    override function onkeyup( keycode:Int, scancode:Int,_, mod:ModState, _,_ ) {
 
-        // log("onkeyup " + event);
+        log('key up : $keycode / scan code : $scancode / scan name : ${Scan.name(scancode)}');
 
             //alt enter to toggle fullscreen test
         if( keycode == Key.enter && mod.alt ) {
