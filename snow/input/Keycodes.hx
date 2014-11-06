@@ -632,7 +632,11 @@ but they aren't specific to SDL so they are used generically */
 /** alt gr, option */
     public static var ralt : Int               = 230;
 /** windows, command (apple), meta */
+#if snow_web
+    public static var rmeta : Int              = 101;
+#else
     public static var rmeta : Int              = 231;
+#end
 
 /** Not sure if this is really not covered
     by any of the above, but since there's a
