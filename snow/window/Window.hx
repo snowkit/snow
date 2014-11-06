@@ -50,8 +50,6 @@ class Window {
         /** The window minimum size `(read/write)` */
     @:isVar public var min_size (get,set) : { x:Int, y:Int };
 
-        /** set this for fullscreen desktop mode, i.e created at the full desktop resolution */
-    public var fullscreen_desktop : Bool = true;
         /** set this if you want to control when a window calls swap() */
     public var auto_swap : Bool = true;
         /** set this if you want to control when a window calls render() */
@@ -301,7 +299,7 @@ class Window {
     function set_fullscreen( _enable:Bool ) {
 
         if(handle != null) {
-            manager.platform.fullscreen( this, _enable, fullscreen_desktop );
+            manager.platform.fullscreen( this, _enable );
         }
 
         return fullscreen = _enable;

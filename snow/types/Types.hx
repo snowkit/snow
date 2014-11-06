@@ -112,6 +112,12 @@ typedef AppConfigWeb = {
         /** If true, right clicking will consume the event on the canvas. `event.preventDefault` is used. default: true*/
     @:optional var no_context_menu : Bool;
 
+        /** If true, native fullscreen will be requested from the user.
+            If not, the canvas will fill the window size instead.
+            Take note : true fullscreen requests only work when driven by a user event (click/keys).
+            You cannot force fullscreen on web. default: false */
+    @:optional var true_fullscreen : Bool;
+
 } //AppConfigWeb
 
 typedef AppConfigNative = {
@@ -122,7 +128,10 @@ typedef AppConfigNative = {
         /** The default number of audio buffers to use for a single stream. Set no less than 2, as it's a queue. See `Audio` docs. default:4 */
     @:optional var audio_buffer_count : Int;
 
-} //AppConfigWeb
+        /** If true, the users native desktop resolution will be used for fullscreen instead of the specified window size. default: true */
+    @:optional var desktop_fullscreen : Bool;
+
+} //AppConfigNative
 
 typedef FileFilter = {
 
