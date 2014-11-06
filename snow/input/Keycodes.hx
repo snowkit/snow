@@ -10,8 +10,108 @@ but they aren't specific to SDL so they are used generically */
         return (scancode | Scancodes.MASK);
     } //from_scan
 
+        /** Convert a keycode to a scancode if possible.
+            NOTE - this will only map a large % but not all keys,
+            there is a list of unmapped keys commented in the code. */
+    public static function to_scan( keycode : Int ) : Int {
+
+            //quite a lot map directly to a masked scancode
+            //if that's the case, return it directly
+        if ((keycode & Scancodes.MASK) != 0) {
+            return keycode &~ Scancodes.MASK;
+        }
+
+            //now we translate them to the scan where unmapped
+
+        switch(keycode) {
+            case Keycodes.enter:         return Scancodes.enter;
+            case Keycodes.escape:        return Scancodes.escape;
+            case Keycodes.backspace:     return Scancodes.backspace;
+            case Keycodes.tab:           return Scancodes.tab;
+            case Keycodes.space:         return Scancodes.space;
+            case Keycodes.slash:         return Scancodes.slash;
+            case Keycodes.key_0:         return Scancodes.key_0;
+            case Keycodes.key_1:         return Scancodes.key_1;
+            case Keycodes.key_2:         return Scancodes.key_2;
+            case Keycodes.key_3:         return Scancodes.key_3;
+            case Keycodes.key_4:         return Scancodes.key_4;
+            case Keycodes.key_5:         return Scancodes.key_5;
+            case Keycodes.key_6:         return Scancodes.key_6;
+            case Keycodes.key_7:         return Scancodes.key_7;
+            case Keycodes.key_8:         return Scancodes.key_8;
+            case Keycodes.key_9:         return Scancodes.key_9;
+            case Keycodes.semicolon:     return Scancodes.semicolon;
+            case Keycodes.equals:        return Scancodes.equals;
+            case Keycodes.leftbracket:   return Scancodes.leftbracket;
+            case Keycodes.backslash:     return Scancodes.backslash;
+            case Keycodes.rightbracket:  return Scancodes.rightbracket;
+            case Keycodes.key_a:         return Scancodes.key_a;
+            case Keycodes.key_b:         return Scancodes.key_b;
+            case Keycodes.key_c:         return Scancodes.key_c;
+            case Keycodes.key_d:         return Scancodes.key_d;
+            case Keycodes.key_e:         return Scancodes.key_e;
+            case Keycodes.key_f:         return Scancodes.key_f;
+            case Keycodes.key_g:         return Scancodes.key_g;
+            case Keycodes.key_h:         return Scancodes.key_h;
+            case Keycodes.key_i:         return Scancodes.key_i;
+            case Keycodes.key_j:         return Scancodes.key_j;
+            case Keycodes.key_k:         return Scancodes.key_k;
+            case Keycodes.key_l:         return Scancodes.key_l;
+            case Keycodes.key_m:         return Scancodes.key_m;
+            case Keycodes.key_n:         return Scancodes.key_n;
+            case Keycodes.key_o:         return Scancodes.key_o;
+            case Keycodes.key_p:         return Scancodes.key_p;
+            case Keycodes.key_q:         return Scancodes.key_q;
+            case Keycodes.key_r:         return Scancodes.key_r;
+            case Keycodes.key_s:         return Scancodes.key_s;
+            case Keycodes.key_t:         return Scancodes.key_t;
+            case Keycodes.key_u:         return Scancodes.key_u;
+            case Keycodes.key_v:         return Scancodes.key_v;
+            case Keycodes.key_w:         return Scancodes.key_w;
+            case Keycodes.key_x:         return Scancodes.key_x;
+            case Keycodes.key_y:         return Scancodes.key_y;
+            case Keycodes.key_z:         return Scancodes.key_z;
+
+
+                //These are unmappable because they are not keys
+                //but values on the key (like a shift key combo)
+                //and to hardcode them to the key you think it is,
+                //would be to map it to a fixed locale probably.
+                //They don't have scancodes, so we don't return one
+            // case exclaim:      ;
+            // case quotedbl:     ;
+            // case hash:         ;
+            // case percent:      ;
+            // case dollar:       ;
+            // case ampersand:    ;
+            // case quote:        ;
+            // case leftparen:    ;
+            // case rightparen:   ;
+            // case asterisk:     ;
+            // case plus:         ;
+            // case comma:        ;
+            // case minus:        ;
+            // case period:       ;
+            // case less:         ;
+            // case colon:        ;
+            // case greater:      ;
+            // case question:     ;
+            // case at:           ;
+            // case caret:        ;
+            // case underscore:   ;
+            // case backquote:    ;
+
+        } //switch(keycode)
+
+        return Scancodes.unknown;
+
+    } //to_scan
+
         /** Convert a keycode to string */
     public static function name( keycode : Int ) : String {
+
+        //we don't use to_scan because it would consume
+        //the typeable characters and we want those as unicode etc.
 
         if ((keycode & Scancodes.MASK) != 0) {
             return Scancodes.name(keycode &~ Scancodes.MASK);
