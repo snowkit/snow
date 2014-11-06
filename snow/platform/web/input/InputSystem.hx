@@ -574,25 +574,25 @@ class InputSystem extends InputSystemBinding {
 
         switch(_code) {
 
-            case 16: return 225 | 1<<10;  // shift
-            case 17: return 224 | 1<<10;  // control (right, or left)
-            case 18: return 226 | 1<<10;  // alt
+            case 16: return 225 | Scan.MASK;  // shift
+            case 17: return 224 | Scan.MASK;  // control (right, or left)
+            case 18: return 226 | Scan.MASK;  // alt
             case 20: return 57 | 1<<10;   // caps lock
 
             case 33: return 75 | 1<<10; // pagedup
             case 34: return 78 | 1<<10; // pagedown
             case 35: return 77 | 1<<10; // end
             case 36: return 74 | 1<<10; // home
-            case 37: return 80 | 1<<10; // left arrow
-            case 38: return 82 | 1<<10; // up arrow
-            case 39: return 79 | 1<<10; // right arrow
-            case 40: return 81 | 1<<10; // down arrow
+            case 37: return 80 | Scan.MASK; // left arrow
+            case 38: return 82 | Scan.MASK; // up arrow
+            case 39: return 79 | Scan.MASK; // right arrow
+            case 40: return 81 | Scan.MASK; // down arrow
             case 44: return 316; // print screen
             case 45: return 73 | 1<<10; // insert
             case 46: return 127; // SDLK_DEL == '\177'
 
-            case 91: return 227 | 1<<10; // windows key or super key on linux (doesn't work on Mac)
-            case 93: return 101 | 1<<10; // application
+            case 91: return 227 | Scan.MASK; // windows key or super key on linux, left command on Mac
+            case 93: return 101 | Scan.MASK; // application, right command on Mac
 
             case 96: return 98 | 1<<10; // keypad 0
             case 97: return 89 | 1<<10; // keypad 1
