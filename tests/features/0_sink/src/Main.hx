@@ -195,9 +195,10 @@ class Main extends snow.AppFixedTimestep {
 
     var showing_keyboard : Bool = false;
 
-    override function onkeydown( keycode:Int, _,_,_,_,_ ) {
+    override function onkeydown( keycode:Int, scancode:Int,_,_,_,_ ) {
 
-        log("key down : " + keycode);
+        log('scan code name: ${Scan.name(scancode)}' );
+        log('key down : $keycode / scan code : $scancode');
 
         if(keycode == Key.enter && showing_keyboard) {
             trace("hiding keyboard");
