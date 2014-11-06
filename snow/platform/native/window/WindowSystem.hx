@@ -88,8 +88,8 @@ import snow.utils.Libs;
     	snow_window_set_min_size( window.handle, w, h );
     } //window_set_min_size
 
-    override public function fullscreen( window:Window, fullscreen:Bool, fullscreen_desktop:Bool = true ) {
-    	snow_window_fullscreen( window.handle, fullscreen, (fullscreen_desktop) ? 0 : 1 );
+    override public function fullscreen( window:Window, fullscreen:Bool ) {
+    	snow_window_fullscreen( window.handle, fullscreen, ( lib.config.native.desktop_fullscreen ) ? 0 : 1 );
     } //window_fullscreen
 
     override public function bordered( window:Window, bordered:Bool ) {

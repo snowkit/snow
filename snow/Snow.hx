@@ -90,11 +90,13 @@ class Snow {
             window : null,
             assets : [],
             web : {
-                no_context_menu : true
+                no_context_menu : true,
+                true_fullscreen : false
             },
             native : {
                 audio_buffer_length : 176400,
-                audio_buffer_count : 4
+                audio_buffer_count : 4,
+                desktop_fullscreen : true
             }
         };
 
