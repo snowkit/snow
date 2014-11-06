@@ -79,6 +79,12 @@ import snow.window.WindowSystem;
                 js.Browser.document.title = config.title;
             }
 
+                //if the config requests fullscreen, set it
+            if(config.fullscreen) {
+                internal_fullscreen( _handle, config.fullscreen );
+            }
+
+
                 //tell them and give the handle for later.
             on_created(_handle, _window_id, config);
             _handle.setAttribute('id', 'window${_window_id}');
@@ -247,62 +253,71 @@ import snow.window.WindowSystem;
         var _pre_fs_width : Int = 0;
         var _pre_fs_height : Int = 0;
 
-        override public function fullscreen( _window:Window, fullscreen:Bool, fullscreen_desktop:Bool = true ) {
+        function internal_fullscreen( _handle:WindowHandle, fullscreen:Bool ) {
+
+                //find out if the config requested true fullscreen or not
+            var true_fullscreen = lib.config.web.true_fullscreen;
 
                 //as always browser support for newer features will be
                 //sporadic. Tested fullscreen against firefox/chrome/opera/safari latest
                 //all appear to work as expected, but have no cancel (user must press escape)
             if(fullscreen) {
 
-                if(!fullscreen_desktop) {
+                if(true_fullscreen) {
 
                         //official api's first
-                    if(_window.handle.requestFullscreen == null) {
-                        if(_window.handle.requestFullScreen == null) {
-                            if(untyped _window.handle.webkitRequestFullscreen == null) {
-                                if(untyped _window.handle.mozRequestFullScreen == null) {
+                    if(_handle.requestFullscreen == null) {
+                        if(_handle.requestFullScreen == null) {
+                            if(untyped _handle.webkitRequestFullscreen == null) {
+                                if(untyped _handle.mozRequestFullScreen == null) {
 
-                                } else { untyped _window.handle.mozRequestFullScreen(); }
-                            } else { untyped _window.handle.webkitRequestFullscreen(); }
-                        } else { _window.handle.requestFullScreen(0); }
-                    } else { _window.handle.requestFullscreen(); }
+                                } else { untyped _handle.mozRequestFullScreen(); }
+                            } else { untyped _handle.webkitRequestFullscreen(); }
+                        } else { _handle.requestFullScreen(0); }
+                    } else { _handle.requestFullscreen(); }
 
                 } else {
 
-                    _pre_fs_padding = _window.handle.style.padding;
-                    _pre_fs_margin = _window.handle.style.margin;
-                    _pre_fs_s_width = _window.handle.style.width;
-                    _pre_fs_s_height = _window.handle.style.height;
-                    _pre_fs_width = _window.handle.width;
-                    _pre_fs_height = _window.handle.height;
+                    _pre_fs_padding = _handle.style.padding;
+                    _pre_fs_margin = _handle.style.margin;
+                    _pre_fs_s_width = _handle.style.width;
+                    _pre_fs_s_height = _handle.style.height;
+                    _pre_fs_width = _handle.width;
+                    _pre_fs_height = _handle.height;
 
-                    _window.handle.style.margin = '0';
-                    _window.handle.style.padding = '0';
-                    _window.handle.style.width = js.Browser.window.innerWidth + 'px';
-                    _window.handle.style.height = js.Browser.window.innerHeight + 'px';
-                    _window.handle.width = js.Browser.window.innerWidth;
-                    _window.handle.height = js.Browser.window.innerHeight;
+                    _handle.style.margin = '0';
+                    _handle.style.padding = '0';
+                    _handle.style.width = js.Browser.window.innerWidth + 'px';
+                    _handle.style.height = js.Browser.window.innerHeight + 'px';
+                    _handle.width = js.Browser.window.innerWidth;
+                    _handle.height = js.Browser.window.innerHeight;
                 }
 
             } else {
 
-                if(!fullscreen_desktop) {
+                if(!true_fullscreen) {
 
                     //:unsupported:
                     //currently no cancel full screen in fullscreen mode
 
                 } else {
 
-                    _window.handle.style.padding = _pre_fs_padding;
-                    _window.handle.style.margin = _pre_fs_margin;
-                    _window.handle.style.width = _pre_fs_s_width;
-                    _window.handle.style.height = _pre_fs_s_height;
-                    _window.handle.width = _pre_fs_width;
-                    _window.handle.height = _pre_fs_height;
+                    _handle.style.padding = _pre_fs_padding;
+                    _handle.style.margin = _pre_fs_margin;
+                    _handle.style.width = _pre_fs_s_width;
+                    _handle.style.height = _pre_fs_s_height;
+                    _handle.width = _pre_fs_width;
+                    _handle.height = _pre_fs_height;
 
                 }
 
             }
+
+        } //set_handle_fullscreen
+
+        override public function fullscreen( _window:Window, fullscreen:Bool ) {
+
+            internal_fullscreen( _window.handle, fullscreen );
 
         } //window_fullscreen
 
