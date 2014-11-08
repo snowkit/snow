@@ -45,6 +45,7 @@ but they aren't specific to SDL so they are used generically */
             case Keycodes.leftbracket:   return Scancodes.leftbracket;
             case Keycodes.backslash:     return Scancodes.backslash;
             case Keycodes.rightbracket:  return Scancodes.rightbracket;
+            case Keycodes.backquote:     return Scancodes.grave;
             case Keycodes.key_a:         return Scancodes.key_a;
             case Keycodes.key_b:         return Scancodes.key_b;
             case Keycodes.key_c:         return Scancodes.key_c;
@@ -99,7 +100,6 @@ but they aren't specific to SDL so they are used generically */
             // case at:           ;
             // case caret:        ;
             // case underscore:   ;
-            // case backquote:    ;
 
         } //switch(keycode)
 
