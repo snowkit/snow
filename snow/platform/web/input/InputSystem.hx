@@ -53,6 +53,8 @@ class InputSystem extends InputSystemBinding {
         active_gamepads = new Map();
         gamepads_supported = (get_gamepad_list() != null);
 
+        log('Gamepads supported: $gamepads_supported');
+
     } //init
 
     override public function process() {
@@ -128,7 +130,7 @@ class InputSystem extends InputSystemBinding {
                         manager.dispatch_gamepad_device_event(
                             _gamepad.index,
                             GamepadDeviceEventType.device_removed,
-                            _gamepad.timestamp
+                            lib.time //:todo:gamepadtimestamp:
                         );
 
                     } //_gamepad != null
@@ -154,22 +156,27 @@ class InputSystem extends InputSystemBinding {
             var _new_gamepad : WebGamepad = {
                 id : _gamepad.id,
                 index : _gamepad.index,
-                axes : cast _gamepad.axes,
+                axes : [],
                 buttons : [],
-                timestamp : _gamepad.timestamp
+                timestamp : lib.time //:todo:gamepadtimestamp:
             };
+
+            var axes : Array<Float> = cast _gamepad.axes;
+            for(value in axes) {
+                _new_gamepad.axes.push(value);
+            }
 
             var _button_list : Array<WebGamepadButton> = cast _gamepad.buttons;
             for(_button in _button_list) {
                 _new_gamepad.buttons.push({ pressed:false, value:0 });
             }
 
-            active_gamepads.set( _gamepad.index, _new_gamepad );
+            active_gamepads.set( _new_gamepad.index, _new_gamepad );
 
             manager.dispatch_gamepad_device_event(
-                _gamepad.index,
+                _new_gamepad.index,
                 GamepadDeviceEventType.device_added,
-                _gamepad.timestamp
+                _new_gamepad.timestamp
             );
 
         } else {
@@ -177,14 +184,15 @@ class InputSystem extends InputSystemBinding {
                 //found in the list so we can update it if anything changed
             var gamepad = active_gamepads.get(_gamepad.index);
 
-                //but only if the timestamp differs
-            if(gamepad.timestamp != _gamepad.timestamp) {
+                //but only if the timestamp differs :todo:gamepadtimestamp:
+                //failfox at least doesn't store timestamp changes -_-
+            // if(gamepad.timestamp != _gamepad.timestamp) {
 
                     //update the id if it changed
                 if(gamepad.id != _gamepad.id) { gamepad.id = _gamepad.id; }
 
-                    //update the timestamp
-                gamepad.timestamp = _gamepad.timestamp;
+                    //:todo: see :gamepadtimestamp:
+                // gamepad.timestamp = _gamepad.timestamp;
 
                     //we store the list of changed indices
                     //so we can call the handler functions with each
@@ -262,7 +270,8 @@ class InputSystem extends InputSystemBinding {
 
                 } //for each button change
 
-            } //timestamp changed
+                //:todo: see :gamepadtimestamp:
+            // } //timestamp changed
 
         } //exists
 

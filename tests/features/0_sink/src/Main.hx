@@ -332,7 +332,7 @@ class Main extends snow.AppFixedTimestep {
 
     } //onkeyup
 
-    var noclamp : Bool = true;
+    var noclamp : Bool = false;
 
     override public function ontextinput( text:String, start:Int, length:Int, type:TextEventType, timestamp:Float, window_id:Int ) {
         log('text event; text:$text / start: $start / length: $length / type:$type / timestamp:${timestamp} / window: ${window_id}');
@@ -408,7 +408,10 @@ class Main extends snow.AppFixedTimestep {
 
     override function ongamepadaxis( gamepad:Int, axis:Int, value:Float, timestamp:Float ) {
         if(Math.abs(value) > 0.2 || noclamp) {
-            log('axis; device: ${gamepad}, axis: ${axis}, value: ${value} timestamp: ${timestamp}');
+            // log('axis; device: ${gamepad}, axis: ${axis}, value: ${value} timestamp: ${timestamp}');
+            if(axis == 1) {
+                positionY += value * 2 * speed * delta_time;
+            }
         }
     } //ongamepadaxis
 
