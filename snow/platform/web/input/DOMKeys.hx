@@ -31,6 +31,7 @@ class DOMKeys {
         //
             case dom_lmeta:         return Key.lmeta;
             case dom_rmeta:         return Key.rmeta;
+            case dom_meta:          return Key.lmeta;
         //
             case dom_kp_0:          return Key.kp_0;
             case dom_kp_1:          return Key.kp_1;
@@ -208,5 +209,6 @@ class DOMKeys {
     static inline var dom_rightbracket   = 221;
     static inline var dom_backslash      = 220;
     static inline var dom_quote          = 222;
+    static inline var dom_meta           = 224;
 
 } //DOM_SDL_keys
