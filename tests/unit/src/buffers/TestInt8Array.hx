@@ -189,22 +189,24 @@ class TestInt8Array extends mohxa.Mohxa {
 
         }); //test8
 
-        describe('Int8Array test09', function(){
+        #if snow_native
+            describe('Int8Array test09', function(){
 
-            log('creating x = Int8Array(ByteArray(1))');
+                log('creating x = Int8Array(ByteArray(1))');
 
-            var bin = new snow.utils.ByteArray(1);
+                var bin = new snow.utils.ByteArray(1);
 
-            bin.writeByte(23);
+                bin.writeByte(23);
 
-            var x = new Int8Array(bin);
+                var x = new Int8Array(bin);
 
-            it('should be correctly constructed from 1 element, and this element should be 23', function(){
-                equal(1, x.length, "length == 1");
-                equal( 23, x[0], 'element [0] == 23' );
-            });
+                it('should be correctly constructed from 1 element, and this element should be 23', function(){
+                    equal(1, x.length, "length == 1");
+                    equal( 23, x[0], 'element [0] == 23' );
+                });
 
-        }); //test9
+            }); //test9
+        #end
 
     } //new
 
