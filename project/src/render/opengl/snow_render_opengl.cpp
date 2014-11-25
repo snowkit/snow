@@ -427,6 +427,8 @@ namespace snow {
 
         if (HAS_EXT_framebuffer_object) {
             return alloc_bool(glIsFramebuffer(val_int(val)));
+        } else {
+            snow::log(1, "snow / framebuffer object extension not found. / IsFramebuffer");
         }
 
         return alloc_bool(false);
@@ -438,6 +440,8 @@ namespace snow {
 
         if (HAS_EXT_framebuffer_object) {
             return alloc_bool( glIsRenderbuffer(val_int(val)) );
+        } else {
+            snow::log(1, "snow / framebuffer object extension not found. / IsRenderbuffer");
         }
 
         return alloc_bool(false);
@@ -1387,6 +1391,8 @@ namespace snow {
 
         if (HAS_EXT_framebuffer_object) {
             glBindFramebuffer(val_int(target), val_int(framebuffer) );
+        } else {
+            snow::log(1, "snow / framebuffer object extension not found. / BindFramebuffer");
         }
 
        return alloc_null();
@@ -1398,6 +1404,8 @@ namespace snow {
 
         if( HAS_EXT_framebuffer_object ) {
             glBindRenderbuffer(val_int(target),val_int(renderbuffer));
+        } else {
+            snow::log(1, "snow / framebuffer object extension not found. / BindRenderbuffer");
         }
 
        return alloc_null();
@@ -1424,6 +1432,8 @@ namespace snow {
 
         if (HAS_EXT_framebuffer_object) {
             glDeleteFramebuffers(1, &id);
+        } else {
+            snow::log(1, "snow / framebuffer object extension not found. / DeleteFramebuffers");
         }
 
         return alloc_null();
@@ -1437,6 +1447,8 @@ namespace snow {
 
         if( HAS_EXT_framebuffer_object ) {
             glGenRenderbuffers(1,&id);
+        } else {
+            snow::log(1, "snow / framebuffer object extension not found. / GenRenderbuffers");
         }
 
         return alloc_int(id);
@@ -1450,6 +1462,8 @@ namespace snow {
 
         if( HAS_EXT_framebuffer_object ) {
             glDeleteRenderbuffers(1, &id);
+        } else {
+            snow::log(1, "snow / framebuffer object extension not found. / DeleteRenderbuffers");
         }
 
         return alloc_null();
@@ -1461,6 +1475,8 @@ namespace snow {
 
         if( HAS_EXT_framebuffer_object ) {
             glFramebufferRenderbuffer(val_int(target), val_int(attachment), val_int(renderbuffertarget), val_int(renderbuffer) );
+        } else {
+            snow::log(1, "snow / framebuffer object extension not found. / FramebufferRenderbuffer");
         }
 
         return alloc_null();
@@ -1472,6 +1488,8 @@ namespace snow {
 
         if( HAS_EXT_framebuffer_object ) {
             glFramebufferTexture2D( val_int(target), val_int(attachment), val_int(textarget), val_int(texture), val_int(level) );
+        } else {
+            snow::log(1, "snow / framebuffer object extension not found. / FramebufferTexture2D");
         }
 
         return alloc_null();
@@ -1483,6 +1501,8 @@ namespace snow {
 
         if( HAS_EXT_framebuffer_object ) {
             glRenderbufferStorage( val_int(target), val_int(internalFormat), val_int(width), val_int(height) );
+        } else {
+            snow::log(1, "snow / framebuffer object extension not found. / RenderbufferStorage");
         }
 
         return alloc_null();
@@ -1494,6 +1514,8 @@ namespace snow {
 
         if( HAS_EXT_framebuffer_object ) {
             return alloc_int( glCheckFramebufferStatus(val_int(inTarget)) );
+        } else {
+            snow::log(1, "snow / framebuffer object extension not found. / CheckFramebufferStatus");
         }
 
         return alloc_int(0);
@@ -1507,6 +1529,8 @@ namespace snow {
 
         if( HAS_EXT_framebuffer_object ) {
             glGetFramebufferAttachmentParameteriv( val_int(target), val_int(attachment), val_int(pname), &result);
+        } else {
+            snow::log(1, "snow / framebuffer object extension not found. / GetFramebufferAttachmentParameteriv");
         }
 
        return alloc_int(result);
@@ -1520,6 +1544,8 @@ namespace snow {
 
         if( HAS_EXT_framebuffer_object ) {
             glGetRenderbufferParameteriv(val_int(target), val_int(pname), &result);
+        } else {
+            snow::log(1, "snow / framebuffer object extension not found. / GetRenderbufferParameteriv");
         }
 
         return alloc_int(result);
