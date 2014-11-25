@@ -36,7 +36,8 @@ class Assets {
 
 
         /** constructed internally, use `app.assets` */
-    @:noCompletion public function new( _lib:Snow ) {
+    @:allow(snow.Snow)
+    function new( _lib:Snow ) {
 
         #if ios
                 //This is because of how the files are put into the xcode project

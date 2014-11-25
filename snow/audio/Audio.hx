@@ -33,7 +33,8 @@ class Audio {
     @:noCompletion public var stream_list : Map<String, SoundStream>;
 
         /** constructed internally, use `app.audio` */
-    @:noCompletion public function new( _lib:Snow ) {
+    @:allow(snow.Snow)
+    function new( _lib:Snow ) {
 
         lib = _lib;
 
@@ -328,7 +329,8 @@ class Audio {
 
 
         /** Called by Snow when a system event is dispatched */
-    @:noCompletion public function on_event( _event:SystemEvent ) {
+    @:allow(snow.Snow)
+    function on_event( _event:SystemEvent ) {
 
         if(_event.type == SystemEventType.app_willenterbackground) {
             suspend();
@@ -353,7 +355,8 @@ class Audio {
     } //on_event
 
         /** Called by Snow, cleans up sounds/system */
-    @:noCompletion public function destroy() {
+    @:allow(snow.Snow)
+    function destroy() {
 
         active = false;
 
@@ -366,7 +369,8 @@ class Audio {
     } //destroy
 
         /** Called by Snow, update any sounds / streams */
-    @:noCompletion public function update() {
+    @:allow(snow.Snow)
+    function update() {
 
         if(!active) {
             return;

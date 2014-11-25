@@ -104,7 +104,8 @@ class App {
 //to maintain expected App behavior. You can override behavior in the base class, like AppFixedTimestep
 
         //internal facing api
-    @:noCompletion public function on_internal_init() {
+    @:allow(snow.Snow)
+    function on_internal_init() {
 
         cur_frame_start = app.time;
         last_frame_start = cur_frame_start;
@@ -113,7 +114,8 @@ class App {
 
     } //on_internal_init
 
-    @:noCompletion public function on_internal_update() {
+    @:allow(snow.Snow)
+    function on_internal_update() {
 
         if(update_rate != 0) {
             if(next_tick < app.time) {
@@ -175,8 +177,8 @@ class AppFixedTimestep extends App {
         /** the overflow of the updates. This is used internally, for you, to calculate the alpha time for rendering interpolation as follows `alpha = overflow / frame_time;` */
     public var overflow : Float = 0.0;
 
-
-    @:noCompletion override public function on_internal_init() {
+    @:allow(snow.Snow)
+    override function on_internal_init() {
 
         super.on_internal_init();
 
@@ -187,7 +189,8 @@ class AppFixedTimestep extends App {
 
         //no super.on_internal_update because this entirely controls
         //the update loop for the application itself
-    @:noCompletion override public function on_internal_update() {
+    @:allow(snow.Snow)
+    override function on_internal_update() {
 
         cur_frame_start = app.time;
         delta_time = (cur_frame_start - last_frame_start);
