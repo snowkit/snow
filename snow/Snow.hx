@@ -229,7 +229,8 @@ class Snow {
 
     } //on_snow_ready
 
-    @:noCompletion public function do_internal_update( dt:Float ) {
+    @:allow(snow.App)
+    function do_internal_update( dt:Float ) {
 
         io.update();
         input.update();

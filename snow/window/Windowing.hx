@@ -163,7 +163,8 @@ class Windowing {
 //Internal core API
 
         /** Called by Snow when a system event is dispatched */
-    @:noCompletion public function on_event( _event:SystemEvent ) {
+    @:allow(snow.Snow)
+    function on_event( _event:SystemEvent ) {
 
         if(_event.type == SystemEventType.window) {
 
@@ -180,7 +181,8 @@ class Windowing {
     } //on_event
 
         /** Called by Snow, process any window handling */
-    @:noCompletion public function update() {
+    @:allow(snow.Snow)
+    function update() {
 
         platform.process();
 
@@ -197,7 +199,8 @@ class Windowing {
     } //update
 
         /** Called by Snow, destroy everything. */
-    @:noCompletion public function destroy() {
+    @:allow(snow.Snow)
+    function destroy() {
 
         platform.destroy();
 

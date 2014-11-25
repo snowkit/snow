@@ -38,7 +38,8 @@ class Input {
     var gamepad_axis_values : Map<Int, MapIntFloat >;
 
         /** constructed internally, use `app.input` */
-    @:noCompletion public function new( _lib:Snow ) {
+    @:allow(snow.Snow)
+    function new( _lib:Snow ) {
 
         lib = _lib;
 
@@ -374,7 +375,8 @@ class Input {
     } //on_gamepad_removed
 
         /** Handle any input related processing, called by Snow */
-    @:noCompletion public function update() {
+    @:allow(snow.Snow)
+    function update() {
 
         platform.process();
 
@@ -385,7 +387,8 @@ class Input {
     } //update
 
         /** Destroy and clean up etc. */
-    @:noCompletion public function destroy() {
+    @:allow(snow.Snow)
+    function destroy() {
 
         platform.destroy();
 
