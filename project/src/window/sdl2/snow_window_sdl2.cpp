@@ -181,8 +181,10 @@ namespace snow {
 
             SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
 
+            // :todo: wip , these are being exposed properly soon
             // SDL_GL_SetAttribute(SDL_GL_ACCELERATED_VISUAL, 1);
             // SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
+            // SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_COMPATIBILITY);
 
             #ifdef SNOW_GLES
                 SDL_GL_SetAttribute(SDL_GL_RETAINED_BACKING, 1);
@@ -307,6 +309,7 @@ namespace snow {
                 }
 
                 #ifdef NATIVE_TOOLKIT_GLEW
+                    glewExperimental = GL_TRUE;
                     int err = glewInit();
                     if(err != 0) {
                         snow::log(1, "/ snow / failed to init glew?! %s\n", glewGetErrorString(err));
