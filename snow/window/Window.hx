@@ -81,11 +81,13 @@ class Window {
             config.y = 0x1FFF0000;
         }
 
-        manager.platform.create( _config, on_window_created );
+        manager.platform.create( _manager.lib.config.render, _config, on_window_created );
 
     } //new
 
-    function on_window_created( _handle:WindowHandle, _id:Int, _config:WindowConfig ) : Void {
+    function on_window_created( _handle:WindowHandle, _id:Int, _configs:{ config:WindowConfig, render_config:RenderConfig } ) : Void {
+
+        trace(_configs);
 
         id = _id;
         handle = _handle;
@@ -96,18 +98,21 @@ class Window {
         }
 
         closed = false;
-        config = _config;
+            //store the real config
+        config = _configs.config;
+            //update the render config in the core
+        manager.lib.config.render = _configs.render_config;
 
             //update the position and size
             //because it updates in the config
             internal_position = true;
-        x = _config.x;
-        y = _config.y;
+        x = config.x;
+        y = config.y;
             internal_position = false;
 
             internal_resize = true;
-        width = _config.width;
-        height = _config.height;
+        width = config.width;
+        height = config.height;
             internal_resize = false;
 
         #if mobile

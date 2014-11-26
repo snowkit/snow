@@ -98,8 +98,16 @@ namespace snow {
 
         //window config
 
+    extern int id_render_config;
+    extern int id_opengl;
+    extern int id_profile;
+    extern int id_major;
+    extern int id_minor;
+
+    extern int id_config;
     extern int id_title;
     extern int id_fullscreen;
+    extern int id_fullscreen_desktop;
     extern int id_resizable;
     extern int id_borderless;
     extern int id_antialiasing;
@@ -109,6 +117,8 @@ namespace snow {
     extern int id_alpha_bits;
     extern int id_depth_bits;
     extern int id_stencil_bits;
+    extern int id_depth;
+    extern int id_stencil;
 
     inline void snow_init_ids() {
 
@@ -195,8 +205,19 @@ namespace snow {
 
         id_title                = val_id("title");
         id_fullscreen           = val_id("fullscreen");
+        id_fullscreen_desktop   = val_id("fullscreen_desktop");
         id_resizable            = val_id("resizable");
         id_borderless           = val_id("borderless");
+
+            //render config related
+
+        id_render_config        = val_id("render_config");
+        id_opengl               = val_id("opengl");
+        id_major                = val_id("major");
+        id_minor                = val_id("minor");
+        id_profile              = val_id("profile");
+
+        id_config               = val_id("config");
         id_antialiasing         = val_id("antialiasing");
         id_red_bits             = val_id("red_bits");
         id_green_bits           = val_id("green_bits");
@@ -204,6 +225,8 @@ namespace snow {
         id_alpha_bits           = val_id("alpha_bits");
         id_depth_bits           = val_id("depth_bits");
         id_stencil_bits         = val_id("stencil_bits");
+        id_depth                = val_id("depth");
+        id_stencil              = val_id("stencil");
 
     } //snow_init_ids
 

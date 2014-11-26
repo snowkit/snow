@@ -36,8 +36,8 @@ import snow.utils.Libs;
     @:noCompletion override public function unlisten( window:Window ) {
     } //unlisten
 
-    override public function create( config:WindowConfig, on_created: WindowHandle->Int->WindowConfig->Void ) {
-    	snow_window_create( config, on_created );
+    override public function create( render_config:RenderConfig, config:WindowConfig, on_created: WindowHandle->Int->WindowingConfig->Void ) {
+    	snow_window_create( render_config, config, on_created );
     } //window_create
 
     override public function close( window:Window ) {
@@ -89,7 +89,7 @@ import snow.utils.Libs;
     } //window_set_min_size
 
     override public function fullscreen( window:Window, fullscreen:Bool ) {
-    	snow_window_fullscreen( window.handle, fullscreen, ( lib.config.native.desktop_fullscreen ) ? 0 : 1 );
+    	snow_window_fullscreen( window.handle, fullscreen, ( window.config.fullscreen_desktop ) ? 0 : 1 );
     } //window_fullscreen
 
     override public function bordered( window:Window, bordered:Bool ) {
@@ -158,7 +158,7 @@ import snow.utils.Libs;
 //Native bindings
 
 
-    static var snow_window_create                   = Snow.load( "snow", "snow_window_create", 2 );
+    static var snow_window_create                   = Snow.load( "snow", "snow_window_create", 3 );
     static var snow_window_close                    = Snow.load( "snow", "snow_window_close", 1 );
     static var snow_window_show                     = Snow.load( "snow", "snow_window_show", 1 );
     static var snow_window_destroy_window           = Snow.load( "snow", "snow_window_destroy_window", 1 );

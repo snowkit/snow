@@ -31,7 +31,7 @@ import snow.window.WindowSystem;
         override public function destroy() {
         } //destroy
 
-        override public function create( config:WindowConfig, on_created: WindowHandle->Int->WindowConfig->Void ) {
+        override public function create( render_config:RenderConfig, config:WindowConfig, on_created: WindowHandle->Int->WindowingConfig->Void ) {
 
             var _window_id = seq_window;
             var _handle : js.html.CanvasElement = js.Browser.document.createCanvasElement();

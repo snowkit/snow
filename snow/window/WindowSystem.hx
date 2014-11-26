@@ -44,7 +44,7 @@ import snow.utils.AbstractClass;
 
         /** Create a window with config, calls on_created when complete passing the handle, the ID,
             and the actual config that was used since the requested config could fail */
-    public function create( config:WindowConfig, on_created: WindowHandle->Int->WindowConfig->Void );
+    public function create( render_config:RenderConfig, config:WindowConfig, on_created: WindowHandle->Int->WindowingConfig->Void );
         /** Close a given window */
     public function close( window:Window );
         /** reopen this window once closed. Destroyed windows cannot be reopened, it must use create again */
