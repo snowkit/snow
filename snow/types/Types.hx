@@ -28,7 +28,7 @@ typedef AssetInfo = {
 } //AssetInfo
 
 /** A type to identify assets when stored as an Asset */
-@:enum abstract AssetType(Int) {
+@:enum abstract AssetType(Int) from Int to Int {
 
     var bytes   = 0;
     var text    = 1;
@@ -93,9 +93,12 @@ typedef AppConfig = {
 
         /** whether or not to create and run a default window, default: true */
     @:optional var has_window   : Bool;
-
         /** the window config for the default window, if `has_window` is true. default: see `WindowConfig` docs*/
     @:optional var window       : WindowConfig;
+
+        /** The render config that specifies rendering and context backend specifics.  */
+    @:optional var render       : RenderConfig;
+
         /** the user specific config, by default, read from a json file at runtime */
     @:optional var runtime      : Dynamic;
         /** the raw list of assets. use the app.assets from Snow for access to these. read from a manifest file by default */
@@ -127,9 +130,6 @@ typedef AppConfigNative = {
 
         /** The default number of audio buffers to use for a single stream. Set no less than 2, as it's a queue. See `Audio` docs. default:4 */
     @:optional var audio_buffer_count : Int;
-
-        /** If true, the users native desktop resolution will be used for fullscreen instead of the specified window size. default: true */
-    @:optional var desktop_fullscreen : Bool;
 
 } //AppConfigNative
 
@@ -232,17 +232,21 @@ typedef AudioDataBlob = {
 } //AudioDataBlob
 
 
-/** Window configuration information for creating windows */
-typedef WindowConfig = {
+/** Config specific to the rendering context that would be used when creating windows */
+typedef RenderConfig = {
 
-        /** create in fullscreen, default: false, `mobile` true */
-    @:optional var fullscreen   : Bool;
-        /** allow the window to be resized, default: true */
-    @:optional var resizable    : Bool;
-        /** create as a borderless window, default: false */
-    @:optional var borderless   : Bool;
+        /** Whether a stencil buffer should be created. default:false */
+    @:optional var depth : Bool;
+        /** Whether a stencil buffer should be created. default:false */
+    @:optional var stencil : Bool;
         /** a value of `0`, `2`, `4`, `8` or other valid antialiasing flags. default: 0 */
     @:optional var antialiasing : Int;
+
+        /** set the number of depth bits for the rendering to use. Unless you need to change this, don't. default: system */
+    @:optional var depth_bits   : Int;
+        /** set the number of red bits for the rendering to use. Unless you need to change this, don't. default: system */
+    @:optional var stencil_bits   : Int;
+
         /** set the number of red bits for the rendering to use. Unless you need to change this, don't. default: 8 */
     @:optional var red_bits   : Int;
         /** set the number of green bits for the rendering to use. Unless you need to change this, don't. default: 8 */
@@ -251,10 +255,53 @@ typedef WindowConfig = {
     @:optional var blue_bits   : Int;
         /** set the number of alpha bits for the rendering to use. Unless you need to change this, don't. default: 8 */
     @:optional var alpha_bits   : Int;
-        /** create a depth buffer at the specified bit depth (i.e `0` or `16` bit depth buffer) default: 0 */
-    @:optional var depth_bits   : Int;
-        /** create a stencil buffer at the specified bit depth (i.e `8` or `16` bit stencil buffer). default: 0 */
-    @:optional var stencil_bits : Int;
+
+        /** OpenGL render context specific settings */
+    @:optional var opengl : RenderConfigOpenGL;
+
+} //RenderConfig
+
+
+/** A type of OpenGL context profile to request. see RenderConfigOpenGL for info */
+@:enum abstract OpenGLProfile(Int) from Int to Int {
+
+    var compatibility = 0;
+    var core = 1;
+
+} //AssetType
+
+
+@:noCompletion typedef WindowingConfig = {
+    config:WindowConfig,
+    render_config:RenderConfig
+}
+
+/** Config specific to an OpenGL rendering context.
+    Note that these are hints to the system,
+    you must always check the values after initializing
+    for what you actually received. The OS/driver decides. */
+typedef RenderConfigOpenGL = {
+
+        /** The major OpenGL version to request */
+    @:optional var major : Int;
+        /** The minor OpenGL version to request */
+    @:optional var minor : Int;
+        /** The OpenGL context profile to request */
+    @:optional var profile : OpenGLProfile;
+
+} //RenderConfigOpenGL
+
+/** Window configuration information for creating windows */
+typedef WindowConfig = {
+
+        /** create in fullscreen, default: false, `mobile` true */
+    @:optional var fullscreen   : Bool;
+        /** If true, the users native desktop resolution will be used for fullscreen instead of the specified window size. default: true */
+    @:optional var fullscreen_desktop : Bool;
+        /** allow the window to be resized, default: true */
+    @:optional var resizable    : Bool;
+        /** create as a borderless window, default: false */
+    @:optional var borderless   : Bool;
         /** window y at creation. Leave this alone to use the OS default. */
     @:optional var x            : Int;
         /** window x at creation. Leave this alone to use the OS default. */
@@ -351,7 +398,7 @@ typedef DisplayMode = {
 
 
 /** A text specific event event type */
-@:enum abstract TextEventType(Int) {
+@:enum abstract TextEventType(Int) from Int to Int {
 
 /** An unknown text event */
     var unknown    = 0;
@@ -363,7 +410,7 @@ typedef DisplayMode = {
 } //TextEventType
 
 /** A gamepad device event type */
-@:enum abstract GamepadDeviceEventType(Int) {
+@:enum abstract GamepadDeviceEventType(Int) from Int to Int {
 
 /** A unknown device event */
     var unknown             = 0;
@@ -418,7 +465,7 @@ typedef ModState = {
 
 //Conversion helpers for native <-> snow events
 
-@:enum abstract SystemEventType(Int) {
+@:enum abstract SystemEventType(Int) from Int to Int {
 
         //snow core events
         //from native :
@@ -461,7 +508,7 @@ typedef ModState = {
 
 } //SystemEvents
 
-@:enum abstract WindowEventType(Int) {
+@:enum abstract WindowEventType(Int) from Int to Int {
 
         //window events,
         // from native :
@@ -505,7 +552,7 @@ typedef ModState = {
 
 } //WindowEvent
 
-@:enum abstract InputEventType(Int) {
+@:enum abstract InputEventType(Int) from Int to Int {
 
         //Input events
         //from native :
@@ -527,7 +574,7 @@ typedef ModState = {
 
 } //InputEvent
 
-@:enum abstract FileEventType(Int) {
+@:enum abstract FileEventType(Int) from Int to Int {
 
         //File watch events
         //from native :

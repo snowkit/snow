@@ -61,7 +61,7 @@ namespace snow {
                 void show();
                 void destroy();
 
-                void create( const window_config &config, AutoGCRoot* _on_created );
+                void create( const RenderConfig &render_config, const WindowConfig &config, AutoGCRoot* _on_created );
                 void simple_message( const char* message, const char* title );
                 void set_size(int x, int y);
                 void set_position(int x, int y);
@@ -74,17 +74,22 @@ namespace snow {
                 void grab(bool enable);
                 void set_cursor_position(int x, int y);
 
+                    //hardiness
+                bool probe( RenderConfig &_render_config, WindowConfig &_window_config );
+                    //warnings/errors appended here for debugging
+                std::string notes;
+
             private:
 
         }; //WindowSDL2
 
     //API implementations
 
-        Window* create_window( const window_config &config, AutoGCRoot* on_created ) {
+        Window* create_window( const RenderConfig &render_config, const WindowConfig &config, AutoGCRoot* on_created ) {
 
             WindowSDL2* new_window = new WindowSDL2();
 
-                new_window->create( config, on_created );
+                new_window->create( render_config, config, on_created );
 
             return new_window;
 
@@ -138,12 +143,25 @@ namespace snow {
         } //WindowSDL2::destroy
 
 
-        void WindowSDL2::create( const window_config &_config, AutoGCRoot* _on_created ) {
+            //This function will probe for hardware capability,
+            //asking the hardware for the best available settings
+            //inline with the requested configs, updating them as needed.
+            //this appends errors to `notes` that are found during creation
+            //if given a config that can't be obtained, so we can get clearer state.
+        bool WindowSDL2::probe( RenderConfig &_render_config, WindowConfig &_window_config ) {
+
+            return false;
+
+        } //probe
+
+
+        void WindowSDL2::create( const RenderConfig &_render_config, const WindowConfig &_config, AutoGCRoot* _on_created ) {
 
                 //store these first
             created_handler = _on_created;
                 //assign it now so we take a copy from the const
             config = _config;
+            render_config = _render_config;
 
                 //then try init sdl video system
             int err = snow::window::init_sdl();
@@ -160,41 +178,75 @@ namespace snow {
 
                 request_flags |= SDL_WINDOW_OPENGL;
 
-            if(config.resizable)    { request_flags |= SDL_WINDOW_RESIZABLE;  }
-            if(config.borderless)   { request_flags |= SDL_WINDOW_BORDERLESS; }
-            if(config.fullscreen)   { request_flags |= SDL_WINDOW_FULLSCREEN; } //SDL_WINDOW_FULLSCREEN_DESKTOP;
+            if(config.resizable)            { request_flags |= SDL_WINDOW_RESIZABLE;  }
+            if(config.borderless)           { request_flags |= SDL_WINDOW_BORDERLESS; }
+
+            if(config.fullscreen) {
+                request_flags |= SDL_WINDOW_FULLSCREEN;
+                if(config.fullscreen_desktop) {
+                    request_flags |= SDL_WINDOW_FULLSCREEN_DESKTOP;
+                }
+            }
+
+            snow::log(1, "red:%d green:%d blue:%d alpha:%d depth:%d stencil:%d major:%d minor:%d profile:%d aa:%d", 
+                render_config.red_bits, render_config.green_bits, render_config.blue_bits, render_config.alpha_bits,
+                render_config.depth_bits, render_config.stencil_bits, render_config.opengl.major, render_config.opengl.minor,
+                render_config.opengl.profile, render_config.antialiasing);
 
                 //opengl specifics, these all need to be set before create window
 
-            SDL_GL_SetAttribute(SDL_GL_RED_SIZE,    config.red_bits);
-            SDL_GL_SetAttribute(SDL_GL_GREEN_SIZE,  config.green_bits);
-            SDL_GL_SetAttribute(SDL_GL_BLUE_SIZE,   config.blue_bits);
-            SDL_GL_SetAttribute(SDL_GL_ALPHA_SIZE,  config.alpha_bits);
+            SDL_GL_SetAttribute(SDL_GL_RED_SIZE,    render_config.red_bits);
+            SDL_GL_SetAttribute(SDL_GL_GREEN_SIZE,  render_config.green_bits);
+            SDL_GL_SetAttribute(SDL_GL_BLUE_SIZE,   render_config.blue_bits);
+            SDL_GL_SetAttribute(SDL_GL_ALPHA_SIZE,  render_config.alpha_bits);
 
-            if(config.depth_bits > 0) {
-                SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, config.depth_bits );
+                //:todo: this will migrate to probe above
+            if(render_config.depth_bits > 0) {
+                SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, render_config.depth_bits );
             }
 
-            if(config.stencil_bits > 0) {
-                SDL_GL_SetAttribute(SDL_GL_STENCIL_SIZE, config.stencil_bits );
+            if(render_config.stencil_bits > 0) {
+                SDL_GL_SetAttribute(SDL_GL_STENCIL_SIZE, render_config.stencil_bits );
             }
 
             SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
 
-            // :todo: wip , these are being exposed properly soon
-            // SDL_GL_SetAttribute(SDL_GL_ACCELERATED_VISUAL, 1);
-            // SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
-            // SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_COMPATIBILITY);
+            if(render_config.opengl.major != 0) {
+                SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, render_config.opengl.major);
+                SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, render_config.opengl.minor);
+            }
 
             #ifdef SNOW_GLES
+
                 SDL_GL_SetAttribute(SDL_GL_RETAINED_BACKING, 1);
-                SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 2);
-                SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 0);
+
+                    //if no explicit version, default to ES 2.0.
+                if(render_config.opengl.major == 0) {
+                    SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 2);
+                    SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 0);
+                }
+
+            #else
+
+                switch(render_config.opengl.profile) {
+
+                    case gl_profile_compatibility:{
+                       SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_COMPATIBILITY);
+                    } break;
+
+                    case gl_profile_core:{
+                        SDL_GL_SetAttribute(SDL_GL_ACCELERATED_VISUAL, 1);
+                        SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
+                    } break;
+
+                } // profile
+
+            //GLES
             #endif
 
-            if(config.antialiasing > 0) {
+            if(render_config.antialiasing > 0) {
                 SDL_GL_SetAttribute(SDL_GL_MULTISAMPLEBUFFERS, 1 );
-                SDL_GL_SetAttribute(SDL_GL_MULTISAMPLESAMPLES, config.antialiasing );
+                SDL_GL_SetAttribute(SDL_GL_MULTISAMPLESAMPLES, render_config.antialiasing );
             }
 
                 //now actually try and create a window
@@ -236,7 +288,7 @@ namespace snow {
                     SDL_GL_SetAttribute(SDL_GL_MULTISAMPLEBUFFERS, 0);
                     SDL_GL_SetAttribute(SDL_GL_MULTISAMPLESAMPLES, 0);
                         //undo the local config for the aa, so it's sent back as off
-                    config.antialiasing = 0;
+                    render_config.antialiasing = 0;
 
                         //try again
                     snow_gl_context = SDL_GL_CreateContext(window);
@@ -255,7 +307,7 @@ namespace snow {
                             //if this succeeds we can at least log that there was a misconfigured depth/stencil buffer
                         if(snow_gl_context) {
                             snow::log(1, "/ snow / diagnostic test with no stencil/depth passed, meaning your stencil/depth bit combo is invalid (requested stencil:%d, depth:%d)\n",
-                                config.stencil_bits, config.depth_bits );
+                                render_config.stencil_bits, render_config.depth_bits );
                         } else {
                             snow::log(1, "/ snow / diagnostic test with no stencil/depth failed as well %s\n", SDL_GetError() );
                         }
@@ -272,36 +324,35 @@ namespace snow {
                         //update the window config flags to what
                         //SDL has actually given us in return
 
-                    int actual_aa = config.antialiasing;
-                    int actual_depth = config.depth_bits;
-                    int actual_stencil = config.stencil_bits;
+                        SDL_GL_GetAttribute(SDL_GL_MULTISAMPLESAMPLES, &render_config.antialiasing);
 
-                    int actual_red = config.red_bits;
-                    int actual_blue = config.blue_bits;
-                    int actual_green = config.green_bits;
-                    int actual_alpha = config.alpha_bits;
+                        SDL_GL_GetAttribute(SDL_GL_RED_SIZE, &render_config.red_bits);
+                        SDL_GL_GetAttribute(SDL_GL_GREEN_SIZE, &render_config.green_bits);
+                        SDL_GL_GetAttribute(SDL_GL_BLUE_SIZE, &render_config.blue_bits);
+                        SDL_GL_GetAttribute(SDL_GL_ALPHA_SIZE, &render_config.alpha_bits);
 
-                        SDL_GL_GetAttribute(SDL_GL_MULTISAMPLESAMPLES, &actual_aa);
+                        SDL_GL_GetAttribute(SDL_GL_DEPTH_SIZE, &render_config.depth_bits);
+                        SDL_GL_GetAttribute(SDL_GL_STENCIL_SIZE, &render_config.stencil_bits);
 
-                        SDL_GL_GetAttribute(SDL_GL_RED_SIZE, &actual_red);
-                        SDL_GL_GetAttribute(SDL_GL_GREEN_SIZE, &actual_green);
-                        SDL_GL_GetAttribute(SDL_GL_BLUE_SIZE, &actual_blue);
-                        SDL_GL_GetAttribute(SDL_GL_ALPHA_SIZE, &actual_alpha);
+                        SDL_GL_GetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, &render_config.opengl.major);
+                        SDL_GL_GetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, &render_config.opengl.minor);
+                        int profile = (int)render_config.opengl.profile;
+                        SDL_GL_GetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, &profile);
 
-                        SDL_GL_GetAttribute(SDL_GL_DEPTH_SIZE, &actual_depth);
-                        SDL_GL_GetAttribute(SDL_GL_STENCIL_SIZE, &actual_stencil);
-
-                    config.antialiasing = actual_aa;
-                    config.red_bits = actual_red;
-                    config.green_bits = actual_green;
-                    config.blue_bits = actual_blue;
-                    config.alpha_bits = actual_alpha;
-                    config.depth_bits = actual_depth;
-                    config.stencil_bits = actual_stencil;
+                        switch(profile) {
+                            case SDL_GL_CONTEXT_PROFILE_COMPATIBILITY:{
+                               render_config.opengl.profile = gl_profile_compatibility;
+                            } break;
+                            case SDL_GL_CONTEXT_PROFILE_CORE:{
+                               render_config.opengl.profile = gl_profile_core;
+                            } break;
+                        } // profile
 
                     snow::render::set_context_attributes(
-                        actual_red, actual_green, actual_blue, actual_alpha,
-                        actual_depth, actual_stencil, actual_aa
+                        render_config.red_bits, render_config.green_bits,
+                        render_config.blue_bits, render_config.alpha_bits,
+                        render_config.depth_bits, render_config.stencil_bits,
+                        render_config.antialiasing
                     );
 
                     snow::log(2, "/ snow / success in creating GL context for window %d\n", id);

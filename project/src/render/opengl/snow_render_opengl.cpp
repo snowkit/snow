@@ -1930,6 +1930,6 @@ namespace snow {
 } //snow namespace
 
 
-extern "C" int snow_opengl_sdl2_register_prims() {
+extern "C" int snow_opengl_register_prims() {
     return 0;
 }

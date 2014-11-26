@@ -88,6 +88,7 @@ class Snow {
             has_window : true,
             runtime : {},
             window : null,
+            render : null,
             assets : [],
             web : {
                 no_context_menu : true,
@@ -95,8 +96,7 @@ class Snow {
             },
             native : {
                 audio_buffer_length : 176400,
-                audio_buffer_count : 4,
-                desktop_fullscreen : true
+                audio_buffer_count : 4
             }
         };
 
@@ -198,6 +198,7 @@ class Snow {
         }
 
         config.window = default_window_config();
+        config.render = default_render_config();
 
         _debug('fetching user config');
 
@@ -403,10 +404,33 @@ class Snow {
     } //default_asset_list
 
 
-        /** returns a default configured window config */
+        /** Returns a default configured render config */
+    function default_render_config() : RenderConfig {
+
+        return {
+            depth : false,
+            stencil : false,
+            antialiasing : 0,
+            red_bits : 8,
+            green_bits : 8,
+            blue_bits : 8,
+            alpha_bits : 8,
+            depth_bits : 0,
+            stencil_bits : 0,
+            opengl : {
+                minor:0, major:0,
+                profile:OpenGLProfile.compatibility
+            }
+        };
+
+    } //default_render_config
+
+        /** Returns a default configured window config */
     function default_window_config() : WindowConfig {
 
         return {
+
+            fullscreen_desktop : true,
 
             #if mobile
                 fullscreen : true,
@@ -414,17 +438,8 @@ class Snow {
                 fullscreen : false,
             #end
 
-            resizable : true,
-            borderless : false,
-            antialiasing : 0,
-
-            red_bits : 8,
-            green_bits : 8,
-            blue_bits : 8,
-            alpha_bits : 8,
-            depth_bits : 0,
-            stencil_bits : 0,
-
+            resizable       : true,
+            borderless      : false,
             x               : 0x1FFF0000,
             y               : 0x1FFF0000,
             width           : 960,

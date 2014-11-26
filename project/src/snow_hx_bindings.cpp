@@ -219,20 +219,20 @@ extern double timestamp();
 
 
 
-
-    value snow_window_create( value _in_config, value _on_created ) {
+    value snow_window_create( value _in_render_config, value _in_config, value _on_created ) {
 
             //fetch the callback for when it's done opening the window
         AutoGCRoot *on_created = new AutoGCRoot( _on_created );
 
             //fetch window config from the haxe side
-        snow::window::window_config config = snow::window::window_config_from_hx(_in_config);
+        snow::window::RenderConfig render_config = snow::window::render_config_from_hx(_in_render_config);
+        snow::window::WindowConfig config = snow::window::window_config_from_hx(_in_config);
             //create the actual window
-        snow::window::create_window( config, on_created );
+        snow::window::create_window( render_config, config, on_created );
 
         return alloc_null();
 
-    } DEFINE_PRIM(snow_window_create, 2);
+    } DEFINE_PRIM(snow_window_create, 3);
 
 
     value snow_window_update( value _window ) {
@@ -1086,7 +1086,7 @@ extern double timestamp();
 
 
 
-
+ 
 //Native glue stuff
 
 
@@ -1155,8 +1155,16 @@ extern double timestamp();
     int id_bitrate_lower;
     int id_bitrate_window;
 
+    int id_render_config;
+    int id_opengl;
+    int id_profile;
+    int id_major;
+    int id_minor;
+
+    int id_config;
     int id_title;
     int id_fullscreen;
+    int id_fullscreen_desktop;
     int id_resizable;
     int id_borderless;
     int id_antialiasing;
@@ -1166,11 +1174,12 @@ extern double timestamp();
     int id_alpha_bits;
     int id_depth_bits;
     int id_stencil_bits;
-
+    int id_depth;
+    int id_stencil;
 
 
     #ifdef STATIC_LINK
-        extern "C" int snow_opengl_sdl2_register_prims();
+        extern "C" int snow_opengl_register_prims();
         #ifdef SNOW_USE_OPENAL
             extern "C" int snow_audio_openal_register_prims();
         #endif //SNOW_USE_OPENAL
@@ -1181,7 +1190,7 @@ extern double timestamp();
           snow_entry_point();
 
             #ifdef STATIC_LINK
-                snow_opengl_sdl2_register_prims();
+                snow_opengl_register_prims();
                 #ifdef SNOW_USE_OPENAL
                     snow_audio_openal_register_prims();
                 #endif //SNOW_USE_OPENAL

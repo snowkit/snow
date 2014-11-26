@@ -21,7 +21,8 @@ namespace snow {
 
             //forward
         class Window;
-        struct window_config;
+        struct RenderConfig;
+        struct WindowConfig;
         struct WindowEvent;
 
 
@@ -37,10 +38,12 @@ namespace snow {
         value           desktop_get_display_bounds(int display);
         const char*     desktop_get_display_name(int display);
 
-        value           window_config_to_hx( const window_config &config );
-        window_config   window_config_from_hx( value _in_config );
+        value           window_config_to_hx( const WindowConfig &config );
+        value           render_config_to_hx( const RenderConfig &config );
+        WindowConfig    window_config_from_hx( value _in_config );
+        RenderConfig    render_config_from_hx( value _in_config );
         void            dispatch_event( const WindowEvent &event );
-        Window*         create_window( const window_config &config, AutoGCRoot* on_created );
+        Window*         create_window( const RenderConfig &_render_config, const WindowConfig &config, AutoGCRoot* on_created );
 
         struct display_mode {
             int width;
@@ -56,15 +59,25 @@ namespace snow {
             int height;
         };
 
-            //window configuration
-        struct window_config {
+        enum OpenGLProfileType {
 
-            std::string title;
+            gl_profile_compatibility = 0,
+            gl_profile_core = 1
 
-            bool fullscreen;
-            bool resizable;
-            bool borderless;
-            bool multitouch;
+        }; //OpenGLProfileType
+
+            //opengl specific render config
+        struct RenderConfigOpenGL {
+            int major;
+            int minor;
+            OpenGLProfileType profile;
+        };
+
+            //render context configuration
+        struct RenderConfig {
+
+            bool depth;
+            bool stencil;
 
             int red_bits;
             int green_bits;
@@ -73,17 +86,14 @@ namespace snow {
             int depth_bits;
             int stencil_bits;
             int antialiasing;
-            int x;
-            int y;
-            int width;
-            int height;
 
-            window_config() {
+            RenderConfigOpenGL opengl;
 
-                title            = "snow";
-                fullscreen       = false;
-                resizable        = true;
-                borderless       = false;
+            RenderConfig() {
+
+                depth            = false;
+                stencil          = false;
+                red_bits         = 8;
                 red_bits         = 8;
                 green_bits       = 8;
                 blue_bits        = 8;
@@ -91,19 +101,17 @@ namespace snow {
                 depth_bits       = 0;
                 stencil_bits     = 0;
                 antialiasing     = 0;
-                x                = 0;
-                y                = 0;
-                width            = 960;
-                height           = 640;
 
-            } //window_config
+                opengl.major     = 0;
+                opengl.minor     = 0;
+                opengl.profile   = gl_profile_compatibility;
 
-            window_config( const window_config &other ) {
+            } //RenderConfig
 
-                title = std::string(other.title);
-                fullscreen = other.fullscreen;
-                resizable = other.resizable;
-                borderless = other.borderless;
+            RenderConfig( const RenderConfig &other ) {
+
+                depth = other.depth;
+                stencil = other.stencil;
                 red_bits = other.red_bits;
                 green_bits = other.green_bits;
                 blue_bits = other.blue_bits;
@@ -111,14 +119,58 @@ namespace snow {
                 depth_bits = other.depth_bits;
                 stencil_bits = other.stencil_bits;
                 antialiasing = other.antialiasing;
+                opengl = other.opengl;
+
+            } //RenderConfig( const RenderConfig &other )
+
+        }; //RenderConfig
+
+            //window configuration
+        struct WindowConfig {
+
+            std::string title;
+
+            bool fullscreen;
+            bool fullscreen_desktop;
+            bool resizable;
+            bool borderless;
+
+            int x;
+            int y;
+            int width;
+            int height;
+
+            WindowConfig() {
+
+                title               = "snow";
+                fullscreen          = false;
+                fullscreen_desktop  = true;
+                resizable           = true;
+                borderless          = false;
+
+                x                   = 0;
+                y                   = 0;
+                width               = 960;
+                height              = 640;
+
+            } //WindowConfig
+
+            WindowConfig( const WindowConfig &other ) {
+
+                title = std::string(other.title);
+                fullscreen = other.fullscreen;
+                fullscreen_desktop = other.fullscreen_desktop;
+                resizable = other.resizable;
+                borderless = other.borderless;
+
                 x = other.x;
                 y = other.y;
                 width = other.width;
                 height = other.height;
 
-            } //window_config( const window_config &other )
+            } //WindowConfig( const WindowConfig &other )
 
-        }; //window_config
+        }; //WindowConfig
 
             //plausible window events
         enum WindowEventType {
@@ -172,7 +224,8 @@ namespace snow {
                 bool created;
                 bool closed;
                 float r;
-                window_config config;
+                WindowConfig config;
+                RenderConfig render_config;
                 AutoGCRoot* created_handler;
 
                 Window() {
@@ -187,7 +240,7 @@ namespace snow {
                 }
 
                     //functions
-                virtual void create( const window_config &_config, AutoGCRoot* _on_created ) = 0;
+                virtual void create( const RenderConfig &_render_config, const WindowConfig &_config, AutoGCRoot* _on_created ) = 0;
                 virtual void simple_message( const char* message, const char* title ) = 0;
                 virtual void update() = 0;
                 virtual void render() = 0;
@@ -218,15 +271,24 @@ namespace snow {
                     if(created_handler != NULL) {
 
                         value _v_window = alloc_null();
-                        value _v_config = alloc_null();
                         value _v_id = alloc_int(id);
+                        value _v_result_config = alloc_null();
+                            value _v_window_config = alloc_null();
+                            value _v_render_config = alloc_null();
 
                         if(success) {
-                            _v_window = snow::to_hx<snow::window::Window>( this );
-                            _v_config = window_config_to_hx( config );
-                        }
 
-                        val_call3( created_handler->get(), _v_window, _v_id, _v_config);
+                            _v_window = snow::to_hx<snow::window::Window>( this );
+                            _v_result_config = alloc_empty_object();
+                                _v_window_config = window_config_to_hx( config );
+                                _v_render_config = render_config_to_hx( render_config );
+
+                            alloc_field( _v_result_config, id_render_config, _v_render_config );
+                            alloc_field( _v_result_config, id_config, _v_window_config );
+
+                        } //success
+
+                        val_call3( created_handler->get(), _v_window, _v_id, _v_result_config);
 
                     } //if created_handler
 
@@ -268,23 +330,17 @@ namespace snow {
 
     //Helper : window config to/from
 
-        inline value window_config_to_hx( const window_config &config ) {
+        inline value window_config_to_hx( const WindowConfig &config ) {
 
             value _object = alloc_empty_object();
 
                 alloc_field( _object, id_title, alloc_string(config.title.c_str()) );
 
                 alloc_field( _object, id_fullscreen, alloc_bool(config.fullscreen) );
+                alloc_field( _object, id_fullscreen_desktop, alloc_bool(config.fullscreen_desktop) );
                 alloc_field( _object, id_resizable, alloc_bool(config.resizable) );
                 alloc_field( _object, id_borderless, alloc_bool(config.borderless) );
 
-                alloc_field( _object, id_red_bits, alloc_int(config.red_bits) );
-                alloc_field( _object, id_green_bits, alloc_int(config.green_bits) );
-                alloc_field( _object, id_blue_bits, alloc_int(config.blue_bits) );
-                alloc_field( _object, id_alpha_bits, alloc_int(config.alpha_bits) );
-                alloc_field( _object, id_depth_bits, alloc_int(config.depth_bits) );
-                alloc_field( _object, id_stencil_bits, alloc_int(config.stencil_bits) );
-                alloc_field( _object, id_antialiasing, alloc_int(config.antialiasing) );
                 alloc_field( _object, id_x, alloc_int(config.x) );
                 alloc_field( _object, id_y, alloc_int(config.y) );
                 alloc_field( _object, id_width, alloc_int(config.width) );
@@ -294,28 +350,76 @@ namespace snow {
 
         } //window_config_to_hx
 
-        inline window_config window_config_from_hx( value _in_config ) {
+        inline value render_config_to_hx( const RenderConfig &config ) {
 
-            //the default window config
-            window_config config;
+            value _object = alloc_empty_object();
 
-                //read them from the given config, if config is not null
+                alloc_field( _object, id_depth, alloc_int(config.depth) );
+                alloc_field( _object, id_stencil, alloc_int(config.stencil) );
+                alloc_field( _object, id_red_bits, alloc_int(config.red_bits) );
+                alloc_field( _object, id_green_bits, alloc_int(config.green_bits) );
+                alloc_field( _object, id_blue_bits, alloc_int(config.blue_bits) );
+                alloc_field( _object, id_alpha_bits, alloc_int(config.alpha_bits) );
+                alloc_field( _object, id_depth_bits, alloc_int(config.depth_bits) );
+                alloc_field( _object, id_stencil_bits, alloc_int(config.stencil_bits) );
+                alloc_field( _object, id_antialiasing, alloc_int(config.antialiasing) );
+
+                value val_opengl = alloc_empty_object();
+                    alloc_field( val_opengl, id_major, alloc_int(config.opengl.major) );
+                    alloc_field( val_opengl, id_minor, alloc_int(config.opengl.minor) );
+                    alloc_field( val_opengl, id_profile, alloc_int((int)config.opengl.profile) );
+
+                alloc_field( _object, id_opengl, val_opengl );
+
+            return _object;
+
+        } //render_config_to_hx
+
+        inline RenderConfig render_config_from_hx( value _in_config ) {
+
+                //starts at defaults
+            RenderConfig config;
+
+                if( !val_is_null(_in_config) ) {
+
+                    config.depth                    = property_bool( _in_config, id_depth, config.depth );
+                    config.stencil                  = property_bool( _in_config, id_stencil, config.stencil );
+
+                    config.depth_bits               = property_int( _in_config, id_depth_bits, config.depth_bits );
+                    config.stencil_bits             = property_int( _in_config, id_stencil_bits, config.stencil_bits );
+
+                    config.red_bits                 = property_int( _in_config, id_red_bits, config.red_bits );
+                    config.green_bits               = property_int( _in_config, id_green_bits, config.green_bits );
+                    config.blue_bits                = property_int( _in_config, id_blue_bits, config.blue_bits );
+                    config.alpha_bits               = property_int( _in_config, id_alpha_bits, config.alpha_bits );
+
+                    config.antialiasing             = property_int( _in_config, id_antialiasing, config.antialiasing );
+
+                    value opengl_val                = val_field( _in_config, id_opengl );
+                        config.opengl.major         = property_int( opengl_val, id_major, 0 );
+                        config.opengl.minor         = property_int( opengl_val, id_minor, 0 );
+                        config.opengl.profile       = (OpenGLProfileType)property_int( opengl_val, id_profile, 0 );
+
+                } //!null
+
+            return config;
+
+        } //render_config_from_hx
+
+        inline WindowConfig window_config_from_hx( value _in_config ) {
+
+                //starts at defaults
+            WindowConfig config;
 
             if( !val_is_null(_in_config) ) {
 
                 config.title                    = property_string( _in_config, id_title, config.title.c_str() );
 
                 config.fullscreen               = property_bool( _in_config, id_fullscreen, config.fullscreen );
+                config.fullscreen_desktop       = property_bool( _in_config, id_fullscreen_desktop, config.fullscreen_desktop );
                 config.resizable                = property_bool( _in_config, id_resizable, config.resizable );
                 config.borderless               = property_bool( _in_config, id_borderless, config.borderless );
 
-                config.red_bits                 = property_int( _in_config, id_red_bits, config.red_bits );
-                config.green_bits               = property_int( _in_config, id_green_bits, config.green_bits );
-                config.blue_bits                = property_int( _in_config, id_blue_bits, config.blue_bits );
-                config.alpha_bits               = property_int( _in_config, id_alpha_bits, config.alpha_bits );
-                config.depth_bits               = property_int( _in_config, id_depth_bits, config.depth_bits );
-                config.stencil_bits             = property_int( _in_config, id_stencil_bits, config.stencil_bits );
-                config.antialiasing             = property_int( _in_config, id_antialiasing, config.antialiasing );
                 config.x                        = property_int( _in_config, id_x, config.x );
                 config.y                        = property_int( _in_config, id_y, config.y );
                 config.width                    = property_int( _in_config, id_width, config.width );
