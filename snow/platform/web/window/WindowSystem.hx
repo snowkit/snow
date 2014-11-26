@@ -86,7 +86,7 @@ import snow.window.WindowSystem;
 
 
                 //tell them and give the handle for later.
-            on_created(_handle, _window_id, config);
+            on_created(_handle, _window_id, { config:config, render_config:render_config });
             _handle.setAttribute('id', 'window${_window_id}');
 
             seq_window++;
