@@ -25,7 +25,7 @@ class AudioSystem extends snow.platform.native.audio.AudioSystem {
 
             _debug('init');
 
-        device = ALC.openDevice('snõw audio device');
+        device = ALC.openDevice();
 
             log('created device / ${device} / ${ AL.getErrorMeaning(AL.getError()) }');
 
