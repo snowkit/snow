@@ -407,6 +407,9 @@ namespace snow {
 
                 while (!found_data) {
 
+                        // Save the current position indicator of the stream
+                    current_head = snow::io::tell(wav_source->file_source);
+
                     //Read in the the last byte of data before the sound file
                     result = snow::io::read(wav_source->file_source, &wave_data, sizeof(WAVE_Data), 1);
 
@@ -421,8 +424,7 @@ namespace snow {
                         wave_data.subChunkID[2] != 't' ||
                         wave_data.subChunkID[3] != 'a'
                     ) {
-                            // Goto next chunk.
-                        snow::io::seek(wav_source->file_source, current_head + sizeof(WAVE_Data) + wave_format.subChunkSize, snow_seek_set);
+                        snow::io::seek(wav_source->file_source, wave_data.subChunkSize, snow_seek_cur);
                     } else {
                         found_data = true;
                     }
