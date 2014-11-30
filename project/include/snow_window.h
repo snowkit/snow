@@ -354,8 +354,8 @@ namespace snow {
 
             value _object = alloc_empty_object();
 
-                alloc_field( _object, id_depth, alloc_int(config.depth) );
-                alloc_field( _object, id_stencil, alloc_int(config.stencil) );
+                alloc_field( _object, id_depth, alloc_bool(config.depth) );
+                alloc_field( _object, id_stencil, alloc_bool(config.stencil) );
                 alloc_field( _object, id_red_bits, alloc_int(config.red_bits) );
                 alloc_field( _object, id_green_bits, alloc_int(config.green_bits) );
                 alloc_field( _object, id_blue_bits, alloc_int(config.blue_bits) );
