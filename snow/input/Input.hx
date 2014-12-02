@@ -152,9 +152,11 @@ class Input {
             /** returns true if the gamepad button value is down at the time of calling this */
         public function gamepadaxis( _gamepad:Int, _axis:Int ) : Float {
 
-           var _gamepad_state = gamepad_axis_values.get(_gamepad);
-            if(_gamepad_state.exists(_axis)) {
-                return _gamepad_state.get(_axis);
+            var _gamepad_state = gamepad_axis_values.get(_gamepad);
+            if(_gamepad_state != null) {
+                if(_gamepad_state.exists(_axis)) {
+                    return _gamepad_state.get(_axis);
+                }
             }
 
             return 0;
