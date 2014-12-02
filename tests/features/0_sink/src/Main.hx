@@ -183,6 +183,14 @@ class Main extends snow.AppFixedTimestep {
             app.io.platform.watch_add('assets/');
         #end
 
+        app.window.onevent = function(e:WindowEvent){
+            if(e.type == WindowEventType.focus_lost) {
+                app.freeze = true;
+            } else if(e.type == WindowEventType.focus_gained) {
+                app.freeze = false;
+            }
+        }
+
     } //ready
 
         //default is true in config
