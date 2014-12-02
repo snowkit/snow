@@ -23,6 +23,9 @@ import snow.window.WindowSystem;
         } //new
 
         override public function init() {
+
+            listen_for_visibility();
+
         } //init
 
         override public function process() {
@@ -43,7 +46,6 @@ import snow.window.WindowSystem;
                     //make sure it displays nicely
                 _handle.style.display = 'block';
                 _handle.style.position = 'relative';
-                _handle.style.margin = '2em auto 0 auto';
                 _handle.style.background = '#000';
 
                     //add it to the document
@@ -512,6 +514,62 @@ import snow.window.WindowSystem;
             });
 
         } //on_internal_enter
+
+        var _hidden_name = '';
+        var _hidden_event_name = '';
+        function listen_for_visibility() {
+
+            if( untyped __js__('typeof document.hidden !== undefined') ) {
+                _hidden_name = 'hidden';
+                _hidden_event_name = 'visibilitychange';
+            } else if( untyped __js__('typeof document.mozHidden !== undefined ')) {
+                _hidden_name = 'mozHidden';
+                _hidden_name = 'mozvisibilitychange';
+            } else if( untyped __js__('typeof document.msHidden !== "undefined"')) {
+                _hidden_name = "msHidden";
+                _hidden_event_name = "msvisibilitychange";
+            } else if( untyped __js__('typeof document.webkitHidden !== "undefined"')) {
+                _hidden_name = "webkitHidden";
+                _hidden_event_name = "webkitvisibilitychange";
+            }
+
+            if(_hidden_name != '' && _hidden_event_name != '') {
+                js.Browser.document.addEventListener(_hidden_event_name, on_visibility_change );
+            }
+
+        }
+
+        function on_visibility_change(jsevent) {
+
+            var _event = {
+                type : SystemEventType.window,
+                window : {
+                    type : WindowEventType.shown,
+                    timestamp : lib.time,
+                    window_id : 1, //page window id is 1
+                    event : jsevent
+                }
+            };
+
+                //dispatch one for minimize/restore, one for focus lost/gain
+                //and one for hidden/exposed
+            if( untyped document[_hidden_name] ) {
+                _event.window.type = WindowEventType.hidden;
+                    lib.dispatch_system_event(_event);
+                _event.window.type = WindowEventType.minimized;
+                    lib.dispatch_system_event(_event);
+                _event.window.type = WindowEventType.focus_lost;
+                    lib.dispatch_system_event(_event);
+            } else {
+                _event.window.type = WindowEventType.shown;
+                    lib.dispatch_system_event(_event);
+                _event.window.type = WindowEventType.restored;
+                    lib.dispatch_system_event(_event);
+                _event.window.type = WindowEventType.focus_gained;
+                    lib.dispatch_system_event(_event);
+            }
+
+        } //on_visibility_change
 
         function internal_fallback( message:String ) {
 
