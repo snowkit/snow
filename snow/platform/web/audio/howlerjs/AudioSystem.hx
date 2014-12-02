@@ -5,7 +5,11 @@ import snow.types.Types;
 
 @:noCompletion class AudioSystem extends snow.platform.web.audio.AudioSystem {
 
+    var suspended_sounds : Array<Sound>;
+
     override public function init() {
+
+        suspended_sounds = [];
 
     } //init
 
@@ -17,11 +21,24 @@ import snow.types.Types;
 
     } //destroy
 
+
     override public function suspend() {
+
+        for(sound in manager.handles) {
+            if(sound.playing) {
+                sound.toggle();
+                suspended_sounds.push(sound);
+            }
+        }
 
     } //suspend
 
     override public function resume() {
+
+        while(suspended_sounds.length > 0) {
+            var sound = suspended_sounds.pop();
+            sound.toggle();
+        }
 
     } //resume
 
