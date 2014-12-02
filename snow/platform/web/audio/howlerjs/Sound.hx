@@ -113,6 +113,7 @@ class Sound extends snow.platform.web.audio.Sound {
         if(info != null && info.handle != null) {
 
             playing = true;
+            looping = false;
 
             info.handle.loop(false);
             info.handle.play();
@@ -137,6 +138,7 @@ class Sound extends snow.platform.web.audio.Sound {
         if(info != null && info.handle != null) {
 
             playing = true;
+            looping = true;
 
             info.handle.loop(true);
             info.handle.play();
