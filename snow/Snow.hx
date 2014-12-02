@@ -39,6 +39,8 @@ class Snow {
     public var config : AppConfig;
         /** The configuration for snow itself, set via build project flags */
     public var snow_config : SnowConfig;
+        /** Whether or not we are frozen, ignoring events i.e backgrounded/paused */
+    public var freeze (default,set) : Bool = false;
 
 //Sub systems
 
@@ -249,7 +251,7 @@ class Snow {
 
     function on_snow_update() {
 
-        if(!is_ready) {
+        if(!is_ready || freeze) {
             return;
         }
 
@@ -274,6 +276,11 @@ class Snow {
             //handle any internal updates
         host.on_internal_update();
 
+            //let the system have some time
+        #if snow_native
+            Sys.sleep(0);
+        #end
+
     } //on_snow_update
 
     public function dispatch_system_event( _event:SystemEvent ) {
@@ -283,7 +290,6 @@ class Snow {
     } //dispatch_system_event
 
     function on_event( _event:SystemEvent ) {
-
 
         if( _event.type != SystemEventType.update &&
             _event.type != SystemEventType.unknown &&
@@ -337,6 +343,20 @@ class Snow {
         } //switch _event.type
 
     } //on_event
+
+    function set_freeze( _freeze:Bool ) {
+
+        freeze = _freeze;
+
+        if(_freeze) {
+            audio.suspend();
+        } else {
+            audio.resume();
+        }
+
+        return freeze;
+
+    } //set_freeze
 
 
 
