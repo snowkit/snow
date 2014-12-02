@@ -154,13 +154,6 @@ class App {
             }
         }
 
-        #if snow_native
-
-                //yield to the system a bit
-            Sys.sleep(0);
-
-        #end //snow_native
-
     } //on_internal_update
 
 } //App
@@ -224,13 +217,6 @@ class AppFixedTimestep extends App {
                 next_render += render_rate;
             }
         }
-
-        #if snow_native
-
-                //yield for the system
-            Sys.sleep(0);
-
-        #end //snow_native
 
     } //on_internal_update
 
