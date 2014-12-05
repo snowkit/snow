@@ -55,8 +55,8 @@ import snow.types.Types;
     } //app_path
 
          /** On platforms where this makes sense, get the application specific writeable data path */
-    override public function pref_path( _appname:String, _package:String ) : String {
-        return snow_pref_path( _appname, _package );
+    override public function pref_path( _package:String, _appname:String ) : String {
+        return snow_pref_path( _package, _appname );
     } //pref_path
 
     static var snow_init       = snow.utils.Libs.load( "snow", "snow_init", 2 );

@@ -147,8 +147,8 @@ class Snow {
             Sys.setCwd( app_path );
 
             #if !mobile
-                _debug('setting up pref path');
-                core.pref_path('snow','default');
+                // _debug('setting up pref path');
+                // core.pref_path('snow','default');
             #end //mobile
 
         #end //snow_native

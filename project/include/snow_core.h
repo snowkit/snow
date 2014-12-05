@@ -42,7 +42,7 @@ namespace snow {
         int update_aux();
             //implemented in core
         const char* app_path();
-        const char* pref_path(const char* org, const char* app);
+        const char* pref_path(const char* _package, const char* _app);
 
             //implemented in platform files
         void init_platform();
