@@ -42,7 +42,7 @@ namespace snow {
 
         } //app_path
 
-        const char* pref_path(const char* org, const char* app) {
+        const char* pref_path(const char* _package, const char* _app) {
 
             return "./";
 

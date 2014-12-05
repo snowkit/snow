@@ -117,9 +117,9 @@ extern double timestamp();
     } DEFINE_PRIM(snow_app_path, 0);
 
 
-    value snow_pref_path(value _org, value _app) {
+    value snow_pref_path(value _package, value _app) {
 
-        return alloc_string( snow::core::pref_path( val_string(_org), val_string(_app) ) );
+        return alloc_string( snow::core::pref_path( val_string(_package), val_string(_app) ) );
 
     } DEFINE_PRIM(snow_pref_path, 2);
 

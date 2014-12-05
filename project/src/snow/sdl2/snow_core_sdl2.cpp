@@ -104,11 +104,11 @@ namespace snow {
 
         } //core_app_path
 
-        const char* pref_path( const char* org, const char* app ) {
+        const char* pref_path( const char* _package, const char* _app ) {
 
             if(core_pref_path == NULL) {
 
-                char *_pref_path = SDL_GetPrefPath(org, app);
+                char *_pref_path = SDL_GetPrefPath(_package, _app);
                 if (_pref_path) {
                     core_pref_path = SDL_strdup(_pref_path);
                     SDL_free(_pref_path);
