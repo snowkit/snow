@@ -1030,10 +1030,9 @@ namespace alhx {
 
         ALCdevice* device = alcOpenDevice( _devicename == val_null ? 0 : val_string(_devicename) );
 
-
         if( !device ) {
 
-            snow::log(1, "/ alhx / failed to create AL device. %s", alGetError());
+            snow::log(1, "/ alhx / failed to create AL device. No audio possible :<");
 
             return alloc_null();
 
