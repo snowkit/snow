@@ -46,8 +46,9 @@ class InputSystem extends InputSystemBinding {
     override public function init() {
 
             //key input is page wide, not just per canvas
-        js.Browser.document.addEventListener('keydown', on_keydown);
-        js.Browser.document.addEventListener('keyup',   on_keyup);
+        js.Browser.document.addEventListener('keypress', on_keypress);
+        js.Browser.document.addEventListener('keydown',  on_keydown);
+        js.Browser.document.addEventListener('keyup',    on_keyup);
 
             //initialize gamepads if they exist
         active_gamepads = new Map();
@@ -375,6 +376,10 @@ class InputSystem extends InputSystemBinding {
 
     function on_mousewheel( _wheel_event:js.html.WheelEvent ) {
 
+        if(lib.config.web.prevent_default_keys) {
+            // _wheel_event.preventDefault();
+        }
+
         var _window : Window = lib.windowing.window_from_handle(cast _wheel_event.target);
 
         var _x : Int = 0;
@@ -414,13 +419,32 @@ class InputSystem extends InputSystemBinding {
 
 //Keys
 
+    //window id is 1 for keys as they come from the page, so always the main window
+
+        //keypress gives us typable keys
+    function on_keypress( _key_event:js.html.KeyboardEvent ) {
+
+        var _text = String.fromCharCode(_key_event.charCode);
+
+        manager.dispatch_text_event(
+            _text, 0, _text.length,     //text, start, length
+            TextEventType.input,        //TextEventType
+            _key_event.timeStamp,       //timestamp
+            1                           //window
+        );
+
+    } //on_keypress
+
     function on_keydown( _key_event:js.html.KeyboardEvent ) {
+
+        if(lib.config.web.prevent_default_keys) {
+            // _key_event.preventDefault();
+        }
 
         var _keycode : Int = convert_keycode(_key_event.keyCode);
         var _scancode : Int = Key.to_scan(_keycode);
         var _mod_state : ModState = mod_state_from_event(_key_event);
 
-            //window id is 1 because keys come from the page, so always the main window
         manager.dispatch_key_down_event(
             _keycode,
             _scancode,
@@ -434,11 +458,14 @@ class InputSystem extends InputSystemBinding {
 
     function on_keyup( _key_event:js.html.KeyboardEvent ) {
 
+        if(lib.config.web.prevent_default_keys) {
+            // _key_event.preventDefault();
+        }
+
         var _keycode : Int = convert_keycode(_key_event.keyCode);
         var _scancode : Int = Key.to_scan(_keycode);
         var _mod_state : ModState = mod_state_from_event(_key_event);
 
-            //window id is 1 because keys come from the page, so always the main window
         manager.dispatch_key_up_event(
             _keycode,
             _scancode,
