@@ -94,6 +94,8 @@ class Snow {
             assets : [],
             web : {
                 no_context_menu : true,
+                prevent_default_keys : true,
+                prevent_default_mouse : true,
                 true_fullscreen : false
             },
             native : {

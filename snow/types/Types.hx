@@ -115,6 +115,11 @@ typedef AppConfigWeb = {
         /** If true, right clicking will consume the event on the canvas. `event.preventDefault` is used. default: true*/
     @:optional var no_context_menu : Bool;
 
+        /** If true, keys sent to the page will be consumed by snow. `event.preventDefault` is used. default: true*/
+    @:optional var prevent_default_keys : Bool;
+        /** If true, mouse wheel events sent to the page will be consumed by snow. `event.preventDefault` is used. default: true*/
+    @:optional var prevent_default_mouse : Bool;
+
         /** If true, native fullscreen will be requested from the user.
             If not, the canvas will fill the window size instead.
             Take note : true fullscreen requests only work when driven by a user event (click/keys).
