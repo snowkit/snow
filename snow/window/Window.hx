@@ -87,8 +87,6 @@ class Window {
 
     function on_window_created( _handle:WindowHandle, _id:Int, _configs:{ config:WindowConfig, render_config:RenderConfig } ) : Void {
 
-        trace(_configs);
-
         id = _id;
         handle = _handle;
 

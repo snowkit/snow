@@ -32,15 +32,15 @@ class AudioSystem extends snow.platform.native.audio.AudioSystem {
             return;
         }
 
-            log('created device / ${device} / ${ AL.getErrorMeaning(AL.getError()) }');
+            _debug('created device / ${device} / ${ AL.getErrorMeaning(AL.getError()) }');
 
         context = ALC.createContext(device, null);
 
-            log('created context / ${context} / ${ ALC.getErrorMeaning(ALC.getError(device)) }');
+            _debug('created context / ${context} / ${ ALC.getErrorMeaning(ALC.getError(device)) }');
 
         ALC.makeContextCurrent( context );
 
-            log('set current / ${ AL.getErrorMeaning(AL.getError()) }');
+            _debug('set current / ${ AL.getErrorMeaning(AL.getError()) }');
 
     } //init
 
