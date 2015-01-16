@@ -41,6 +41,7 @@ typedef AssetInfo = {
 /** The options for an `AssetBytes` asset.
     Get assets from the `Assets` class, via `app.assets` */
 typedef AssetBytesOptions = {
+    ? silent : Bool,
     ? strict : Bool,
     ? async : Bool,
     ? onload : AssetBytes -> Void
@@ -49,6 +50,7 @@ typedef AssetBytesOptions = {
 /** The options for an `AssetText` asset.
     Get assets from the `Assets` class, via `app.assets` */
 typedef AssetTextOptions = {
+    ? silent : Bool,
     ? strict : Bool,
     ? async : Bool,
     ? onload : AssetText -> Void
@@ -57,6 +59,7 @@ typedef AssetTextOptions = {
 /** The options for an `AssetImage` asset.
     Get assets from the `Assets` class, via `app.assets` */
 typedef AssetImageOptions = {
+    ? silent : Bool,
     ? strict : Bool,
     ? components : Int,
     ? onload : AssetImage -> Void,
@@ -65,6 +68,7 @@ typedef AssetImageOptions = {
 
 /** The options for an `AssetAudio` asset */
 typedef AssetAudioOptions = {
+    ? silent : Bool,
     ? strict : Bool,
     ? type : String,
     ? load : Bool,

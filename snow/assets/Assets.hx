@@ -117,11 +117,12 @@ class Assets {
     public function bytes( _id:String, ?options:AssetBytesOptions ) : AssetBytes {
 
         var _strict = strict;
+        var _silent = false;
 
-        if(options != null && options.strict != null) {
-            _strict = options.strict;
+        if(options != null) {
+            if(options.strict != null) { _strict = options.strict; }
+            if(options.silent != null) { _silent = options.silent; }
         }
-
 
         if(exists(_id, _strict)) {
 
@@ -137,7 +138,7 @@ class Assets {
             return asset;
 
         } else { //exists
-            exists_error(_id);
+            exists_error(_id, _silent);
         }
 
         return null;
@@ -148,11 +149,12 @@ class Assets {
     public function text( _id:String, ?options:AssetTextOptions ) : AssetText {
 
         var _strict = strict;
+        var _silent = false;
 
-        if(options != null && options.strict != null) {
-            _strict = options.strict;
+        if(options != null) {
+            if(options.strict != null) { _strict = options.strict; }
+            if(options.silent != null) { _silent = options.silent; }
         }
-
 
         if(exists(_id, _strict)) {
 
@@ -168,7 +170,7 @@ class Assets {
             return asset;
 
         } else { //exists
-            exists_error(_id);
+            exists_error(_id, _silent);
         }
 
         return null;
@@ -179,14 +181,17 @@ class Assets {
     public function image( _id:String, ?options:AssetImageOptions ) : AssetImage {
 
         var _strict = strict;
-        var from_bytes = options != null && options.bytes != null;
+        var _silent = false;
+        var _from_bytes = false;
 
-        if(options != null && options.strict != null) {
-            _strict = options.strict;
+        if(options != null) {
+            if(options.strict != null) { _strict = options.strict; }
+            if(options.silent != null) { _silent = options.silent; }
+
+            _from_bytes = options.bytes != null;
         }
 
-
-        if(exists(_id, _strict) || from_bytes) {
+        if(exists(_id, _strict) || _from_bytes) {
 
             if(options == null) {
                 options = { components : 4 };
@@ -202,7 +207,7 @@ class Assets {
 
             var asset = new AssetImage( this, info, comp );
 
-            if(!from_bytes) {
+            if(!_from_bytes) {
                 asset.load( options.onload );
             } else {
                 asset.load_from_bytes( options.bytes, options.onload );
@@ -211,7 +216,7 @@ class Assets {
             return asset;
 
         } else { //exists
-            exists_error(_id);
+            exists_error(_id, _silent);
         }
 
         return null;
@@ -222,11 +227,12 @@ class Assets {
     public function audio( _id:String, ?options:AssetAudioOptions ) : AssetAudio {
 
         var _strict = strict;
+        var _silent = false;
 
-        if(options != null && options.strict != null) {
-            _strict = options.strict;
+        if(options != null) {
+            if(options.strict != null) { _strict = options.strict; }
+            if(options.silent != null) { _silent = options.silent; }
         }
-
 
         if(exists(_id, _strict)) {
 
@@ -271,7 +277,7 @@ class Assets {
             return asset;
 
         } else {
-            exists_error(_id);
+            exists_error(_id, _silent);
         }
 
         return null;
@@ -290,12 +296,12 @@ class Assets {
     } //info_from_id
 
         //this is separate so we can defer the behavior later
-    function exists_error( _id:String ) {
-        log('not found "$_id"' );
+    function exists_error( _id:String, _silent:Bool=false ) {
+        if(!_silent) log('not found "$_id"' );
     } //exists_error
 
-    function load_error( _id:String, ?reason:String = "unknown" ) {
-        log('found "$_id" but it failed to load ($reason)' );
+    function load_error( _id:String, ?reason:String = "unknown", _silent:Bool=false ) {
+        if(!_silent) log('found "$_id" but it failed to load ($reason)' );
     } //load_error
 
 
