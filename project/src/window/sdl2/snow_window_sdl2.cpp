@@ -182,13 +182,15 @@ namespace snow {
             if(config.borderless)           { request_flags |= SDL_WINDOW_BORDERLESS; }
 
             if(config.fullscreen) {
-                request_flags |= SDL_WINDOW_FULLSCREEN;
                 if(config.fullscreen_desktop) {
                     request_flags |= SDL_WINDOW_FULLSCREEN_DESKTOP;
+                } else {
+                    //see :note:1: below
                 }
             }
 
-            snow::log(1, "red:%d green:%d blue:%d alpha:%d depth:%d stencil:%d major:%d minor:%d profile:%d aa:%d", 
+            snow::log(3, "x:%d y:%d width:%d height:%d", config.x, config.y, config.width, config.height);
+            snow::log(3, "red:%d green:%d blue:%d alpha:%d depth:%d stencil:%d major:%d minor:%d profile:%d aa:%d", 
                 render_config.red_bits, render_config.green_bits, render_config.blue_bits, render_config.alpha_bits,
                 render_config.depth_bits, render_config.stencil_bits, render_config.opengl.major, render_config.opengl.minor,
                 render_config.opengl.profile, render_config.antialiasing);
@@ -316,10 +318,33 @@ namespace snow {
                         return;
                     }
 
-                }
+                } //!snow_gl_context
 
                     //if we end up with a context
                 if(snow_gl_context) {
+
+                            //:note:1:
+                            // This is related partially to the below thread, but also
+                            // to https://forums.libsdl.org/viewtopic.php?t=10372 in general.
+                            // :/ ?! https://forums.libsdl.org/viewtopic.php?t=10015
+                            // :note:1: referenced below as well.
+                            //The problem with "proper fullscreen" is that
+                            //it makes a mess of the OS state etc, so it's best to
+                            //use fullscreen desktop, and render upscaled instead.
+                            //If for some arcane reason you need true displaymode
+                            //type fullscreen, to change window resolutions,
+                            //the window must be set to windowed, resized, and then
+                            //set to fullscreen again. This obviously has to be aware
+                            //of valid and invalid displaymodes, all of which is outside
+                            //of the scope for snow's purposes, so if you must do that stuff
+                            //you have all the functions in the api, have at it.
+                            //all snow will do: create the window hidden at the given launch
+                            //size, and switch to fullscreen after to get the desired size.
+                        if(config.fullscreen) {
+                            if(!config.fullscreen_desktop) {
+                                SDL_SetWindowFullscreen(window, SDL_WINDOW_FULLSCREEN);
+                            }
+                        }
 
                         //update the window config flags to what
                         //SDL has actually given us in return
@@ -475,8 +500,11 @@ namespace snow {
                 return;
             }
 
+                //default to fullscreen desktop here
             int flag = enable ? SDL_WINDOW_FULLSCREEN_DESKTOP : 0;
 
+                //if fullscreen_desktop is not set (through flags=1), we use
+                //the WINDOW_FULLSCREEN flag only, reverting it by setting
             if(flags == 1 && enable) {
                 flag = SDL_WINDOW_FULLSCREEN;
             }
