@@ -367,7 +367,7 @@ class Snow {
     function default_runtime_config() : Dynamic {
 
             //we want to load the runtime config from a json file by default
-        var config_data = assets.text( snow_config.config_runtime_path );
+        var config_data = assets.text( snow_config.config_runtime_path, { silent:true });
 
             //only care if there is a config
         if(config_data != null && config_data.text != null) {
@@ -396,7 +396,19 @@ class Snow {
     function default_asset_list() : Array<AssetInfo> {
 
         var asset_list : Array<AssetInfo> = [];
-        var manifest_data = ByteArray.readFile( assets.assets_root + assets.manifest_path, false );
+        var attempt_path : String = assets.assets_root + assets.manifest_path;
+        var manifest_data = null;
+        var attempt_load = true;
+
+        #if snow_native
+            if(!sys.FileSystem.exists(attempt_path)) {
+                attempt_load = false;
+            }
+        #end //snow_native
+
+        if(attempt_load) {
+            manifest_data = ByteArray.readFile( attempt_path, false );
+        }
 
         if(manifest_data != null && manifest_data.length != 0) {
 
@@ -417,7 +429,7 @@ class Snow {
 
         } else { //manifest_data != null
 
-            log('config / failed / default asset manifest not found, or length was zero');
+            _debug('config / failed / default asset manifest not found, or length was zero');
 
         }
 
