@@ -209,6 +209,13 @@ class Snow {
             //request config changes, if any
         config = host.config( config );
 
+            //force fullscreen on mobile to get better
+            //behavior from the window for now.
+            //borderless will control the status bar
+        #if mobile
+            config.window.fullscreen = true;
+        #end //mobile
+
             //disllow re-entry
         was_ready = true;
 
@@ -462,25 +469,24 @@ class Snow {
         /** Returns a default configured window config */
     function default_window_config() : WindowConfig {
 
-        return {
-
-            fullscreen_desktop : true,
+        var conf =  {
+            fullscreen_desktop  : true,
+            fullscreen          : false,
+            borderless          : false,
+            resizable           : true,
+            x                   : 0x1FFF0000,
+            y                   : 0x1FFF0000,
+            width               : 960,
+            height              : 640,
+            title               : "snow app"
+        };
 
             #if mobile
-                fullscreen : true,
-            #else
-                fullscreen : false,
-            #end
+                conf.fullscreen = true;
+                conf.borderless = true;
+            #end //mobile
 
-            resizable       : true,
-            borderless      : false,
-            x               : 0x1FFF0000,
-            y               : 0x1FFF0000,
-            width           : 960,
-            height          : 640,
-            title           : "snow app"
-
-        };
+        return conf;
 
     } //default_window_config
 
