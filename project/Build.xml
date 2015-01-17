@@ -15,10 +15,13 @@
 
 <!-- Configure HXCPP -->
 
-      <!-- Require Android 2.3+ -->
-   <set name="PLATFORM" value="android-10" if="android" />
-   <set name="PLATFORM" value="android-14" if="HXCPP_X86" />
    <set name="HXCPP_CPP11" value="1" />
+
+      <!-- Force to use oldest supported platform -->
+   <section if="android">
+      <set name="PLATFORM" value="android-12" />
+      <set name="PLATFORM" value="android-14" if="HXCPP_X86" />
+   </section>
 
 <!-- Build set up -->
 
