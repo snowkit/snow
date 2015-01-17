@@ -43,7 +43,7 @@
     <key>UIStatusBarHidden</key>
     <{{toString project.app.mobile.fullscreen}}/>
     <key>UIViewControllerBasedStatusBarAppearance</key>
-    <{{#if project.app.mobile.fullscreen}}false{{else}}true{{/if}}/>
+    <true/>
     <key>UIRequiredDeviceCapabilities</key>
     <dict>
     </dict>
