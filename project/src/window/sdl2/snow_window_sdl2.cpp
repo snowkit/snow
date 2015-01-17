@@ -186,6 +186,9 @@ namespace snow {
                     request_flags |= SDL_WINDOW_FULLSCREEN_DESKTOP;
                 } else {
                     //see :note:1: below
+                    #ifndef HX_MACOS
+                        request_flags |= SDL_WINDOW_FULLSCREEN;
+                    #endif
                 }
             }
 
@@ -342,7 +345,9 @@ namespace snow {
                             //size, and switch to fullscreen after to get the desired size.
                         if(config.fullscreen) {
                             if(!config.fullscreen_desktop) {
-                                SDL_SetWindowFullscreen(window, SDL_WINDOW_FULLSCREEN);
+                                #ifdef HX_MACOS
+                                    SDL_SetWindowFullscreen(window, SDL_WINDOW_FULLSCREEN);
+                                #endif
                             }
                         }
 
