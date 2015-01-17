@@ -403,19 +403,10 @@ class Snow {
     function default_asset_list() : Array<AssetInfo> {
 
         var asset_list : Array<AssetInfo> = [];
-        var attempt_path : String = assets.assets_root + assets.manifest_path;
+        var list_path : String = assets.assets_root + assets.manifest_path;
         var manifest_data = null;
-        var attempt_load = true;
 
-        #if snow_native
-            if(!sys.FileSystem.exists(attempt_path)) {
-                attempt_load = false;
-            }
-        #end //snow_native
-
-        if(attempt_load) {
-            manifest_data = ByteArray.readFile( attempt_path, false );
-        }
+        manifest_data = ByteArray.readFile( list_path, false );
 
         if(manifest_data != null && manifest_data.length != 0) {
 
@@ -432,11 +423,11 @@ class Snow {
 
                 } //for each asset
 
-            _debug('config / ok / default asset manifest');
+            _debug('assets / ok / loaded default asset manifest.');
 
         } else { //manifest_data != null
 
-            _debug('config / failed / default asset manifest not found, or length was zero');
+            log('assets / info / default asset manifest not found.');
 
         }
 
