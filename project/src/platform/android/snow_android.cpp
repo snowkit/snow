@@ -16,11 +16,12 @@
 
 #include "snow_core.h"
 #include "common/ByteArray.h"
-#include "platform/android/snow_android.h"
 #include "snow_io.h"
 #include "SDL.h"
 
-#define LOG(...) ((void)__android_log_print(ANDROID_LOG_ERROR, "/ snow /", __VA_ARGS__))
+#include "platform/android/snow_android.h"
+
+#define LOG(...) ((void)__android_log_print(ANDROID_LOG_ERROR, "SNOWCPP", __VA_ARGS__))
 
 
 static JavaVM* java_vm;
@@ -44,8 +45,29 @@ static JavaVM* java_vm;
 
 #endif //SNOW_USE_SDL
 
-namespace snow {
 
+namespace snow {
+    namespace android {
+
+        jobject activity = 0;
+
+        JNIEnv* env() {
+            return (JNIEnv*)SDL_AndroidGetJNIEnv();
+        } //env
+
+    } //android
+} //snow
+
+
+extern "C" {
+    JNIEXPORT void JNICALL Java_org_snowkit_snow_SnowActivity_nativeInit(JNIEnv* env, jobject jinst) {
+        snow::android::activity = env->NewGlobalRef(jinst);
+        LOG("SNOW init with snow_activity: %p\n", snow::android::activity);
+    }
+}
+
+
+namespace snow {
 
     namespace core {
 
@@ -54,7 +76,7 @@ namespace snow {
 
             snow::log(1, "/ snow / android core platform init");
 
-            JNIEnv *env = GetEnv();
+            JNIEnv *env = snow::android::env();
             env->GetJavaVM( &java_vm );
 
             #ifdef SNOW_USE_OPENAL
@@ -95,12 +117,6 @@ namespace snow {
             }
 
         } //on_system_event_platform
-
-        JNIEnv *GetEnv() {
-
-            return (JNIEnv*)SDL_AndroidGetJNIEnv();
-
-        } //JNIEnv
 
     } //core namespace
 
