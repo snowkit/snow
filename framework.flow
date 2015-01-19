@@ -4,7 +4,9 @@
     build : {
       boot : 'SnowApp',
       android : {
-        logcat_include : { snow:"snow", SDL:"SDL", openal:"OpenAL_SLES", snow_log:"SDL/APP" }
+        logcat_include : {
+          snow:"snow", snowcaps:"SNOW", art:"art:F", snowcpp:"SNOWCPP", SDL:"SDL", openal:"OpenAL_SLES", snow_log:"SDL/APP"
+        }
       }
     }
   },
