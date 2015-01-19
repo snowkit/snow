@@ -8,6 +8,7 @@
 #define _SNOW_WINDOW_H_
 
 #include <string>
+#include <map>
 
 #include <hx/CFFI.h>
 
@@ -24,7 +25,6 @@ namespace snow {
         struct RenderConfig;
         struct WindowConfig;
         struct WindowEvent;
-
 
         int             system_enable_vsync(bool enable);
         void            system_lock_cursor(bool enable);
@@ -44,6 +44,12 @@ namespace snow {
         RenderConfig    render_config_from_hx( value _in_config );
         void            dispatch_event( const WindowEvent &event );
         Window*         create_window( const RenderConfig &_render_config, const WindowConfig &config, AutoGCRoot* on_created );
+        void            destroy_window( Window* window );
+
+
+            //list of windows mapped by id
+        extern std::map<int, Window*> window_list;
+
 
         struct display_mode {
             int width;
@@ -248,6 +254,7 @@ namespace snow {
                 virtual void close() = 0;
                 virtual void show() = 0;
                 virtual void destroy() = 0;
+                virtual void* pointer() = 0;
 
                 virtual void set_size(int x, int y) = 0;
                 virtual void set_position(int x, int y) = 0;
@@ -262,11 +269,21 @@ namespace snow {
 
             protected:
 
+                void on_destroyed() {
+
+                    window_list.erase( id );
+
+                } //on_destroyed
+
                 void on_created( bool success ) {
 
                     created = success;
                         //if success, closed is false
                     closed = !success;
+
+                    if(success && id != -1) {
+                        window_list[ id ] = this;
+                    }
 
                     if(created_handler != NULL) {
 
@@ -297,6 +314,14 @@ namespace snow {
             private:
 
         };
+
+    // SDK helpers
+
+        inline Window* get_window_by_id( int id ) {
+
+            return window_list[id];
+
+        } //get_window_by_id
 
     //Helper dispatch window events through the core event handler, since window events are agnostic and come from main SDL loop
 

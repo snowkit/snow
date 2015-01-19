@@ -302,9 +302,7 @@ extern double timestamp();
 
         snow::window::Window* window = snow::from_hx<snow::window::Window>(_window);
 
-        if( window ) {
-            window->destroy();
-        }
+        snow::window::destroy_window(window);
 
         return alloc_null();
 
