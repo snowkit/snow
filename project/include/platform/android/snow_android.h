@@ -11,15 +11,19 @@
 #include <pthread.h>
 #include <android/log.h>
 #include <hx/CFFI.h>
+#include <SDL.h>
 
 
 namespace snow {
 
-    namespace core {
+    namespace android {
 
-        JNIEnv *GetEnv();
+            //the global snow activity
+        extern DECLSPEC jobject activity;
+            //get the global JVM env
+        extern DECLSPEC JNIEnv* SDLCALL env();
 
-    } //core namespace
+    } //android namespace
 
 } //snow namespace
 
