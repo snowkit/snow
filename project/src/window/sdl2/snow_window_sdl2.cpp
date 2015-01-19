@@ -19,6 +19,8 @@ namespace snow {
 
     namespace window {
 
+        std::map<int, Window*> window_list;
+
             //forward
         int init_sdl();
         class WindowSDL2;
@@ -60,6 +62,7 @@ namespace snow {
                 void close();
                 void show();
                 void destroy();
+                void* pointer();
 
                 void create( const RenderConfig &render_config, const WindowConfig &config, AutoGCRoot* _on_created );
                 void simple_message( const char* message, const char* title );
@@ -95,6 +98,16 @@ namespace snow {
 
         } //create_window
 
+        void destroy_window( Window* window ) {
+
+            if( window ) {
+
+                window->destroy();
+                delete window;
+                window = NULL;
+            }
+
+        } //destroy_window
 
         void WindowSDL2::simple_message( const char* message, const char* title ) {
 
@@ -138,6 +151,8 @@ namespace snow {
 
             snow::window::dispatch_event( destroy_event );
 
+            on_destroyed();
+
             window = NULL;
 
         } //WindowSDL2::destroy
@@ -157,7 +172,7 @@ namespace snow {
 
         void WindowSDL2::create( const RenderConfig &_render_config, const WindowConfig &_config, AutoGCRoot* _on_created ) {
 
-                //store these first
+            //store these first
             created_handler = _on_created;
                 //assign it now so we take a copy from the const
             config = _config;
@@ -416,6 +431,12 @@ namespace snow {
             on_created( true );
 
         } //WindowSDL2::create
+
+        void* WindowSDL2::pointer() {
+
+            return (void*) window;
+
+        } //pointer
 
         void WindowSDL2::render() {
 
