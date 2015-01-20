@@ -112,7 +112,7 @@
    <set name="SNOW_LIB_VORBIS" value="1" />
 
       <!-- always including curl for main platforms by default -->
-   <set name="SNOW_LIB_CURL" value="1" />
+   <!-- <set name="SNOW_LIB_CURL" value="0" /> -->
       <!-- default to using SSL, but can be toggled -->
    <set name="NATIVE_TOOLKIT_CURL_SSL" value="1" if="SNOW_LIB_CURL"/>
 
