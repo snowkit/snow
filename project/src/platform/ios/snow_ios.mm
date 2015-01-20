@@ -58,9 +58,9 @@ namespace snow {
         void shutdown_filewatch(){}
         void update_filewatch(){}
         void refresh_filewatch(){}
-        std::string dialog_folder(const std::string &title){}
-        std::string dialog_open(const std::string &title, const std::vector<file_filter> &filters){}
-        std::string dialog_save(const std::string &title, const std::vector<file_filter> &filters){}
+        std::string dialog_folder(const std::string &title){ return std::string(); }
+        std::string dialog_open(const std::string &title, const std::vector<file_filter> &filters){ return std::string(); }
+        std::string dialog_save(const std::string &title, const std::vector<file_filter> &filters){ return std::string(); }
 
     } //io namespace
 
