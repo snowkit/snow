@@ -241,7 +241,7 @@ namespace snow {
                     created_handler = NULL;
                 }
 
-                ~Window() {
+                virtual ~Window() {
                     delete created_handler;
                 }
 
@@ -269,13 +269,13 @@ namespace snow {
 
             protected:
 
-                void on_destroyed() {
+                inline void on_destroyed() {
 
                     window_list.erase( id );
 
                 } //on_destroyed
 
-                void on_created( bool success ) {
+                inline void on_created( bool success ) {
 
                     created = success;
                         //if success, closed is false
