@@ -176,7 +176,7 @@ package snow.platform.web.utils;
 
             var request = new js.html.XMLHttpRequest();
                 request.open("GET", _path, async);
-                request.overrideMimeType('text/plain; charset=x-user-defined');
+                request.overrideMimeType('text/plain; charset=UTF-8');
 
                 //only async can set the type it seems
             if(async) {
