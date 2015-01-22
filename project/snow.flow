@@ -3,8 +3,14 @@
         name: 'snow',
         version : '1.0.0',
 
-        lib : {
+        lib : { },
 
+        build: {
+            post:{
+                name: 'snow post build',
+                script: 'hook.post.js',
+                desc:'handles post snow build processing'
+            }
         }
     },
 
