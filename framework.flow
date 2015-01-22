@@ -145,8 +145,13 @@
     ios : {
       build: {
         files : {
-          libsnow : { path:"ndll/iPhone/libsnow.iphoneos-v7.a => ../../ios.project/project/libs/armv7/libsnow.a" },
-          libsnow_sim : { path:"ndll/iPhone/libsnow.iphonesim.a => ../../ios.project/project/libs/i386/libsnow.a" },
+          libsnow_fat    : { path:"ndll/iPhone/libsnow.ios.a => ../../ios.project/project/libs/fat/libsnow.a" },
+          libsnow_sim    : { path:"ndll/iPhone/libsnow.iphonesim.a => ../../ios.project/project/libs/sim/libsnow.a" },
+          libsnow_sim64  : { path:"ndll/iPhone/libsnow.iphonesim-64.a => ../../ios.project/project/libs/sim64/libsnow.a" },
+          libsnow_armv6  : { path:"ndll/iPhone/libsnow.iphoneos.a => ../../ios.project/project/libs/armv6/libsnow.a" },
+          libsnow_armv7  : { path:"ndll/iPhone/libsnow.iphoneos-v7.a => ../../ios.project/project/libs/armv7/libsnow.a" },
+          libsnow_armv7s : { path:"ndll/iPhone/libsnow.iphoneos-v7s.a => ../../ios.project/project/libs/armv7s/libsnow.a" },
+          libsnow_armv64 : { path:"ndll/iPhone/libsnow.iphoneos-64.a => ../../ios.project/project/libs/arm64/libsnow.a" }
         }
       }
     },
