@@ -12,12 +12,15 @@ import snow.window.WindowSystem;
     @:noCompletion class WindowSystem extends WindowSystemBinding {
 
         public var gl_contexts : Map<Int, js.html.webgl.RenderingContext>;
+
         var seq_window : Int = 1;
+        var fs_windows : Array<Window>;
 
         public function new( _manager:Windowing, _lib:Snow ) {
 
             manager = _manager;
             lib = _lib;
+            fs_windows = [];
             gl_contexts = new Map();
 
         } //new
@@ -25,6 +28,7 @@ import snow.window.WindowSystem;
         override public function init() {
 
             listen_for_visibility();
+            listen_for_resize();
 
         } //init
 
@@ -86,7 +90,6 @@ import snow.window.WindowSystem;
                 internal_fullscreen( _handle, config.fullscreen );
             }
 
-
                 //tell them and give the handle for later.
             on_created(_handle, _window_id, { config:config, render_config:render_config });
             _handle.setAttribute('id', 'window${_window_id}');
@@ -113,11 +116,36 @@ import snow.window.WindowSystem;
 
         } //show
 
+        function internal_resize( _window:Window, _w:Float, _h:Float ) {
+
+            lib.dispatch_system_event({
+                type : SystemEventType.window,
+                window : {
+                    type : WindowEventType.size_changed,
+                    timestamp : lib.time,
+                    window_id : _window.id,
+                    event : { x:_w, y:_h }
+                }
+            });
+
+            lib.dispatch_system_event({
+                type : SystemEventType.window,
+                window : {
+                    type : WindowEventType.resized,
+                    timestamp : lib.time,
+                    window_id : _window.id,
+                    event : { x:_w, y:_h }
+                }
+            });
+
+        } //internal_resize
+
         override public function update( _window:Window ) {
 
             var _rect = _window.handle.getBoundingClientRect();
 
                 if(_rect.left != _window.x || _rect.top != _window.y) {
+
                     lib.dispatch_system_event({
                         type : SystemEventType.window,
                         window : {
@@ -127,30 +155,12 @@ import snow.window.WindowSystem;
                             event : { x:_rect.left, y:_rect.top }
                         }
                     });
-                }else if(_rect.width != _window.width || _rect.height != _window.height) {
 
-                    lib.dispatch_system_event({
-                        type : SystemEventType.window,
-                        window : {
-                            type : WindowEventType.size_changed,
-                            timestamp : lib.time,
-                            window_id : _window.id,
-                            event : { x:_rect.width, y:_rect.height }
-                        }
-                    });
+                }
 
-                    lib.dispatch_system_event({
-                        type : SystemEventType.window,
-                        window : {
-                            type : WindowEventType.resized,
-                            timestamp : lib.time,
-                            window_id : _window.id,
-                            event : { x:_rect.width, y:_rect.height }
-                        }
-                    });
+                if(_rect.width != _window.width || _rect.height != _window.height) {
 
-                    // _window.handle.width = _rect.width;
-                    // _window.handle.height = _rect.height;
+                    internal_resize(_window, _rect.width, _rect.height);
 
                 }
 
@@ -182,6 +192,8 @@ import snow.window.WindowSystem;
 
         override public function set_size( _window:Window, w:Int, h:Int ) {
 
+            _window.handle.width = w;
+            _window.handle.height = h;
             _window.handle.style.width = '${w}px';
             _window.handle.style.height = '${h}px';
 
@@ -339,6 +351,14 @@ import snow.window.WindowSystem;
         } //set_handle_fullscreen
 
         override public function fullscreen( _window:Window, fullscreen:Bool ) {
+
+            if(fullscreen) {
+                if(fs_windows.indexOf(_window) == -1) {
+                    fs_windows.push(_window);
+                }
+            } else {
+                fs_windows.remove(_window);
+            }
 
             internal_fullscreen( _window.handle, fullscreen );
 
@@ -535,6 +555,21 @@ import snow.window.WindowSystem;
             });
 
         } //on_internal_enter
+
+        function listen_for_resize() {
+
+            js.Browser.window.onresize = function(e){
+                if(!lib.config.web.true_fullscreen) {
+
+                    for(window in fs_windows) {
+                        window.set_size( js.Browser.window.innerWidth, js.Browser.window.innerHeight);
+                        internal_resize( window, window.width, window.height );
+                    }
+
+                } //if true_fullscreen
+            } //onresize
+
+        } //listen_for_resize
 
         var _hidden_name = '';
         var _hidden_event_name = '';
