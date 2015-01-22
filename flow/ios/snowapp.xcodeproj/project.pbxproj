@@ -198,7 +198,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "haxelib run flow build ios --project-root ../";
+			shellScript = "haxelib run flow build ios --project-root ../ --archs \"${ARCHS// /,}\"";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -227,26 +227,11 @@
                 GCC_PREFIX_HEADER = "project/project-Prefix.pch";
                 INFOPLIST_FILE = "project/project-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = {{project.app.mobile.ios.deployment_target}};
-				LIBRARY_SEARCH_PATHS = (
-					"$(PROJECT_DIR)/project/libs/{{arch}}",
-				);
-                "LIBRARY_SEARCH_PATHS[arch=armv6]" = (
-                    "\"$(SRCROOT)/project/libs/armv6-debug\"",
-                    "\"$(SRCROOT)/project/libs/armv6\"",
-                );
-                "LIBRARY_SEARCH_PATHS[arch=armv7]" = (
-                    "\"$(SRCROOT)/project/libs/armv7-debug\"",
-                    "\"$(SRCROOT)/project/libs/armv7\"",
-                );
-                "LIBRARY_SEARCH_PATHS[sdk=iphonesimulator*]" = (
-                    "\"$(SRCROOT)/project/libs/i386-debug\"",
-                    "\"$(SRCROOT)/project/libs/i386\"",
-                );
+				LIBRARY_SEARCH_PATHS = ("$(PROJECT_DIR)/project/libs/fat/");
 				OTHER_LDFLAGS = "{{{project.app.mobile.ios.ldflags}}}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "{{project.app.mobile.ios._devices}}";
-                VALID_ARCHS = "armv7 armv7a";
 				WRAPPER_EXTENSION = app;
             };
             name = Debug;
@@ -264,26 +249,11 @@
                 GCC_PREFIX_HEADER = "project/project-Prefix.pch";
                 INFOPLIST_FILE = "project/project-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = {{project.app.mobile.ios.deployment_target}};
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/project/libs/{{arch}}",
-				);
-                "LIBRARY_SEARCH_PATHS[arch=armv6]" = (
-                    "\"$(SRCROOT)/project/libs/armv6\"",
-                    "$(inherited)",
-                );
-                "LIBRARY_SEARCH_PATHS[arch=armv7]" = (
-                    "\"$(SRCROOT)/project/libs/armv7\"",
-                    "$(inherited)",
-                );
-                "LIBRARY_SEARCH_PATHS[sdk=iphonesimulator*]" = (
-                    "\"$(SRCROOT)/project/libs/i386\"",
-                );
+                LIBRARY_SEARCH_PATHS = ("$(PROJECT_DIR)/project/libs/fat/");
 				OTHER_LDFLAGS = "{{{project.app.mobile.ios.ldflags}}}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "{{project.app.mobile.ios._devices}}";
-                VALID_ARCHS = "armv7 armv7a";
 				WRAPPER_EXTENSION = app;
         };
             name = Release;
