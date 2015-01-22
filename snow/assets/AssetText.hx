@@ -34,7 +34,7 @@ class AssetText extends Asset {
             //clear any old data in case
         text = null;
             //load the new data
-        ByteArray.readFile( info.path, async, function( result:ByteArray ) {
+        ByteArray.readFile( info.path, { async:async, binary:false }, function( result:ByteArray ) {
 
             if(result != null) {
                 text = result.toString();

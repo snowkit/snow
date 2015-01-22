@@ -37,6 +37,20 @@ typedef AssetInfo = {
 
 } //AssetType
 
+/** Options for the ByteArray.readFile function */
+typedef ByteArrayReadOptions = {
+
+        /** Whether or not the data should load async.
+            This mainly affects web platform, as sync files
+            will hang the page triggering a script timeout.
+            Larger files should always use the async flag on web. */
+    @:optional var async:Bool;
+        /** Whether or not the data is binary.
+            This mainly affects web platform. */
+    @:optional var binary:Bool;
+
+} //ByteArrayReadOptions
+
 
 /** The options for an `AssetBytes` asset.
     Get assets from the `Assets` class, via `app.assets` */

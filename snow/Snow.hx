@@ -406,7 +406,7 @@ class Snow {
         var list_path : String = assets.assets_root + assets.manifest_path;
         var manifest_data = null;
 
-        manifest_data = ByteArray.readFile( list_path, false );
+        manifest_data = ByteArray.readFile( list_path, { async:false, binary:false });
 
         if(manifest_data != null && manifest_data.length != 0) {
 

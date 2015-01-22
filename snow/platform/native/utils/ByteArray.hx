@@ -3,6 +3,7 @@ package snow.platform.native.utils;
 
 import snow.utils.IMemoryRange;
 import snow.utils.Libs;
+import snow.types.Types;
 
 import haxe.io.Bytes;
 import haxe.io.BytesData;
@@ -617,7 +618,7 @@ class ByteArray extends Bytes implements ArrayAccess<Int> implements IDataInput 
 
     #if !snow_no_bytearray_io
 
-        static inline public function readFile( inString:String, ?async:Bool=false, ?onload:ByteArray->Void ) : ByteArray {
+        static inline public function readFile( inString:String, ?_options:ByteArrayReadOptions, ?onload:ByteArray->Void ) : ByteArray {
 
             var array = snow_byte_array_read_file(inString);
 

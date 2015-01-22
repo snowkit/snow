@@ -117,7 +117,7 @@ import snow.Log._verboser;
                 var info : ImageInfo = null;
 
 
-                    ByteArray.readFile(_path, true, function(data:ByteArray) {
+                    ByteArray.readFile(_path, { async:true }, function(data:ByteArray) {
 
                         var uint = new snow.utils.UInt8Array( data.getData() );
                         var image = new TGA();
