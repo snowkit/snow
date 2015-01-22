@@ -139,6 +139,16 @@ import snow.window.WindowSystem;
                         }
                     });
 
+                    lib.dispatch_system_event({
+                        type : SystemEventType.window,
+                        window : {
+                            type : WindowEventType.resized,
+                            timestamp : lib.time,
+                            window_id : _window.id,
+                            event : { x:_rect.width, y:_rect.height }
+                        }
+                    });
+
                     // _window.handle.width = _rect.width;
                     // _window.handle.height = _rect.height;
 
@@ -254,6 +264,8 @@ import snow.window.WindowSystem;
         var _pre_fs_s_height : String = '';
         var _pre_fs_width : Int = 0;
         var _pre_fs_height : Int = 0;
+        var _pre_fs_body_overflow : String = '0';
+        var _pre_fs_body_margin : String = '0';
 
         function internal_fullscreen( _handle:WindowHandle, fullscreen:Bool ) {
 
@@ -286,6 +298,8 @@ import snow.window.WindowSystem;
                     _pre_fs_s_height = _handle.style.height;
                     _pre_fs_width = _handle.width;
                     _pre_fs_height = _handle.height;
+                    _pre_fs_body_margin = js.Browser.document.body.style.margin;
+                    _pre_fs_body_overflow = js.Browser.document.body.style.overflow;
 
                     _handle.style.margin = '0';
                     _handle.style.padding = '0';
@@ -293,6 +307,11 @@ import snow.window.WindowSystem;
                     _handle.style.height = js.Browser.window.innerHeight + 'px';
                     _handle.width = js.Browser.window.innerWidth;
                     _handle.height = js.Browser.window.innerHeight;
+
+                        //stop the browser page from having scrollbars etc
+                    js.Browser.document.body.style.margin = '0';
+                    js.Browser.document.body.style.overflow = 'hidden';
+
                 }
 
             } else {
@@ -310,6 +329,8 @@ import snow.window.WindowSystem;
                     _handle.style.height = _pre_fs_s_height;
                     _handle.width = _pre_fs_width;
                     _handle.height = _pre_fs_height;
+                    js.Browser.document.body.style.margin = _pre_fs_body_margin;
+                    js.Browser.document.body.style.overflow = _pre_fs_body_overflow;
 
                 }
 
