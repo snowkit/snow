@@ -37,6 +37,11 @@ class Input {
     var gamepad_button_released : Map<Int, MapIntBool >;
     var gamepad_axis_values : Map<Int, MapIntFloat >;
 
+        //map of the touches currently down,
+        //:todo:wip:
+    @:noCompletion public var touch_count : Int = 0;
+    @:noCompletion public var touches_down : MapIntBool;
+
         /** constructed internally, use `app.input` */
     @:allow(snow.Snow)
     function new( _lib:Snow ) {
@@ -58,15 +63,21 @@ class Input {
             scan_code_released = new Map();
 
         //mouse
+
             mouse_button_pressed = new Map();
             mouse_button_down = new Map();
             mouse_button_released = new Map();
 
         //gamepad
+
             gamepad_button_pressed = new Map();
             gamepad_button_down = new Map();
             gamepad_button_released = new Map();
             gamepad_axis_values = new Map();
+
+        //touch
+
+            touches_down = new Map();
 
     } //new
 
@@ -253,6 +264,11 @@ class Input {
         /** manually dispatch a touch down through the system, delivered to the app handlers, internal and external */
     public function dispatch_touch_down_event( x:Float, y:Float, touch_id:Int, timestamp:Float ) {
 
+        if(!touches_down.exists(touch_id)) {
+            touch_count++;
+            touches_down.set(touch_id, true);
+        }
+
         lib.host.ontouchdown( x, y, touch_id, timestamp );
 
     } //dispatch_touch_down_event
@@ -261,6 +277,10 @@ class Input {
     public function dispatch_touch_up_event( x:Float, y:Float, touch_id:Int, timestamp:Float ) {
 
         lib.host.ontouchup( x, y, touch_id, timestamp );
+
+        if(touches_down.remove(touch_id)) {
+            touch_count--;
+        }
 
     } //dispatch_touch_up_event
 
