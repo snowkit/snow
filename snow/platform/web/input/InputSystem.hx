@@ -423,8 +423,7 @@ class InputSystem extends InputSystemBinding {
 
         //a list of keycodes that should not generate text
         //based events because... browsers.
-        //tab,enter
-    static var _keypress_blacklist = [8, 13];
+    static var _keypress_blacklist = [Key.backspace, Key.enter];
         //keypress gives us typable keys
     function on_keypress( _key_event:js.html.KeyboardEvent ) {
 
