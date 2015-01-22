@@ -1,5 +1,7 @@
 package snow.platform.web.utils;
 
+import snow.types.Types;
+
 #if snow_web
 
     import haxe.io.Bytes;
@@ -172,14 +174,28 @@ package snow.platform.web.utils;
 
         }
 
-        static public function readFile(_path:String, ?async:Bool=false, ?onload:ByteArray->Void ) : ByteArray {
+        static public function readFile( _path:String, ?_options:ByteArrayReadOptions, ?onload:ByteArray->Void ) : ByteArray {
+
+                //defaults
+            var _async = false;
+            var _binary = true;
+
+            if(_options != null) {
+                if(_options.async != null) _async = _options.async;
+                if(_options.binary != null) _binary = _options.binary;
+            }
 
             var request = new js.html.XMLHttpRequest();
-                request.open("GET", _path, async);
-                request.overrideMimeType('text/plain; charset=x-user-defined');
+                request.open("GET", _path, _async);
 
-                //only async can set the type it seems
-            if(async) {
+                if(_binary) {
+                    request.overrideMimeType('text/plain; charset=x-user-defined');
+                } else {
+                    request.overrideMimeType('text/plain; charset=UTF-8');
+                }
+
+                //only _async can set the type it seems
+            if(_async) {
                 request.responseType = 'arraybuffer';
             }
 
@@ -193,7 +209,7 @@ package snow.platform.web.utils;
 
                 if(!finalized) {
 
-                    if(!async) {
+                    if(!_async) {
 
                         result = new ByteArray();
                         result.writeUTFBytes(request.response);
@@ -203,7 +219,7 @@ package snow.platform.web.utils;
 
                         result = ByteArray.snowOfBuffer(request.response);
 
-                    } //async
+                    } //_async
 
                 } //!finalized
 
@@ -226,7 +242,7 @@ package snow.platform.web.utils;
             request.send();
 
                 //when doing sync return the result
-            if(!async) {
+            if(!_async) {
                 if(request.status == 200) {
                     return finalize();
                 } else {

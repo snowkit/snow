@@ -34,7 +34,7 @@ class AssetBytes extends Asset {
             //clear any old data in case
         bytes = null;
             //load the new data
-        ByteArray.readFile( info.path, async, function( result:ByteArray ) {
+        ByteArray.readFile( info.path, { async:async }, function( result:ByteArray ) {
 
             bytes = result;
 
