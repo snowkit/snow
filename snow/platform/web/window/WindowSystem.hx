@@ -297,7 +297,7 @@ import snow.window.WindowSystem;
 
             } else {
 
-                if(!true_fullscreen) {
+                if(true_fullscreen) {
 
                     //:unsupported:
                     //currently no cancel full screen in fullscreen mode
