@@ -8,16 +8,6 @@
     <string>{{project.name}}</string>
     <key>CFBundleExecutable</key>
     <string>${EXECUTABLE_NAME}</string>
-    <key>CFBundleIconFile</key>
-    <string>Icon.png</string>
-    <key>CFBundleIcons</key>
-    <dict>
-        <key>CFBundlePrimaryIcon</key>
-        <dict>
-            <key>CFBundleIconFiles</key>
-			<array/>
-        </dict>
-    </dict>
     <key>CFBundleIdentifier</key>
     <string>{{project.app.package}}</string>
     <key>CFBundleInfoDictionaryVersion</key>
