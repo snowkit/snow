@@ -376,8 +376,8 @@ class InputSystem extends InputSystemBinding {
 
     function on_mousewheel( _wheel_event:js.html.WheelEvent ) {
 
-        if(lib.config.web.prevent_default_keys) {
-            // _wheel_event.preventDefault();
+        if(lib.config.web.prevent_default_mouse_wheel) {
+            _wheel_event.preventDefault();
         }
 
         var _window : Window = lib.windowing.window_from_handle(cast _wheel_event.target);
@@ -445,13 +445,13 @@ class InputSystem extends InputSystemBinding {
 
     function on_keydown( _key_event:js.html.KeyboardEvent ) {
 
-        if(lib.config.web.prevent_default_keys) {
-            // _key_event.preventDefault();
-        }
-
         var _keycode : Int = convert_keycode(_key_event.keyCode);
         var _scancode : Int = Key.to_scan(_keycode);
         var _mod_state : ModState = mod_state_from_event(_key_event);
+
+        if(lib.config.web.prevent_default_keys.indexOf(_keycode) != -1) {
+            _key_event.preventDefault();
+        }
 
         manager.dispatch_key_down_event(
             _keycode,
@@ -466,13 +466,14 @@ class InputSystem extends InputSystemBinding {
 
     function on_keyup( _key_event:js.html.KeyboardEvent ) {
 
-        if(lib.config.web.prevent_default_keys) {
-            // _key_event.preventDefault();
-        }
 
         var _keycode : Int = convert_keycode(_key_event.keyCode);
         var _scancode : Int = Key.to_scan(_keycode);
         var _mod_state : ModState = mod_state_from_event(_key_event);
+
+        if(lib.config.web.prevent_default_keys.indexOf(_keycode) != -1) {
+            _key_event.preventDefault();
+        }
 
         manager.dispatch_key_up_event(
             _keycode,
