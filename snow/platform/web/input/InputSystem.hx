@@ -421,17 +421,26 @@ class InputSystem extends InputSystemBinding {
 
     //window id is 1 for keys as they come from the page, so always the main window
 
+        //a list of keycodes that should not generate text
+        //based events because... browsers.
+        //tab,enter
+    static var _keypress_blacklist = [8, 13];
         //keypress gives us typable keys
     function on_keypress( _key_event:js.html.KeyboardEvent ) {
 
-        var _text = String.fromCharCode(_key_event.charCode);
+        if(_key_event.which != 0 &&
+           _keypress_blacklist.indexOf(_key_event.keyCode) == -1) {
 
-        manager.dispatch_text_event(
-            _text, 0, _text.length,     //text, start, length
-            TextEventType.input,        //TextEventType
-            _key_event.timeStamp,       //timestamp
-            1                           //window
-        );
+            var _text = String.fromCharCode(_key_event.charCode);
+
+            manager.dispatch_text_event(
+                _text, 0, _text.length,     //text, start, length
+                TextEventType.input,        //TextEventType
+                _key_event.timeStamp,       //timestamp
+                1                           //window
+            );
+
+        } //not special
 
     } //on_keypress
 
