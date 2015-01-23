@@ -59,16 +59,25 @@ import snow.Log._verboser;
 
         } //timestamp
 
+    //Path utilities
+
             /** Return the full path that the application is located */
         override public function app_path() : String {
+
             return haxe.io.Path.directory(js.Browser.location.href) + '/';
+
         } //app_path
 
         /** On platforms where this makes sense, get the application specific writeable data path.
             Uses the package from `SnowConfig`, passed through from flow projects or boot config. */
-        override public function pref_path() : String {
+        override public function app_path_prefs() : String {
+
             return './';
-        } //pref_path
+
+        } //app_path_prefs
+
+
+    //Internal
 
 
             //Internal value only, for use ONLY when request animation frame is unavailable.

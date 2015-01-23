@@ -149,11 +149,11 @@ class Snow {
         #if snow_native
 
             var app_path = core.app_path();
-            var pref_path = core.pref_path();
+            var pref_path = core.app_path_prefs();
 
             Sys.setCwd( app_path );
 
-            _debug('setting up app path ${app_path}');
+            _debug('setting up app path $app_path');
             _debug('setting up pref path: $pref_path');
 
         #end //snow_native

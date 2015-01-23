@@ -27,7 +27,7 @@ import haxe.io.Path;
     //Public API
 
             /** Opens the specified url in the default browser */
-        override  function url_open( _url:String ) {
+        override public function url_open( _url:String ) {
 
             if(_url != null && _url.length > 0) {
                 snow_io_url_open( _url );

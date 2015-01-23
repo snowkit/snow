@@ -25,11 +25,12 @@ import snow.types.Types;
     public function shutdown() : Void;
         /** Get the most precise timestamp available on the platform, in seconds (time is always in seconds in snow) */
     public function timestamp() : Float;
+
+
         /** Return the full path that the application is located */
     public function app_path() : String;
         /** On platforms where this makes sense, get the application specific writeable data path.
             Uses the package from `SnowConfig`, passed through from flow projects or boot config. */
-    public function pref_path() : String;
-
+    public function app_path_prefs() : String;
 
 } //CoreBinding
