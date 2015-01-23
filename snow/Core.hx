@@ -27,8 +27,9 @@ import snow.types.Types;
     public function timestamp() : Float;
         /** Return the full path that the application is located */
     public function app_path() : String;
-        /** On platforms where this makes sense, get the application specific writeable data path */
-    public function pref_path( _package:String, _appname:String ) : String;
+        /** On platforms where this makes sense, get the application specific writeable data path.
+            Uses the package from `SnowConfig`, passed through from flow projects or boot config. */
+    public function pref_path() : String;
 
 
 } //CoreBinding

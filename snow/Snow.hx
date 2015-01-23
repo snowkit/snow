@@ -85,6 +85,9 @@ class Snow {
     @:noCompletion public function init( _snow_config:SnowConfig, _host : App ) {
 
         snow_config = _snow_config;
+        if(snow_config.app_package == null) {
+            snow_config.app_package = 'org.snowkit.snowdefault';
+        }
 
         config = {
             has_window : true,
@@ -146,15 +149,12 @@ class Snow {
         #if snow_native
 
             var app_path = core.app_path();
-
-            _debug('setting up app path ${app_path}');
+            var pref_path = core.pref_path();
 
             Sys.setCwd( app_path );
 
-            #if !mobile
-                // _debug('setting up pref path');
-                // core.pref_path('snow','default');
-            #end //mobile
+            _debug('setting up app path ${app_path}');
+            _debug('setting up pref path: $pref_path');
 
         #end //snow_native
 
