@@ -1,6 +1,7 @@
 package snow.platform.native;
 
 import snow.types.Types;
+import snow.Log.log;
 
 #if hxcpp_static_std
 
@@ -54,9 +55,16 @@ import snow.types.Types;
         return snow_app_path();
     } //app_path
 
-         /** On platforms where this makes sense, get the application specific writeable data path */
-    override public function pref_path( _package:String, _appname:String ) : String {
-        return snow_pref_path( _package, _appname );
+         /** On platforms where this makes sense, get the application specific writeable data path.
+             Uses the package from `SnowConfig`, passed through from flow projects or boot config. */
+    override public function pref_path() : String {
+
+        var _parts = app.snow_config.app_package.split('.');
+        var _appname = _parts.pop();
+        var _org = _parts.join('.');
+
+        return snow_pref_path( _org, _appname );
+
     } //pref_path
 
     static var snow_init       = snow.utils.Libs.load( "snow", "snow_init", 2 );

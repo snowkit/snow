@@ -104,6 +104,17 @@ typedef SnowConfig = {
         /** If set, no default asset list will be loaded (use `App.config` to load a config manually). default: false */
     @:optional var config_custom_assets : Bool;
 
+        /** The application specific package. i.e org.snowkit.snowapp
+            This should match the common format above,
+            the last part (snowapp) will be used as the app name,
+            the first parts (org.snowkit) will be used as the path.
+            This means for example, when storing a preference in an OS location,
+            it would be stored under <OS user path>/org.snowkit/snowapp/
+            This also means that it must obey the rules set out by app stores for bundle ID's,
+            general urls, file folder names, and https://wiki.libsdl.org/SDL_GetPrefPath#Remarks
+        */
+    @:optional var app_package : String;
+
 } //SnowConfig
 
 /** The runtime application config info */

@@ -64,8 +64,9 @@ import snow.Log._verboser;
             return haxe.io.Path.directory(js.Browser.location.href) + '/';
         } //app_path
 
-        //     /** On platforms where this makes sense, get the application specific writeable data path */
-        override public function pref_path( _name:String, _package:String ) : String {
+        /** On platforms where this makes sense, get the application specific writeable data path.
+            Uses the package from `SnowConfig`, passed through from flow projects or boot config. */
+        override public function pref_path() : String {
             return './';
         } //pref_path
 
