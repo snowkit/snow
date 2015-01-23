@@ -28,6 +28,25 @@ class IO {
 
     } //url_open
 
+
+        /** Return the full path that the application is located */
+    public function app_path() : String {
+
+        return Snow.core.app_path();
+
+    } //app_path
+
+        /** On platforms where this makes sense, get the application specific writeable data path.
+            Uses the package from `SnowConfig`, passed through from flow projects or boot config. */
+    public function app_path_prefs() : String {
+
+        return Snow.core.app_path_prefs();
+
+    } //app_path_prefs
+
+
+//Internal
+
         /** Called by Snow when a system event happens. */
     @:allow(snow.Snow)
     function on_event( _event:SystemEvent ) {
