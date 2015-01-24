@@ -488,10 +488,29 @@ class Snow {
 //Helpers
 
     function get_uniqueid() : String {
+        return _uniqueid();
+    } //get_uniqueid
 
-        return haxe.crypto.Md5.encode( Std.string( time * Math.random() ));
+    inline function _uniqueid(?val:Int) : String {
 
-    } //uniqueid
+        // http://www.anotherchris.net/csharp/friendly-unique-id-generation-part-2/#base62
+
+        if(val == null) val = Std.random(0x7fffffff);
+
+        function to_char(value:Int) : String {
+            if (value > 9) {
+                var ascii = (65 + (value - 10));
+                if (ascii > 90) { ascii += 6; }
+                return String.fromCharCode(ascii);
+            } else return Std.string(value).charAt(0);
+        } //to_char
+
+        var r = Std.int(val % 62);
+        var q = Std.int(val / 62);
+        if (q > 0) return _uniqueid(q) + to_char(r);
+        else return Std.string(to_char(r));
+
+    } //_uniqueid
 
         /** Loads a function out of a library */
     public static function load( library:String, method:String, args:Int = 0 ) : Dynamic {
