@@ -158,6 +158,10 @@ class Windowing {
     public function display_name( display:Int ) : String {
         return platform.display_name(display);
     } //display_name
+	
+	public function desktop_mouse_pos() : { x:Int, y:Int } {
+		return platform.desktop_mouse_pos();
+	}
 
 
 //Internal core API

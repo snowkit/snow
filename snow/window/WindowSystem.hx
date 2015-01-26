@@ -106,5 +106,6 @@ import snow.utils.AbstractClass;
         /** Get the name of the display by index, where available */
     public function display_name( display:Int ) : String;
 
+	public function desktop_mouse_pos() : { x:Int, y:Int };
 
 } //WindowSystemBinding

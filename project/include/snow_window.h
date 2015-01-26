@@ -37,6 +37,7 @@ namespace snow {
         value           desktop_get_display_mode(int display, int mode_index);
         value           desktop_get_display_bounds(int display);
         const char*     desktop_get_display_name(int display);
+		void 			desktop_get_mouse_pos(int *x, int *y);
 
         value           window_config_to_hx( const WindowConfig &config );
         value           render_config_to_hx( const RenderConfig &config );

@@ -817,6 +817,12 @@ namespace snow {
             return SDL_GetDisplayName(display);
 
         } //desktop_get_display_name
+		
+		void desktop_get_mouse_pos( int *x, int *y ) {
+
+			SDL_GetGlobalMouseState(x, y);
+
+		} //desktop_get_mouse_pos
 
 
     //system helpers
