@@ -9,6 +9,9 @@ import mohxa.Mohxa;
 
 class Main extends snow.App {
 
+
+    public static var f : snow.Snow;
+
     override function config( config:AppConfig ) {
 
         config.has_window = false;
@@ -21,11 +24,18 @@ class Main extends snow.App {
     var total : Int = 0;
     var time : Float = 0;
 
+    public static inline function ts() {
+        return f.time;
+    }
+
     override function ready() {
 
+        f = app;
 
         //buffers
 
+            //:todo: these are using ! for testing etc
+        #if !typedarrays_correctness
             //int
                 run(new buffers.TestInt8Array());
                 run(new buffers.TestInt16Array());
@@ -36,6 +46,11 @@ class Main extends snow.App {
                 run(new buffers.TestUInt32Array());
             //float
                 run(new buffers.TestFloat32Array());
+        #end
+        #if !typedarrays_benchmark
+            //benchmarks
+                run(new buffers.TestTypedArrayPerformance());
+        #end
 
 
         trace('completed $total tests, $failed failures (${time}ms)');
