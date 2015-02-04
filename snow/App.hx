@@ -146,6 +146,11 @@ class App {
             //do the internal systems update
         app.do_internal_update( used_delta );
 
+    } //on_internal_update
+
+    @:allow(snow.Snow)
+    function on_internal_render() {
+
             //and finally call render, if it's time
         if(render_rate != 0) {
             if(next_render < app.time) {
@@ -154,7 +159,8 @@ class App {
             }
         }
 
-    } //on_internal_update
+    } //on_internal_render
+
 
 } //App
 
@@ -209,14 +215,6 @@ class AppFixedTimestep extends App {
 
             //work this out before a render
         alpha = overflow / frame_time;
-
-            //and finally call render, if it's time
-        if(render_rate != 0) {
-            if(next_render < app.time) {
-                app.render();
-                next_render += render_rate;
-            }
-        }
 
     } //on_internal_update
 
