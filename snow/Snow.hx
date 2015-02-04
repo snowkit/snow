@@ -288,6 +288,9 @@ class Snow {
             //handle any internal updates
         host.on_internal_update();
 
+            //handle any internal render updates
+        host.on_internal_render();
+
             //let the system have some time
         #if snow_native
             Sys.sleep(0);
