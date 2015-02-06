@@ -125,7 +125,7 @@ class Window {
         });
 
         _debug("created window with id: " + id);
-        _debug('updating real window config for $id is ' + _config);
+        _debug('updating real window config for $id is ' + _configs);
 
     } //on_window_created
 
