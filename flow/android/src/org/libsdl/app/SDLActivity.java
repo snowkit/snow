@@ -152,12 +152,7 @@ public class SDLActivity extends Activity {
         {{~#if project.app.mobile.fullscreen}}
             {{~#if project.app.mobile.android.sdk_target '>=' 19~}}
                 if (Build.VERSION.SDK_INT >= 19) {
-                    getWindow().getDecorView().setSystemUiVisibility(
-                        View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN |
-                        View.SYSTEM_UI_FLAG_LAYOUT_STABLE |
-                        View.SYSTEM_UI_FLAG_LOW_PROFILE |
-                        View.SYSTEM_UI_FLAG_FULLSCREEN
-                    );
+                    hideSystemUi();
                 }
             {{~/if}}
         {{~/if}}
@@ -191,6 +186,7 @@ public class SDLActivity extends Activity {
 
                 decorView.setSystemUiVisibility(
                       View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                    | View.SYSTEM_UI_FLAG_LOW_PROFILE
                     | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
                     | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
                     | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
