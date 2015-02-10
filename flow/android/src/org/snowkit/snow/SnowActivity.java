@@ -8,20 +8,22 @@ public class SnowActivity extends org.libsdl.app.SDLActivity {
 
     private final static String SNOW_TAG = "SNOW";
     public static Activity snow_activity;
-    public native void nativeInit();
+    public native void snowInit();
+    public native void snowQuit();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Log.i(SNOW_TAG, ">>>>>>>>/ snow / On Create .....");
         snow_activity = this;
-        nativeInit();
+        snowInit();
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
         Log.i(SNOW_TAG, ">>>>>>>>/ snow / On Destroy .....");
+        snowQuit();
     }
 
     @Override

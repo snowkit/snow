@@ -60,9 +60,14 @@ namespace snow {
 
 
 extern "C" {
-    JNIEXPORT void JNICALL Java_org_snowkit_snow_SnowActivity_nativeInit(JNIEnv* env, jobject jinst) {
+    JNIEXPORT void JNICALL Java_org_snowkit_snow_SnowActivity_snowInit(JNIEnv* env, jobject jinst) {
         snow::android::activity = env->NewGlobalRef(jinst);
         LOG("SNOW init with snow_activity: %p\n", snow::android::activity);
+    }
+
+    JNIEXPORT void JNICALL Java_org_snowkit_snow_SnowActivity_snowQuit(JNIEnv* env, jobject jinst) {
+        LOG("SNOW destroy\n");
+        exit(0);
     }
 }
 
