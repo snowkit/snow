@@ -197,6 +197,8 @@ import snow.window.WindowSystem;
             _window.handle.style.width = '${w}px';
             _window.handle.style.height = '${h}px';
 
+            internal_resize(_window, w, h);
+
         } //window_set_size
 
         override public function set_position( _window:Window, x:Int, y:Int ) {
