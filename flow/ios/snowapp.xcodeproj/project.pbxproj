@@ -198,7 +198,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "haxelib run flow build ios --project-root ../ --archs \"${ARCHS// /,}\"";
+			shellScript = "FLOW_DEBUG_FLAG=\"\"\nif [ \"$CONFIGURATION\" == \"Debug\" ];\nthen FLOW_DEBUG_FLAG=\"--debug\"\nfi\n\nhaxelib run flow build ios \"$FLOW_DEBUG_FLAG\" --project-root ../ --archs \"${ARCHS// /,}\"\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
