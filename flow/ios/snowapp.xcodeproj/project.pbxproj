@@ -41,7 +41,6 @@
 		1EF0A839121ADB8E003F2F59 /* Main.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Main.mm; path = project/Classes/Main.mm; sourceTree = SOURCE_ROOT; };
 		2619B0081978784F003DB9A7 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = project/Images.xcassets; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* project/project-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "project/project-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
-
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,7 +114,6 @@
         29B97315FDCFA39411CA2CEA /* Other Sources */ = {
             isa = PBXGroup;
             children = (
-				1E2E17A5141E8B5D0048F3C7 /* haxe/build */,
             );
             name = "Other Sources";
             sourceTree = "<group>";
@@ -198,7 +196,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "haxelib run flow build ios --project-root ../ --archs \"${ARCHS// /,}\"";
+			shellScript = "FLOW_DEBUG_FLAG=\"\"\nif [ \"$CONFIGURATION\" == \"Debug\" ];\nthen FLOW_DEBUG_FLAG=\"--debug\"\nfi\n\nhaxelib run flow build ios \"$FLOW_DEBUG_FLAG\" --project-root ../ --archs \"${ARCHS// /,}\"\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -222,6 +220,7 @@
 				CLANG_CXX_LIBRARY = "{{project.app.mobile.ios.cpp}}";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEAD_CODE_STRIPPING = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
                 GCC_PRECOMPILE_PREFIX_HEADER = YES;
                 GCC_PREFIX_HEADER = "project/project-Prefix.pch";
@@ -231,6 +230,7 @@
 				OTHER_LDFLAGS = "{{{project.app.mobile.ios.ldflags}}}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				STRIP_INSTALLED_PRODUCT = NO;
 				TARGETED_DEVICE_FAMILY = "{{project.app.mobile.ios._devices}}";
 				WRAPPER_EXTENSION = app;
             };
@@ -288,9 +288,9 @@
                 GCC_WARN_ABOUT_RETURN_TYPE = YES;
                 GCC_WARN_UNINITIALIZED_AUTOS = YES;
                 GCC_WARN_UNUSED_VARIABLE = YES;
+				ONLY_ACTIVE_ARCH = NO;
                 OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
                 SDKROOT = iphoneos;
-                ONLY_ACTIVE_ARCH = NO;
                 VALIDATE_PRODUCT = YES;
             };
             name = Release;

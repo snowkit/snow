@@ -18,7 +18,7 @@
         <activity android:name="MainActivity"
                   android:label="{{project.name}}"
                   android:launchMode="singleTask"
-                  android:screenOrientation="sensor{{upperFirst project.app.mobile.orientation}}"
+                  android:screenOrientation="{{project.app.mobile._orientation}}"
                   android:configChanges="keyboardHidden|orientation|screenSize|screenLayout"
                   >
             <intent-filter>

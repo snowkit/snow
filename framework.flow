@@ -117,7 +117,7 @@
     "android && arch-x86 && snow_dynamic_link" : {
       build : {
         files : {
-          libsnow : { path:"ndll/Android/libsnow-x86.so => project/libs/armeabi/libsnow.so" }
+          libsnow : { path:"ndll/Android/libsnow-x86.so => project/libs/x86/libsnow.so" }
         }
       }
     },

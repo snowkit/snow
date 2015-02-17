@@ -73,12 +73,16 @@ class InputSystem extends InputSystemBinding {
 
         window.handle.addEventListener('contextmenu', on_contextmenu );
 
-        window.handle.addEventListener('mousedown', on_mousedown);
-        window.handle.addEventListener('mouseup',   on_mouseup);
-        window.handle.addEventListener('mousemove', on_mousemove);
+        window.handle.addEventListener('mousedown',  on_mousedown);
+        window.handle.addEventListener('mouseup',    on_mouseup);
+        window.handle.addEventListener('mousemove',  on_mousemove);
 
-        window.handle.addEventListener('mousewheel',    on_mousewheel);
-        window.handle.addEventListener('wheel',         on_mousewheel);
+        window.handle.addEventListener('mousewheel', on_mousewheel);
+        window.handle.addEventListener('wheel',      on_mousewheel);
+
+        window.handle.addEventListener('touchstart', on_touchdown);
+        window.handle.addEventListener('touchend',   on_touchup);
+        window.handle.addEventListener('touchmove',  on_touchmove);
 
     } //listen
 
@@ -528,6 +532,72 @@ class InputSystem extends InputSystemBinding {
         return DOMKeys.dom_key_to_keycode(dom_keycode);
 
     } //convert_keycode
+
+//Touch
+
+    function on_touchdown( _touch_event:js.html.TouchEvent ) {
+
+        var _window : Window = lib.windowing.window_from_handle(cast _touch_event.target);
+
+        for(touch in _touch_event.changedTouches) {
+
+            var _x:Float = (touch.pageX - js.Browser.window.pageXOffset) - _window.x;
+            var _y:Float = (touch.pageY - js.Browser.window.pageYOffset) - _window.y;
+                _x = (_x / _window.width);
+                _y = (_y / _window.height);
+
+            manager.dispatch_touch_down_event(
+                _x,
+                _y,
+                touch.identifier,
+                manager.lib.time
+            );
+        }
+    } //on_touchdown
+
+    function on_touchup( _touch_event:js.html.TouchEvent ){
+
+        var _window : Window = lib.windowing.window_from_handle(cast _touch_event.target);
+
+        for(touch in _touch_event.changedTouches) {
+
+            var _x:Float = (touch.pageX - js.Browser.window.pageXOffset) - _window.x;
+            var _y:Float = (touch.pageY - js.Browser.window.pageYOffset) - _window.y;
+                _x = (_x / _window.width);
+                _y = (_y / _window.height);
+
+            manager.dispatch_touch_up_event(
+                _x,
+                _y,
+                touch.identifier,
+                manager.lib.time
+            );
+        }
+
+    } //on_touchup
+
+    function on_touchmove( _touch_event:js.html.TouchEvent ){
+
+        var _window : Window = lib.windowing.window_from_handle(cast _touch_event.target);
+
+        for(touch in _touch_event.changedTouches) {
+
+            var _x:Float = (touch.pageX - js.Browser.window.pageXOffset) - _window.x;
+            var _y:Float = (touch.pageY - js.Browser.window.pageYOffset) - _window.y;
+                _x = (_x / _window.width);
+                _y = (_y / _window.height);
+
+            manager.dispatch_touch_move_event(
+                _x,
+                _y,
+                0,
+                0,
+                touch.identifier,
+                manager.lib.time
+            );
+        }
+
+    } //on_touchmove
 
 
 } //InputSystem
