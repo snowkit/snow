@@ -38,6 +38,8 @@ import snow.utils.AbstractClass;
 
         /** Audio info loader, use `app.assets`. */
     public function audio_load_info( _path:String, ?_format:AudioFormatType, ?_load:Bool = true, ?_onload:?AudioInfo->Void ) : AudioInfo;
+        /** Audio info load from `ByteArray`. use `app.assets`. */
+    public function audio_info_from_bytes( _path:String, _bytes:ByteArray, _format:AudioFormatType ) : AudioInfo;
 
 
 

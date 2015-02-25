@@ -301,6 +301,11 @@ import snow.Log._verboser;
 
         } //audio_load_info
 
+        override public function audio_info_from_bytes( _path:String, _bytes:ByteArray, _format:AudioFormatType ) : AudioInfo {
+            //:todo: not implemented as this is changing in the underlying core
+            throw "unimplemented";
+        }
+
     } //AssetSystem
 
 #end //snow_web

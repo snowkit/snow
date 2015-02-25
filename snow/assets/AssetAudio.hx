@@ -56,4 +56,23 @@ class AssetAudio extends Asset {
     } //load
 
 
+        /** Called from `app.assets.audio`, or manually, if reloading the asset data at a later point. This is a synchronous call */
+    public function load_from_bytes( bytes:ByteArray, format:AudioFormatType, ?onload:AssetAudio->Void ) {
+
+        loaded = false;
+
+                //clear old reference
+            audio = null;
+                //load the new data
+            audio = assets.platform.audio_info_from_bytes( info.path, bytes, format );
+
+            if(onload != null) {
+                onload( this );
+            }
+
+        loaded = true;
+
+    } //load
+
+
 } //AssetAudio
