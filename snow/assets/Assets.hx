@@ -228,13 +228,16 @@ class Assets {
 
         var _strict = strict;
         var _silent = false;
+        var _from_bytes = false;
 
         if(options != null) {
             if(options.strict != null) { _strict = options.strict; }
             if(options.silent != null) { _silent = options.silent; }
+
+            _from_bytes = options.bytes != null;
         }
 
-        if(exists(_id, _strict)) {
+        if(exists(_id, _strict) || _from_bytes) {
 
             var info : AssetInfo = get(_id);
 
@@ -272,7 +275,13 @@ class Assets {
             } //options.type
 
             var asset = new AssetAudio( this, info, _type, options.load );
+
+            if(!_from_bytes) {
                 asset.load( options != null ? options.onload : null );
+            } else {
+                    //options has to be non-null for bytes, so ignore check on options.onload
+                asset.load_from_bytes( options.bytes, _type, options.onload );
+            }
 
             return asset;
 

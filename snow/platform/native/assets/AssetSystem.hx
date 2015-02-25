@@ -94,6 +94,7 @@ import snow.Log._verboser;
 
 //audio
 
+
     override public function audio_load_info( _path:String, ?_format:AudioFormatType, ?_load:Bool = true, ?_onload:?AudioInfo->Void ) : AudioInfo {
 
         var info : AudioInfo = null;
@@ -135,6 +136,43 @@ import snow.Log._verboser;
 
     } //audio_load_info
 
+    override public function audio_info_from_bytes( _path:String, _bytes:ByteArray, _format:AudioFormatType ) : AudioInfo {
+
+        var info : AudioInfo = null;
+
+            switch(_format) {
+
+                case AudioFormatType.wav: {
+                    info = audio_load_wav_from_bytes( _path, _bytes );
+                }
+
+                case AudioFormatType.ogg: {
+                    info = audio_load_ogg_from_bytes( _path, _bytes );
+                }
+
+                case AudioFormatType.pcm: {
+                    info = audio_load_pcm_from_bytes( _path, _bytes );
+                }
+
+                default : {}
+
+            } //switch _format
+
+            if(info == null) {
+                log(_path + " audio info returned null");
+                return null;
+            }
+
+                //with audio the bytes data could be null too, this is also an invalid asset
+            if(info.data == null) {
+                log(_path + " audio info data was null");
+                return null;
+            }
+
+        return info;
+
+    } //audio_info_from_bytes
+
     override public function audio_seek_source( _info:AudioInfo, _to:Int ) : Bool {
 
         switch(_info.format) {
@@ -172,7 +210,11 @@ import snow.Log._verboser;
 //ogg
 
     function audio_load_ogg( _path:String, ?load:Bool=true ) : AudioInfo {
-        return snow_assets_audio_load_info_ogg( _path, load );
+        return snow_assets_audio_load_info_ogg( _path, load, null );
+    } //audio_load_ogg
+
+    function audio_load_ogg_from_bytes( _path:String, _bytes:ByteArray ) : AudioInfo {
+        return snow_assets_audio_load_info_ogg( _path, true, _bytes );
     } //audio_load_ogg
 
     function audio_load_portion_ogg( _info:AudioInfo, _start:Int, _len:Int ) : AudioDataBlob {
@@ -186,7 +228,11 @@ import snow.Log._verboser;
 //wav
 
     function audio_load_wav( _path:String, ?load:Bool=true ) : AudioInfo {
-        return snow_assets_audio_load_info_wav( _path, load );
+        return snow_assets_audio_load_info_wav( _path, load, null );
+    } //audio_load_wav
+
+    function audio_load_wav_from_bytes( _path:String, _bytes:ByteArray ) : AudioInfo {
+        return snow_assets_audio_load_info_wav( _path, true, _bytes );
     } //audio_load_wav
 
     function audio_load_portion_wav( _info:AudioInfo, _start:Int, _len:Int ) : AudioDataBlob {
@@ -200,7 +246,11 @@ import snow.Log._verboser;
 //pcm
 
     function audio_load_pcm( _path:String, ?load:Bool=true ) : AudioInfo {
-        return snow_assets_audio_load_info_pcm( _path, load );
+        return snow_assets_audio_load_info_pcm( _path, load, null );
+    } //audio_load_pcm
+
+    function audio_load_pcm_from_bytes( _path:String, _bytes:ByteArray ) : AudioInfo {
+        return snow_assets_audio_load_info_pcm( _path, true, _bytes );
     } //audio_load_pcm
 
     function audio_load_portion_pcm( _info:AudioInfo, _start:Int, _len:Int ) : AudioDataBlob {
@@ -219,15 +269,15 @@ import snow.Log._verboser;
     static var snow_assets_image_load_info         = Libs.load( "snow", "snow_assets_image_load_info", 2 );
     static var snow_assets_image_info_from_bytes   = Libs.load( "snow", "snow_assets_image_info_from_bytes", 3 );
 
-    static var snow_assets_audio_load_info_ogg   = Libs.load( "snow", "snow_assets_audio_load_info_ogg", 2 );
+    static var snow_assets_audio_load_info_ogg   = Libs.load( "snow", "snow_assets_audio_load_info_ogg", 3 );
     static var snow_assets_audio_read_bytes_ogg  = Libs.load( "snow", "snow_assets_audio_read_bytes_ogg", 3 );
     static var snow_assets_audio_seek_bytes_ogg  = Libs.load( "snow", "snow_assets_audio_seek_bytes_ogg", 2 );
 
-    static var snow_assets_audio_load_info_wav   = Libs.load( "snow", "snow_assets_audio_load_info_wav", 2 );
+    static var snow_assets_audio_load_info_wav   = Libs.load( "snow", "snow_assets_audio_load_info_wav", 3 );
     static var snow_assets_audio_read_bytes_wav  = Libs.load( "snow", "snow_assets_audio_read_bytes_wav", 3 );
     static var snow_assets_audio_seek_bytes_wav  = Libs.load( "snow", "snow_assets_audio_seek_bytes_wav", 2 );
 
-    static var snow_assets_audio_load_info_pcm   = Libs.load( "snow", "snow_assets_audio_load_info_pcm", 2 );
+    static var snow_assets_audio_load_info_pcm   = Libs.load( "snow", "snow_assets_audio_load_info_pcm", 3 );
     static var snow_assets_audio_read_bytes_pcm  = Libs.load( "snow", "snow_assets_audio_read_bytes_pcm", 3 );
     static var snow_assets_audio_seek_bytes_pcm  = Libs.load( "snow", "snow_assets_audio_seek_bytes_pcm", 2 );
 

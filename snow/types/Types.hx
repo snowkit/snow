@@ -86,7 +86,8 @@ typedef AssetAudioOptions = {
     ? strict : Bool,
     ? type : String,
     ? load : Bool,
-    ? onload : AssetAudio -> Void
+    ? onload : AssetAudio -> Void,
+    ? bytes : ByteArray
 } //AssetAudioOptions
 
 

@@ -29,8 +29,10 @@ namespace snow {
                 //load an ogg info object, if read is false it will not read any data from the file, just open and setup the info/comments
             bool load_info_ogg( QuickVec<unsigned char> &out_buffer, const char* _id, OGG_file_source*& ogg_source, bool read ) {
 
-                ogg_source = new OGG_file_source();
-                ogg_source->source_name = std::string(_id);
+                if(!ogg_source) {
+                    snow::log(1, "/ snow / invalid source for %s", _id);
+                    return false;
+                }
 
                 ogg_source->callbacks = ov_callbacks();
 
@@ -39,14 +41,9 @@ namespace snow {
                     ogg_source->callbacks.close_func = &ogg_close_func;
                     ogg_source->callbacks.tell_func = &ogg_tell_func;
 
-                ogg_source->file_source = snow::io::iosrc_fromfile(_id, "rb");
-
                 if(!ogg_source->file_source) {
 
                     snow::log(1, "/ snow / cannot open ogg file from %s", _id);
-                    delete ogg_source;
-                    ogg_source = NULL;
-
                     return false;
 
                 } //file source isn't valid
@@ -63,8 +60,6 @@ namespace snow {
                 if(result < 0) {
 
                     snow::io::close(ogg_source->file_source);
-                    delete ogg_source;
-                    ogg_source = NULL;
 
                     std::string s = ogg_error_string(result);
                     snow::log(1, "/ snow / %s result:%d   code:%s \n", "ogg file failed to open!?", result, s.c_str());
@@ -345,9 +340,10 @@ namespace snow {
 
                 // http://www.dunsanyinteractive.com/blogs/oliver/?p=72
 
-                wav_source = new WAV_file_source();
-                wav_source->source_name = std::string(_id);
-                wav_source->file_source = snow::io::iosrc_fromfile(_id, "rb");
+                if(!wav_source) {
+                    snow::log(1, "/ snow / invalid source for %s", _id);
+                    return false;
+                }
 
                 if (!wav_source->file_source) {
                     snow::log(1, "/ snow / cannot open wav file from %s", _id);
@@ -528,9 +524,10 @@ namespace snow {
 
             bool load_info_pcm( QuickVec<unsigned char> &out_buffer, const char *_id, PCM_file_source*& pcm_source, bool read ) {
 
-                pcm_source = new PCM_file_source();
-                pcm_source->source_name = std::string(_id);
-                pcm_source->file_source = snow::io::iosrc_fromfile(_id, "rb");
+                if(!pcm_source) {
+                    snow::log(1, "/ snow / invalid source for %s", _id);
+                    return false;
+                }
 
                 if (!pcm_source->file_source) {
                     snow::log(1, "/ snow / cannot open pcm file from %s", _id);

@@ -505,17 +505,29 @@ extern double timestamp();
 
 //ogg
 
-    value snow_assets_audio_load_info_ogg( value _id, value _do_read ) {
+    value snow_assets_audio_load_info_ogg( value _id, value _do_read, value _from_bytes ) {
 
+        bool from_bytes = !val_is_null(_from_bytes);
         bool do_read = val_bool(_do_read);
+        std::string _asset_id(val_string(_id));
+
             //the destination for the read, if any
         QuickVec<unsigned char> buffer;
             //the source data ogg info
-        snow::assets::audio::OGG_file_source* ogg_source = NULL;
+        snow::assets::audio::OGG_file_source* ogg_source = new snow::assets::audio::OGG_file_source();
+        ogg_source->source_name = _asset_id;
 
-        bool success = snow::assets::audio::load_info_ogg( buffer, val_string(_id), ogg_source, do_read );
+        if(!from_bytes) {
+            ogg_source->file_source = snow::io::iosrc_fromfile(_asset_id.c_str(), "rb");
+        } else {
+            ByteArray bytes(_from_bytes);
+            ogg_source->file_source = snow::io::iosrc_frommem( bytes.Bytes(), bytes.Size() );
+        }
+
+        bool success = snow::assets::audio::load_info_ogg( buffer, _asset_id.c_str(), ogg_source, do_read );
 
         if(!success) {
+            if(ogg_source) { delete ogg_source; ogg_source = NULL; }
             return alloc_null();
         } //!success
 
@@ -542,7 +554,7 @@ extern double timestamp();
 
         return _object;
 
-    } DEFINE_PRIM(snow_assets_audio_load_info_ogg, 2);
+    } DEFINE_PRIM(snow_assets_audio_load_info_ogg, 3);
 
     value snow_assets_audio_read_bytes_ogg( value _info, value _start, value _len ) {
 
@@ -593,17 +605,30 @@ extern double timestamp();
 
 //wav
 
-    value snow_assets_audio_load_info_wav( value _id, value _do_read ) {
+    value snow_assets_audio_load_info_wav( value _id, value _do_read, value _from_bytes ) {
 
+        bool from_bytes = !val_is_null(_from_bytes);
         bool do_read = val_bool(_do_read);
+        std::string _asset_id(val_string(_id));
+
             //the destination for the read, if any
         QuickVec<unsigned char> buffer;
-            //the source information for the wav file
-        snow::assets::audio::WAV_file_source* wav_source = NULL;
 
-        bool success = snow::assets::audio::load_info_wav( buffer, val_string(_id), wav_source, do_read );
+            //the source information for the wav file
+        snow::assets::audio::WAV_file_source* wav_source = new snow::assets::audio::WAV_file_source();
+        wav_source->source_name = _asset_id;
+
+        if(!from_bytes) {
+            wav_source->file_source = snow::io::iosrc_fromfile(_asset_id.c_str(), "rb");
+        } else {
+            ByteArray bytes(_from_bytes);
+            wav_source->file_source = snow::io::iosrc_frommem( bytes.Bytes(), bytes.Size() );
+        }
+
+        bool success = snow::assets::audio::load_info_wav( buffer, _asset_id.c_str(), wav_source, do_read );
 
         if(!success) {
+            if(wav_source) { delete wav_source; wav_source = NULL; }
             return alloc_null();
         } //!success
 
@@ -630,7 +655,7 @@ extern double timestamp();
 
         return _object;
 
-    } DEFINE_PRIM(snow_assets_audio_load_info_wav, 2);
+    } DEFINE_PRIM(snow_assets_audio_load_info_wav, 3);
 
 
     value snow_assets_audio_read_bytes_wav( value _info, value _start, value _len ) {
@@ -683,17 +708,29 @@ extern double timestamp();
 //pcm
 
 
-    value snow_assets_audio_load_info_pcm( value _id, value _do_read ) {
+    value snow_assets_audio_load_info_pcm( value _id, value _do_read, value _from_bytes ) {
 
+        bool from_bytes = !val_is_null(_from_bytes);
         bool do_read = val_bool(_do_read);
+        std::string _asset_id(val_string(_id));
+
             //the destination for the read, if any
         QuickVec<unsigned char> buffer;
             //the source information for the pcm file
-        snow::assets::audio::PCM_file_source* pcm_source = NULL;
+        snow::assets::audio::PCM_file_source* pcm_source = new snow::assets::audio::PCM_file_source();
+        pcm_source->source_name = _asset_id;
 
-        bool success = snow::assets::audio::load_info_pcm( buffer, val_string(_id), pcm_source, do_read );
+        if(!from_bytes) {
+            pcm_source->file_source = snow::io::iosrc_fromfile(_asset_id.c_str(), "rb");
+        } else {
+            ByteArray bytes(_from_bytes);
+            pcm_source->file_source = snow::io::iosrc_frommem( bytes.Bytes(), bytes.Size() );
+        }
+
+        bool success = snow::assets::audio::load_info_pcm( buffer, _asset_id.c_str(), pcm_source, do_read );
 
         if(!success) {
+            if(pcm_source) { delete pcm_source; pcm_source = NULL; }
             return alloc_null();
         } //!success
 
@@ -720,7 +757,7 @@ extern double timestamp();
 
         return _object;
 
-    } DEFINE_PRIM(snow_assets_audio_load_info_pcm, 2);
+    } DEFINE_PRIM(snow_assets_audio_load_info_pcm, 3);
 
 
     value snow_assets_audio_read_bytes_pcm( value _info, value _start, value _len ) {
