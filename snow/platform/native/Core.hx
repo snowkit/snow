@@ -3,7 +3,7 @@ package snow.platform.native;
 import snow.types.Types;
 import snow.Log.log;
 
-#if hxcpp_static_std
+#if (hxcpp_static_std && cpp)
 
     //These use hxcpp magic to
     //import the std/zlib/regex modules
