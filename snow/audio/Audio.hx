@@ -317,7 +317,12 @@ class Audio {
         /** Stop managing a sound instance */
     @:noCompletion public function kill( _sound:Sound ) {
 
-        handles.remove(_sound.info.handle);
+        if(_sound == null) return;
+
+        if(_sound.info != null) {
+            handles.remove(_sound.info.handle);
+        }
+
         sound_list.remove(_sound.name);
         stream_list.remove(_sound.name);
 
