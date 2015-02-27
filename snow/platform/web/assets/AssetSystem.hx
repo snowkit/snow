@@ -3,8 +3,7 @@ package snow.platform.web.assets;
 import snow.assets.Assets;
 import snow.assets.AssetSystem;
 import snow.types.Types;
-
-import snow.io.typedarray.*;
+import snow.utils.ByteArray;
 
 import snow.platform.web.assets.tga.TGA;
 import snow.platform.web.assets.psd.PSD;
@@ -31,11 +30,9 @@ import snow.Log._verboser;
 
         override public function exists( _id:String, ?_strict:Bool=true ) : Bool {
 
-            if(_strict) {
-                return manager.listed(_id);
-            }
+            var listed = manager.listed(_id);
 
-            return true;
+            return listed;
 
         } //exists
 
@@ -95,7 +92,7 @@ import snow.Log._verboser;
                         width_actual : width_pot,
                         height_actual : height_pot,
                         bpp_source : 4,
-                        data : image_bytes
+                        data : new snow.utils.UInt8Array( image_bytes.data )
                     };
 
                         //cleanup
@@ -119,11 +116,10 @@ import snow.Log._verboser;
 
                 var info : ImageInfo = null;
 
-                    // snow.utils.ByteArray.readFile(_path, { async:true }, function(data:snow.utils.ByteArray) {
 
-                    var load = manager.lib.io.data_load( _path, { binary:false });
-                    load.then(function(uint:Uint8Array) {
+                    ByteArray.readFile(_path, { async:true }, function(data:ByteArray) {
 
+                        var uint = new snow.utils.UInt8Array( data.getData() );
                         var image = new TGA();
                             image.load( uint );
 
@@ -141,30 +137,29 @@ import snow.Log._verboser;
                             width_actual : width_pot,
                             height_actual : height_pot,
                             bpp_source : 4,
-                            data : image_bytes
+                            data : new snow.utils.UInt8Array( image_bytes.data )
                         };
 
                             //cleanup
                         image_bytes = null;
 
-                        if(_onload != null) {
-                            _onload( info );
-                        }
-
-                    }).catchError(function(e){
-
+                            //append the listener
                         if(_onload != null) {
                             _onload( info );
                         }
 
                     });
 
+                        //this uses something firefox doesn't like
+                    // image.open(_path, function(data){
+
+                    // });
 
                 return info;
 
             } //image_load_info_tga
 
-            function POT_Uint8Array_from_image(_width:Int, _height:Int, _width_pot:Int, _height_pot:Int, _source:js.html.Element) : Uint8Array {
+            function POT_Uint8Array_from_image(_width:Int, _height:Int, _width_pot:Int, _height_pot:Int, _source:js.html.Element) {
 
                 var tmp_canvas = js.Browser.document.createCanvasElement();
 
@@ -195,7 +190,7 @@ import snow.Log._verboser;
                     //cleanup
                 tmp_canvas = null; tmp_context = null;
 
-                return new Uint8Array(image_bytes.data);
+                return image_bytes;
 
             } //POT_Uint8Array_from_image
 
@@ -221,7 +216,7 @@ import snow.Log._verboser;
                                 width_actual : width_pot,
                                 height_actual : height_pot,
                                 bpp_source : 4,
-                                data : image_bytes
+                                data : new snow.utils.UInt8Array( image_bytes.data )
                             };
 
                                 //cleanup
@@ -242,7 +237,7 @@ import snow.Log._verboser;
 
             } //image_load_info_psd
 
-        override public function image_info_from_bytes( _path:String, _bytes:Uint8Array, ?_components:Int = 4 ) : ImageInfo {
+        override public function image_info_from_bytes( _path:String, _bytes:ByteArray, ?_components:Int = 4 ) : ImageInfo {
 
             #if !snow_no_format_png
 
@@ -252,7 +247,7 @@ import snow.Log._verboser;
                 }
 
                     //Then we need it to be a BytesInput haxe.io.Input
-                var _raw_bytes = _bytes.buffer;
+                var _raw_bytes : haxe.io.Bytes = ByteArray.toBytes(_bytes);
                     //now a byte input for format.png
                 var byte_input = new haxe.io.BytesInput(_raw_bytes, 0, _raw_bytes.length);
                     //get the raw data
@@ -270,7 +265,7 @@ import snow.Log._verboser;
                     width_actual : png_header.width,
                     height_actual : png_header.height,
                     bpp_source : png_header.colbits,
-                    data : new Uint8Array(cast png_bytes.getData())
+                    data : new snow.utils.UInt8Array(png_bytes.getData())
                 }
             #else
 
@@ -305,6 +300,11 @@ import snow.Log._verboser;
             return info;
 
         } //audio_load_info
+
+        override public function audio_info_from_bytes( _path:String, _bytes:ByteArray, _format:AudioFormatType ) : AudioInfo {
+            //:todo: not implemented as this is changing in the underlying core
+            throw "unimplemented";
+        }
 
     } //AssetSystem
 
