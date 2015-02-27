@@ -30,9 +30,11 @@ import snow.Log._verboser;
 
         override public function exists( _id:String, ?_strict:Bool=true ) : Bool {
 
-            var listed = manager.listed(_id);
+            if(_strict) {
+                return manager.listed(_id);
+            }
 
-            return listed;
+            return true;
 
         } //exists
 
