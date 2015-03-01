@@ -134,6 +134,11 @@ class App {
             //last frame start is updated to now
         last_frame_start = cur_frame_start;
 
+            //clamp delta to max frame time, preventing large deltas
+        if(delta_time > max_frame_time) {
+            delta_time = max_frame_time;
+        }
+
             //which delta we are going to use, fixed or variable
         var used_delta = (fixed_delta == 0) ? delta_time : fixed_delta;
             //timescale the delta to the given scale
