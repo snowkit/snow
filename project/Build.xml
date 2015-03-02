@@ -49,7 +49,7 @@
    <set name="SHLIBEXT" value=".so" unless="windows"/>
    <set name="SHLIBEXT" value=".dylib" if="mac || ios"/>
    <set name="DEBUGEXTRA" value="" />
-   <set name="DEBUGEXTRA" value="${DBG}" if="static_link"/>
+   <set name="DEBUGEXTRA" value="" if="static_link"/>
 
    <set name="PRELIB" value="lib/${BINDIR}/${LIBPREFIX}" />
    <set name="POSTLIB" value="${DBG}${LIBEXTRA}${SLIBEXT}" />
