@@ -44,6 +44,13 @@ then
 
 fi
 
+SNOW_BUILD_DEST_PRE = "latest"
+
+if [ "$BUILDKITE_BRANCH" -ne "master" ]
+then
+    SNOW_BUILD_DEST_PRE = "$BUILDKITE_BRANCH"
+fi
+
 if [ -n "$SNOW_BUILD_PACKAGE_BINARY" ]
 then
 
@@ -68,19 +75,19 @@ then
 
     cd ..
 
-    zip -r latest.all.zip ndll/ -x ".*" -x "*/.*"
-    zip -r latest.mac.zip ndll/Mac ndll/Mac64 -x ".*" -x "*/.*"
-    zip -r latest.linux.zip ndll/Linux ndll/Linux64 -x ".*" -x "*/.*"
-    zip -r latest.android.zip ndll/Android -x ".*" -x "*/.*"
-    zip -r latest.ios.zip ndll/iPhone -x ".*" -x "*/.*"
-    zip -r latest.windows.zip ndll/Windows -x ".*" -x "*/.*"
+    zip -r "$SNOW_BUILD_DEST_PRE".all.zip ndll/ -x ".*" -x "*/.*"
+    zip -r "$SNOW_BUILD_DEST_PRE".mac.zip ndll/Mac ndll/Mac64 -x ".*" -x "*/.*"
+    zip -r "$SNOW_BUILD_DEST_PRE".linux.zip ndll/Linux ndll/Linux64 -x ".*" -x "*/.*"
+    zip -r "$SNOW_BUILD_DEST_PRE".android.zip ndll/Android -x ".*" -x "*/.*"
+    zip -r "$SNOW_BUILD_DEST_PRE".ios.zip ndll/iPhone -x ".*" -x "*/.*"
+    zip -r "$SNOW_BUILD_DEST_PRE".windows.zip ndll/Windows -x ".*" -x "*/.*"
     cd ../../
-    cp ndll/all/latest.all.zip /usr/share/nginx/html/snow/latest.all.zip
-    cp ndll/all/latest.mac.zip /usr/share/nginx/html/snow/latest.mac.zip
-    cp ndll/all/latest.linux.zip /usr/share/nginx/html/snow/latest.linux.zip
-    cp ndll/all/latest.android.zip /usr/share/nginx/html/snow/latest.android.zip
-    cp ndll/all/latest.ios.zip /usr/share/nginx/html/snow/latest.ios.zip
-    cp ndll/all/latest.windows.zip /usr/share/nginx/html/snow/latest.windows.zip
+    cp ndll/all/"$SNOW_BUILD_DEST_PRE".all.zip /usr/share/nginx/html/snow/"$SNOW_BUILD_DEST_PRE".all.zip
+    cp ndll/all/"$SNOW_BUILD_DEST_PRE".mac.zip /usr/share/nginx/html/snow/"$SNOW_BUILD_DEST_PRE".mac.zip
+    cp ndll/all/"$SNOW_BUILD_DEST_PRE".linux.zip /usr/share/nginx/html/snow/"$SNOW_BUILD_DEST_PRE".linux.zip
+    cp ndll/all/"$SNOW_BUILD_DEST_PRE".android.zip /usr/share/nginx/html/snow/"$SNOW_BUILD_DEST_PRE".android.zip
+    cp ndll/all/"$SNOW_BUILD_DEST_PRE".ios.zip /usr/share/nginx/html/snow/"$SNOW_BUILD_DEST_PRE".ios.zip
+    cp ndll/all/"$SNOW_BUILD_DEST_PRE".windows.zip /usr/share/nginx/html/snow/"$SNOW_BUILD_DEST_PRE".windows.zip
 
     echo "snow; build; done package"
 
