@@ -44,11 +44,11 @@ then
 
 fi
 
-SNOW_BUILD_DEST_PRE = "latest"
+SNOW_BUILD_DEST_PRE="latest"
 
 if [ "$BUILDKITE_BRANCH" -ne "master" ]
 then
-    SNOW_BUILD_DEST_PRE = "$BUILDKITE_BRANCH"
+    SNOW_BUILD_DEST_PRE="$BUILDKITE_BRANCH"
 fi
 
 if [ -n "$SNOW_BUILD_PACKAGE_BINARY" ]
