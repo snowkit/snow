@@ -592,7 +592,7 @@ import snow.types.Types;
 
             if (allocated < value)
                 _snowResizeBuffer(allocated = Std.int(Math.max(value, allocated * 2)));
-            else if (allocated > value)
+            else if (allocated > value * 2)
                 _snowResizeBuffer(allocated = value);
             length = value;
             return value;
