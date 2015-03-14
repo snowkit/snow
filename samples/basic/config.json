@@ -1,0 +1,11 @@
+{
+    "window" : {
+        "width" : 640,
+        "height" : 320
+    },
+
+    "size":128,
+    "movespeed" : 100,
+    "timescale": 1
+
+}
