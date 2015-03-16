@@ -94,7 +94,7 @@ import snow.Log._verboser;
                         width_actual : width_pot,
                         height_actual : height_pot,
                         bpp_source : 4,
-                        data : new snow.utils.UInt8Array( image_bytes.data )
+                        data : new snow.utils.UInt8Array( cast image_bytes.data )
                     };
 
                         //cleanup
@@ -139,7 +139,7 @@ import snow.Log._verboser;
                             width_actual : width_pot,
                             height_actual : height_pot,
                             bpp_source : 4,
-                            data : new snow.utils.UInt8Array( image_bytes.data )
+                            data : new snow.utils.UInt8Array( cast image_bytes.data )
                         };
 
                             //cleanup
@@ -218,7 +218,7 @@ import snow.Log._verboser;
                                 width_actual : width_pot,
                                 height_actual : height_pot,
                                 bpp_source : 4,
-                                data : new snow.utils.UInt8Array( image_bytes.data )
+                                data : new snow.utils.UInt8Array( cast image_bytes.data )
                             };
 
                                 //cleanup
