@@ -1,6 +1,5 @@
 package snow;
 
-import snow.utils.ByteArray;
 import snow.input.Input;
 import snow.types.Types;
 
