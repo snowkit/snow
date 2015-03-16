@@ -32,26 +32,7 @@ class Main extends snow.App {
 
         f = app;
 
-        //buffers
-
-            //:todo: these are using ! for testing etc
-        #if !typedarrays_correctness
-            //int
-                run(new buffers.TestInt8Array());
-                run(new buffers.TestInt16Array());
-                run(new buffers.TestInt32Array());
-                run(new buffers.TestUInt8Array());
-                run(new buffers.TestUInt8ClampedArray());
-                run(new buffers.TestUInt16Array());
-                run(new buffers.TestUInt32Array());
-            //float
-                run(new buffers.TestFloat32Array());
-        #end
-        #if !typedarrays_benchmark
-            //benchmarks
-                run(new buffers.TestTypedArrayPerformance());
-        #end
-
+        run(new io.IOFileTest());
 
         trace('completed $total tests, $failed failures (${time}ms)');
 
