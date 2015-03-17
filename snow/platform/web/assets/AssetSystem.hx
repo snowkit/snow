@@ -253,7 +253,9 @@ import snow.Log._verboser;
                     //now a byte input for format.png
                 var byte_input = new haxe.io.BytesInput(_raw_bytes, 0, _raw_bytes.length);
                     //get the raw data
-                var png_data = new snow.utils.format.png.Reader(byte_input).read();
+                var png_reader = new snow.utils.format.png.Reader(byte_input);
+                    png_reader.checkCRC = false;
+                var png_data = png_reader.read();
                     //Extract the bytes from the png reader
                 var png_bytes = snow.utils.format.png.Tools.extract32(png_data);
                     //And the header information for infomation
