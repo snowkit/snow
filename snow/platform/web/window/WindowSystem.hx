@@ -234,11 +234,7 @@ import snow.window.WindowSystem;
             var curtop = 0;
 
                 //start at the canvas
-            #if (haxe_ver < 3.2)
-                var _obj : js.html.Element = cast handle;
-            #else
-                var _obj : js.html.HTMLElement = cast handle;
-            #end
+            var _obj : js.html.Element = cast handle;
 
             var _has_parent : Bool = true;
             var _max_count = 0;
