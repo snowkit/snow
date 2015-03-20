@@ -2,17 +2,17 @@ package snow.assets;
 
 import snow.io.IO;
 import snow.types.Types;
-import snow.utils.ByteArray;
 import snow.utils.Libs;
 import snow.assets.AssetSystem;
+import snow.io.typedarray.Uint8Array;
 
 
-/**  An asset that contains byte `bytes` as a `ByteArray`. Get assets from the `Assets` class, via `app.assets` */
+/**  An asset that contains byte `bytes` as a `Uint8Array`. Get assets from the `Assets` class, via `app.assets` */
 class AssetBytes extends Asset {
 
 
-        /** The `ByteArray` this asset contains */
-    public var bytes : ByteArray;
+        /** The `Uint8Array` this asset contains */
+    public var bytes : Uint8Array;
         /** Whether or not this bytes data will load syncronously. Used in `load` only. */
     public var async : Bool = false;
 
@@ -33,24 +33,18 @@ class AssetBytes extends Asset {
         loaded = false;
             //clear any old data in case
         bytes = null;
-            //load the new data
-        ByteArray.readFile( info.path, { async:async }, function( result:ByteArray ) {
 
-            bytes = result;
+        var p = assets.lib.io.data_load( info.path, { binary:true });
+        p.then(function(data:Uint8Array){
 
-            loaded = true;
+            load_from_bytes(data, onload);
 
-            if(onload != null) {
-                // Snow.next(function(){
-                    onload( this );
-                // });
-            }
-
-        }); //readFile
+        });
 
     } //load
 
-    public function load_from_bytes( _bytes:ByteArray, ?onload:AssetBytes->Void ) {
+        /** This function is a synchronous call. */
+    public function load_from_bytes( _bytes:Uint8Array, ?onload:AssetBytes->Void ) {
 
         loaded = false;
 
@@ -59,9 +53,7 @@ class AssetBytes extends Asset {
         loaded = true;
 
         if(onload != null) {
-            // Snow.next(function(){
-                onload( this );
-            // });
+            onload( this );
         }
 
     } //load_from_bytes

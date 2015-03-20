@@ -2,13 +2,15 @@ package snow.assets;
 
 import snow.io.IO;
 import snow.types.Types;
-import snow.utils.ByteArray;
 import snow.utils.Libs;
+
 import snow.assets.AssetSystem;
 import snow.assets.AssetImage;
 import snow.assets.AssetText;
 import snow.assets.AssetBytes;
 import snow.assets.AssetAudio;
+
+import snow.io.typedarray.Uint8Array;
 
 import snow.Log.log;
 import snow.Log._debug;
@@ -113,7 +115,7 @@ class Assets {
     } //path
 
 
-        /** Get an asset as a `AssetBytes`, data stored as `ByteArray` used for binary assets. */
+        /** Get an asset as a `AssetBytes`, data stored as `Uint8Array` used for binary assets. */
     public function bytes( _id:String, ?options:AssetBytesOptions ) : AssetBytes {
 
         var _strict = strict;

@@ -2,7 +2,7 @@
 import snow.Snow;
 
 import snow.render.opengl.GL;
-import snow.utils.Float32Array;
+import snow.io.typedarray.Float32Array;
 
 import snow.types.Types;
 import snow.Log.log;
@@ -338,7 +338,7 @@ class Main extends snow.App.AppFixedTimestep {
         pos_buffer = GL.createBuffer ();
         GL.bindBuffer (GL.ARRAY_BUFFER, pos_buffer);
 
-            GL.bufferData (GL.ARRAY_BUFFER, new Float32Array (cast vertices), GL.STATIC_DRAW);
+            GL.bufferData (GL.ARRAY_BUFFER, new Float32Array(vertices), GL.STATIC_DRAW);
 
         GL.bindBuffer (GL.ARRAY_BUFFER, null);
 

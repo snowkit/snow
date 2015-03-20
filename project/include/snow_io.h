@@ -187,10 +187,10 @@ namespace snow {
         #endif //SNOW_USE_SDL
 
 
-        iosrc* iosrc_fromfile(const char *file, const char *mode);
-        iosrc* iosrc_frommem(void *mem, int size);
-        iosrc* iosrc_fromconstmem(const void *mem, int size);
-        iosrc* iosrc_fromfp(FILE * fp, bool autoclose);
+        iosrc* iosrc_from_file(const char *file, const char *mode);
+        iosrc* iosrc_from_mem(void *mem, int size);
+        iosrc* iosrc_from_const_mem(const void *mem, int size);
+        iosrc* iosrc_from_fp(FILE * fp, bool autoclose);
 
 
         size_t   read(iosrc* src, void* dest, size_t size, size_t maxnum);

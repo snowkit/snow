@@ -3,9 +3,8 @@ import snow.Snow;
 
 import snow.render.opengl.GL;
 
-import snow.utils.ByteArray;
-import snow.utils.UInt8Array;
-import snow.utils.Float32Array;
+import snow.io.typedarray.Uint8Array;
+import snow.io.typedarray.Float32Array;
 
 import snow.window.Window;
 import snow.input.Input;
@@ -184,11 +183,13 @@ class Main extends snow.AppFixedTimestep {
         #end
 
         app.window.onevent = function(e:WindowEvent){
+            #if web
             if(e.type == WindowEventType.focus_lost) {
                 app.freeze = true;
             } else if(e.type == WindowEventType.focus_gained) {
                 app.freeze = false;
             }
+            #end
         }
 
     } //ready
@@ -563,15 +564,15 @@ class Main extends snow.AppFixedTimestep {
         var vertexShader = GL.createShader (GL.VERTEX_SHADER);
 
 
-            GL.shaderSource (vertexShader, vertexShaderSource);
+            GL.shaderSource(vertexShader, vertexShaderSource);
             GL.compileShader (vertexShader);
 
         log("shader created without issue");
 
-        if (GL.getShaderParameter (vertexShader, GL.COMPILE_STATUS) == 0) {
+        if (GL.getShaderParameter(vertexShader, GL.COMPILE_STATUS) == 0) {
 
             var shader_log = GL.getShaderInfoLog(vertexShader);
-            throw "Error compiling vertex shader" + shader_log;
+            throw "Error compiling vertex shader // " + shader_log;
 
         }
 
@@ -637,7 +638,7 @@ class Main extends snow.AppFixedTimestep {
 
         vertexBuffer = GL.createBuffer ();
         GL.bindBuffer (GL.ARRAY_BUFFER, vertexBuffer);
-        GL.bufferData (GL.ARRAY_BUFFER, new Float32Array (cast vertices), GL.STATIC_DRAW);
+        GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(vertices), GL.STATIC_DRAW);
         GL.bindBuffer (GL.ARRAY_BUFFER, null);
 
         var texCoords = [
@@ -651,7 +652,7 @@ class Main extends snow.AppFixedTimestep {
 
         texCoordBuffer = GL.createBuffer ();
         GL.bindBuffer (GL.ARRAY_BUFFER, texCoordBuffer);
-        GL.bufferData (GL.ARRAY_BUFFER, new Float32Array (cast texCoords), GL.STATIC_DRAW);
+        GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(texCoords), GL.STATIC_DRAW);
         GL.bindBuffer (GL.ARRAY_BUFFER, null);
 
     } //createBuffers
@@ -661,7 +662,7 @@ class Main extends snow.AppFixedTimestep {
         GL.viewport (0, 0, app.window.width, app.window.height);
 
         GL.clearColor(1.0, 0.5, 0.2, 1.0);
-        GL.clear (GL.COLOR_BUFFER_BIT);
+        GL.clear(GL.COLOR_BUFFER_BIT);
 
         projectionMatrix = createOrthoMatrix( 0, app.window.width, app.window.height, 0, 1000, -1000 );
         modelViewMatrix = create2DMatrix( positionX, positionY, 1, 0 );
@@ -675,10 +676,10 @@ class Main extends snow.AppFixedTimestep {
             GL.bindTexture (GL.TEXTURE_2D, current_texture);
         }
 
-        GL.bindBuffer (GL.ARRAY_BUFFER, vertexBuffer);
-        GL.vertexAttribPointer (vertexAttribute, 3, GL.FLOAT, false, 0, 0);
-        GL.bindBuffer (GL.ARRAY_BUFFER, texCoordBuffer);
-        GL.vertexAttribPointer (texCoordAttribute, 2, GL.FLOAT, false, 0, 0);
+        GL.bindBuffer(GL.ARRAY_BUFFER, vertexBuffer);
+        GL.vertexAttribPointer(vertexAttribute, 3, GL.FLOAT, false, 0, 0);
+        GL.bindBuffer(GL.ARRAY_BUFFER, texCoordBuffer);
+        GL.vertexAttribPointer(texCoordAttribute, 2, GL.FLOAT, false, 0, 0);
 
         GL.uniformMatrix4fv( projectionMatrixUniform, false, projectionMatrix );
         GL.uniformMatrix4fv( modelViewMatrixUniform, false, modelViewMatrix );

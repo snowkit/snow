@@ -2,9 +2,9 @@ package snow.assets;
 
 import snow.io.IO;
 import snow.types.Types;
-import snow.utils.ByteArray;
 import snow.utils.Libs;
 import snow.assets.AssetSystem;
+import snow.io.typedarray.Uint8Array;
 
 
 /**  An asset that contains `text` as a `String`. Get assets from the `Assets` class, via `app.assets` */
@@ -33,36 +33,23 @@ class AssetText extends Asset {
         loaded = false;
             //clear any old data in case
         text = null;
-            //load the new data
-        ByteArray.readFile( info.path, { async:async, binary:false }, function( result:ByteArray ) {
 
-            if(result != null) {
-                text = result.toString();
-            }
-
-            loaded = true;
-
-            if(onload != null) {
-                onload( this );
-            }
-
-        }); //readFile
+        var p = assets.lib.io.data_load( info.path, { binary:false });
+        p.then(function(data:Uint8Array){
+            load_from_string( data.toBytes().toString(), onload );
+        });
 
     } //load
 
     public function load_from_string( _string:String, ?onload:AssetText->Void ) {
 
         loaded = false;
-
-            text = _string;
-
-            if(onload != null) {
-                Snow.next(function(){
-                    onload( this );
-                });
-            }
-
+        text = _string;
         loaded = true;
+
+        if(onload != null) {
+            onload( this );
+        }
 
     } //load_from_string
 

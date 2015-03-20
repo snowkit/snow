@@ -8,7 +8,6 @@ import snow.audio.AudioSystem;
 
 import snow.assets.Assets;
 import snow.assets.AssetAudio;
-import snow.utils.ByteArray;
 
 import snow.Log.log;
 import snow.Log._debug;
@@ -108,7 +107,7 @@ class Audio {
         /** Create a sound for playing from bytes. If no name is given, a unique id is assigned. Use the sound instance or the public api by name. 
             Currently only non-streamed sounds and is a wip implementation fixes. */
     @:noCompletion
-    public function create_from_bytes( _id:String, ?_name:String = '', bytes:ByteArray ) : Sound {
+    public function create_from_bytes( _id:String, ?_name:String = '', bytes:snow.io.typedarray.Uint8Array ) : Sound {
 
         if(_name == '') {
             _name = lib.uniqueid;

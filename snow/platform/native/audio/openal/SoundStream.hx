@@ -2,7 +2,7 @@ package snow.platform.native.audio.openal;
 
 import snow.audio.Audio;
 import snow.types.Types;
-import snow.utils.Float32Array;
+import snow.io.typedarray.Float32Array;
 
 import snow.audio.openal.AL;
 import snow.platform.native.audio.openal.OpenALHelper;
@@ -108,7 +108,7 @@ class SoundStream extends snow.platform.native.audio.SoundStream {
         var _blob : AudioDataBlob = data_get( -1, buffer_length );
 
         if(_blob != null && _blob.bytes != null && _blob.bytes.length != 0) {
-            AL.bufferData( _buffer, format, new Float32Array(_blob.bytes), _blob.bytes.length, info.data.rate ); AL.getError();
+            AL.bufferData( _buffer, format, new Float32Array(_blob.bytes.buffer), info.data.rate ); AL.getError();
         }
 
         return _blob;

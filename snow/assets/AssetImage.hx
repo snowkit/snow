@@ -1,8 +1,8 @@
 package snow.assets;
 
 import snow.io.IO;
+import snow.io.typedarray.Uint8Array;
 import snow.types.Types;
-import snow.utils.ByteArray;
 import snow.utils.Libs;
 import snow.assets.Asset;
 import snow.assets.AssetSystem;
@@ -28,7 +28,7 @@ class AssetImage extends Asset {
     } //new
 
         /** Called from `app.assets.image`, or manually, if reloading the asset data at a later point.
-            Note this function calls the onload handler in the next frame, so sync code can return.*/
+            Note this function is async by nature, and calls the onload handler in the next frame. */
     public function load( ?onload:AssetImage->Void ) {
 
         loaded = false;
@@ -54,7 +54,7 @@ class AssetImage extends Asset {
     } //load
 
         /** Called from `app.assets.image`, or manually, if reloading the asset data at a later point. This is a synchronous call */
-    public function load_from_bytes( bytes:ByteArray, ?onload:AssetImage->Void ) {
+    public function load_from_bytes( bytes:Uint8Array, ?onload:AssetImage->Void ) {
 
         loaded = false;
 
@@ -64,17 +64,15 @@ class AssetImage extends Asset {
             image = assets.platform.image_info_from_bytes( info.path, bytes, components );
 
             if(onload != null) {
-                Snow.next(function(){
-                    onload( this );
-                });
+                onload( this );
             }
 
         loaded = true;
 
-    } //load
+    } //load_from_bytes
 
         /** Create an image asset from a pre-existing decoded image info. This is a synchronous call */
-    public function load_from_pixels( _id:String, _width:Int, _height:Int, _pixels: snow.utils.UInt8Array, ?onload:AssetImage->Void ) {
+    public function load_from_pixels( _id:String, _width:Int, _height:Int, _pixels: snow.io.typedarray.Uint8Array, ?onload:AssetImage->Void ) {
 
         loaded = false;
 
@@ -93,14 +91,12 @@ class AssetImage extends Asset {
             };
 
             if(onload != null) {
-                Snow.next(function(){
-                    onload( this );
-                });
+                onload( this );
             }
 
         loaded = true;
 
-    } //load_from_info
+    } //load_from_pixels
 
 
 } //AssetImage

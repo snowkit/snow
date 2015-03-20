@@ -2,7 +2,6 @@ package snow.assets;
 
 import snow.io.IO;
 import snow.types.Types;
-import snow.utils.ByteArray;
 import snow.utils.Libs;
 import snow.assets.AssetSystem;
 
@@ -57,7 +56,7 @@ class AssetAudio extends Asset {
 
 
         /** Called from `app.assets.audio`, or manually, if reloading the asset data at a later point. This is a synchronous call */
-    public function load_from_bytes( bytes:ByteArray, format:AudioFormatType, ?onload:AssetAudio->Void ) {
+    public function load_from_bytes( bytes:snow.io.typedarray.Uint8Array, format:AudioFormatType, ?onload:AssetAudio->Void ) {
 
         loaded = false;
 

@@ -1,6 +1,9 @@
 package snow.io;
 
 import snow.utils.AbstractClass;
+import snow.io.typedarray.Uint8Array;
+import snow.utils.Promise;
+
 import snow.types.Types;
 
 #if snow_web
@@ -29,6 +32,13 @@ class IOSystemBinding implements AbstractClass {
     public function on_event( _event : SystemEvent );
         /** Call this to open a url in the default browser */
     public function url_open( _url:String );
+
+        /** Load bytes from the file path/url given.
+            On web a request is sent for the data */
+    public function data_load( _path:String, ?_options:IODataOptions ) : Promise;
+        /** Save bytes to the file path/url given.
+            On platforms where this doesn't make sense (web) this will do nothing atm */
+    public function data_save( _path:String, _data:Uint8Array, ?_options:IODataOptions ) : Bool;
 
     #if desktop
 

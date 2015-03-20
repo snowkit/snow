@@ -2,9 +2,11 @@ package snow;
 
 
 import snow.App;
+import snow.io.typedarray.Uint8Array;
 import snow.types.Types;
-import snow.utils.ByteArray;
 import snow.utils.Timer;
+
+import snow.utils.Promise;
 
 import snow.io.IO;
 import snow.input.Input;
@@ -186,64 +188,27 @@ class Snow {
             assets = new Assets( this );
             windowing = new Windowing( this );
 
-
-        if(!snow_config.config_custom_assets){
-
-                //load the correct asset path from the snow config
-            assets.manifest_path = snow_config.config_assets_path;
-
-                //
-            _debug('fetching asset list "${assets.manifest_path}"');
-
-                //we fetch the a list from the manifest
-            config.assets = default_asset_list();
-                //then we add the list for the asset manager
-            assets.add( config.assets );
-
-        } //custom assets
-
-        if(!snow_config.config_custom_runtime) {
-                //fetch from a config file, the custom
-            config.runtime = default_runtime_config();
-        }
-
-        config.window = default_window_config();
-        config.render = default_render_config();
-
-        _debug('fetching user config');
-
-            //request config changes, if any
-        config = host.config( config );
-
-            //force fullscreen on mobile to get better
-            //behavior from the window for now.
-            //borderless will control the status bar
-        #if mobile
-            config.window.fullscreen = true;
-        #end //mobile
-
             //disllow re-entry
         was_ready = true;
 
-        _debug('creating default window');
+        setup_default_assets().then(function(_){
 
-            //now if they requested a window, let's open one
-        if(config.has_window == true) {
+            setup_configs().then(function(_){
 
-            window = windowing.create( config.window );
+                setup_default_window();
 
-                //failed to create?
-            if(window.handle == null) {
-                throw "requested default window cannot be created. Cannot continue.";
-            }
+                _debug('init / calling host ready');
 
-        } //has_window
+                is_ready = true;
+                host.ready();
 
-            //now ready
-        is_ready = true;
+            });
 
-            //tell the host app we are done
-        host.ready();
+        }).error(function(e) {
+
+            throw Error.init('snow / cannot recover from error: $e');
+
+        });
 
     } //on_snow_ready
 
@@ -266,27 +231,19 @@ class Snow {
 
     function on_snow_update() {
 
-        if(!is_ready || freeze) {
-            return;
-        }
+        if(freeze) return;
 
             //first update timers
         Timer.update();
 
-            //fire any next tick
-        if(next_list.length > 0) {
+            //handle promise executions
+        snow.utils.Promise.Promises.step();
 
-                //to avoid culling ones adding during a next call
-            var _pre_next_length = next_list.length;
-                //avoid allocating on the run loop
-                //as much as possible so no iterator
-            for(i in 0 ... next_list.length) {
-                next_list[i]();
-            }
+            //fire any next tick callbacks
+        handle_next_list();
 
-            next_list.splice(0, _pre_next_length);
-
-        } //next_list.length
+            //game updates aren't allowed till we are flagged
+        if(!is_ready) return;
 
             //handle any internal updates
         host.on_internal_update();
@@ -376,71 +333,188 @@ class Snow {
 
     } //set_freeze
 
+    function setup_default_assets() {
+
+        return new Promise(function(resolve, reject) {
+
+            if(!snow_config.config_custom_assets) {
+
+                    //load the correct asset path from the snow config
+                assets.manifest_path = snow_config.config_assets_path;
+
+                    //
+                _debug('assets / fetching list "${assets.manifest_path}"');
+
+                    //we fetch the a list from the manifest
+                default_asset_list().then(function(list) {
+
+                        //then we add the list for the asset manager
+                    config.assets = list;
+                    assets.add( config.assets );
+
+                    resolve();
+
+                }).error(function(e:Dynamic) {
+
+                    //default asset manifest is not critical
+                    //and will leave logs so we just continue with
+                    //making a note of the state
+                    config.assets = [];
+                    resolve();
+
+                });
+
+            } //custom assets
+
+        }); //promise
+
+    } //ready_default_assets
+
+    function setup_configs() {
+
+            //sync configs
+        config.window = default_window_config();
+        config.render = default_render_config();
+
+        return new Promise(function(resolve, reject){
+
+            if(!snow_config.config_custom_runtime) {
+
+                _debug('config / fetching runtime config');
+
+                default_runtime_config().then(function(_runtime_conf:Dynamic) {
+
+                    config.runtime = _runtime_conf;
+                    setup_host_config();
+                    resolve();
+
+                });
+
+            } else {
+
+                    //if default config is disabled
+                    //we still need the user config
+                setup_host_config();
+                resolve();
+
+            } //disabled
+
+        }); //promise
+
+    } //setup_configs
+
+    function setup_host_config() {
+
+        _debug('config / fetching user config');
+
+        config = host.config( config );
+
+    } //setup_host_config
+
+
+    function setup_default_window() {
+
+        _debug('windowing / creating default window');
+
+            //force fullscreen on mobile to get better
+            //behavior from the window for now.
+            //borderless will control the status bar
+        #if mobile
+            config.window.fullscreen = true;
+        #end //mobile
+
+            //now if they requested a window, let's open one
+        if(config.has_window == true) {
+
+            window = windowing.create( config.window );
+
+                //failed to create?
+            if(window.handle == null) {
+                throw Error.windowing('requested default window cannot be created. cannot continue');
+            }
+
+        } //has_window
+
+    } //create_default_window
 
 
         /** handles the default method of parsing a runtime config json,
             To change this behavior override `get_runtime_config`. This is called by default in get_runtime_config. */
-    function default_runtime_config() : Dynamic {
+    function default_runtime_config() : Promise {
 
-            //we want to load the runtime config from a json file by default
-        var config_data = assets.text( snow_config.config_runtime_path, { silent:true });
+        return new Promise(function(resolve, reject) {
 
-            //only care if there is a config
-        if(config_data != null && config_data.text != null) {
+                //we want to load the runtime config from a json file by default
+            var onload = function(asset:snow.assets.AssetText) {
+                if(asset.text != null) {
+                    try {
 
-            try {
+                        var json = haxe.Json.parse( asset.text );
+                        _debug('config / ok / loaded runtime config');
 
-                var json = haxe.Json.parse( config_data.text );
+                        resolve(json);
 
-                _debug('config / ok / default runtime config');
-
-                return json;
-
-            } catch(e:Dynamic) {
-
-                log('config / failed / default runtime config failed to parse as JSON. cannot recover.');
-                throw e;
-
+                    } catch(e:Dynamic) {
+                        log('config / json parse error ');
+                        throw Error.init('config / failed / default runtime config failed to parse as JSON. cannot recover. $e');
+                    }
+                }
             }
-        }
 
-        return {};
+            var found = assets.text( snow_config.config_runtime_path, { silent:true, onload:onload });
+            if(found == null) resolve({});
+
+        }); //promise
 
     } //default_runtime_config
 
         /** handles the default method of parsing the file manifest list as json, stored in an array and returned. */
-    function default_asset_list() : Array<AssetInfo> {
+    function default_asset_list() : Promise {
 
-        var asset_list : Array<AssetInfo> = [];
-        var list_path : String = assets.assets_root + assets.manifest_path;
-        var manifest_data = null;
+        return new Promise(function(resolve, reject){
 
-        manifest_data = ByteArray.readFile( list_path, { async:false, binary:false });
+            var list_path : String = assets.assets_root + assets.manifest_path;
+            var load = io.data_load( list_path, { binary:false });
 
-        if(manifest_data != null && manifest_data.length != 0) {
+            load.then(function(_data:Uint8Array) {
 
-                var _list:Array<String> = haxe.Json.parse(manifest_data.toString());
+                var _filedata = _data.toBytes().toString();
+                if(_filedata != null && _filedata.length != 0) {
 
-                for(asset in _list) {
+                    var _list:Array<String> = haxe.Json.parse(_filedata.toString());
+                    var asset_list : Array<AssetInfo> = [];
 
-                    asset_list.push({
-                        id : asset,
-                        path : haxe.io.Path.join([assets.assets_root, asset]),
-                        type : haxe.io.Path.extension(asset),
-                        ext : haxe.io.Path.extension(asset)
-                    });
+                    for(asset in _list) {
 
-                } //for each asset
+                        asset_list.push({
+                            id : asset,
+                            path : haxe.io.Path.join([assets.assets_root, asset]),
+                            type : haxe.io.Path.extension(asset),
+                            ext : haxe.io.Path.extension(asset)
+                        });
 
-            _debug('assets / ok / loaded default asset manifest.');
+                    } //for each asset
 
-        } else { //manifest_data != null
+                    _debug('assets / ok / loaded asset manifest.');
+                    _debug('assets / list loaded as $asset_list');
 
-            log('assets / info / default asset manifest not found.');
+                    resolve( asset_list );
 
-        }
+                } else { //manifest_data != null
 
-        return asset_list;
+                    log('assets / info / default asset manifest is empty?');
+                    reject('default asset manifest is empty');
+
+                }
+
+            }).error(function(e:Dynamic) {
+
+                log('assets / info / default asset manifest not found at $list_path');
+                reject('default asset manifest error: $e');
+
+            });
+
+        }); //new promise
 
     } //default_asset_list
 
@@ -540,6 +614,24 @@ class Snow {
         }
 
     } //next
+
+    function handle_next_list() {
+
+        if(next_list.length > 0) {
+
+                //to avoid culling ones adding during a next call
+            var _pre_next_length = next_list.length;
+                //avoid allocating on the run loop
+                //as much as possible so no iterator
+            for(i in 0 ... next_list.length) {
+                next_list[i]();
+            }
+
+            next_list.splice(0, _pre_next_length);
+
+        } //next_list.length
+
+    } //handle_next_list
 
 } //Snow
 
