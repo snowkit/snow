@@ -4,6 +4,10 @@ import haxe.io.Path;
 import haxe.macro.Context;
 import haxe.macro.Expr;
 
+private enum LogError {
+    RequireString(detail:String);
+}
+
 class Log {
 
         //default to `log`
@@ -15,10 +19,14 @@ class Log {
     macro public static function get_level() : haxe.macro.Expr {
         return macro $v{ ${snow.Log._level} };
     }
+    macro public static function get_filter() : haxe.macro.Expr {
+        return macro $v{ ${snow.Log._filter} };
+    }
+    macro public static function get_exclude() : haxe.macro.Expr {
+        return macro $v{ ${snow.Log._exclude} };
+    }
 
     macro public static function level( __level:Int ) : haxe.macro.Expr {
-
-        trace("/ snow / set log level to " + __level );
 
         _level = __level;
 
@@ -27,8 +35,6 @@ class Log {
     } //level
 
     macro public static function filter( __filter:String ) : haxe.macro.Expr {
-
-        trace("/ snow / setting filter : " + __filter );
 
         _filter = __filter.split(',');
 
@@ -44,8 +50,6 @@ class Log {
 
     macro public static function exclude( __exclude:String ) : haxe.macro.Expr {
 
-        trace("/ snow / setting exclude : " + __exclude );
-
         _exclude = __exclude.split(',');
 
         var _index = 0;
@@ -60,7 +64,7 @@ class Log {
 
     macro public static function width( _width:Int ) : haxe.macro.Expr {
 
-        trace("/ snow / set log width to " + _width );
+        // trace("/ snow / set log width to " + _width );
 
         _log_width = _width;
 
@@ -81,7 +85,7 @@ class Log {
             if(meta.name == ':log_as') {
                 var _str = switch(meta.params[0].expr) {
                     case EConst(CString(str)): _context = str;
-                    default: throw 'type should be string constant like "name" for log_as meta flag';
+                    default: throw LogError.RequireString('log_as meta requires a string constant like "name"');
                 }
             }
         } //for each meta
@@ -114,7 +118,7 @@ class Log {
             if(meta.name == ':log_as') {
                 var _str = switch(meta.params[0].expr) {
                     case EConst(CString(str)): _context = str;
-                    default: throw 'type should be string constant like "name" for log_as meta flag';
+                    default: throw LogError.RequireString('log_as meta requires a string constant like "name"');
                 }
             }
         } //for each meta
@@ -147,7 +151,7 @@ class Log {
             if(meta.name == ':log_as') {
                 var _str = switch(meta.params[0].expr) {
                     case EConst(CString(str)): _context = str;
-                    default: throw 'type should be string constant like "name" for log_as meta flag';
+                    default: throw LogError.RequireString('log_as meta requires a string constant like "name"');
                 }
             }
         } //for each meta
@@ -180,7 +184,7 @@ class Log {
             if(meta.name == ':log_as') {
                 var _str = switch(meta.params[0].expr) {
                     case EConst(CString(str)): _context = str;
-                    default: throw 'type should be string constant like "name" for log_as meta flag';
+                    default: throw LogError.RequireString('log_as meta requires a string constant like "name"');
                 }
             }
         } //for each meta

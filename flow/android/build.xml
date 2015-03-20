@@ -7,6 +7,7 @@
     <property file="local.properties"/>
     <property file="ant.properties"/>
     <property file="project.properties"/>
+    <property file="passwords.sensitive.properties"/>
 
     <import file="{{flow.config.build.android.sdk}}/tools/ant/build.xml"/>
 

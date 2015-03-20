@@ -15,8 +15,19 @@
     },
 
     if:{
-        "mac || windows": {
+        "android && !static_link": {
             build:{
+                defines:['snow_dynamic_link']
+            }
+        },
+        "linux && !static_link": {
+            build:{
+                defines:['snow_dynamic_link']
+            }
+        },
+        "!snow_dynamic_link" : {
+            build:{
+                defines: ['static_link'],
                 hxcpp: {
                     flags:['-Dstatic_link']
                 }

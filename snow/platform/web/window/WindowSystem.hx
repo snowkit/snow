@@ -78,7 +78,7 @@ import snow.window.WindowSystem;
                 js.Browser.document.body.appendChild(_handle);
 
                 //:todo: These options need to be exposed and documented
-            var _gl_context = _handle.getContextWebGL({ alpha:false, premultipliedAlpha:false });
+            var _gl_context = _handle.getContextWebGL({ alpha:false, premultipliedAlpha:false, antialias: render_config.antialiasing > 0 });
                 //early out on no possible context
             if(_gl_context == null) {
                 var msg =  'WebGL is required to run this!<br/><br/>';
@@ -234,7 +234,12 @@ import snow.window.WindowSystem;
             var curtop = 0;
 
                 //start at the canvas
-            var _obj : js.html.Element = cast handle;
+            #if (haxe_ver < 3.2)
+                var _obj : js.html.Element = cast handle;
+            #else
+                var _obj : js.html.HTMLElement = cast handle;
+            #end
+
             var _has_parent : Bool = true;
             var _max_count = 0;
 
@@ -254,7 +259,7 @@ import snow.window.WindowSystem;
                     curtop += _obj.offsetTop;
 
                         //then move onto the parent
-                    _obj = _obj.offsetParent;
+                    _obj = cast _obj.offsetParent;
 
                 } else {
                         //we are done
@@ -310,16 +315,17 @@ import snow.window.WindowSystem;
 
                 if(true_fullscreen) {
 
+
                         //official api's first
-                    if(_handle.requestFullscreen == null) {
-                        if(_handle.requestFullScreen == null) {
+                    if(untyped _handle.requestFullscreen == null) {
+                        if(untyped _handle.requestFullScreen == null) {
                             if(untyped _handle.webkitRequestFullscreen == null) {
                                 if(untyped _handle.mozRequestFullScreen == null) {
 
                                 } else { untyped _handle.mozRequestFullScreen(); }
                             } else { untyped _handle.webkitRequestFullscreen(); }
-                        } else { _handle.requestFullScreen(0); }
-                    } else { _handle.requestFullscreen(); }
+                        } else { untyped _handle.requestFullScreen(null); }
+                    } else { untyped _handle.requestFullscreen(); }
 
                 } else {
 

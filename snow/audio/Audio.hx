@@ -105,6 +105,38 @@ class Audio {
 
     } //create
 
+        /** Create a sound for playing from bytes. If no name is given, a unique id is assigned. Use the sound instance or the public api by name. 
+            Currently only non-streamed sounds and is a wip implementation fixes. */
+    @:noCompletion
+    public function create_from_bytes( _id:String, ?_name:String = '', bytes:ByteArray ) : Sound {
+
+        if(_name == '') {
+            _name = lib.uniqueid;
+        } //_name
+
+            //We always return a valid sound object, so code will be reliable
+            //even if the sound is unable to play etc
+
+        var sound : Sound = new Sound(this, _name);
+            //store for later
+        sound_list.set(_name, sound);
+
+            //try loading the sound asset
+        var _asset = lib.assets.audio( _id, { load:true, bytes:bytes, onload:function(asset:AssetAudio) {
+
+                    if(asset != null && sound != null) {
+                        handles.set(asset.audio.handle, sound);
+                        sound.info = asset.audio;
+                    }
+
+                } //onload
+            } //options
+        ); //audio
+
+        return sound;
+
+    } //create_from_bytes
+
         /** Destroy a sound instance by name. Use sound_instance.destroy() if you have an instance already. */
     public function uncreate( _name:String ) {
 
@@ -285,7 +317,12 @@ class Audio {
         /** Stop managing a sound instance */
     @:noCompletion public function kill( _sound:Sound ) {
 
-        handles.remove(_sound.info.handle);
+        if(_sound == null) return;
+
+        if(_sound.info != null) {
+            handles.remove(_sound.info.handle);
+        }
+
         sound_list.remove(_sound.name);
         stream_list.remove(_sound.name);
 

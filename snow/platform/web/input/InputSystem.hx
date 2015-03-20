@@ -355,8 +355,8 @@ class InputSystem extends InputSystemBinding {
 
         var _window : Window = lib.windowing.window_from_handle(cast _mouse_event.target);
 
-        var _movement_x : Int = _mouse_event.movementX;
-        var _movement_y : Int = _mouse_event.movementY;
+        var _movement_x : Int = untyped _mouse_event.movementX;
+        var _movement_y : Int = untyped _mouse_event.movementY;
 
         if(untyped _mouse_event.webkitMovementX != null) {
             _movement_x = untyped _mouse_event.webkitMovementX;
@@ -389,16 +389,17 @@ class InputSystem extends InputSystemBinding {
         var _x : Int = 0;
         var _y : Int = 0;
 
+            //:todo:haxe:3.2: deltaX/deltaY added in haxe 3.2.0
         if(untyped _wheel_event.deltaY != null) {
             _y  = untyped _wheel_event.deltaY;
-        } else if(_wheel_event.wheelDeltaY != null) {
-            _y = Std.int(-_wheel_event.wheelDeltaY/3);
+        } else if((untyped _wheel_event.wheelDeltaY) != null) {
+            _y = Std.int(-(untyped _wheel_event.wheelDeltaY)/3);
         }
 
         if(untyped _wheel_event.deltaX != null) {
             _x  = untyped _wheel_event.deltaX;
-        } else if(_wheel_event.wheelDeltaX != null) {
-            _x = Std.int(-_wheel_event.wheelDeltaX/3);
+        } else if((untyped _wheel_event.wheelDeltaX) != null) {
+            _x = Std.int(-(untyped _wheel_event.wheelDeltaX)/3);
         }
 
             //the /16 here is the default em size of a web page

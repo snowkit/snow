@@ -196,7 +196,11 @@ import snow.types.Types;
 
                 //only _async can set the type it seems
             if(_async) {
-                request.responseType = 'arraybuffer';
+                #if (haxe_ver < 3.2)
+                    request.responseType = 'arraybuffer';
+                #else
+                    request.responseType = js.html.XMLHttpRequestResponseType.ARRAYBUFFER;
+                #end
             }
 
                 //the final resulting bytearray

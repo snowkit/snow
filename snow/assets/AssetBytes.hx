@@ -41,9 +41,9 @@ class AssetBytes extends Asset {
             loaded = true;
 
             if(onload != null) {
-                Snow.next(function(){
+                // Snow.next(function(){
                     onload( this );
-                });
+                // });
             }
 
         }); //readFile
@@ -59,9 +59,9 @@ class AssetBytes extends Asset {
         loaded = true;
 
         if(onload != null) {
-            Snow.next(function(){
+            // Snow.next(function(){
                 onload( this );
-            });
+            // });
         }
 
     } //load_from_bytes

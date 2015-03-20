@@ -5,7 +5,13 @@ import snow.utils.Libs;
 
 #if snow_native
 
-    abstract IOFileHandle(Float) from Float to Float { }
+    @:enum abstract IOSeek(Int) from Int to Int {
+        var set = 0;
+        var cur = 1;
+        var end = 2;
+    }
+
+    abstract IOFileHandle(Null<Float>) from Null<Float> to Null<Float> { }
 
     /** This class is a low level cross platform file access helper, that handles in bundle assets etc.
         If you want a file, use `Assets` instead, unless really required. */
@@ -38,17 +44,27 @@ import snow.utils.Libs;
             return snow_iosrc_file_tell(handle);
         } //tell
 
-            /** Close the file */
+            /** Close the file handle and releases the internal handle. 
+                After calling this the file is no longer usable. */
         public function close() {
-            return snow_iosrc_file_close(handle);
+            var res : Int = snow_iosrc_file_close(handle);
+                handle = null;
+            return res;
         } //close
 
 
-            /** Create an `IOFile` from a file path `_id`, this bypasses the `Asset` system path helpers. */
+            /** Create an `IOFile` from a file path `_id`, this bypasses the `Asset` system path helpers, so use wisely */
         public static function from_file( _id:String, ?_mode:String="rb" ) : IOFile {
-            var handle = snow_iosrc_from_file(_id, _mode);
+
+            var handle : IOFileHandle = snow_iosrc_from_file(_id, _mode);
+
+            if(handle != null) {
             return new IOFile(handle);
         }
+
+            return null;
+
+        } //from_file
 
         static var snow_iosrc_from_file    = Libs.load( "snow", "snow_iosrc_from_file", 2 );
         static var snow_iosrc_file_read    = Libs.load( "snow", "snow_iosrc_file_read", 4 );

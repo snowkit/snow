@@ -30,9 +30,11 @@ import snow.Log._verboser;
 
         override public function exists( _id:String, ?_strict:Bool=true ) : Bool {
 
-            var listed = manager.listed(_id);
+            if(_strict) {
+                return manager.listed(_id);
+            }
 
-            return listed;
+            return true;
 
         } //exists
 
@@ -92,7 +94,7 @@ import snow.Log._verboser;
                         width_actual : width_pot,
                         height_actual : height_pot,
                         bpp_source : 4,
-                        data : new snow.utils.UInt8Array( image_bytes.data )
+                        data : new snow.utils.UInt8Array( cast image_bytes.data )
                     };
 
                         //cleanup
@@ -137,7 +139,7 @@ import snow.Log._verboser;
                             width_actual : width_pot,
                             height_actual : height_pot,
                             bpp_source : 4,
-                            data : new snow.utils.UInt8Array( image_bytes.data )
+                            data : new snow.utils.UInt8Array( cast image_bytes.data )
                         };
 
                             //cleanup
@@ -216,7 +218,7 @@ import snow.Log._verboser;
                                 width_actual : width_pot,
                                 height_actual : height_pot,
                                 bpp_source : 4,
-                                data : new snow.utils.UInt8Array( image_bytes.data )
+                                data : new snow.utils.UInt8Array( cast image_bytes.data )
                             };
 
                                 //cleanup
@@ -251,7 +253,9 @@ import snow.Log._verboser;
                     //now a byte input for format.png
                 var byte_input = new haxe.io.BytesInput(_raw_bytes, 0, _raw_bytes.length);
                     //get the raw data
-                var png_data = new snow.utils.format.png.Reader(byte_input).read();
+                var png_reader = new snow.utils.format.png.Reader(byte_input);
+                    png_reader.checkCRC = false;
+                var png_data = png_reader.read();
                     //Extract the bytes from the png reader
                 var png_bytes = snow.utils.format.png.Tools.extract32(png_data);
                     //And the header information for infomation
@@ -300,6 +304,11 @@ import snow.Log._verboser;
             return info;
 
         } //audio_load_info
+
+        override public function audio_info_from_bytes( _path:String, _bytes:ByteArray, _format:AudioFormatType ) : AudioInfo {
+            //:todo: not implemented as this is changing in the underlying core
+            throw "unimplemented";
+        }
 
     } //AssetSystem
 

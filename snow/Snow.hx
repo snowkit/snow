@@ -74,6 +74,12 @@ class Snow {
 
     @:noCompletion public function new() {
 
+        if(snow.Log.get_level() > 1) {
+            log('log / level to ${snow.Log.get_level()}' );
+            log('log / filter : ${snow.Log.get_filter()}');
+            log('log / exclude : ${snow.Log.get_exclude()}');
+        }
+
             //We create the core as a concrete platform version of the core
         core = new Core( this );
         next_list = [];
@@ -142,7 +148,7 @@ class Snow {
 
     function on_snow_init() {
 
-        _debug('initializing - ');
+        _debug('init / initializing');
 
             //ensure that we are in the correct location for asset loading
 
@@ -153,12 +159,12 @@ class Snow {
 
             Sys.setCwd( app_path );
 
-            _debug('setting up app path $app_path');
-            _debug('setting up pref path: $pref_path');
+            _debug('init / setting up app path $app_path');
+            _debug('init / setting up pref path: $pref_path');
 
         #end //snow_native
 
-        _debug('pre ready, init host');
+        _debug('init / pre ready, init host');
 
             //any app pre ready init can be handled in here
         host.on_internal_init();
@@ -168,13 +174,10 @@ class Snow {
     function on_snow_ready() {
 
         if(was_ready) {
-            log("firing ready event repeatedly is not ideal...");
-            return;
+            throw Error.error('firing ready event more than once is invalid usage');
         }
 
-
-        _debug('ready, setting up additional systems...');
-
+        _debug('init / setting up additional systems...');
 
                 //create the sub systems
             io = new IO( this );
@@ -312,11 +315,11 @@ class Snow {
             _event.type != SystemEventType.input
 
         ) {
-            _debug( "system event : " + _event + ' / ' + _event.type );
+            _debug( 'event / system event / ${_event.type} / $_event');
         }
 
         if( _event.type != SystemEventType.update ) {
-            _verboser( "system event : " + _event );
+            _verboser( 'event / system event / $_event');
         }
 
             //all systems should get these basically...
@@ -445,6 +448,8 @@ class Snow {
         /** Returns a default configured render config */
     function default_render_config() : RenderConfig {
 
+        _debug('config / fetching default render config');
+
         return {
             depth : false,
             stencil : false,
@@ -466,6 +471,8 @@ class Snow {
         /** Returns a default configured window config */
     function default_window_config() : WindowConfig {
 
+        _debug('config / fetching default window config');
+
         var conf =  {
             fullscreen_desktop  : true,
             fullscreen          : false,
@@ -475,7 +482,7 @@ class Snow {
             y                   : 0x1FFF0000,
             width               : 960,
             height              : 640,
-            title               : "snow app"
+            title               : 'snow app'
         };
 
             #if mobile
