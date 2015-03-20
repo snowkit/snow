@@ -530,6 +530,11 @@ import snow.window.WindowSystem;
 
         } //display_name
 
+		//DUMMY IMPLEMENTATION
+		override public function desktop_mouse_pos() : { x:Int, y:Int } {
+			return { x: -1, y: -1 };
+		} //desktop_mouse_pos
+
             /** Called to set up any listeners on the given window  */
         override public function listen( _window:Window ) {
 

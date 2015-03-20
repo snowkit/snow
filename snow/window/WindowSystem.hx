@@ -105,7 +105,7 @@ import snow.utils.AbstractClass;
     public function display_bounds( display:Int ) : { x:Int, y:Int, width:Int, height:Int };
         /** Get the name of the display by index, where available */
     public function display_name( display:Int ) : String;
-
+		/** Get the mouse position in screen coordinates */
 	public function desktop_mouse_pos() : { x:Int, y:Int };
 
 } //WindowSystemBinding
