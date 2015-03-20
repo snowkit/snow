@@ -318,7 +318,7 @@ import snow.window.WindowSystem;
 
                         //official api's first
                     if(untyped _handle.requestFullscreen == null) {
-                        if(_handle.requestFullScreen == null) {
+                        if(untyped _handle.requestFullScreen == null) {
                             if(untyped _handle.webkitRequestFullscreen == null) {
                                 if(untyped _handle.mozRequestFullScreen == null) {
 
