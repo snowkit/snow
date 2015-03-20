@@ -154,6 +154,10 @@ import snow.utils.Libs;
         return snow_desktop_get_display_name( display );
     } //desktop_get_display_name
 
+	override public function desktop_mouse_pos() : { x:Int, y:Int } {
+		return snow_desktop_get_mouse_pos();
+	}
+
 
 //Native bindings
 
@@ -191,6 +195,7 @@ import snow.utils.Libs;
     static var snow_desktop_get_display_mode          = Snow.load("snow", "snow_desktop_get_display_mode", 2);
     static var snow_desktop_get_display_bounds        = Snow.load("snow", "snow_desktop_get_display_bounds", 1);
     static var snow_desktop_get_display_name          = Snow.load("snow", "snow_desktop_get_display_name", 1);
+    static var snow_desktop_get_mouse_pos			  = Snow.load("snow", "snow_desktop_get_mouse_pos", 0);
 
 } //WindowSystemNative
 

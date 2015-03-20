@@ -210,7 +210,21 @@ extern double timestamp();
 
     } DEFINE_PRIM(snow_desktop_get_display_name, 1);
 
+	value snow_desktop_get_mouse_pos(){
 
+		int x = 0xFFFFFF;
+		int y = 0xFFFFFF;
+		
+		snow::window::desktop_get_mouse_pos(&x, &y);
+		
+		value _object = alloc_empty_object();
+		
+			alloc_field( _object, id_x, alloc_int(x) );
+			alloc_field( _object, id_y, alloc_int(y) );
+
+		return _object;
+
+	} DEFINE_PRIM(snow_desktop_get_mouse_pos, 0);
 
 
 
