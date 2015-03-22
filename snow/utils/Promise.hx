@@ -61,7 +61,7 @@ class Promise {
 
         Promises.queue(function() {
 
-            #if hxpromise_catch_on_promise_body
+            #if hxpromise_catch_and_reject_on_promise_body
                 try {
                     untyped func(onfulfill, onreject);
                 } catch(err:Dynamic) {
@@ -69,7 +69,7 @@ class Promise {
                 }
             #else
                 untyped func(onfulfill, onreject);
-            #end //hxpromise_catch_on_promise_body
+            #end //hxpromise_catch_and_reject_on_promise_body
 
             Promises.defer(Promises.next);
         });
