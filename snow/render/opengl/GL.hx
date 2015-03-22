@@ -29,4 +29,8 @@ package snow.render.opengl;
     typedef GLTexture           = snow.platform.native.render.opengl.GL.GLTexture;
     typedef GLUniformLocation   = snow.platform.native.render.opengl.GL.GLUniformLocation;
 
+    #if snow_render_gl_native
+    typedef GLLink              = snow.platform.native.render.opengl.GL_Native.GLLink;
+    #end
+
 #end //!snow_web

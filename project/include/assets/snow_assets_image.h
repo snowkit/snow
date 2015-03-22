@@ -15,8 +15,17 @@ namespace snow {
 
         namespace image {
 
-            bool load_info( QuickVec<unsigned char> &out_buffer, const char* _id, int* w, int* h, int* bpp, int* bpp_source, int req_bpp );
-            bool info_from_bytes( QuickVec<unsigned char> &out_buffer, snow::ByteArray bytes, const char* _id, int *w, int *h, int* bpp, int* bpp_source, int req_bpp );
+            bool load_info(
+                QuickVec<unsigned char> &out_buffer,
+                const char* _id,
+                int* w, int* h, int* bpp, int* bpp_source, int req_bpp
+            );
+
+            bool info_from_bytes(
+                QuickVec<unsigned char> &out_buffer,
+                const unsigned char* bytes, int byteOffset, int byteLength,
+                const char* _id, int *w, int *h, int* bpp, int* bpp_source, int req_bpp
+            );
 
         } //assets::image namespace
 

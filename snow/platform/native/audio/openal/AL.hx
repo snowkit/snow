@@ -1,8 +1,7 @@
 package snow.platform.native.audio.openal;
 
 import snow.utils.Libs;
-import snow.utils.Float32Array;
-import snow.utils.IMemoryRange;
+import snow.io.typedarray.Float32Array;
 
 
 abstract Context(Null<Float>) from Null<Float> to Null<Float> { }
@@ -340,8 +339,8 @@ class AL {
 
 //buffer data and state
 
-    public static function bufferData(buffer:Int, format:Int, data:Float32Array, size:Int, freq:Int) : Void {
-        alhx_BufferData(buffer, format, data.getByteBuffer(), size, freq);
+    public static function bufferData(buffer:Int, format:Int, data:Float32Array, frequency:Int) : Void {
+        alhx_BufferData(buffer, format, data.buffer.getData(), data.byteOffset, data.byteLength, frequency);
     }
 
     public static function bufferf(buffer:Int, param:Int, value:Float) : Void {
@@ -512,7 +511,7 @@ class AL {
     static var alhx_DeleteBuffers           = Libs.load("snow", "alhx_DeleteBuffers", 2);
     static var alhx_IsBuffer                = Libs.load("snow", "alhx_IsBuffer", 1);
 
-    static var alhx_BufferData              = Libs.load("snow", "alhx_BufferData", 5);
+    static var alhx_BufferData              = Libs.load("snow", "alhx_BufferData", -1);
 
     static var alhx_Bufferf                 = Libs.load("snow", "alhx_Bufferf", 3);
     static var alhx_Buffer3f                = Libs.load("snow", "alhx_Buffer3f", 5);

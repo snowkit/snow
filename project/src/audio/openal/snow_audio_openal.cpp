@@ -11,7 +11,6 @@
 #include "snow_hx_bindings.h"
 #include "snow_core.h"
 #include "common/snow_hx.h"
-#include "common/ByteArray.h"
 
 /**
     These go in order that the API has them listed
@@ -742,23 +741,23 @@ namespace alhx {
 
 // --- >
 
-    value alhx_BufferData(value _buffer, value _format, value _data, value _size, value _freq) {
+    value alhx_BufferData(value *arg, int argCount) {
 
-        snow::ByteArray bytes(_data);
+        enum { A_albufferid, A_format, A_data, A_byteOffset, A_byteLength, A_frequency };
 
-        int bytesize = bytes.Size();
-        const float *data = (float *)bytes.Bytes();
+        int albufferid  = val_int( arg[A_albufferid] );
+        int format      = val_int( arg[A_format]     );
+        int byteOffset  = val_int( arg[A_byteOffset] );
+        int byteLength  = val_int( arg[A_byteLength] );
+        int frequency   = val_int( arg[A_frequency]  );
 
-            //since size is explicitly passed in,
-            //we are going to use that, but the calculated count is n_elems>>2;
-        // int n_elems = bytesize / sizeof(float);
-        int count = val_int(_size);
+        const float* data = (float*)snow::bytes_from_hx( arg[A_data] );
 
-        alBufferData( val_int(_buffer), val_int(_format), data, count, val_int(_freq) );
+        alBufferData( albufferid, format, data + byteOffset, byteLength, frequency );
 
         return alloc_null();
 
-    } DEFINE_PRIM(alhx_BufferData, 5);
+    } DEFINE_PRIM_MULT( alhx_BufferData );
 
 
     value alhx_Bufferf(value _buffer, value _param, value _value) {

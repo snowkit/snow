@@ -73,7 +73,7 @@ extern double timestamp();
         snow::log_level = property_int(_init_config, id_log_level, 1);
 
         if(snow::log_level > 1) {
-            printf("/ snow / log level set to %d\n", snow::log_level);
+            snow::log(1, "/ snow / native / log level set to %d\n", snow::log_level);
         }
 
             //now init the core
@@ -505,9 +505,9 @@ extern double timestamp();
 
 //ogg
 
-    value snow_assets_audio_load_info_ogg( value _id, value _do_read, value _from_bytes ) {
+    value snow_assets_audio_load_info_ogg( value _id, value _do_read, value _bytes, value _byteOffset, value _byteLength ) {
 
-        bool from_bytes = !val_is_null(_from_bytes);
+        bool from_bytes = !val_is_null(_bytes);
         bool do_read = val_bool(_do_read);
         std::string _asset_id(val_string(_id));
 
@@ -518,10 +518,12 @@ extern double timestamp();
         ogg_source->source_name = _asset_id;
 
         if(!from_bytes) {
-            ogg_source->file_source = snow::io::iosrc_fromfile(_asset_id.c_str(), "rb");
+            ogg_source->file_source = snow::io::iosrc_from_file(_asset_id.c_str(), "rb");
         } else {
-            ByteArray bytes(_from_bytes);
-            ogg_source->file_source = snow::io::iosrc_frommem( bytes.Bytes(), bytes.Size() );
+            int byteOffset = val_int(_byteOffset);
+            int byteLength = val_int(_byteLength);
+            const unsigned char* bytes = snow::bytes_from_hx(_bytes);
+            ogg_source->file_source = snow::io::iosrc_from_mem( (void*)(bytes + byteOffset), byteLength );
         }
 
         bool success = snow::assets::audio::load_info_ogg( buffer, _asset_id.c_str(), ogg_source, do_read );
@@ -531,7 +533,7 @@ extern double timestamp();
             return alloc_null();
         } //!success
 
-        ByteArray data(buffer);
+        value data = snow::bytes_to_hx( &buffer[0], buffer.size() );
 
         value _object = alloc_empty_object();
 
@@ -546,7 +548,7 @@ extern double timestamp();
                 alloc_field( _dataobject, id_rate, alloc_int( ogg_source->info->rate ));
                 alloc_field( _dataobject, id_bitrate, alloc_int( ogg_source->info->bitrate_nominal ));
                 alloc_field( _dataobject, id_bits_per_sample, alloc_int( 16 ) ); //:todo: optionize?
-                alloc_field( _dataobject, id_bytes, data.mValue );
+                alloc_field( _dataobject, id_bytes, data );
                 alloc_field( _dataobject, id_length, alloc_int(ogg_source->length) );
                 alloc_field( _dataobject, id_length_pcm, alloc_int(ogg_source->length_pcm) );
 
@@ -554,7 +556,7 @@ extern double timestamp();
 
         return _object;
 
-    } DEFINE_PRIM(snow_assets_audio_load_info_ogg, 3);
+    } DEFINE_PRIM(snow_assets_audio_load_info_ogg, 5);
 
     value snow_assets_audio_read_bytes_ogg( value _info, value _start, value _len ) {
 
@@ -568,16 +570,14 @@ extern double timestamp();
 
             bool complete = snow::assets::audio::read_bytes_ogg( ogg_source, buffer, val_int(_start), val_int(_len) );
 
-            ByteArray data(buffer);
+            value data = snow::bytes_to_hx( &buffer[0], buffer.size() );
 
             value _object = alloc_empty_object();
 
-                alloc_field( _object, id_bytes, data.mValue );
+                alloc_field( _object, id_bytes, data );
                 alloc_field( _object, id_complete, alloc_bool(complete) );
 
             return _object;
-
-            return ByteArray(buffer).mValue;
 
         } else {
 
@@ -605,9 +605,9 @@ extern double timestamp();
 
 //wav
 
-    value snow_assets_audio_load_info_wav( value _id, value _do_read, value _from_bytes ) {
+    value snow_assets_audio_load_info_wav( value _id, value _do_read, value _bytes, value _byteOffset, value _byteLength ) {
 
-        bool from_bytes = !val_is_null(_from_bytes);
+        bool from_bytes = !val_is_null(_bytes);
         bool do_read = val_bool(_do_read);
         std::string _asset_id(val_string(_id));
 
@@ -619,10 +619,12 @@ extern double timestamp();
         wav_source->source_name = _asset_id;
 
         if(!from_bytes) {
-            wav_source->file_source = snow::io::iosrc_fromfile(_asset_id.c_str(), "rb");
+            wav_source->file_source = snow::io::iosrc_from_file(_asset_id.c_str(), "rb");
         } else {
-            ByteArray bytes(_from_bytes);
-            wav_source->file_source = snow::io::iosrc_frommem( bytes.Bytes(), bytes.Size() );
+            int byteOffset = val_int(_byteOffset);
+            int byteLength = val_int(_byteLength);
+            const unsigned char* bytes = snow::bytes_from_hx(_bytes);
+            wav_source->file_source = snow::io::iosrc_from_mem( (void*)(bytes + byteOffset), byteLength );
         }
 
         bool success = snow::assets::audio::load_info_wav( buffer, _asset_id.c_str(), wav_source, do_read );
@@ -632,7 +634,7 @@ extern double timestamp();
             return alloc_null();
         } //!success
 
-        ByteArray data(buffer);
+        value data = snow::bytes_to_hx( &buffer[0], buffer.size() );
 
         value _object = alloc_empty_object();
 
@@ -647,7 +649,7 @@ extern double timestamp();
                 alloc_field( _dataobject, id_rate, alloc_int(wav_source->rate) );
                 alloc_field( _dataobject, id_bitrate, alloc_int(wav_source->bitrate) );
                 alloc_field( _dataobject, id_bits_per_sample, alloc_int(wav_source->bits_per_sample) );
-                alloc_field( _dataobject, id_bytes, data.mValue );
+                alloc_field( _dataobject, id_bytes, data );
                 alloc_field( _dataobject, id_length, alloc_int(wav_source->length) );
                 alloc_field( _dataobject, id_length_pcm, alloc_int(wav_source->length_pcm) );
 
@@ -655,7 +657,7 @@ extern double timestamp();
 
         return _object;
 
-    } DEFINE_PRIM(snow_assets_audio_load_info_wav, 3);
+    } DEFINE_PRIM(snow_assets_audio_load_info_wav, 5);
 
 
     value snow_assets_audio_read_bytes_wav( value _info, value _start, value _len ) {
@@ -670,11 +672,11 @@ extern double timestamp();
 
             bool complete = snow::assets::audio::read_bytes_wav( wav_source, buffer, val_int(_start), val_int(_len) );
 
-            ByteArray data(buffer);
+            value data = snow::bytes_to_hx( &buffer[0], buffer.size() );
 
             value _object = alloc_empty_object();
 
-                alloc_field( _object, id_bytes, data.mValue );
+                alloc_field( _object, id_bytes, data );
                 alloc_field( _object, id_complete, alloc_bool(complete) );
 
             return _object;
@@ -704,13 +706,12 @@ extern double timestamp();
 
     } DEFINE_PRIM(snow_assets_audio_seek_bytes_wav, 2);
 
-
 //pcm
 
 
-    value snow_assets_audio_load_info_pcm( value _id, value _do_read, value _from_bytes ) {
+    value snow_assets_audio_load_info_pcm( value _id, value _do_read, value _bytes, value _byteOffset, value _byteLength ) {
 
-        bool from_bytes = !val_is_null(_from_bytes);
+        bool from_bytes = !val_is_null(_bytes);
         bool do_read = val_bool(_do_read);
         std::string _asset_id(val_string(_id));
 
@@ -721,10 +722,12 @@ extern double timestamp();
         pcm_source->source_name = _asset_id;
 
         if(!from_bytes) {
-            pcm_source->file_source = snow::io::iosrc_fromfile(_asset_id.c_str(), "rb");
+            pcm_source->file_source = snow::io::iosrc_from_file(_asset_id.c_str(), "rb");
         } else {
-            ByteArray bytes(_from_bytes);
-            pcm_source->file_source = snow::io::iosrc_frommem( bytes.Bytes(), bytes.Size() );
+            int byteOffset = val_int(_byteOffset);
+            int byteLength = val_int(_byteLength);
+            const unsigned char* bytes = snow::bytes_from_hx(_bytes);
+            pcm_source->file_source = snow::io::iosrc_from_mem( (void*)(bytes + byteOffset), byteLength );
         }
 
         bool success = snow::assets::audio::load_info_pcm( buffer, _asset_id.c_str(), pcm_source, do_read );
@@ -734,7 +737,7 @@ extern double timestamp();
             return alloc_null();
         } //!success
 
-        ByteArray data(buffer);
+        value data = snow::bytes_to_hx( &buffer[0], buffer.size() );
 
         value _object = alloc_empty_object();
 
@@ -749,7 +752,7 @@ extern double timestamp();
                 alloc_field( _dataobject, id_rate, alloc_int(pcm_source->rate) );
                 alloc_field( _dataobject, id_bitrate, alloc_int(pcm_source->bitrate) );
                 alloc_field( _dataobject, id_bits_per_sample, alloc_int(pcm_source->bits_per_sample) );
-                alloc_field( _dataobject, id_bytes, data.mValue );
+                alloc_field( _dataobject, id_bytes, data );
                 alloc_field( _dataobject, id_length, alloc_int(pcm_source->length) );
                 alloc_field( _dataobject, id_length_pcm, alloc_int(pcm_source->length_pcm) );
 
@@ -757,7 +760,7 @@ extern double timestamp();
 
         return _object;
 
-    } DEFINE_PRIM(snow_assets_audio_load_info_pcm, 3);
+    } DEFINE_PRIM(snow_assets_audio_load_info_pcm, 5);
 
 
     value snow_assets_audio_read_bytes_pcm( value _info, value _start, value _len ) {
@@ -772,11 +775,11 @@ extern double timestamp();
 
             bool complete = snow::assets::audio::read_bytes_pcm( pcm_source, buffer, val_int(_start), val_int(_len) );
 
-            ByteArray data(buffer);
+            value data = snow::bytes_to_hx( &buffer[0], buffer.size() );
 
             value _object = alloc_empty_object();
 
-                alloc_field( _object, id_bytes, data.mValue );
+                alloc_field( _object, id_bytes, data );
                 alloc_field( _object, id_complete, alloc_bool(complete) );
 
             return _object;
@@ -829,6 +832,8 @@ extern double timestamp();
             return alloc_null();
         }
 
+        value data = snow::bytes_to_hx( &buffer[0], buffer.size() );
+
         value _object = alloc_empty_object();
 
             alloc_field( _object, id_id, _id );
@@ -836,25 +841,38 @@ extern double timestamp();
             alloc_field( _object, id_height, alloc_int(h) );
             alloc_field( _object, id_bpp, alloc_int(bpp) );
             alloc_field( _object, id_bpp_source, alloc_int(bpp_source) );
-            alloc_field( _object, id_data, ByteArray(buffer).mValue );
+            alloc_field( _object, id_data, data );
 
         return _object;
 
     } DEFINE_PRIM(snow_assets_image_load_info, 2);
 
 
-    value snow_assets_image_info_from_bytes( value _id, value _bytes, value _req_bpp ) {
+    value snow_assets_image_info_from_bytes( value _id, value _bytes, value _byteOffset, value _byteLength, value _req_bpp ) {
 
         QuickVec<unsigned char> buffer;
 
         int w = 0, h = 0, bpp = 0, bpp_source = 0;
         int req_bpp = val_int(_req_bpp);
+        int byteOffset = val_int(_byteOffset);
+        int byteLength = val_int(_byteLength);
 
-        bool success = snow::assets::image::info_from_bytes( buffer, ByteArray(_bytes), val_string(_id), &w, &h, &bpp, &bpp_source, req_bpp );
+        bool success =
+            snow::assets::image::info_from_bytes(
+                buffer,
+                snow::bytes_from_hx(_bytes),
+                byteOffset,
+                byteLength,
+                val_string(_id),
+                &w, &h, &bpp, &bpp_source,
+                req_bpp
+            );
 
         if(!success) {
             return alloc_null();
         }
+
+        value result_bytes = snow::bytes_to_hx( &buffer[0], buffer.size() );
 
         value _object = alloc_empty_object();
 
@@ -863,11 +881,11 @@ extern double timestamp();
             alloc_field( _object, id_height, alloc_int(h) );
             alloc_field( _object, id_bpp, alloc_int(bpp) );
             alloc_field( _object, id_bpp_source, alloc_int(bpp_source) );
-            alloc_field( _object, id_data, ByteArray(buffer).mValue );
+            alloc_field( _object, id_data, result_bytes );
 
         return _object;
 
-    } DEFINE_PRIM(snow_assets_image_info_from_bytes, 3);
+    } DEFINE_PRIM(snow_assets_image_info_from_bytes, 5);
 
 
 
@@ -936,9 +954,15 @@ extern double timestamp();
 
         value snow_iosrc_from_file(value _id, value _mode) {
 
+            snow::io::iosrc* src = snow::io::iosrc_from_file( val_string(_id), val_string(_mode) );
+
+            if(!src) {
+                return alloc_null();
+            }
+
             snow::io::iosrc_file* iosrc = new snow::io::iosrc_file();
 
-            iosrc->file_source = snow::io::iosrc_fromfile( val_string(_id), val_string(_mode) );
+                iosrc->file_source = src;
 
             return snow::to_hx<snow::io::iosrc_file>( iosrc );
 
@@ -954,9 +978,9 @@ extern double timestamp();
 
                 if(!val_is_null(_dest)) {
 
-                    ByteArray dest(_dest);
+                    unsigned char* dest = snow::bytes_from_hx_rw(_dest);
 
-                    int res = snow::io::read(iosrc->file_source, dest.Bytes(), val_int(_size), val_int(_maxnum));
+                    int res = snow::io::read(iosrc->file_source, dest, val_int(_size), val_int(_maxnum));
 
                     return alloc_int(res);
                 }
@@ -976,17 +1000,13 @@ extern double timestamp();
 
                 if(!val_is_null(_data)) {
 
-                    ByteArray data(_data);
+                    const unsigned char* data = snow::bytes_from_hx(_data);
 
                     long size = val_int(_size);
                     long num = val_int(_num);
                     long len = size * num;
 
-                    if(data.Size() != len) {
-                        data.Resize(len);
-                    }
-
-                    int res = snow::io::write(iosrc->file_source, data.Bytes(), size, num);
+                    int res = snow::io::write(iosrc->file_source, data, size, num);
 
                     return alloc_int(res);
 
@@ -1040,6 +1060,12 @@ extern double timestamp();
             if( iosrc ) {
 
                 int res = snow::io::close(iosrc->file_source);
+
+                    //close should free the filesource
+                iosrc->file_source = NULL;
+
+                delete iosrc;
+                iosrc = NULL;
 
                 return alloc_int(res);
 
@@ -1121,7 +1147,7 @@ extern double timestamp();
 
 
 
- 
+
 //Native glue stuff
 
 
@@ -1238,4 +1264,3 @@ extern double timestamp();
 
 
 } //snow namespace
-

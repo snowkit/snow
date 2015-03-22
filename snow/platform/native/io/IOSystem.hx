@@ -2,9 +2,14 @@ package snow.platform.native.io;
 
 import snow.io.IOSystem;
 import snow.io.IO;
+import snow.io.typedarray.Uint8Array;
+import snow.utils.Promise;
+
 import snow.types.Types;
 
 import haxe.io.Path;
+
+import snow.platform.native.io.IOFile;
 
 #if snow_native
 
@@ -34,6 +39,64 @@ import haxe.io.Path;
             }
 
         } //url_open
+
+        /** Load bytes from the file path/url given.
+            On web a request is sent for the data */
+    override public function data_load( _path:String, ?_options:IODataOptions ) : Promise {
+
+        return new Promise(function(resolve, reject) {
+
+            var _binary = (_options != null && _options.binary);
+            var _file : IOFile = IOFile.from_file(_path, _binary ? 'rb' : 'r' );
+
+            if(_file != null) {
+
+                    //jump to the end, measure size
+                _file.seek(0, IOSeek.end);
+
+                var size = _file.tell();
+
+                    //reset to beginning
+                _file.seek(0, IOSeek.set);
+
+                    //create a buffer to read to
+                var _dest = new Uint8Array(size);
+                var _read = _file.read(_dest, _dest.length, 1);
+
+                    //close+release the file handle
+                _file.close();
+
+                resolve(_dest);
+
+            } else { //_file != null
+
+                reject('data_load file cannot be opened $_path');
+
+            }
+
+        });
+
+    } //data_load
+
+        /** Save bytes to the file path/url given. Overwrites the file without warning.
+            Does not ensure the path (i.e doesn't check or create folders).
+            On platforms where this doesn't make sense (web) this will do nothing atm */
+    override public function data_save( _path:String, _data:Uint8Array, ?_options:IODataOptions ) : Bool {
+
+        var _binary = (_options != null && _options.binary);
+        var _file : IOFile = IOFile.from_file(_path, _binary ? 'wb' : 'w' );
+
+        if(_file != null) {
+            var count : Int = _file.write( _data, _data.length, 1 );
+
+                _file.close();
+
+            return count == 1;
+        }
+
+        return false;
+
+    } //data_save
 
     //Static public API functions specific to native/desktop.
 

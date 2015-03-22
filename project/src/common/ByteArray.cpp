@@ -105,7 +105,7 @@ namespace snow {
 
     int ByteArray::ToFile(const OSChar *inFilename, const ByteArray array) {
 
-        snow::io::iosrc* file = snow::io::iosrc_fromfile(inFilename, "wb");
+        snow::io::iosrc* file = snow::io::iosrc_from_file(inFilename, "wb");
 
         if(!file) {
             snow::log(1, "/ snow / ByteArray::ToFile cannot open file for writing %s\n", inFilename );
@@ -123,7 +123,7 @@ namespace snow {
 
     ByteArray ByteArray::FromFile(const OSChar *inFilename) {
 
-        snow::io::iosrc* file = snow::io::iosrc_fromfile(inFilename, "rb");
+        snow::io::iosrc* file = snow::io::iosrc_from_file(inFilename, "rb");
 
         if(!file) {
             snow::log(1, "/ snow / ByteArray::FromFile cannot open file for reading %s\n", inFilename );

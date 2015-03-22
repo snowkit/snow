@@ -68,10 +68,11 @@
       <!-- are we using SDL bindings? -->
    <set name="SNOW_USE_SDL"     value="1"/>
 
+
    <set name="SNOW_NO_GTK"    value="1"/>
       <!-- are we using gtk3 or 2 for file dialogs, or none? -->
    <!-- <set name="SNOW_USE_GTK2"    value="1"/> -->
-   <set name="SNOW_USE_GTK3"    value="1"/>
+   <!-- <set name="SNOW_USE_GTK3"    value="1"/> -->
    <set name="SNOW_GTK_PATH" value="/usr/lib/x86_64-linux-gnu/gtk-2.0" if="HXCPP_M64"/>
    <set name="SNOW_GTK_GLIB_PATH" value="/usr/lib/x86_64-linux-gnu/glib-2.0" if="HXCPP_M64"/>
 

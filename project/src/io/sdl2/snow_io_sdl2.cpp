@@ -47,19 +47,19 @@ namespace snow {
 
         } //handle_event
 
-        iosrc* iosrc_fromfile(const char *file, const char *mode) {
+        iosrc* iosrc_from_file(const char *file, const char *mode) {
             return SDL_RWFromFile(file, mode);
         } //iofromfile
 
-        iosrc* iosrc_frommem(void *mem, int size) {
+        iosrc* iosrc_from_mem(void *mem, int size) {
             return SDL_RWFromMem(mem, size);
         } //iofrommem
 
-        iosrc* iosrc_fromconstmem(const void *mem, int size) {
+        iosrc* iosrc_from_const_mem(const void *mem, int size) {
             return SDL_RWFromConstMem(mem, size);
         } //iofromconstmem
 
-        iosrc* iosrc_fromfp(FILE * fp, bool autoclose) {
+        iosrc* iosrc_from_fp(FILE * fp, bool autoclose) {
             return SDL_RWFromFP(fp, autoclose ? SDL_TRUE : SDL_FALSE);
         } //iofromfp
 

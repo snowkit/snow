@@ -80,19 +80,19 @@ namespace snow {
 
     namespace io {
 
-        iosrc* iosrc_fromfile(const char *file, const char *mode) {
+        iosrc* iosrc_from_file(const char *file, const char *mode) {
             return fopen(file, mode);
         } //iofromfile
 
-        iosrc* iosrc_frommem(void *mem, int size) {
+        iosrc* iosrc_from_mem(void *mem, int size) {
             return NULL;
         } //iofrommem
 
-        iosrc* iosrc_fromconstmem(const void *mem, int size) {
+        iosrc* iosrc_from_const_mem(const void *mem, int size) {
             return NULL;
         } //iofromconstmem
 
-        iosrc* iosrc_fromfp(FILE * fp, bool autoclose) {
+        iosrc* iosrc_from_fp(FILE * fp, bool autoclose) {
             return fp;
         } //iofromfp
 

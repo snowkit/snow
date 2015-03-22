@@ -2,7 +2,7 @@ package snow.platform.native.audio.openal;
 
 import snow.audio.Audio;
 import snow.types.Types;
-import snow.utils.Float32Array;
+import snow.io.typedarray.Float32Array;
 
 import snow.audio.openal.AL;
 import snow.platform.native.audio.openal.OpenALHelper;
@@ -169,7 +169,7 @@ class Sound extends snow.platform.native.audio.Sound {
         }
 
             //give the data from the sound info to the buffer
-        AL.bufferData(buffer, format, new Float32Array(info.data.bytes), info.data.bytes.length, info.data.rate );
+        AL.bufferData(buffer, format, new Float32Array(info.data.bytes.buffer), info.data.rate );
 
             _debug('${name} buffered data / ${AL.getErrorMeaning(AL.getError())} ');
 

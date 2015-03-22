@@ -72,10 +72,14 @@ namespace snow {
                 //bpp == the resulting bits per pixel
                 //bpp == the source image bits per pixel
                 //req_bpp == use this instead of the source
-            bool load_info( QuickVec<unsigned char> &out_buffer, const char* _id, int* w, int* h, int* bpp, int* bpp_source, int req_bpp = 4 ) {
+            bool load_info(
+                QuickVec<unsigned char> &out_buffer,
+                const char* _id,
+                int* w, int* h, int* bpp, int* bpp_source, int req_bpp = 4
+            ) {
 
                 //get a io file pointer to the image
-                snow::io::iosrc* src = snow::io::iosrc_fromfile(_id, "rb");
+                snow::io::iosrc* src = snow::io::iosrc_from_file(_id, "rb");
 
                 if(!src) {
                     snow::log(1, "/ snow / cannot open image file from %s", _id);
@@ -130,10 +134,14 @@ namespace snow {
                 //bpp == the resulting bits per pixel
                 //bpp == the source image bits per pixel
                 //req_bpp == use this instead of the source
-            bool info_from_bytes( QuickVec<unsigned char> &out_buffer, snow::ByteArray bytes, const char* _id, int *w, int *h, int* bpp, int* bpp_source, int req_bpp = 4) {
+            bool info_from_bytes(
+                QuickVec<unsigned char> &out_buffer,
+                const unsigned char* bytes, int byteOffset, int byteLength,
+                const char* _id, int *w, int *h, int* bpp, int* bpp_source, int req_bpp = 4
+            ) {
 
-                //get a io file pointer to the image
-                snow::io::iosrc* src = snow::io::iosrc_frommem( bytes.Bytes(), bytes.Size() );
+                    //get a io file pointer to the image
+                snow::io::iosrc* src = snow::io::iosrc_from_mem( (void*)(bytes + byteOffset), byteLength );
 
                 if(!src) {
                     snow::log(1, "/ snow / cannot open bytes from %s", _id);
@@ -167,7 +175,7 @@ namespace snow {
 
                         //actual used bpp
                     *bpp = _bpp;
-                        //work out the total length of the buffer
+                        //work out the total length of the output buffer
                     unsigned int length = _w * _h * _bpp;
                         //store it
                     out_buffer.Set(data, length);

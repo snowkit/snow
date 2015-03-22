@@ -19,8 +19,8 @@
 #include <android/log.h>
 #endif
 
+#include "common/snow_hx.h"
 #include "snow_hx_bindings.h"
-#include "common/ByteArray.h"
 #include "snow_core.h"
 
 #include "render/opengl/snow_opengl.h"
@@ -809,30 +809,32 @@ namespace snow {
     } DEFINE_PRIM(snow_gl_get_active_uniform,2);
 
 
+
         //only float arrays accepted
         //passe the full arrays instead of single element
         //if double should be accepted, it is highly important that whole arrays are passed
-        // inTranspose = true crashes on mobile and_eq should be adequately forbidden by haxe headers
-    value snow_gl_uniform_matrix(value inLocation, value inTranspose, value inBytes,value inCount){
+        // value inLocation, value inTranspose, value inBytes, value inByteLength, value inCount){
+    value snow_gl_uniform_matrix(value *arg, int argCount) {
 
-        int loc = val_int(inLocation);
-        int count = val_int(inCount);
+        enum { aLocation, aTranspose, aBytes, aByteOffset, aByteLength, aCount };
 
-        bool trans = val_bool(inTranspose);
+        int location = val_int(arg[aLocation]);
+        int count = val_int(arg[aCount]);
+        int byteLength = val_int(arg[aByteLength]);
+        int byteOffset = val_int(arg[aByteOffset]);
+        bool transpose = val_bool(arg[aTranspose]);
 
-        ByteArray bytes(inBytes);
-        int size = bytes.Size();
-        const float *data = (float *)bytes.Bytes();
-        int nbElems = size / sizeof(float);
+        const GLfloat* data = (GLfloat*)snow::bytes_from_hx(arg[aBytes]);
+        int nbElems = byteLength / sizeof(float);
 
         switch(count){
-            case 2: glUniformMatrix2fv(loc,nbElems>>2   ,trans,data);
-            case 3: glUniformMatrix3fv(loc,nbElems/9    ,trans,data);
-            case 4: glUniformMatrix4fv(loc,nbElems>>4   ,trans,data);
+            case 2: glUniformMatrix2fv(location, nbElems >> 2 , transpose, data + byteOffset );
+            case 3: glUniformMatrix3fv(location, nbElems / 9  , transpose, data + byteOffset );
+            case 4: glUniformMatrix4fv(location, nbElems >> 4 , transpose, data + byteOffset );
         }
 
         return alloc_null();
-    } DEFINE_PRIM(snow_gl_uniform_matrix,4);
+    } DEFINE_PRIM_MULT(snow_gl_uniform_matrix);
 
 
     #define GL_UNFORM_1(TYPE,GET) \
@@ -872,132 +874,132 @@ namespace snow {
     GL_UNFORM_4(i,val_int)
     GL_UNFORM_4(f,val_number)
 
-    value snow_gl_uniform1iv(value inLocation,value inByteBuffer) {
+    value snow_gl_uniform1iv(value inLocation, value inBytes, value inByteOffset, value inByteLength) {
 
-        int loc = val_int(inLocation);
+        int location = val_int(inLocation);
+        int byteOffset = val_int(inByteOffset);
+        int byteLength = val_int(inByteLength);
 
-        ByteArray bytes(inByteBuffer);
-        int size = bytes.Size();
-        const int *data = (int *)bytes.Bytes();
-        int nbElems = size / sizeof(int);
+        const GLint* data = (GLint*)snow::bytes_from_hx(inBytes);
+        int nbElems = byteLength / sizeof(int);
 
-        glUniform1iv(loc,nbElems,data);
-
-        return alloc_null();
-
-    } DEFINE_PRIM(snow_gl_uniform1iv,2);
-
-
-    value snow_gl_uniform2iv(value inLocation,value inByteBuffer) {
-
-        int loc = val_int(inLocation);
-
-        ByteArray bytes(inByteBuffer);
-        int size = bytes.Size();
-        const int *data = (int *)bytes.Bytes();
-        int nbElems = size / sizeof(int);
-
-        glUniform2iv(loc,nbElems>>1,data);
+        glUniform1iv(location, nbElems, data + byteOffset);
 
         return alloc_null();
 
-    } DEFINE_PRIM(snow_gl_uniform2iv,2);
+    } DEFINE_PRIM(snow_gl_uniform1iv,4);
 
 
-    value snow_gl_uniform3iv(value inLocation,value inByteBuffer) {
+    value snow_gl_uniform2iv(value inLocation, value inBytes, value inByteOffset, value inByteLength) {
 
-        int loc = val_int(inLocation);
+        int location = val_int(inLocation);
+        int byteOffset = val_int(inByteOffset);
+        int byteLength = val_int(inByteLength);
 
-        ByteArray bytes(inByteBuffer);
-        int size = bytes.Size();
-        const int *data = (int *)bytes.Bytes();
-        int nbElems = size / sizeof(int);
+        const GLint* data = (GLint*)snow::bytes_from_hx(inBytes);
+        int nbElems = byteLength / sizeof(int);
 
-        glUniform3iv(loc,nbElems/3,data);
-
-        return alloc_null();
-
-    } DEFINE_PRIM(snow_gl_uniform3iv,2);
-
-
-    value snow_gl_uniform4iv(value inLocation,value inByteBuffer) {
-
-        int loc = val_int(inLocation);
-
-        ByteArray bytes(inByteBuffer);
-        int size = bytes.Size();
-        const int *data = (int *)bytes.Bytes();
-        int nbElems = size / sizeof(int);
-
-        glUniform4iv(loc,nbElems>>2,data);
+        glUniform2iv(location, nbElems>>1, data + byteOffset);
 
         return alloc_null();
 
-    } DEFINE_PRIM(snow_gl_uniform4iv,2);
+    } DEFINE_PRIM(snow_gl_uniform2iv,4);
 
 
-    value snow_gl_uniform1fv(value inLocation,value inByteBuffer) {
+    value snow_gl_uniform3iv(value inLocation, value inBytes, value inByteOffset, value inByteLength) {
 
-        int loc = val_int(inLocation);
+        int location = val_int(inLocation);
+        int byteOffset = val_int(inByteOffset);
+        int byteLength = val_int(inByteLength);
 
-        ByteArray bytes(inByteBuffer);
-        int size = bytes.Size();
-        const float *data = (float *)bytes.Bytes();
-        int nbElems = size / sizeof(float);
+        const GLint* data = (GLint*)snow::bytes_from_hx(inBytes);
+        int nbElems = byteLength / sizeof(int);
 
-        glUniform1fv(loc,nbElems,data);
-
-        return alloc_null();
-
-    } DEFINE_PRIM(snow_gl_uniform1fv,2);
-
-
-    value snow_gl_uniform2fv(value inLocation,value inByteBuffer) {
-
-        int loc = val_int(inLocation);
-
-        ByteArray bytes(inByteBuffer);
-        int size = bytes.Size();
-        const float *data = (float *)bytes.Bytes();
-        int nbElems = size / sizeof(float);
-
-        glUniform2fv(loc,nbElems>>1,data);
+        glUniform3iv(location, nbElems/3, data + byteOffset);
 
         return alloc_null();
 
-    } DEFINE_PRIM(snow_gl_uniform2fv,2);
+    } DEFINE_PRIM(snow_gl_uniform3iv,4);
 
 
-    value snow_gl_uniform3fv(value inLocation,value inByteBuffer) {
+    value snow_gl_uniform4iv(value inLocation, value inBytes, value inByteOffset, value inByteLength) {
 
-        int loc = val_int(inLocation);
+        int location = val_int(inLocation);
+        int byteOffset = val_int(inByteOffset);
+        int byteLength = val_int(inByteLength);
 
-        ByteArray bytes(inByteBuffer);
-        int size = bytes.Size();
-        const float *data = (float *)bytes.Bytes();
-        int nbElems = size / sizeof(float);
+        const GLint* data = (GLint*)snow::bytes_from_hx(inBytes);
+        int nbElems = byteLength / sizeof(int);
 
-        glUniform3fv(loc,nbElems/3,data);
-
-        return alloc_null();
-
-    } DEFINE_PRIM(snow_gl_uniform3fv,2);
-
-
-    value snow_gl_uniform4fv(value inLocation,value inByteBuffer) {
-
-        int loc = val_int(inLocation);
-
-        ByteArray bytes(inByteBuffer);
-        int size = bytes.Size();
-        const float *data = (float *)bytes.Bytes();
-        int nbElems = size / sizeof(float);
-
-        glUniform4fv(loc,nbElems>>2,data);
+        glUniform4iv(location, nbElems>>2, data + byteOffset);
 
         return alloc_null();
 
-    } DEFINE_PRIM(snow_gl_uniform4fv,2);
+    } DEFINE_PRIM(snow_gl_uniform4iv,4);
+
+
+    value snow_gl_uniform1fv(value inLocation, value inBytes, value inByteOffset, value inByteLength) {
+
+        int location = val_int(inLocation);
+        int byteOffset = val_int(inByteOffset);
+        int byteLength = val_int(inByteLength);
+
+        const GLfloat* data = (GLfloat*)snow::bytes_from_hx(inBytes);
+        int nbElems = byteLength / sizeof(float);
+
+        glUniform1fv(location, nbElems, data + byteOffset);
+
+        return alloc_null();
+
+    } DEFINE_PRIM(snow_gl_uniform1fv,4);
+
+
+    value snow_gl_uniform2fv(value inLocation, value inBytes, value inByteOffset, value inByteLength) {
+
+        int location = val_int(inLocation);
+        int byteOffset = val_int(inByteOffset);
+        int byteLength = val_int(inByteLength);
+
+        const GLfloat* data = (GLfloat*)snow::bytes_from_hx(inBytes);
+        int nbElems = byteLength / sizeof(float);
+
+        glUniform2fv(location, nbElems>>1, data + byteOffset);
+
+        return alloc_null();
+
+    } DEFINE_PRIM(snow_gl_uniform2fv,4);
+
+
+    value snow_gl_uniform3fv(value inLocation, value inBytes, value inByteOffset, value inByteLength) {
+
+        int location = val_int(inLocation);
+        int byteOffset = val_int(inByteOffset);
+        int byteLength = val_int(inByteLength);
+
+        const GLfloat* data = (GLfloat*)snow::bytes_from_hx(inBytes);
+        int nbElems = byteLength / sizeof(float);
+
+        glUniform3fv(location, nbElems/3, data + byteOffset);
+
+        return alloc_null();
+
+    } DEFINE_PRIM(snow_gl_uniform3fv,4);
+
+
+    value snow_gl_uniform4fv(value inLocation, value inBytes, value inByteOffset, value inByteLength) {
+
+        int location = val_int(inLocation);
+        int byteOffset = val_int(inByteOffset);
+        int byteLength = val_int(inByteLength);
+
+        const GLfloat* data = (GLfloat*)snow::bytes_from_hx(inBytes);
+        int nbElems = byteLength / sizeof(float);
+
+        glUniform4fv(location, nbElems>>2, data + byteOffset);
+
+        return alloc_null();
+
+    } DEFINE_PRIM(snow_gl_uniform4fv,4);
 
     // Attrib
 
@@ -1037,64 +1039,64 @@ namespace snow {
     } DEFINE_PRIM(snow_gl_vertex_attrib4f,5);
 
 
-    value snow_gl_vertex_attrib1fv(value inLocation,value inByteBuffer) {
+    value snow_gl_vertex_attrib1fv(value inLocation, value inBytes, value inByteOffset, value inByteLength) {
 
-        int loc = val_int(inLocation);
+        int location = val_int(inLocation);
+        int byteOffset = val_int(inByteOffset);
+        int byteLength = val_int(inByteLength);
 
-        ByteArray bytes(inByteBuffer);
-        int size = bytes.Size();
-        const float *data = (float *)bytes.Bytes();
+        const GLfloat* data = (GLfloat*)snow::bytes_from_hx(inBytes);
 
-        glVertexAttrib1fv(loc,data);
-
-        return alloc_null();
-
-    } DEFINE_PRIM(snow_gl_vertex_attrib1fv,2);
-
-
-    value snow_gl_vertex_attrib2fv(value inLocation,value inByteBuffer) {
-
-        int loc = val_int(inLocation);
-
-        ByteArray bytes(inByteBuffer);
-        int size = bytes.Size();
-        const float *data = (float *)bytes.Bytes();
-
-        glVertexAttrib2fv(loc,data);
+        glVertexAttrib1fv(location, data + byteOffset);
 
         return alloc_null();
 
-    } DEFINE_PRIM(snow_gl_vertex_attrib2fv,2);
+    } DEFINE_PRIM(snow_gl_vertex_attrib1fv,4);
 
 
-    value snow_gl_vertex_attrib3fv(value inLocation,value inByteBuffer) {
+    value snow_gl_vertex_attrib2fv(value inLocation, value inBytes, value inByteOffset, value inByteLength) {
 
-        int loc = val_int(inLocation);
+        int location = val_int(inLocation);
+        int byteOffset = val_int(inByteOffset);
+        int byteLength = val_int(inByteLength);
 
-        ByteArray bytes(inByteBuffer);
-        int size = bytes.Size();
-        const float *data = (float *)bytes.Bytes();
+        const GLfloat* data = (GLfloat*)snow::bytes_from_hx(inBytes);
 
-        glVertexAttrib3fv(loc,data);
-
-        return alloc_null();
-
-    } DEFINE_PRIM(snow_gl_vertex_attrib3fv,2);
-
-
-    value snow_gl_vertex_attrib4fv(value inLocation,value inByteBuffer) {
-
-        int loc = val_int(inLocation);
-
-        ByteArray bytes(inByteBuffer);
-        int size = bytes.Size();
-        const float *data = (float *)bytes.Bytes();
-
-        glVertexAttrib4fv(loc,data);
+        glVertexAttrib2fv(location, data + byteOffset);
 
         return alloc_null();
 
-    } DEFINE_PRIM(snow_gl_vertex_attrib4fv,2);
+    } DEFINE_PRIM(snow_gl_vertex_attrib2fv,4);
+
+
+    value snow_gl_vertex_attrib3fv(value inLocation, value inBytes, value inByteOffset, value inByteLength) {
+
+        int location = val_int(inLocation);
+        int byteOffset = val_int(inByteOffset);
+        int byteLength = val_int(inByteLength);
+
+        const GLfloat* data = (GLfloat*)snow::bytes_from_hx(inBytes);
+
+        glVertexAttrib3fv(location, data + byteOffset);
+
+        return alloc_null();
+
+    } DEFINE_PRIM(snow_gl_vertex_attrib3fv,4);
+
+
+    value snow_gl_vertex_attrib4fv(value inLocation, value inBytes, value inByteOffset, value inByteLength) {
+
+        int location = val_int(inLocation);
+        int byteOffset = val_int(inByteOffset);
+        int byteLength = val_int(inByteLength);
+
+        const GLfloat* data = (GLfloat*)snow::bytes_from_hx(inBytes);
+
+        glVertexAttrib4fv(location, data + byteOffset);
+
+        return alloc_null();
+
+    } DEFINE_PRIM(snow_gl_vertex_attrib4fv,4);
 
 
 // --- Shader -------------------------------------------
@@ -1153,7 +1155,7 @@ namespace snow {
         int id = val_int(inId);
 
         glCompileShader(id);
-        
+
         return alloc_null();
 
     } DEFINE_PRIM(snow_gl_compile_shader,1);
@@ -1265,41 +1267,28 @@ namespace snow {
     } DEFINE_PRIM(snow_gl_bind_buffer,2);
 
 
-    value snow_gl_buffer_data(value inTarget, value inByteBuffer, value inStart, value inLen, value inUsage) {
+    value snow_gl_buffer_data(value inTarget, value inBuffer, value inByteOffset, value inByteLength, value inUsage) {
 
-        int len = val_int(inLen);
-        int start = val_int(inStart);
+        int byteLength = val_int(inByteLength);
+        int byteOffset = val_int(inByteOffset);
 
-        ByteArray bytes(inByteBuffer);
-        const unsigned char *data = bytes.Bytes();
-        int size = bytes.Size();
+        const unsigned char* data = snow::bytes_from_hx(inBuffer);
 
-        if (len+start>size) {
-            val_throw(alloc_string("Invalid byte length"));
-        }
-
-        glBufferData(val_int(inTarget), len, data + start, val_int(inUsage) );
+        glBufferData( val_int(inTarget), byteLength, data + byteOffset, val_int(inUsage) );
 
         return alloc_null();
 
     } DEFINE_PRIM(snow_gl_buffer_data,5);
 
 
-    value snow_gl_buffer_sub_data(value inTarget, value inOffset, value inByteBuffer, value inStart, value inLen) {
+    value snow_gl_buffer_sub_data(value inTarget, value inOffset, value inBuffer, value inByteOffset, value inByteLength) {
 
-        int len = val_int(inLen);
-        int start = val_int(inStart);
+        int byteLength = val_int(inByteLength);
+        int byteOffset = val_int(inByteOffset);
 
-        ByteArray bytes(inByteBuffer);
+        const unsigned char* data = snow::bytes_from_hx(inBuffer);
 
-        const unsigned char *data = bytes.Bytes();
-        int size = bytes.Size();
-
-        if (len+start>size) {
-            val_throw(alloc_string("Invalid byte length"));
-        }
-
-        glBufferSubData(val_int(inTarget), val_int(inOffset), len, data + start );
+        glBufferSubData(val_int(inTarget), val_int(inOffset), byteLength, data + byteOffset );
 
         return alloc_null();
 
@@ -1697,19 +1686,20 @@ namespace snow {
 
     value snow_gl_read_pixels(value *arg, int argCount) {
 
-        enum { aX, aY, aWidth, aHeight, aFormat, aType, aBuffer, aOffset };
+        enum { aX, aY, aWidth, aHeight, aFormat, aType, aBytes, aByteOffset, aByteLength };
 
-        unsigned char *data = 0;
-        ByteArray bytes( arg[aBuffer] );
+        int byteOffset = val_int(arg[aByteOffset]);
+        int byteLength = val_int(arg[aByteLength]);
+        unsigned char* data = snow::bytes_from_hx_rw(arg[aBytes]);
 
-        if (bytes.mValue) {
-            data = bytes.Bytes() + val_int(arg[aOffset]);
-        }
-
-        glReadPixels( INT(aX), INT(aY),
-                        INT(aWidth),   INT(aHeight),
-                        INT(aFormat),  INT(aType),
-                        data );
+        glReadPixels( val_int(arg[aX]),
+                      val_int(arg[aY]),
+                      val_int(arg[aWidth]),
+                      val_int(arg[aHeight]),
+                      val_int(arg[aFormat]),
+                      val_int(arg[aType]),
+                      data + byteOffset
+                    );
 
         return alloc_null();
 
@@ -1779,19 +1769,22 @@ namespace snow {
 
     value snow_gl_tex_image_2d(value *arg, int argCount) {
 
-        enum { aTarget, aLevel, aInternal, aWidth, aHeight, aBorder, aFormat, aType, aBuffer, aOffset };
+        enum { aTarget, aLevel, aInternal, aWidth, aHeight, aBorder, aFormat, aType, aBytes, aByteOffset, aByteLength };
 
-        unsigned char *data = 0;
+        const unsigned char* data = snow::bytes_from_hx(arg[aBytes]);
+        int byteOffset = val_int( arg[aByteOffset] );
+        int byteLength = val_int( arg[aByteLength] );
 
-        ByteArray bytes( arg[aBuffer] );
-
-        if (!val_is_null(bytes.mValue)) {
-            data = bytes.Bytes() + val_int(arg[aOffset]);
-        }
-
-        glTexImage2D(INT(aTarget), INT(aLevel),  INT(aInternal),
-                    INT(aWidth),  INT(aHeight), INT(aBorder),
-                    INT(aFormat), INT(aType), data );
+        glTexImage2D( val_int(arg[aTarget]),
+                      val_int(arg[aLevel]),
+                      val_int(arg[aInternal]),
+                      val_int(arg[aWidth]),
+                      val_int(arg[aHeight]),
+                      val_int(arg[aBorder]),
+                      val_int(arg[aFormat]),
+                      val_int(arg[aType]),
+                      data + byteOffset
+                    );
 
         return alloc_null();
 
@@ -1800,20 +1793,21 @@ namespace snow {
 
     value snow_gl_tex_sub_image_2d(value *arg, int argCount) {
 
-        enum { aTarget, aLevel, aXOffset, aYOffset, aWidth, aHeight, aFormat, aType, aBuffer, aOffset };
+        enum { aTarget, aLevel, aXOffset, aYOffset, aWidth, aHeight, aFormat, aType, aBytes, aByteOffset, aByteLength };
 
-        unsigned char *data = 0;
-        ByteArray bytes( arg[aBuffer] );
+        const unsigned char* data = snow::bytes_from_hx(arg[aBytes]);
+        int byteOffset = val_int( arg[aByteOffset] );
+        int byteLength = val_int( arg[aByteLength] );
 
-        if (bytes.mValue) {
-            data = bytes.Bytes() + val_int(arg[aOffset]);
-        }
-
-        glTexSubImage2D( INT(aTarget),  INT(aLevel),
-                         INT(aXOffset), INT(aYOffset),
-                         INT(aWidth),   INT(aHeight),
-                         INT(aFormat),  INT(aType),
-                         data );
+        glTexSubImage2D( val_int(arg[aTarget]),
+                         val_int(arg[aLevel]),
+                         val_int(arg[aXOffset]),
+                         val_int(arg[aYOffset]),
+                         val_int(arg[aWidth]),
+                         val_int(arg[aHeight]),
+                         val_int(arg[aFormat]),
+                         val_int(arg[aType]),
+                         data + byteOffset );
 
         return alloc_null();
 
@@ -1822,21 +1816,21 @@ namespace snow {
 
     value snow_gl_compressed_tex_image_2d(value *arg, int argCount) {
 
-        enum { aTarget, aLevel, aInternal, aWidth, aHeight, aBorder, aBuffer, aOffset };
+        enum { aTarget, aLevel, aInternal, aWidth, aHeight, aBorder, aBytes, aByteOffset, aByteLength };
 
-        unsigned char *data = 0;
-        int size = 0;
+        const unsigned char* data = snow::bytes_from_hx(arg[aBytes]);
+        int byteOffset = val_int( arg[aByteOffset] );
+        int byteLength = val_int( arg[aByteLength] );
 
-        ByteArray bytes( arg[aBuffer] );
-
-        if (!val_is_null(bytes.mValue)) {
-            data = bytes.Bytes() + INT(aOffset);
-            size = bytes.Size() - INT(aOffset);
-        }
-
-        glCompressedTexImage2D(INT(aTarget), INT(aLevel),  INT(aInternal),
-                    INT(aWidth),  INT(aHeight), INT(aBorder),
-                    size, data );
+        glCompressedTexImage2D( val_int(arg[aTarget]),
+                                val_int(arg[aLevel]),
+                                val_int(arg[aInternal]),
+                                val_int(arg[aWidth]),
+                                val_int(arg[aHeight]),
+                                val_int(arg[aBorder]),
+                                byteLength,
+                                data + byteOffset
+                              );
 
        return alloc_null();
 
@@ -1845,21 +1839,22 @@ namespace snow {
 
     value snow_gl_compressed_tex_sub_image_2d(value *arg, int argCount) {
 
-        enum { aTarget, aLevel, aXOffset, aYOffset, aWidth, aHeight, aFormat, aBuffer, aOffset };
+        enum { aTarget, aLevel, aXOffset, aYOffset, aWidth, aHeight, aFormat, aBytes, aByteOffset, aByteLength };
 
-        unsigned char *data = 0;
-        int size = 0;
+        const unsigned char* data = snow::bytes_from_hx(arg[aBytes]);
+        int byteOffset = val_int( arg[aByteOffset] );
+        int byteLength = val_int( arg[aByteLength] );
 
-        ByteArray bytes( arg[aBuffer] );
-
-        if (!val_is_null(bytes.mValue)) {
-            data = bytes.Bytes() + INT(aOffset);
-            size = bytes.Size() - INT(aOffset);
-        }
-
-        glCompressedTexSubImage2D(INT(aTarget), INT(aLevel),  INT(aXOffset), INT(aYOffset),
-                    INT(aWidth),  INT(aHeight), INT(aFormat),
-                    size, data );
+        glCompressedTexSubImage2D( val_int(arg[aTarget]),
+                                   val_int(arg[aLevel]),
+                                   val_int(arg[aXOffset]),
+                                   val_int(arg[aYOffset]),
+                                   val_int(arg[aWidth]),
+                                   val_int(arg[aHeight]),
+                                   val_int(arg[aFormat]),
+                                   byteLength,
+                                   data + byteOffset
+                                );
 
         return alloc_null();
 
@@ -1888,8 +1883,15 @@ namespace snow {
 
         enum { aTarget, aLevel, aInternalFormat, aX, aY, aWidth, aHeight, aBorder };
 
-        glCopyTexImage2D( INT(aTarget), INT(aLevel), INT(aInternalFormat),
-                         INT(aX), INT(aY), INT(aWidth), INT(aHeight), INT(aBorder) );
+        glCopyTexImage2D( val_int(arg[aTarget]),
+                          val_int(arg[aLevel]),
+                          val_int(arg[aInternalFormat]),
+                          val_int(arg[aX]),
+                          val_int(arg[aY]),
+                          val_int(arg[aWidth]),
+                          val_int(arg[aHeight]),
+                          val_int(arg[aBorder])
+                        );
 
         return alloc_null();
 
@@ -1900,8 +1902,15 @@ namespace snow {
 
         enum { aTarget, aLevel, aXOffset, aYOffset, aX, aY, aWidth, aHeight };
 
-        glCopyTexSubImage2D( INT(aTarget), INT(aLevel), INT(aXOffset), INT(aYOffset),
-                            INT(aX), INT(aY), INT(aWidth), INT(aHeight) );
+        glCopyTexSubImage2D( val_int(arg[aTarget]),
+                             val_int(arg[aLevel]),
+                             val_int(arg[aXOffset]),
+                             val_int(arg[aYOffset]),
+                             val_int(arg[aX]),
+                             val_int(arg[aY]),
+                             val_int(arg[aWidth]),
+                             val_int(arg[aHeight])
+                            );
 
         return alloc_null();
 

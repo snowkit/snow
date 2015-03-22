@@ -2,6 +2,8 @@ package snow.io;
 
 import snow.io.IOSystem;
 import snow.types.Types;
+import snow.io.typedarray.Uint8Array;
+import snow.utils.Promise;
 
 class IO {
 
@@ -27,6 +29,23 @@ class IO {
         platform.url_open(_url);
 
     } //url_open
+
+        /** Load bytes from the file path/url given.
+            On web a request is sent for the data */
+    public function data_load( _path:String, ?_options:IODataOptions ) : Promise {
+
+        return platform.data_load( _path, _options );
+
+    } //data_load
+
+
+        /** Save bytes to the file path/url given.
+            On platforms where this doesn't make sense (web) this will do nothing atm */
+    public function data_save( _path:String, _data:Uint8Array, ?_options:IODataOptions ) : Bool {
+
+        return platform.data_save( _path, _data, _options );
+
+    } //data_save
 
 
         /** Return the full path that the application is located */
