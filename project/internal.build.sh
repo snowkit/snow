@@ -72,6 +72,8 @@ then
 
     mv ndll\\Windows\\libsnow.lib Windows/libsnow.lib
     mv ndll\\Windows\\snow.ndll Windows/snow.ndll
+    mv ndll\\Windows64\\libsnow.lib Windows64/libsnow.lib
+    mv ndll\\Windows64\\snow.ndll Windows64/snow.ndll
 
     cd ..
 
