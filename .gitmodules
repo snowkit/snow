@@ -1,9 +1,6 @@
 [submodule "project/src/libs/theora"]
 	path = project/src/libs/theora
 	url = https://github.com/native-toolkit/theora.git
-[submodule "project/src/libs/lzma"]
-	path = project/src/libs/lzma
-	url = https://github.com/native-toolkit/lzma.git
 [submodule "project/src/libs/glew"]
 	path = project/src/libs/glew
 	url = https://github.com/native-toolkit/glew.git
@@ -13,12 +10,6 @@
 [submodule "project/src/libs/ogg"]
 	path = project/src/libs/ogg
 	url = https://github.com/native-toolkit/ogg.git
-[submodule "project/src/libs/zlib"]
-	path = project/src/libs/zlib
-	url = https://github.com/native-toolkit/zlib.git
-[submodule "project/src/libs/curl"]
-	path = project/src/libs/curl
-	url = https://github.com/native-toolkit/curl.git
 [submodule "project/src/libs/vorbis"]
 	path = project/src/libs/vorbis
 	url = https://github.com/native-toolkit/vorbis.git
