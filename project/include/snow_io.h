@@ -10,6 +10,8 @@
 #include <stdio.h>
 #include <string>
 #include <vector>
+#include <algorithm> //std::find
+
 
 #ifdef SNOW_USE_SDL
     #include "SDL.h"
