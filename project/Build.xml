@@ -102,20 +102,11 @@
    <set name="SNOW_LIB_OPENAL" value="1"/>
       <!-- always using stb_image for main platforms by default -->
    <set name="SNOW_LIB_STB_IMAGE" value="1"/>
-      <!-- always including lzma for main platforms by default -->
-   <set name="SNOW_LIB_LZMA" value="1" />
-      <!-- always including zlib for main platforms by default, used by curl and other stuff -->
-   <set name="SNOW_LIB_ZLIB" value="1" />
 
       <!-- always including media libs for main platforms by default -->
    <set name="SNOW_LIB_OGG" value="1" />
    <set name="SNOW_LIB_THEORA" value="1" />
    <set name="SNOW_LIB_VORBIS" value="1" />
-
-      <!-- always including curl for main platforms by default -->
-   <!-- <set name="SNOW_LIB_CURL" value="0" /> -->
-      <!-- default to using SSL, but can be toggled -->
-   <set name="NATIVE_TOOLKIT_CURL_SSL" value="1" if="SNOW_LIB_CURL"/>
 
       <!-- Disable to remove gtk dependency, but save/load dialogs will not show -->
    <!-- <set name="SNOW_NO_GTK" value="1" /> -->
@@ -128,9 +119,6 @@
    <include name="${NATIVE_TOOLKIT_PATH}/ogg/files.xml"              if="SNOW_LIB_OGG" />
    <include name="${NATIVE_TOOLKIT_PATH}/theora/files.xml"           if="SNOW_LIB_THEORA" />
    <include name="${NATIVE_TOOLKIT_PATH}/vorbis/files.xml"           if="SNOW_LIB_VORBIS" />
-   <include name="${NATIVE_TOOLKIT_PATH}/lzma/files.xml"             if="SNOW_LIB_LZMA"/>
-   <include name="${NATIVE_TOOLKIT_PATH}/zlib/files.xml"             if="SNOW_LIB_ZLIB"/>
-   <include name="${NATIVE_TOOLKIT_PATH}/curl/files.xml"             if="SNOW_LIB_CURL" />
    <include name="${NATIVE_TOOLKIT_PATH}/sdl/files.xml"              if="SNOW_LIB_SDL"/>
    <include name="${NATIVE_TOOLKIT_PATH}/openal-android/files.xml"   if="android"/>
    <include name="${NATIVE_TOOLKIT_PATH}/openal/files.xml"           unless="mac || ios || android"/>
@@ -147,9 +135,6 @@
       <compilerflag value="-I${NATIVE_TOOLKIT_PATH}/ogg/include/"/>
       <compilerflag value="-I${NATIVE_TOOLKIT_PATH}/vorbis/include/"/>
       <compilerflag value="-I${NATIVE_TOOLKIT_PATH}/theora/include/"/>
-      <compilerflag value="-I${NATIVE_TOOLKIT_PATH}/lzma/include/"/>
-      <compilerflag value="-I${NATIVE_TOOLKIT_PATH}/zlib/include/"/>
-      <compilerflag value="-I${NATIVE_TOOLKIT_PATH}/curl/include/"/>
       <compilerflag value="-I${NATIVE_TOOLKIT_PATH}/openal/include/"/>
       <compilerflag value="-I${NATIVE_TOOLKIT_PATH}/openal/OpenAL32/include/"/>
 
@@ -166,8 +151,6 @@
          <!-- assets -->
       <file name="${SRC_DIR}/assets/snow_assets_image.cpp" />
       <file name="${SRC_DIR}/assets/snow_assets_audio.cpp" />
-         <!-- common utils -->
-      <file name="${SRC_DIR}/common/ByteArray.cpp" />
          <!-- snow core -->
       <file name="${SRC_DIR}/snow/snow_timestamp.cpp" />
 
@@ -234,14 +217,13 @@
 
             <compilerflag value="-DSNOW_NO_GTK" if="SNOW_NO_GTK"/>
 
-
                <!-- For the file dialogs. These are from `pkg-config --cflags gtk+-3.0` and `pkg-config --cflags gtk+-2.0` but
                   hxcpp doesn't support that, so they are manually inserted -->
 
                   <!-- gtk 3 only -->
             <compilerflag value="-I/usr/include/gtk-3.0" unless="SNOW_NO_GTK" if="SNOW_USE_GTK3"/>
             <compilerflag value="-I${SNOW_GTK_GLIB_PATH}/include" unless="SNOW_NO_GTK" if="SNOW_USE_GTK3"/>
-               
+
                   <!-- gtk 2 and 3 -->
             <compilerflag value="-I/usr/include/libpng12" unless="SNOW_NO_GTK"/>
             <compilerflag value="-I/usr/include/atk-1.0" unless="SNOW_NO_GTK"/>
@@ -281,16 +263,8 @@
 
    <!-- Library specific flags -->
 
-      <section if="SNOW_LIB_CURL">
-         <include name="${NATIVE_TOOLKIT_PATH}/curl/defines.xml" />
-      </section>
-
       <section if="SNOW_LIB_GLEW">
          <include name="${NATIVE_TOOLKIT_PATH}/glew/defines.xml" />
-      </section>
-
-      <section if="SNOW_LIB_LZMA">
-         <include name="${NATIVE_TOOLKIT_PATH}/lzma/defines.xml" />
       </section>
 
       <section if="SNOW_LIB_OGG">
@@ -320,10 +294,6 @@
          <include name="${NATIVE_TOOLKIT_PATH}/vorbis/defines.xml" />
       </section>
 
-      <section if="SNOW_LIB_ZLIB">
-         <include name="${NATIVE_TOOLKIT_PATH}/zlib/defines.xml" />
-      </section>
-
    </files>
 
 
@@ -339,13 +309,10 @@
 <!-- Build the libs -->
 
       <files id="native-toolkit-glew"           if="SNOW_LIB_GLEW"/>
-      <files id="native-toolkit-curl"           if="SNOW_LIB_CURL"/>
-      <files id="native-toolkit-lzma"           if="SNOW_LIB_LZMA"/>
       <files id="native-toolkit-ogg"            if="SNOW_LIB_OGG"/>
       <files id="native-toolkit-stb_image"      if="SNOW_LIB_STB_IMAGE"/>
       <files id="native-toolkit-theora"         if="SNOW_LIB_THEORA"/>
       <files id="native-toolkit-vorbis"         if="SNOW_LIB_VORBIS"/>
-      <files id="native-toolkit-zlib"           if="SNOW_LIB_ZLIB"/>
       <files id="native-toolkit-sdl"            if="SNOW_LIB_SDL"      unless="SNOW_LIB_SDL_STATIC_EXTERNAL || SNOW_LIB_SDL_SHARED_EXTERNAL"/>
 
       <section if="SNOW_LIB_OPENAL">

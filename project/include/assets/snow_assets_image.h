@@ -4,8 +4,6 @@
 #include <string>
 
 #include "common/QuickVec.h"
-#include "common/ByteArray.h"
-
 #include "snow_io.h"
 
 

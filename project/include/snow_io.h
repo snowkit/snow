@@ -15,7 +15,6 @@
     #include "SDL.h"
 #endif //SNOW_USE_SDL
 
-#include "common/ByteArray.h"
 #include "snow_core.h"
 #include "snow_hx_bindings.h"
 

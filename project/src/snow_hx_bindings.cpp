@@ -28,9 +28,7 @@
 #include "assets/snow_assets_audio.h"
 #include "assets/snow_assets_image.h"
 
-#include "common/ByteArray.h"
 #include "common/snow_hx.h"
-#include "lzma.h"
 
 namespace snow {
 
@@ -1075,75 +1073,6 @@ extern double timestamp();
 
         } DEFINE_PRIM(snow_iosrc_file_close, 1);
 
-
-
-//LZMA bindings
-
-
-
-
-
-    value snow_lzma_encode(value input_value) {
-
-       buffer input_buffer = val_to_buffer(input_value);
-       buffer output_buffer = alloc_buffer_len(0);
-
-       native_toolkit_lzma::Lzma::Encode(input_buffer, output_buffer);
-
-       return buffer_val(output_buffer);
-
-    } DEFINE_PRIM(snow_lzma_encode,1);
-
-    value snow_lzma_decode(value input_value) {
-
-       buffer input_buffer = val_to_buffer(input_value);
-       buffer output_buffer = alloc_buffer_len(0);
-
-       native_toolkit_lzma::Lzma::Decode(input_buffer, output_buffer);
-
-       return buffer_val(output_buffer);
-
-    } DEFINE_PRIM(snow_lzma_decode,1);
-
-
-
-
-
-//ByteArray bindings
-
-
-
-
-
-    value snow_byte_array_overwrite_file(value inFilename, value inBytes) {
-
-        ByteArray::ToFile(val_os_string(inFilename), ByteArray(inBytes));
-
-        return alloc_null();
-
-    } DEFINE_PRIM(snow_byte_array_overwrite_file, 2);
-
-
-    value snow_byte_array_read_file(value inFilename) {
-
-        ByteArray result = ByteArray::FromFile(val_os_string(inFilename));
-
-        return result.mValue;
-
-    } DEFINE_PRIM(snow_byte_array_read_file,1);
-
-
-    value snow_byte_array_get_native_pointer(value inByteArray) {
-
-        ByteArray bytes(inByteArray);
-
-        if (!val_is_null (bytes.mValue)) {
-            return alloc_int((intptr_t)bytes.Bytes ());
-        }
-
-        return alloc_null();
-
-    } DEFINE_PRIM(snow_byte_array_get_native_pointer,1);
 
 
 

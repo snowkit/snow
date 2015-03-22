@@ -15,7 +15,6 @@
 #include <vector>
 
 #include "snow_core.h"
-#include "common/ByteArray.h"
 #include "snow_io.h"
 #include "SDL.h"
 

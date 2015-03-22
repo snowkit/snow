@@ -5,7 +5,6 @@
 */
 
 #include "stb_image.h"
-#include "common/ByteArray.h"
 
 #include "snow_core.h"
 #include "snow_io.h"
