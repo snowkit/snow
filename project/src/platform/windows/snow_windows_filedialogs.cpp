@@ -20,9 +20,9 @@ namespace snow {
 //:todo : Testing, this may change names soon
 #ifdef SNOW_NO_FILE_DIALOGS
 
-        std::string dialog_folder(const std::string &title){}
-        std::string dialog_open(const std::string &title, const std::vector<file_filter> &filters){}
-        std::string dialog_save(const std::string &title, const std::vector<file_filter> &filters){}
+        std::string dialog_folder(const std::string &title){ return ""; }
+        std::string dialog_open(const std::string &title, const std::vector<file_filter> &filters){ return ""; }
+        std::string dialog_save(const std::string &title, const std::vector<file_filter> &filters){ return ""; }
 
 #else
 
