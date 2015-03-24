@@ -20,6 +20,17 @@ namespace snow {
 
     namespace io {
 
+//:todo : Testing, this may change names soon
+#ifdef SNOW_NO_FILE_WATCH
+
+        std::vector<std::string> watched_paths;
+        bool init_filewatch(){ return false; }
+        void shutdown_filewatch(){}
+        void update_filewatch(){}
+        void refresh_filewatch(){}
+
+#else
+
         static eventqueue_t filewatch_queue;
 
         class FileWatcherThread {
@@ -255,6 +266,8 @@ namespace snow {
             snow::log(2, "/ snow / filewatch shutdown");
 
         } //shutdown_filewatch
+
+#endif //SNOW_NO_FILE_WATCH
 
     } //io namespace
 

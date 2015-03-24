@@ -17,6 +17,15 @@ namespace snow {
 
     namespace io {
 
+//:todo : Testing, this may change names soon
+#ifdef SNOW_NO_FILE_DIALOGS
+
+        std::string dialog_folder(const std::string &title){}
+        std::string dialog_open(const std::string &title, const std::vector<file_filter> &filters){}
+        std::string dialog_save(const std::string &title, const std::vector<file_filter> &filters){}
+
+#else
+
             //forward
         std::string open_select_file(int type, const std::string &title, const std::vector<file_filter> &filters);
 
@@ -171,6 +180,7 @@ namespace snow {
 
         } //open_select_file
 
+#endif //SNOW_NO_FILE_DIALOGS
 
     } //io namespace
 
