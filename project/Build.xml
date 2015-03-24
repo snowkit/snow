@@ -98,8 +98,9 @@
 
       <!-- sometimes glew needs to be disabled because it can make null function pointers -->
    <set name="SNOW_LIB_GLEW" value="1" unless="android || ios"/>
-      <!-- always using OpenAL for main platforms by default -->
+      <!-- always using OpenAL for main platforms by default, currently static linked only on targets that use this version (wip) -->
    <set name="SNOW_LIB_OPENAL" value="1"/>
+   <set name="native_toolkit_openal_static" value="1"/>
       <!-- always using stb_image for main platforms by default -->
    <set name="SNOW_LIB_STB_IMAGE" value="1"/>
 
