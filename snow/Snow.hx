@@ -444,20 +444,22 @@ class Snow {
 
         return new Promise(function(resolve, reject) {
 
+            var json:Dynamic = null;
+
                 //we want to load the runtime config from a json file by default
             var onload = function(asset:snow.assets.AssetText) {
                 if(asset.text != null) {
                     try {
 
-                        var json = haxe.Json.parse( asset.text );
+                        json = haxe.Json.parse( asset.text );
                         _debug('config / ok / loaded runtime config');
-
-                        resolve(json);
 
                     } catch(e:Dynamic) {
                         log('config / json parse error ');
                         throw Error.init('config / failed / default runtime config failed to parse as JSON. cannot recover. $e');
                     }
+
+                    resolve(json);
                 }
             }
 
