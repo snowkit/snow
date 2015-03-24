@@ -249,6 +249,8 @@
       </section>
 
       <section if="windows">
+         <compilerflag value="-DSNOW_NO_FILE_WATCH" if="SNOW_NO_FILE_WATCH"/>
+         <compilerflag value="-DSNOW_NO_FILE_DIALOGS" if="SNOW_NO_FILE_DIALOGS"/>
          <file name="${SRC_DIR}/platform/windows/snow_windows.cpp"/>
          <file name="${SRC_DIR}/platform/windows/snow_windows_filewatch.cpp"/>
          <file name="${SRC_DIR}/platform/windows/snow_windows_filedialogs.cpp"/>
