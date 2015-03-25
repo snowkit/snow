@@ -80,19 +80,27 @@ Join us in developing and testing the framework and tools, below.
 
 For a short intro to why snowkit was created, [read this blog post here](http://notes.underscorediscovery.com/why-snowkit).
 
+<style> img {max-width:32em;} </style>
 
-##Editor support
+## Editor support
 
 Where possible, full code completion and building from the editor is supplied.
 
-[Sublime Text](https://underscorediscovery.github.io/flow/guide/sublimetext.html) (mac/windows/linux) <br/><br/>
-[![](images/plugins/1.png)](https://underscorediscovery.github.io/flow/guide/sublimetext.html)
+#### [Sublime Text](https://underscorediscovery.github.io/flow/guide/sublimetext.html) (mac/windows/linux)
+[![](images/plugins/sublime.png)](https://underscorediscovery.github.io/flow/guide/sublimetext.html)
 
-[FlashDevelop](https://underscorediscovery.github.io/flow/guide/flashdevelop.html) (windows only)<br/><br/>
+---
+
+#### [Atom](https://atom.io/packages/flow) (mac/windows/linux)
+[![](images/plugins/atom.png)](https://atom.io/packages/flow)
+
+---
+
+#### [FlashDevelop](https://underscorediscovery.github.io/flow/guide/flashdevelop.html) (windows only)
 
 template is at [snowkit-fd](https://github.com/Chman/Snowkit-FD), and here is a [Download link](https://github.com/Chman/Snowkit-FD/blob/master/SnowkitTemplate.fdz?raw=true)   
 
-[![](images/plugins/5.png)](https://underscorediscovery.github.io/flow/guide/flashdevelop.html)
+[![](images/plugins/fd.png)](https://underscorediscovery.github.io/flow/guide/flashdevelop.html)
 
 ---
 
