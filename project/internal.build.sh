@@ -48,13 +48,12 @@ fi
 if [ -n "$SNOW_BUILD_PACKAGE_BINARY" ]
 then
 
+    SNOW_BUILD_DEST_PRE="latest"
 
-SNOW_BUILD_DEST_PRE="latest"
-
-if [ "$BUILDKITE_BRANCH" -ne "master" ]
-then
-    SNOW_BUILD_DEST_PRE="$BUILDKITE_BRANCH"
-fi
+    if [ "$BUILDKITE_BRANCH" != "master" ]
+    then
+        SNOW_BUILD_DEST_PRE="$BUILDKITE_BRANCH"
+    fi
 
     rm -rf ndll/all/
     mkdir -p ndll/all/ndll
