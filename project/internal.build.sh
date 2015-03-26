@@ -56,6 +56,7 @@ SNOW_BUILD_DEST_PRE="latest"
         SNOW_BUILD_DEST_PRE="$BUILDKITE_BRANCH"
     fi
 
+    rm -rf ndll/all/
     mkdir -p ndll/all/ndll
     mkdir -p ndll/all/ndll/Android
     mkdir -p ndll/all/ndll/iPhone
