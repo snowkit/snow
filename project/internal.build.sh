@@ -30,9 +30,9 @@ if [ -n "$SNOW_BUILD_ANDROID" ]
 then
 
     echo "snow; build; running android archs armv6, armv7, x86 ..."
-    haxelib run flow build --clean android --project project/snow.flow --arch armv6 --d snow_dynamic_link --log "$SNOW_BUILD_LOG_LEVEL"
-    haxelib run flow build --clean android --project project/snow.flow --arch armv7 --d snow_dynamic_link --log "$SNOW_BUILD_LOG_LEVEL"
-    haxelib run flow build --clean android --project project/snow.flow --arch x86 --d snow_dynamic_link --log "$SNOW_BUILD_LOG_LEVEL"
+    haxelib run flow build android --clean --project project/snow.flow --arch armv6 --d snow_dynamic_link --log "$SNOW_BUILD_LOG_LEVEL"
+    haxelib run flow build android --clean --project project/snow.flow --arch armv7 --d snow_dynamic_link --log "$SNOW_BUILD_LOG_LEVEL"
+    haxelib run flow build android --clean --project project/snow.flow --arch x86 --d snow_dynamic_link --log "$SNOW_BUILD_LOG_LEVEL"
 
 fi
 
@@ -40,19 +40,21 @@ if [ -n "$SNOW_BUILD_IOS" ]
 then
 
     echo "snow; build; running android archs armv6, armv7, armv7s, arm64, sim, sim64 ..."
-    haxelib run flow build --clean ios --project project/snow.flow --archs armv6,armv7,armv7s,arm64,sim,sim64 --d static_link --log "$SNOW_BUILD_LOG_LEVEL"
+    haxelib run flow build ios --clean --project project/snow.flow --archs armv6,armv7,armv7s,arm64,sim,sim64 --d static_link --log "$SNOW_BUILD_LOG_LEVEL"
 
 fi
 
-SNOW_BUILD_DEST_PRE="latest"
-
-if [ "$BUILDKITE_BRANCH" -ne "master" ]
-then
-    SNOW_BUILD_DEST_PRE="$BUILDKITE_BRANCH"
-fi
 
 if [ -n "$SNOW_BUILD_PACKAGE_BINARY" ]
 then
+
+
+SNOW_BUILD_DEST_PRE="latest"
+
+    if [ "$BUILDKITE_BRANCH" -ne "master" ]
+    then
+        SNOW_BUILD_DEST_PRE="$BUILDKITE_BRANCH"
+    fi
 
     mkdir -p ndll/all/ndll
     mkdir -p ndll/all/ndll/Android
