@@ -634,8 +634,9 @@ namespace snow {
     value snow_gl_get_uniform_location(value inId,value inName) {
 
         int id = val_int(inId);
+        int location = glGetUniformLocation(id, val_string(inName));
 
-        return alloc_int(glGetUniformLocation(id,val_string(inName)));
+        return location < 0 ? alloc_null() : alloc_int(location);
 
     } DEFINE_PRIM(snow_gl_get_uniform_location,2);
 

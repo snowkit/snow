@@ -203,6 +203,22 @@ class Snow {
 
         });
 
+        //:todo:
+        //       iOS has a catch 22,
+        //       iOS has to create the window to handle the main loop,
+        //       so our update is deferred till then. Promises were using
+        //       the update loop to propagate, so they never got called.
+        //       Luckily we can just manually flush any until the ready happens for now.
+
+        #if ios
+            while(!is_ready) {
+                    //handle promise executions
+                snow.utils.Promise.Promises.step();
+                    //fire any next tick callbacks
+                handle_next_list();
+            }
+        #end
+
     } //on_snow_ready
 
     @:allow(snow.App)

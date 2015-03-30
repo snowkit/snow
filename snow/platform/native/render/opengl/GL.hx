@@ -48,7 +48,7 @@ class GLObject {
     } //set_invalidated
 }
 
-abstract GLUniformLocation(Int) from Int to Int {}
+abstract GLUniformLocation(Null<Int>) from Null<Int> to Null<Int> {}
 class GLBO extends GLObject { override function toString() return 'GLBuffer($id)'; }
 class GLFBO extends GLObject { override function toString() return 'GLFramebuffer($id)'; }
 class GLRBO extends GLObject { override function toString() return 'GLRenderbuffer($id)'; }
