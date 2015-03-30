@@ -8,20 +8,15 @@ import snow.utils.Timer;
 
 import snow.utils.Promise;
 
-import snow.io.IO;
-import snow.input.Input;
-import snow.audio.Audio;
-import snow.assets.Assets;
-import snow.window.Window;
-import snow.window.Windowing;
 
-    //the platform core bindings
-import snow.Core;
+import snow.system.audio.Audio;
+import snow.system.assets.Assets;
+import snow.system.io.IO;
+import snow.system.input.Input;
+import snow.system.window.Window;
+import snow.system.window.Windowing;
 
-import snow.Log.log;
-import snow.Log._debug;
-import snow.Log._verbose;
-import snow.Log._verboser;
+import snow.Debug.*;
 
 class Snow {
 
@@ -71,19 +66,19 @@ class Snow {
         //if ready has completed, so systems can begin safely
     var is_ready : Bool = false;
         //the core platform instance to bind us
-    @:noCompletion public static var core : Core;
+    @:noCompletion public static var core : snow.Core;
 
 
     @:noCompletion public function new() {
 
-        if(snow.Log.get_level() > 1) {
-            log('log / level to ${snow.Log.get_level()}' );
-            log('log / filter : ${snow.Log.get_filter()}');
-            log('log / exclude : ${snow.Log.get_exclude()}');
+        if(snow.Debug.get_level() > 1) {
+            log('log / level to ${snow.Debug.get_level()}' );
+            log('log / filter : ${snow.Debug.get_filter()}');
+            log('log / exclude : ${snow.Debug.get_exclude()}');
         }
 
             //We create the core as a concrete platform version of the core
-        core = new Core( this );
+        core = new snow.Core( this );
         next_list = [];
 
     } //new
@@ -151,21 +146,6 @@ class Snow {
     function on_snow_init() {
 
         _debug('init / initializing');
-
-            //ensure that we are in the correct location for asset loading
-
-        #if snow_native
-
-            var app_path = core.app_path();
-            var pref_path = core.app_path_prefs();
-
-            Sys.setCwd( app_path );
-
-            _debug('init / setting up app path $app_path');
-            _debug('init / setting up pref path: $pref_path');
-
-        #end //snow_native
-
         _debug('init / pre ready, init host');
 
             //any app pre ready init can be handled in here
@@ -188,12 +168,25 @@ class Snow {
             assets = new Assets( this );
             windowing = new Windowing( this );
 
+        _debug('modules /');
+        _debug('  Assets - '    + typename(assets.module));
+        _debug('  Audio - '     + typename(audio.module));
+        _debug('  Input - '     + typename(input.module));
+        _debug('  IO - '        + typename(io.module));
+        _debug('  Windowing - ' + typename(windowing.module));
+
             //disllow re-entry
         was_ready = true;
 
+        setup_app_path();
+
         setup_default_assets().then(function(_){
 
+            _debug('init / setup default assets : ok');
+
             setup_configs().then(function(_){
+
+                _debug('init / setup default configs : ok');
 
                 setup_default_window();
 
@@ -333,7 +326,26 @@ class Snow {
 
     } //set_freeze
 
+        //ensure that we are in the correct location for asset loading
+    function setup_app_path() {
+
+        #if snow_native
+
+            var app_path = io.module.app_path();
+            var pref_path = io.module.app_path_prefs();
+
+            Sys.setCwd( app_path );
+
+            _debug('init / setting up app path $app_path');
+            _debug('init / setting up pref path: $pref_path');
+
+        #end //snow_native
+
+    } //setup_app_path
+
     function setup_default_assets() {
+
+        _debug('assets / setting up default assets from "${assets.manifest_path}"');
 
         return new Promise(function(resolve, reject) {
 
@@ -343,7 +355,7 @@ class Snow {
                 assets.manifest_path = snow_config.config_assets_path;
 
                     //
-                _debug('assets / fetching list "${assets.manifest_path}"');
+                _debug('assets / fetching list ...');
 
                     //we fetch the a list from the manifest
                 default_asset_list().then(function(list) {
@@ -376,7 +388,7 @@ class Snow {
         config.window = default_window_config();
         config.render = default_render_config();
 
-        return new Promise(function(resolve, reject){
+        return new Promise(function(resolve, reject) {
 
             if(!snow_config.config_custom_runtime) {
 
@@ -442,25 +454,36 @@ class Snow {
             To change this behavior override `get_runtime_config`. This is called by default in get_runtime_config. */
     function default_runtime_config() : Promise {
 
+        _debug('config / setting up default runtime config');
+
         return new Promise(function(resolve, reject) {
 
             var json:Dynamic = null;
 
                 //we want to load the runtime config from a json file by default
-            var onload = function(asset:snow.assets.AssetText) {
-                if(asset.text != null) {
-                    try {
+            var onload = function(asset:snow.system.assets.Asset.AssetText) {
 
+                _debug('config / loaded runtime config, parsing...');
+
+                if(asset.text != null) {
+
+                    try {
                         json = haxe.Json.parse( asset.text );
                         _debug('config / ok / loaded runtime config');
-
                     } catch(e:Dynamic) {
                         log('config / json parse error ');
                         throw Error.init('config / failed / default runtime config failed to parse as JSON. cannot recover. $e');
                     }
 
                     resolve(json);
+
+                } else { //asset.text != null
+
+                    log('config / warning / json asset.text was null? ' + asset);
+                    resolve(json);
+
                 }
+
             }
 
             var found = assets.text( snow_config.config_runtime_path, { silent:true, onload:onload });
@@ -511,7 +534,7 @@ class Snow {
 
             }).error(function(e:Dynamic) {
 
-                log('assets / info / default asset manifest not found at $list_path');
+                log('assets / info / default asset manifest not found at `$list_path`');
                 reject('default asset manifest error: $e');
 
             });
@@ -598,13 +621,8 @@ class Snow {
 
     } //_uniqueid
 
-        /** Loads a function out of a library */
-    public static function load( library:String, method:String, args:Int = 0 ) : Dynamic {
-
-        return snow.utils.Libs.load( library, method, args );
-
-    } //load
-
+    public static var timestamp (get, never) : Float;
+    static inline function get_timestamp() return core.timestamp();
 
     static var next_list : Array<Void->Void>;
         /** Call a function at the start of the next frame,
@@ -634,6 +652,10 @@ class Snow {
         } //next_list.length
 
     } //handle_next_list
+
+    inline function typename(t:Dynamic) {
+        return Type.getClassName(Type.getClass(t));
+    }
 
 } //Snow
 
