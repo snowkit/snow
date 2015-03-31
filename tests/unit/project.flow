@@ -2,12 +2,12 @@
 
   snow : {
     config :{
-      has_loop : false
+      has_loop : true
     }
   },
 
   project : {
-    name : 'Snow Unit Tests',
+    name : 'snow unit tests',
     version : '1.0.0',
     author : 'snowkit',
 

@@ -30,9 +30,10 @@ class Main extends snow.App {
 
     override function ready() {
 
+
         f = app;
 
-        run(new io.IOFileTest());
+        run(new io.FileTest());
 
         trace('completed $total tests, $failed failures (${time}ms)');
 

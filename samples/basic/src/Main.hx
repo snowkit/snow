@@ -1,11 +1,11 @@
 
 import snow.Snow;
 
-import snow.render.opengl.GL;
+import snow.modules.opengl.GL;
 import snow.io.typedarray.Float32Array;
 
 import snow.types.Types;
-import snow.Log.log;
+import snow.Debug.*;
 
 class Main extends snow.App.AppFixedTimestep {
 
@@ -74,7 +74,7 @@ class Main extends snow.App.AppFixedTimestep {
     } //update
 
         //render update
-    function on_render_update( window:snow.window.Window ) {
+    function on_render_update( window:snow.system.window.Window ) {
 
         //note that the update is separated from the render rate
         //this is the fix-your-timestep implementation

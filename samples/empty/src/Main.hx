@@ -1,7 +1,7 @@
 
-import snow.Log.log;
+import snow.Debug.*;
 import snow.types.Types;
-import snow.render.opengl.GL;
+import snow.modules.opengl.GL;
 
 @:log_as('app')
 class Main extends snow.App {
@@ -34,7 +34,7 @@ class Main extends snow.App {
 
     } //update
 
-    function render( window:snow.window.Window ) {
+    function render( window:snow.system.window.Window ) {
 
         GL.clearColor(1.0, 1.0, 1.0, 1.0);
         GL.clear(GL.COLOR_BUFFER_BIT);

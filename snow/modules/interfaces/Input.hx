@@ -1,0 +1,19 @@
+package snow.modules.interfaces;
+
+import snow.types.Types;
+
+@:allow(snow.system.input.Input)
+interface Input {
+
+    private function init():Void;
+    private function update():Void;
+    private function destroy():Void;
+    private function on_event( event:SystemEvent ):Void;
+
+    private function listen( window:snow.system.window.Window ):Void;
+    private function unlisten( window:snow.system.window.Window ):Void;
+
+    private function gamepad_add( id:Int ):Void;
+    private function gamepad_remove( id:Int ):Void;
+
+} //Input

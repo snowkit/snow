@@ -1,6 +1,6 @@
 package snow;
 
-import snow.input.Input;
+import snow.system.input.Input;
 import snow.types.Types;
 
     //Note all times in snow are in seconds.

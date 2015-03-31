@@ -66,7 +66,7 @@ class Snow {
         //if ready has completed, so systems can begin safely
     var is_ready : Bool = false;
         //the core platform instance to bind us
-    @:noCompletion public static var core : snow.Core;
+    @:noCompletion public static var core : Core;
 
 
     @:noCompletion public function new() {
@@ -78,7 +78,7 @@ class Snow {
         }
 
             //We create the core as a concrete platform version of the core
-        core = new snow.Core( this );
+        core = new Core( this );
         next_list = [];
 
     } //new
@@ -675,3 +675,10 @@ class Snow {
 
 } //Snow
 
+
+
+#if snow_web
+    private typedef Core = snow.core.web.Core;
+#else
+    private typedef Core = snow.core.native.Core;
+#end

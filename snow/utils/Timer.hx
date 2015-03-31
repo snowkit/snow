@@ -3,6 +3,7 @@ package snow.utils;
 import haxe.PosInfos;
 import haxe.Log;
 
+@:allow(snow.Snow)
     class Timer {
 
         static var running_timers:Array<Timer> = [];
@@ -15,15 +16,15 @@ import haxe.Log;
 
             time = _time;
             running_timers.push( this );
-            fire_at = stamp() + time;
+            fire_at = Snow.timestamp + time;
             running = true;
 
         } //new
 
         public static function measure<T>( f : Void -> T, ?pos : PosInfos ) : T {
-            var t0 = stamp();
+            var t0 = Snow.timestamp;
             var r = f();
-            Log.trace((stamp() - t0) + "s", pos);
+            Log.trace((Snow.timestamp - t0) + "s", pos);
             return r;
         }
 
@@ -40,12 +41,9 @@ import haxe.Log;
         } //stop
 
 
-        /**
-         * @private
-         */
-        @:noCompletion public static function update() {
+        static function update() {
 
-            var now = stamp();
+            var now = Snow.timestamp;
 
             for (timer in running_timers) {
                 if(timer.running) {
@@ -70,11 +68,6 @@ import haxe.Log;
             return t;
 
         } //delay
-
-
-        static public function stamp():Float {
-            return Snow.core.timestamp();
-        } //stamp()
 
     } //Timer
 

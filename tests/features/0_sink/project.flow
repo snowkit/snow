@@ -12,6 +12,7 @@
 
     build : {
       defines:['snow_web_psd'],
+      flags:['--macro snow.Debug.level(1)'],
       dependencies : {
         snow : '*',
       }

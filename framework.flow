@@ -185,7 +185,14 @@
         tga : { path:'flow/web/lib/tga.min.js => lib/tga.js', not_listed:true },
       },
       build : {
-        defines : ['snow_audio_howlerjs'],
+        flags:[
+          '--macro snow.Module.set("Audio", "snow.core.web.audio.Audio")',
+          '--macro snow.Module.set("IO", "snow.core.web.io.IO")',
+          '--macro snow.Module.set("Input", "snow.core.web.input.Input")',
+          '--macro snow.Module.set("Windowing", "snow.core.web.window.Windowing")',
+          '--macro snow.Module.set("Assets", "snow.core.web.assets.Assets")'
+        ],
+        defines : ['snow_module_audio_howlerjs'],
         files : {
         }
       }
@@ -219,8 +226,31 @@
 
     snow_native : {
       build: {
-        defines : ['snow_audio_openal', 'snow_input_sdl', 'snow_window_sdl']
+        flags:[
+          '--macro snow.Module.set("Audio", "snow.core.native.audio.Audio")',
+          '--macro snow.Module.set("IO", "snow.core.native.io.IO")',
+          '--macro snow.Module.set("Input", "snow.core.native.input.Input")',
+          '--macro snow.Module.set("Windowing", "snow.core.native.window.Windowing")',
+          '--macro snow.Module.set("Assets", "snow.core.native.assets.Assets")'
+        ],
+        defines : ['snow_module_input_sdl','snow_module_audio_openal', 'snow_module_windowing_sdl']
       }
+    },
+
+    snow_module_input_sdl : {
+      build:{ flags:['--macro snow.Module.set("Input", "snow.modules.sdl.Input")'] }
+    },
+
+    snow_module_windowing_sdl : {
+      build:{ flags:['--macro snow.Module.set("Windowing", "snow.modules.sdl.Windowing")'] }
+    },
+
+    snow_module_audio_openal : {
+      build:{ flags:['--macro snow.Module.set("Audio", "snow.modules.openal.Audio")'] }
+    },
+
+    snow_module_audio_howlerjs : {
+      build:{ flags:['--macro snow.Module.set("Audio", "snow.modules.howlerjs.Audio")'] }
     },
 
   }

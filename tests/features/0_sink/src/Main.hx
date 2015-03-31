@@ -1,23 +1,18 @@
 
 import snow.Snow;
 
-import snow.render.opengl.GL;
+import snow.modules.opengl.GL;
 
 import snow.io.typedarray.Uint8Array;
 import snow.io.typedarray.Float32Array;
 
-import snow.window.Window;
-import snow.input.Input;
+import snow.system.audio.Sound;
+import snow.system.window.Window;
 
 import snow.types.Types;
-import snow.assets.Assets;
-import snow.assets.AssetImage;
-import snow.App;
-import snow.Log.log;
+import snow.Debug.*;
 
-import snow.audio.Sound;
-
-class Main extends snow.AppFixedTimestep {
+class Main extends snow.App.AppFixedTimestep {
 
     var imageUniform:GLUniformLocation;
     var modelViewMatrixUniform:GLUniformLocation;
@@ -55,18 +50,16 @@ class Main extends snow.AppFixedTimestep {
 
     override function config( config:AppConfig ) : AppConfig {
 
+            //make sure the config window values are sound
+        assertnull(config.runtime.window);
+        assertnull(config.runtime.window.width);
+        assertnull(config.runtime.window.height);
+
             //here we can change the config.window and config.runtime values
             //before they are used by the framework, i.e verifying the runtime config values
             //and rejecting/updating invalid ones
-
-        if(config.runtime.window != null) {
-            if(config.runtime.window.width != null) {
-                config.window.width = Std.int(config.runtime.window.width);
-            }
-            if(config.runtime.window.height != null) {
-                config.window.height = Std.int(config.runtime.window.height);
-            }
-        }
+        config.window.width = Std.int(config.runtime.window.width);
+        config.window.height = Std.int(config.runtime.window.height);
 
         return config;
 
@@ -179,7 +172,7 @@ class Main extends snow.AppFixedTimestep {
 
 
         #if desktop
-            app.io.platform.watch_add('assets/');
+            app.io.module.watch_add('assets/');
         #end
 
         app.window.onevent = function(e:WindowEvent){
@@ -210,7 +203,7 @@ class Main extends snow.AppFixedTimestep {
 
         if(keycode == Key.enter && showing_keyboard) {
             trace("hiding keyboard");
-            app.input.platform.text_input_stop();
+            app.input.module.text_input_stop();
             showing_keyboard = false;
         }
 
@@ -297,9 +290,9 @@ class Main extends snow.AppFixedTimestep {
 
         if(keycode == Key.key_o) {
             #if desktop
-                app.io.platform.dialog_open('Select a thing', [{extension:'txt', desc:'text files'}, {extension:'cpp', desc:'cpp files'}]);
-                log(app.io.platform.dialog_save('Save a thing', {extension:'flow'}));
-                log(app.io.platform.dialog_folder());
+                app.io.module.dialog_open('Select a thing', [{extension:'txt', desc:'text files'}, {extension:'cpp', desc:'cpp files'}]);
+                log(app.io.module.dialog_save('Save a thing', {extension:'flow'}));
+                log(app.io.module.dialog_folder());
             #end
         }
 
@@ -374,8 +367,8 @@ class Main extends snow.AppFixedTimestep {
             // if(!showing_keyboard){
                 trace("showing keyboard");
                 var tenth = Std.int(app.window.height*0.1);
-                app.input.platform.text_input_rect(0, app.window.height - tenth, app.window.width, tenth );
-                app.input.platform.text_input_start();
+                app.input.module.text_input_rect(0, app.window.height - tenth, app.window.width, tenth );
+                app.input.module.text_input_start();
                 showing_keyboard = true;
             // }
         }

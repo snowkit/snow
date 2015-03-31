@@ -1,15 +1,20 @@
 package snow.types;
 
+#if !macro
+
 import snow.Snow;
 import snow.io.typedarray.Uint8Array;
 
-import snow.assets.AssetImage;
-import snow.assets.AssetText;
-import snow.assets.AssetBytes;
-import snow.assets.AssetAudio;
+//asset types
 
-typedef Key = snow.input.Keycodes.Keycodes;
-typedef Scan = snow.input.Keycodes.Scancodes;
+typedef Asset      = snow.system.assets.Asset.Asset;
+typedef AssetImage = snow.system.assets.Asset.AssetImage;
+typedef AssetBytes = snow.system.assets.Asset.AssetBytes;
+typedef AssetAudio = snow.system.assets.Asset.AssetAudio;
+typedef AssetText  = snow.system.assets.Asset.AssetText;
+
+typedef Key = snow.system.input.Keycodes.Keycodes;
+typedef Scan = snow.system.input.Keycodes.Scancodes;
 
 enum Error {
     error(value:Dynamic);
@@ -206,7 +211,7 @@ typedef ImageInfo = {
 
 } //AudioFormatType
 
-#if snow_audio_howlerjs
+#if snow_module_audio_howlerjs
 
         /** The platform specific implementation detail about the audio data */
     typedef AudioDataInfo = {
@@ -420,8 +425,8 @@ typedef DisplayMode = {
 #end //snow_web
 
     /** A platform window handle */
-#if snow_audio_howlerjs
-    typedef AudioHandle = snow.platform.web.audio.howlerjs.Howl;
+#if snow_module_audio_howlerjs
+    typedef AudioHandle = snow.modules.howlerjs.Howl;
 #else
     typedef AudioHandle = Null<Float>;
 #end //snow_web
@@ -624,3 +629,6 @@ typedef ModState = {
 
 
 } //FileEvent
+
+
+#end
