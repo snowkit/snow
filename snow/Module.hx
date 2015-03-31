@@ -4,7 +4,7 @@ package snow;
 
 import haxe.macro.Context;
 import haxe.macro.Expr;
-import haxe.macro.PositionTools;
+// import haxe.macro.PositionTools;
 import haxe.macro.Type;
 import haxe.macro.TypeTools;
 
@@ -55,7 +55,7 @@ class Module {
                     if(!t.isPrivate) {
                         var params = [for (p in tparams) TPType(Context.toComplexType(p))];
                         typelist.push({
-                            pos: PositionTools.make({ min:0, max:0, file:t.module }),
+                            pos: Context.makePosition({ min:0, max:0, file:t.module }),
                             pack: t.pack,
                             name: t.name,
                             kind: TDAlias( TPath(get_typepath(t, params)) ),
