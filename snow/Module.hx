@@ -4,7 +4,6 @@ package snow;
 
 import haxe.macro.Context;
 import haxe.macro.Expr;
-// import haxe.macro.PositionTools;
 import haxe.macro.Type;
 import haxe.macro.TypeTools;
 
