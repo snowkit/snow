@@ -129,6 +129,14 @@ class Audio {
 
     } //uncreate
 
+        /** Add a manually created sound instance to the audio system.
+            Once added the regular named api should apply.
+            Do not add sounds returned from `create` calls. */
+    @:noCompletion public function add( sound:Sound ) {
+        sound_list.set(sound.name, sound);
+        if(sound.is_stream) stream_list.set(sound.name, sound);
+    }
+
         /** Listen for a event on a named sound. `load` and `end` are valid events. */
     public function on( _name:String, _event:String, _handler:Sound->Void ) {
         var sound = get(_name);
