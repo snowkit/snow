@@ -27,6 +27,9 @@ class Snow {
         /** Generate a unique ID to use */
     public var uniqueid (get,never) : String;
 
+//Static convenience
+
+    public static var timestamp (get, never) : Float;
 
 //State management
 
@@ -67,9 +70,11 @@ class Snow {
     var is_ready : Bool = false;
         //the core platform instance to bind us
     @:noCompletion public static var core : Core;
+        //the list of functions to run next loop
+    static var next_queue : Array<Void->Void>;
 
-
-    @:noCompletion public function new() {
+    @:noCompletion
+    public function new() {
 
         if(snow.Debug.get_level() > 1) {
             log('log / level to ${snow.Debug.get_level()}' );
@@ -79,13 +84,57 @@ class Snow {
 
             //We create the core as a concrete platform version of the core
         core = new Core( this );
-        next_list = [];
+        next_queue = [];
 
     } //new
 
+//Public API
+
+        /** Shutdown the engine and quit */
+    public function shutdown() {
+
+        shutting_down = true;
+
+        host.ondestroy();
+        io.destroy();
+        audio.destroy();
+        input.destroy();
+        windowing.destroy();
+
+        core.shutdown();
+
+        has_shutdown = true;
+
+    } //shutdown
+
+        /** Called for you by snow, unless configured otherwise.
+            Only call this manually if your render_rate is 0! */
+    public inline function render() {
+
+        windowing.update();
+
+    } //render
+
+    public inline function dispatch_system_event( _event:SystemEvent ) {
+
+        on_event(_event);
+
+    } //dispatch_system_event
+
+//Public static API
+
+        /** Call a function at the start of the next frame,
+            useful for async calls in a sync context, allowing the sync function to return safely before the onload is fired. */
+    public static function next( func: Void->Void ) {
+
+        if(func != null) next_queue.push(func);
+
+    } //next
+
 //Internal API
 
-    @:noCompletion public function init( _snow_config:SnowConfig, _host : App ) {
+    @:noCompletion
+    public function init( _snow_config:SnowConfig, _host : App ) {
 
         snow_config = _snow_config;
         if(snow_config.app_package == null) {
@@ -119,29 +168,6 @@ class Snow {
         core.init( on_event );
 
     } //init
-
-        /** Shutdown the engine and quit */
-    public function shutdown() {
-
-        shutting_down = true;
-
-        host.ondestroy();
-        io.destroy();
-        audio.destroy();
-        input.destroy();
-        windowing.destroy();
-
-        core.shutdown();
-
-        has_shutdown = true;
-
-    } //shutdown
-
-    inline function get_time() : Float {
-
-        return core.timestamp();
-
-    } //time getter
 
     function on_snow_init() {
 
@@ -190,10 +216,7 @@ class Snow {
 
                 setup_default_window();
 
-                _debug('init / calling host ready');
-
-                is_ready = true;
-                host.ready();
+                next(on_ready);
 
             });
 
@@ -203,21 +226,13 @@ class Snow {
 
         });
 
-        //:todo:
-        //       iOS has a catch 22,
-        //       iOS has to create the window to handle the main loop,
-        //       so our update is deferred till then. Promises were using
-        //       the update loop to propagate, so they never got called.
-        //       Luckily we can just manually flush any until the ready happens for now.
-
-        #if ios
-            while(!is_ready) {
-                    //handle promise executions
-                snow.utils.Promise.Promises.step();
-                    //fire any next tick callbacks
-                handle_next_list();
-            }
-        #end
+            //make sure the initial promises happen
+        snow.utils.Promise.Promises.step();
+            //make sure all events pushed into
+            //the queue via next are flushed
+        while(next_queue.length > 0) {
+            cycle_next_queue();
+        }
 
     } //on_snow_ready
 
@@ -231,12 +246,14 @@ class Snow {
 
     } //do_internal_update
 
-        /** Called for you by snow, unless configured otherwise. Only call this manually if your render_rate is 0! */
-    public function render() {
+        //once start up is done, this is called
+    function on_ready() {
 
-        windowing.update();
+        _debug('init / calling host ready');
+        is_ready = true;
+        host.ready();
 
-    } //render
+    } //on_ready
 
     function on_snow_update() {
 
@@ -248,8 +265,8 @@ class Snow {
             //handle promise executions
         snow.utils.Promise.Promises.step();
 
-            //fire any next tick callbacks
-        handle_next_list();
+            //handle the events
+        cycle_next_queue();
 
             //game updates aren't allowed till we are flagged
         if(!is_ready) return;
@@ -266,12 +283,6 @@ class Snow {
         #end
 
     } //on_snow_update
-
-    public function dispatch_system_event( _event:SystemEvent ) {
-
-        on_event(_event);
-
-    } //dispatch_system_event
 
     function on_event( _event:SystemEvent ) {
 
@@ -328,19 +339,16 @@ class Snow {
 
     } //on_event
 
-    function set_freeze( _freeze:Bool ) {
+    function cycle_next_queue() {
 
-        freeze = _freeze;
+        var count = next_queue.length;
+        if(count > 0) {
+            for(i in 0 ... count) (next_queue.shift())();
+        } //count > 0
 
-        if(_freeze) {
-            audio.suspend();
-        } else {
-            audio.resume();
-        }
+    } //cycle_next_queue
 
-        return freeze;
-
-    } //set_freeze
+//Setup specifics
 
         //ensure that we are in the correct location for asset loading
     function setup_app_path() {
@@ -400,7 +408,7 @@ class Snow {
 
     function setup_configs() {
 
-            //sync configs
+        //sync configs
         config.window = default_window_config();
         config.render = default_render_config();
 
@@ -439,7 +447,6 @@ class Snow {
 
     } //setup_host_config
 
-
     function setup_default_window() {
 
         _debug('windowing / creating default window');
@@ -465,6 +472,7 @@ class Snow {
 
     } //create_default_window
 
+//Default handlers
 
         /** handles the default method of parsing a runtime config json,
             To change this behavior override `get_runtime_config`. This is called by default in get_runtime_config. */
@@ -559,7 +567,6 @@ class Snow {
 
     } //default_asset_list
 
-
         /** Returns a default configured render config */
     function default_render_config() : RenderConfig {
 
@@ -609,65 +616,54 @@ class Snow {
 
     } //default_window_config
 
+//Properties
+
+    function set_freeze( _freeze:Bool ) {
+
+        freeze = _freeze;
+
+        if(_freeze) {
+            audio.suspend();
+        } else {
+            audio.resume();
+        }
+
+        return freeze;
+
+    } //set_freeze
+
+    inline function get_time() : Float return core.timestamp();
+    inline function get_uniqueid() : String return make_uniqueid();
+    static inline function get_timestamp() return core.timestamp();
 
 //Helpers
 
-    function get_uniqueid() : String {
-        return _uniqueid();
-    } //get_uniqueid
-
-    inline function _uniqueid(?val:Int) : String {
 
         // http://www.anotherchris.net/csharp/friendly-unique-id-generation-part-2/#base62
+    function make_uniqueid(?val:Int) : String {
 
-        if(val == null) val = Std.random(0x7fffffff);
+        if(val == null) {
+            #if neko val = Std.random(0x3FFFFFFF);
+            #else val = Std.random(0x7fffffff);
+            #end
+        }
 
-        function to_char(value:Int) : String {
+        inline function to_char(value:Int) {
             if (value > 9) {
                 var ascii = (65 + (value - 10));
-                if (ascii > 90) { ascii += 6; }
+                if (ascii > 90) ascii += 6;
                 return String.fromCharCode(ascii);
             } else return Std.string(value).charAt(0);
         } //to_char
 
         var r = Std.int(val % 62);
         var q = Std.int(val / 62);
-        if (q > 0) return _uniqueid(q) + to_char(r);
-        else return Std.string(to_char(r));
 
-    } //_uniqueid
+        if (q > 0) return make_uniqueid(q) + to_char(r);
 
-    public static var timestamp (get, never) : Float;
-    static inline function get_timestamp() return core.timestamp();
+        return Std.string(to_char(r));
 
-    static var next_list : Array<Void->Void>;
-        /** Call a function at the start of the next frame,
-            useful for async calls in a sync context, allowing the sync function to return safely before the onload is fired. */
-    public static function next( func: Void->Void ) {
-
-        if(func != null) {
-            next_list.push(func);
-        }
-
-    } //next
-
-    function handle_next_list() {
-
-        if(next_list.length > 0) {
-
-                //to avoid culling ones adding during a next call
-            var _pre_next_length = next_list.length;
-                //avoid allocating on the run loop
-                //as much as possible so no iterator
-            for(i in 0 ... next_list.length) {
-                next_list[i]();
-            }
-
-            next_list.splice(0, _pre_next_length);
-
-        } //next_list.length
-
-    } //handle_next_list
+    } //make_uniqueid
 
     inline function typename(t:Dynamic) {
         return Type.getClassName(Type.getClass(t));

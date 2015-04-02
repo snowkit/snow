@@ -2,7 +2,7 @@
 
   snow : {
     config :{
-      has_loop : true
+      has_loop : false
     }
   },
 
