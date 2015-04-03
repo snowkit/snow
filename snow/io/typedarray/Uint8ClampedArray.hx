@@ -44,7 +44,9 @@ package snow.io.typedarray;
             #else
                 return @:privateAccess new haxe.io.Bytes( cast new js.html.Uint8Array(this.buffer) );
             #end
-    }
+        }
+
+        function toString() return 'Uint8ClampedArray [byteLength:${this.byteLength}, length:${this.length}]';
 
         //internal
         //clamp a Int to a 0-255 Uint8
@@ -121,6 +123,7 @@ package snow.io.typedarray;
             return ArrayBufferIO.setUint8Clamped(this.buffer, this.byteOffset+idx, val);
         }
 
+        function toString() return 'Uint8ClampedArray [byteLength:${this.byteLength}, length:${this.length}]';
 
     }
 

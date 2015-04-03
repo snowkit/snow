@@ -46,6 +46,8 @@ package snow.io.typedarray;
             #end
         }
 
+        function toString() return 'Uint8Array [byteLength:${this.byteLength}, length:${this.length}]';
+
     }
 
 #else
@@ -97,6 +99,8 @@ package snow.io.typedarray;
         }
 
     //Internal
+
+        function toString() return 'Uint8Array [byteLength:${this.byteLength}, length:${this.length}]';
 
         inline function get_length() return this.length;
 

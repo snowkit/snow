@@ -46,6 +46,8 @@ package snow.io.typedarray;
             #end
         }
 
+        function toString() return 'Uint32Array [byteLength:${this.byteLength}, length:${this.length}]';
+
     }
 
 #else
@@ -112,6 +114,8 @@ package snow.io.typedarray;
         public inline function __set(idx:Int, val:UInt) {
             return ArrayBufferIO.setUint32(this.buffer, this.byteOffset+(idx*BYTES_PER_ELEMENT), val);
         }
+
+        function toString() return 'Uint32Array [byteLength:${this.byteLength}, length:${this.length}]';
 
     }
 

@@ -242,6 +242,27 @@ package snow.io.typedarray;
         }
 
         #if !no_typedarray_inline inline #end
+        function toString() {
+
+            var name =
+                switch(type) {
+                    case Int8: 'Int8Array';
+                    case Uint8: 'Uint8Array';
+                    case Uint8Clamped: 'Uint8ClampedArray';
+                    case Int16: 'Int16Array';
+                    case Uint16: 'Uint16Array';
+                    case Int32: 'Int32Array';
+                    case Uint32: 'Uint32Array';
+                    case Float32: 'Float32Array';
+                    case Float64: 'Float64Array';
+                    case _: 'ArrayBufferView';
+                }
+
+            return name + ' [byteLength:${this.byteLength}, length:${this.length}]';
+
+        } //toString
+
+        #if !no_typedarray_inline inline #end
         function toByteLength( elemCount:Int ) : Int {
 
             return elemCount * bytesPerElement;
