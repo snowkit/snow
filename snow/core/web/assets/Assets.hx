@@ -1,9 +1,11 @@
 package snow.core.web.assets;
 
+import snow.system.assets.Asset.AssetImage;
 import snow.system.assets.Assets;
 import snow.types.Types;
-import snow.Debug.*;
-import snow.io.typedarray.*;
+import snow.api.Debug.*;
+import snow.api.buffers.*;
+import snow.api.Promise;
 
 import snow.core.web.assets.tga.TGA;
 import snow.core.web.assets.psd.PSD;
@@ -15,6 +17,7 @@ import snow.core.web.assets.psd.PSD;
 @:allow(snow.system.assets.Assets)
 class Assets implements snow.modules.interfaces.Assets {
 
+//module interface
 
     var system:snow.system.assets.Assets;
 
@@ -25,17 +28,204 @@ class Assets implements snow.modules.interfaces.Assets {
     function on_event(event:SystemEvent) {}
 
 
-    public function exists( _id:String, ?_strict:Bool=true ) : Bool {
+//Public API
 
-        if(_strict) {
-            return system.listed(_id);
+    //Images
+
+        public function image_load_info( _id:String, ?_components:Int = 4 ) : Promise {
+
+            return system.app.io.data_flow(_id, AssetImage.processor);
+
+        } //image_load_info
+
+            /** Create an image info (padded to POT) from a given Canvas or Image element. */
+        public function image_info_from_element( _id:String, _elem ) {
+
+            var width_pot = nearest_power_of_two(_elem.width);
+            var height_pot = nearest_power_of_two(_elem.height);
+            var image_bytes = POT_bytes_from_element(_elem.width, _elem.height, width_pot, height_pot, cast _elem);
+
+            var info : ImageInfo = {
+                id : _id,
+                bpp : 4,
+                width : _elem.width,
+                height : _elem.height,
+                width_actual : width_pot,
+                height_actual : height_pot,
+                bpp_source : 4,
+                pixels : image_bytes
+            };
+
+            image_bytes = null;
+
+            return info;
+
+        } //image_info_from_element
+
+            /** Create an image info (padded to POT) from raw already decoded image pixels */
+        public function image_info_from_pixels( _id:String, _width:Int, _height:Int, _pixels:Uint8Array ) {
+
+            var width_pot = nearest_power_of_two(_width);
+            var height_pot = nearest_power_of_two(_height);
+            var image_bytes = POT_bytes_from_pixels(_width, _height, width_pot, height_pot, _pixels);
+
+            var info : ImageInfo = {
+                id : _id,
+                bpp : 4,
+                width : _width,
+                height : _height,
+                width_actual : width_pot,
+                height_actual : height_pot,
+                bpp_source : 4,
+                pixels : image_bytes
+            };
+
+            image_bytes = null;
+
+            return info;
         }
 
-        return true;
+            /** Create an image info (padded to POT) from*/
+        public function image_info_from_bytes( _id:String, _bytes:Uint8Array, ?_components:Int = 4 ) : ImageInfo {
 
-    } //exists
+            var ext = haxe.io.Path.extension(_id);
 
-    //images
+            #if snow_web_tga
+            if(ext == 'tga') return image_info_from_bytes_tga(_id , _bytes);
+            #end
+
+            #if snow_web_psd
+            if(ext == 'psd') return image_info_from_bytes_psd(_id , _bytes);
+            #end
+
+                //convert to a binary string
+            var str = '', i = 0, len = _bytes.length;
+            while(i < len) str += String.fromCharCode(_bytes[i++] & 0xff);
+
+                //convert to an image element
+            var _img = new js.html.Image();
+            _img.src = 'data:image/$ext;base64,' + js.Browser.window.btoa(str);
+
+                //convert to info
+            return image_info_from_element(_id, _img);
+
+        } //image_info_from_bytes
+
+
+//Internal converters
+
+    #if snow_web_psd
+
+        /** Return an image info from the bytes of a PSD image */
+        function image_info_from_bytes_psd( _id:String, _bytes:Uint8Array ) {
+
+            var psd = new PSD(_bytes);
+                psd.parse();
+
+            var _width = untyped psd.header.width;
+            var _height = untyped psd.header.height;
+            var _pixels = new Uint8Array(untyped psd.image.pixelData);
+
+            return image_info_from_pixels(_id, _width, _height, _pixels);
+
+        } //image_info_from_bytes_psd
+
+    #end //snow_web_psd
+
+    #if snow_web_tga
+
+        /** Return an image info from the bytes of a tga image */
+        function image_info_from_bytes_tga( _id:String, _bytes:Uint8Array ) {
+
+            var image = new TGA();
+                image.load( _bytes );
+
+            return image_info_from_element(_id, image.getCanvas());
+
+        } //image_info_from_bytes_tga
+
+    #end //snow_web_tga
+
+
+        /** Return a POT array of bytes from raw image pixels */
+    function POT_bytes_from_pixels(_width:Int, _height:Int, _width_pot:Int, _height_pot:Int, _source:Uint8Array) : Uint8Array {
+
+        var tmp_canvas = js.Browser.document.createCanvasElement();
+
+            tmp_canvas.width = _width_pot;
+            tmp_canvas.height = _height_pot;
+
+        var tmp_context = tmp_canvas.getContext2d();
+
+            tmp_context.clearRect( 0, 0, tmp_canvas.width, tmp_canvas.height );
+
+        var image_bytes = null;
+        var _pixels = new js.html.Uint8ClampedArray(_source.buffer);
+        var _imgdata = tmp_context.createImageData( _width, _height );
+            _imgdata.data.set(_pixels);
+
+        try {
+
+                //store the data in it first
+            tmp_context.putImageData( _imgdata, 0, 0 );
+                //then bring out the full size
+            image_bytes = tmp_context.getImageData( 0, 0, tmp_canvas.width, tmp_canvas.height );
+
+        } catch(e:Dynamic) {
+
+            var tips = '- textures served from file:/// throw security errors\n';
+                tips += '- textures served over http:// work for cross origin byte requests';
+
+            log(tips);
+            throw e;
+
+        } //catch
+
+            //cleanup
+        tmp_canvas = null; tmp_context = null;
+        _imgdata = null;
+
+        return new Uint8Array(image_bytes.data);
+    }
+
+        /** Return a POT array of bytes from an image/canvas element */
+    function POT_bytes_from_element(_width:Int, _height:Int, _width_pot:Int, _height_pot:Int, _source:js.html.Element) : Uint8Array {
+
+        var tmp_canvas = js.Browser.document.createCanvasElement();
+
+            tmp_canvas.width = _width_pot;
+            tmp_canvas.height = _height_pot;
+
+        var tmp_context = tmp_canvas.getContext2d();
+
+            tmp_context.clearRect( 0,0, tmp_canvas.width, tmp_canvas.height );
+            tmp_context.drawImage( cast _source, 0, 0, _width, _height );
+
+        var image_bytes = null;
+
+        try {
+
+            image_bytes = tmp_context.getImageData( 0, 0, tmp_canvas.width, tmp_canvas.height );
+
+        } catch(e:Dynamic) {
+
+            var tips = '- textures served from file:/// throw security errors\n';
+                tips += '- textures served over http:// work for cross origin byte requests';
+
+            log(tips);
+            throw e;
+
+        } //catch
+
+            //cleanup
+        tmp_canvas = null; tmp_context = null;
+
+        return new Uint8Array(image_bytes.data);
+
+    } //POT_bytes_from_element
+
+
+    //Internal helpers
 
         function nearest_power_of_two(_value:Int) {
 
@@ -52,264 +242,5 @@ class Assets implements snow.modules.interfaces.Assets {
             return _value;
 
         } //nearest_power_of_two
-
-        public function image_load_info( _path:String, ?_components:Int = 4, ?_onload:?ImageInfo->Void ) : ImageInfo {
-
-            var ext : String = haxe.io.Path.extension(_path);
-
-            switch(ext) {
-                default:
-                    return image_load_info_generic(_path, _components, _onload);
-                case "tga":
-                    return image_load_info_tga(_path, _components, _onload);
-                case "psd":
-                    return image_load_info_psd(_path, _components, _onload);
-            }
-
-            return null;
-
-        } //image_load_info
-
-            /** Let the browser handle this detail */
-        function image_load_info_generic( _path:String, ?_components:Int=4, ?_onload:?ImageInfo->Void ) : ImageInfo {
-
-            //Create an image element to load the image source
-            var image : js.html.ImageElement = js.Browser.document.createImageElement();
-            var info : ImageInfo = null;
-
-            image.onload = function(a) {
-
-                var width_pot = nearest_power_of_two(image.width);
-                var height_pot = nearest_power_of_two(image.height);
-                var image_bytes = POT_Uint8Array_from_image(image.width, image.height, width_pot, height_pot, image);
-
-                info = {
-                    id : _path,
-                    bpp : 4,
-                    width : image.width,
-                    height : image.height,
-                    width_actual : width_pot,
-                    height_actual : height_pot,
-                    bpp_source : 4,
-                    data : image_bytes
-                };
-
-                    //cleanup
-                image_bytes = null;
-
-                    //append the listener
-                if(_onload != null) {
-                    _onload( info );
-                }
-
-            } //image.onload
-
-                //source comes after the onload being set, for race conditions
-            image.src = _path;
-
-            return info;
-
-        } //image_load_info_generic
-
-        function image_load_info_tga( _path:String, ?_components:Int=4, ?_onload:?ImageInfo->Void ) : ImageInfo {
-
-            var info : ImageInfo = null;
-
-                var load = system.app.io.data_load( _path, { binary:false });
-                load.then(function(uint:Uint8Array) {
-
-                    var image = new TGA();
-                        image.load( uint );
-
-                    var width_pot = nearest_power_of_two(image.header.width);
-                    var height_pot = nearest_power_of_two(image.header.height);
-                    var image_bytes = POT_Uint8Array_from_image(image.header.width, image.header.height, width_pot, height_pot, image.getCanvas());
-
-                        //todo: bpp?
-
-                    info = {
-                        id : _path,
-                        bpp : 4,
-                        width : image.header.width,
-                        height : image.header.height,
-                        width_actual : width_pot,
-                        height_actual : height_pot,
-                        bpp_source : 4,
-                        data : image_bytes
-                    };
-
-                        //cleanup
-                    image_bytes = null;
-
-                    if(_onload != null) {
-                        _onload( info );
-                    }
-
-                }).error(function(e){
-
-                    if(_onload != null) {
-                        _onload( info );
-                    }
-
-                });
-
-
-            return info;
-
-        } //image_load_info_tga
-
-        function POT_Uint8Array_from_image(_width:Int, _height:Int, _width_pot:Int, _height_pot:Int, _source:js.html.Element) : Uint8Array {
-
-            var tmp_canvas = js.Browser.document.createCanvasElement();
-
-                tmp_canvas.width = _width_pot;
-                tmp_canvas.height = _height_pot;
-
-            var tmp_context = tmp_canvas.getContext2d();
-
-                tmp_context.clearRect( 0,0, tmp_canvas.width, tmp_canvas.height );
-                tmp_context.drawImage( cast _source, 0, 0, _width, _height );
-
-            var image_bytes = null;
-
-            try {
-
-                image_bytes = tmp_context.getImageData( 0, 0, tmp_canvas.width, tmp_canvas.height );
-
-            } catch(e:Dynamic) {
-
-                var tips = '- textures served from file:/// throw security errors\n';
-                    tips += '- textures served over http:// work for cross origin byte requests';
-
-                log(tips);
-                throw e;
-
-            } //catch
-
-                //cleanup
-            tmp_canvas = null; tmp_context = null;
-
-            return new Uint8Array(image_bytes.data);
-
-        } //POT_Uint8Array_from_image
-
-        public function image_load_info_psd(_path:String, ?_components:Int=4, ?_onload:?ImageInfo->Void ) : ImageInfo {
-
-            var info : ImageInfo = null;
-
-                var image = new PSD();
-
-                image.open(_path, function(psdimage){
-
-                    var png_then = function(png_image) {
-
-                        var width_pot = nearest_power_of_two(psdimage.header.width);
-                        var height_pot = nearest_power_of_two(psdimage.header.height);
-                        var image_bytes = POT_Uint8Array_from_image(psdimage.header.width, psdimage.header.height, width_pot, height_pot, png_image);
-
-                        info = {
-                            id : _path,
-                            bpp : 4,
-                            width : psdimage.header.width,
-                            height : psdimage.header.height,
-                            width_actual : width_pot,
-                            height_actual : height_pot,
-                            bpp_source : 4,
-                            data : image_bytes
-                        };
-
-                            //cleanup
-                        image_bytes = null;
-
-                            //append the listener
-                        if(_onload != null) {
-                            _onload( info );
-                        }
-
-                    }
-
-                    untyped psdimage.image.toPng().then(png_then);
-
-                });
-
-            return info;
-
-        } //image_load_info_psd
-
-    public function image_info_from_bytes( _path:String, _bytes:Uint8Array, ?_components:Int = 4 ) : ImageInfo {
-
-        #if !snow_no_format_png
-
-            if(_bytes == null) {
-                log("invalid bytes passed to image_info_from_bytes " + _path);
-                return null;
-            }
-
-                //Then we need it to be a BytesInput haxe.io.Input
-            var _raw_bytes = _bytes.toBytes();
-                //now a byte input for format.png
-            var byte_input = new haxe.io.BytesInput(_raw_bytes, 0, _raw_bytes.length);
-                //get the raw data
-            var png_reader = new snow.utils.format.png.Reader(byte_input);
-                png_reader.checkCRC = false;
-            var png_data = png_reader.read();
-                //Extract the bytes from the png reader
-            var png_bytes = snow.utils.format.png.Tools.extract32(png_data);
-                //And the header information for infomation
-            var png_header = snow.utils.format.png.Tools.getHeader(png_data);
-
-            return {
-                id : _path,
-                bpp : _components,
-                width : png_header.width,
-                height : png_header.height,
-                width_actual : png_header.width,
-                height_actual : png_header.height,
-                bpp_source : png_header.colbits,
-                data : new Uint8Array(cast png_bytes.getData())
-            }
-        #else
-
-            return null;
-
-        #end
-
-    } //image_info_from_bytes
-
-    public function audio_load_info( _path:String, ?_format:AudioFormatType, ?_load:Bool = true, ?_onload:?AudioInfo->Void ) : AudioInfo {
-
-        var info : AudioInfo = {
-            format:_format,
-            id:_path, handle:null, data:null
-        };
-
-            //:todo:
-        #if snow_module_audio_howlerjs
-
-            info.handle = new Howl({
-                urls: [_path],
-                    //this seems to not work as intended
-                    //when skipping sounds. :todo : test on server
-                // buffer : !_load,
-                onend : function() {
-                    system.app.audio.module._on_end(info.handle);
-                },
-                onload : function(){
-                    if(_onload != null) {
-                        _onload(info);
-                    }
-                }
-            });
-
-        #end //howler
-
-        return info;
-
-    } //audio_load_info
-
-    public function audio_info_from_bytes( _path:String, _bytes:Uint8Array, _format:AudioFormatType ) : AudioInfo {
-        //:todo: not implemented as this is changing in the underlying core
-        throw ":todo:unimplemented";
-    }
 
 } //Assets

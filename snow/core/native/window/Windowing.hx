@@ -6,7 +6,7 @@ import snow.types.Types;
 import snow.system.window.Window;
 import snow.system.window.Windowing;
 
-import snow.utils.Libs;
+import snow.api.Libs;
 
  //Internal class handled by Windowing, the window system gives access to window features and functions
  //allowing the abstraction to exist between platform and implementation, so the system can be swapped out and the implementation remains unchanged.

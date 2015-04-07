@@ -1,8 +1,8 @@
 package snow.core.web.io;
 
 import snow.types.Types;
-import snow.io.typedarray.Uint8Array;
-import snow.utils.Promise;
+import snow.api.buffers.Uint8Array;
+import snow.api.Promise;
 
 
 @:allow(snow.system.io.IO)
@@ -59,7 +59,7 @@ class IO implements snow.modules.interfaces.IO {
                 if(request.status == 200) {
                     resolve( new Uint8Array(request.response) );
                 } else {
-                    reject('request status was ${request.status} / ${request.statusText}');
+                    reject(Error.error('request status was ${request.status} / ${request.statusText}'));
                 }
 
             } //onload

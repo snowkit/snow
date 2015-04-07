@@ -11743,3 +11743,5 @@ module.exports = {
 },{"rsvp":53}],"./image_exports/png.coffee":[function(require,module,exports){
 module.exports=require('bZ5QlH');
 },{}]},{},[])
+
+window.PSD = require('psd');

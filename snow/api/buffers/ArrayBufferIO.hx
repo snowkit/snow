@@ -1,10 +1,10 @@
-package snow.io.typedarray;
+package snow.api.buffers;
 
 #if !js
 
 class ArrayBufferIO {
 
-    #if !no_typedarray_inline inline #end
+    #if !snow_no_inline_buffers inline #end
     public static function getInt8( buffer:ArrayBuffer, byteOffset:Int ) : Int {
 
         #if cpp
@@ -16,7 +16,7 @@ class ArrayBufferIO {
 
     }
 
-    #if !no_typedarray_inline inline #end
+    #if !snow_no_inline_buffers inline #end
     public static function setInt8( buffer:ArrayBuffer, byteOffset:Int, value:Int ) {
 
         #if cpp
@@ -31,7 +31,7 @@ class ArrayBufferIO {
 
     }
 
-    #if !no_typedarray_inline inline #end
+    #if !snow_no_inline_buffers inline #end
     public static function getUint8( buffer:ArrayBuffer, byteOffset:Int ) : Null<UInt> {
 
         #if cpp
@@ -42,14 +42,14 @@ class ArrayBufferIO {
 
     }
 
-    #if !no_typedarray_inline inline #end
+    #if !snow_no_inline_buffers inline #end
     public static function setUint8Clamped( buffer:ArrayBuffer, byteOffset:Int, value:UInt ) : UInt {
 
         return setUint8( buffer, byteOffset, _clamp(value) );
 
     }
 
-    #if !no_typedarray_inline inline #end
+    #if !snow_no_inline_buffers inline #end
     public static function setUint8( buffer:ArrayBuffer, byteOffset:Int, value:UInt ) : UInt {
 
         #if cpp
@@ -110,7 +110,7 @@ class ArrayBufferIO {
 
     }
 
-    #if !no_typedarray_inline inline #end
+    #if !snow_no_inline_buffers inline #end
     public static function getUint16( buffer:ArrayBuffer, byteOffset:Int, littleEndian:Bool=true ) : Null<UInt> {
 
         #if cpp
@@ -129,7 +129,7 @@ class ArrayBufferIO {
 
     }
 
-    #if !no_typedarray_inline inline #end
+    #if !snow_no_inline_buffers inline #end
     public static function setUint16( buffer:ArrayBuffer, byteOffset:Int, value:UInt, littleEndian:Bool=true ) : UInt {
 
         #if cpp
@@ -142,7 +142,7 @@ class ArrayBufferIO {
 
     }
 
-    #if !no_typedarray_inline inline #end
+    #if !snow_no_inline_buffers inline #end
     public static function getInt32( buffer:ArrayBuffer, byteOffset:Int, littleEndian:Bool=true ) : Int {
 
         #if cpp
@@ -167,7 +167,7 @@ class ArrayBufferIO {
 
     }
 
-    #if !no_typedarray_inline inline #end
+    #if !snow_no_inline_buffers inline #end
     public static function setInt32( buffer:ArrayBuffer, byteOffset:Int, value:Int, littleEndian:Bool=true ) {
 
         #if cpp
@@ -194,7 +194,7 @@ class ArrayBufferIO {
 
     }
 
-    #if !no_typedarray_inline inline #end
+    #if !snow_no_inline_buffers inline #end
     public static function getUint32( buffer:ArrayBuffer, byteOffset:Int, littleEndian:Bool=true ) : Null<UInt> {
 
         #if cpp
@@ -205,7 +205,7 @@ class ArrayBufferIO {
 
     }
 
-    #if !no_typedarray_inline inline #end
+    #if !snow_no_inline_buffers inline #end
     public static function setUint32( buffer:ArrayBuffer, byteOffset:Int, value:UInt, littleEndian:Bool=true ) : UInt {
 
         #if cpp
@@ -218,7 +218,7 @@ class ArrayBufferIO {
 
     }
 
-    #if !no_typedarray_inline inline #end
+    #if !snow_no_inline_buffers inline #end
     public static function getFloat32( buffer:ArrayBuffer, byteOffset:Int, littleEndian:Bool=true ) : Float {
 
         #if cpp
@@ -229,7 +229,7 @@ class ArrayBufferIO {
 
     }
 
-    #if !no_typedarray_inline inline #end
+    #if !snow_no_inline_buffers inline #end
     public static function setFloat32( buffer:ArrayBuffer, byteOffset:Int, value:Float, littleEndian:Bool=true ) : Float {
 
         #if cpp
@@ -242,7 +242,7 @@ class ArrayBufferIO {
 
     }
 
-    #if !no_typedarray_inline inline #end
+    #if !snow_no_inline_buffers inline #end
     public static function getFloat64( buffer:ArrayBuffer, byteOffset:Int, littleEndian:Bool=true ) : Float {
 
         #if cpp
@@ -253,7 +253,7 @@ class ArrayBufferIO {
 
     }
 
-    #if !no_typedarray_inline inline #end
+    #if !snow_no_inline_buffers inline #end
     public static function setFloat64( buffer:ArrayBuffer, byteOffset:Int, value:Float, littleEndian:Bool=true ) : Float {
 
         #if cpp
@@ -268,7 +268,7 @@ class ArrayBufferIO {
 
 //Internal
 
-    #if !no_typedarray_inline inline #end
+    #if !snow_no_inline_buffers inline #end
     //clamp a Int to a 0-255 Uint8 (for Uint8Clamped array)
     static function _clamp(_in:Float) : Int {
 

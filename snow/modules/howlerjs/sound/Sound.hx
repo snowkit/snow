@@ -2,7 +2,7 @@ package snow.modules.howlerjs.sound;
 
 import snow.types.Types;
 
-import snow.Debug.*;
+import snow.api.Debug.*;
 
 class Sound extends snow.system.audio.Sound {
 

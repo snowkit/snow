@@ -3,7 +3,7 @@ package snow.modules.openal;
 import snow.types.Types;
 import snow.modules.openal.AL;
 
-import snow.Debug.*;
+import snow.api.Debug.*;
 
 /** Internal helper class for interaction with OpenAL. */
 @:noCompletion

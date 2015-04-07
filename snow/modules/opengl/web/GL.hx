@@ -2,10 +2,10 @@ package snow.modules.opengl.web;
 
 import js.html.webgl.RenderingContext;
 
-import snow.io.typedarray.ArrayBuffer;
-import snow.io.typedarray.ArrayBufferView;
-import snow.io.typedarray.Int32Array;
-import snow.io.typedarray.Float32Array;
+import snow.api.buffers.ArrayBuffer;
+import snow.api.buffers.ArrayBufferView;
+import snow.api.buffers.Int32Array;
+import snow.api.buffers.Float32Array;
 
 
 typedef GLActiveInfo                = js.html.webgl.ActiveInfo;

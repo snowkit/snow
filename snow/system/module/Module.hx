@@ -1,4 +1,4 @@
-package snow;
+package snow.system.module;
 
 #if macro
 
@@ -7,7 +7,7 @@ import haxe.macro.Expr;
 import haxe.macro.Type;
 import haxe.macro.TypeTools;
 
-class Module {
+@:noCompletion class Module {
 
     //module -> type package
     static var modules:Map<String, { type:String, module:Type }> = new Map();

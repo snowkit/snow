@@ -4,7 +4,7 @@ import snow.types.Types;
 import snow.system.window.Window;
 import snow.core.web.input.DOMKeys;
 
-import snow.Debug.*;
+import snow.api.Debug.*;
 
 typedef WebGamepadButton = {
     value : Float,

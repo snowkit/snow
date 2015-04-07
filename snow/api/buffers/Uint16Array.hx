@@ -1,12 +1,12 @@
-package snow.io.typedarray;
+package snow.api.buffers;
 
 #if js
 
     @:forward
     @:arrayAccess
-    abstract Uint32Array(js.html.Uint32Array)
-        from js.html.Uint32Array
-        to js.html.Uint32Array {
+    abstract Uint16Array(js.html.Uint16Array)
+        from js.html.Uint16Array
+        to js.html.Uint16Array {
 
         @:generic
         public inline function new<T>(
@@ -16,14 +16,14 @@ package snow.io.typedarray;
             ?buffer:ArrayBuffer, ?byteoffset:Int = 0, ?len:Null<Int>
         ) {
             if(elements != null) {
-                this = new js.html.Uint32Array( elements );
+                this = new js.html.Uint16Array( elements );
             } else if(array != null) {
-                this = new js.html.Uint32Array( untyped array );
+                this = new js.html.Uint16Array( untyped array );
             } else if(view != null) {
-                this = new js.html.Uint32Array( untyped view );
+                this = new js.html.Uint16Array( untyped view );
             } else if(buffer != null) {
                 len = (len == null) ? untyped __js__('undefined') : len;
-                this = new js.html.Uint32Array( buffer, byteoffset, len );
+                this = new js.html.Uint16Array( buffer, byteoffset, len );
             } else {
                 this = null;
             }
@@ -34,8 +34,8 @@ package snow.io.typedarray;
 
 
             //non spec haxe conversions
-        public static function fromBytes( bytes:haxe.io.Bytes, ?byteOffset:Int=0, ?len:Int ) : Uint32Array {
-            return new js.html.Uint32Array(cast bytes.getData(), byteOffset, len);
+        public static function fromBytes( bytes:haxe.io.Bytes, ?byteOffset:Int=0, ?len:Int ) : Uint16Array {
+            return new js.html.Uint16Array(cast bytes.getData(), byteOffset, len);
         }
 
         public function toBytes() : haxe.io.Bytes {
@@ -46,20 +46,20 @@ package snow.io.typedarray;
             #end
         }
 
-        function toString() return 'Uint32Array [byteLength:${this.byteLength}, length:${this.length}]';
+        function toString() return 'Uint16Array [byteLength:${this.byteLength}, length:${this.length}]';
 
     }
 
 #else
 
-    import snow.io.typedarray.ArrayBufferView;
-    import snow.io.typedarray.TypedArrayType;
+    import snow.api.buffers.ArrayBufferView;
+    import snow.api.buffers.TypedArrayType;
 
     @:forward()
     @:arrayAccess
-    abstract Uint32Array(ArrayBufferView) from ArrayBufferView to ArrayBufferView {
+    abstract Uint16Array(ArrayBufferView) from ArrayBufferView to ArrayBufferView {
 
-        public inline static var BYTES_PER_ELEMENT : Int = 4;
+        public inline static var BYTES_PER_ELEMENT : Int = 2;
 
         public var length (get, never):Int;
 
@@ -72,26 +72,26 @@ package snow.io.typedarray;
         ) {
 
             if(elements != null) {
-                this = new ArrayBufferView( elements, Uint32 );
+                this = new ArrayBufferView( elements, Uint16 );
             } else if(array != null) {
-                this = new ArrayBufferView(0, Uint32).initArray(array);
+                this = new ArrayBufferView(0, Uint16).initArray(array);
             } else if(view != null) {
-                this = new ArrayBufferView(0, Uint32).initTypedArray(view);
+                this = new ArrayBufferView(0, Uint16).initTypedArray(view);
             } else if(buffer != null) {
-                this = new ArrayBufferView(0, Uint32).initBuffer(buffer, byteoffset, len);
+                this = new ArrayBufferView(0, Uint16).initBuffer(buffer, byteoffset, len);
             } else {
-                throw "Invalid constructor arguments for Uint32Array";
+                throw "Invalid constructor arguments for Uint16Array";
             }
         }
 
     //Public API
 
-        public inline function subarray( begin:Int, end:Null<Int> = null) : Uint32Array return this.subarray(begin, end);
+        public inline function subarray( begin:Int, end:Null<Int> = null) : Uint16Array return this.subarray(begin, end);
 
 
             //non spec haxe conversions
-        public static function fromBytes( bytes:haxe.io.Bytes, ?byteOffset:Int=0, ?len:Int ) : Uint32Array {
-            return new Uint32Array(bytes, byteOffset, len);
+        public static function fromBytes( bytes:haxe.io.Bytes, ?byteOffset:Int=0, ?len:Int ) : Uint16Array {
+            return new Uint16Array(bytes, byteOffset, len);
         }
 
         public function toBytes() : haxe.io.Bytes {
@@ -106,16 +106,16 @@ package snow.io.typedarray;
         @:noCompletion
         @:arrayAccess
         public inline function __get(idx:Int) {
-            return ArrayBufferIO.getUint32(this.buffer, this.byteOffset+(idx*BYTES_PER_ELEMENT));
+            return ArrayBufferIO.getUint16(this.buffer, this.byteOffset+(idx*BYTES_PER_ELEMENT));
         }
 
         @:noCompletion
         @:arrayAccess
         public inline function __set(idx:Int, val:UInt) {
-            return ArrayBufferIO.setUint32(this.buffer, this.byteOffset+(idx*BYTES_PER_ELEMENT), val);
+            return ArrayBufferIO.setUint16(this.buffer, this.byteOffset+(idx*BYTES_PER_ELEMENT), val);
         }
 
-        function toString() return 'Uint32Array [byteLength:${this.byteLength}, length:${this.length}]';
+        function toString() return 'Uint16Array [byteLength:${this.byteLength}, length:${this.length}]';
 
     }
 

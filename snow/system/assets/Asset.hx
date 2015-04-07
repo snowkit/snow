@@ -1,32 +1,37 @@
 package snow.system.assets;
 
+import snow.system.assets.Asset;
 import snow.system.assets.Assets;
 import snow.types.Types;
-import snow.io.typedarray.Uint8Array;
+import snow.api.buffers.Uint8Array;
+import snow.api.Promise;
+import snow.api.Debug.*;
 
 
 /**  An asset base class. Get assets from the `app.assets` */
 class Asset {
 
-
-        /** The asset manager associated with this asset */
+        /** The asset system */
     public var system : Assets;
-        /** The id of this asset like `assets/image.png` */
+        /** The id of this asset, i.e `assets/image.png` */
     public var id : String;
-        /** The `AssetInfo` of this asset */
-    public var info : AssetInfo;
-        /** The concrete type this asset holds (useful when handling as Asset base class) */
-    public var type : AssetType;
-        /** True if this asset has completely loaded. Only changed through `load` and when load completes */
+        /** True if this asset has completely loaded. */
     public var loaded : Bool = false;
+        /** A convenience type id when dealing with the base class.
+            This is an Int because it can be any number for custom types,
+            by default uses AssetType for the base types. */
+    public var type : Int;
 
 
         /** Called from subclasses, by `app.assets` */
-    public function new( _system:Assets, _info:AssetInfo ) {
+    public function new( _system:Assets, _id:String, _type:Int=0 ) {
+
+        assertnull( _id );
+        assertnull( _system );
 
         system = _system;
-        info = _info;
-        id = info.id;
+        type = _type;
+        id = _id;
 
     } //new
 
@@ -34,282 +39,306 @@ class Asset {
 } //Asset
 
 
-//Audio
-
-        /**  An asset that contains audio file `audio` as an `AudioInfo`. Get assets from the `Assets` class, via `app.assets` */
-        class AssetAudio extends Asset {
-
-
-                /** The `AudioInfo` this asset contains */
-            public var audio : AudioInfo;
-                /** The audio format of this asset. */
-            public var format : AudioFormatType;
-                /** Whether or not this asset is to be loaded in full (or alternatively, streamed). Used from `load` only. */
-            public var load_full : Bool = true;
-
-
-                /** Created from `app.assets.audio`.  */
-            public function new( _system:Assets, _info:AssetInfo, _format:AudioFormatType, ?_load:Bool=true ) {
-
-                super( _system, _info );
-                type = AssetType.audio;
-                format = _format;
-                load_full = _load;
-
-            } //new
-
-
-                /** Called from `app.assets.audio`, or manually, if reloading the asset data at a later point.
-                    Note this function calls the onload handler in the next frame, so sync code can return. */
-            public function load( ?onload:AssetAudio->Void ) {
-
-                loaded = false;
-                    //clear any old data in case
-                audio = null;
-
-                    //load the new data
-                system.module.audio_load_info( info.path, format, load_full, function( ?_audio:AudioInfo ) {
-
-                    audio = _audio;
-
-                    loaded = true;
-
-                    if(onload != null) {
-                        Snow.next(function(){
-                            onload( this );
-                        });
-                    }
-
-                }); //audio_load_info
-
-            } //load
-
-
-                /** Called from `app.assets.audio`, or manually, if reloading the asset data at a later point. This is a synchronous call */
-            public function load_from_bytes( bytes:snow.io.typedarray.Uint8Array, format:AudioFormatType, ?onload:AssetAudio->Void ) {
-
-                loaded = false;
-
-                        //clear old reference
-                    audio = null;
-                        //load the new data
-                    audio = system.module.audio_info_from_bytes( info.path, bytes, format );
-
-                    if(onload != null) {
-                        onload( this );
-                    }
-
-                loaded = true;
-
-            } //load
-
-
-        } //AssetAudio
-
-
 //Image
 
 
-        /**  An asset that contains image file `image` as an `ImageInfo`. Get assets from the `Assets` class, via `app.assets` */
-        class AssetImage extends Asset {
 
+    class AssetImage extends snow.system.assets.Asset {
 
-                /** The `ImageInfo` this asset contains */
-            public var image : ImageInfo;
-                /** The requested components when loading this image. */
-            public var components : Int = 4;
+        public var image (default,set): ImageInfo;
 
+        public function new(_system:Assets, _id:String, _image:ImageInfo) {
 
-                /** Called from `app.assets` */
-            public function new( _system:Assets, _info:AssetInfo, ?_components:Int=4 ) {
+            super(_system, _id, AssetType.image);
+            image = _image;
 
-                super( _system, _info );
-                type = AssetType.image;
-                components = _components;
+        } //new
 
-            } //new
+        //Public API
 
-                /** Called from `app.assets.image`, or manually, if reloading the asset data at a later point.
-                    Note this function is async by nature, and calls the onload handler in the next frame. */
-            public function load( ?onload:AssetImage->Void ) {
+                /** Reloads the bytes from the stored id, using the default processor, returning a promise for the asset. */
+            public function reload() : Promise {
+
+                return new Promise(function(resolve, reject) {
+
+                    system.app.io.data_flow(id, provider).then(
+                        function(_image:ImageInfo){
+                            image = _image;
+                            resolve(this);
+                        }
+                    ).error(reject);
+
+                }); //promise
+
+            } //reload
+
+                /** Reload the asset with from bytes */
+            public function reload_from_bytes(_bytes:Uint8Array) {
 
                 loaded = false;
-                    //clear any old data in case
-                image = null;
+                image = system.module.image_info_from_bytes(id, _bytes);
 
-                    //load the new data
-                system.module.image_load_info( info.path, components, function( ?_image:ImageInfo ) {
+            } //reload_from_bytes
 
-                    if(_image != null) {
-                        image = _image;
-                        loaded = true;
-                    }
+                /** Reload the asset from already decoded pixels */
+            public function reload_from_pixels(_width:Int, _height:Int, _pixels:Uint8Array) {
 
-                    if(onload != null) {
-                        Snow.next(function(){
-                            onload( this );
-                        });
-                    }
+                loaded = false;
+                image = system.module.image_info_from_pixels(id, _width, _height, _pixels);
 
-                }); //image_load_info
+            } //reload_from_bytes
+
+        //Public Static API
+
+            public static function load(_system:Assets, _id:String) : Promise {
+
+                assertnull( _id );
+                assertnull( _system );
+
+                return new AssetImage(_system, _id, null).reload();
 
             } //load
 
-                /** Called from `app.assets.image`, or manually, if reloading the asset data at a later point. This is a synchronous call */
-            public function load_from_bytes( bytes:Uint8Array, ?onload:AssetImage->Void ) {
+            public static function load_from_bytes(_system:Assets, _id:String, _bytes:Uint8Array) : AssetImage {
 
-                loaded = false;
+                assertnull( _id );
+                assertnull( _bytes );
+                assertnull( _system );
 
-                        //clear old reference
-                    image = null;
-                        //load the new data
-                    image = system.module.image_info_from_bytes( info.path, bytes, components );
+                var info = _system.module.image_info_from_bytes(_id, _bytes);
 
-                    if(onload != null) {
-                        onload( this );
-                    }
-
-                loaded = true;
+                return new AssetImage(_system, _id, info);
 
             } //load_from_bytes
 
-                /** Create an image asset from a pre-existing decoded image info. This is a synchronous call */
-            public function load_from_pixels( _id:String, _width:Int, _height:Int, _pixels: snow.io.typedarray.Uint8Array, ?onload:AssetImage->Void ) {
+            public static function load_from_pixels(_system:Assets, _id:String, _width:Int, _height:Int, _pixels:Uint8Array) : AssetImage {
 
-                loaded = false;
+                assertnull( _id );
+                assertnull( _pixels );
+                assertnull( _system );
 
-                        //clear old reference
-                    image = null;
-                        //image info
-                    image = {
-                        id : _id,
-                        width : _width,
-                        width_actual : _width,
-                        height : _height,
-                        height_actual : _height,
-                        bpp : 4, //:todo :
-                        bpp_source : 4,
-                        data : _pixels
-                    };
+                var info = _system.module.image_info_from_pixels(_id, _width, _height, _pixels);
 
-                    if(onload != null) {
-                        onload( this );
-                    }
-
-                loaded = true;
+                return new AssetImage(_system, _id, info);
 
             } //load_from_pixels
 
+                /** A default io provider, using image_load_info from the asset module. Promises ImageInfo */
+            public static function provider(_app:snow.Snow, _id:String) : Promise {
 
-        } //AssetImage
+                return _app.assets.module.image_load_info(_app.assets.path(_id));
+
+            } //provider
+
+                /** A convenience io processor, using image_info_from_bytes, from the asset module. Promises ImageInfo */
+            public static function processor(_app:snow.Snow, _id:String, _data:Uint8Array) : Promise {
+
+                if(_data == null) return Promise.reject(Error.error("AssetImage processor: data was null"));
+
+                var info = _app.assets.module.image_info_from_bytes(_id, _data);
+
+                return Promise.resolve(info);
+
+            } //load
+
+        //Internal
+
+                /** Set the image contained to a new value */
+            function set_image(_image:ImageInfo) {
+
+                loaded = _image != null;
+                return image = _image;
+
+            } //set_image
+
+    } //AssetImage
 
 
 //Bytes
 
 
-        /**  An asset that contains byte `bytes` as a `Uint8Array`. Get assets from the `Assets` class, via `app.assets` */
-        class AssetBytes extends Asset {
+    class AssetBytes extends Asset {
 
+        public var bytes (default,set): Uint8Array;
 
-                /** The `Uint8Array` this asset contains */
-            public var bytes : Uint8Array;
-                /** Whether or not this bytes data will load syncronously. Used in `load` only. */
-            public var async : Bool = false;
+        public function new(_system:Assets, _id:String, _bytes:Uint8Array) {
 
+            super(_system, _id, AssetType.bytes);
+            bytes = _bytes;
 
-                /** Called from `app.assets` */
-            public function new( _system:Assets, _info:AssetInfo, ?_async:Bool=false ) {
+        } //new
 
-                super( _system, _info );
-                type = AssetType.bytes;
-                async = _async;
+        //Public API
 
-            } //new
+                /** Reloads the bytes from it's stored id, using the default processor, returning a promise for the asset. */
+            public function reload() : Promise {
 
-                /** Called from `app.assets.bytes`, or manually, if reloading the asset data at a later point.
-                    Note this function calls the onload handler in the next frame, so sync code can return. */
-            public function load( ?onload:AssetBytes->Void ) {
+                return new Promise(function(resolve, reject) {
 
-                loaded = false;
-                    //clear any old data in case
-                bytes = null;
+                    system.app.io.data_flow(id).then(function(_bytes:Uint8Array){
 
-                var p = system.app.io.data_load( info.path, { binary:true });
-                p.then(function(data:Uint8Array){
+                        bytes = _bytes;
+                        resolve(this);
 
-                    load_from_bytes(data, onload);
+                    }).error(reject);
 
-                });
+                }); //promise
+
+            } //reload
+
+        //Static API
+
+                /** Create a new AssetBytes from an id, which returns a promise for the asset. */
+            public static function load( _system:Assets, _id:String ) : Promise {
+
+                return new AssetBytes(_system, _id, null).reload();
 
             } //load
 
-                /** This function is a synchronous call. */
-            public function load_from_bytes( _bytes:Uint8Array, ?onload:AssetBytes->Void ) {
 
-                loaded = false;
+        //Internal
 
-                    bytes = _bytes;
+                /** Set the bytes contained to a new value */
+            function set_bytes(_bytes:Uint8Array) {
 
-                loaded = true;
+                loaded = _bytes != null;
+                return bytes = _bytes;
 
-                if(onload != null) {
-                    onload( this );
-                }
+            } //set_bytes
 
-            } //load_from_bytes
-
-
-        } //AssetBytes
+    } //AssetBytes
 
 
 //Text
 
 
-        /**  An asset that contains `text` as a `String`. Get assets from the `Assets` class, via `app.assets` */
-        class AssetText extends Asset {
+    class AssetText extends Asset {
 
+        public var text (default,set): String;
 
-                /** The `String` this asset contains */
-            public var text : String;
-                /** Whether or not this bytes data will load syncronously. Used in `load` only. */
-            public var async : Bool = false;
+        public function new(_system:Assets, _id:String, _text:String) {
 
+            super(_system, _id, AssetType.text);
+            text = _text;
 
-                /** Called from `app.assets.text` */
-            public function new( _system:Assets, _info:AssetInfo, ?_async:Bool=false ) {
+        } //new
 
-                super( _system, _info );
-                type = AssetType.text;
-                async = _async;
+        //Public API
 
-            } //new
+                /** Reloads the text from it's stored id, returning a promise for the asset. */
+            public function reload() : Promise {
 
-                /** Called from `app.assets.text`, or manually, if reloading the asset data at a later point.
-                    Note this function calls the onload handler in the next frame, so sync code can return. */
-            public function load( ?onload:AssetText->Void ) {
+                return new Promise(function(resolve, reject) {
 
-                loaded = false;
-                    //clear any old data in case
-                text = null;
+                    system.app.io.data_flow(id, processor).then(function(_text:String){
 
-                var p = system.app.io.data_load( info.path, { binary:false });
-                p.then(function(data:Uint8Array){
-                    load_from_string( data.toBytes().toString(), onload );
-                });
+                        text = _text;
+                        resolve(this);
+
+                    }).error(reject);
+
+                }); //promise
+
+            } //reload
+
+        //Static API
+
+                /** Create a new AssetText from an id, which returns a promise for the asset. */
+            public static function load( _system:Assets, _id:String ) : Promise {
+
+                return new AssetText(_system, _id, null).reload();
 
             } //load
 
-            public function load_from_string( _string:String, ?onload:AssetText->Void ) {
+                /** A default text processor for the data processor API */
+            public static function processor(_app:snow.Snow, _id:String, _data:Uint8Array) : Promise {
 
-                loaded = false;
-                text = _string;
-                loaded = true;
+                if(_data == null) return Promise.reject(Error.error("AssetText processor: data was null"));
 
-                if(onload != null) {
-                    onload( this );
-                }
+                return Promise.resolve(_data.toBytes().toString());
 
-            } //load_from_string
+            } //processor
 
+        //Internal
 
-        } //AssetText
+                /** Set the text contained to a new value */
+            function set_text(_text:String) {
+
+                loaded = _text != null;
+                return text = _text;
+
+            } //set_text
+
+    } //AssetText
+
+//JSON
+
+    class AssetJSON extends Asset {
+
+        /** The json data stored in the asset */
+        public var json (default,set): Dynamic;
+
+        public function new( _system:snow.system.assets.Assets, _id:String, _json:Dynamic ) {
+
+            super(_system, _id, AssetType.json);
+            json = _json;
+
+        } //new
+
+        //Public API
+
+                /** Reloads the json from it's stored id, returning a promise for the asset. */
+            public function reload() : Promise {
+
+                return new Promise(function(resolve, reject) {
+
+                    system.app.io.data_flow(id, processor).then(function(_json:Dynamic){
+
+                        json = _json;
+                        resolve(this);
+
+                    }).error(reject);
+
+                }); //promise
+
+            } //reload
+
+        //Static API
+
+                /** Create a new AssetJSON from an id, which returns a promise for the asset. */
+            public static function load( _system:snow.system.assets.Assets, _id:String ) : Promise {
+
+                return new AssetJSON(_system, _id, null).reload();
+
+            } //load
+
+                /** A default json processor for the data processor API */
+            public static function processor(_app:snow.Snow, _id:String, _data:Uint8Array) : Promise {
+
+                if(_data == null) return Promise.reject(Error.error("AssetJSON: data was null"));
+
+                return new Promise(function(resolve, reject) {
+
+                    var _data_json : Dynamic = null;
+
+                    try { _data_json = haxe.Json.parse(_data.toBytes().toString()); }
+
+                    catch(e:Dynamic) return reject(Error.parse(e));
+
+                    return resolve(_data_json);
+
+                }); //promise
+
+            } //processor
+
+        //Internal
+
+                /** Set the json contained to a new value */
+            function set_json(_json:Dynamic) {
+
+                loaded = _json != null;
+                return json = _json;
+
+            } //set_json
+
+    } //AssetJSON

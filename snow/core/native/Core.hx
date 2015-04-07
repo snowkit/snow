@@ -1,7 +1,7 @@
 package snow.core.native;
 
 import snow.types.Types;
-import snow.Debug.*;
+import snow.api.Debug.*;
 
 #if (hxcpp_static_std && cpp && !scriptable)
 
@@ -31,7 +31,7 @@ class Core {
 
             snow_init( _event_handler, {
                 has_loop:app.snow_config.has_loop,
-                log_level:snow.Debug.get_level()
+                log_level:snow.api.Debug.get_level()
             });
 
         } //init
@@ -52,9 +52,9 @@ class Core {
 
     //lib functions
 
-        static var snow_init       = snow.utils.Libs.load( "snow", "snow_init", 2 );
-        static var snow_shutdown   = snow.utils.Libs.load( "snow", "snow_shutdown", 0 );
-        static var snow_timestamp  = snow.utils.Libs.load( "snow", "snow_timestamp", 0 );
+        static var snow_init       = snow.api.Libs.load( "snow", "snow_init", 2 );
+        static var snow_shutdown   = snow.api.Libs.load( "snow", "snow_shutdown", 0 );
+        static var snow_timestamp  = snow.api.Libs.load( "snow", "snow_timestamp", 0 );
 
 } //Core
 

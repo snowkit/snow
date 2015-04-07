@@ -1,11 +1,9 @@
 
 import snow.Snow;
-
-import snow.modules.opengl.GL;
-import snow.io.typedarray.Float32Array;
-
 import snow.types.Types;
-import snow.Debug.*;
+import snow.api.Debug.*;
+import snow.api.buffers.Float32Array;
+import snow.modules.opengl.GL;
 
 class Main extends snow.App.AppFixedTimestep {
 
@@ -277,7 +275,7 @@ class Main extends snow.App.AppFixedTimestep {
             }
             ";
 
-    //vertex
+        //vertex
         log("about to create a vertex shader");
 
             var vshader = GL.createShader(GL.VERTEX_SHADER);
@@ -291,7 +289,7 @@ class Main extends snow.App.AppFixedTimestep {
 
         log("vertex shader compiled");
 
-    //fragment
+        //fragment
         log("about to create a fragment shader");
 
             var fshader = GL.createShader(GL.FRAGMENT_SHADER);
@@ -305,7 +303,7 @@ class Main extends snow.App.AppFixedTimestep {
 
         log("fragment shader compiled");
 
-    //linking
+        //linking
 
         log("about to link the shader program");
 
@@ -324,7 +322,7 @@ class Main extends snow.App.AppFixedTimestep {
         uniform_MP = GL.getUniformLocation (program, "projection");
         uniform_MV = GL.getUniformLocation (program, "modelview");
 
-    } //initializeShaders
+    } //init_shaders
 
     function init_buffers() {
 

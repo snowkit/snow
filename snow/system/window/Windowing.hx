@@ -2,9 +2,10 @@ package snow.system.window;
 
 import snow.types.Types;
 import snow.system.window.Window;
-import snow.utils.Libs;
 
-private typedef WindowingModule = haxe.macro.MacroType<[snow.Module.assign('Windowing')]>;
+#if !macro
+    private typedef WindowingModule = haxe.macro.MacroType<[snow.system.module.Module.assign('Windowing')]>;
+#end
 
 /** The window manager, accessed via `app.window` */
 @:allow(snow.Snow)

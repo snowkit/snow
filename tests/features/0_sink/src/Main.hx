@@ -3,14 +3,14 @@ import snow.Snow;
 
 import snow.modules.opengl.GL;
 
-import snow.io.typedarray.Uint8Array;
-import snow.io.typedarray.Float32Array;
+import snow.api.buffers.Uint8Array;
+import snow.api.buffers.Float32Array;
 
 import snow.system.audio.Sound;
 import snow.system.window.Window;
 
 import snow.types.Types;
-import snow.Debug.*;
+import snow.api.Debug.*;
 
 class Main extends snow.App.AppFixedTimestep {
 
@@ -36,14 +36,6 @@ class Main extends snow.App.AppFixedTimestep {
 
     var projectionMatrix : Float32Array;
     var modelViewMatrix : Float32Array;
-
-        //sound instances.
-        //no need to track these,
-        //just testing.
-    var sound1 : Sound;
-    var sound2 : Sound;
-    var sound3 : Sound;
-    var sound5 : Sound;
 
         //left or right pan?
     var left : Bool = false;
@@ -127,17 +119,18 @@ class Main extends snow.App.AppFixedTimestep {
         ];
 
         for(f in files) {
-            app.assets.image( f, {
-                onload:function(asset:AssetImage){
-                    if(asset != null) {
-                        log('loaded $f with ${asset.image.width}x${asset.image.height}x${asset.image.bpp} (source bpp:${asset.image.bpp_source}) mem:${asset.image.data.length}');
-                        textures.push( createTexture( asset ) );
-                        if(current_texture == null) {
-                            current_texture = textures[0];
+            app.assets.image(f)
+                .then(
+                    function(asset:AssetImage){
+                        if(asset != null) {
+                            log('loaded $f with ${asset.image.width}x${asset.image.height}x${asset.image.bpp} (source bpp:${asset.image.bpp_source}) mem:${asset.image.pixels.length}');
+                            textures.push( createTexture( asset ) );
+                            if(current_texture == null) {
+                                current_texture = textures[0];
+                            }
                         }
                     }
-                }
-            });
+                );
         }
 
             //this is temp testing, just hook into the window render directly
@@ -147,29 +140,26 @@ class Main extends snow.App.AppFixedTimestep {
 
         positionY = (app.window.height - size) / 2;
 
-        sound1 = app.audio.create("assets/sound.pcm" );
-        sound2 = app.audio.create("assets/200308__liveware__sony-nex-7-double-shutter.ogg", 'ogg');
-        sound3 = app.audio.create("assets/sound.wav", 'wav');
-        sound5 = app.audio.create("assets/244028__lennyboy__rain001.ogg", 'ogg_stream', true);
+        app.audio.create("assets/sound.pcm", 'sound1');
+        app.audio.create("assets/sound.wav", 'wav');
 
-        // log("sound1 : " + sound1.name);
-        // log("sound2 : " + sound2.name);
-        // log("sound3 : " + sound3.name);
-        // log("sound5 : " + sound5.name);
-
-        sound5.on('load', function(s:Sound){
-            log('sound 5 loaded');
-            s.loop();
+        app.audio.create("assets/200308__liveware__sony-nex-7-double-shutter.ogg", 'shutter').then(function(sound:Sound){
+            log('shutter sound / loaded');
+            sound.on('end', function(_) {
+                log('shutter / on end!');
+            });
         });
 
-        sound5.on('end', function(s:Sound){
-            log('loop ended');
-        });
+        app.audio.create("assets/244028__lennyboy__rain001.ogg", 'rain', true).then(function(sound:Sound) {
 
-        sound2.on('end', function(s:Sound) {
-            log('onend sound2!');
-        });
+            log('rain sound / loaded, looping');
+            sound.loop();
 
+            sound.on('end', function(_){
+                log('rain sound / loop end, restart');
+            });
+
+        });
 
         #if desktop
             app.io.module.watch_add('assets/');
@@ -199,7 +189,7 @@ class Main extends snow.App.AppFixedTimestep {
 
     override function onkeydown( keycode:Int, scancode:Int,_,_,_,_ ) {
 
-        log('key down : $keycode / scan code : $scancode / scan name : ${Scan.name(scancode)}');
+        // log('key down : $keycode / scan code : $scancode / scan name : ${Scan.name(scancode)}');
 
         if(keycode == Key.enter && showing_keyboard) {
             trace("hiding keyboard");
@@ -209,15 +199,15 @@ class Main extends snow.App.AppFixedTimestep {
 
             //console scan code should be universally next to 1
         if(keycode == Key.key_e) {
-            app.audio.play('ogg');
+            app.audio.play('shutter');
         }
 
         if(keycode == Key.key_l) {
             loope = !loope;
             if(loope) {
-                app.audio.loop('ogg');
+                app.audio.loop('shutter');
             } else {
-                app.audio.stop('ogg');
+                app.audio.stop('shutter');
             }
         }
 
@@ -233,13 +223,15 @@ class Main extends snow.App.AppFixedTimestep {
 
         if(keycode == Key.key_q) {
             left = !left;
-            sound2.pan = left ? -1 : 1;
-            sound2.play();
+
+            app.audio.pan('shutter', left ? -1 : 1);
+            app.audio.play('shutter');
+
         }
 
         if(keycode == Key.key_w) {
             app.audio.pitch('wav', 1.5);
-            sound3.play();
+            app.audio.play('wav');
 
             if(window2 != null) {
                 window2.destroy();
@@ -254,8 +246,8 @@ class Main extends snow.App.AppFixedTimestep {
         }
 
         if(keycode == Key.key_p) {
-            sound5.volume = 0.3+(Math.random());
-            sound5.toggle();
+            app.audio.volume('rain', 0.3+(Math.random()));
+            app.audio.toggle('rain');
         }
 
         if(keycode == Key.key_m) {
@@ -280,8 +272,8 @@ class Main extends snow.App.AppFixedTimestep {
         }
 
         if(keycode == Key.key_r) {
-            sound5.position = 0;
-            log('music reset');
+            app.audio.position('rain', 0);
+            log('rain sound / reset');
         }
 
         if(keycode == Key.key_u) {
@@ -297,21 +289,22 @@ class Main extends snow.App.AppFixedTimestep {
         }
 
         if(keycode == Key.key_t) {
-            var t = (sound5.duration*0.75);
-            sound5.position = t;
-            log('set to ${sound5.duration}*0.75 | music 75% ' + t);
+            var rainsound = app.audio.get('rain');
+            var t = (rainsound.duration*0.75);
+            rainsound.position = t;
+            log('set to ${rainsound.duration}*0.75 | music 75% ' + t);
         }
 
         if(keycode == Key.backquote) {
             app.audio.pitch('wav', 0.5);
-            sound3.play();
+            app.audio.play('wav');
         }
 
     } //onkeydown
 
     override function onkeyup( keycode:Int, scancode:Int,_, mod:ModState, _,_ ) {
 
-        log('key up : $keycode / scan code : $scancode / scan name : ${Scan.name(scancode)}');
+        // log('key up : $keycode / scan code : $scancode / scan name : ${Scan.name(scancode)}');
 
             //alt enter to toggle fullscreen test
         if( keycode == Key.enter && mod.alt ) {
@@ -337,7 +330,9 @@ class Main extends snow.App.AppFixedTimestep {
     var noclamp : Bool = false;
 
     override public function ontextinput( text:String, start:Int, length:Int, type:TextEventType, timestamp:Float, window_id:Int ) {
-        log('text event; text:$text / start: $start / length: $length / type:$type / timestamp:${timestamp} / window: ${window_id}');
+
+        // log('text event; text:$text / start: $start / length: $length / type:$type / timestamp:${timestamp} / window: ${window_id}');
+
     } //ontextinput
 
     override function ontouchdown( x:Float, y:Float, touch_id:Int, timestamp:Float ) {
@@ -346,7 +341,7 @@ class Main extends snow.App.AppFixedTimestep {
 
     override function ontouchup( x:Float, y:Float, touch_id:Int, timestamp:Float ) {
         // log('touch up; $x / $y / $touch_id / $timestamp');
-        sound1.play();
+        app.audio.play('sound1');
 
         // if(touch_id > 1) {
             // app.io.url_open("http://snowkit.org/");
@@ -439,10 +434,6 @@ class Main extends snow.App.AppFixedTimestep {
 
         phys_posx += (speed * dirX * delta);
 
-        if(sound5 != null && sound5.playing) {
-            // log(sound5.time);
-        }
-
         if(current_texture != null) {
 
             if(current_time > next_tex_tick) {
@@ -518,7 +509,7 @@ class Main extends snow.App.AppFixedTimestep {
         var texture = GL.createTexture();
 
             GL.bindTexture (GL.TEXTURE_2D, texture);
-            GL.texImage2D (GL.TEXTURE_2D, 0, GL.RGBA, asset.image.width, asset.image.height, 0, GL.RGBA, GL.UNSIGNED_BYTE, asset.image.data );
+            GL.texImage2D (GL.TEXTURE_2D, 0, GL.RGBA, asset.image.width, asset.image.height, 0, GL.RGBA, GL.UNSIGNED_BYTE, asset.image.pixels );
             GL.texParameteri (GL.TEXTURE_2D, GL.TEXTURE_MAG_FILTER, GL.NEAREST);
             GL.texParameteri (GL.TEXTURE_2D, GL.TEXTURE_MIN_FILTER, GL.NEAREST);
             GL.bindTexture (GL.TEXTURE_2D, null);

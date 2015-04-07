@@ -3,9 +3,12 @@ package snow.system.audio;
 import snow.types.Types;
 import snow.system.audio.Sound;
 import snow.system.assets.Asset;
-import snow.Debug.*;
+import snow.api.Promise;
+import snow.api.Debug.*;
 
-typedef AudioModule = haxe.macro.MacroType<[snow.Module.assign('Audio')]>;
+#if !macro
+    typedef AudioModule = haxe.macro.MacroType<[snow.system.module.Module.assign('Audio')]>;
+#end
 
 class Audio {
 
@@ -16,8 +19,6 @@ class Audio {
 
         /** for external access to the library by the systems */
     @:noCompletion public var app : Snow;
-        /** for mapping native handles to Sound instances. Use the `app.audio` to manipulate preferably. */
-    @:noCompletion public var handles : AudioHandleMap;
         /** for mapping named sounds to Sound instances. Use the `app.audio` to manipulate preferably. */
     @:noCompletion public var sound_list : Map<String, Sound>;
         /** for mapping named streams to SoundStream instances. Use the `app.audio` to manipulate preferably. */
@@ -35,7 +36,6 @@ class Audio {
 
         sound_list = new Map();
         stream_list = new Map();
-        handles = new AudioHandleMap();
 
         active = true;
 
@@ -46,70 +46,40 @@ class Audio {
 
 
         /** Create a sound for playing. If no name is given, a unique id is assigned. Use the sound instance or the public api by name. */
-    public function create( _id:String, ?_name:String = '', ?streaming:Bool = false ) : Sound {
+    public function create( _id:String, ?_name:String = '', ?_streaming:Bool = false ) : Promise {
 
-        if(_name == '') {
-            _name = app.uniqueid;
-        } //_name
+        if(_name == '') _name = app.uniqueid;
 
-            //We always return a valid sound object, so code will be reliable
-            //even if the sound is unable to play etc
+        return new Promise(function(resolve, reject) {
 
-        var sound : Sound = null;
+            var _create = module.create_sound(_id, _name, _streaming);
 
-            //try loading the sound asset, only reading the entire file if its not streaming,
-            //this on load handler is called in the next frame if the load is sync, so that,
-            //the return code happens immediately giving back the instance.
-        var _asset = app.assets.audio( _id, { load:!streaming, onload:function(asset:AssetAudio) {
+            _create.then(function(_sound:Sound) {
 
-                    if(asset != null && sound != null) {
-                        handles.set(asset.audio.handle, sound);
-                        sound.info = asset.audio;
-                    }
+                sound_list.set(_name, _sound);
+                if(_streaming) stream_list.set(_name, _sound);
 
-                } //onload
-            } //options
-        ); //audio
+                resolve(_sound);
 
+            }).error(reject);
 
-        sound = new snow.system.module.Audio.Sound(this, _name, streaming);
-            //store for later
-        sound_list.set(_name, sound);
-            //also store the streams in a separate list, so that they don't get bogged down by
-            //lots of sound effects. This means you have to remove it if not using the audio wrapper routes
-        if(streaming) stream_list.set(_name, sound);
-
-        return sound;
+        }); //promise
 
     } //create
 
-        /** Create a sound for playing from bytes. If no name is given, a unique id is assigned. Use the sound instance or the public api by name. 
-            Currently only non-streamed sounds and is a wip implementation fixes. */
+        /** Create a sound for playing from bytes. If no name is given, a unique id is assigned.
+            Use the sound instance or the public api by name.
+            Currently only non-stream sounds. */
     @:noCompletion
-    public function create_from_bytes( _id:String, ?_name:String = '', bytes:snow.io.typedarray.Uint8Array ) : Sound {
+    public function create_from_bytes( ?_name:String = '', _bytes:snow.api.buffers.Uint8Array, _format:AudioFormatType ) : Sound {
 
-        if(_name == '') {
-            _name = app.uniqueid;
-        } //_name
+        if(_name == '') _name = app.uniqueid;
 
-            //We always return a valid sound object, so code will be reliable
-            //even if the sound is unable to play etc
+        var sound = module.create_sound_from_bytes(_name, _bytes, _format);
 
-        var sound : Sound = new Sound(this, _name);
-            //store for later
+        assertnull(sound);
+
         sound_list.set(_name, sound);
-
-            //try loading the sound asset
-        var _asset = app.assets.audio( _id, { load:true, bytes:bytes, onload:function(asset:AssetAudio) {
-
-                    if(asset != null && sound != null) {
-                        handles.set(asset.audio.handle, sound);
-                        sound.info = asset.audio;
-                    }
-
-                } //onload
-            } //options
-        ); //audio
 
         return sound;
 
@@ -329,10 +299,6 @@ class Audio {
 
         if(_sound == null) return;
 
-        if(_sound.info != null) {
-            handles.remove(_sound.info.handle);
-        }
-
         sound_list.remove(_sound.name);
         stream_list.remove(_sound.name);
 
@@ -436,24 +402,3 @@ class Audio {
 
 
 } //Audio
-
-
-#if snow_web
-
-    private typedef AudioHandleMap = Map<AudioHandle, Sound>;
-
-#else
-
-    private class AudioHandleMap extends haxe.ds.BalancedTree<AudioHandle,Sound> {
-
-        override function compare(k1:AudioHandle, k2:AudioHandle) {
-            if(k1 == null) return 1;
-            if(k2 == null) return 1;
-            if(k1 == k2) return 0;
-            if(k1 < k2) return -1;
-            return 1;
-        }
-
-    } //AudioHandleMap
-
-#end

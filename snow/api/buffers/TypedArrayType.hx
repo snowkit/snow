@@ -1,4 +1,4 @@
-package snow.io.typedarray;
+package snow.api.buffers;
 
 @:enum
 abstract TypedArrayType(Int) from Int to Int {

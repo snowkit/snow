@@ -1,5 +1,5 @@
 package snow.system.module;
 
 #if display
-typedef Assets = snow.modules.interfaces.Assets;
+@:noCompletion typedef Assets = snow.modules.interfaces.Assets;
 #end

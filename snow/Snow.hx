@@ -1,13 +1,12 @@
 package snow;
 
-
 import snow.App;
-import snow.io.typedarray.Uint8Array;
 import snow.types.Types;
-import snow.utils.Timer;
 
-import snow.utils.Promise;
-
+import snow.api.Debug.*;
+import snow.api.Timer;
+import snow.api.Promise;
+import snow.api.buffers.Uint8Array;
 
 import snow.system.audio.Audio;
 import snow.system.assets.Assets;
@@ -16,7 +15,6 @@ import snow.system.input.Input;
 import snow.system.window.Window;
 import snow.system.window.Windowing;
 
-import snow.Debug.*;
 
 class Snow {
 
@@ -76,10 +74,10 @@ class Snow {
     @:noCompletion
     public function new() {
 
-        if(snow.Debug.get_level() > 1) {
-            log('log / level to ${snow.Debug.get_level()}' );
-            log('log / filter : ${snow.Debug.get_filter()}');
-            log('log / exclude : ${snow.Debug.get_exclude()}');
+        if(snow.api.Debug.get_level() > 1) {
+            log('log / level to ${snow.api.Debug.get_level()}' );
+            log('log / filter : ${snow.api.Debug.get_filter()}');
+            log('log / exclude : ${snow.api.Debug.get_exclude()}');
         }
 
             //We create the core as a concrete platform version of the core
@@ -146,7 +144,6 @@ class Snow {
             runtime : {},
             window : null,
             render : null,
-            assets : [],
             web : {
                 no_context_menu : true,
                 prevent_default_keys : [
@@ -227,7 +224,7 @@ class Snow {
         });
 
             //make sure the initial promises happen
-        snow.utils.Promise.Promises.step();
+        snow.api.Promise.Promises.step();
             //make sure all events pushed into
             //the queue via next are flushed
         while(next_queue.length > 0) {
@@ -263,7 +260,7 @@ class Snow {
         Timer.update();
 
             //handle promise executions
-        snow.utils.Promise.Promises.step();
+        snow.api.Promise.Promises.step();
 
             //handle the events
         cycle_next_queue();
@@ -385,20 +382,15 @@ class Snow {
                 default_asset_list().then(function(list) {
 
                         //then we add the list for the asset manager
-                    config.assets = list;
-                    assets.add( config.assets );
+                    assets.list = list;
 
-                    resolve();
-
-                }).error(function(e:Dynamic) {
+                }).error(function(e) {
 
                     //default asset manifest is not critical
-                    //and will leave logs so we just continue with
-                    //making a note of the state
-                    config.assets = [];
-                    resolve();
+                    //and will leave logs so we just continue
+                    _debug('assets / default asset list rejected / $e');
 
-                });
+                }).then(resolve);
 
             } //custom assets
 
@@ -421,6 +413,13 @@ class Snow {
                 default_runtime_config().then(function(_runtime_conf:Dynamic) {
 
                     config.runtime = _runtime_conf;
+
+                }).error(function(error){
+
+                    throw Error.init('config / failed / default runtime config failed to parse as JSON. cannot recover. $error');
+
+                }).then(function(){
+
                     setup_host_config();
                     resolve();
 
@@ -480,38 +479,20 @@ class Snow {
 
         _debug('config / setting up default runtime config');
 
+            //for the default config, we only reject if there is a json parse error
         return new Promise(function(resolve, reject) {
 
-            var json:Dynamic = null;
+            var load = io.data_flow(snow_config.config_runtime_path, AssetJSON.processor);
 
-                //we want to load the runtime config from a json file by default
-            var onload = function(asset:snow.system.assets.Asset.AssetText) {
-
-                _debug('config / loaded runtime config, parsing...');
-
-                if(asset.text != null) {
-
-                    try {
-                        json = haxe.Json.parse( asset.text );
-                        _debug('config / ok / loaded runtime config');
-                    } catch(e:Dynamic) {
-                        log('config / json parse error ');
-                        throw Error.init('config / failed / default runtime config failed to parse as JSON. cannot recover. $e');
+                load.then(resolve).error(function(error:Error) {
+                    switch(error) {
+                        case Error.parse(val):
+                            reject(error);
+                        case _:
+                            _debug('config / default config rejected / $error');
+                            resolve();
                     }
-
-                    resolve(json);
-
-                } else { //asset.text != null
-
-                    log('config / warning / json asset.text was null? ' + asset);
-                    resolve(json);
-
-                }
-
-            }
-
-            var found = assets.text( snow_config.config_runtime_path, { silent:true, onload:onload });
-            if(found == null) resolve({});
+                });
 
         }); //promise
 
@@ -522,46 +503,19 @@ class Snow {
 
         return new Promise(function(resolve, reject){
 
-            var list_path : String = assets.assets_root + assets.manifest_path;
-            var load = io.data_load( list_path, { binary:false });
+            var list_path = assets.path(assets.manifest_path);
+            var load = io.data_flow(list_path, AssetJSON.processor);
 
-            load.then(function(_data:Uint8Array) {
+            load.then(function(json:Dynamic) {
 
-                var _filedata = _data.toBytes().toString();
-                if(_filedata != null && _filedata.length != 0) {
+                var _list:Array<String> = cast json;
 
-                    var _list:Array<String> = haxe.Json.parse(_filedata.toString());
-                    var asset_list : Array<AssetInfo> = [];
+                _debug('assets / ok / loaded asset manifest.');
+                _debug('assets / list loaded as $_list');
 
-                    for(asset in _list) {
+                resolve( _list );
 
-                        asset_list.push({
-                            id : asset,
-                            path : haxe.io.Path.join([assets.assets_root, asset]),
-                            type : haxe.io.Path.extension(asset),
-                            ext : haxe.io.Path.extension(asset)
-                        });
-
-                    } //for each asset
-
-                    _debug('assets / ok / loaded asset manifest.');
-                    _debug('assets / list loaded as $asset_list');
-
-                    resolve( asset_list );
-
-                } else { //manifest_data != null
-
-                    log('assets / info / default asset manifest is empty?');
-                    reject('default asset manifest is empty');
-
-                }
-
-            }).error(function(e:Dynamic) {
-
-                log('assets / info / default asset manifest not found at `$list_path`');
-                reject('default asset manifest error: $e');
-
-            });
+            }).error(reject);
 
         }); //new promise
 

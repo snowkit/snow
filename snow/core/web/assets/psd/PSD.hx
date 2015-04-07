@@ -1,5 +1,7 @@
 package snow.core.web.assets.psd;
 
+import snow.api.buffers.Uint8Array;
+
 /*
 Bindings for https://github.com/meltingice/psd.js
 Copyright Sven Bergström
@@ -7,18 +9,10 @@ Created for http://snowkit.org/snow
 MIT License
 */
 
-class PSD {
+@:native('window.PSD')
+extern class PSD {
 
-    var _PSD : Dynamic;
-
-    public function new() {
-        _PSD = untyped window.require('psd');
-    }
-
-    public function open( _url:String, _psd_onload:Dynamic->Void ) {
-
-        untyped _PSD.fromURL(_url).then(function(psd){ if(_psd_onload) _psd_onload(psd); });
-
-    } //open
+    public function new( _bytes:Uint8Array );
+    public function parse():Void;
 
 } //PSD

@@ -1,4 +1,4 @@
-package snow.utils;
+package snow.api;
 
 /**
 The Promise interface represents a proxy for a value not necessarily
@@ -21,7 +21,7 @@ Documentation provided mostly by MDN
 licensed under CC-BY-SA 2.5. by Mozilla Contributors.
 https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise
 */
-@:allow(snow.utils.Promises)
+@:allow(snow.api.Promises)
 class Promise {
 
         /** The state this promise is in. */
@@ -406,7 +406,7 @@ class Promise {
 Promises implementation. Use this to integrate the promises
 into your code base. Call step at the end of a frame/microtask.
 */
-@:allow(snow.utils.Promise)
+@:allow(snow.api.Promise)
 class Promises {
 
     static var calls: Array<Dynamic> = [];

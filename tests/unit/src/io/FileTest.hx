@@ -1,7 +1,7 @@
 package io;
 
-import snow.io.File;
-import snow.io.typedarray.Uint8Array;
+import snow.api.File;
+import snow.api.buffers.Uint8Array;
 
 class FileTest extends mohxa.Mohxa {
 

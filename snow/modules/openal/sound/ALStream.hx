@@ -2,12 +2,12 @@ package snow.modules.openal.sound;
 
 import snow.system.audio.Audio;
 import snow.types.Types;
-import snow.io.typedarray.Float32Array;
+import snow.api.buffers.Float32Array;
 
 import snow.modules.openal.AL;
 import snow.modules.openal.ALHelper;
 
-import snow.Debug.*;
+import snow.api.Debug.*;
 
 /** The openal specifics for a streamed sound */
 @:noCompletion

@@ -5,7 +5,7 @@ import snow.system.window.Windowing;
 
 import snow.modules.opengl.GL;
 
-import snow.Debug.*;
+import snow.api.Debug.*;
 
     //A window has it's own event loop
     //and allows opening and closing windows

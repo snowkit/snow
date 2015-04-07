@@ -1,8 +1,8 @@
 package snow.modules.interfaces;
 
 import snow.types.Types;
-import snow.utils.Promise;
-import snow.io.typedarray.Uint8Array;
+import snow.api.Promise;
+import snow.api.buffers.Uint8Array;
 
 @:allow(snow.system.io.IO)
 interface IO {

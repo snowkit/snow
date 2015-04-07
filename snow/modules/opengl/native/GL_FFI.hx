@@ -1,11 +1,11 @@
 package snow.modules.opengl.native;
 
 import snow.modules.opengl.native.GL;
-import snow.io.typedarray.ArrayBufferView;
-import snow.io.typedarray.Float32Array;
-import snow.io.typedarray.Int32Array;
+import snow.api.buffers.ArrayBufferView;
+import snow.api.buffers.Float32Array;
+import snow.api.buffers.Int32Array;
 
-import snow.utils.Libs;
+import snow.api.Libs;
 
 class GL_FFI {
 

@@ -1,7 +1,7 @@
 package snow.core.native.input;
 
 import snow.types.Types;
-import snow.utils.Libs;
+import snow.api.Libs;
 import snow.system.window.Window;
 
 

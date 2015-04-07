@@ -1,4 +1,4 @@
-package snow.utils;
+package snow.api;
 
 import haxe.PosInfos;
 import haxe.Log;

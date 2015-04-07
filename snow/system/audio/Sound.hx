@@ -2,7 +2,7 @@ package snow.system.audio;
 
 import snow.system.audio.Audio;
 import snow.types.Types;
-import snow.Debug.*;
+import snow.api.Debug.*;
 
 
 @:allow(snow.system.audio.Audio)

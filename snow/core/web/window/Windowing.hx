@@ -78,7 +78,7 @@ class Windowing implements snow.modules.interfaces.Windowing {
                 msg += 'visit http://get.webgl.org/ for help <br/>';
                 msg += 'and contact the developer of the application';
             internal_fallback(msg);
-            throw msg;
+            throw Error.windowing(msg);
         }
 
             //make sure there is a set up context early

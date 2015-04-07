@@ -3,7 +3,9 @@ package snow.system.input;
 import snow.types.Types;
 import snow.system.window.Window;
 
-private typedef InputModule = haxe.macro.MacroType<[snow.Module.assign('Input')]>;
+#if !macro
+    private typedef InputModule = haxe.macro.MacroType<[snow.system.module.Module.assign('Input')]>;
+#end
 
 
 typedef MapIntBool = Map<Int, Bool>;

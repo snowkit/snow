@@ -1,9 +1,10 @@
 package snow.core.native.assets;
 
 import snow.types.Types;
-import snow.utils.Libs;
-import snow.io.typedarray.Uint8Array;
-import snow.Debug.*;
+import snow.api.Libs;
+import snow.api.buffers.Uint8Array;
+import snow.api.Promise;
+import snow.api.Debug.*;
 
 
 @:allow(snow.system.assets.Assets)
@@ -12,34 +13,19 @@ class Assets implements snow.modules.interfaces.Assets {
     var system: snow.system.assets.Assets;
     function new( _system:snow.system.assets.Assets ) system = _system;
 
-//common
-
-    public function exists( _id:String, ?_strict:Bool=true ) : Bool {
-
-        var listed = system.listed(_id);
-        if(_strict) {
-            return listed;
-        }
-
-            //get the actual path
-        var _path = system.path(_id);
-        var on_disk = sys.FileSystem.exists(_path);
-
-        return listed || on_disk;
-
-    } //exists
-
 //images
 
-    public function image_load_info( _path:String, ?_components:Int = 4, ?_onload:?ImageInfo->Void ) : ImageInfo {
+    public function image_load_info( _path:String, ?_components:Int = 4 ) : Promise {
 
-        var _native_info = snow_assets_image_load_info( _path, _components );
-        var info : ImageInfo = null;
-        var _bytes = haxe.io.Bytes.ofData( _native_info.data );
+        return new Promise(function(resolve, reject) {
 
-        if(_native_info != null) {
+            var _native_info = snow_assets_image_load_info( _path, _components );
+            if(_native_info == null) return reject(Error.error('failed to load $_path : does the file exist?'));
+            if(_native_info.data == null) return reject(Error.error('failed to load $_path : data was null.'));
 
-            info = {
+            var _bytes = haxe.io.Bytes.ofData( _native_info.data );
+
+            var info : ImageInfo = {
                 id : _native_info.id,
                 bpp : _native_info.bpp,
                 width : _native_info.width,
@@ -47,27 +33,27 @@ class Assets implements snow.modules.interfaces.Assets {
                 width_actual : _native_info.width,
                 height_actual : _native_info.height,
                 bpp_source : _native_info.bpp_source,
-                data : new Uint8Array( _bytes )
+                pixels : new Uint8Array( _bytes )
             };
 
-        } //native_info != null
+            _native_info = null;
 
+            return resolve(info);
 
-        if(_onload != null) {
-            _onload( info );
-        } //_onload
-
-            //clean up if any
-        _native_info = null;
-
-            //return result
-        return info;
+        });
 
     } //image_load_info
 
-    public function image_info_from_bytes( _path:String, _data:snow.io.typedarray.Uint8Array, ?_components:Int = 4 ) : ImageInfo {
+    public function image_info_from_bytes( _id:String, _bytes:Uint8Array, ?_components:Int = 4 ) : ImageInfo {
 
-        var _native_info = snow_assets_image_info_from_bytes( _path, _data.buffer.getData(), _data.byteOffset, _data.byteLength, _components );
+        assertnull(_id);
+        assertnull(_bytes);
+
+        var _native_info = snow_assets_image_info_from_bytes( _id, _bytes.buffer.getData(), _bytes.byteOffset, _bytes.byteLength, _components );
+
+        assertnull(_native_info);
+        assertnull(_native_info.data);
+
         var _out_bytes : haxe.io.Bytes = haxe.io.Bytes.ofData(_native_info.data);
 
         var info : ImageInfo = {
@@ -78,8 +64,8 @@ class Assets implements snow.modules.interfaces.Assets {
             width_actual : _native_info.width,
             height_actual : _native_info.height,
             bpp_source : _native_info.bpp_source,
-            data : new Uint8Array( _out_bytes )
-        };
+            pixels : new Uint8Array( _out_bytes )
+        }
 
         _native_info = null;
 
@@ -87,124 +73,115 @@ class Assets implements snow.modules.interfaces.Assets {
 
     } //image_info_from_bytes
 
+            /** Create an image info from raw (already decoded) image pixels. */
+    public function image_info_from_pixels( _id:String, _width:Int, _height:Int, _pixels:Uint8Array ) : ImageInfo {
+
+        assertnull( _id );
+        assertnull( _pixels );
+
+        var info : ImageInfo = {
+            id : _id,
+            bpp : 4,
+            width : _width,
+            height : _height,
+            width_actual : _width,
+            height_actual : _height,
+            bpp_source : 4,
+            pixels : _pixels
+        };
+
+        return info;
+
+    } //image_info_from_pixels
+
 //audio
 
-    public function audio_load_info( _path:String, ?_format:AudioFormatType, ?_load:Bool = true, ?_onload:?AudioInfo->Void ) : AudioInfo {
+    public function audio_load_info( _path:String, ?_load:Bool = true, ?_format:AudioFormatType ) : AudioInfo {
 
-        var native_info : NativeAudioInfo = null;
+        if(_format == null) {
+            var _ext = haxe.io.Path.extension(_path);
+            _format = switch(_ext) {
+                case 'wav': wav;
+                case 'ogg': ogg;
+                case 'pcm': pcm;
+                case _: unknown;
+            }
+        }
 
-            native_info = switch(_format) {
+        var _native_info : NativeAudioInfo = switch(_format) {
+            case wav: audio_load_wav( _path, _load );
+            case ogg: audio_load_ogg( _path, _load );
+            case pcm: audio_load_pcm( _path, _load );
+            default : null;
+        } //switch _format
 
-                case AudioFormatType.wav: {
-                    audio_load_wav( _path, _load );
-                }
+            //:todo:
+        if(_native_info == null) throw Error.error('failed to load $_path : does the file exist?');
+        if(_native_info.data == null) throw Error.error('failed to load $_path : data was null.');
 
-                case AudioFormatType.ogg: {
-                    audio_load_ogg( _path, _load );
-                }
+        var _result_bytes = haxe.io.Bytes.ofData(_native_info.data.bytes);
+        var _result_info : AudioInfo = {
 
-                case AudioFormatType.pcm: {
-                    audio_load_pcm( _path, _load );
-                }
+            id:     _native_info.id,
+            format: _native_info.format,
+            handle: _native_info.handle,
 
-                default : null;
-
-            } //switch _format
-
-            if(native_info == null) {
-                log(_path + " audio info returned null");
-                return null;
+            data: {
+                samples         : new Uint8Array( _result_bytes ),
+                length          : _native_info.data.length,
+                length_pcm      : _native_info.data.length_pcm,
+                channels        : _native_info.data.channels,
+                rate            : _native_info.data.rate,
+                bitrate         : _native_info.data.bitrate,
+                bits_per_sample : _native_info.data.bits_per_sample
             }
 
-                //with audio the bytes data could be null too, this is also an invalid asset
-            if(native_info.data == null) {
-                log(_path + " audio info data was null");
-                return null;
-            }
+        } //result_info
 
-            var _result_bytes = haxe.io.Bytes.ofData(native_info.data.bytes);
-            var _result_info : AudioInfo = {
-
-                id:     native_info.id,
-                format: native_info.format,
-                handle: native_info.handle,
-
-                data: {
-                    bytes           : new Uint8Array( _result_bytes ),
-                    length          : native_info.data.length,
-                    length_pcm      : native_info.data.length_pcm,
-                    channels        : native_info.data.channels,
-                    rate            : native_info.data.rate,
-                    bitrate         : native_info.data.bitrate,
-                    bits_per_sample : native_info.data.bits_per_sample
-                }
-
-            } //result_info
-
-            native_info = null;
-
-            if(_onload != null) {
-                _onload(_result_info);
-            } //_onload
+        _native_info = null;
 
         return _result_info;
 
     } //audio_load_info
 
 
-    public function audio_info_from_bytes( _path:String, _bytes:Uint8Array, _format:AudioFormatType ) : AudioInfo {
+    public function audio_info_from_bytes( _bytes:Uint8Array, _format:AudioFormatType ) : AudioInfo {
 
-        var native_info : NativeAudioInfo = null;
+        assertnull(_bytes);
 
-            native_info = switch(_format) {
+        var _id = 'audio_info_from_bytes/$_format';
 
-                case AudioFormatType.wav: {
-                    audio_load_wav_from_bytes( _path, _bytes );
-                }
-
-                case AudioFormatType.ogg: {
-                    audio_load_ogg_from_bytes( _path, _bytes );
-                }
-
-                case AudioFormatType.pcm: {
-                    audio_load_pcm_from_bytes( _path, _bytes );
-                }
-
+        var _native_info : NativeAudioInfo = switch(_format) {
+                case wav: audio_load_wav_from_bytes( _id, _bytes );
+                case ogg: audio_load_ogg_from_bytes( _id, _bytes );
+                case pcm: audio_load_pcm_from_bytes( _id, _bytes );
                 default : null;
-
             } //switch _format
 
-            if(native_info == null) {
-                log(_path + " audio info returned null");
-                return null;
-            }
+                //:todo:
+            if(_native_info == null) throw Error.error('failed to process bytes for $_id');
+            if(_native_info.data == null) throw Error.error('failed to process bytes for $_id, data was null.');
 
-                //with audio the bytes data could be null too, this is also an invalid asset
-            if(native_info.data == null) {
-                log(_path + " audio info data was null");
-                return null;
-            }
-
-            var _result_bytes = haxe.io.Bytes.ofData(native_info.data.bytes);
+            var _result_bytes = haxe.io.Bytes.ofData(_native_info.data.bytes);
             var _result_info : AudioInfo = {
 
-                id:     native_info.id,
-                format: native_info.format,
-                handle: native_info.handle,
+                id:     _native_info.id,
+                format: _native_info.format,
+                handle: _native_info.handle,
 
                 data: {
-                    bytes           : new Uint8Array( _result_bytes ),
-                    length          : native_info.data.length,
-                    length_pcm      : native_info.data.length_pcm,
-                    channels        : native_info.data.channels,
-                    rate            : native_info.data.rate,
-                    bitrate         : native_info.data.bitrate,
-                    bits_per_sample : native_info.data.bits_per_sample
+                    samples         : new Uint8Array( _result_bytes ),
+                    length          : _native_info.data.length,
+                    length_pcm      : _native_info.data.length_pcm,
+                    channels        : _native_info.data.channels,
+                    rate            : _native_info.data.rate,
+                    bitrate         : _native_info.data.bitrate,
+                    bits_per_sample : _native_info.data.bits_per_sample
                 }
 
             } //result_info
 
-            native_info = null;
+            _native_info = null;
 
         return _result_info;
 
@@ -214,14 +191,10 @@ class Assets implements snow.modules.interfaces.Assets {
     public function audio_seek_source( _info:AudioInfo, _to:Int ) : Bool {
 
         switch(_info.format) {
-            case AudioFormatType.ogg:
-                return audio_seek_source_ogg(_info, _to);
-            case AudioFormatType.wav:
-                return audio_seek_source_wav(_info, _to);
-            case AudioFormatType.pcm:
-                return audio_seek_source_pcm(_info, _to);
-            default:
-                return false;
+            case ogg: return audio_seek_source_ogg(_info, _to);
+            case wav: return audio_seek_source_wav(_info, _to);
+            case pcm: return audio_seek_source_pcm(_info, _to);
+            default: return false;
         }
 
         return false;
@@ -234,14 +207,10 @@ class Assets implements snow.modules.interfaces.Assets {
         var result_blob : AudioDataBlob = null;
 
         native_blob = switch(_info.format) {
-            case AudioFormatType.ogg:
-                audio_load_portion_ogg(_info, _start, _len);
-            case AudioFormatType.wav:
-                audio_load_portion_wav(_info, _start, _len);
-            case AudioFormatType.pcm:
-                audio_load_portion_pcm(_info, _start, _len);
-            default:
-                null;
+            case ogg: audio_load_portion_ogg(_info, _start, _len);
+            case wav: audio_load_portion_wav(_info, _start, _len);
+            case pcm: audio_load_portion_pcm(_info, _start, _len);
+            default: null;
         }
 
         if(native_blob != null) {

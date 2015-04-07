@@ -1,10 +1,13 @@
 package snow.system.io;
 
+import snow.Snow;
 import snow.types.Types;
-import snow.io.typedarray.Uint8Array;
-import snow.utils.Promise;
+import snow.api.buffers.Uint8Array;
+import snow.api.Promise;
 
-private typedef IOModule = haxe.macro.MacroType<[snow.Module.assign('IO')]>;
+#if !macro
+    private typedef IOModule = haxe.macro.MacroType<[snow.system.module.Module.assign('IO')]>;
+#end
 
 @:allow(snow.Snow)
 class IO {
@@ -50,6 +53,31 @@ class IO {
         return module.data_save( _path, _data, _options );
 
     } //data_save
+
+        /** Returns a promise for data, optionally provided by the given provider, and optionally processed by the given processor. */
+    public function data_flow<T>( _id:String, ?_processor:Snow->String->T->Promise, ?_provider:Snow->String->Promise ) : Promise {
+
+        if(_provider == null) _provider = default_provider;
+
+        return new Promise(function(resolve, reject) {
+
+            _provider(app, _id).then(
+
+                function(data) {
+                    if(_processor != null) {
+                        _processor(app, _id, data).then(resolve, reject);
+                    } else {
+                        resolve(data);
+                    }
+                }
+
+            ).error(reject);
+
+        }); //promise
+
+    } //data_flow
+
+    inline function default_provider(_app:Snow, _id:String) return data_load(_id);
 
 
 //Internal

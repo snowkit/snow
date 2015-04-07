@@ -1,4 +1,4 @@
-package snow.io.typedarray;
+package snow.api.buffers;
 
 #if js
 
@@ -6,7 +6,7 @@ package snow.io.typedarray;
 
 #else
 
-    import snow.io.typedarray.TypedArrayType;
+    import snow.api.buffers.TypedArrayType;
 
     class ArrayBufferView {
 
@@ -19,8 +19,8 @@ package snow.io.typedarray;
             //internal for avoiding switching on types
         var bytesPerElement (default,null) : Int = 0;
 
-        @:allow(snow.io.typedarray)
-        #if !no_typedarray_inline inline #end
+        @:allow(snow.api.buffers)
+        #if !snow_no_inline_buffers inline #end
         function new( ?elements:Null<Int> = null, in_type:TypedArrayType) {
 
             type = in_type;
@@ -45,8 +45,8 @@ package snow.io.typedarray;
 
     //Constructor helpers
 
-        @:allow(snow.io.typedarray)
-        #if !no_typedarray_inline inline #end
+        @:allow(snow.api.buffers)
+        #if !snow_no_inline_buffers inline #end
         function initTypedArray( view:ArrayBufferView ) {
 
             var srcData = view.buffer;
@@ -72,8 +72,8 @@ package snow.io.typedarray;
 
         } //(typedArray)
 
-        @:allow(snow.io.typedarray)
-        #if !no_typedarray_inline inline #end
+        @:allow(snow.api.buffers)
+        #if !snow_no_inline_buffers inline #end
         function initBuffer( in_buffer:ArrayBuffer, ?in_byteOffset:Int = 0, len:Null<Int> = null ) {
 
             if(in_byteOffset < 0) throw TAError.RangeError;
@@ -109,8 +109,8 @@ package snow.io.typedarray;
         } //(buffer [, byteOffset [, length]])
 
 
-        @:allow(snow.io.typedarray)
-        #if !no_typedarray_inline inline #end
+        @:allow(snow.api.buffers)
+        #if !snow_no_inline_buffers inline #end
         function initArray<T>( array:Array<T> ) {
 
             byteOffset = 0;
@@ -128,7 +128,7 @@ package snow.io.typedarray;
     //Public shared APIs
 
     //T is required because it can translate [0,0] as Int array
-        #if !no_typedarray_inline inline #end
+        #if !snow_no_inline_buffers inline #end
     public function set<T>( ?view:ArrayBufferView, ?array:Array<T>, offset:Int = 0 ) : Void {
 
         if(view != null && array == null) {
@@ -144,7 +144,7 @@ package snow.io.typedarray;
 
     //Internal TypedArray api
 
-        #if !no_typedarray_inline inline #end
+        #if !snow_no_inline_buffers inline #end
         function cloneBuffer(src:ArrayBuffer, srcByteOffset:Int = 0) {
 
             var srcLength = src.length;
@@ -157,8 +157,8 @@ package snow.io.typedarray;
 
 
         @:generic
-        @:allow(snow.io.typedarray)
-        #if !no_typedarray_inline inline #end
+        @:allow(snow.api.buffers)
+        #if !snow_no_inline_buffers inline #end
         function subarray<T_subarray>( begin:Int, end:Null<Int> = null ) : T_subarray {
 
             if (end == null) end == length;
@@ -203,7 +203,7 @@ package snow.io.typedarray;
 
         }
 
-        #if !no_typedarray_inline inline #end
+        #if !snow_no_inline_buffers inline #end
         function bytesForType( type:TypedArrayType ) : Int {
 
             return
@@ -241,7 +241,7 @@ package snow.io.typedarray;
 
         }
 
-        #if !no_typedarray_inline inline #end
+        #if !snow_no_inline_buffers inline #end
         function toString() {
 
             var name =
@@ -262,7 +262,7 @@ package snow.io.typedarray;
 
         } //toString
 
-        #if !no_typedarray_inline inline #end
+        #if !snow_no_inline_buffers inline #end
         function toByteLength( elemCount:Int ) : Int {
 
             return elemCount * bytesPerElement;
@@ -271,7 +271,7 @@ package snow.io.typedarray;
 
     //Non-spec
 
-        #if !no_typedarray_inline #end
+        #if !snow_no_inline_buffers #end
         function copyFromArray(array:Array<Float>, ?offset : Int = 0 ) {
 
             //Ideally, native semantics could be used, like cpp.NativeArray.blit

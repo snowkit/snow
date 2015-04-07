@@ -1,4 +1,4 @@
-package snow;
+package snow.api;
 
 import haxe.io.Path;
 import haxe.macro.Context;
@@ -17,13 +17,13 @@ class Debug {
     static var _log_width : Int = 16;
 
     macro public static function get_level() : haxe.macro.Expr {
-        return macro $v{ ${snow.Debug._level} };
+        return macro $v{ ${snow.api.Debug._level} };
     }
     macro public static function get_filter() : haxe.macro.Expr {
-        return macro $v{ ${snow.Debug._filter} };
+        return macro $v{ ${snow.api.Debug._filter} };
     }
     macro public static function get_exclude() : haxe.macro.Expr {
-        return macro $v{ ${snow.Debug._exclude} };
+        return macro $v{ ${snow.api.Debug._exclude} };
     }
 
     macro static function level( __level:Int ) : haxe.macro.Expr {
@@ -211,7 +211,7 @@ class Debug {
         #if (debug || snow_assert)
             var str = haxe.macro.ExprTools.toString(expr);
             return macro @:pos(Context.currentPos()) {
-                if(!$expr) throw snow.Debug.DebugError.assertion('$str');
+                if(!$expr) throw snow.api.Debug.DebugError.assertion('$str');
             }
         #end
         return macro null;
@@ -222,7 +222,7 @@ class Debug {
         #if (debug || snow_assert)
             var str = haxe.macro.ExprTools.toString(value);
             return macro @:pos(Context.currentPos()) {
-                if($value == null) throw snow.Debug.DebugError.null_assertion('$str == null');
+                if($value == null) throw snow.api.Debug.DebugError.null_assertion('$str == null');
             }
         #end
         return macro null;

@@ -1,12 +1,12 @@
 package snow.core.native.io;
 
-import snow.io.typedarray.Uint8Array;
-import snow.utils.Promise;
+import snow.api.File;
+import snow.api.Libs;
 import snow.types.Types;
-import snow.io.File;
-import snow.utils.Libs;
-import sys.FileSystem;
+import snow.api.Promise;
+import snow.api.buffers.Uint8Array;
 
+import sys.FileSystem;
 import haxe.io.Path;
 
 
@@ -154,7 +154,7 @@ class IO implements snow.modules.interfaces.IO {
 
             } else { //_file != null
 
-                reject('data_load file cannot be opened $_path');
+                reject(Error.error('data_load file cannot be opened $_path'));
 
             }
 

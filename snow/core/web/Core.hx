@@ -1,7 +1,7 @@
 package snow.core.web;
 
 import snow.types.Types;
-import snow.Debug.*;
+import snow.api.Debug.*;
 
 
 /** Implemented in the platform specific concrete versions of this class */

@@ -1,5 +1,5 @@
 
-import snow.Debug.*;
+import snow.api.Debug.*;
 import snow.types.Types;
 import snow.modules.opengl.GL;
 

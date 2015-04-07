@@ -1,7 +1,7 @@
 package snow.modules.openal.sound;
 
 import snow.types.Types;
-import snow.Debug.*;
+import snow.api.Debug.*;
 
 /** Not generally used directly. See the `snow.system.audio.Sound` docs for reference.
 

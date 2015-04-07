@@ -2,12 +2,12 @@ package snow.modules.openal.sound;
 
 import snow.system.audio.Audio;
 import snow.types.Types;
-import snow.io.typedarray.Float32Array;
+import snow.api.buffers.Float32Array;
 
 import snow.modules.openal.AL;
 import snow.modules.openal.ALHelper;
 
-import snow.Debug.*;
+import snow.api.Debug.*;
 
 
 @:allow(snow.modules.openal.sound.Sound)
@@ -116,13 +116,13 @@ class ALSound {
         format = ALHelper.determine_format( info );
 
             //check that we have valid data info
-        if(info.data.bytes == null || info.data.bytes.length == 0) {
+        if(info.data.samples == null || info.data.samples.length == 0) {
             _debug('${owner.name} cannot create sound, empty/null data provided!');
             return;
         }
 
             //give the data from the sound info to the buffer
-        AL.bufferData(buffer, format, new Float32Array(info.data.bytes.buffer), info.data.rate );
+        AL.bufferData(buffer, format, new Float32Array(info.data.samples.buffer), info.data.rate );
 
             _debug('${owner.name} buffered data / ${AL.getErrorMeaning(AL.getError())} ');
 

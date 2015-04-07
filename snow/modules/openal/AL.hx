@@ -5,8 +5,8 @@ package snow.modules.openal;
     #error "OpenAL is not available on the web platform. Don't import this file on web."
 #end
 
-import snow.utils.Libs;
-import snow.io.typedarray.Float32Array;
+import snow.api.Libs;
+import snow.api.buffers.Float32Array;
 
 
 abstract Context(Null<Float>) from Null<Float> to Null<Float> { }

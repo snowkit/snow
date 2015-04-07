@@ -3,15 +3,15 @@ package snow.types;
 #if !macro
 
 import snow.Snow;
-import snow.io.typedarray.Uint8Array;
+import snow.api.buffers.Uint8Array;
 
 //asset types
 
 typedef Asset      = snow.system.assets.Asset.Asset;
-typedef AssetImage = snow.system.assets.Asset.AssetImage;
 typedef AssetBytes = snow.system.assets.Asset.AssetBytes;
-typedef AssetAudio = snow.system.assets.Asset.AssetAudio;
 typedef AssetText  = snow.system.assets.Asset.AssetText;
+typedef AssetJSON  = snow.system.assets.Asset.AssetJSON;
+typedef AssetImage = snow.system.assets.Asset.AssetImage;
 
 typedef Key = snow.system.input.Keycodes.Keycodes;
 typedef Scan = snow.system.input.Keycodes.Scancodes;
@@ -20,29 +20,18 @@ enum Error {
     error(value:Dynamic);
     init(value:Dynamic);
     windowing(value:Dynamic);
+    parse(value:Dynamic);
 }
-
-/** Information for a single asset */
-typedef AssetInfo = {
-
-        /** the asset id */
-    var id : String;
-        /** the location of the asset */
-    var path : String;
-        /** the asset extension, if any */
-    var ext : String;
-        /** a convenience type indicator */
-    var type : String;
-
-} //AssetInfo
 
 /** A type to identify assets when stored as an Asset */
 @:enum abstract AssetType(Int) from Int to Int {
 
-    var bytes   = 0;
-    var text    = 1;
-    var image   = 2;
-    var audio   = 3;
+    var unknown = 0;
+    var bytes   = 1;
+    var text    = 2;
+    var json    = 3;
+    var image   = 4;
+    var audio   = 5;
 
 } //AssetType
 
@@ -51,44 +40,6 @@ typedef IODataOptions = {
     @:optional var binary:Bool;
 
 }
-
-/** The options for an `AssetBytes` asset.
-    Get assets from the `Assets` class, via `app.assets` */
-typedef AssetBytesOptions = {
-    ? silent : Bool,
-    ? strict : Bool,
-    ? async : Bool,
-    ? onload : AssetBytes -> Void
-} //AssetBytesOptions
-
-/** The options for an `AssetText` asset.
-    Get assets from the `Assets` class, via `app.assets` */
-typedef AssetTextOptions = {
-    ? silent : Bool,
-    ? strict : Bool,
-    ? async : Bool,
-    ? onload : AssetText -> Void
-} //AssetTextOptions
-
-/** The options for an `AssetImage` asset.
-    Get assets from the `Assets` class, via `app.assets` */
-typedef AssetImageOptions = {
-    ? silent : Bool,
-    ? strict : Bool,
-    ? components : Int,
-    ? onload : AssetImage -> Void,
-    ? bytes : Uint8Array
-} //AssetImageOptions
-
-/** The options for an `AssetAudio` asset */
-typedef AssetAudioOptions = {
-    ? silent : Bool,
-    ? strict : Bool,
-    ? type : String,
-    ? load : Bool,
-    ? onload : AssetAudio -> Void,
-    ? bytes : Uint8Array
-} //AssetAudioOptions
 
 
 /** Snow specific configurations, set from build config */
@@ -131,8 +82,6 @@ typedef AppConfig = {
 
         /** the user specific config, by default, read from a json file at runtime */
     @:optional var runtime      : Dynamic;
-        /** the raw list of assets. use the app.assets from Snow for access to these. read from a manifest file by default */
-    @:optional var assets       : Array<AssetInfo>;
         /** config specific to the web target */
     @:optional var web          : AppConfigWeb;
         /** config specific to the web target */
@@ -196,13 +145,13 @@ typedef ImageInfo = {
     var bpp : Int;
         /** source bits per pixel */
     var bpp_source : Int;
-        /** image data */
-    var data : Uint8Array;
+        /** image pixel data */
+    var pixels : Uint8Array;
 
 } //ImageInfo
 
 /** The type of audio format */
-@:enum abstract AudioFormatType(Int) from Int to Int {
+@:enum abstract AudioFormatType(Null<Int>) from Null<Int> to Null<Int> {
 
     var unknown  = 0;
     var ogg      = 1;
@@ -211,37 +160,26 @@ typedef ImageInfo = {
 
 } //AudioFormatType
 
-#if snow_module_audio_howlerjs
 
-        /** The platform specific implementation detail about the audio data */
-    typedef AudioDataInfo = {
-            /** */
-        var _unused : Bool;
-    } //AudioDataInfo
+    /** The platform specific implementation detail about the audio data */
+typedef AudioDataInfo = {
 
-#else
+        /** the file length in bytes */
+    var length : Int;
+        /** the pcm uncompressed raw length in bytes */
+    var length_pcm : Int;
+        /** number of channels */
+    var channels : Int;
+        /** hz rate */
+    var rate : Int;
+        /** sound bitrate */
+    var bitrate : Int;
+        /** bits per sample, 8 / 16 */
+    var bits_per_sample : Int;
+        /** sound raw data */
+    var samples : Uint8Array;
 
-        /** The platform specific implementation detail about the audio data */
-    typedef AudioDataInfo = {
-
-            /** the file length in bytes */
-        var length : Int;
-            /** the pcm uncompressed raw length in bytes */
-        var length_pcm : Int;
-            /** number of channels */
-        var channels : Int;
-            /** hz rate */
-        var rate : Int;
-            /** sound bitrate */
-        var bitrate : Int;
-            /** bits per sample, 8 / 16 */
-        var bits_per_sample : Int;
-            /** sound raw data */
-        var bytes : Uint8Array;
-
-    } //AudioDataInfo
-
-#end //
+} //AudioDataInfo
 
 /** Information about an audio file/data */
 typedef AudioInfo = {
@@ -304,7 +242,7 @@ typedef RenderConfig = {
     var compatibility = 0;
     var core = 1;
 
-} //AssetType
+} //OpenGLProfile
 
 
 @:noCompletion typedef WindowingConfig = {
@@ -425,8 +363,8 @@ typedef DisplayMode = {
 #end //snow_web
 
     /** A platform window handle */
-#if snow_module_audio_howlerjs
-    typedef AudioHandle = snow.modules.howlerjs.Howl;
+#if snow_web
+    typedef AudioHandle = Dynamic;
 #else
     typedef AudioHandle = Null<Float>;
 #end //snow_web

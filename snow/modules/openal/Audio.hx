@@ -1,12 +1,16 @@
 package snow.modules.openal;
 
 import snow.types.Types;
+import snow.api.Promise;
 
 import snow.modules.openal.AL;
 import snow.modules.openal.AL.Context;
 import snow.modules.openal.AL.Device;
 
-import snow.Debug.*;
+import snow.system.audio.Sound;
+import snow.api.buffers.Uint8Array;
+
+import snow.api.Debug.*;
 
 @:noCompletion
 typedef Sound = snow.modules.openal.sound.Sound;
@@ -67,5 +71,29 @@ class Audio extends snow.core.native.audio.Audio {
         ALC.makeContextCurrent( context );
 
     } //resume
+
+    override public function create_sound( _id:String, _name:String, _streaming:Bool=false, ?_format:AudioFormatType ) : Promise {
+
+        var sound = new Sound(system, _name, _streaming);
+        var assets = system.app.assets;
+
+            //:todo:this triggers the creation/init of the sound, but was
+            //a by product of earlier code, will refactor.
+        sound.info = assets.module.audio_load_info(assets.path(_id), !_streaming, _format);
+
+        return Promise.resolve(sound);
+
+    } //create_sound
+
+    override public function create_sound_from_bytes( _name:String, _bytes:Uint8Array, _format:AudioFormatType ) : Sound {
+
+        var sound = new Sound(system, _name, false);
+        var assets = system.app.assets;
+
+        sound.info = assets.module.audio_info_from_bytes(_bytes, _format);
+
+        return sound;
+
+    } //create_sound_from_bytes
 
 } //Audio

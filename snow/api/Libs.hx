@@ -1,4 +1,4 @@
-package snow.utils;
+package snow.api;
 
 class Libs {
 

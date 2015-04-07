@@ -1,7 +1,7 @@
-package snow.io;
+package snow.api;
 
-import snow.io.typedarray.ArrayBufferView;
-import snow.utils.Libs;
+import snow.api.buffers.ArrayBufferView;
+import snow.api.Libs;
 
 #if snow_native
 

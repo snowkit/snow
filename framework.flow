@@ -33,7 +33,6 @@
         libs : {
           modernizr : './lib/modernizr.js',
           howler : './lib/howler.js',
-          tga : './lib/tga.js'
         }
       },
       mobile : {
@@ -182,15 +181,14 @@
         index : { path:'flow/web/index.html => index.html', template:'project', not_listed:true },
         modernizr : { path:'flow/web/lib/modernizr.js => lib/modernizr.js', not_listed:true },
         howlerjs : { path:'flow/web/lib/howler.min.js => lib/howler.js', not_listed:true },
-        tga : { path:'flow/web/lib/tga.min.js => lib/tga.js', not_listed:true },
       },
       build : {
         flags:[
-          '--macro snow.Module.set("Audio", "snow.core.web.audio.Audio")',
-          '--macro snow.Module.set("IO", "snow.core.web.io.IO")',
-          '--macro snow.Module.set("Input", "snow.core.web.input.Input")',
-          '--macro snow.Module.set("Windowing", "snow.core.web.window.Windowing")',
-          '--macro snow.Module.set("Assets", "snow.core.web.assets.Assets")'
+          '--macro snow.system.module.Module.set("Audio","snow.core.web.audio.Audio")',
+          '--macro snow.system.module.Module.set("IO","snow.core.web.io.IO")',
+          '--macro snow.system.module.Module.set("Input","snow.core.web.input.Input")',
+          '--macro snow.system.module.Module.set("Windowing","snow.core.web.window.Windowing")',
+          '--macro snow.system.module.Module.set("Assets","snow.core.web.assets.Assets")'
         ],
         defines : ['snow_module_audio_howlerjs'],
         files : {
@@ -201,7 +199,6 @@
     "snow_web && debug" : {
       files : {
         howlerjs : { path:'flow/web/lib/howler.js => lib/howler.js', not_listed:true },
-        tga : { path:'flow/web/lib/tga.js => lib/tga.js', not_listed:true },
       }
     },
 
@@ -224,33 +221,52 @@
       }
     },
 
+    "snow_web && snow_web_tga" : {
+      app : {
+        web : {
+          libs : {
+            tga : './lib/tga.js'
+          }
+        }
+      },
+      files:{
+        tga : { path:'flow/web/lib/tga.min.js => lib/tga.js', not_listed:true },
+      }
+    },
+
+    "snow_web && snow_web_tga && debug" : {
+      files:{
+        tga : { path:'flow/web/lib/tga.js => lib/tga.js', not_listed:true },
+      }
+    },
+
     snow_native : {
       build: {
         flags:[
-          '--macro snow.Module.set("Audio", "snow.core.native.audio.Audio")',
-          '--macro snow.Module.set("IO", "snow.core.native.io.IO")',
-          '--macro snow.Module.set("Input", "snow.core.native.input.Input")',
-          '--macro snow.Module.set("Windowing", "snow.core.native.window.Windowing")',
-          '--macro snow.Module.set("Assets", "snow.core.native.assets.Assets")'
+          '--macro snow.system.module.Module.set("Audio","snow.core.native.audio.Audio")',
+          '--macro snow.system.module.Module.set("IO","snow.core.native.io.IO")',
+          '--macro snow.system.module.Module.set("Input","snow.core.native.input.Input")',
+          '--macro snow.system.module.Module.set("Windowing","snow.core.native.window.Windowing")',
+          '--macro snow.system.module.Module.set("Assets","snow.core.native.assets.Assets")'
         ],
         defines : ['snow_module_input_sdl','snow_module_audio_openal', 'snow_module_windowing_sdl']
       }
     },
 
     snow_module_input_sdl : {
-      build:{ flags:['--macro snow.Module.set("Input", "snow.modules.sdl.Input")'] }
+      build:{ flags:['--macro snow.system.module.Module.set("Input","snow.modules.sdl.Input")'] }
     },
 
     snow_module_windowing_sdl : {
-      build:{ flags:['--macro snow.Module.set("Windowing", "snow.modules.sdl.Windowing")'] }
+      build:{ flags:['--macro snow.system.module.Module.set("Windowing","snow.modules.sdl.Windowing")'] }
     },
 
     snow_module_audio_openal : {
-      build:{ flags:['--macro snow.Module.set("Audio", "snow.modules.openal.Audio")'] }
+      build:{ flags:['--macro snow.system.module.Module.set("Audio","snow.modules.openal.Audio")'] }
     },
 
     snow_module_audio_howlerjs : {
-      build:{ flags:['--macro snow.Module.set("Audio", "snow.modules.howlerjs.Audio")'] }
+      build:{ flags:['--macro snow.system.module.Module.set("Audio","snow.modules.howlerjs.Audio")'] }
     },
 
   }

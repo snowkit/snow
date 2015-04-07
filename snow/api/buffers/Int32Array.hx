@@ -1,4 +1,4 @@
-package snow.io.typedarray;
+package snow.api.buffers;
 
 #if js
 
@@ -52,8 +52,8 @@ package snow.io.typedarray;
 
 #else
 
-    import snow.io.typedarray.ArrayBufferView;
-    import snow.io.typedarray.TypedArrayType;
+    import snow.api.buffers.ArrayBufferView;
+    import snow.api.buffers.TypedArrayType;
 
     @:forward()
     @:arrayAccess
