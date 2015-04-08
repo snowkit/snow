@@ -148,9 +148,7 @@ class Asset {
 
                 if(_data == null) return Promise.reject(Error.error("AssetImage processor: data was null"));
 
-                var info = _app.assets.module.image_info_from_bytes(_id, _data);
-
-                return Promise.resolve(info);
+                return _app.assets.module.image_info_from_bytes(_id, _data);
 
             } //load
 
