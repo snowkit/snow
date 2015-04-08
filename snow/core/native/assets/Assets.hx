@@ -107,17 +107,17 @@ class Assets implements snow.modules.interfaces.Assets {
         if(_format == null) {
             var _ext = haxe.io.Path.extension(_path);
             _format = switch(_ext) {
-                case 'wav': wav;
-                case 'ogg': ogg;
-                case 'pcm': pcm;
-                case _: unknown;
+                case 'wav': AudioFormatType.wav;
+                case 'ogg': AudioFormatType.ogg;
+                case 'pcm': AudioFormatType.pcm;
+                case _: AudioFormatType.unknown;
             }
         }
 
         var _native_info : NativeAudioInfo = switch(_format) {
-            case wav: audio_load_wav( _path, _load );
-            case ogg: audio_load_ogg( _path, _load );
-            case pcm: audio_load_pcm( _path, _load );
+            case AudioFormatType.wav: audio_load_wav( _path, _load );
+            case AudioFormatType.ogg: audio_load_ogg( _path, _load );
+            case AudioFormatType.pcm: audio_load_pcm( _path, _load );
             case _: null;
         } //switch _format
 
@@ -158,9 +158,9 @@ class Assets implements snow.modules.interfaces.Assets {
         var _id = 'audio_info_from_bytes/$_format';
 
         var _native_info : NativeAudioInfo = switch(_format) {
-                case wav: audio_load_wav_from_bytes( _id, _bytes );
-                case ogg: audio_load_ogg_from_bytes( _id, _bytes );
-                case pcm: audio_load_pcm_from_bytes( _id, _bytes );
+                case AudioFormatType.wav: audio_load_wav_from_bytes( _id, _bytes );
+                case AudioFormatType.ogg: audio_load_ogg_from_bytes( _id, _bytes );
+                case AudioFormatType.pcm: audio_load_pcm_from_bytes( _id, _bytes );
                 case _ : null;
             } //switch _format
 
@@ -197,9 +197,9 @@ class Assets implements snow.modules.interfaces.Assets {
     public function audio_seek_source( _info:AudioInfo, _to:Int ) : Bool {
 
         switch(_info.format) {
-            case ogg: return audio_seek_source_ogg(_info, _to);
-            case wav: return audio_seek_source_wav(_info, _to);
-            case pcm: return audio_seek_source_pcm(_info, _to);
+            case AudioFormatType.ogg: return audio_seek_source_ogg(_info, _to);
+            case AudioFormatType.wav: return audio_seek_source_wav(_info, _to);
+            case AudioFormatType.pcm: return audio_seek_source_pcm(_info, _to);
             case _: return false;
         }
 
@@ -213,9 +213,9 @@ class Assets implements snow.modules.interfaces.Assets {
         var result_blob : AudioDataBlob = null;
 
         native_blob = switch(_info.format) {
-            case ogg: audio_load_portion_ogg(_info, _start, _len);
-            case wav: audio_load_portion_wav(_info, _start, _len);
-            case pcm: audio_load_portion_pcm(_info, _start, _len);
+            case AudioFormatType.ogg: audio_load_portion_ogg(_info, _start, _len);
+            case AudioFormatType.wav: audio_load_portion_wav(_info, _start, _len);
+            case AudioFormatType.pcm: audio_load_portion_pcm(_info, _start, _len);
             case _: null;
         }
 
