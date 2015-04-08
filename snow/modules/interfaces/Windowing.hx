@@ -3,6 +3,7 @@ package snow.modules.interfaces;
 import snow.types.Types;
 import snow.system.window.Window;
 
+@:noCompletion
 @:allow(snow.system.window.Windowing)
 interface Windowing {
 

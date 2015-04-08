@@ -7,6 +7,7 @@ import snow.api.buffers.Int32Array;
 
 import snow.api.Libs;
 
+@:noCompletion
 class GL_FFI {
 
     #if !no_gl_ffi_inline inline #end

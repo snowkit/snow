@@ -5,6 +5,7 @@ import snow.api.Promise;
 import snow.system.audio.Sound;
 import snow.types.Types;
 
+@:noCompletion
 @:allow(snow.system.audio.Audio)
 interface Audio {
 

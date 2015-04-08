@@ -46,12 +46,13 @@ class GLObject {
 }
 
 abstract GLUniformLocation(Null<Int>) from Null<Int> to Null<Int> {}
-class GLBO extends GLObject { override function toString() return 'GLBuffer($id)'; }
-class GLFBO extends GLObject { override function toString() return 'GLFramebuffer($id)'; }
-class GLRBO extends GLObject { override function toString() return 'GLRenderbuffer($id)'; }
-class GLSO extends GLObject { override function toString() return 'GLShader($id)'; }
-class GLTO extends GLObject { override function toString() return 'GLTexture($id)'; }
-class GLPO extends GLObject {
+
+@:noCompletion class GLBO extends GLObject { override function toString() return 'GLBuffer($id)'; }
+@:noCompletion class GLFBO extends GLObject { override function toString() return 'GLFramebuffer($id)'; }
+@:noCompletion class GLRBO extends GLObject { override function toString() return 'GLRenderbuffer($id)'; }
+@:noCompletion class GLSO extends GLObject { override function toString() return 'GLShader($id)'; }
+@:noCompletion class GLTO extends GLObject { override function toString() return 'GLTexture($id)'; }
+@:noCompletion class GLPO extends GLObject {
     public var shaders : Array<GLShader>;
     public function new( id:Int ) { super( id ); shaders = []; } //new
     override function toString() return 'GLProgram($id)';

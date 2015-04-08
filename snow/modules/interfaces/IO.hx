@@ -4,6 +4,7 @@ import snow.types.Types;
 import snow.api.Promise;
 import snow.api.buffers.Uint8Array;
 
+@:noCompletion
 @:allow(snow.system.io.IO)
 interface IO {
 

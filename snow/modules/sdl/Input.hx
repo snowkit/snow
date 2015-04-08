@@ -272,7 +272,7 @@ class Input extends snow.core.native.input.Input {
 
 } //Input
 
-
+@:noCompletion
 @:enum abstract KeyEventType(Int) {
 
         /** A key down event */
@@ -286,6 +286,7 @@ class Input extends snow.core.native.input.Input {
 
 } //KeyEventTypes
 
+@:noCompletion
 @:enum abstract ControllerEventType(Int) {
 
         /** a gamepad axis movement event */
@@ -303,6 +304,7 @@ class Input extends snow.core.native.input.Input {
 
 } //ControllerEventType
 
+@:noCompletion
 @:enum abstract TouchEventType(Int) {
 
         /** A touch has begun */
@@ -314,6 +316,7 @@ class Input extends snow.core.native.input.Input {
 
 } //TouchEventType
 
+@:noCompletion
 @:enum abstract MouseEventType(Int) {
 
         /** A mouse moved event */
@@ -327,6 +330,7 @@ class Input extends snow.core.native.input.Input {
 
 } //MouseEventTypes
 
+@:noCompletion
 @:enum abstract ModValue(Int) {
 
     var NONE    = 0x0000;

@@ -2,6 +2,7 @@ package snow.modules.interfaces;
 
 import snow.types.Types;
 
+@:noCompletion
 @:allow(snow.system.input.Input)
 interface Input {
 

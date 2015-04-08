@@ -16,6 +16,7 @@ import snow.api.Debug.*;
 typedef Sound = snow.modules.openal.sound.Sound;
 
     /** Internal audio system implementation for OpenAL, interact with this system through `snow.Audio`, not directly */
+@:noCompletion
 class Audio extends snow.core.native.audio.Audio {
 
     var device : Device;
