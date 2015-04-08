@@ -213,10 +213,7 @@ class Window {
 
         } //has render handler
 
-            //If it doesn't have a render handler
-            //Render a red color so the user can tell
-
-        GL.clearColor( 0.8, 0.12, 0.12, 1.0 );
+        GL.clearColor( 0, 0, 0, 1.0 );
         GL.clear(GL.COLOR_BUFFER_BIT);
 
         if(auto_swap) {
