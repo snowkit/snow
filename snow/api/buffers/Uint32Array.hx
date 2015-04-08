@@ -35,6 +35,8 @@ package snow.api.buffers;
 
             //non spec haxe conversions
         public static function fromBytes( bytes:haxe.io.Bytes, ?byteOffset:Int=0, ?len:Int ) : Uint32Array {
+            if(byteOffset == null) return new js.html.Uint32Array(cast bytes.getData());
+            if(len == null) return new js.html.Uint32Array(cast bytes.getData(), byteOffset);
             return new js.html.Uint32Array(cast bytes.getData(), byteOffset, len);
         }
 

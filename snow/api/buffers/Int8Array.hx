@@ -91,7 +91,9 @@ package snow.api.buffers;
 
             //non spec haxe conversions
         public static function fromBytes( bytes:haxe.io.Bytes, ?byteOffset:Int=0, ?len:Int ) : Int8Array {
-            return new Int8Array(bytes, byteOffset, len);
+            if(byteOffset == null) return new Int8Array(cast bytes.getData());
+            if(len == null) return new Int8Array(cast bytes.getData(), byteOffset);
+            return new Int8Array(cast bytes.getData(), byteOffset, len);
         }
 
         public function toBytes() : haxe.io.Bytes {
