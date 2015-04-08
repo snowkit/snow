@@ -7,6 +7,7 @@
     "images_path" : "./snow/images/",
     "apis_path" : "./snow/apis/api/",
     "md_path" : "./snow/md/",
+    "api_example_file" : "./snow/md/api/examples.md",
 
     "md_input": ["**/+(*.md)"],
     "api_input" : ["**/+(*.json)"],
