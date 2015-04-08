@@ -3,7 +3,7 @@ package snow.system.window;
 import snow.types.Types;
 import snow.system.window.Window;
 
-#if !macro
+#if (!macro && !display && !scribe)
     private typedef WindowingModule = haxe.macro.MacroType<[snow.system.module.Module.assign('Windowing')]>;
 #end
 

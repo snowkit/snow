@@ -5,7 +5,7 @@ import snow.types.Types;
 import snow.api.buffers.Uint8Array;
 import snow.api.Promise;
 
-#if !macro
+#if (!macro && !display && !scribe)
     private typedef IOModule = haxe.macro.MacroType<[snow.system.module.Module.assign('IO')]>;
 #end
 

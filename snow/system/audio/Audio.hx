@@ -6,7 +6,7 @@ import snow.system.assets.Asset;
 import snow.api.Promise;
 import snow.api.Debug.*;
 
-#if !macro
+#if (!macro && !display && !scribe)
     typedef AudioModule = haxe.macro.MacroType<[snow.system.module.Module.assign('Audio')]>;
 #end
 

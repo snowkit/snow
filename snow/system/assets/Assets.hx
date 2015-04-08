@@ -7,7 +7,7 @@ import snow.api.Debug.*;
 
 import snow.system.assets.Asset;
 
-#if !macro
+#if (!macro && !display && !scribe)
     private typedef AssetsModule = haxe.macro.MacroType<[snow.system.module.Module.assign('Assets')]>;
 #end
 

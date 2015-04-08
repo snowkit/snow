@@ -3,7 +3,7 @@ package snow.system.input;
 import snow.types.Types;
 import snow.system.window.Window;
 
-#if !macro
+#if (!macro && !display && !scribe)
     private typedef InputModule = haxe.macro.MacroType<[snow.system.module.Module.assign('Input')]>;
 #end
 
