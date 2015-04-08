@@ -44,32 +44,38 @@ class Assets implements snow.modules.interfaces.Assets {
 
     } //image_load_info
 
-    public function image_info_from_bytes( _id:String, _bytes:Uint8Array, ?_components:Int = 4 ) : ImageInfo {
+    public function image_info_from_bytes( _id:String, _bytes:Uint8Array, ?_components:Int = 4 ) : Promise {
 
         assertnull(_id);
         assertnull(_bytes);
 
-        var _native_info = snow_assets_image_info_from_bytes( _id, _bytes.buffer.getData(), _bytes.byteOffset, _bytes.byteLength, _components );
+        return new Promise(function(resolve, reject) {
 
-        assertnull(_native_info);
-        assertnull(_native_info.data);
+            var _native_info = snow_assets_image_info_from_bytes( _id, _bytes.buffer.getData(), _bytes.byteOffset, _bytes.byteLength, _components );
 
-        var _out_bytes : haxe.io.Bytes = haxe.io.Bytes.ofData(_native_info.data);
+            if(_native_info == null)
+                return reject(Error.error('failed to load image from bytes, native code returned null.'));
+            if(_native_info.data == null)
+                return reject(Error.error('failed to load image from bytes, native code returned null data.'));
 
-        var info : ImageInfo = {
-            id : _native_info.id,
-            bpp : _native_info.bpp,
-            width : _native_info.width,
-            height : _native_info.height,
-            width_actual : _native_info.width,
-            height_actual : _native_info.height,
-            bpp_source : _native_info.bpp_source,
-            pixels : new Uint8Array( _out_bytes )
-        }
+            var _out_bytes : haxe.io.Bytes = haxe.io.Bytes.ofData(_native_info.data);
 
-        _native_info = null;
+            var info : ImageInfo = {
+                id : _native_info.id,
+                bpp : _native_info.bpp,
+                width : _native_info.width,
+                height : _native_info.height,
+                width_actual : _native_info.width,
+                height_actual : _native_info.height,
+                bpp_source : _native_info.bpp_source,
+                pixels : new Uint8Array( _out_bytes )
+            }
 
-        return info;
+            _native_info = null;
+
+            return resolve(info);
+
+        }); //promise
 
     } //image_info_from_bytes
 

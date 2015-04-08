@@ -85,8 +85,8 @@ class Assets implements snow.modules.interfaces.Assets {
             return info;
         }
 
-            /** Create an image info (padded to POT) from*/
-        public function image_info_from_bytes( _id:String, _bytes:Uint8Array, ?_components:Int = 4 ) : ImageInfo {
+            /** Create an image info (padded to POT) from bytes. Promises an ImageInfo. */
+        public function image_info_from_bytes( _id:String, _bytes:Uint8Array, ?_components:Int = 4 ) : Promise {
 
             assertnull(_id);
             assertnull(_bytes);
@@ -95,31 +95,37 @@ class Assets implements snow.modules.interfaces.Assets {
             var ext = haxe.io.Path.extension(_id);
 
             #if snow_web_tga
-            if(ext == 'tga') return image_info_from_bytes_tga(_id , _bytes);
+                if(ext == 'tga') return Promise.resolve(image_info_from_bytes_tga(_id, _bytes));
             #end
 
             #if snow_web_psd
-            if(ext == 'psd') return image_info_from_bytes_psd(_id , _bytes);
+                if(ext == 'psd') return Promise.resolve(image_info_from_bytes_psd(_id , _bytes));
             #end
 
-                //convert to a binary string
-            var str = '', i = 0, len = _bytes.length;
-            while(i < len) str += String.fromCharCode(_bytes[i++] & 0xff);
+            return new Promise(function(resolve, reject) {
 
-            assert(str.length != 0);
+                    //convert to a binary string
+                var str = '', i = 0, len = _bytes.length;
+                while(i < len) str += String.fromCharCode(_bytes[i++] & 0xff);
 
-            var b64 = js.Browser.window.btoa(str);
-            var src = 'data:image/$ext;base64,$b64';
+                var b64 = js.Browser.window.btoa(str);
+                var src = 'data:image/$ext;base64,$b64';
 
-                //convert to an image element
-            var _img = new js.html.Image();
-            _img.src = src;
+                    //convert to an image element
+                var _img = new js.html.Image();
 
-            assert(_img.width != 0);
-            assert(_img.height != 0);
+                _img.onload = function(_) {
+                    var info = image_info_from_element(_id, _img);
+                    resolve(info);
+                }
 
-                //convert to info
-            return image_info_from_element(_id, _img);
+                _img.onerror = function(e) {
+                    reject(Error.error('failed to load image from bytes, on error: $e'));
+                }
+
+                _img.src = src;
+
+            }); //promise
 
         } //image_info_from_bytes
 

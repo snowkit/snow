@@ -17,7 +17,7 @@ interface Assets {
         /** Image info load from file path. Use `app.assets`. Returns a promise for ImageInfo */
     function image_load_info( _path:String, ?_components:Int = 4 ) : Promise;
         /** Create an image info from image bytes. Use `app.assets` */
-    function image_info_from_bytes( _path:String, _bytes:Uint8Array, ?_components:Int = 4 ) : ImageInfo;
+    function image_info_from_bytes( _path:String, _bytes:Uint8Array, ?_components:Int = 4 ) : Promise;
         /** Create an image info from raw (already decoded) image pixels. */
     function image_info_from_pixels( _id:String, _width:Int, _height:Int, _pixels:Uint8Array ) : ImageInfo;
 

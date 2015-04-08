@@ -67,8 +67,8 @@ class Assets {
         /** Get an asset as an `AssetImage`, data stored as `ImageInfo`, using the default processor and provider */
     public inline function image( _id:String ) : Promise  return AssetImage.load(this, _id);
 
-        /** Get an asset as an `AssetImage`, data stored as `ImageInfo`, created from image file bytes (not pixels) */
-    public inline function image_from_bytes( _id:String, _bytes:Uint8Array ) : AssetImage
+        /** Get an asset as an `AssetImage`, data stored as `ImageInfo`, created from image file bytes (not pixels). */
+    public inline function image_from_bytes( _id:String, _bytes:Uint8Array ) : Promise
         return AssetImage.load_from_bytes(this, _id, _bytes);
 
         /** Get an asset as an `AssetImage`, data stored as `ImageInfo`, created from image file pixels */

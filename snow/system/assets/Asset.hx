@@ -59,9 +59,13 @@ class Asset {
                 /** Reloads the bytes from the stored id, using the default processor, returning a promise for the asset. */
             public function reload() : Promise {
 
+                loaded = false;
+
                 return new Promise(function(resolve, reject) {
 
-                    system.app.io.data_flow(id, provider).then(
+                    var _load = system.app.io.data_flow(id, provider);
+
+                    _load.then(
                         function(_image:ImageInfo){
                             image = _image;
                             resolve(this);
@@ -76,7 +80,17 @@ class Asset {
             public function reload_from_bytes(_bytes:Uint8Array) {
 
                 loaded = false;
-                image = system.module.image_info_from_bytes(id, _bytes);
+
+                return new Promise(function(resolve, reject){
+
+                    var _load = system.module.image_info_from_bytes(id, _bytes);
+
+                    _load.then(function(_image:ImageInfo){
+                        image = _image;
+                        resolve(this);
+                    }).error(reject);
+
+                });
 
             } //reload_from_bytes
 
@@ -84,6 +98,7 @@ class Asset {
             public function reload_from_pixels(_width:Int, _height:Int, _pixels:Uint8Array) {
 
                 loaded = false;
+
                 image = system.module.image_info_from_pixels(id, _width, _height, _pixels);
 
             } //reload_from_bytes
@@ -99,15 +114,13 @@ class Asset {
 
             } //load
 
-            public static function load_from_bytes(_system:Assets, _id:String, _bytes:Uint8Array) : AssetImage {
+            public static function load_from_bytes(_system:Assets, _id:String, _bytes:Uint8Array) : Promise {
 
                 assertnull( _id );
                 assertnull( _bytes );
                 assertnull( _system );
 
-                var info = _system.module.image_info_from_bytes(_id, _bytes);
-
-                return new AssetImage(_system, _id, info);
+                return new AssetImage(_system, _id, null).reload_from_bytes(_bytes);
 
             } //load_from_bytes
 
