@@ -88,6 +88,10 @@ class Assets implements snow.modules.interfaces.Assets {
             /** Create an image info (padded to POT) from*/
         public function image_info_from_bytes( _id:String, _bytes:Uint8Array, ?_components:Int = 4 ) : ImageInfo {
 
+            assertnull(_id);
+            assertnull(_bytes);
+            assert(_bytes.length != 0);
+
             var ext = haxe.io.Path.extension(_id);
 
             #if snow_web_tga
@@ -102,9 +106,17 @@ class Assets implements snow.modules.interfaces.Assets {
             var str = '', i = 0, len = _bytes.length;
             while(i < len) str += String.fromCharCode(_bytes[i++] & 0xff);
 
+            assert(str.length != 0);
+
+            var b64 = js.Browser.window.btoa(str);
+            var src = 'data:image/$ext;base64,$b64';
+
                 //convert to an image element
             var _img = new js.html.Image();
-            _img.src = 'data:image/$ext;base64,' + js.Browser.window.btoa(str);
+            _img.src = src;
+
+            assert(_img.width != 0);
+            assert(_img.height != 0);
 
                 //convert to info
             return image_info_from_element(_id, _img);
