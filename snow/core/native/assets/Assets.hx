@@ -118,7 +118,7 @@ class Assets implements snow.modules.interfaces.Assets {
             case wav: audio_load_wav( _path, _load );
             case ogg: audio_load_ogg( _path, _load );
             case pcm: audio_load_pcm( _path, _load );
-            default : null;
+            case _: null;
         } //switch _format
 
             //:todo:
@@ -161,7 +161,7 @@ class Assets implements snow.modules.interfaces.Assets {
                 case wav: audio_load_wav_from_bytes( _id, _bytes );
                 case ogg: audio_load_ogg_from_bytes( _id, _bytes );
                 case pcm: audio_load_pcm_from_bytes( _id, _bytes );
-                default : null;
+                case _ : null;
             } //switch _format
 
                 //:todo:
@@ -200,7 +200,7 @@ class Assets implements snow.modules.interfaces.Assets {
             case ogg: return audio_seek_source_ogg(_info, _to);
             case wav: return audio_seek_source_wav(_info, _to);
             case pcm: return audio_seek_source_pcm(_info, _to);
-            default: return false;
+            case _: return false;
         }
 
         return false;
@@ -216,7 +216,7 @@ class Assets implements snow.modules.interfaces.Assets {
             case ogg: audio_load_portion_ogg(_info, _start, _len);
             case wav: audio_load_portion_wav(_info, _start, _len);
             case pcm: audio_load_portion_pcm(_info, _start, _len);
-            default: null;
+            case _: null;
         }
 
         if(native_blob != null) {
