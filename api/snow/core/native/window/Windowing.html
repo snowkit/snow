@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <title>snow - </title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <link rel="shortcut icon" href="../../../../../images/favicon.png" />
+
+        <link rel="stylesheet" type="text/css" href="../../../../../css/style.css" media="all">
+        <link rel="stylesheet" type="text/css" href="../../../../../css/code.css" media="all">
+        <link rel="stylesheet" type="text/css" href="../../../../../css/font.css" media="all">
+
+        <link rel="stylesheet" type="text/css" href="../../../../../css/tooltipster.css" media="all">
+        <link rel="stylesheet" type="text/css" href="../../../../../css/tooltipster-shadow.css" media="all">
+
+        <script src="../../../../../js/jquery-2.0.3.min.js"> </script>
+        <script src="../../../../../js/jquery.tooltipster.min.js"> </script>
+
+        <script>
+
+            $(document).ready(function() {
+
+                $('.section').css('display','none');
+                $('.readmore').click(function(e){
+                    var _child = $(this).parent().find('.section').first();
+                    var _opp = 'block';
+                    if( _child.css('display') == 'block' ) {
+                        _opp = 'none';
+                    } else {
+                    }
+                    _child.css('display', _opp);
+                });
+
+                $('div.sample').on('click', function(e){
+                        //get the data tag
+                    var content = $(this).attr('data-content');
+                        //remove clicking handler
+                    $(this).off('click');
+                        //replace the content!
+                    $(this).html('<iframe src="'+content+'" sandbox="allow-same-origin allow-scripts" style="overflow:hidden; scrollbar:none; border: 0; width:645px; height:450px;"></iframe> ')
+                });
+
+                $('.tooltip').each(function(e){
+                    var c = $(this).attr('data-tooltip');
+                    $(this).tooltipster({
+                        content:$('<span>' + c + '</span>'),
+                        interactive:true,
+                    theme:'tooltipster-shadow'
+                    });
+                });
+
+            }); //document.ready
+
+        </script>
+    </head>
+
+    <body>
+        <div class="content">
+            <p><a href="../../../../../api/index.html"><img src="../../../../../images/logo.png" alt="Logo"></a></p>
+<p><hr/>
+<a href="#" id="search_bar" onclick="return;"><div> search API <em>(or start typing anywhere)</em> </div></a></p>
+<hr/>
+
+<script src="../../../../../js/omnibar.js"> </script>
+<link rel="stylesheet" type="text/css" href="../../../../../css/omnibar.css" media="all">
+
+<div id="omnibar"> <a href="#" onclick="return" id="omnibar_close"></a> <input id="omnibar_text" type="text" placeholder="search types..."></input></div>
+<script  id="typelist" data-relpath="../../../../../" data-types="snow.App,snow.AppFixedTimestep,snow.Snow,snow._Snow.Core,snow.api.Debug,snow.api.DebugError,snow.api.File,snow.api.FileHandle,snow.api.FileSeek,snow.api.Libs,snow.api.Promise,snow.api.PromiseError,snow.api.PromiseState,snow.api.Promises,snow.api.Timer,snow.api._Debug.LogError,snow.api._File.FileHandle_Impl_,snow.api._File.FileSeek_Impl_,snow.api._Promise.PromiseState_Impl_,snow.api.buffers.ArrayBuffer,snow.api.buffers.ArrayBufferIO,snow.api.buffers.ArrayBufferView,snow.api.buffers.Float32Array,snow.api.buffers.Float64Array,snow.api.buffers.Int16Array,snow.api.buffers.Int32Array,snow.api.buffers.Int8Array,snow.api.buffers.TAError,snow.api.buffers.TypedArrayType,snow.api.buffers.Uint16Array,snow.api.buffers.Uint32Array,snow.api.buffers.Uint8Array,snow.api.buffers.Uint8ClampedArray,snow.api.buffers._ArrayBuffer.ArrayBuffer_Impl_,snow.api.buffers._Float32Array.Float32Array_Impl_,snow.api.buffers._Float64Array.Float64Array_Impl_,snow.api.buffers._Int16Array.Int16Array_Impl_,snow.api.buffers._Int32Array.Int32Array_Impl_,snow.api.buffers._Int8Array.Int8Array_Impl_,snow.api.buffers._TypedArrayType.TypedArrayType_Impl_,snow.api.buffers._Uint16Array.Uint16Array_Impl_,snow.api.buffers._Uint32Array.Uint32Array_Impl_,snow.api.buffers._Uint8Array.Uint8Array_Impl_,snow.api.buffers._Uint8ClampedArray.Uint8ClampedArray_Impl_,snow.core.native.Core,snow.core.native._Core.StaticSnow,snow.core.native.assets.Assets,snow.core.native.assets._Assets.NativeAudioDataBlob,snow.core.native.assets._Assets.NativeAudioDataInfo,snow.core.native.assets._Assets.NativeAudioInfo,snow.core.native.audio.Audio,snow.core.native.audio.Sound,snow.core.native.input.Input,snow.core.native.io.IO,snow.core.native.window.Windowing,snow.modules.interfaces.Assets,snow.modules.interfaces.Audio,snow.modules.interfaces.IO,snow.modules.interfaces.Input,snow.modules.interfaces.Windowing,snow.modules.openal.AL,snow.modules.openal.ALC,snow.modules.openal.ALHelper,snow.modules.openal.Audio,snow.modules.openal.Context,snow.modules.openal.Device,snow.modules.openal.Sound,snow.modules.openal._AL.Context_Impl_,snow.modules.openal._AL.Device_Impl_,snow.modules.openal.sound.ALSound,snow.modules.openal.sound.ALStream,snow.modules.openal.sound.Sound,snow.modules.opengl.GL,snow.modules.opengl.GLActiveInfo,snow.modules.opengl.GLBuffer,snow.modules.opengl.GLContextAttributes,snow.modules.opengl.GLFramebuffer,snow.modules.opengl.GLProgram,snow.modules.opengl.GLRenderbuffer,snow.modules.opengl.GLShader,snow.modules.opengl.GLTexture,snow.modules.opengl.GLUniformLocation,snow.modules.opengl.native.GL,snow.modules.opengl.native.GLActiveInfo,snow.modules.opengl.native.GLBO,snow.modules.opengl.native.GLBuffer,snow.modules.opengl.native.GLContextAttributes,snow.modules.opengl.native.GLFBO,snow.modules.opengl.native.GLFramebuffer,snow.modules.opengl.native.GLObject,snow.modules.opengl.native.GLPO,snow.modules.opengl.native.GLProgram,snow.modules.opengl.native.GLRBO,snow.modules.opengl.native.GLRenderbuffer,snow.modules.opengl.native.GLSO,snow.modules.opengl.native.GLShader,snow.modules.opengl.native.GLShaderPrecisionFormat,snow.modules.opengl.native.GLTO,snow.modules.opengl.native.GLTexture,snow.modules.opengl.native.GLUniformLocation,snow.modules.opengl.native.GL_FFI,snow.modules.opengl.native._GL.GLBuffer_Impl_,snow.modules.opengl.native._GL.GLFramebuffer_Impl_,snow.modules.opengl.native._GL.GLProgram_Impl_,snow.modules.opengl.native._GL.GLRenderbuffer_Impl_,snow.modules.opengl.native._GL.GLShader_Impl_,snow.modules.opengl.native._GL.GLTexture_Impl_,snow.modules.opengl.native._GL.GLUniformLocation_Impl_,snow.modules.sdl.ControllerEventType,snow.modules.sdl.Input,snow.modules.sdl.KeyEventType,snow.modules.sdl.ModValue,snow.modules.sdl.MouseEventType,snow.modules.sdl.TouchEventType,snow.modules.sdl.Windowing,snow.modules.sdl._Input.ControllerEventType_Impl_,snow.modules.sdl._Input.KeyEventType_Impl_,snow.modules.sdl._Input.ModValue_Impl_,snow.modules.sdl._Input.MouseEventType_Impl_,snow.modules.sdl._Input.TouchEventType_Impl_,snow.system.assets.Asset,snow.system.assets.AssetBytes,snow.system.assets.AssetImage,snow.system.assets.AssetJSON,snow.system.assets.AssetText,snow.system.assets.Assets,snow.system.assets._Assets.AssetsModule,snow.system.audio.Audio,snow.system.audio.AudioModule,snow.system.audio.Sound,snow.system.input.Input,snow.system.input.Keycodes,snow.system.input.MapIntBool,snow.system.input.MapIntFloat,snow.system.input.Scancodes,snow.system.input._Input.InputModule,snow.system.io.IO,snow.system.io._IO.IOModule,snow.system.module.Assets,snow.system.module.Audio,snow.system.module.IO,snow.system.module.Input,snow.system.module.Sound,snow.system.module.Windowing,snow.system.window.Window,snow.system.window.Windowing,snow.system.window._Windowing.WindowHandleMap,snow.system.window._Windowing.WindowingModule,snow.types.AppConfig,snow.types.AppConfigNative,snow.types.AppConfigWeb,snow.types.Asset,snow.types.AssetBytes,snow.types.AssetImage,snow.types.AssetJSON,snow.types.AssetText,snow.types.AssetType,snow.types.AudioDataBlob,snow.types.AudioDataInfo,snow.types.AudioFormatType,snow.types.AudioHandle,snow.types.AudioInfo,snow.types.DisplayMode,snow.types.Error,snow.types.FileEvent,snow.types.FileEventType,snow.types.FileFilter,snow.types.GamepadDeviceEventType,snow.types.IODataOptions,snow.types.ImageInfo,snow.types.InputEvent,snow.types.InputEventType,snow.types.Key,snow.types.ModState,snow.types.OpenGLProfile,snow.types.RenderConfig,snow.types.RenderConfigOpenGL,snow.types.Scan,snow.types.SnowConfig,snow.types.SystemEvent,snow.types.SystemEventType,snow.types.TextEventType,snow.types.WindowConfig,snow.types.WindowEvent,snow.types.WindowEventType,snow.types.WindowHandle,snow.types.WindowingConfig,snow.types._Types.AssetType_Impl_,snow.types._Types.AudioFormatType_Impl_,snow.types._Types.FileEventType_Impl_,snow.types._Types.GamepadDeviceEventType_Impl_,snow.types._Types.InputEventType_Impl_,snow.types._Types.OpenGLProfile_Impl_,snow.types._Types.SystemEventType_Impl_,snow.types._Types.TextEventType_Impl_,snow.types._Types.WindowEventType_Impl_"></script>
+
+
+<p><h1>Windowing</h1>
+<small><code>snow.core.native.window.Windowing</code></small></p>
+<hr/>
+
+<p><code>class</code><br/>implements <code><span>snow.modules.interfaces.Windowing</span></code><br/><span class="meta">
+meta: @:directlyUsed, @:keep, @:allow(snow.system.window.Windowing)</span></p>
+<hr/>
+
+
+<p>&nbsp;
+&nbsp;</p>
+<p><h3>Members</h3> <hr/></p>
+<p><h3>Methods</h3> <hr/><span class="method apipage">
+            <a name="bordered"><a class="lift" href="#bordered">bordered</a></a><div class="clear"></div>
+            <code class="signature apipage">bordered(window:<a href="../../../../../api/snow/system/window/Window.html">snow.system.window.Window</a><span></span>, bordered:<a href="http://api.haxe.org/Bool.html">Bool</a><span></span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span></p>
+<p></span>
+<span class="method apipage">
+            <a name="close"><a class="lift" href="#close">close</a></a><div class="clear"></div>
+            <code class="signature apipage">close(window:<a href="../../../../../api/snow/system/window/Window.html">snow.system.window.Window</a><span></span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span></p>
+<p></span>
+<span class="method apipage">
+            <a name="create"><a class="lift" href="#create">create</a></a><div class="clear"></div>
+            <code class="signature apipage">create(render_config:<a href="../../../../../api/snow/types/RenderConfig.html">snow.types.RenderConfig</a><span></span>, config:<a href="../../../../../api/snow/types/WindowConfig.html">snow.types.WindowConfig</a><span></span>, on_created:<a href="../../../../../api/snow/types/WindowHandle.html">snow.types.WindowHandle</a>&nbsp; -&gt; <a href="http://api.haxe.org/Int.html">Int</a>&nbsp; -&gt; <a href="../../../../../api/snow/types/WindowingConfig.html">snow.types.WindowingConfig</a>&nbsp;-&gt; <a href="http://api.haxe.org/Void.html">Void</a><span></span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span></p>
+<p></span>
+<span class="method apipage">
+            <a name="destroy_window"><a class="lift" href="#destroy_window">destroy_window</a></a><div class="clear"></div>
+            <code class="signature apipage">destroy_window(window:<a href="../../../../../api/snow/system/window/Window.html">snow.system.window.Window</a><span></span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span></p>
+<p></span>
+<span class="method apipage">
+            <a name="display_bounds"><a class="lift" href="#display_bounds">display_bounds</a></a><div class="clear"></div>
+            <code class="signature apipage">display_bounds(display:<a href="http://api.haxe.org/Int.html">Int</a><span></span>) : <a href="#">Dynamic</a></code><br/><span class="small_desc_flat"></span></p>
+<p></span>
+<span class="method apipage">
+            <a name="display_count"><a class="lift" href="#display_count">display_count</a></a><div class="clear"></div>
+            <code class="signature apipage">display_count() : <a href="http://api.haxe.org/Int.html">Int</a></code><br/><span class="small_desc_flat"></span></p>
+<p></span>
+<span class="method apipage">
+            <a name="display_current_mode"><a class="lift" href="#display_current_mode">display_current_mode</a></a><div class="clear"></div>
+            <code class="signature apipage">display_current_mode(display:<a href="http://api.haxe.org/Int.html">Int</a><span></span>) : <a href="../../../../../api/snow/types/DisplayMode.html">snow.types.DisplayMode</a></code><br/><span class="small_desc_flat"></span></p>
+<p></span>
+<span class="method apipage">
+            <a name="display_mode"><a class="lift" href="#display_mode">display_mode</a></a><div class="clear"></div>
+            <code class="signature apipage">display_mode(display:<a href="http://api.haxe.org/Int.html">Int</a><span></span>, mode_index:<a href="http://api.haxe.org/Int.html">Int</a><span></span>) : <a href="../../../../../api/snow/types/DisplayMode.html">snow.types.DisplayMode</a></code><br/><span class="small_desc_flat"></span></p>
+<p></span>
+<span class="method apipage">
+            <a name="display_mode_count"><a class="lift" href="#display_mode_count">display_mode_count</a></a><div class="clear"></div>
+            <code class="signature apipage">display_mode_count(display:<a href="http://api.haxe.org/Int.html">Int</a><span></span>) : <a href="http://api.haxe.org/Int.html">Int</a></code><br/><span class="small_desc_flat"></span></p>
+<p></span>
+<span class="method apipage">
+            <a name="display_name"><a class="lift" href="#display_name">display_name</a></a><div class="clear"></div>
+            <code class="signature apipage">display_name(display:<a href="http://api.haxe.org/Int.html">Int</a><span></span>) : <a href="http://api.haxe.org/String.html">String</a></code><br/><span class="small_desc_flat"></span></p>
+<p></span>
+<span class="method apipage">
+            <a name="display_native_mode"><a class="lift" href="#display_native_mode">display_native_mode</a></a><div class="clear"></div>
+            <code class="signature apipage">display_native_mode(display:<a href="http://api.haxe.org/Int.html">Int</a><span></span>) : <a href="../../../../../api/snow/types/DisplayMode.html">snow.types.DisplayMode</a></code><br/><span class="small_desc_flat"></span></p>
+<p></span>
+<span class="method apipage">
+            <a name="fullscreen"><a class="lift" href="#fullscreen">fullscreen</a></a><div class="clear"></div>
+            <code class="signature apipage">fullscreen(window:<a href="../../../../../api/snow/system/window/Window.html">snow.system.window.Window</a><span></span>, fullscreen:<a href="http://api.haxe.org/Bool.html">Bool</a><span></span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span></p>
+<p></span>
+<span class="method apipage">
+            <a name="grab"><a class="lift" href="#grab">grab</a></a><div class="clear"></div>
+            <code class="signature apipage">grab(window:<a href="../../../../../api/snow/system/window/Window.html">snow.system.window.Window</a><span></span>, grabbed:<a href="http://api.haxe.org/Bool.html">Bool</a><span></span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span></p>
+<p></span>
+<span class="method apipage">
+            <a name="render"><a class="lift" href="#render">render</a></a><div class="clear"></div>
+            <code class="signature apipage">render(window:<a href="../../../../../api/snow/system/window/Window.html">snow.system.window.Window</a><span></span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span></p>
+<p></span>
+<span class="method apipage">
+            <a name="set_cursor_position"><a class="lift" href="#set_cursor_position">set_cursor_position</a></a><div class="clear"></div>
+            <code class="signature apipage">set_cursor_position(window:<a href="../../../../../api/snow/system/window/Window.html">snow.system.window.Window</a><span></span>, x:<a href="http://api.haxe.org/Int.html">Int</a><span></span>, y:<a href="http://api.haxe.org/Int.html">Int</a><span></span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span></p>
+<p></span>
+<span class="method apipage">
+            <a name="set_max_size"><a class="lift" href="#set_max_size">set_max_size</a></a><div class="clear"></div>
+            <code class="signature apipage">set_max_size(window:<a href="../../../../../api/snow/system/window/Window.html">snow.system.window.Window</a><span></span>, w:<a href="http://api.haxe.org/Int.html">Int</a><span></span>, h:<a href="http://api.haxe.org/Int.html">Int</a><span></span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span></p>
+<p></span>
+<span class="method apipage">
+            <a name="set_min_size"><a class="lift" href="#set_min_size">set_min_size</a></a><div class="clear"></div>
+            <code class="signature apipage">set_min_size(window:<a href="../../../../../api/snow/system/window/Window.html">snow.system.window.Window</a><span></span>, w:<a href="http://api.haxe.org/Int.html">Int</a><span></span>, h:<a href="http://api.haxe.org/Int.html">Int</a><span></span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span></p>
+<p></span>
+<span class="method apipage">
+            <a name="set_position"><a class="lift" href="#set_position">set_position</a></a><div class="clear"></div>
+            <code class="signature apipage">set_position(window:<a href="../../../../../api/snow/system/window/Window.html">snow.system.window.Window</a><span></span>, x:<a href="http://api.haxe.org/Int.html">Int</a><span></span>, y:<a href="http://api.haxe.org/Int.html">Int</a><span></span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span></p>
+<p></span>
+<span class="method apipage">
+            <a name="set_size"><a class="lift" href="#set_size">set_size</a></a><div class="clear"></div>
+            <code class="signature apipage">set_size(window:<a href="../../../../../api/snow/system/window/Window.html">snow.system.window.Window</a><span></span>, w:<a href="http://api.haxe.org/Int.html">Int</a><span></span>, h:<a href="http://api.haxe.org/Int.html">Int</a><span></span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span></p>
+<p></span>
+<span class="method apipage">
+            <a name="set_title"><a class="lift" href="#set_title">set_title</a></a><div class="clear"></div>
+            <code class="signature apipage">set_title(window:<a href="../../../../../api/snow/system/window/Window.html">snow.system.window.Window</a><span></span>, title:<a href="http://api.haxe.org/String.html">String</a><span></span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span></p>
+<p></span>
+<span class="method apipage">
+            <a name="show"><a class="lift" href="#show">show</a></a><div class="clear"></div>
+            <code class="signature apipage">show(window:<a href="../../../../../api/snow/system/window/Window.html">snow.system.window.Window</a><span></span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span></p>
+<p></span>
+<span class="method apipage">
+            <a name="simple_message"><a class="lift" href="#simple_message">simple_message</a></a><div class="clear"></div>
+            <code class="signature apipage">simple_message(window:<a href="../../../../../api/snow/system/window/Window.html">snow.system.window.Window</a><span></span>, message:<a href="http://api.haxe.org/String.html">String</a><span></span>, title:<a href="http://api.haxe.org/String.html">String</a><span></span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span></p>
+<p></span>
+<span class="method apipage">
+            <a name="swap"><a class="lift" href="#swap">swap</a></a><div class="clear"></div>
+            <code class="signature apipage">swap(window:<a href="../../../../../api/snow/system/window/Window.html">snow.system.window.Window</a><span></span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span></p>
+<p></span>
+<span class="method apipage">
+            <a name="system_enable_cursor"><a class="lift" href="#system_enable_cursor">system_enable_cursor</a></a><div class="clear"></div>
+            <code class="signature apipage">system_enable_cursor(enable:<a href="http://api.haxe.org/Bool.html">Bool</a><span></span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat">Toggle the OS cursor. This is not window specific but system wide</span></p>
+<p></span>
+<span class="method apipage">
+            <a name="system_enable_vsync"><a class="lift" href="#system_enable_vsync">system_enable_vsync</a></a><div class="clear"></div>
+            <code class="signature apipage">system_enable_vsync(enable:<a href="http://api.haxe.org/Bool.html">Bool</a><span></span>) : <a href="http://api.haxe.org/Int.html">Int</a></code><br/><span class="small_desc_flat">Toggle vertical refresh. This is not window specific but context wide</span></p>
+<p></span>
+<span class="method apipage">
+            <a name="system_lock_cursor"><a class="lift" href="#system_lock_cursor">system_lock_cursor</a></a><div class="clear"></div>
+            <code class="signature apipage">system_lock_cursor(enable:<a href="http://api.haxe.org/Bool.html">Bool</a><span></span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat">Lock the OS cursor to the foreground window. This hides the cursor and prevents it from leaving, reporting relative coordinates.</span></p>
+<p></span>
+<span class="method apipage">
+            <a name="update_window"><a class="lift" href="#update_window">update_window</a></a><div class="clear"></div>
+            <code class="signature apipage">update_window(window:<a href="../../../../../api/snow/system/window/Window.html">snow.system.window.Window</a><span></span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span></p>
+<p></span></p>
+<hr/>
+
+<p>&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;</p>
+
+        </div>
+    </body>
+
+</html>
