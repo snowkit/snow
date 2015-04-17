@@ -32,9 +32,6 @@ class Sound extends snow.system.audio.Sound {
         info = _info;
         loaded = true;
 
-            //handle listeners
-        emit('load');
-
             _debug('creating sound / ${name} / ${info.id} / ${info.format}');
 
         return info;

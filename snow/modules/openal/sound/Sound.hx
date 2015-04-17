@@ -133,9 +133,6 @@ class Sound extends snow.system.audio.Sound {
 
         instance.update_info(info);
 
-            //notify on load listeners
-        emit('load');
-
         return info;
 
     } //set_info
