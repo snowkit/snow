@@ -35,6 +35,10 @@ class Asset {
 
     } //new
 
+        /** Implemented by subclasses to clean up their data and references. */
+    public function destroy() {
+
+    }
 
 } //Asset
 
@@ -75,6 +79,10 @@ class Asset {
                 }); //promise
 
             } //reload
+
+            override public function destroy() {
+                image = null;
+            }
 
                 /** Reload the asset with from bytes */
             public function reload_from_bytes(_bytes:Uint8Array) {
@@ -197,6 +205,10 @@ class Asset {
 
             } //reload
 
+            override public function destroy() {
+                bytes = null;
+            }
+
         //Static API
 
                 /** Create a new AssetBytes from an id, which returns a promise for the asset. */
@@ -251,6 +263,10 @@ class Asset {
                 }); //promise
 
             } //reload
+
+            override public function destroy() {
+                text = null;
+            }
 
         //Static API
 
@@ -313,6 +329,10 @@ class Asset {
                 }); //promise
 
             } //reload
+
+            override public function destroy() {
+                json = null;
+            }
 
         //Static API
 
