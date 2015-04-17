@@ -84,6 +84,7 @@ class Audio implements snow.modules.interfaces.Audio {
                     //and we listen for when it's done loading so we can emit
                 onload : function(){
                     sound.info = info;
+                    handles.set(info.handle, sound);
                     resolve(sound);
                 }
             });
@@ -100,8 +101,7 @@ class Audio implements snow.modules.interfaces.Audio {
         //called by howler js as it forces specifying the on end handler
         //when creating the sound... not at any point later,
         //so we use this and the internal map to get a Sound and handle
-    @:allow(snow.core.web.assets.Assets)
-    function _on_end(handle:AudioHandle) {
+    function _on_end( handle:AudioHandle ) {
         var sound = handles.get(handle);
         if(sound != null) {
             sound.emit('end');
