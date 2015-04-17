@@ -70,51 +70,30 @@ class Sound {
             stream_data_seek = default_stream_data_seek;
         #end //snow_native
 
-        onload_list = [];
-        onend_list = [];
-
     } //new
 
 //
 
     @:noCompletion public function emit(_event:String) {
-        switch(_event) {
-            case 'end':
-                do_onend();
-            case 'load':
-                do_onload();
-            default:
-                log('no event {$_event}');
-        } //_event
+
+        @:privateAccess system.sound_event(this, _event);
+
     } //emit
 
         /** Connect a handler to a named event.
             Current events include `load` and `end`, and will soon be strict typed. */
     public function on(_event:String, _handler:Sound->Void) {
-        switch(_event) {
-            case 'end':
-                onend_list.push(_handler);
-            case 'load':
-                add_onload(_handler);
-            default:
-                log('no event {$_event}');
-        } //_event
+
+        system.on(name, _event, _handler);
+
     } //emit
 
         /** Disconnect a handler from a named event type, previously connected with `on`. */
     public function off(_event:String, _handler:Sound->Void) {
-        switch(_event) {
-            case 'end':
-                onend_list.remove(_handler);
-            case 'load':
-                onload_list.remove(_handler);
-            default:
-                log('no event {$_event}');
-        } //_event
-    } //off
 
-    var onload_list : Array<Sound->Void>;
-    var onend_list : Array<Sound->Void>;
+        system.off(name, _event, _handler);
+
+    } //off
 
 
 //Functions implemented in subclasses
@@ -204,37 +183,4 @@ class Sound {
     function set_looping( _looping:Bool ) : Bool return looping = _looping;
     function set_position_bytes(_position_bytes) : Int return position_bytes = _position_bytes;
 
-//Internal API
-
-    @:noCompletion public function do_onload() {
-
-        for(_f in onload_list) {
-            _f(cast this);
-        }
-
-        onload_list = null;
-        onload_list = [];
-
-    } //do_onload
-
-    @:noCompletion public function do_onend() {
-
-        for(_f in onend_list) {
-            _f(cast this);
-        }
-
-    } //onend_list
-
-    function add_onload( _onload:Sound->Void ) {
-
-            //too late, just call immediately
-        if(loaded) {
-            _onload(cast this);
-        } else {
-            onload_list.push(_onload);
-        }
-
-        return _onload;
-
-    } //add_onload
 } //Sound

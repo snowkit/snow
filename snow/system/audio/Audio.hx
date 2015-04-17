@@ -50,6 +50,8 @@ class Audio {
 
         if(_name == '') _name = app.uniqueid;
 
+        log('creating sound named $_name (stream: $_streaming)');
+
         return new Promise(function(resolve, reject) {
 
             var _create = module.create_sound(_id, _name, _streaming);
@@ -57,9 +59,12 @@ class Audio {
             _create.then(function(_sound:Sound) {
 
                 sound_list.set(_name, _sound);
+
                 if(_streaming) stream_list.set(_name, _sound);
 
                 resolve(_sound);
+
+                _sound.emit('load');
 
             }).error(reject);
 
@@ -107,30 +112,65 @@ class Audio {
         if(sound.is_stream) stream_list.set(sound.name, sound);
     }
 
+
+        //:todo: temp fixes for audio issues created by modules
+    var handlers : Map<String, Array<Sound->Void> >;
+    static var splitter = ' • ';
+
         /** Listen for a event on a named sound. `load` and `end` are valid events. */
     public function on( _name:String, _event:String, _handler:Sound->Void ) {
-        var sound = get(_name);
-        if(sound != null) {
-            sound.on(_event, _handler);
+
+            //first check if the event has already happened
+        if(_event == 'load') {
+            var sound = get(_name);
+            if(sound != null) {
+                if(sound.loaded) {
+                    _debug('already loaded $_name, calling $_event handler immediately');
+                    _handler(sound);
+                    return;
+                }
+            }
         }
+
+        var _event_id = '${_event}${splitter}${_name}';
+
+        _debug('adding listener for $_event_id');
+
+            //make sure the lists exist
+        if(handlers == null) handlers = new Map();
+            //make sure the array exists for this event
+        if(!handlers.exists(_event_id)) handlers.set(_event_id, []);
+
+            //get the list
+        var _list = handlers.get(_event_id);
+
+        if(_list.indexOf(_handler) != -1) throw "Audio on event adding the same handler twice";
+
+        _list.push(_handler);
+
+        handlers.set(_event_id, _list);
+
     } //on
 
         /** Remove a listener for a event on a named sound. see `on` */
     public function off( _name:String, _event:String, _handler:Sound->Void ) {
-        var sound = get(_name);
-        if(sound != null) {
-            sound.off(_event, _handler);
+
+        if(handlers == null) return;
+
+        var _event_id = '${_event}${splitter}${_name}';
+
+        var _list = handlers.get(_event_id);
+        if(_list != null) {
+            _list.remove(_handler);
+            handlers.set(_event_id, _list);
         }
+
     } //off
 
         /** Get a sound instance by name */
     public function get( _name:String ) : Sound {
 
         var _sound = sound_list.get(_name);
-
-        if(_sound == null) {
-            log('sound not found, use create first: ${_name}');
-        } //_sound
 
         return _sound;
 
@@ -226,6 +266,7 @@ class Audio {
         if(sound != null) {
             sound.loop();
         }
+
     } //loop
 
         /** Pause a sound instance by name */
@@ -400,5 +441,23 @@ class Audio {
 
     } //update
 
+//Internal
+
+    function sound_event(_sound:Sound, _event:String) {
+
+        var _event_id = '${_event}${splitter}${_sound.name}';
+
+        _debug('sound event: $_event_id');
+
+        if(handlers == null) return;
+
+        var _list = handlers.get(_event_id);
+        if(_list != null) {
+            for(fn in _list) {
+                fn(_sound);
+            }
+        }
+
+    } //sound_event
 
 } //Audio
