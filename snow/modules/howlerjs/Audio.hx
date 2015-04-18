@@ -98,13 +98,22 @@ class Audio implements snow.modules.interfaces.Audio {
         throw Error.error('unimplemented / wip');
     }
 
-        //called by howler js as it forces specifying the on end handler
-        //when creating the sound... not at any point later,
-        //so we use this and the internal map to get a Sound and handle
+    //called when a sound ends, due to a bug in chrome with web audio
+    //and howler we increased the duration to a really high number,
+    //see https://github.com/goldfire/howler.js/issues/279
+    //this duration fix from goldfire was implemented in howler locally,
+    //but there is an outstanding bug where on end only fires once, not each loop.
+    //to make it fire each loop (at the cost of a slight jump on loop)
+    //uncomment the stop/play here.
+
     function _on_end( handle:AudioHandle ) {
         var sound = handles.get(handle);
         if(sound != null) {
             sound.emit('end');
+
+            //:todo: read above
+            // sound.stop();
+            // sound.play();
         }
     }
 

@@ -39,12 +39,11 @@ class Sound extends snow.system.audio.Sound {
     } //set_info
 
 
-    var pan_dirty : Bool = false;
-    var volume_dirty : Bool = false;
-
     override function set_pan(_pan:Float) : Float {
 
-            pan_dirty = true;
+        if(info != null && info.handle != null) {
+            info.handle.pos3d(pan);
+        }
 
         return pan = _pan;
 
@@ -52,7 +51,9 @@ class Sound extends snow.system.audio.Sound {
 
     override function set_volume(_volume:Float) : Float {
 
-            volume_dirty = true;
+        if(info != null && info.handle != null) {
+            info.handle.volume(_volume);
+        }
 
         return volume = _volume;
 
@@ -61,7 +62,10 @@ class Sound extends snow.system.audio.Sound {
 
     override function set_pitch( _pitch:Float ) : Float {
 
-        untyped this.info.handle._rate = _pitch;
+        // untyped this.info.handle._rate = _pitch;
+        if(info != null && info.handle != null) {
+            info.handle.rate(_pitch);
+        }
 
         return pitch = _pitch;
 
@@ -100,14 +104,10 @@ class Sound extends snow.system.audio.Sound {
         /** Play this sound */
     override public function play() {
 
-
         if(info != null && info.handle != null) {
 
             playing = true;
             looping = false;
-
-            if(pan_dirty) info.handle.pos3d(pan);
-            if(volume_dirty) info.handle.volume(volume);
 
             info.handle.loop(false);
             info.handle.play();
@@ -123,9 +123,6 @@ class Sound extends snow.system.audio.Sound {
 
             playing = true;
             looping = true;
-
-            if(pan_dirty) info.handle.pos3d(pan);
-            if(volume_dirty) info.handle.volume(volume);
 
             info.handle.loop(true);
             info.handle.play();
