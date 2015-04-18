@@ -169,6 +169,7 @@ class Sound extends snow.system.audio.Sound {
 
 
     override function set_pan( _pan:Float ) : Float {
+        if(info.data.channels > 1) log('OpenAL: Pan on Stereo sound sources is not supported, nothing will happen!');
         pan = instance.set_pan(_pan);
         return pan;
     }
