@@ -1,5 +1,7 @@
 /*!
  *  howler.js v1.1.25
+ *    with modifications (rate, fixes)
+ *    for http://github.com/underscorediscovery/snow
  *  howlerjs.com
  *
  *  (c) 2013-2014, James Simpson of GoldFire Studios
@@ -500,11 +502,18 @@
           self._playStart = ctx.currentTime;
           node.gain.value = self._volume;
 
+          // if (typeof node.bufferSource.start === 'undefined') {
+          //   node.bufferSource.noteGrainOn(0, pos, duration);
+          // } else {
+          //   node.bufferSource.start(0, pos, duration);
+          // }
+
           if (typeof node.bufferSource.start === 'undefined') {
-            node.bufferSource.noteGrainOn(0, pos, duration);
+            self._loop ? node.bufferSource.noteGrainOn(0, pos, 31536000) : node.bufferSource.noteGrainOn(0, pos, duration);
           } else {
-            node.bufferSource.start(0, pos, duration);
+            self._loop ? node.bufferSource.start(0, pos, 31536000) : node.bufferSource.start(0, pos, duration);
           }
+
         } else {
           if (node.readyState === 4 || !node.readyState && navigator.isCocoonJS) {
             node.readyState = 4;
@@ -854,6 +863,41 @@
         }
       } else {
         return self._pos3d;
+      }
+
+      return self;
+    },
+
+    /**
+     * Get/set the playback rate.
+     * NOTE: This only works with Web Audio API, HTML5 Audio playback
+     * will not be affected.
+     * @param  {Float}  rate  The rate of the playback from 0.0 to 1000.0
+     * @param  {String} id (optional) The play instance ID.
+     * @return {Howl/Float}   Returns self or the current playback rate 
+     */
+    rate: function(value, id) {
+      var self = this;
+
+      // if the sound hasn't been loaded, add it to the event queue
+      if (!self._loaded) {
+        self.on('play', function() {
+          self.playback_rate(value, id);
+        });
+
+        return self;
+      }
+
+      if (value >= 0.0 && value <= 1000.0) {
+        if (self._webAudio) {
+          var activeNode = (id) ? self._nodeById(id) : self._activeNode();
+          if (activeNode) {
+            self._rate = value;
+            activeNode.bufferSource.playbackRate.value = value;
+          }
+        }
+      } else {
+        return self._rate;
       }
 
       return self;
