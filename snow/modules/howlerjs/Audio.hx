@@ -83,6 +83,7 @@ class Audio implements snow.modules.interfaces.Audio {
                 onloaderror : function() { reject(Error.error('failed to create sound $_name from $_id')); },
                     //and we listen for when it's done loading so we can emit
                 onload : function(){
+                    info.handle = untyped __js__('this');
                     sound.info = info;
                     handles.set(info.handle, sound);
                     resolve(sound);
