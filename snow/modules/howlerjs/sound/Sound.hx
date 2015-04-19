@@ -111,6 +111,7 @@ class Sound extends snow.system.audio.Sound {
 
             info.handle.loop(false);
             info.handle.play();
+            ensure_parameters();
 
         }  //has info
 
@@ -126,6 +127,7 @@ class Sound extends snow.system.audio.Sound {
 
             info.handle.loop(true);
             info.handle.play();
+            ensure_parameters();
 
         } //has info
 
@@ -161,5 +163,16 @@ class Sound extends snow.system.audio.Sound {
         system.kill(this);
 
     } //destroy
+
+//Internal
+
+        /** Ensures the values are up to date when playing a new instance */
+    inline function ensure_parameters() {
+        if(info != null && info.handle != null) {
+            info.handle.rate(pitch);
+            info.handle.volume(volume);
+            info.handle.pos3d(pan);
+        }
+    }
 
 } //Sound
