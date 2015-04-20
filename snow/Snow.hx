@@ -52,6 +52,9 @@ class Snow {
     public var audio : Audio;
         /** The window manager */
     public var windowing : Windowing;
+        /** The platform identifier, a string,
+            but uses `snow.types.Types.Platform` abstract enum internally */
+    public var platform : String = 'unknown';
 
         /** Set if shut down has commenced */
     public var shutting_down : Bool = false;
@@ -79,6 +82,13 @@ class Snow {
             log('log / filter : ${snow.api.Debug.get_filter()}');
             log('log / exclude : ${snow.api.Debug.get_exclude()}');
         }
+
+        #if ios      platform = 'ios';       #end
+        #if mac      platform = 'mac';       #end
+        #if web      platform = 'web';       #end
+        #if linux    platform = 'linux';     #end
+        #if android  platform = 'android';   #end
+        #if windows  platform = 'windows';   #end
 
             //We create the core as a concrete platform version of the core
         core = new Core( this );
