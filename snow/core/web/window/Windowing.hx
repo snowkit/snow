@@ -294,6 +294,14 @@ class Windowing implements snow.modules.interfaces.Windowing {
 
     function internal_fullscreen( _handle:WindowHandle, fullscreen:Bool ) {
 
+        if(fullscreen) {
+            if(fs_windows.indexOf(_window) == -1) {
+                fs_windows.push(_window);
+            }
+        } else {
+            fs_windows.remove(_window);
+        }
+
             //find out if the config requested true fullscreen or not
         var true_fullscreen = system.app.config.web.true_fullscreen;
 
@@ -365,14 +373,6 @@ class Windowing implements snow.modules.interfaces.Windowing {
     } //set_handle_fullscreen
 
     public function fullscreen( _window:Window, fullscreen:Bool ) {
-
-        if(fullscreen) {
-            if(fs_windows.indexOf(_window) == -1) {
-                fs_windows.push(_window);
-            }
-        } else {
-            fs_windows.remove(_window);
-        }
 
         internal_fullscreen( _window.handle, fullscreen );
 
