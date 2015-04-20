@@ -3,6 +3,7 @@ package snow.core.web.io;
 import snow.types.Types;
 import snow.api.buffers.Uint8Array;
 import snow.api.Promise;
+import snow.api.Debug.*;
 
 
 @:allow(snow.system.io.IO)
@@ -76,12 +77,75 @@ class IO implements snow.modules.interfaces.IO {
 
     } //data_save
 
+
+        /** Returns the path where string_save operates.
+            One targets where this is not a path, the path will be prefaced with `< >/`,
+            i.e on web targets the path will be `<localstorage>/` followed by the ID. */
+    public function string_save_path( _slot:Int = 0 ) : String {
+
+        var _pref_path = '<localstorage>';
+        var _slot_path = string_slot_id(_slot);
+        var _path = haxe.io.Path.join([_pref_path, _slot_path]);
+
+        return haxe.io.Path.normalize(_path);
+
+    } //string_save_path
+
 //Internal API
 
     function init() {}
     function update() {}
     function destroy() {}
     function on_event( _event:SystemEvent ) {}
+
+    inline function string_slot_id(_slot:Int = 0) {
+        var _parts = system.app.snow_config.app_package.split('.');
+        var _appname = _parts.pop();
+        var _org = _parts.join('.');
+
+        return '$_org/$_appname/${system.string_save_prefix}.$_slot';
+    }
+
+        //flush the string map to disk
+    inline function string_slot_save( _slot:Int = 0, _contents:String ) : Bool {
+
+        var storage = js.Browser.window.localStorage;
+        if(storage == null) {
+            log('localStorage isnt supported in this browser?!');
+            return false;
+        }
+
+        var _id = string_slot_id(_slot);
+
+        storage.setItem(_id, _contents);
+
+        return true;
+
+    } //string_slot_save
+
+        //get the string contents of this slot,
+        //or null if not found/doesn't exist
+    inline function string_slot_load( _slot:Int = 0 ) : String {
+
+        var storage = js.Browser.window.localStorage;
+        if(storage == null) {
+            log('localStorage isnt supported in this browser?!');
+            return null;
+        }
+
+        var _id = string_slot_id(_slot);
+
+        return storage.getItem(_id);
+
+    } //string_slot_load
+
+    inline function string_slot_encode( _string:String ) : String {
+        return js.Browser.window.btoa(_string);
+    }
+
+    inline function string_slot_decode( _string:String ) : String {
+        return js.Browser.window.atob(_string);
+    }
 
 
 } //IO

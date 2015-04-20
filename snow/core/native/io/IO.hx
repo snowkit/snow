@@ -1,10 +1,12 @@
 package snow.core.native.io;
 
+import haxe.io.Bytes;
 import snow.api.File;
 import snow.api.Libs;
 import snow.types.Types;
 import snow.api.Promise;
 import snow.api.buffers.Uint8Array;
+import snow.api.Debug.*;
 
 import sys.FileSystem;
 import haxe.io.Path;
@@ -40,7 +42,6 @@ class IO implements snow.modules.interfaces.IO {
 
     } //app_path_prefs
 
-
 //Static public API functions specific to native/desktop.
 
     #if desktop
@@ -52,7 +53,7 @@ class IO implements snow.modules.interfaces.IO {
         public function watch_add( _path:String ) : Void {
 
             if(_path != null && _path.length > 0) {
-                snow_io_add_watch( resolve(_path) );
+                snow_io_add_watch( path_resolve(_path) );
             }
 
         } //watch_add
@@ -62,7 +63,7 @@ class IO implements snow.modules.interfaces.IO {
         public function watch_remove( _path:String ) : Void {
 
             if(_path != null && _path.length > 0) {
-                snow_io_remove_watch( resolve(_path) );
+                snow_io_remove_watch( path_resolve(_path) );
             }
 
         } //watch_remove
@@ -115,73 +116,71 @@ class IO implements snow.modules.interfaces.IO {
 
 //API concrete Implementation
 
-        /** Opens the specified url in the default browser */
-    public function url_open( _url:String ) {
+    //String load/save
 
-        if(_url != null && _url.length > 0) {
-            snow_io_url_open( _url );
-        }
+            /** Returns the path where string_save operates.
+                One targets where this is not a path, the path will be prefaced with `< >/`,
+                i.e on web targets the path will be `<localstorage>/` followed by the ID. */
+        public function string_save_path( _slot:Int = 0 ) : String {
 
-    } //url_open
+            var _pref_path = app_path_prefs();
+            var _path = haxe.io.Path.join([_pref_path, '${system.string_save_prefix}.$_slot']);
 
-        /** Load bytes from the file path/url given.
-            On web a request is sent for the data */
-    public function data_load( _path:String, ?_options:IODataOptions ) : Promise {
+            return haxe.io.Path.normalize(_path);
 
-        return new Promise(function(resolve, reject) {
+        } //string_save_path
 
-            var _binary = (_options != null && _options.binary);
-            var _file = File.from_file(_path, _binary ? 'rb' : 'r' );
+    //
 
-            if(_file != null) {
+            /** Opens the specified url in the default browser */
+        public function url_open( _url:String ) {
 
-                    //jump to the end, measure size
-                _file.seek(0, FileSeek.end);
+            if(_url != null && _url.length > 0) {
+                snow_io_url_open( _url );
+            }
 
-                var size = _file.tell();
+        } //url_open
 
-                    //reset to beginning
-                _file.seek(0, FileSeek.set);
+    //Data
 
-                    //create a buffer to read to
-                var _dest = new Uint8Array(size);
-                var _read = _file.read(_dest, _dest.length, 1);
+            /** Load bytes from the file path/url given.
+                On web a request is sent for the data */
+        public function data_load( _path:String, ?_options:IODataOptions ) : Promise {
 
-                    //close+release the file handle
-                _file.close();
+            return new Promise(function(resolve, reject) {
+
+                var _dest = _data_load(_path, _options);
+
+                if(_dest == null) {
+                    reject(Error.error('data_load file cannot be opened $_path'));
+                    return;
+                }
 
                 resolve(_dest);
 
-            } else { //_file != null
+            });
 
-                reject(Error.error('data_load file cannot be opened $_path'));
+        } //data_load
 
+            /** Save bytes to the file path/url given. Overwrites the file without warning.
+                Does not ensure the path (i.e doesn't check or create folders).
+                On platforms where this doesn't make sense (web) this will do nothing atm */
+        public function data_save( _path:String, _data:Uint8Array, ?_options:IODataOptions ) : Bool {
+
+            var _binary = (_options != null && _options.binary);
+            var _file = File.from_file(_path, _binary ? 'wb' : 'w' );
+
+            if(_file != null) {
+                var count : Int = _file.write( _data, _data.length, 1 );
+
+                    _file.close();
+
+                return count == 1;
             }
 
-        });
+            return false;
 
-    } //data_load
-
-        /** Save bytes to the file path/url given. Overwrites the file without warning.
-            Does not ensure the path (i.e doesn't check or create folders).
-            On platforms where this doesn't make sense (web) this will do nothing atm */
-    public function data_save( _path:String, _data:Uint8Array, ?_options:IODataOptions ) : Bool {
-
-        var _binary = (_options != null && _options.binary);
-        var _file = File.from_file(_path, _binary ? 'wb' : 'w' );
-
-        if(_file != null) {
-            var count : Int = _file.write( _data, _data.length, 1 );
-
-                _file.close();
-
-            return count == 1;
-        }
-
-        return false;
-
-    } //data_save
-
+        } //data_save
 
 //Internal API
 
@@ -192,6 +191,70 @@ class IO implements snow.modules.interfaces.IO {
 
 //Internal
 
+        //flush the string map to disk
+    inline function string_slot_save( _slot:Int = 0, _contents:String ) : Bool {
+
+        var _path = string_save_path(_slot);
+        var _data = Uint8Array.fromBytes( Bytes.ofString(_contents) );
+
+        return data_save(_path, _data);
+
+    } //string_slot_save
+
+        //get the string contents of this slot,
+        //or null if not found/doesn't exist
+    inline function string_slot_load( _slot:Int = 0 ) : String {
+
+        var _data = _data_load(string_save_path(_slot));
+
+        if(_data == null) {
+            return null;
+        }
+
+        return _data.toBytes().toString();
+
+    } //string_slot_load
+
+    inline function string_slot_encode( _string:String ) : String {
+        assertnull(_string);
+        var _bytes = haxe.io.Bytes.ofString(_string);
+        return haxe.crypto.Base64.encode(_bytes);
+    }
+
+    inline function string_slot_decode( _string:String ) : String {
+        assertnull(_string);
+        var _bytes = haxe.crypto.Base64.decode(_string);
+        return _bytes.toString();
+    }
+
+        //The data load implementation
+    function _data_load( _path:String, ?_options:IODataOptions ) : Uint8Array {
+
+        var _binary = (_options != null && _options.binary);
+        var _file = File.from_file(_path, _binary ? 'rb' : 'r' );
+
+        if(_file == null) return null;
+
+            //jump to the end, measure size
+        _file.seek(0, FileSeek.end);
+
+        var size = _file.tell();
+
+            //reset to beginning
+        _file.seek(0, FileSeek.set);
+
+            //create a buffer to read to
+        var _dest = new Uint8Array(size);
+        var _read = _file.read(_dest, _dest.length, 1);
+
+            //close+release the file handle
+        _file.close();
+
+        return _dest;
+
+    } //_data_load
+
+
         // :temp: feature from newer version of haxe std
     static function isAbsolute ( path : String ) : Bool {
         if (StringTools.startsWith(path, '/')) return true;
@@ -200,7 +263,7 @@ class IO implements snow.modules.interfaces.IO {
     }
 
         //convert a path to absolute (if needed) and normalize, remove slash, etc
-    static function resolve( _path:String ) {
+    static function path_resolve( _path:String ) {
 
         if(!isAbsolute(_path)) {
             _path = FileSystem.fullPath(_path);
@@ -211,7 +274,7 @@ class IO implements snow.modules.interfaces.IO {
 
         return _path;
 
-    } //resolve
+    } //path_resolve
 
 //Bindings
 
