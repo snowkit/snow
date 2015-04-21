@@ -83,12 +83,12 @@ class Snow {
             log('log / exclude : ${snow.api.Debug.get_exclude()}');
         }
 
-        #if ios      platform = 'ios';       #end
-        #if mac      platform = 'mac';       #end
-        #if web      platform = 'web';       #end
-        #if linux    platform = 'linux';     #end
-        #if android  platform = 'android';   #end
-        #if windows  platform = 'windows';   #end
+        #if ios      platform = Platform.platform_ios;       #end
+        #if mac      platform = Platform.platform_mac;       #end
+        #if web      platform = Platform.platform_web;       #end
+        #if linux    platform = Platform.platform_linux;     #end
+        #if android  platform = Platform.platform_android;   #end
+        #if windows  platform = Platform.platform_windows;   #end
 
             //We create the core as a concrete platform version of the core
         core = new Core( this );

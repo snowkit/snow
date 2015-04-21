@@ -25,12 +25,12 @@ enum Error {
 
 /** A platform identifier string */
 @:enum abstract Platform(String) from String to String {
-    var windows = 'windows';
-    var mac     = 'mac';
-    var linux   = 'linux';
-    var android = 'android';
-    var ios     = 'ios';
-    var web     = 'web';
+    var platform_windows = 'windows';
+    var platform_mac     = 'mac';
+    var platform_linux   = 'linux';
+    var platform_android = 'android';
+    var platform_ios     = 'ios';
+    var platform_web     = 'web';
 }
 
 /** A type to identify assets when stored as an Asset */
