@@ -56,12 +56,6 @@ class Windowing implements snow.modules.interfaces.Windowing {
             _handle.width = config.width;
             _handle.height = config.height;
 
-            if(config.fullscreen) {
-                internal_fullscreen( _handle, config.fullscreen );
-                config.width = _handle.width;
-                config.height = _handle.height;
-            }
-
                 //make sure it displays nicely
             _handle.style.display = 'block';
             _handle.style.position = 'relative';
@@ -292,8 +286,11 @@ class Windowing implements snow.modules.interfaces.Windowing {
     var _pre_fs_body_overflow : String = '0';
     var _pre_fs_body_margin : String = '0';
 
-    function internal_fullscreen( _handle:WindowHandle, fullscreen:Bool ) {
+    function internal_fullscreen( _window:Window, fullscreen:Bool ) {
 
+        var  _handle = _window.handle;
+
+            //track for resizes
         if(fullscreen) {
             if(fs_windows.indexOf(_window) == -1) {
                 fs_windows.push(_window);
@@ -374,7 +371,7 @@ class Windowing implements snow.modules.interfaces.Windowing {
 
     public function fullscreen( _window:Window, fullscreen:Bool ) {
 
-        internal_fullscreen( _window.handle, fullscreen );
+        internal_fullscreen( _window, fullscreen );
 
     } //window_fullscreen
 
@@ -525,6 +522,12 @@ class Windowing implements snow.modules.interfaces.Windowing {
         _window.handle.addEventListener('mouseleave', on_internal_leave);
         _window.handle.addEventListener('mouseenter', on_internal_enter);
 
+        if(_window.config.fullscreen) {
+            internal_fullscreen( _window, _window.config.fullscreen );
+            _window.config.width = _window.handle.width;
+            _window.config.height = _window.handle.height;
+        }
+
     } //listen
 
         /** Called to remove any listeners on the given window  */
@@ -532,6 +535,8 @@ class Windowing implements snow.modules.interfaces.Windowing {
 
         _window.handle.removeEventListener('mouseleave', on_internal_leave);
         _window.handle.removeEventListener('mouseenter', on_internal_enter);
+
+        fs_windows.remove(_window);
 
     } //unlisten
 

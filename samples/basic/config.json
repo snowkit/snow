@@ -1,7 +1,8 @@
 {
     "window" : {
         "width" : 640,
-        "height" : 320
+        "height" : 320,
+        "fullscreen" : false
     },
 
     "size":128,

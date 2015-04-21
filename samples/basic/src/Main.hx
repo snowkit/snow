@@ -34,6 +34,7 @@ class Main extends snow.App.AppFixedTimestep {
         if(config.runtime.window != null) {
             if(config.runtime.window.width != null) config.window.width = Std.int(config.runtime.window.width);
             if(config.runtime.window.height != null) config.window.height = Std.int(config.runtime.window.height);
+            if(config.runtime.window.fullscreen != null) config.window.fullscreen = config.runtime.window.fullscreen;
         }
 
         return config;
