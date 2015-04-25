@@ -126,6 +126,12 @@ class Promise {
             discarding all the other promises whether or not they have resolved. */
     public static function all( _tag='all', list:Array<Promise> ) {
 
+        #if debug
+            for(item in list) {
+                if(item == null) throw "Promise.all handed an array with null items within it";
+            }
+        #end
+
         return new Promise(function(ok, no) {
 
             var current = 0;
