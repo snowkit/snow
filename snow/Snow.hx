@@ -34,7 +34,7 @@ class Snow {
         /** The host application */
     public var host : App;
         /** The application configuration specifics (like window, runtime, and asset lists) */
-    public var config : AppConfig;
+    public var config : snow.types.Types.AppConfig;
         /** The configuration for snow itself, set via build project flags */
     public var snow_config : SnowConfig;
         /** Whether or not we are frozen, ignoring events i.e backgrounded/paused */
@@ -149,26 +149,7 @@ class Snow {
             snow_config.app_package = 'org.snowkit.snowdefault';
         }
 
-        config = {
-            has_window : true,
-            runtime : {},
-            window : null,
-            render : null,
-            web : {
-                no_context_menu : true,
-                prevent_default_keys : [
-                    Key.left, Key.right, Key.up, Key.down,
-                    Key.backspace, Key.tab, Key.delete
-                ],
-                prevent_default_mouse_wheel : true,
-                true_fullscreen : false
-            },
-            native : {
-                audio_buffer_length : 176400,
-                audio_buffer_count : 4
-            }
-        };
-
+        config = default_config();
         host = _host;
         host.app = this;
 
@@ -410,10 +391,6 @@ class Snow {
 
     function setup_configs() {
 
-        //sync configs
-        config.window = default_window_config();
-        config.render = default_render_config();
-
         return new Promise(function(resolve, reject) {
 
             if(!snow_config.config_custom_runtime) {
@@ -470,6 +447,8 @@ class Snow {
             //now if they requested a window, let's open one
         if(config.has_window == true) {
 
+            _debug('windowing / has window, so creating with ${config.window}');
+
             window = windowing.create( config.window );
 
                 //failed to create?
@@ -477,11 +456,37 @@ class Snow {
                 throw Error.windowing('requested default window cannot be created. cannot continue');
             }
 
-        } //has_window
+        } else { //has_window
+
+            _debug('windowing / not! creating default window, has_window was ${config.has_window}');
+
+        }
 
     } //create_default_window
 
 //Default handlers
+
+    function default_config() : AppConfig {
+        return {
+            has_window : true,
+            runtime : {},
+            window : default_window_config(),
+            render : default_render_config(),
+            web : {
+                no_context_menu : true,
+                prevent_default_keys : [
+                    Key.left, Key.right, Key.up, Key.down,
+                    Key.backspace, Key.tab, Key.delete
+                ],
+                prevent_default_mouse_wheel : true,
+                true_fullscreen : false
+            },
+            native : {
+                audio_buffer_length : 176400,
+                audio_buffer_count : 4
+            }
+        }
+    }
 
         /** handles the default method of parsing a runtime config json,
             To change this behavior override `get_runtime_config`. This is called by default in get_runtime_config. */
