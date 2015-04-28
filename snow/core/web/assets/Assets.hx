@@ -244,8 +244,11 @@ class Assets implements snow.modules.interfaces.Assets {
 
 
     //Internal helpers
+        static var POT = true;
 
         function nearest_power_of_two(_value:Int) {
+
+            if(!POT) return _value;
 
             _value--;
 
