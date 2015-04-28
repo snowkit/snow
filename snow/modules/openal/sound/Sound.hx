@@ -83,7 +83,7 @@ class Sound extends snow.system.audio.Sound {
     } //pause
 
         /** Destroy this sound and it's data. */
-    override function destroy() {
+    override public function destroy() {
 
         stop();
         instance.destroy();
@@ -93,11 +93,11 @@ class Sound extends snow.system.audio.Sound {
 
 // Internal system events
 
-    override inline function internal_update() { instance.internal_update(); }
-    override inline function internal_play()  { instance.internal_play(); }
-    override inline function internal_loop() { instance.internal_loop(); }
-    override inline function internal_stop() { instance.internal_stop(); }
-    override inline function internal_pause() { instance.internal_pause(); }
+    @:noCompletion override public inline function internal_update() { instance.internal_update(); }
+    @:noCompletion override public inline function internal_play()  { instance.internal_play(); }
+    @:noCompletion override public inline function internal_loop() { instance.internal_loop(); }
+    @:noCompletion override public inline function internal_stop() { instance.internal_stop(); }
+    @:noCompletion override public inline function internal_pause() { instance.internal_pause(); }
 
 //Internal sound events
 
