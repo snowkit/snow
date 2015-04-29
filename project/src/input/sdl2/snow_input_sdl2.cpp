@@ -498,6 +498,10 @@ namespace snow {
 
     //Helpers
 
+        #ifndef SDL_ACCELEROMETER_ENABLED
+            static SDL_Joystick* accelerometer;
+        #endif
+
         void init_sdl() {
 
             if(sdl_inited) {
@@ -523,7 +527,32 @@ namespace snow {
                 }
             #endif //SDL_HAPTIC_DISABLED
 
-        } //init_input_sdl
+            #ifndef SDL_ACCELEROMETER_ENABLED
+
+                accelerometer = SDL_JoystickOpen(0);
+                snow::log(1, "/ snow / accelerometer / init");
+
+            #endif //SDL_ACCELEROMETER_ENABLED
+
+        } //init_sdl
+
+        void shutdown_sdl() {
+
+            if(!sdl_inited) {
+                return;
+            }
+
+            sdl_inited = false;
+
+            #ifndef SDL_ACCELEROMETER_ENABLED
+
+                snow::log(1, "/ snow / accelerometer / shutdown");
+                SDL_JoystickClose(accelerometer);
+                accelerometer = NULL;
+
+            #endif //SDL_ACCELEROMETER_ENABLED
+
+        } //shutdown_sdl
 
     } // input namespace
 

@@ -178,6 +178,7 @@
       <section if="SNOW_USE_SDL">
 
          <compilerflag value="-DSNOW_USE_SDL" />
+         <compilerflag value="-DSDL_ACCELEROMETER_ENABLED" if="ios || android"/>
 
             <!-- per platform configs preconfigured -->
         <compilerflag value="-I${NATIVE_TOOLKIT_PATH}/sdl/include/"/>

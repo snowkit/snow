@@ -41,6 +41,7 @@ namespace snow {
         //externs
     namespace input {
         extern void init_sdl();
+        extern void shutdown_sdl();
         extern void handle_event( SDL_Event &event );
     }
 
@@ -92,6 +93,7 @@ namespace snow {
 
         int shutdown_aux() {
 
+            snow::input::shutdown_sdl();
             snow::core::shutdown_sdl();
 
             return 0;
