@@ -124,7 +124,7 @@ class Promise {
             If any of the passed in promises rejects, the all Promise
             immediately rejects with the value of the promise that rejected,
             discarding all the other promises whether or not they have resolved. */
-    public static function all( _tag='all', list:Array<Promise> ) {
+    public static function all( list:Array<Promise> ) {
 
         #if debug
             for(item in list) {
@@ -140,12 +140,14 @@ class Promise {
             var reject_result = null;
             var all_state:PromiseState = pending;
 
-            var single_ok = function(val) {
+            var single_ok = function(index, val) {
 
                 if(all_state != pending) return;
 
                 current++;
-                fulfill_result.push(val);
+                fulfill_result[index] = val;
+
+                trace('index: $index val:$val');
 
                 if(total == current) {
                     all_state = fulfilled;
@@ -164,8 +166,10 @@ class Promise {
 
             } //single_err
 
+            var index = 0;
             for(promise in list) {
-                promise.then(single_ok).error(single_err);
+                promise.then(single_ok.bind(index,_)).error(single_err);
+                index++;
             }
 
         }); //promise
