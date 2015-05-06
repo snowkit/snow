@@ -147,8 +147,6 @@ class Promise {
                 current++;
                 fulfill_result[index] = val;
 
-                trace('index: $index val:$val');
-
                 if(total == current) {
                     all_state = fulfilled;
                     ok(fulfill_result);
