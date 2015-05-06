@@ -208,7 +208,7 @@ class Debug {
     } //_verboser
 
     macro public static function assert(expr:Expr) {
-        #if (debug || snow_assert)
+        #if !snow_no_assertions
             var str = haxe.macro.ExprTools.toString(expr);
             return macro @:pos(Context.currentPos()) {
                 if(!$expr) throw snow.api.Debug.DebugError.assertion('$str');
@@ -219,7 +219,7 @@ class Debug {
 
 
     macro public static function assertnull(value:Expr) {
-        #if (debug || snow_assert)
+        #if !snow_no_assertions
             var str = haxe.macro.ExprTools.toString(value);
             return macro @:pos(Context.currentPos()) {
                 if($value == null) throw snow.api.Debug.DebugError.null_assertion('$str == null');
