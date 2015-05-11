@@ -100,7 +100,7 @@
     "android && arch-armv7 && snow_dynamic_link" : {
       build : {
         files : {
-          libsnow : { path:"ndll/Android/libsnow-v7.so => project/libs/armeabi/libsnow.so" }
+          libsnow : { path:"ndll/Android/libsnow-v7.so => project/libs/armeabi-v7a/libsnow.so" }
         }
       }
     },
