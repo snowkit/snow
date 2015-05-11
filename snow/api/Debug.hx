@@ -64,8 +64,6 @@ class Debug {
 
     macro static function width( _width:Int ) : haxe.macro.Expr {
 
-        // trace("/ snow / set log width to " + _width );
-
         _log_width = _width;
 
         return macro null;
@@ -207,9 +205,10 @@ class Debug {
 
     } //_verboser
 
-    macro public static function assert(expr:Expr) {
+    macro public static function assert(expr:Expr, ?reason:String='') {
         #if !snow_no_assertions
             var str = haxe.macro.ExprTools.toString(expr);
+                if(reason != '') str += ' ($reason)';
             return macro @:pos(Context.currentPos()) {
                 if(!$expr) throw snow.api.Debug.DebugError.assertion('$str');
             }
@@ -218,15 +217,23 @@ class Debug {
     } //assert
 
 
-    macro public static function assertnull(value:Expr) {
+    macro public static function assertnull(value:Expr, ?reason:String='') {
         #if !snow_no_assertions
             var str = haxe.macro.ExprTools.toString(value);
+            if(reason != '') reason = ' ($reason)';
             return macro @:pos(Context.currentPos()) {
-                if($value == null) throw snow.api.Debug.DebugError.null_assertion('$str == null');
+                if($value == null) throw snow.api.Debug.DebugError.null_assertion('$str was null$reason');
             }
         #end
         return macro null;
     } //assert
+
+    macro public static function def(value:Expr, def:Expr):Expr {
+        return macro @:pos(Context.currentPos()) {
+            if($value == null) $value = $def;
+            $value;
+        }
+    }
 
 
 //Internal Helpers
