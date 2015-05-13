@@ -238,7 +238,7 @@ class Assets implements snow.modules.interfaces.Assets {
     } //audio_load_ogg
 
     function audio_load_ogg_from_bytes( _path:String, _bytes:Uint8Array ) : NativeAudioInfo {
-        return snow_assets_audio_load_info_ogg( _path, true, _bytes, _bytes.byteOffset, _bytes.byteLength );
+        return snow_assets_audio_load_info_ogg( _path, true, _bytes.toBytes().getData(), _bytes.byteOffset, _bytes.byteLength );
     } //audio_load_ogg
 
     function audio_load_portion_ogg( _info:AudioInfo, _start:Int, _len:Int ) : NativeAudioDataBlob {
@@ -256,7 +256,7 @@ class Assets implements snow.modules.interfaces.Assets {
     } //audio_load_wav
 
     function audio_load_wav_from_bytes( _path:String, _bytes:Uint8Array ) : NativeAudioInfo {
-        return snow_assets_audio_load_info_wav( _path, true, _bytes, _bytes.byteOffset, _bytes.byteLength );
+        return snow_assets_audio_load_info_wav( _path, true, _bytes.toBytes().getData(), _bytes.byteOffset, _bytes.byteLength );
     } //audio_load_wav_from_bytes
 
     function audio_load_portion_wav( _info:AudioInfo, _start:Int, _len:Int ) : NativeAudioDataBlob {
@@ -274,7 +274,7 @@ class Assets implements snow.modules.interfaces.Assets {
     } //audio_load_pcm
 
     function audio_load_pcm_from_bytes( _path:String, _bytes:Uint8Array ) : NativeAudioInfo {
-        return snow_assets_audio_load_info_pcm( _path, true, _bytes, _bytes.byteOffset, _bytes.byteLength );
+        return snow_assets_audio_load_info_pcm( _path, true, _bytes.toBytes().getData(), _bytes.byteOffset, _bytes.byteLength );
     } //audio_load_pcm
 
     function audio_load_portion_pcm( _info:AudioInfo, _start:Int, _len:Int ) : NativeAudioDataBlob {
