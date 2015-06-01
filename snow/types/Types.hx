@@ -94,7 +94,7 @@ typedef AppConfig = {
     @:optional var runtime      : Dynamic;
         /** config specific to the web target */
     @:optional var web          : AppConfigWeb;
-        /** config specific to the web target */
+        /** config specific to the native target */
     @:optional var native       : AppConfigNative;
 
 } //AppConfig
