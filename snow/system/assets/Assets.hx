@@ -51,9 +51,8 @@ class Assets {
         /** Check if an asset info exists in the list for a given id. */
     public inline function listed( _id:String ) : Bool return list.indexOf(_id) != -1;
 
-        /** Get the asset path for an asset, adjusted by platform, root etc.
-            If it fails to find the asset the id is returned as is with the asset root prefixed. */
-    public inline function path( _id:String ) : String  return root + _id;
+        /** Get the asset path for an asset, adjusted by platform, root etc. */
+    public inline function path( _id:String ) : String return root + _id;
 
         /** Get an asset as an `AssetBytes`, data stored as `Uint8Array`, using the default processor and provider */
     public inline function bytes( _id:String ) : Promise return AssetBytes.load(this, _id);

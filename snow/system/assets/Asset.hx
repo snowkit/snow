@@ -67,7 +67,7 @@ class Asset {
 
                 return new Promise(function(resolve, reject) {
 
-                    var _load = system.app.io.data_flow(id, provider);
+                    var _load = system.app.io.data_flow(system.path(id), provider);
 
                     _load.then(
                         function(_image:ImageInfo){
@@ -144,10 +144,11 @@ class Asset {
 
             } //load_from_pixels
 
-                /** A default io provider, using image_load_info from the asset module. Promises ImageInfo */
-            public static function provider(_app:snow.Snow, _id:String) : Promise {
+                /** A default io provider, using image_load_info from the asset module.
+                    Promises ImageInfo. Takes an asset path, not an asset id (uses assets.path(id))*/
+            public static function provider(_app:snow.Snow, _path:String) : Promise {
 
-                return _app.assets.module.image_load_info(_app.assets.path(_id));
+                return _app.assets.module.image_load_info(_path);
 
             } //provider
 
@@ -194,7 +195,7 @@ class Asset {
 
                 return new Promise(function(resolve, reject) {
 
-                    system.app.io.data_flow(id).then(function(_bytes:Uint8Array){
+                    system.app.io.data_flow(system.path(id)).then(function(_bytes:Uint8Array){
 
                         bytes = _bytes;
                         resolve(this);
@@ -253,7 +254,7 @@ class Asset {
 
                 return new Promise(function(resolve, reject) {
 
-                    system.app.io.data_flow(id, processor).then(function(_text:String){
+                    system.app.io.data_flow(system.path(id), processor).then(function(_text:String){
 
                         text = _text;
                         resolve(this);
@@ -319,7 +320,7 @@ class Asset {
 
                 return new Promise(function(resolve, reject) {
 
-                    system.app.io.data_flow(id, processor).then(function(_json:Dynamic){
+                    system.app.io.data_flow(system.path(id), processor).then(function(_json:Dynamic){
 
                         json = _json;
                         resolve(this);
