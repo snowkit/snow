@@ -7,7 +7,7 @@
 On native platforms, snow is built using c++ code and is bound via the haxe api. You can read the [structure guide]({{{rel_path}}}guide/structure.html) for more insight here.
 
 ##Note 
-you **do not** need to recompile snow to use it! There are prebuilt versions bundled for each platform alongside the code.
+You **do not** need to recompile snow to use it! There are prebuilt versions bundled for each platform alongside the code. You can find the latest build here: [Snow Latest Builds](http://build.luxeengine.com/snow/)
 
 ### Auto fetch dependencies
 
@@ -21,7 +21,7 @@ This will ensure all build dependencies are fetched.
 
 If something has been changed in the native layer, chances are the code will need to be rebuilt. To do this is very simple, you use flow.
 
-Switch to your snow repository folder and run one the following commands depending on what platform you'd like to build for:
+Switch to your snow repository folder and run one of the following commands depending on what platform you'd like to build for:
 
 **Win/Mac 32-bit:**
 ```
