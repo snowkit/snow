@@ -21,12 +21,33 @@ This will ensure all build dependencies are fetched.
 
 If something has been changed in the native layer, chances are the code will need to be rebuilt. To do this is very simple, you use flow.
 
-- `cd path/to/snow/project/` and then `flow build <target>` OR
-- `flow build <target> --project path/to/snow/project/snow.flow`
+Switch to your snow repository folder and run one the following commands depending on what platform you'd like to build for:
 
-The first command is like running your project from it's working folder. The second, runs the rebuild from anywhere using the explicit project path to tell flow what to build.
+**Win/Mac 32-bit:**
+```
+haxelib run flow build --clean --project project/snow.flow --arch 32 --d static_link
+haxelib run flow build --clean --project project/snow.flow --arch 32 --d snow_dynamic_link
+```
 
-In both cases, target is the platform for which you want to build. If you wanted to rebuild the platform you are on, it can be ommitted.
+**Win/Mac 64-bit:**
+```
+haxelib run flow build --clean --project project/snow.flow --arch 64 --d static_link
+haxelib run flow build --clean --project project/snow.flow --arch 64 --d snow_dynamic_link
+```
+
+**Android:**
+```
+haxelib run flow build android --clean --project project/snow.flow --arch armv6 --d snow_dynamic_link
+haxelib run flow build android --clean --project project/snow.flow --arch armv7 --d snow_dynamic_link
+haxelib run flow build android --clean --project project/snow.flow --arch x86 --d snow_dynamic_link
+```
+
+**IOS:**
+```
+haxelib run flow build ios --clean --project project/snow.flow --archs armv6,armv7,armv7s,arm64,sim,sim64 --d static_link
+```
+
+**You need to build win targets on Windows and mac/ios targets on OS X.**
 
 ### Notes
 
@@ -44,7 +65,13 @@ This is being investigated to be made simpler.
 
 ###Platform requirements
 
-The only platform that has requirements above the regular builds, is linux.
+You will require the following tools/sdks in order to build for above mentioned platforms:
+
+- `win` - VC++ 2013+ (it's free).
+- `android` - Android SDK, Android NDK setup
+- `mac/ios` - XCode and Command Line Tools
+- `ios` - above + iOS SDK
+- `linux` - gcc/g++ and `libgtk-3-dev` (see below comment)
 
 To rebuild snow on linux, you will additionally need to install
 
