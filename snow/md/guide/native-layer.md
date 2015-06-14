@@ -57,6 +57,7 @@ This is being investigated to be made simpler.
 
 ###Platform Notes
 
+- `web` - does not need to be built. Works out of the box.
 - `mac` - snow is linked statically, as libsnow.a
 - `windows` - snow is linked statically as libsnow.lib
 - `linux` - snow is linked dynamically as snow.ndll due to GTK dependencies
