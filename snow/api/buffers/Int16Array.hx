@@ -8,6 +8,8 @@ package snow.api.buffers;
         from js.html.Int16Array
         to js.html.Int16Array {
 
+        public inline static var BYTES_PER_ELEMENT : Int = 2;
+
         @:generic
         public inline function new<T>(
             ?elements:Int,
@@ -22,8 +24,11 @@ package snow.api.buffers;
             } else if(view != null) {
                 this = new js.html.Int16Array( untyped view );
             } else if(buffer != null) {
-                len = (len == null) ? untyped __js__('undefined') : len;
+                if(len == null) {
+                    this = new js.html.Int16Array( buffer, byteoffset );
+                } else {
                 this = new js.html.Int16Array( buffer, byteoffset, len );
+                }
             } else {
                 this = null;
             }

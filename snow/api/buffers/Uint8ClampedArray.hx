@@ -8,6 +8,8 @@ package snow.api.buffers;
         from js.html.Uint8ClampedArray
         to js.html.Uint8ClampedArray {
 
+        public inline static var BYTES_PER_ELEMENT : Int = 1;
+
         @:generic
         public inline function new<T>(
             ?elements:Int,
@@ -22,8 +24,11 @@ package snow.api.buffers;
             } else if(view != null) {
                 this = new js.html.Uint8ClampedArray( untyped view );
             } else if(buffer != null) {
-                len = (len == null) ? untyped __js__('undefined') : len;
+                if (len == null) {
+                    this = new js.html.Uint8ClampedArray( buffer, byteoffset );
+                } else {
                 this = new js.html.Uint8ClampedArray( buffer, byteoffset, len );
+                }
             } else {
                 this = null;
             }

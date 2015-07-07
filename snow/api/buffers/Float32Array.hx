@@ -8,6 +8,8 @@ package snow.api.buffers;
         from js.html.Float32Array
         to js.html.Float32Array {
 
+        public inline static var BYTES_PER_ELEMENT : Int = 4;
+
         @:generic
         public inline function new<T>(
             ?elements:Int,
@@ -22,8 +24,11 @@ package snow.api.buffers;
             } else if(view != null) {
                 this = new js.html.Float32Array( untyped view );
             } else if(buffer != null) {
-                len = (len == null) ? untyped __js__('undefined') : len;
+                if(len == null) {
+                    this = new js.html.Float32Array( buffer, byteoffset );
+                } else {
                 this = new js.html.Float32Array( buffer, byteoffset, len );
+                }
             } else {
                 this = null;
             }
