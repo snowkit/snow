@@ -122,6 +122,7 @@ namespace snow {
 
             OPENFILENAME ofn;
             char path[MAX_PATH] = "";
+            std::string final;
 
             ZeroMemory(&ofn, sizeof(ofn));
 
@@ -137,7 +138,6 @@ namespace snow {
             if(filters.size()) {
 
                 std::vector<file_filter>::const_iterator it = filters.begin();
-                std::string final = "";
                 for( ; it != filters.end(); ++it) {
 
                     file_filter filter = (*it);
@@ -149,7 +149,7 @@ namespace snow {
 
                 } //each filter
 
-                    //implicit extra \0 here from c_str
+                final.push_back('\0');
                 ofn.lpstrFilter = final.c_str();
 
             } else {
