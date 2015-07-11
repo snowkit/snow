@@ -66,8 +66,8 @@ then
     mkdir -p ndll/all/ndll/Windows
     mkdir -p ndll/all/ndll/Windows64
 
-    buildkite-agent build-artifact download "ndll/*" ndll/all/ndll
-    buildkite-agent build-artifact download "ndll\*" ndll/all/ndll
+    buildkite-agent artifact download "ndll/*" ndll/all/ndll
+    buildkite-agent artifact download "ndll\*" ndll/all/ndll
 
     cd ndll/all/ndll
     ls
