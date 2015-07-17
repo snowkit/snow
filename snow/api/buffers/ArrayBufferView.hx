@@ -132,7 +132,7 @@ package snow.api.buffers;
     public function set<T>( ?view:ArrayBufferView, ?array:Array<T>, offset:Int = 0 ) : Void {
 
         if(view != null && array == null) {
-            buffer.blit( toByteLength(offset), view.buffer, view.byteOffset, view.buffer.length );
+            buffer.blit( toByteLength(offset), view.buffer, view.byteOffset, view.byteLength );
         } else if(array != null && view == null) {
             copyFromArray(cast array, offset);
         } else {
