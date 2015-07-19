@@ -286,13 +286,13 @@ typedef WindowConfig = {
     @:optional var resizable    : Bool;
         /** create as a borderless window, default: false */
     @:optional var borderless   : Bool;
-        /** window y at creation. Leave this alone to use the OS default. */
-    @:optional var x            : Int;
         /** window x at creation. Leave this alone to use the OS default. */
+    @:optional var x            : Int;
+        /** window y at creation. Leave this alone to use the OS default. */
     @:optional var y            : Int;
-        /** window height at creation, default: 960 */
+        /** window width at creation, default: 960 */
     @:optional var width        : Int;
-        /** window width at creation, default: 640 */
+        /** window height at creation, default: 640 */
     @:optional var height       : Int;
         /** window title, default: 'snow app' */
     @:optional var title        : String;
