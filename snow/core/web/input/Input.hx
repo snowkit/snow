@@ -24,6 +24,7 @@ class Input implements snow.modules.interfaces.Input {
 
     var active_gamepads : Map<Int, WebGamepad>;
     var gamepads_supported : Bool = false;
+
     var system : snow.system.input.Input;
 
  	function new( _system:snow.system.input.Input ) system = _system;
@@ -38,6 +39,12 @@ class Input implements snow.modules.interfaces.Input {
             //initialize gamepads if they exist
         active_gamepads = new Map();
         gamepads_supported = (get_gamepad_list() != null);
+
+            //flag the state of deviceorientation api
+        if( untyped __js__('window.DeviceOrientationEvent') ) {
+            js.Browser.window.addEventListener('deviceorientation', on_orientation);
+            js.Browser.window.addEventListener('devicemotion', on_motion);
+        }
 
         log('Gamepads supported: $gamepads_supported');
 
@@ -85,6 +92,44 @@ class Input implements snow.modules.interfaces.Input {
         // :unsupported: :todo:
     } //text_input_rect
 
+//Orientation
+
+    function on_orientation( event ) {
+
+        system.app.dispatch_system_event({
+            type: SystemEventType.input,
+            input: {
+                type: InputEventType.joystick,
+                timestamp: system.app.time,
+                event: {
+                    type: 'orientation',
+                    alpha: event.alpha,
+                    beta: event.beta,
+                    gamma: event.gamma
+                }
+            },
+        });
+
+
+    } //on_orientation
+
+    function on_motion( event ) {
+
+        system.app.dispatch_system_event({
+            type: SystemEventType.input,
+            input: {
+                type: InputEventType.joystick,
+                timestamp: system.app.time,
+                event: {
+                    type: 'motion',
+                    acceleration: event.acceleration,
+                    accelerationIncludingGravity: event.accelerationIncludingGravity,
+                    rotationRate: event.rotationRate
+                }
+            },
+        });
+
+    } //on_motion
 
 //Gamepad
     public function gamepad_add( id:Int ) {}
