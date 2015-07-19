@@ -17,6 +17,8 @@ class Core {
         app = _app;
         start_timestamp = timestamp();
 
+        guess_os();
+
     } //new
 
         /** Called by the snow internals to intiialize the core and subsystems of the framework, with the event handler passed in for where to deliver system events */
@@ -110,5 +112,28 @@ class Core {
     function update() {
 
     }
+
+    function guess_os() {
+
+        var _ver = js.Browser.navigator.appVersion;
+        var _agent = js.Browser.navigator.userAgent;
+
+        inline function has(_val:String, _test:String) {
+            var r = new EReg(_val,'gi');
+            return r.match(_test);
+        }
+
+        if(has('mac', _ver))        app.os = OS.os_mac;
+        if(has('win', _ver))        app.os = OS.os_windows;
+            //I know it's not linux technically (should be unix)
+        if(has('x11', _ver))        app.os = OS.os_linux;
+        if(has('linux', _ver))      app.os = OS.os_linux;
+        if(has('android', _ver))    app.os = OS.os_android;
+        if(has('ipad', _agent))     app.os = OS.os_ios;
+        if(has('iphone', _agent))   app.os = OS.os_ios;
+        if(has('ipod', _agent))     app.os = OS.os_ios;
+
+    } //guess_os
+
 
 } //Core

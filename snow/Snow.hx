@@ -55,6 +55,9 @@ class Snow {
         /** The platform identifier, a string,
             but uses `snow.types.Types.Platform` abstract enum internally */
     public var platform : String = 'unknown';
+        /** The os identifier, a string,
+            but uses `snow.types.Types.OS` abstract enum internally */
+    public var os : String = 'unknown';
 
         /** Set if shut down has commenced */
     public var shutting_down : Bool = false;
