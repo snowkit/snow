@@ -157,7 +157,7 @@ class App {
 
             //and finally call render, if it's time
         if(render_rate != 0) {
-            if(next_render < app.time) {
+            if(render_rate < 0 || (next_render < app.time)) {
                 app.render();
                 next_render += render_rate;
             }
