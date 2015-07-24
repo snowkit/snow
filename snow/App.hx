@@ -117,13 +117,13 @@ class App {
     function on_internal_update() {
 
         if(update_rate != 0) {
-            if(next_tick < app.time) {
-                    //we have reached the next frame, update the tick
-                next_tick = app.time + update_rate;
-            } else {
-                    //we haven't reached the next frame yet?
+
+            if(app.time < next_tick) {
                 return;
             }
+
+            next_tick = app.time + update_rate;
+
         } //update_rate
 
             //the start of this frame is now
