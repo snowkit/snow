@@ -21,7 +21,7 @@ class App {
         /** if this is non zero this will be passed in */
     public var fixed_delta : Float = 0;
         /** if this is non zero, rendering will be forced to this rate */
-    public var render_rate : Float = 1/60;
+    public var render_rate : Float = -1;
         /** if this is non zero, updates will be forced to this rate */
     public var update_rate : Float = 0;
         /** the maximum frame time */
