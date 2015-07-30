@@ -95,9 +95,36 @@ class Audio implements snow.modules.interfaces.Audio {
     } //create_sound
 
     public function create_sound_from_bytes( _name:String, _bytes:Uint8Array, _format:AudioFormatType ) : Sound {
-        //:todo:
-        throw Error.error('unimplemented / wip');
-    }
+
+        var _ext = switch(_format) {
+            case AudioFormatType.ogg: 'ogg';
+            case AudioFormatType.wav: 'wav';
+            case AudioFormatType.pcm: throw Error.error('pcm audio format unsupported atm');
+            case AudioFormatType.unknown: throw Error.error('unknown audio format for create_sound_from_bytes ' + _name);
+        }
+
+        var str = '', i = 0, len = _bytes.length;
+        while(i < len) str += String.fromCharCode(_bytes[i++] & 0xff);
+        var b64 = js.Browser.window.btoa(str);
+        var src = 'data:audio/$_ext;base64,$b64';
+
+        var info = info_from_id('bytes;$_name', _format);
+        var sound = new Sound(system, _name, false);
+
+        info.handle = new Howl({
+            urls: [ src ],
+            onend : function() { system.app.audio.module._on_end(info.handle); },
+            onloaderror : function() { throw Error.error('failed to create sound $_name from bytes'); },
+            onload : function(){
+                info.handle = untyped __js__('this');
+                sound.info = info;
+                handles.set(info.handle, sound);
+            }
+        });
+
+        return sound;
+
+    } //create_sound_from_bytes
 
     //called when a sound ends, due to a bug in chrome with web audio
     //and howler we increased the duration to a really high number,
