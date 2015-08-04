@@ -360,33 +360,33 @@ class Snow {
 
     function setup_default_assets() {
 
+        if(snow_config.config_custom_assets) {
+            return Promise.resolve();
+        }
+
         _debug('assets / setting up default assets from "${assets.manifest_path}"');
 
         return new Promise(function(resolve, reject) {
 
-            if(!snow_config.config_custom_assets) {
+                //load the correct asset path from the snow config
+            assets.manifest_path = snow_config.config_assets_path;
 
-                    //load the correct asset path from the snow config
-                assets.manifest_path = snow_config.config_assets_path;
+                //
+            _debug('assets / fetching list ...');
 
-                    //
-                _debug('assets / fetching list ...');
+                //we fetch the a list from the manifest
+            default_asset_list().then(function(list) {
 
-                    //we fetch the a list from the manifest
-                default_asset_list().then(function(list) {
+                    //then we add the list for the asset manager
+                assets.list = list;
 
-                        //then we add the list for the asset manager
-                    assets.list = list;
+            }).error(function(e) {
 
-                }).error(function(e) {
+                //default asset manifest is not critical
+                //and will leave logs so we just continue
+                _debug('assets / default asset list rejected / $e');
 
-                    //default asset manifest is not critical
-                    //and will leave logs so we just continue
-                    _debug('assets / default asset list rejected / $e');
-
-                }).then(resolve);
-
-            } //custom assets
+            }).then(resolve);
 
         }); //promise
 
@@ -394,35 +394,30 @@ class Snow {
 
     function setup_configs() {
 
+            //custom config flag doesn't try to load config.json
+        if(snow_config.config_custom_runtime) {
+            setup_host_config();
+            return Promise.resolve();
+        }
+
         return new Promise(function(resolve, reject) {
 
-            if(!snow_config.config_custom_runtime) {
+            _debug('config / fetching runtime config');
 
-                _debug('config / fetching runtime config');
+            default_runtime_config().then(function(_runtime_conf:Dynamic) {
 
-                default_runtime_config().then(function(_runtime_conf:Dynamic) {
+                config.runtime = _runtime_conf;
 
-                    config.runtime = _runtime_conf;
+            }).error(function(error){
 
-                }).error(function(error){
+                throw Error.init('config / failed / default runtime config failed to parse as JSON. cannot recover. $error');
 
-                    throw Error.init('config / failed / default runtime config failed to parse as JSON. cannot recover. $error');
+            }).then(function(){
 
-                }).then(function(){
-
-                    setup_host_config();
-                    resolve();
-
-                });
-
-            } else {
-
-                    //if default config is disabled
-                    //we still need the user config
                 setup_host_config();
                 resolve();
 
-            } //disabled
+            });
 
         }); //promise
 
