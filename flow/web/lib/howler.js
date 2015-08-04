@@ -1,10 +1,8 @@
 /*!
- *  howler.js v1.1.25
- *    with modifications (rate, fixes)
- *    for http://github.com/underscorediscovery/snow
+ *  howler.js v1.1.26
  *  howlerjs.com
  *
- *  (c) 2013-2014, James Simpson of GoldFire Studios
+ *  (c) 2013-2015, James Simpson of GoldFire Studios
  *  goldfirestudios.com
  *
  *  MIT License
@@ -502,18 +500,11 @@
           self._playStart = ctx.currentTime;
           node.gain.value = self._volume;
 
-          // if (typeof node.bufferSource.start === 'undefined') {
-          //   node.bufferSource.noteGrainOn(0, pos, duration);
-          // } else {
-          //   node.bufferSource.start(0, pos, duration);
-          // }
-
           if (typeof node.bufferSource.start === 'undefined') {
-            self._loop ? node.bufferSource.noteGrainOn(0, pos, 31536000) : node.bufferSource.noteGrainOn(0, pos, duration);
+            loop ? node.bufferSource.noteGrainOn(0, pos, 86400) : node.bufferSource.noteGrainOn(0, pos, duration);
           } else {
-            self._loop ? node.bufferSource.start(0, pos, 31536000) : node.bufferSource.start(0, pos, duration);
+            loop ? node.bufferSource.start(0, pos, 86400) : node.bufferSource.start(0, pos, duration);
           }
-
         } else {
           if (node.readyState === 4 || !node.readyState && navigator.isCocoonJS) {
             node.readyState = 4;
