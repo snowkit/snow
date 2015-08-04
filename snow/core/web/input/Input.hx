@@ -311,30 +311,18 @@ class Input implements snow.modules.interfaces.Input {
         //It's really early for gamepads in browser
     function get_gamepad_list() : Dynamic {
 
-        //Modernizr is used to detect gamepad support
-        var modernizr = untyped js.Browser.window.Modernizr;
-        if(modernizr != null) {
+            //try official api first
+        if( untyped js.Browser.navigator.getGamepads != null ) {
+            return untyped js.Browser.navigator.getGamepads();
+        }
 
-            if(modernizr.gamepads == true) {
+            //try newer webkit GetGamepads() function
+        if( untyped js.Browser.navigator.webkitGetGamepads != null ) {
+            return untyped js.Browser.navigator.webkitGetGamepads();
+        }
 
-                    //try official api first
-                if( untyped js.Browser.navigator.getGamepads != null ) {
-                    return untyped js.Browser.navigator.getGamepads();
-                }
-
-                    //try newer webkit GetGamepads() function
-                if( untyped js.Browser.navigator.webkitGetGamepads != null ) {
-                    return untyped js.Browser.navigator.webkitGetGamepads();
-                }
-
-                    //if we make it here we failed support so fail out
-                fail_gamepads();
-
-            } else {
-                fail_gamepads();
-            }
-
-        } //modernizr != null
+            //if we make it here we failed support so fail out
+        fail_gamepads();
 
         return null;
 
