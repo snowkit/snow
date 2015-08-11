@@ -99,6 +99,7 @@ class IO {
         //:todo: clear() and remove()
 
         /** Save a string value by key, with an optional slot.
+            To remove a saved key, pass value in as null.
             Works on all targets as a simple save/load mechanism.
             Data saved is plain text but obscured with basic encoding.
             Any further obfuscation can be done on the value prior to saving.
@@ -108,11 +109,23 @@ class IO {
         var _string_map = string_slots_sync(_slot);
 
         var _encoded_key = module.string_slot_encode(_key);
-        var _encoded_value = module.string_slot_encode(_value);
 
-        _debug('storing key $_key:$_value as $_encoded_key:$_encoded_value');
+            //if the value is null, we remove the key
+        if(_value == null) {
+
+            _debug('removing key $_key ($_encoded_key)');
+
+            _string_map.remove(_encoded_key);
+
+        } else {
+
+            var _encoded_value = module.string_slot_encode(_value);
+
+            _debug('storing key $_key:$_value as $_encoded_key:$_encoded_value');
 
             _string_map.set(_encoded_key, _encoded_value);
+
+        }
 
         var _contents = haxe.Serializer.run(_string_map);
             _contents = module.string_slot_encode(_contents);
@@ -140,6 +153,20 @@ class IO {
         return module.string_slot_decode(_encoded_value);
 
     } //string_load
+
+        /** Destroy a specific string slot, removing all values stored.
+            Does not ask for confirmation. Returns true if successful, false otherwise. */
+    public function string_destroy(_slot:Int = 0) : Bool {
+
+        if(string_slots == null) {
+            string_slots = new Map();
+        } else {
+            string_slots.remove(_slot);
+        }
+
+        return module.string_slot_destroy(_slot);
+
+    } //string_destroy
 
 //Internal string load/save
 

@@ -106,6 +106,22 @@ class IO implements snow.modules.interfaces.IO {
         return '$_org/$_appname/${system.string_save_prefix}.$_slot';
     }
 
+    inline function string_slot_destroy( _slot:Int = 0 ) : Bool {
+
+        var storage = js.Browser.window.localStorage;
+        if(storage == null) {
+            log('localStorage isnt supported in this browser?!');
+            return false;
+        }
+
+        var _id = string_slot_id(_slot);
+
+        storage.removeItem(_id);
+
+        return false;
+
+    } //string_slot_destroy
+
         //flush the string map to disk
     inline function string_slot_save( _slot:Int = 0, _contents:String ) : Bool {
 

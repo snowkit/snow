@@ -191,6 +191,23 @@ class IO implements snow.modules.interfaces.IO {
 
 //Internal
 
+    inline function string_slot_destroy( _slot:Int = 0 ) : Bool {
+
+        var _path = string_save_path(_slot);
+        var _result = true;
+
+        _debug('remove string slot $_slot from path $_path');
+
+        try {
+            sys.FileSystem.deleteFile(_path);
+        } catch(e:Dynamic) {
+            _result = false;
+        }
+
+        return _result;
+
+    } //string_slot_destroy
+
         //flush the string map to disk
     inline function string_slot_save( _slot:Int = 0, _contents:String ) : Bool {
 
