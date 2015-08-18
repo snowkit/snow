@@ -58,6 +58,8 @@ class Snow {
         /** The os identifier, a string,
             but uses `snow.types.Types.OS` abstract enum internally */
     public var os : String = 'unknown';
+        /** A debug flag for convenience, true if the app was built with the haxe -debug flag or define */
+    public var debug : Bool = #if debug true #else false #end;
 
         /** Set if shut down has commenced */
     public var shutting_down : Bool = false;
@@ -149,7 +151,7 @@ class Snow {
 
         snow_config = _snow_config;
         if(snow_config.app_package == null) {
-            snow_config.app_package = 'org.snowkit.snowdefault';
+            snow_config.app_package = 'org.snowkit.snow';
         }
 
         config = default_config();
@@ -297,8 +299,9 @@ class Snow {
             audio.on_event( _event );
             windowing.on_event( _event );
             input.on_event( _event );
-            host.onevent( _event );
         }
+
+        host.onevent( _event );
 
         switch(_event.type) {
 
