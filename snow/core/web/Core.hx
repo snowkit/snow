@@ -1,5 +1,7 @@
 package snow.core.web;
 
+#if snow_web
+
 import snow.types.Types;
 import snow.api.Debug.*;
 
@@ -137,3 +139,5 @@ class Core {
 
 
 } //Core
+
+#end //snow_web

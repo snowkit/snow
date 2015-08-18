@@ -1,5 +1,7 @@
 package snow.modules.howlerjs;
 
+#if snow_web
+
 //https://github.com/insweater/HaxeHowlerJS/
 
 @:native("window.Howler") extern class Howler
@@ -8,3 +10,5 @@ package snow.modules.howlerjs;
 	static function mute():Howler;
 	static function unmute():Howler;
 }
+
+#end //snow_web

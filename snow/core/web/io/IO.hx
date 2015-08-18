@@ -1,5 +1,7 @@
 package snow.core.web.io;
 
+#if snow_web
+
 import snow.types.Types;
 import snow.api.buffers.Uint8Array;
 import snow.api.Promise;
@@ -165,3 +167,5 @@ class IO implements snow.modules.interfaces.IO {
 
 
 } //IO
+
+#end //snow_web

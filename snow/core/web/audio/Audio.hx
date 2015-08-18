@@ -1,5 +1,7 @@
 package snow.core.web.audio;
 
+#if snow_web
+
 import snow.types.Types;
 
 @:allow(snow.system.audio.Audio)
@@ -22,3 +24,5 @@ class Audio implements snow.modules.interfaces.Audio {
 } //AudioSystem
 
 typedef Sound = snow.system.audio.Sound;
+
+#end //snow_web

@@ -1,5 +1,7 @@
 package snow.modules.howlerjs;
 
+#if snow_web
+
 //https://github.com/insweater/HaxeHowlerJS/
 
 @:native("window.Howl") extern class Howl
@@ -49,3 +51,5 @@ typedef AudioParams = {
     ?onpause:Void->Void,
     ?onplay:Void->Void
 }
+
+#end //snow_web

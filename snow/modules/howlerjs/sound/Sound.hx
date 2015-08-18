@@ -1,5 +1,7 @@
 package snow.modules.howlerjs.sound;
 
+#if snow_web
+
 import snow.types.Types;
 
 import snow.api.Debug.*;
@@ -176,3 +178,5 @@ class Sound extends snow.system.audio.Sound {
     }
 
 } //Sound
+
+#end //snow_web

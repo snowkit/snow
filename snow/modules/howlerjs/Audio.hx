@@ -1,5 +1,7 @@
 package snow.modules.howlerjs;
 
+#if snow_web
+
 import snow.modules.howlerjs.Howl;
 import snow.types.Types;
 import snow.api.Promise;
@@ -146,3 +148,5 @@ class Audio implements snow.modules.interfaces.Audio {
     }
 
 } //AudioSystem
+
+#end //snow_web

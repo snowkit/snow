@@ -1,5 +1,7 @@
 package snow.core.web.assets;
 
+#if snow_web
+
 import snow.system.assets.Asset.AssetImage;
 import snow.system.assets.Assets;
 import snow.types.Types;
@@ -265,3 +267,5 @@ class Assets implements snow.modules.interfaces.Assets {
         } //nearest_power_of_two
 
 } //Assets
+
+#end //snow_web

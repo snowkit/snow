@@ -1,5 +1,7 @@
 package snow.core.web.window;
 
+#if snow_web
+
 import snow.types.Types;
 import snow.system.window.Window;
 
@@ -680,3 +682,5 @@ class Windowing implements snow.modules.interfaces.Windowing {
     }
 
 } //Windowing
+
+#end //snow_web

@@ -1,5 +1,7 @@
 package snow.core.web.input;
 
+#if snow_web
+
 import snow.types.Types;
 import snow.system.window.Window;
 import snow.core.web.input.DOMKeys;
@@ -609,3 +611,5 @@ class Input implements snow.modules.interfaces.Input {
 
 
 } //Input
+
+#end //snow_web
