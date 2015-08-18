@@ -12,7 +12,7 @@
 <br/>
 ##About
 
-**snow** is a free, <a href="https://github.com/underscorediscovery/snow/blob/master/LICENSE.md" data-tooltip="MIT license" class="tooltip">open source</a> light, pure and clean toolkit for building frameworks, applications and games using [haxe](http://haxe.org), targeting native platforms and web browser.
+**snow** is a free, <a href="https://github.com/underscorediscovery/snow/blob/master/LICENSE.md" data-tooltip="MIT license" class="tooltip">open source</a> light, pure and clean toolkit for building frameworks, applications and games using [Haxe](http://haxe.org), targeting native platforms and web browser.
 This means snow by default runs natively on **Mac**, **Windows**, **Linux** desktops, as well as **iOS** and **Android** devices. It also runs directly in the **Web** browser using webgl.
 
 &nbsp;_how?_
@@ -186,7 +186,7 @@ On top of the comprehensive, full fledged <a href="http://api.haxe.org/" target=
    - pitch, pan, volume, position, duration properties
    - play sound or stream sound, looped or not
    - on complete handling
-   - `native` full direct access to OpenAL API from haxe
+   - `native` full direct access to OpenAL API from Haxe code
    - `native` auto background thread toggle
 
 <a name="assets"><a href="#assets">**assets and io**</a></a>
