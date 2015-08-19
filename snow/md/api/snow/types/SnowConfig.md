@@ -54,10 +54,7 @@ Snow specific configurations, set from build config
             This means for example, when storing a preference in an OS location,
             it would be stored under <OS user path>/org.snowkit/snowapp/
             This also means that it must obey the rules set out by app stores for bundle ID's,
-            general urls, file folder names, and https://wiki.libsdl.org/SDL_GetPrefPath#Remarks</span><br/><span class="member apipage">
-                <a name="app_name"><a class="lift" href="#app_name">app\_name</a></a><div class="clear"></div>
-                <code class="signature apipage">app\_name : [Null](http://api.haxe.org/Null.html)&lt;[String](http://api.haxe.org/String.html)&gt;</code><br/></span>
-            <span class="small_desc_flat">The application name. This is used when an friendly identifier for the app is needed.</span><br/>
+            general urls, file folder names, and https://wiki.libsdl.org/SDL_GetPrefPath#Remarks</span><br/>
 
 
 
