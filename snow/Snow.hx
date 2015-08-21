@@ -78,6 +78,8 @@ class Snow {
     @:noCompletion public static var core : Core;
         //the list of functions to run next loop
     static var next_queue : Array<Void->Void>;
+        //the list of functions to run at the end of the current loop
+    static var defer_queue : Array<Void->Void>;
 
     @:noCompletion
     public function new() {
@@ -98,6 +100,7 @@ class Snow {
             //We create the core as a concrete platform version of the core
         core = new Core( this );
         next_queue = [];
+        defer_queue = [];
 
     } //new
 
@@ -138,11 +141,20 @@ class Snow {
 
         /** Call a function at the start of the next frame,
             useful for async calls in a sync context, allowing the sync function to return safely before the onload is fired. */
+    inline
     public static function next( func: Void->Void ) {
 
         if(func != null) next_queue.push(func);
 
     } //next
+
+        /** Call a function at the end of the current frame */
+    inline
+    public static function defer( func: Void->Void ) {
+
+        if(func != null) defer_queue.push(func);
+
+    } //defer
 
 //Internal API
 
@@ -221,10 +233,15 @@ class Snow {
 
             //make sure the initial promises happen
         snow.api.Promise.Promises.step();
+
             //make sure all events pushed into
-            //the queue via next are flushed
+            //the queues are flushed
         while(next_queue.length > 0) {
             cycle_next_queue();
+        }
+
+        while(defer_queue.length > 0) {
+            cycle_defer_queue();
         }
 
     } //on_snow_ready
@@ -264,6 +281,9 @@ class Snow {
             //game updates aren't allowed till we are flagged
         if(!is_ready) return;
 
+            //handle any internal pre updates
+        host.ontickstart();
+
             //handle any internal updates
         host.on_internal_update();
 
@@ -274,6 +294,11 @@ class Snow {
         #if snow_native
             Sys.sleep(0);
         #end
+
+            //handle any internal post updates
+        host.ontickend();
+
+        cycle_defer_queue();
 
     } //on_snow_update
 
@@ -333,12 +358,25 @@ class Snow {
 
     } //on_event
 
-    function cycle_next_queue() {
+    inline function cycle_next_queue() {
 
         var count = next_queue.length;
-        if(count > 0) {
-            for(i in 0 ... count) (next_queue.shift())();
-        } //count > 0
+        var i = 0;
+        while(i < count) {
+            (next_queue.shift())();
+            ++i;
+        }
+
+    } //cycle_next_queue
+
+    inline function cycle_defer_queue() {
+
+        var count = defer_queue.length;
+        var i = 0;
+        while(i < count) {
+            (defer_queue.shift())();
+            ++i;
+        }
 
     } //cycle_next_queue
 

@@ -65,6 +65,11 @@ class App {
         /** Low level event handler from snow core. Often handled by the subsystems so check there first. */
     public function onevent( event:SystemEvent ) {}
 
+        /** Called each frame *before* everything, the beginning of the frame. Use with understanding. */
+    public function ontickstart() {}
+        /** Called each frame *after* everything, at the end of the frame. Use with understanding. */
+    public function ontickend() {}
+
         /** Called for you when a key is pressed down */
     public function onkeydown( keycode:Int, scancode:Int, repeat:Bool, mod:ModState, timestamp:Float, window_id:Int ) {}
         /** Called for you when a key is released */
@@ -164,7 +169,6 @@ class App {
         }
 
     } //on_internal_render
-
 
 } //App
 
