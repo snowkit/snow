@@ -307,6 +307,8 @@ typedef WindowConfig = {
     @:optional var title        : String;
         /** disables input arriving at/from this window. default: false */
     @:optional var no_input     : Bool;
+		/** the id of the parent_element for web. Leave this alone to use the body element. */
+    @:optional var parent_element : String;
 
 } //WindowConfig
 
