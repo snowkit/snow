@@ -134,9 +134,6 @@ class Input implements snow.modules.interfaces.Input {
     } //on_motion
 
 //Gamepad
-    public function gamepad_add( id:Int ) {}
-    public function gamepad_remove( id:Int ) {}
-
     function poll_gamepads() {
 
         //just in case
@@ -155,6 +152,7 @@ class Input implements snow.modules.interfaces.Input {
 
                         system.dispatch_gamepad_device_event(
                             _gamepad.index,
+                            _gamepad.id,
                             GamepadDeviceEventType.device_removed,
                             system.app.time //:todo:gamepadtimestamp:
                         );
@@ -201,6 +199,7 @@ class Input implements snow.modules.interfaces.Input {
 
             system.dispatch_gamepad_device_event(
                 _new_gamepad.index,
+                _new_gamepad.id,
                 GamepadDeviceEventType.device_added,
                 _new_gamepad.timestamp
             );

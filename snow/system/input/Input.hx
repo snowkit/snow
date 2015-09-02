@@ -328,9 +328,9 @@ class Input {
     } //dispatch_gamepad_button_up_event
 
         /** manually dispatch a gamepad device event through the system, delivered to the app handlers, internal and external */
-    public function dispatch_gamepad_device_event( gamepad:Int, type:GamepadDeviceEventType, timestamp:Float ) {
+    public function dispatch_gamepad_device_event( gamepad:Int, id:String, type:GamepadDeviceEventType, timestamp:Float ) {
 
-        app.host.ongamepaddevice( gamepad, type, timestamp );
+        app.host.ongamepaddevice( gamepad, id, type, timestamp );
 
     } //dispatch_gamepad_device_event
 
@@ -357,19 +357,6 @@ class Input {
 
     } //on_event
 
-        /** Called when a gamepad is added, in order to handle any platform details */
-    @:noCompletion public function on_gamepad_added( _event:Dynamic ) {
-
-        module.gamepad_add( _event.which );
-
-    } //on_gamepad_added
-
-        /** Called when a gamepad is removed, in order to handle any platform details */
-    @:noCompletion public function on_gamepad_removed( _event:Dynamic ) {
-
-        module.gamepad_remove( _event.which );
-
-    } //on_gamepad_removed
 
         /** Handle any input related processing, called by Snow */
     function update() {

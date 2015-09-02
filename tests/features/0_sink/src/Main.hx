@@ -420,8 +420,8 @@ class Main extends snow.App.AppFixedTimestep {
         log('button down; device: ${gamepad}, button: ${button} value: ${value} timestamp:  ${timestamp}');
     } //ongamepadbuttondown
 
-    override function ongamepaddevice( gamepad:Int, type:GamepadDeviceEventType, timestamp:Float ) {
-        log('device event; device: ${gamepad}, type: ${type} timestamp: ${timestamp}');
+    override function ongamepaddevice( gamepad:Int, id:String, type:GamepadDeviceEventType, timestamp:Float ) {
+        log('device event; device: ${gamepad}, ${id}, type: ${type} timestamp: ${timestamp}');
     } //ongamepaddevice
 
 

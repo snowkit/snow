@@ -14,7 +14,4 @@ interface Input {
     private function listen( window:snow.system.window.Window ):Void;
     private function unlisten( window:snow.system.window.Window ):Void;
 
-    private function gamepad_add( id:Int ):Void;
-    private function gamepad_remove( id:Int ):Void;
-
 } //Input

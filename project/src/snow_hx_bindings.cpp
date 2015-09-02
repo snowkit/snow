@@ -443,24 +443,6 @@ extern double timestamp();
 
 
 
-
-    value snow_gamepad_open( value _id ) {
-
-        snow::input::snow_gamepad_open(val_int(_id));
-
-        return alloc_null();
-
-    } DEFINE_PRIM(snow_gamepad_open, 1)
-
-    value snow_gamepad_close( value _id ) {
-
-        snow::input::snow_gamepad_close(val_int(_id));
-
-        return alloc_null();
-
-    } DEFINE_PRIM(snow_gamepad_close, 1)
-
-
     //text input
 
 

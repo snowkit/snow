@@ -4,7 +4,6 @@ package snow.modules.sdl;
 import snow.types.Types;
 import snow.system.input.Input;
 
-
 @:noCompletion
 class Input extends snow.core.native.input.Input {
 
@@ -18,215 +17,256 @@ class Input extends snow.core.native.input.Input {
         }
 
         var _event = event.input;
-
-        //Key events
-
-            if(_event.type == InputEventType.key) {
-
-                var _key_event = _event.event;
-
-                if(_event.event.type == KeyEventType.down) {
-
-                    system.dispatch_key_down_event(
-                        _key_event.keysym.sym,
-                        _key_event.keysym.scancode,
-                        _key_event.repeat,
-                        mod_state_from_event(_event),
-                        _event.timestamp,
-                        _event.window_id
-                    );
-
-                } else if(_event.event.type == KeyEventType.up) {
-
-                    system.dispatch_key_up_event(
-                        _key_event.keysym.sym,
-                        _key_event.keysym.scancode,
-                        _key_event.repeat,
-                        mod_state_from_event(_event),
-                        _event.timestamp,
-                        _event.window_id
-                    );
-
-                } else if(_event.event.type == KeyEventType.textedit || _event.event.type == KeyEventType.textinput) {
-
-                    system.dispatch_text_event(
-                        _event.event.text,
-                        (_event.event.start == null) ? 0 : _event.event.start,
-                        (_event.event.length == null) ? 0 : _event.event.length,
-                        (_event.event.type == KeyEventType.textedit) ? TextEventType.edit : TextEventType.input,
-                        _event.timestamp,
-                        _event.window_id
-                    );
-
-                } //
-
-        //Touch events
-
-            } else if(_event.type == InputEventType.touch) {
-
-                var _state = _event.event.type;
-
-                    //currently unused, but is available for future use
-                // var _pressure = _event.event.pressure;
-                // var _device_id = _event.event.touch_id;
-
-                if(_state == TouchEventType.down) {
-
-                    system.dispatch_touch_down_event(
-                        _event.event.x,
-                        _event.event.y,
-                        _event.event.finger_id,
-                        _event.timestamp
-                    );
-
-                } else if(_state == TouchEventType.up) {
-
-                    system.dispatch_touch_up_event(
-                        _event.event.x,
-                        _event.event.y,
-                        _event.event.finger_id,
-                        _event.timestamp
-                    );
-
-                } else if(_state == TouchEventType.move) {
-
-                    system.dispatch_touch_move_event(
-                        _event.event.x,
-                        _event.event.y,
-                        _event.event.dx,
-                        _event.event.dy,
-                        _event.event.finger_id,
-                        _event.timestamp
-                    );
-
-                }
-
-        //Gamepad events
-
-            } else if(_event.type == InputEventType.controller) {
-
-                var _gamepad_event = _event.event;
-
-            //Buttons
-
-                if(_gamepad_event.type == ControllerEventType.button_up) {
-
-                        //the 0 means fully pressed
-                    system.dispatch_gamepad_button_up_event(
-                        _gamepad_event.which,
-                        _gamepad_event.button,
-                        0,
-                        _event.timestamp
-                    );
-
-                } else if(_gamepad_event.type == ControllerEventType.button_down ) {
-
-                        //the 1 means fully pressed
-                    system.dispatch_gamepad_button_down_event(
-                        _gamepad_event.which,
-                        _gamepad_event.button,
-                        1,
-                        _event.timestamp
-                    );
-
-            //Axis
-
-                } else if(_gamepad_event.type == ControllerEventType.axis) {
-
-                    system.dispatch_gamepad_axis_event(
-                        _gamepad_event.which,
-                        _gamepad_event.axis,
-                        _gamepad_event.value,
-                        _event.timestamp
-                    );
-
-                } else {
-
-            //Device events
-
-                    var _type : GamepadDeviceEventType = GamepadDeviceEventType.unknown;
-
-                    if(_gamepad_event.type == ControllerEventType.added) {
-
-                        system.on_gamepad_added( _gamepad_event );
-                        _type = GamepadDeviceEventType.device_added;
-
-                    } else if(_gamepad_event.type == ControllerEventType.removed) {
-
-                        system.on_gamepad_removed( _gamepad_event );
-                        _type = GamepadDeviceEventType.device_removed;
-
-                    } else if(_gamepad_event.type == ControllerEventType.remapped) {
-                        _type = GamepadDeviceEventType.device_remapped;
-                    }
-
-                    system.dispatch_gamepad_device_event(
-                        _gamepad_event.which,
-                        _type,
-                        _event.timestamp
-                    );
-
-                }
-
-        //Mouse events
-
-            } else if(_event.type == InputEventType.mouse) {
-
-                if(_event.event.type == MouseEventType.move) {
-
-                    system.dispatch_mouse_move_event(
-                        _event.event.x,
-                        _event.event.y,
-                        _event.event.xrel,
-                        _event.event.yrel,
-                        _event.timestamp,
-                        _event.window_id
-                    );
-
-                } if(_event.event.type == MouseEventType.down) {
-
-                    system.dispatch_mouse_down_event(
-                        _event.event.x,
-                        _event.event.y,
-                        _event.event.button,
-                        _event.timestamp,
-                        _event.window_id
-                    );
-
-                } else if(_event.event.type == MouseEventType.up) {
-
-                    system.dispatch_mouse_up_event(
-                        _event.event.x,
-                        _event.event.y,
-                        _event.event.button,
-                        _event.timestamp,
-                        _event.window_id
-                    );
-
-                } else if(_event.event.type == MouseEventType.wheel) {
-
-                    system.dispatch_mouse_wheel_event(
-                        _event.event.x,
-                        _event.event.y,
-                        _event.timestamp,
-                        _event.window_id
-                    );
-
-                }
-
-            } //if's
+        switch(_event.type) {
+            case key:           handle_key_ev(_event);
+            case touch:         handle_touch_ev(_event);
+            case controller:    handle_controller_ev(_event);
+            case mouse:         handle_mouse_ev(_event);
+            case joystick:      handle_joystick_ev(_event);
+            case unknown:   
+            case _:    
+        }
 
     } //on_event
 
+    inline function handle_controller_ev(_input:InputEvent) {
+
+        var _event : SDLControllerEvent = _input.event;
+        //1 is fully up for the up/down values
+
+        switch(_event.type) {
+            case button_up: 
+                system.dispatch_gamepad_button_up_event(
+                    _event.which,
+                    _event.button,
+                    0,                  
+                    _input.timestamp
+                );
+
+            case button_down:
+                system.dispatch_gamepad_button_down_event(
+                    _event.which,
+                    _event.button,
+                    1,
+                    _input.timestamp
+                );
+
+            case axis:
+                system.dispatch_gamepad_axis_event(
+                    _event.which,
+                    _event.axis,
+                    _event.value,
+                    _input.timestamp
+                );
+
+            case added:
+                system.dispatch_gamepad_device_event(
+                    _event.which,
+                    _event.id,
+                    device_added,
+                    _input.timestamp
+                );
+
+            case removed:
+                system.dispatch_gamepad_device_event(
+                    _event.which,
+                    _event.id,
+                    device_removed,
+                    _input.timestamp
+                );
+
+            case remapped:
+                system.dispatch_gamepad_device_event(
+                    _event.which,
+                    _event.id,
+                    device_remapped,
+                    _input.timestamp
+                );
+
+        } //switch type
+
+    } //handle_controller_ev
+
+    inline function handle_joystick_ev(_input:InputEvent) {
+
+        var _event : SDLJoystickEvent = _input.event;
+
+        switch(_event.type) {
+
+            case axis:
+                system.dispatch_gamepad_axis_event(
+                    _event.which,
+                    _event.axis,
+                    _event.value,
+                    _input.timestamp
+                );
+            case button_down:
+                system.dispatch_gamepad_button_down_event(
+                    _event.which,
+                    _event.button,
+                    1,
+                    _input.timestamp
+                );
+            case button_up:
+                system.dispatch_gamepad_button_up_event(
+                    _event.which,
+                    _event.button,
+                    0,
+                    _input.timestamp
+                );
+            case added:
+                system.dispatch_gamepad_device_event(
+                    _event.which,
+                    _event.id,
+                    device_added,
+                    _input.timestamp
+                );
+
+            case removed:
+                system.dispatch_gamepad_device_event(
+                    _event.which,
+                    _event.id,
+                    device_removed,
+                    _input.timestamp
+                );
+
+            case ball:
+            case hat:
+
+        } //switch type
+
+    } //handle_joystick_ev
+
+    inline function handle_mouse_ev(_input:InputEvent) {
+
+        var _event : SDLMouseEvent = _input.event;
+        
+        switch(_event.type) {
+            case move:
+                system.dispatch_mouse_move_event(
+                    _event.x,
+                    _event.y,
+                    _event.xrel,
+                    _event.yrel,
+                    _input.timestamp,
+                    _input.window_id
+                );
+
+            case down:
+                system.dispatch_mouse_down_event(
+                    _event.x,
+                    _event.y,
+                    _event.button,
+                    _input.timestamp,
+                    _input.window_id
+                );
+
+            case up:
+                system.dispatch_mouse_up_event(
+                    _event.x,
+                    _event.y,
+                    _event.button,
+                    _input.timestamp,
+                    _input.window_id
+                );
+
+            case wheel:
+                system.dispatch_mouse_wheel_event(
+                    _event.x,
+                    _event.y,
+                    _input.timestamp,
+                    _input.window_id
+                );
+
+        } //switch type
+
+    } //handle_mouse_ev
+
+    inline function handle_touch_ev(_input:InputEvent) {
+    
+        //currently unused, but is available for future use
+        // var _pressure = _event.event.pressure;
+        // var _device_id = _event.event.touch_id;
+
+        var _event : SDLTouchEvent = _input.event;
+
+        switch(_event.type) {
+            case down:
+                system.dispatch_touch_down_event(
+                    _event.x,
+                    _event.y,
+                    _event.finger_id,
+                    _input.timestamp
+                );
+
+            case up:
+                system.dispatch_touch_up_event(
+                    _event.x,
+                    _event.y,
+                    _event.finger_id,
+                    _input.timestamp
+                );
+
+            case move:  
+                system.dispatch_touch_move_event(
+                    _event.x,
+                    _event.y,
+                    _event.dx,
+                    _event.dy,
+                    _event.finger_id,
+                    _input.timestamp
+                );
+
+        } //switch type
+
+    } //handle_touch_ev
+
+    inline function handle_key_ev(_input:InputEvent) {
+        
+        var _event:SDLKeyEvent = _input.event;
+
+        switch(_event.type) {
+            case down:
+                system.dispatch_key_down_event(
+                    _event.keysym.sym,
+                    _event.keysym.scancode,
+                    _event.repeat,
+                    get_key_mod_state(_event),
+                    _input.timestamp,
+                    _input.window_id
+                );
+
+            case up:
+                system.dispatch_key_up_event(
+                    _event.keysym.sym,
+                    _event.keysym.scancode,
+                    _event.repeat,
+                    get_key_mod_state(_event),
+                    _input.timestamp,
+                    _input.window_id
+                );
+
+            case textedit, textinput:
+                system.dispatch_text_event(
+                    _event.text,
+                    (_event.start == null) ? 0 : _event.start,
+                    (_event.length == null) ? 0 : _event.length,
+                    (_event.type == textedit) ? TextEventType.edit : TextEventType.input,
+                    _input.timestamp,
+                    _input.window_id
+                );
+
+        } //switch event type
+
+    } //handle_key_ev
+
 
         /** Helper to return a `ModState` (shift, ctrl etc) from a given `InputEvent` */
-    function mod_state_from_event( event:InputEvent ) : ModState {
+    function get_key_mod_state( _event:SDLKeyEvent ) : ModState {
 
-        //event comes through as event.event.keysym.mod
+        if( _event.type == KeyEventType.up || _event.type == KeyEventType.down ) {
 
-        if( event.event.type == KeyEventType.up || event.event.type == KeyEventType.down ) {
-
-            var mod_value = event.event.keysym.mod;
+            var mod_value = _event.keysym.mod;
 
             return {
 
@@ -272,8 +312,7 @@ class Input extends snow.core.native.input.Input {
 
 } //Input
 
-@:noCompletion
-@:enum abstract KeyEventType(Int) {
+@:enum private abstract KeyEventType(Int) {
 
         /** A key down event */
     var down        = 768;
@@ -286,8 +325,7 @@ class Input extends snow.core.native.input.Input {
 
 } //KeyEventTypes
 
-@:noCompletion
-@:enum abstract ControllerEventType(Int) {
+@:enum private abstract ControllerEventType(Int) {
 
         /** a gamepad axis movement event */
     var axis            = 1616;
@@ -304,8 +342,26 @@ class Input extends snow.core.native.input.Input {
 
 } //ControllerEventType
 
-@:noCompletion
-@:enum abstract TouchEventType(Int) {
+@:enum private abstract JosytickEventType(Int) {
+
+        /** a joystick axis movement event */
+    var axis            = 0x600;
+        /** a joystick ball movement event */
+    var ball            = 0x601;
+        /** a joystick hat movement event */
+    var hat             = 0x602;
+        /** a joystick button pressed event */
+    var button_down     = 0x603;
+        /** a joystick button released event */
+    var button_up       = 0x604;
+        /** a joystick connected event */
+    var added           = 0x605;
+        /** a joystick disconnected event */
+    var removed         = 0x606;
+
+} //ControllerEventType
+
+@:enum private abstract TouchEventType(Int) {
 
         /** A touch has begun */
     var down    = 1792;
@@ -316,8 +372,7 @@ class Input extends snow.core.native.input.Input {
 
 } //TouchEventType
 
-@:noCompletion
-@:enum abstract MouseEventType(Int) {
+@:enum private abstract MouseEventType(Int) {
 
         /** A mouse moved event */
     var move    = 1024;
@@ -330,8 +385,7 @@ class Input extends snow.core.native.input.Input {
 
 } //MouseEventTypes
 
-@:noCompletion
-@:enum abstract ModValue(Int) {
+@:enum private abstract ModValue(Int) from Int to Int {
 
     var NONE    = 0x0000;
     var LSHIFT  = 0x0001;
@@ -347,4 +401,66 @@ class Input extends snow.core.native.input.Input {
     var MODE    = 0x4000;
 
 } //ModValue
+
+
+private typedef SDLKeyEvent = {
+    var type: KeyEventType;
+    var repeat: Bool;
+    var keysym: {
+        sym: Int,
+        mod: Int,
+        scancode: Int
+    };
+    //
+    var text: String;
+    var start: Null<Int>;
+    var length: Null<Int>;
+}
+
+private typedef SDLTouchEvent = {
+    var type: TouchEventType;
+    var finger_id: Int;
+    var x: Float;
+    var y: Float;
+    var dx: Null<Float>;
+    var dy: Null<Float>;
+}
+
+private typedef SDLMouseEvent = {
+    var type: MouseEventType;
+    var x: Int;
+    var y: Int;
+    var button: Null<Int>;
+    var xrel: Null<Int>;
+    var yrel: Null<Int>;
+}
+
+private typedef SDLControllerEvent = {
+    var type: ControllerEventType;
+    var which: Int;
+    var button: Null<Int>;
+    var axis: Null<Int>;
+    var value: Null<Float>;
+    var id: String;
+}
+
+private typedef SDLJoystickEvent = {
+    var type: JosytickEventType;
+    var which: Int;
+    var id: String;
+    //button
+    var button: Null<Int>;
+    var state: Null<Int>;
+    //hat, axis
+    var value: Null<Float>;
+    //axis
+    var axis: Null<Int>;
+    //hat
+    var hat: Null<Int>;
+    //ball motion
+    var ball: Null<Int>;
+    var xrel: Null<Int>;
+    var yrel: Null<Int>;
+}
+
 

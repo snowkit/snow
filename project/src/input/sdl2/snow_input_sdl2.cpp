@@ -21,6 +21,12 @@ namespace snow {
         static const int MAX_GAMEPADS = 16;
 
         std::map<int, SDL_GameController*> gamepad_list;
+        std::map<int, SDL_Joystick*> joystick_list;
+
+        void open_gamepad(int id);
+        void close_gamepad(int id);
+        void open_joystick(int id);
+        void close_joystick(int id);
 
         value sdl2_keysym_to_hx( SDL_Keysym &keysym ) {
 
@@ -277,6 +283,13 @@ namespace snow {
                     alloc_field( _object, id_timestamp, alloc_float(event.jdevice.timestamp/1000.0) );
                     alloc_field( _object, id_which, alloc_int(event.jdevice.which) );
 
+                    const char* _name = SDL_JoystickName( joystick_list[event.jdevice.which] );
+                    if(_name) {
+                        alloc_field( _object, id_id, alloc_string(_name) );
+                    } else {
+                        alloc_field( _object, id_id, alloc_null() );
+                    }
+
                     break;
 
                 } //joystick added/removed
@@ -342,6 +355,13 @@ namespace snow {
                     alloc_field( _object, id_type, alloc_int(event.cdevice.type) );
                     alloc_field( _object, id_timestamp, alloc_float(event.cdevice.timestamp/1000.0) );
                     alloc_field( _object, id_which, alloc_int(event.cdevice.which) );
+
+                    const char* _name = SDL_GameControllerName( gamepad_list[event.cdevice.which] );
+                    if(_name) {
+                        alloc_field( _object, id_id, alloc_string(_name) );
+                    } else {
+                        alloc_field( _object, id_id, alloc_null() );
+                    }
 
                     break;
 
@@ -410,8 +430,20 @@ namespace snow {
                     case SDL_JOYDEVICEADDED:
                     case SDL_JOYDEVICEREMOVED:
                     {
+                        int joystick_id = event.jdevice.which;
+                        if(SDL_IsGameController(joystick_id)) {
+                            return;
+                        }
+
                         new_event.type = ie_joystick;
                         new_event.event = sdl2_joystick_event_to_hx(new_event, event);
+
+                        if(event.type == SDL_JOYDEVICEADDED) {
+                            open_joystick(joystick_id);
+                        } else if(event.type == SDL_JOYDEVICEREMOVED) {
+                            close_joystick(joystick_id);
+                        }
+
                         break;
                     }
 
@@ -424,8 +456,16 @@ namespace snow {
                     case SDL_CONTROLLERDEVICEREMOVED:
                     case SDL_CONTROLLERDEVICEREMAPPED:
                     {
+                            //must happen before sdl2_controller_event_to_hx
+                        if(event.type == SDL_CONTROLLERDEVICEADDED) {
+                            open_gamepad(event.cdevice.which);
+                        } else if(event.type == SDL_CONTROLLERDEVICEREMOVED) {
+                            close_gamepad(event.cdevice.which);
+                        }
+
                         new_event.type = ie_controller;
                         new_event.event = sdl2_controller_event_to_hx(new_event, event);
+
                         break;
                     }
 
@@ -441,9 +481,9 @@ namespace snow {
         } //handle_input_event
 
 
-    //Gamepad external api
+    //Gamepad internal api
 
-        void snow_gamepad_open( int id ) {
+        void open_gamepad( int id ) {
 
             SDL_GameController* _gamepad = SDL_GameControllerOpen( id );
 
@@ -453,18 +493,43 @@ namespace snow {
 
             } //_gamepad
 
-        } //snow_gamepad_open
+        } //open_gamepad
 
-        void snow_gamepad_close( int id ) {
+        void close_gamepad( int id ) {
 
             if(gamepad_list.count(id) > 0) {
 
                 SDL_GameControllerClose( gamepad_list[id] );
                 gamepad_list.erase( id );
 
-            } //_gamepad
+            } //
 
-        } //snow_gamepad_close
+        } //close_gamepad
+
+    //Joystick internal API
+
+        void open_joystick( int id ) {
+
+            SDL_Joystick* _joystick = SDL_JoystickOpen( id );
+
+            if(_joystick) {
+
+                joystick_list[ id ] = _joystick;
+
+            } //_joystick
+
+        } //open_joystick
+
+        void close_joystick( int id ) {
+
+            if(joystick_list.count(id) > 0) {
+
+                SDL_JoystickClose( joystick_list[id] );
+                joystick_list.erase( id );
+
+            } //
+
+        } //close_joystick
 
 
     //Text input external api
@@ -498,10 +563,6 @@ namespace snow {
 
     //Helpers
 
-        #ifdef SDL_ACCELEROMETER_ENABLED
-            static SDL_Joystick* accelerometer;
-        #endif
-
         void init_sdl() {
 
             if(sdl_inited) {
@@ -527,13 +588,6 @@ namespace snow {
                 }
             #endif //SDL_HAPTIC_DISABLED
 
-            #ifdef SDL_ACCELEROMETER_ENABLED
-
-                accelerometer = SDL_JoystickOpen(0);
-                snow::log(1, "/ snow / accelerometer / init");
-
-            #endif //SDL_ACCELEROMETER_ENABLED
-
         } //init_sdl
 
         void shutdown_sdl() {
@@ -543,14 +597,6 @@ namespace snow {
             }
 
             sdl_inited = false;
-
-            #ifdef SDL_ACCELEROMETER_ENABLED
-
-                snow::log(1, "/ snow / accelerometer / shutdown");
-                SDL_JoystickClose(accelerometer);
-                accelerometer = NULL;
-
-            #endif //SDL_ACCELEROMETER_ENABLED
 
         } //shutdown_sdl
 

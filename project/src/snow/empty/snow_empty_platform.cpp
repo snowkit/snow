@@ -55,8 +55,6 @@ namespace snow {
     } //core namespace
 
     namespace input {
-        void snow_gamepad_open(const int id) {}
-        void snow_gamepad_close(const int id) {}
         void snow_text_start() {}
         void snow_text_stop() {}
         void snow_text_rect( const int x, const int y, const int w, const int h ) {}
