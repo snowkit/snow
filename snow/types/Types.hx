@@ -52,6 +52,18 @@ enum Error {
     var image   = 4;
     var audio   = 5;
 
+    inline function toString() {
+        return switch(this) {
+            case unknown: 'unknown';
+            case bytes:   'bytes';
+            case text:    'text';
+            case json:    'json';
+            case image:   'image';
+            case audio:   'audio';
+            case _:       '$this';
+        }
+    } //toString
+
 } //AssetType
 
 typedef IODataOptions = {
@@ -261,6 +273,14 @@ typedef RenderConfig = {
     var compatibility = 0;
     var core = 1;
 
+    inline function toString() {
+        return switch(this) {
+            case compatibility: 'compatibility';
+            case core:          'core';
+            case _:             '$this';
+        }
+    } //toString
+
 } //OpenGLProfile
 
 
@@ -400,6 +420,15 @@ typedef DisplayMode = {
 /** An input text typing event */
     var input   = 2;
 
+    inline function toString() {
+        return switch(this) {
+            case unknown: 'unknown';
+            case edit:    'edit';
+            case input:   'input';
+            case _:       '$this';
+        }
+    } //toString
+
 } //TextEventType
 
 /** A gamepad device event type */
@@ -413,6 +442,16 @@ typedef DisplayMode = {
     var device_removed      = 2;
 /** A device was remapped */
     var device_remapped     = 3;
+
+    inline function toString() {
+        return switch(this) {
+            case unknown:         'unknown';
+            case device_added:    'device_added';
+            case device_removed:  'device_removed';
+            case device_remapped: 'device_remapped';
+            case _:               '$this';
+        }
+    } //toString
 
 } //GamepadDeviceEventType
 
@@ -461,8 +500,8 @@ typedef ModState = {
 @:enum abstract SystemEventType(Int) from Int to Int {
 
         //snow core events
-        //from native :
-        //se_unknown, se_init, se_ready, se_update, se_shutdown, se_window, se_input
+        //from platform i.e :
+        //se_unknown, se_init, se_ready etc
 
         /** An unknown system event */
     var unknown                    = 0;
@@ -499,7 +538,28 @@ typedef ModState = {
     var file                       = 14;
 
 
-} //SystemEvents
+    inline function toString() {
+        return switch(this) {
+            case unknown:   'unknown';
+            case init:      'init';
+            case ready:     'ready';
+            case update:    'update';
+            case shutdown:  'shutdown';
+            case window:    'window';
+            case input:     'input';
+            case quit:      'quit';
+            case app_terminating:           'app_terminating';
+            case app_lowmemory:             'app_lowmemory';
+            case app_willenterbackground:   'app_willenterbackground';
+            case app_didenterbackground:    'app_didenterbackground';
+            case app_willenterforeground:   'app_willenterforeground';
+            case app_didenterforeground:    'app_didenterforeground';
+            case file:      'file';
+            case _:         '$this';
+        }
+    } //toString
+
+} //SystemEventType
 
 @:enum abstract WindowEventType(Int) from Int to Int {
 
@@ -542,6 +602,28 @@ typedef ModState = {
         /** A window is being destroyed */
     var destroy          = 16;
 
+    inline function toString() {
+        return switch(this) {
+            case unknown:       'unknown';
+            case created:       'created';
+            case shown:         'shown';
+            case hidden:        'hidden';
+            case exposed:       'exposed';
+            case moved:         'moved';
+            case resized:       'resized';
+            case size_changed:  'size_changed';
+            case minimized:     'minimized';
+            case maximized:     'maximized';
+            case restored:      'restored';
+            case enter:         'enter';
+            case leave:         'leave';
+            case focus_gained:  'focus_gained';
+            case focus_lost:    'focus_lost';
+            case close:         'close';
+            case destroy:       'destroy';
+            case _:             '$this';
+        }
+    } //toString
 
 } //WindowEvent
 
@@ -565,6 +647,18 @@ typedef ModState = {
     var controller     = 5;
 
 
+    inline function toString() {
+        return switch(this) {
+            case unknown:       'unknown';
+            case key:           'key';
+            case mouse:         'mouse';
+            case touch:         'touch';
+            case joystick:      'joystick';
+            case controller:    'controller';
+            case _:             '$this';
+        }
+    } //toString
+
 } //InputEvent
 
 @:enum abstract FileEventType(Int) from Int to Int {
@@ -584,6 +678,16 @@ typedef ModState = {
         /** An event for when the a file is dropped on a window */
     var drop       = 4;
 
+    inline function toString() {
+        return switch(this) {
+            case unknown:   'unknown';
+            case modify:    'modify';
+            case remove:    'remove';
+            case create:    'create';
+            case drop:      'drop';
+            case _:         '$this';
+        }
+    } //toString
 
 } //FileEvent
 
