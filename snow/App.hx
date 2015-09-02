@@ -99,8 +99,9 @@ class App {
     public function ongamepaddown( gamepad:Int, button:Int, value:Float, timestamp:Float ) {}
         /** Called for you when a connected gamepad button is released, use `which` to determine gamepad id */
     public function ongamepadup( gamepad:Int, button:Int, value:Float, timestamp:Float ) {}
-        /** Called for you when a gamepad is connected or disconnected, use `which` to determine gamepad id */
-    public function ongamepaddevice( gamepad:Int, type:GamepadDeviceEventType, timestamp:Float ) {}
+        /** Called for you when a gamepad is connected or disconnected, use `which` to determine gamepad id. 
+            `id` is the string name identifier for the controller, specified from the system. */
+    public function ongamepaddevice( gamepad:Int, id:String, type:GamepadDeviceEventType, timestamp:Float ) {}
 
 
 
