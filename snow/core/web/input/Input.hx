@@ -363,15 +363,17 @@ class Input implements snow.modules.interfaces.Input {
 
         var _window : Window = system.app.windowing.window_from_handle(cast _mouse_event.target);
 
-        var _movement_x : Int = untyped _mouse_event.movementX;
-        var _movement_y : Int = untyped _mouse_event.movementY;
+        var _movement_x : Null<Int> = untyped _mouse_event.movementX;
+        var _movement_y : Null<Int> = untyped _mouse_event.movementY;
 
-        if(untyped _mouse_event.webkitMovementX != null) {
-            _movement_x = untyped _mouse_event.webkitMovementX;
-            _movement_y = untyped _mouse_event.webkitMovementY;
-        } else if(untyped _mouse_event.mozMovementX != null) {
-            _movement_x = untyped _mouse_event.mozMovementX;
-            _movement_y = untyped _mouse_event.mozMovementY;
+        if(_movement_x == null) {
+            if(untyped _mouse_event.webkitMovementX != null) {
+                _movement_x = untyped _mouse_event.webkitMovementX;
+                _movement_y = untyped _mouse_event.webkitMovementY;
+            } else if(untyped _mouse_event.mozMovementX != null) {
+                _movement_x = untyped _mouse_event.mozMovementX;
+                _movement_y = untyped _mouse_event.mozMovementY;
+            }
         }
 
         system.dispatch_mouse_move_event(
