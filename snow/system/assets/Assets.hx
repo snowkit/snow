@@ -16,12 +16,8 @@ import snow.system.assets.Asset;
 class Assets {
 
 
-        /** The list of assets found in the manifest */
-    public var list : Array<String>;
         /** If the assets are not relative to the runtime root path, this value can adjust all asset paths. This is automatically handled and exists to allow control. */
     public var root : String = '';
-        /** The manifest file to parse for the asset list. By default, this is set to `manifest` from the build tools but the `App` class can have a custom `get_asset_list` handler use this value. */
-    public var manifest_path : String = 'manifest';
 
         /** access to module implementation */
     public var module : snow.system.module.Assets;
@@ -41,18 +37,14 @@ class Assets {
         #end
 
         app = _app;
-        list = [];
         module = new snow.system.module.Assets(this);
 
     } //new
 
 //Public API
 
-        /** Check if an asset info exists in the list for a given id. */
-    public inline function listed( _id:String ) : Bool return list.indexOf(_id) != -1;
-
         /** Get the asset path for an asset, adjusted by platform, root etc. */
-    public inline function path( _id:String ) : String return root + _id;
+    public inline function path( _id:String ) : String return haxe.io.Path.join([root,_id]);
 
         /** Get an asset as an `AssetBytes`, data stored as `Uint8Array`, using the default processor and provider */
     public inline function bytes( _id:String ) : Promise return AssetBytes.load(this, _id);

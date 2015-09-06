@@ -162,8 +162,13 @@ class Snow {
     public function init( _snow_config:SnowConfig, _host : App ) {
 
         snow_config = _snow_config;
+
         if(snow_config.app_package == null) {
             snow_config.app_package = 'org.snowkit.snow';
+        }
+
+        if(snow_config.config_path == null) {
+            snow_config.config_path = '';
         }
 
         config = default_config();
@@ -211,19 +216,15 @@ class Snow {
 
         setup_app_path();
 
-        setup_default_assets().then(function(_){
+        _debug('init / setup default assets : ok');
 
-            _debug('init / setup default assets : ok');
+        setup_configs().then(function(_){
 
-            setup_configs().then(function(_){
+            _debug('init / setup default configs : ok');
 
-                _debug('init / setup default configs : ok');
+            setup_default_window();
 
-                setup_default_window();
-
-                next(on_ready);
-
-            });
+            next(on_ready);
 
         }).error(function(e) {
 
@@ -399,44 +400,10 @@ class Snow {
 
     } //setup_app_path
 
-    function setup_default_assets() {
-
-        if(snow_config.config_custom_assets) {
-            return Promise.resolve();
-        }
-
-        _debug('assets / setting up default assets from "${assets.manifest_path}"');
-
-        return new Promise(function(resolve, reject) {
-
-                //load the correct asset path from the snow config
-            assets.manifest_path = snow_config.config_assets_path;
-
-                //
-            _debug('assets / fetching list ...');
-
-                //we fetch the a list from the manifest
-            default_asset_list().then(function(list) {
-
-                    //then we add the list for the asset manager
-                assets.list = list;
-
-            }).error(function(e) {
-
-                //default asset manifest is not critical
-                //and will leave logs so we just continue
-                _debug('assets / default asset list rejected / $e');
-
-            }).then(resolve);
-
-        }); //promise
-
-    } //ready_default_assets
-
     function setup_configs() {
 
-            //custom config flag doesn't try to load config.json
-        if(snow_config.config_custom_runtime) {
+            //blank config path means don't try to load config.json
+        if(snow_config.config_path == '') {
             setup_host_config();
             return Promise.resolve();
         }
@@ -536,7 +503,7 @@ class Snow {
             //for the default config, we only reject if there is a json parse error
         return new Promise(function(resolve, reject) {
 
-            var load = io.data_flow(snow_config.config_runtime_path, AssetJSON.processor);
+            var load = io.data_flow(snow_config.config_path, AssetJSON.processor);
 
                 load.then(resolve).error(function(error:Error) {
                     switch(error) {
@@ -551,29 +518,6 @@ class Snow {
         }); //promise
 
     } //default_runtime_config
-
-        /** handles the default method of parsing the file manifest list as json, stored in an array and returned. */
-    function default_asset_list() : Promise {
-
-        return new Promise(function(resolve, reject){
-
-            var list_path = assets.path(assets.manifest_path);
-            var load = io.data_flow(list_path, AssetJSON.processor);
-
-            load.then(function(json:Dynamic) {
-
-                var _list:Array<String> = cast json;
-
-                _debug('assets / ok / loaded asset manifest.');
-                _debug('assets / list loaded as $_list');
-
-                resolve( _list );
-
-            }).error(reject);
-
-        }); //new promise
-
-    } //default_asset_list
 
         /** Returns a default configured render config */
     function default_render_config() : RenderConfig {
