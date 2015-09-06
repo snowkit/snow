@@ -78,14 +78,10 @@ typedef SnowConfig = {
 
         /** whether or not the core should run a loop at all, default: true */
     @:optional var has_loop : Bool;
-        /** The default place to find the asset manifest file, default: `manifest` */
-    @:optional var config_assets_path : String;
-        /** The default place to find the runtime config file, default: `config.json` */
-    @:optional var config_runtime_path : String;
-        /** If set, no default runtime config will be loaded (use `App.config` to load a config manually). default: false */
-    @:optional var config_custom_runtime : Bool;
-        /** If set, no default asset list will be loaded (use `App.config` to load a config manually). default: false */
-    @:optional var config_custom_assets : Bool;
+        /** The default place to find the runtime config file. 
+            Set this value to a blank string to disable the automatic
+            loading of the config json file. default: `config.json` */
+    @:optional var config_path : String;
 
         /** The application specific package. i.e org.snowkit.snowapp
             This should match the common format above,
