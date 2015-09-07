@@ -14,10 +14,7 @@
   snow : {
     config : {
       has_loop : true,
-      custom_assets : false,
-      custom_runtime : false,
-      runtime_path : 'config.json',
-      assets_path : 'manifest'
+      config_path : 'config.json'
     }
   },
 
