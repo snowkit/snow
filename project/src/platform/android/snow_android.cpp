@@ -48,7 +48,9 @@ static JavaVM* java_vm;
 namespace snow {
     namespace android {
 
-        jobject activity = 0;
+        jobject activity() {
+            return (jobject)SDL_AndroidGetActivity();
+        } //activity
 
         JNIEnv* env() {
             return (JNIEnv*)SDL_AndroidGetJNIEnv();
@@ -59,16 +61,17 @@ namespace snow {
 
 
 extern "C" {
+
     JNIEXPORT void JNICALL Java_org_snowkit_snow_SnowActivity_snowInit(JNIEnv* env, jobject jinst) {
-        snow::android::activity = env->NewGlobalRef(jinst);
-        LOG("SNOW init with snow_activity: %p\n", snow::android::activity);
+        LOG("SNOW init\n");
     }
 
     JNIEXPORT void JNICALL Java_org_snowkit_snow_SnowActivity_snowQuit(JNIEnv* env, jobject jinst) {
         LOG("SNOW destroy\n");
         exit(0);
     }
-}
+
+} //extern c
 
 
 namespace snow {

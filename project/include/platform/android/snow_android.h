@@ -19,7 +19,7 @@ namespace snow {
     namespace android {
 
             //the global snow activity
-        extern DECLSPEC jobject activity;
+        extern DECLSPEC jobject SDLCALL activity();
             //get the global JVM env
         extern DECLSPEC JNIEnv* SDLCALL env();
 
