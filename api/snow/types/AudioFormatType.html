@@ -37,7 +37,7 @@
                         //remove clicking handler
                     $(this).off('click');
                         //replace the content!
-                    $(this).html('<iframe src="'+content+'" sandbox="allow-same-origin allow-scripts" style="overflow:hidden; scrollbar:none; border: 0; width:645px; height:450px;"></iframe> ')
+                    $(this).html('<iframe src="'+content+'" sandbox="allow-same-origin allow-scripts" style="overflow:hidden; scrollbar:none; border: 0; width:640px; height:427px;"></iframe> ')
                 });
 
                 $('.tooltip').each(function(e){
@@ -45,7 +45,7 @@
                     $(this).tooltipster({
                         content:$('<span>' + c + '</span>'),
                         interactive:true,
-                    theme:'tooltipster-shadow'
+                        theme:'tooltipster-shadow'
                     });
                 });
 
@@ -69,17 +69,33 @@
 
 
 <p><h1>AudioFormatType</h1>
-<small><code>snow.types.AudioFormatType</code></small></p>
+<small><code>snow.types.AudioFormatType</code> defined in <code>snow.types.Types</code></small></p>
 <p>The type of audio format</p>
 <hr/>
 
-<p><code>abstract</code><br/><span class="meta">
+<p><code>abstract</code>&nbsp;of <code>Null</code><br/><span class="meta">to Null</span>&nbsp;<span class="meta">from Null</span>
+<br/><span class="meta">
 meta: @:enum</span></p>
 <hr/>
 
-
-<p>&nbsp;
-&nbsp;</p>
+<p>&nbsp;</p>
+<p> <hr/><span class="member apipage">
+            <a name="unknown"><a class="lift" href="#unknown">unknown</a></a>
+            <div class="clear"></div>
+        </span><br/>
+        <span class="small_desc_flat"></span><br/><span class="member apipage">
+            <a name="ogg"><a class="lift" href="#ogg">ogg</a></a>
+            <div class="clear"></div>
+        </span><br/>
+        <span class="small_desc_flat"></span><br/><span class="member apipage">
+            <a name="wav"><a class="lift" href="#wav">wav</a></a>
+            <div class="clear"></div>
+        </span><br/>
+        <span class="small_desc_flat"></span><br/><span class="member apipage">
+            <a name="pcm"><a class="lift" href="#pcm">pcm</a></a>
+            <div class="clear"></div>
+        </span><br/>
+        <span class="small_desc_flat"></span><br/></p>
 <hr/>
 
 <p>&nbsp;

@@ -37,7 +37,7 @@
                         //remove clicking handler
                     $(this).off('click');
                         //replace the content!
-                    $(this).html('<iframe src="'+content+'" sandbox="allow-same-origin allow-scripts" style="overflow:hidden; scrollbar:none; border: 0; width:645px; height:450px;"></iframe> ')
+                    $(this).html('<iframe src="'+content+'" sandbox="allow-same-origin allow-scripts" style="overflow:hidden; scrollbar:none; border: 0; width:640px; height:427px;"></iframe> ')
                 });
 
                 $('.tooltip').each(function(e){
@@ -45,7 +45,7 @@
                     $(this).tooltipster({
                         content:$('<span>' + c + '</span>'),
                         interactive:true,
-                    theme:'tooltipster-shadow'
+                        theme:'tooltipster-shadow'
                     });
                 });
 
@@ -69,16 +69,14 @@
 
 
 <p><h1>ArrayBufferView</h1>
-<small><code>snow.api.buffers.ArrayBufferView</code></small></p>
+<small><code>snow.api.buffers.ArrayBufferView</code> defined in ``</small></p>
 <hr/>
 
 <p><code>class</code><br/><span class="meta">
 meta: @:directlyUsed</span></p>
 <hr/>
 
-
-<p>&nbsp;
-&nbsp;</p>
+<p>&nbsp;</p>
 <p><h3>Members</h3> <hr/><span class="member apipage">
                 <a name="buffer"><a class="lift" href="#buffer">buffer</a></a><div class="clear"></div>
                 <code class="signature apipage">buffer : <a href="../../../../api/snow/api/buffers/ArrayBuffer.html">snow.api.buffers.ArrayBuffer</a></code><br/></span>
@@ -96,7 +94,7 @@ meta: @:directlyUsed</span></p>
                 <code class="signature apipage">type : <a href="../../../../api/snow/api/buffers/TypedArrayType.html">snow.api.buffers.TypedArrayType</a></code><br/></span>
             <span class="small_desc_flat"></span><br/></p>
 <p><h3>Methods</h3> <hr/><span class="method apipage">
-            <a name="set"><a class="lift" href="#set">set</a></a><div class="clear"></div>
+            <a name="set"><a class="lift" href="#set">set</a></a><span class="inline-block static">inline</span><div class="clear"></div>
             <code class="signature apipage">set&lt;T&gt;(view:<a href="../../../../api/snow/api/buffers/ArrayBufferView.html">snow.api.buffers.ArrayBufferView</a><span></span>, array:<a href="http://api.haxe.org/Array.html">Array</a>&lt;<a href="#">set.T</a>&gt;<span></span>, offset:<a href="http://api.haxe.org/Int.html">Int</a><span></span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span></p>
 <p></span></p>
 <hr/>

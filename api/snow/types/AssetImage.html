@@ -37,7 +37,7 @@
                         //remove clicking handler
                     $(this).off('click');
                         //replace the content!
-                    $(this).html('<iframe src="'+content+'" sandbox="allow-same-origin allow-scripts" style="overflow:hidden; scrollbar:none; border: 0; width:645px; height:450px;"></iframe> ')
+                    $(this).html('<iframe src="'+content+'" sandbox="allow-same-origin allow-scripts" style="overflow:hidden; scrollbar:none; border: 0; width:640px; height:427px;"></iframe> ')
                 });
 
                 $('.tooltip').each(function(e){
@@ -45,7 +45,7 @@
                     $(this).tooltipster({
                         content:$('<span>' + c + '</span>'),
                         interactive:true,
-                    theme:'tooltipster-shadow'
+                        theme:'tooltipster-shadow'
                     });
                 });
 
@@ -69,15 +69,13 @@
 
 
 <p><h1>AssetImage</h1>
-<small><code>snow.types.AssetImage</code></small></p>
+<small><code>snow.types.AssetImage</code> defined in <code>snow.types.Types</code></small></p>
 <hr/>
 
 <p><code>typedef</code>&nbsp;alias of <code>snow.system.assets.AssetImage</code>   </p>
 <hr/>
 
-
-<p>&nbsp;
-&nbsp;</p>
+<p>&nbsp;</p>
 <p><h3>Properties</h3> <hr/><span class="member apipage">
                 <a name="image"><a class="lift" href="#image">image</a></a><div class="clear"></div>
                 <code class="signature apipage">image : <a href="../../../api/snow/types/ImageInfo.html">snow.types.ImageInfo</a></code><br/></span>

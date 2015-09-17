@@ -37,7 +37,7 @@
                         //remove clicking handler
                     $(this).off('click');
                         //replace the content!
-                    $(this).html('<iframe src="'+content+'" sandbox="allow-same-origin allow-scripts" style="overflow:hidden; scrollbar:none; border: 0; width:645px; height:450px;"></iframe> ')
+                    $(this).html('<iframe src="'+content+'" sandbox="allow-same-origin allow-scripts" style="overflow:hidden; scrollbar:none; border: 0; width:640px; height:427px;"></iframe> ')
                 });
 
                 $('.tooltip').each(function(e){
@@ -45,7 +45,7 @@
                     $(this).tooltipster({
                         content:$('<span>' + c + '</span>'),
                         interactive:true,
-                    theme:'tooltipster-shadow'
+                        theme:'tooltipster-shadow'
                     });
                 });
 
@@ -69,16 +69,14 @@
 
 
 <p><h1>Snow</h1>
-<small><code>snow.Snow</code></small></p>
+<small><code>snow.Snow</code> defined in ``</small></p>
 <hr/>
 
 <p><code>class</code><br/><span class="meta">
 meta: @:directlyUsed</span></p>
 <hr/>
 
-
-<p>&nbsp;
-&nbsp;</p>
+<p>&nbsp;</p>
 <p><h3>Members</h3> <hr/><span class="member apipage">
                 <a name="assets"><a class="lift" href="#assets">assets</a></a><div class="clear"></div>
                 <code class="signature apipage">assets : <a href="../../api/snow/system/assets/Assets.html">snow.system.assets.Assets</a></code><br/></span>
@@ -135,20 +133,20 @@ meta: @:directlyUsed</span></p>
                 <code class="signature apipage">uniqueid : <a href="http://api.haxe.org/String.html">String</a></code><br/></span>
             <span class="small_desc_flat">Generate a unique ID to use</span></p>
 <p><h3>Methods</h3> <hr/><span class="method apipage">
-            <a name="defer"><a class="lift" href="#defer">defer</a></a><span class="inline-block static">static</span><div class="clear"></div>
+            <a name="defer"><a class="lift" href="#defer">defer</a></a><span class="inline-block static">inline</span><span class="inline-block static">static</span><div class="clear"></div>
             <code class="signature apipage">defer(func:<a href="#">Dynamic</a><span></span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat">Call a function at the end of the current frame</span></p>
 <p></span>
 <span class="method apipage">
-            <a name="dispatch_system_event"><a class="lift" href="#dispatch_system_event">dispatch_system_event</a></a><div class="clear"></div>
+            <a name="dispatch_system_event"><a class="lift" href="#dispatch_system_event">dispatch_system_event</a></a><span class="inline-block static">inline</span><div class="clear"></div>
             <code class="signature apipage">dispatch_system_event(_event:<a href="../../api/snow/types/SystemEvent.html">snow.types.SystemEvent</a><span></span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span></p>
 <p></span>
 <span class="method apipage">
-            <a name="next"><a class="lift" href="#next">next</a></a><span class="inline-block static">static</span><div class="clear"></div>
+            <a name="next"><a class="lift" href="#next">next</a></a><span class="inline-block static">inline</span><span class="inline-block static">static</span><div class="clear"></div>
             <code class="signature apipage">next(func:<a href="#">Dynamic</a><span></span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat">Call a function at the start of the next frame,
             useful for async calls in a sync context, allowing the sync function to return safely before the onload is fired.</span></p>
 <p></span>
 <span class="method apipage">
-            <a name="render"><a class="lift" href="#render">render</a></a><div class="clear"></div>
+            <a name="render"><a class="lift" href="#render">render</a></a><span class="inline-block static">inline</span><div class="clear"></div>
             <code class="signature apipage">render() : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat">Called for you by snow, unless configured otherwise.
             Only call this manually if your render_rate is 0!</span></p>
 <p></span>

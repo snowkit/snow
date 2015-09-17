@@ -37,7 +37,7 @@
                         //remove clicking handler
                     $(this).off('click');
                         //replace the content!
-                    $(this).html('<iframe src="'+content+'" sandbox="allow-same-origin allow-scripts" style="overflow:hidden; scrollbar:none; border: 0; width:645px; height:450px;"></iframe> ')
+                    $(this).html('<iframe src="'+content+'" sandbox="allow-same-origin allow-scripts" style="overflow:hidden; scrollbar:none; border: 0; width:640px; height:427px;"></iframe> ')
                 });
 
                 $('.tooltip').each(function(e){
@@ -45,7 +45,7 @@
                     $(this).tooltipster({
                         content:$('<span>' + c + '</span>'),
                         interactive:true,
-                    theme:'tooltipster-shadow'
+                        theme:'tooltipster-shadow'
                     });
                 });
 
@@ -69,16 +69,40 @@
 
 
 <p><h1>InputEventType</h1>
-<small><code>snow.types.InputEventType</code></small></p>
+<small><code>snow.types.InputEventType</code> defined in <code>snow.types.Types</code></small></p>
 <hr/>
 
-<p><code>abstract</code><br/><span class="meta">
+<p><code>abstract</code>&nbsp;of <code>Int</code><br/><span class="meta">to Int</span>&nbsp;<span class="meta">from Int</span>
+<br/><span class="meta">
 meta: @:enum</span></p>
 <hr/>
 
-
-<p>&nbsp;
-&nbsp;</p>
+<p>&nbsp;</p>
+<p> <hr/><span class="member apipage">
+            <a name="unknown"><a class="lift" href="#unknown">unknown</a></a>
+            <div class="clear"></div>
+        </span><br/>
+        <span class="small_desc_flat">An unknown input event</span><br/><span class="member apipage">
+            <a name="key"><a class="lift" href="#key">key</a></a>
+            <div class="clear"></div>
+        </span><br/>
+        <span class="small_desc_flat">An keyboard input event</span><br/><span class="member apipage">
+            <a name="mouse"><a class="lift" href="#mouse">mouse</a></a>
+            <div class="clear"></div>
+        </span><br/>
+        <span class="small_desc_flat">An mouse input event</span><br/><span class="member apipage">
+            <a name="touch"><a class="lift" href="#touch">touch</a></a>
+            <div class="clear"></div>
+        </span><br/>
+        <span class="small_desc_flat">An touch input event</span><br/><span class="member apipage">
+            <a name="joystick"><a class="lift" href="#joystick">joystick</a></a>
+            <div class="clear"></div>
+        </span><br/>
+        <span class="small_desc_flat">An joystick input event. On mobile, accellerometer is a joystick (for now)</span><br/><span class="member apipage">
+            <a name="controller"><a class="lift" href="#controller">controller</a></a>
+            <div class="clear"></div>
+        </span><br/>
+        <span class="small_desc_flat">An controller input event. Use these instead of joystick on desktop.</span><br/></p>
 <hr/>
 
 <p>&nbsp;

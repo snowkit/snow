@@ -37,7 +37,7 @@
                         //remove clicking handler
                     $(this).off('click');
                         //replace the content!
-                    $(this).html('<iframe src="'+content+'" sandbox="allow-same-origin allow-scripts" style="overflow:hidden; scrollbar:none; border: 0; width:645px; height:450px;"></iframe> ')
+                    $(this).html('<iframe src="'+content+'" sandbox="allow-same-origin allow-scripts" style="overflow:hidden; scrollbar:none; border: 0; width:640px; height:427px;"></iframe> ')
                 });
 
                 $('.tooltip').each(function(e){
@@ -45,7 +45,7 @@
                     $(this).tooltipster({
                         content:$('<span>' + c + '</span>'),
                         interactive:true,
-                    theme:'tooltipster-shadow'
+                        theme:'tooltipster-shadow'
                     });
                 });
 
@@ -69,16 +69,14 @@
 
 
 <p><h1>Assets</h1>
-<small><code>snow.modules.interfaces.Assets</code></small></p>
+<small><code>snow.modules.interfaces.Assets</code> defined in ``</small></p>
 <hr/>
 
 <p><code>class</code><br/><span class="meta">
 meta: @:noCompletion, @:allow(snow.system.io.IO)</span></p>
 <hr/>
 
-
-<p>&nbsp;
-&nbsp;</p>
+<p>&nbsp;</p>
 <p><h3>Methods</h3> <hr/><span class="method apipage">
             <a name="image_info_from_bytes"><a class="lift" href="#image_info_from_bytes">image_info_from_bytes</a></a><div class="clear"></div>
             <code class="signature apipage">image_info_from_bytes(_path:<a href="http://api.haxe.org/String.html">String</a><span></span>, _bytes:<a href="../../../../api/snow/api/buffers/Uint8Array.html">snow.api.buffers.Uint8Array</a><span></span>, _components:<a href="http://api.haxe.org/Int.html">Int</a><span></span>) : <a href="../../../../api/snow/api/Promise.html">snow.api.Promise</a></code><br/><span class="small_desc_flat">Create an image info from image bytes. Use <code>app.assets</code></span></p>

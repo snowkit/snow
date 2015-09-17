@@ -37,7 +37,7 @@
                         //remove clicking handler
                     $(this).off('click');
                         //replace the content!
-                    $(this).html('<iframe src="'+content+'" sandbox="allow-same-origin allow-scripts" style="overflow:hidden; scrollbar:none; border: 0; width:645px; height:450px;"></iframe> ')
+                    $(this).html('<iframe src="'+content+'" sandbox="allow-same-origin allow-scripts" style="overflow:hidden; scrollbar:none; border: 0; width:640px; height:427px;"></iframe> ')
                 });
 
                 $('.tooltip').each(function(e){
@@ -45,7 +45,7 @@
                     $(this).tooltipster({
                         content:$('<span>' + c + '</span>'),
                         interactive:true,
-                    theme:'tooltipster-shadow'
+                        theme:'tooltipster-shadow'
                     });
                 });
 
@@ -69,16 +69,76 @@
 
 
 <p><h1>SystemEventType</h1>
-<small><code>snow.types.SystemEventType</code></small></p>
+<small><code>snow.types.SystemEventType</code> defined in <code>snow.types.Types</code></small></p>
 <hr/>
 
-<p><code>abstract</code><br/><span class="meta">
+<p><code>abstract</code>&nbsp;of <code>Int</code><br/><span class="meta">to Int</span>&nbsp;<span class="meta">from Int</span>
+<br/><span class="meta">
 meta: @:enum</span></p>
 <hr/>
 
-
-<p>&nbsp;
-&nbsp;</p>
+<p>&nbsp;</p>
+<p> <hr/><span class="member apipage">
+            <a name="unknown"><a class="lift" href="#unknown">unknown</a></a>
+            <div class="clear"></div>
+        </span><br/>
+        <span class="small_desc_flat">An unknown system event</span><br/><span class="member apipage">
+            <a name="init"><a class="lift" href="#init">init</a></a>
+            <div class="clear"></div>
+        </span><br/>
+        <span class="small_desc_flat">An internal system init event</span><br/><span class="member apipage">
+            <a name="ready"><a class="lift" href="#ready">ready</a></a>
+            <div class="clear"></div>
+        </span><br/>
+        <span class="small_desc_flat">An internal system ready event</span><br/><span class="member apipage">
+            <a name="update"><a class="lift" href="#update">update</a></a>
+            <div class="clear"></div>
+        </span><br/>
+        <span class="small_desc_flat">An internal system update event</span><br/><span class="member apipage">
+            <a name="shutdown"><a class="lift" href="#shutdown">shutdown</a></a>
+            <div class="clear"></div>
+        </span><br/>
+        <span class="small_desc_flat">An system shutdown event</span><br/><span class="member apipage">
+            <a name="window"><a class="lift" href="#window">window</a></a>
+            <div class="clear"></div>
+        </span><br/>
+        <span class="small_desc_flat">An system window event</span><br/><span class="member apipage">
+            <a name="input"><a class="lift" href="#input">input</a></a>
+            <div class="clear"></div>
+        </span><br/>
+        <span class="small_desc_flat">An system input event</span><br/><span class="member apipage">
+            <a name="quit"><a class="lift" href="#quit">quit</a></a>
+            <div class="clear"></div>
+        </span><br/>
+        <span class="small_desc_flat">An system quit event. Initiated by user, can be cancelled/ignored</span><br/><span class="member apipage">
+            <a name="app_terminating"><a class="lift" href="#app_terminating">app_terminating</a></a>
+            <div class="clear"></div>
+        </span><br/>
+        <span class="small_desc_flat">An system terminating event, called by the OS (mobile specific)</span><br/><span class="member apipage">
+            <a name="app_lowmemory"><a class="lift" href="#app_lowmemory">app_lowmemory</a></a>
+            <div class="clear"></div>
+        </span><br/>
+        <span class="small_desc_flat">An system low memory event, clear memory if you can. Called by the OS (mobile specific)</span><br/><span class="member apipage">
+            <a name="app_willenterbackground"><a class="lift" href="#app_willenterbackground">app_willenterbackground</a></a>
+            <div class="clear"></div>
+        </span><br/>
+        <span class="small_desc_flat">An event for just before the app enters the background, called by the OS (mobile specific)</span><br/><span class="member apipage">
+            <a name="app_didenterbackground"><a class="lift" href="#app_didenterbackground">app_didenterbackground</a></a>
+            <div class="clear"></div>
+        </span><br/>
+        <span class="small_desc_flat">An event for when the app enters the background, called by the OS (mobile specific)</span><br/><span class="member apipage">
+            <a name="app_willenterforeground"><a class="lift" href="#app_willenterforeground">app_willenterforeground</a></a>
+            <div class="clear"></div>
+        </span><br/>
+        <span class="small_desc_flat">An event for just before the app enters the foreground, called by the OS (mobile specific)</span><br/><span class="member apipage">
+            <a name="app_didenterforeground"><a class="lift" href="#app_didenterforeground">app_didenterforeground</a></a>
+            <div class="clear"></div>
+        </span><br/>
+        <span class="small_desc_flat">An event for when the app enters the foreground, called by the OS (mobile specific)</span><br/><span class="member apipage">
+            <a name="file"><a class="lift" href="#file">file</a></a>
+            <div class="clear"></div>
+        </span><br/>
+        <span class="small_desc_flat">An event for when the a file watch notification occurs</span><br/></p>
 <hr/>
 
 <p>&nbsp;

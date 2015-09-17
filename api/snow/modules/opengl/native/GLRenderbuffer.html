@@ -37,7 +37,7 @@
                         //remove clicking handler
                     $(this).off('click');
                         //replace the content!
-                    $(this).html('<iframe src="'+content+'" sandbox="allow-same-origin allow-scripts" style="overflow:hidden; scrollbar:none; border: 0; width:645px; height:450px;"></iframe> ')
+                    $(this).html('<iframe src="'+content+'" sandbox="allow-same-origin allow-scripts" style="overflow:hidden; scrollbar:none; border: 0; width:640px; height:427px;"></iframe> ')
                 });
 
                 $('.tooltip').each(function(e){
@@ -45,7 +45,7 @@
                     $(this).tooltipster({
                         content:$('<span>' + c + '</span>'),
                         interactive:true,
-                    theme:'tooltipster-shadow'
+                        theme:'tooltipster-shadow'
                     });
                 });
 
@@ -69,15 +69,13 @@
 
 
 <p><h1>GLRenderbuffer</h1>
-<small><code>snow.modules.opengl.native.GLRenderbuffer</code></small></p>
+<small><code>snow.modules.opengl.native.GLRenderbuffer</code> defined in <code>snow.modules.opengl.native.GL</code></small></p>
 <hr/>
 
-<p><code>abstract</code></p>
+<p><code>abstract</code>&nbsp;of <code>snow.modules.opengl.native.GLRBO</code><br/><span class="meta">to Int, to , to Int</span>&nbsp;<span class="meta">from Int, from </span></p>
 <hr/>
 
-
-<p>&nbsp;
-&nbsp;</p>
+<p>&nbsp;</p>
 <hr/>
 
 <p>&nbsp;

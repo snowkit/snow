@@ -37,7 +37,7 @@
                         //remove clicking handler
                     $(this).off('click');
                         //replace the content!
-                    $(this).html('<iframe src="'+content+'" sandbox="allow-same-origin allow-scripts" style="overflow:hidden; scrollbar:none; border: 0; width:645px; height:450px;"></iframe> ')
+                    $(this).html('<iframe src="'+content+'" sandbox="allow-same-origin allow-scripts" style="overflow:hidden; scrollbar:none; border: 0; width:640px; height:427px;"></iframe> ')
                 });
 
                 $('.tooltip').each(function(e){
@@ -45,7 +45,7 @@
                     $(this).tooltipster({
                         content:$('<span>' + c + '</span>'),
                         interactive:true,
-                    theme:'tooltipster-shadow'
+                        theme:'tooltipster-shadow'
                     });
                 });
 
@@ -69,16 +69,14 @@
 
 
 <p><h1>SystemEvent</h1>
-<small><code>snow.types.SystemEvent</code></small></p>
+<small><code>snow.types.SystemEvent</code> defined in <code>snow.types.Types</code></small></p>
 <p>A system event</p>
 <hr/>
 
 <p><code>typedef</code></p>
 <hr/>
 
-
-<p>&nbsp;
-&nbsp;</p>
+<p>&nbsp;</p>
 <p><h3>Members</h3> <hr/><span class="member apipage">
                 <a name="window"><a class="lift" href="#window">window</a></a><div class="clear"></div>
                 <code class="signature apipage">window : <a href="http://api.haxe.org/Null.html">Null</a>&lt;<a href="../../../api/snow/types/WindowEvent.html">snow.types.WindowEvent</a>&gt;</code><br/></span>

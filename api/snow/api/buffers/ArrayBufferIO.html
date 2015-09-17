@@ -37,7 +37,7 @@
                         //remove clicking handler
                     $(this).off('click');
                         //replace the content!
-                    $(this).html('<iframe src="'+content+'" sandbox="allow-same-origin allow-scripts" style="overflow:hidden; scrollbar:none; border: 0; width:645px; height:450px;"></iframe> ')
+                    $(this).html('<iframe src="'+content+'" sandbox="allow-same-origin allow-scripts" style="overflow:hidden; scrollbar:none; border: 0; width:640px; height:427px;"></iframe> ')
                 });
 
                 $('.tooltip').each(function(e){
@@ -45,7 +45,7 @@
                     $(this).tooltipster({
                         content:$('<span>' + c + '</span>'),
                         interactive:true,
-                    theme:'tooltipster-shadow'
+                        theme:'tooltipster-shadow'
                     });
                 });
 
@@ -69,22 +69,20 @@
 
 
 <p><h1>ArrayBufferIO</h1>
-<small><code>snow.api.buffers.ArrayBufferIO</code></small></p>
+<small><code>snow.api.buffers.ArrayBufferIO</code> defined in ``</small></p>
 <hr/>
 
 <p><code>class</code><br/><span class="meta">
 meta: @:directlyUsed</span></p>
 <hr/>
 
-
-<p>&nbsp;
-&nbsp;</p>
+<p>&nbsp;</p>
 <p><h3>Methods</h3> <hr/><span class="method apipage">
-            <a name="getFloat32"><a class="lift" href="#getFloat32">getFloat32</a></a><span class="inline-block static">static</span><div class="clear"></div>
+            <a name="getFloat32"><a class="lift" href="#getFloat32">getFloat32</a></a><span class="inline-block static">inline</span><span class="inline-block static">static</span><div class="clear"></div>
             <code class="signature apipage">getFloat32(buffer:<a href="../../../../api/snow/api/buffers/ArrayBuffer.html">snow.api.buffers.ArrayBuffer</a><span></span>, byteOffset:<a href="http://api.haxe.org/Int.html">Int</a><span></span>, littleEndian:<a href="http://api.haxe.org/Bool.html">Bool</a><span></span>) : <a href="http://api.haxe.org/Float.html">Float</a></code><br/><span class="small_desc_flat"></span></p>
 <p></span>
 <span class="method apipage">
-            <a name="getFloat64"><a class="lift" href="#getFloat64">getFloat64</a></a><span class="inline-block static">static</span><div class="clear"></div>
+            <a name="getFloat64"><a class="lift" href="#getFloat64">getFloat64</a></a><span class="inline-block static">inline</span><span class="inline-block static">static</span><div class="clear"></div>
             <code class="signature apipage">getFloat64(buffer:<a href="../../../../api/snow/api/buffers/ArrayBuffer.html">snow.api.buffers.ArrayBuffer</a><span></span>, byteOffset:<a href="http://api.haxe.org/Int.html">Int</a><span></span>, littleEndian:<a href="http://api.haxe.org/Bool.html">Bool</a><span></span>) : <a href="http://api.haxe.org/Float.html">Float</a></code><br/><span class="small_desc_flat"></span></p>
 <p></span>
 <span class="method apipage">
@@ -92,31 +90,31 @@ meta: @:directlyUsed</span></p>
             <code class="signature apipage">getInt16(buffer:<a href="../../../../api/snow/api/buffers/ArrayBuffer.html">snow.api.buffers.ArrayBuffer</a><span></span>, byteOffset:<a href="http://api.haxe.org/Int.html">Int</a><span></span>, littleEndian:<a href="http://api.haxe.org/Bool.html">Bool</a><span></span>) : <a href="http://api.haxe.org/Int.html">Int</a></code><br/><span class="small_desc_flat"></span></p>
 <p></span>
 <span class="method apipage">
-            <a name="getInt32"><a class="lift" href="#getInt32">getInt32</a></a><span class="inline-block static">static</span><div class="clear"></div>
+            <a name="getInt32"><a class="lift" href="#getInt32">getInt32</a></a><span class="inline-block static">inline</span><span class="inline-block static">static</span><div class="clear"></div>
             <code class="signature apipage">getInt32(buffer:<a href="../../../../api/snow/api/buffers/ArrayBuffer.html">snow.api.buffers.ArrayBuffer</a><span></span>, byteOffset:<a href="http://api.haxe.org/Int.html">Int</a><span></span>, littleEndian:<a href="http://api.haxe.org/Bool.html">Bool</a><span></span>) : <a href="http://api.haxe.org/Int.html">Int</a></code><br/><span class="small_desc_flat"></span></p>
 <p></span>
 <span class="method apipage">
-            <a name="getInt8"><a class="lift" href="#getInt8">getInt8</a></a><span class="inline-block static">static</span><div class="clear"></div>
+            <a name="getInt8"><a class="lift" href="#getInt8">getInt8</a></a><span class="inline-block static">inline</span><span class="inline-block static">static</span><div class="clear"></div>
             <code class="signature apipage">getInt8(buffer:<a href="../../../../api/snow/api/buffers/ArrayBuffer.html">snow.api.buffers.ArrayBuffer</a><span></span>, byteOffset:<a href="http://api.haxe.org/Int.html">Int</a><span></span>) : <a href="http://api.haxe.org/Int.html">Int</a></code><br/><span class="small_desc_flat"></span></p>
 <p></span>
 <span class="method apipage">
-            <a name="getUint16"><a class="lift" href="#getUint16">getUint16</a></a><span class="inline-block static">static</span><div class="clear"></div>
+            <a name="getUint16"><a class="lift" href="#getUint16">getUint16</a></a><span class="inline-block static">inline</span><span class="inline-block static">static</span><div class="clear"></div>
             <code class="signature apipage">getUint16(buffer:<a href="../../../../api/snow/api/buffers/ArrayBuffer.html">snow.api.buffers.ArrayBuffer</a><span></span>, byteOffset:<a href="http://api.haxe.org/Int.html">Int</a><span></span>, littleEndian:<a href="http://api.haxe.org/Bool.html">Bool</a><span></span>) : <a href="http://api.haxe.org/Null.html">Null</a>&lt;<a href="#">UInt</a>&gt;</code><br/><span class="small_desc_flat"></span></p>
 <p></span>
 <span class="method apipage">
-            <a name="getUint32"><a class="lift" href="#getUint32">getUint32</a></a><span class="inline-block static">static</span><div class="clear"></div>
+            <a name="getUint32"><a class="lift" href="#getUint32">getUint32</a></a><span class="inline-block static">inline</span><span class="inline-block static">static</span><div class="clear"></div>
             <code class="signature apipage">getUint32(buffer:<a href="../../../../api/snow/api/buffers/ArrayBuffer.html">snow.api.buffers.ArrayBuffer</a><span></span>, byteOffset:<a href="http://api.haxe.org/Int.html">Int</a><span></span>, littleEndian:<a href="http://api.haxe.org/Bool.html">Bool</a><span></span>) : <a href="http://api.haxe.org/Null.html">Null</a>&lt;<a href="#">UInt</a>&gt;</code><br/><span class="small_desc_flat"></span></p>
 <p></span>
 <span class="method apipage">
-            <a name="getUint8"><a class="lift" href="#getUint8">getUint8</a></a><span class="inline-block static">static</span><div class="clear"></div>
+            <a name="getUint8"><a class="lift" href="#getUint8">getUint8</a></a><span class="inline-block static">inline</span><span class="inline-block static">static</span><div class="clear"></div>
             <code class="signature apipage">getUint8(buffer:<a href="../../../../api/snow/api/buffers/ArrayBuffer.html">snow.api.buffers.ArrayBuffer</a><span></span>, byteOffset:<a href="http://api.haxe.org/Int.html">Int</a><span></span>) : <a href="http://api.haxe.org/Null.html">Null</a>&lt;<a href="#">UInt</a>&gt;</code><br/><span class="small_desc_flat"></span></p>
 <p></span>
 <span class="method apipage">
-            <a name="setFloat32"><a class="lift" href="#setFloat32">setFloat32</a></a><span class="inline-block static">static</span><div class="clear"></div>
+            <a name="setFloat32"><a class="lift" href="#setFloat32">setFloat32</a></a><span class="inline-block static">inline</span><span class="inline-block static">static</span><div class="clear"></div>
             <code class="signature apipage">setFloat32(buffer:<a href="../../../../api/snow/api/buffers/ArrayBuffer.html">snow.api.buffers.ArrayBuffer</a><span></span>, byteOffset:<a href="http://api.haxe.org/Int.html">Int</a><span></span>, value:<a href="http://api.haxe.org/Float.html">Float</a><span></span>, littleEndian:<a href="http://api.haxe.org/Bool.html">Bool</a><span></span>) : <a href="http://api.haxe.org/Float.html">Float</a></code><br/><span class="small_desc_flat"></span></p>
 <p></span>
 <span class="method apipage">
-            <a name="setFloat64"><a class="lift" href="#setFloat64">setFloat64</a></a><span class="inline-block static">static</span><div class="clear"></div>
+            <a name="setFloat64"><a class="lift" href="#setFloat64">setFloat64</a></a><span class="inline-block static">inline</span><span class="inline-block static">static</span><div class="clear"></div>
             <code class="signature apipage">setFloat64(buffer:<a href="../../../../api/snow/api/buffers/ArrayBuffer.html">snow.api.buffers.ArrayBuffer</a><span></span>, byteOffset:<a href="http://api.haxe.org/Int.html">Int</a><span></span>, value:<a href="http://api.haxe.org/Float.html">Float</a><span></span>, littleEndian:<a href="http://api.haxe.org/Bool.html">Bool</a><span></span>) : <a href="http://api.haxe.org/Float.html">Float</a></code><br/><span class="small_desc_flat"></span></p>
 <p></span>
 <span class="method apipage">
@@ -124,27 +122,27 @@ meta: @:directlyUsed</span></p>
             <code class="signature apipage">setInt16(buffer:<a href="../../../../api/snow/api/buffers/ArrayBuffer.html">snow.api.buffers.ArrayBuffer</a><span></span>, byteOffset:<a href="http://api.haxe.org/Int.html">Int</a><span></span>, value:<a href="http://api.haxe.org/Int.html">Int</a><span></span>, littleEndian:<a href="http://api.haxe.org/Bool.html">Bool</a><span></span>) : <a href="http://api.haxe.org/Int.html">Int</a></code><br/><span class="small_desc_flat"></span></p>
 <p></span>
 <span class="method apipage">
-            <a name="setInt32"><a class="lift" href="#setInt32">setInt32</a></a><span class="inline-block static">static</span><div class="clear"></div>
+            <a name="setInt32"><a class="lift" href="#setInt32">setInt32</a></a><span class="inline-block static">inline</span><span class="inline-block static">static</span><div class="clear"></div>
             <code class="signature apipage">setInt32(buffer:<a href="../../../../api/snow/api/buffers/ArrayBuffer.html">snow.api.buffers.ArrayBuffer</a><span></span>, byteOffset:<a href="http://api.haxe.org/Int.html">Int</a><span></span>, value:<a href="http://api.haxe.org/Int.html">Int</a><span></span>, littleEndian:<a href="http://api.haxe.org/Bool.html">Bool</a><span></span>) : <a href="http://api.haxe.org/Int.html">Int</a></code><br/><span class="small_desc_flat"></span></p>
 <p></span>
 <span class="method apipage">
-            <a name="setInt8"><a class="lift" href="#setInt8">setInt8</a></a><span class="inline-block static">static</span><div class="clear"></div>
+            <a name="setInt8"><a class="lift" href="#setInt8">setInt8</a></a><span class="inline-block static">inline</span><span class="inline-block static">static</span><div class="clear"></div>
             <code class="signature apipage">setInt8(buffer:<a href="../../../../api/snow/api/buffers/ArrayBuffer.html">snow.api.buffers.ArrayBuffer</a><span></span>, byteOffset:<a href="http://api.haxe.org/Int.html">Int</a><span></span>, value:<a href="http://api.haxe.org/Int.html">Int</a><span></span>) : <a href="http://api.haxe.org/Int.html">Int</a></code><br/><span class="small_desc_flat"></span></p>
 <p></span>
 <span class="method apipage">
-            <a name="setUint16"><a class="lift" href="#setUint16">setUint16</a></a><span class="inline-block static">static</span><div class="clear"></div>
+            <a name="setUint16"><a class="lift" href="#setUint16">setUint16</a></a><span class="inline-block static">inline</span><span class="inline-block static">static</span><div class="clear"></div>
             <code class="signature apipage">setUint16(buffer:<a href="../../../../api/snow/api/buffers/ArrayBuffer.html">snow.api.buffers.ArrayBuffer</a><span></span>, byteOffset:<a href="http://api.haxe.org/Int.html">Int</a><span></span>, value:<a href="#">UInt</a><span></span>, littleEndian:<a href="http://api.haxe.org/Bool.html">Bool</a><span></span>) : <a href="#">UInt</a></code><br/><span class="small_desc_flat"></span></p>
 <p></span>
 <span class="method apipage">
-            <a name="setUint32"><a class="lift" href="#setUint32">setUint32</a></a><span class="inline-block static">static</span><div class="clear"></div>
+            <a name="setUint32"><a class="lift" href="#setUint32">setUint32</a></a><span class="inline-block static">inline</span><span class="inline-block static">static</span><div class="clear"></div>
             <code class="signature apipage">setUint32(buffer:<a href="../../../../api/snow/api/buffers/ArrayBuffer.html">snow.api.buffers.ArrayBuffer</a><span></span>, byteOffset:<a href="http://api.haxe.org/Int.html">Int</a><span></span>, value:<a href="#">UInt</a><span></span>, littleEndian:<a href="http://api.haxe.org/Bool.html">Bool</a><span></span>) : <a href="#">UInt</a></code><br/><span class="small_desc_flat"></span></p>
 <p></span>
 <span class="method apipage">
-            <a name="setUint8"><a class="lift" href="#setUint8">setUint8</a></a><span class="inline-block static">static</span><div class="clear"></div>
+            <a name="setUint8"><a class="lift" href="#setUint8">setUint8</a></a><span class="inline-block static">inline</span><span class="inline-block static">static</span><div class="clear"></div>
             <code class="signature apipage">setUint8(buffer:<a href="../../../../api/snow/api/buffers/ArrayBuffer.html">snow.api.buffers.ArrayBuffer</a><span></span>, byteOffset:<a href="http://api.haxe.org/Int.html">Int</a><span></span>, value:<a href="#">UInt</a><span></span>) : <a href="#">UInt</a></code><br/><span class="small_desc_flat"></span></p>
 <p></span>
 <span class="method apipage">
-            <a name="setUint8Clamped"><a class="lift" href="#setUint8Clamped">setUint8Clamped</a></a><span class="inline-block static">static</span><div class="clear"></div>
+            <a name="setUint8Clamped"><a class="lift" href="#setUint8Clamped">setUint8Clamped</a></a><span class="inline-block static">inline</span><span class="inline-block static">static</span><div class="clear"></div>
             <code class="signature apipage">setUint8Clamped(buffer:<a href="../../../../api/snow/api/buffers/ArrayBuffer.html">snow.api.buffers.ArrayBuffer</a><span></span>, byteOffset:<a href="http://api.haxe.org/Int.html">Int</a><span></span>, value:<a href="#">UInt</a><span></span>) : <a href="#">UInt</a></code><br/><span class="small_desc_flat"></span></p>
 <p></span></p>
 <hr/>

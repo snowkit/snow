@@ -37,7 +37,7 @@
                         //remove clicking handler
                     $(this).off('click');
                         //replace the content!
-                    $(this).html('<iframe src="'+content+'" sandbox="allow-same-origin allow-scripts" style="overflow:hidden; scrollbar:none; border: 0; width:645px; height:450px;"></iframe> ')
+                    $(this).html('<iframe src="'+content+'" sandbox="allow-same-origin allow-scripts" style="overflow:hidden; scrollbar:none; border: 0; width:640px; height:427px;"></iframe> ')
                 });
 
                 $('.tooltip').each(function(e){
@@ -45,7 +45,7 @@
                     $(this).tooltipster({
                         content:$('<span>' + c + '</span>'),
                         interactive:true,
-                    theme:'tooltipster-shadow'
+                        theme:'tooltipster-shadow'
                     });
                 });
 
@@ -69,17 +69,41 @@
 
 
 <p><h1>Platform</h1>
-<small><code>snow.types.Platform</code></small></p>
+<small><code>snow.types.Platform</code> defined in <code>snow.types.Types</code></small></p>
 <p>A platform identifier string</p>
 <hr/>
 
-<p><code>abstract</code><br/><span class="meta">
+<p><code>abstract</code>&nbsp;of <code>String</code><br/><span class="meta">to String</span>&nbsp;<span class="meta">from String</span>
+<br/><span class="meta">
 meta: @:enum</span></p>
 <hr/>
 
-
-<p>&nbsp;
-&nbsp;</p>
+<p>&nbsp;</p>
+<p> <hr/><span class="member apipage">
+            <a name="platform_windows"><a class="lift" href="#platform_windows">platform_windows</a></a>
+            <div class="clear"></div>
+        </span><br/>
+        <span class="small_desc_flat"></span><br/><span class="member apipage">
+            <a name="platform_mac"><a class="lift" href="#platform_mac">platform_mac</a></a>
+            <div class="clear"></div>
+        </span><br/>
+        <span class="small_desc_flat"></span><br/><span class="member apipage">
+            <a name="platform_linux"><a class="lift" href="#platform_linux">platform_linux</a></a>
+            <div class="clear"></div>
+        </span><br/>
+        <span class="small_desc_flat"></span><br/><span class="member apipage">
+            <a name="platform_android"><a class="lift" href="#platform_android">platform_android</a></a>
+            <div class="clear"></div>
+        </span><br/>
+        <span class="small_desc_flat"></span><br/><span class="member apipage">
+            <a name="platform_ios"><a class="lift" href="#platform_ios">platform_ios</a></a>
+            <div class="clear"></div>
+        </span><br/>
+        <span class="small_desc_flat"></span><br/><span class="member apipage">
+            <a name="platform_web"><a class="lift" href="#platform_web">platform_web</a></a>
+            <div class="clear"></div>
+        </span><br/>
+        <span class="small_desc_flat"></span><br/></p>
 <hr/>
 
 <p>&nbsp;

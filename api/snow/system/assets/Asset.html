@@ -37,7 +37,7 @@
                         //remove clicking handler
                     $(this).off('click');
                         //replace the content!
-                    $(this).html('<iframe src="'+content+'" sandbox="allow-same-origin allow-scripts" style="overflow:hidden; scrollbar:none; border: 0; width:645px; height:450px;"></iframe> ')
+                    $(this).html('<iframe src="'+content+'" sandbox="allow-same-origin allow-scripts" style="overflow:hidden; scrollbar:none; border: 0; width:640px; height:427px;"></iframe> ')
                 });
 
                 $('.tooltip').each(function(e){
@@ -45,7 +45,7 @@
                     $(this).tooltipster({
                         content:$('<span>' + c + '</span>'),
                         interactive:true,
-                    theme:'tooltipster-shadow'
+                        theme:'tooltipster-shadow'
                     });
                 });
 
@@ -69,16 +69,14 @@
 
 
 <p><h1>Asset</h1>
-<small><code>snow.system.assets.Asset</code></small></p>
+<small><code>snow.system.assets.Asset</code> defined in ``</small></p>
 <p>An asset base class. Get assets from the <code>app.assets</code></p>
 <hr/>
 
 <p><code>class</code></p>
 <hr/>
 
-
-<p>&nbsp;
-&nbsp;</p>
+<p>&nbsp;</p>
 <p><h3>Members</h3> <hr/><span class="member apipage">
                 <a name="id"><a class="lift" href="#id">id</a></a><div class="clear"></div>
                 <code class="signature apipage">id : <a href="http://api.haxe.org/String.html">String</a></code><br/></span>

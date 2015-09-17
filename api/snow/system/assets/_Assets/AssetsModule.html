@@ -37,7 +37,7 @@
                         //remove clicking handler
                     $(this).off('click');
                         //replace the content!
-                    $(this).html('<iframe src="'+content+'" sandbox="allow-same-origin allow-scripts" style="overflow:hidden; scrollbar:none; border: 0; width:645px; height:450px;"></iframe> ')
+                    $(this).html('<iframe src="'+content+'" sandbox="allow-same-origin allow-scripts" style="overflow:hidden; scrollbar:none; border: 0; width:640px; height:427px;"></iframe> ')
                 });
 
                 $('.tooltip').each(function(e){
@@ -45,7 +45,7 @@
                     $(this).tooltipster({
                         content:$('<span>' + c + '</span>'),
                         interactive:true,
-                    theme:'tooltipster-shadow'
+                        theme:'tooltipster-shadow'
                     });
                 });
 
@@ -69,15 +69,13 @@
 
 
 <p><h1>AssetsModule</h1>
-<small><code>snow.system.assets._Assets.AssetsModule</code></small></p>
+<small><code>snow.system.assets._Assets.AssetsModule</code> defined in <code>snow.system.assets.Assets</code></small></p>
 <hr/>
 
 <p><code>typedef</code>&nbsp;alias of <code>snow.core.native.assets.Assets</code>   </p>
 <hr/>
 
-
-<p>&nbsp;
-&nbsp;</p>
+<p>&nbsp;</p>
 <p><h3>Members</h3> <hr/></p>
 <p><h3>Methods</h3> <hr/><span class="method apipage">
             <a name="audio_info_from_bytes"><a class="lift" href="#audio_info_from_bytes">audio_info_from_bytes</a></a><div class="clear"></div>

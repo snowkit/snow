@@ -37,7 +37,7 @@
                         //remove clicking handler
                     $(this).off('click');
                         //replace the content!
-                    $(this).html('<iframe src="'+content+'" sandbox="allow-same-origin allow-scripts" style="overflow:hidden; scrollbar:none; border: 0; width:645px; height:450px;"></iframe> ')
+                    $(this).html('<iframe src="'+content+'" sandbox="allow-same-origin allow-scripts" style="overflow:hidden; scrollbar:none; border: 0; width:640px; height:427px;"></iframe> ')
                 });
 
                 $('.tooltip').each(function(e){
@@ -45,7 +45,7 @@
                     $(this).tooltipster({
                         content:$('<span>' + c + '</span>'),
                         interactive:true,
-                    theme:'tooltipster-shadow'
+                        theme:'tooltipster-shadow'
                     });
                 });
 
@@ -69,17 +69,29 @@
 
 
 <p><h1>TextEventType</h1>
-<small><code>snow.types.TextEventType</code></small></p>
+<small><code>snow.types.TextEventType</code> defined in <code>snow.types.Types</code></small></p>
 <p>A text specific event event type</p>
 <hr/>
 
-<p><code>abstract</code><br/><span class="meta">
+<p><code>abstract</code>&nbsp;of <code>Int</code><br/><span class="meta">to Int</span>&nbsp;<span class="meta">from Int</span>
+<br/><span class="meta">
 meta: @:enum</span></p>
 <hr/>
 
-
-<p>&nbsp;
-&nbsp;</p>
+<p>&nbsp;</p>
+<p> <hr/><span class="member apipage">
+            <a name="unknown"><a class="lift" href="#unknown">unknown</a></a>
+            <div class="clear"></div>
+        </span><br/>
+        <span class="small_desc_flat">An unknown text event</span><br/><span class="member apipage">
+            <a name="edit"><a class="lift" href="#edit">edit</a></a>
+            <div class="clear"></div>
+        </span><br/>
+        <span class="small_desc_flat">An edit text typing event</span><br/><span class="member apipage">
+            <a name="input"><a class="lift" href="#input">input</a></a>
+            <div class="clear"></div>
+        </span><br/>
+        <span class="small_desc_flat">An input text typing event</span><br/></p>
 <hr/>
 
 <p>&nbsp;

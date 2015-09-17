@@ -37,7 +37,7 @@
                         //remove clicking handler
                     $(this).off('click');
                         //replace the content!
-                    $(this).html('<iframe src="'+content+'" sandbox="allow-same-origin allow-scripts" style="overflow:hidden; scrollbar:none; border: 0; width:645px; height:450px;"></iframe> ')
+                    $(this).html('<iframe src="'+content+'" sandbox="allow-same-origin allow-scripts" style="overflow:hidden; scrollbar:none; border: 0; width:640px; height:427px;"></iframe> ')
                 });
 
                 $('.tooltip').each(function(e){
@@ -45,7 +45,7 @@
                     $(this).tooltipster({
                         content:$('<span>' + c + '</span>'),
                         interactive:true,
-                    theme:'tooltipster-shadow'
+                        theme:'tooltipster-shadow'
                     });
                 });
 
@@ -69,16 +69,14 @@
 
 
 <p><h1>AudioDataInfo</h1>
-<small><code>snow.types.AudioDataInfo</code></small></p>
+<small><code>snow.types.AudioDataInfo</code> defined in <code>snow.types.Types</code></small></p>
 <p>The platform specific implementation detail about the audio data</p>
 <hr/>
 
 <p><code>typedef</code></p>
 <hr/>
 
-
-<p>&nbsp;
-&nbsp;</p>
+<p>&nbsp;</p>
 <p><h3>Members</h3> <hr/><span class="member apipage">
                 <a name="samples"><a class="lift" href="#samples">samples</a></a><div class="clear"></div>
                 <code class="signature apipage">samples : <a href="../../../api/snow/api/buffers/Uint8Array.html">snow.api.buffers.Uint8Array</a></code><br/></span>

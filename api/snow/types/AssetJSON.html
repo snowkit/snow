@@ -37,7 +37,7 @@
                         //remove clicking handler
                     $(this).off('click');
                         //replace the content!
-                    $(this).html('<iframe src="'+content+'" sandbox="allow-same-origin allow-scripts" style="overflow:hidden; scrollbar:none; border: 0; width:645px; height:450px;"></iframe> ')
+                    $(this).html('<iframe src="'+content+'" sandbox="allow-same-origin allow-scripts" style="overflow:hidden; scrollbar:none; border: 0; width:640px; height:427px;"></iframe> ')
                 });
 
                 $('.tooltip').each(function(e){
@@ -45,7 +45,7 @@
                     $(this).tooltipster({
                         content:$('<span>' + c + '</span>'),
                         interactive:true,
-                    theme:'tooltipster-shadow'
+                        theme:'tooltipster-shadow'
                     });
                 });
 
@@ -69,15 +69,13 @@
 
 
 <p><h1>AssetJSON</h1>
-<small><code>snow.types.AssetJSON</code></small></p>
+<small><code>snow.types.AssetJSON</code> defined in <code>snow.types.Types</code></small></p>
 <hr/>
 
 <p><code>typedef</code>&nbsp;alias of <code>snow.system.assets.AssetJSON</code>   </p>
 <hr/>
 
-
-<p>&nbsp;
-&nbsp;</p>
+<p>&nbsp;</p>
 <p><h3>Properties</h3> <hr/><span class="member apipage">
                 <a name="json"><a class="lift" href="#json">json</a></a><div class="clear"></div>
                 <code class="signature apipage">json : <a href="#">Dynamic</a></code><br/></span>
