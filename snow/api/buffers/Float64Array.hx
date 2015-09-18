@@ -26,7 +26,7 @@ package snow.api.buffers;
                 if(len == null) {
                     this = new js.html.Float64Array( buffer, byteoffset );
                 } else {
-                this = new js.html.Float64Array( buffer, byteoffset, len );
+                    this = new js.html.Float64Array( buffer, byteoffset, len );
                 }
             } else {
                 this = null;
@@ -121,7 +121,7 @@ package snow.api.buffers;
             return val;
         }
 
-        function toString() return 'Float64Array [byteLength:${this.byteLength}, length:${this.length}]';
+        inline function toString() return 'Float64Array [byteLength:${this.byteLength}, length:${this.length}]';
 
     }
 

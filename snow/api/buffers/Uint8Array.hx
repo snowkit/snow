@@ -26,7 +26,7 @@ package snow.api.buffers;
                 if(len == null) {
                     this = new js.html.Uint8Array( buffer, byteoffset );
                 } else {
-                this = new js.html.Uint8Array( buffer, byteoffset, len );
+                    this = new js.html.Uint8Array( buffer, byteoffset, len );
                 }
             } else {
                 this = null;
@@ -52,7 +52,7 @@ package snow.api.buffers;
             #end
         }
 
-        function toString() return 'Uint8Array [byteLength:${this.byteLength}, length:${this.length}]';
+        inline function toString() return 'Uint8Array [byteLength:${this.byteLength}, length:${this.length}]';
 
     }
 
@@ -105,7 +105,7 @@ package snow.api.buffers;
 
     //Internal
 
-        function toString() return 'Uint8Array [byteLength:${this.byteLength}, length:${this.length}]';
+        inline function toString() return 'Uint8Array [byteLength:${this.byteLength}, length:${this.length}]';
 
         inline function get_length() return this.length;
 

@@ -2,8 +2,6 @@ package snow.api.buffers;
 
 #if js
 
-    // typedef DataView = js.html.DataView;
-
     @:forward
     abstract DataView(js.html.DataView)
         from js.html.DataView

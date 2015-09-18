@@ -26,7 +26,7 @@ package snow.api.buffers;
                 if (len == null) {
                     this = new js.html.Uint8ClampedArray( buffer, byteoffset );
                 } else {
-                this = new js.html.Uint8ClampedArray( buffer, byteoffset, len );
+                    this = new js.html.Uint8ClampedArray( buffer, byteoffset, len );
                 }
             } else {
                 this = null;
@@ -52,7 +52,7 @@ package snow.api.buffers;
             #end
         }
 
-        function toString() return 'Uint8ClampedArray [byteLength:${this.byteLength}, length:${this.length}]';
+        inline function toString() return 'Uint8ClampedArray [byteLength:${this.byteLength}, length:${this.length}]';
 
         //internal
         //clamp a Int to a 0-255 Uint8
@@ -130,7 +130,7 @@ package snow.api.buffers;
             return val;
         }
 
-        function toString() return 'Uint8ClampedArray [byteLength:${this.byteLength}, length:${this.length}]';
+        inline function toString() return 'Uint8ClampedArray [byteLength:${this.byteLength}, length:${this.length}]';
 
     }
 
