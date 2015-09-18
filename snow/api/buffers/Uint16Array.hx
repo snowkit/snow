@@ -3,7 +3,6 @@ package snow.api.buffers;
 #if js
 
     @:forward
-    @:arrayAccess
     abstract Uint16Array(js.html.Uint16Array)
         from js.html.Uint16Array
         to js.html.Uint16Array {
@@ -34,18 +33,18 @@ package snow.api.buffers;
             }
         }
 
-        @:arrayAccess inline function __set(idx:Int, val:UInt) return this[idx] = val;
-        @:arrayAccess inline function __get(idx:Int) : UInt return this[idx];
+        @:arrayAccess @:extern inline function __set(idx:Int, val:UInt) return this[idx] = val;
+        @:arrayAccess @:extern inline function __get(idx:Int) : UInt return this[idx];
 
 
             //non spec haxe conversions
-        public static function fromBytes( bytes:haxe.io.Bytes, ?byteOffset:Int=0, ?len:Int ) : Uint16Array {
+        inline public static function fromBytes( bytes:haxe.io.Bytes, ?byteOffset:Int=0, ?len:Int ) : Uint16Array {
             if(byteOffset == null) return new js.html.Uint16Array(cast bytes.getData());
             if(len == null) return new js.html.Uint16Array(cast bytes.getData(), byteOffset);
             return new js.html.Uint16Array(cast bytes.getData(), byteOffset, len);
         }
 
-        public function toBytes() : haxe.io.Bytes {
+        inline public function toBytes() : haxe.io.Bytes {
             #if (haxe_ver < 3.2)
                 return @:privateAccess new haxe.io.Bytes( this.byteLength, cast new js.html.Uint8Array(this.buffer) );
             #else
@@ -62,8 +61,7 @@ package snow.api.buffers;
     import snow.api.buffers.ArrayBufferView;
     import snow.api.buffers.TypedArrayType;
 
-    @:forward()
-    @:arrayAccess
+    @:forward
     abstract Uint16Array(ArrayBufferView) from ArrayBufferView to ArrayBufferView {
 
         public inline static var BYTES_PER_ELEMENT : Int = 2;
@@ -97,11 +95,11 @@ package snow.api.buffers;
 
 
             //non spec haxe conversions
-        public static function fromBytes( bytes:haxe.io.Bytes, ?byteOffset:Int=0, ?len:Int ) : Uint16Array {
+        inline public static function fromBytes( bytes:haxe.io.Bytes, ?byteOffset:Int=0, ?len:Int ) : Uint16Array {
             return new Uint16Array(bytes, byteOffset, len);
         }
 
-        public function toBytes() : haxe.io.Bytes {
+        inline public function toBytes() : haxe.io.Bytes {
             return this.buffer;
         }
 
@@ -111,15 +109,16 @@ package snow.api.buffers;
 
 
         @:noCompletion
-        @:arrayAccess
+        @:arrayAccess @:extern
         public inline function __get(idx:Int) {
             return ArrayBufferIO.getUint16(this.buffer, this.byteOffset+(idx*BYTES_PER_ELEMENT));
         }
 
         @:noCompletion
-        @:arrayAccess
+        @:arrayAccess @:extern
         public inline function __set(idx:Int, val:UInt) {
-            return ArrayBufferIO.setUint16(this.buffer, this.byteOffset+(idx*BYTES_PER_ELEMENT), val);
+            ArrayBufferIO.setUint16(this.buffer, this.byteOffset+(idx*BYTES_PER_ELEMENT), val);
+            return val;
         }
 
         function toString() return 'Uint16Array [byteLength:${this.byteLength}, length:${this.length}]';
