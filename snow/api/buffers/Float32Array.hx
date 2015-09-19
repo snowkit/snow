@@ -34,7 +34,7 @@ package snow.api.buffers;
             }
         }
 
-        @:arrayAccess @:extern inline function __set(idx:Int, val:Float) return this[idx] = val;
+        @:arrayAccess @:extern inline function __set(idx:Int, val:Float) : Void this[idx] = val;
         @:arrayAccess @:extern inline function __get(idx:Int) : Float return this[idx];
 
 
@@ -119,9 +119,8 @@ package snow.api.buffers;
 
         @:noCompletion
         @:arrayAccess @:extern
-        public inline function __set(idx:Int, val:Float) : Float {
+        public inline function __set(idx:Int, val:Float) : Void {
             ArrayBufferIO.setFloat32(this.buffer, this.byteOffset+(idx*BYTES_PER_ELEMENT), val);
-            return val;
         }
 
     }

@@ -33,7 +33,7 @@ package snow.api.buffers;
             }
         }
 
-        @:arrayAccess @:extern inline function __set(idx:Int, val:UInt) return this[idx] = val;
+        @:arrayAccess @:extern inline function __set(idx:Int, val:UInt) : Void this[idx] = val;
         @:arrayAccess @:extern inline function __get(idx:Int) : UInt return this[idx];
 
 
@@ -116,9 +116,8 @@ package snow.api.buffers;
 
         @:noCompletion
         @:arrayAccess @:extern
-        public inline function __set(idx:Int, val:UInt) {
+        public inline function __set(idx:Int, val:UInt) : Void {
             ArrayBufferIO.setUint16(this.buffer, this.byteOffset+(idx*BYTES_PER_ELEMENT), val);
-            return val;
         }
 
         inline function toString() return 'Uint16Array [byteLength:${this.byteLength}, length:${this.length}]';

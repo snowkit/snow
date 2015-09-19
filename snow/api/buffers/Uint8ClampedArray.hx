@@ -33,7 +33,7 @@ package snow.api.buffers;
             }
         }
 
-        @:arrayAccess @:extern inline function __set(idx:Int, val:UInt) return this[idx] = _clamp(val);
+        @:arrayAccess @:extern inline function __set(idx:Int, val:UInt) : Void this[idx] = _clamp(val);
         @:arrayAccess @:extern inline function __get(idx:Int) : UInt return this[idx];
 
 
@@ -125,9 +125,8 @@ package snow.api.buffers;
 
         @:noCompletion
         @:arrayAccess @:extern
-        public inline function __set(idx:Int, val:UInt) {
+        public inline function __set(idx:Int, val:UInt) : Void {
             ArrayBufferIO.setUint8Clamped(this.buffer, this.byteOffset+idx, val);
-            return val;
         }
 
         inline function toString() return 'Uint8ClampedArray [byteLength:${this.byteLength}, length:${this.length}]';
