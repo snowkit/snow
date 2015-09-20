@@ -503,7 +503,7 @@ class Snow {
             //for the default config, we only reject if there is a json parse error
         return new Promise(function(resolve, reject) {
 
-            var load = io.data_flow(snow_config.config_path, AssetJSON.processor);
+            var load = io.data_flow( assets.path(snow_config.config_path), AssetJSON.processor);
 
                 load.then(resolve).error(function(error:Error) {
                     switch(error) {
