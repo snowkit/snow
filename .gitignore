@@ -1,0 +1,13 @@
+*/.DS_Store
+.DS_Store
+.DS_Store?
+*/thumbs.db
+thumbs.db
+.thumbs.db?
+obj/
+builds/
+bin/
+users/
+ndll/
+ios.project
+*.xcuserstate

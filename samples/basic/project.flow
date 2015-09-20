@@ -1,0 +1,25 @@
+{
+
+  project : {
+    name : 'snow basic',
+    version : '1.0.0',
+    author : 'snowkit',
+
+    app : {
+      name : 'snow_basic',
+      package : 'org.snowkit.snowbasic',
+    },
+
+    build : {
+      dependencies : {
+        snowdev : '*',
+      }
+    },
+
+    files : {
+      config : 'config.json'
+    }
+
+  }
+
+}

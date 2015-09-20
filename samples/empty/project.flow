@@ -1,0 +1,34 @@
+{
+  flow: {
+    build: {
+      boot:'snow.App'
+    }
+  },
+  project : {
+    name : 'empty',
+    version : '1.0.0',
+    author : 'snowkit',
+
+    app : {
+      name : 'snow_empty',
+      package : 'org.snowkit.snow',
+    },
+
+    build : {
+      flags:[
+        '--macro snow.App.set("config","settings.json")',
+        '--macro snow.App.set("package","org.underscorediscovery.snow")'
+      ],
+      dependencies : {
+        snowdev : '*',
+      }
+    },
+
+    files : {
+      config : 'config.json',
+      assets : 'assets/'
+    }
+
+  }
+
+}
