@@ -77,10 +77,12 @@ class Windowing implements snow.modules.interfaces.Windowing {
             throw Error.windowing(msg);
         }
 
+        #if snow_modules_opengl
             //make sure there is a set up context early
         if(snow.modules.opengl.GL.current_context == null) {
             snow.modules.opengl.GL.current_context = _gl_context;
         }
+        #end
 
             //store it for activating later
         gl_contexts.set(_window_id, _gl_context);
@@ -177,9 +179,12 @@ class Windowing implements snow.modules.interfaces.Windowing {
     public function render( _window:Window ) {
 
         var _window_gl_context = gl_contexts.get(_window.id);
+
+        #if snow_modules_opengl
         if(snow.modules.opengl.GL.current_context != _window_gl_context) {
             snow.modules.opengl.GL.current_context = _window_gl_context;
         }
+        #end
 
     } //window_render
 

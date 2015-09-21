@@ -14,10 +14,21 @@ class App {
     #if !snow_no_main
 
         static function main() {
-            trace('Hello world');
-            trace(snow.Pre.app_config);
-            trace(snow.Pre.app_package);
-        }
+
+            trace('App main');
+
+            trace('config path: ' + snow.Set.app_config);
+            trace('ident: ' + snow.Set.app_ident);
+            trace('main: ' + snow.Set.app_main);
+
+            var _host_class = Type.resolveClass(snow.Set.app_main);
+            var _host_instance = Type.createInstance(_host_class, []);
+
+            var _snow = new snow.Snow();
+
+            _snow.init(_host_instance);
+            
+        } //main
 
     #end //!snow_no_main
 

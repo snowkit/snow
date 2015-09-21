@@ -31,10 +31,10 @@ class IO implements snow.modules.interfaces.IO {
     } //app_path
 
          /** On platforms where this makes sense, get the application specific writeable data path.
-             Uses the package from `SnowConfig`, passed through from flow projects or boot config. */
+             Uses the package from `snow.Set.app_ident`, passed through from flow projects or boot config. */
     public function app_path_prefs() : String {
 
-        var _parts = system.app.snow_config.app_package.split('.');
+        var _parts = snow.Set.app_ident.split('.');
         var _appname = _parts.pop();
         var _org = _parts.join('.');
 

@@ -8,7 +8,6 @@ class Main extends snow.App {
     override function config( config:AppConfig ) : AppConfig {
 
         config.window.title = 'snow empty application template';
-
         return config;
 
     } //config
@@ -16,7 +15,6 @@ class Main extends snow.App {
     override function ready() {
 
         log('ready');
-
         app.window.onrender = render;
 
     } //ready
@@ -34,7 +32,6 @@ class Main extends snow.App {
     } //update
 
     function render( window:snow.system.window.Window ) {
-
 
     } //render
 

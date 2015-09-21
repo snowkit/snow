@@ -36,7 +36,7 @@ class Core {
             start_timestamp = timestamp();
 
             snow_init( _event_handler, {
-                has_loop:app.snow_config.has_loop,
+                has_loop:true, //:todo:
                 log_level:snow.api.Debug.get_level()
             });
 

@@ -2,7 +2,7 @@
 
   flow : {
     build : {
-      boot : 'SnowApp',
+      boot : 'snow.App',
       android : {
         logcat_include : {
           snow:"snow", snowcaps:"SNOW", art:"art:F", snowcpp:"SNOWCPP", SDL:"SDL", openal:"OpenAL_SLES", snow_log:"SDL/APP"
@@ -46,12 +46,13 @@
     },
 
     build : {
+      hxmls:['snow.hxml'],
       defines : ['hxcpp_static_std'],
       dependencies: {
         linc_openal:'*'
       },
       files : {
-        boot : { path:'flow/boot/SnowApp.hx => haxe/SnowApp.hx', template:['project', 'snow'] },
+        snow_hxml : { path:'flow/build/snow.hxml => snow.hxml', template:['project', 'snow'] },
       }
     }
 

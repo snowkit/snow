@@ -101,7 +101,7 @@ class IO implements snow.modules.interfaces.IO {
     function on_event( _event:SystemEvent ) {}
 
     inline function string_slot_id(_slot:Int = 0) {
-        var _parts = system.app.snow_config.app_package.split('.');
+        var _parts = snow.Set.app_ident.split('.');
         var _appname = _parts.pop();
         var _org = _parts.join('.');
 

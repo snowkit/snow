@@ -1,9 +1,12 @@
 {
-  flow: {
-    build: {
-      boot:'snow.App'
+
+  snow : {
+    config: {
+      config_path: 'config.json',
+      log: 1 
     }
   },
+
   project : {
     name : 'empty',
     version : '1.0.0',
@@ -11,14 +14,13 @@
 
     app : {
       name : 'snow_empty',
-      package : 'org.snowkit.snow',
+      package : 'org.snowkit.snow', //oh
     },
 
+    //HAH
+
     build : {
-      flags:[
-        '--macro snow.App.set("config","settings.json")',
-        '--macro snow.App.set("package","org.underscorediscovery.snow")'
-      ],
+      flags:['-dce full'],
       dependencies : {
         snowdev : '*',
       }

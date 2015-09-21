@@ -14,6 +14,8 @@ import haxe.macro.TypeTools;
 
     macro public function set( module:String, type:String ) {
 
+        // trace('set module $module to $type');
+        
         modules.set(module, { type:type, module:null });
 
         return macro null;

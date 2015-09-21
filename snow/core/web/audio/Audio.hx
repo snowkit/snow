@@ -3,6 +3,8 @@ package snow.core.web.audio;
 #if snow_web
 
 import snow.types.Types;
+import snow.api.Promise;
+import snow.api.buffers.Uint8Array;
 
 @:allow(snow.system.audio.Audio)
 class Audio implements snow.modules.interfaces.Audio {
@@ -15,6 +17,14 @@ class Audio implements snow.modules.interfaces.Audio {
     function update() {}
     function destroy() {}
     function on_event(event:SystemEvent) {}
+
+    public function create_sound( _id:String, _name:String, _streaming:Bool=false, ?_format:AudioFormatType ) : Promise {
+        return null;
+    }
+
+    public function create_sound_from_bytes( _name:String, _bytes:Uint8Array, _format:AudioFormatType ):Sound {
+        return null;
+    }
 
         //:todo:
     public function suspend() {}

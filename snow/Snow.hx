@@ -35,8 +35,6 @@ class Snow {
     public var host : App;
         /** The application configuration specifics (like window, runtime, and asset lists) */
     public var config : snow.types.Types.AppConfig;
-        /** The configuration for snow itself, set via build project flags */
-    public var snow_config : SnowConfig;
         /** Whether or not we are frozen, ignoring events i.e backgrounded/paused */
     public var freeze (default,set) : Bool = false;
 
@@ -159,17 +157,7 @@ class Snow {
 //Internal API
 
     @:noCompletion
-    public function init( _snow_config:SnowConfig, _host : App ) {
-
-        snow_config = _snow_config;
-
-        if(snow_config.app_package == null) {
-            snow_config.app_package = 'org.snowkit.snow';
-        }
-
-        if(snow_config.config_path == null) {
-            snow_config.config_path = '';
-        }
+    public function init(_host : App) {
 
         config = default_config();
         host = _host;
@@ -403,7 +391,7 @@ class Snow {
     function setup_configs() {
 
             //blank config path means don't try to load config.json
-        if(snow_config.config_path == '') {
+        if(snow.Set.app_config == '') {
             setup_host_config();
             return Promise.resolve();
         }
@@ -503,7 +491,7 @@ class Snow {
             //for the default config, we only reject if there is a json parse error
         return new Promise(function(resolve, reject) {
 
-            var load = io.data_flow(snow_config.config_path, AssetJSON.processor);
+            var load = io.data_flow(assets.path(snow.Set.app_config), AssetJSON.processor);
 
                 load.then(resolve).error(function(error:Error) {
                     switch(error) {

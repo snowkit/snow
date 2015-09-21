@@ -34,7 +34,7 @@ class Core {
 
 
             //Then if requested, start the main loop
-        if(app.snow_config.has_loop) {
+        if(true) { //has loop :todo:
             request_update();
         }
 
