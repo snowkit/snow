@@ -1,9 +1,10 @@
 package snow;
 
+import snow.api.Debug.assertnull;
+
 import snow.system.input.Input;
 import snow.types.Types;
 
-    //Note all times in snow are in seconds.
 
 /** The default type of snow application, with variable delta, update limit, render limit, timescale and more. 
     See the {App Guide} for complete details. */
@@ -15,12 +16,13 @@ class App {
 
         static function main() {
             
-            trace('App main (${snow.Set.app_main})');
+            var _app = new snow.Set.HostApp();
 
-            var _host_class = Type.resolveClass(snow.Set.app_main);
-            var _host_instance = Type.createInstance(_host_class, []);
+            assertnull(_app, 'snow main App instance was null!');
 
-            new snow.Snowdev(_host_instance);
+            trace('App main set to `${snow.Set.app_main}`, instance: $_app');
+
+            new snow.Snowdev(_app);
 
         } //main
 

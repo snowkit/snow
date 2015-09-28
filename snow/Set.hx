@@ -5,6 +5,12 @@ import haxe.macro.Compiler;
 import haxe.macro.Context;
 import haxe.macro.Expr;
 import haxe.macro.ExprTools;
+import haxe.macro.Type;
+#end
+
+#if !macro
+        /** The compile time type of the user App main, used to instantiate the user type */
+    typedef HostApp = haxe.macro.MacroType<[snow.Set.get_type('app_main')]>;
 #end
 
 @:allow(snow.App)
@@ -22,19 +28,34 @@ class Set {
         macro static function config(_value:String):Void    app_config = _value;
 
         macro static function main(_value:String):Void {
-            Compiler.include(_value);
-            Compiler.keep(_value);
-            var t = Context.getType(_value);
-            Context.follow(t);
+            Compiler.include(_value); Compiler.keep(_value);
+            Context.follow(Context.getType(_value));
             app_main = _value;
         }
 
         macro static function platform(_value:String):Void {
-            Compiler.include(_value);
-            Compiler.keep(_value);
-            var t = Context.getType(_value);
-            Context.follow(t);
+            Compiler.include(_value); Compiler.keep(_value);
+            Context.follow(Context.getType(_value));
             app_platform = _value;
+        }
+
+        macro static function get_type(_value:String):Type {
+            
+            var _name:String = switch(_value) {
+                case 'app_main': app_main;
+                case 'app_platform': app_platform;
+                case _: null;
+            }
+            
+            if(_name == null) {
+                Context.fatalError('snow.Set.get_type: unknown type $_value', Context.currentPos());
+                return null;
+            }
+
+            var _type = Context.getType(_name);
+                _type = Context.follow(_type);
+            
+            return _type;
         }
 
     //get
