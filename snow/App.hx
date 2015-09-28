@@ -14,20 +14,14 @@ class App {
     #if !snow_no_main
 
         static function main() {
-
-            trace('App main');
-
-            trace('config path: ' + snow.Set.app_config);
-            trace('ident: ' + snow.Set.app_ident);
-            trace('main: ' + snow.Set.app_main);
+            
+            trace('App main (${snow.Set.app_main})');
 
             var _host_class = Type.resolveClass(snow.Set.app_main);
             var _host_instance = Type.createInstance(_host_class, []);
 
-            var _snow = new snow.Snow();
+            new snow.Snowdev(_host_instance);
 
-            _snow.init(_host_instance);
-            
         } //main
 
     #end //!snow_no_main
@@ -36,6 +30,7 @@ class App {
 
         /** use this to access the api features. *i.e* `app.assets.text(_id)` */
     public var app : Snow;
+    public var appdev : Snowdev;
 
 //Configurable values
 

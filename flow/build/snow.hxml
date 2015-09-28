@@ -10,6 +10,6 @@
 {{#if project.app.main~}}
 --macro snow.Set.main("{{{toString project.app.main}}}")
 {{~/if}}
-{{#each snow.modules~}}
-#--macro snow.system.modules.Module.set("{{{upperFirst (toString @key)}}}","{{{toString .}}}")
-{{/each~}}
+{{#if snow.platform~}}
+--macro snow.Set.platform("{{{toString snow.platform}}}")
+{{~/if}}

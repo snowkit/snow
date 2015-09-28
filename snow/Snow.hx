@@ -73,14 +73,17 @@ class Snow {
         //if ready has completed, so systems can begin safely
     var is_ready : Bool = false;
         //the core platform instance to bind us
-    @:noCompletion public static var core : Core;
+    public static var core : Core;
         //the list of functions to run next loop
-    static var next_queue : Array<Void->Void>;
+    static var next_queue : Array<Void->Void> = [];
         //the list of functions to run at the end of the current loop
-    static var defer_queue : Array<Void->Void>;
+    static var defer_queue : Array<Void->Void> = [];
 
-    @:noCompletion
-    public function new() {
+        /** Construct a new instance of the snow runtime */
+    public function new(_host : App) {
+
+        host = _host;
+        host.app = this;
 
         if(snow.api.Debug.get_level() > 1) {
             log('log / level to ${snow.api.Debug.get_level()}' );
@@ -95,10 +98,9 @@ class Snow {
         #if android  platform = Platform.platform_android;   #end
         #if windows  platform = Platform.platform_windows;   #end
 
-            //We create the core as a concrete platform version of the core
         core = new Core( this );
-        next_queue = [];
-        defer_queue = [];
+        config = default_config();
+        core.init( on_event );
 
     } //new
 
@@ -155,17 +157,6 @@ class Snow {
     } //defer
 
 //Internal API
-
-    @:noCompletion
-    public function init(_host : App) {
-
-        config = default_config();
-        host = _host;
-        host.app = this;
-
-        core.init( on_event );
-
-    } //init
 
     function on_snow_init() {
 
