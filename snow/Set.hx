@@ -11,6 +11,8 @@ import haxe.macro.Type;
 #if !macro
         /** The compile time type of the user App main, used to instantiate the user type */
     typedef HostApp = haxe.macro.MacroType<[snow.Set.get_type('app_main')]>;
+        /** The compile time type of the Platform instance, used to instantiate the Snow.platform type */
+    typedef HostPlatform = haxe.macro.MacroType<[snow.Set.get_type('app_platform')]>;
 #end
 
 @:allow(snow.App)

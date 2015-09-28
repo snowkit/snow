@@ -1,5 +1,6 @@
 package snow.platform;
 
+@:allow(snow.Snowdev)
 class Mac implements Platform {
 
     public var name: String = 'mac';

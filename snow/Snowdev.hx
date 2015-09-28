@@ -41,13 +41,9 @@ class Snowdev {
 
         function init_platform() {
 
-            var _platform_class = Type.resolveClass(snow.Set.app_platform);
+            platform = new snow.Set.HostPlatform(this);
 
-            assertnull(_platform_class, 'cannot find platform type : ${snow.Set.app_platform}');
-
-            platform = Type.createInstance(_platform_class, [this]);
-
-            assertnull('could not create platform type : ${snow.Set.app_platform}');
+            assertnull(platform, 'could not create platform type : ${snow.Set.app_platform}');
 
         } //init_platform
 
