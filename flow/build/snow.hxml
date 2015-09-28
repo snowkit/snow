@@ -10,6 +10,6 @@
 {{#if project.app.main~}}
 --macro snow.Set.main("{{{toString project.app.main}}}")
 {{~/if}}
-{{#if snow.platform~}}
---macro snow.Set.platform("{{{toString snow.platform}}}")
+{{#if snow.runtime~}}
+--macro snow.Set.runtime("{{{toString snow.runtime}}}")
 {{~/if}}

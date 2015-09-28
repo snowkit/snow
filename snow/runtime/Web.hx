@@ -1,7 +1,7 @@
-package snow.platform;
+package snow.runtime;
 
 @:allow(snow.Snowdev)
-class Web implements Platform {
+class Web implements Runtime {
 
     public var name: String = 'web';
     public var app: snow.Snowdev;
@@ -10,16 +10,16 @@ class Web implements Platform {
 
         app = _app;
 
-        trace('platform / web / new');
+        trace('runtime / web / new');
 
     } //new
 
     function init() {
-        trace('platform / web / init');
+        trace('runtime / web / init');
     }
 
     function shutdown() {
-        trace('platform / web / shutdown');
+        trace('runtime / web / shutdown');
     }
 
 } //Web

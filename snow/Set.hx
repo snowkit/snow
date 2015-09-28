@@ -11,15 +11,15 @@ import haxe.macro.Type;
 #if !macro
         /** The compile time type of the user App main, used to instantiate the user type */
     typedef HostApp = haxe.macro.MacroType<[snow.Set.get_type('app_main')]>;
-        /** The compile time type of the Platform instance, used to instantiate the Snow.platform type */
-    typedef HostPlatform = haxe.macro.MacroType<[snow.Set.get_type('app_platform')]>;
+        /** The compile time type of the runtime instance, used to instantiate the runtime type */
+    typedef HostRuntime = haxe.macro.MacroType<[snow.Set.get_type('app_runtime')]>;
 #end
 
 @:allow(snow.App)
 @:allow(snow.Snow)
 class Set {
 
-    public static var app_platform : String = get_platform();
+    public static var app_runtime : String = get_runtime();
     public static var app_config : String = get_config();
     public static var app_ident : String = get_ident();
     public static var app_main : String = get_main();
@@ -35,17 +35,17 @@ class Set {
             app_main = _value;
         }
 
-        macro static function platform(_value:String):Void {
+        macro static function runtime(_value:String):Void {
             Compiler.include(_value); Compiler.keep(_value);
             Context.follow(Context.getType(_value));
-            app_platform = _value;
+            app_runtime = _value;
         }
 
         macro static function get_type(_value:String):Type {
             
             var _name:String = switch(_value) {
                 case 'app_main': app_main;
-                case 'app_platform': app_platform;
+                case 'app_runtime': app_runtime;
                 case _: null;
             }
             
@@ -61,7 +61,7 @@ class Set {
         }
 
     //get
-        macro static function get_platform():Expr return macro $v{app_platform};
+        macro static function get_runtime():Expr return macro $v{app_runtime};
         macro static function get_config():Expr return macro $v{app_config};
         macro static function get_ident():Expr return macro $v{app_ident};
         macro static function get_main():Expr return macro $v{app_main};

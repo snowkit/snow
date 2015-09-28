@@ -1,7 +1,7 @@
-package snow.platform;
+package snow.runtime;
 
 @:allow(snow.Snowdev)
-class Mac implements Platform {
+class Mac implements Runtime {
 
     public var name: String = 'mac';
     public var app: snow.Snowdev;
@@ -10,16 +10,16 @@ class Mac implements Platform {
 
         app = _app;
 
-        trace('platform / mac / new');
+        trace('runtime / mac / new');
 
     } //new
 
     function init() {
-        trace('platform / mac / init');
+        trace('runtime / mac / init');
     }
 
     function shutdown() {
-        trace('platform / mac / shutdown');
+        trace('runtime / mac / shutdown');
     }
 
 } //Mac
