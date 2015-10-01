@@ -44,7 +44,8 @@ class Windowing implements snow.modules.interfaces.Windowing {
             title:_config.title,
             width:_config.width,
             x:_config.x,
-            y:_config.y
+            y:_config.y,
+			parent_element:_config.parent_element,
         }
     }
 
@@ -63,8 +64,16 @@ class Windowing implements snow.modules.interfaces.Windowing {
             _handle.style.position = 'relative';
             _handle.style.background = '#000';
 
-                //add it to the document
-            js.Browser.document.body.appendChild(_handle);
+			//add it to the document
+			var element = null;
+			if(config.parent_element != null) {
+				element = js.Browser.document.getElementById(config.parent_element);
+			} 
+			if(element == null) {
+				js.Browser.document.body.appendChild(_handle);
+			} else {
+				element.appendChild(_handle);
+			}
 
             //:todo: These options need to be exposed and documented
         var _gl_context = _handle.getContextWebGL({ alpha:false, premultipliedAlpha:false, antialias: render_config.antialiasing > 0 });
