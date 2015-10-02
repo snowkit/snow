@@ -108,11 +108,11 @@
       },
       build : {
         flags:[
-          '--macro snow.system.module.Module.set("Audio","snow.core.web.audio.Audio")',
-          '--macro snow.system.module.Module.set("IO","snow.core.web.io.IO")',
-          '--macro snow.system.module.Module.set("Input","snow.core.web.input.Input")',
-          '--macro snow.system.module.Module.set("Windowing","snow.core.web.window.Windowing")',
-          '--macro snow.system.module.Module.set("Assets","snow.core.web.assets.Assets")'
+          '--macro snow.Set.assets("snow.core.web.assets.Assets")',
+          '--macro snow.Set.audio("snow.core.web.audio.Audio")',
+          '--macro snow.Set.input("snow.core.web.input.Input")',
+          '--macro snow.Set.io("snow.core.web.io.IO")',
+          '--macro snow.Set.window("snow.core.web.window.Windowing")'
         ],
         defines : [],
         files : {
@@ -167,11 +167,11 @@
     snow_native : {
       build: {
         flags:[
-          '--macro snow.system.module.Module.set("Audio","snow.core.native.audio.Audio")',
-          '--macro snow.system.module.Module.set("IO","snow.core.native.io.IO")',
-          '--macro snow.system.module.Module.set("Input","snow.core.native.input.Input")',
-          '--macro snow.system.module.Module.set("Windowing","snow.core.native.window.Windowing")',
-          '--macro snow.system.module.Module.set("Assets","snow.core.native.assets.Assets")'
+          '--macro snow.Set.assets("snow.core.native.assets.Assets")',
+          '--macro snow.Set.audio("snow.core.native.audio.Audio")',
+          '--macro snow.Set.input("snow.core.native.input.Input")',
+          '--macro snow.Set.io("snow.core.native.io.IO")',
+          '--macro snow.Set.window("snow.core.native.window.Windowing")'
         ],
         defines : []
       }

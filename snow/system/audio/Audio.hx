@@ -6,14 +6,11 @@ import snow.system.assets.Asset;
 import snow.api.Promise;
 import snow.api.Debug.*;
 
-#if (!macro && !display && !scribe)
-    typedef AudioModule = haxe.macro.MacroType<[snow.system.module.Module.assign('Audio')]>;
-#end
-
+@:allow(snow.Snow)
 class Audio {
 
         /** access to module specific implementation */
-    public var module : snow.system.module.Audio;
+    public var module : snow.modules.interfaces.Audio;
         /** Set to false to stop any and all processing in the audio system */
     public var active : Bool = false;
 
@@ -25,14 +22,11 @@ class Audio {
     @:noCompletion public var stream_list : Map<String, Sound>;
 
         /** constructed internally, use `app.audio` */
-    @:allow(snow.Snow)
-    function new( _app:Snow ) {
+    
+    function new(_app:Snow) {
 
         app = _app;
-
-        module = new snow.system.module.Audio(this);
-
-        module.init();
+        module = new snow.Set.ModuleAudio(app);
 
         sound_list = new Map();
         stream_list = new Map();
@@ -382,7 +376,6 @@ class Audio {
     } //resume
 
         /** Called by Snow when a system event is dispatched */
-    @:allow(snow.Snow)
     function on_event( _event:SystemEvent ) {
 
         module.on_event(_event);
@@ -410,8 +403,7 @@ class Audio {
     } //on_event
 
         /** Called by Snow, cleans up sounds/system */
-    @:allow(snow.Snow)
-    function destroy() {
+    function shutdown() {
 
         active = false;
 
@@ -419,12 +411,11 @@ class Audio {
             sound.destroy();
         }
 
-        module.destroy();
+        module.shutdown();
 
-    } //destroy
+    } //shutdown
 
         /** Called by Snow, update any sounds / streams */
-    @:allow(snow.Snow)
     function update() {
 
         if(!active) {
@@ -436,8 +427,6 @@ class Audio {
                 _sound.internal_update();
             }
         }
-
-        module.update();
 
     } //update
 

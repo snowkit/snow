@@ -9,10 +9,9 @@ import snow.types.Types;
 @:allow(snow.system.audio.Audio)
 interface Audio {
 
-    private function init():Void;
-    private function update():Void;
-    private function destroy():Void;
-    private function on_event( event:SystemEvent ):Void;
+    private var app: snow.Snow;
+    private function on_event(event:SystemEvent):Void;
+    private function shutdown():Void;
 
     function create_sound( _id:String, _name:String, _streaming:Bool=false, ?_format:AudioFormatType ) : Promise;
     function create_sound_from_bytes( _name:String, _bytes:Uint8Array, _format:AudioFormatType ):Sound;

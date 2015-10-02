@@ -6,10 +6,6 @@ import snow.api.buffers.Uint8Array;
 import snow.api.Promise;
 import snow.api.Debug.*;
 
-#if (!macro && !display && !scribe)
-    private typedef IOModule = haxe.macro.MacroType<[snow.system.module.Module.assign('IO')]>;
-#end
-
 @:allow(snow.Snow)
 class IO {
 
@@ -17,7 +13,7 @@ class IO {
     @:noCompletion public var app : Snow;
 
     /** Access to the platform specific api, if any */
-    public var module : snow.system.module.IO;
+    public var module : snow.modules.interfaces.IO;
 
     /** The string_save file name prefix. For example, the default being `slot.0`,
         by changing this you can rename the save slots to `custom.0`.
@@ -25,14 +21,10 @@ class IO {
     public var string_save_prefix : String = 'slot';
 
         /** Constructed internally, use `app.io` */
-    @:allow(snow.Snow)
     function new( _app:Snow ) {
 
         app = _app;
-
-        module = new snow.system.module.IO(this);
-
-        module.init();
+        module = new snow.Set.ModuleIO(app);
 
     } //new
 
@@ -213,19 +205,12 @@ class IO {
 
     } //on_event
 
-        /** Called by Snow, update any IO related processing */
-    inline function update() {
+        /** Destroy and clean up etc. */
+    function shutdown() {
 
-        module.update();
+        module.shutdown();
 
-    } //update
-
-        /** Called by Snow, cleans up IO */
-    inline function destroy() {
-
-        module.destroy();
-
-    } //destroy
+    } //shutdown
 
 
 } //IO

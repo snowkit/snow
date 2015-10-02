@@ -1,12 +1,12 @@
 package snow.runtime;
 
-@:allow(snow.Snowdev)
+@:allow(snow.Snow)
 class Web implements Runtime {
 
     public var name: String = 'web';
-    public var app: snow.Snowdev;
+    public var app: snow.Snow;
 
-    function new(_app:snow.Snowdev) {
+    function new(_app:snow.Snow) {
 
         app = _app;
 
@@ -14,12 +14,16 @@ class Web implements Runtime {
 
     } //new
 
-    function init() {
-        trace('runtime / web / init');
+    function run() {
+        trace('runtime / web / run');
     }
 
     function shutdown() {
         trace('runtime / web / shutdown');
+    }
+
+    function timestamp() : Float {
+        return 0.0;
     }
 
 } //Web

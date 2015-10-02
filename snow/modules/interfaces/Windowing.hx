@@ -7,10 +7,9 @@ import snow.system.window.Window;
 @:allow(snow.system.window.Windowing)
 interface Windowing {
 
-    private function init():Void;
-    private function update():Void;
-    private function destroy():Void;
-    private function on_event( event:SystemEvent ):Void;
+    private var app: snow.Snow;
+    private function on_event(event:SystemEvent):Void;
+    private function shutdown():Void;
 
     private function listen( window:snow.system.window.Window ):Void;
     private function unlisten( window:snow.system.window.Window ):Void;
@@ -62,22 +61,5 @@ interface Windowing {
     function system_lock_cursor( enable:Bool ) : Void;
         /** Toggle vertical refresh. This is not window specific but context wide, returns 0 on success or -1 if not supported */
     function system_enable_vsync( enable:Bool ) : Int;
-
-//Desktop
-
-        /** Get the number of displays present */
-    function display_count() : Int;
-        /** Get the number of display modes present */
-    function display_mode_count( display:Int ) : Int;
-        /** Get the native mode information of the display by index */
-    function display_native_mode( display:Int ) : DisplayMode;
-        /** Get the current mode information of the display by index */
-    function display_current_mode( display:Int ) : DisplayMode;
-        /** Get the information from a specific mode index, the index obtrained from iterating with `display_mode_count` value */
-    function display_mode( display:Int, mode_index:Int ) : DisplayMode;
-        /** Get the bounds of the display by index */
-    function display_bounds( display:Int ) : { x:Int, y:Int, width:Int, height:Int };
-        /** Get the name of the display by index, where available */
-    function display_name( display:Int ) : String;
 
 } //Windowing

@@ -10,8 +10,10 @@ import snow.api.Debug.*;
 @:allow(snow.system.assets.Assets)
 class Assets implements snow.modules.interfaces.Assets {
 
-    var system: snow.system.assets.Assets;
-    function new( _system:snow.system.assets.Assets ) system = _system;
+    var app: snow.Snow;
+    function new( _app:snow.Snow ) app = _app;
+    function on_event(event:SystemEvent):Void {}
+    function shutdown() {}
 
 //images
 
@@ -304,13 +306,6 @@ class Assets implements snow.modules.interfaces.Assets {
     static var snow_assets_audio_load_info_pcm   = Libs.load( "snow", "snow_assets_audio_load_info_pcm", 5 );
     static var snow_assets_audio_read_bytes_pcm  = Libs.load( "snow", "snow_assets_audio_read_bytes_pcm", 3 );
     static var snow_assets_audio_seek_bytes_pcm  = Libs.load( "snow", "snow_assets_audio_seek_bytes_pcm", 2 );
-
-//Required by module interface
-
-    function init():Void {}
-    function update():Void {}
-    function destroy():Void {}
-    function on_event( event:SystemEvent ):Void {}
 
 
 } //AssetSystem

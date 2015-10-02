@@ -5,13 +5,12 @@ import snow.api.buffers.Uint8Array;
 import snow.api.Promise;
 
 @:noCompletion
-@:allow(snow.system.io.IO)
+@:allow(snow.system.assets.Assets)
 interface Assets {
 
-    private function init():Void;
-    private function update():Void;
-    private function destroy():Void;
-    private function on_event( event:SystemEvent ):Void;
+    private var app: snow.Snow;
+    private function on_event(event:SystemEvent):Void;
+    private function shutdown():Void;
 
 //image
 

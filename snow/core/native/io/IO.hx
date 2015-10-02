@@ -17,9 +17,9 @@ import haxe.io.Path;
 @:allow(snow.system.io.IO)
 class IO implements snow.modules.interfaces.IO {
 
-    var system:snow.system.io.IO;
-
-    function new( _system:snow.system.io.IO ) system = _system;
+    var app: snow.Snow;
+    function new(_app:snow.Snow) app = _app;
+    function shutdown() {}
 
 //Public API
 
@@ -121,10 +121,10 @@ class IO implements snow.modules.interfaces.IO {
             /** Returns the path where string_save operates.
                 One targets where this is not a path, the path will be prefaced with `< >/`,
                 i.e on web targets the path will be `<localstorage>/` followed by the ID. */
-        public function string_save_path( _slot:Int = 0 ) : String {
+        public function string_save_path( ?_slot:Int = 0 ) : String {
 
             var _pref_path = app_path_prefs();
-            var _path = haxe.io.Path.join([_pref_path, '${system.string_save_prefix}.$_slot']);
+            var _path = haxe.io.Path.join([_pref_path, '${app.io.string_save_prefix}.$_slot']);
 
             return haxe.io.Path.normalize(_path);
 
@@ -184,14 +184,11 @@ class IO implements snow.modules.interfaces.IO {
 
 //Internal API
 
-    function init() {}
-    function update() {}
-    function destroy() {}
     function on_event( _event:SystemEvent ) {}
 
 //Internal
 
-    inline function string_slot_destroy( _slot:Int = 0 ) : Bool {
+    inline function string_slot_destroy( ?_slot:Int=0) : Bool {
 
         var _path = string_save_path(_slot);
         var _result = true;
@@ -209,7 +206,7 @@ class IO implements snow.modules.interfaces.IO {
     } //string_slot_destroy
 
         //flush the string map to disk
-    inline function string_slot_save( _slot:Int = 0, _contents:String ) : Bool {
+    inline function string_slot_save( ?_slot:Int = 0, _contents:String ) : Bool {
 
         var _path = string_save_path(_slot);
         var _data = Uint8Array.fromBytes( Bytes.ofString(_contents) );
@@ -220,7 +217,7 @@ class IO implements snow.modules.interfaces.IO {
 
         //get the string contents of this slot,
         //or null if not found/doesn't exist
-    inline function string_slot_load( _slot:Int = 0 ) : String {
+    inline function string_slot_load( ?_slot:Int = 0 ) : String {
 
         var _data = _data_load(string_save_path(_slot));
 

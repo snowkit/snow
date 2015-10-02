@@ -7,14 +7,11 @@ import snow.api.Promise;
 @:allow(snow.system.audio.Audio)
 class Audio implements snow.modules.interfaces.Audio {
 
-    var system : snow.system.audio.Audio;
+    var app : snow.Snow;
 
-    function new( _system:snow.system.audio.Audio ) system = _system;
-
-    function init() {}
-    function update() {}
-    function destroy() {}
+    function new( _app:snow.Snow ) app = _app;
     function on_event(event:SystemEvent) {}
+    function shutdown() {}
 
     public function create_sound( _id:String, _name:String, _streaming:Bool=false, ?_format:AudioFormatType ) : Promise {
         trace('Audio: create_sound in root module. Nothing will happen.');

@@ -3,11 +3,6 @@ package snow.system.input;
 import snow.types.Types;
 import snow.system.window.Window;
 
-#if (!macro && !display && !scribe)
-    private typedef InputModule = haxe.macro.MacroType<[snow.system.module.Module.assign('Input')]>;
-#end
-
-
 typedef MapIntBool = Map<Int, Bool>;
 typedef MapIntFloat = Map<Int, Float>;
 
@@ -18,16 +13,13 @@ class Input {
         /** access to snow from subsystems */
     @:noCompletion public var app : Snow;
         /** access to platform implementation */
-    @:noCompletion public var module : snow.system.module.Input;
+    @:noCompletion public var module : snow.modules.interfaces.Input;
 
         /** constructed internally, use `app.input` */
     function new( _app:Snow ) {
 
         app = _app;
-
-        module = new snow.system.module.Input(this);
-
-        module.init();
+        module = new snow.Set.ModuleInput(app);
 
         //keys
 
@@ -58,6 +50,12 @@ class Input {
 
     } //new
 
+        /** Destroy and clean up etc. */
+    function shutdown() {
+
+        module.shutdown();
+
+    } //shutdown
 
 //Public facing API
 
@@ -361,20 +359,12 @@ class Input {
         /** Handle any input related processing, called by Snow */
     function update() {
 
-        module.update();
-
         _update_keystate();
         _update_gamepadstate();
         _update_mousestate();
 
     } //update
 
-        /** Destroy and clean up etc. */
-    function destroy() {
-
-        module.destroy();
-
-    } //destroy
 
 //internal
 

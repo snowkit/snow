@@ -1,7 +1,7 @@
 {
 
   snow : {
-    runtime: 'snow.runtime.Mac',
+    runtime: 'snow.runtime.Native',
     config: {
       config_path: 'config.json',
       log: 1 

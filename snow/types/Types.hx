@@ -2,7 +2,7 @@ package snow.types;
 
 #if !macro
 
-import snow.Snow;
+// import snow.Snow;
 import snow.api.buffers.Uint8Array;
 
 //asset types
@@ -312,8 +312,6 @@ typedef SystemEvent = {
     @:optional var window : WindowEvent;
         /** If type is `input` this will be populated, otherwise null */
     @:optional var input : InputEvent;
-        /** If type is `file` this will be populated, otherwise null */
-    @:optional var file : FileEvent;
 
 } //SystemEvent
 
@@ -332,17 +330,6 @@ typedef WindowEvent = {
 
 } //WindowEvent
 
-/** A system file watch event */
-typedef FileEvent = {
-
-        /** The type of file watch event, modify/create/delete. Use FileEventType */
-    @:optional var type : FileEventType;
-        /** The time in seconds when this event was fired */
-    @:optional var timestamp : Float;
-        /** The absolute path that was notifying */
-    @:optional var path : String;
-
-} //FileEvent
 
 /** A system input event */
 typedef InputEvent = {
@@ -507,8 +494,6 @@ typedef ModState = {
     var app_willenterforeground    = 12;
         /** An event for when the app enters the foreground, called by the OS (mobile specific) */
     var app_didenterforeground     = 13;
-        /** An event for when the a file watch notification occurs */
-    var file                       = 14;
 
 
     inline function toString() {
@@ -527,7 +512,6 @@ typedef ModState = {
             case app_didenterbackground:    'app_didenterbackground';
             case app_willenterforeground:   'app_willenterforeground';
             case app_didenterforeground:    'app_didenterforeground';
-            case file:      'file';
             case _:         '$this';
         }
     } //toString
@@ -633,36 +617,5 @@ typedef ModState = {
     } //toString
 
 } //InputEvent
-
-@:enum abstract FileEventType(Int) from Int to Int {
-
-        //File watch events
-        //from native :
-        //fe_unknown, fe_modify, fe_remove, fe_create, fe_drop
-
-        /** An unknown watch event */
-    var unknown    = 0;
-        /** An event for when the a file is modified */
-    var modify     = 1;
-        /** An event for when the a file is removed */
-    var remove     = 2;
-        /** An event for when the a file is created */
-    var create     = 3;
-        /** An event for when the a file is dropped on a window */
-    var drop       = 4;
-
-    inline function toString() {
-        return switch(this) {
-            case unknown:   'unknown';
-            case modify:    'modify';
-            case remove:    'remove';
-            case create:    'create';
-            case drop:      'drop';
-            case _:         '$this';
-        }
-    } //toString
-
-} //FileEvent
-
 
 #end

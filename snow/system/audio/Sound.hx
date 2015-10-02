@@ -64,8 +64,8 @@ class Sound {
         is_stream = _is_stream;
 
         #if snow_native //:todo:
-            stream_buffer_length = system.app.config.native.audio_buffer_length;
-            stream_buffer_count = system.app.config.native.audio_buffer_count;
+            stream_buffer_length = 176400;//system.app.config.native.audio_buffer_length;
+            stream_buffer_count = 4;//system.app.config.native.audio_buffer_count;
             stream_data_get = default_stream_data_get;
             stream_data_seek = default_stream_data_seek;
         #end //snow_native
@@ -138,20 +138,22 @@ class Sound {
 
 //Streaming API
 
-//:todo:
+//:todo:snowdev
 #if snow_native
 
         /** Default data seek implementation for `SoundStream` uses `assets.system.audio_seek_source` */
     function default_stream_data_seek( _to:Int ) : Bool {
 
-        return system.app.assets.module.audio_seek_source( info, _to );
+        // return system.app.assets.module.audio_seek_source( info, _to );
+        return false;
 
     } //default_data_seek
 
         /** Default data get implementation for `SoundStream` uses `assets.system.audio_load_portion` */
     function default_stream_data_get( _start:Int, _length:Int ) : AudioDataBlob {
 
-        return system.app.assets.module.audio_load_portion( info, _start, _length );
+        // return system.app.assets.module.audio_load_portion( info, _start, _length );
+        return null;
 
     } //default_data_get
 

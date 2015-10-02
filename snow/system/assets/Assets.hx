@@ -7,12 +7,9 @@ import snow.api.Debug.*;
 
 import snow.system.assets.Asset;
 
-#if (!macro && !display && !scribe)
-    private typedef AssetsModule = haxe.macro.MacroType<[snow.system.module.Module.assign('Assets')]>;
-#end
-
 /** The asset system class gives you access to fetching and manipulating assets,
     handling loading files and data in a consistent cross platform way */
+@:allow(snow.Snow)
 class Assets {
 
 
@@ -20,7 +17,7 @@ class Assets {
     public var root : String = '';
 
         /** access to module implementation */
-    public var module : snow.system.module.Assets;
+    public var module : snow.modules.interfaces.Assets;
         /** access to snow from subsystems */
     public var app : Snow;
 
@@ -37,9 +34,17 @@ class Assets {
         #end
 
         app = _app;
-        module = new snow.system.module.Assets(this);
+        module = new snow.Set.ModuleAssets(app);
 
     } //new
+
+        /** Shutdown and clean up etc. */
+    function shutdown() {
+
+        module.shutdown();
+
+    } //shutdown
+
 
 //Public API
 

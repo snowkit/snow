@@ -2,7 +2,6 @@ package snow.system.window;
 
 import snow.types.Types;
 import snow.system.window.Windowing;
-
 import snow.api.Debug.*;
 
     //A window has it's own event loop
@@ -41,11 +40,6 @@ class Window {
     @:isVar public var width (default,set) : Int = 0;
     @:isVar public var height (default,set) : Int = 0;
 
-        /** The window maximum size `(read/write)` */
-    @:isVar public var max_size (get,set) : { x:Int, y:Int };
-        /** The window minimum size `(read/write)` */
-    @:isVar public var min_size (get,set) : { x:Int, y:Int };
-
         /** set this if you want to control when a window calls swap() */
     public var auto_swap : Bool = true;
         /** set this if you want to control when a window calls render() */
@@ -61,9 +55,6 @@ class Window {
 
     public function new( _system:Windowing, _config:WindowConfig ) {
 
-        max_size    = { x:0, y:0 };
-        min_size    = { x:0, y:0 };
-
         system = _system;
         asked_config = _config;
         config = _config;
@@ -77,7 +68,8 @@ class Window {
             config.y = 0x1FFF0000;
         }
 
-        system.module.create( system.app.config.render, _config, on_window_created );
+        system.module.create( null, _config, on_window_created );
+        // system.module.create( system.app.config.render, _config, on_window_created );
 
     } //new
 
@@ -95,7 +87,8 @@ class Window {
             //store the real config
         config = _configs.config;
             //update the render config in the core
-        system.app.config.render = _configs.render_config;
+            //:todo:snowdev
+        // system.app.config.render = _configs.render_config;
 
             //update the position and size
             //because it updates in the config
@@ -211,6 +204,9 @@ class Window {
 
         } //has render handler
 
+        // GL.clearColor( 0, 0, 0, 1.0 );
+        // GL.clear(GL.COLOR_BUFFER_BIT);
+
         if(auto_swap) {
             swap();
         }
@@ -310,18 +306,6 @@ class Window {
         return grab;
 
     } //get_grab
-
-    function get_max_size() : { x:Int, y:Int } {
-
-        return max_size;
-
-    } //get_max_size
-
-    function get_min_size() : { x:Int, y:Int } {
-
-        return min_size;
-
-    } //get_min_size
 
     function get_title() : String {
 
@@ -429,26 +413,6 @@ class Window {
         }
 
     } //set_size
-
-    function set_max_size( _size:{ x:Int, y:Int } ) : { x:Int, y:Int } {
-
-        if(max_size != null && handle != null) {
-            system.module.set_max_size( this, _size.x, _size.y );
-        }
-
-        return max_size = _size;
-
-    } //set_max_size
-
-    function set_min_size( _size: { x:Int, y:Int } ) : { x:Int, y:Int } {
-
-        if(min_size != null && handle != null) {
-            system.module.set_min_size( this, _size.x, _size.y );
-        }
-
-        return min_size = _size;
-
-    } //set_min_size
 
     function set_bordered( _bordered:Bool ) : Bool {
 

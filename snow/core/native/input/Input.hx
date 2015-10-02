@@ -8,16 +8,11 @@ import snow.system.window.Window;
 @:allow(snow.system.input.Input)
 class Input implements snow.modules.interfaces.Input {
 
-    var system : snow.system.input.Input;
+    var app : snow.Snow;
 
-    function new( _system:snow.system.input.Input ) system = _system;
-
-//required by snow.modules.interfaces.Input
-
-    function init() {}
-    function update() {}
-    function destroy() {}
-    function on_event( _event : SystemEvent ) {}
+    function new(_app:snow.Snow) app = _app;
+    function on_event(_event:SystemEvent) {}
+    function shutdown() {}
 
     function listen( window:Window ) {}
     function unlisten( window:Window ) {}
