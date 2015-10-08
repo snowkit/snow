@@ -421,7 +421,7 @@ class Windowing implements snow.modules.interfaces.Windowing {
 
         if(cursor_style == null) {
             cursor_style = js.Browser.document.createStyleElement();
-            cursor_style.innerHTML = '* { cursor:none; }';
+            cursor_style.innerHTML = 'canvas { cursor:none; }';
         }
 
         if(enable && !_cursor_visible) {
