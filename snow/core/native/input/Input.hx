@@ -14,21 +14,12 @@ class Input implements snow.modules.interfaces.Input {
     function onevent(_event:SystemEvent) {}
     function shutdown() {}
 
-    function listen( window:Window ) {}
-    function unlisten( window:Window ) {}
+    function listen(window:Window) {}
+    function unlisten(window:Window) {}
 
-//specifics
-
-    public inline function text_input_start()
-        snow_input_text_start();
-    public inline function text_input_stop()
-        snow_input_text_stop();
-    public inline function text_input_rect(x:Int, y:Int, w:Int, h:Int)
-        snow_input_text_rect(x, y, w, h);
-
-
-    static var snow_input_text_start = Libs.load( "snow", "snow_input_text_start", 0 );
-    static var snow_input_text_stop  = Libs.load( "snow", "snow_input_text_stop", 0 );
-    static var snow_input_text_rect  = Libs.load( "snow", "snow_input_text_rect", 4 );
+    //:todo: warn of empty module
+    public function text_input_start() : Void {}
+    public function text_input_stop() : Void {}
+    public function text_input_rect(x:Int, y:Int, w:Int, h:Int) : Void {}
 
 } //Input

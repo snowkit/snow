@@ -344,7 +344,7 @@ class Snow {
 
             _debug('config / fetching default window config');
 
-            var conf =  {
+            var conf : WindowConfig = {
                 fullscreen_desktop  : true,
                 fullscreen          : false,
                 borderless          : false,

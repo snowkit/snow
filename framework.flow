@@ -170,7 +170,7 @@
         flags:[
           '--macro snow.Set.assets("snow.core.native.assets.Assets")',
           '--macro snow.Set.audio("snow.core.native.audio.Audio")',
-          '--macro snow.Set.input("snow.core.native.input.Input")',
+          '--macro snow.Set.input("snow.modules.sdl.Input")',
           '--macro snow.Set.io("snow.modules.sdl.IO")',
           '--macro snow.Set.window("snow.core.native.window.Windowing")'
         ],

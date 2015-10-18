@@ -13,4 +13,8 @@ interface Input {
     private function listen( window:snow.system.window.Window ):Void;
     private function unlisten( window:snow.system.window.Window ):Void;
 
+    function text_input_start():Void;
+    function text_input_stop():Void;
+    function text_input_rect(x:Int, y:Int, w:Int, h:Int):Void;
+
 } //Input
