@@ -47,9 +47,10 @@
 
     build : {
       hxmls:['snow.hxml'],
-      defines : ['hxcpp_static_std'],
+      defines : ['hxcpp_static_std','no_simplify'],
       dependencies: {
-        linc_openal:'*'
+        linc_openal:'*',
+        linc_timestamp:'*'
       },
       files : {
         snow_hxml : { path:'flow/build/snow.hxml => snow.hxml', template:['project', 'snow'] },

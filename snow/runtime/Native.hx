@@ -1,6 +1,7 @@
 package snow.runtime;
 
 import snow.types.Types;
+import timestamp.Timestamp;
 
 @:allow(snow.Snow)
 class Native implements Runtime {
@@ -20,6 +21,8 @@ class Native implements Runtime {
         #if android  app.os = os_android; app.platform = platform_android; #end
         #if windows  app.os = os_windows; app.platform = platform_windows; #end
 
+        timestamp_start = timestamp();
+
     } //new
 
     function run() {
@@ -34,9 +37,10 @@ class Native implements Runtime {
 
     } //shutdown
 
-    function timestamp() : Float {
-
-        return 0.0;
+    var timestamp_start : Float = 0.0;
+    inline function timestamp() : Float {
+    
+        return Timestamp.now() - timestamp_start;
 
     } //timestamp
 
