@@ -1,4 +1,4 @@
-package snow.core.native.audio;
+package snow.core.common.audio;
 
 import snow.types.Types;
 import snow.api.buffers.Uint8Array;
@@ -18,7 +18,7 @@ class Audio implements snow.modules.interfaces.Audio {
 
         log('create_sound in core module does nothing.');
 
-        return Promise.reject(Error.error('core module doesn\'t implement create_sound'));
+        return Promise.reject(Error.error('core module doesn\'t implement create_sound.'));
 
     } //create_sound
 
