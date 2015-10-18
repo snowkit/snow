@@ -10,7 +10,7 @@ import snow.types.Types;
 interface Audio {
 
     private var app: snow.Snow;
-    private function on_event(event:SystemEvent):Void;
+    private function onevent(event:SystemEvent):Void;
     private function shutdown():Void;
 
     function create_sound( _id:String, _name:String, _streaming:Bool=false, ?_format:AudioFormatType ) : Promise;

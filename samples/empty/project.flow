@@ -4,7 +4,7 @@
     runtime: 'snow.runtime.Native',
     config: {
       config_path: 'config.json',
-      log: 1 
+      log: 1
     }
   },
 

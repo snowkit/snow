@@ -80,7 +80,7 @@ class Input implements snow.modules.interfaces.Input {
     } //listen
 
     function unlisten( window:Window ) {}
-    function on_event( _event : SystemEvent ) {}
+    function onevent( _event : SystemEvent ) {}
 
     public function text_input_start() {
         // :unsupported: :todo:

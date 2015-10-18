@@ -376,9 +376,9 @@ class Audio {
     } //resume
 
         /** Called by Snow when a system event is dispatched */
-    function on_event( _event:SystemEvent ) {
+    function onevent( _event:SystemEvent ) {
 
-        module.on_event(_event);
+        module.onevent(_event);
 
         if(_event.type == SystemEventType.app_willenterbackground) {
             suspend();
@@ -400,7 +400,7 @@ class Audio {
 
         #end //mobile
 
-    } //on_event
+    } //onevent
 
         /** Called by Snow, cleans up sounds/system */
     function shutdown() {

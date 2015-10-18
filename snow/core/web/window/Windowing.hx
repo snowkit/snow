@@ -31,7 +31,7 @@ class Windowing implements snow.modules.interfaces.Windowing {
 
     function update() {}
     function destroy() {}
-    function on_event(event:SystemEvent) {}
+    function onevent(event:SystemEvent) {}
 
     function _copy_config( _config:WindowConfig ) {
         return {

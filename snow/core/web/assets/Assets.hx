@@ -27,7 +27,7 @@ class Assets implements snow.modules.interfaces.Assets {
     function init() {}
     function update() {}
     function destroy() {}
-    function on_event(event:SystemEvent) {}
+    function onevent(event:SystemEvent) {}
 
 
 //Public API

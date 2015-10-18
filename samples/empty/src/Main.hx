@@ -15,9 +15,9 @@ class Main extends snow.App {
 
     override function ready() {
 
-        log('ready');
+        log('ready ' + app.config.runtime);
 
-        // trace(app.assets.path('file.png'));
+        trace(app.assets.path('file.png'));
 
     } //ready
 

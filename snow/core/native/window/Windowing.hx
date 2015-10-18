@@ -17,7 +17,7 @@ class Windowing implements snow.modules.interfaces.Windowing {
     var app: snow.Snow;
 
     function new(_app:snow.Snow) app = _app;
-    function on_event(event:SystemEvent) {}
+    function onevent(event:SystemEvent) {}
     function shutdown() {}
 
     function listen(window:Window) {}

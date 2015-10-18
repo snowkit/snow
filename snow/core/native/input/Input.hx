@@ -11,7 +11,7 @@ class Input implements snow.modules.interfaces.Input {
     var app : snow.Snow;
 
     function new(_app:snow.Snow) app = _app;
-    function on_event(_event:SystemEvent) {}
+    function onevent(_event:SystemEvent) {}
     function shutdown() {}
 
     function listen( window:Window ) {}

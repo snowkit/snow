@@ -16,7 +16,7 @@ class Audio implements snow.modules.interfaces.Audio {
     function init() {}
     function update() {}
     function destroy() {}
-    function on_event(event:SystemEvent) {}
+    function onevent(event:SystemEvent) {}
 
     public function create_sound( _id:String, _name:String, _streaming:Bool=false, ?_format:AudioFormatType ) : Promise {
         return null;

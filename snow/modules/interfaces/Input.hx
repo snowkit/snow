@@ -7,7 +7,7 @@ import snow.types.Types;
 interface Input {
 
     private var app: snow.Snow;
-    private function on_event( event:SystemEvent ):Void;
+    private function onevent( event:SystemEvent ):Void;
     private function shutdown():Void;
 
     private function listen( window:snow.system.window.Window ):Void;

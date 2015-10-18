@@ -92,7 +92,7 @@ class Snow {
 
         core = new Core( this );
         config = default_config();
-        core.init( on_event );
+        core.init( onevent );
 
     } //new
 
@@ -125,7 +125,7 @@ class Snow {
 
     public inline function dispatch_system_event( _event:SystemEvent ) {
 
-        on_event(_event);
+        onevent(_event);
 
     } //dispatch_system_event
 
@@ -186,8 +186,6 @@ class Snow {
         was_ready = true;
 
         setup_app_path();
-
-        _debug('init / setup default assets : ok');
 
         setup_configs().then(function(_){
 
@@ -274,7 +272,7 @@ class Snow {
 
     } //on_snow_update
 
-    function on_event( _event:SystemEvent ) {
+    function onevent( _event:SystemEvent ) {
 
         if( _event.type != SystemEventType.update &&
             _event.type != SystemEventType.unknown &&
@@ -292,10 +290,10 @@ class Snow {
             //all systems should get these basically...
             //cos of app lifecycles etc being here.
         if(is_ready) {
-            io.on_event( _event );
-            audio.on_event( _event );
-            windowing.on_event( _event );
-            input.on_event( _event );
+            io.onevent( _event );
+            audio.onevent( _event );
+            windowing.onevent( _event );
+            input.onevent( _event );
         }
 
         host.onevent( _event );
@@ -328,7 +326,7 @@ class Snow {
 
         } //switch _event.type
 
-    } //on_event
+    } //onevent
 
     inline function cycle_next_queue() {
 

@@ -77,7 +77,7 @@ class Windowing {
 //Internal core API
 
         /** Called by Snow when a system event is dispatched */
-    function on_event( _event:SystemEvent ) {
+    function onevent( _event:SystemEvent ) {
 
         if(_event.type == SystemEventType.window) {
 
@@ -86,7 +86,7 @@ class Windowing {
 
         } //only window events
 
-    } //on_event
+    } //onevent
 
         /** Called by Snow, process any window handling */
     // function update() {

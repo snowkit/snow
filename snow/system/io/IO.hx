@@ -211,11 +211,11 @@ class IO {
     inline function default_provider(_app:Snow, _id:String) return data_load(_id);
 
         /** Called by Snow when a system event happens. */
-    inline function on_event( _event:SystemEvent ) {
+    inline function onevent( _event:SystemEvent ) {
 
-        module.on_event( _event );
+        module.onevent( _event );
 
-    } //on_event
+    } //onevent
 
         /** Destroy and clean up etc. */
     function shutdown() {

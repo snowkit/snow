@@ -12,7 +12,7 @@ class Assets implements snow.modules.interfaces.Assets {
 
     var app: snow.Snow;
     function new( _app:snow.Snow ) app = _app;
-    function on_event(event:SystemEvent):Void {}
+    function onevent(event:SystemEvent):Void {}
     function shutdown() {}
 
 //images

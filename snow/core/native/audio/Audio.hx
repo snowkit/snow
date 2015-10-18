@@ -10,7 +10,7 @@ class Audio implements snow.modules.interfaces.Audio {
     var app : snow.Snow;
 
     function new( _app:snow.Snow ) app = _app;
-    function on_event(event:SystemEvent) {}
+    function onevent(event:SystemEvent) {}
     function shutdown() {}
 
     public function create_sound( _id:String, _name:String, _streaming:Bool=false, ?_format:AudioFormatType ) : Promise {

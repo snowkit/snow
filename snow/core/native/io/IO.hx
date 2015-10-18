@@ -14,7 +14,7 @@ class IO implements snow.modules.interfaces.IO {
     var app: snow.Snow;
     function new(_app:snow.Snow) app = _app;
     function shutdown() {}
-    function on_event( _event:SystemEvent ) : Void {}
+    function onevent( _event:SystemEvent ) : Void {}
 
     public function app_path() : String {
 
@@ -36,12 +36,16 @@ class IO implements snow.modules.interfaces.IO {
 
     public function data_load( _path:String, ?_options:IODataOptions ) : Promise {
 
+        if(_path == null || _path == '') {
+            return Promise.reject(Error.error('data_load invalid file path: `$_path`'));
+        }
+
         return new Promise(function(resolve, reject) {
 
             var _dest = _data_load(_path, _options);
 
             if(_dest == null) {
-                reject(Error.error('data_load file cannot be opened $_path'));
+                reject(Error.error('data_load file cannot be opened `$_path`'));
                 return;
             }
 

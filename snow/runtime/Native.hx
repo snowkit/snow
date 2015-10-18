@@ -46,7 +46,7 @@ class Native implements Runtime {
 
         //move on
             
-            app.on_event({ type:SystemEventType.init });
+            app.onevent({ type:SystemEventType.init });
 
     } //new
 

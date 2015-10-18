@@ -349,11 +349,11 @@ class Input {
     } //unlisten
 
         /** Called when a system event is dispatched through the core */
-    @:noCompletion public function on_event( _event:SystemEvent ) {
+    @:noCompletion public function onevent( _event:SystemEvent ) {
 
-        module.on_event( _event );
+        module.onevent( _event );
 
-    } //on_event
+    } //onevent
 
 
         /** Handle any input related processing, called by Snow */

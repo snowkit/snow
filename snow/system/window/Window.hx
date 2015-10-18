@@ -21,7 +21,7 @@ class Window {
     public var handle : WindowHandle;
 
         /** the window event handler callback */
-    public var onevent : WindowEvent->Void;
+    public var on_event : WindowEvent->Void;
         /** the window render handler callback */
     public var onrender : Window->Void;
 
@@ -48,7 +48,7 @@ class Window {
     public var closed : Bool = true;
 
         //internal minimized flag to avoid rendering when minimized.
-        //use on_event for this yourself
+        //use onevent for this yourself
     var minimized : Bool = false;
     var internal_position : Bool = false;
     var internal_resize : Bool = false;
@@ -106,7 +106,7 @@ class Window {
         set_fullscreen(fullscreen);
         #end
 
-        on_event({
+        onevent({
             type:WindowEventType.created,
             window_id : _id,
             timestamp : system.app.time,
@@ -118,7 +118,7 @@ class Window {
 
     } //on_window_created
 
-    function on_event( _event:WindowEvent ) {
+    function onevent( _event:WindowEvent ) {
 
         _verbose("window event " + id + " / " + _event.type + " / " + _event.event );
 
@@ -164,11 +164,11 @@ class Window {
 
         } //switch
 
-        if(onevent != null) {
-            onevent( _event );
+        if(on_event != null) {
+            on_event( _event );
         }
 
-    } //on_event
+    } //onevent
 
     function update() {
 
