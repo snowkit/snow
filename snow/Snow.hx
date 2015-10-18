@@ -27,7 +27,7 @@ class Snow {
         public var uniqueid (get,never) : String;
             /** A static access to the timestamp for convenience */
         public static var timestamp (get, never) : Float;
-    
+
     //systems
 
             /** The io system */
@@ -126,12 +126,13 @@ class Snow {
 
         inline function get_time() : Float return runtime.timestamp();
         inline function get_uniqueid() : String return make_uniqueid();
-        static inline function get_timestamp() return runtime.timestamp();
+        static inline function get_timestamp() : Float return runtime.timestamp();
 
     //helpers
 
-            // http://www.anotherchris.net/csharp/friendly-unique-id-generation-part-2/#base62
         function make_uniqueid(?val:Int) : String {
+
+            // http://www.anotherchris.net/csharp/friendly-unique-id-generation-part-2/#base62
 
             if(val == null) {
                 #if neko val = Std.random(0x3FFFFFFF);
@@ -157,7 +158,9 @@ class Snow {
         } //make_uniqueid
 
         inline function typename(t:Dynamic) {
+
             return Type.getClassName(Type.getClass(t));
-        }
+
+        } //typename
 
 } //Snow
