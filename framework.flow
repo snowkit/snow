@@ -110,10 +110,10 @@
       build : {
         flags:[
           '--macro snow.Set.assets("snow.core.web.assets.Assets")',
-          '--macro snow.Set.audio("snow.core.web.audio.Audio")',
-          '--macro snow.Set.input("snow.core.web.input.Input")',
+          '--macro snow.Set.audio("snow.core.common.audio.Audio")',
+          '--macro snow.Set.input("snow.core.common.input.Input")',
           '--macro snow.Set.io("snow.core.web.io.IO")',
-          '--macro snow.Set.window("snow.core.web.window.Windowing")'
+          '--macro snow.Set.window("snow.core.common.window.Windowing")'
         ],
         defines : [],
         files : {
@@ -172,7 +172,7 @@
           '--macro snow.Set.audio("snow.core.common.audio.Audio")',
           '--macro snow.Set.input("snow.modules.sdl.Input")',
           '--macro snow.Set.io("snow.modules.sdl.IO")',
-          '--macro snow.Set.window("snow.core.native.window.Windowing")'
+          '--macro snow.Set.window("snow.core.common.window.Windowing")'
         ],
         defines : []
       }
