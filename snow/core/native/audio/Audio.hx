@@ -15,14 +15,20 @@ class Audio implements snow.modules.interfaces.Audio {
     function shutdown() {}
 
     public function create_sound( _id:String, _name:String, _streaming:Bool=false, ?_format:AudioFormatType ) : Promise {
+
         log('create_sound in core module does nothing.');
-        return null;
-    }
+
+        return Promise.reject(Error.error('core module doesn\'t implement create_sound'));
+
+    } //create_sound
 
     public function create_sound_from_bytes( _name:String, _bytes:Uint8Array, _format:AudioFormatType ) : Sound {
+
         log('create_sound_from_bytes in core module does nothing.');
+
         return null;
-    }
+
+    } //create_sound_from_bytes
 
     public function suspend() {
 
