@@ -1,4 +1,4 @@
-package snow.core.native.input;
+package snow.core.common.input;
 
 import snow.types.Types;
 import snow.api.Debug.*;
@@ -13,8 +13,17 @@ class Input implements snow.modules.interfaces.Input {
     function onevent(_event:SystemEvent) {}
     function shutdown() {}
 
-    function listen(window:Window) {}
-    function unlisten(window:Window) {}
+    function listen(window:Window) {
+
+        log('listen in core module does nothing');
+
+    } //listen
+
+    function unlisten(window:Window) {
+
+        log('unlisten in core module does nothing');
+
+    } //unlisten
 
     public function text_input_start() : Void {
 

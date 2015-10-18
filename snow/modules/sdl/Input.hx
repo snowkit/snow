@@ -2,7 +2,7 @@ package snow.modules.sdl;
 
 import sdl.SDL;
 
-class Input extends snow.core.native.input.Input {
+class Input extends snow.core.common.input.Input {
 
     override public function text_input_start() : Void {
 
