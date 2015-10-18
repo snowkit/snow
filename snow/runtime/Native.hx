@@ -1,7 +1,19 @@
 package snow.runtime;
 
+import snow.api.Debug.*;
 import snow.types.Types;
 import timestamp.Timestamp;
+
+#if (hxcpp_static_std && cpp && !scriptable)
+
+    //These use hxcpp magic to
+    //import the std/zlib/regex modules
+
+    import hxcpp.StaticRegexp;
+    import hxcpp.StaticStd;
+    import hxcpp.StaticZlib;
+
+#end //hxcpp_static_std
 
 @:allow(snow.Snow)
 class Native implements Runtime {
@@ -23,11 +35,25 @@ class Native implements Runtime {
 
         timestamp_start = timestamp();
 
+        //ensure the correct running path
+
+            var _app_path = app.io.app_path();
+
+            log('init / app path / `$_app_path`');
+            log('init / pref path / `${app.io.app_path_prefs()}`');
+
+            Sys.setCwd( _app_path );
+
+        //move on
+            
+            app.on_event({ type:SystemEventType.init });
+
     } //new
 
     function run() {
 
         trace('runtime / native / run');
+        Sys.sleep(0.1);
 
     } //run
 

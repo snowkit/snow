@@ -50,7 +50,8 @@
       defines : ['hxcpp_static_std','no_simplify'],
       dependencies: {
         linc_openal:'*',
-        linc_timestamp:'*'
+        linc_timestamp:'*',
+        linc_sdl:'*'
       },
       files : {
         snow_hxml : { path:'flow/build/snow.hxml => snow.hxml', template:['project', 'snow'] },
@@ -171,7 +172,7 @@
           '--macro snow.Set.assets("snow.core.native.assets.Assets")',
           '--macro snow.Set.audio("snow.core.native.audio.Audio")',
           '--macro snow.Set.input("snow.core.native.input.Input")',
-          '--macro snow.Set.io("snow.core.native.io.IO")',
+          '--macro snow.Set.io("snow.modules.sdl.IO")',
           '--macro snow.Set.window("snow.core.native.window.Windowing")'
         ],
         defines : []

@@ -28,6 +28,18 @@ class IO {
 
     } //new
 
+    public inline function app_path() : String {
+
+        return module.app_path();
+
+    } //app_path
+
+    public inline function app_path_prefs() : String {
+
+        return module.app_path_prefs();
+
+    } //app_path_prefs
+
         /** Call this to open a url in the default browser */
     public inline function url_open( _url:String ) {
 

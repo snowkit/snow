@@ -15,6 +15,8 @@ interface IO {
     function url_open(_url:String):Void;
     function data_load(_path:String, ?_options:IODataOptions) : Promise;
     function data_save(_path:String, _data:Uint8Array, ?_options:IODataOptions) : Bool;
+    function app_path() : String;
+    function app_path_prefs() : String;
 
     private function string_save_path(?_slot:Int=0) : String;
     private function string_slot_load(?_slot:Int=0) : String;

@@ -122,6 +122,40 @@ class Snow {
 
         } //shutdown
 
+    //events
+
+            /** Handles snow system events, typically emitted via the runtime and modules. 
+                Dispatch events manually using the `dispatch_*` calls. */
+        public function on_event( _event:SystemEvent ) {
+
+            // if( _event.type != SystemEventType.update ) {
+                log('event / system event / ${_event.type}');
+            // }
+
+            io.on_event( _event );
+            audio.on_event( _event );
+            windowing.on_event( _event );
+            input.on_event( _event );
+            host.onevent( _event );
+
+            switch(_event.type) {
+
+                case init: //on_snow_init();
+
+                case ready: //on_snow_ready();
+
+                case update: //on_snow_update();
+
+                case quit, app_terminating: shutdown();
+
+                case shutdown: log('Goodbye.');
+                
+                case _:
+
+            } //switch _event.type
+
+        } //on_event
+
     //internal
 
         inline function get_time() : Float return runtime.timestamp();
