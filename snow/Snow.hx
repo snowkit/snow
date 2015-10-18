@@ -60,7 +60,7 @@ class Snow {
     //api
 
         public function new(_host : App) {
-        
+
             log('app / init / debug:$debug');
             log('app / ident: ' + snow.Set.app_ident);
             log('app / config: ' + snow.Set.app_config);
@@ -93,7 +93,7 @@ class Snow {
             assertnull(os, 'init - Runtime didn\'t set the app.os value!');
             assertnull(platform, 'init - Runtime didn\'t set the app.platform value!');
 
-            log('app / os:$os / platform:$platform');
+            log('app / os:$os / platform:$platform / $time');
             log('app / runtime / ${runtime.name} / run');
 
             runtime.run();
@@ -101,6 +101,8 @@ class Snow {
             if(!(has_shutdown || shutting_down)) {
                 shutdown();
             }
+
+            log('app / exit / $time');
 
         } //new
 
