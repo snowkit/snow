@@ -3,6 +3,7 @@ package snow.core.native.audio;
 import snow.types.Types;
 import snow.api.buffers.Uint8Array;
 import snow.api.Promise;
+import snow.api.Debug.*;
 
 @:allow(snow.system.audio.Audio)
 class Audio implements snow.modules.interfaces.Audio {
@@ -14,20 +15,27 @@ class Audio implements snow.modules.interfaces.Audio {
     function shutdown() {}
 
     public function create_sound( _id:String, _name:String, _streaming:Bool=false, ?_format:AudioFormatType ) : Promise {
-        trace('Audio: create_sound in root module. Nothing will happen.');
+        log('create_sound in core module does nothing.');
         return null;
     }
 
     public function create_sound_from_bytes( _name:String, _bytes:Uint8Array, _format:AudioFormatType ) : Sound {
-        trace('Audio: create_sound_from_bytes in root module. Nothing will happen.');
+        log('create_sound_from_bytes in core module does nothing.');
         return null;
     }
 
-        //:todo:
-    public function suspend() {}
-        //:todo:
-    public function resume() {}
+    public function suspend() {
 
-} //AudioSystem
+        log('suspend in core module does nothing.');
+
+    } //suspend
+
+    public function resume() {
+
+        log('resume in core module does nothing.');
+
+    } //resume
+
+} //Audio
 
 typedef Sound = snow.system.audio.Sound;
