@@ -8,16 +8,16 @@ import haxe.macro.ExprTools;
 import haxe.macro.Type;
 #end
 
-#if !macro
+#if (!macro && !display)
         /** The compile time type of the user App main, used to instantiate the user type */
     typedef HostApp = haxe.macro.MacroType<[snow.Set.get_type('app_main')]>;
         /** The compile time type of the runtime instance, used to instantiate the runtime type */
     typedef HostRuntime = haxe.macro.MacroType<[snow.Set.get_type('app_runtime')]>;
         /** The compile time type of the asset module */
     typedef ModuleAssets = haxe.macro.MacroType<[snow.Set.get_type('module_assets')]>;
-    typedef ModuleAudio = haxe.macro.MacroType<[snow.Set.get_type('module_audio')]>;
-    typedef ModuleInput = haxe.macro.MacroType<[snow.Set.get_type('module_input')]>;
-    typedef ModuleIO = haxe.macro.MacroType<[snow.Set.get_type('module_io')]>;
+    typedef ModuleAudio  = haxe.macro.MacroType<[snow.Set.get_type('module_audio')]>;
+    typedef ModuleInput  = haxe.macro.MacroType<[snow.Set.get_type('module_input')]>;
+    typedef ModuleIO     = haxe.macro.MacroType<[snow.Set.get_type('module_io')]>;
     typedef ModuleWindow = haxe.macro.MacroType<[snow.Set.get_type('module_window')]>;
 #end
 
@@ -25,16 +25,18 @@ import haxe.macro.Type;
 @:allow(snow.Snow)
 class Set {
 
-    public static var app_runtime : String = get_runtime();
-    public static var app_config : String = get_config();
-    public static var app_ident : String = get_ident();
-    public static var app_main : String = get_main();
+    #if !display
 
-    public static var module_assets : String = get_module_assets();
-    public static var module_audio : String = get_module_audio();
-    public static var module_input : String = get_module_input();
-    public static var module_io : String = get_module_io();
-    public static var module_window : String = get_module_window();
+        public static var app_runtime : String = get_runtime();
+        public static var app_config : String = get_config();
+        public static var app_ident : String = get_ident();
+        public static var app_main : String = get_main();
+
+        public static var module_assets : String = get_module_assets();
+        public static var module_audio : String = get_module_audio();
+        public static var module_input : String = get_module_input();
+        public static var module_io : String = get_module_io();
+        public static var module_window : String = get_module_window();
 
 //Configs
     //set
@@ -42,54 +44,55 @@ class Set {
         macro static function config(_value:String):Void    app_config = _value;
 
         macro static function main(_value:String):Void {
-            Context.warning('main: $_value', Context.currentPos());
+            // Context.warning('main: $_value', Context.currentPos());
             Compiler.include(_value); Compiler.keep(_value);
             Context.follow(Context.getType(_value));
             app_main = _value;
         }
 
         macro static function runtime(_value:String):Void {
-            Context.warning('runtime: $_value', Context.currentPos());
+            // Context.warning('runtime: $_value', Context.currentPos());
             Compiler.include(_value); Compiler.keep(_value);
             Context.follow(Context.getType(_value));
             app_runtime = _value;
         }
 
         macro static function assets(_value:String):Void {
-            Context.warning('assets: $_value', Context.currentPos());
+            // Context.warning('assets: $_value', Context.currentPos());
             Compiler.include(_value); Compiler.keep(_value);
             Context.follow(Context.getType(_value));
             module_assets = _value;
         }
 
         macro static function audio(_value:String):Void {
-            Context.warning('audio: $_value', Context.currentPos());
+            // Context.warning('audio: $_value', Context.currentPos());
             Compiler.include(_value); Compiler.keep(_value);
             Context.follow(Context.getType(_value));
             module_audio = _value;
         }
 
         macro static function input(_value:String):Void {
-            Context.warning('input: $_value', Context.currentPos());
+            // Context.warning('input: $_value', Context.currentPos());
             Compiler.include(_value); Compiler.keep(_value);
             Context.follow(Context.getType(_value));
             module_input = _value;
         }
 
         macro static function io(_value:String):Void {
-            Context.warning('io: $_value', Context.currentPos());
+            // Context.warning('io: $_value', Context.currentPos());
             Compiler.include(_value); Compiler.keep(_value);
             Context.follow(Context.getType(_value));
             module_io = _value;
         }
 
         macro static function window(_value:String):Void {
-            Context.warning('window: $_value', Context.currentPos());
+            // Context.warning('window: $_value', Context.currentPos());
             Compiler.include(_value); Compiler.keep(_value);
             Context.follow(Context.getType(_value));
             module_window = _value;
         }
 
+        #if macro
         macro static function get_type(_value:String):Type {
             
             var _name:String = switch(_value) {
@@ -113,6 +116,7 @@ class Set {
             
             return _type;
         }
+        #end
 
     //get
         macro static function get_runtime():Expr return macro $v{app_runtime};
@@ -135,6 +139,18 @@ class Set {
         macro static function module(name:String, type:String):Void {
             // snow.system.module.Module.set('$name', '$type');
         }
+    
+    #else
+        macro static function ident(_value:String){}
+        macro static function config(_value:String){}
+        macro static function main(_value:String){}
+        macro static function runtime(_value:String){}
+        macro static function assets(_value:String){}
+        macro static function audio(_value:String){}
+        macro static function input(_value:String){}
+        macro static function io(_value:String){}
+        macro static function window(_value:String){}
+    #end
 
 }
 
