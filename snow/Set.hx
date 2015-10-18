@@ -141,15 +141,15 @@ class Set {
         }
     
     #else
-        macro static function ident(_value:String){}
-        macro static function config(_value:String){}
-        macro static function main(_value:String){}
-        macro static function runtime(_value:String){}
-        macro static function assets(_value:String){}
-        macro static function audio(_value:String){}
-        macro static function input(_value:String){}
-        macro static function io(_value:String){}
-        macro static function window(_value:String){}
+        macro static function ident(_value:String) { return macro ''; }
+        macro static function config(_value:String){ return macro ''; }
+        macro static function main(_value:String){ return macro ''; }
+        macro static function runtime(_value:String){ return macro ''; }
+        macro static function assets(_value:String){ return macro ''; }
+        macro static function audio(_value:String){ return macro ''; }
+        macro static function input(_value:String){ return macro ''; }
+        macro static function io(_value:String){ return macro ''; }
+        macro static function window(_value:String){ return macro ''; }
     #end
 
 }
