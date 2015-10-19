@@ -1,12 +1,17 @@
 package snow.core.native.io;
 
 import haxe.io.Bytes;
-import snow.api.File;
-import snow.api.Libs;
 import snow.types.Types;
 import snow.api.Promise;
 import snow.api.buffers.Uint8Array;
+import snow.api.buffers.ArrayBufferView;
 import snow.api.Debug.*;
+
+@:enum abstract FileSeek(Int) from Int to Int {
+    var set = 0;
+    var cur = 1;
+    var end = 2;
+}
 
 @:allow(snow.system.io.IO)
 class IO implements snow.modules.interfaces.IO {
@@ -58,15 +63,17 @@ class IO implements snow.modules.interfaces.IO {
     public function data_save( _path:String, _data:Uint8Array, ?_options:IODataOptions ) : Bool {
 
         var _binary = (_options != null && _options.binary);
-        var _file = File.from_file(_path, _binary ? 'wb' : 'w' );
+        var _file = file_handle(_path, _binary ? 'wb' : 'w');
 
-        if(_file != null) {
-            var count : Int = _file.write( _data, _data.length, 1 );
+        if(_file != -1) {
 
-                _file.close();
+            var count = file_write(_file, _data, _data.length, 1);
+
+            file_close(_file);
 
             return count == 1;
-        }
+
+        } //!null
 
         return false;
 
@@ -141,29 +148,69 @@ class IO implements snow.modules.interfaces.IO {
 
     } //string_slot_decode
 
+//File handling
+    
+    public function file_handle(_path:String, ?_mode:String="rb") : Int {
+
+        log('file_handle in code module does nothing.');
+        return -1;
+
+    } //file_handle
+
+    public function file_read(handle:Int, dest:ArrayBufferView, size:Int, maxnum:Int) : Int {
+
+        log('file_read in code module does nothing.');
+        return -1;
+
+    } //file_read
+
+    public function file_write(handle:Int, src:ArrayBufferView, size:Int, num:Int) : Int {
+
+        log('file_write in code module does nothing.');
+        return -1;
+
+    } //file_write
+
+    public function file_seek(handle:Int, offset:Int, whence:Int) : Int {
+
+        log('file_seek in code module does nothing.');
+        return -1;
+
+    } //file_seek
+
+    public function file_tell(handle:Int) : Int {
+
+        log('file_tell in code module does nothing.');
+        return -1;
+
+    } //file_tell
+
+    public function file_close(handle:Int) : Int {
+
+        log('file_close in code module does nothing.');
+        return -1;
+
+    } //file_close
+
 //Internal
 
     function _data_load(_path:String, ?_options:IODataOptions) : Uint8Array {
 
         var _binary = (_options != null && _options.binary);
-        var _file = File.from_file(_path, _binary ? 'rb' : 'r' );
+        var _file = file_handle(_path, _binary ? 'rb' : 'r');
 
-        if(_file == null) return null;
+        if(_file == -1) return null;
 
-            //jump to the end, measure size
-        _file.seek(0, FileSeek.end);
-
-        var size = _file.tell();
-
-            //reset to beginning
-        _file.seek(0, FileSeek.set);
+        file_seek(_file, 0, FileSeek.end);
+        var _size = file_tell(_file);
+        file_seek(_file, 0, FileSeek.set);
 
             //create a buffer to read to
-        var _dest = new Uint8Array(size);
-        var _read = _file.read(_dest, _dest.length, 1);
+        var _dest = new Uint8Array(_size);
+        var _read = file_read(_file, _dest, _dest.length, 1);
 
             //close+release the file handle
-        _file.close();
+        file_close(_file);
 
         return _dest;
 
