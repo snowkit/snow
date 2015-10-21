@@ -79,7 +79,7 @@ class Window {
             config.y = 0x1FFF0000;
         }
 
-        system.module.create( system.app.config.render, _config, on_window_created );
+        system.module.create( system.app.config, _config, on_window_created );
 
     } //new
 

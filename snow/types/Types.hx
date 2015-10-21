@@ -133,6 +133,9 @@ typedef AppConfigWeb = {
             You cannot force fullscreen on web. default: false */
     @:optional var true_fullscreen : Bool;
 
+		/** An optional parent element id. Defaults to body. */
+	@:optional var parent_element : String;
+
 } //AppConfigWeb
 
 typedef AppConfigNative = {
