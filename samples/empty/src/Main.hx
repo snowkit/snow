@@ -7,7 +7,7 @@ class Main extends snow.App {
 
     override function config( config:AppConfig ) : AppConfig {
 
-        config.window.title = 'snow empty application template';
+        config.window.title = 'snow empty app template';
 
         return config;
 
