@@ -138,7 +138,6 @@ class Sound {
 
 //Streaming API
 
-//:todo:snowdev
 #if snow_native
 
         /** Default data seek implementation for `SoundStream` uses `assets.system.audio_seek_source` */

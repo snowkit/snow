@@ -2,6 +2,7 @@ package snow;
 
 import snow.runtime.Runtime;
 import snow.api.Debug.*;
+import snow.api.Timer;
 import snow.api.Promise;
 import snow.api.buffers.Uint8Array;
 import snow.types.Types;
@@ -220,7 +221,7 @@ class Snow {
             if(freeze) return;
 
                 //first update timers
-            // Timer.update();
+            Timer.update();
 
                 //handle promise executions
             snow.api.Promise.Promises.step();
