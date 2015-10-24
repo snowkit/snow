@@ -20,6 +20,8 @@ class Snow {
         public var host : App;
             /** The application configuration specifics (like window, runtime, and asset lists) */
         public var config : snow.types.Types.AppConfig;
+            /** Whether or not we are frozen, ignoring events i.e backgrounded/paused */
+        public var freeze (default,set) : Bool = false;
 
             /** The current timestamp */
         public var time (get,never) : Float;
@@ -98,6 +100,8 @@ class Snow {
 
             log('app / os:$os / platform:$platform / ready / $time');
             onevent({ type:ready });
+
+            step();
 
             log('app / runtime / ${runtime.name} / run');
             runtime.run();
@@ -199,7 +203,7 @@ class Snow {
 
                 _debug('init / queing host ready');
 
-                next(host.ready);
+                host.ready();
 
             }).error(function(e) {
 
@@ -207,19 +211,22 @@ class Snow {
 
             });
 
-            snow.api.Promise.Promises.step();
-
-            while(next_queue.length > 0) {
-                cycle_next_queue();
-            }
-
-            while(defer_queue.length > 0) {
-                cycle_defer_queue();
-            }
+            step();
 
         } //on_ready_event
         
         inline function on_update_event() {
+
+            if(freeze) return;
+
+                //first update timers
+            // Timer.update();
+
+                //handle promise executions
+            snow.api.Promise.Promises.step();
+
+                //handle the events
+            cycle_next_queue();
 
         } //on_update_event
 
@@ -364,6 +371,39 @@ class Snow {
             return conf;
 
         } //default_window_config
+
+    //properties
+
+        function set_freeze( _freeze:Bool ) {
+
+            freeze = _freeze;
+
+            //:todo: system pause event
+            // if(_freeze) {
+            //     audio.suspend();
+            // } else {
+            //     audio.resume();
+            // }
+
+            return freeze;
+
+        } //set_freeze
+
+    //step
+
+        inline function step() {
+
+            snow.api.Promise.Promises.step();
+
+            while(next_queue.length > 0) {
+                cycle_next_queue();
+            }
+
+            while(defer_queue.length > 0) {
+                cycle_defer_queue();
+            }
+
+        } //step
 
     //callbacks
     
