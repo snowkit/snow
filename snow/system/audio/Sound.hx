@@ -144,6 +144,7 @@ class Sound {
         /** Default data seek implementation for `SoundStream` uses `assets.system.audio_seek_source` */
     function default_stream_data_seek( _to:Int ) : Bool {
 
+        //:todo:
         // return system.app.assets.module.audio_seek_source( info, _to );
         return false;
 
@@ -152,6 +153,7 @@ class Sound {
         /** Default data get implementation for `SoundStream` uses `assets.system.audio_load_portion` */
     function default_stream_data_get( _start:Int, _length:Int ) : AudioDataBlob {
 
+        //:todo:
         // return system.app.assets.module.audio_load_portion( info, _start, _length );
         return null;
 

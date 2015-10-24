@@ -144,11 +144,11 @@ class Asset {
 
             } //load_from_pixels
 
-                /** A default io provider, using image_load_info from the asset module.
+                /** A default io provider, using image_info_from_load from the asset module.
                     Promises ImageInfo. Takes an asset path, not an asset id (uses assets.path(id))*/
             public static function provider(_app:snow.Snow, _path:String) : Promise {
 
-                return _app.assets.module.image_load_info(_path);
+                return _app.assets.module.image_info_from_load(_path);
 
             } //provider
 

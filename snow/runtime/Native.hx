@@ -53,7 +53,8 @@ class Native implements Runtime {
     function run() {
 
         trace('runtime / native / run');
-        Sys.sleep(0.1);
+        
+        app.onevent({ type:SystemEventType.update });
 
     } //run
 

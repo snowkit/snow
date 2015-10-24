@@ -15,9 +15,17 @@ class Main extends snow.App {
 
     override function ready() {
 
-        log('ready ' + app.config.runtime);
+        log('ready');
+        log('runtime config: ${app.config.runtime}');
+        log('asset path: ${app.assets.path('fake.file')}');
 
-        trace(app.assets.path('file.png'));
+        app.assets.image('assets/test.png')
+            .then(function(asset:AssetImage){
+                var image = asset.image;
+                log('`${image.id}` : ${image.width}x${image.height}x${image.bpp}(${image.bpp_source}) [${image.pixels.length}]');
+            }).error(function(error){
+                log(error);
+            });
 
     } //ready
 
