@@ -2,9 +2,11 @@ package snow.modules.sdl;
 
 import sdl.SDL;
 
+import snow.api.Debug.*;
 import snow.api.buffers.Uint8Array;
 import snow.api.buffers.ArrayBufferView;
 import snow.core.native.io.IO.FileSeek;
+import snow.core.native.io.IO.FileHandle;
 
 class IO extends snow.core.native.io.IO {
 
@@ -25,82 +27,67 @@ class IO extends snow.core.native.io.IO {
     } //app_path_prefs
 
 //File
-    
-    var files:Map<Int,FileHandle> = new Map();
-    var files_seq:Int = 0;
+        
+    var file_seq = 0;
+    var files:Map<Int, sdl.RWops> = new Map();
 
-    override public function file_handle(_path:String, ?_mode:String="rb") : Int {
+    override public function file_handle(_path:String, ?_mode:String="rb") : FileHandle {
 
-        var _index = files_seq;
         var _handle = SDL.RWFromFile(_path, _mode);
+        if(_handle == null) return null;
 
-            //false is used because 0/NULL equates to it
-        if(_handle == untyped false) {
-            return -1;
-        }
+        var _id = file_seq;
+        files.set(_id, _handle);
+        file_seq++;
 
-        var _fh = new FileHandle();
-            _fh.handle = _handle;
-
-        files.set(_index, _fh);
-        files_seq++;
-
-        return _index;
+        return _id;
 
     } //file_handle
 
-    override public function file_read(handle:Int, dest:ArrayBufferView, size:Int, maxnum:Int) : Int {
+    override public function file_read(file:FileHandle , dest:ArrayBufferView, size:Int, maxnum:Int) : Int {
 
-        if(!files.exists(handle)) return -1;
+        assertnull(file);
 
-        return SDL.RWread(files.get(handle).handle, dest.buffer.getData(), size, maxnum);
+        return SDL.RWread(files.get(file), dest.buffer.getData(), size, maxnum);
 
     } //file_read
 
-    override public function file_write(handle:Int, src:ArrayBufferView, size:Int, num:Int) : Int {
+    override public function file_write(file:FileHandle, src:ArrayBufferView, size:Int, num:Int) : Int {
 
-        if(!files.exists(handle)) return -1;
+        assertnull(file);
 
-        return SDL.RWwrite(files.get(handle).handle, src.buffer.getData(), size, num);
+        return SDL.RWwrite(files.get(file), src.buffer.getData(), size, num);
 
     } //file_write
 
-    override public function file_seek(handle:Int, offset:Int, whence:Int) : Int {
+    override public function file_seek(file:FileHandle, offset:Int, whence:Int) : Int {
+        
+        assertnull(file);
 
-        if(!files.exists(handle)) return -1;
-
-        return SDL.RWseek(files.get(handle).handle, offset, whence);
+        return SDL.RWseek(files.get(file), offset, whence);
 
     } //file_seek
 
-    override public function file_tell(handle:Int) : Int {
+    override public function file_tell(file:FileHandle) : Int {
 
-        if(!files.exists(handle)) return -1;
+        assertnull(file);
 
-        return SDL.RWtell(files.get(handle).handle);
+        return SDL.RWtell(files.get(file));
 
     } //file_tell
 
-    override public function file_close(handle:Int) : Int {
+    override public function file_close(file:FileHandle) : Int {
 
-        if(!files.exists(handle)) return -1;
+        assertnull(file);
 
-        var _file = files.get(handle);
-        var _res = SDL.RWclose(_file.handle);
+        var handle = files.get(file);
+        var res = SDL.RWclose(handle);
+        files.remove(file);
+        handle = null;
 
-        files.remove(handle);
-        _file = null;
-
-        return _res;
+        return res;
 
     } //file_close
 
 
 } //IO
-
-@:unreflective
-private class FileHandle {
-    public var handle:sdl.RWops;
-    public function new(){}
-}
-

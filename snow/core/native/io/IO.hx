@@ -13,6 +13,15 @@ import snow.api.Debug.*;
     var end = 2;
 }
 
+
+// @:generic
+// class FileHandle<T> {
+//     public function new(h:T) handle = h;
+//     public var handle:T;
+// }
+
+typedef FileHandle = Null<Int>;
+
 @:allow(snow.system.io.IO)
 class IO implements snow.modules.interfaces.IO {
 
@@ -65,7 +74,7 @@ class IO implements snow.modules.interfaces.IO {
         var _binary = (_options != null && _options.binary);
         var _file = file_handle(_path, _binary ? 'wb' : 'w');
 
-        if(_file != -1) {
+        if(_file != null) {
 
             var count = file_write(_file, _data, _data.length, 1);
 
@@ -150,42 +159,42 @@ class IO implements snow.modules.interfaces.IO {
 
 //File handling
     
-    public function file_handle(_path:String, ?_mode:String="rb") : Int {
+    public function file_handle(_path:String, ?_mode:String="rb") : FileHandle {
 
         log('file_handle in code module does nothing.');
-        return -1;
+        return null;
 
     } //file_handle
 
-    public function file_read(handle:Int, dest:ArrayBufferView, size:Int, maxnum:Int) : Int {
+    public function file_read(handle:FileHandle, dest:ArrayBufferView, size:Int, maxnum:Int) : Int {
 
         log('file_read in code module does nothing.');
         return -1;
 
     } //file_read
 
-    public function file_write(handle:Int, src:ArrayBufferView, size:Int, num:Int) : Int {
+    public function file_write(handle:FileHandle, src:ArrayBufferView, size:Int, num:Int) : Int {
 
         log('file_write in code module does nothing.');
         return -1;
 
     } //file_write
 
-    public function file_seek(handle:Int, offset:Int, whence:Int) : Int {
+    public function file_seek(handle:FileHandle, offset:Int, whence:Int) : Int {
 
         log('file_seek in code module does nothing.');
         return -1;
 
     } //file_seek
 
-    public function file_tell(handle:Int) : Int {
+    public function file_tell(handle:FileHandle) : Int {
 
         log('file_tell in code module does nothing.');
         return -1;
 
     } //file_tell
 
-    public function file_close(handle:Int) : Int {
+    public function file_close(handle:FileHandle) : Int {
 
         log('file_close in code module does nothing.');
         return -1;
@@ -199,7 +208,7 @@ class IO implements snow.modules.interfaces.IO {
         var _binary = (_options != null && _options.binary);
         var _file = file_handle(_path, _binary ? 'rb' : 'r');
 
-        if(_file == -1) return null;
+        if(_file == null) return null;
 
         file_seek(_file, 0, FileSeek.end);
         var _size = file_tell(_file);
