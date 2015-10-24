@@ -228,6 +228,25 @@ class Snow {
                 //handle the events
             cycle_next_queue();
 
+                //handle any internal pre updates
+            host.ontickstart();
+
+                //handle any internal updates
+            // host.on_internal_update();
+
+                //handle any internal render updates
+            // host.on_internal_render();
+
+                //let the system have some time
+            #if snow_native
+                Sys.sleep(0);
+            #end
+
+                //handle any internal post updates
+            host.ontickend();
+
+            cycle_defer_queue();
+
         } //on_update_event
 
     //setup and boot
