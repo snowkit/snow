@@ -34,11 +34,11 @@ class Assets implements snow.modules.interfaces.Assets {
 
     //Images
 
-        public function image_load_info( _id:String, ?_components:Int = 4 ) : Promise {
+        public function image_info_from_load( _id:String, ?_components:Int = 4 ) : Promise {
 
             return system.app.io.data_flow(_id, AssetImage.processor);
 
-        } //image_load_info
+        } //image_info_from_load
 
             /** Create an image info (padded to POT) from a given Canvas or Image element. */
         public function image_info_from_element( _id:String, _elem ) {

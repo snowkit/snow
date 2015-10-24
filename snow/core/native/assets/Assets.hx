@@ -5,6 +5,7 @@ import snow.api.buffers.Uint8Array;
 import snow.api.Promise;
 import snow.api.Debug.*;
 
+import stb.Image;
 
 @:allow(snow.system.assets.Assets)
 class Assets implements snow.modules.interfaces.Assets {
@@ -16,88 +17,89 @@ class Assets implements snow.modules.interfaces.Assets {
 
 //images
 
-    public function image_load_info( _path:String, ?_components:Int = 4 ) : Promise {
+    public function image_info_from_load(_path:String, ?_components:Int = 4) : Promise {
+
+        assertnull(_path);
 
         return new Promise(function(resolve, reject) {
 
-            var _native_info = assets_image_load_info( _path, _components );
-            if(_native_info == null) return reject(Error.error('failed to load $_path : does the file exist?'));
-            if(_native_info.data == null) return reject(Error.error('failed to load $_path : data was null.'));
+            var _load = app.io.data_load(_path);
+            
+            _load.then(function(_file:Uint8Array) {
 
-            var _bytes = haxe.io.Bytes.ofData( _native_info.data );
+                var _image = image_info_from_bytes_direct(_path, _file, _components);
 
-            var info : ImageInfo = {
-                id : _native_info.id,
-                bpp : _native_info.bpp,
-                width : _native_info.width,
-                height : _native_info.height,
-                width_actual : _native_info.width,
-                height_actual : _native_info.height,
-                bpp_source : _native_info.bpp_source,
-                pixels : new Uint8Array( _bytes )
-            };
+                if(_image == null) {
+                    reject(Error.error('failed to load `$_path` as image. reason: `${stb.Image.failure_reason()}`'));
+                } else {
+                    resolve(_image);
+                }
 
-            _native_info = null;
+            }).error(reject);
 
-            return resolve(info);
+        }); //promise
 
-        });
+    } //image_info_from_load
 
-    } //image_load_info
-
-    public function image_info_from_bytes( _id:String, _bytes:Uint8Array, ?_components:Int = 4 ) : Promise {
+    public function image_info_from_bytes(_id:String, _bytes:Uint8Array, ?_components:Int = 4) : Promise {
 
         assertnull(_id);
         assertnull(_bytes);
 
         return new Promise(function(resolve, reject) {
 
-            var _native_info = assets_image_info_from_bytes( _id, _bytes, _components );
+            var _image = image_info_from_bytes_direct(_id, _bytes, _components);
 
-            if(_native_info == null)
-                return reject(Error.error('failed to load image from bytes, native code returned null.'));
-            if(_native_info.data == null)
-                return reject(Error.error('failed to load image from bytes, native code returned null data.'));
-
-            var _out_bytes : haxe.io.Bytes = haxe.io.Bytes.ofData(_native_info.data);
-
-            var info : ImageInfo = {
-                id : _native_info.id,
-                bpp : _native_info.bpp,
-                width : _native_info.width,
-                height : _native_info.height,
-                width_actual : _native_info.width,
-                height_actual : _native_info.height,
-                bpp_source : _native_info.bpp_source,
-                pixels : new Uint8Array( _out_bytes )
+            if(_image == null) {
+                reject(Error.error('failed to load `$_id` from bytes. reason: `${stb.Image.failure_reason()}`'));
+            } else {
+                resolve(_image);
             }
-
-            _native_info = null;
-
-            return resolve(info);
 
         }); //promise
 
     } //image_info_from_bytes
 
+    function image_info_from_bytes_direct(_id:String, _bytes:Uint8Array, ?_components:Int=4) : ImageInfo {
+
+        var _image_bytes = _bytes.toBytes();
+        var _info = stb.Image.load_from_memory(_image_bytes.getData(), _image_bytes.length, _components);
+
+        if(_info == null) {
+            return null;
+        }
+
+        var _pixel_bytes : haxe.io.Bytes = haxe.io.Bytes.ofData(_info.bytes);
+
+        return {
+            id : _id,
+            bpp : _info.req_comp,
+            width : _info.w,
+            height : _info.h,
+            width_actual : _info.w,
+            height_actual : _info.h,
+            bpp_source : _info.comp,
+            pixels : new Uint8Array( _pixel_bytes )
+        };
+    
+    } //info_from_bytes
+
             /** Create an image info from raw (already decoded) image pixels. */
-    public function image_info_from_pixels( _id:String, _width:Int, _height:Int, _pixels:Uint8Array ) : ImageInfo {
+    public function image_info_from_pixels(_id:String, _width:Int, _height:Int, _pixels:Uint8Array, ?_bpp:Int=4) : ImageInfo {
 
         assertnull( _id );
         assertnull( _pixels );
 
-        var info : ImageInfo = {
+        return {
             id : _id,
-            bpp : 4,
+            bpp : _bpp,
             width : _width,
             height : _height,
             width_actual : _width,
             height_actual : _height,
-            bpp_source : 4,
+            bpp_source : _bpp,
             pixels : _pixels
         };
-
-        return info;
 
     } //image_info_from_pixels
 
@@ -299,35 +301,8 @@ class Assets implements snow.modules.interfaces.Assets {
     } //audio_seek_source_pcm
 
 
-
-//Native bindings
-    
-    function assets_image_load_info(_path:String, ?_components:Int=4) : NativeImageInfo {
-        //:todo:
-        return null;
-    } //assets_image_load_info
-
-    function assets_image_info_from_bytes(_id:String, _bytes:Uint8Array, ?_components:Int=4) : NativeImageInfo {
-        //:todo:
-        return null;
-    } //assets_image_info_from_bytes
-
-
-} //AssetSystem
-
-
-    //These interact with the C++ side, where
-    // haxe.io.ByteData is passed in directly
-
-
-private typedef NativeImageInfo = {
-    id : String,
-    bpp : Int,
-    width : Int,
-    height : Int,
-    bpp_source : Int,
-    data : haxe.io.BytesData,
 }
+
 
 private typedef NativeAudioInfo = {
     id : String,
@@ -350,3 +325,5 @@ private typedef NativeAudioDataBlob = {
     bytes : haxe.io.BytesData,
     complete : Bool
 }
+
+
