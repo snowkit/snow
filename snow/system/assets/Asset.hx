@@ -84,7 +84,7 @@ class Asset {
                 image = null;
             }
 
-                /** Reload the asset with from bytes */
+                /** Reload the asset from bytes */
             public function reload_from_bytes(_bytes:Uint8Array) {
 
                 loaded = false;
@@ -145,7 +145,7 @@ class Asset {
             } //load_from_pixels
 
                 /** A default io provider, using image_info_from_load from the asset module.
-                    Promises ImageInfo. Takes an asset path, not an asset id (uses assets.path(id))*/
+                    Promises ImageInfo. Takes an asset path, not an asset id (use assets.path(id))*/
             public static function provider(_app:snow.Snow, _path:String) : Promise {
 
                 return _app.assets.module.image_info_from_load(_path);
