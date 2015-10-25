@@ -202,9 +202,10 @@ class IO implements snow.modules.interfaces.IO {
 
     public function file_size(handle:FileHandle) : UInt {
 
+        var _cur = file_tell(handle);
         file_seek(handle, 0, FileSeek.end);
         var _size = file_tell(handle);
-        file_seek(handle, 0, FileSeek.set);
+        file_seek(handle, _cur, FileSeek.set);
         return _size;
 
     } //file_size
