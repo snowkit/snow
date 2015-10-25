@@ -4,6 +4,7 @@ import snow.types.Types;
 import snow.api.buffers.Uint8Array;
 import snow.api.Promise;
 import snow.api.Debug.*;
+import snow.core.native.io.IO.FileSeek;
 
 import stb.Image;
 
@@ -107,52 +108,20 @@ class Assets implements snow.modules.interfaces.Assets {
 
     public function audio_load_info(_path:String, ?_load:Bool=true, ?_format:AudioFormatType) : AudioInfo {
 
-        if(_format == null) {
-            var _ext = haxe.io.Path.extension(_path);
-            _format = switch(_ext) {
-                case 'wav': wav;
-                case 'ogg': ogg;
-                case 'pcm': pcm;
-                case _: unknown;
-            }
-        }
+        if(_format == null) _format = audio_format_from_ext(_path);
 
-        var _native_info : NativeAudioInfo = switch(_format) {
-            case wav: Wav.from_file(_path);
-            case ogg: Ogg.from_file(_path);
-            case pcm: PCM.from_file(_path);
+        var _info = switch(_format) {
+            case wav: Wav.from_file(app, _path, _load);
+            case ogg: Ogg.from_file(app, _path, _load);
+            case pcm: PCM.from_file(app, _path, _load);
             case _: null;
         } //switch _format
 
-            //:todo:
-        if(_native_info == null) throw Error.error('failed to load $_path : does the file exist?');
-        if(_native_info.data == null) throw Error.error('failed to load $_path : data was null.');
+        if(_info == null) throw Error.error('Assets / audio / failed to load `$_path` as `$_format`');
 
-        var _result_bytes = haxe.io.Bytes.ofData(_native_info.data.bytes);
-        var _result_info : AudioInfo = {
-
-            id:     _native_info.id,
-            format: _native_info.format,
-            handle: _native_info.handle,
-
-            data: {
-                samples         : new Uint8Array( _result_bytes ),
-                length          : _native_info.data.length,
-                length_pcm      : _native_info.data.length_pcm,
-                channels        : _native_info.data.channels,
-                rate            : _native_info.data.rate,
-                bitrate         : _native_info.data.bitrate,
-                bits_per_sample : _native_info.data.bits_per_sample
-            }
-
-        } //result_info
-
-        _native_info = null;
-
-        return _result_info;
+        return _info;
 
     } //audio_load_info
-
 
     public function audio_info_from_bytes(_bytes:Uint8Array, _format:AudioFormatType) : AudioInfo {
 
@@ -160,168 +129,74 @@ class Assets implements snow.modules.interfaces.Assets {
 
         var _id = 'audio_info_from_bytes/$_format';
 
-        var _native_info : NativeAudioInfo = switch(_format) {
-            case wav: Wav.from_bytes( _id, _bytes );
-            case ogg: Ogg.from_bytes( _id, _bytes );
-            case pcm: PCM.from_bytes( _id, _bytes );
+        var _info = switch(_format) {
+            case wav: Wav.from_bytes(app, _id, _bytes);
+            case ogg: Ogg.from_bytes(app, _id, _bytes);
+            case pcm: PCM.from_bytes(app, _id, _bytes);
             case _ : null;
         } //switch _format
 
-                //:todo:
-            if(_native_info == null) throw Error.error('failed to process bytes for $_id');
-            if(_native_info.data == null) throw Error.error('failed to process bytes for $_id, data was null.');
+        if(_info == null) throw Error.error('failed to process bytes for $_id');
 
-            var _result_bytes = haxe.io.Bytes.ofData(_native_info.data.bytes);
-            var _result_info : AudioInfo = {
-
-                id:     _native_info.id,
-                format: _native_info.format,
-                handle: _native_info.handle,
-
-                data: {
-                    samples         : new Uint8Array( _result_bytes ),
-                    length          : _native_info.data.length,
-                    length_pcm      : _native_info.data.length_pcm,
-                    channels        : _native_info.data.channels,
-                    rate            : _native_info.data.rate,
-                    bitrate         : _native_info.data.bitrate,
-                    bits_per_sample : _native_info.data.bits_per_sample
-                }
-
-            } //result_info
-
-            _native_info = null;
-
-        return _result_info;
+        return _info;
 
     } //audio_info_from_bytes
 
-
     public function audio_seek_source( _info:AudioInfo, _to:Int ) : Bool {
 
-        switch(_info.format) {
-            case wav: return Wav.seek(_info, _to);
-            case ogg: return Ogg.seek(_info, _to);
-            case pcm: return PCM.seek(_info, _to);
-            case _: return false;
+        return switch(_info.format) {
+            case wav: Wav.seek(app, _info, _to);
+            case ogg: Ogg.seek(app, _info, _to);
+            case pcm: PCM.seek(app, _info, _to);
+            case _:   false;
         }
-
-        return false;
 
     } //audio_seek_source
 
     public function audio_load_portion( _info:AudioInfo, _start:Int, _len:Int ) : AudioDataBlob {
 
-        var native_blob : NativeAudioDataBlob = null;
-        var result_blob : AudioDataBlob = null;
-
-        native_blob = switch(_info.format) {
-            case wav: Wav.portion(_info, _start, _len);
-            case ogg: Ogg.portion(_info, _start, _len);
-            case pcm: PCM.portion(_info, _start, _len);
+        return switch(_info.format) {
+            case wav: Wav.portion(app, _info, _start, _len);
+            case ogg: Ogg.portion(app, _info, _start, _len);
+            case pcm: PCM.portion(app, _info, _start, _len);
             case _: null;
         }
 
-        if(native_blob != null) {
-            var _result_bytes = haxe.io.Bytes.ofData(native_blob.bytes);
-            result_blob = {
-                bytes: new Uint8Array( _result_bytes ),
-                complete: native_blob.complete
-            }
-        }
-
-        return result_blob;
-
     } //audio_load_portion
 
-//ogg
+//helpers
 
-    function audio_load_ogg( _path:String, ?load:Bool=true ) : NativeAudioInfo {
-        // return assets_audio_load_info_ogg( _path, load, null, 0, 0 );
-        return null;
-    } //audio_load_ogg
+    function audio_format_from_ext(_path:String) : AudioFormatType {
 
-    function audio_load_ogg_from_bytes( _path:String, _bytes:Uint8Array ) : NativeAudioInfo {
-        // return assets_audio_load_info_ogg( _path, true, _bytes.toBytes().getData(), _bytes.byteOffset, _bytes.byteLength );
-        return null;
-    } //audio_load_ogg
+        var _ext = haxe.io.Path.extension(_path);
+        return switch(_ext) {
+            case 'wav': wav;
+            case 'ogg': ogg;
+            case 'pcm': pcm;
+            case _: unknown;
+        }
 
-    function audio_load_portion_ogg( _info:AudioInfo, _start:Int, _len:Int ) : NativeAudioDataBlob {
-        // return assets_audio_read_bytes_ogg( _info, _start, _len );
-        return null;
-    } //load_audio_portion_ogg
-
-    function audio_seek_source_ogg( _info:AudioInfo, _to:Int ) : Bool {
-        // return assets_audio_seek_bytes_ogg( _info, _to );
-        return false;
-    } //audio_seek_source_ogg
-
-
-//pcm
-
-    function audio_load_pcm( _path:String, ?load:Bool=true ) : NativeAudioInfo {
-        // return assets_audio_load_info_pcm( _path, load, null, 0, 0 );
-        return null;
-    } //audio_load_pcm
-
-    function audio_load_pcm_from_bytes( _path:String, _bytes:Uint8Array ) : NativeAudioInfo {
-        // return assets_audio_load_info_pcm( _path, true, _bytes.toBytes().getData(), _bytes.byteOffset, _bytes.byteLength );
-        return null;
-    } //audio_load_pcm
-
-    function audio_load_portion_pcm( _info:AudioInfo, _start:Int, _len:Int ) : NativeAudioDataBlob {
-        // return assets_audio_read_bytes_pcm( _info, _start, _len );
-        return null;
-    } //load_audio_portion_pcm
-
-    function audio_seek_source_pcm( _info:AudioInfo, _to:Int ) : Bool {
-        // return assets_audio_seek_bytes_pcm( _info, _to );
-        return false;
-    } //audio_seek_source_pcm
-
+    } //audio_format_from_ext
 
 } //Assets
-
-
-private typedef NativeAudioInfo = {
-    id : String,
-    format : Int,
-    data : NativeAudioDataInfo,
-    handle : AudioHandle
-}
-
-private typedef NativeAudioDataInfo = {
-    length : Int,
-    length_pcm : Int,
-    channels : Int,
-    rate : Int,
-    bitrate : Int,
-    bits_per_sample : Int,
-    bytes : haxe.io.BytesData
-}
-
-private typedef NativeAudioDataBlob = {
-    bytes : haxe.io.BytesData,
-    complete : Bool
-}
 
 
 @:allow(snow.core.native.assets.Assets)
 private class Wav {
 
-    static function from_file(_path:String) : NativeAudioInfo {
+    static function from_file(app:snow.Snow, _path:String, _load:Bool) : AudioInfo {
         return null;
     } //from_file
 
-    static function from_bytes(_path:String, _bytes:Uint8Array) : NativeAudioInfo {
+    static function from_bytes(app:snow.Snow, _path:String, _bytes:Uint8Array) : AudioInfo {
         return null;
     } //from_bytes
 
-    static function portion(_info:AudioInfo, _start:Int, _len:Int) : NativeAudioDataBlob {
+    static function portion(app:snow.Snow, _info:AudioInfo, _start:Int, _len:Int) : AudioDataBlob {
         return null;
     } //load_portion
 
-    static function seek(_info:AudioInfo, _to:Int) : Bool {
+    static function seek(app:snow.Snow, _info:AudioInfo, _to:Int) : Bool {
         return false;
     } //seek
 
@@ -331,19 +206,19 @@ private class Wav {
 @:allow(snow.core.native.assets.Assets)
 private class Ogg {
 
-    static function from_file(_path:String) : NativeAudioInfo {
+    static function from_file(app:snow.Snow, _path:String, _load:Bool) : AudioInfo {
         return null;
     } //from_file
 
-    static function from_bytes(_path:String, _bytes:Uint8Array) : NativeAudioInfo {
+    static function from_bytes(app:snow.Snow, _path:String, _bytes:Uint8Array) : AudioInfo {
         return null;
     } //from_bytes
 
-    static function portion(_info:AudioInfo, _start:Int, _len:Int) : NativeAudioDataBlob {
+    static function portion(app:snow.Snow, _info:AudioInfo, _start:Int, _len:Int) : AudioDataBlob {
         return null;
     } //load_portion
 
-    static function seek(_info:AudioInfo, _to:Int) : Bool {
+    static function seek(app:snow.Snow, _info:AudioInfo, _to:Int) : Bool {
         return false;
     } //seek
 
@@ -352,21 +227,122 @@ private class Ogg {
 @:allow(snow.core.native.assets.Assets)
 private class PCM {
 
-    static function from_file(_path:String) : NativeAudioInfo {
-        return null;
-    } //from_file
+    static function portion(app:snow.Snow, _info:AudioInfo, _start:Int, _len:Int) : AudioDataBlob {
 
-    static function from_bytes(_path:String, _bytes:Uint8Array) : NativeAudioInfo {
-        return null;
-    } //from_bytes
+        if(_info.handle != null) {
 
-    static function portion(_info:AudioInfo, _start:Int, _len:Int) : NativeAudioDataBlob {
+            if(_start == -1) seek(app, _info, _start);
+
+            var _complete = false;
+            var _read_len = _len;
+            var _n_elements = 1;
+            var _current_pos = app.io.module.file_tell(_info.handle);
+            var _distance_to_end = _info.data.length_pcm - _current_pos;
+
+            if(_distance_to_end <= _read_len) {
+                _read_len = _distance_to_end;
+                _complete = true;
+            }
+
+            if(_read_len > 0) {
+
+                log("pcm / reading $_read_len bytes from $_start");
+
+                    //resize to fit the requested/remaining length
+                var _byte_gap = (_read_len & 0x03);
+                var _samples = new Uint8Array(_read_len + _byte_gap);
+                var _elements_read = app.io.module.file_read(_info.handle, _samples, _read_len, _n_elements);
+
+                    //if no elements were read, it was an error
+                    //or end of file so either way it's complete.
+                if(_elements_read == 0) _complete = true;
+
+                log("pcm / total read $_read_len bytes, complete? $_complete");
+
+                return {
+                    bytes: _samples,
+                    complete: _complete
+                }
+
+            } //_read_len > 0
+
+        } //_info.handle != null
+
         return null;
+
     } //load_portion
 
-    static function seek(_info:AudioInfo, _to:Int) : Bool {
+    static function seek(app:snow.Snow, _info:AudioInfo, _to:Int) : Bool {
+
+        if(_info.handle != null) {
+            app.io.module.file_seek(_info.handle, _to, FileSeek.set);
+        }
+
         return false;
     } //seek
+
+    static function from_file(app:snow.Snow, _path:String, _load:Bool) : AudioInfo {
+
+        var _handle = app.io.module.file_handle(_path, 'rb');
+        if(_handle == null) return null;
+
+        var _length = app.io.module.file_size(_handle);
+        var _samples : Uint8Array = null;
+
+        if(_load) {
+            _samples = new Uint8Array(_length);
+            var _read = app.io.module.file_read(_handle, _samples, _length, 1);
+            if(_read != _length) {
+                _samples = null;
+                return null;
+            }
+        } //_load
+
+        //the sound format values are sane defaults -
+        //change these values right before creating the sound itself.
+
+        return {
+
+            id:     _path,
+            handle: _handle,
+            format: AudioFormatType.pcm,
+
+            data: {
+                samples         : _samples,
+                length          : _length,
+                length_pcm      : _length,
+                channels        : 1,
+                rate            : 44100,
+                bitrate         : 88200,
+                bits_per_sample : 16
+            }
+
+        } //return
+
+    } //from_file
+
+    static function from_bytes(app:snow.Snow, _id:String, _bytes:Uint8Array) : AudioInfo {
+
+        return {
+
+            id:     _id,
+            handle: null,
+            format: AudioFormatType.pcm,
+
+            data: {
+                samples         : _bytes,
+                length          : _bytes.length,
+                length_pcm      : _bytes.length,
+                channels        : 1,
+                rate            : 44100,
+                bitrate         : 88200,
+                bits_per_sample : 16
+            }
+
+        } //return
+
+    } //from_bytes
+
 
 } //PCM
 

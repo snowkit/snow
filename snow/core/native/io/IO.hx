@@ -14,14 +14,6 @@ import snow.api.Debug.*;
 }
 
 
-// @:generic
-// class FileHandle<T> {
-//     public function new(h:T) handle = h;
-//     public var handle:T;
-// }
-
-typedef FileHandle = Null<Int>;
-
 @:allow(snow.system.io.IO)
 class IO implements snow.modules.interfaces.IO {
 
@@ -158,7 +150,7 @@ class IO implements snow.modules.interfaces.IO {
     } //string_slot_decode
 
 //File handling
-    
+
     public function file_handle(_path:String, ?_mode:String="rb") : FileHandle {
 
         log('file_handle in code module does nothing.');
@@ -201,6 +193,15 @@ class IO implements snow.modules.interfaces.IO {
 
     } //file_close
 
+    public function file_size(handle:FileHandle) : UInt {
+
+        file_seek(handle, 0, FileSeek.end);
+        var _size = file_tell(handle);
+        file_seek(handle, 0, FileSeek.set);
+        return _size;
+
+    } //file_size
+
 //Internal
 
     function _data_load(_path:String, ?_options:IODataOptions) : Uint8Array {
@@ -210,11 +211,7 @@ class IO implements snow.modules.interfaces.IO {
 
         if(_file == null) return null;
 
-        file_seek(_file, 0, FileSeek.end);
-        var _size = file_tell(_file);
-        file_seek(_file, 0, FileSeek.set);
-
-            //create a buffer to read to
+        var _size = file_size(_file);
         var _dest = new Uint8Array(_size);
         var _read = file_read(_file, _dest, _dest.length, 1);
 

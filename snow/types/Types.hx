@@ -12,6 +12,7 @@ typedef AssetBytes = snow.system.assets.Asset.AssetBytes;
 typedef AssetText  = snow.system.assets.Asset.AssetText;
 typedef AssetJSON  = snow.system.assets.Asset.AssetJSON;
 typedef AssetImage = snow.system.assets.Asset.AssetImage;
+typedef FileHandle = Null<Int>;
 
 typedef Key = snow.system.input.Keycodes.Keycodes;
 typedef Scan = snow.system.input.Keycodes.Scancodes;
@@ -362,11 +363,7 @@ typedef DisplayMode = {
 #end //snow_web
 
     /** A platform window handle */
-#if snow_web
-    typedef AudioHandle = Dynamic;
-#else
-    typedef AudioHandle = Null<Float>;
-#end //snow_web
+typedef AudioHandle = Dynamic;
 
 
 

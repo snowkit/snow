@@ -6,7 +6,7 @@ import snow.api.Debug.*;
 import snow.api.buffers.Uint8Array;
 import snow.api.buffers.ArrayBufferView;
 import snow.core.native.io.IO.FileSeek;
-import snow.core.native.io.IO.FileHandle;
+import snow.types.Types.FileHandle;
 
 class IO extends snow.core.native.io.IO {
 
