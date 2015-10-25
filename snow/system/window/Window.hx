@@ -27,8 +27,6 @@ class Window {
 
         /** The window title `(read/write)` */
     @:isVar public var title (get,set) : String = 'snow window';
-        /** The window bordered state `(read/write)` */
-    @:isVar public var bordered (get,set) : Bool = true;
         /** The window grab state `(read/write)` */
     @:isVar public var grab (get,set) : Bool = false;
         /** The window fullscreen state `(read/write)` */
@@ -267,17 +265,6 @@ class Window {
 
     } //show
 
-        /** Display a cross platform message on this window */
-    public function simple_message( message:String, title:String="" ) {
-
-        if(handle == null) {
-            return;
-        }
-
-        system.module.simple_message( this, message, title );
-
-    } //simple_message
-
     function get_fullscreen() : Bool {
 
         return fullscreen;
@@ -294,12 +281,6 @@ class Window {
         return fullscreen = _enable;
 
     } //set_fullscreen
-
-    function get_bordered() : Bool {
-
-        return bordered;
-
-    } //get_bordered
 
     function get_grab() : Bool {
 
@@ -371,14 +352,6 @@ class Window {
 
     } //set_height
 
-    public function set_cursor_position( _x:Int, _y:Int ) {
-
-        if(handle != null && !closed) {
-            system.module.set_cursor_position( this, _x, _y );
-        }
-
-    } //set_cursor_position
-
     public function set_position( _x:Int, _y:Int ) {
 
             //keep the flag
@@ -413,16 +386,6 @@ class Window {
         }
 
     } //set_size
-
-    function set_bordered( _bordered:Bool ) : Bool {
-
-        if(handle != null) {
-            system.module.bordered( this, _bordered );
-        }
-
-        return bordered = _bordered;
-
-    } //set_bordered
 
     function set_grab( _grab:Bool ) : Bool {
 

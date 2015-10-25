@@ -195,12 +195,6 @@ class Windowing implements snow.modules.interfaces.Windowing {
 
     } //window_swap
 
-    public function simple_message( _window:Window, message:String, ?title:String="" ) {
-
-        js.Browser.window.alert( message );
-
-    } //window_simple_message
-
     public function set_size( _window:Window, w:Int, h:Int ) {
 
         _window.handle.width = w;
@@ -267,22 +261,6 @@ class Windowing implements snow.modules.interfaces.Windowing {
         js.Browser.document.title = title;
 
     } //window_set_title
-
-    public function set_max_size( _window:Window, w:Int, h:Int ) {
-
-        _window.handle.style.maxWidth = '${w}px';
-        _window.handle.style.maxHeight = '${h}px';
-
-    } //window_set_max_size
-
-    public function set_min_size( _window:Window, w:Int, h:Int ) {
-
-        _window.handle.style.minWidth = '${w}px';
-        _window.handle.style.minHeight = '${h}px';
-
-    } //window_set_min_size
-
-
 
     var _pre_fs_padding : String = '0';
     var _pre_fs_margin : String = '0';
@@ -382,14 +360,6 @@ class Windowing implements snow.modules.interfaces.Windowing {
 
     } //window_fullscreen
 
-    public function bordered( _window:Window, bordered:Bool ) {
-
-        //:unsupported:
-        //no such concept on browser
-
-    } //window_bordered
-
-
     public function grab( _window:Window, grabbed:Bool ) {
 
         if(grabbed) {
@@ -410,118 +380,7 @@ class Windowing implements snow.modules.interfaces.Windowing {
 
         }
 
-    } //window_grab
-
-    public function set_cursor_position( _window:Window, x:Int, y:Int ) {
-
-        // :unsupported:
-        // for good reason.
-
-    } //set_cursor_position
-
-        /** Toggle the OS cursor. This is not window specific but system wide */
-    var cursor_style : js.html.Element;
-    var _cursor_visible : Bool = true;
-    public function system_enable_cursor( enable:Bool ) {
-
-        if(cursor_style == null) {
-            cursor_style = js.Browser.document.createStyleElement();
-            cursor_style.innerHTML = '* { cursor:none; }';
-        }
-
-        if(enable && !_cursor_visible) {
-            _cursor_visible = true;
-            js.Browser.document.body.removeChild(cursor_style);
-        } else if(!enable && _cursor_visible) {
-            _cursor_visible = false;
-            js.Browser.document.body.appendChild(cursor_style);
-        }
-
-    } //system_enable_cursor
-
-        /** Lock the OS cursor to the foreground window. This hides the cursor and prevents it from leaving, reporting relative coordinates. */
-    public function system_lock_cursor( enable:Bool ) {
-
-        if(system.app.window != null) {
-            grab(system.app.window, enable);
-        }
-
-    } //system_lock_cursor
-
-        /** Toggle vertical refresh. This is not window specific but context wide */
-    public function system_enable_vsync( enable:Bool ) : Int {
-
-        // :unsupported:
-        //technically RAF is vsync but it's not a toggle,
-        //and without it is terrible so, not doing that
-
-        return -1;
-
-    } //system_enable_vsync
-
-
-    public function display_count() : Int {
-
-        //:unsupported:
-        return 1;
-
-    } //display_count
-
-    public function display_mode_count( display:Int ) : Int {
-
-        //:unsupported:
-        return 1;
-
-    } //display_mode_count
-
-    public function display_native_mode( display:Int ) : DisplayMode {
-
-        //:unsupported:
-
-        return {
-            format : 0,
-            refresh_rate : 0,
-            width : js.Browser.window.screen.width,
-            height : js.Browser.window.screen.height
-        };
-
-    } //display_native_mode
-
-    public function display_current_mode( display:Int ) : DisplayMode {
-
-        //:unsupported:
-        //will always return the default display mode
-
-        return display_native_mode(display);
-
-    } //display_current_mode
-
-    public function display_mode( display:Int, mode_index:Int ) : DisplayMode {
-
-        //:unsupported:
-        //will always return the default display mode
-
-        return display_native_mode(display);
-
-    } //display_mode
-
-        //returns the size of the main window
-    public function display_bounds( display:Int ) : { x:Int, y:Int, width:Int, height:Int } {
-
-        return {
-            x : 0,
-            y : 0,
-            width : js.Browser.window.innerWidth,
-            height : js.Browser.window.innerHeight
-        };
-
-    } //display_bounds
-
-    public function display_name( display:Int ) : String {
-
-        return js.Browser.navigator.vendor;
-
-    } //display_name
+    } //grab
 
         /** Called to set up any listeners on the given window  */
     public function listen( _window:Window ) {

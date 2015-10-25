@@ -21,32 +21,28 @@ class Native implements Runtime {
     public var name: String = 'native';
     public var app: snow.Snow;
 
-    function new(_app:snow.Snow) {
+    function new(_app:snow.Snow, ?_init:Bool=false) {
+        
+        log('runtime / native / new');
 
-        app = _app;
+            app = _app;
+            timestamp_start = timestamp();
 
-        trace('runtime / native / new');
 
-        #if ios      app.os = os_ios;     app.platform = platform_ios;     #end
-        #if mac      app.os = os_mac;     app.platform = platform_mac;     #end
-        #if linux    app.os = os_linux;   app.platform = platform_linux;   #end
-        #if android  app.os = os_android; app.platform = platform_android; #end
-        #if windows  app.os = os_windows; app.platform = platform_windows; #end
-
-        timestamp_start = timestamp();
+            #if ios      app.os = os_ios;     app.platform = platform_ios;     #end
+            #if mac      app.os = os_mac;     app.platform = platform_mac;     #end
+            #if linux    app.os = os_linux;   app.platform = platform_linux;   #end
+            #if android  app.os = os_android; app.platform = platform_android; #end
+            #if windows  app.os = os_windows; app.platform = platform_windows; #end
 
         //ensure the correct running path
 
-            var _app_path = app.io.app_path();
+        var _app_path = app.io.app_path();
 
             log('init / app path / `$_app_path`');
             log('init / pref path / `${app.io.app_path_prefs()}`');
 
             Sys.setCwd( _app_path );
-
-        //move on
-            
-            app.onevent({ type:SystemEventType.init });
 
     } //new
 

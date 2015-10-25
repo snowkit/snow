@@ -19,6 +19,29 @@ class Main extends snow.App {
         log('runtime config: ${app.config.runtime}');
         log('asset path: ${app.assets.path('fake.file')}');
 
+        // test_assets();
+
+    } //ready
+
+    override function onkeyup( keycode:Int, _,_, mod:ModState, _,_ ) {
+
+        if( keycode == Key.escape ) {
+            app.shutdown();
+        }
+
+    } //onkeyup
+
+    override function update( delta:Float ) {
+
+    } //update
+
+    function render() {
+
+    } //render
+
+
+    function test_assets() {
+
         app.assets.image('assets/test.png')
             .then(function(asset:AssetImage){
                 var image = asset.image;
@@ -45,22 +68,7 @@ class Main extends snow.App {
         trace(ogginfo);
         trace(ogginfo2);
 
-    } //ready
+    } //test_assets
 
-    override function onkeyup( keycode:Int, _,_, mod:ModState, _,_ ) {
-
-        if( keycode == Key.escape ) {
-            app.shutdown();
-        }
-
-    } //onkeyup
-
-    override function update( delta:Float ) {
-
-    } //update
-
-    function render() {
-
-    } //render
 
 } //Main

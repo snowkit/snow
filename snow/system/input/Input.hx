@@ -1,7 +1,6 @@
 package snow.system.input;
 
 import snow.types.Types;
-import snow.system.window.Window;
 
 typedef MapIntBool = Map<Int, Bool>;
 typedef MapIntFloat = Map<Int, Float>;
@@ -12,14 +11,11 @@ class Input {
 
         /** access to snow from subsystems */
     @:noCompletion public var app : Snow;
-        /** access to platform implementation */
-    @:noCompletion public var module : snow.modules.interfaces.Input;
 
         /** constructed internally, use `app.input` */
     function new( _app:Snow ) {
 
         app = _app;
-        module = new snow.Set.ModuleInput(app);
 
         //keys
 
@@ -52,8 +48,6 @@ class Input {
 
         /** Destroy and clean up etc. */
     function shutdown() {
-
-        module.shutdown();
 
     } //shutdown
 
@@ -334,24 +328,8 @@ class Input {
 
 //Interal API
 
-        /** Attach to a window to listen for input from it */
-    @:noCompletion public function listen( _window:Window ) {
-
-        module.listen(_window);
-
-    } //listen
-
-        /** Detach a listening window, stopping listening of input from it */
-    @:noCompletion public function unlisten( _window:Window ) {
-
-        module.unlisten(_window);
-
-    } //unlisten
-
         /** Called when a system event is dispatched through the core */
-    @:noCompletion public function onevent( _event:SystemEvent ) {
-
-        module.onevent( _event );
+    function onevent( _event:SystemEvent ) {
 
     } //onevent
 

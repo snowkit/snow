@@ -18,15 +18,11 @@
       assets:'snow.core.native.assets.Assets',
       audio:'snow.core.native.audio.Audio',
       io:'snow.core.native.io.IO',
-      input:'snow.core.native.input.Input',
-      windowing:'snow.core.native.window.Windowing',
     },
     modules[snow_web] : {
       assets:'snow.core.web.assets.Assets',
       audio:'snow.core.web.audio.Audio',
       io:'snow.core.web.io.IO',
-      input:'snow.core.web.input.Input',
-      windowing:'snow.core.web.window.Windowing',
     }
   }
 }

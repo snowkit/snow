@@ -11,7 +11,6 @@ import snow.system.io.IO;
 import snow.system.input.Input;
 import snow.system.assets.Assets;
 import snow.system.audio.Audio;
-import snow.system.window.Windowing;
 
 class Snow {
 
@@ -43,8 +42,6 @@ class Snow {
         public var audio : Audio;
             /** The asset system */
         public var assets : Assets;
-            /** The window system */
-        public var windowing : Windowing;
 
     //state
 
@@ -90,7 +87,6 @@ class Snow {
             input = new Input(this);
             audio = new Audio(this);
             assets = new Assets(this);
-            windowing = new Windowing(this);
 
             log('app / runtime / new ${snow.Set.app_runtime}');
 
@@ -99,7 +95,12 @@ class Snow {
             assertnull(os, 'init - Runtime didn\'t set the app.os value!');
             assertnull(platform, 'init - Runtime didn\'t set the app.platform value!');
 
-            log('app / os:$os / platform:$platform / ready / $time');
+            log('app / os:$os / platform:$platform / init / $time');
+            onevent({ type:init });
+
+            step();
+
+            log('app / ready / $time');
             onevent({ type:ready });
 
             step();
@@ -128,7 +129,6 @@ class Snow {
             io.shutdown();
             audio.shutdown();
             assets.shutdown();
-            windowing.shutdown();
             input.shutdown();
             
             runtime.shutdown();
@@ -149,7 +149,6 @@ class Snow {
 
             io.onevent( _event );
             audio.onevent( _event );
-            windowing.onevent( _event );
             input.onevent( _event );
             host.onevent( _event );
 
