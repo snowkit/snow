@@ -27,6 +27,15 @@ class Main extends snow.App {
                 log(error);
             });
 
+        var wavhandle = app.io.module.file_handle('assets/sound.wav','rb');
+        var wavfsize = app.io.module.file_size(wavhandle);
+        var wavbytes = new snow.api.buffers.Uint8Array(wavfsize);
+        app.io.module.file_read(wavhandle, wavbytes, wavfsize, 1);
+        var info = app.assets.module.audio_info_from_load('assets/sound.wav', true);
+        var info2 = app.assets.module.audio_info_from_bytes(wavbytes, wav);
+        trace(info);
+        trace(info2);
+
     } //ready
 
     override function onkeyup( keycode:Int, _,_, mod:ModState, _,_ ) {

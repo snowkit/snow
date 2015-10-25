@@ -1,5 +1,6 @@
 package snow.core.native.assets;
 
+import snow.api.buffers.DataView;
 import snow.types.Types;
 import snow.api.buffers.Uint8Array;
 import snow.api.Promise;
@@ -106,7 +107,7 @@ class Assets implements snow.modules.interfaces.Assets {
 
 //audio
 
-    public function audio_load_info(_path:String, ?_load:Bool=true, ?_format:AudioFormatType) : AudioInfo {
+    public function audio_info_from_load(_path:String, ?_load:Bool=true, ?_format:AudioFormatType) : AudioInfo {
 
         if(_format == null) _format = audio_format_from_ext(_path);
 
@@ -121,7 +122,7 @@ class Assets implements snow.modules.interfaces.Assets {
 
         return _info;
 
-    } //audio_load_info
+    } //audio_info_from_load
 
     public function audio_info_from_bytes(_bytes:Uint8Array, _format:AudioFormatType) : AudioInfo {
 
@@ -181,62 +182,40 @@ class Assets implements snow.modules.interfaces.Assets {
 } //Assets
 
 
+private typedef WavChunk = { id:String, offset:Int, data:Uint8Array }
+private typedef WavHandle = { handle:FileHandle, offset:Int }
+
 @:allow(snow.core.native.assets.Assets)
 private class Wav {
 
-    static function from_file(app:snow.Snow, _path:String, _load:Bool) : AudioInfo {
-        return null;
+    static function from_file(app:snow.Snow, _path:String, _load:Bool) {
+
+        var _handle = app.io.module.file_handle(_path, 'rb');
+
+        return from_file_handle(app, _handle, _path, _load);
+
     } //from_file
 
     static function from_bytes(app:snow.Snow, _path:String, _bytes:Uint8Array) : AudioInfo {
-        return null;
+
+        var _handle = app.io.module.file_handle_from_mem(_bytes, _bytes.length);
+
+        return from_file_handle(app, _handle, _path, true);
+
     } //from_bytes
-
-    static function portion(app:snow.Snow, _info:AudioInfo, _start:Int, _len:Int) : AudioDataBlob {
-        return null;
-    } //load_portion
-
-    static function seek(app:snow.Snow, _info:AudioInfo, _to:Int) : Bool {
-        return false;
-    } //seek
-
-} //Wav
-
-
-@:allow(snow.core.native.assets.Assets)
-private class Ogg {
-
-    static function from_file(app:snow.Snow, _path:String, _load:Bool) : AudioInfo {
-        return null;
-    } //from_file
-
-    static function from_bytes(app:snow.Snow, _path:String, _bytes:Uint8Array) : AudioInfo {
-        return null;
-    } //from_bytes
-
-    static function portion(app:snow.Snow, _info:AudioInfo, _start:Int, _len:Int) : AudioDataBlob {
-        return null;
-    } //load_portion
-
-    static function seek(app:snow.Snow, _info:AudioInfo, _to:Int) : Bool {
-        return false;
-    } //seek
-
-} //Ogg
-
-@:allow(snow.core.native.assets.Assets)
-private class PCM {
 
     static function portion(app:snow.Snow, _info:AudioInfo, _start:Int, _len:Int) : AudioDataBlob {
 
         if(_info.handle != null) {
+            
+            var wav:WavHandle = _info.handle;
 
-            if(_start == -1) seek(app, _info, _start);
+            if(_start == -1) seek(app, _info, _start+wav.offset);
 
             var _complete = false;
             var _read_len = _len;
             var _n_elements = 1;
-            var _current_pos = app.io.module.file_tell(_info.handle);
+            var _current_pos = (app.io.module.file_tell(_info.handle) - wav.offset);
             var _distance_to_end = _info.data.length_pcm - _current_pos;
 
             if(_distance_to_end <= _read_len) {
@@ -270,16 +249,151 @@ private class PCM {
 
         return null;
 
-    } //load_portion
+    } //portion
 
     static function seek(app:snow.Snow, _info:AudioInfo, _to:Int) : Bool {
 
         if(_info.handle != null) {
-            app.io.module.file_seek(_info.handle, _to, FileSeek.set);
+
+            var _wav:WavHandle = _info.handle;
+            app.io.module.file_seek(_wav.handle, _wav.offset + _to, FileSeek.set);
+        
         }
 
         return false;
+
     } //seek
+
+
+//helpers
+
+    static function from_file_handle(app:snow.Snow, _handle:FileHandle, _path:String, _load:Bool) : AudioInfo {
+    
+        if(_handle == null) return null;
+
+        var _length = 0;
+        var _info = {
+            id:     _path,
+            handle: { handle:_handle, offset:0 },
+            format: AudioFormatType.wav,
+            data: {
+                samples         : null, 
+                length          : _length,
+                length_pcm      : _length,
+                channels        : 1,
+                rate            : 44100,
+                bitrate         : 88200,
+                bits_per_sample : 16
+            }
+        } //return
+
+        if(_load) {
+
+            var _header = new Uint8Array(12);
+            app.io.module.file_read(_handle, _header, 12, 1);
+            
+            var _bytes = _header.toBytes();
+            var _file_id = _bytes.getString(0, 4);
+            var _file_format = _bytes.getString(8, 4);
+
+            _header = null;
+            _bytes = null;
+
+            if(_file_id != 'RIFF') {
+                log('assets / audio / wav / file `$_path` has invalid header (id `$_file_id`, expected RIFF)');
+                return null;
+            }
+
+            if(_file_format != 'WAVE') {
+                log('assets / audio / wav / file `$_path` has invalid header (id `$_file_format`, expected WAVE)');
+                return null;
+            }
+
+            var _chunks = ['fmt ', 'data'];
+            var _found_data = false;
+            var _found_format = false;
+            var _limit = 0;
+
+            while(!_found_format && !_found_data || _limit < 32) {
+
+                var _chunk = read_chunk(app, _handle, _chunks);
+
+                if(_chunk.id == _chunks[0]) {
+                    _found_format = true;
+
+                    // 16 bytes                 size /  at
+                    // short audioFormat;         2  /  0
+                    // short numChannels;         2  /  2
+                    // unsigned int sampleRate;   4  /  4
+                    // unsigned int byteRate;     4  /  8
+                    // short blockAlign;          2  /  12
+                    // short bitsPerSample;       2  /  14
+
+                    var _format = _chunk.data.toBytes();
+                    _info.data.bitrate = _format.getInt32(8);
+                    _info.data.bits_per_sample = _format.getUInt16(14);
+                    _info.data.channels = _format.getUInt16(2);
+                    _info.data.rate = _format.getInt32(4);
+                    _format = null;
+                } //fmt
+
+                if(_chunk.id == _chunks[1]) {
+                    _found_data = true;
+                    _info.data.samples = _chunk.data;
+                    _info.data.length = _info.data.length_pcm = _chunk.data.length;
+                    _info.handle.offset = _chunk.offset;
+                } //data
+
+                _chunk.data = null;
+                _chunk = null;
+
+                ++_limit;
+
+            } //while
+
+        } //if _load
+
+        return _info;
+
+    } //from_file
+
+    static function read_chunk(app:snow.Snow, _handle:FileHandle, _read_if:Array<String>) : WavChunk {
+            
+        var _header_size = 8;
+        var _header = new Uint8Array(_header_size);
+
+        app.io.module.file_read(_handle, _header, _header_size, 1);
+
+        var _header_bytes = _header.toBytes();
+        var _chunk_id = _header_bytes.getString(0, 4);
+        var _chunk_size = _header_bytes.getInt32(4);
+
+        _header = null;
+        _header_bytes = null;
+
+        var _data : Uint8Array = null;
+        var _pos = app.io.module.file_tell(_handle);
+
+            //if this is a chunk we want to read?
+        if(_read_if.indexOf(_chunk_id) != -1) {
+            _data = new Uint8Array(_chunk_size);
+            app.io.module.file_read(_handle, _data, _chunk_size, 1);
+        } else {
+            app.io.module.file_seek(_handle, _pos+_header_size+_chunk_size, 1);
+        }
+
+        return {
+            id: _chunk_id,
+            offset: _pos,
+            data: _data
+        }
+
+    } //read_chunk
+
+} //Wav
+
+@:allow(snow.core.native.assets.Assets)
+private class PCM {
 
     static function from_file(app:snow.Snow, _path:String, _load:Bool) : AudioInfo {
 
@@ -343,6 +457,83 @@ private class PCM {
 
     } //from_bytes
 
+    static function seek(app:snow.Snow, _info:AudioInfo, _to:Int) : Bool {
+
+        if(_info.handle != null) {
+            app.io.module.file_seek(_info.handle, _to, FileSeek.set);
+        }
+
+        return false;
+
+    } //seek
+
+    static function portion(app:snow.Snow, _info:AudioInfo, _start:Int, _len:Int) : AudioDataBlob {
+
+        if(_info.handle != null) {
+
+            if(_start == -1) seek(app, _info, _start);
+
+            var _complete = false;
+            var _read_len = _len;
+            var _n_elements = 1;
+            var _current_pos = app.io.module.file_tell(_info.handle);
+            var _distance_to_end = _info.data.length_pcm - _current_pos;
+
+            if(_distance_to_end <= _read_len) {
+                _read_len = _distance_to_end;
+                _complete = true;
+            }
+
+            if(_read_len > 0) {
+
+                log("pcm / reading $_read_len bytes from $_start");
+
+                    //resize to fit the requested/remaining length
+                var _byte_gap = (_read_len & 0x03);
+                var _samples = new Uint8Array(_read_len + _byte_gap);
+                var _elements_read = app.io.module.file_read(_info.handle, _samples, _read_len, _n_elements);
+
+                    //if no elements were read, it was an error
+                    //or end of file so either way it's complete.
+                if(_elements_read == 0) _complete = true;
+
+                log("pcm / total read $_read_len bytes, complete? $_complete");
+
+                return {
+                    bytes: _samples,
+                    complete: _complete
+                }
+
+            } //_read_len > 0
+
+        } //_info.handle != null
+
+        return null;
+
+    } //portion
+
 
 } //PCM
 
+
+
+@:allow(snow.core.native.assets.Assets)
+private class Ogg {
+
+    static function from_file(app:snow.Snow, _path:String, _load:Bool) : AudioInfo {
+        return null;
+    } //from_file
+
+    static function from_bytes(app:snow.Snow, _path:String, _bytes:Uint8Array) : AudioInfo {
+        return null;
+    } //from_bytes
+
+    static function portion(app:snow.Snow, _info:AudioInfo, _start:Int, _len:Int) : AudioDataBlob {
+        return null;
+    } //load_portion
+
+    static function seek(app:snow.Snow, _info:AudioInfo, _to:Int) : Bool {
+        return false;
+    } //seek
+
+} //Ogg
