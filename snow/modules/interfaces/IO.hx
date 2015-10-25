@@ -1,5 +1,6 @@
 package snow.modules.interfaces;
 
+import haxe.io.BytesData;
 import snow.types.Types;
 import snow.api.Promise;
 import snow.api.buffers.Uint8Array;
@@ -29,6 +30,7 @@ interface IO {
     //:todo:
     #if snow_native
         function file_handle(_path:String, ?_mode:String="rb") : FileHandle;
+        function file_handle_from_mem(mem:ArrayBufferView, size:Int) : FileHandle;
         function file_read(handle:FileHandle, dest:ArrayBufferView, size:Int, maxnum:Int) : Int;
         function file_write(handle:FileHandle, src:ArrayBufferView, size:Int, num:Int) : Int;
         function file_seek(handle:FileHandle, offset:Int, whence:Int) : Int;

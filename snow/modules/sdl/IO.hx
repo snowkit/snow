@@ -44,6 +44,19 @@ class IO extends snow.core.native.io.IO {
 
     } //file_handle
 
+    override public function file_handle_from_mem(mem:ArrayBufferView, size:Int) : FileHandle {
+
+        var _handle = SDL.RWFromMem(mem.buffer.getData(), size);
+        if(_handle == null) return null;
+
+        var _id = file_seq;
+        files.set(_id, _handle);
+        file_seq++;
+
+        return _id;
+
+    } //file_handle_from_mem
+
     override public function file_read(file:FileHandle , dest:ArrayBufferView, size:Int, maxnum:Int) : Int {
 
         assertnull(file);

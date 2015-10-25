@@ -158,6 +158,13 @@ class IO implements snow.modules.interfaces.IO {
 
     } //file_handle
 
+    public function file_handle_from_mem(mem:ArrayBufferView, size:Int) : FileHandle {
+
+        log('file_handle_from_mem in code module does nothing.');
+        return null;
+
+    } //file_handle_from_mem
+
     public function file_read(handle:FileHandle, dest:ArrayBufferView, size:Int, maxnum:Int) : Int {
 
         log('file_read in code module does nothing.');
