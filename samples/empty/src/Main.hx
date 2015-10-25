@@ -16,7 +16,7 @@ class Main extends snow.App {
     override function ready() {
 
         log('ready');
-        log('runtime config: ${app.config.runtime}');
+        log('app config: ${app.config.user}');
         log('asset path: ${app.assets.path('fake.file')}');
 
         // test_assets();

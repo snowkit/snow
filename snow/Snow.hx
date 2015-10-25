@@ -18,7 +18,7 @@ class Snow {
 
             /** The host application */
         public var host : App;
-            /** The application configuration specifics (like window, runtime, and asset lists) */
+            /** The application configuration specifics (like window, user, runtime, etc) */
         public var config : snow.types.Types.AppConfig;
             /** Whether or not we are frozen, ignoring events i.e backgrounded/paused */
         public var freeze (default,set) : Bool = false;
@@ -264,15 +264,15 @@ class Snow {
 
             return new Promise(function(resolve, reject) {
 
-                _debug('config / fetching runtime config');
+                _debug('config / fetching user config');
 
-                default_runtime_config().then(function(_runtime_conf:Dynamic) {
+                default_user_config().then(function(_user_conf:Dynamic) {
 
-                    config.runtime = _runtime_conf;
+                    config.user = _user_conf;
 
                 }).error(function(error){
 
-                    throw Error.init('config / failed / default runtime config JSON failed to parse. Cannot recover. $error');
+                    throw Error.init('config / failed / default user config JSON failed to parse. Cannot recover. $error');
 
                 }).then(function(){
 
@@ -293,11 +293,10 @@ class Snow {
 
         } //setup_host_config
 
-            /** handles the default method of parsing a runtime config json,
-                To change this behavior override `get_runtime_config`. This is called by default in get_runtime_config. */
-        function default_runtime_config() : Promise {
+            /** Handles the default method of parsing a user config json */
+        function default_user_config() : Promise {
 
-            _debug('config / setting up default runtime config');
+            _debug('config / setting up default user config');
 
                 //for the default config, we only reject if there is a json parse error
             return new Promise(function(resolve, reject) {
@@ -309,20 +308,19 @@ class Snow {
                             case Error.parse(val):
                                 reject(error);
                             case _:
-                                log('config / runtime config will be null! / $error');
+                                log('config / user config will be null! / $error');
                                 resolve(null);
                         }
                     });
 
             }); //promise
 
-        } //default_runtime_config
+        } //default_user_config
 
         function default_config() : AppConfig {
 
             return {
-                has_window : true,
-                runtime : {},
+                user : {},
                 window : default_window_config(),
                 render : default_render_config(),
                 web : {

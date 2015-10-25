@@ -77,16 +77,14 @@ typedef IODataOptions = {
 /** The runtime application config info */
 typedef AppConfig = {
 
-        /** whether or not to create and run a default window, default: true */
-    @:optional var has_window   : Bool;
-        /** the window config for the default window, if `has_window` is true. default: see `WindowConfig` docs*/
+        /** the window config for the default window. default: see `WindowConfig` docs*/
     @:optional var window       : WindowConfig;
-
         /** The render config that specifies rendering and context backend specifics.  */
     @:optional var render       : RenderConfig;
 
         /** the user specific config, by default, read from a json file at runtime */
-    @:optional var runtime      : Dynamic;
+    @:optional var user         : Dynamic;
+
         /** config specific to the web target */
     @:optional var web          : AppConfigWeb;
         /** config specific to the native target */
