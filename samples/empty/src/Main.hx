@@ -36,6 +36,15 @@ class Main extends snow.App {
         trace(info);
         trace(info2);
 
+        var ogghandle = app.io.module.file_handle('assets/sound.ogg','rb');
+        var oggfsize = app.io.module.file_size(ogghandle);
+        var oggbytes = new snow.api.buffers.Uint8Array(oggfsize);
+        app.io.module.file_read(ogghandle, oggbytes, oggfsize, 1);
+        var ogginfo = app.assets.module.audio_info_from_load('assets/sound.ogg', true);
+        var ogginfo2 = app.assets.module.audio_info_from_bytes(oggbytes, ogg);
+        trace(ogginfo);
+        trace(ogginfo2);
+
     } //ready
 
     override function onkeyup( keycode:Int, _,_, mod:ModState, _,_ ) {

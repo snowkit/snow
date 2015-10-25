@@ -51,6 +51,7 @@
         linc_openal:'*',
         linc_timestamp:'*',
         linc_stb:'*',
+        linc_ogg:'*',
         linc_sdl:'*'
       },
       files : {

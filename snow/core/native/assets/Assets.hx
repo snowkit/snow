@@ -1,13 +1,16 @@
 package snow.core.native.assets;
 
-import snow.api.buffers.DataView;
 import snow.types.Types;
-import snow.api.buffers.Uint8Array;
 import snow.api.Promise;
 import snow.api.Debug.*;
+
+import snow.api.buffers.Uint8Array;
+import snow.api.buffers.ArrayBufferView;
+import snow.api.buffers.DataView;
 import snow.core.native.io.IO.FileSeek;
 
 import stb.Image;
+import ogg.Ogg;
 
 @:allow(snow.system.assets.Assets)
 class Assets implements snow.modules.interfaces.Assets {
@@ -112,8 +115,8 @@ class Assets implements snow.modules.interfaces.Assets {
         if(_format == null) _format = audio_format_from_ext(_path);
 
         var _info = switch(_format) {
-            case wav: Wav.from_file(app, _path, _load);
-            case ogg: Ogg.from_file(app, _path, _load);
+            case wav: WAV.from_file(app, _path, _load);
+            case ogg: OGG.from_file(app, _path, _load);
             case pcm: PCM.from_file(app, _path, _load);
             case _: null;
         } //switch _format
@@ -131,8 +134,8 @@ class Assets implements snow.modules.interfaces.Assets {
         var _id = 'audio_info_from_bytes/$_format';
 
         var _info = switch(_format) {
-            case wav: Wav.from_bytes(app, _id, _bytes);
-            case ogg: Ogg.from_bytes(app, _id, _bytes);
+            case wav: WAV.from_bytes(app, _id, _bytes);
+            case ogg: OGG.from_bytes(app, _id, _bytes);
             case pcm: PCM.from_bytes(app, _id, _bytes);
             case _ : null;
         } //switch _format
@@ -146,8 +149,8 @@ class Assets implements snow.modules.interfaces.Assets {
     public function audio_seek_source( _info:AudioInfo, _to:Int ) : Bool {
 
         return switch(_info.format) {
-            case wav: Wav.seek(app, _info, _to);
-            case ogg: Ogg.seek(app, _info, _to);
+            case wav: WAV.seek(app, _info, _to);
+            case ogg: OGG.seek(app, _info, _to);
             case pcm: PCM.seek(app, _info, _to);
             case _:   false;
         }
@@ -157,8 +160,8 @@ class Assets implements snow.modules.interfaces.Assets {
     public function audio_load_portion( _info:AudioInfo, _start:Int, _len:Int ) : AudioDataBlob {
 
         return switch(_info.format) {
-            case wav: Wav.portion(app, _info, _start, _len);
-            case ogg: Ogg.portion(app, _info, _start, _len);
+            case wav: WAV.portion(app, _info, _start, _len);
+            case ogg: OGG.portion(app, _info, _start, _len);
             case pcm: PCM.portion(app, _info, _start, _len);
             case _: null;
         }
@@ -186,7 +189,7 @@ private typedef WavChunk = { id:String, offset:Int, data:Uint8Array }
 private typedef WavHandle = { handle:FileHandle, offset:Int }
 
 @:allow(snow.core.native.assets.Assets)
-private class Wav {
+private class WAV {
 
     static function from_file(app:snow.Snow, _path:String, _load:Bool) {
 
@@ -225,7 +228,7 @@ private class Wav {
 
             if(_read_len > 0) {
 
-                log("pcm / reading $_read_len bytes from $_start");
+                log('pcm / reading $_read_len bytes from $_start');
 
                     //resize to fit the requested/remaining length
                 var _byte_gap = (_read_len & 0x03);
@@ -236,7 +239,7 @@ private class Wav {
                     //or end of file so either way it's complete.
                 if(_elements_read == 0) _complete = true;
 
-                log("pcm / total read $_read_len bytes, complete? $_complete");
+                log('pcm / total read $_read_len bytes, complete? $_complete');
 
                 return {
                     bytes: _samples,
@@ -265,7 +268,7 @@ private class Wav {
     } //seek
 
 
-//helpers
+ //helpers
 
     static function from_file_handle(app:snow.Snow, _handle:FileHandle, _path:String, _load:Bool) : AudioInfo {
     
@@ -285,7 +288,7 @@ private class Wav {
                 bitrate         : 88200,
                 bits_per_sample : 16
             }
-        } //return
+        }
 
         if(_load) {
 
@@ -355,7 +358,7 @@ private class Wav {
 
         return _info;
 
-    } //from_file
+    } //from_file_handle
 
     static function read_chunk(app:snow.Snow, _handle:FileHandle, _read_if:Array<String>) : WavChunk {
             
@@ -379,7 +382,7 @@ private class Wav {
             _data = new Uint8Array(_chunk_size);
             app.io.module.file_read(_handle, _data, _chunk_size, 1);
         } else {
-            app.io.module.file_seek(_handle, _pos+_header_size+_chunk_size, 1);
+            app.io.module.file_seek(_handle, _pos+_header_size+_chunk_size, set);
         }
 
         return {
@@ -390,7 +393,7 @@ private class Wav {
 
     } //read_chunk
 
-} //Wav
+} //WAV
 
 @:allow(snow.core.native.assets.Assets)
 private class PCM {
@@ -486,7 +489,7 @@ private class PCM {
 
             if(_read_len > 0) {
 
-                log("pcm / reading $_read_len bytes from $_start");
+                log('pcm / reading $_read_len bytes from $_start');
 
                     //resize to fit the requested/remaining length
                 var _byte_gap = (_read_len & 0x03);
@@ -497,7 +500,7 @@ private class PCM {
                     //or end of file so either way it's complete.
                 if(_elements_read == 0) _complete = true;
 
-                log("pcm / total read $_read_len bytes, complete? $_complete");
+                log('pcm / total read $_read_len bytes, complete? $_complete');
 
                 return {
                     bytes: _samples,
@@ -515,25 +518,314 @@ private class PCM {
 
 } //PCM
 
-
+private typedef OggHandle = {
+    app: snow.Snow,
+    handle: FileHandle,
+    file: OggVorbisFile
+}
 
 @:allow(snow.core.native.assets.Assets)
-private class Ogg {
+private class OGG {
 
     static function from_file(app:snow.Snow, _path:String, _load:Bool) : AudioInfo {
-        return null;
+
+        var _handle = app.io.module.file_handle(_path, 'rb');
+
+        return from_file_handle(app, _handle, _path, _load);
+
     } //from_file
 
+
     static function from_bytes(app:snow.Snow, _path:String, _bytes:Uint8Array) : AudioInfo {
-        return null;
+    
+        var _handle = app.io.module.file_handle_from_mem(_bytes, _bytes.length);
+
+        return from_file_handle(app, _handle, _path, true);
+
     } //from_bytes
 
+    static function from_file_handle(app:snow.Snow, _handle:FileHandle, _path:String, _load:Bool) : AudioInfo {
+
+        if(_handle == null) return null;
+
+        var _ogg_file = Ogg.newOggVorbisFile();
+        var _ogg: OggHandle = {
+            app: app,
+            handle: _handle,
+            file: _ogg_file
+        }
+
+        var _info = {
+            id:     _path,
+            handle: _ogg,
+            format: AudioFormatType.ogg,
+            data: {
+                samples         : null, 
+                length          : app.io.module.file_size(_handle),
+                length_pcm      : 0,
+                channels        : 1,
+                rate            : 44100,
+                bitrate         : 88200,
+                bits_per_sample : 16 //:todo:optionize
+            }
+        }
+
+        // trace('file size is ' + _info.data.length);
+
+        var _ogg_result = Ogg.ov_open_callbacks(_ogg, _ogg_file, null, 0, {
+            read_fn:  ogg_read,
+            seek_fn:  ogg_seek,
+            close_fn: ogg_close,
+            tell_fn:  ogg_tell
+        });
+
+        // trace('ov_open_callbacks ' + code(_ogg_result));
+
+        if(_ogg_result < 0) {
+
+            app.io.module.file_close(_handle);
+
+            log('/ snow / ogg file failed to open!? / result:$_ogg_result code: ${code(_ogg_result)}');
+
+            return null;
+
+        } //result < 0
+
+        var _ogg_info = Ogg.ov_info(_ogg_file, -1);
+
+        _verbose('version: '+Std.int(_ogg_info.version));
+        _verbose('serial: '+Std.int(Ogg.ov_serialnumber(_ogg_file,-1)));
+        _verbose('seekable: '+Std.int(Ogg.ov_seekable(_ogg_file)));
+        _verbose('streams: '+Std.int(Ogg.ov_streams(_ogg_file)));
+        _verbose('rate: '+Std.int(_ogg_info.rate));
+        _verbose('channels: '+Std.int(_ogg_info.channels));
+
+        _verbose('pcm: '+Std.string( Ogg.ov_pcm_total(_ogg_file,-1) ));
+        _verbose('raw: '+Std.string( Ogg.ov_raw_total(_ogg_file,-1) ));
+        _verbose('time: '+Std.string( Ogg.ov_time_total(_ogg_file,-1) ));
+
+        _verbose('ov_bitrate: ' + code(Ogg.ov_bitrate(_ogg_file, -1)));
+        _verbose('ov_bitrate_instant: ' + code(Ogg.ov_bitrate_instant(_ogg_file)));
+        _verbose('bitrate_lower: '+Std.int(_ogg_info.bitrate_lower));
+        _verbose('bitrate_nominal: '+Std.int(_ogg_info.bitrate_nominal));
+        _verbose('bitrate_upper: '+Std.int(_ogg_info.bitrate_upper));
+        _verbose('bitrate_window: '+Std.int(_ogg_info.bitrate_window));
+
+        _verbose('pcm tell: '+code( cast Ogg.ov_pcm_tell(_ogg_file) ));
+        _verbose('raw tell: '+code( cast Ogg.ov_raw_tell(_ogg_file) ));
+        _verbose('time tell: '+code( cast Ogg.ov_time_tell(_ogg_file) ));
+
+        var _total_pcm_length : UInt = haxe.Int64.toInt(Ogg.ov_pcm_total(_ogg_file, -1)) * _ogg_info.channels * 2;
+
+        _info.data.channels = _ogg_info.channels;
+        _info.data.rate = Std.int(_ogg_info.rate);
+        _info.data.bitrate = Std.int(_ogg_info.bitrate_nominal);
+        _info.data.length_pcm = _total_pcm_length;
+
+        seek(app, _info, 0);
+
+        var _comment = Ogg.ov_comment(_ogg_file, -1);
+        _verbose('vendor: ' + _comment.vendor);
+        for(c in _comment.comments) {
+            _verbose('           $c');
+        }
+
+        if(_load) {
+            _info.data.samples = new Uint8Array(_total_pcm_length);
+            read_bytes_ogg(_info, _info.data.samples, 0, _total_pcm_length);
+        }
+
+        return _info;
+
+    } //from_file_handle
+
+    static function read_bytes_ogg(_info:AudioInfo, dest:ArrayBufferView, _start:Int, _len:Int) : Bool {
+
+        var _ogg:OggHandle = _info.handle;
+
+        var complete = false;
+        var word = 2; //1 for 8 bit, 2 for 16 bit. 2 is typical
+        var sgned = 1; //0 for unsigned, 1 is typical
+        var bit_stream = 1;
+
+        var _read_len = _len;
+
+        if(_start != -1) {
+            // log('start was $_start, skipping there first');
+            seek(_ogg.app, _info, _start);
+        }
+
+            //resize to fit the requested length, but pad it slightly to align
+        var byte_gap = (_read_len & 0x03);
+        // out_buffer.resize(_read_len + byte_gap);
+
+        var reading = true;
+        var bytes_left = _read_len;
+        var total_read = 0;
+        var bytes_read = 0;
+        var OGG_BUFFER_LENGTH = 128;
+
+        while(reading) {
+
+            var _read_max = OGG_BUFFER_LENGTH;
+
+            if(bytes_left < _read_max) {
+                _read_max = bytes_left;
+            }
+
+                // Read the decoded sound data
+            bytes_read = Ogg.ov_read(_ogg.file, dest.buffer.getData(), total_read, _read_max, OggEndian.TYPICAL, OggWord.TYPICAL, OggSigned.TYPICAL);
+
+            total_read += bytes_read;
+            bytes_left -= bytes_read;
+
+                //at the end?
+            if(bytes_read == 0) {
+                reading = false;
+                complete = true;
+            }
+
+            if(total_read >= _read_len) {
+                reading = false;
+            }
+
+        } //while
+
+            //we need the buffer length to reflect the real size,
+            //just in case it read shorter than requested
+        if(total_read != _read_len) {
+            var byte_gap = (_read_len & 0x03);
+            // trace('not matched size $total_read / $_read_len');
+            // out_buffer.resize(total_read+byte_gap);
+        }
+
+        return complete;
+
+    } //read_bytes_ogg
+
     static function portion(app:snow.Snow, _info:AudioInfo, _start:Int, _len:Int) : AudioDataBlob {
-        return null;
+
+        var _byte_gap = (_len & 0x03);
+        var _pad_len = _len + _byte_gap;
+        var _samples = new Uint8Array(_pad_len);
+        var _complete = read_bytes_ogg(_info, _samples, _start, _pad_len);
+
+        return {
+            bytes: _samples,
+            complete: _complete
+        };
+
     } //load_portion
 
     static function seek(app:snow.Snow, _info:AudioInfo, _to:Int) : Bool {
+
+        if(_info.handle != null) {
+
+                //pcm seek is in samples, not bytes
+                //:todo: ogg is always 16?
+            var _ogg:OggHandle = _info.handle;
+            var _to_samples = haxe.Int64.ofInt(Std.int(_to/16));
+            var _ogg_file:OggVorbisFile = _ogg.file;
+
+            var res = Ogg.ov_pcm_seek(_ogg_file, _to_samples);
+
+            return res == 0;
+
+        }
+
         return false;
+
     } //seek
 
-} //Ogg
+ //helpers
+
+        //converts return code to string
+    static function code(_code:OggCode) : String {
+        return switch(_code){
+            case OggCode.OV_EBADHEADER:'OV_EBADHEADER';
+            case OggCode.OV_EBADLINK:'OV_EBADLINK';
+            case OggCode.OV_EBADPACKET:'OV_EBADPACKET';
+            case OggCode.OV_EFAULT:'OV_EFAULT';
+            case OggCode.OV_EIMPL:'OV_EIMPL';
+            case OggCode.OV_EINVAL:'OV_EINVAL';
+            case OggCode.OV_ENOSEEK:'OV_ENOSEEK';
+            case OggCode.OV_ENOTAUDIO:'OV_ENOTAUDIO';
+            case OggCode.OV_ENOTVORBIS:'OV_ENOTVORBIS';
+            case OggCode.OV_EOF:'OV_EOF';
+            case OggCode.OV_EREAD:'OV_EREAD';
+            case OggCode.OV_EVERSION:'OV_EVERSION';
+            case OggCode.OV_FALSE:'OV_FALSE';
+            case OggCode.OV_HOLE: 'OV_HOLE';
+            case _:'$_code';
+        }
+    } //code
+
+
+ //ogg callbacks
+
+
+        //user read function for ogg callbacks
+    static function ogg_read(_ogg:OggHandle, size:Int, nmemb:Int, data:haxe.io.BytesData):Int {
+
+        var _total = size * nmemb;
+        var _bytes = haxe.io.Bytes.ofData(data);
+        var _buffer = new Uint8Array(_bytes);
+
+        //file_read past the end of file may return 0 amount read,
+        //which can mislead the amounts, so we work out how much is left if near the end 
+        var _file_size = _ogg.app.io.module.file_size(_ogg.handle);
+        var _file_cur = _ogg.app.io.module.file_tell(_ogg.handle);
+        var _read_size = Std.int(Math.min(_file_size-_file_cur, _total));
+
+        var _read_n = _ogg.app.io.module.file_read(_ogg.handle, _buffer, _read_size, 1);
+        var _read = (_read_n * _read_size);
+
+        // trace('ogg_read cur:$_file_cur, fs:$_file_size, rs:$_read_size, size:$size, nmemb:$nmemb, read amount:$_read');
+
+        _bytes = null;
+
+        return _read;
+
+    } //ogg_read
+
+        //user seek function for ogg callbacks
+    static function ogg_seek(_ogg:OggHandle, offset:Int, whence:OggWhence):Void {
+
+        // trace('ogg_seek offset:$offset whence:$whence');
+
+        var _w:FileSeek = switch(whence) {
+            case OGG_SEEK_CUR: cur;
+            case OGG_SEEK_END: end;
+            case OGG_SEEK_SET: set;
+        }
+
+        _ogg.app.io.module.file_seek(_ogg.handle, offset, _w);
+
+    } //ogg_seek
+
+        //user close function for ogg callbacks
+    static function ogg_close(_ogg:OggHandle):Void {
+
+        // trace('ogg_close');
+
+        _ogg.app.io.module.file_close(_ogg.handle);
+
+        _ogg.file = null;
+        _ogg.handle = null;
+        _ogg = null;
+
+    } //ogg_close
+
+        //user tell function for ogg callbacks
+    static function ogg_tell(_ogg:OggHandle):Int {
+
+        var res = _ogg.app.io.module.file_tell(_ogg.handle);
+
+        // trace('ogg_tell tell:$res');
+
+        return res;
+
+    } //ogg_tell
+
+
+} //OGG
