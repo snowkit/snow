@@ -27,5 +27,4 @@ interface IO {
     private function string_slot_save(?_slot:Int=0, _contents:String) : Bool;
     private function string_slot_destroy(?_slot:Int=0) : Bool;
 
-
 } //IO

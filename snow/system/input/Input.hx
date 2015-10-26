@@ -10,7 +10,7 @@ typedef MapIntFloat = Map<Int, Float>;
 class Input {
 
         /** access to snow from subsystems */
-    @:noCompletion public var app : Snow;
+    var app : Snow;
 
         /** constructed internally, use `app.input` */
     function new( _app:Snow ) {

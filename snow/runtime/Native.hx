@@ -27,12 +27,7 @@ class Native implements Runtime {
 
             app = _app;
             timestamp_start = timestamp();
-
-            app.config.runtime = {
-                audio_buffer_length : 176400,
-                audio_buffer_count : 4
-            }
-            // app.config.runtime = {};
+            app.config.runtime = {};
 
             #if ios      app.os = os_ios;     app.platform = platform_ios;     #end
             #if mac      app.os = os_mac;     app.platform = platform_mac;     #end
