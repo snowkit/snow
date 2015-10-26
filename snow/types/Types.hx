@@ -1,21 +1,30 @@
 package snow.types;
 
-#if !macro
-
-// import snow.Snow;
 import snow.api.buffers.Uint8Array;
 
-//asset types
+//runtime types
 
-typedef Asset      = snow.system.assets.Asset.Asset;
-typedef AssetBytes = snow.system.assets.Asset.AssetBytes;
-typedef AssetText  = snow.system.assets.Asset.AssetText;
-typedef AssetJSON  = snow.system.assets.Asset.AssetJSON;
-typedef AssetImage = snow.system.assets.Asset.AssetImage;
+    /** A platform window handle */
+#if snow_web
+    typedef WindowHandle = js.html.CanvasElement;
+#else
+    typedef WindowHandle = Null<Float>;
+#end //snow_web
+
+    /** A platform window handle */
+typedef AudioHandle = Dynamic;
 typedef FileHandle = Null<Int>;
 
-typedef Key = snow.system.input.Keycodes.Keycodes;
-typedef Scan = snow.system.input.Keycodes.Scancodes;
+//These types include further types we don't want to 
+#if !macro
+    typedef Asset      = snow.system.assets.Asset.Asset;
+    typedef AssetBytes = snow.system.assets.Asset.AssetBytes;
+    typedef AssetText  = snow.system.assets.Asset.AssetText;
+    typedef AssetJSON  = snow.system.assets.Asset.AssetJSON;
+    typedef AssetImage = snow.system.assets.Asset.AssetImage;
+    typedef Key        = snow.system.input.Keycodes.Keycodes;
+    typedef Scan       = snow.system.input.Keycodes.Scancodes;
+#end
 
 enum Error {
     error(value:Dynamic);
@@ -68,11 +77,8 @@ enum Error {
 } //AssetType
 
 typedef IODataOptions = {
-
     @:optional var binary:Bool;
-
 }
-
 
 /** The runtime application config info */
 typedef AppConfig = {
@@ -81,45 +87,13 @@ typedef AppConfig = {
     @:optional var window       : WindowConfig;
         /** The render config that specifies rendering and context backend specifics.  */
     @:optional var render       : RenderConfig;
-
-        /** the user specific config, by default, read from a json file at runtime */
+        /** The user specific config, by default, read from a json file at runtime */
     @:optional var user         : Dynamic;
-
-        /** config specific to the web target */
-    @:optional var web          : AppConfigWeb;
-        /** config specific to the native target */
-    @:optional var native       : AppConfigNative;
+        /** The runtime specific config */
+    @:optional var runtime      : Dynamic;
 
 } //AppConfig
 
-typedef AppConfigWeb = {
-
-        /** If true, right clicking will consume the event on the canvas. `event.preventDefault` is used. default: true*/
-    @:optional var no_context_menu : Bool;
-
-        /** Any Key.* values stored in this array sent to the page will be consumed by snow. `event.preventDefault` is used.
-            Keys can be removed or added to the array at runtime. default:left,up,down,right,backspace,tab,delete */
-    @:optional var prevent_default_keys : Array<Int>;
-        /** If true, mouse wheel events sent to the page will be consumed by snow. `event.preventDefault` is used. default: true*/
-    @:optional var prevent_default_mouse_wheel : Bool;
-
-        /** If true, native fullscreen will be requested from the user.
-            If not, the canvas will fill the window size instead.
-            Take note : true fullscreen requests only work when driven by a user event (click/keys).
-            You cannot force fullscreen on web. default: false */
-    @:optional var true_fullscreen : Bool;
-
-} //AppConfigWeb
-
-typedef AppConfigNative = {
-
-        /** The default length of a single stream buffer in bytes. default:176400, This is ~1 sec in 16 bit mono. */
-    @:optional var audio_buffer_length : Int;
-
-        /** The default number of audio buffers to use for a single stream. Set no less than 2, as it's a queue. See `Audio` docs. default:4 */
-    @:optional var audio_buffer_count : Int;
-
-} //AppConfigNative
 
 typedef FileFilter = {
 
@@ -345,34 +319,14 @@ typedef InputEvent = {
 
 } //InputEvent
 
-/** Information about a display mode */
-typedef DisplayMode = {
-    format : Int,
-    refresh_rate : Int,
-    width : Int,
-    height : Int
-}
-
-    /** A platform window handle */
-#if snow_web
-    typedef WindowHandle = js.html.CanvasElement;
-#else
-    typedef WindowHandle = Null<Float>;
-#end //snow_web
-
-    /** A platform window handle */
-typedef AudioHandle = Dynamic;
-
-
-
 /** A text specific event event type */
 @:enum abstract TextEventType(Int) from Int to Int {
 
-/** An unknown text event */
+        /** An unknown text event */
     var unknown    = 0;
-/** An edit text typing event */
+        /** An edit text typing event */
     var edit    = 1;
-/** An input text typing event */
+        /** An input text typing event */
     var input   = 2;
 
     inline function toString() {
@@ -389,13 +343,13 @@ typedef AudioHandle = Dynamic;
 /** A gamepad device event type */
 @:enum abstract GamepadDeviceEventType(Int) from Int to Int {
 
-/** A unknown device event */
+        /** A unknown device event */
     var unknown             = 0;
-/** A device added event */
+        /** A device added event */
     var device_added        = 1;
-/** A device removed event */
+        /** A device removed event */
     var device_removed      = 2;
-/** A device was remapped */
+        /** A device was remapped */
     var device_remapped     = 3;
 
     inline function toString() {
@@ -450,13 +404,7 @@ typedef ModState = {
 } //ModState
 
 
-//Conversion helpers for native <-> snow events
-
 @:enum abstract SystemEventType(Int) from Int to Int {
-
-        //snow core events
-        //from platform i.e :
-        //se_unknown, se_init, se_ready etc
 
         /** An unknown system event */
     var unknown                    = 0;
@@ -514,10 +462,6 @@ typedef ModState = {
 } //SystemEventType
 
 @:enum abstract WindowEventType(Int) from Int to Int {
-
-        //window events,
-        // from native :
-        // we_unknown, we_created, we_shown, we_hidden, we_exposed, we_moved, we_resized, we_size_changed, we_minimized, we_maximized, we_restored, we_enter, we_leave, we_focus_gained, we_focus_lost, we_close, we_destroy
 
         /** An unknown window event */
     var unknown          = 0;
@@ -581,10 +525,6 @@ typedef ModState = {
 
 @:enum abstract InputEventType(Int) from Int to Int {
 
-        //Input events
-        //from native :
-        //ie_unknown, ie_key, ie_mouse, ie_touch, ie_joystick, ie_controller
-
         /** An unknown input event */
     var unknown        = 0;
         /** An keyboard input event */
@@ -597,7 +537,6 @@ typedef ModState = {
     var joystick       = 4;
         /** An controller input event. Use these instead of joystick on desktop. */
     var controller     = 5;
-
 
     inline function toString() {
         return switch(this) {
@@ -612,5 +551,3 @@ typedef ModState = {
     } //toString
 
 } //InputEvent
-
-#end

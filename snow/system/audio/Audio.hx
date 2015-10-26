@@ -10,7 +10,7 @@ import snow.api.Debug.*;
 class Audio {
 
         /** access to module specific implementation */
-    public var module : snow.modules.interfaces.Audio;
+    public var module : snow.Set.ModuleAudio;
         /** Set to false to stop any and all processing in the audio system */
     public var active : Bool = false;
 

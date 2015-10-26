@@ -1,6 +1,5 @@
 package snow.system.io;
 
-import snow.Snow;
 import snow.types.Types;
 import snow.api.buffers.Uint8Array;
 import snow.api.Promise;
@@ -10,10 +9,10 @@ import snow.api.Debug.*;
 class IO {
 
 
-    @:noCompletion public var app : Snow;
+    @:noCompletion public var app : snow.Snow;
 
     /** Access to the platform specific api, if any */
-    public var module : snow.modules.interfaces.IO;
+    public var module : snow.Set.ModuleIO;
 
     /** The string_save file name prefix. For example, the default being `slot.0`,
         by changing this you can rename the save slots to `custom.0`.
@@ -21,7 +20,7 @@ class IO {
     public var string_save_prefix : String = 'slot';
 
         /** Constructed internally, use `app.io` */
-    function new( _app:Snow ) {
+    function new( _app:snow.Snow ) {
 
         app = _app;
         module = new snow.Set.ModuleIO(app);

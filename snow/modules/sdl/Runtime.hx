@@ -27,6 +27,8 @@ class Runtime extends snow.runtime.Native {
 
     } //shutdown
 
+    public function fake2() {
+        
+    }
 
 } //Runtime
-

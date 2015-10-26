@@ -9,6 +9,7 @@ import snow.types.Types;
 
 import snow.system.io.IO;
 import snow.system.input.Input;
+import snow.system.assets.Asset.AssetJSON;
 import snow.system.assets.Assets;
 import snow.system.audio.Audio;
 
@@ -33,7 +34,7 @@ class Snow {
     //systems
 
             /** The runtime module */
-        public static var runtime : Runtime;
+        public static var runtime : snow.Set.HostRuntime;
             /** The io system */
         public var io : IO;
             /** The input system */
@@ -79,9 +80,7 @@ class Snow {
 
             log('app / assets / ${snow.Set.module_assets}');
             log('app / audio / ${snow.Set.module_audio}');
-            log('app / input / ${snow.Set.module_input}');
             log('app / io / ${snow.Set.module_io}');
-            log('app / window / ${snow.Set.module_window}');
 
             io = new IO(this);
             input = new Input(this);
@@ -94,6 +93,7 @@ class Snow {
 
             assertnull(os, 'init - Runtime didn\'t set the app.os value!');
             assertnull(platform, 'init - Runtime didn\'t set the app.platform value!');
+            // assertnull(config.runtime, 'init - Runtime didn\'t set the app.config.runtime value!');
 
             log('app / os:$os / platform:$platform / init / $time');
             onevent({ type:init });
@@ -323,19 +323,7 @@ class Snow {
                 user : {},
                 window : default_window_config(),
                 render : default_render_config(),
-                web : {
-                    no_context_menu : true,
-                    prevent_default_keys : [
-                        Key.left, Key.right, Key.up, Key.down,
-                        Key.backspace, Key.tab, Key.delete
-                    ],
-                    prevent_default_mouse_wheel : true,
-                    true_fullscreen : false
-                },
-                native : {
-                    audio_buffer_length : 176400,
-                    audio_buffer_count : 4
-                }
+                runtime : null
             }
 
         } //default_config

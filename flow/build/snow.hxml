@@ -1,3 +1,9 @@
+{{#if snow.runtime~}}
+--macro snow.Set.runtime("{{{toString snow.runtime}}}")
+{{~/if}}
+{{#if project.app.main~}}
+--macro snow.Set.main("{{{toString project.app.main}}}")
+{{~/if}}
 {{#if snow.config.log~}}
 --macro snow.api.Debug.level({{{snow.config.log}}})
 {{~/if}}
@@ -6,10 +12,4 @@
 {{~/if}}
 {{#if project.app.package~}}
 --macro snow.Set.ident("{{{toString project.app.package}}}")
-{{~/if}}
-{{#if project.app.main~}}
---macro snow.Set.main("{{{toString project.app.main}}}")
-{{~/if}}
-{{#if snow.runtime~}}
---macro snow.Set.runtime("{{{toString snow.runtime}}}")
 {{~/if}}

@@ -1,6 +1,5 @@
 package snow.system.assets;
 
-import snow.types.Types;
 import snow.api.Promise;
 import snow.api.buffers.Uint8Array;
 import snow.api.Debug.*;
@@ -17,13 +16,12 @@ class Assets {
     public var root : String = '';
 
         /** access to module implementation */
-    public var module : snow.modules.interfaces.Assets;
+    public var module : snow.Set.ModuleAssets;
         /** access to snow from subsystems */
     public var app : Snow;
 
 
         /** constructed internally, use `app.assets` */
-    @:allow(snow.Snow)
     function new( _app:Snow ) {
 
         #if ios

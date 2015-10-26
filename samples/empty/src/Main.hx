@@ -7,7 +7,7 @@ class Main extends snow.App {
 
     override function config( config:AppConfig ) : AppConfig {
 
-        config.window.title = 'snow empty app template';
+        config.window.title = 'snow empty app';
 
         return config;
 
@@ -17,6 +17,7 @@ class Main extends snow.App {
 
         log('ready');
         log('app config: ${app.config.user}');
+        log('runtime config: ${app.config.runtime}');
         log('asset path: ${app.assets.path('fake.file')}');
 
         // test_assets();

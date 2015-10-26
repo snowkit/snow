@@ -1,7 +1,5 @@
 package ext;
 
-// import snow.Snow;
-// import snow.types.Types;
 import snow.extension.SnowExtension;
 
 class ExampleExtension implements SnowExtension {
