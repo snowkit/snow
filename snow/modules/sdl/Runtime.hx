@@ -56,6 +56,10 @@ class Runtime extends snow.runtime.Native {
 
             SDL.addEventWatch( event_watch, null );
 
+        //default window
+
+            create_window();
+
         log('sdl / init ok');
 
     } //new
@@ -65,7 +69,7 @@ class Runtime extends snow.runtime.Native {
         log('sdl / run');
         var input = app.input;
 
-        // while(!app.shutting_down) {
+        while(!app.shutting_down) {
 
             while(SDL.hasAnEvent()) {
 
@@ -82,8 +86,7 @@ class Runtime extends snow.runtime.Native {
 
             app.onevent({ type:SystemEventType.update });
 
-        // } //!shutting down
-        
+        } //!shutting down
 
     } //run
 
@@ -96,6 +99,8 @@ class Runtime extends snow.runtime.Native {
 
     } //shutdown
 
+
+//Mobile
 
     static function event_watch(userdata:{ app:snow.Snow }, e:sdl.Event) : Int {
 
@@ -125,6 +130,89 @@ class Runtime extends snow.runtime.Native {
     } //event_watch
 
 //Window
+
+    function create_window() {
+
+        var config = app.config.window;
+        var render = app.config.render;
+
+        var request_flags: SDLWindowFlags = 0;
+        var real_flags: SDLWindowFlags = 0;
+
+        request_flags |= SDL_WINDOW_OPENGL;
+
+        if(config.resizable) request_flags |= SDL_WINDOW_RESIZABLE;
+        if(config.borderless) request_flags |= SDL_WINDOW_BORDERLESS;
+
+        if(config.fullscreen) {
+            if(config.fullscreen_desktop) {
+                request_flags |= SDL_WINDOW_FULLSCREEN_DESKTOP;
+            } else {
+                #if !mac
+                    request_flags |= SDL_WINDOW_FULLSCREEN;
+                #end
+            }
+        }
+
+        SDL.GL_SetAttribute(SDL_GL_RED_SIZE,    render.red_bits);
+        SDL.GL_SetAttribute(SDL_GL_GREEN_SIZE,  render.green_bits);
+        SDL.GL_SetAttribute(SDL_GL_BLUE_SIZE,   render.blue_bits);
+        SDL.GL_SetAttribute(SDL_GL_ALPHA_SIZE,  render.alpha_bits);
+
+            //:todo: this will migrate to probe above
+        if(render.depth_bits > 0) {
+            SDL.GL_SetAttribute(SDL_GL_DEPTH_SIZE, render.depth_bits );
+        }
+
+        if(render.stencil_bits > 0) {
+            SDL.GL_SetAttribute(SDL_GL_STENCIL_SIZE, render.stencil_bits );
+        }
+
+        SDL.GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
+
+        if(render.opengl.major != 0) {
+            SDL.GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, render.opengl.major);
+            SDL.GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, render.opengl.minor);
+        }
+
+        if(render.opengl.es) {
+
+                //:todo: check this again in the docs
+            SDL.GL_SetAttribute(SDL_GL_RETAINED_BACKING, 1);
+
+                //default to OpenGL ES 2.0
+            if(render.opengl.major == 0) {
+                SDL.GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 2);
+                SDL.GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 0);
+            }
+
+        } else { //es
+
+            switch(render.opengl.profile) {
+
+                case compatibility:
+                   SDL.GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDLGLprofile.SDL_GL_CONTEXT_PROFILE_COMPATIBILITY);
+
+                case core:
+                    SDL.GL_SetAttribute(SDL_GL_ACCELERATED_VISUAL, 1);
+                    SDL.GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDLGLprofile.SDL_GL_CONTEXT_PROFILE_CORE);
+
+            } // profile
+        
+        } //!es
+
+        if(render.antialiasing > 0) {
+            SDL.GL_SetAttribute(SDL_GL_MULTISAMPLEBUFFERS, 1 );
+            SDL.GL_SetAttribute(SDL_GL_MULTISAMPLESAMPLES, render.antialiasing );
+        }
+
+        var window = SDL.createWindow( config.title, config.x, config.y, config.width, config.height, request_flags );
+
+        if(window == null) {
+            throw Error.error('runtime / sdl / failed to create window / `${SDL.getError()}`');
+        }
+
+    } //create_window
     
     function handle_window_ev(e:sdl.Event) {
 

@@ -143,9 +143,12 @@ class Snow {
                 Dispatch events manually using the `dispatch_*` calls. */
         public function onevent(_event:SystemEvent) {
 
-            // if( _event.type != SystemEventType.update ) {
+            if( _event.type != update ) {
                 log('event / system event / ${_event.type}');
-            // }
+                if(_event.window != null) {
+                    log('   window / ${_event.window.type} / ${_event.window.window_id} / ${_event.window.data1},${_event.window.data2}');
+                }
+            }
 
             io.onevent( _event );
             audio.onevent( _event );
