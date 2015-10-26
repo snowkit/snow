@@ -93,7 +93,7 @@ class Snow {
 
             assertnull(os, 'init - Runtime didn\'t set the app.os value!');
             assertnull(platform, 'init - Runtime didn\'t set the app.platform value!');
-            // assertnull(config.runtime, 'init - Runtime didn\'t set the app.config.runtime value!');
+            assertnull(config.runtime, 'init - Runtime didn\'t set the app.config.runtime value!');
 
             log('app / os:$os / platform:$platform / init / $time');
             onevent({ type:init });
@@ -288,7 +288,7 @@ class Snow {
         inline function setup_host_config() {
 
             _debug('config / fetching user config');
-
+            
             config = host.config( config );
 
         } //setup_host_config
