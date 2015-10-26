@@ -29,8 +29,8 @@ typedef FileHandle = Null<Int>;
 enum Error {
     error(value:Dynamic);
     init(value:Dynamic);
-    windowing(value:Dynamic);
     parse(value:Dynamic);
+    windowing(value:Dynamic);
 }
 
 /** A platform identifier string */
@@ -283,8 +283,6 @@ typedef SystemEvent = {
     @:optional var type : SystemEventType;
         /** If type is `window` this will be populated, otherwise null */
     @:optional var window : WindowEvent;
-        /** If type is `input` this will be populated, otherwise null */
-    @:optional var input : InputEvent;
 
 } //SystemEvent
 
@@ -297,27 +295,12 @@ typedef WindowEvent = {
     @:optional var timestamp : Float;
         /** The window id from which this event originated */
     @:optional var window_id : Int;
-        /** The raw platform event data, only useful if you are implementing
-            a new platform or lack access to data from the system that snow does not expose */
-    @:optional var event : Dynamic;
+        /** Potential window event data */
+    @:optional var data1 : Int;
+        /** Potential window event data */
+    @:optional var data2 : Int;
 
 } //WindowEvent
-
-
-/** A system input event */
-typedef InputEvent = {
-
-        /** The type of input event this was. Use InputEventType */
-    @:optional var type : InputEventType;
-        /** The time in seconds that this event occured, useful for deltas */
-    @:optional var timestamp : Float;
-        /** The window id from which this event originated */
-    @:optional var window_id : Int;
-        /** The raw platform event data, only useful if you are implementing
-            a new platform or lack access to data from the system that snow does not expose */
-    @:optional var event : Dynamic;
-
-} //InputEvent
 
 /** A text specific event event type */
 @:enum abstract TextEventType(Int) from Int to Int {
