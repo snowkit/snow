@@ -17,11 +17,52 @@ class Runtime extends snow.runtime.Native {
             audio_buffer_count : 4
         }
 
+        var status = SDL.init(SDL_INIT_TIMER);
+        if(status != 0) {
+            throw Error.init('runtime / sdl / failed to init / `${SDL.getError()}`');
+        }
+
+        //video
+
+            var status = SDL.initSubSystem(SDL_INIT_VIDEO);
+            if(status != 0) {
+                throw Error.init('runtime / sdl / failed to init video / `${SDL.getError()}`');
+            }
+
+        //input
+
+            #if !snow_sdl_no_controller
+                status = SDL.initSubSystem(SDL_INIT_GAMECONTROLLER);
+                if(status == -1) {
+                    log('sdl / Could not initialize controller : `${SDL.getError()}`');
+                }
+            #end
+
+            #if !snow_sdl_no_joystick
+                status = SDL.initSubSystem(SDL_INIT_JOYSTICK);
+                if(status == -1) {
+                    log('sdl / Could not initialize joystick : `${SDL.getError()}`');
+                }
+            #end
+
+            #if !snow_sdl_no_haptic
+                status = SDL.initSubSystem(SDL_INIT_HAPTIC);
+                if(status == -1) {
+                    log('sdl / Could not initialize haptic : `${SDL.getError()}`');
+                }
+            #end
+
+        //mobile events
+
+            SDL.addEventWatch( event_watch, null );
+
+        log('sdl / init ok');
+
     } //new
 
     override function run() {
 
-        log('runtime / sdl / run');
+        log('sdl / run');
         var input = app.input;
 
         // while(!app.shutting_down) {
@@ -48,11 +89,40 @@ class Runtime extends snow.runtime.Native {
 
     override function shutdown() {
 
-        log('runtime / sdl / shutdown');
+        SDL.quit();
+        SDL.delEventWatch(event_watch);
+
+        log('sdl / shutdown');
 
     } //shutdown
 
 
+    static function event_watch(userdata:{ app:snow.Snow }, e:sdl.Event) : Int {
+
+        var _type:SystemEventType = unknown;
+
+        switch(e.type) {
+            case SDL_APP_TERMINATING:
+                _type = app_terminating;
+            case SDL_APP_LOWMEMORY:
+                _type = app_lowmemory;
+            case SDL_APP_WILLENTERBACKGROUND:
+                _type = app_willenterbackground;
+            case SDL_APP_DIDENTERBACKGROUND:
+                _type = app_didenterbackground;
+            case SDL_APP_WILLENTERFOREGROUND:
+                _type = app_willenterforeground;
+            case SDL_APP_DIDENTERFOREGROUND:
+                _type = app_didenterforeground;
+            case _:
+                return 0;
+        }
+
+        userdata.app.onevent({ type:_type });
+
+        return 1;
+
+    } //event_watch
 
 //Window
     
