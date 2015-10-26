@@ -56,15 +56,13 @@ class Runtime extends snow.runtime.Native {
 
             SDL.addEventWatch( event_watch, null );
 
-        //default window
-
-            create_window();
-
         log('sdl / init ok');
 
     } //new
 
     override function run() {
+
+        create_window();
 
         log('sdl / run');
         var input = app.input;
@@ -206,7 +204,7 @@ class Runtime extends snow.runtime.Native {
             SDL.GL_SetAttribute(SDL_GL_MULTISAMPLESAMPLES, render.antialiasing );
         }
 
-        var window = SDL.createWindow( config.title, config.x, config.y, config.width, config.height, request_flags );
+        var window = SDL.createWindow((cast config.title:String), config.x, config.y, config.width, config.height, request_flags );
 
         if(window == null) {
             throw Error.error('runtime / sdl / failed to create window / `${SDL.getError()}`');

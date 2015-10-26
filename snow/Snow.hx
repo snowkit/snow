@@ -442,6 +442,41 @@ class Snow {
 
     //helpers
 
+        function copy_window_config( _config:WindowConfig ) : WindowConfig {
+            return {
+                borderless:_config.borderless,
+                fullscreen:_config.fullscreen,
+                fullscreen_desktop:_config.fullscreen_desktop,
+                height:_config.height,
+                no_input:_config.no_input,
+                resizable:_config.resizable,
+                title:'${_config.title}',
+                width:_config.width,
+                x:_config.x,
+                y:_config.y
+            }
+        }
+
+        function copy_render_config( _config:RenderConfig ) : RenderConfig {
+            return {
+                antialiasing: _config.antialiasing,
+                depth: _config.depth,
+                depth_bits: _config.depth_bits,
+                red_bits: _config.red_bits,
+                green_bits: _config.green_bits,
+                blue_bits: _config.blue_bits,
+                alpha_bits: _config.alpha_bits,
+                stencil: _config.stencil,
+                stencil_bits: _config.stencil_bits,
+                opengl : {
+                    es: _config.opengl.es,
+                    major: _config.opengl.major,
+                    minor: _config.opengl.minor,
+                    profile: _config.opengl.profile
+                }
+            }
+        }
+
         function make_uniqueid(?val:Int) : String {
 
             // http://www.anotherchris.net/csharp/friendly-unique-id-generation-part-2/#base62
