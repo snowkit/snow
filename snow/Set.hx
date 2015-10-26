@@ -24,42 +24,48 @@ class Set {
 
         //set
 
-            macro static function ident(_value:String):Void {
+            macro static function ident(_value:String) {
                 snow.Set.app_ident = _value;
+                return macro {};
             } //ident
 
-            macro static function config(_value:String):Void {
+            macro static function config(_value:String) {
                 snow.Set.app_config = _value;
+                return macro {};
             } //config
 
-            macro static function main(_value:String):Void {
+            macro static function main(_value:String) {
                 // Context.warning('main: $_value', Context.currentPos());
                 Compiler.keep(_value);
                 snow.Set.app_main = _value;
+                return macro {};
             }
 
-            macro static function runtime(_value:String):Void {
+            macro static function runtime(_value:String) {
                 // Context.warning('runtime: $_value', Context.currentPos());
                 Compiler.keep(_value);
                 snow.Set.app_runtime = _value;
+                return macro {};
             }
 
-            macro static function assets(_value:String):Void {
+            macro static function assets(_value:String) {
                 // Context.warning('assets: $_value', Context.currentPos());
                 Compiler.keep(_value);
                 snow.Set.module_assets = _value;
+                return macro {};
             }
 
-            macro static function audio(_value:String):Void {
+            macro static function audio(_value:String) {
                 // Context.warning('audio: $_value', Context.currentPos());
                 Compiler.keep(_value);
                 snow.Set.module_audio = _value;
+                return macro {};
             }
 
-            macro static function io(_value:String):Void {
-                // Context.warning('io: $_value', Context.currentPos());
+            macro static function io(_value:String) {
                 Compiler.keep(_value);
                 snow.Set.module_io = _value;
+                return macro {};
             }
 
         //get
