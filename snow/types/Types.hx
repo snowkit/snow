@@ -245,6 +245,8 @@ typedef RenderConfigOpenGL = {
     @:optional var major : Int;
         /** The minor OpenGL version to request */
     @:optional var minor : Int;
+        /** True if the config is OpenGL ES */
+    @:optional var es : Bool;
         /** The OpenGL context profile to request */
     @:optional var profile : OpenGLProfile;
 
