@@ -233,7 +233,7 @@ class Runtime extends snow.runtime.Native {
     function post_render_context(window:sdl.Window) {
 
         var _result = GLEW.init();
-        if(_result != 0) {
+        if(_result != GLEW.OK) {
             throw Error.error('runtime / sdl / failed to setup created render context, unable to recover / `${GLEW.error(_result)}`');
         } else {
             log('sdl / GLEW init / ok');
