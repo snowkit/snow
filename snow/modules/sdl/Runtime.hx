@@ -263,8 +263,6 @@ class Runtime extends snow.runtime.Native {
                 SDL.GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDLGLprofile.SDL_GL_CONTEXT_PROFILE_CORE);
 
             case gles:
-                    //:todo: check this again in the docs
-                SDL.GL_SetAttribute(SDL_GL_RETAINED_BACKING, 1);
                 SDL.GL_SetAttribute(SDL_GL_ACCELERATED_VISUAL, 1);
                 SDL.GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDLGLprofile.SDL_GL_CONTEXT_PROFILE_ES);
 
