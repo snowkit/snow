@@ -3,6 +3,7 @@ package snow.modules.sdl;
 import snow.api.Debug.*;
 import snow.types.Types;
 import sdl.SDL;
+import glew.GLEW;
 
 @:allow(snow.Snow)
 class Runtime extends snow.runtime.Native {
@@ -129,48 +130,6 @@ class Runtime extends snow.runtime.Native {
 
 //Window
 
-    function create_window() {
-
-        log('sdl / creating window');
-
-        var config = app.config.window;
-
-        apply_GL_attr(app.config.render);        
-
-        var window = SDL.createWindow((cast config.title:String), config.x, config.y, config.width, config.height, window_flags(config));
-
-        if(window == null) {
-            throw Error.error('runtime / sdl / failed to create platform window, unable to recover / `${SDL.getError()}`');
-        }
-
-        var _id:Int = SDL.getWindowID(window);
-
-        log('sdl / created window / id: $_id');
-        log('sdl / creating render context');
-
-        if(!create_render_context(window)) {
-            throw Error.error('runtime / sdl / failed to create render context, unable to recover / `${SDL.getError()}`');
-        }
-
-            //start with a copy
-        var actual_config = app.copy_window_config(config);
-        var actual_render = app.copy_render_config(app.config.render);
-
-        actual_config = update_window_config(window, actual_config);
-        actual_render = update_render_config(window, actual_render);
-
-    } //create_window
-
-    var GLContext : sdl.GLContext;
-
-    function create_render_context(window:sdl.Window) : Bool {
-        
-        GLContext = SDL.GL_CreateContext(window);
-
-        return !(GLContext.isnull());
-
-    } //
-
     function handle_window_ev(e:sdl.Event) {
 
         if(e.type == SDL_WINDOWEVENT) {
@@ -222,6 +181,65 @@ class Runtime extends snow.runtime.Native {
         }
 
     } //handle_window_ev
+
+    function create_window() {
+
+        log('sdl / creating window');
+
+        var config = app.config.window;
+
+        apply_GL_attr(app.config.render);        
+
+        var window = SDL.createWindow((cast config.title:String), config.x, config.y, config.width, config.height, window_flags(config));
+
+        if(window == null) {
+            throw Error.error('runtime / sdl / failed to create platform window, unable to recover / `${SDL.getError()}`');
+        }
+
+        var _id:Int = SDL.getWindowID(window);
+
+        log('sdl / created window / id: $_id');
+        log('sdl / creating render context');
+
+        if(!create_render_context(window)) {
+            throw Error.error('runtime / sdl / failed to create render context, unable to recover / `${SDL.getError()}`');
+        }
+
+        post_render_context(window);
+
+            //start with a copy
+        var actual_config = app.copy_window_config(config);
+        var actual_render = app.copy_render_config(app.config.render);
+
+        actual_config = update_window_config(window, actual_config);
+        actual_render = update_render_config(window, actual_render);
+
+    } //create_window
+
+    var GLContext : sdl.GLContext;
+
+    function create_render_context(window:sdl.Window) : Bool {
+        
+        GLContext = SDL.GL_CreateContext(window);
+
+        var _success = GLContext.isnull() == false;
+
+        log('sdl / GL init / $_success');
+
+        return _success;
+
+    } //
+
+    function post_render_context(window:sdl.Window) {
+
+        var _result = GLEW.init();
+        if(_result != 0) {
+            throw Error.error('runtime / sdl / failed to setup created render context, unable to recover / `${GLEW.error(_result)}`');
+        } else {
+            log('sdl / GLEW init / ok');
+        }
+
+    } //post_render_context
 
 //Default flags and attributes
 
