@@ -306,6 +306,14 @@ class Runtime extends snow.runtime.Native {
 
     function update_window_config(window:sdl.Window, config:WindowConfig) : WindowConfig {
 
+        if(config.fullscreen) {
+            if(!config.fullscreen_desktop) {
+                #if mac
+                    SDL.setWindowFullscreen(window, SDL_WINDOW_FULLSCREEN);
+                #end
+            }
+        }
+
         var size = SDL.getWindowSize(window, { w:config.width, h:config.height });
         var pos = SDL.getWindowPosition(window, { x:config.x, y:config.y });
 
