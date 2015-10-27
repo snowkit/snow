@@ -442,6 +442,7 @@ class Snow {
 
     //helpers
 
+        @:noCompletion public
         function copy_window_config( _config:WindowConfig ) : WindowConfig {
             return {
                 borderless:_config.borderless,
@@ -457,6 +458,7 @@ class Snow {
             }
         }
 
+        @:noCompletion public
         function copy_render_config( _config:RenderConfig ) : RenderConfig {
             return {
                 antialiasing: _config.antialiasing,
@@ -469,7 +471,6 @@ class Snow {
                 stencil: _config.stencil,
                 stencil_bits: _config.stencil_bits,
                 opengl : {
-                    es: _config.opengl.es,
                     major: _config.opengl.major,
                     minor: _config.opengl.minor,
                     profile: _config.opengl.profile
