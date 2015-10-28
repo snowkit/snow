@@ -8,15 +8,20 @@ import glew.GLEW;
 @:allow(snow.Snow)
 class Runtime extends snow.runtime.Native {
 
+        /** internal: a pre allocated window event */
+    var _window_event_ : WindowEvent;
+
     function new(_app:snow.Snow) {
 
         super(_app);
         name = 'sdl';
 
-        app.config.runtime = {
-            audio_buffer_length : 176400,
-            audio_buffer_count : 4
-        }
+        // app.config.runtime = {
+        //     audio_buffer_length : 176400,
+        //     audio_buffer_count : 4
+        // }
+
+        _window_event_ = new WindowEvent();
 
         var status = SDL.init(SDL_INIT_TIMER);
         if(status != 0) {
@@ -126,7 +131,7 @@ class Runtime extends snow.runtime.Native {
 
 //Mobile
 
-    static function event_watch(userdata:{ app:snow.Snow }, e:sdl.Event) : Int {
+    function event_watch(_, e:sdl.Event) : Int {
 
         var _type:SystemEventType = unknown;
 
@@ -147,7 +152,7 @@ class Runtime extends snow.runtime.Native {
                 return 0;
         }
 
-        userdata.app.onevent({ type:_type });
+        app.onevent({ type:_type });
 
         return 1;
 
@@ -192,16 +197,8 @@ class Runtime extends snow.runtime.Native {
             } //switch
 
             if(_type != unknown) {
-                app.onevent({
-                    type:window, 
-                    window:{
-                        type: _type,
-                        timestamp: e.window.timestamp/1000.0,
-                        window_id: (cast e.window.windowID:Int),
-                        data1: e.window.data1, 
-                        data2: e.window.data2
-                    }
-                }); //onevent
+                _window_event_.set(_type, e.window.timestamp/1000.0, cast e.window.windowID, e.window.data1, e.window.data2);
+                app.onevent({ type:window, window:_window_event_ });
             }
         }
 
@@ -604,6 +601,7 @@ class Runtime extends snow.runtime.Native {
 
 } //Runtime
 
+typedef WindowHandle = sdl.Window;
 
 typedef RuntimeConfig = {
 

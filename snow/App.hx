@@ -6,6 +6,7 @@ import snow.types.Types;
 
 /** The default type of snow application, with variable delta, update limit, render limit, timescale and more. 
     See the {App Guide} for complete details. */
+@:allow(snow)
 class App {
 
 //Access to the snow API
@@ -54,53 +55,53 @@ class App {
     public function new() {}
         /** Called by snow to request config changes, override this to change the defaults.
             This happens before ready, so the values are available when ready is called. */
-    public function config(_config:AppConfig) : AppConfig  return _config;
+    function config(_config:AppConfig) : AppConfig  return _config;
         /** Your entry point. Called for you when you can initialize your application */
-    public function ready() {}
+    function ready() {}
         /** Your update loop. Called every frame for you. The dt value depends on the timing configuration (see the {App Guide}) */
-    public function update(dt:Float) {}
+    function update(dt:Float) {}
         /** Your exit point. Called for you when you should shut down your application */
-    public function ondestroy() {}
+    function ondestroy() {}
         /** Low level event handler from snow core. Often handled by the subsystems so check there first. */
-    public function onevent(event:SystemEvent) {}
+    function onevent(event:SystemEvent) {}
 
         /** Called each frame *before* everything, the beginning of the frame. Use with understanding. */
-    public function ontickstart() {}
+    function ontickstart() {}
         /** Called each frame *after* everything, at the end of the frame. Use with understanding. */
-    public function ontickend() {}
+    function ontickend() {}
 
         /** Called for you when a key is pressed down */
-    public function onkeydown(keycode:Int, scancode:Int, repeat:Bool, mod:ModState, timestamp:Float, window_id:Int) {}
+    function onkeydown(keycode:Int, scancode:Int, repeat:Bool, mod:ModState, timestamp:Float, window_id:Int) {}
         /** Called for you when a key is released */
-    public function onkeyup(keycode:Int, scancode:Int, repeat:Bool, mod:ModState, timestamp:Float, window_id:Int) {}
+    function onkeyup(keycode:Int, scancode:Int, repeat:Bool, mod:ModState, timestamp:Float, window_id:Int) {}
         /** Called for you when text input is happening. Use this for textfields, as it handles the complexity of unicode etc. */
-    public function ontextinput( text:String, start:Int, length:Int, type:TextEventType, timestamp:Float, window_id:Int) {}
+    function ontextinput( text:String, start:Int, length:Int, type:TextEventType, timestamp:Float, window_id:Int) {}
 
         /** Called for you when a mouse button is pressed */
-    public function onmousedown(x:Int, y:Int, button:Int, timestamp:Float, window_id:Int) {}
+    function onmousedown(x:Int, y:Int, button:Int, timestamp:Float, window_id:Int) {}
         /** Called for you when a mouse button is released */
-    public function onmouseup(x:Int, y:Int, button:Int, timestamp:Float, window_id:Int) {}
+    function onmouseup(x:Int, y:Int, button:Int, timestamp:Float, window_id:Int) {}
         /** Called for you when the mouse wheel moves */
-    public function onmousewheel(x:Int, y:Int, timestamp:Float, window_id:Int) {}
+    function onmousewheel(x:Int, y:Int, timestamp:Float, window_id:Int) {}
         /** Called for you when the mouse moves */
-    public function onmousemove(x:Int, y:Int, xrel:Int, yrel:Int, timestamp:Float, window_id:Int) {}
+    function onmousemove(x:Int, y:Int, xrel:Int, yrel:Int, timestamp:Float, window_id:Int) {}
 
         /** Called for you when a touch is released, use the `touch_id` to track which */
-    public function ontouchdown(x:Float, y:Float, touch_id:Int, timestamp:Float) {}
+    function ontouchdown(x:Float, y:Float, touch_id:Int, timestamp:Float) {}
         /** Called for you when a touch is first pressed, use the `touch_id` to track which */
-    public function ontouchup(x:Float, y:Float, touch_id:Int, timestamp:Float) {}
+    function ontouchup(x:Float, y:Float, touch_id:Int, timestamp:Float) {}
         /** Called for you when a touch is moved, use the `touch_id` to track which */
-    public function ontouchmove(x:Float, y:Float, dx:Float, dy:Float, touch_id:Int, timestamp:Float) {}
+    function ontouchmove(x:Float, y:Float, dx:Float, dy:Float, touch_id:Int, timestamp:Float) {}
 
         /** Called for you when a connected gamepad axis moves, use `which` to determine gamepad id */
-    public function ongamepadaxis(gamepad:Int, axis:Int, value:Float, timestamp:Float) {}
+    function ongamepadaxis(gamepad:Int, axis:Int, value:Float, timestamp:Float) {}
         /** Called for you when a connected gamepad button is pressed, use `which` to determine gamepad id */
-    public function ongamepaddown(gamepad:Int, button:Int, value:Float, timestamp:Float) {}
+    function ongamepaddown(gamepad:Int, button:Int, value:Float, timestamp:Float) {}
         /** Called for you when a connected gamepad button is released, use `which` to determine gamepad id */
-    public function ongamepadup(gamepad:Int, button:Int, value:Float, timestamp:Float) {}
+    function ongamepadup(gamepad:Int, button:Int, value:Float, timestamp:Float) {}
         /** Called for you when a gamepad is connected or disconnected, use `which` to determine gamepad id. 
             `id` is the string name identifier for the controller, specified from the system. */
-    public function ongamepaddevice(gamepad:Int, id:String, type:GamepadDeviceEventType, timestamp:Float) {}
+    function ongamepaddevice(gamepad:Int, id:String, type:GamepadDeviceEventType, timestamp:Float) {}
 
 //Internal
 
@@ -112,11 +113,11 @@ class App {
 
             try {
 
-                var _app = new snow.Set.HostApp();
+                var _app = new AppHost();
 
                 assertnull(_app, 'snow main App instance was null!');
 
-                trace('App main set to `${snow.Set.app_main}`, instance: $_app');
+                trace('App main set to `${snow.types.TypeNames.app_main}`, instance: $_app');
 
                 new snow.Snow(_app);
 

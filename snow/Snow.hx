@@ -13,12 +13,13 @@ import snow.system.assets.Asset.AssetJSON;
 import snow.system.assets.Assets;
 import snow.system.audio.Audio;
 
+
 class Snow {
 
     //public
 
             /** The host application */
-        public var host : App;
+        public var host : AppHost;
             /** The application configuration specifics (like window, user, runtime, etc) */
         public var config : snow.types.Types.AppConfig;
             /** Whether or not we are frozen, ignoring events i.e backgrounded/paused */
@@ -34,7 +35,7 @@ class Snow {
     //systems
 
             /** The runtime module */
-        public static var runtime : snow.Set.HostRuntime;
+        public static var runtime : AppRuntime;
             /** The io system */
         public var io : IO;
             /** The input system */
@@ -62,11 +63,11 @@ class Snow {
 
     //api
 
-        public function new(_host : App) {
+        public function new(_host : AppHost) {
 
             log('app / init / debug:$debug');
-            log('app / ident: ' + snow.Set.app_ident);
-            log('app / config: ' + snow.Set.app_config);
+            log('app / ident: ' + snow.types.TypeNames.app_ident);
+            log('app / config: ' + snow.types.TypeNames.app_config);
 
             if(snow.api.Debug.get_level() > 1) {
                 log('log / level to ${snow.api.Debug.get_level()}' );
@@ -78,22 +79,22 @@ class Snow {
             host.app = this;
             config = default_config();
 
-            log('app / assets / ${snow.Set.module_assets}');
-            log('app / audio / ${snow.Set.module_audio}');
-            log('app / io / ${snow.Set.module_io}');
+            log('app / assets / ${snow.types.TypeNames.module_assets}');
+            log('app / audio / ${snow.types.TypeNames.module_audio}');
+            log('app / io / ${snow.types.TypeNames.module_io}');
 
             io = new IO(this);
             input = new Input(this);
             audio = new Audio(this);
             assets = new Assets(this);
 
-            log('app / runtime / new ${snow.Set.app_runtime}');
+            log('app / runtime / new ${snow.types.TypeNames.app_runtime}');
 
-            runtime = new snow.Set.HostRuntime(this);
+            runtime = new AppRuntime(this);
 
             assertnull(os, 'init - Runtime didn\'t set the app.os value!');
             assertnull(platform, 'init - Runtime didn\'t set the app.platform value!');
-            assertnull(config.runtime, 'init - Runtime didn\'t set the app.config.runtime value!');
+            // assertnull(config.runtime, 'init - Runtime didn\'t set the app.config.runtime value!');
 
             log('app / os:$os / platform:$platform / init / $time');
             onevent({ type:init });
@@ -257,7 +258,7 @@ class Snow {
         function setup_configs() {
 
                 //blank/null config path means don't try to load it
-            if(snow.Set.app_config == null || snow.Set.app_config == '') {
+            if(snow.types.TypeNames.app_config == null || snow.types.TypeNames.app_config == '') {
 
                 setup_host_config();
 
@@ -304,7 +305,7 @@ class Snow {
                 //for the default config, we only reject if there is a json parse error
             return new Promise(function(resolve, reject) {
 
-                var load = io.data_flow(assets.path(snow.Set.app_config), AssetJSON.processor);
+                var load = io.data_flow(assets.path(snow.types.TypeNames.app_config), AssetJSON.processor);
 
                     load.then(resolve).error(function(error:Error) {
                         switch(error) {

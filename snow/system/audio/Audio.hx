@@ -10,7 +10,7 @@ import snow.api.Debug.*;
 class Audio {
 
         /** access to module specific implementation */
-    public var module : snow.Set.ModuleAudio;
+    public var module : ModuleAudio;
         /** Set to false to stop any and all processing in the audio system */
     public var active : Bool = false;
 
@@ -26,7 +26,7 @@ class Audio {
     function new(_app:Snow) {
 
         app = _app;
-        module = new snow.Set.ModuleAudio(app);
+        module = new ModuleAudio(app);
 
         sound_list = new Map();
         stream_list = new Map();

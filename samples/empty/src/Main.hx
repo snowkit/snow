@@ -2,6 +2,12 @@
 import snow.api.Debug.*;
 import snow.types.Types;
 
+typedef UserConfig = {
+    int : Int,
+    string : String,
+    whatever : Bool
+}
+
 @:log_as('app')
 class Main extends snow.App {
 

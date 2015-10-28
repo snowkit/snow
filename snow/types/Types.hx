@@ -2,18 +2,10 @@ package snow.types;
 
 import snow.api.buffers.Uint8Array;
 
-//runtime types
-
-    /** A platform window handle */
-#if snow_web
-    typedef WindowHandle = js.html.CanvasElement;
-#else
-    typedef WindowHandle = Null<Float>;
-#end //snow_web
 
     /** A platform window handle */
 typedef AudioHandle = Dynamic;
-typedef FileHandle = Null<Int>;
+
 
 //These types include further types we don't want to 
 #if !macro
@@ -80,6 +72,41 @@ typedef IODataOptions = {
     @:optional var binary:Bool;
 }
 
+
+@:genericBuild(snow.types.TypeCreate.build())
+private class ApplyType<Const> {}
+
+private typedef UserConfigInit = ApplyType<"UserConfig">;
+typedef UserConfig = UserConfigDef;
+
+private typedef RuntimeConfigInit = ApplyType<"RuntimeConfig">;
+typedef RuntimeConfig = RuntimeConfigDef;
+
+private typedef FileHandleInit = ApplyType<"FileHandle">;
+typedef FileHandle = FileHandleDef;
+
+private typedef WindowHandleInit = ApplyType<"WindowHandle">;
+typedef WindowHandle = WindowHandleDef;
+
+// private typedef AudioHandleInit = ApplyType<"AudioHandle">;
+// typedef AudioHandle = AudioHandleDef;
+
+private typedef AppHostInit = ApplyType<"AppHost">;
+@:noCompletion typedef AppHost = AppHostDef;
+
+private typedef AppRuntimeInit = ApplyType<"AppRuntime">;
+@:noCompletion typedef AppRuntime = AppRuntimeDef;
+
+private typedef ModuleIOInit = ApplyType<"ModuleIO">;
+@:noCompletion typedef ModuleIO = ModuleIODef;
+
+private typedef ModuleAudioInit = ApplyType<"ModuleAudio">;
+@:noCompletion typedef ModuleAudio = ModuleAudioDef;
+
+private typedef ModuleAssetsInit = ApplyType<"ModuleAssets">;
+@:noCompletion typedef ModuleAssets = ModuleAssetsDef;
+
+
 /** The runtime application config info */
 typedef AppConfig = {
 
@@ -88,9 +115,9 @@ typedef AppConfig = {
         /** The render config that specifies rendering and context backend specifics.  */
     @:optional var render       : RenderConfig;
         /** The user specific config, by default, read from a json file at runtime */
-    @:optional var user         : Dynamic;
+    @:optional var user         : UserConfig;
         /** The runtime specific config */
-    @:optional var runtime      : Dynamic;
+    @:optional var runtime      : RuntimeConfig;
 
 } //AppConfig
 
@@ -289,18 +316,29 @@ typedef SystemEvent = {
 } //SystemEvent
 
 /** A system window event */
-typedef WindowEvent = {
+class WindowEvent {
 
-        /** The type of window event this was. Use WindowEventType */
-    @:optional var type : WindowEventType;
+        /** The type of window event this was. */
+    public var type : WindowEventType = unknown;
         /** The time in seconds that this event occured, useful for deltas */
-    @:optional var timestamp : Float;
+    public var timestamp : Float = 0.0;
         /** The window id from which this event originated */
-    @:optional var window_id : Int;
+    public var window_id : Int = -1;
         /** Potential window event data */
-    @:optional var data1 : Int;
+    public var data1 : Null<Int>;
         /** Potential window event data */
-    @:optional var data2 : Int;
+    public var data2 : Null<Int>;
+
+    public function new() {}
+
+    @:allow(snow.runtime.Runtime)
+    function set(_type:WindowEventType, _timestamp:Float, _window_id:Int, ?_data1:Null<Int>, ?_data2:Null<Int>) {
+        type = _type;
+        timestamp = _timestamp;
+        window_id = _window_id;
+        data1 = _data1;
+        data2 = _data2;
+    }
 
 } //WindowEvent
 

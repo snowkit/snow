@@ -8,6 +8,8 @@ import snow.api.buffers.ArrayBufferView;
 import snow.core.native.io.IO.FileSeek;
 import snow.types.Types.FileHandle;
 
+typedef FileHandle = sdl.RWops;
+
 class IO extends snow.core.native.io.IO {
 
     override public function app_path() : String {
@@ -18,7 +20,7 @@ class IO extends snow.core.native.io.IO {
 
     override public function app_path_prefs() {
 
-        var _parts = snow.Set.app_ident.split('.');
+        var _parts = snow.types.TypeNames.app_ident.split('.');
         var _appname = _parts.pop();
         var _org = _parts.join('.');
 
@@ -27,33 +29,16 @@ class IO extends snow.core.native.io.IO {
     } //app_path_prefs
 
 //File
-        
-    var file_seq = 0;
-    var files:Map<Int, sdl.RWops> = new Map();
 
     override public function file_handle(_path:String, ?_mode:String="rb") : FileHandle {
 
-        var _handle = SDL.RWFromFile(_path, _mode);
-        if(_handle == null) return null;
-
-        var _id = file_seq;
-        files.set(_id, _handle);
-        file_seq++;
-
-        return _id;
+        return SDL.RWFromFile(_path, _mode);
 
     } //file_handle
 
     override public function file_handle_from_mem(mem:ArrayBufferView, size:Int) : FileHandle {
 
-        var _handle = SDL.RWFromMem(mem.buffer.getData(), size);
-        if(_handle == null) return null;
-
-        var _id = file_seq;
-        files.set(_id, _handle);
-        file_seq++;
-
-        return _id;
+        return SDL.RWFromMem(mem.buffer.getData(), size);
 
     } //file_handle_from_mem
 
@@ -61,7 +46,7 @@ class IO extends snow.core.native.io.IO {
 
         assertnull(file);
 
-        return SDL.RWread(files.get(file), dest.buffer.getData(), size, maxnum);
+        return SDL.RWread(file, dest.buffer.getData(), size, maxnum);
 
     } //file_read
 
@@ -69,7 +54,7 @@ class IO extends snow.core.native.io.IO {
 
         assertnull(file);
 
-        return SDL.RWwrite(files.get(file), src.buffer.getData(), size, num);
+        return SDL.RWwrite(file, src.buffer.getData(), size, num);
 
     } //file_write
 
@@ -77,7 +62,7 @@ class IO extends snow.core.native.io.IO {
         
         assertnull(file);
 
-        return SDL.RWseek(files.get(file), offset, whence);
+        return SDL.RWseek(file, offset, whence);
 
     } //file_seek
 
@@ -85,7 +70,7 @@ class IO extends snow.core.native.io.IO {
 
         assertnull(file);
 
-        return SDL.RWtell(files.get(file));
+        return SDL.RWtell(file);
 
     } //file_tell
 
@@ -93,12 +78,7 @@ class IO extends snow.core.native.io.IO {
 
         assertnull(file);
 
-        var handle = files.get(file);
-        var res = SDL.RWclose(handle);
-        files.remove(file);
-        handle = null;
-
-        return res;
+        return SDL.RWclose(file);
 
     } //file_close
 

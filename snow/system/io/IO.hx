@@ -12,7 +12,7 @@ class IO {
     @:noCompletion public var app : snow.Snow;
 
     /** Access to the platform specific api, if any */
-    public var module : snow.Set.ModuleIO;
+    public var module : ModuleIO;
 
     /** The string_save file name prefix. For example, the default being `slot.0`,
         by changing this you can rename the save slots to `custom.0`.
@@ -23,7 +23,7 @@ class IO {
     function new( _app:snow.Snow ) {
 
         app = _app;
-        module = new snow.Set.ModuleIO(app);
+        module = new ModuleIO(app);
 
     } //new
 

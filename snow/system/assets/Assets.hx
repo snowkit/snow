@@ -5,6 +5,7 @@ import snow.api.buffers.Uint8Array;
 import snow.api.Debug.*;
 
 import snow.system.assets.Asset;
+import snow.types.Types;
 
 /** The asset system class gives you access to fetching and manipulating assets,
     handling loading files and data in a consistent cross platform way */
@@ -16,7 +17,7 @@ class Assets {
     public var root : String = '';
 
         /** access to module implementation */
-    public var module : snow.Set.ModuleAssets;
+    public var module : ModuleAssets;
         /** access to snow from subsystems */
     public var app : Snow;
 
@@ -32,7 +33,7 @@ class Assets {
         #end
 
         app = _app;
-        module = new snow.Set.ModuleAssets(app);
+        module = new ModuleAssets(app);
 
     } //new
 
