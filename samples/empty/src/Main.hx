@@ -29,6 +29,9 @@ class Main extends snow.App {
 
         GL.clearColor(1.0,1.0,1.0,1.0);
         GL.clear(GL.COLOR_BUFFER_BIT);
+        sdl.SDL.GL_SwapWindow(app.runtime.window);
+        GL.clear(GL.COLOR_BUFFER_BIT);
+        sdl.SDL.GL_SwapWindow(app.runtime.window);
 
         // test_assets();
 
