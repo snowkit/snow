@@ -5,6 +5,12 @@ import snow.api.buffers.Uint8Array;
 import snow.api.Promise;
 import snow.api.Debug.*;
 
+#if snow_web
+typedef AudioHandle = Dynamic;
+#else
+typedef AudioHandle = snow.types.Types.FileHandle;
+#end
+
 @:allow(snow.system.audio.Audio)
 class Audio implements snow.modules.interfaces.Audio {
 

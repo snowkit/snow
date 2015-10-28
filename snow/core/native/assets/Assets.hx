@@ -275,7 +275,7 @@ private class WAV {
         if(_handle == null) return null;
 
         var _length = 0;
-        var _info = {
+        var _info : AudioInfo = {
             id:     _path,
             handle: { handle:_handle, offset:0 },
             format: AudioFormatType.wav,
@@ -395,6 +395,8 @@ private class WAV {
 
 } //WAV
 
+private typedef PCMHandle = { handle:FileHandle }
+
 @:allow(snow.core.native.assets.Assets)
 private class PCM {
 
@@ -421,7 +423,7 @@ private class PCM {
         return {
 
             id:     _path,
-            handle: _handle,
+            handle: { handle:_handle },
             format: AudioFormatType.pcm,
 
             data: {
@@ -463,7 +465,8 @@ private class PCM {
     static function seek(app:snow.Snow, _info:AudioInfo, _to:Int) : Bool {
 
         if(_info.handle != null) {
-            app.io.module.file_seek(_info.handle, _to, FileSeek.set);
+            var pcm:PCMHandle = _info.handle;
+            app.io.module.file_seek(pcm.handle, _to, FileSeek.set);
         }
 
         return false;
@@ -474,12 +477,14 @@ private class PCM {
 
         if(_info.handle != null) {
 
+            var pcm:PCMHandle = _info.handle;
+
             if(_start == -1) seek(app, _info, _start);
 
             var _complete = false;
             var _read_len = _len;
             var _n_elements = 1;
-            var _current_pos = app.io.module.file_tell(_info.handle);
+            var _current_pos = app.io.module.file_tell(pcm.handle);
             var _distance_to_end = _info.data.length_pcm - _current_pos;
 
             if(_distance_to_end <= _read_len) {
@@ -494,7 +499,7 @@ private class PCM {
                     //resize to fit the requested/remaining length
                 var _byte_gap = (_read_len & 0x03);
                 var _samples = new Uint8Array(_read_len + _byte_gap);
-                var _elements_read = app.io.module.file_read(_info.handle, _samples, _read_len, _n_elements);
+                var _elements_read = app.io.module.file_read(pcm.handle, _samples, _read_len, _n_elements);
 
                     //if no elements were read, it was an error
                     //or end of file so either way it's complete.
