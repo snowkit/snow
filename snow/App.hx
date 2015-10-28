@@ -42,6 +42,16 @@ class App {
         /** the alpha time for a render between frame updates */
     public var alpha : Float = 1.0;
 
+//Specific to fixed timestep
+
+        /** use a "fix your timestep approach" */
+    public var fixed_timestep : Bool = false;
+        /** fixed simulation update speed */
+    public var frame_time : Float = 0.0167;
+        /** the overflow of the updates. This is used internally, for you, to calculate the alpha time for rendering interpolation as follows `alpha = overflow / frame_time;` */
+    public var overflow : Float = 0.0;
+
+
 //Internal values
 
         /** for update_rate, the time when the next tick should occur around */
@@ -51,11 +61,9 @@ class App {
 
 //override these in your game class
 
-        /** The default constructor of an App is empty, so you can override it if you want, but take note that this happens way before snow is ready for use. Use [ready](#ready) for entry point. */
-    public function new() {}
         /** Called by snow to request config changes, override this to change the defaults.
             This happens before ready, so the values are available when ready is called. */
-    function config(_config:AppConfig) : AppConfig  return _config;
+    function config(_config:AppConfig) : AppConfig return _config;
         /** Your entry point. Called for you when you can initialize your application */
     function ready() {}
         /** Your update loop. Called every frame for you. The dt value depends on the timing configuration (see the {App Guide}) */
@@ -102,6 +110,95 @@ class App {
         /** Called for you when a gamepad is connected or disconnected, use `which` to determine gamepad id. 
             `id` is the string name identifier for the controller, specified from the system. */
     function ongamepaddevice(gamepad:Int, id:String, type:GamepadDeviceEventType, timestamp:Float) {}
+
+
+    function internal_init() {
+
+        cur_frame_start = app.time;
+        last_frame_start = cur_frame_start;
+        current_time = 0;
+        delta_time = 0.016;
+        frame_time = 1.0/60.0;
+        last_frame_start = app.time;
+
+    } //internal_init
+
+    function internal_update() {
+
+        if(fixed_timestep) {
+            internal_update_fixed_timestep();
+        } else {
+            internal_update_default();
+        }
+
+    }
+
+    inline function internal_update_default() : Void {
+
+        if(update_rate != 0) {
+
+            if(app.time < next_tick) {
+                return;
+            }
+
+            next_tick = app.time + update_rate;
+
+        } //update_rate
+
+            //the start of this frame is now
+        cur_frame_start = app.time;
+            //delta is time since the last frame start
+        delta_time = (cur_frame_start - last_frame_start);
+            //last frame start is updated to now
+        last_frame_start = cur_frame_start;
+
+            //clamp delta to max frame time, preventing large deltas
+        if(delta_time > max_frame_time) {
+            delta_time = max_frame_time;
+        }
+
+            //which delta we are going to use, fixed or variable
+        var used_delta = (fixed_delta == 0) ? delta_time : fixed_delta;
+            //timescale the delta to the given scale
+        used_delta *= timescale;
+            //update the simulated delta value
+        delta_sim = used_delta;
+
+            //update the internal "time" counter
+        current_time += used_delta;
+            //tell snow to tell the rest
+        app.update( used_delta );
+
+    } //internal_update_default
+
+    inline function internal_update_fixed_timestep() : Void {
+
+        cur_frame_start = app.time;
+        delta_time = (cur_frame_start - last_frame_start);
+        delta_sim = delta_time * timescale;
+
+        if(delta_sim > max_frame_time) {
+            delta_sim = max_frame_time;
+        }
+
+        last_frame_start = cur_frame_start;
+
+        overflow += delta_sim;
+
+        while(overflow >= frame_time) {
+
+            app.update(frame_time * timescale);
+
+            current_time += frame_time * timescale;
+
+            overflow -= frame_time * timescale;
+
+        } //overflow >= frame_time
+
+            //work this out before a render
+        alpha = overflow / frame_time;
+
+    } //internal_update_fixed_timestep
 
 //Internal
 
