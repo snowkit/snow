@@ -2,7 +2,6 @@ package snow.runtime;
 
 import snow.api.Debug.*;
 import snow.types.Types;
-import timestamp.Timestamp;
 
 #if (hxcpp_static_std && cpp && !scriptable)
 
@@ -26,7 +25,6 @@ class Native implements Runtime {
         log('runtime / native / new');
 
             app = _app;
-            timestamp_start = timestamp();
 
             #if ios      app.os = os_ios;     app.platform = platform_ios;     #end
             #if mac      app.os = os_mac;     app.platform = platform_mac;     #end
@@ -59,12 +57,6 @@ class Native implements Runtime {
 
     } //shutdown
 
-    var timestamp_start : Float = 0.0;
-    inline function timestamp() : Float {
-    
-        return Timestamp.now() - timestamp_start;
-
-    } //timestamp
 
 } //Native
 
