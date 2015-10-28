@@ -324,7 +324,7 @@ class Snow {
         function default_config() : AppConfig {
 
             return {
-                user : {},
+                user : null,
                 window : default_window_config(),
                 render : default_render_config(),
                 runtime : null
