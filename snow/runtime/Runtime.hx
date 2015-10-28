@@ -11,7 +11,5 @@ interface Runtime {
     private function run() : Void;
         /** Shut down the runtime. A runtime should immediately clean up, stop any loops etc from this call. */
     private function shutdown() : Void;
-        /** Access to the runtime timestamp in seconds */
-    private function timestamp() : Float;
 
 } //Runtime
