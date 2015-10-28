@@ -144,7 +144,7 @@ class Snow {
                 Dispatch events manually using the `dispatch_*` calls. */
         public function onevent(_event:SystemEvent) {
 
-            if( _event.type != update ) {
+            if( _event.type != SystemEventType.update ) {
                 log('event / system event / ${_event.type}');
                 if(_event.window != null) {
                     log('   window / ${_event.window.type} / ${_event.window.window_id} / ${_event.window.data1},${_event.window.data2}');
@@ -185,7 +185,16 @@ class Snow {
 
         } //defer
 
-    //internal
+    //internal updates
+
+        @:noCompletion inline
+        public function update(dt:Float) {
+
+            host.update(dt);
+
+        } //update
+
+    //internal endpoints
 
         inline function get_time() : Float return get_timestamp();
         inline function get_uniqueid() : String return make_uniqueid();
@@ -203,9 +212,11 @@ class Snow {
 
                 _debug('init / setup default configs : ok');
 
-                // setup_default_window();
+                _debug('init / runtime ready');
 
-                _debug('init / queing host ready');
+                runtime.ready();
+
+                _debug('init / host ready');
 
                 host.ready();
 
@@ -236,10 +247,7 @@ class Snow {
             host.ontickstart();
 
                 //handle any internal updates
-            // host.on_internal_update();
-
-                //handle any internal render updates
-            // host.on_internal_render();
+            host.internal_update();
 
                 //let the system have some time
             #if snow_native

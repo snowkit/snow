@@ -68,11 +68,17 @@ class Runtime extends snow.runtime.Native {
 
             SDL.addEventWatch( event_watch, null );
 
-        create_window();
-
         log('sdl / init ok');
 
     } //new
+
+    override function ready() {
+
+        create_window();
+
+        log('sdl / ready');
+
+    } //ready
 
     override function run() {
 

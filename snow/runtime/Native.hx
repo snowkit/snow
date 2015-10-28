@@ -51,6 +51,12 @@ class Native implements Runtime {
 
     } //run
 
+    function ready() {
+
+        trace('runtime / native / ready');
+        
+    } //ready
+
     function shutdown() {
 
         trace('runtime / native / shutdown');
