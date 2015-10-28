@@ -1,6 +1,7 @@
 
 import snow.api.Debug.*;
 import snow.types.Types;
+import snow.modules.opengl.GL;
 
 typedef UserConfig = {
     int : Int,
@@ -25,6 +26,9 @@ class Main extends snow.App {
         log('app config: ${app.config.user}');
         log('runtime config: ${app.config.runtime}');
         log('asset path: ${app.assets.path('fake.file')}');
+
+        GL.clearColor(1.0,1.0,1.0,1.0);
+        GL.clear(GL.COLOR_BUFFER_BIT);
 
         // test_assets();
 

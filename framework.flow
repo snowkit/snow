@@ -53,7 +53,7 @@
         linc_stb:'*',
         linc_ogg:'*',
         linc_sdl:'*',
-        linc_glew:'*'
+        linc_opengl:'*'
       },
       files : {
         snow_hxml : { path:'flow/build/snow.hxml => snow.hxml', template:['project', 'snow'] },
