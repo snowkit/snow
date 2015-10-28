@@ -12,6 +12,8 @@ typedef UserConfig = {
 @:log_as('app')
 class Main extends snow.App {
 
+    function new() {}
+
     override function config( config:AppConfig ) : AppConfig {
 
         config.window.title = 'snow empty app';
@@ -27,12 +29,6 @@ class Main extends snow.App {
         log('runtime config: ${app.config.runtime}');
         log('asset path: ${app.assets.path('fake.file')}');
 
-        GL.clearColor(1.0,1.0,1.0,1.0);
-        GL.clear(GL.COLOR_BUFFER_BIT);
-        sdl.SDL.GL_SwapWindow(app.runtime.window);
-        GL.clear(GL.COLOR_BUFFER_BIT);
-        sdl.SDL.GL_SwapWindow(app.runtime.window);
-
         // test_assets();
 
     } //ready
@@ -45,14 +41,17 @@ class Main extends snow.App {
 
     } //onkeyup
 
+    var r = 0.0;
     override function update( delta:Float ) {
 
+        // trace(delta);
+        r += (0.3 * delta);
+        r = r % 1.0;
+
+        GL.clearColor(r,r,r,1.0);
+        GL.clear(GL.COLOR_BUFFER_BIT);
+
     } //update
-
-    function render() {
-
-    } //render
-
 
     function test_assets() {
 
