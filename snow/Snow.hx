@@ -35,7 +35,7 @@ class Snow {
     //systems
 
             /** The runtime module */
-        public static var runtime : AppRuntime;
+        public var runtime : AppRuntime;
             /** The io system */
         public var io : IO;
             /** The input system */
@@ -187,9 +187,9 @@ class Snow {
 
     //internal
 
-        inline function get_time() : Float return runtime.timestamp();
+        inline function get_time() : Float return get_timestamp();
         inline function get_uniqueid() : String return make_uniqueid();
-        static inline function get_timestamp() : Float return runtime.timestamp();
+        static inline function get_timestamp() : Float return AppRuntime.timestamp();
 
     //internal event handlers
 
