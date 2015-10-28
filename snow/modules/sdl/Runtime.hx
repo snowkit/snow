@@ -4,22 +4,28 @@ import snow.api.Debug.*;
 import snow.types.Types;
 import sdl.SDL;
 import glew.GLEW;
+import timestamp.Timestamp;
 
 @:allow(snow.Snow)
 class Runtime extends snow.runtime.Native {
 
+        /** The SDL GL context */
+    public var gl : sdl.GLContext;
+        /** The SDL window handle */
+    public var window : sdl.Window;
         /** internal: a pre allocated window event */
     var _window_event_ : WindowEvent;
 
     function new(_app:snow.Snow) {
 
         super(_app);
+        timestamp_start = timestamp();
         name = 'sdl';
 
-        // app.config.runtime = {
-        //     audio_buffer_length : 176400,
-        //     audio_buffer_count : 4
-        // }
+        app.config.runtime = {
+            audio_buffer_length : 176400,
+            audio_buffer_count : 4
+        }
 
         _window_event_ = new WindowEvent();
 
@@ -62,6 +68,8 @@ class Runtime extends snow.runtime.Native {
 
             SDL.addEventWatch( event_watch, null );
 
+        create_window();
+
         log('sdl / init ok');
 
     } //new
@@ -70,7 +78,6 @@ class Runtime extends snow.runtime.Native {
 
         log('sdl / run');
 
-        create_window();
         run_loop();
 
     } //run
@@ -83,9 +90,13 @@ class Runtime extends snow.runtime.Native {
         log('sdl / shutdown');
 
     } //shutdown
+    
+    static var timestamp_start : Float = 0.0;
+    inline public static function timestamp() : Float {
+    
+        return Timestamp.now() - timestamp_start;
 
-    var GLContext : sdl.GLContext;
-    var mainwindow : sdl.Window;
+    } //timestamp
 
     function run_loop() {
         
@@ -103,7 +114,7 @@ class Runtime extends snow.runtime.Native {
 
             log('sdl / attaching iOS CADisplayLink loop');
 
-            SDL.iPhoneSetAnimationCallback(mainwindow, 1, loop, null);
+            SDL.iPhoneSetAnimationCallback(window, 1, loop, null);
 
         #end
 
@@ -125,6 +136,8 @@ class Runtime extends snow.runtime.Native {
         } //SDL has event
 
         app.onevent({ type:SystemEventType.update });
+
+        SDL.GL_SwapWindow(window);
 
     } //loop
 
@@ -198,7 +211,7 @@ class Runtime extends snow.runtime.Native {
 
             if(_type != unknown) {
                 _window_event_.set(_type, e.window.timestamp/1000.0, cast e.window.windowID, e.window.data1, e.window.data2);
-                app.onevent({ type:window, window:_window_event_ });
+                app.onevent({ type:SystemEventType.window, window:_window_event_ });
             }
         }
 
@@ -212,37 +225,37 @@ class Runtime extends snow.runtime.Native {
 
         apply_GL_attr(app.config.render);        
 
-        mainwindow = SDL.createWindow((cast config.title:String), config.x, config.y, config.width, config.height, window_flags(config));
+        window = SDL.createWindow((cast config.title:String), config.x, config.y, config.width, config.height, window_flags(config));
 
-        if(mainwindow == null) {
+        if(window == null) {
             throw Error.error('runtime / sdl / failed to create platform window, unable to recover / `${SDL.getError()}`');
         }
 
-        var _id:Int = SDL.getWindowID(mainwindow);
+        var _id:Int = SDL.getWindowID(window);
 
         log('sdl / created window / id: $_id');
         log('sdl / creating render context');
 
-        if(!create_render_context(mainwindow)) {
+        if(!create_render_context(window)) {
             throw Error.error('runtime / sdl / failed to create render context, unable to recover / `${SDL.getError()}`');
         }
 
-        post_render_context(mainwindow);
+        post_render_context(window);
 
             //start with a copy
         var actual_config = app.copy_window_config(config);
         var actual_render = app.copy_render_config(app.config.render);
 
-        actual_config = update_window_config(mainwindow, actual_config);
-        actual_render = update_render_config(mainwindow, actual_render);
+        actual_config = update_window_config(window, actual_config);
+        actual_render = update_render_config(window, actual_render);
 
     } //create_window
 
     function create_render_context(_window:sdl.Window) : Bool {
         
-        GLContext = SDL.GL_CreateContext(_window);
+        gl = SDL.GL_CreateContext(_window);
 
-        var _success = GLContext.isnull() == false;
+        var _success = gl.isnull() == false;
 
         log('sdl / GL init / $_success');
 
@@ -251,6 +264,8 @@ class Runtime extends snow.runtime.Native {
     } //
 
     function post_render_context(_window:sdl.Window) {
+
+        SDL.GL_MakeCurrent(_window, gl);
 
         var _result = GLEW.init();
         if(_result != GLEW.OK) {
