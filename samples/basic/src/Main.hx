@@ -93,6 +93,12 @@ class Main extends snow.App {
 
     } //update
 
+    override public function ontextinput( text:String, start:Int, length:Int, type:TextEventType, timestamp:Float, window_id:Int ) {
+
+        log('text event; text:$text / start: $start / length: $length / type:$type / timestamp:${timestamp} / window: ${window_id}');
+
+    } //ontextinput
+
         //render update
     function on_render_update() {
 
