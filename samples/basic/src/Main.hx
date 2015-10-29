@@ -156,7 +156,7 @@ class Main extends snow.App {
             //unset used state
         GL.bindBuffer(GL.ARRAY_BUFFER, null);
         GL.disableVertexAttribArray(attr_pos);
-        GL.useProgram(null);
+        GL.useProgram(0);
 
     } //draw
 
