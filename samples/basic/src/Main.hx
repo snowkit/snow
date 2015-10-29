@@ -162,20 +162,26 @@ class Main extends snow.App {
 
 //Input
 
+    var fs = false;
+    var grab = false;
 
     override function onkeyup( keycode:Int, scancode:Int,_, mod:ModState, _,_ ) {
 
         // log('key up : $keycode / scan code : $scancode / scan name : ${Scan.name(scancode)}');
 
-        //     //alt enter to toggle fullscreen test
-        // if( keycode == Key.enter && mod.alt ) {
-        //     app.window.fullscreen = !app.window.fullscreen;
-        // }
+            //alt enter to toggle fullscreen test
+        if( keycode == Key.enter && mod.alt ) {
+            fs = !fs;
+            app.runtime.window_fullscreen(fs);
+            log('fullscreen $fs');
+        }
 
-        //     //ctrl enter to toggle pointer lock test
-        // if( keycode == Key.enter && mod.ctrl ) {
-        //     app.window.grab = !app.window.grab;
-        // }
+            //ctrl enter to toggle pointer lock test
+        if( keycode == Key.enter && mod.ctrl ) {
+            grab = !grab;
+            app.runtime.window_grab(grab);
+            log('grab $grab');
+        }
 
         if( keycode == Key.escape ) {
             app.shutdown();
@@ -186,11 +192,11 @@ class Main extends snow.App {
             log('gamepad no clamp: $no_gamepad_deadzone');
         }
 
-        // if(keycode == Key.key_v) {
-        //     vsync = !vsync;
-        //     app.windowing.enable_vsync( vsync );
-        //     log('vsync enabled : $vsync');
-        // }
+        if(keycode == Key.key_v) {
+            vsync = !vsync;
+            sdl.SDL.GL_SetSwapInterval(vsync);
+            log('vsync enabled : $vsync');
+        }
 
     } //onkeyup
 
@@ -205,7 +211,7 @@ class Main extends snow.App {
 
     override function onmousemove( x:Int, y:Int, xrel:Int, yrel:Int, timestamp:Float, window_id:Int ) {
 
-        // log('move $x / $y / $xrel / $yrel / $timestamp / $window_id');
+        log('move $x / $y / $xrel / $yrel / $timestamp / $window_id');
 
         if(app.input.keydown(Key.space)) {
             render_x = physical_x = x - (size/2);

@@ -22,9 +22,23 @@ class Web implements Runtime {
         trace('runtime / web / shutdown');
     }
 
-    function timestamp() : Float {
+    static function timestamp() : Float {
         return 0.0;
     }
+
+    public function window_grab(enable:Bool) : Bool {
+
+        log('runtime / web / window_grab');
+        return false;
+
+    } //window_grab
+
+    public function window_fullscreen(enable:Bool, ?true_fullscreen:Bool=false) : Bool {
+
+        log('runtime / web / window_fullscreen');
+        return false;
+
+    } //window_fullscreen
 
 } //Web
 

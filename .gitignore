@@ -8,6 +8,7 @@ obj/
 builds/
 bin/
 users/
+dump/
 ndll/
 ios.project
 *.xcuserstate

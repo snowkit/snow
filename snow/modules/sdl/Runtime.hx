@@ -96,6 +96,28 @@ class Runtime extends snow.runtime.Native {
         log('sdl / shutdown');
 
     } //shutdown
+
+    override function window_grab(enable:Bool) : Bool {
+
+        SDL.setWindowGrab(window, enable);
+        var res = SDL.setRelativeMouseMode(enable);
+
+        return res == 0;
+
+    } //window_grab
+
+    override function window_fullscreen(enable:Bool, ?true_fullscreen:Bool=false) : Bool {
+
+        var flag : SDLWindowFlags = (enable) ? SDL_WINDOW_FULLSCREEN_DESKTOP : 0;
+
+        if(true_fullscreen && enable) {
+            flag |= SDL_WINDOW_FULLSCREEN;
+        }
+
+        return SDL.setWindowFullscreen(window, flag) == 0;
+
+    } //window_fullscreen
+
     
     static var timestamp_start : Float = 0.0;
     inline public static function timestamp() : Float {
@@ -596,10 +618,10 @@ class Runtime extends snow.runtime.Native {
             caps    : mod_value == KMOD_CAPS,
             mode    : mod_value == KMOD_MODE,
 
-            ctrl    : mod_value == KMOD_CTRL,
-            shift   : mod_value == KMOD_SHIFT,
-            alt     : mod_value == KMOD_ALT,
-            meta    : mod_value == KMOD_GUI
+            ctrl    : (mod_value == KMOD_CTRL || mod_value == KMOD_LCTRL || mod_value == KMOD_RCTRL),
+            shift   : (mod_value == KMOD_SHIFT || mod_value == KMOD_LSHIFT || mod_value == KMOD_RSHIFT),
+            alt     : (mod_value == KMOD_ALT || mod_value == KMOD_LALT || mod_value == KMOD_RALT),
+            meta    : (mod_value == KMOD_GUI || mod_value == KMOD_LGUI || mod_value == KMOD_RGUI)
 
         };
 

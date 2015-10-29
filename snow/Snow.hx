@@ -250,6 +250,7 @@ class Snow {
             host.internal_update();
 
                 //let the system have some time
+                //:todo:
             #if snow_native
                 Sys.sleep(0);
             #end

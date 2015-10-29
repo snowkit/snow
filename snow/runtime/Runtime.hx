@@ -13,5 +13,11 @@ interface Runtime {
     private function run() : Void;
         /** Shut down the runtime. A runtime should immediately clean up, stop any loops etc from this call. */
     private function shutdown() : Void;
+        
+        /** Grabs the main window, capturing the mouse and returning relative motion.
+            i.e What a first person camera might want to rotate freely. returns false if it fails or is unavailable. */
+    function window_grab(enable:Bool) : Bool;
+        /** Set the main window to fullscreen. returns false if it fails or is unavailable. */
+    function window_fullscreen(enable:Bool, ?true_fullscreen:Bool=false) : Bool;
 
 } //Runtime

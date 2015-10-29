@@ -20,7 +20,7 @@ class Native implements Runtime {
     public var name: String = 'native';
     public var app: snow.Snow;
 
-    function new(_app:snow.Snow, ?_init:Bool=false) {
+    function new(_app:snow.Snow) {
         
         log('runtime / native / new');
 
@@ -45,7 +45,7 @@ class Native implements Runtime {
 
     function run() {
 
-        trace('runtime / native / run');
+        log('runtime / native / run');
         
         app.onevent({ type:SystemEventType.update });
 
@@ -53,15 +53,31 @@ class Native implements Runtime {
 
     function ready() {
 
-        trace('runtime / native / ready');
+        log('runtime / native / ready');
         
     } //ready
 
     function shutdown() {
 
-        trace('runtime / native / shutdown');
+        log('runtime / native / shutdown');
 
     } //shutdown
+
+    public function window_grab(enable:Bool) : Bool {
+
+        log('runtime / native / window_grab');
+
+        return false;
+
+    } //window_grab
+
+    public function window_fullscreen(enable:Bool, ?true_fullscreen:Bool=false) : Bool {
+
+        log('runtime / native / window_fullscreen');
+
+        return false;
+
+    } //window_fullscreen
 
 
 } //Native
