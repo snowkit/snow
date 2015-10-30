@@ -70,4 +70,11 @@ class Assets {
     public inline function image_from_pixels( _id:String, _width:Int, _height:Int, _pixels:Uint8Array ) : AssetImage
         return AssetImage.load_from_pixels(this, _id, _width, _height, _pixels);
 
+        /** Get an asset as an `AssetAudio`, data stored as `AudioInfo`, using the default processor and provider */
+    public inline function audio( _id:String ) : Promise  return AssetAudio.load(this, _id);
+
+        /** Get an asset as an `AssetAudio`, data stored as `AudioInfo`, created from audio file bytes. */
+    public inline function audio_from_bytes( _id:String, _bytes:Uint8Array ) : Promise
+        return AssetAudio.load_from_bytes(this, _id, _bytes);
+
 } //Assets

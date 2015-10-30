@@ -21,10 +21,4 @@ interface Assets {
         /** Create an image info from raw (already decoded) image pixels. */
     function image_info_from_pixels( _id:String, _width:Int, _height:Int, _pixels:Uint8Array, ?_bpp:Int=4 ) : ImageInfo;
 
-    #if snow_native
-        function audio_info_from_load(_path:String, ?_load:Bool=true, ?_format:AudioFormatType) : AudioInfo;
-        function audio_info_from_bytes(_bytes:Uint8Array, _format:AudioFormatType) : AudioInfo;
-        function audio_seek_source(_info:AudioInfo, _to:Int) : Bool;
-    #end
-
 } //Assets

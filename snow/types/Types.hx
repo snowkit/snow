@@ -14,6 +14,7 @@ typedef AudioHandle = Dynamic;
     typedef AssetText  = snow.system.assets.Asset.AssetText;
     typedef AssetJSON  = snow.system.assets.Asset.AssetJSON;
     typedef AssetImage = snow.system.assets.Asset.AssetImage;
+    typedef AssetAudio = snow.system.assets.Asset.AssetAudio;
     typedef Key        = snow.system.input.Keycodes.Keycodes;
     typedef Scan       = snow.system.input.Keycodes.Scancodes;
 #end

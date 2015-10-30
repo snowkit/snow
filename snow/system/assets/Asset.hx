@@ -174,6 +174,115 @@ class Asset {
     } //AssetImage
 
 
+//Audio
+
+
+    class AssetAudio extends snow.system.assets.Asset {
+
+        public var audio (default,set): AudioInfo;
+
+        public function new(_system:Assets, _id:String, _audio:AudioInfo) {
+
+            super(_system, _id, AssetType.audio);
+            audio = _audio;
+
+        } //new
+
+        //Public API
+
+                /** Reloads the bytes from the stored id, using the default processor, returning a promise for the asset. */
+            public function reload() : Promise {
+
+                loaded = false;
+
+                return new Promise(function(resolve, reject) {
+
+                    var _load = system.app.io.data_flow(system.path(id), provider);
+
+                    _load.then(
+                        function(_audio:AudioInfo){
+                            audio = _audio;
+                            resolve(this);
+                        }
+                    ).error(reject);
+
+                }); //promise
+
+            } //reload
+
+            override public function destroy() {
+                audio = null;
+            }
+
+                /** Reload the asset from bytes */
+            public function reload_from_bytes(_bytes:Uint8Array, ?_format:AudioFormatType) {
+
+                loaded = false;
+
+                return new Promise(function(resolve, reject){
+
+                    var _load = system.module.audio_info_from_bytes(id, _bytes, _format);
+
+                    _load.then(function(_audio:AudioInfo){
+                        audio = _audio;
+                        resolve(this);
+                    }).error(reject);
+
+                });
+
+            } //reload_from_bytes
+
+        //Public Static API
+
+            public static function load(_system:Assets, _id:String) : Promise {
+
+                assertnull( _id );
+                assertnull( _system );
+
+                return new AssetAudio(_system, _id, null).reload();
+
+            } //load
+
+            public static function load_from_bytes(_system:Assets, _id:String, _bytes:Uint8Array) : Promise {
+
+                assertnull( _id );
+                assertnull( _bytes );
+                assertnull( _system );
+
+                return new AssetAudio(_system, _id, null).reload_from_bytes(_bytes);
+
+            } //load_from_bytes
+
+                /** A default io provider, using audio_info_from_load from the asset module.
+                    Promises AudioInfo. Takes an asset path, not an asset id (use assets.path(id))*/
+            public static function provider(_app:snow.Snow, _path:String) : Promise {
+
+                return _app.assets.module.audio_info_from_load(_path);
+
+            } //provider
+
+                /** A convenience io processor, using audio_info_from_bytes, from the asset module. Promises AudioInfo */
+            public static function processor(_app:snow.Snow, _id:String, _data:Uint8Array) : Promise {
+
+                if(_data == null) return Promise.reject(Error.error("AssetAudio processor: data was null"));
+
+                return _app.assets.module.audio_info_from_bytes(_id, _data);
+
+            } //load
+
+        //Internal
+
+                /** Set the audio contained to a new value */
+            function set_audio(_audio:AudioInfo) {
+
+                loaded = _audio != null;
+                return audio = _audio;
+
+            } //set_audio
+
+    } //AssetAudio
+
+
 //Bytes
 
 

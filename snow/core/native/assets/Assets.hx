@@ -28,21 +28,31 @@ class Assets implements snow.modules.interfaces.Assets {
 
         return new Promise(function(resolve, reject) {
 
-            var _load = app.io.data_load(_path);
-            
-            _load.then(function(_file:Uint8Array) {
+            var _image = image_info_from_load_direct(_path, _components);
 
-                var _image = image_info_from_bytes_direct(_path, _file, _components);
-
-                if(_image == null) {
-                    reject(Error.error('failed to load `$_path` as image. reason: `${stb.Image.failure_reason()}`'));
-                } else {
-                    resolve(_image);
-                }
-
-            }).error(reject);
+            if(_image == null) {
+                reject(Error.error('failed to load `$_path` as image. reason: `${stb.Image.failure_reason()}`'));
+            } else {
+                resolve(_image);
+            }
 
         }); //promise
+
+    } //image_info_from_load
+
+    public function image_info_from_load_direct(_path:String, ?_components:Int = 4) : ImageInfo {
+
+        assertnull(_path);
+
+        var _handle = app.io.module.file_handle(_path, 'rb');
+        if(_handle == null) return null;
+
+        var _size = app.io.module.file_size(_handle);
+        var _file = new Uint8Array(_size);
+
+        app.io.module.file_read(_handle, _file, _size, 1);
+
+        return image_info_from_bytes_direct(_path, _file, _components);
 
     } //image_info_from_load
 
@@ -65,7 +75,10 @@ class Assets implements snow.modules.interfaces.Assets {
 
     } //image_info_from_bytes
 
-    function image_info_from_bytes_direct(_id:String, _bytes:Uint8Array, ?_components:Int=4) : ImageInfo {
+    public function image_info_from_bytes_direct(_id:String, _bytes:Uint8Array, ?_components:Int=4) : ImageInfo {
+
+        assertnull(_id);
+        assertnull(_bytes);
 
         var _image_bytes = _bytes.toBytes();
         var _info = stb.Image.load_from_memory(_image_bytes.getData(), _image_bytes.length, _components);
@@ -89,7 +102,6 @@ class Assets implements snow.modules.interfaces.Assets {
     
     } //info_from_bytes
 
-            /** Create an image info from raw (already decoded) image pixels. */
     public function image_info_from_pixels(_id:String, _width:Int, _height:Int, _pixels:Uint8Array, ?_bpp:Int=4) : ImageInfo {
 
         assertnull( _id );
@@ -110,7 +122,29 @@ class Assets implements snow.modules.interfaces.Assets {
 
 //audio
 
-    public function audio_info_from_load(_path:String, ?_load:Bool=true, ?_format:AudioFormatType) : AudioInfo {
+    public function audio_info_from_load(_path:String, ?_load:Bool=true, ?_format:AudioFormatType) : Promise {
+
+        assertnull(_path);
+
+        if(_format == null) _format = audio_format_from_ext(_path);
+
+        return new Promise(function(resolve,reject) {
+            
+            var _audio = audio_info_from_load_direct(_path, _load, _format);
+
+            if(_audio == null) {
+                reject(Error.error('failed to load `$_path` as `$_format` audio.'));
+            } else {
+                resolve(_audio);
+            }
+
+        });
+
+    } //audio_info_from_load
+
+    public function audio_info_from_load_direct(_path:String, ?_load:Bool=true, ?_format:AudioFormatType) : AudioInfo {
+
+        assertnull(_path);
 
         if(_format == null) _format = audio_format_from_ext(_path);
 
@@ -121,17 +155,35 @@ class Assets implements snow.modules.interfaces.Assets {
             case _: null;
         } //switch _format
 
-        if(_info == null) throw Error.error('Assets / audio / failed to load `$_path` as `$_format`');
-
         return _info;
 
     } //audio_info_from_load
 
-    public function audio_info_from_bytes(_bytes:Uint8Array, _format:AudioFormatType) : AudioInfo {
+    public function audio_info_from_bytes(_id:String, _bytes:Uint8Array, ?_format:AudioFormatType) : Promise {
 
+        assertnull(_id);
         assertnull(_bytes);
 
-        var _id = 'audio_info_from_bytes/$_format';
+        return new Promise(function(resolve, reject) {
+
+            var _audio = audio_info_from_bytes_direct(_id, _bytes, _format);
+
+            if(_audio == null) {
+                reject(Error.error('failed to load `$_id` from bytes as ${_format}.'));
+            } else {
+                resolve(_audio);
+            }
+
+        }); //promise
+
+    } //image_info_from_bytes
+
+    public function audio_info_from_bytes_direct(_id:String, _bytes:Uint8Array, ?_format:AudioFormatType) : AudioInfo {
+
+        assertnull(_id);
+        assertnull(_bytes);
+
+        if(_format == null) _format = audio_format_from_ext(_id);
 
         var _info = switch(_format) {
             case wav: WAV.from_bytes(app, _id, _bytes);
@@ -140,11 +192,9 @@ class Assets implements snow.modules.interfaces.Assets {
             case _ : null;
         } //switch _format
 
-        if(_info == null) throw Error.error('failed to process bytes for $_id');
-
         return _info;
 
-    } //audio_info_from_bytes
+    } //audio_info_from_bytes_direct
 
     public function audio_seek_source( _info:AudioInfo, _to:Int ) : Bool {
 
