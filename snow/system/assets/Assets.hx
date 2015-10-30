@@ -48,33 +48,39 @@ class Assets {
 //Public API
 
         /** Get the asset path for an asset, adjusted by platform, root etc. */
-    public inline function path( _id:String ) : String return haxe.io.Path.join([root,_id]);
+    public inline function path(_id:String) : String
+        return haxe.io.Path.join([root,_id]);
 
         /** Get an asset as an `AssetBytes`, data stored as `Uint8Array`, using the default processor and provider */
-    public inline function bytes( _id:String ) : Promise return AssetBytes.load(this, _id);
+    public inline function bytes(_id:String) : Promise
+        return AssetBytes.load(this, _id);
 
         /** Get an asset as an `AssetText`, data stored as `String`, using the default processor and provider */
-    public inline function text( _id:String ) : Promise  return AssetText.load(this, _id);
+    public inline function text(_id:String) : Promise
+        return AssetText.load(this, _id);
 
         /** Get an asset as an `AssetJSON`, data stored as `Dynamic`, using the default processor and provider */
-    public inline function json( _id:String ) : Promise  return AssetJSON.load(this, _id);
+    public inline function json(_id:String) : Promise
+        return AssetJSON.load(this, _id);
 
         /** Get an asset as an `AssetImage`, data stored as `ImageInfo`, using the default processor and provider */
-    public inline function image( _id:String ) : Promise  return AssetImage.load(this, _id);
+    public inline function image(_id:String) : Promise
+        return AssetImage.load(this, _id);
 
         /** Get an asset as an `AssetImage`, data stored as `ImageInfo`, created from image file bytes (not pixels). */
-    public inline function image_from_bytes( _id:String, _bytes:Uint8Array ) : Promise
+    public inline function image_from_bytes(_id:String, _bytes:Uint8Array) : Promise
         return AssetImage.load_from_bytes(this, _id, _bytes);
 
         /** Get an asset as an `AssetImage`, data stored as `ImageInfo`, created from image file pixels */
-    public inline function image_from_pixels( _id:String, _width:Int, _height:Int, _pixels:Uint8Array ) : AssetImage
+    public inline function image_from_pixels(_id:String, _width:Int, _height:Int, _pixels:Uint8Array) : AssetImage
         return AssetImage.load_from_pixels(this, _id, _width, _height, _pixels);
 
         /** Get an asset as an `AssetAudio`, data stored as `AudioInfo`, using the default processor and provider */
-    public inline function audio( _id:String ) : Promise  return AssetAudio.load(this, _id);
+    public inline function audio(_id:String) : Promise
+        return AssetAudio.load(this, _id);
 
         /** Get an asset as an `AssetAudio`, data stored as `AudioInfo`, created from audio file bytes. */
-    public inline function audio_from_bytes( _id:String, _bytes:Uint8Array ) : Promise
+    public inline function audio_from_bytes(_id:String, _bytes:Uint8Array) : Promise
         return AssetAudio.load_from_bytes(this, _id, _bytes);
 
 } //Assets
