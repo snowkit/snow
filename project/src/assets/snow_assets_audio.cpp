@@ -405,9 +405,10 @@ namespace snow {
 
                         // Save the current position indicator of the stream
                     current_head = snow::io::tell(wav_source->file_source);
+                    size_t chunk_head_size = sizeof(WAVE_Data);
 
                     //Read in the the last byte of data before the sound file
-                    result = snow::io::read(wav_source->file_source, &wave_data, sizeof(WAVE_Data), 1);
+                    result = snow::io::read(wav_source->file_source, &wave_data, chunk_head_size, 1);
 
                     if (result != 1) {
                         snow::log(1, "/ snow / %s : %s\n", _id, "Invalid WAV data header");
@@ -420,7 +421,7 @@ namespace snow {
                         wave_data.subChunkID[2] != 't' ||
                         wave_data.subChunkID[3] != 'a'
                     ) {
-                        snow::io::seek(wav_source->file_source, wave_data.subChunkSize, snow_seek_cur);
+                        snow::io::seek(wav_source->file_source, current_head + chunk_head_size + wave_data.subChunkSize, snow_seek_cur);
                     } else {
                         found_data = true;
                     }

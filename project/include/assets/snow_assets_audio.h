@@ -114,7 +114,7 @@ namespace snow {
             class PCM_file_source {
 
                 public:
-                    snow::io::iosrc*   file_source;
+                    snow::io::iosrc*    file_source;
                     std::string         source_name;
                     int                 channels;
                     int                 rate;
