@@ -38,10 +38,19 @@ class Promise {
 
         /** Creates a new promise by providing a function with two callback arguments.
             Inside this function, invoking these callbacks controls the promise state.
+
             For example, if fetching a value async, and the operation fails, you would
             invoke the second callback with the reason/error. If the operation succeeded,
             you would invoke the first.
-        */
+
+            `new Promise(function(resolve, reject) {
+                var success = ... get value ...
+                if(success) {
+                    resolve(value);
+                } else {
+                    reject(Error(...));
+                }
+            });` */
     public function new<T>( func:T ) {
 
         state = pending;
