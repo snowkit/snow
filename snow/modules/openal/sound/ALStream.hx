@@ -219,9 +219,6 @@ class ALStream extends snow.modules.openal.sound.ALSound {
     override function internal_play() {
 
         if(owner.playing) {
-                //make sure the queue is clear and ready
-            flush_queue();
-            init_queue();
             AL.sourcePlay(source);
         }
 
