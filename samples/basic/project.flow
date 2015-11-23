@@ -21,6 +21,7 @@
       defines:[],
       dependencies : {
         snowdev : '*',
+        snowhxt : '*',
       }
     },
 

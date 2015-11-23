@@ -5,6 +5,8 @@ import snow.api.Debug.*;
 import snow.api.buffers.Float32Array;
 import snow.modules.opengl.GL;
 
+import snowhxt.Snowhxt;
+
 typedef UserConfig = {
     window : {
         width : Null<Int>,
@@ -63,6 +65,8 @@ class Main extends snow.App {
 
     } //config
 
+    var hxt : Snowhxt;
+
     override function ready() {
 
         log('/ HOST / ready');
@@ -80,6 +84,8 @@ class Main extends snow.App {
             //start mid window
         render_y = (window_width - size) / 2;
 
+        hxt = new Snowhxt();
+
     } //ready
 
         //"physics" update
@@ -89,9 +95,15 @@ class Main extends snow.App {
 
         physical_x += (speed * dir_x * delta);
 
+    } //update
+
+    override function tick(delta:Float) {
+        
         on_render_update();
 
-    } //update
+        hxt.update();
+
+    } //tick
 
     override public function ontextinput( text:String, start:Int, length:Int, type:TextEventType, timestamp:Float, window_id:Int ) {
 
@@ -111,7 +123,7 @@ class Main extends snow.App {
         var prev_render_x = render_x;
 
             //this interpolates the render position
-        render_x = (physical_x * alpha) + prev_render_x * ( 1.0 - alpha );
+        render_x = (physical_x * fixed_alpha) + prev_render_x * (1.0 - fixed_alpha);
 
         if(render_x >= (window_width - size)) {
 
@@ -137,8 +149,8 @@ class Main extends snow.App {
         GL.clearColor(1.0, 1.0, 1.0, 1.0);
         GL.clear( GL.COLOR_BUFFER_BIT );
 
-        projection = createOrthoMatrix( 0, window_width, window_height, 0, 1000, -1000 );
-        modelview = create2DMatrix( render_x, render_y, 1, 0 );
+        projection = createOrthoMatrix(projection, 0, window_width, window_height, 0, 1000, -1000 );
+        modelview = create2DMatrix(modelview, render_x, render_y, 1, 0 );
 
             //set state, update uniforms
         GL.useProgram(program);
@@ -183,6 +195,10 @@ class Main extends snow.App {
             log('grab $grab');
         }
 
+        if( keycode == Key.key_f ) {
+            fixed_timestep = !fixed_timestep;
+        }
+
         if( keycode == Key.escape ) {
             app.shutdown();
         }
@@ -211,7 +227,7 @@ class Main extends snow.App {
 
     override function onmousemove( x:Int, y:Int, xrel:Int, yrel:Int, timestamp:Float, window_id:Int ) {
 
-        log('move $x / $y / $xrel / $yrel / $timestamp / $window_id');
+        // log('move $x / $y / $xrel / $yrel / $timestamp / $window_id');
 
         if(app.input.keydown(Key.space)) {
             render_x = physical_x = x - (size/2);
@@ -236,7 +252,7 @@ class Main extends snow.App {
         if(Math.abs(value) > 0.2 || no_gamepad_deadzone) {
             // log('axis; device: ${gamepad}, axis: ${axis}, value: ${value} timestamp: ${timestamp}');
             if(axis == 1) {
-                render_y += value * 2 * speed * delta_time;
+                render_y += value * 2 * speed * frame_delta;
             }
         }
 
@@ -379,33 +395,39 @@ class Main extends snow.App {
 
 //Helpers
 
-    function createOrthoMatrix( x0:Float, x1:Float,  y0:Float, y1:Float, zNear:Float, zFar:Float ) : Float32Array {
+    function createOrthoMatrix( ?into:Float32Array, x0:Float, x1:Float,  y0:Float, y1:Float, zNear:Float, zFar:Float ) : Float32Array {
+
+        var i = into;
+        if(i == null) i = new Float32Array(16);
 
         var sx = 1.0 / (x1 - x0);
         var sy = 1.0 / (y1 - y0);
         var sz = 1.0 / (zFar - zNear);
 
-        return new Float32Array([
-            2.0*sx,         0,              0,                  0,
-            0,              2.0*sy,         0,                  0,
-            0,              0,              -2.0*sz,            0,
-            - (x0+x1)*sx,   - (y0+y1)*sy,   - (zNear+zFar)*sz,  1,
-        ]);
+            i[ 0] = 2.0*sx;        i[ 1] = 0;            i[ 2] = 0;                 i[ 3] = 0;
+            i[ 4] = 0;             i[ 5] = 2.0*sy;       i[ 6] = 0;                 i[ 7] = 0;
+            i[ 8] = 0;             i[ 9] = 0;            i[10] = -2.0*sz;           i[11] = 0;
+            i[12] = -(x0+x1)*sx;   i[13] = -(y0+y1)*sy;  i[14] = -(zNear+zFar)*sz;  i[15] = 1;
+
+        return i;
 
     } //createOrthoMatrix
 
-    function create2DMatrix( x:Float, y:Float, scale:Float = 1, rotation:Float = 0 ) {
+    function create2DMatrix( ?into:Float32Array, x:Float, y:Float, scale:Float = 1, rotation:Float = 0 ) {
+
+        var i = into;
+        if(i == null) i = new Float32Array(16);
 
         var theta = rotation * Math.PI / 180.0;
         var c = Math.cos(theta);
         var s = Math.sin(theta);
 
-        return new Float32Array([
-            c*scale,  -s*scale,     0,      0,
-            s*scale,  c*scale,      0,      0,
-            0,        0,            1,      0,
-            x,        y,            0,      1
-        ]);
+            i[ 0] = c*scale;  i[ 1] = -s*scale;  i[ 2] = 0;      i[ 3] = 0;
+            i[ 4] = s*scale;  i[ 5] = c*scale;   i[ 6] = 0;      i[ 7] = 0;
+            i[ 8] = 0;        i[ 9] = 0;         i[10] = 1;      i[11] = 0;
+            i[ 12] = x;       i[13] = y;         i[14] = 0;      i[15] = 1;
+
+        return i;
 
     } //create2DMatrix
 

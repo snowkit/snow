@@ -24,6 +24,7 @@
       flags:['-dce full'],
       dependencies : {
         snowdev : '*',
+        snowhxt : '*',
       }
     },
 

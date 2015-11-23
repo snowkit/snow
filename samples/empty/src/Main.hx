@@ -2,6 +2,7 @@
 import snow.api.Debug.*;
 import snow.types.Types;
 import snow.modules.opengl.GL;
+import snowhxt.Snowhxt;
 
 typedef UserConfig = {
     int : Int,
@@ -11,6 +12,8 @@ typedef UserConfig = {
 
 @:log_as('app')
 class Main extends snow.App {
+
+    var hxt : Snowhxt;
 
     function new() {}
 
@@ -22,7 +25,10 @@ class Main extends snow.App {
 
     } //config
 
+
     override function ready() {
+
+        hxt = new Snowhxt();
 
         log('ready');
         log('app config: ${app.config.user}');
@@ -50,6 +56,8 @@ class Main extends snow.App {
 
         GL.clearColor(r,r,r,1.0);
         GL.clear(GL.COLOR_BUFFER_BIT);
+
+        hxt.update();
 
     } //update
 
