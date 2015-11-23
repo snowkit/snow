@@ -137,6 +137,8 @@ class App {
 
     function internal_tick() {
 
+        ontickstart();
+
         tick_start = app.time;
         tick_delta = (tick_start - tick_start_prev);
         tick_start_prev = tick_start;
@@ -149,7 +151,13 @@ class App {
 
         tick(tick_delta);
 
-    } //internal_update
+        ontickend();
+
+        #if (snow_native && !snow_native_tick_sleep)
+            Sys.sleep(0);
+        #end
+
+    } //internal_tick
 
     inline function internal_tick_default() : Void {
 

@@ -250,20 +250,8 @@ class Snow {
                 //handle the events
             cycle_next_queue();
 
-                //handle any internal pre updates
-            host.ontickstart();
-
                 //handle any internal updates
             host.internal_tick();
-
-                //let the system have some time
-                //:todo:
-            #if snow_native
-                Sys.sleep(0);
-            #end
-
-                //handle any internal post updates
-            host.ontickend();
 
             cycle_defer_queue();
 
