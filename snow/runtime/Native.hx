@@ -47,7 +47,7 @@ class Native implements Runtime {
 
         log('runtime / native / run');
         
-        app.onevent({ type:SystemEventType.update });
+        app.dispatch_event(se_tick);
 
     } //run
 

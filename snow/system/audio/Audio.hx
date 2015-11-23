@@ -380,15 +380,15 @@ class Audio {
 
         module.onevent(_event);
 
-        if(_event.type == SystemEventType.app_willenterbackground) {
+        if(_event.type == se_app_willenterbackground) {
             suspend();
-        } else if(_event.type == SystemEventType.app_willenterforeground) {
+        } else if(_event.type == se_app_willenterforeground) {
             resume();
         }
 
         #if mobile
 
-            if(_event.type == SystemEventType.window) {
+            if(_event.type == se_window) {
                 switch(_event.window.type) {
                     case WindowEventType.focus_lost:
                         suspend();

@@ -61,6 +61,10 @@ class Snow {
             /** Set if shut dow has completed  */
         public var has_shutdown : Bool = false;
 
+    //internal
+
+        var sys_event:SystemEvent;
+
     //api
 
         public function new(_host : AppHost) {
@@ -83,6 +87,8 @@ class Snow {
             log('app / audio / ${snow.types.TypeNames.module_audio}');
             log('app / io / ${snow.types.TypeNames.module_io}');
 
+            sys_event = new SystemEvent();
+
             io = new IO(this);
             input = new Input(this);
             audio = new Audio(this);
@@ -97,12 +103,13 @@ class Snow {
             // assertnull(config.runtime, 'init - Runtime didn\'t set the app.config.runtime value!');
 
             log('app / os:$os / platform:$platform / init / $time');
-            onevent({ type:init });
+            dispatch_event(se_init);
+            host.internal_init();
 
             step();
 
             log('app / ready / $time');
-            onevent({ type:ready });
+            dispatch_event(se_ready);
 
             step();
 
@@ -125,7 +132,7 @@ class Snow {
 
             host.ondestroy();
 
-            onevent({ type:SystemEventType.shutdown });
+            dispatch_event(se_shutdown);
 
             io.shutdown();
             audio.shutdown();
@@ -140,16 +147,25 @@ class Snow {
 
     //events
 
+            /** Dispatch a system event explicitly */
+        public function dispatch_event(_type:SystemEventType, ?_window:WindowEvent) {
+
+            sys_event.set(_type, _window);
+
+            onevent(sys_event);
+
+        } //dispatch_event
+
             /** Handles snow system events, typically emitted via the runtime and modules. 
                 Dispatch events manually using the `dispatch_*` calls. */
         public function onevent(_event:SystemEvent) {
 
-            if( _event.type != SystemEventType.update ) {
-                log('event / system event / ${_event.type}');
-                if(_event.window != null) {
-                    log('   window / ${_event.window.type} / ${_event.window.window_id} / ${_event.window.data1},${_event.window.data2}');
-                }
-            }
+            // if( _event.type != se_tick ) {
+            //     log('event / system event / ${_event.type}');
+            //     if(_event.window != null) {
+            //         log('   window / ${_event.window.type} / ${_event.window.window_id} / ${_event.window.data1},${_event.window.data2}');
+            //     }
+            // }
 
             io.onevent( _event );
             audio.onevent( _event );
@@ -158,10 +174,10 @@ class Snow {
 
             switch(_event.type) {
 
-                case ready: on_ready_event();
-                case update: on_update_event();
-                case quit, app_terminating: shutdown();
-                case shutdown: log('Goodbye.');
+                case se_ready:                      on_ready_event();
+                case se_tick:                       on_tick_event();
+                case se_quit, se_app_terminating:   shutdown();
+                case se_shutdown:                   log('Goodbye.');
                 case _:
 
             } //switch _event.type
@@ -184,15 +200,6 @@ class Snow {
             if(func != null) defer_queue.push(func);
 
         } //defer
-
-    //internal updates
-
-        @:noCompletion inline
-        public function update(dt:Float) {
-
-            host.update(dt);
-
-        } //update
 
     //internal endpoints
 
@@ -230,7 +237,7 @@ class Snow {
 
         } //on_ready_event
         
-        inline function on_update_event() {
+        inline function on_tick_event() {
 
             if(freeze) return;
 
@@ -247,7 +254,7 @@ class Snow {
             host.ontickstart();
 
                 //handle any internal updates
-            host.internal_update();
+            host.internal_tick();
 
                 //let the system have some time
                 //:todo:
@@ -260,7 +267,7 @@ class Snow {
 
             cycle_defer_queue();
 
-        } //on_update_event
+        } //on_tick_event
 
     //setup and boot
      

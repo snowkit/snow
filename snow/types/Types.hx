@@ -307,12 +307,21 @@ typedef WindowConfig = {
 } //WindowConfig
 
 /** A system event */
-typedef SystemEvent = {
+class SystemEvent {
 
         /** The type of system event this event is. SystemEventType */
-    @:optional var type : SystemEventType;
+    public var type (default,null) : SystemEventType;
         /** If type is `window` this will be populated, otherwise null */
-    @:optional var window : WindowEvent;
+    public var window (default,null) : WindowEvent;
+
+    @:allow(snow.Snow)
+    function new() {}
+
+    @:allow(snow.Snow)
+    inline function set(_type:SystemEventType, _window:WindowEvent) {
+        type = _type;
+        window = _window;
+    }
 
 } //SystemEvent
 
@@ -320,20 +329,20 @@ typedef SystemEvent = {
 class WindowEvent {
 
         /** The type of window event this was. */
-    public var type : WindowEventType = unknown;
+    public var type (default,null) : WindowEventType = unknown;
         /** The time in seconds that this event occured, useful for deltas */
-    public var timestamp : Float = 0.0;
+    public var timestamp (default,null) : Float = 0.0;
         /** The window id from which this event originated */
-    public var window_id : Int = -1;
+    public var window_id (default,null) : Int = -1;
         /** Potential window event data */
-    public var data1 : Null<Int>;
+    public var data1 (default,null) : Null<Int>;
         /** Potential window event data */
-    public var data2 : Null<Int>;
+    public var data2 (default,null) : Null<Int>;
 
     public function new() {}
 
     @:allow(snow.runtime.Runtime)
-    function set(_type:WindowEventType, _timestamp:Float, _window_id:Int, ?_data1:Null<Int>, ?_data2:Null<Int>) {
+    inline function set(_type:WindowEventType, _timestamp:Float, _window_id:Int, ?_data1:Null<Int>, ?_data2:Null<Int>) {
         type = _type;
         timestamp = _timestamp;
         window_id = _window_id;
@@ -431,55 +440,55 @@ typedef ModState = {
 @:enum abstract SystemEventType(Int) from Int to Int {
 
         /** An unknown system event */
-    var unknown                    = 0;
+    var se_unknown                  = 0;
         /** An internal system init event */
-    var init                       = 1;
+    var se_init                     = 1;
         /** An internal system ready event */
-    var ready                      = 2;
-        /** An internal system update event */
-    var update                     = 3;
+    var se_ready                    = 2;
+        /** An internal system tick event */
+    var se_tick                     = 3;
         /** An system shutdown event */
-    var shutdown                   = 4;
+    var se_shutdown                 = 4;
         /** An system window event */
-    var window                     = 5;
+    var se_window                   = 5;
         /** An system input event */
-    var input                      = 6;
+    var se_input                    = 6;
 
         //snow application events
 
         /** An system quit event. Initiated by user, can be cancelled/ignored */
-    var quit                       = 7;
+    var se_quit                       = 7;
         /** An system terminating event, called by the OS (mobile specific) */
-    var app_terminating            = 8;
+    var se_app_terminating            = 8;
         /** An system low memory event, clear memory if you can. Called by the OS (mobile specific) */
-    var app_lowmemory              = 9;
+    var se_app_lowmemory              = 9;
         /** An event for just before the app enters the background, called by the OS (mobile specific) */
-    var app_willenterbackground    = 10;
+    var se_app_willenterbackground    = 10;
         /** An event for when the app enters the background, called by the OS (mobile specific) */
-    var app_didenterbackground     = 11;
+    var se_app_didenterbackground     = 11;
         /** An event for just before the app enters the foreground, called by the OS (mobile specific) */
-    var app_willenterforeground    = 12;
+    var se_app_willenterforeground    = 12;
         /** An event for when the app enters the foreground, called by the OS (mobile specific) */
-    var app_didenterforeground     = 13;
+    var se_app_didenterforeground     = 13;
 
 
     inline function toString() {
         return switch(this) {
-            case unknown:   'unknown';
-            case init:      'init';
-            case ready:     'ready';
-            case update:    'update';
-            case shutdown:  'shutdown';
-            case window:    'window';
-            case input:     'input';
-            case quit:      'quit';
-            case app_terminating:           'app_terminating';
-            case app_lowmemory:             'app_lowmemory';
-            case app_willenterbackground:   'app_willenterbackground';
-            case app_didenterbackground:    'app_didenterbackground';
-            case app_willenterforeground:   'app_willenterforeground';
-            case app_didenterforeground:    'app_didenterforeground';
-            case _:         '$this';
+            case se_unknown:                    'se_unknown';
+            case se_init:                       'se_init';
+            case se_ready:                      'se_ready';
+            case se_tick:                       'se_tick';
+            case se_shutdown:                   'se_shutdown';
+            case se_window:                     'se_window';
+            case se_input:                      'se_input';
+            case se_quit:                       'se_quit';
+            case se_app_terminating:            'se_app_terminating';
+            case se_app_lowmemory:              'se_app_lowmemory';
+            case se_app_willenterbackground:    'se_app_willenterbackground';
+            case se_app_didenterbackground:     'se_app_didenterbackground';
+            case se_app_willenterforeground:    'se_app_willenterforeground';
+            case se_app_didenterforeground:     'se_app_didenterforeground';
+            case _:                             '$this';
         }
     } //toString
 

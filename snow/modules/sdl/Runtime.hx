@@ -158,12 +158,12 @@ class Runtime extends snow.runtime.Native {
             handle_window_ev(e);
             
             if(e.type == SDL_QUIT) {
-                app.onevent({ type:SystemEventType.quit });
+                app.dispatch_event(se_quit);
             }
 
         } //SDL has event
 
-        app.onevent({ type:SystemEventType.update });
+        app.dispatch_event(se_tick);
 
         SDL.GL_SwapWindow(window);
 
@@ -174,26 +174,26 @@ class Runtime extends snow.runtime.Native {
 
     function event_watch(_, e:sdl.Event) : Int {
 
-        var _type:SystemEventType = unknown;
+        var _type:SystemEventType = se_unknown;
 
         switch(e.type) {
             case SDL_APP_TERMINATING:
-                _type = app_terminating;
+                _type = se_app_terminating;
             case SDL_APP_LOWMEMORY:
-                _type = app_lowmemory;
+                _type = se_app_lowmemory;
             case SDL_APP_WILLENTERBACKGROUND:
-                _type = app_willenterbackground;
+                _type = se_app_willenterbackground;
             case SDL_APP_DIDENTERBACKGROUND:
-                _type = app_didenterbackground;
+                _type = se_app_didenterbackground;
             case SDL_APP_WILLENTERFOREGROUND:
-                _type = app_willenterforeground;
+                _type = se_app_willenterforeground;
             case SDL_APP_DIDENTERFOREGROUND:
-                _type = app_didenterforeground;
+                _type = se_app_didenterforeground;
             case _:
                 return 0;
         }
 
-        app.onevent({ type:_type });
+        app.dispatch_event(_type);
 
         return 1;
 
@@ -239,7 +239,7 @@ class Runtime extends snow.runtime.Native {
 
             if(_type != unknown) {
                 _window_event_.set(_type, e.window.timestamp/1000.0, cast e.window.windowID, e.window.data1, e.window.data2);
-                app.onevent({ type:SystemEventType.window, window:_window_event_ });
+                app.dispatch_event(se_window, _window_event_);
             }
         }
 
