@@ -20,36 +20,42 @@ class App {
     public var timescale : Float = 1;
         /** if this is non zero this will be passed in */
     public var fixed_delta : Float = 0;
-        /** if this is non zero, rendering will be forced to this rate */
-    public var render_rate : Float = -1;
         /** if this is non zero, updates will be forced to this rate */
     public var update_rate : Float = 0;
-        /** the maximum frame time */
-    public var max_frame_time : Float = 0.25;
 
 //Timing information
 
-        /** the time the last frame took to run */
-    public var delta_time : Float = 1/60;
+        /** The time at the start of this tick */
+    public var tick_start : Float = 1.0/60.0;
+        /** The time at the start of the previous tick */
+    public var tick_start_prev : Float = 0.0;
+        /** The amount of time the last tick took */
+    public var tick_delta : Float = 1.0/60;
+
+        /** The time at the start of this tick */
+    public var frame_start : Float = 1.0/60.0;
+        /** The time at the start of the previous frame */
+    public var frame_start_prev : Float = 0.0;
+        /** The amount of time the last frame took */
+    public var frame_delta : Float = 1.0/60;
+        /** the maximum frame time */
+    public var frame_max_delta : Float = 0.25;
+
         /** the simulated time the last frame took to run, relative to scale etc */
-    public var delta_sim : Float = 1/60;
-        /** the start time of the last frame */
-    public var last_frame_start : Float = 0.0;
+    public var sim_delta : Float = 1/60;
         /** the current simulation time */
-    public var current_time : Float = 0;
-        /** the start time of this frame */
-    public var cur_frame_start : Float = 0.0;
-        /** the alpha time for a render between frame updates */
-    public var alpha : Float = 1.0;
+    public var sim_time : Float = 0;
 
 //Specific to fixed timestep
 
+        /** the alpha time for a interpolating between frame updates */
+    public var fixed_alpha : Float = 1.0;
         /** use a "fix your timestep approach" */
     public var fixed_timestep : Bool = false;
         /** fixed simulation update speed */
-    public var frame_time : Float = 0.0167;
-        /** the overflow of the updates. This is used internally, for you, to calculate the alpha time for rendering interpolation as follows `alpha = overflow / frame_time;` */
-    public var overflow : Float = 0.0;
+    public var fixed_frame_time : Float = 0.0167;
+        /** the overflow of the updates. This is used internally, for you, to calculate the alpha time for rendering interpolation as follows `alpha = overflow / fixed_frame_time;` */
+    public var fixed_overflow : Float = 0.0;
 
 
 //Internal values
@@ -61,13 +67,15 @@ class App {
 
 //override these in your game class
 
-        /** Called by snow to request config changes, override this to change the defaults.
+    /** Called by snow to request config changes, override this to change the defaults.
             This happens before ready, so the values are available when ready is called. */
     function config(_config:AppConfig) : AppConfig return _config;
         /** Your entry point. Called for you when you can initialize your application */
     function ready() {}
         /** Your update loop. Called every frame for you. The dt value depends on the timing configuration (see the {App Guide}) */
     function update(dt:Float) {}
+        /** The frame update loop. */
+    function tick(dt:Float) {}
         /** Your exit point. Called for you when you should shut down your application */
     function ondestroy() {}
         /** Low level event handler from snow core. Often handled by the subsystems so check there first. */
@@ -114,26 +122,36 @@ class App {
 
     function internal_init() {
 
-        cur_frame_start = app.time;
-        last_frame_start = cur_frame_start;
-        current_time = 0;
-        delta_time = 0.016;
-        frame_time = 1.0/60.0;
-        last_frame_start = app.time;
+        sim_time = 0;
+        fixed_frame_time = 1.0/60.0;
+
+        tick_start = app.time;
+        tick_start_prev = tick_start - fixed_frame_time;
+        tick_delta = fixed_frame_time;
+
+        frame_start = app.time;
+        frame_start_prev = frame_start - fixed_frame_time;
+        frame_delta = sim_delta = fixed_frame_time;
 
     } //internal_init
 
-    function internal_update() {
+    function internal_tick() {
 
-        if(fixed_timestep) {
-            internal_update_fixed_timestep();
-        } else {
-            internal_update_default();
-        }
+        tick_start = app.time;
+        tick_delta = (tick_start - tick_start_prev);
+        tick_start_prev = tick_start;
 
-    }
+            if(fixed_timestep) {
+                internal_tick_fixed_timestep();
+            } else {
+                internal_tick_default();
+            }
 
-    inline function internal_update_default() : Void {
+        tick(tick_delta);
+
+    } //internal_update
+
+    inline function internal_tick_default() : Void {
 
         if(update_rate != 0) {
 
@@ -145,60 +163,49 @@ class App {
 
         } //update_rate
 
-            //the start of this frame is now
-        cur_frame_start = app.time;
-            //delta is time since the last frame start
-        delta_time = (cur_frame_start - last_frame_start);
-            //last frame start is updated to now
-        last_frame_start = cur_frame_start;
+        frame_start = tick_start;
+        frame_delta = (frame_start - frame_start_prev);
+        frame_start_prev = frame_start;
 
-            //clamp delta to max frame time, preventing large deltas
-        if(delta_time > max_frame_time) {
-            delta_time = max_frame_time;
+        if(frame_delta > frame_max_delta) {
+            frame_delta = frame_max_delta;
         }
 
-            //which delta we are going to use, fixed or variable
-        var used_delta = (fixed_delta == 0) ? delta_time : fixed_delta;
-            //timescale the delta to the given scale
-        used_delta *= timescale;
-            //update the simulated delta value
-        delta_sim = used_delta;
+        var _used_delta = (fixed_delta == 0) ? frame_delta : fixed_delta;
+        _used_delta *= timescale;
+        sim_delta = _used_delta;
 
-            //update the internal "time" counter
-        current_time += used_delta;
-            //tell snow to tell the rest
-        app.update( used_delta );
+        sim_time += _used_delta;
+        update(_used_delta);
 
-    } //internal_update_default
+    } //internal_tick_default
 
-    inline function internal_update_fixed_timestep() : Void {
+    inline function internal_tick_fixed_timestep() : Void {
 
-        cur_frame_start = app.time;
-        delta_time = (cur_frame_start - last_frame_start);
-        delta_sim = delta_time * timescale;
+        frame_start = app.time;
+        frame_delta = (frame_start - frame_start_prev);
+        frame_start_prev = frame_start;
 
-        if(delta_sim > max_frame_time) {
-            delta_sim = max_frame_time;
+        sim_delta = frame_delta * timescale;
+        if(sim_delta > frame_max_delta) {
+            sim_delta = frame_max_delta;
         }
 
-        last_frame_start = cur_frame_start;
+        fixed_overflow += sim_delta;
 
-        overflow += delta_sim;
+        var _slice = fixed_frame_time * timescale;
+        while(fixed_overflow >= fixed_frame_time) {
 
-        while(overflow >= frame_time) {
+            update(_slice);
+            sim_time += _slice;
+            fixed_overflow -= _slice;
 
-            app.update(frame_time * timescale);
-
-            current_time += frame_time * timescale;
-
-            overflow -= frame_time * timescale;
-
-        } //overflow >= frame_time
+        } //fixed_overflow >= fixed_frame_time
 
             //work this out before a render
-        alpha = overflow / frame_time;
+        fixed_alpha = fixed_overflow / fixed_frame_time;
 
-    } //internal_update_fixed_timestep
+    } //internal_tick_fixed_timestep
 
 //Internal
 
