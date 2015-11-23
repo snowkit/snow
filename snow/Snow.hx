@@ -241,16 +241,12 @@ class Snow {
 
             if(freeze) return;
 
-                //first update timers
             Timer.update();
 
-                //handle promise executions
             snow.api.Promise.Promises.step();
 
-                //handle the events
             cycle_next_queue();
 
-                //handle any internal updates
             host.internal_tick();
 
             cycle_defer_queue();
