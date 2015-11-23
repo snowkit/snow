@@ -169,7 +169,7 @@ class App {
 
             next_tick = app.time + update_rate;
 
-        } //update_rate
+        }
 
         frame_start = tick_start;
         frame_delta = (frame_start - frame_start_prev);
@@ -208,9 +208,8 @@ class App {
             sim_time += _slice;
             fixed_overflow -= _slice;
 
-        } //fixed_overflow >= fixed_frame_time
+        }
 
-            //work this out before a render
         fixed_alpha = fixed_overflow / fixed_frame_time;
 
     } //internal_tick_fixed_timestep
