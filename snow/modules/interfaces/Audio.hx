@@ -2,11 +2,11 @@ package snow.modules.interfaces;
 
 import snow.api.buffers.Uint8Array;
 import snow.api.Promise;
-import snow.system.audio.Sound;
+import snow.systems.audio.Sound;
 import snow.types.Types;
 
 @:noCompletion
-@:allow(snow.system.audio.Audio)
+@:allow(snow.systems.audio.Audio)
 interface Audio {
 
     private var app: snow.Snow;

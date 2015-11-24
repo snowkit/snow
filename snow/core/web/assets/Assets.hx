@@ -2,8 +2,8 @@ package snow.core.web.assets;
 
 #if snow_web
 
-import snow.system.assets.Asset.AssetImage;
-import snow.system.assets.Assets;
+import snow.systems.assets.Asset.AssetImage;
+import snow.systems.assets.Assets;
 import snow.types.Types;
 import snow.api.Debug.*;
 import snow.api.buffers.*;
@@ -16,14 +16,14 @@ import snow.core.web.assets.psd.PSD;
     import snow.modules.howlerjs.Howl;
 #end //snow_module_audio_howlerjs
 
-@:allow(snow.system.assets.Assets)
+@:allow(snow.systems.assets.Assets)
 class Assets implements snow.modules.interfaces.Assets {
 
 //module interface
 
-    var system:snow.system.assets.Assets;
+    var system:snow.systems.assets.Assets;
 
-    function new( _system:snow.system.assets.Assets ) system = _system;
+    function new( _system:snow.systems.assets.Assets ) system = _system;
     function init() {}
     function update() {}
     function destroy() {}

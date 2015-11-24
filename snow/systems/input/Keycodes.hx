@@ -1,4 +1,4 @@
-package snow.system.input;
+package snow.systems.input;
 
 
 /** The keycode class, with conversion helpers for scancodes. The values below come directly from SDL header include files,

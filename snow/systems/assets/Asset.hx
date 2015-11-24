@@ -1,7 +1,7 @@
-package snow.system.assets;
+package snow.systems.assets;
 
-import snow.system.assets.Asset;
-import snow.system.assets.Assets;
+import snow.systems.assets.Asset;
+import snow.systems.assets.Assets;
 import snow.types.Types;
 import snow.api.buffers.Uint8Array;
 import snow.api.Promise;
@@ -47,7 +47,7 @@ class Asset {
 
 
 
-    class AssetImage extends snow.system.assets.Asset {
+    class AssetImage extends snow.systems.assets.Asset {
 
         public var image (default,set): ImageInfo;
 
@@ -177,7 +177,7 @@ class Asset {
 //Audio
 
 
-    class AssetAudio extends snow.system.assets.Asset {
+    class AssetAudio extends snow.systems.assets.Asset {
 
         public var audio (default,set): AudioInfo;
 
@@ -415,7 +415,7 @@ class Asset {
         /** The json data stored in the asset */
         public var json (default,set): Dynamic;
 
-        public function new( _system:snow.system.assets.Assets, _id:String, _json:Dynamic ) {
+        public function new( _system:snow.systems.assets.Assets, _id:String, _json:Dynamic ) {
 
             super(_system, _id, AssetType.json);
             json = _json;
@@ -447,7 +447,7 @@ class Asset {
         //Static API
 
                 /** Create a new AssetJSON from an id, which returns a promise for the asset. */
-            public static function load( _system:snow.system.assets.Assets, _id:String ) : Promise {
+            public static function load( _system:snow.systems.assets.Assets, _id:String ) : Promise {
 
                 return new AssetJSON(_system, _id, null).reload();
 

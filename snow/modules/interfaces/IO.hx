@@ -7,7 +7,7 @@ import snow.api.buffers.Uint8Array;
 import snow.api.buffers.ArrayBufferView;
 
 @:noCompletion
-@:allow(snow.system.io.IO)
+@:allow(snow.systems.io.IO)
 interface IO {
 
     private var app: snow.Snow;

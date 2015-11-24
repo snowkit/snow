@@ -1,4 +1,4 @@
-package snow.system.input;
+package snow.systems.input;
 
 import snow.types.Types;
 

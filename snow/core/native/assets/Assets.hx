@@ -12,7 +12,7 @@ import snow.core.native.io.IO.FileSeek;
 import stb.Image;
 import ogg.Ogg;
 
-@:allow(snow.system.assets.Assets)
+@:allow(snow.systems.assets.Assets)
 class Assets implements snow.modules.interfaces.Assets {
 
     var app: snow.Snow;

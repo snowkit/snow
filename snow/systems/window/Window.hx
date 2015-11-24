@@ -1,12 +1,12 @@
-package snow.system.window;
+package snow.systems.window;
 
 import snow.types.Types;
-import snow.system.window.Windowing;
+import snow.systems.window.Windowing;
 import snow.api.Debug.*;
 
     //A window has it's own event loop
     //and allows opening and closing windows
-@:allow(snow.system.window.Windowing)
+@:allow(snow.systems.window.Windowing)
 class Window {
 
         /** the window id, for tracking events to each window */

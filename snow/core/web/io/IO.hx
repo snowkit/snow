@@ -8,12 +8,12 @@ import snow.api.Promise;
 import snow.api.Debug.*;
 
 
-@:allow(snow.system.io.IO)
+@:allow(snow.systems.io.IO)
 class IO implements snow.modules.interfaces.IO {
 
-    var system : snow.system.io.IO;
+    var system : snow.systems.io.IO;
 
-    function new( _system:snow.system.io.IO ) system = _system;
+    function new( _system:snow.systems.io.IO ) system = _system;
 
 //Public API
 

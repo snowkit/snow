@@ -1,10 +1,10 @@
-package snow.system.assets;
+package snow.systems.assets;
 
 import snow.api.Promise;
 import snow.api.buffers.Uint8Array;
 import snow.api.Debug.*;
 
-import snow.system.assets.Asset;
+import snow.systems.assets.Asset;
 import snow.types.Types;
 
 /** The asset system class gives you access to fetching and manipulating assets,

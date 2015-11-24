@@ -5,7 +5,7 @@ import snow.api.buffers.Uint8Array;
 import snow.api.Promise;
 
 @:noCompletion
-@:allow(snow.system.assets.Assets)
+@:allow(snow.systems.assets.Assets)
 interface Assets {
 
     private var app: snow.Snow;

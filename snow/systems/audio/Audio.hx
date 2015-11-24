@@ -1,8 +1,8 @@
-package snow.system.audio;
+package snow.systems.audio;
 
 import snow.types.Types;
-import snow.system.audio.Sound;
-import snow.system.assets.Asset;
+import snow.systems.audio.Sound;
+import snow.systems.assets.Asset;
 import snow.api.Promise;
 import snow.api.Debug.*;
 

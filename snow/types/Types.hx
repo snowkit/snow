@@ -9,14 +9,14 @@ typedef AudioHandle = Dynamic;
 
 //These types include further types we don't want to 
 #if !macro
-    typedef Asset      = snow.system.assets.Asset.Asset;
-    typedef AssetBytes = snow.system.assets.Asset.AssetBytes;
-    typedef AssetText  = snow.system.assets.Asset.AssetText;
-    typedef AssetJSON  = snow.system.assets.Asset.AssetJSON;
-    typedef AssetImage = snow.system.assets.Asset.AssetImage;
-    typedef AssetAudio = snow.system.assets.Asset.AssetAudio;
-    typedef Key        = snow.system.input.Keycodes.Keycodes;
-    typedef Scan       = snow.system.input.Keycodes.Scancodes;
+    typedef Asset      = snow.systems.assets.Asset.Asset;
+    typedef AssetBytes = snow.systems.assets.Asset.AssetBytes;
+    typedef AssetText  = snow.systems.assets.Asset.AssetText;
+    typedef AssetJSON  = snow.systems.assets.Asset.AssetJSON;
+    typedef AssetImage = snow.systems.assets.Asset.AssetImage;
+    typedef AssetAudio = snow.systems.assets.Asset.AssetAudio;
+    typedef Key        = snow.systems.input.Keycodes.Keycodes;
+    typedef Scan       = snow.systems.input.Keycodes.Scancodes;
 #end
 
 enum Error {

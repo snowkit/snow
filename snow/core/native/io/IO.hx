@@ -14,7 +14,7 @@ import snow.api.Debug.*;
 }
 
 
-@:allow(snow.system.io.IO)
+@:allow(snow.systems.io.IO)
 class IO implements snow.modules.interfaces.IO {
 
     var app: snow.Snow;

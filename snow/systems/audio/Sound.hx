@@ -1,11 +1,11 @@
-package snow.system.audio;
+package snow.systems.audio;
 
 import snow.types.Types;
-import snow.system.audio.Audio;
+import snow.systems.audio.Audio;
 import snow.api.Debug.*;
 
 
-@:allow(snow.system.audio.Audio)
+@:allow(snow.systems.audio.Audio)
 class Sound {
 
         /** The `Audio` system handling this sound */

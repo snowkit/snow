@@ -7,11 +7,11 @@ import snow.api.Promise;
 import snow.api.buffers.Uint8Array;
 import snow.types.Types;
 
-import snow.system.io.IO;
-import snow.system.input.Input;
-import snow.system.assets.Asset.AssetJSON;
-import snow.system.assets.Assets;
-import snow.system.audio.Audio;
+import snow.systems.io.IO;
+import snow.systems.input.Input;
+import snow.systems.assets.Asset.AssetJSON;
+import snow.systems.assets.Assets;
+import snow.systems.audio.Audio;
 
 
 class Snow {

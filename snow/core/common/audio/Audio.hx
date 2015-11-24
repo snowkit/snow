@@ -11,7 +11,7 @@ typedef AudioHandle = Dynamic;
 typedef AudioHandle = snow.types.Types.FileHandle;
 #end
 
-@:allow(snow.system.audio.Audio)
+@:allow(snow.systems.audio.Audio)
 class Audio implements snow.modules.interfaces.Audio {
 
     var app : snow.Snow;
@@ -50,4 +50,4 @@ class Audio implements snow.modules.interfaces.Audio {
 
 } //Audio
 
-typedef Sound = snow.system.audio.Sound;
+typedef Sound = snow.systems.audio.Sound;

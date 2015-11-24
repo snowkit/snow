@@ -3,7 +3,7 @@ package snow.core.web.input;
 #if snow_web
 
 import snow.types.Types;
-import snow.system.window.Window;
+import snow.systems.window.Window;
 import snow.core.web.input.DOMKeys;
 
 import snow.api.Debug.*;
@@ -21,15 +21,15 @@ typedef WebGamepad = {
     timestamp : Float
 }
 
-@:allow(snow.system.input.Input)
+@:allow(snow.systems.input.Input)
 class Input implements snow.modules.interfaces.Input {
 
     var active_gamepads : Map<Int, WebGamepad>;
     var gamepads_supported : Bool = false;
 
-    var system : snow.system.input.Input;
+    var system : snow.systems.input.Input;
 
- 	function new( _system:snow.system.input.Input ) system = _system;
+ 	function new( _system:snow.systems.input.Input ) system = _system;
 
     function init() {
 

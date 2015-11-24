@@ -1,4 +1,4 @@
-package snow.system.io;
+package snow.systems.io;
 
 import snow.types.Types;
 import snow.api.buffers.Uint8Array;

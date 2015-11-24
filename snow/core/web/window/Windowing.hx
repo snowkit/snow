@@ -3,18 +3,18 @@ package snow.core.web.window;
 #if snow_web
 
 import snow.types.Types;
-import snow.system.window.Window;
+import snow.systems.window.Window;
 
-@:allow(snow.system.window.Windowing)
+@:allow(snow.systems.window.Windowing)
 class Windowing implements snow.modules.interfaces.Windowing {
 
     public var gl_contexts : Map<Int, js.html.webgl.RenderingContext>;
 
     var seq_window : Int = 1;
     var fs_windows : Array<Window>;
-    var system : snow.system.window.Windowing;
+    var system : snow.systems.window.Windowing;
 
-    public function new( _system:snow.system.window.Windowing ) {
+    public function new( _system:snow.systems.window.Windowing ) {
 
         system = _system;
         fs_windows = [];
