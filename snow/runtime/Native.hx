@@ -39,7 +39,11 @@ class Native implements Runtime {
             log('init / app path / `$_app_path`');
             log('init / pref path / `${app.io.app_path_prefs()}`');
 
+        if(_app_path != null && _app_path != '') {
             Sys.setCwd( _app_path );
+        } else {
+            log('init / app path / no change (app path was `$_app_path`)');
+        }
 
     } //new
 
@@ -78,6 +82,14 @@ class Native implements Runtime {
         return false;
 
     } //window_fullscreen
+
+    public function window_device_pixel_ratio() : Float {
+
+        log('runtime / native / window_device_pixel_ratio');
+
+        return 1.0;
+
+    } //window_device_pixel_ratio
 
 
 } //Native
