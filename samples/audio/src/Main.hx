@@ -32,7 +32,7 @@ class Main extends snow.App {
 
     function sound_loaded(asset:AssetAudio) {
         sound = asset;
-        log('`${sound.audio.id}` : ' + audio);
+        log('`${sound.audio.id}` : ' + sound.audio);
     }
 
     override function onmouseup( x:Int, y:Int, button:Int, _, _ ) {
