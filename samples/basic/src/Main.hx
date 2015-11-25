@@ -73,8 +73,12 @@ class Main extends snow.App {
 
         log('/ HOST / ready');
         log("OpenGL reports version " + GL.versionString());
-        log('app config is loaded as : ${app.config.user}');
 
+        window_width = app.runtime.window_width();
+        window_height = app.runtime.window_height();
+        log('window render size : ${window_width}x${window_height}');
+
+        log('app config is loaded as : ${app.config.user}');
         log("init / shaders and buffers ");
 
         apply_config();
