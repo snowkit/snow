@@ -37,7 +37,6 @@ import android.content.pm.ActivityInfo;
 /**
     SDL Activity
 */
-@SuppressWarnings("JniMissingFunction")
 public class SDLActivity extends Activity {
     private static final String TAG = "SDL";
 
@@ -83,7 +82,7 @@ public class SDLActivity extends Activity {
             // "main"
             
             //--:snow:start
-            "snow_basic"
+            "{{project.app.name}}"
             //--:snow:end
         };
     }
@@ -176,7 +175,11 @@ public class SDLActivity extends Activity {
         //---:snow:start
             requestWindowFeature (Window.FEATURE_NO_TITLE);
 
-            
+            {{#if project.app.mobile.fullscreen~}}
+                {{#if project.app.mobile.android.sdk_target '<' 19~}}
+                    getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN | WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+                {{~/if~}}
+            {{/if}}
 
             setVolumeControlStream(AudioManager.STREAM_MUSIC);
         //---:snow:end
@@ -239,9 +242,13 @@ public class SDLActivity extends Activity {
         super.onStart();
 
         //--:snow:start
-        if (Build.VERSION.SDK_INT >= 19) {
+        {{#if project.app.mobile.fullscreen}}
+            {{~#if project.app.mobile.android.sdk_target '>=' 19~}}
+                if (Build.VERSION.SDK_INT >= 19) {
                     hideSystemUi();
                 }
+            {{~/if}}
+        {{~/if}}
         //--:snow:end
 
     }
@@ -259,10 +266,13 @@ public class SDLActivity extends Activity {
         if (hasFocus) {
 
             //--:snow:start
+            {{~#if project.app.mobile.fullscreen}}
+                {{~#if project.app.mobile.android.sdk_target '>=' 19}}
                 if (Build.VERSION.SDK_INT >= 19) {
                     hideSystemUi();
                 }
-                
+                {{/if}}
+            {{/if~}}
             //--:snow:end
 
             SDLActivity.handleResume();
@@ -270,7 +280,9 @@ public class SDLActivity extends Activity {
     }
 
     //--:snow:start
-    private void hideSystemUi() {
+    {{#if project.app.mobile.fullscreen}}
+        {{~#if project.app.mobile.android.sdk_target '>=' 19~}}
+            private void hideSystemUi() {
                 View decorView = this.getWindow().getDecorView();
 
                 decorView.setSystemUiVisibility(
@@ -282,6 +294,8 @@ public class SDLActivity extends Activity {
                     | View.SYSTEM_UI_FLAG_FULLSCREEN
                     | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
             }
+        {{~/if~}}
+    {{/if}}
     //--:snow:end
 
     @Override
@@ -1437,7 +1451,6 @@ class DummyEdit extends View implements View.OnKeyListener {
     }
 }
 
-@SuppressWarnings("JniMissingFunction")
 class SDLInputConnection extends BaseInputConnection {
 
     public SDLInputConnection(View targetView, boolean fullEditor) {

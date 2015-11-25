@@ -1,4 +1,4 @@
-package org.snowkit.snowbasic;
+package {{project.app.package}};
 
 import android.os.Bundle;
 import android.util.Log;

@@ -4,7 +4,7 @@ android {
     buildToolsVersion "21.1.2"
 
     defaultConfig {
-        applicationId "org.snowkit.snowbasic"
+        applicationId "{{project.app.package}}"
         minSdkVersion 14
     }
 

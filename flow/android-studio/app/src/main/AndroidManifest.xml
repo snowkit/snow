@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="org.snowkit.snowbasic"
+    package="{{project.app.package}}"
     android:versionCode="1"
-    android:versionName="1.0.0"
+    android:versionName="{{project.version}}"
     android:installLocation="preferExternal">
 
-    <!--  -->
-    <application android:label="snow basic"
-                 android:debuggable="true"
-                 android:icon="@drawable/snow"
+    <application android:label="{{project.name}}"
+                 {{#if project.app.icon~}}
+                 android:icon="@drawable/{{project.app._icon.dest}}"
+                 {{/if~}}
                  android:allowBackup="true"
                  android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
                  android:hardwareAccelerated="true" >
-        <activity android:name="org.snowkit.snowbasic.AppActivity"
-                  android:label="snow basic"
+        <activity android:name="{{project.app.package}}.AppActivity"
+                  android:label="{{project.name}}"
                   android:launchMode="singleTask"
                   android:screenOrientation="landscape"
                   android:configChanges="keyboardHidden|orientation|screenSize|screenLayout"
@@ -27,7 +27,6 @@
         </activity>
     </application>
 
-    <!-- OpenGL ES 2.0 -->
     <uses-feature android:glEsVersion="0x00020000" />
 
 </manifest>
