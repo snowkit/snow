@@ -15,7 +15,7 @@ interface Audio {
     private function shutdown():Void;
 
         /** Play an instance of the given audio asset, returning a dispoable handle */
-    function play(asset:AssetAudio) : AudioHandle;
+    function play(asset:AssetAudio, _volume:Float, _paused:Bool) : AudioHandle;
         /** Loop a sound instance by name, indefinitely. Use stop to end it */
     function loop(_handle:AudioHandle) : Void;
         /** Pause a sound instance by name */

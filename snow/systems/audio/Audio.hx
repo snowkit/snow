@@ -1,5 +1,6 @@
 package snow.systems.audio;
 
+import snow.systems.assets.Asset.AssetAudio;
 import snow.types.Types;
 import snow.systems.audio.Sound;
 import snow.systems.assets.Asset;
@@ -26,14 +27,14 @@ class Audio {
     } //new
 
 //Public API
-
-    public function play(asset:snow.systems.assets.Asset.AssetAudio) : AudioHandle {
+    
+    public function play(asset:AssetAudio, ?_volume:Float=1.0, ?_paused:Bool=false) : AudioHandle {
 
         if(!active) {
             return -1;
         }
 
-        return module.play(asset);
+        return module.play(asset, _volume, _paused);
 
     } //play
 
@@ -92,6 +93,10 @@ class Audio {
     public function duration_of(_handle:AudioHandle) {
         return module.duration_of(_handle);
     } //duration_of
+
+    //get/set samplerate
+    //get/set is valid handle
+    //get/set loopcount
 
     @:noCompletion public function suspend() {
 

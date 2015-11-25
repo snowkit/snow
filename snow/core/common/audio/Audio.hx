@@ -15,7 +15,7 @@ class Audio implements snow.modules.interfaces.Audio {
     function shutdown() {}
 
         /** Play an instance of the given audio asset, returning a dispoable handle */
-    public function play(asset:AssetAudio) : AudioHandle {
+    public function play(asset:AssetAudio, _volume:Float, _paused:Bool) : AudioHandle {
         
         log('play in core module does nothing.');
         return -1;
