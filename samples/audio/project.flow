@@ -1,0 +1,37 @@
+{
+
+  snow : {
+    runtime: 'snow.modules.sdl.Runtime',
+    config: {
+      config_path: 'config.json',
+      log: 1
+    }
+  },
+
+  project : {
+    name : 'audio',
+    version : '1.0.0',
+    author : 'snowkit',
+
+    app : {
+      name : 'snow_audio',
+      package : 'org.snowkit.snowaudio', //oh
+    },
+
+    //HAH
+
+    build : {
+      flags:['-dce full'],
+      dependencies : {
+        snowdev : '*'
+      }
+    },
+
+    files : {
+      config : 'config.json',
+      assets : 'assets/'
+    }
+
+  }
+
+}
