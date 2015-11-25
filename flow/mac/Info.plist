@@ -37,6 +37,8 @@
 			<string>Alternate</string>
 		</dict>
 	</array>
+	<key>NSHighResolutionCapable</key>
+	<true/>
 	<key>LSApplicationCategoryType</key>
 	<string>public.app-category.games</string>
 </dict>
