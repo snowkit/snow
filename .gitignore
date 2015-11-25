@@ -11,4 +11,5 @@ users/
 dump/
 ndll/
 ios.project
+android.project
 *.xcuserstate
