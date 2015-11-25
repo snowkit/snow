@@ -74,7 +74,15 @@
     android : {
       build: {
         files : {
-          project : { path:"flow/android/ => project/", template:'project' }
+          gradle : { path:"flow/android-studio/gradle => ../../android.project/gradle" },
+          gradlew : { path:"flow/android-studio/gradlew => ../../android.project/gradlew" },
+          gradlewbat : { path:"flow/android-studio/gradlew.bat => ../../android.project/gradlew.bat" },
+          project_idea : { path:"flow/android-studio/.idea => ../../android.project/.idea", template:'project' },
+          project_app : { path:"flow/android-studio/app => ../../android.project/app", template:'project' },
+          project_build_gradle : { path:"flow/android-studio/build.gradle => ../../android.project/build.gradle", template:'project' },
+          project_settings_gradle : { path:"flow/android-studio/settings.gradle => ../../android.project/settings.gradle", template:'project' },
+          project_local_props : { path:"flow/android-studio/local.properties => ../../android.project/local.properties", template:'project' },
+          // project : { path:"flow/android/ => project/", template:'project' }
         }
       }
     },
