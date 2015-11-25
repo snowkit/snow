@@ -14,7 +14,10 @@ class IO extends snow.core.native.io.IO {
 
     override public function app_path() : String {
 
-        return SDL.getBasePath();
+        var _path = SDL.getBasePath();
+        if(_path == null) _path = '';
+
+        return _path;
 
     } //app_path
 
