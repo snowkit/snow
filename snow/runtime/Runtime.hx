@@ -21,5 +21,9 @@ interface Runtime {
     function window_fullscreen(enable:Bool, ?true_fullscreen:Bool=false) : Bool;
         /** Get the device pixel ratio (scaling factor for high resolution/high dpi/retina devices) */
     function window_device_pixel_ratio() : Float;
+        /** Get the width of the render surface of the window (i.e post-device-scale) */
+    function window_width() : Int;
+        /** Get the height of the render surface of the window (i.e post-device-scale) */
+    function window_height() : Int;
 
 } //Runtime

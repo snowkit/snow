@@ -91,6 +91,22 @@ class Native implements Runtime {
 
     } //window_device_pixel_ratio
 
+    public function window_width() : Int {
+
+        log('runtime / native / window_width');
+
+        return 0;
+
+    } //window_width
+
+    public function window_height() : Int {
+
+        log('runtime / native / window_height');
+
+        return 0;
+
+    } //window_height
+
 
 } //Native
 

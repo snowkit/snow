@@ -121,6 +121,9 @@ class Runtime extends snow.runtime.Native {
 
     } //window_fullscreen
 
+    override inline public function window_width() :Int return window_w;
+    override inline public function window_height() :Int return window_h;
+
     var _size:SDLSize = {w:0, h:0}
     var window_dpr = 1.0;
     override function window_device_pixel_ratio() : Float {
@@ -134,6 +137,8 @@ class Runtime extends snow.runtime.Native {
         return _pixel_height / _device_height;
 
     } //window_device_pixel_ratio
+
+
     
     static var timestamp_start : Float = 0.0;
     inline public static function timestamp() : Float {
@@ -252,13 +257,13 @@ class Runtime extends snow.runtime.Native {
                 case SDL_WINDOWEVENT_RESIZED:
                     _type = WindowEventType.resized;
                     window_dpr = window_device_pixel_ratio();
-                        _data1 = to_pixels(_data1);
-                        _data2 = to_pixels(_data2);
+                        window_w = _data1 = to_pixels(_data1);
+                        window_h = _data2 = to_pixels(_data2);
                 case SDL_WINDOWEVENT_SIZE_CHANGED:
                     _type = WindowEventType.size_changed;
                     window_dpr = window_device_pixel_ratio();
-                        _data1 = to_pixels(_data1);
-                        _data2 = to_pixels(_data2);
+                        window_w = _data1 = to_pixels(_data1);
+                        window_h = _data2 = to_pixels(_data2);
                 case SDL_WINDOWEVENT_NONE:
 
             } //switch
@@ -271,6 +276,9 @@ class Runtime extends snow.runtime.Native {
 
     } //handle_window_ev
 
+    var window_w : Int = 0;
+    var window_h : Int = 0;
+
     inline function to_pixels(_value:Float) : Int {
         return Math.floor(window_dpr * _value);
     }
@@ -281,7 +289,10 @@ class Runtime extends snow.runtime.Native {
 
         var config = app.config.window;
 
-        apply_GL_attr(app.config.render);        
+        apply_GL_attr(app.config.render);
+
+        window_w = config.width;
+        window_h = config.height;
 
         window = SDL.createWindow((cast config.title:String), config.x, config.y, config.width, config.height, window_flags(config));
 
@@ -433,8 +444,8 @@ class Runtime extends snow.runtime.Native {
 
         config.x = pos.x;
         config.y = pos.y;
-        config.width = size.w;
-        config.height = size.h;
+        config.width = window_w = size.w;
+        config.height = window_h = size.h;
 
         window_dpr = window_device_pixel_ratio();
         log('sdl / window / x y w h / ${config.x} ${config.y} ${config.width}x${config.height} / scale $window_dpr');
