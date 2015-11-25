@@ -5,12 +5,6 @@ import snow.api.buffers.Uint8Array;
 import snow.api.Promise;
 import snow.api.Debug.*;
 
-#if snow_web
-typedef AudioHandle = Dynamic;
-#else
-typedef AudioHandle = snow.types.Types.FileHandle;
-#end
-
 @:allow(snow.systems.audio.Audio)
 class Audio implements snow.modules.interfaces.Audio {
 
@@ -20,21 +14,115 @@ class Audio implements snow.modules.interfaces.Audio {
     function onevent(event:SystemEvent) {}
     function shutdown() {}
 
-    public function create_sound( _id:String, _name:String, _streaming:Bool=false, ?_format:AudioFormatType ) : Promise {
+        /** Play an instance of the given audio asset, returning a dispoable handle */
+    public function play(asset:AssetAudio) : AudioHandle {
+        
+        log('play in core module does nothing.');
+        return -1;
+            
+    } //play
 
-        log('create_sound in core module does nothing.');
+        /** Loop a sound instance by name, indefinitely. Use stop to end it */
+    public function loop(_handle:AudioHandle) : Void {
+        
+        log('loop in core module does nothing.');
+            
+    } //loop
 
-        return Promise.reject(Error.error('core module doesn\'t implement create_sound.'));
+        /** Pause a sound instance by name */
+    public function pause(_handle:AudioHandle) : Void {
+        
+        log('pause in core module does nothing.');
+            
+    } //pause
 
-    } //create_sound
+        /** Stop a sound instance by name */
+    public function stop(_handle:AudioHandle) : Void {
+        
+        log('stop in core module does nothing.');
+            
+    } //stop
 
-    public function create_sound_from_bytes( _name:String, _bytes:Uint8Array, _format:AudioFormatType ) : Sound {
+        /** Toggle a sound instance by name, pausing or unpausing the sound */
+    public function toggle(_handle:AudioHandle) : Void {
+        
+        log('toggle in core module does nothing.');
+            
+    } //toggle
 
-        log('create_sound_from_bytes in core module does nothing.');
+        /** Set the volume of a sound instance */
+    public function volume(_handle:AudioHandle, _volume:Float) : Void {
+        
+        log('volume in core module does nothing.');
+            
+    } //volume
 
-        return null;
+        /** Set the pan of a sound instance */
+    public function pan(_handle:AudioHandle, _pan:Float) : Void {
+        
+        log('pan in core module does nothing.');
+            
+    } //pan
 
-    } //create_sound_from_bytes
+        /** Set the pitch of a sound instance */
+    public function pitch(_handle:AudioHandle, _pitch:Float) : Void {
+        
+        log('pitch in core module does nothing.');
+            
+    } //pitch
+
+        /** Set the position of a sound instance */
+    public function position(_handle:AudioHandle, _position:Float) : Void {
+        
+        log('position in core module does nothing.');
+            
+    } //position
+
+        /** Get the volume of a sound instance */
+    public function volume_of(_handle:AudioHandle) : Float {
+        
+        log('volume_of in core module does nothing.');
+
+        return 0.0;
+            
+    } //volume_of
+
+        /** Get the pan of a sound instance */
+    public function pan_of(_handle:AudioHandle) : Float {
+        
+        log('pan_of in core module does nothing.');
+
+        return 0.0;
+            
+    } //pan_of
+
+        /** Get the pitch of a sound instance */
+    public function pitch_of(_handle:AudioHandle) : Float {
+        
+        log('pitch_of in core module does nothing.');
+
+        return 0.0;
+            
+    } //pitch_of
+
+        /** Get the position of a sound instance */
+    public function position_of(_handle:AudioHandle) : Int {
+        
+        log('position_of in core module does nothing.');
+
+        return 0;
+            
+    } //position_of
+
+        /** Get the duration of a sound instance */
+    public function duration_of(_handle:AudioHandle) : Float {
+        
+        log('duration_of in core module does nothing.');
+
+        return 0.0;
+            
+    } //duration_of
+
 
     public function suspend() {
 

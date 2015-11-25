@@ -76,24 +76,24 @@ class Sound {
 
     @:noCompletion public function emit(_event:String) {
 
-        @:privateAccess system.sound_event(this, _event);
+        // @:privateAccess system.sound_event(this, _event);
 
     } //emit
 
-        /** Connect a handler to a named event.
-            Current events include `load` and `end`, and will soon be strict typed. */
-    public function on(_event:String, _handler:Sound->Void) {
+    //     /** Connect a handler to a named event.
+    //         Current events include `load` and `end`, and will soon be strict typed. */
+    // public function on(_event:String, _handler:Sound->Void) {
 
-        system.on(name, _event, _handler);
+    //     system.on(name, _event, _handler);
 
-    } //emit
+    // } //emit
 
-        /** Disconnect a handler from a named event type, previously connected with `on`. */
-    public function off(_event:String, _handler:Sound->Void) {
+    //     /** Disconnect a handler from a named event type, previously connected with `on`. */
+    // public function off(_event:String, _handler:Sound->Void) {
 
-        system.off(name, _event, _handler);
+    //     system.off(name, _event, _handler);
 
-    } //off
+    // } //off
 
 
 //Functions implemented in subclasses

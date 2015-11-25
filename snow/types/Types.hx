@@ -3,10 +3,6 @@ package snow.types;
 import snow.api.buffers.Uint8Array;
 
 
-    /** A platform window handle */
-typedef AudioHandle = Dynamic;
-
-
 //These types include further types we don't want to 
 #if !macro
     typedef Asset      = snow.systems.assets.Asset.Asset;
@@ -91,6 +87,7 @@ typedef WindowHandle = WindowHandleDef;
 
 // private typedef AudioHandleInit = ApplyType<"AudioHandle">;
 // typedef AudioHandle = AudioHandleDef;
+typedef AudioHandle = Int;
 
 private typedef AppHostInit = ApplyType<"AppHost">;
 @:noCompletion typedef AppHost = AppHostDef;
@@ -196,7 +193,7 @@ typedef AudioInfo = {
         /** the platform audio data info */
     var data : AudioDataInfo;
         /** the platform audio handle for later manipulation */
-    var handle : AudioHandle;
+    var handle : Dynamic; //:todo:
 
 } //AudioInfo
 
