@@ -3,8 +3,11 @@ package snow.modules.sdl;
 import snow.api.Debug.*;
 import snow.types.Types;
 import sdl.SDL;
-import glew.GLEW;
 import timestamp.Timestamp;
+
+#if !mobile
+import glew.GLEW;
+#end
 
 @:allow(snow.Snow)
 class Runtime extends snow.runtime.Native {
@@ -118,6 +121,19 @@ class Runtime extends snow.runtime.Native {
 
     } //window_fullscreen
 
+    var _size:SDLSize = {w:0, h:0}
+    var window_dpr = 1.0;
+    override function window_device_pixel_ratio() : Float {
+
+        _size = SDL.GL_GetDrawableSize(window, _size);
+        var _pixel_height = _size.w;
+
+        _size = SDL.getWindowSize(window, _size);
+        var _device_height = _size.w;
+
+        return _pixel_height / _device_height;
+
+    } //window_device_pixel_ratio
     
     static var timestamp_start : Float = 0.0;
     inline public static function timestamp() : Float {
@@ -203,6 +219,9 @@ class Runtime extends snow.runtime.Native {
 
     function handle_window_ev(e:sdl.Event) {
 
+        var _data1 = e.window.data1;
+        var _data2 = e.window.data2;
+
         if(e.type == SDL_WINDOWEVENT) {
             var _type:WindowEventType = WindowEventType.unknown;
             switch(e.window.event) {
@@ -214,10 +233,6 @@ class Runtime extends snow.runtime.Native {
                     _type = WindowEventType.exposed;
                 case SDL_WINDOWEVENT_MOVED:
                     _type = WindowEventType.moved;
-                case SDL_WINDOWEVENT_RESIZED:
-                    _type = WindowEventType.resized;
-                case SDL_WINDOWEVENT_SIZE_CHANGED:
-                    _type = WindowEventType.size_changed;
                 case SDL_WINDOWEVENT_MINIMIZED:
                     _type = WindowEventType.minimized;
                 case SDL_WINDOWEVENT_MAXIMIZED:
@@ -234,16 +249,31 @@ class Runtime extends snow.runtime.Native {
                     _type = WindowEventType.focus_lost;
                 case SDL_WINDOWEVENT_CLOSE:
                     _type = WindowEventType.close;
+                case SDL_WINDOWEVENT_RESIZED:
+                    _type = WindowEventType.resized;
+                    window_dpr = window_device_pixel_ratio();
+                        _data1 = to_pixels(_data1);
+                        _data2 = to_pixels(_data2);
+                case SDL_WINDOWEVENT_SIZE_CHANGED:
+                    _type = WindowEventType.size_changed;
+                    window_dpr = window_device_pixel_ratio();
+                        _data1 = to_pixels(_data1);
+                        _data2 = to_pixels(_data2);
                 case SDL_WINDOWEVENT_NONE:
+
             } //switch
 
             if(_type != unknown) {
-                _window_event_.set(_type, e.window.timestamp/1000.0, cast e.window.windowID, e.window.data1, e.window.data2);
+                _window_event_.set(_type, e.window.timestamp/1000.0, cast e.window.windowID, _data1, _data2);
                 app.dispatch_event(se_window, _window_event_);
             }
         }
 
     } //handle_window_ev
+
+    inline function to_pixels(_value:Float) : Int {
+        return Math.floor(window_dpr * _value);
+    }
 
     function create_window() {
 
@@ -295,12 +325,14 @@ class Runtime extends snow.runtime.Native {
 
         SDL.GL_MakeCurrent(_window, gl);
 
-        var _result = GLEW.init();
-        if(_result != GLEW.OK) {
-            throw Error.error('runtime / sdl / failed to setup created render context, unable to recover / `${GLEW.error(_result)}`');
-        } else {
-            log('sdl / GLEW init / ok');
-        }
+        #if !mobile
+            var _result = GLEW.init();
+            if(_result != GLEW.OK) {
+                throw Error.error('runtime / sdl / failed to setup created render context, unable to recover / `${GLEW.error(_result)}`');
+            } else {
+                log('sdl / GLEW init / ok');
+            }
+        #end
 
     } //post_render_context
 
@@ -367,6 +399,7 @@ class Runtime extends snow.runtime.Native {
         var flags : SDLWindowFlags = 0;
 
         flags |= SDL_WINDOW_OPENGL;
+        flags |= SDL_WINDOW_ALLOW_HIGHDPI;
 
         if(config.resizable)  flags |= SDL_WINDOW_RESIZABLE;
         if(config.borderless) flags |= SDL_WINDOW_BORDERLESS;
@@ -395,13 +428,16 @@ class Runtime extends snow.runtime.Native {
             }
         }
 
-        var size = SDL.getWindowSize(_window, { w:config.width, h:config.height });
+        var size = SDL.GL_GetDrawableSize(_window, { w:config.width, h:config.height });
         var pos = SDL.getWindowPosition(_window, { x:config.x, y:config.y });
 
         config.x = pos.x;
         config.y = pos.y;
         config.width = size.w;
         config.height = size.h;
+
+        window_dpr = window_device_pixel_ratio();
+        log('sdl / window / x y w h / ${config.x} ${config.y} ${config.width}x${config.height} / scale $window_dpr');
 
         return config;
 
@@ -487,25 +523,25 @@ class Runtime extends snow.runtime.Native {
 
                 case SDL_MOUSEMOTION:
                     app.input.dispatch_mouse_move_event(
-                        e.motion.x,
-                        e.motion.y,
-                        e.motion.xrel,
-                        e.motion.yrel,
+                        to_pixels(e.motion.x),
+                        to_pixels(e.motion.y),
+                        to_pixels(e.motion.xrel),
+                        to_pixels(e.motion.yrel),
                         e.motion.timestamp/1000.0,
                         cast e.motion.windowID
                     );
                 case SDL_MOUSEBUTTONDOWN:
                     app.input.dispatch_mouse_down_event(
-                        e.button.x,
-                        e.button.y,
+                        to_pixels(e.button.x),
+                        to_pixels(e.button.y),
                         e.button.button,
                         e.button.timestamp/1000.0,
                         cast e.button.windowID
                     );
                 case SDL_MOUSEBUTTONUP:
                     app.input.dispatch_mouse_up_event(
-                        e.button.x,
-                        e.button.y,
+                        to_pixels(e.button.x),
+                        to_pixels(e.button.y),
                         e.button.button,
                         e.button.timestamp/1000.0,
                         cast e.button.windowID
