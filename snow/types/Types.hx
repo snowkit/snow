@@ -323,6 +323,8 @@ class SystemEvent {
         window = _window;
     }
 
+    function toString() return 'SystemEvent{ type($type) window($window) }';
+
 } //SystemEvent
 
 /** A system window event */
@@ -349,6 +351,8 @@ class WindowEvent {
         data1 = _data1;
         data2 = _data2;
     }
+
+    function toString() return 'WindowEvent{ type($type) window($window_id) data1($data1), data2($data2) time($timestamp) }';
 
 } //WindowEvent
 
