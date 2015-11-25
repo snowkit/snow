@@ -5,7 +5,9 @@ import snow.api.Debug.*;
 import snow.api.buffers.Float32Array;
 import snow.modules.opengl.GL;
 
+#if !mobile
 import snowhxt.Snowhxt;
+#end
 
 typedef UserConfig = {
     window : {
@@ -65,7 +67,7 @@ class Main extends snow.App {
 
     } //config
 
-    var hxt : Snowhxt;
+    #if !mobile var hxt : Snowhxt; #end
 
     override function ready() {
 
@@ -84,7 +86,7 @@ class Main extends snow.App {
             //start mid window
         render_y = (window_width - size) / 2;
 
-        hxt = new Snowhxt();
+        #if !mobile hxt = new Snowhxt(); #end
 
     } //ready
 
@@ -101,7 +103,7 @@ class Main extends snow.App {
         
         on_render_update();
 
-        hxt.update();
+        #if !mobile hxt.update(); #end
 
     } //tick
 

@@ -348,8 +348,13 @@ class Snow {
                 depth_bits : 0,
                 stencil_bits : 0,
                 opengl : {
-                    minor:0, major:0,
-                    profile:OpenGLProfile.compatibility
+                    #if mobile
+                        major:2, minor:0,
+                        profile: OpenGLProfile.gles
+                    #else
+                        major:0, minor: 0,
+                        profile: OpenGLProfile.compatibility
+                    #end
                 }
             };
 

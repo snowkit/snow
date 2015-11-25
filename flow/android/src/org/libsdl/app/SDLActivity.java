@@ -74,25 +74,23 @@ public class SDLActivity extends Activity {
      */
     protected String[] getLibraries() {
         return new String[] {
-
-            //--:snow:start
-            {{#each project.app.mobile.android.libs.native~}}
-            "{{this}}",
-            {{~/each}}
-            //--:snow:end
-
             // "SDL2",
             // "SDL2_image",
             // "SDL2_mixer",
             // "SDL2_net",
             // "SDL2_ttf",
             // "main"
+            
+            //--:snow:start
+            "{{project.app.name}}"
+            //--:snow:end
         };
     }
 
     // Load the .so
     public void loadLibraries() {
        for (String lib : getLibraries()) {
+          Log.v(TAG, "   loading library : " + lib);
           System.loadLibrary(lib);
        }
     }
@@ -1005,7 +1003,7 @@ class SDLMain implements Runnable {
         // Runs SDL_main()
         SDLActivity.nativeInit(SDLActivity.mSingleton.getArguments());
         //--:snow:start
-        HXCPP.run ("{{project.app.name}}");
+        HXCPP.run();
         //--:snow:end
         //Log.v("SDL", "SDL thread terminated");
     }
