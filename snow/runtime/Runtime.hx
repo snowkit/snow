@@ -19,5 +19,7 @@ interface Runtime {
     function window_grab(enable:Bool) : Bool;
         /** Set the main window to fullscreen. returns false if it fails or is unavailable. */
     function window_fullscreen(enable:Bool, ?true_fullscreen:Bool=false) : Bool;
+        /** Get the device pixel ratio (scaling factor for high resolution/high dpi/retina devices) */
+    function window_device_pixel_ratio() : Float;
 
 } //Runtime
