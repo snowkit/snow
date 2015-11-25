@@ -105,6 +105,17 @@ class Main extends snow.App {
 
     } //tick
 
+    override public function onevent(event:SystemEvent) {
+        if(event.window != null) {
+            if(event.window.type == WindowEventType.size_changed||event.window.type == WindowEventType.resized) {
+                window_width = event.window.data1;
+                window_height = event.window.data2;
+                var _scale = app.runtime.window_device_pixel_ratio();
+                trace('${event.window.type} / $_scale / size changed ${event.window.data1}x${event.window.data2}');
+            }
+        }
+    }
+
     override public function ontextinput( text:String, start:Int, length:Int, type:TextEventType, timestamp:Float, window_id:Int ) {
 
         log('text event; text:$text / start: $start / length: $length / type:$type / timestamp:${timestamp} / window: ${window_id}');
