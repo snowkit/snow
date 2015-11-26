@@ -2,6 +2,7 @@
 import snow.api.Debug.*;
 import snow.types.Types;
 import snow.modules.opengl.GL;
+import snow.systems.audio.AudioSource;
 
 typedef UserConfig = {}
 
@@ -28,12 +29,14 @@ class Main extends snow.App {
 
     } //ready
 
-    var sound : AssetAudio;
+    var sound : AudioSource;
 
     function sound_loaded(asset:AssetAudio) {
-        sound = asset;
-        log('`${sound.audio.id}` : ' + sound.audio);
-    }
+        
+        sound = new AudioSource(asset);
+        log('loaded `${asset.audio.id}` : ' + asset.audio);
+
+    } //sound_loaded
 
     override function onmouseup( x:Int, y:Int, button:Int, _, _ ) {
 
