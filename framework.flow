@@ -121,7 +121,7 @@
       build : {
         flags:[
           '--macro snow.Set.assets("snow.core.web.assets.Assets")',
-          '--macro snow.Set.audio("snow.core.common.audio.Audio")',
+          '--macro snow.Set.audio("snow.core.web.audio.Audio")',
           '--macro snow.Set.io("snow.core.web.io.IO")'
         ],
         defines : [],
@@ -178,7 +178,7 @@
       build: {
         flags:[
           '--macro snow.Set.assets("snow.core.native.assets.Assets")',
-          '--macro snow.Set.audio("snow.core.common.audio.Audio")',
+          '--macro snow.Set.audio("snow.core.modules.openal.Audio")',
           '--macro snow.Set.io("snow.modules.sdl.IO")'
         ],
         defines : []
