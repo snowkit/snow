@@ -1,15 +1,16 @@
 package snow.modules.openal;
 
+import snow.api.Debug.*;
 import snow.types.Types;
 import snow.api.Promise;
+import snow.api.buffers.Uint8Array;
+import snow.api.buffers.Float32Array;
+import snow.systems.audio.AudioSource;
 
 import snow.modules.openal.AL;
 import snow.modules.openal.AL.Context;
 import snow.modules.openal.AL.Device;
-
-import snow.api.buffers.Uint8Array;
-import snow.api.Debug.*;
-
+import snow.modules.openal.ALAudioInstance;
 
 @:allow(snow.systems.audio.Audio)
 @:log_as('openal')
@@ -17,12 +18,14 @@ class Audio implements snow.modules.interfaces.Audio {
 
     public var device : Device;
     public var context : Context;
-    
+
     var app : snow.Snow;
 
     function new(_app:snow.Snow) {
 
         app = _app;
+        instances = new Map();
+        buffers = new Map();
 
         log('init');
         device = ALC.openDevice();
@@ -43,6 +46,10 @@ class Audio implements snow.modules.interfaces.Audio {
     } //new
 
     function shutdown() {
+
+        //:todo:
+        instances = null;
+        buffers = null;
 
         ALC.makeContextCurrent(cast null);
         log('invalidate context / ${ ALCError.desc(ALC.getError(device)) }');
@@ -78,117 +85,189 @@ class Audio implements snow.modules.interfaces.Audio {
 
 
     function onevent(event:SystemEvent) {}
-    
+
 //
-        /** Play an instance of the given audio asset, returning a disposable handle */
-    public function play(asset:AssetAudio, _volume:Float, _paused:Bool) : AudioHandle {
-        
-        log('play in core module does nothing.');
-        return -1;
-            
+
+    var handle_seq = 0;
+        /** The map of audio instances to handles */
+    public var instances : Map<Int, ALAudioInstance>;
+        /** A map of audio source to AL buffer handles */
+    var buffers : Map<AudioSource, Int>;
+
+        /** Play an instance of the given audio source, returning a disposable handle */
+    public function play(_source:AudioSource, _volume:Float, _paused:Bool) : AudioHandle {
+
+        assertnull(_source);
+        assertnull(_source.asset);
+        assertnull(_source.asset.audio);
+        assertnull(_source.asset.audio.data);
+
+        var _handle = handle_seq;
+        var _instance = new ALAudioInstance(_source, _volume);
+        instances.set(_handle, _instance);
+
+        // :todo: _source.singular
+        var _buffer = buffers.get(_source);
+        if(_buffer == null) {
+            var _data = _source.asset.audio.data;
+            var _format = source_format(_data);
+
+            log(' > new buffer / ${_source.asset.id} / $_format');
+
+            _buffer = AL.genBuffer();
+            AL.bufferData(_buffer, _format, _data.rate, _data.samples.toBytes().getData(), _data.samples.byteOffset, _data.samples.byteLength);            
+            buffers.set(_source, _buffer);
+
+        } //_buffer == null
+
+        AL.sourcei(_instance.al_source, AL.BUFFER, _buffer);
+        AL.sourcePlay(_instance.al_source);
+
+        handle_seq++;
+
+        return _handle;
+
     } //play
 
-        /** Loop a sound instance by name, indefinitely. Use stop to end it */
-    public function loop(_handle:AudioHandle) : Void {
-        
-        log('loop in core module does nothing.');
-            
+        /** Play and loop a sound instance indefinitely. Use stop to end it.
+            Returns a disposable handle */
+    public function loop(_source:AudioSource, _volume:Float, _paused:Bool) : AudioHandle {
+
+        var _handle = play(_source, _volume, _paused);
+        var _inst = instances.get(_handle);
+
+        AL.sourcei(_inst.al_source, AL.LOOPING, AL.TRUE);
+
+        return _handle;
+
     } //loop
 
         /** Pause a sound instance by name */
     public function pause(_handle:AudioHandle) : Void {
-        
-        log('pause in core module does nothing.');
-            
+
+        var _inst = instances.get(_handle);
+        if(_inst == null) return;
+
+        AL.sourcePause(_inst.al_source);
+
     } //pause
 
         /** Stop a sound instance by name */
     public function stop(_handle:AudioHandle) : Void {
-        
-        log('stop in core module does nothing.');
-            
-    } //stop
 
-        /** Toggle a sound instance by name, pausing or unpausing the sound */
-    public function toggle(_handle:AudioHandle) : Void {
-        
-        log('toggle in core module does nothing.');
-            
-    } //toggle
+        var _inst = instances.get(_handle);
+        if(_inst == null) return;
+
+        AL.sourceStop(_inst.al_source);
+
+    } //stop
 
         /** Set the volume of a sound instance */
     public function volume(_handle:AudioHandle, _volume:Float) : Void {
-        
-        log('volume in core module does nothing.');
-            
+
+        var _inst = instances.get(_handle);
+        if(_inst == null) return;
+
+        AL.sourcef(_inst.al_source, AL.GAIN, _volume);
+
     } //volume
 
-        /** Set the pan of a sound instance */
+    static inline var half_pi : Float = 1.5707;
+
+        /** Set the pan of a sound instance. */
     public function pan(_handle:AudioHandle, _pan:Float) : Void {
-        
-        log('pan in core module does nothing.');
-            
+
+        var _inst = instances.get(_handle);
+        if(_inst == null) return;
+        _inst.pan = _pan;
+
+        AL.source3f(_inst.al_source, AL.POSITION, Math.cos((_pan - 1) * (half_pi)), 0, Math.sin((_pan + 1) * (half_pi)));
+
     } //pan
 
         /** Set the pitch of a sound instance */
     public function pitch(_handle:AudioHandle, _pitch:Float) : Void {
-        
-        log('pitch in core module does nothing.');
-            
+
+        var _inst = instances.get(_handle);
+        if(_inst == null) return;
+
+        AL.sourcef(_inst.al_source, AL.PITCH, _pitch);
+
     } //pitch
 
         /** Set the position of a sound instance */
-    public function position(_handle:AudioHandle, _position:Float) : Void {
-        
-        log('position in core module does nothing.');
-            
+    public function position(_handle:AudioHandle, _time:Float) : Void {
+
+        var _inst = instances.get(_handle);
+        if(_inst == null) return;
+
+        AL.sourcef(_inst.al_source, AL.SEC_OFFSET, _time);
+
     } //position
 
         /** Get the volume of a sound instance */
     public function volume_of(_handle:AudioHandle) : Float {
-        
-        log('volume_of in core module does nothing.');
 
-        return 0.0;
-            
+        var _inst = instances.get(_handle);
+        if(_inst == null) return 0.0;
+
+        return AL.getSourcef(_inst.al_source, AL.GAIN);
+
     } //volume_of
 
         /** Get the pan of a sound instance */
     public function pan_of(_handle:AudioHandle) : Float {
-        
-        log('pan_of in core module does nothing.');
 
-        return 0.0;
-            
+        var _inst = instances.get(_handle);
+        if(_inst == null) return 0.0;
+
+        return _inst.pan;
+
     } //pan_of
 
         /** Get the pitch of a sound instance */
     public function pitch_of(_handle:AudioHandle) : Float {
-        
-        log('pitch_of in core module does nothing.');
 
-        return 0.0;
-            
+        var _inst = instances.get(_handle);
+        if(_inst == null) return 0.0;
+
+        return AL.getSourcef(_inst.al_source, AL.PITCH);
+
     } //pitch_of
 
         /** Get the position of a sound instance */
-    public function position_of(_handle:AudioHandle) : Int {
-        
-        log('position_of in core module does nothing.');
+    public function position_of(_handle:AudioHandle) : Float {
 
-        return 0;
-            
+        var _inst = instances.get(_handle);
+        if(_inst == null) return 0;
+
+        return AL.getSourcef(_inst.al_source, AL.SEC_OFFSET);
+
     } //position_of
 
-        /** Get the duration of a sound instance */
-    public function duration_of(_handle:AudioHandle) : Float {
-        
-        log('duration_of in core module does nothing.');
+//internal
 
-        return 0.0;
-            
-    } //duration_of
+    function source_format(_data:AudioDataInfo) {
 
+        var _format = AL.FORMAT_MONO16;
+
+        if(_data.channels > 1) {
+            if(_data.bits_per_sample == 8) {
+                _format = AL.FORMAT_STEREO8;
+            } else {
+                _format = AL.FORMAT_STEREO16;
+            }
+        } else { //mono
+            if(_data.bits_per_sample == 8) {
+                _format = AL.FORMAT_MONO8;
+            } else {
+                _format = AL.FORMAT_MONO16;
+            }
+        }
+
+        return _format;
+
+    } //source_format
 
 } //Audio
 

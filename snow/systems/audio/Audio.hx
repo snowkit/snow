@@ -7,6 +7,7 @@ import snow.systems.assets.Asset;
 import snow.api.Promise;
 import snow.api.Debug.*;
 
+
 @:allow(snow.Snow)
 class Audio {
 
@@ -28,19 +29,25 @@ class Audio {
 
 //Public API
     
-    public function play(asset:AssetAudio, ?_volume:Float=1.0, ?_paused:Bool=false) : AudioHandle {
+    public function play(_source:AudioSource, ?_volume:Float=1.0, ?_paused:Bool=false) : AudioHandle {
 
         if(!active) {
             return -1;
         }
 
-        return module.play(asset, _volume, _paused);
+        return module.play(_source, _volume, _paused);
 
     } //play
 
         /** Loop a sound instance by name, indefinitely. Use stop to end it */
-    public function loop(_handle:AudioHandle) : Void {
-        module.loop(_handle);
+    public function loop(_source:AudioSource, ?_volume:Float=1.0, ?_paused:Bool=false) : AudioHandle {
+        
+        if(!active) {
+            return -1;
+        }
+
+        return module.loop(_source, _volume, _paused);
+
     } //loop
 
         /** Pause a sound instance by name */
@@ -52,11 +59,6 @@ class Audio {
     public function stop(_handle:AudioHandle) : Void {
         module.stop(_handle);
     } //stop
-
-        /** Toggle a sound instance by name, pausing or unpausing the sound */
-    public function toggle(_handle:AudioHandle) : Void {
-        module.toggle(_handle);
-    } //toggle
 
     public function volume(_handle:AudioHandle, _volume:Float) : Void {
         module.volume(_handle, _volume);
@@ -89,10 +91,6 @@ class Audio {
     public function position_of(_handle:AudioHandle) : Float {
         return module.position_of(_handle); 
     } //position_of
-
-    public function duration_of(_handle:AudioHandle) {
-        return module.duration_of(_handle);
-    } //duration_of
 
     //get/set samplerate
     //get/set is valid handle
