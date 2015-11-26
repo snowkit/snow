@@ -1,6 +1,9 @@
 {{#if snow.runtime~}}
 --macro snow.Set.runtime("{{{toString snow.runtime}}}")
 {{~/if}}
+{{#if snow.audio~}}
+--macro snow.Set.audio("{{{toString snow.audio}}}")
+{{~/if}}
 {{#if project.app.main~}}
 --macro snow.Set.main("{{{toString project.app.main}}}")
 {{~/if}}
