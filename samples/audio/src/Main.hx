@@ -90,7 +90,14 @@ class Main extends snow.App {
 
     } //onmouseup
 
+    var s = false;
     override function onkeyup( keycode:Int, _,_, mod:ModState, _,_ ) {
+
+        if(keycode == Key.key_b) {
+            s = !s;
+            if(s) app.audio.suspend(); else app.audio.resume();
+            trace('suspended $s');
+        }
 
         if(keycode == Key.key_n) {
             trace('pause music');
