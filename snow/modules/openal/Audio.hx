@@ -45,11 +45,22 @@ class Audio implements snow.modules.interfaces.Audio {
 
     } //new
 
+    function onevent(event:SystemEvent) {
+
+    } //onevent
+
     function shutdown() {
 
         //:todo:
-        instances = null;
-        buffers = null;
+        for(_source in instances) {
+            AL.sourceStop(_source);
+            AL.deleteSource(_source);
+        } instances = null;
+
+        for(_buffer in buffers) {
+            AL.deleteBuffer(_buffer);
+        } buffers = null;
+
         pans = null;
 
         ALC.makeContextCurrent(cast null);
@@ -84,9 +95,6 @@ class Audio implements snow.modules.interfaces.Audio {
 
     } //resume
 
-
-    function onevent(event:SystemEvent) {}
-
 //
 
     var handle_seq = 0;
@@ -107,6 +115,16 @@ class Audio implements snow.modules.interfaces.Audio {
 
     } //source
 
+    inline function new_AL_source(_volume:Float) : Int {
+        var _source = AL.genSource();
+            AL.sourcef(_source, AL.GAIN, _volume);
+            AL.sourcei(_source, AL.LOOPING, AL.FALSE);
+            AL.sourcef(_source, AL.PITCH, 1.0);
+            AL.source3f(_source, AL.POSITION, 0.0, 0.0, 0.0);
+            AL.source3f(_source, AL.VELOCITY, 0.0, 0.0, 0.0);
+        return _source;
+    }
+
         /** Play an instance of the given audio source, returning a disposable handle */
     public function play(_source:AudioSource, _volume:Float, _paused:Bool) : AudioHandle {
 
@@ -116,14 +134,7 @@ class Audio implements snow.modules.interfaces.Audio {
         assertnull(_source.asset.audio.data);
 
         var _handle = handle_seq;
-        var _instance = AL.genSource();
-
-            AL.sourcef(_instance, AL.GAIN, _volume);
-            AL.sourcei(_instance, AL.LOOPING, AL.FALSE);
-
-            AL.sourcef(_instance, AL.PITCH, 1.0);
-            AL.source3f(_instance, AL.POSITION, 0.0, 0.0, 0.0);
-            AL.source3f(_instance, AL.VELOCITY, 0.0, 0.0, 0.0);
+        var _instance = new_AL_source(_volume);
 
         instances.set(_handle, _instance);
 
@@ -142,7 +153,10 @@ class Audio implements snow.modules.interfaces.Audio {
         } //_buffer == null
 
         AL.sourcei(_instance, AL.BUFFER, _buffer);
-        AL.sourcePlay(_instance);
+
+        if(!_paused) {
+            AL.sourcePlay(_instance);
+        }
 
         handle_seq++;
 
