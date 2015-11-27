@@ -49,7 +49,6 @@ class Audio implements snow.modules.interfaces.Audio {
 
         if(event.type == se_tick) {
             if(app.audio.active) {
-
                 for(_handle in instances.keys()) {
                     var _snd = instances.get(_handle);
                         _snd.tick();
@@ -96,6 +95,8 @@ class Audio implements snow.modules.interfaces.Audio {
     public function suspend() {
 
         log('suspending context');
+        log(ALError.desc(AL.getError()));
+        log(ALCError.desc(ALC.getError(device)));
 
         ALC.suspendContext(context);
         ALC.makeContextCurrent(cast null);
@@ -108,6 +109,9 @@ class Audio implements snow.modules.interfaces.Audio {
 
         ALC.processContext(context);
         ALC.makeContextCurrent(context);
+
+        log(ALError.desc(AL.getError()));
+        log(ALCError.desc(ALC.getError(device)));
 
     } //resume
 
@@ -168,7 +172,20 @@ class Audio implements snow.modules.interfaces.Audio {
 
     } //loop
 
-        /** Pause a sound instance by name */
+    public function state(_handle:AudioHandle) : AudioState {
+
+        var _snd = instance_of(_handle);
+        if(_snd == null || !app.audio.active) return as_invalid;
+
+        return switch(AL.getSourcei(_snd.alsource, AL.SOURCE_STATE)) {
+            case AL.PLAYING:                as_playing;
+            case AL.PAUSED:                 as_paused;
+            case AL.STOPPED, AL.INITIAL:    as_stopped;
+            case _:                         as_invalid;
+        }
+
+    } //state
+
     public function pause(_handle:AudioHandle) : Void {
 
         var _snd = instance_of(_handle);
@@ -178,7 +195,15 @@ class Audio implements snow.modules.interfaces.Audio {
 
     } //pause
 
-        /** Stop a sound instance by name */
+    public function unpause(_handle:AudioHandle) : Void {
+
+        var _snd = instance_of(_handle);
+        #if debug if(_snd == null) return; #end
+
+        AL.sourcePlay(_snd.alsource);
+
+    } //unpause
+
     public function stop(_handle:AudioHandle) : Void {
 
         var _snd = instance_of(_handle);

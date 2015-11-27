@@ -19,7 +19,7 @@ class Audio {
         /** Set to false to stop any and all processing in the audio system */
     public var active : Bool = false;
 
-    var emitter : Emitter<AudioEventType>;
+    var emitter : Emitter<AudioEvent>;
 
         /** constructed internally, use `app.audio` */
     function new(_app:Snow) {
@@ -33,19 +33,19 @@ class Audio {
 
 //Public API
 
-    public function on(_event:AudioEventType, _handler:AudioHandle->Void) {
+    public function on(_event:AudioEvent, _handler:AudioHandle->Void) {
     
         emitter.on(_event, _handler);
     
     } //on
     
-    public function off(_event:AudioEventType, _handler:AudioHandle->Void) {
+    public function off(_event:AudioEvent, _handler:AudioHandle->Void) {
     
         return emitter.off(_event, _handler);
     
     } //off
     
-    public function emit(_event:AudioEventType, _handle:AudioHandle) {
+    public function emit(_event:AudioEvent, _handle:AudioHandle) {
     
         emitter.emit(_event, _handle);
     
@@ -61,7 +61,7 @@ class Audio {
 
     } //play
 
-        /** Loop a sound instance by name, indefinitely. Use stop to end it */
+        /** play and loop a sound source, indefinitely. Use stop to end it. */
     public function loop(_source:AudioSource, ?_volume:Float=1.0, ?_paused:Bool=false) : AudioHandle {
         
         if(!active) {
@@ -72,51 +72,64 @@ class Audio {
 
     } //loop
 
-        /** Pause a sound instance by name */
+    public function state(_handle:AudioHandle) : AudioState {
+        return module.state(_handle);
+    } //state
+
     public function pause(_handle:AudioHandle) : Void {
+        if(!active) return;
         module.pause(_handle);
     } //pause
 
-        /** Stop a sound instance by name */
+    public function unpause(_handle:AudioHandle) : Void {
+        if(!active) return;
+        module.unpause(_handle);
+    } //unpause
+
     public function stop(_handle:AudioHandle) : Void {
+        if(!active) return;
         module.stop(_handle);
     } //stop
 
     public function volume(_handle:AudioHandle, _volume:Float) : Void {
+        if(!active) return;
         module.volume(_handle, _volume);
     } //volume
 
     public function pan(_handle:AudioHandle, _pan:Float) : Void {
+        if(!active) return;
         module.pan(_handle, _pan);
     } //pan
 
     public function pitch(_handle:AudioHandle, _pitch:Float) : Void {
+        if(!active) return;
         module.pitch(_handle, _pitch);
     } //pitch
 
     public function position(_handle:AudioHandle, _position:Float) : Void {
+        if(!active) return;
         module.position(_handle, _position);
     } //position
 
     public function volume_of(_handle:AudioHandle) : Float {
+        assert(active, 'audio is suspended, queries are invalid');
         return module.volume_of(_handle); 
     } //volume_of
 
     public function pan_of(_handle:AudioHandle) : Float {
+        assert(active, 'audio is suspended, queries are invalid');
         return module.pan_of(_handle); 
     } //pan_of
 
     public function pitch_of(_handle:AudioHandle) : Float {
+        assert(active, 'audio is suspended, queries are invalid');
         return module.pitch_of(_handle); 
     } //pitch_of
 
     public function position_of(_handle:AudioHandle) : Float {
+        assert(active, 'audio is suspended, queries are invalid');
         return module.position_of(_handle); 
     } //position_of
-
-    //get/set samplerate
-    //get/set is valid handle
-    //get/set loopcount
 
     @:noCompletion public function suspend() {
 

@@ -39,7 +39,7 @@ class ALAudioStreamInstance extends ALAudioInstance {
 
     override function init() {
 
-        log('ALSOURCE $alsource');
+        _debug('ALSOURCE $alsource');
 
         buffers = [for (i in 0...buffer_count) -1];
         buffers = AL.genBuffers(buffer_count, buffers);
@@ -89,7 +89,7 @@ class ALAudioStreamInstance extends ALAudioInstance {
 
         err('init_queue');
 
-        trace(state(state_now()));
+        _debug(state(state_now()));
 
         buffers_left = buffer_count;
 
