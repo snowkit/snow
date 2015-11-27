@@ -207,13 +207,13 @@ class Assets implements snow.modules.interfaces.Assets {
 
     } //audio_seek_source
 
-    public function audio_load_portion( _info:AudioInfo, _start:Int, _len:Int ) : AudioDataBlob {
+    public function audio_load_portion( _info:AudioInfo, _into:Uint8Array, _start:Int, _len:Int, _into_result:Array<Int>) : Array<Int> {
 
         return switch(_info.format) {
-            case wav: WAV.portion(app, _info, _start, _len);
-            case ogg: OGG.portion(app, _info, _start, _len);
-            case pcm: PCM.portion(app, _info, _start, _len);
-            case _: null;
+            case wav: WAV.portion(app, _info, _into, _start, _len, _into_result);
+            case ogg: OGG.portion(app, _info, _into, _start, _len, _into_result);
+            case pcm: PCM.portion(app, _info, _into, _start, _len, _into_result);
+            case _:   _into_result[0]=0; _into_result[1]=1; _into_result;
         }
 
     } //audio_load_portion
@@ -257,18 +257,18 @@ private class WAV {
 
     } //from_bytes
 
-    static function portion(app:snow.Snow, _info:AudioInfo, _start:Int, _len:Int) : AudioDataBlob {
+    static function portion(app:snow.Snow, _info:AudioInfo, _into:Uint8Array, _start:Int, _len:Int, _into_result:Array<Int>) : Array<Int> {
 
         if(_info.handle != null) {
             
             var wav:WavHandle = _info.handle;
 
-            if(_start == -1) seek(app, _info, _start+wav.offset);
+            if(_start != -1) seek(app, _info, _start+wav.offset);
 
             var _complete = false;
             var _read_len = _len;
             var _n_elements = 1;
-            var _current_pos = (app.io.module.file_tell(_info.handle) - wav.offset);
+            var _current_pos = (app.io.module.file_tell(wav.handle) - wav.offset);
             var _distance_to_end = _info.data.length_pcm - _current_pos;
 
             if(_distance_to_end <= _read_len) {
@@ -278,29 +278,30 @@ private class WAV {
 
             if(_read_len > 0) {
 
-                log('pcm / reading $_read_len bytes from $_start');
+                _debug('wav / reading $_read_len bytes from $_start');
 
                     //resize to fit the requested/remaining length
                 var _byte_gap = (_read_len & 0x03);
-                var _samples = new Uint8Array(_read_len + _byte_gap);
-                var _elements_read = app.io.module.file_read(_info.handle, _samples, _read_len, _n_elements);
+                // var _samples = new Uint8Array(_read_len + _byte_gap);
+                var _elements_read = app.io.module.file_read(wav.handle, _into, _read_len, _n_elements);
 
                     //if no elements were read, it was an error
                     //or end of file so either way it's complete.
                 if(_elements_read == 0) _complete = true;
 
-                log('pcm / total read $_read_len bytes, complete? $_complete');
+                _debug('wav / total read $_read_len bytes, complete? $_complete');
 
-                return {
-                    bytes: _samples,
-                    complete: _complete
-                }
+                _into_result[0] = _read_len;
+                _into_result[1] = (_complete)?1:0;
+                return _into_result;
 
             } //_read_len > 0
 
         } //_info.handle != null
 
-        return null;
+        _into_result[0] = 0;
+        _into_result[1] = 1;
+        return _into_result;
 
     } //portion
 
@@ -523,13 +524,13 @@ private class PCM {
 
     } //seek
 
-    static function portion(app:snow.Snow, _info:AudioInfo, _start:Int, _len:Int) : AudioDataBlob {
+    static function portion(app:snow.Snow, _info:AudioInfo, _into:Uint8Array, _start:Int, _len:Int, _into_result:Array<Int>) : Array<Int> {
 
         if(_info.handle != null) {
 
             var pcm:PCMHandle = _info.handle;
 
-            if(_start == -1) seek(app, _info, _start);
+            if(_start != -1) seek(app, _info, _start);
 
             var _complete = false;
             var _read_len = _len;
@@ -548,8 +549,8 @@ private class PCM {
 
                     //resize to fit the requested/remaining length
                 var _byte_gap = (_read_len & 0x03);
-                var _samples = new Uint8Array(_read_len + _byte_gap);
-                var _elements_read = app.io.module.file_read(pcm.handle, _samples, _read_len, _n_elements);
+                // var _samples = new Uint8Array(_read_len + _byte_gap);
+                var _elements_read = app.io.module.file_read(pcm.handle, _into, _read_len, _n_elements);
 
                     //if no elements were read, it was an error
                     //or end of file so either way it's complete.
@@ -557,16 +558,17 @@ private class PCM {
 
                 log('pcm / total read $_read_len bytes, complete? $_complete');
 
-                return {
-                    bytes: _samples,
-                    complete: _complete
-                }
+                _into_result[0] = _read_len;
+                _into_result[1] = (_complete)?1:0;
+                return _into_result;
 
             } //_read_len > 0
 
         } //_info.handle != null
 
-        return null;
+        _into_result[0] = 0;
+        _into_result[1] = 1;
+        return _into_result;
 
     } //portion
 
@@ -687,14 +689,14 @@ private class OGG {
 
         if(_load) {
             _info.data.samples = new Uint8Array(_total_pcm_length);
-            read_bytes_ogg(_info, _info.data.samples, 0, _total_pcm_length);
+            read_bytes_ogg(_info, _info.data.samples, 0, _total_pcm_length, []);
         }
 
         return _info;
 
     } //from_file_handle
 
-    static function read_bytes_ogg(_info:AudioInfo, dest:ArrayBufferView, _start:Int, _len:Int) : Bool {
+    static function read_bytes_ogg(_info:AudioInfo, dest:ArrayBufferView, _start:Int, _len:Int, _into_result:Array<Int>) : Array<Int> {
 
         var _ogg:OggHandle = _info.handle;
 
@@ -754,23 +756,18 @@ private class OGG {
             // out_buffer.resize(total_read+byte_gap);
         }
 
-        return complete;
+        return [total_read, (complete) ? 1 : 0];
 
     } //read_bytes_ogg
 
-    static function portion(app:snow.Snow, _info:AudioInfo, _start:Int, _len:Int) : AudioDataBlob {
+    static function portion(app:snow.Snow, _info:AudioInfo, _into:Uint8Array, _start:Int, _len:Int, _into_result:Array<Int>) : Array<Int> {
 
-        var _byte_gap = (_len & 0x03);
-        var _pad_len = _len + _byte_gap;
-        var _samples = new Uint8Array(_pad_len);
-        var _complete = read_bytes_ogg(_info, _samples, _start, _pad_len);
+        // var _byte_gap = (_len & 0x03);
+        // var _pad_len = _len + _byte_gap;
 
-        return {
-            bytes: _samples,
-            complete: _complete
-        };
+        return read_bytes_ogg(_info, _into, _start, _len, _into_result);
 
-    } //load_portion
+    } //portion
 
     static function seek(app:snow.Snow, _info:AudioInfo, _to:Int) : Bool {
 
