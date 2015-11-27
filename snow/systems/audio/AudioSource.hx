@@ -6,34 +6,41 @@ class AudioSource {
 
     public var asset: AssetAudio;
 
-        /** Whether or not the source is considered looping */
-    @:isVar public var looping (get,set) : Bool = false;
-        /** Whether or not only a single instance is allowed */
-    @:isVar public var singular (get,set) : Bool = false;
-        /** When an instance is created it will use this volume, unless specified on the play call */
-    @:isVar public var default_volume (get,set) : Float = 1.0;
+        /** Whether or not the source is a stream */
+    public var is_stream (default,null) : Bool = false;
 
-    public function new(_asset:AssetAudio) {
+    public function new(_asset:AssetAudio, _is_stream:Bool=false) {
+        
         asset = _asset;
+        is_stream = _is_stream;
+
     } //new
 
-        /** */
-    public function instance() : AudioInstance {
-        
-        return null;
+        /** A helper for converting bytes to seconds for a sound source */
+    public function bytes_to_seconds(_bytes:Int) : Float {
 
-    } //instance
+        var word = asset.audio.data.bits_per_sample == 16 ? 2 : 1;
+        var sample_frames = (asset.audio.data.rate * asset.audio.data.channels * word);
 
-        /** */
-    function stop() {
+        return _bytes / sample_frames;
 
-    }
+    } //bytes_to_seconds
 
-    function get_looping() : Bool return looping;
-    function set_looping(_val:Bool) : Bool return looping = _val;
-    function get_singular() : Bool return singular;
-    function set_singular(_val:Bool) : Bool return singular = _val;
-    function get_default_volume() : Float return default_volume;
-    function set_default_volume(_val:Float) : Float return default_volume = _val;
+        /** A helper for converting seconds to bytes for this audio source */
+    public function seconds_to_bytes(_seconds:Float) : Int {
+
+        var word = asset.audio.data.bits_per_sample == 16 ? 2 : 1;
+        var sample_frames = (asset.audio.data.rate * asset.audio.data.channels * word);
+
+        return Std.int(_seconds * sample_frames);
+
+    } //seconds_to_bytes
+
+        //
+    public function duration() : Float {
+
+        return bytes_to_seconds(asset.audio.data.length_pcm);
+
+    } //duration
 
 }
