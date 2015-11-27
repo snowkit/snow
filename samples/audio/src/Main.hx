@@ -55,9 +55,12 @@ class Main extends snow.App {
 
         wind_handle = app.audio.loop(wind,0.2);
         music_handle = app.audio.loop(music,1);
+
+        trace('wind playing, handle: $wind_handle');
+        trace('music playing, handle: $music_handle');
         
         app.audio.on(ae_end, function(_handle) {
-            trace('$_handle ended');
+            trace('audio ended: $_handle');
         }); //_handle
 
     } //sound_loaded
@@ -69,14 +72,14 @@ class Main extends snow.App {
         if(app.input.keydown(Key.key_p)) {
             p *= 2.0;
             app.audio.pitch(wind_handle, p);    
-            log('pitch $p');
+            log('wind pitch $p');
         } else if(app.input.keydown(Key.key_l)) {
             p = (p - 0.5) * 2.0;
             app.audio.pan(wind_handle, p);
-            log('pan $p');
+            log('wind pan $p');
         } else if(app.input.keydown(Key.key_v)) {
             app.audio.volume(wind_handle, p);
-            log('volume $p');
+            log('wind volume $p');
         }
         
     }
@@ -85,7 +88,7 @@ class Main extends snow.App {
 
         if(sound != null) {
             var _handle = app.audio.play(sound);
-            trace('$_handle playing');
+            trace('played sound with handle: $_handle');
         }
 
     } //onmouseup
@@ -93,15 +96,36 @@ class Main extends snow.App {
     var s = false;
     override function onkeyup( keycode:Int, _,_, mod:ModState, _,_ ) {
 
+
         if(keycode == Key.key_b) {
             s = !s;
             if(s) app.audio.suspend(); else app.audio.resume();
-            trace('suspended $s');
+            trace('audio suspended: $s');
+        }
+
+        if(keycode == Key.key_s) {
+            if(app.audio.active) {
+                if(app.audio.state(music_handle) != as_stopped) {
+                    app.audio.stop(music_handle);
+                    trace('music stopped');
+                } else {
+                    music_handle = app.audio.play(music, 1.0);
+                    trace('music playing, handle: $music_handle');
+                }
+            }
         }
 
         if(keycode == Key.key_n) {
-            trace('pause music');
-            app.audio.pause(music_handle);
+            if(app.audio.active) {
+                var _state = app.audio.state(music_handle);
+                trace('cycle music state: currently $_state');
+                switch(_state) {
+                    case as_playing: app.audio.pause(music_handle);
+                    case as_paused:  app.audio.unpause(music_handle);
+                    case _:
+                }
+                trace('      now ${app.audio.state(music_handle)}');
+            }
         }
 
         if( keycode == Key.escape ) {
