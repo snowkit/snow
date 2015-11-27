@@ -26,7 +26,8 @@ class Main extends snow.App {
 
         var list = [
             app.assets.audio('assets/135034__mrlindstrom__windloop6sec.wav'),
-            app.assets.audio('assets/sound.wav')
+            app.assets.audio('assets/sound.wav'),
+            app.assets.audio('assets/precinct.wav')
         ];
 
         snow.api.Promise.all(list)
@@ -36,19 +37,28 @@ class Main extends snow.App {
 
     var wind : AudioSource;
     var sound : AudioSource;
+    var music : AudioSource;
 
     var wind_handle : AudioHandle;
+    var music_handle : AudioHandle;
 
     //135034__mrlindstrom__windloop6sec.wav
     function sound_loaded(list:Array<AssetAudio>) {
         
         wind = new AudioSource(list[0]);
         sound = new AudioSource(list[1]);
+        music = new AudioSource(list[2],true);
 
         log('loaded wind `${wind.asset.audio.id}` : ' + wind.asset.audio);
         log('loaded sound `${sound.asset.audio.id}` : ' + sound.asset.audio);
+        log('loaded music `${music.asset.audio.id}` : ' + music.asset.audio);
 
-        wind_handle = app.audio.loop(wind);
+        wind_handle = app.audio.loop(wind,0.2);
+        music_handle = app.audio.loop(music,1);
+        
+        app.audio.on(ae_end, function(_handle) {
+            trace('$_handle ended');
+        }); //_handle
 
     } //sound_loaded
 
@@ -75,14 +85,18 @@ class Main extends snow.App {
 
         if(sound != null) {
             var _handle = app.audio.play(sound);
-            trace(_handle);
+            trace('$_handle playing');
         }
 
     } //onmouseup
 
     override function onkeyup( keycode:Int, _,_, mod:ModState, _,_ ) {
 
-        
+        if(keycode == Key.key_n) {
+            trace('pause music');
+            app.audio.pause(music_handle);
+        }
+
         if( keycode == Key.escape ) {
             app.shutdown();
         }
