@@ -24,19 +24,52 @@ class Main extends snow.App {
 
         log('ready');
 
-        app.assets.audio('assets/sound.wav')
+        var list = [
+            app.assets.audio('assets/135034__mrlindstrom__windloop6sec.wav'),
+            app.assets.audio('assets/sound.wav')
+        ];
+
+        snow.api.Promise.all(list)
             .then(sound_loaded).error(function(e) log(e));
 
     } //ready
 
+    var wind : AudioSource;
     var sound : AudioSource;
 
-    function sound_loaded(asset:AssetAudio) {
+    var wind_handle : AudioHandle;
+
+    //135034__mrlindstrom__windloop6sec.wav
+    function sound_loaded(list:Array<AssetAudio>) {
         
-        sound = new AudioSource(asset);
-        log('loaded `${asset.audio.id}` : ' + asset.audio);
+        wind = new AudioSource(list[0]);
+        sound = new AudioSource(list[1]);
+
+        log('loaded wind `${wind.asset.audio.id}` : ' + wind.asset.audio);
+        log('loaded sound `${sound.asset.audio.id}` : ' + sound.asset.audio);
+
+        wind_handle = app.audio.loop(wind);
 
     } //sound_loaded
+
+    override function onmousemove(x:Int, y:Int, _, _, _, _) {
+
+        var p = x / (app.runtime.window_width()-1);
+
+        if(app.input.keydown(Key.key_p)) {
+            p *= 2.0;
+            app.audio.pitch(wind_handle, p);    
+            log('pitch $p');
+        } else if(app.input.keydown(Key.key_l)) {
+            p = (p - 0.5) * 2.0;
+            app.audio.pan(wind_handle, p);
+            log('pan $p');
+        } else if(app.input.keydown(Key.key_v)) {
+            app.audio.volume(wind_handle, p);
+            log('volume $p');
+        }
+        
+    }
 
     override function onmouseup( x:Int, y:Int, button:Int, _, _ ) {
 
