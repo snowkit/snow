@@ -6,6 +6,7 @@ import snow.systems.audio.Sound;
 import snow.systems.assets.Asset;
 import snow.api.Promise;
 import snow.api.Debug.*;
+import snow.api.Emitter;
 
 
 @:allow(snow.Snow)
@@ -18,16 +19,37 @@ class Audio {
         /** Set to false to stop any and all processing in the audio system */
     public var active : Bool = false;
 
+    var emitter : Emitter<AudioEventType>;
+
         /** constructed internally, use `app.audio` */
     function new(_app:Snow) {
 
         app = _app;
         module = new ModuleAudio(app);
+        emitter = new Emitter();
         active = true;
 
     } //new
 
 //Public API
+
+    public function on(_event:AudioEventType, _handler:AudioHandle->Void) {
+    
+        emitter.on(_event, _handler);
+    
+    } //on
+    
+    public function off(_event:AudioEventType, _handler:AudioHandle->Void) {
+    
+        return emitter.off(_event, _handler);
+    
+    } //off
+    
+    public function emit(_event:AudioEventType, _handle:AudioHandle) {
+    
+        emitter.emit(_event, _handle);
+    
+    } //emit
     
     public function play(_source:AudioSource, ?_volume:Float=1.0, ?_paused:Bool=false) : AudioHandle {
 
