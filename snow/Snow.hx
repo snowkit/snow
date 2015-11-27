@@ -247,7 +247,9 @@ class Snow {
 
             cycle_next_queue();
 
-            host.internal_tick();
+            if(!shutting_down) {
+                host.internal_tick();
+            }
 
             cycle_defer_queue();
 
