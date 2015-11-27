@@ -163,6 +163,11 @@ typedef ImageInfo = {
 } //AudioFormatType
 
 
+@:enum abstract AudioEventType(Int) 
+    from Int to Int {
+        var ae_end = 0;
+}
+
     /** The platform specific implementation detail about the audio data */
 typedef AudioDataInfo = {
 
