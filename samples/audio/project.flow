@@ -1,8 +1,6 @@
 {
 
   snow : {
-    runtime: 'snow.modules.sdl.Runtime',
-    audio: 'snow.modules.openal.Audio',
     config: {
       config_path: 'config.json',
       log: 1

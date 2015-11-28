@@ -1,6 +1,5 @@
 {
   snow : {
-    runtime: 'snow.modules.sdl.Runtime',
     config: {
       config_path: 'config.json',
       log: 1
