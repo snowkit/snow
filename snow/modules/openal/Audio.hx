@@ -31,6 +31,7 @@ class Audio implements snow.modules.interfaces.Audio {
         device = ALC.openDevice();
 
         if(device == null) {
+            app.audio.active = false;
             log('failed / didn\'t create device!');
             return;
         }
