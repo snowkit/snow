@@ -27,7 +27,7 @@ class Main extends snow.App {
         var list = [
             app.assets.audio('assets/135034__mrlindstrom__windloop6sec.wav'),
             app.assets.audio('assets/sound.wav'),
-            app.assets.audio('assets/precinct.wav')
+            app.assets.audio('assets/music.wav')
         ];
 
         snow.api.Promise.all(list)
@@ -105,9 +105,10 @@ class Main extends snow.App {
 
         if(keycode == Key.key_s) {
             if(app.audio.active) {
-                if(app.audio.state(music_handle) != as_stopped) {
+                var _state = app.audio.state(music_handle);
+                if(_state != as_stopped) {
                     app.audio.stop(music_handle);
-                    trace('music stopped');
+                    trace('music stopped (was $_state)');
                 } else {
                     music_handle = app.audio.play(music, 1.0);
                     trace('music playing, handle: $music_handle');
