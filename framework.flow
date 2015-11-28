@@ -46,7 +46,7 @@
 
     build : {
       hxmls:['snow.hxml'],
-      defines : ['hxcpp_static_std','no_simplify'],
+      defines : ['hxcpp_static_std'],
       dependencies: {
         linc_openal:'*',
         linc_timestamp:'*',
@@ -178,7 +178,8 @@
       build: {
         flags:[
           '--macro snow.Set.assets("snow.core.native.assets.Assets")',
-          '--macro snow.Set.audio("snow.core.modules.openal.Audio")',
+          '--macro snow.Set.runtime("snow.modules.sdl.Runtime")',
+          '--macro snow.Set.audio("snow.modules.openal.Audio")',
           '--macro snow.Set.io("snow.modules.sdl.IO")'
         ],
         defines : []
