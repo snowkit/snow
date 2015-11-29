@@ -1,0 +1,35 @@
+{
+
+  snow : {
+    config: {
+      config_path: 'config.json',
+      log: 1
+    }
+  },
+
+  project : {
+    name : 'audiostream',
+    version : '1.0.0',
+    author : 'snowkit',
+
+    app : {
+      name : 'snow_audio_custom_stream',
+      package : 'org.snowkit.snowaudiostream', //oh
+    },
+
+    //HAH
+
+    build : {
+      flags:['-dce full'],
+      dependencies : {
+        snowdev : '*'
+      }
+    },
+
+    files : {
+      config : 'config.json',
+    }
+
+  }
+
+}
