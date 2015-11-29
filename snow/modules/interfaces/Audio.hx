@@ -15,8 +15,8 @@ interface Audio {
     private function onevent(event:SystemEvent):Void;
     private function shutdown():Void;
 
-    function loop(_source:AudioSource, _volume:Float, _paused:Bool) : AudioHandle;
     function play(_source:AudioSource, _volume:Float, _paused:Bool) : AudioHandle;
+    function loop(_source:AudioSource, _volume:Float, _paused:Bool) : AudioHandle;
     function pause(_handle:AudioHandle) : Void;
     function unpause(_handle:AudioHandle) : Void;
     function stop(_handle:AudioHandle) : Void;

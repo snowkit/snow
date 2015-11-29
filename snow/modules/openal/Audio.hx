@@ -115,6 +115,11 @@ class Audio implements snow.modules.interfaces.Audio {
         log(ALError.desc(AL.getError()));
         log(ALCError.desc(ALC.getError(device)));
 
+        #if android
+            log('android: alc suspend');
+            ALC.androidSuspend();
+        #end
+
         ALC.suspendContext(context);
         ALC.makeContextCurrent(cast null);
 
@@ -123,6 +128,11 @@ class Audio implements snow.modules.interfaces.Audio {
     public function resume() {
 
         log('resuming context');
+
+        #if android
+            log('android: alc resume');
+            ALC.androidResume();
+        #end
 
         ALC.processContext(context);
         ALC.makeContextCurrent(context);
