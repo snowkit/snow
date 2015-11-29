@@ -11,26 +11,20 @@ typedef UserConfig = {}
 @:log_as('app')
 class Main extends snow.App {
 
-    function new() {}
-
-    override function config( config:AppConfig ) : AppConfig {
-
-        config.window.title = 'snow audio';
-
-        return config;
-
-    } //config
-
     var oooh : Oooh;
 
+    function new() {}
     override function ready() {
 
         log('ready');
         
         var source = new OoohSource(app);
         var handle = app.audio.play(source);
-        trace('oooh handle: $handle');
+
+            //we want to affect the freq of this specific instance 
         oooh = cast app.audio.instance_of(handle);
+
+        trace('oooh handle: $handle');
 
     } //ready
 
@@ -40,10 +34,6 @@ class Main extends snow.App {
         trace('oooh freq: ${oooh.freq}');
 
     }
-
-    override function onmouseup( x:Int, y:Int, button:Int, _, _ ) {
-
-    } //onmouseup
 
     override function onkeyup( keycode:Int, _,_, mod:ModState, _,_ ) {
 

@@ -7,7 +7,7 @@
   },
 
   project : {
-    name : 'snow basic',
+    name : 'snow.basic',
     version : '1.0.0',
     author : 'snowkit',
 

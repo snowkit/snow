@@ -8,7 +8,7 @@ class OoohSource extends AudioSource {
 
     public function new(app:snow.Snow) {
 
-        var _info:AudioInfo = {
+        super(app, {
             id : 'oooh',
             data : {
                 length: 0,
@@ -18,10 +18,7 @@ class OoohSource extends AudioSource {
                 bitrate: 88200,
                 bits_per_sample: 16
             }
-        };
-
-            //true = streaming
-        super(app, _info, true);
+        }, true);
 
             //tenth of a second
         stream_buffer_length = Std.int(44100/10);
@@ -45,7 +42,6 @@ class Oooh extends AudioInstance {
 
         //view the bytes as short
         var ints = new Int16Array(_into.buffer);
-        var _count = Std.int(_length/2);
             //2 bytes per sample
         var _samples = (_length/2);
         var _samples_per_channel = Std.int(_samples/2);
@@ -63,6 +59,8 @@ class Oooh extends AudioInstance {
 
         _res[0] = _length;
         _res[1] = 0;
+
+        ints = null;
 
         return _res;
 
