@@ -5,7 +5,7 @@ import haxe.macro.Context;
 import haxe.macro.Type;
 import haxe.macro.TypeTools;
 
-@:noCompletion
+@:noCompletion 
 class TypeCreate {
 
     static public function build() {

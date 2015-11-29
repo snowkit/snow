@@ -156,9 +156,10 @@ typedef ImageInfo = {
 @:enum abstract AudioFormatType(Null<Int>) from Null<Int> to Null<Int> {
 
     var unknown  = 0;
-    var ogg      = 1;
-    var wav      = 2;
-    var pcm      = 3;
+    var custom   = 1;
+    var ogg      = 2;
+    var wav      = 3;
+    var pcm      = 4;
 
 } //AudioFormatType
 
@@ -187,7 +188,7 @@ typedef ImageInfo = {
 } //AudioState
 
     /** The platform specific implementation detail about the audio data */
-typedef AudioDataInfo = {
+typedef AudioData = {
 
         /** the file length in bytes */
     var length : Int;
@@ -202,21 +203,21 @@ typedef AudioDataInfo = {
         /** bits per sample, 8 / 16 */
     var bits_per_sample : Int;
         /** sound raw data */
-    var samples : Uint8Array;
+    @:optional var samples : Uint8Array;
 
-} //AudioDataInfo
+} //AudioData
 
 /** Information about an audio file/data */
 typedef AudioInfo = {
 
         /** file source id */
-    var id : String;
+    @:optional var id : String;
         /** format. Use AudioFormatType */
-    var format : Int;
+    @:optional var format : Int;
         /** the platform audio data info */
-    var data : AudioDataInfo;
+    var data : AudioData;
         /** the platform audio handle for later manipulation */
-    var handle : Dynamic; //:todo:
+    @:optional var handle : Dynamic; //:todo:
 
 } //AudioInfo
 
