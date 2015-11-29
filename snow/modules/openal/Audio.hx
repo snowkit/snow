@@ -6,10 +6,13 @@ import snow.api.Promise;
 import snow.api.buffers.Uint8Array;
 import snow.api.buffers.Float32Array;
 import snow.systems.audio.AudioSource;
+import snow.systems.audio.AudioInstance;
 
 import snow.modules.openal.AL;
 import snow.modules.openal.AL.Context;
 import snow.modules.openal.AL.Device;
+import snow.modules.openal.ALSound;
+import snow.modules.openal.ALStream;
 
 @:log_as('openal')
 @:allow(snow.modules.openal)
@@ -20,6 +23,11 @@ class Audio implements snow.modules.interfaces.Audio {
     public var context : Context;
 
     var app : snow.Snow;
+    var handle_seq = 0;
+    var instances : Map<AudioHandle, ALSound>;
+        /** A map of audio source to AL buffer handles */
+    var buffers : Map<AudioSource, Int>;
+
 
     function new(_app:snow.Snow) {
 
@@ -54,7 +62,15 @@ class Audio implements snow.modules.interfaces.Audio {
                     var _snd = instances.get(_handle);
                         _snd.tick();
 
-                    if(_snd.has_ended()) {
+                    //:todo: determining when it ends
+                    if(_snd.looping && !_snd.source.is_stream) {
+                        if(_snd.current_time >= _snd.source.duration()) {
+                            _snd.current_time = 0.0;
+                            app.audio.emit(ae_end, _handle);
+                        }
+                    }
+
+                    if(_snd.instance.has_ended()) {
                         instances.remove(_handle);
                         app.audio.emit(ae_end, _handle);
                         _snd.destroy();
@@ -116,36 +132,30 @@ class Audio implements snow.modules.interfaces.Audio {
 
     } //resume
 
-//
-
-    var handle_seq = 0;
-        /** The map of handles to AL audio instances */
-    var instances : Map<AudioHandle, ALAudioInstance>;
-        /** A map of audio source to AL buffer handles */
-    var buffers : Map<AudioSource, Int>;
-
-    inline function instance_of(_handle:AudioHandle) : ALAudioInstance {
+    inline function snd_of(_handle:AudioHandle) : ALSound {
 
         return instances.get(_handle);
 
-    } //instance_of
+    } //snd_of
 
         /** Play an instance of the given audio source, returning a disposable handle */
     public function play(_source:AudioSource, _volume:Float, _paused:Bool) : AudioHandle {
 
         assertnull(_source);
-        assertnull(_source.asset);
-        assertnull(_source.asset.audio);
-        assertnull(_source.asset.audio.data);
+        assertnull(_source.info);
+        assertnull(_source.info.data);
 
         var _handle = handle_seq;
+        var _inst = _source.instance(_handle);
         var _snd = switch(_source.is_stream) {
-            case false: new ALAudioInstance(this, _handle, _source, _volume);
-            case true : new ALAudioStreamInstance(this, _handle, _source, _volume);
-        } 
+            case false: new ALSound(this, _source, _inst);
+            case true : new ALStream(this, _source, _inst);
+        }
 
         _snd.init();
         instances.set(_handle, _snd);
+
+        AL.sourcef(_snd.alsource, AL.GAIN, _volume);
 
         if(!_paused) {
             AL.sourcePlay(_snd.alsource);
@@ -162,7 +172,7 @@ class Audio implements snow.modules.interfaces.Audio {
     public function loop(_source:AudioSource, _volume:Float, _paused:Bool) : AudioHandle {
 
         var _handle = play(_source, _volume, _paused);
-        var _snd = instance_of(_handle);
+        var _snd = snd_of(_handle);
         _snd.looping = true;
 
         if(!_snd.source.is_stream) {
@@ -173,23 +183,9 @@ class Audio implements snow.modules.interfaces.Audio {
 
     } //loop
 
-    public function state(_handle:AudioHandle) : AudioState {
-
-        var _snd = instance_of(_handle);
-        if(_snd == null || !app.audio.active) return as_invalid;
-
-        return switch(AL.getSourcei(_snd.alsource, AL.SOURCE_STATE)) {
-            case AL.PLAYING:                as_playing;
-            case AL.PAUSED:                 as_paused;
-            case AL.STOPPED, AL.INITIAL:    as_stopped;
-            case _:                         as_invalid;
-        }
-
-    } //state
-
     public function pause(_handle:AudioHandle) : Void {
 
-        var _snd = instance_of(_handle);
+        var _snd = snd_of(_handle);
         #if debug if(_snd == null) return; #end
 
         AL.sourcePause(_snd.alsource);
@@ -198,7 +194,7 @@ class Audio implements snow.modules.interfaces.Audio {
 
     public function unpause(_handle:AudioHandle) : Void {
 
-        var _snd = instance_of(_handle);
+        var _snd = snd_of(_handle);
         #if debug if(_snd == null) return; #end
 
         AL.sourcePlay(_snd.alsource);
@@ -207,7 +203,7 @@ class Audio implements snow.modules.interfaces.Audio {
 
     public function stop(_handle:AudioHandle) : Void {
 
-        var _snd = instance_of(_handle);
+        var _snd = snd_of(_handle);
         #if debug if(_snd == null) return; #end
 
         AL.sourceStop(_snd.alsource);
@@ -217,7 +213,7 @@ class Audio implements snow.modules.interfaces.Audio {
         /** Set the volume of a sound instance */
     public function volume(_handle:AudioHandle, _volume:Float) : Void {
 
-        var _snd = instance_of(_handle);
+        var _snd = snd_of(_handle);
         #if debug if(_snd == null) return; #end
 
         AL.sourcef(_snd.alsource, AL.GAIN, _volume);
@@ -229,9 +225,9 @@ class Audio implements snow.modules.interfaces.Audio {
         /** Set the pan of a sound instance. */
     public function pan(_handle:AudioHandle, _pan:Float) : Void {
 
-        var _snd = instance_of(_handle);
+        var _snd = snd_of(_handle);
         #if debug if(_snd == null) return; #end
-        
+
         _snd.pan = _pan;
 
         AL.source3f(_snd.alsource, AL.POSITION, Math.cos((_pan - 1) * (half_pi)), 0, Math.sin((_pan + 1) * (half_pi)));
@@ -241,7 +237,7 @@ class Audio implements snow.modules.interfaces.Audio {
         /** Set the pitch of a sound instance */
     public function pitch(_handle:AudioHandle, _pitch:Float) : Void {
 
-        var _snd = instance_of(_handle);
+        var _snd = snd_of(_handle);
         #if debug if(_snd == null) return; #end
 
         AL.sourcef(_snd.alsource, AL.PITCH, _pitch);
@@ -251,7 +247,7 @@ class Audio implements snow.modules.interfaces.Audio {
         /** Set the position of a sound instance */
     public function position(_handle:AudioHandle, _time:Float) : Void {
 
-        var _snd = instance_of(_handle);
+        var _snd = snd_of(_handle);
         #if debug if(_snd == null) return; #end
 
         _snd.position(_time);
@@ -261,7 +257,7 @@ class Audio implements snow.modules.interfaces.Audio {
         /** Get the volume of a sound instance */
     public function volume_of(_handle:AudioHandle) : Float {
 
-        var _snd = instance_of(_handle);
+        var _snd = snd_of(_handle);
         #if debug if(_snd == null) return 0.0; #end
 
         return AL.getSourcef(_snd.alsource, AL.GAIN);
@@ -271,7 +267,7 @@ class Audio implements snow.modules.interfaces.Audio {
         /** Get the pan of a sound instance */
     public function pan_of(_handle:AudioHandle) : Float {
 
-        var _snd = instance_of(_handle);
+        var _snd = snd_of(_handle);
         #if debug if(_snd == null) return 0.0; #end
 
         return _snd.pan;
@@ -281,7 +277,7 @@ class Audio implements snow.modules.interfaces.Audio {
         /** Get the pitch of a sound instance */
     public function pitch_of(_handle:AudioHandle) : Float {
 
-        var _snd = instance_of(_handle);
+        var _snd = snd_of(_handle);
         #if debug if(_snd == null) return 0.0; #end
 
         return AL.getSourcef(_snd.alsource, AL.PITCH);
@@ -291,12 +287,47 @@ class Audio implements snow.modules.interfaces.Audio {
         /** Get the position of a sound instance */
     public function position_of(_handle:AudioHandle) : Float {
 
-        var _snd = instance_of(_handle);
+        var _snd = snd_of(_handle);
         #if debug if(_snd == null) return 0.0; #end
 
         return _snd.position_of();
 
     } //position_of
+
+        /** Get the playback state of a handle */
+    public function state_of(_handle:AudioHandle) : AudioState {
+
+        var _snd = snd_of(_handle);
+        if(_snd == null || !app.audio.active) return as_invalid;
+
+        return switch(AL.getSourcei(_snd.alsource, AL.SOURCE_STATE)) {
+            case AL.PLAYING:                as_playing;
+            case AL.PAUSED:                 as_paused;
+            case AL.STOPPED, AL.INITIAL:    as_stopped;
+            case _:                         as_invalid;
+        }
+
+    } //state_of
+
+        /** Get the looping state of a handle */
+    public function loop_of(_handle:AudioHandle) : Bool {
+
+        var _snd = snd_of(_handle);
+        #if debug if(_snd == null) return false; #end
+
+        return _snd.looping;
+
+    } //loop_of
+
+        /** Get the audio instance of a handle, use with caution. */
+    public function instance_of(_handle:AudioHandle) : AudioInstance {
+
+        var _snd = snd_of(_handle);
+        if(_snd == null) return null;
+
+        return _snd.instance;
+
+    } //instance_of
 
 //internal
 

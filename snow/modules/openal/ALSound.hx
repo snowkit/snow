@@ -1,34 +1,36 @@
 package snow.modules.openal;
 
 import snow.api.Debug.*;
-import snow.modules.openal.Audio;
+import snow.systems.audio.AudioSource;
 import snow.systems.audio.AudioInstance;
 import snow.types.Types.AudioHandle;
+
 import snow.modules.openal.AL;
+import snow.modules.openal.Audio;
 
 @:log_as('AL sound')
 @:allow(snow.modules.openal.Audio)
-class ALAudioInstance extends AudioInstance {
+class ALSound {
 
-        /** The openal audio module */
+    public var instance : AudioInstance;
+    public var source : AudioSource;
     public var module : Audio;
-        /** the AL source handle */
+
     public var alsource : Int;
-        /** the AL source format */
     public var alformat : Int;
-        /** the AL source format */
-    public var handle : AudioHandle;
+
         /** The current pan in -1,1 range */
     var pan : Float = 0.0;
     var looping : Bool = false;
+    var current_time = 0.0;
 
-    public function new(_module:Audio, _handle:AudioHandle, _source:snow.systems.audio.AudioSource, _volume:Float) {
+    public function new(_module:Audio, _source:snow.systems.audio.AudioSource, _instance:AudioInstance) {
                 
-        super(_source);
-
         module = _module;
-        handle = _handle;
-        alsource = new_source(_volume);
+        source = _source;
+        instance = _instance;
+
+        alsource = new_source();
         alformat = source_format();
 
     } //new
@@ -39,17 +41,28 @@ class ALAudioInstance extends AudioInstance {
 
         if(_buffer == null) {
 
-            var _data = source.asset.audio.data;
+            var _data = source.info.data;
 
-            log(' > new buffer / ${source.asset.id} / ${alformat}');
+            log(' > new buffer ${source.info.id} / ${alformat}');
 
             _buffer = AL.genBuffer();
-            AL.bufferData(_buffer, alformat, _data.rate, _data.samples.toBytes().getData(), _data.samples.byteOffset, _data.samples.byteLength);            
+
+            if(_data.samples != null) {
+                AL.bufferData(_buffer, alformat, _data.rate, _data.samples.toBytes().getData(), _data.samples.byteOffset, _data.samples.byteLength); 
+            } else {
+                _buffer = AL.NONE;
+                log(' > new buffer ${source.info.id} / created with AL.NONE buffer!');
+            }
+
+            err('new buffer');
+
             module.buffers.set(source, _buffer);
 
         } //_buffer == null
 
         AL.sourcei(alsource, AL.BUFFER, _buffer);
+
+        err('attach buffer');
 
     } //init
 
@@ -72,18 +85,18 @@ class ALAudioInstance extends AudioInstance {
 
     } //destroy
 
+    public function tick() : Void {
+        
+        instance.tick();
+        current_time += module.app.host.tick_delta;
 
-    override function has_ended() {
-
-        return AL.getSourcei(alsource, AL.SOURCE_STATE) == AL.STOPPED;
-
-    } //has_ended
+    } //tick
 
 //internal
 
-    inline function new_source(_volume:Float) : Int {
+    inline function new_source() : Int {
         var _source = AL.genSource();
-            AL.sourcef(_source, AL.GAIN, _volume);
+            AL.sourcef(_source, AL.GAIN, 1.0);
             AL.sourcei(_source, AL.LOOPING, AL.FALSE);
             AL.sourcef(_source, AL.PITCH, 1.0);
             AL.source3f(_source, AL.POSITION, 0.0, 0.0, 0.0);
@@ -91,24 +104,38 @@ class ALAudioInstance extends AudioInstance {
         return _source;
     }
 
+    function err(reason:String) {
+        var _err = AL.getError();
+        if(_err != AL.NO_ERROR) {
+            throw '$_err / $reason: failed with ' + ALError.desc(_err);
+        } else {
+            _debug('$reason / no error');
+        }
+    }
+
     function source_format() {
 
-        var _data = source.asset.audio.data;
+        var _data = source.info.data;
         var _format = AL.FORMAT_MONO16;
 
         if(_data.channels > 1) {
             if(_data.bits_per_sample == 8) {
                 _format = AL.FORMAT_STEREO8;
+                _debug('source format: stereo 8');
             } else {
                 _format = AL.FORMAT_STEREO16;
+                _debug('source format: stereo 16');
             }
         } else { //mono
             if(_data.bits_per_sample == 8) {
                 _format = AL.FORMAT_MONO8;
+                _debug('source format: mono 8');
             } else {
                 _format = AL.FORMAT_MONO16;
+                _debug('source format: mono 16');
             }
         }
+
 
         return _format;
 
