@@ -19,7 +19,6 @@ class Main extends snow.App {
 
     } //config
 
-
     override function ready() {
 
         log('ready');
@@ -44,14 +43,14 @@ class Main extends snow.App {
 
     //135034__mrlindstrom__windloop6sec.wav
     function sound_loaded(list:Array<AssetAudio>) {
-        
-        wind = new AudioSource(list[0]);
-        sound = new AudioSource(list[1]);
-        music = new AudioSource(list[2],true);
 
-        log('loaded wind `${wind.asset.audio.id}` : ' + wind.asset.audio);
-        log('loaded sound `${sound.asset.audio.id}` : ' + sound.asset.audio);
-        log('loaded music `${music.asset.audio.id}` : ' + music.asset.audio);
+        wind = new AudioSource(app, list[0].audio);
+        sound = new AudioSource(app, list[1].audio);
+        music = new AudioSource(app, list[2].audio, true);
+
+        log('loaded wind : ' + wind.info);
+        log('loaded sound : ' + sound.info);
+        log('loaded music : ' + music.info);
 
         wind_handle = app.audio.loop(wind,0.2);
         music_handle = app.audio.loop(music,1);
@@ -105,7 +104,7 @@ class Main extends snow.App {
 
         if(keycode == Key.key_s) {
             if(app.audio.active) {
-                var _state = app.audio.state(music_handle);
+                var _state = app.audio.state_of(music_handle);
                 if(_state != as_stopped) {
                     app.audio.stop(music_handle);
                     trace('music stopped (was $_state)');
@@ -118,14 +117,14 @@ class Main extends snow.App {
 
         if(keycode == Key.key_n) {
             if(app.audio.active) {
-                var _state = app.audio.state(music_handle);
+                var _state = app.audio.state_of(music_handle);
                 trace('cycle music state: currently $_state');
                 switch(_state) {
                     case as_playing: app.audio.pause(music_handle);
                     case as_paused:  app.audio.unpause(music_handle);
                     case _:
                 }
-                trace('      now ${app.audio.state(music_handle)}');
+                trace('      now ${app.audio.state_of(music_handle)}');
             }
         }
 

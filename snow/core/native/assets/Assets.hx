@@ -196,7 +196,7 @@ class Assets implements snow.modules.interfaces.Assets {
 
     } //audio_info_from_bytes_direct
 
-    public function audio_seek_source( _info:AudioInfo, _to:Int ) : Bool {
+    public function audio_seek_source(_info:AudioInfo, _to:Int) : Bool {
 
         return switch(_info.format) {
             case wav: WAV.seek(app, _info, _to);
@@ -207,7 +207,7 @@ class Assets implements snow.modules.interfaces.Assets {
 
     } //audio_seek_source
 
-    public function audio_load_portion( _info:AudioInfo, _into:Uint8Array, _start:Int, _len:Int, _into_result:Array<Int>) : Array<Int> {
+    public function audio_load_portion(_info:AudioInfo, _into:Uint8Array, _start:Int, _len:Int, _into_result:Array<Int>) : Array<Int> {
 
         return switch(_info.format) {
             case wav: WAV.portion(app, _info, _into, _start, _len, _into_result);
