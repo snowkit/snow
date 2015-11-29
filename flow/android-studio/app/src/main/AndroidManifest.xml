@@ -7,12 +7,11 @@
     android:installLocation="preferExternal">
 
     <application android:label="{{project.name}}"
-                 {{#if project.app.icon~}}
-                 android:icon="@drawable/{{project.app._icon.dest}}"
-                 {{/if~}}
+                 android:icon="@drawable/icon"
                  android:allowBackup="true"
                  android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
-                 android:hardwareAccelerated="true" >
+                 android:hardwareAccelerated="true"
+                 >
         <activity android:name="{{project.app.package}}.AppActivity"
                   android:label="{{project.name}}"
                   android:launchMode="singleTask"
