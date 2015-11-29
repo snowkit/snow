@@ -1,9 +1,8 @@
 package snow.systems.audio;
 
-import snow.systems.assets.Asset.AssetAudio;
 import snow.types.Types;
-import snow.systems.audio.Sound;
 import snow.systems.assets.Asset;
+import snow.systems.audio.AudioInstance;
 import snow.api.Promise;
 import snow.api.Debug.*;
 import snow.api.Emitter;
@@ -72,10 +71,6 @@ class Audio {
 
     } //loop
 
-    public function state(_handle:AudioHandle) : AudioState {
-        return module.state(_handle);
-    } //state
-
     public function pause(_handle:AudioHandle) : Void {
         if(!active) return;
         module.pause(_handle);
@@ -110,6 +105,20 @@ class Audio {
         if(!active) return;
         module.position(_handle, _position);
     } //position
+
+    public function state_of(_handle:AudioHandle) : AudioState {
+        return module.state_of(_handle);
+    } //state_of
+
+    public function loop_of(_handle:AudioHandle) : Bool {
+        assert(active, 'audio is suspended, queries are invalid');
+        return module.loop_of(_handle);
+    } //loop_of
+
+    public function instance_of(_handle:AudioHandle) : AudioInstance {
+        assert(active, 'audio is suspended, queries are invalid');
+        return module.instance_of(_handle); 
+    } //instance_of
 
     public function volume_of(_handle:AudioHandle) : Float {
         assert(active, 'audio is suspended, queries are invalid');

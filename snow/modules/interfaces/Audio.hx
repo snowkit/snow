@@ -4,6 +4,7 @@ import snow.api.buffers.Uint8Array;
 import snow.api.Promise;
 import snow.systems.assets.Asset.AssetAudio;
 import snow.systems.audio.AudioSource;
+import snow.systems.audio.AudioInstance;
 import snow.types.Types;
 
 @:noCompletion
@@ -19,7 +20,6 @@ interface Audio {
     function pause(_handle:AudioHandle) : Void;
     function unpause(_handle:AudioHandle) : Void;
     function stop(_handle:AudioHandle) : Void;
-    function state(_handle:AudioHandle) : AudioState;
 
     function volume(_handle:AudioHandle, _volume:Float) : Void;
     function pan(_handle:AudioHandle, _pan:Float) : Void;
@@ -30,6 +30,9 @@ interface Audio {
     function pan_of(_handle:AudioHandle) : Float;
     function pitch_of(_handle:AudioHandle) : Float;
     function position_of(_handle:AudioHandle) : Float;
+    function state_of(_handle:AudioHandle) : AudioState;
+    function loop_of(_handle:AudioHandle) : Bool;
+    function instance_of(_handle:AudioHandle) : AudioInstance;
 
     function suspend():Void;
     function resume():Void;
