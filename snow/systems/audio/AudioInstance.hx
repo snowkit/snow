@@ -2,16 +2,19 @@ package snow.systems.audio;
 
 import snow.api.Emitter;
 import snow.systems.audio.AudioSource;
+import snow.types.Types.AudioHandle;
 import snow.api.buffers.Uint8Array;
 
 class AudioInstance {
 
     public var source : AudioSource;
+    public var handle : AudioHandle;
 
         /** Create a new instance from the given audio source.
             Usually called via `source.instance()`, not directly. */
-    public function new(_source:AudioSource) {
+    public function new(_source:AudioSource, _handle:AudioHandle) {
         source = _source;
+        handle = _handle;
     }
 
     public function tick() : Void {
@@ -19,20 +22,20 @@ class AudioInstance {
     }
 
     public function has_ended() : Bool {
-        return true;
-    }
+            
+        return source.app.audio.state_of(handle) == as_stopped;
+
+    } //has_ended
 
     public function data_get(_into:Uint8Array, _start:Int, _length:Int, _into_result:Array<Int>) : Array<Int> {
 
-        var _assets = source.asset.system;
-        return _assets.module.audio_load_portion(source.asset.audio, _into, _start, _length, _into_result);
+        return source.app.assets.module.audio_load_portion(source.info, _into, _start, _length, _into_result);
         
     } //data_get
         
     public function data_seek(_to_samples:Int) : Bool {
 
-        var _assets = source.asset.system;
-        return _assets.module.audio_seek_source(source.asset.audio, _to_samples);
+        return source.app.assets.module.audio_seek_source(source.info, _to_samples);
 
     }
     
