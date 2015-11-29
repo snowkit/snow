@@ -13,5 +13,16 @@ public class AppActivity extends org.snowkit.snow.SnowActivity {
 
     }
 
+        //Add native lib dependencies here, if any.
+        //"libgame.so" would just be "game",
+        //See System.loadLibrary documentation.
+        //Order may matter, as does keeping the snow project native lib first
+    protected String[] getLibraries() {
+        return new String[] {
+            "{{project.app.name}}"
+        };
+    }
+
+
 } //AppActivity
 
