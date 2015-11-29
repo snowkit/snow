@@ -1,13 +1,20 @@
 package org.snowkit.snow;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.app.Activity;
 import android.util.Log;
+import android.view.View;
+import android.annotation.TargetApi;
+
+import org.libsdl.app.SDLActivity;
 
 public class SnowActivity extends org.libsdl.app.SDLActivity {
 
     private final static String SNOW_TAG = "SNOW";
     public static Activity snow_activity;
+    boolean snow_immersive_fullscreen = true;
+
     // public native void snowInit();
     // public native void snowQuit();
 
@@ -48,12 +55,47 @@ public class SnowActivity extends org.libsdl.app.SDLActivity {
     protected void onStart() {
         super.onStart();
         Log.i(SNOW_TAG, ">>>>>>>>/ snow / On Start .....");
+        
+        if(snow_immersive_fullscreen && Build.VERSION.SDK_INT >= 19) {
+            hideSystemUi();
+        }
     }
 
     @Override
     protected void onStop() {
         super.onStop();
         Log.i(SNOW_TAG, ">>>>>>>>/ snow / On Stop .....");
+    }
+
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        super.onWindowFocusChanged(hasFocus);
+
+        if (SDLActivity.mBrokenLibraries) {
+           return;
+        }
+
+        if(snow_immersive_fullscreen && hasFocus) {
+            if (Build.VERSION.SDK_INT >= 19) {
+                hideSystemUi();
+            }
+        }
+    }
+
+    @TargetApi(19)
+    private void hideSystemUi() {
+
+        View decorView = this.getWindow().getDecorView();
+
+        decorView.setSystemUiVisibility(
+              View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+            | View.SYSTEM_UI_FLAG_LOW_PROFILE
+            | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+            | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+            | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+            | View.SYSTEM_UI_FLAG_FULLSCREEN
+            | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
+    
     }
 
 } //SnowActivity

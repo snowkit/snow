@@ -80,10 +80,6 @@ public class SDLActivity extends Activity {
             // "SDL2_net",
             // "SDL2_ttf",
             // "main"
-            
-            //--:snow:start
-            "{{project.app.name}}"
-            //--:snow:end
         };
     }
 
@@ -240,17 +236,6 @@ public class SDLActivity extends Activity {
     @Override protected void onStart () {
         Log.v(TAG, "onStart()");
         super.onStart();
-
-        //--:snow:start
-        {{#if project.app.mobile.fullscreen}}
-            {{~#if project.app.mobile.android.sdk_target '>=' 19~}}
-                if (Build.VERSION.SDK_INT >= 19) {
-                    hideSystemUi();
-                }
-            {{~/if}}
-        {{~/if}}
-        //--:snow:end
-
     }
 
     @Override
@@ -264,39 +249,9 @@ public class SDLActivity extends Activity {
 
         SDLActivity.mHasFocus = hasFocus;
         if (hasFocus) {
-
-            //--:snow:start
-            {{~#if project.app.mobile.fullscreen}}
-                {{~#if project.app.mobile.android.sdk_target '>=' 19}}
-                if (Build.VERSION.SDK_INT >= 19) {
-                    hideSystemUi();
-                }
-                {{/if}}
-            {{/if~}}
-            //--:snow:end
-
             SDLActivity.handleResume();
         }
     }
-
-    //--:snow:start
-    {{#if project.app.mobile.fullscreen}}
-        {{~#if project.app.mobile.android.sdk_target '>=' 19~}}
-            private void hideSystemUi() {
-                View decorView = this.getWindow().getDecorView();
-
-                decorView.setSystemUiVisibility(
-                      View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-                    | View.SYSTEM_UI_FLAG_LOW_PROFILE
-                    | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-                    | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                    | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
-                    | View.SYSTEM_UI_FLAG_FULLSCREEN
-                    | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
-            }
-        {{~/if~}}
-    {{/if}}
-    //--:snow:end
 
     @Override
     public void onLowMemory() {
