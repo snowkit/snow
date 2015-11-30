@@ -3,17 +3,9 @@
 extern "C" const char *hxRunLibrary();
 extern "C" void hxcpp_set_top_of_stack();
 
-{{#each project.app.mobile.ios.libs.native}}
-  extern "C" int {{this}}_register_prims();
-{{/each}}
-
 extern "C" int SDL_main(int argc, char *argv[]) {
 
     hxcpp_set_top_of_stack();
-
-    {{#each project.app.mobile.ios.libs.native~}}
-        {{this}}_register_prims();
-    {{/each}}
 
     const char *err = NULL;
     err = hxRunLibrary();
