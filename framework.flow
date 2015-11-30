@@ -7,7 +7,7 @@
         logcat_include : {
           snow:"snow", snowcaps:"SNOW", art:"art:F", snowcpp:"SNOWCPP", SDL:"SDL", openal:"OpenAL_SLES", snow_log:"SDL/APP"
         }
-      }
+      },
     }
   },
 
@@ -57,6 +57,11 @@
       },
       files : {
         snow_hxml : { path:'flow/build/snow.hxml => snow.hxml', template:['project', 'snow'] },
+      },
+      pre:{
+        name: 'snow pre build',
+        script: 'flow/build/hook.pre.js',
+        desc:'handles pre-build steps for snow'
       }
     }
 
@@ -70,26 +75,6 @@
         plists : { path:'flow/mac/ => ../', template:'project', not_listed:true }
       },
     },
-
-    android : {
-      build: {
-        files : {
-          project : { path:"flow/android-studio/ => ../../android.project/", template:'project' }
-        }
-      }
-    },
-
-    "ios && ios-xcode-project" : {
-      build: {
-        files : {
-          projectfile : { path:"flow/ios/snowapp.xcodeproj => ../../ios.project/{{app.name}}.xcodeproj", template:'project' },
-          classes : { path:"flow/ios/Classes => ../../ios.project/project/Classes", template:'project' },
-          infoplist : { path:"flow/ios/snowapp-Info.plist => ../../ios.project/project/project-Info.plist", template:'project' },
-          prefixheader : { path:"flow/ios/snowapp-Prefix.pch => ../../ios.project/project/project-Prefix.pch", template:'project' }
-        }
-      }
-    },
-
 
     "mac || windows || linux || android || ios" : {
       build: {
