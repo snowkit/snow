@@ -13,7 +13,7 @@ import snow.modules.openal.AL;
 class ALStream extends ALSound {
 
         /** the sound buffer names */
-    public var buffers : Array<Int>;
+    public var buffers : Array<ALuint>;
         /** the sound buffer data  */
     public var buffer_data : Uint8Array;
         /** remaining buffers to play */
@@ -34,14 +34,15 @@ class ALStream extends ALSound {
 
     override function init() {
 
-        _debug('ALSOURCE $alsource');
+        _debug('al source = $alsource');
 
-        buffers = [for (i in 0...source.stream_buffer_count) -1];
+        buffers = [for (i in 0...source.stream_buffer_count) 0];
         buffers = AL.genBuffers(source.stream_buffer_count, buffers);
         buffer_data = new Uint8Array(source.stream_buffer_length);
         buffer_bytes = buffer_data.toBytes().getData();
 
-        err('generated ${source.stream_buffer_count} buffers');
+        log('generated ${source.stream_buffer_count} buffers');
+        log(buffers);
 
         instance.data_seek(0);
 
@@ -100,9 +101,9 @@ class ALStream extends ALSound {
 
 //queue management
 
-    function init_queue( ?_buffer_start:Int=-1 ) {
+    function init_queue( ?_start:Int=-1 ) {
 
-        if(_buffer_start != -1) instance.data_seek(_buffer_start);
+        if(_start != -1) instance.data_seek(_start);
 
         for(i in 0...source.stream_buffer_count) {
             fill_buffer(buffers[i]);
@@ -133,14 +134,14 @@ class ALStream extends ALSound {
     } //flush_queue
 
     var data_get_result = [0,0];
-    function fill_buffer(_buffer:Int) : Bool {
+    function fill_buffer(_buffer:ALuint) : Bool {
 
             //try to read the data into the buffer, the -1 means "from current"
         var _read = instance.data_get(buffer_data, -1, source.stream_buffer_length, data_get_result);
 
         AL.bufferData(_buffer, alformat, source.info.data.rate, buffer_bytes, buffer_data.byteOffset, _read[0]);
 
-        err('fill buffer ${_buffer} read: $_read');
+        // err('fill buffer ${_buffer} read: $_read');
 
         return _read[1] == 1;
 
@@ -169,7 +170,7 @@ class ALStream extends ALSound {
 
             // err('tick $processed_buffers');
 
-            var _buffer = AL.sourceUnqueueBuffer(alsource);
+            var _buffer:ALuint = AL.sourceUnqueueBuffer(alsource);
 
             // err('sourceUnqueueBuffer $_buffer');
 

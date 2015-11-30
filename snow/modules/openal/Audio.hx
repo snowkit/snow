@@ -26,7 +26,7 @@ class Audio implements snow.modules.interfaces.Audio {
     var handle_seq = 0;
     var instances : Map<AudioHandle, ALSound>;
         /** A map of audio source to AL buffer handles */
-    var buffers : Map<AudioSource, Int>;
+    var buffers : Map<AudioSource, ALuint>;
 
 
     function new(_app:snow.Snow) {

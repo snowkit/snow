@@ -37,9 +37,9 @@ class ALSound {
 
     public function init() {
 
-        var _buffer = module.buffers.get(source);
+        var _buffer:ALuint = module.buffers.get(source);
 
-        if(_buffer == null) {
+        if(_buffer == AL.NONE) {
 
             var _data = source.info.data;
 
@@ -58,7 +58,7 @@ class ALSound {
 
             module.buffers.set(source, _buffer);
 
-        } //_buffer == null
+        } //_buffer == 0
 
         AL.sourcei(alsource, AL.BUFFER, _buffer);
 
@@ -107,7 +107,9 @@ class ALSound {
     function err(reason:String) {
         var _err = AL.getError();
         if(_err != AL.NO_ERROR) {
-            throw '$_err / $reason: failed with ' + ALError.desc(_err);
+            var _s = '$_err / $reason: failed with ' + ALError.desc(_err);
+            trace(_s);
+            throw _s;
         } else {
             _debug('$reason / no error');
         }
