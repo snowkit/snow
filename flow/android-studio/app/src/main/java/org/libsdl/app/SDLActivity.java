@@ -28,10 +28,6 @@ import android.graphics.drawable.Drawable;
 import android.media.*;
 import android.hardware.*;
 
-//---:snow:start
-import org.haxe.HXCPP;
-//---:snow:end
-
 import android.content.pm.ActivityInfo;
 
 /**
@@ -99,7 +95,13 @@ public class SDLActivity extends Activity {
      */
     protected String[] getArguments() {
         return new String[0];
+    }    
+
+    //---:snow:start
+    protected void preWindowCreate() {
+        
     }
+    //---:snow:end
 
     public static void initialize() {
         // The static nature of the singleton and Android quirkyness force us to initialize everything here
@@ -169,15 +171,7 @@ public class SDLActivity extends Activity {
         }
 
         //---:snow:start
-            requestWindowFeature (Window.FEATURE_NO_TITLE);
-
-            {{#if project.app.mobile.fullscreen~}}
-                {{#if project.app.mobile.android.sdk_target '<' 19~}}
-                    getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN | WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-                {{~/if~}}
-            {{/if}}
-
-            setVolumeControlStream(AudioManager.STREAM_MUSIC);
+        preWindowCreate();
         //---:snow:end
 
         // Set up the surface
@@ -958,7 +952,7 @@ class SDLMain implements Runnable {
         // Runs SDL_main()
         SDLActivity.nativeInit(SDLActivity.mSingleton.getArguments());
         //--:snow:start
-        HXCPP.run();
+        org.haxe.HXCPP.run();
         //--:snow:end
         //Log.v("SDL", "SDL thread terminated");
     }

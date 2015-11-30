@@ -5,6 +5,9 @@ import android.os.Bundle;
 import android.app.Activity;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
+import android.media.AudioManager;
 import android.annotation.TargetApi;
 
 import org.libsdl.app.SDLActivity;
@@ -23,6 +26,7 @@ public class SnowActivity extends org.libsdl.app.SDLActivity {
         super.onCreate(savedInstanceState);
         Log.i(SNOW_TAG, ">>>>>>>>/ snow / On Create .....");
         snow_activity = this;
+        setVolumeControlStream(AudioManager.STREAM_MUSIC);
         // snowInit();
     }
 
@@ -66,6 +70,18 @@ public class SnowActivity extends org.libsdl.app.SDLActivity {
         super.onStop();
         Log.i(SNOW_TAG, ">>>>>>>>/ snow / On Stop .....");
     }
+
+    @Override
+    protected void preWindowCreate() {
+        
+        requestWindowFeature (Window.FEATURE_NO_TITLE);
+
+            //non-immersive full screen
+        if(Build.VERSION.SDK_INT < 19) {
+            getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN | WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+        }
+        
+    } //preWindowCreate
 
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
