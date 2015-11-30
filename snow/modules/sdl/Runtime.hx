@@ -83,20 +83,22 @@ class Runtime extends snow.runtime.Native {
 
     } //ready
 
-    override function run() {
+    override function run() : Bool {
 
         log('sdl / run');
 
-        run_loop();
+        return run_loop();
 
     } //run
 
-    override function shutdown() {
+    override function shutdown(?_immediate:Bool=false) {
 
-        SDL.quit();
-        SDL.delEventWatch(event_watch);
-
-        log('sdl / shutdown');
+        if(!_immediate) {
+            SDL.quit();
+            log('sdl / shutdown');
+        } else {
+            log('sdl / shutdown immediate');
+        }
 
     } //shutdown
 
@@ -148,24 +150,28 @@ class Runtime extends snow.runtime.Native {
     } //timestamp
 
     function run_loop() {
+
+        var _done = true;
         
-        #if !ios
+        #if ios 
+
+            _done = false;
+            log('sdl / attaching iOS CADisplayLink loop');
+            SDL.iPhoneSetAnimationCallback(window, 1, loop, null);
+
+         #else
 
             log('sdl / running main loop');
-
+            
             while(!app.shutting_down) {
 
                 loop(0);
 
-            } //!shutting down
-
-        #else 
-
-            log('sdl / attaching iOS CADisplayLink loop');
-
-            SDL.iPhoneSetAnimationCallback(window, 1, loop, null);
+            }
 
         #end
+
+        return _done;
 
     } //run_loop
 

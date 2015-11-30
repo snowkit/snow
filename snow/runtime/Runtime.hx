@@ -9,10 +9,13 @@ interface Runtime {
         /** After the ready event but before the app ready */
     private function ready() : Void;
         /** Starts the runtime, usually this includes a loop, so it doesn't return.
-            This is called after the other modules are initiated. */
-    private function run() : Void;
+            This is called after the other modules are initiated.
+            The return means "done". 
+            If returning true, snow will consider the runtime complete, and shutdown. 
+            This is useful when the runtime is async, and snow shouldn't shutdown if run returns.  */
+    private function run() : Bool;
         /** Shut down the runtime. A runtime should immediately clean up, stop any loops etc from this call. */
-    private function shutdown() : Void;
+    private function shutdown(?_immediate:Bool=false) : Void;
         
         /** Grabs the main window, capturing the mouse and returning relative motion.
             i.e What a first person camera might want to rotate freely. returns false if it fails or is unavailable. */

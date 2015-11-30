@@ -47,11 +47,13 @@ class Native implements Runtime {
 
     } //new
 
-    function run() {
+    function run() : Bool {
 
         log('runtime / native / run');
         
         app.dispatch_event(se_tick);
+
+        return true;
 
     } //run
 
@@ -61,9 +63,9 @@ class Native implements Runtime {
         
     } //ready
 
-    function shutdown() {
+    function shutdown(?_immediate:Bool=false) {
 
-        log('runtime / native / shutdown');
+        log('runtime / native / shutdown / immediate=$_immediate');
 
     } //shutdown
 
