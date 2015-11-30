@@ -30,15 +30,17 @@ class Main extends snow.App {
 
     override function onmousemove(x:Int, y:Int, _, _, _, _) {
 
+        #if !mobile
         oooh.freq = 220+(x/app.runtime.window_width()*440);
         trace('oooh freq: ${oooh.freq}');
+        #end
 
     }
 
     override function ontouchmove( x:Float, y:Float, dx:Float, dy:Float, touch_id:Int, timestamp:Float ) {
 
         oooh.freq = 220+(x*440);
-        trace('oooh freq: ${oooh.freq}');
+        // trace('oooh freq: ${oooh.freq}');
 
     }
 

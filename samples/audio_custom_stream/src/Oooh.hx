@@ -22,8 +22,10 @@ class OoohSource extends AudioSource {
 
             //tenth of a second
         stream_buffer_length = Std.int(44100/10);
+        stream_buffer_length += (stream_buffer_length & 0x03);
+
             //make sure enough buffers
-        stream_buffer_count = 4;
+        stream_buffer_count = 8;
 
     } //new
 

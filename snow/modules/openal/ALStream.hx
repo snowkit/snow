@@ -41,7 +41,7 @@ class ALStream extends ALSound {
         buffer_data = new Uint8Array(source.stream_buffer_length);
         buffer_bytes = buffer_data.toBytes().getData();
 
-        log('generated ${source.stream_buffer_count} buffers');
+        err('generated ${source.stream_buffer_count} buffers');
         log(buffers);
 
         instance.data_seek(0);
@@ -139,9 +139,12 @@ class ALStream extends ALSound {
             //try to read the data into the buffer, the -1 means "from current"
         var _read = instance.data_get(buffer_data, -1, source.stream_buffer_length, data_get_result);
 
+        // log('bufferData / $_buffer / format:$alformat / freq:${source.info.data.rate} / size: ${_read[0]}');
+        // err('pre fill buffer ${_buffer}');
+
         AL.bufferData(_buffer, alformat, source.info.data.rate, buffer_bytes, buffer_data.byteOffset, _read[0]);
 
-        // err('fill buffer ${_buffer} read: $_read');
+        err('post fill buffer ${_buffer} read: $_read');
 
         return _read[1] == 1;
 
