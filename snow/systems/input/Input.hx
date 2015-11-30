@@ -231,21 +231,21 @@ class Input {
     } //dispatch_mouse_wheel_event
 
         /** manually dispatch a touch down through the system, delivered to the app handlers, internal and external */
-    public function dispatch_touch_down_event( x:Float, y:Float, touch_id:Int, timestamp:Float ) {
+    public function dispatch_touch_down_event( x:Float, y:Float, dx:Float, dy:Float, touch_id:Int, timestamp:Float ) {
 
         if(!touches_down.exists(touch_id)) {
             touch_count++;
             touches_down.set(touch_id, true);
         }
 
-        app.host.ontouchdown( x, y, touch_id, timestamp );
+        app.host.ontouchdown( x, y, dx, dy, touch_id, timestamp );
 
     } //dispatch_touch_down_event
 
         /** manually dispatch a touch up through the system, delivered to the app handlers, internal and external */
-    public function dispatch_touch_up_event( x:Float, y:Float, touch_id:Int, timestamp:Float ) {
+    public function dispatch_touch_up_event( x:Float, y:Float, dx:Float, dy:Float, touch_id:Int, timestamp:Float ) {
 
-        app.host.ontouchup( x, y, touch_id, timestamp );
+        app.host.ontouchup( x, y, dx, dy, touch_id, timestamp );
 
         if(touches_down.remove(touch_id)) {
             touch_count--;

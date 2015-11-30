@@ -103,9 +103,9 @@ class App {
     function onmousemove(x:Int, y:Int, xrel:Int, yrel:Int, timestamp:Float, window_id:Int) {}
 
         /** Called for you when a touch is released, use the `touch_id` to track which */
-    function ontouchdown(x:Float, y:Float, touch_id:Int, timestamp:Float) {}
+    function ontouchdown(x:Float, y:Float, dx:Float, dy:Float, touch_id:Int, timestamp:Float) {}
         /** Called for you when a touch is first pressed, use the `touch_id` to track which */
-    function ontouchup(x:Float, y:Float, touch_id:Int, timestamp:Float) {}
+    function ontouchup(x:Float, y:Float, dx:Float, dy:Float, touch_id:Int, timestamp:Float) {}
         /** Called for you when a touch is moved, use the `touch_id` to track which */
     function ontouchmove(x:Float, y:Float, dx:Float, dy:Float, touch_id:Int, timestamp:Float) {}
 

@@ -233,9 +233,18 @@ class Main extends snow.App {
 
     } //onkeyup
 
-    override function ontouchmove( x:Float, y:Float, dx:Float, dy:Float, touch_id:Int, timestamp:Float ) {
-        // log('touch move; $x / $y / $dx / $dy / $touch_id / $timestamp ');
+    override function ontouchup(x:Float, y:Float, dx:Float, dy:Float, touch_id:Int, timestamp:Float) {
 
+        log('touch up; $x / $y / $dx / $dy / $touch_id / $timestamp ');
+            //touches are normalized, so we convert to window size
+        render_x = physical_x = ((window_width*x) - (size/2));
+        render_y = (window_height*y) - (size/2);
+
+    } //touchup
+
+    override function ontouchmove( x:Float, y:Float, dx:Float, dy:Float, touch_id:Int, timestamp:Float ) {
+            
+        // log('touch move; $x / $y / $dx / $dy / $touch_id / $timestamp ');
             //touches are normalized, so we convert to window size
         render_x = physical_x = ((window_width*x) - (size/2));
         render_y = (window_height*y) - (size/2);
@@ -244,7 +253,7 @@ class Main extends snow.App {
 
     override function onmousemove( x:Int, y:Int, xrel:Int, yrel:Int, timestamp:Float, window_id:Int ) {
 
-        // log('move $x / $y / $xrel / $yrel / $timestamp / $window_id');
+        // log('mouse move $x / $y / $xrel / $yrel / $timestamp / $window_id');
 
         if(app.input.keydown(Key.space)) {
             render_x = physical_x = x - (size/2);

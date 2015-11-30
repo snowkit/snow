@@ -577,6 +577,8 @@ class Runtime extends snow.runtime.Native {
                     app.input.dispatch_touch_down_event(
                         e.tfinger.x,
                         e.tfinger.y,
+                        e.tfinger.dx,
+                        e.tfinger.dy,
                         cast e.tfinger.touchId,
                         e.tfinger.timestamp/1000.0
                     );
@@ -584,6 +586,8 @@ class Runtime extends snow.runtime.Native {
                     app.input.dispatch_touch_up_event(
                         e.tfinger.x,
                         e.tfinger.y,
+                        e.tfinger.dx,
+                        e.tfinger.dy,
                         cast e.tfinger.touchId,
                         e.tfinger.timestamp/1000.0
                     );
