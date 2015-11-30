@@ -40,7 +40,7 @@ mobile.ios = function(flow, done, force_generate) {
         flow.log(2, 'snow - ios project - created at `%s`', _project_path);
         done(null, true);
     } else {
-        flow.log(2, 'snow - ios project - exists, nothing to do');
+        flow.log(2, 'snow - ios project - exists at `%s`', _project_path);
         done();
     }
 
@@ -61,7 +61,7 @@ mobile.android = function(flow, done, force_generate) {
         flow.log(2, 'snow - android project - created at `%s`', _project_path);
         done(null, true);
     } else {
-        flow.log(2, 'snow - android project - exists, nothing to do');
+        flow.log(2, 'snow - android project - exists at `%s`', _project_path);
         done();
     }
 
