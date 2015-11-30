@@ -114,13 +114,16 @@ class Snow {
             step();
 
             log('app / runtime / ${runtime.name} / run');
-            runtime.run();
+            var _runtime_is_done = runtime.run();
 
-            if(!(has_shutdown || shutting_down)) {
+            if(_runtime_is_done && !(has_shutdown || shutting_down)) {
                 shutdown();
             }
 
         } //new
+
+            //internal
+        var immediate_shutdown = false;
 
             /** Shutdown the engine and quit */
         public function shutdown() {
@@ -139,7 +142,7 @@ class Snow {
             assets.shutdown();
             input.shutdown();
             
-            runtime.shutdown();
+            runtime.shutdown(immediate_shutdown);
 
             has_shutdown = true;
 
@@ -161,7 +164,7 @@ class Snow {
         public function onevent(_event:SystemEvent) {
 
             // if( _event.type != se_tick ) {
-            //     log('event / system event / ${_event.type}');
+            //    log('event / system event / ${_event.type}');
             //     if(_event.window != null) {
             //         log('   window / ${_event.window.type} / ${_event.window.window_id} / ${_event.window.data1},${_event.window.data2}');
             //     }
@@ -176,8 +179,12 @@ class Snow {
 
                 case se_ready:                      on_ready_event();
                 case se_tick:                       on_tick_event();
-                case se_quit, se_app_terminating:   shutdown();
+                case se_quit:                       shutdown();
                 case se_shutdown:                   log('Goodbye.');
+                    //mobile app terminate is an immediate termination
+                case se_app_terminating:
+                    immediate_shutdown = true;
+                    shutdown();
                 case _:
 
             } //switch _event.type
