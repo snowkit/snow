@@ -35,6 +35,13 @@ class Main extends snow.App {
 
     }
 
+    override function ontouchmove( x:Float, y:Float, dx:Float, dy:Float, touch_id:Int, timestamp:Float ) {
+
+        oooh.freq = 220+(x*440);
+        trace('oooh freq: ${oooh.freq}');
+
+    }
+
     override function onkeyup( keycode:Int, _,_, mod:ModState, _,_ ) {
 
         if( keycode == Key.escape ) {
