@@ -21,7 +21,6 @@
         1EEEBB00121BE2B30048A9DF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1EEEBAFF121BE2B30048A9DF /* Foundation.framework */; };
         1EF0A83A121ADB8E003F2F59 /* Main.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1EF0A839121ADB8E003F2F59 /* Main.mm */; };
 		2619B0091978784F003DB9A7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2619B0081978784F003DB9A7 /* Images.xcassets */; };
-
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -217,7 +216,7 @@
             buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CLANG_CXX_LIBRARY = "{{project.app.mobile.ios.cpp}}";
+				CLANG_CXX_LIBRARY = "libc++";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEAD_CODE_STRIPPING = NO;
@@ -226,14 +225,17 @@
                 GCC_PRECOMPILE_PREFIX_HEADER = YES;
                 GCC_PREFIX_HEADER = "project/project-Prefix.pch";
                 INFOPLIST_FILE = "project/project-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = {{project.app.mobile.ios.deployment_target}};
-				LIBRARY_SEARCH_PATHS = ("$(PROJECT_DIR)/../bin/ios.build/cpp");
-				OTHER_LDFLAGS = "{{{project.app.mobile.ios.ldflags}}}";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/../bin/ios.build/cpp";
+				OTHER_LDFLAGS = (
+					"-l",
+					"\"{{project.app.name}}\"",
+				);
                 PRODUCT_BUNDLE_IDENTIFIER = "{{project.app.package}}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				STRIP_INSTALLED_PRODUCT = NO;
-				TARGETED_DEVICE_FAMILY = "{{project.app.mobile.ios._devices}}";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
             };
             name = Debug;
@@ -243,7 +245,7 @@
             buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CLANG_CXX_LIBRARY = "{{project.app.mobile.ios.cpp}}";
+				CLANG_CXX_LIBRARY = "libc++";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
                 ENABLE_BITCODE = NO;
@@ -251,13 +253,16 @@
                 GCC_PRECOMPILE_PREFIX_HEADER = YES;
                 GCC_PREFIX_HEADER = "project/project-Prefix.pch";
                 INFOPLIST_FILE = "project/project-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = {{project.app.mobile.ios.deployment_target}};
-                LIBRARY_SEARCH_PATHS = ("$(PROJECT_DIR)/../bin/ios.build/cpp");
-				OTHER_LDFLAGS = "{{{project.app.mobile.ios.ldflags}}}";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+                LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/../bin/ios.build/cpp";
+				OTHER_LDFLAGS = (
+                    "-l",
+                    "\"{{project.app.name}}\"",
+                );
                 PRODUCT_BUNDLE_IDENTIFIER = "{{project.app.package}}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				TARGETED_DEVICE_FAMILY = "{{project.app.mobile.ios._devices}}";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
         };
             name = Release;
