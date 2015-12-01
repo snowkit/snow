@@ -15,15 +15,15 @@ package snow.modules.opengl;
 
 #else
 
-    typedef GL                  = snow.modules.opengl.native.GL;
-    typedef GLActiveInfo        = snow.modules.opengl.native.GL.GLActiveInfo;
-    typedef GLBuffer            = snow.modules.opengl.native.GL.GLBuffer;
-    typedef GLContextAttributes = snow.modules.opengl.native.GL.GLContextAttributes;
-    typedef GLFramebuffer       = snow.modules.opengl.native.GL.GLFramebuffer;
-    typedef GLProgram           = snow.modules.opengl.native.GL.GLProgram;
-    typedef GLRenderbuffer      = snow.modules.opengl.native.GL.GLRenderbuffer;
-    typedef GLShader            = snow.modules.opengl.native.GL.GLShader;
-    typedef GLTexture           = snow.modules.opengl.native.GL.GLTexture;
-    typedef GLUniformLocation   = snow.modules.opengl.native.GL.GLUniformLocation;
+    typedef GL                  = opengl.WebGL;
+    typedef GLActiveInfo        = opengl.WebGL.GLActiveInfo;
+    typedef GLBuffer            = opengl.WebGL.GLBuffer;
+    typedef GLContextAttributes = opengl.WebGL.GLContextAttributes;
+    typedef GLFramebuffer       = opengl.WebGL.GLFramebuffer;
+    typedef GLProgram           = opengl.WebGL.GLProgram;
+    typedef GLRenderbuffer      = opengl.WebGL.GLRenderbuffer;
+    typedef GLShader            = opengl.WebGL.GLShader;
+    typedef GLTexture           = opengl.WebGL.GLTexture;
+    typedef GLUniformLocation   = opengl.WebGL.GLUniformLocation;
 
 #end //!snow_web
