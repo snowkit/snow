@@ -48,7 +48,7 @@ mobile.ios = function(flow, done, force_generate) {
 
 mobile.android = function(flow, done, force_generate) {
 
-    var _project_source = path.resolve(__dirname, '../android-studio/');
+    var _project_source = path.resolve(__dirname, '../android/');
     var _project_path = path.join(flow.project.root, flow.project.paths.android.project);
     var _generate = force_generate || !fs.existsSync(_project_path);
     
