@@ -361,6 +361,10 @@ class WindowEvent {
     public var data1 (default,null) : Null<Int>;
         /** Potential window event data */
     public var data2 (default,null) : Null<Int>;
+        /** A convenience getter for data1 */
+    public var x (get,never) : Null<Int>; inline function get_x() return data1;
+        /** A convenience getter for data2 */
+    public var y (get,never) : Null<Int>; inline function get_y() return data2;
 
     public function new() {}
 
