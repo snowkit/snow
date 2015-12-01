@@ -8,11 +8,11 @@ package snow.api.buffers;
 
     import haxe.io.Bytes;
 
-    @:forward()
+    @:forward
     abstract ArrayBuffer(Bytes) from Bytes to Bytes {
         public inline function new( byteLength:Int ) {
             this = Bytes.alloc( byteLength );
         }
-            }
+    }
 
 #end //!js
