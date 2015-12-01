@@ -85,10 +85,6 @@ typedef FileHandle = FileHandleDef;
 private typedef WindowHandleInit = ApplyType<"WindowHandle">;
 typedef WindowHandle = WindowHandleDef;
 
-// private typedef AudioHandleInit = ApplyType<"AudioHandle">;
-// typedef AudioHandle = AudioHandleDef;
-typedef AudioHandle = Int;
-
 private typedef AppHostInit = ApplyType<"AppHost">;
 @:noCompletion typedef AppHost = AppHostDef;
 
@@ -151,6 +147,9 @@ typedef ImageInfo = {
     var pixels : Uint8Array;
 
 } //ImageInfo
+
+/** An audio handle for tracking audio instances */
+typedef AudioHandle = Int;
 
 /** The type of audio format */
 @:enum abstract AudioFormatType(Null<Int>) from Null<Int> to Null<Int> {
@@ -613,3 +612,4 @@ typedef ModState = {
     } //toString
 
 } //InputEvent
+
