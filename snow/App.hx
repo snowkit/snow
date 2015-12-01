@@ -222,31 +222,7 @@ class App {
 
         static function main() {
 
-            try {
-
-                var _app = new AppHost();
-
-                assertnull(_app, 'snow main App instance was null!');
-
-                trace('App main set to `${snow.types.TypeNames.app_main}`, instance: $_app');
-
-                new snow.Snow(_app);
-
-            } catch(e:Dynamic) {
-
-                var _cur_stack = haxe.CallStack.callStack();
-                var _exc_stack = haxe.CallStack.exceptionStack();
-                var _full_stack = _exc_stack.concat(_cur_stack);
-
-                if(_full_stack.length > 0) {
-                    Sys.println('\nUncaught Error: $e');
-                    Sys.println('\n${StringTools.trim(haxe.CallStack.toString(_full_stack))}');
-                    Sys.println('\nRe-throw:');
-                }
-                
-                throw e;
-
-            } //catch
+            new snow.Snow(new AppHost());
 
         } //main
 

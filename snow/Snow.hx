@@ -69,6 +69,8 @@ class Snow {
 
         public function new(_host : AppHost) {
 
+            assertnull(_host, 'snow App instance was null!');
+
             log('app / init / debug:$debug');
             log('app / ident: ' + snow.types.TypeNames.app_ident);
             log('app / config: ' + snow.types.TypeNames.app_config);
