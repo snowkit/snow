@@ -87,6 +87,8 @@ class Runtime extends snow.runtime.Native {
 
         log('sdl / run');
 
+        SDL.showWindow(window);
+
         return run_loop();
 
     } //run
@@ -110,6 +112,12 @@ class Runtime extends snow.runtime.Native {
         return res == 0;
 
     } //window_grab
+
+    public inline function window_swap() {
+
+        SDL.GL_SwapWindow(window);
+
+    } //window_swap
 
     override function window_fullscreen(enable:Bool, ?true_fullscreen:Bool=false) : Bool {
 
@@ -190,9 +198,11 @@ class Runtime extends snow.runtime.Native {
 
         } //SDL has event
 
-        app.dispatch_event(se_tick);
+        app.dispatch_event(se_tick);        
 
-        SDL.GL_SwapWindow(window);
+        if(!app.has_shutdown) {
+            window_swap();
+        }
 
     } //loop
 
@@ -415,6 +425,7 @@ class Runtime extends snow.runtime.Native {
         
         var flags : SDLWindowFlags = 0;
 
+        flags |= SDL_WINDOW_HIDDEN;
         flags |= SDL_WINDOW_OPENGL;
         flags |= SDL_WINDOW_ALLOW_HIGHDPI;
 
@@ -454,7 +465,7 @@ class Runtime extends snow.runtime.Native {
         config.height = window_h = size.h;
 
         window_dpr = window_device_pixel_ratio();
-        log('sdl / window / x y w h / ${config.x} ${config.y} ${config.width}x${config.height} / scale $window_dpr');
+        log('sdl / window / x:${config.x} y:${config.y} w:${config.width} h:${config.height} / scale $window_dpr');
 
         return config;
 
@@ -489,7 +500,7 @@ class Runtime extends snow.runtime.Native {
 
         return render;
 
-    } //fetch_GL_attr
+    } //update_render_config
     
 //Input
     
