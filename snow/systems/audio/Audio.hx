@@ -32,19 +32,19 @@ class Audio {
 
 //Public API
 
-    public function on(_event:AudioEvent, _handler:AudioHandle->Void) {
+    public function on(_event:AudioEvent, _handler:AudioHandle->Void) : Void {
     
         emitter.on(_event, _handler);
     
     } //on
     
-    public function off(_event:AudioEvent, _handler:AudioHandle->Void) {
+    public function off(_event:AudioEvent, _handler:AudioHandle->Void) : Bool {
     
         return emitter.off(_event, _handler);
     
     } //off
     
-    public function emit(_event:AudioEvent, _handle:AudioHandle) {
+    public function emit(_event:AudioEvent, _handle:AudioHandle) : Void {
     
         emitter.emit(_event, _handle);
     
@@ -140,7 +140,7 @@ class Audio {
         return module.position_of(_handle); 
     } //position_of
 
-    @:noCompletion public function suspend() {
+    public function suspend() : Void {
 
         if(!active) {
             return;
@@ -152,7 +152,7 @@ class Audio {
 
     } //suspend
 
-    @:noCompletion public function resume() {
+    public function resume() : Void {
 
         if(active) {
             return;
@@ -163,6 +163,8 @@ class Audio {
         module.resume();
 
     } //resume
+
+//Internal
 
         /** Called by Snow when a system event is dispatched */
     function onevent( _event:SystemEvent ) {

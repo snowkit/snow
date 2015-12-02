@@ -190,17 +190,17 @@ typedef AudioHandle = Int;
 typedef AudioData = {
 
         /** the file length in bytes */
-    var length : Int;
+    @:optional var length : Int;
         /** the pcm uncompressed raw length in bytes */
     var length_pcm : Int;
         /** number of channels */
     var channels : Int;
         /** hz rate */
     var rate : Int;
-        /** sound bitrate */
-    var bitrate : Int;
         /** bits per sample, 8 / 16 */
     var bits_per_sample : Int;
+        /** sound bitrate */
+    @:optional var bitrate : Int;
         /** sound raw data */
     @:optional var samples : Uint8Array;
 
@@ -209,26 +209,18 @@ typedef AudioData = {
 /** Information about an audio file/data */
 typedef AudioInfo = {
 
+        /** the platform audio data info */
+    var data : AudioData;
         /** file source id */
     @:optional var id : String;
         /** format. Use AudioFormatType */
     @:optional var format : Int;
-        /** the platform audio data info */
-    var data : AudioData;
+        /** Whether or not this relates to streaming purposes, this a convenience only from load apis */
+    @:optional var is_stream : Bool;
         /** the platform audio handle for later manipulation */
     @:optional var handle : Dynamic; //:todo:
 
 } //AudioInfo
-
-/** Information about an audio portion requested via assets */
-typedef AudioDataBlob = {
-
-        /** True if the file has reached the end of the data in this blob */
-    var bytes : Uint8Array;
-        /** The data stored in this blob */
-    var complete : Bool;
-
-} //AudioDataBlob
 
 
 /** Config specific to the rendering context that would be used when creating windows */

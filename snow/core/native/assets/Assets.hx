@@ -122,7 +122,7 @@ class Assets implements snow.modules.interfaces.Assets {
 
 //audio
 
-    public function audio_info_from_load(_path:String, ?_load:Bool=true, ?_format:AudioFormatType) : Promise {
+    public function audio_info_from_load(_path:String, ?_is_stream:Bool=false, ?_format:AudioFormatType) : Promise {
 
         assertnull(_path);
 
@@ -130,7 +130,7 @@ class Assets implements snow.modules.interfaces.Assets {
 
         return new Promise(function(resolve,reject) {
             
-            var _audio = audio_info_from_load_direct(_path, _load, _format);
+            var _audio = audio_info_from_load_direct(_path, _is_stream, _format);
 
             if(_audio == null) {
                 reject(Error.error('failed to load `$_path` as `$_format` audio.'));
@@ -142,16 +142,16 @@ class Assets implements snow.modules.interfaces.Assets {
 
     } //audio_info_from_load
 
-    public function audio_info_from_load_direct(_path:String, ?_load:Bool=true, ?_format:AudioFormatType) : AudioInfo {
+    public function audio_info_from_load_direct(_path:String, ?_is_stream:Bool=false, ?_format:AudioFormatType) : AudioInfo {
 
         assertnull(_path);
 
         if(_format == null) _format = audio_format_from_ext(_path);
 
         var _info = switch(_format) {
-            case wav: WAV.from_file(app, _path, _load);
-            case ogg: OGG.from_file(app, _path, _load);
-            case pcm: PCM.from_file(app, _path, _load);
+            case wav: WAV.from_file(app, _path, _is_stream);
+            case ogg: OGG.from_file(app, _path, _is_stream);
+            case pcm: PCM.from_file(app, _path, _is_stream);
             case _: null;
         } //switch _format
 
@@ -241,11 +241,11 @@ private typedef WavHandle = { handle:FileHandle, offset:Int }
 @:allow(snow.core.native.assets.Assets)
 private class WAV {
 
-    static function from_file(app:snow.Snow, _path:String, _load:Bool) {
+    static function from_file(app:snow.Snow, _path:String, _is_stream:Bool) {
 
         var _handle = app.io.module.file_handle(_path, 'rb');
 
-        return from_file_handle(app, _handle, _path, _load);
+        return from_file_handle(app, _handle, _path, _is_stream);
 
     } //from_file
 
@@ -321,15 +321,16 @@ private class WAV {
 
  //helpers
 
-    static function from_file_handle(app:snow.Snow, _handle:FileHandle, _path:String, _load:Bool) : AudioInfo {
+    static function from_file_handle(app:snow.Snow, _handle:FileHandle, _path:String, _is_stream:Bool) : AudioInfo {
     
         if(_handle == null) return null;
 
         var _length = 0;
         var _info : AudioInfo = {
-            id:     _path,
-            handle: { handle:_handle, offset:0 },
-            format: AudioFormatType.wav,
+            id:         _path,
+            is_stream:  _is_stream,
+            format:     AudioFormatType.wav,
+            handle:     { handle:_handle, offset:0 },
             data: {
                 samples         : null, 
                 length          : _length,
@@ -341,7 +342,7 @@ private class WAV {
             }
         }
 
-        if(_load) {
+        if(!_is_stream) {
 
             var _header = new Uint8Array(12);
             app.io.module.file_read(_handle, _header, 12, 1);
@@ -405,7 +406,7 @@ private class WAV {
 
             } //while
 
-        } //if _load
+        } //if !_is_stream
 
         return _info;
 
@@ -451,7 +452,7 @@ private typedef PCMHandle = { handle:FileHandle }
 @:allow(snow.core.native.assets.Assets)
 private class PCM {
 
-    static function from_file(app:snow.Snow, _path:String, _load:Bool) : AudioInfo {
+    static function from_file(app:snow.Snow, _path:String, _is_stream:Bool) : AudioInfo {
 
         var _handle = app.io.module.file_handle(_path, 'rb');
         if(_handle == null) return null;
@@ -459,24 +460,24 @@ private class PCM {
         var _length = app.io.module.file_size(_handle);
         var _samples : Uint8Array = null;
 
-        if(_load) {
+        if(!_is_stream) {
             _samples = new Uint8Array(_length);
             var _read = app.io.module.file_read(_handle, _samples, _length, 1);
             if(_read != _length) {
                 _samples = null;
                 return null;
             }
-        } //_load
+        } //!_is_stream
 
         //the sound format values are sane defaults -
         //change these values right before creating the sound itself.
 
         return {
 
-            id:     _path,
-            handle: { handle:_handle },
-            format: AudioFormatType.pcm,
-
+            id:         _path,
+            is_stream:  _is_stream,
+            handle:     { handle:_handle },
+            format:     AudioFormatType.pcm,
             data: {
                 samples         : _samples,
                 length          : _length,
@@ -495,9 +496,10 @@ private class PCM {
 
         return {
 
-            id:     _id,
-            handle: null,
-            format: AudioFormatType.pcm,
+            id:         _id,
+            handle:     null,
+            is_stream:  false,
+            format:     AudioFormatType.pcm,
 
             data: {
                 samples         : _bytes,
@@ -584,11 +586,11 @@ private typedef OggHandle = {
 @:allow(snow.core.native.assets.Assets)
 private class OGG {
 
-    static function from_file(app:snow.Snow, _path:String, _load:Bool) : AudioInfo {
+    static function from_file(app:snow.Snow, _path:String, _is_stream:Bool) : AudioInfo {
 
         var _handle = app.io.module.file_handle(_path, 'rb');
 
-        return from_file_handle(app, _handle, _path, _load);
+        return from_file_handle(app, _handle, _path, _is_stream);
 
     } //from_file
 
@@ -601,7 +603,7 @@ private class OGG {
 
     } //from_bytes
 
-    static function from_file_handle(app:snow.Snow, _handle:FileHandle, _path:String, _load:Bool) : AudioInfo {
+    static function from_file_handle(app:snow.Snow, _handle:FileHandle, _path:String, _is_stream:Bool) : AudioInfo {
 
         if(_handle == null) return null;
 
@@ -687,7 +689,7 @@ private class OGG {
             _verbose('           $c');
         }
 
-        if(_load) {
+        if(!_is_stream) {
             _info.data.samples = new Uint8Array(_total_pcm_length);
             read_bytes_ogg(_info, _info.data.samples, 0, _total_pcm_length, []);
         }
@@ -756,7 +758,10 @@ private class OGG {
             // out_buffer.resize(total_read+byte_gap);
         }
 
-        return [total_read, (complete) ? 1 : 0];
+        _into_result[0] = total_read;
+        _into_result[1] = (complete) ? 1 : 0;
+
+        return _into_result;
 
     } //read_bytes_ogg
 

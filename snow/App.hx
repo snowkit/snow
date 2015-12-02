@@ -62,8 +62,6 @@ class App {
 
         /** for update_rate, the time when the next tick should occur around */
     var next_tick : Float = 0;
-        /** for update_rate, the time when the next tick should occur around */
-    var next_render : Float = 0;
 
 //override these in your game class
 

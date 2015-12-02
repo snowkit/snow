@@ -11,11 +11,9 @@ class OoohSource extends AudioSource {
         super(app, {
             id : 'oooh',
             data : {
-                length: 0,
                 length_pcm: 0,
                 channels: 2,
                 rate: 44100,
-                bitrate: 88200,
                 bits_per_sample: 16
             }
         }, true);

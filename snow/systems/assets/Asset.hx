@@ -190,14 +190,14 @@ class Asset {
 
         //Public API
 
-                /** Reloads the bytes from the stored id, using the default processor, returning a promise for the asset. */
-            public function reload() : Promise {
+                /** Reloads the audio from the stored id, using audio_info_from_load, returning a promise for the asset. */
+            public function reload(?_is_stream:Bool=false) : Promise {
 
                 loaded = false;
 
                 return new Promise(function(resolve, reject) {
 
-                    var _load = system.app.io.data_flow(system.path(id), provider);
+                    var _load = system.app.assets.module.audio_info_from_load(system.path(id), _is_stream);
 
                     _load.then(
                         function(_audio:AudioInfo){
@@ -234,12 +234,12 @@ class Asset {
 
         //Public Static API
 
-            public static function load(_system:Assets, _id:String) : Promise {
+            public static function load(_system:Assets, _id:String, ?_is_stream:Bool=false) : Promise {
 
                 assertnull( _id );
                 assertnull( _system );
 
-                return new AssetAudio(_system, _id, null).reload();
+                return new AssetAudio(_system, _id, null).reload(_is_stream);
 
             } //load
 
@@ -252,23 +252,6 @@ class Asset {
                 return new AssetAudio(_system, _id, null).reload_from_bytes(_bytes);
 
             } //load_from_bytes
-
-                /** A default io provider, using audio_info_from_load from the asset module.
-                    Promises AudioInfo. Takes an asset path, not an asset id (use assets.path(id))*/
-            public static function provider(_app:snow.Snow, _path:String) : Promise {
-
-                return _app.assets.module.audio_info_from_load(_path);
-
-            } //provider
-
-                /** A convenience io processor, using audio_info_from_bytes, from the asset module. Promises AudioInfo */
-            public static function processor(_app:snow.Snow, _id:String, _data:Uint8Array) : Promise {
-
-                if(_data == null) return Promise.reject(Error.error("AssetAudio processor: data was null"));
-
-                return _app.assets.module.audio_info_from_bytes(_id, _data);
-
-            } //load
 
         //Internal
 

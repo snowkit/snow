@@ -63,4 +63,11 @@ class AudioSource {
 
     } //duration
 
+    public function destroy() {
+
+        app = null;
+        info = null;
+
+    } //destroy
+
 }
