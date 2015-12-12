@@ -10,4 +10,5 @@ bin/
 users/
 ndll/
 ios.project
+android.project
 *.xcuserstate
