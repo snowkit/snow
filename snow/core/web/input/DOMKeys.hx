@@ -88,6 +88,7 @@ class DOMKeys {
             case dom_asterisk:      return Key.asterisk;
             case dom_plus:          return Key.plus;
             case dom_pipe:          return Key.backslash; // pipe
+            case dom_equals:        return Key.equals;
             case dom_minus:         return Key.minus;
             case dom_leftbrace:     return Key.leftbracket; // {, same code as [ on native...
             case dom_rightbrace:    return Key.rightbracket; // }, same code as ] on native...
@@ -192,7 +193,6 @@ class DOMKeys {
     static inline var dom_asterisk       = 170;
     static inline var dom_plus           = 171;
     static inline var dom_pipe           = 172; //backslash
-    static inline var dom_minus          = 173;
     static inline var dom_leftbrace      = 174;
     static inline var dom_rightbrace     = 175;
     static inline var dom_tilde          = 176;
@@ -201,7 +201,9 @@ class DOMKeys {
     static inline var dom_volumedown     = 182;
     static inline var dom_volumeup       = 183;
 //
+    static inline var dom_equals         = 187;
     static inline var dom_comma          = 188;
+    static inline var dom_minus          = 189;
     static inline var dom_period         = 190;
     static inline var dom_slash          = 191;
     static inline var dom_backquote      = 192;
