@@ -22,13 +22,12 @@ class Audio implements snow.modules.interfaces.Audio {
     public var device : Device;
     public var context : Context;
 
-    var app : snow.Snow;
     var handle_seq = 0;
     var instances : Map<AudioHandle, ALSound>;
         /** A map of audio source to AL buffer handles */
     var buffers : Map<AudioSource, ALuint>;
 
-
+    var app : snow.Snow;
     function new(_app:snow.Snow) {
 
         app = _app;

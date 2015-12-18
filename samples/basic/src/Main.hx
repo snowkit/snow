@@ -5,7 +5,7 @@ import snow.api.Debug.*;
 import snow.api.buffers.Float32Array;
 import snow.modules.opengl.GL;
 
-#if !mobile
+#if (snow_native && !mobile)
 import snowhxt.Snowhxt;
 #end
 
@@ -67,7 +67,7 @@ class Main extends snow.App {
 
     } //config
 
-    #if !mobile var hxt : Snowhxt; #end
+    #if (snow_native && !mobile) var hxt : Snowhxt; #end
 
     override function ready() {
 
@@ -90,7 +90,7 @@ class Main extends snow.App {
             //start mid window
         render_y = (window_width - size) / 2;
 
-        #if !mobile hxt = new Snowhxt(); #end
+        #if (snow_native && !mobile) hxt = new Snowhxt(); #end
 
     } //ready
 
@@ -107,7 +107,7 @@ class Main extends snow.App {
         
         on_render_update();
 
-        #if !mobile hxt.update(); #end
+        #if (snow_native && !mobile) hxt.update(); #end
 
     } //tick
 
@@ -185,7 +185,12 @@ class Main extends snow.App {
             //unset used state
         GL.bindBuffer(GL.ARRAY_BUFFER, null);
         GL.disableVertexAttribArray(attr_pos);
+        
+        #if snow_native
         GL.useProgram(0);
+        #else
+        GL.useProgram(null);
+        #end
 
     } //draw
 
@@ -225,11 +230,13 @@ class Main extends snow.App {
             log('gamepad no clamp: $no_gamepad_deadzone');
         }
 
-        if(keycode == Key.key_v) {
-            vsync = !vsync;
-            sdl.SDL.GL_SetSwapInterval(vsync);
-            log('vsync enabled : $vsync');
-        }
+        #if snow_native
+            if(keycode == Key.key_v) {
+                vsync = !vsync;
+                sdl.SDL.GL_SetSwapInterval(vsync);
+                log('vsync enabled : $vsync');
+            }
+        #end
 
     } //onkeyup
 
@@ -266,7 +273,7 @@ class Main extends snow.App {
 
         // log('mouse up $x $y $button $timestamp $window_id');
 
-        #if !mobile
+        #if (snow_native && !mobile)
             render_x = physical_x = (x - (size/2));
             render_y = y - (size/2);
         #end

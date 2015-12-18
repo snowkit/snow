@@ -79,8 +79,10 @@ typedef UserConfig = UserConfigDef;
 private typedef RuntimeConfigInit = ApplyType<"RuntimeConfig">;
 typedef RuntimeConfig = RuntimeConfigDef;
 
+#if snow_native //:todo:
 private typedef FileHandleInit = ApplyType<"FileHandle">;
 typedef FileHandle = FileHandleDef;
+#end
 
 private typedef WindowHandleInit = ApplyType<"WindowHandle">;
 typedef WindowHandle = WindowHandleDef;

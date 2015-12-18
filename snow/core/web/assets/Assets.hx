@@ -21,14 +21,10 @@ class Assets implements snow.modules.interfaces.Assets {
 
 //module interface
 
-    var system:snow.systems.assets.Assets;
-
-    function new( _system:snow.systems.assets.Assets ) system = _system;
-    function init() {}
-    function update() {}
-    function destroy() {}
-    function onevent(event:SystemEvent) {}
-
+    var app: snow.Snow;
+    function new( _app:snow.Snow ) app = _app;
+    function onevent(event:SystemEvent):Void {}
+    function shutdown() {}
 
 //Public API
 
@@ -36,7 +32,7 @@ class Assets implements snow.modules.interfaces.Assets {
 
         public function image_info_from_load( _id:String, ?_components:Int = 4 ) : Promise {
 
-            return system.app.io.data_flow(_id, AssetImage.processor);
+            return app.io.data_flow(_id, AssetImage.processor);
 
         } //image_info_from_load
 
@@ -65,7 +61,7 @@ class Assets implements snow.modules.interfaces.Assets {
         } //image_info_from_element
 
             /** Create an image info (padded to POT) from raw already decoded image pixels */
-        public function image_info_from_pixels( _id:String, _width:Int, _height:Int, _pixels:Uint8Array ) {
+        public function image_info_from_pixels(_id:String, _width:Int, _height:Int, _pixels:Uint8Array, ?_bpp:Int=4) : ImageInfo {
 
             var width_pot = nearest_power_of_two(_width);
             var height_pot = nearest_power_of_two(_height);
@@ -131,6 +127,17 @@ class Assets implements snow.modules.interfaces.Assets {
 
         } //image_info_from_bytes
 
+//Audio
+
+    public function audio_info_from_load(_path:String, ?_is_stream:Bool=false, ?_format:AudioFormatType) : Promise {
+        //:todo:
+        return null;
+    } //audio_info_from_load
+
+    public function audio_info_from_bytes(_id:String, _bytes:Uint8Array, ?_format:AudioFormatType) : Promise {
+        //:todo:
+        return null;
+    } //audio_info_from_bytes
 
 //Internal converters
 

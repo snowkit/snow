@@ -98,7 +98,8 @@
       build : {
         flags:[
           '--macro snow.Set.assets("snow.core.web.assets.Assets")',
-          '--macro snow.Set.audio("snow.core.web.audio.Audio")',
+          '--macro snow.Set.audio("snow.core.Audio")',
+          '--macro snow.Set.runtime("snow.core.web.Runtime")',
           '--macro snow.Set.io("snow.core.web.io.IO")'
         ],
         defines : [],
