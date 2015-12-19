@@ -171,10 +171,15 @@ class Audio {
 
         module.onevent(_event);
 
-        if(_event.type == se_app_willenterbackground) {
-            suspend();
-        } else if(_event.type == se_app_willenterforeground) {
-            resume();
+        if(_event.type == se_window) {
+            var _we_type = _event.window.type;
+            switch(_we_type) {
+                case minimized:
+                    suspend();
+                case restored:
+                    resume();
+                case _:
+            }
         }
 
     } //onevent
