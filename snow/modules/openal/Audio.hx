@@ -214,7 +214,7 @@ class Audio implements snow.modules.interfaces.Audio {
     public function pause(_handle:AudioHandle) : Void {
 
         var _snd = snd_of(_handle);
-        #if debug if(_snd == null) return; #end
+        if(_snd == null) return;
 
         AL.sourcePause(_snd.alsource);
 
@@ -223,7 +223,7 @@ class Audio implements snow.modules.interfaces.Audio {
     public function unpause(_handle:AudioHandle) : Void {
 
         var _snd = snd_of(_handle);
-        #if debug if(_snd == null) return; #end
+        if(_snd == null) return;
 
         AL.sourcePlay(_snd.alsource);
 
@@ -232,7 +232,7 @@ class Audio implements snow.modules.interfaces.Audio {
     public function stop(_handle:AudioHandle) : Void {
 
         var _snd = snd_of(_handle);
-        #if debug if(_snd == null) return; #end
+        if(_snd == null) return;
 
         AL.sourceStop(_snd.alsource);
 
@@ -242,7 +242,7 @@ class Audio implements snow.modules.interfaces.Audio {
     public function volume(_handle:AudioHandle, _volume:Float) : Void {
 
         var _snd = snd_of(_handle);
-        #if debug if(_snd == null) return; #end
+        if(_snd == null) return;
 
         AL.sourcef(_snd.alsource, AL.GAIN, _volume);
 
@@ -254,7 +254,7 @@ class Audio implements snow.modules.interfaces.Audio {
     public function pan(_handle:AudioHandle, _pan:Float) : Void {
 
         var _snd = snd_of(_handle);
-        #if debug if(_snd == null) return; #end
+        if(_snd == null) return;
 
         _snd.pan = _pan;
 
@@ -266,7 +266,7 @@ class Audio implements snow.modules.interfaces.Audio {
     public function pitch(_handle:AudioHandle, _pitch:Float) : Void {
 
         var _snd = snd_of(_handle);
-        #if debug if(_snd == null) return; #end
+        if(_snd == null) return;
 
         AL.sourcef(_snd.alsource, AL.PITCH, _pitch);
 
@@ -276,7 +276,7 @@ class Audio implements snow.modules.interfaces.Audio {
     public function position(_handle:AudioHandle, _time:Float) : Void {
 
         var _snd = snd_of(_handle);
-        #if debug if(_snd == null) return; #end
+        if(_snd == null) return;
 
         _snd.position(_time);
 
@@ -286,7 +286,7 @@ class Audio implements snow.modules.interfaces.Audio {
     public function volume_of(_handle:AudioHandle) : Float {
 
         var _snd = snd_of(_handle);
-        #if debug if(_snd == null) return 0.0; #end
+        if(_snd == null) return 0.0;
 
         return AL.getSourcef(_snd.alsource, AL.GAIN);
 
@@ -296,7 +296,7 @@ class Audio implements snow.modules.interfaces.Audio {
     public function pan_of(_handle:AudioHandle) : Float {
 
         var _snd = snd_of(_handle);
-        #if debug if(_snd == null) return 0.0; #end
+        if(_snd == null) return 0.0;
 
         return _snd.pan;
 
@@ -306,7 +306,7 @@ class Audio implements snow.modules.interfaces.Audio {
     public function pitch_of(_handle:AudioHandle) : Float {
 
         var _snd = snd_of(_handle);
-        #if debug if(_snd == null) return 0.0; #end
+        if(_snd == null) return 0.0;
 
         return AL.getSourcef(_snd.alsource, AL.PITCH);
 
@@ -316,7 +316,7 @@ class Audio implements snow.modules.interfaces.Audio {
     public function position_of(_handle:AudioHandle) : Float {
 
         var _snd = snd_of(_handle);
-        #if debug if(_snd == null) return 0.0; #end
+        if(_snd == null) return 0.0;
 
         return _snd.position_of();
 
@@ -341,7 +341,7 @@ class Audio implements snow.modules.interfaces.Audio {
     public function loop_of(_handle:AudioHandle) : Bool {
 
         var _snd = snd_of(_handle);
-        #if debug if(_snd == null) return false; #end
+        if(_snd == null) return false;
 
         return _snd.looping;
 
