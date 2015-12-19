@@ -138,11 +138,14 @@ class ALStream extends ALSound {
 
             //try to read the data into the buffer, the -1 means "from current"
         var _read = instance.data_get(buffer_data, -1, source.stream_buffer_length, data_get_result);
+        var _amount = _read[0];
 
         // log('bufferData / $_buffer / format:$alformat / freq:${source.info.data.rate} / size: ${_read[0]}');
         // err('pre fill buffer ${_buffer}');
 
-        AL.bufferData(_buffer, alformat, source.info.data.rate, buffer_bytes, buffer_data.byteOffset, _read[0]);
+        if(_amount > 0) {
+            AL.bufferData(_buffer, alformat, source.info.data.rate, buffer_bytes, buffer_data.byteOffset, _amount);
+        }
 
         err('post fill buffer ${_buffer} read: $_read');
 
