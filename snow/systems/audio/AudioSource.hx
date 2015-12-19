@@ -18,19 +18,30 @@ class AudioSource {
             For most cases this can be left alone. */
     public var stream_buffer_count : Int = 2;
 
+        //local list of instances spawned from this source.
+        //used when destroying the source, to take instances with it.
+    var instances : Array<AudioInstance>;
+
     public function new(_app:snow.Snow, _info:AudioInfo, _is_stream:Bool=false) {
-        
+
         app = _app;
         info = _info;
         is_stream = _is_stream;
 
+        instances = [];
+
     } //new
 
-        /** Called by the audio system to obtain a new instance of this source.
-            By default it asks the Audio module to determine the source type. */
+        /** Called by the audio system to obtain a new instance of this source. */
     public function instance(_handle:AudioHandle) : AudioInstance {
 
-        return new AudioInstance(this, _handle);
+        var _instance = new AudioInstance(this, _handle);
+
+        if(instances.indexOf(_instance) == -1) {
+            instances.push(_instance);
+        }
+
+        return _instance;
 
     } //instance
 
@@ -65,9 +76,25 @@ class AudioSource {
 
     public function destroy() {
 
+        var c = instances.length;
+        var i = 0;
+        while(i < c) {
+            var _instance = instances.pop();
+            _instance.destroy();
+            _instance = null;
+            i++;
+        }
+
         app = null;
         info = null;
 
     } //destroy
+
+    @:allow(snow.systems.audio.AudioInstance)
+    function instance_killed(_instance:AudioInstance) {
+
+        instances.remove(_instance);
+
+    }
 
 }

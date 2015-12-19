@@ -55,6 +55,12 @@ class Audio implements snow.modules.interfaces.Audio {
 
     function onevent(event:SystemEvent) {
 
+        if(event.type == se_ready) {
+
+            app.audio.on(ae_destroyed, on_instance_destroyed);
+
+        } //ready
+
         if(event.type == se_tick) {
             if(app.audio.active) {
                 for(_handle in instances.keys()) {
@@ -70,10 +76,8 @@ class Audio implements snow.modules.interfaces.Audio {
                     }
 
                     if(_snd.instance.has_ended()) {
-                        instances.remove(_handle);
                         app.audio.emit(ae_end, _handle);
-                        _snd.destroy();
-                        _snd = null;
+                        _snd.instance.destroy();
                     }
 
                 }
@@ -81,6 +85,21 @@ class Audio implements snow.modules.interfaces.Audio {
         }
 
     } //onevent
+
+    function on_instance_destroyed(_handle:AudioHandle) {
+
+        // log('instance was destroyed: $_handle');
+
+        var _snd = instances.get(_handle);
+
+        if(_snd != null) {
+            _snd.destroy();
+            _snd = null;
+        }
+
+        instances.remove(_handle);
+
+    } //_handle
 
     function shutdown() {
 
