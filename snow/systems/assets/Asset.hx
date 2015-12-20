@@ -445,9 +445,13 @@ class Asset {
 
                     var _data_json : Dynamic = null;
 
-                    try { _data_json = haxe.Json.parse(_data.toBytes().toString()); }
-
-                    catch(e:Dynamic) return reject(Error.parse(e));
+                    try { 
+                        _data_json = haxe.Json.parse(_data.toBytes().toString()); 
+                        _data = null;
+                    } catch(e:Dynamic) {
+                        _data = null;
+                        return reject(Error.parse(e));
+                    }
 
                     return resolve(_data_json);
 
