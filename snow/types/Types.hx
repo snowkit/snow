@@ -162,6 +162,17 @@ typedef AudioHandle = Int;
     var wav      = 3;
     var pcm      = 4;
 
+    inline function toString() {
+        return switch(this) {
+            case unknown:  'unknown';
+            case custom:  'custom';
+            case ogg:  'ogg';
+            case wav:  'wav';
+            case pcm:  'pcm';
+            case _: '$this';
+        }
+    }
+
 } //AudioFormatType
 
 
@@ -217,7 +228,7 @@ typedef AudioInfo = {
         /** file source id */
     @:optional var id : String;
         /** format. Use AudioFormatType */
-    @:optional var format : Int;
+    @:optional var format : AudioFormatType;
         /** Whether or not this relates to streaming purposes, this a convenience only from load apis */
     @:optional var is_stream : Bool;
         /** the platform audio handle for later manipulation */
