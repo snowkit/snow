@@ -1,5 +1,6 @@
 package snow.systems.audio;
 
+import snow.api.Debug.*;
 import snow.types.Types.AudioHandle;
 import snow.types.Types.AudioInfo;
 import snow.systems.audio.AudioInstance;
@@ -78,6 +79,11 @@ class AudioSource {
 
         var c = instances.length;
         var i = 0;
+
+        log('destroy ${info.id}, stream=${is_stream}, instances=$c');
+
+        app.audio.emit(ae_destroyed_source, this);
+
         while(i < c) {
             var _instance = instances.pop();
             _instance.destroy();

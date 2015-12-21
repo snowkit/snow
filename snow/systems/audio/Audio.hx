@@ -32,21 +32,24 @@ class Audio {
 
 //Public API
 
-    public function on(_event:AudioEvent, _handler:AudioHandle->Void) : Void {
+    @:generic
+    public function on<T>(_event:AudioEvent, _handler:T->Void) : Void {
     
         emitter.on(_event, _handler);
     
     } //on
     
-    public function off(_event:AudioEvent, _handler:AudioHandle->Void) : Bool {
+    @:generic
+    public function off<T>(_event:AudioEvent, _handler:T->Void) : Bool {
     
         return emitter.off(_event, _handler);
     
     } //off
+        
+    @:generic
+    public function emit<T>(_event:AudioEvent, _data:T) : Void {
     
-    public function emit(_event:AudioEvent, _handle:AudioHandle) : Void {
-    
-        emitter.emit(_event, _handle);
+        emitter.emit(_event, _data);
     
     } //emit
     

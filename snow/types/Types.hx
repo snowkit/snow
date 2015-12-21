@@ -180,6 +180,7 @@ typedef AudioHandle = Int;
     from Int to Int {
         var ae_end = 0;
         var ae_destroyed = 1;
+        var ae_destroyed_source = 2;
 } //AudioEvent
 
 @:enum abstract AudioState(Int) 
