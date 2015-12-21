@@ -81,7 +81,13 @@ class Asset {
             } //reload
 
             override public function destroy() {
+
+                if(image.pixels != null) {
+                    image.pixels.buffer = null;
+                    image.pixels = null;
+                }
                 image = null;
+
             }
 
                 /** Reload the asset from bytes */
@@ -211,6 +217,13 @@ class Asset {
             } //reload
 
             override public function destroy() {
+                if(audio.data != null) {
+                    if(audio.data.samples != null) {
+                        audio.data.samples.buffer = null;
+                        audio.data.samples = null;
+                    }
+                    audio.data = null;
+                }
                 audio = null;
             }
 
@@ -299,6 +312,7 @@ class Asset {
             } //reload
 
             override public function destroy() {
+                if(bytes != null) bytes.buffer = null;
                 bytes = null;
             }
 
@@ -375,7 +389,11 @@ class Asset {
 
                 if(_data == null) return Promise.reject(Error.error("AssetText processor: data was null"));
 
-                return Promise.resolve(_data.toBytes().toString());
+                var _string = _data.toBytes().toString();
+                    _data.buffer = null;
+                    _data = null;
+
+                return Promise.resolve(_string);
 
             } //processor
 
