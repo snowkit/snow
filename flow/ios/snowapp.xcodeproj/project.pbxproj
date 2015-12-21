@@ -191,6 +191,7 @@
 			);
 			inputPaths = (
 			);
+			name = "flow build";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
