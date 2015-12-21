@@ -21,7 +21,6 @@ class ALStream extends ALSound {
 
         //internal reference to the bytesdata to avoid converting each time
     var buffer_bytes : haxe.io.BytesData;
-    var still_streaming = true;
     var duration = 0.0;
 
     public function new(_module:Audio, _source:snow.systems.audio.AudioSource, _instance:AudioInstance) {
@@ -48,11 +47,40 @@ class ALStream extends ALSound {
 
         init_queue();
 
-        still_streaming = true;
-
     } //init
 
 //ALSound
+
+    override function destroy() {
+
+        trace('destroy ' + source.info.id);
+
+        err('pre source stop');
+
+        AL.sourceStop(alsource);
+
+        err('pre flush queue');
+
+        flush_queue();
+
+        err('post flush queue');
+
+            //order is important here, destroy source first
+        super.destroy();
+
+        while(buffers.length > 0) {
+            var b = buffers.pop();
+            AL.deleteBuffer(b);
+            err('delete buffer ' + b);
+        }
+
+        buffers = null;
+        buffer_bytes = null;
+        buffer_data.buffer = null;
+        buffer_data = null;
+
+
+    } //destroy
 
     override function position_of() {
 
@@ -141,7 +169,7 @@ class ALStream extends ALSound {
         var _amount = _read[0];
 
         // log('bufferData / $_buffer / format:$alformat / freq:${source.info.data.rate} / size: ${_read[0]}');
-        // err('pre fill buffer ${_buffer}');
+        err('pre fill buffer ${_buffer}');
 
         if(_amount > 0) {
             AL.bufferData(_buffer, alformat, source.info.data.rate, buffer_bytes, buffer_data.byteOffset, _amount);
@@ -160,25 +188,24 @@ class ALStream extends ALSound {
         instance.tick();
 
         if(!state_is(AL.PLAYING)) {
-            // log(state_str());
             return;
         }
 
-        still_streaming = true;
+        var still_streaming = true;
 
-        // log('${state_str()} ${position_of()}/$duration | ${source.seconds_to_bytes(position_of())}/${source.info.data.length_pcm} | ${buffers_left} ');
+        // log('alsource:$alsource ${state_str()} ${position_of()}/$duration | ${source.seconds_to_bytes(position_of())}/${source.info.data.length_pcm} | ${buffers_left} ');
 
         var processed_buffers = AL.getSourcei(alsource, AL.BUFFERS_PROCESSED);
+
+        err('query processed buffers $processed_buffers');
 
             //disallow large or invalid values since we are using a while loop
         if(processed_buffers > source.stream_buffer_count) processed_buffers = source.stream_buffer_count;
         while(processed_buffers > 0) {
 
-            // err('tick $processed_buffers');
-
             var _buffer:ALuint = AL.sourceUnqueueBuffer(alsource);
 
-            // err('sourceUnqueueBuffer $_buffer');
+            err('sourceUnqueueBuffer $_buffer');
 
             var _buffer_size = AL.getBufferi(_buffer, AL.SIZE);
 

@@ -80,8 +80,17 @@ class ALSound {
 
     public function destroy() {
 
+        log('destroy source');
+
         AL.sourceStop(alsource);
+
+        err('stop source');
+
         AL.deleteSource(alsource);
+
+        err('delete source');
+
+        // alsource = 0;
 
     } //destroy
 
@@ -104,15 +113,8 @@ class ALSound {
         return _source;
     }
 
-    function err(reason:String) {
-        var _err = AL.getError();
-        if(_err != AL.NO_ERROR) {
-            var _s = '$_err / $reason: failed with ' + ALError.desc(_err);
-            trace(_s);
-            throw _s;
-        } else {
-            _debug('$reason / no error');
-        }
+    inline function err(reason:String) {
+        return module.err(reason);
     }
 
     function source_format() {

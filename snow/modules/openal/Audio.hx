@@ -58,6 +58,7 @@ class Audio implements snow.modules.interfaces.Audio {
         if(event.type == se_ready) {
 
             app.audio.on(ae_destroyed, on_instance_destroyed);
+            app.audio.on(ae_destroyed_source, on_source_destroyed);
 
         } //ready
 
@@ -76,6 +77,7 @@ class Audio implements snow.modules.interfaces.Audio {
                     }
 
                     if(_snd.instance.has_ended()) {
+                        // log('sound ended, destroy ' + _snd.source.info.id);
                         app.audio.emit(ae_end, _handle);
                         _snd.instance.destroy();
                     }
@@ -86,13 +88,25 @@ class Audio implements snow.modules.interfaces.Audio {
 
     } //onevent
 
+    function on_source_destroyed(_source:AudioSource) {
+
+        log('source being destroyed: ' + _source.info.id);
+        var _buffer = buffers.get(_source);
+        if(_buffer != null) {
+            log('   destroying buffer ' + _buffer);
+            AL.deleteBuffer(_buffer);
+        }
+
+    } //
+
     function on_instance_destroyed(_handle:AudioHandle) {
 
-        // log('instance was destroyed: $_handle');
+        log('instance was destroyed: $_handle');
 
         var _snd = instances.get(_handle);
 
         if(_snd != null) {
+            log('    snd: ' + _snd.source.info.id);
             _snd.destroy();
             _snd = null;
         }
@@ -189,6 +203,9 @@ class Audio implements snow.modules.interfaces.Audio {
             AL.sourcePlay(_snd.alsource);
         }
 
+        log('play ${_source.info.id}, handle=$_handle');
+        err('play');
+
         handle_seq++;
 
         return _handle;
@@ -207,6 +224,10 @@ class Audio implements snow.modules.interfaces.Audio {
             AL.sourcei(_snd.alsource, AL.LOOPING, AL.TRUE);
         }
 
+        log('loop ${_source.info.id}, handle=$_handle');
+
+        err('loop');
+
         return _handle;
 
     } //loop
@@ -216,7 +237,11 @@ class Audio implements snow.modules.interfaces.Audio {
         var _snd = snd_of(_handle);
         if(_snd == null) return;
 
+        log('pause handle=$_handle, ' + _snd.source.info.id);
+
         AL.sourcePause(_snd.alsource);
+
+        err('pause');
 
     } //pause
 
@@ -225,7 +250,11 @@ class Audio implements snow.modules.interfaces.Audio {
         var _snd = snd_of(_handle);
         if(_snd == null) return;
 
+        log('unpause handle=$_handle, ' + _snd.source.info.id);
+
         AL.sourcePlay(_snd.alsource);
+
+        err('unpause');
 
     } //unpause
 
@@ -234,7 +263,11 @@ class Audio implements snow.modules.interfaces.Audio {
         var _snd = snd_of(_handle);
         if(_snd == null) return;
 
+        log('stop handle=$_handle, ' + _snd.source.info.id);
+
         AL.sourceStop(_snd.alsource);
+
+        err('stop');
 
     } //stop
 
@@ -243,6 +276,8 @@ class Audio implements snow.modules.interfaces.Audio {
 
         var _snd = snd_of(_handle);
         if(_snd == null) return;
+
+        log('volume=$_volume handle=$_handle, ' + _snd.source.info.id);
 
         AL.sourcef(_snd.alsource, AL.GAIN, _volume);
 
@@ -256,6 +291,8 @@ class Audio implements snow.modules.interfaces.Audio {
         var _snd = snd_of(_handle);
         if(_snd == null) return;
 
+        log('pan=$_pan handle=$_handle, ' + _snd.source.info.id);
+
         _snd.pan = _pan;
 
         AL.source3f(_snd.alsource, AL.POSITION, Math.cos((_pan - 1) * (half_pi)), 0, Math.sin((_pan + 1) * (half_pi)));
@@ -268,6 +305,8 @@ class Audio implements snow.modules.interfaces.Audio {
         var _snd = snd_of(_handle);
         if(_snd == null) return;
 
+        log('pitch=$_pitch handle=$_handle, ' + _snd.source.info.id);
+
         AL.sourcef(_snd.alsource, AL.PITCH, _pitch);
 
     } //pitch
@@ -277,6 +316,8 @@ class Audio implements snow.modules.interfaces.Audio {
 
         var _snd = snd_of(_handle);
         if(_snd == null) return;
+
+        log('position=$_time handle=$_handle, ' + _snd.source.info.id);
 
         _snd.position(_time);
 
@@ -359,6 +400,16 @@ class Audio implements snow.modules.interfaces.Audio {
 
 //internal
 
+    inline function err(reason:String) {
+        var _err = AL.getError();
+        if(_err != AL.NO_ERROR) {
+            var _s = '$_err / $reason: failed with ' + ALError.desc(_err);
+            trace(_s);
+            throw _s;
+        } else {
+            _debug('$reason / no error');
+        }
+    }
 
 } //Audio
 
