@@ -277,7 +277,7 @@ class Audio implements snow.modules.interfaces.Audio {
         var _snd = snd_of(_handle);
         if(_snd == null) return;
 
-        log('volume=$_volume handle=$_handle, ' + _snd.source.info.id);
+        _debug('volume=$_volume handle=$_handle, ' + _snd.source.info.id);
 
         AL.sourcef(_snd.alsource, AL.GAIN, _volume);
 
@@ -291,7 +291,7 @@ class Audio implements snow.modules.interfaces.Audio {
         var _snd = snd_of(_handle);
         if(_snd == null) return;
 
-        log('pan=$_pan handle=$_handle, ' + _snd.source.info.id);
+        _debug('pan=$_pan handle=$_handle, ' + _snd.source.info.id);
 
         _snd.pan = _pan;
 
@@ -305,7 +305,7 @@ class Audio implements snow.modules.interfaces.Audio {
         var _snd = snd_of(_handle);
         if(_snd == null) return;
 
-        log('pitch=$_pitch handle=$_handle, ' + _snd.source.info.id);
+        _debug('pitch=$_pitch handle=$_handle, ' + _snd.source.info.id);
 
         AL.sourcef(_snd.alsource, AL.PITCH, _pitch);
 
@@ -317,7 +317,7 @@ class Audio implements snow.modules.interfaces.Audio {
         var _snd = snd_of(_handle);
         if(_snd == null) return;
 
-        log('position=$_time handle=$_handle, ' + _snd.source.info.id);
+        _debug('position=$_time handle=$_handle, ' + _snd.source.info.id);
 
         _snd.position(_time);
 
