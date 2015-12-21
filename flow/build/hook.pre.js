@@ -3,23 +3,55 @@ var   path = require('path')
 
 
 var mobile = {};
+var desktop = {};
 
 exports.hook = function(flow, done) {
 
-    var ios_or_android = (flow.target == 'ios' || flow.target == 'android');
-    if(ios_or_android) {
-        var force_generate = flow.flags['generate-project'];
-        if(flow.target == 'ios') {
-            return mobile.ios(flow, done, force_generate);
-        } else if(flow.target == 'android') {
-            return mobile.android(flow, done, force_generate);
-        }
+    var generate_project = flow.flags['generate-project'];
+
+    switch(flow.target) {
+        case 'ios': {
+            return mobile.ios(flow, done, generate_project);
+        } break;
+
+        case 'android': {
+            return mobile.android(flow, done, generate_project);
+        } break;
+
+        case 'mac': {
+            return desktop.mac(flow, done, generate_project);
+        } break;
+
     }
 
     done();
 
 } //hook
 
+desktop.mac = function(flow, done, generate) {
+
+    // if(!generate) return;
+
+    var _project_source = path.resolve(__dirname, '../mac_project/');
+    var _project_path = path.join(flow.project.root, flow.project.paths.mac.project);
+    var _app_name = flow.project.source.project.app.name;
+    
+    if(generate) {
+        flow.log(2, 'snow - checking mac project path... `%s`', _project_path);
+        flow.log(2, 'snow - mac project - requested, creating...');
+        flow.log(3, '    - creating from `%s`', _project_source);
+        
+        flow.files.template_path('project', path.join(_project_source,'snowapp.xcodeproj'), path.join(_project_path,_app_name+'.mac.xcodeproj'));
+        flow.files.template_path('project', path.join(_project_source,'project'), path.join(_project_path,'project'));
+
+        flow.log(2, 'snow - mac project - created at `%s`', _project_path);
+        done(null, true);
+    } else {
+        flow.log(3, 'snow - mac project - exists at `%s`', _project_path);
+        done();
+    }
+
+}
 
 mobile.ios = function(flow, done, force_generate) {
 
@@ -34,7 +66,7 @@ mobile.ios = function(flow, done, force_generate) {
         flow.log(2, 'snow - ios project - required, creating...');
         flow.log(3, '    - creating from `%s`', _project_source);
         
-        flow.files.template_path('project', path.join(_project_source,'snowapp.xcodeproj'), path.join(_project_path,_app_name+'.xcodeproj'));
+        flow.files.template_path('project', path.join(_project_source,'snowapp.xcodeproj'), path.join(_project_path,_app_name+'.ios.xcodeproj'));
         flow.files.template_path('project', path.join(_project_source,'project'), path.join(_project_path,'project'));
 
         flow.log(2, 'snow - ios project - created at `%s`', _project_path);

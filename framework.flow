@@ -70,7 +70,7 @@
 
   if:{
 
-    "mac && !flow_build_command_line":{
+    "mac && !xcode-build":{
       files : {
         plists : { path:'flow/mac/ => ../', template:'project', not_listed:true }
       },

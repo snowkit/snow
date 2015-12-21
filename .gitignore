@@ -12,4 +12,5 @@ dump/
 ndll/
 ios.project
 android.project
+mac.project
 *.xcuserstate
