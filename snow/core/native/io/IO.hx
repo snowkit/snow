@@ -219,8 +219,9 @@ class IO implements snow.modules.interfaces.IO {
         var _file = file_handle(_path, _binary ? 'rb' : 'r');
 
         if(_file == null) return null;
-
         var _size = file_size(_file);
+        if(_size == 0) return null;
+        
         var _dest = new Uint8Array(_size);
         var _read = file_read(_file, _dest, _dest.length, 1);
 
