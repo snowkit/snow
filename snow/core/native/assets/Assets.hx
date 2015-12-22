@@ -57,7 +57,11 @@ class Assets implements snow.modules.interfaces.Assets {
         var _size = app.io.module.file_size(_handle);
         var _file = new Uint8Array(_size);
 
-        app.io.module.file_read(_handle, _file, _size, 1);
+        if(_size > 0) {
+            app.io.module.file_read(_handle, _file, _size, 1);
+        }
+
+        app.io.module.file_close(_handle);
 
         return image_info_from_bytes_direct(_path, _file, _components);
 
@@ -214,6 +218,17 @@ class Assets implements snow.modules.interfaces.Assets {
 
     } //audio_seek_source
 
+    public function audio_destroy_source(_info:AudioInfo) : Void {
+
+        return switch(_info.format) {
+            case wav: WAV.destroy(app, _info);
+            case ogg: OGG.destroy(app, _info);
+            case pcm: PCM.destroy(app, _info);
+            case _:
+        }
+
+    } //audio_destroy_source
+
     public function audio_load_portion(_info:AudioInfo, _into:Uint8Array, _start:Int, _len:Int, _into_result:Array<Int>) : Array<Int> {
 
         return switch(_info.format) {
@@ -324,6 +339,17 @@ private class WAV {
         return false;
 
     } //seek
+
+    static function destroy(app:snow.Snow, _info:AudioInfo) {
+        if(_info.handle != null) {
+
+            var _wav:WavHandle = _info.handle;
+            if(_wav.handle != null) {
+                app.io.module.file_close(_wav.handle);
+            }
+
+        }
+    }
 
 
  //helpers
@@ -581,6 +607,18 @@ private class PCM {
 
     } //portion
 
+    static function destroy(app:snow.Snow, _info:AudioInfo) {
+
+        if(_info.handle != null) {
+
+            var _pcm:PCMHandle = _info.handle;
+            if(_pcm.handle != null) {
+                app.io.module.file_close(_pcm.handle);
+            }
+
+        }
+    }
+
 
 } //PCM
 
@@ -801,6 +839,20 @@ private class OGG {
 
     } //seek
 
+    static function destroy(app:snow.Snow, _info:AudioInfo) {
+
+        if(_info.handle != null) {
+
+            var _ogg:OggHandle = _info.handle;
+            Ogg.ov_clear(_ogg.file);
+
+            if(_ogg.handle != null) {
+                app.io.module.file_close(_ogg.handle);
+            }
+
+        }
+    }
+
  //helpers
 
         //converts return code to string
@@ -872,7 +924,9 @@ private class OGG {
 
         // trace('ogg_close');
 
-        _ogg.app.io.module.file_close(_ogg.handle);
+        if(_ogg.handle != null) {
+            _ogg.app.io.module.file_close(_ogg.handle);
+        }
 
         _ogg.file = null;
         _ogg.handle = null;
