@@ -74,7 +74,7 @@ package snow.api.buffers;
 
         @:allow(snow.api.buffers)
         #if !snow_no_inline_buffers inline #end
-        function initBuffer( in_buffer:ArrayBuffer, ?in_byteOffset:Int = 0, len:Null<Int> = null ) {
+        function initBuffer( in_buffer:ArrayBuffer, ?in_byteOffset:Int = 0, len:Int = -1 ) {
 
             if(in_byteOffset < 0) throw TAError.RangeError;
             if(in_byteOffset % bytesPerElement != 0) throw TAError.RangeError;
@@ -83,7 +83,7 @@ package snow.api.buffers;
             var elementSize = bytesPerElement;
             var newByteLength = bufferByteLength;
 
-            if( len == null ) {
+            if( len == -1 ) {
 
                 newByteLength = bufferByteLength - in_byteOffset;
 
