@@ -43,7 +43,7 @@ class ALSound {
 
             var _data = source.info.data;
 
-            log(' > new buffer ${source.info.id} / ${alformat}');
+            _debug(' > new buffer ${source.info.id} / ${alformat}');
 
             _buffer = AL.genBuffer();
 
@@ -79,8 +79,6 @@ class ALSound {
     } //position_of
 
     public function destroy() {
-
-        log('destroy source');
 
         AL.sourceStop(alsource);
 

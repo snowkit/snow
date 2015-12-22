@@ -38,7 +38,9 @@ class ALStream extends ALSound {
         buffers = [for (i in 0...source.stream_buffer_count) 0];
         buffers = AL.genBuffers(source.stream_buffer_count, buffers);
         buffer_data = new Uint8Array(source.stream_buffer_length);
-        buffer_bytes = buffer_data.toBytes().getData();
+        var _bytes = buffer_data.toBytes();
+        buffer_bytes = _bytes.getData();
+        _bytes = null;
 
         err('generated ${source.stream_buffer_count} buffers');
         log(buffers);
@@ -53,7 +55,7 @@ class ALStream extends ALSound {
 
     override function destroy() {
 
-        trace('destroy ' + source.info.id);
+        _debug('destroy ' + source.info.id);
 
         err('pre source stop');
 
@@ -151,7 +153,7 @@ class ALStream extends ALSound {
 
         var queued = AL.getSourcei(alsource, AL.BUFFERS_QUEUED);
 
-        log('flushing queued buffers ' + queued);
+        _debug('flushing queued buffers ' + queued);
 
         for(i in 0 ... queued) {
             AL.sourceUnqueueBuffer(alsource);
