@@ -74,7 +74,7 @@ package snow.api.buffers;
             ?elements:Int,
             ?array:Array<T>,
             ?view:ArrayBufferView,
-            ?buffer:ArrayBuffer, ?byteoffset:Int = 0, ?len:Int=-1
+            ?buffer:ArrayBuffer, ?byteoffset:Int = 0, ?len:Null<Int>
         ) {
 
             if(elements != null) {

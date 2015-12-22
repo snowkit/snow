@@ -38,9 +38,7 @@ class ALStream extends ALSound {
         buffers = [for (i in 0...source.stream_buffer_count) 0];
         buffers = AL.genBuffers(source.stream_buffer_count, buffers);
         buffer_data = new Uint8Array(source.stream_buffer_length);
-        var _bytes = buffer_data.toBytes();
-        buffer_bytes = _bytes.getData();
-        _bytes = null;
+        buffer_bytes = buffer_data.toBytes().getData();
 
         err('generated ${source.stream_buffer_count} buffers');
         log(buffers);
@@ -80,6 +78,7 @@ class ALStream extends ALSound {
         buffer_bytes = null;
         buffer_data.buffer = null;
         buffer_data = null;
+
 
     } //destroy
 
