@@ -21,7 +21,7 @@ class Assets implements snow.modules.interfaces.Assets {
     function shutdown() {}
 
 //images
-
+    
     public function image_info_from_load(_path:String, ?_components:Int = 4) : Promise {
 
         assertnull(_path);
@@ -31,7 +31,8 @@ class Assets implements snow.modules.interfaces.Assets {
             var _image = image_info_from_load_direct(_path, _components);
 
             if(_image == null) {
-                reject(Error.error('failed to load `$_path` as image. reason: `${stb.Image.failure_reason()}`'));
+                var reason = load_direct_err == 1 ? 'invalid file handle, file not found?' : stb.Image.failure_reason();
+                reject(Error.error('failed to load `$_path` as image. reason: `$reason`'));
             } else {
                 resolve(_image);
             }
@@ -40,12 +41,18 @@ class Assets implements snow.modules.interfaces.Assets {
 
     } //image_info_from_load
 
+    var load_direct_err = 0;
     public function image_info_from_load_direct(_path:String, ?_components:Int = 4) : ImageInfo {
 
         assertnull(_path);
 
+        load_direct_err = 0;
+
         var _handle = app.io.module.file_handle(_path, 'rb');
-        if(_handle == null) return null;
+        if(_handle == null) {
+            load_direct_err = 1;
+            return null;
+        }
 
         var _size = app.io.module.file_size(_handle);
         var _file = new Uint8Array(_size);
