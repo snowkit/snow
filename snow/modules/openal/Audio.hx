@@ -90,10 +90,10 @@ class Audio implements snow.modules.interfaces.Audio {
 
     function on_source_destroyed(_source:AudioSource) {
 
-        log('source being destroyed: ' + _source.info.id);
+        _debug('source being destroyed: ' + _source.info.id);
         var _buffer = buffers.get(_source);
         if(_buffer != null) {
-            log('   destroying buffer ' + _buffer);
+            _debug('   destroying buffer ' + _buffer);
             AL.deleteBuffer(_buffer);
         }
 
@@ -101,12 +101,12 @@ class Audio implements snow.modules.interfaces.Audio {
 
     function on_instance_destroyed(_handle:AudioHandle) {
 
-        log('instance was destroyed: $_handle');
+        _debug('instance was destroyed: $_handle');
 
         var _snd = instances.get(_handle);
 
         if(_snd != null) {
-            log('    snd: ' + _snd.source.info.id);
+            _debug('    snd: ' + _snd.source.info.id);
             _snd.destroy();
             _snd = null;
         }
@@ -203,7 +203,7 @@ class Audio implements snow.modules.interfaces.Audio {
             AL.sourcePlay(_snd.alsource);
         }
 
-        log('play ${_source.info.id}, handle=$_handle');
+        _debug('play ${_source.info.id}, handle=$_handle');
         err('play');
 
         handle_seq++;
@@ -224,7 +224,7 @@ class Audio implements snow.modules.interfaces.Audio {
             AL.sourcei(_snd.alsource, AL.LOOPING, AL.TRUE);
         }
 
-        log('loop ${_source.info.id}, handle=$_handle');
+        _debug('loop ${_source.info.id}, handle=$_handle');
 
         err('loop');
 
@@ -237,7 +237,7 @@ class Audio implements snow.modules.interfaces.Audio {
         var _snd = snd_of(_handle);
         if(_snd == null) return;
 
-        log('pause handle=$_handle, ' + _snd.source.info.id);
+        _debug('pause handle=$_handle, ' + _snd.source.info.id);
 
         AL.sourcePause(_snd.alsource);
 
@@ -250,7 +250,7 @@ class Audio implements snow.modules.interfaces.Audio {
         var _snd = snd_of(_handle);
         if(_snd == null) return;
 
-        log('unpause handle=$_handle, ' + _snd.source.info.id);
+        _debug('unpause handle=$_handle, ' + _snd.source.info.id);
 
         AL.sourcePlay(_snd.alsource);
 
@@ -263,7 +263,7 @@ class Audio implements snow.modules.interfaces.Audio {
         var _snd = snd_of(_handle);
         if(_snd == null) return;
 
-        log('stop handle=$_handle, ' + _snd.source.info.id);
+        _debug('stop handle=$_handle, ' + _snd.source.info.id);
 
         AL.sourceStop(_snd.alsource);
 
