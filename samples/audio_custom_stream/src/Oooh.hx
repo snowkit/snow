@@ -8,7 +8,8 @@ class OoohSource extends AudioSource {
 
     public function new(app:snow.Snow) {
 
-        super(app, {
+        super(app, new AudioInfo({
+            app: app,
             id : 'oooh',
             data : {
                 length_pcm: 0,
@@ -16,7 +17,7 @@ class OoohSource extends AudioSource {
                 rate: 44100,
                 bits_per_sample: 16
             }
-        }, true);
+        }), true);
 
             //tenth of a second
         stream_buffer_length = Std.int(44100/10);
