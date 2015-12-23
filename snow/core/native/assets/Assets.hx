@@ -207,39 +207,6 @@ class Assets implements snow.modules.interfaces.Assets {
 
     } //audio_info_from_bytes_direct
 
-    public function audio_seek_source(_info:AudioInfo, _to:Int) : Bool {
-
-        return switch(_info.format) {
-            case wav: WAV.seek(app, _info, _to);
-            case ogg: OGG.seek(app, _info, _to);
-            case pcm: PCM.seek(app, _info, _to);
-            case _:   false;
-        }
-
-    } //audio_seek_source
-
-    public function audio_destroy_source(_info:AudioInfo) : Void {
-
-        return switch(_info.format) {
-            case wav: WAV.destroy(app, _info);
-            case ogg: OGG.destroy(app, _info);
-            case pcm: PCM.destroy(app, _info);
-            case _:
-        }
-
-    } //audio_destroy_source
-
-    public function audio_load_portion(_info:AudioInfo, _into:Uint8Array, _start:Int, _len:Int, _into_result:Array<Int>) : Array<Int> {
-
-        return switch(_info.format) {
-            case wav: WAV.portion(app, _info, _into, _start, _len, _into_result);
-            case ogg: OGG.portion(app, _info, _into, _start, _len, _into_result);
-            case pcm: PCM.portion(app, _info, _into, _start, _len, _into_result);
-            case _:   _into_result[0]=0; _into_result[1]=1; _into_result;
-        }
-
-    } //audio_load_portion
-
 //helpers
 
     function audio_format_from_ext(_path:String) : AudioFormatType {
@@ -260,6 +227,83 @@ class Assets implements snow.modules.interfaces.Assets {
 private typedef WavChunk = { id:String, offset:Int, data:Uint8Array }
 private typedef WavHandle = { handle:FileHandle, offset:Int }
 
+private class AudioInfoWAV extends AudioInfo {
+
+    public var data_offset : Int;
+    public var handle : FileHandle;
+
+    inline public function new(_handle:FileHandle, _offset:Int, _opt:AudioInfoOptions) {
+
+        handle = _handle;
+        data_offset = _offset;
+
+        super(_opt);
+
+    } //new
+
+    override public function destroy() {
+
+        if(handle != null) {
+            app.io.module.file_close(handle);
+        }
+
+        handle = null;
+
+    } //destroy
+
+    override public function seek(_to:Int) : Bool {
+
+        var _result = app.io.module.file_seek(handle, data_offset + _to, FileSeek.set);
+
+        return _result == 0;
+
+    } //seek
+
+    override public function portion(_into:Uint8Array, _start:Int, _len:Int, _into_result:Array<Int>) : Array<Int> {
+
+        if(_start != -1) {
+            seek(_start+data_offset);
+        }
+
+        var _complete = false;
+        var _read_len = _len;
+        var _current_pos = app.io.module.file_tell(handle) - data_offset;
+        var _distance_to_end = data.length_pcm - _current_pos;
+
+        if(_distance_to_end <= _read_len) {
+            _read_len = _distance_to_end;
+            _complete = true;
+        }
+
+        if(_read_len <= 0) {
+            _into_result[0] = 0;
+            _into_result[1] = 1;
+            return _into_result;
+        }
+
+        _debug('wav / reading $_read_len bytes from $_start');
+
+            //resize to fit the requested/remaining length
+        var _byte_gap = (_read_len & 0x03);
+        // var _samples = new Uint8Array(_read_len + _byte_gap);
+        var _n_elements = 1;
+        var _elements_read = app.io.module.file_read(handle, _into, _read_len, _n_elements);
+
+            //if no elements were read, it was an error
+            //or end of file so either way it's complete.
+        if(_elements_read == 0) _complete = true;
+
+        _debug('wav / total read $_read_len bytes, complete? $_complete');
+
+        _into_result[0] = _read_len;
+        _into_result[1] = (_complete)?1:0;
+
+        return _into_result;
+
+    } //portion
+
+} //AudioInfoWaV
+
 @:allow(snow.core.native.assets.Assets)
 private class WAV {
 
@@ -279,79 +323,6 @@ private class WAV {
 
     } //from_bytes
 
-    static function portion(app:snow.Snow, _info:AudioInfo, _into:Uint8Array, _start:Int, _len:Int, _into_result:Array<Int>) : Array<Int> {
-
-        if(_info.handle != null) {
-            
-            var wav:WavHandle = _info.handle;
-
-            if(_start != -1) seek(app, _info, _start+wav.offset);
-
-            var _complete = false;
-            var _read_len = _len;
-            var _n_elements = 1;
-            var _current_pos = (app.io.module.file_tell(wav.handle) - wav.offset);
-            var _distance_to_end = _info.data.length_pcm - _current_pos;
-
-            if(_distance_to_end <= _read_len) {
-                _read_len = _distance_to_end;
-                _complete = true;
-            }
-
-            if(_read_len > 0) {
-
-                _debug('wav / reading $_read_len bytes from $_start');
-
-                    //resize to fit the requested/remaining length
-                var _byte_gap = (_read_len & 0x03);
-                // var _samples = new Uint8Array(_read_len + _byte_gap);
-                var _elements_read = app.io.module.file_read(wav.handle, _into, _read_len, _n_elements);
-
-                    //if no elements were read, it was an error
-                    //or end of file so either way it's complete.
-                if(_elements_read == 0) _complete = true;
-
-                _debug('wav / total read $_read_len bytes, complete? $_complete');
-
-                _into_result[0] = _read_len;
-                _into_result[1] = (_complete)?1:0;
-                return _into_result;
-
-            } //_read_len > 0
-
-        } //_info.handle != null
-
-        _into_result[0] = 0;
-        _into_result[1] = 1;
-        return _into_result;
-
-    } //portion
-
-    static function seek(app:snow.Snow, _info:AudioInfo, _to:Int) : Bool {
-
-        if(_info.handle != null) {
-
-            var _wav:WavHandle = _info.handle;
-            app.io.module.file_seek(_wav.handle, _wav.offset + _to, FileSeek.set);
-        
-        }
-
-        return false;
-
-    } //seek
-
-    static function destroy(app:snow.Snow, _info:AudioInfo) {
-        if(_info.handle != null) {
-
-            var _wav:WavHandle = _info.handle;
-            if(_wav.handle != null) {
-                app.io.module.file_close(_wav.handle);
-            }
-
-        }
-    }
-
-
  //helpers
 
     static function from_file_handle(app:snow.Snow, _handle:FileHandle, _path:String, _is_stream:Bool) : AudioInfo {
@@ -359,11 +330,11 @@ private class WAV {
         if(_handle == null) return null;
 
         var _length = 0;
-        var _info : AudioInfo = {
+        var _info = new AudioInfoWAV(_handle, 0, {
+            app:        app,
             id:         _path,
             is_stream:  _is_stream,
             format:     AudioFormatType.wav,
-            handle:     { handle:_handle, offset:0 },
             data: {
                 samples         : null, 
                 length          : _length,
@@ -373,7 +344,7 @@ private class WAV {
                 bitrate         : 88200,
                 bits_per_sample : 16
             }
-        }
+        });
 
         if(!_is_stream) {
 
@@ -429,7 +400,7 @@ private class WAV {
                     _found_data = true;
                     _info.data.samples = _chunk.data;
                     _info.data.length = _info.data.length_pcm = _chunk.data.length;
-                    _info.handle.offset = _chunk.offset;
+                    _info.data_offset = _chunk.offset;
                 } //data
 
                 _chunk.data = null;
@@ -480,7 +451,89 @@ private class WAV {
 
 } //WAV
 
-private typedef PCMHandle = { handle:FileHandle }
+private class AudioInfoPCM extends AudioInfo {
+
+    public var handle : FileHandle;
+
+    inline public function new(_handle:FileHandle, _opt:AudioInfoOptions) {
+
+        handle = _handle;
+
+        super(_opt);
+
+    } //new
+
+    override public function destroy() {
+
+        if(handle != null) {
+            app.io.module.file_close(handle);
+            handle = null;
+        }
+
+        app = null;
+        handle = null;
+
+    } //destroy
+
+    override public function seek(_to:Int) : Bool {
+
+        if(handle == null) return false;
+        
+        var _result = app.io.module.file_seek(handle, _to, FileSeek.set);
+
+        return _result == 0;
+
+    } //seek
+
+    override public function portion(_into:Uint8Array, _start:Int, _len:Int, _into_result:Array<Int>) : Array<Int> {
+    
+        inline function _fail() {
+            _into_result[0] = 0; 
+            _into_result[1] = 1;
+            return _into_result;
+        }
+
+        if(handle == null) return _fail();
+
+        if(_start != -1) {
+            seek(_start);
+        }
+
+        var _complete = false;
+        var _read_len = _len;
+        var _cur_pos = app.io.module.file_tell(handle);
+        var _distance_to_end = data.length_pcm - _cur_pos;
+
+        if(_distance_to_end <= _read_len) {
+            _read_len = _distance_to_end;
+            _complete = true;
+        }   
+
+        if(_read_len <= 0) return _fail();
+
+        log('pcm / reading $_read_len bytes from $_start');
+
+            //resize to fit the requested/remaining length
+        var _byte_gap = (_read_len & 0x03);
+        // var _samples = new Uint8Array(_read_len + _byte_gap);
+        var _n_elements = 1;
+        var _elements_read = app.io.module.file_read(handle, _into, _read_len, _n_elements);
+
+            //if no elements were read, it was an error
+            //or end of file so either way it's complete.
+        if(_elements_read == 0) _complete = true;
+
+        log('pcm / total read $_read_len bytes, complete? $_complete');
+
+        _into_result[0] = _read_len;
+        _into_result[1] = (_complete)?1:0;
+
+        return _into_result;
+
+    } //portion
+
+} //AudioInfoPCM
+
 
 @:allow(snow.core.native.assets.Assets)
 private class PCM {
@@ -505,11 +558,10 @@ private class PCM {
         //the sound format values are sane defaults -
         //change these values right before creating the sound itself.
 
-        return {
-
+        return new AudioInfoPCM(_handle, {
+            app:        app,
             id:         _path,
             is_stream:  _is_stream,
-            handle:     { handle:_handle },
             format:     AudioFormatType.pcm,
             data: {
                 samples         : _samples,
@@ -521,19 +573,17 @@ private class PCM {
                 bits_per_sample : 16
             }
 
-        } //return
+        }); //return
 
     } //from_file
 
     static function from_bytes(app:snow.Snow, _id:String, _bytes:Uint8Array) : AudioInfo {
 
-        return {
-
+        return new AudioInfoPCM(null, {
+            app:        app,
             id:         _id,
-            handle:     null,
             is_stream:  false,
             format:     AudioFormatType.pcm,
-
             data: {
                 samples         : _bytes,
                 length          : _bytes.length,
@@ -543,90 +593,120 @@ private class PCM {
                 bitrate         : 88200,
                 bits_per_sample : 16
             }
-
-        } //return
+        }); //return
 
     } //from_bytes
-
-    static function seek(app:snow.Snow, _info:AudioInfo, _to:Int) : Bool {
-
-        if(_info.handle != null) {
-            var pcm:PCMHandle = _info.handle;
-            app.io.module.file_seek(pcm.handle, _to, FileSeek.set);
-        }
-
-        return false;
-
-    } //seek
-
-    static function portion(app:snow.Snow, _info:AudioInfo, _into:Uint8Array, _start:Int, _len:Int, _into_result:Array<Int>) : Array<Int> {
-
-        if(_info.handle != null) {
-
-            var pcm:PCMHandle = _info.handle;
-
-            if(_start != -1) seek(app, _info, _start);
-
-            var _complete = false;
-            var _read_len = _len;
-            var _n_elements = 1;
-            var _current_pos = app.io.module.file_tell(pcm.handle);
-            var _distance_to_end = _info.data.length_pcm - _current_pos;
-
-            if(_distance_to_end <= _read_len) {
-                _read_len = _distance_to_end;
-                _complete = true;
-            }
-
-            if(_read_len > 0) {
-
-                log('pcm / reading $_read_len bytes from $_start');
-
-                    //resize to fit the requested/remaining length
-                var _byte_gap = (_read_len & 0x03);
-                // var _samples = new Uint8Array(_read_len + _byte_gap);
-                var _elements_read = app.io.module.file_read(pcm.handle, _into, _read_len, _n_elements);
-
-                    //if no elements were read, it was an error
-                    //or end of file so either way it's complete.
-                if(_elements_read == 0) _complete = true;
-
-                log('pcm / total read $_read_len bytes, complete? $_complete');
-
-                _into_result[0] = _read_len;
-                _into_result[1] = (_complete)?1:0;
-                return _into_result;
-
-            } //_read_len > 0
-
-        } //_info.handle != null
-
-        _into_result[0] = 0;
-        _into_result[1] = 1;
-        return _into_result;
-
-    } //portion
-
-    static function destroy(app:snow.Snow, _info:AudioInfo) {
-
-        if(_info.handle != null) {
-
-            var _pcm:PCMHandle = _info.handle;
-            if(_pcm.handle != null) {
-                app.io.module.file_close(_pcm.handle);
-            }
-
-        }
-    }
 
 
 } //PCM
 
-private typedef OggHandle = {
-    app: snow.Snow,
-    handle: FileHandle,
-    file: OggVorbisFile
-}
+
+private class AudioInfoOGG extends AudioInfo {
+
+    public var handle : FileHandle;
+    public var oggfile : OggVorbisFile;
+
+    inline public function new(_handle:FileHandle, _oggfile:OggVorbisFile, _opt:AudioInfoOptions) {
+
+        handle = _handle;
+        oggfile = _oggfile;
+
+        super(_opt);
+
+    } //new
+
+    override public function destroy() {
+
+        if(handle != null) {
+            app.io.module.file_close(handle);
+        }
+
+        handle = null;
+        Ogg.ov_clear(oggfile);
+        oggfile = null;
+
+    } //destroy
+
+    override public function seek(_to:Int) : Bool {
+
+            //pcm seek is in samples, not bytes
+            //:todo: ogg is always 16?
+        var _to_samples = haxe.Int64.ofInt(Std.int(_to/16));
+        var res = Ogg.ov_pcm_seek(oggfile, _to_samples);
+
+        return res == 0;
+
+    } //seek
+
+    override public function portion(_into:Uint8Array, _start:Int, _len:Int, _into_result:Array<Int>) : Array<Int> {
+        
+        var complete = false;
+        var word = 2; //1 for 8 bit, 2 for 16 bit. 2 is typical
+        var sgned = 1; //0 for unsigned, 1 is typical
+        var bit_stream = 1;
+
+        var _read_len = _len;
+
+        if(_start != -1) {
+            // log('start was $_start, skipping there first');
+            seek(_start);
+        }
+
+            //resize to fit the requested length, but pad it slightly to align
+        // var byte_gap = (_read_len & 0x03);
+        // out_buffer.resize(_read_len + byte_gap);
+        //:todo: check these alignment paddings in snow alpha-2.0
+
+        var reading = true;
+        var bytes_left = _read_len;
+        var total_read = 0;
+        var bytes_read = 0;
+        var OGG_BUFFER_LENGTH = 128;
+
+        while(reading) {
+
+            var _read_max = OGG_BUFFER_LENGTH;
+
+            if(bytes_left < _read_max) {
+                _read_max = bytes_left;
+            }
+
+                // Read the decoded sound data
+            bytes_read = Ogg.ov_read(oggfile, _into.buffer.getData(), total_read, _read_max, OggEndian.TYPICAL, OggWord.TYPICAL, OggSigned.TYPICAL);
+
+            total_read += bytes_read;
+            bytes_left -= bytes_read;
+
+                //at the end?
+            if(bytes_read == 0) {
+                reading = false;
+                complete = true;
+            }
+
+            if(total_read >= _read_len) {
+                reading = false;
+            }
+
+        } //while
+
+            //we need the buffer length to reflect the real size,
+            //just in case it read shorter than requested
+        if(total_read != _read_len) {
+            var byte_gap = (_read_len & 0x03);
+            // trace('not matched size $total_read / $_read_len');
+            // out_buffer.resize(total_read+byte_gap);
+            //:todo: check these alignment paddings in snow alpha-2.0
+        }
+
+        _into_result[0] = total_read;
+        _into_result[1] = (complete) ? 1 : 0;
+
+        return _into_result;
+
+    } //portion
+
+} //AudioInfoOGG
+
 
 @:allow(snow.core.native.assets.Assets)
 private class OGG {
@@ -653,15 +733,10 @@ private class OGG {
         if(_handle == null) return null;
 
         var _ogg_file = Ogg.newOggVorbisFile();
-        var _ogg: OggHandle = {
-            app: app,
-            handle: _handle,
-            file: _ogg_file
-        }
 
-        var _info = {
+        var _ogg = new AudioInfoOGG(_handle, _ogg_file, {
+            app:    app,
             id:     _path,
-            handle: _ogg,
             format: AudioFormatType.ogg,
             data: {
                 samples         : null, 
@@ -672,14 +747,14 @@ private class OGG {
                 bitrate         : 88200,
                 bits_per_sample : 16 //:todo:optionize
             }
-        }
+        });
 
-        // trace('file size is ' + _info.data.length);
+        // trace('file size is ' + _ogg.data.length);
 
         var _ogg_result = Ogg.ov_open_callbacks(_ogg, _ogg_file, null, 0, {
             read_fn:  ogg_read,
             seek_fn:  ogg_seek,
-            close_fn: ogg_close,
+            close_fn: null,
             tell_fn:  ogg_tell
         });
 
@@ -721,12 +796,12 @@ private class OGG {
 
         var _total_pcm_length : UInt = haxe.Int64.toInt(Ogg.ov_pcm_total(_ogg_file, -1)) * _ogg_info.channels * 2;
 
-        _info.data.channels = _ogg_info.channels;
-        _info.data.rate = Std.int(_ogg_info.rate);
-        _info.data.bitrate = Std.int(_ogg_info.bitrate_nominal);
-        _info.data.length_pcm = _total_pcm_length;
+        _ogg.data.channels = _ogg_info.channels;
+        _ogg.data.rate = Std.int(_ogg_info.rate);
+        _ogg.data.bitrate = Std.int(_ogg_info.bitrate_nominal);
+        _ogg.data.length_pcm = _total_pcm_length;
 
-        seek(app, _info, 0);
+        _ogg.seek(0);
 
         var _comment = Ogg.ov_comment(_ogg_file, -1);
         _verbose('vendor: ' + _comment.vendor);
@@ -735,128 +810,18 @@ private class OGG {
         }
 
         if(!_is_stream) {
-            _info.data.samples = new Uint8Array(_total_pcm_length);
-            read_bytes_ogg(_info, _info.data.samples, 0, _total_pcm_length, []);
+            _ogg.data.samples = new Uint8Array(_total_pcm_length);
+            _ogg.portion(_ogg.data.samples, 0, _total_pcm_length, []);
         }
 
-        return _info;
+        return _ogg;
 
     } //from_file_handle
-
-    static function read_bytes_ogg(_info:AudioInfo, dest:ArrayBufferView, _start:Int, _len:Int, _into_result:Array<Int>) : Array<Int> {
-
-        var _ogg:OggHandle = _info.handle;
-
-        var complete = false;
-        var word = 2; //1 for 8 bit, 2 for 16 bit. 2 is typical
-        var sgned = 1; //0 for unsigned, 1 is typical
-        var bit_stream = 1;
-
-        var _read_len = _len;
-
-        if(_start != -1) {
-            // log('start was $_start, skipping there first');
-            seek(_ogg.app, _info, _start);
-        }
-
-            //resize to fit the requested length, but pad it slightly to align
-        var byte_gap = (_read_len & 0x03);
-        // out_buffer.resize(_read_len + byte_gap);
-
-        var reading = true;
-        var bytes_left = _read_len;
-        var total_read = 0;
-        var bytes_read = 0;
-        var OGG_BUFFER_LENGTH = 128;
-
-        while(reading) {
-
-            var _read_max = OGG_BUFFER_LENGTH;
-
-            if(bytes_left < _read_max) {
-                _read_max = bytes_left;
-            }
-
-                // Read the decoded sound data
-            bytes_read = Ogg.ov_read(_ogg.file, dest.buffer.getData(), total_read, _read_max, OggEndian.TYPICAL, OggWord.TYPICAL, OggSigned.TYPICAL);
-
-            total_read += bytes_read;
-            bytes_left -= bytes_read;
-
-                //at the end?
-            if(bytes_read == 0) {
-                reading = false;
-                complete = true;
-            }
-
-            if(total_read >= _read_len) {
-                reading = false;
-            }
-
-        } //while
-
-            //we need the buffer length to reflect the real size,
-            //just in case it read shorter than requested
-        if(total_read != _read_len) {
-            var byte_gap = (_read_len & 0x03);
-            // trace('not matched size $total_read / $_read_len');
-            // out_buffer.resize(total_read+byte_gap);
-        }
-
-        _into_result[0] = total_read;
-        _into_result[1] = (complete) ? 1 : 0;
-
-        return _into_result;
-
-    } //read_bytes_ogg
-
-    static function portion(app:snow.Snow, _info:AudioInfo, _into:Uint8Array, _start:Int, _len:Int, _into_result:Array<Int>) : Array<Int> {
-
-        // var _byte_gap = (_len & 0x03);
-        // var _pad_len = _len + _byte_gap;
-
-        return read_bytes_ogg(_info, _into, _start, _len, _into_result);
-
-    } //portion
-
-    static function seek(app:snow.Snow, _info:AudioInfo, _to:Int) : Bool {
-
-        if(_info.handle != null) {
-
-                //pcm seek is in samples, not bytes
-                //:todo: ogg is always 16?
-            var _ogg:OggHandle = _info.handle;
-            var _to_samples = haxe.Int64.ofInt(Std.int(_to/16));
-            var _ogg_file:OggVorbisFile = _ogg.file;
-
-            var res = Ogg.ov_pcm_seek(_ogg_file, _to_samples);
-
-            return res == 0;
-
-        }
-
-        return false;
-
-    } //seek
-
-    static function destroy(app:snow.Snow, _info:AudioInfo) {
-
-        if(_info.handle != null) {
-
-            var _ogg:OggHandle = _info.handle;
-            Ogg.ov_clear(_ogg.file);
-
-            if(_ogg.handle != null) {
-                app.io.module.file_close(_ogg.handle);
-            }
-
-        }
-    }
 
  //helpers
 
         //converts return code to string
-    static function code(_code:OggCode) : String {
+    inline static function code(_code:OggCode) : String {
         return switch(_code){
             case OggCode.OV_EBADHEADER:'OV_EBADHEADER';
             case OggCode.OV_EBADLINK:'OV_EBADLINK';
@@ -875,13 +840,14 @@ private class OGG {
             case _:'$_code';
         }
     } //code
+ 
 
 
  //ogg callbacks
 
 
-        //user read function for ogg callbacks
-    static function ogg_read(_ogg:OggHandle, size:Int, nmemb:Int, data:haxe.io.BytesData):Int {
+        //read function for ogg callbacks
+    static function ogg_read(_ogg:AudioInfoOGG, size:Int, nmemb:Int, data:haxe.io.BytesData):Int {
 
         var _total = size * nmemb;
         var _bytes = haxe.io.Bytes.ofData(data);
@@ -904,8 +870,8 @@ private class OGG {
 
     } //ogg_read
 
-        //user seek function for ogg callbacks
-    static function ogg_seek(_ogg:OggHandle, offset:Int, whence:OggWhence):Void {
+        //seek function for ogg callbacks
+    static function ogg_seek(_ogg:AudioInfoOGG, offset:Int, whence:OggWhence):Void {
 
         // trace('ogg_seek offset:$offset whence:$whence');
 
@@ -919,23 +885,8 @@ private class OGG {
 
     } //ogg_seek
 
-        //user close function for ogg callbacks
-    static function ogg_close(_ogg:OggHandle):Void {
-
-        // trace('ogg_close');
-
-        if(_ogg.handle != null) {
-            _ogg.app.io.module.file_close(_ogg.handle);
-        }
-
-        _ogg.file = null;
-        _ogg.handle = null;
-        _ogg = null;
-
-    } //ogg_close
-
-        //user tell function for ogg callbacks
-    static function ogg_tell(_ogg:OggHandle):Int {
+        //tell function for ogg callbacks
+    static function ogg_tell(_ogg:AudioInfoOGG):Int {
 
         var res = _ogg.app.io.module.file_tell(_ogg.handle);
 
