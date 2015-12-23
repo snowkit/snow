@@ -231,6 +231,7 @@ typedef AudioInfoOptions = {
 };
 
 /** Information about an audio file/data */
+@:allow(snow.systems.audio.AudioInstance)
 class AudioInfo {
 
         /** access to the api */
@@ -256,11 +257,11 @@ class AudioInfo {
 
     }
 
-    public function seek(_to:Int) : Bool {
+    function seek(_to:Int) : Bool {
         return false;
     }
 
-    public function portion(_into:Uint8Array, _start:Int, _len:Int, _into_result:Array<Int>) : Array<Int> {
+    function portion(_into:Uint8Array, _start:Int, _len:Int, _into_result:Array<Int>) : Array<Int> {
         return _into_result;
     }
 
