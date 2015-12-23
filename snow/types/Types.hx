@@ -221,19 +221,48 @@ typedef AudioData = {
 
 } //AudioData
 
-/** Information about an audio file/data */
-typedef AudioInfo = {
 
+typedef AudioInfoOptions = {
+    app:snow.Snow,
+    data:AudioData, 
+    ?id:String, 
+    ?format:AudioFormatType, 
+    ?is_stream:Bool
+};
+
+/** Information about an audio file/data */
+class AudioInfo {
+
+        /** access to the api */
+    public var app : snow.Snow;
         /** the platform audio data info */
-    var data : AudioData;
+    public var data : AudioData;
         /** file source id */
-    @:optional var id : String;
+    public var id : String;
         /** format. Use AudioFormatType */
-    @:optional var format : AudioFormatType;
+    public var format : AudioFormatType;
         /** Whether or not this relates to streaming purposes, this a convenience only from load apis */
-    @:optional var is_stream : Bool;
-        /** the platform audio handle for later manipulation */
-    @:optional var handle : Dynamic; //:todo:
+    public var is_stream : Bool;
+
+    inline public function new(_opt:AudioInfoOptions) {
+        app = _opt.app;
+        data = _opt.data;
+        id = _opt.id;
+        format = _opt.format;
+        is_stream = _opt.is_stream;
+    }
+
+    public function destroy() {
+
+    }
+
+    public function seek(_to:Int) : Bool {
+        return false;
+    }
+
+    public function portion(_into:Uint8Array, _start:Int, _len:Int, _into_result:Array<Int>) : Array<Int> {
+        return _into_result;
+    }
 
 } //AudioInfo
 
