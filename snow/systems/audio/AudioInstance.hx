@@ -51,12 +51,7 @@ class AudioInstance {
 
         assert(destroyed == false, 'snow / Audio / Instance data_get queried after being destroyed');
 
-        //:todo:        
-        #if snow_native
-        return source.app.assets.module.audio_load_portion(source.info, _into, _start, _length, _into_result);
-        #else
-        return null;
-        #end
+        return source.info.portion(_into, _start, _length, _into_result);
 
     } //data_get
         
@@ -64,13 +59,8 @@ class AudioInstance {
 
         assert(destroyed == false, 'snow / Audio / Instance data_seek queried after being destroyed');
 
-        //:todo:
-        #if snow_native
-        return source.app.assets.module.audio_seek_source(source.info, _to_samples);
-        #else
-        return null;
-        #end
+        return source.info.seek(_to_samples);
 
-    }
+    } //data_seek
     
 } //AudioInstance

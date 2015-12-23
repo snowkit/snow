@@ -84,11 +84,6 @@ class AudioSource {
 
         app.audio.emit(ae_destroyed_source, this);
 
-        //:todo:
-        #if snow_native
-            app.assets.module.audio_destroy_source(info);
-        #end
-
         while(i < c) {
             var _instance = instances.pop();
             _instance.destroy();
@@ -96,9 +91,10 @@ class AudioSource {
             i++;
         }
 
-        app = null;
-        info.handle = null;
+        info.destroy();
         info = null;
+        instances = null;
+        app = null;
 
     } //destroy
 
