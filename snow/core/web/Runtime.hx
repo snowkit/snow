@@ -10,8 +10,10 @@ class Runtime implements snow.runtime.Runtime {
     public var window : WindowHandle;
     public var name: String = 'web';
 
-        //internal start time for 0 based time values
+        /** internal start time for 0 based time values */
     static var timestamp_start : Float = 0.0;
+        /** internal: a pre allocated window event */
+    var _window_event_ : WindowEvent;
 
     function new(_app:snow.Snow) {
 
@@ -30,6 +32,8 @@ class Runtime implements snow.runtime.Runtime {
                 Key.backspace, Key.tab, Key.delete, Key.space
             ]
         };
+
+        _window_event_ = new WindowEvent();
 
         log('web / init ok');
 
@@ -106,7 +110,36 @@ class Runtime implements snow.runtime.Runtime {
     } //ready
 
 //internal
+    
+    inline function dispatch_window_ev(_type:WindowEventType) {
+        _window_event_.set(_type, timestamp(), 0, null, null);
+        app.dispatch_event(se_window, _window_event_);
+    }
 
+    function setup_window_events() {
+
+        window.addEventListener('mouseleave', function(ev:js.html.MouseEvent) {
+            dispatch_window_ev(leave);
+        });
+
+        window.addEventListener('mouseenter', function(ev:js.html.MouseEvent) {
+           dispatch_window_ev(enter);
+        });
+
+        js.Browser.document.addEventListener('visibilitychange', function(ev){
+            if(js.Browser.document.hidden) {
+                dispatch_window_ev(hidden);                
+                dispatch_window_ev(minimized);                
+                dispatch_window_ev(focus_lost);
+            } else {
+                dispatch_window_ev(shown);
+                dispatch_window_ev(restored);
+                dispatch_window_ev(focus_gained);
+            }
+        });
+
+    } //setup_window_events
+    
     function create_window() {
 
         var config = app.config.window;
@@ -136,7 +169,10 @@ class Runtime implements snow.runtime.Runtime {
 
         if(!create_render_context(window)) {
             create_render_context_failed();
+            return;
         }
+
+        setup_window_events();
 
     } //create_window
 
