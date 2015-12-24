@@ -477,10 +477,10 @@ class Input {
     var gamepad_button_released : Map<Int, MapIntBool >;
     var gamepad_axis_values : Map<Int, MapIntFloat >;
 
+        //:todo: touch state maps and count
         //map of the touches currently down,
-        //:todo:wip:
-    @:noCompletion public var touch_count : Int = 0;
-    @:noCompletion public var touches_down : MapIntBool;
+    var touch_count : Int = 0;
+    var touches_down : MapIntBool;
 
 
 } //Input

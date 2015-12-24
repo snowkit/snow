@@ -92,7 +92,7 @@ class Audio {
 
     function state(_handle:AudioHandle) : AudioState {
             
-            //:todo:
+            //:todo: isValidVoiceHandle a valid "stopped" query
         if(!soloud.ptr.isValidVoiceHandle(_handle)) {
             return as_stopped;
         } else if(soloud.ptr.getPause(_handle)) {
@@ -155,11 +155,11 @@ class Audio {
 
 
     function suspend():Void {
-        //:todo:
+        //:todo: soloud doesn't have suspend yet
     }
 
     function resume():Void {
-        //:todo:
+        //:todo: soloud doesn't have resume yet
     }
 
 } //Audio
