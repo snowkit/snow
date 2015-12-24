@@ -5,9 +5,7 @@ import snow.api.Debug.*;
 import snow.api.buffers.Float32Array;
 import snow.modules.opengl.GL;
 
-#if (snow_native && !mobile)
-import snowhxt.Snowhxt;
-#end
+#if snowhxt import snowhxt.Snowhxt; #end
 
 typedef UserConfig = {
     window : {
@@ -67,7 +65,7 @@ class Main extends snow.App {
 
     } //config
 
-    #if (snow_native && !mobile) var hxt : Snowhxt; #end
+    #if snowhxt var hxt : Snowhxt; #end
 
     override function ready() {
 
@@ -90,7 +88,7 @@ class Main extends snow.App {
             //start mid window
         render_y = (window_width - size) / 2;
 
-        #if (snow_native && !mobile) hxt = new Snowhxt(); #end
+        #if snowhxt hxt = new Snowhxt(); #end
 
     } //ready
 
@@ -107,7 +105,7 @@ class Main extends snow.App {
         
         on_render_update();
 
-        #if (snow_native && !mobile) hxt.update(); #end
+        #if snowhxt hxt.update(); #end
 
     } //tick
 
@@ -280,7 +278,7 @@ class Main extends snow.App {
 
         // log('mouse up $x $y $button $timestamp $window_id');
 
-        #if (snow_native && !mobile)
+        #if (!mobile)
             render_x = physical_x = (x - (size/2));
             render_y = y - (size/2);
         #end

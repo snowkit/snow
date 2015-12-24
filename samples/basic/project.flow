@@ -20,7 +20,7 @@
       defines:[],
       dependencies : {
         snowdev : '*',
-        snowhxt : '*',
+        // snowhxt : '*',
       }
     },
 
