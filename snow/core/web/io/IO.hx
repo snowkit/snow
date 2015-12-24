@@ -61,13 +61,9 @@ class IO implements snow.modules.interfaces.IO {
                 request.overrideMimeType('text/plain; charset=UTF-8');
             }
 
-                //only _async can set the type it seems
+                //only _async can set this type
             if(_async) {
-                #if (haxe_ver < 3.2)
-                    request.responseType = 'arraybuffer';
-                #else
-                    request.responseType = js.html.XMLHttpRequestResponseType.ARRAYBUFFER;
-                #end
+                request.responseType = js.html.XMLHttpRequestResponseType.ARRAYBUFFER;
             }
 
             request.onload = function(data) {
