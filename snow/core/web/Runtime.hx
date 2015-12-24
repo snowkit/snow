@@ -45,7 +45,7 @@ class Runtime implements snow.runtime.Runtime {
 
     public inline function window_width() : Int {
 
-        return window.height;
+        return window.width;
 
     } //window_width
 
