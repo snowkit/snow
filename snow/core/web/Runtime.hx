@@ -149,12 +149,12 @@ class Runtime implements snow.runtime.Runtime {
 
         var _gl = null;
         
-        // if(config.webgl.version != 1) {
-        //     _gl = window.getContext('webgl${config.webgl.version}');
-        //     if(_gl == null) _gl = window.getContext('experimental-webgl${config.webgl.version}');
-        // } else {
-        //     _gl = window.getContextWebGL(attr);
-        // }
+        if(config.webgl.version != 1) {
+            _gl = window.getContext('webgl${config.webgl.version}');
+            if(_gl == null) _gl = window.getContext('experimental-webgl${config.webgl.version}');
+        } else {
+            _gl = window.getContextWebGL(attr);
+        }
 
         snow.modules.opengl.GL.gl = _gl;
 
