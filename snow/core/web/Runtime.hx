@@ -32,7 +32,6 @@ class Runtime implements snow.runtime.Runtime {
         app.config.runtime = {
             window_id : 'app',
             window_parent : js.Browser.document.body,
-            true_fullscreen : false,
             prevent_default_context_menu : true,
             prevent_default_mouse_wheel : true,
             prevent_default_touches : true,
@@ -658,12 +657,6 @@ typedef RuntimeConfig = {
     @:optional var prevent_default_touches : Bool;
         /** If true, right clicking will consume the event on the canvas. `event.preventDefault` is used. default: true*/
     @:optional var prevent_default_context_menu : Bool;
-
-        /** If true, native fullscreen will be requested from the user.
-            If not, the canvas will fill the window size instead.
-            Take note : true fullscreen requests only work when driven by a user event (click/keys).
-            You cannot force fullscreen on web. default: false */
-    @:optional var true_fullscreen : Bool;
 
 } //RuntimeConfig
 
