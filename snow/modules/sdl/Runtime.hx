@@ -149,10 +149,10 @@ class Runtime extends snow.runtime.Native {
     } //window_device_pixel_ratio
 
 
-    
+
     static var timestamp_start : Float = 0.0;
     inline public static function timestamp() : Float {
-    
+
         return Timestamp.now() - timestamp_start;
 
     } //timestamp
@@ -160,8 +160,8 @@ class Runtime extends snow.runtime.Native {
     function run_loop() {
 
         var _done = true;
-        
-        #if ios 
+
+        #if ios
 
             _done = false;
             log('sdl / attaching iOS CADisplayLink loop');
@@ -170,7 +170,7 @@ class Runtime extends snow.runtime.Native {
          #else
 
             log('sdl / running main loop');
-            
+
             while(!app.shutting_down) {
 
                 loop(0);
@@ -191,14 +191,14 @@ class Runtime extends snow.runtime.Native {
 
             handle_input_ev(e);
             handle_window_ev(e);
-            
+
             if(e.type == SDL_QUIT) {
                 app.dispatch_event(se_quit);
             }
 
         } //SDL has event
 
-        app.dispatch_event(se_tick);        
+        app.dispatch_event(se_tick);
 
         if(!app.has_shutdown) {
             window_swap();
@@ -337,7 +337,7 @@ class Runtime extends snow.runtime.Native {
     } //create_window
 
     function create_render_context(_window:sdl.Window) : Bool {
-        
+
         gl = SDL.GL_CreateContext(_window);
 
         var _success = gl.isnull() == false;
@@ -375,14 +375,14 @@ class Runtime extends snow.runtime.Native {
         SDL.GL_SetAttribute(SDL_GL_ALPHA_SIZE,   render.alpha_bits);
         SDL.GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
 
-        if(render.depth_bits > 0) {
-            log('sdl / GL / depth / ${render.depth_bits}');
-            SDL.GL_SetAttribute(SDL_GL_DEPTH_SIZE, render.depth_bits);
+        if(render.depth > 0) {
+            log('sdl / GL / depth / ${render.depth}');
+            SDL.GL_SetAttribute(SDL_GL_DEPTH_SIZE, render.depth);
         }
 
-        if(render.stencil_bits > 0) {
-            log('sdl / GL / stencil / ${render.stencil_bits}');
-            SDL.GL_SetAttribute(SDL_GL_STENCIL_SIZE, render.stencil_bits);
+        if(render.stencil > 0) {
+            log('sdl / GL / stencil / ${render.stencil}');
+            SDL.GL_SetAttribute(SDL_GL_STENCIL_SIZE, render.stencil);
         }
 
         if(render.antialiasing > 0) {
@@ -412,17 +412,17 @@ class Runtime extends snow.runtime.Native {
                 }
 
         } // profile
-        
+
         if(render.opengl.major != 0) {
             log('sdl / GL / version / ${render.opengl.major}.${render.opengl.minor}');
             SDL.GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, render.opengl.major);
             SDL.GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, render.opengl.minor);
         }
-        
+
     } //apply_GL_attr
 
     function window_flags(config:WindowConfig) {
-        
+
         var flags : SDLWindowFlags = 0;
 
         flags |= SDL_WINDOW_HIDDEN;
@@ -478,8 +478,8 @@ class Runtime extends snow.runtime.Native {
         render.green_bits   = SDL.GL_GetAttribute(SDL_GL_GREEN_SIZE);
         render.blue_bits    = SDL.GL_GetAttribute(SDL_GL_BLUE_SIZE);
         render.alpha_bits   = SDL.GL_GetAttribute(SDL_GL_ALPHA_SIZE);
-        render.depth_bits   = SDL.GL_GetAttribute(SDL_GL_DEPTH_SIZE);
-        render.stencil_bits = SDL.GL_GetAttribute(SDL_GL_STENCIL_SIZE);
+        render.depth        = SDL.GL_GetAttribute(SDL_GL_DEPTH_SIZE);
+        render.stencil      = SDL.GL_GetAttribute(SDL_GL_STENCIL_SIZE);
 
         render.opengl.major = SDL.GL_GetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION);
         render.opengl.minor = SDL.GL_GetAttribute(SDL_GL_CONTEXT_MINOR_VERSION);
@@ -501,9 +501,9 @@ class Runtime extends snow.runtime.Native {
         return render;
 
     } //update_render_config
-    
+
 //Input
-    
+
     function handle_input_ev(e:sdl.Event) {
 
         switch(e.type) {
