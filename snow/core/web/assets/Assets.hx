@@ -60,25 +60,19 @@ class Assets implements snow.modules.interfaces.Assets {
 
         } //image_info_from_element
 
-            /** Create an image info (padded to POT) from raw already decoded image pixels */
+            /** Create an image info from raw (already decoded) image pixels */
         public function image_info_from_pixels(_id:String, _width:Int, _height:Int, _pixels:Uint8Array, ?_bpp:Int=4) : ImageInfo {
-
-            var width_pot = nearest_power_of_two(_width);
-            var height_pot = nearest_power_of_two(_height);
-            var image_bytes = POT_bytes_from_pixels(_width, _height, width_pot, height_pot, _pixels);
 
             var info : ImageInfo = {
                 id : _id,
                 bpp : 4,
                 width : _width,
                 height : _height,
-                width_actual : width_pot,
-                height_actual : height_pot,
+                width_actual : _width,
+                height_actual : _height,
                 bpp_source : 4,
-                pixels : image_bytes
+                pixels : _pixels,
             };
-
-            image_bytes = null;
 
             return info;
         }
@@ -173,7 +167,6 @@ class Assets implements snow.modules.interfaces.Assets {
 
     #end //snow_web_tga
 
-
         /** Return a POT array of bytes from raw image pixels */
     function POT_bytes_from_pixels(_width:Int, _height:Int, _width_pot:Int, _height_pot:Int, _source:Uint8Array) : Uint8Array {
 
@@ -209,10 +202,12 @@ class Assets implements snow.modules.interfaces.Assets {
         } //catch
 
             //cleanup
-        tmp_canvas = null; tmp_context = null;
+        tmp_canvas = null; 
+        tmp_context = null;
         _imgdata = null;
 
         return new Uint8Array(image_bytes.data);
+    
     }
 
         /** Return a POT array of bytes from an image/canvas element */
