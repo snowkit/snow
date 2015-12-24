@@ -20,13 +20,13 @@ class IO implements snow.modules.interfaces.IO {
 
     public function app_path() : String {
 
-        return './'; //:todo:web:app_path
+        return './';
 
     } //app_path
 
     public function app_path_prefs() : String {
 
-        return './'; //:todo:web:path_prefs
+        return './';
 
     } //app_path_prefs
 
