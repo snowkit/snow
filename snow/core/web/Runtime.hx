@@ -30,8 +30,10 @@ class Runtime implements snow.runtime.Runtime {
         timestamp_start = timestamp();
 
         app.config.runtime = {
-            no_context_menu : true,
+            window_id : 'app',
+            window_parent : js.Browser.document.body,
             true_fullscreen : false,
+            prevent_default_context_menu : true,
             prevent_default_mouse_wheel : true,
             prevent_default_touches : true,
             prevent_default_keys : [
@@ -223,7 +225,7 @@ class Runtime implements snow.runtime.Runtime {
 
             window.addEventListener('contextmenu', function(_ev:js.html.MouseEvent){
 
-                if(app.config.runtime.no_context_menu) {
+                if(app.config.runtime.prevent_default_context_menu) {
                     _ev.preventDefault();
                 }
 
@@ -405,22 +407,18 @@ class Runtime implements snow.runtime.Runtime {
             //For High DPI, we scale the config sizes
         window.width = Math.floor(config.width * _dpr);
         window.height = Math.floor(config.height * _dpr);
-            //But keep them for the css pixels
+            //These are in css device pixels
         window.style.width = config.width+'px';
         window.style.height = config.height+'px';
             //This is typically required for our WebGL and blending
         window.style.background = '#000';
 
-        if(config.title != null && config.title != '') {
+        window.id = app.config.runtime.window_id;
+        app.config.runtime.window_parent.appendChild(window);
+
+        if(config.title != null) {
             js.Browser.document.title = config.title;
         }
-
-        var _parent = app.config.runtime.window_parent;
-        if(_parent == null) {
-            _parent = js.Browser.document.body;
-        }
-
-        _parent.appendChild(window);
 
         if(!create_render_context(window)) {
             create_render_context_failed();
@@ -646,11 +644,10 @@ class Runtime implements snow.runtime.Runtime {
 typedef WindowHandle = js.html.CanvasElement;
 typedef RuntimeConfig = {
 
-        /** The js element to put the window canvas into. If null, <body> is used */
+        /** The DOM element to put the window canvas into. default: <body> */
     @:optional var window_parent : js.html.Element;
-
-        /** If true, right clicking will consume the event on the canvas. `event.preventDefault` is used. default: true*/
-    @:optional var no_context_menu : Bool;
+        /** The canvas element id="" attribute. default: 'app' */
+    @:optional var window_id : String;
 
         /** Any Key.* values stored in this array sent to the page will be consumed by snow. `event.preventDefault` is used.
             Keys can be removed or added to the array at runtime. default:left,up,down,right,backspace,tab,delete */
@@ -659,6 +656,8 @@ typedef RuntimeConfig = {
     @:optional var prevent_default_mouse_wheel : Bool;
         /** If true, touch events sent to the page will be consumed by snow. `event.preventDefault` is used. default: true*/
     @:optional var prevent_default_touches : Bool;
+        /** If true, right clicking will consume the event on the canvas. `event.preventDefault` is used. default: true*/
+    @:optional var prevent_default_context_menu : Bool;
 
         /** If true, native fullscreen will be requested from the user.
             If not, the canvas will fill the window size instead.
