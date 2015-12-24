@@ -112,12 +112,15 @@ class Main extends snow.App {
     } //tick
 
     override public function onevent(event:SystemEvent) {
+
+        if(event.type != se_tick) trace('system event : ${event.type}');
+
         if(event.window != null) {
             if(event.window.type == WindowEventType.size_changed||event.window.type == WindowEventType.resized) {
-                window_width = event.window.data1;
-                window_height = event.window.data2;
+                window_width = event.window.x;
+                window_height = event.window.y;
                 var _scale = app.runtime.window_device_pixel_ratio();
-                trace('${event.window.type} / $_scale / size changed ${event.window.data1}x${event.window.data2}');
+                trace('${event.window.type} / $_scale / size changed ${event.window.x}x${event.window.y}');
             }
         }
     }
@@ -219,6 +222,10 @@ class Main extends snow.App {
 
         if( keycode == Key.key_f ) {
             fixed_timestep = !fixed_timestep;
+        }
+
+        if( keycode == Key.key_p ) {
+            app.freeze = !app.freeze;
         }
 
         if( keycode == Key.escape ) {
