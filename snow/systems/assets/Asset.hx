@@ -83,7 +83,8 @@ class Asset {
             override public function destroy() {
 
                 if(image.pixels != null) {
-                    image.pixels.buffer = null;
+                    //:note: can't set the buffer on js, this is mostly for cpp gc anyway
+                    #if snow_native image.pixels.buffer = null; #end
                     image.pixels = null;
                 }
                 image = null;
@@ -219,7 +220,8 @@ class Asset {
             override public function destroy() {
                 if(audio.data != null) {
                     if(audio.data.samples != null) {
-                        audio.data.samples.buffer = null;
+                        //:note: can't set the buffer on js, this is mostly for cpp gc anyway
+                        #if snow_native audio.data.samples.buffer = null; #end
                         audio.data.samples = null;
                     }
                     audio.data = null;
@@ -312,7 +314,8 @@ class Asset {
             } //reload
 
             override public function destroy() {
-                if(bytes != null) bytes.buffer = null;
+                //:note: can't set the buffer on js, this is mostly for cpp gc anyway
+                #if snow_native if(bytes != null) bytes.buffer = null; #end
                 bytes = null;
             }
 
@@ -390,7 +393,8 @@ class Asset {
                 if(_data == null) return Promise.reject(Error.error("AssetText processor: data was null"));
 
                 var _string = _data.toBytes().toString();
-                    _data.buffer = null;
+                    //:note: can't set the buffer on js, this is mostly for cpp gc anyway
+                    #if snow_native _data.buffer = null; #end
                     _data = null;
 
                 return Promise.resolve(_string);
