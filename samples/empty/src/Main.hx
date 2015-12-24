@@ -43,7 +43,7 @@ class Main extends snow.App {
     } //onkeyup
 
     var r = 0.0;
-    override function update( delta:Float ) {
+    override function tick( delta:Float ) {
 
         // trace(delta);
         r += (0.3 * delta);
@@ -64,13 +64,13 @@ class Main extends snow.App {
                 log(error);
             });
 
-        app.assets.audio('assets/sound.wav')
-            .then(function(asset:AssetAudio){
-                var audio = asset.audio;
-                log('`${audio.id}` : ' + audio);
-            }).error(function(error){
-                log(error);
-            });
+        // app.assets.audio('assets/sound.wav')
+        //     .then(function(asset:AssetAudio){
+        //         var audio = asset.audio;
+        //         log('`${audio.id}` : ' + audio);
+        //     }).error(function(error){
+        //         log(error);
+        //     });
 
         #if snow_native
             var imghandle = app.io.module.file_handle('assets/test.png','rb');
