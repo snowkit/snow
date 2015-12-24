@@ -60,11 +60,6 @@ class Audio implements snow.modules.interfaces.Audio {
             app.audio.on(ae_destroyed_source, on_source_destroyed);
         } //ready
 
-        if(event.type == se_shutdown) {
-            app.audio.off(ae_destroyed, on_instance_destroyed);
-            app.audio.off(ae_destroyed_source, on_source_destroyed);
-        } //shutdown
-
         if(event.type == se_tick) {
             if(app.audio.active) {
                     //:todo: keys() creates an array
@@ -119,15 +114,13 @@ class Audio implements snow.modules.interfaces.Audio {
 
     function shutdown() {
 
-        //:todo:
         for(_snd in instances) {
-            AL.sourceStop(_snd.alsource);
-            AL.deleteSource(_snd.alsource);
-        } instances = null;
+            _snd.instance.destroy();
+        }
 
         for(_buffer in buffers) {
             AL.deleteBuffer(_buffer);
-        } buffers = null;
+        }
 
         ALC.makeContextCurrent(cast null);
         log('invalidate context / ${ ALCError.desc(ALC.getError(device)) }');
@@ -138,8 +131,13 @@ class Audio implements snow.modules.interfaces.Audio {
         ALC.closeDevice(device);
         log('closed device / ${ ALCError.desc(ALC.getError(device)) }');
 
+        buffers = null;
+        instances = null;
         device = null;
         context = null;
+
+        app.audio.off(ae_destroyed, on_instance_destroyed);
+        app.audio.off(ae_destroyed_source, on_source_destroyed);
 
     } //shutdown
 
