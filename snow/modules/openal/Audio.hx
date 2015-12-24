@@ -56,19 +56,23 @@ class Audio implements snow.modules.interfaces.Audio {
     function onevent(event:SystemEvent) {
 
         if(event.type == se_ready) {
-
             app.audio.on(ae_destroyed, on_instance_destroyed);
             app.audio.on(ae_destroyed_source, on_source_destroyed);
-
         } //ready
+
+        if(event.type == se_shutdown) {
+            app.audio.off(ae_destroyed, on_instance_destroyed);
+            app.audio.off(ae_destroyed_source, on_source_destroyed);
+        } //shutdown
 
         if(event.type == se_tick) {
             if(app.audio.active) {
+                    //:todo: keys() creates an array
                 for(_handle in instances.keys()) {
                     var _snd = instances.get(_handle);
                         _snd.tick();
 
-                    //:todo: determining when it ends
+                        //:todo: seems this should be in the instance probably
                     if(_snd.looping && !_snd.source.is_stream) {
                         if(_snd.current_time >= _snd.source.duration()) {
                             _snd.current_time = 0.0;
@@ -77,14 +81,12 @@ class Audio implements snow.modules.interfaces.Audio {
                     }
 
                     if(_snd.instance.has_ended()) {
-                        // log('sound ended, destroy ' + _snd.source.info.id);
                         app.audio.emit(ae_end, _handle);
                         _snd.instance.destroy();
                     }
-
-                }
-            }
-        }
+                } //each instance
+            } //audio active
+        } //tick event
 
     } //onevent
 

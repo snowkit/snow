@@ -98,12 +98,10 @@ class ALStream extends ALSound {
         AL.sourceStop(alsource);
         flush_queue();
 
-            //sanity checks :todo:
-        if(_time < 0) { _time = 0; }
-        if(_time > duration) { _time = duration; }
+            //clamp between 0 and duration
+        _time = (_time < 0) ? 0 : (( _time > duration) ? duration : _time);
 
         current_time = _time;
-        // init_queue( owner.system.seconds_to_bytes(owner.info, _time) );
 
         if(_playing) AL.sourcePlay(alsource);
 
