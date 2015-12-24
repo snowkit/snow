@@ -403,12 +403,7 @@ class Snow {
 
             freeze = _freeze;
 
-            //:todo: system pause event
-            // if(_freeze) {
-            //     audio.suspend();
-            // } else {
-            //     audio.resume();
-            // }
+            dispatch_event(_freeze ? se_freeze : se_unfreeze);
 
             return freeze;
 
