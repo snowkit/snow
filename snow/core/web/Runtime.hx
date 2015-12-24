@@ -135,7 +135,7 @@ class Runtime implements snow.runtime.Runtime {
         _parent.appendChild(window);
 
         if(!create_render_context(window)) {
-            throw Error.error('runtime / web / failed to create WebGL ${app.config.render.webgl.version} render context, unable to recover');
+            create_render_context_failed();
         }
 
     } //create_window
@@ -143,29 +143,18 @@ class Runtime implements snow.runtime.Runtime {
     function create_render_context(_window:WindowHandle) : Bool {
 
         var config = app.config.render;
-            //start with the user specified values, null otherwise
         var attr : js.html.webgl.ContextAttributes = config.webgl;
 
-        attr.alpha = def(attr.alpha, false);
-        attr.premultipliedAlpha = def(attr.premultipliedAlpha, false);
-        attr.antialias = def(attr.antialias, app.config.render.antialiasing > 0);
-        attr.depth = def(attr.depth, app.config.render.depth > 0);
-        attr.stencil = def(attr.stencil, app.config.render.stencil > 0);
+        attr = apply_GL_attr(config, attr);
 
         var _gl = null;
-        if(config.webgl.version != 1) {
-
-                //try the explicit version first,if that fails try experimental
-            var _contextid = 'webgl${config.webgl.version}';
-            _gl = window.getContext(_contextid);
-
-            if(_gl == null) {
-                _gl = window.getContext('experimental-$_contextid');
-            }
-
-        } else {
-            _gl = window.getContextWebGL(attr);
-        }
+        
+        // if(config.webgl.version != 1) {
+        //     _gl = window.getContext('webgl${config.webgl.version}');
+        //     if(_gl == null) _gl = window.getContext('experimental-webgl${config.webgl.version}');
+        // } else {
+        //     _gl = window.getContextWebGL(attr);
+        // }
 
         snow.modules.opengl.GL.gl = _gl;
 
@@ -175,12 +164,55 @@ class Runtime implements snow.runtime.Runtime {
 
     } //create_render_context
 
-    function apply_GL_attr(render:RenderConfig) {
+    function apply_GL_attr(render:RenderConfig, attr:js.html.webgl.ContextAttributes) {
 
-        log('web / GL / RBGA / request ${render.red_bits} ${render.green_bits} ${render.blue_bits} ${render.alpha_bits}');
+        attr.alpha = def(attr.alpha, false);
+        attr.premultipliedAlpha = def(attr.premultipliedAlpha, false);
+        attr.antialias = def(attr.antialias, app.config.render.antialiasing > 0);
+        attr.depth = def(attr.depth, app.config.render.depth > 0);
+        attr.stencil = def(attr.stencil, app.config.render.stencil > 0);
 
+        return attr;
 
     } //apply_GL_attr
+
+    function create_render_context_failed() {
+
+        var msg =  'WebGL is required to run this!<br/><br/>';
+            msg += 'visit <a style="color:#06b4fb; text-decoration:none;" href="http://get.webgl.org/">get.webgl.com</a> for info<br/>';
+            msg += 'and contact the developer of this app';
+
+        var text_el : js.html.Element;
+        var overlay_el : js.html.Element;
+
+        text_el = js.Browser.document.createDivElement();
+        overlay_el = js.Browser.document.createDivElement();
+
+        text_el.style.marginLeft = 'auto';
+        text_el.style.marginRight = 'auto';
+        text_el.style.color = '#d3d3d3';
+        text_el.style.marginTop = '5em';
+        text_el.style.fontSize = '1.4em';
+        text_el.style.fontFamily = 'helvetica,sans-serif';
+        text_el.innerHTML = msg;
+
+        overlay_el.style.top = '0';
+        overlay_el.style.left = '0';
+        overlay_el.style.width = '100%';
+        overlay_el.style.height = '100%';
+        overlay_el.style.display = 'block';
+        overlay_el.style.minWidth = '100%';
+        overlay_el.style.minHeight = '100%';
+        overlay_el.style.textAlign = 'center';
+        overlay_el.style.position = 'absolute';
+        overlay_el.style.background = 'rgba(1,1,1,0.90)';
+
+        overlay_el.appendChild(text_el);
+        js.Browser.document.body.appendChild(overlay_el);
+
+        throw Error.error('runtime / web / failed to create render context, unable to recover');
+
+    } //failed_render_context
 
     inline function request_frame() {
 
