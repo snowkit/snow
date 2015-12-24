@@ -66,7 +66,7 @@ class Windowing implements snow.modules.interfaces.Windowing {
                 //add it to the document
             js.Browser.document.body.appendChild(_handle);
 
-            //:todo: These options need to be exposed and documented
+            //:todo: These WebGL specific options need to be exposed
         var _gl_context = _handle.getContextWebGL({ alpha:false, premultipliedAlpha:false, antialias: render_config.antialiasing > 0 });
             //early out on no possible context
         if(_gl_context == null) {

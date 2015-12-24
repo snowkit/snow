@@ -12,9 +12,9 @@ class DOMKeys {
         switch(_keycode) {
 
         //
-            case dom_shift:         return Key.lshift;     //:todo : this is both left/right but returns left
-            case dom_ctrl:          return Key.lctrl;      //:todo : ^
-            case dom_alt:           return Key.lalt;       //:todo : ^
+            case dom_shift:         return Key.lshift;     //:todo : this is left or right shift but returns left
+            case dom_ctrl:          return Key.lctrl;      //:todo : this is left or right ctrl but returns left
+            case dom_alt:           return Key.lalt;       //:todo : this is left or right alt but returns left
             case dom_capslock:      return Key.capslock;
         //
             case dom_pageup:        return Key.pageup;

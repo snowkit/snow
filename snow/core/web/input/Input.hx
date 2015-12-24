@@ -156,7 +156,7 @@ class Input implements snow.modules.interfaces.Input {
                             _gamepad.index,
                             _gamepad.id,
                             GamepadDeviceEventType.device_removed,
-                            system.app.time //:todo:gamepadtimestamp:
+                            system.app.time
                         );
 
                     } //_gamepad != null
@@ -184,7 +184,7 @@ class Input implements snow.modules.interfaces.Input {
                 index : _gamepad.index,
                 axes : [],
                 buttons : [],
-                timestamp : system.app.time //:todo:gamepadtimestamp:
+                timestamp : system.app.time
             };
 
             var axes : Array<Float> = cast _gamepad.axes;
@@ -211,14 +211,13 @@ class Input implements snow.modules.interfaces.Input {
                 //found in the list so we can update it if anything changed
             var gamepad = active_gamepads.get(_gamepad.index);
 
-                //but only if the timestamp differs :todo:gamepadtimestamp:
-                //failfox at least doesn't store timestamp changes -_-
+                //:todo:gamepadtimestamp: update only if the timestamp differs, failfox (at least) doesn't store timestamp changes -_-
             // if(gamepad.timestamp != _gamepad.timestamp) {
 
                     //update the id if it changed
                 if(gamepad.id != _gamepad.id) { gamepad.id = _gamepad.id; }
 
-                    //:todo: see :gamepadtimestamp:
+                    //see :gamepadtimestamp: comment above
                 // gamepad.timestamp = _gamepad.timestamp;
 
                     //we store the list of changed indices
@@ -297,7 +296,7 @@ class Input implements snow.modules.interfaces.Input {
 
                 } //for each button change
 
-                //:todo: see :gamepadtimestamp:
+                //see :gamepadtimestamp: comment above
             // } //timestamp changed
 
         } //exists

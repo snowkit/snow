@@ -130,12 +130,12 @@ class Assets implements snow.modules.interfaces.Assets {
 //Audio
 
     public function audio_info_from_load(_path:String, ?_is_stream:Bool=false, ?_format:AudioFormatType) : Promise {
-        //:todo:
+        //:todo:web:audio_info_from_load
         return null;
     } //audio_info_from_load
 
     public function audio_info_from_bytes(_id:String, _bytes:Uint8Array, ?_format:AudioFormatType) : Promise {
-        //:todo:
+        //:todo:web:audio_info_from_bytes
         return null;
     } //audio_info_from_bytes
 
