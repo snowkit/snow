@@ -36,7 +36,7 @@ class IO implements snow.modules.interfaces.IO {
 
     public function url_open( _url:String ) {
 
-        //:todo:
+        //:todo: native io url open
         log('native url_open / $_url');
 
     } //url_open

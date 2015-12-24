@@ -742,10 +742,10 @@ private class OGG {
                 samples         : null, 
                 length          : app.io.module.file_size(_handle),
                 length_pcm      : 0,
-                channels        : 1,
-                rate            : 44100,
-                bitrate         : 88200,
-                bits_per_sample : 16 //:todo:optionize
+                channels        : 0,
+                rate            : 0,
+                bitrate         : 0,
+                bits_per_sample : 16 //:todo:optionize ogg bits per sample
             }
         });
 

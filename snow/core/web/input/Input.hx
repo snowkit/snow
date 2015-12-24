@@ -85,15 +85,15 @@ class Input implements snow.modules.interfaces.Input {
     }
 
     public function text_input_start() {
-        // :unsupported: :todo:
+        //:unsupported:
     } //text_input_start
 
     public function text_input_stop() {
-        // :unsupported: :todo:
+        //:unsupported: 
     } //text_input_stop
 
     public function text_input_rect(x:Int, y:Int, w:Int, h:Int) {
-        // :unsupported: :todo:
+        //:unsupported: 
     } //text_input_rect
 
 //Orientation

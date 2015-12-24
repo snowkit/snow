@@ -34,7 +34,7 @@ class Core {
 
 
             //Then if requested, start the main loop
-        if(true) { //has loop :todo:
+        if(true) {
             request_update();
         }
 

@@ -612,7 +612,8 @@ class Runtime extends snow.runtime.Native {
                         e.tfinger.timestamp/1000.0
                     );
 
-            //joystick:todo:
+            //:todo: joystick events
+
             //gamepad
 
                 case SDL_CONTROLLERAXISMOTION:
