@@ -24,6 +24,8 @@ class Snow {
         public var config : snow.types.Types.AppConfig;
             /** Whether or not we are frozen, ignoring events i.e backgrounded/paused */
         public var freeze (default,set) : Bool = false;
+            /** Whether or not the ready state has been reached */
+        public var ready (default, null) : Bool = false;
 
             /** The current timestamp */
         public var time (get,never) : Float;
@@ -115,10 +117,10 @@ class Snow {
 
             step();
 
-            log('app / runtime / ${runtime.name} / run');
-            var _runtime_is_done = runtime.run();
+            log('init / runtime / ${runtime.name} / run');
 
-            if(_runtime_is_done && !(has_shutdown || shutting_down)) {
+            var _should_exit = runtime.run();
+            if(_should_exit && !(has_shutdown || shutting_down)) {
                 shutdown();
             }
 
@@ -143,7 +145,7 @@ class Snow {
             audio.shutdown();
             assets.shutdown();
             input.shutdown();
-            
+
             runtime.shutdown(immediate_shutdown);
 
             has_shutdown = true;
@@ -161,7 +163,7 @@ class Snow {
 
         } //dispatch_event
 
-            /** Handles snow system events, typically emitted via the runtime and modules. 
+            /** Handles snow system events, typically emitted via the runtime and modules.
                 Dispatch events manually using the `dispatch_*` calls. */
         public function onevent(_event:SystemEvent) {
 
@@ -218,23 +220,23 @@ class Snow {
 
     //internal event handlers
 
-        var was_ready = false;
+        var had_ready_event = false;
         inline function on_ready_event() {
 
-            assert(was_ready == false, 'snow; the ready event should not be fired repeatedly');
-            was_ready = true;
+            assert(had_ready_event == false, 'snow; the ready event should not be fired repeatedly');
+            had_ready_event = true;
 
             setup_configs().then(function(_){
 
-                _debug('init / setup default configs : ok');
-
-                _debug('init / runtime ready');
-
+                log('init / setup default configs : ok');
+                log('init / runtime ready');
                 runtime.ready();
 
-                _debug('init / host ready');
-
+                log('init / host ready');
                 host.ready();
+
+                log('init / ready');
+                ready = true;
 
             }).error(function(e) {
 
@@ -245,7 +247,7 @@ class Snow {
             step();
 
         } //on_ready_event
-        
+
         inline function on_tick_event() {
 
             if(freeze) return;
@@ -256,7 +258,7 @@ class Snow {
 
             cycle_next_queue();
 
-            if(!shutting_down) {
+            if(!shutting_down && ready) {
                 host.internal_tick();
             }
 
@@ -265,7 +267,7 @@ class Snow {
         } //on_tick_event
 
     //setup and boot
-     
+
         function setup_configs() {
 
                 //blank/null config path means don't try to load it
@@ -279,7 +281,7 @@ class Snow {
 
             return new Promise(function(resolve, reject) {
 
-                _debug('config / fetching user config');
+                log('config / fetching user config');
 
                 default_user_config().then(function(_user_conf:Dynamic) {
 
@@ -302,8 +304,8 @@ class Snow {
 
         inline function setup_host_config() {
 
-            _debug('config / fetching user config');
-            
+            log('config / fetching host config');
+
             config = host.config( config );
 
         } //setup_host_config
@@ -311,7 +313,7 @@ class Snow {
             /** Handles the default method of parsing a user config json */
         function default_user_config() : Promise {
 
-            _debug('config / setting up default user config');
+            log('config / setting up default user config');
 
                 //for the default config, we only reject if there is a json parse error
             return new Promise(function(resolve, reject) {
@@ -346,18 +348,16 @@ class Snow {
         /** Returns a default configured render config */
         function default_render_config() : RenderConfig {
 
-            _debug('config / fetching default render config');
+            log('config / fetching default render config');
 
             return {
-                depth : false,
-                stencil : false,
+                depth : 0,
+                stencil : 0,
                 antialiasing : 0,
                 red_bits : 8,
                 green_bits : 8,
                 blue_bits : 8,
                 alpha_bits : 8,
-                depth_bits : 0,
-                stencil_bits : 0,
                 opengl : {
                     #if mobile
                         major:2, minor:0,
@@ -366,6 +366,9 @@ class Snow {
                         major:0, minor: 0,
                         profile: OpenGLProfile.compatibility
                     #end
+                },
+                webgl : {
+                    version : 1
                 }
             };
 
@@ -374,7 +377,7 @@ class Snow {
             /** Returns a default configured window config */
         function default_window_config() : WindowConfig {
 
-            _debug('config / fetching default window config');
+            log('config / fetching default window config');
 
             var conf : WindowConfig = {
                 fullscreen_desktop  : true,
@@ -426,7 +429,7 @@ class Snow {
         } //step
 
     //callbacks
-    
+
         static var next_queue : Array<Void->Void> = [];
         static var defer_queue : Array<Void->Void> = [];
 
@@ -475,13 +478,11 @@ class Snow {
             return {
                 antialiasing: _config.antialiasing,
                 depth: _config.depth,
-                depth_bits: _config.depth_bits,
+                stencil: _config.stencil,
                 red_bits: _config.red_bits,
                 green_bits: _config.green_bits,
                 blue_bits: _config.blue_bits,
                 alpha_bits: _config.alpha_bits,
-                stencil: _config.stencil,
-                stencil_bits: _config.stencil_bits,
                 opengl : {
                     major: _config.opengl.major,
                     minor: _config.opengl.minor,
