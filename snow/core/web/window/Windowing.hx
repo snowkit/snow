@@ -48,8 +48,9 @@ class Windowing implements snow.modules.interfaces.Windowing {
         }
     }
 
-    public function create( render_config:RenderConfig, _config:WindowConfig, on_created: WindowHandle->Int->WindowingConfig->Void ) {
+    public function create( app_config:AppConfig, _config:WindowConfig, on_created: WindowHandle->Int->WindowingConfig->Void ) {
 
+		var render_config = app_config.render;
         var _window_id = seq_window;
         var _handle : js.html.CanvasElement = js.Browser.document.createCanvasElement();
         var config = _copy_config(_config);
@@ -64,7 +65,15 @@ class Windowing implements snow.modules.interfaces.Windowing {
             _handle.style.background = '#000';
 
                 //add it to the document
-            js.Browser.document.body.appendChild(_handle);
+			var element = null;
+			if (app_config.web.parent_element != null) {
+				element = js.Browser.document.getElementById(app_config.web.parent_element);
+			}
+			if (element == null) {
+				js.Browser.document.body.appendChild(_handle);
+			} else {
+				element.appendChild(_handle);
+			}
 
             //:todo: These options need to be exposed and documented
         var _gl_context = _handle.getContextWebGL({ alpha:false, premultipliedAlpha:false, antialias: render_config.antialiasing > 0 });

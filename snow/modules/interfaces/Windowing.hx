@@ -18,7 +18,7 @@ interface Windowing {
 
         /** Create a window with config, calls on_created when complete passing the handle, the ID,
             and the actual config that was used since the requested config could fail */
-    function create( render_config:RenderConfig, config:WindowConfig, on_created: WindowHandle->Int->WindowingConfig->Void ) : Void;
+    function create( app_config:AppConfig, config:WindowConfig, on_created: WindowHandle->Int->WindowingConfig->Void ) : Void;
         /** Close a given window */
     function close( window:Window ) : Void;
         /** reopen this window once closed. Destroyed windows cannot be reopened, it must use create again */

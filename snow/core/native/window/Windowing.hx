@@ -26,8 +26,8 @@ class Windowing implements snow.modules.interfaces.Windowing {
     function listen( window:Window ) {}
     function unlisten( window:Window ) {}
 
-    public inline function create( render_config:RenderConfig, config:WindowConfig, on_created: WindowHandle->Int->WindowingConfig->Void ) {
-    	snow_window_create( render_config, config, on_created );
+    public inline function create( app_config:AppConfig, config:WindowConfig, on_created: WindowHandle->Int->WindowingConfig->Void ) {
+    	snow_window_create( app_config.render, config, on_created );
     } //window_create
 
     public inline function close( window:Window ) {
