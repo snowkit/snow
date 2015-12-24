@@ -99,8 +99,6 @@ class IO {
 
     } //string_save_path
 
-        //:todo: clear() and remove()
-
         /** Save a string value by key, with an optional slot.
             To remove a saved key, pass value in as null.
             Works on all targets as a simple save/load mechanism.
