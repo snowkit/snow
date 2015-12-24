@@ -79,9 +79,10 @@ typedef UserConfig = UserConfigDef;
 private typedef RuntimeConfigInit = ApplyType<"RuntimeConfig">;
 typedef RuntimeConfig = RuntimeConfigDef;
 
-#if snow_native //:todo:
-private typedef FileHandleInit = ApplyType<"FileHandle">;
-typedef FileHandle = FileHandleDef;
+//:todo: snow_native define use
+#if snow_native
+    private typedef FileHandleInit = ApplyType<"FileHandle">;
+    typedef FileHandle = FileHandleDef;
 #end
 
 private typedef WindowHandleInit = ApplyType<"WindowHandle">;
@@ -252,6 +253,8 @@ class AudioInfo {
         format = _opt.format;
         is_stream = _opt.is_stream;
     }
+
+    inline function toString() return 'AudioInfo{ id($id) format($format) is_stream($is_stream) data($data) }';
 
     public function destroy() {
 
