@@ -1,6 +1,7 @@
 package snow.systems.input;
 
 import snow.types.Types;
+import snow.api.Debug.assert;
 
 typedef MapIntBool = Map<Int, Bool>;
 typedef MapIntFloat = Map<Int, Float>;
@@ -11,6 +12,9 @@ class Input {
 
         /** access to snow from subsystems */
     var app : Snow;
+
+        /** An internal value for how many gamepads to pre-set up at creation time */
+    var gamepad_init_count = 16;
 
         /** constructed internally, use `app.input` */
     function new( _app:Snow ) {
@@ -39,6 +43,13 @@ class Input {
             gamepad_button_down = new Map();
             gamepad_button_released = new Map();
             gamepad_axis_values = new Map();
+            
+            for(i in 0...gamepad_init_count) {
+                gamepad_button_pressed.set(i, new Map());
+                gamepad_button_down.set(i, new Map());
+                gamepad_button_released.set(i, new Map());
+                gamepad_axis_values.set(i, new Map());
+            }
 
         //touch
 
@@ -263,10 +274,7 @@ class Input {
         /** manually dispatch a gamepad axis event through the system, delivered to the app handlers, internal and external */
     public function dispatch_gamepad_axis_event( gamepad:Int, axis:Int, value:Float, timestamp:Float ) {
 
-            //if not existing, add it's map
-        if(!gamepad_axis_values.exists(gamepad)) {
-            gamepad_axis_values.set(gamepad, new Map());
-        }
+        assert(gamepad_axis_values.exists(gamepad), 'gamepad with id $gamepad not pre-inited? Is gamepad_init_count too low, or the gamepad id not sequential from 0?');
 
             //update the axis value
         gamepad_axis_values.get(gamepad).set(axis, value);
@@ -278,14 +286,8 @@ class Input {
         /** manually dispatch a gamepad button down event through the system, delivered to the app handlers, internal and external */
     public function dispatch_gamepad_button_down_event( gamepad:Int, button:Int, value:Float, timestamp:Float ) {
 
-            //if not existing, add it's map
-        if(!gamepad_button_pressed.exists(gamepad)) {
-            gamepad_button_pressed.set(gamepad, new Map());
-        }
-
-        if(!gamepad_button_down.exists(gamepad)) {
-            gamepad_button_down.set(gamepad, new Map());
-        }
+        assert(gamepad_button_pressed.exists(gamepad), 'gamepad with id $gamepad not pre-inited? Is gamepad_init_count too low, or the gamepad id not sequential from 0?');
+        assert(gamepad_button_down.exists(gamepad), 'gamepad with id $gamepad not pre-inited? Is gamepad_init_count too low, or the gamepad id not sequential from 0?');
 
             //flag it as released but unprocessed
         gamepad_button_pressed.get(gamepad).set(button, false);
@@ -300,29 +302,22 @@ class Input {
         /** manually dispatch a gamepad button up event through the system, delivered to the app handlers, internal and external */
     public function dispatch_gamepad_button_up_event( gamepad:Int, button:Int, value:Float, timestamp:Float ) {
 
-           //if not existing, add it's map, this should never happen,
-           //but rather be safe than crashy. :todo:shipping:
-        if(!gamepad_button_released.exists(gamepad)) {
-            gamepad_button_released.set(gamepad, new Map());
-        }
-
-        if(!gamepad_button_down.exists(gamepad)) {
-            gamepad_button_down.set(gamepad, new Map());
-        }
+        assert(gamepad_button_released.exists(gamepad), 'gamepad with id $gamepad not pre-inited? Is gamepad_init_count too low, or the gamepad id not sequential from 0?');
+        assert(gamepad_button_down.exists(gamepad), 'gamepad with id $gamepad not pre-inited? Is gamepad_init_count too low, or the gamepad id not sequential from 0?');
 
             //flag it as released but unprocessed
         gamepad_button_released.get(gamepad).set(button, false);
             //flag it as down, because gamepadup removes it
         gamepad_button_down.get(gamepad).remove(button);
 
-        app.host.ongamepadup( gamepad, button, value, timestamp );
+        app.host.ongamepadup(gamepad, button, value, timestamp);
 
     } //dispatch_gamepad_button_up_event
 
         /** manually dispatch a gamepad device event through the system, delivered to the app handlers, internal and external */
     public function dispatch_gamepad_device_event( gamepad:Int, id:String, type:GamepadDeviceEventType, timestamp:Float ) {
 
-        app.host.ongamepaddevice( gamepad, id, type, timestamp );
+        app.host.ongamepaddevice(gamepad, id, type, timestamp);
 
     } //dispatch_gamepad_device_event
 
