@@ -11,7 +11,6 @@ class AudioInstance {
     public var source : AudioSource;
     public var handle : AudioHandle;
 
-        //sanity
     var destroyed = false;
 
         /** Create a new instance from the given audio source.

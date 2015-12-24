@@ -12,7 +12,8 @@ class AudioSource {
 
         /** Whether or not the source is a stream */
     public var is_stream (default,null) : Bool = false;
-        /** Streams only:  This is ~1 sec in 16 bit mono. default:176400
+        /** Streams only:  The size in bytes of a single stream buffer.
+            This is ~1 sec in 16 bit mono. default:176400
             for most cases this can be left alone. */
     public var stream_buffer_length : Int = 176400;
         /** Streams only: The number of buffers to queue up. default:2
