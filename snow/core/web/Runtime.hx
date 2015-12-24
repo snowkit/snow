@@ -18,6 +18,9 @@ class Runtime implements snow.runtime.Runtime {
         app = _app;
         timestamp_start = timestamp();
 
+        app.platform = Platform.platform_web;
+        app.os = guess_os();
+
     } //new
 
     function shutdown(?_immediate:Bool=false) {
@@ -83,5 +86,31 @@ class Runtime implements snow.runtime.Runtime {
         return window.height;
 
     } //window_height
+
+//internal
+
+    function guess_os() {
+
+        var _ver = js.Browser.navigator.appVersion;
+        var _agent = js.Browser.navigator.userAgent;
+
+        inline function has(_val:String, _test:String) {
+            var r = new EReg(_val,'gi');
+            return r.match(_test);
+        }
+
+        if(has('mac', _ver))        return OS.os_mac;
+        if(has('win', _ver))        return OS.os_windows;
+            //I know it's not linux technically (should be unix)
+        if(has('x11', _ver))        return OS.os_linux;
+        if(has('linux', _ver))      return OS.os_linux;
+        if(has('android', _ver))    return OS.os_android;
+        if(has('ipad', _agent))     return OS.os_ios;
+        if(has('iphone', _agent))   return OS.os_ios;
+        if(has('ipod', _agent))     return OS.os_ios;
+
+        return OS.os_unknown;
+
+    } //guess_os
 
 }
