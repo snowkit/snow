@@ -2,7 +2,6 @@
 import snow.api.Debug.*;
 import snow.types.Types;
 import snow.modules.opengl.GL;
-import snowhxt.Snowhxt;
 
 typedef UserConfig = {
     int : Int,
@@ -12,8 +11,6 @@ typedef UserConfig = {
 
 @:log_as('app')
 class Main extends snow.App {
-
-    var hxt : Snowhxt;
 
     function new() {}
 
@@ -27,8 +24,6 @@ class Main extends snow.App {
 
 
     override function ready() {
-
-        hxt = new Snowhxt();
 
         log('ready');
         log('app config: ${app.config.user}');
@@ -57,8 +52,6 @@ class Main extends snow.App {
         GL.clearColor(r,r,r,1.0);
         GL.clear(GL.COLOR_BUFFER_BIT);
 
-        hxt.update();
-
     } //update
 
     function test_assets() {
@@ -79,32 +72,34 @@ class Main extends snow.App {
                 log(error);
             });
 
-        var imghandle = app.io.module.file_handle('assets/test.png','rb');
-        var imgfsize = app.io.module.file_size(imghandle);
-        var imgbytes = new snow.api.buffers.Uint8Array(imgfsize);
-        app.io.module.file_read(imghandle, imgbytes, imgfsize, 1);
-        var imginfo = app.assets.module.image_info_from_load_direct('assets/test.png');
-        var imginfo2 = app.assets.module.image_info_from_bytes_direct('assets/test.png', imgbytes);
-        trace(imginfo);
-        trace(imginfo2);
+        #if snow_native
+            var imghandle = app.io.module.file_handle('assets/test.png','rb');
+            var imgfsize = app.io.module.file_size(imghandle);
+            var imgbytes = new snow.api.buffers.Uint8Array(imgfsize);
+            app.io.module.file_read(imghandle, imgbytes, imgfsize, 1);
+            var imginfo = app.assets.module.image_info_from_load_direct('assets/test.png');
+            var imginfo2 = app.assets.module.image_info_from_bytes_direct('assets/test.png', imgbytes);
+            trace(imginfo);
+            trace(imginfo2);
 
-        var wavhandle = app.io.module.file_handle('assets/sound.wav','rb');
-        var wavfsize = app.io.module.file_size(wavhandle);
-        var wavbytes = new snow.api.buffers.Uint8Array(wavfsize);
-        app.io.module.file_read(wavhandle, wavbytes, wavfsize, 1);
-        var wavinfo = app.assets.module.audio_info_from_load_direct('assets/sound.wav');
-        var wavinfo2 = app.assets.module.audio_info_from_bytes_direct('assets/sound.wav', wavbytes);
-        trace(wavinfo);
-        trace(wavinfo2);
+            var wavhandle = app.io.module.file_handle('assets/sound.wav','rb');
+            var wavfsize = app.io.module.file_size(wavhandle);
+            var wavbytes = new snow.api.buffers.Uint8Array(wavfsize);
+            app.io.module.file_read(wavhandle, wavbytes, wavfsize, 1);
+            var wavinfo = app.assets.module.audio_info_from_load_direct('assets/sound.wav');
+            var wavinfo2 = app.assets.module.audio_info_from_bytes_direct('assets/sound.wav', wavbytes);
+            trace(wavinfo);
+            trace(wavinfo2);
 
-        var ogghandle = app.io.module.file_handle('assets/sound.ogg','rb');
-        var oggfsize = app.io.module.file_size(ogghandle);
-        var oggbytes = new snow.api.buffers.Uint8Array(oggfsize);
-        app.io.module.file_read(ogghandle, oggbytes, oggfsize, 1);
-        var ogginfo = app.assets.module.audio_info_from_load_direct('assets/sound.ogg');
-        var ogginfo2 = app.assets.module.audio_info_from_bytes_direct('assets/sound.ogg', oggbytes);
-        trace(ogginfo);
-        trace(ogginfo2);
+            var ogghandle = app.io.module.file_handle('assets/sound.ogg','rb');
+            var oggfsize = app.io.module.file_size(ogghandle);
+            var oggbytes = new snow.api.buffers.Uint8Array(oggfsize);
+            app.io.module.file_read(ogghandle, oggbytes, oggfsize, 1);
+            var ogginfo = app.assets.module.audio_info_from_load_direct('assets/sound.ogg');
+            var ogginfo2 = app.assets.module.audio_info_from_bytes_direct('assets/sound.ogg', oggbytes);
+            trace(ogginfo);
+            trace(ogginfo2);
+        #end
 
     } //test_assets
 
