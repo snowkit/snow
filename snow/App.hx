@@ -96,7 +96,7 @@ class App {
         /** Called for you when a mouse button is released */
     function onmouseup(x:Int, y:Int, button:Int, timestamp:Float, window_id:Int) {}
         /** Called for you when the mouse wheel moves */
-    function onmousewheel(x:Int, y:Int, timestamp:Float, window_id:Int) {}
+    function onmousewheel(x:Float, y:Float, timestamp:Float, window_id:Int) {}
         /** Called for you when the mouse moves */
     function onmousemove(x:Int, y:Int, xrel:Int, yrel:Int, timestamp:Float, window_id:Int) {}
 

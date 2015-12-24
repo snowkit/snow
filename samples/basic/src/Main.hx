@@ -264,6 +264,12 @@ class Main extends snow.App {
 
     } //ontouchmove
 
+    override function onmousewheel( x:Float, y:Float, timestamp:Float, window_id:Int ) {
+
+        log('mouse wheel $x / $y / $timestamp / $window_id');
+
+    }
+
     override function onmousemove( x:Int, y:Int, xrel:Int, yrel:Int, timestamp:Float, window_id:Int ) {
 
         // log('mouse move $x / $y / $xrel / $yrel / $timestamp / $window_id');

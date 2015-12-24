@@ -235,7 +235,7 @@ class Input {
     } //dispatch_mouse_up_event
 
         /** manually dispatch a mouse wheel event through the system, delivered to the app handlers, internal and external */
-    public function dispatch_mouse_wheel_event( x:Int, y:Int, timestamp:Float, window_id:Int ) {
+    public function dispatch_mouse_wheel_event( x:Float, y:Float, timestamp:Float, window_id:Int ) {
 
         app.host.onmousewheel( x, y, timestamp, window_id );
 
