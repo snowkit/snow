@@ -12,6 +12,8 @@ class Runtime implements snow.runtime.Runtime {
 
         /** internal start time for 0 based time values */
     static var timestamp_start : Float = 0.0;
+
+
         /** internal: a pre allocated window event */
     var _window_event_ : WindowEvent;
         /** The window id to use for events */
@@ -20,6 +22,9 @@ class Runtime implements snow.runtime.Runtime {
     var window_x : Int = 0;
         /** The window y position, this is set by update_window_pos only */
     var window_y : Int = 0;
+
+
+    var gamepads_supported : Bool = false;
 
     function new(_app:snow.Snow) {
 
@@ -42,6 +47,8 @@ class Runtime implements snow.runtime.Runtime {
         };
 
         _window_event_ = new WindowEvent();
+
+        gamepads_init();
 
         log('web / init ok');
 
@@ -390,7 +397,38 @@ class Runtime implements snow.runtime.Runtime {
 
             }); //touchmove
 
-        //:todo:web:gamepad events
+        //gamepad events
+
+            js.Browser.window.addEventListener("gamepadconnected", function(_ev:{ gamepad:js.html.Gamepad }) {
+
+                _debug('gamepad connected at index ${_ev.gamepad.index}: ${_ev.gamepad.id}. ${_ev.gamepad.buttons.length} buttons, ${_ev.gamepad.axes.length} axes');
+
+                gamepads_init_cache(_ev.gamepad);
+
+                app.input.dispatch_gamepad_device_event(
+                    _ev.gamepad.index,
+                    _ev.gamepad.id,
+                    GamepadDeviceEventType.device_added,
+                    timestamp()
+                );
+
+            }); //gamepadconnected
+
+            js.Browser.window.addEventListener("gamepaddisconnected", function(_ev:{ gamepad:js.html.Gamepad }) {
+                
+                _debug('gamepad disconnected at index ${_ev.gamepad.index}: ${_ev.gamepad.id}');
+
+                gamepad_btns_cache[_ev.gamepad.index] = null;
+                
+                app.input.dispatch_gamepad_device_event(
+                    _ev.gamepad.index,
+                    _ev.gamepad.id,
+                    GamepadDeviceEventType.device_removed,
+                    timestamp()
+                );
+
+            }); //gamepaddisconnected
+
 
         //:todo:web:orientation events
 
@@ -512,6 +550,8 @@ class Runtime implements snow.runtime.Runtime {
 
     function loop(?_t:Float = 0.016) : Bool {
 
+        if(gamepads_supported) gamepads_poll();
+
         app.dispatch_event(se_tick);
 
         if(!app.shutting_down) {
@@ -610,6 +650,114 @@ class Runtime implements snow.runtime.Runtime {
         window_y = curtop;
 
     } //update_window_pos
+
+//gamepads
+    
+    var gamepad_btns_cache : Array<Array<Float>>;
+
+    inline function gamepads_init_cache(_gamepad:js.html.Gamepad) {
+        gamepad_btns_cache[_gamepad.index] = [];
+        for(i in 0 ... _gamepad.buttons.length) gamepad_btns_cache[_gamepad.index].push(0);
+    }
+
+    inline function gamepads_init() {
+
+        var _list = gamepads_get_list();
+        if(_list != null) {
+            gamepads_supported = true;
+            gamepad_btns_cache = [];
+            for(_gamepad in _list) {
+                if(_gamepad != null) {
+                    gamepads_init_cache(_gamepad);
+                }
+            }
+        } else {
+            //:todo:web: more assistive gamepad failure
+            log("Gamepads are not supported in this browser :(");
+        }
+
+    } //gamepads_init
+
+    inline function gamepads_poll() {
+
+        var list = gamepads_get_list();
+    
+        assertnull(list, 'gamepad list not found, but they were previously?');
+
+        var _count = list.length;
+        var _idx = 0;
+        
+        while(_idx < _count) {
+
+            var _gamepad = list[_idx];
+            if(_gamepad == null) {
+                _idx++;
+                continue;
+            }
+
+            for(_axis_idx in 0 ... _gamepad.axes.length) {
+                
+                var _axis = _gamepad.axes[_axis_idx];
+                if(_axis != 0) {
+                    app.input.dispatch_gamepad_axis_event(
+                        _gamepad.index,
+                        _axis_idx,
+                        _axis,
+                        timestamp()
+                    );
+                }
+
+            } //each axis
+
+            var _prev_btn = gamepad_btns_cache[_gamepad.index];
+            for(_btn_idx in 0 ... _gamepad.buttons.length) {
+                
+                var _btn = _gamepad.buttons[_btn_idx];
+
+                if(_btn.value != _prev_btn[_btn_idx]) {
+
+                    if(_btn.pressed) {
+                        app.input.dispatch_gamepad_button_down_event(
+                            _gamepad.index,
+                            _btn_idx,
+                            _btn.value,
+                            timestamp()
+                        );
+                    } else {
+                        app.input.dispatch_gamepad_button_up_event(
+                            _gamepad.index,
+                            _btn_idx,
+                            _btn.value,
+                            timestamp()
+                        );
+                    }
+
+                    _prev_btn[_btn_idx] = _btn.value;
+
+                } //changed
+
+            } //each button
+
+            _idx++;
+        } //each gamepad
+
+    } //gamepads_poll
+
+    inline function gamepads_get_list() : Array<js.html.Gamepad> {
+
+            //try official api first
+        if( js.Browser.navigator.getGamepads != null ) {
+            return js.Browser.navigator.getGamepads();
+        }
+
+            //try webkit GetGamepads() function as well
+        if( untyped js.Browser.navigator.webkitGetGamepads != null ) {
+            return untyped js.Browser.navigator.webkitGetGamepads();
+        }
+
+        return null;
+
+    } //get_gamepad_list
 
 //helpers
 
