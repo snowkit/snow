@@ -292,10 +292,22 @@ class Main extends snow.App {
 
     } //onmouseup
 
+    override function ongamepadup(gamepad:Int,btn:Int,value:Float,_) {
+        log('gamepad up; device: ${gamepad}, btn: ${btn}, value: ${value}');
+    }
+
+    override function ongamepaddown(gamepad:Int,btn:Int,value:Float,_) {
+        log('gamepad down; device: ${gamepad}, btn: ${btn}, value: ${value}');
+    }
+
+    override function ongamepaddevice( gamepad:Int, id:String, type:GamepadDeviceEventType, _ ) {
+        log('gamepad device; $type  device: $gamepad id: $id');
+    }
+
     override function ongamepadaxis( gamepad:Int, axis:Int, value:Float, timestamp:Float ) {
 
         if(Math.abs(value) > 0.2 || no_gamepad_deadzone) {
-            // log('axis; device: ${gamepad}, axis: ${axis}, value: ${value} timestamp: ${timestamp}');
+            log('axis; device: ${gamepad}, axis: ${axis}, value: ${value} timestamp: ${timestamp}');
             if(axis == 1) {
                 render_y += value * 2 * speed * frame_delta;
             }
