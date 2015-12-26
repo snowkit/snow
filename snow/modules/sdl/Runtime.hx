@@ -18,6 +18,10 @@ class Runtime extends snow.runtime.Native {
     public var window : sdl.Window;
         /** internal: a pre allocated window event */
     var _window_event_ : WindowEvent;
+        /** internal: map of gamepad index to gamepad instance */
+    var gamepads : Map<Int, sdl.GameController>;
+        /** internal: map of joystick index to joystick instance */
+    var joysticks : Map<Int, sdl.Joystick>;
 
     function new(_app:snow.Snow) {
 
@@ -31,6 +35,8 @@ class Runtime extends snow.runtime.Native {
         }
 
         _window_event_ = new WindowEvent();
+        gamepads = new Map();
+        joysticks = new Map();
 
         var status = SDL.init(SDL_INIT_TIMER);
         if(status != 0) {
@@ -620,7 +626,71 @@ class Runtime extends snow.runtime.Native {
                         e.tfinger.timestamp/1000.0
                     );
 
-            //:todo: joystick events
+            //joystick events
+
+                case SDL_JOYAXISMOTION:
+
+                    if(!SDL.isGameController(e.jaxis.which)) {
+                         //(range: -32768 to 32767)
+                        var _val:Float = (e.jaxis.value+32768)/(32767+32768);
+                        var _normalized_val = (-0.5 + _val) * 2.0;
+                        app.input.dispatch_gamepad_axis_event(
+                            e.jaxis.which,
+                            e.jaxis.axis,
+                            _normalized_val,
+                            e.jaxis.timestamp/1000.0
+                        );
+                    }
+
+                case SDL_JOYBUTTONDOWN:
+
+                    if(!SDL.isGameController(e.jbutton.which)) {
+                        app.input.dispatch_gamepad_button_down_event(
+                            e.jbutton.which,
+                            e.jbutton.button,
+                            1,
+                            e.jbutton.timestamp/1000.0
+                        );
+                    }
+
+                case SDL_JOYBUTTONUP:
+
+                    if(!SDL.isGameController(e.jbutton.which)) {
+                        app.input.dispatch_gamepad_button_up_event(
+                            e.jbutton.which,
+                            e.jbutton.button,
+                            0,
+                            e.jbutton.timestamp/1000.0
+                        );
+                    }
+
+                case SDL_JOYDEVICEADDED:
+
+                    if(!SDL.isGameController(e.jdevice.which)) {
+                        var _joystick = SDL.joystickOpen(e.jdevice.which);
+                        joysticks.set(e.jdevice.which, _joystick);
+
+                        app.input.dispatch_gamepad_device_event(
+                            e.jdevice.which,
+                            SDL.joystickNameForIndex(e.jdevice.which),
+                            GamepadDeviceEventType.device_added,
+                            e.jdevice.timestamp/1000.0
+                        );
+                    }
+                case SDL_JOYDEVICEREMOVED:
+
+                    if(!SDL.isGameController(e.jdevice.which)) {
+                        var _joystick = joysticks.get(e.jdevice.which);
+                        SDL.joystickClose(_joystick);
+                        joysticks.remove(e.jdevice.which);
+
+                        app.input.dispatch_gamepad_device_event(
+                            e.jdevice.which,
+                            SDL.joystickNameForIndex(e.jdevice.which),
+                            GamepadDeviceEventType.device_removed,
+                            e.jdevice.timestamp/1000.0
+                        );
+                    }
 
             //gamepad
 
@@ -649,6 +719,10 @@ class Runtime extends snow.runtime.Native {
                         e.cbutton.timestamp/1000.0
                     );
                 case SDL_CONTROLLERDEVICEADDED:
+
+                    var _gamepad = SDL.gameControllerOpen(e.cdevice.which);
+                    gamepads.set(e.cdevice.which, _gamepad);
+
                     app.input.dispatch_gamepad_device_event(
                         e.cdevice.which,
                         SDL.gameControllerNameForIndex(e.cdevice.which),
@@ -656,6 +730,11 @@ class Runtime extends snow.runtime.Native {
                         e.cdevice.timestamp/1000.0
                     );
                 case SDL_CONTROLLERDEVICEREMOVED:
+
+                    var _gamepad = gamepads.get(e.cdevice.which);
+                    SDL.gameControllerClose(_gamepad);
+                    gamepads.remove(e.cdevice.which);
+
                     app.input.dispatch_gamepad_device_event(
                         e.cdevice.which,
                         SDL.gameControllerNameForIndex(e.cdevice.which),

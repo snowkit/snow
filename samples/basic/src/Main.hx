@@ -111,10 +111,9 @@ class Main extends snow.App {
 
     override public function onevent(event:SystemEvent) {
 
-        if(event.type != se_tick) trace('system event : ${event.type}');
+        // if(event.type != se_tick) trace('system event : ${event.type}');
 
         if(event.window != null) {
-            trace(event.window);
             if(event.window.type == WindowEventType.size_changed||event.window.type == WindowEventType.resized) {
                 window_width = event.window.x;
                 window_height = event.window.y;
