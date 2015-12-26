@@ -326,17 +326,13 @@ class Input {
         /** Called when a system event is dispatched through the core */
     function onevent( _event:SystemEvent ) {
 
+        if(_event.type == se_tick) {
+            _update_keystate();
+            _update_gamepadstate();
+            _update_mousestate();
+        }
+
     } //onevent
-
-
-        /** Handle any input related processing, called by Snow */
-    function update() {
-
-        _update_keystate();
-        _update_gamepadstate();
-        _update_mousestate();
-
-    } //update
 
 
 //internal

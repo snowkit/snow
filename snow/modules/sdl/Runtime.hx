@@ -42,6 +42,8 @@ class Runtime extends snow.runtime.Native {
             var status = SDL.initSubSystem(SDL_INIT_VIDEO);
             if(status != 0) {
                 throw Error.init('runtime / sdl / failed to init video / `${SDL.getError()}`');
+            } else {
+                log('sdl / init video');
             }
 
         //input
@@ -50,6 +52,8 @@ class Runtime extends snow.runtime.Native {
                 status = SDL.initSubSystem(SDL_INIT_GAMECONTROLLER);
                 if(status == -1) {
                     log('sdl / Could not initialize controller : `${SDL.getError()}`');
+                } else {
+                    log('sdl / init game controllers');
                 }
             #end
 
@@ -57,6 +61,8 @@ class Runtime extends snow.runtime.Native {
                 status = SDL.initSubSystem(SDL_INIT_JOYSTICK);
                 if(status == -1) {
                     log('sdl / Could not initialize joystick : `${SDL.getError()}`');
+                } else {
+                    log('sdl / init joystick');
                 }
             #end
 
@@ -64,6 +70,8 @@ class Runtime extends snow.runtime.Native {
                 status = SDL.initSubSystem(SDL_INIT_HAPTIC);
                 if(status == -1) {
                     log('sdl / Could not initialize haptic : `${SDL.getError()}`');
+                } else {
+                    log('sdl / init haptic');
                 }
             #end
 
