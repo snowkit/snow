@@ -475,7 +475,7 @@ class WindowEvent {
 
     public function new() {}
 
-    @:allow(snow.runtime.Runtime)
+    @:allow(snow.core.Runtime)
     inline function set(_type:WindowEventType, _timestamp:Float, _window_id:Int, ?_data1:Null<Int>, ?_data2:Null<Int>) {
         type = _type;
         timestamp = _timestamp;

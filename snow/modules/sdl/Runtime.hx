@@ -10,7 +10,7 @@ import glew.GLEW;
 #end
 
 @:allow(snow.Snow)
-class Runtime extends snow.runtime.Native {
+class Runtime extends snow.core.native.Runtime {
 
         /** The SDL GL context */
     public var gl : sdl.GLContext;

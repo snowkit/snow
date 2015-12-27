@@ -1,4 +1,4 @@
-package snow.runtime;
+package snow.core.native;
 
 import snow.api.Debug.*;
 import snow.types.Types;
@@ -15,7 +15,7 @@ import snow.types.Types;
 #end //hxcpp_static_std
 
 @:allow(snow.Snow)
-class Native implements Runtime {
+class Runtime implements snow.core.Runtime {
 
     public var name: String = 'native';
     public var app: snow.Snow;
@@ -110,5 +110,5 @@ class Native implements Runtime {
     } //window_height
 
 
-} //Native
+} //Runtime
 

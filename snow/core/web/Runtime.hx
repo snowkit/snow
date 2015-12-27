@@ -4,7 +4,7 @@ import snow.types.Types;
 import snow.api.Debug.*;
 
 @:allow(snow.Snow)
-class Runtime implements snow.runtime.Runtime {
+class Runtime implements snow.core.Runtime {
 
     public var app:snow.Snow;
     public var window : WindowHandle;

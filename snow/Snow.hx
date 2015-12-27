@@ -1,12 +1,12 @@
 package snow;
 
-import snow.runtime.Runtime;
 import snow.api.Debug.*;
 import snow.api.Timer;
 import snow.api.Promise;
 import snow.api.buffers.Uint8Array;
 import snow.types.Types;
 
+import snow.core.Runtime;
 import snow.systems.io.IO;
 import snow.systems.input.Input;
 import snow.systems.assets.Asset.AssetJSON;

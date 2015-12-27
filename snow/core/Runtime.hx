@@ -1,4 +1,4 @@
-package snow.runtime;
+package snow.core;
 
 @:allow(snow.Snow)
 interface Runtime {
