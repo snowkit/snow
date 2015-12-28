@@ -475,8 +475,8 @@ class Input {
 
         //:todo: touch state maps and count
         //map of the touches currently down,
-    var touch_count : Int = 0;
-    var touches_down : MapIntBool;
+    @:noCompletion public var touch_count : Int = 0;
+    @:noCompletion public var touches_down : MapIntBool;
 
 
 } //Input
