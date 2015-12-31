@@ -255,39 +255,39 @@ class Runtime extends snow.core.native.Runtime {
         var _data2 = e.window.data2;
 
         if(e.type == SDL_WINDOWEVENT) {
-            var _type:WindowEventType = WindowEventType.unknown;
+            var _type:WindowEventType = we_unknown;
             switch(e.window.event) {
                 case SDL_WINDOWEVENT_SHOWN:
-                    _type = WindowEventType.shown;
+                    _type = we_shown;
                 case SDL_WINDOWEVENT_HIDDEN:
-                    _type = WindowEventType.hidden;
+                    _type = we_hidden;
                 case SDL_WINDOWEVENT_EXPOSED:
-                    _type = WindowEventType.exposed;
+                    _type = we_exposed;
                 case SDL_WINDOWEVENT_MOVED:
-                    _type = WindowEventType.moved;
+                    _type = we_moved;
                 case SDL_WINDOWEVENT_MINIMIZED:
-                    _type = WindowEventType.minimized;
+                    _type = we_minimized;
                 case SDL_WINDOWEVENT_MAXIMIZED:
-                    _type = WindowEventType.maximized;
+                    _type = we_maximized;
                 case SDL_WINDOWEVENT_RESTORED:
-                    _type = WindowEventType.restored;
+                    _type = we_restored;
                 case SDL_WINDOWEVENT_ENTER:
-                    _type = WindowEventType.enter;
+                    _type = we_enter;
                 case SDL_WINDOWEVENT_LEAVE:
-                    _type = WindowEventType.leave;
+                    _type = we_leave;
                 case SDL_WINDOWEVENT_FOCUS_GAINED:
-                    _type = WindowEventType.focus_gained;
+                    _type = we_focus_gained;
                 case SDL_WINDOWEVENT_FOCUS_LOST:
-                    _type = WindowEventType.focus_lost;
+                    _type = we_focus_lost;
                 case SDL_WINDOWEVENT_CLOSE:
-                    _type = WindowEventType.close;
+                    _type = we_close;
                 case SDL_WINDOWEVENT_RESIZED:
-                    _type = WindowEventType.resized;
+                    _type = we_resized;
                     window_dpr = window_device_pixel_ratio();
                         window_w = _data1 = to_pixels(_data1);
                         window_h = _data2 = to_pixels(_data2);
                 case SDL_WINDOWEVENT_SIZE_CHANGED:
-                    _type = WindowEventType.size_changed;
+                    _type = we_size_changed;
                     window_dpr = window_device_pixel_ratio();
                         window_w = _data1 = to_pixels(_data1);
                         window_h = _data2 = to_pixels(_data2);
@@ -295,7 +295,7 @@ class Runtime extends snow.core.native.Runtime {
 
             } //switch
 
-            if(_type != unknown) {
+            if(_type != we_unknown) {
                 app.dispatch_window_event(_type, e.window.timestamp/1000.0, cast e.window.windowID, _data1, _data2);
             }
         }

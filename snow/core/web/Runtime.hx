@@ -132,26 +132,26 @@ class Runtime implements snow.core.Runtime {
 
             window.addEventListener('mouseleave', function(_ev:js.html.MouseEvent) {
 
-                dispatch_window_ev(leave);
+                dispatch_window_ev(we_leave);
 
             }); //mouseleave
 
             window.addEventListener('mouseenter', function(_ev:js.html.MouseEvent) {
 
-               dispatch_window_ev(enter);
+               dispatch_window_ev(we_enter);
 
             }); //mouseenter
 
             js.Browser.document.addEventListener('visibilitychange', function(_) {
 
                 if(js.Browser.document.hidden) {
-                    dispatch_window_ev(hidden);
-                    dispatch_window_ev(minimized);
-                    dispatch_window_ev(focus_lost);
+                    dispatch_window_ev(we_hidden);
+                    dispatch_window_ev(we_minimized);
+                    dispatch_window_ev(we_focus_lost);
                 } else {
-                    dispatch_window_ev(shown);
-                    dispatch_window_ev(restored);
-                    dispatch_window_ev(focus_gained);
+                    dispatch_window_ev(we_shown);
+                    dispatch_window_ev(we_restored);
+                    dispatch_window_ev(we_focus_gained);
                 }
 
             }); //visibilitychange

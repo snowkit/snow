@@ -53,7 +53,7 @@ class Asset {
 
         public function new(_system:Assets, _id:String, _image:ImageInfo) {
 
-            super(_system, _id, AssetType.image);
+            super(_system, _id, at_image);
             image = _image;
 
         } //new
@@ -190,7 +190,7 @@ class Asset {
 
         public function new(_system:Assets, _id:String, _audio:AudioInfo) {
 
-            super(_system, _id, AssetType.audio);
+            super(_system, _id, at_audio);
             audio = _audio;
 
         } //new
@@ -290,7 +290,7 @@ class Asset {
 
         public function new(_system:Assets, _id:String, _bytes:Uint8Array) {
 
-            super(_system, _id, AssetType.bytes);
+            super(_system, _id, at_bytes);
             bytes = _bytes;
 
         } //new
@@ -351,7 +351,7 @@ class Asset {
 
         public function new(_system:Assets, _id:String, _text:String) {
 
-            super(_system, _id, AssetType.text);
+            super(_system, _id, at_text);
             text = _text;
 
         } //new
@@ -422,7 +422,7 @@ class Asset {
 
         public function new( _system:snow.systems.assets.Assets, _id:String, _json:Dynamic ) {
 
-            super(_system, _id, AssetType.json);
+            super(_system, _id, at_json);
             json = _json;
 
         } //new

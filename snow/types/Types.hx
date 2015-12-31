@@ -2,433 +2,466 @@ package snow.types;
 
 import snow.api.buffers.Uint8Array;
 
+//Common types
 
-//These types include further types we don't want to
-#if !macro
-    typedef Asset      = snow.systems.assets.Asset.Asset;
-    typedef AssetBytes = snow.systems.assets.Asset.AssetBytes;
-    typedef AssetText  = snow.systems.assets.Asset.AssetText;
-    typedef AssetJSON  = snow.systems.assets.Asset.AssetJSON;
-    typedef AssetImage = snow.systems.assets.Asset.AssetImage;
-    typedef AssetAudio = snow.systems.assets.Asset.AssetAudio;
-    typedef Key        = snow.systems.input.Keycodes.Keycodes;
-    typedef Scan       = snow.systems.input.Keycodes.Scancodes;
-#end
+    //These types include further types we don't want to
+    #if !macro
+        typedef Asset      = snow.systems.assets.Asset.Asset;
+        typedef AssetBytes = snow.systems.assets.Asset.AssetBytes;
+        typedef AssetText  = snow.systems.assets.Asset.AssetText;
+        typedef AssetJSON  = snow.systems.assets.Asset.AssetJSON;
+        typedef AssetImage = snow.systems.assets.Asset.AssetImage;
+        typedef AssetAudio = snow.systems.assets.Asset.AssetAudio;
+        typedef Key        = snow.systems.input.Keycodes.Keycodes;
+        typedef Scan       = snow.systems.input.Keycodes.Scancodes;
+    #end
 
-enum Error {
-    error(value:Dynamic);
-    init(value:Dynamic);
-    parse(value:Dynamic);
-    windowing(value:Dynamic);
-}
+    enum Error {
+        error(value:Dynamic);
+        init(value:Dynamic);
+        parse(value:Dynamic);
+    }
 
-/** A platform identifier string */
-@:enum abstract Platform(String) from String to String {
-    var platform_unknown = 'unknown';
-    var platform_windows = 'windows';
-    var platform_mac     = 'mac';
-    var platform_linux   = 'linux';
-    var platform_android = 'android';
-    var platform_ios     = 'ios';
-    var platform_web     = 'web';
-}
+    /** A platform identifier string */
+    @:enum abstract Platform(String) from String to String {
+        var platform_unknown = 'unknown';
+        var platform_windows = 'windows';
+        var platform_mac     = 'mac';
+        var platform_linux   = 'linux';
+        var platform_android = 'android';
+        var platform_ios     = 'ios';
+        var platform_web     = 'web';
+    }
 
-/** A platform identifier string */
-@:enum abstract OS(String) from String to String {
-    var os_unknown = 'unknown';
-    var os_windows = 'windows';
-    var os_mac     = 'mac';
-    var os_linux   = 'linux';
-    var os_android = 'android';
-    var os_ios     = 'ios';
-}
+    /** A platform identifier string */
+    @:enum abstract OS(String) from String to String {
+        var os_unknown = 'unknown';
+        var os_windows = 'windows';
+        var os_mac     = 'mac';
+        var os_linux   = 'linux';
+        var os_android = 'android';
+        var os_ios     = 'ios';
+    }
 
-/** A type to identify assets when stored as an Asset */
-@:enum abstract AssetType(Int) from Int to Int {
+//Compile time bound types
 
-    var unknown = 0;
-    var bytes   = 1;
-    var text    = 2;
-    var json    = 3;
-    var image   = 4;
-    var audio   = 5;
+    @:genericBuild(snow.types.TypeCreate.build())
+    private class ApplyType<Const> {}
 
-    inline function toString() {
-        return switch(this) {
-            case unknown: 'unknown';
-            case bytes:   'bytes';
-            case text:    'text';
-            case json:    'json';
-            case image:   'image';
-            case audio:   'audio';
-            case _:       '$this';
-        }
-    } //toString
+    private typedef UserConfigInit = ApplyType<"UserConfig">;
+    typedef UserConfig = UserConfigDef;
 
-} //AssetType
+    private typedef RuntimeConfigInit = ApplyType<"RuntimeConfig">;
+    typedef RuntimeConfig = RuntimeConfigDef;
 
-typedef IODataOptions = {
-    @:optional var binary:Bool;
-}
+    private typedef WindowHandleInit = ApplyType<"WindowHandle">;
+    typedef WindowHandle = WindowHandleDef;
 
+    private typedef AppHostInit = ApplyType<"AppHost">;
+    @:noCompletion typedef AppHost = AppHostDef;
 
-@:genericBuild(snow.types.TypeCreate.build())
-private class ApplyType<Const> {}
+    private typedef AppRuntimeInit = ApplyType<"AppRuntime">;
+    @:noCompletion typedef AppRuntime = AppRuntimeDef;
 
-private typedef UserConfigInit = ApplyType<"UserConfig">;
-typedef UserConfig = UserConfigDef;
+    private typedef ModuleIOInit = ApplyType<"ModuleIO">;
+    @:noCompletion typedef ModuleIO = ModuleIODef;
 
-private typedef RuntimeConfigInit = ApplyType<"RuntimeConfig">;
-typedef RuntimeConfig = RuntimeConfigDef;
+    private typedef ModuleAudioInit = ApplyType<"ModuleAudio">;
+    @:noCompletion typedef ModuleAudio = ModuleAudioDef;
 
-//:todo: snow_native define use
-#if snow_native
-    private typedef FileHandleInit = ApplyType<"FileHandle">;
-    typedef FileHandle = FileHandleDef;
-#end
+    private typedef ModuleAssetsInit = ApplyType<"ModuleAssets">;
+    @:noCompletion typedef ModuleAssets = ModuleAssetsDef;
 
-private typedef WindowHandleInit = ApplyType<"WindowHandle">;
-typedef WindowHandle = WindowHandleDef;
+    #if snow_native //:todo: snow_native define use
+        private typedef FileHandleInit = ApplyType<"FileHandle">;
+        typedef FileHandle = FileHandleDef;
+    #end
 
-private typedef AppHostInit = ApplyType<"AppHost">;
-@:noCompletion typedef AppHost = AppHostDef;
+//Asset types
 
-private typedef AppRuntimeInit = ApplyType<"AppRuntime">;
-@:noCompletion typedef AppRuntime = AppRuntimeDef;
+    /** A type to identify assets when stored as an Asset */
+    @:enum abstract AssetType(Int)
+        from Int to Int {
 
-private typedef ModuleIOInit = ApplyType<"ModuleIO">;
-@:noCompletion typedef ModuleIO = ModuleIODef;
+            /** An unknown asset type */
+        var at_unknown = 0;
+            /** An asset holding bytes data, as `Uint8Array` */
+        var at_bytes   = 1;
+            /** An asset holding text data, as `String` */
+        var at_text    = 2;
+            /** An asset holding JSON data, as `Dynamic` */
+        var at_json    = 3;
+            /** An asset holding image data, as `ImageInfo` */
+        var at_image   = 4;
+            /** An asset holding audio data, as `AudioSource` */
+        var at_audio   = 5;
 
-private typedef ModuleAudioInit = ApplyType<"ModuleAudio">;
-@:noCompletion typedef ModuleAudio = ModuleAudioDef;
+        inline function toString() {
+            return switch(this) {
+                case at_unknown: 'at_unknown';
+                case at_bytes:   'at_bytes';
+                case at_text:    'at_text';
+                case at_json:    'at_json';
+                case at_image:   'at_image';
+                case at_audio:   'at_audio';
+                case _:          '$this';
+            }
+        } //toString
 
-private typedef ModuleAssetsInit = ApplyType<"ModuleAssets">;
-@:noCompletion typedef ModuleAssets = ModuleAssetsDef;
+    } //AssetType
 
-
-/** The runtime application config info */
-typedef AppConfig = {
-
-        /** the window config for the default window. default: see `WindowConfig` docs*/
-    @:optional var window       : WindowConfig;
-        /** The render config that specifies rendering and context backend specifics.  */
-    @:optional var render       : RenderConfig;
-        /** The user specific config, by default, read from a json file at runtime */
-    @:optional var user         : UserConfig;
-        /** The runtime specific config */
-    @:optional var runtime      : RuntimeConfig;
-
-} //AppConfig
-
-
-typedef FileFilter = {
-
-        /** An extension for the filter. i.e `md`, `txt`, `png` or a special `*` for any file type.  */
-    var extension:String;
-        /** An optional description for this filter i.e `markdown files`, `text files`, `all files` */
-    @:optional var desc:String;
-
-} //FileFilter
-
-
-/** Information about an image file/data */
-typedef ImageInfo = {
+    /** Information about an image file/data */
+    typedef ImageInfo = {
 
         /** source asset id */
-    var id : String;
-        /** image width from source image */
-    var width : Int;
-        /** image height from source image */
-    var height : Int;
-        /** The actual width, used when image is automatically padded to POT */
-    var width_actual : Int;
-        /** The actual height, used when image is automatically padded to POT */
-    var height_actual : Int;
-        /** used bits per pixel */
-    var bpp : Int;
-        /** source bits per pixel */
-    var bpp_source : Int;
-        /** image pixel data */
-    var pixels : Uint8Array;
+        var id : String;
+            /** image width from source image */
+        var width : Int;
+            /** image height from source image */
+        var height : Int;
+            /** The actual width, used when image is automatically padded to POT */
+        var width_actual : Int;
+            /** The actual height, used when image is automatically padded to POT */
+        var height_actual : Int;
+            /** used bits per pixel */
+        var bpp : Int;
+            /** source bits per pixel */
+        var bpp_source : Int;
+            /** image pixel data */
+        var pixels : Uint8Array;
 
-} //ImageInfo
+    } //ImageInfo
 
-/** An audio handle for tracking audio instances */
-typedef AudioHandle = Int;
+    /** Options for an IO data query */
+    typedef IODataOptions = {
 
-/** The type of audio format */
-@:enum abstract AudioFormatType(Null<Int>) from Null<Int> to Null<Int> {
+        /** Whether or not the data should be treated as binary. */
+        @:optional var binary:Bool;
 
-    var unknown  = 0;
-    var custom   = 1;
-    var ogg      = 2;
-    var wav      = 3;
-    var pcm      = 4;
+    } //IODataOptions
 
-    inline function toString() {
-        return switch(this) {
-            case unknown:   'unknown';
-            case custom:    'custom';
-            case ogg:       'ogg';
-            case wav:       'wav';
-            case pcm:       'pcm';
-            case _:         '$this';
+//Audio types
+
+    /** An audio handle for tracking audio instances */
+    typedef AudioHandle = Int;
+
+    /** The type of format data for audio */
+    @:enum abstract AudioFormatType(Null<Int>)
+        from Null<Int> to Null<Int> {
+
+            /** */
+        var af_unknown  = 0;
+            /** */
+        var af_custom   = 1;
+            /** */
+        var af_ogg      = 2;
+            /** */
+        var af_wav      = 3;
+            /** */
+        var af_pcm      = 4;
+
+        inline function toString() {
+            return switch(this) {
+                case af_unknown:   'af_unknown';
+                case af_custom:    'af_custom';
+                case af_ogg:       'af_ogg';
+                case af_wav:       'af_wav';
+                case af_pcm:       'af_pcm';
+                case _:             '$this';
+            }
         }
-    }
 
-} //AudioFormatType
+    } //AudioFormatType
 
+    /**  */
+    @:enum abstract AudioEvent(Int)
+        from Int to Int {
 
-@:enum abstract AudioEvent(Int)
-    from Int to Int {
+            /** */
         var ae_end = 0;
+            /** */
         var ae_destroyed = 1;
+            /** */
         var ae_destroyed_source = 2;
-} //AudioEvent
 
-@:enum abstract AudioState(Int)
-    from Int to Int {
+        inline function toString() {
+            return switch(this) {
+                case ae_end:                'ae_end';
+                case ae_destroyed:          'ae_destroyed';
+                case ae_destroyed_source:   'ae_destroyed_source';
+                case _:                     '$this';
+            }
+        } //toString
+    } //AudioEvent
+
+    /**  */
+    @:enum abstract AudioState(Int)
+        from Int to Int {
+
+            /** */
         var as_invalid  = -1;
+            /** */
         var as_paused   = 0;
+            /** */
         var as_playing  = 1;
+            /** */
         var as_stopped  = 2;
 
-    inline function toString() {
-        return switch(this) {
-            case as_invalid:    'as_invalid';
-            case as_paused:     'as_paused';
-            case as_playing:    'as_playing';
-            case as_stopped:    'as_stopped';
-            case _:             '$this';
-        }
-    } //toString
-} //AudioState
+        inline function toString() {
+            return switch(this) {
+                case as_invalid:    'as_invalid';
+                case as_paused:     'as_paused';
+                case as_playing:    'as_playing';
+                case as_stopped:    'as_stopped';
+                case _:             '$this';
+            }
+        } //toString
+    } //AudioState
 
     /** The platform specific implementation detail about the audio data */
-typedef AudioData = {
+    typedef AudioData = {
 
         /** the file length in bytes */
-    @:optional var length : Int;
-        /** the pcm uncompressed raw length in bytes */
-    var length_pcm : Int;
-        /** number of channels */
-    var channels : Int;
-        /** hz rate */
-    var rate : Int;
-        /** bits per sample, 8 / 16 */
-    var bits_per_sample : Int;
-        /** sound bitrate */
-    @:optional var bitrate : Int;
-        /** sound raw data */
-    @:optional var samples : Uint8Array;
+        @:optional var length : Int;
+            /** the pcm uncompressed raw length in bytes */
+        var length_pcm : Int;
+            /** number of channels */
+        var channels : Int;
+            /** hz rate */
+        var rate : Int;
+            /** bits per sample, 8 / 16 */
+        var bits_per_sample : Int;
+            /** sound bitrate */
+        @:optional var bitrate : Int;
+            /** sound raw data */
+        @:optional var samples : Uint8Array;
 
-} //AudioData
+    } //AudioData
 
+    /** */    //:todo: AudioInfo type conversion still typedef
+    typedef AudioInfoOptions = {
+        app:snow.Snow,
+        data:AudioData,
+        ?id:String,
+        ?format:AudioFormatType,
+        ?is_stream:Bool
+    }
 
-typedef AudioInfoOptions = {
-    app:snow.Snow,
-    data:AudioData,
-    ?id:String,
-    ?format:AudioFormatType,
-    ?is_stream:Bool
-};
-
-/** Information about an audio file/data */
-@:allow(snow.systems.audio.AudioInstance)
-class AudioInfo {
+    /** Information about an audio file/data */
+    @:allow(snow.systems.audio.AudioInstance)
+    class AudioInfo {
 
         /** access to the api */
-    public var app : snow.Snow;
-        /** the platform audio data info */
-    public var data : AudioData;
-        /** file source id */
-    public var id : String;
-        /** format. Use AudioFormatType */
-    public var format : AudioFormatType;
-        /** Whether or not this relates to streaming purposes, this a convenience only from load apis */
-    public var is_stream : Bool;
+        public var app : snow.Snow;
+            /** the platform audio data info */
+        public var data : AudioData;
+            /** file source id */
+        public var id : String;
+            /** format. Use AudioFormatType */
+        public var format : AudioFormatType;
+            /** Whether or not this relates to streaming purposes, this a convenience only from load apis */
+        public var is_stream : Bool;
 
-    inline public function new(_opt:AudioInfoOptions) {
-        app = _opt.app;
-        data = _opt.data;
-        id = _opt.id;
-        format = _opt.format;
-        is_stream = _opt.is_stream;
-    }
+            inline public function new(_opt:AudioInfoOptions) {
 
-    inline function toString() return '{ "AudioInfo":true, "id":$id, "format":"$format", "is_stream":$is_stream, data:$data }';
+                app = _opt.app;
+                data = _opt.data;
+                id = _opt.id;
+                format = _opt.format;
+                is_stream = _opt.is_stream;
 
-    public function destroy() {
+            } //new
 
-    }
+        //Public API, typically populated by subclasses
 
-    function seek(_to:Int) : Bool {
-        return false;
-    }
+            public function destroy() {
 
-    function portion(_into:Uint8Array, _start:Int, _len:Int, _into_result:Array<Int>) : Array<Int> {
-        return _into_result;
-    }
+            }
 
-} //AudioInfo
+        //Internal implementation details, populated by subclasses
 
+            function seek(_to:Int) : Bool return false;
 
-/** Config specific to the rendering context that would be used when creating windows */
-typedef RenderConfig = {
+            function portion(_into:Uint8Array, _start:Int, _len:Int, _into_result:Array<Int>) : Array<Int> return _into_result;
+
+            inline function toString() return '{ "AudioInfo":true, "id":$id, "format":"$format", "is_stream":$is_stream, data:$data }';
+
+    } //AudioInfo
+
+//App config types
+
+    /** The runtime application config info */
+    typedef AppConfig = {
+
+        /** The window config for the default window. default: see `WindowConfig` docs*/
+        @:optional var window       : WindowConfig;
+            /** The render config that specifies rendering and context backend specifics.  */
+        @:optional var render       : RenderConfig;
+            /** The user specific config, by default, read from a json file at runtime */
+        @:optional var user         : UserConfig;
+            /** The runtime specific config */
+        @:optional var runtime      : RuntimeConfig;
+
+    } //AppConfig
+
+    /** Config specific to the rendering context that would be used when creating windows */
+    typedef RenderConfig = {
 
         /** Request the number of depth bits for the rendering context.
             A value of 0 will not request a depth buffer. default: 0 */
-    @:optional var depth   : Int;
-        /** Request the number of stencil bits for the rendering context.
-            A value of 0 will not request a stencil buffer. default: 0 */
-    @:optional var stencil   : Int;
-        /** A value of `0`, `2`, `4`, `8` or other valid system value.
-            On WebGL contexts this value is true or false, bigger than 0 being true.
-            On native contexts this value sets the MSAA typically.
-            default webgl: 1 (enabled)
-            default: 0 */
-    @:optional var antialiasing : Int;
+        @:optional var depth   : Int;
+            /** Request the number of stencil bits for the rendering context.
+                A value of 0 will not request a stencil buffer. default: 0 */
+        @:optional var stencil   : Int;
+            /** A value of `0`, `2`, `4`, `8` or other valid system value.
+                On WebGL contexts this value is true or false, bigger than 0 being true.
+                On native contexts this value sets the MSAA typically.
+                default webgl: 1 (enabled)
+                default: 0 */
+        @:optional var antialiasing : Int;
 
-        /** Request a specific number of red bits for the rendering context.
-            Unless you need to change this, don't. default: 8 */
-    @:optional var red_bits   : Int;
-        /** Request a specific number of green bits for the rendering context.
-            Unless you need to change this, don't. default: 8 */
-    @:optional var green_bits   : Int;
-        /** Request a specific number of blue bits for the rendering context.
-            Unless you need to change this, don't. default: 8 */
-    @:optional var blue_bits   : Int;
-        /** Request a specific number of alpha bits for the rendering context.
-            Unless you need to change this, don't. default: 8 */
-    @:optional var alpha_bits   : Int;
+            /** Request a specific number of red bits for the rendering context.
+                Unless you need to change this, don't. default: 8 */
+        @:optional var red_bits   : Int;
+            /** Request a specific number of green bits for the rendering context.
+                Unless you need to change this, don't. default: 8 */
+        @:optional var green_bits   : Int;
+            /** Request a specific number of blue bits for the rendering context.
+                Unless you need to change this, don't. default: 8 */
+        @:optional var blue_bits   : Int;
+            /** Request a specific number of alpha bits for the rendering context.
+                Unless you need to change this, don't. default: 8 */
+        @:optional var alpha_bits   : Int;
 
-        /** OpenGL render context specific settings */
-    @:optional var opengl : RenderConfigOpenGL;
-        /** WebGL render context specific settings */
-    @:optional var webgl : RenderConfigWebGL;
+            /** OpenGL render context specific settings */
+        @:optional var opengl : RenderConfigOpenGL;
+            /** WebGL render context specific settings */
+        @:optional var webgl : RenderConfigWebGL;
 
-} //RenderConfig
-
-
-/** A type of OpenGL context profile to request. see RenderConfigOpenGL for info */
-@:enum abstract OpenGLProfile(Int) from Int to Int {
-
-    var compatibility = 0;
-    var core = 1;
-    var gles = 2;
-
-    inline function toString() {
-        return switch(this) {
-            case compatibility: 'compatibility';
-            case core:          'core';
-            case gles:          'gles';
-            case _:             '$this';
-        }
-    } //toString
-
-} //OpenGLProfile
+    } //RenderConfig
 
 
-/** Config specific to an OpenGL rendering context.
-    Note that these are hints to the system,
-    you must always check the values after initializing
-    for what you actually received. The OS/driver decides. */
-typedef RenderConfigOpenGL = {
+    /** A type of OpenGL context profile to request. see RenderConfigOpenGL for info */
+    @:enum abstract OpenGLProfile(Int)
+        from Int to Int {
+
+            /** */
+        var compatibility = 0;
+            /** */
+        var core = 1;
+            /** */
+        var gles = 2;
+
+        inline function toString() {
+            return switch(this) {
+                case compatibility: 'compatibility';
+                case core:          'core';
+                case gles:          'gles';
+                case _:             '$this';
+            }
+        } //toString
+
+    } //OpenGLProfile
+
+    /** Config specific to an OpenGL rendering context.
+        Note that these are hints to the system,
+        you must always check the values after initializing
+        for what you actually received. The OS/driver decides. */
+    typedef RenderConfigOpenGL = {
 
         /** The major OpenGL version to request */
-    @:optional var major : Int;
-        /** The minor OpenGL version to request */
-    @:optional var minor : Int;
-        /** The OpenGL context profile to request */
-    @:optional var profile : OpenGLProfile;
+        @:optional var major : Int;
+            /** The minor OpenGL version to request */
+        @:optional var minor : Int;
+            /** The OpenGL context profile to request */
+        @:optional var profile : OpenGLProfile;
 
-} //RenderConfigOpenGL
+    } //RenderConfigOpenGL
 
-/** Config specific to a WebGL rendering context.
-    See: https://www.khronos.org/registry/webgl/specs/latest/1.0/#WEBGLCONTEXTATTRIBUTES */
-typedef RenderConfigWebGL = {
+    /** Config specific to a WebGL rendering context.
+        See: https://www.khronos.org/registry/webgl/specs/latest/1.0/#WEBGLCONTEXTATTRIBUTES */
+    typedef RenderConfigWebGL = {
 
         /** The WebGL version to request. default: 1 */
-    @:optional var version : Int;
-        /** If the value is true, the drawing buffer has an alpha channel for the
-            purposes of performing OpenGL destination alpha operations and
-            compositing with the page. If the value is false, no alpha buffer is available.
-            snow default: false
-            webgl default:true */
-    @:optional var alpha : Bool;
-        /** If the value is true, the drawing buffer has a depth buffer of at least 16 bits.
-            If the value is false, no depth buffer is available.
-            snow default: uses render config depth flag
-            webgl default:true */
-    @:optional var depth : Bool;
-        /** If the value is true, the drawing buffer has a stencil buffer of at least 8 bits.
-            If the value is false, no stencil buffer is available.
-            snow default: uses render config stencil flag
-            webgl default: false */
-    @:optional var stencil : Bool;
-        /** If the value is true and the implementation supports antialiasing the drawing buffer
-            will perform antialiasing using its choice of technique (multisample/supersample) and quality.
-            If the value is false or the implementation does not support
-            antialiasing, no antialiasing is performed
-            snow default: uses render config antialias flag
-            webgl default: true */
-    @:optional var antialias : Bool;
-        /** If the value is true the page compositor will assume the drawing buffer contains colors with premultiplied alpha.
-            If the value is false the page compositor will assume that colors in the drawing buffer are not premultiplied.
-            This flag is ignored if the alpha flag is false.
-            snow default: false
-            webgl default: true */
-    @:optional var premultipliedAlpha : Bool;
-        /** If false, once the drawing buffer is presented as described in theDrawing Buffer section,
-            the contents of the drawing buffer are cleared to their default values. All elements of the
-            drawing buffer (color, depth and stencil) are cleared. If the value is true the buffers will
-            not be cleared and will preserve their values until cleared or overwritten by the author.
-            On some hardware setting the preserveDrawingBuffer flag to true can have significant performance implications.
-            snow default: uses webgl default
-            webgl default: false */
-    @:optional var preserveDrawingBuffer : Bool;
-        /** Provides a hint to the implementation suggesting that, if possible, it creates a context
-            that optimizes for power consumption over performance. For example, on hardware that has more
-            than one GPU, it may be the case that one of them is less powerful but also uses less power.
-            An implementation may choose to, and may have to, ignore this hint.
-            snow default: uses webgl default
-            webgl default: false */
-    @:optional var preferLowPowerToHighPerformance : Bool;
-        /** If the value is true, context creation will fail if the implementation determines that the
-            performance of the created WebGL context would be dramatically lower than that of a native
-            application making equivalent OpenGL calls.
-            snow default: uses webgl default
-            webgl default: false */
-    @:optional var failIfMajorPerformanceCaveat : Bool;
+        @:optional var version : Int;
+            /** If the value is true, the drawing buffer has an alpha channel for the
+                purposes of performing OpenGL destination alpha operations and
+                compositing with the page. If the value is false, no alpha buffer is available.
+                snow default: false
+                webgl default:true */
+        @:optional var alpha : Bool;
+            /** If the value is true, the drawing buffer has a depth buffer of at least 16 bits.
+                If the value is false, no depth buffer is available.
+                snow default: uses render config depth flag
+                webgl default:true */
+        @:optional var depth : Bool;
+            /** If the value is true, the drawing buffer has a stencil buffer of at least 8 bits.
+                If the value is false, no stencil buffer is available.
+                snow default: uses render config stencil flag
+                webgl default: false */
+        @:optional var stencil : Bool;
+            /** If the value is true and the implementation supports antialiasing the drawing buffer
+                will perform antialiasing using its choice of technique (multisample/supersample) and quality.
+                If the value is false or the implementation does not support
+                antialiasing, no antialiasing is performed
+                snow default: uses render config antialias flag
+                webgl default: true */
+        @:optional var antialias : Bool;
+            /** If the value is true the page compositor will assume the drawing buffer contains colors with premultiplied alpha.
+                If the value is false the page compositor will assume that colors in the drawing buffer are not premultiplied.
+                This flag is ignored if the alpha flag is false.
+                snow default: false
+                webgl default: true */
+        @:optional var premultipliedAlpha : Bool;
+            /** If false, once the drawing buffer is presented as described in theDrawing Buffer section,
+                the contents of the drawing buffer are cleared to their default values. All elements of the
+                drawing buffer (color, depth and stencil) are cleared. If the value is true the buffers will
+                not be cleared and will preserve their values until cleared or overwritten by the author.
+                On some hardware setting the preserveDrawingBuffer flag to true can have significant performance implications.
+                snow default: uses webgl default
+                webgl default: false */
+        @:optional var preserveDrawingBuffer : Bool;
+            /** Provides a hint to the implementation suggesting that, if possible, it creates a context
+                that optimizes for power consumption over performance. For example, on hardware that has more
+                than one GPU, it may be the case that one of them is less powerful but also uses less power.
+                An implementation may choose to, and may have to, ignore this hint.
+                snow default: uses webgl default
+                webgl default: false */
+        @:optional var preferLowPowerToHighPerformance : Bool;
+            /** If the value is true, context creation will fail if the implementation determines that the
+                performance of the created WebGL context would be dramatically lower than that of a native
+                application making equivalent OpenGL calls.
+                snow default: uses webgl default
+                webgl default: false */
+        @:optional var failIfMajorPerformanceCaveat : Bool;
 
-} //RenderConfigWebGL
+    } //RenderConfigWebGL
 
-/** Window configuration information for creating windows */
-typedef WindowConfig = {
+    /** Window configuration information for creating windows */
+    typedef WindowConfig = {
 
         /** create in fullscreen, default: false, `mobile` true */
-    @:optional var fullscreen   : Bool;
-        /** If true, the users native desktop resolution will be used for fullscreen instead of the specified window size. default: true */
-    @:optional var fullscreen_desktop : Bool;
-        /** allow the window to be resized, default: true */
-    @:optional var resizable    : Bool;
-        /** create as a borderless window, default: false */
-    @:optional var borderless   : Bool;
-        /** window x at creation. Leave this alone to use the OS default. */
-    @:optional var x            : Int;
-        /** window y at creation. Leave this alone to use the OS default. */
-    @:optional var y            : Int;
-        /** window width at creation, default: 960 */
-    @:optional var width        : Int;
-        /** window height at creation, default: 640 */
-    @:optional var height       : Int;
-        /** window title, default: 'snow app' */
-    @:optional var title        : String;
-        /** disables input arriving at/from this window. default: false */
-    @:optional var no_input     : Bool;
+        @:optional var fullscreen   : Bool;
+            /** If true, the users native desktop resolution will be used for fullscreen instead of the specified window size. default: true */
+        @:optional var fullscreen_desktop : Bool;
+            /** allow the window to be resized, default: true */
+        @:optional var resizable    : Bool;
+            /** create as a borderless window, default: false */
+        @:optional var borderless   : Bool;
+            /** window x at creation. Leave this alone to use the OS default. */
+        @:optional var x            : Int;
+            /** window y at creation. Leave this alone to use the OS default. */
+        @:optional var y            : Int;
+            /** window width at creation, default: 960 */
+        @:optional var width        : Int;
+            /** window height at creation, default: 640 */
+        @:optional var height       : Int;
+            /** window title, default: 'snow app' */
+        @:optional var title        : String;
+            /** disables input arriving at/from this window. default: false */
+        @:optional var no_input     : Bool;
 
-} //WindowConfig
-
+    } //WindowConfig
 
 //Event types
 
@@ -466,7 +499,7 @@ typedef WindowConfig = {
     class WindowEvent {
      //
             /** The type of window event this was. */
-        public var type (default,null) : WindowEventType = unknown;
+        public var type (default,null) : WindowEventType = we_unknown;
             /** The time in seconds that this event occured, useful for deltas */
         public var timestamp (default,null) : Float = 0.0;
             /** The window id from which this event originated */
@@ -787,9 +820,14 @@ typedef WindowConfig = {
 //Event Type enums
 
     /** A key specific event event type */
-    @:enum abstract KeyEventType(Int) from Int to Int {
+    @:enum abstract KeyEventType(Int)
+        from Int to Int {
+
+            /** */
         var ke_unknown  = 0;
+            /** */
         var ke_down     = 1;
+            /** */
         var ke_up       = 2;
 
         inline function toString() {
@@ -803,11 +841,18 @@ typedef WindowConfig = {
     } //KeyEventType
 
     /** A mouse specific event event type */
-    @:enum abstract MouseEventType(Int) from Int to Int {
+    @:enum abstract MouseEventType(Int)
+        from Int to Int {
+
+            /** */
         var me_unknown  = 0;
+            /** */
         var me_move     = 1;
+            /** */
         var me_down     = 2;
+            /** */
         var me_up       = 3;
+            /** */
         var me_wheel    = 4;
 
         inline function toString() {
@@ -823,10 +868,16 @@ typedef WindowConfig = {
     } //MouseEventType
 
     /** A touch specific event event type */
-    @:enum abstract TouchEventType(Int) from Int to Int {
+    @:enum abstract TouchEventType(Int)
+        from Int to Int {
+
+            /** */
         var te_unknown  = 0;
+            /** */
         var te_move     = 1;
+            /** */
         var te_down     = 2;
+            /** */
         var te_up       = 3;
 
         inline function toString() {
@@ -841,11 +892,18 @@ typedef WindowConfig = {
     } //TouchEventType
 
     /** A touch specific event event type */
-    @:enum abstract GamepadEventType(Int) from Int to Int {
+    @:enum abstract GamepadEventType(Int)
+        from Int to Int {
+
+            /** */
         var ge_unknown  = 0;
+            /** */
         var ge_axis     = 1;
+            /** */
         var ge_down     = 2;
+            /** */
         var ge_up       = 3;
+            /** */
         var ge_device   = 4;
 
         inline function toString() {
@@ -861,8 +919,9 @@ typedef WindowConfig = {
     } //GamepadEventType
 
     /** A text specific event event type */
-    @:enum abstract TextEventType(Int) from Int to Int {
-        //
+    @:enum abstract TextEventType(Int)
+        from Int to Int {
+
             /** An unknown text event */
         var te_unknown    = 0;
             /** An edit text typing event */
@@ -881,8 +940,9 @@ typedef WindowConfig = {
     } //TextEventType
 
     /** A gamepad device event type */
-    @:enum abstract GamepadDeviceEventType(Int) from Int to Int {
-        //
+    @:enum abstract GamepadDeviceEventType(Int)
+        from Int to Int {
+
             /** A unknown device event */
         var ge_unknown             = 0;
             /** A device added event */
@@ -903,8 +963,9 @@ typedef WindowConfig = {
         } //toString
     } //GamepadDeviceEventType
 
-    @:enum abstract SystemEventType(Int) from Int to Int {
-        //
+    @:enum abstract SystemEventType(Int)
+        from Int to Int {
+
             /** An unknown system event */
         var se_unknown                  = 0;
             /** An system init event */
@@ -967,69 +1028,71 @@ typedef WindowConfig = {
         } //toString
     } //SystemEventType
 
-    @:enum abstract WindowEventType(Int) from Int to Int {
-        //
+    @:enum abstract WindowEventType(Int)
+        from Int to Int {
+
             /** An unknown window event */
-        var unknown          = 0;
+        var we_unknown          = 0;
             /** A window is created */
-        var created          = 1;
+        var we_created          = 1;
             /** A window is shown */
-        var shown            = 2;
+        var we_shown            = 2;
             /** A window is hidden */
-        var hidden           = 3;
+        var we_hidden           = 3;
             /** A window is exposed */
-        var exposed          = 4;
+        var we_exposed          = 4;
             /** A window is moved */
-        var moved            = 5;
+        var we_moved            = 5;
             /** A window is resized, by the user or code. */
-        var resized          = 6;
+        var we_resized          = 6;
             /** A window is resized, by the OS or internals. */
-        var size_changed     = 7;
+        var we_size_changed     = 7;
             /** A window is minimized */
-        var minimized        = 8;
+        var we_minimized        = 8;
             /** A window is maximized */
-        var maximized        = 9;
+        var we_maximized        = 9;
             /** A window is restored */
-        var restored         = 10;
+        var we_restored         = 10;
             /** A window is entered by a mouse */
-        var enter            = 11;
+        var we_enter            = 11;
             /** A window is left by a mouse */
-        var leave            = 12;
+        var we_leave            = 12;
             /** A window has gained focus */
-        var focus_gained     = 13;
+        var we_focus_gained     = 13;
             /** A window has lost focus */
-        var focus_lost       = 14;
+        var we_focus_lost       = 14;
             /** A window is being closed/hidden */
-        var close            = 15;
+        var we_close            = 15;
             /** A window is being destroyed */
-        var destroy          = 16;
+        var we_destroy          = 16;
 
         inline function toString() {
             return switch(this) {
-                case unknown:       'unknown';
-                case created:       'created';
-                case shown:         'shown';
-                case hidden:        'hidden';
-                case exposed:       'exposed';
-                case moved:         'moved';
-                case resized:       'resized';
-                case size_changed:  'size_changed';
-                case minimized:     'minimized';
-                case maximized:     'maximized';
-                case restored:      'restored';
-                case enter:         'enter';
-                case leave:         'leave';
-                case focus_gained:  'focus_gained';
-                case focus_lost:    'focus_lost';
-                case close:         'close';
-                case destroy:       'destroy';
-                case _:             '$this';
+                case we_unknown:       'we_unknown';
+                case we_created:       'we_created';
+                case we_shown:         'we_shown';
+                case we_hidden:        'we_hidden';
+                case we_exposed:       'we_exposed';
+                case we_moved:         'we_moved';
+                case we_resized:       'we_resized';
+                case we_size_changed:  'we_size_changed';
+                case we_minimized:     'we_minimized';
+                case we_maximized:     'we_maximized';
+                case we_restored:      'we_restored';
+                case we_enter:         'we_enter';
+                case we_leave:         'we_leave';
+                case we_focus_gained:  'we_focus_gained';
+                case we_focus_lost:    'we_focus_lost';
+                case we_close:         'we_close';
+                case we_destroy:       'we_destroy';
+                case _:                '$this';
             }
         } //toString
     } //WindowEventType
 
-    @:enum abstract InputEventType(Int) from Int to Int {
-        //
+    @:enum abstract InputEventType(Int)
+        from Int to Int {
+
             /** An unknown input event */
         var ie_unknown        = 0;
             /** An keyboard input event */
@@ -1058,5 +1121,3 @@ typedef WindowConfig = {
             }
         } //toString
     } //InputEventType
-
-

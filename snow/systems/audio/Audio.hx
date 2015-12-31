@@ -177,9 +177,9 @@ class Audio {
         if(_event.type == se_window) {
             var _we_type = _event.window.type;
             switch(_we_type) {
-                case minimized:
+                case we_minimized:
                     suspend();
-                case restored:
+                case we_restored:
                     resume();
                 case _:
             }

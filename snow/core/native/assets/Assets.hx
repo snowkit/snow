@@ -21,7 +21,7 @@ class Assets implements snow.modules.interfaces.Assets {
     function shutdown() {}
 
 //images
-    
+
     public function image_info_from_load(_path:String, ?_components:Int = 4) : Promise {
 
         assertnull(_path);
@@ -110,7 +110,7 @@ class Assets implements snow.modules.interfaces.Assets {
             bpp_source : _info.comp,
             pixels : new Uint8Array( _pixel_bytes )
         };
-    
+
     } //info_from_bytes
 
     public function image_info_from_pixels(_id:String, _width:Int, _height:Int, _pixels:Uint8Array, ?_bpp:Int=4) : ImageInfo {
@@ -140,7 +140,7 @@ class Assets implements snow.modules.interfaces.Assets {
         if(_format == null) _format = audio_format_from_ext(_path);
 
         return new Promise(function(resolve,reject) {
-            
+
             var _audio = audio_info_from_load_direct(_path, _is_stream, _format);
 
             if(_audio == null) {
@@ -160,9 +160,9 @@ class Assets implements snow.modules.interfaces.Assets {
         if(_format == null) _format = audio_format_from_ext(_path);
 
         var _info = switch(_format) {
-            case wav: WAV.from_file(app, _path, _is_stream);
-            case ogg: OGG.from_file(app, _path, _is_stream);
-            case pcm: PCM.from_file(app, _path, _is_stream);
+            case af_wav: WAV.from_file(app, _path, _is_stream);
+            case af_ogg: OGG.from_file(app, _path, _is_stream);
+            case af_pcm: PCM.from_file(app, _path, _is_stream);
             case _: null;
         } //switch _format
 
@@ -197,9 +197,9 @@ class Assets implements snow.modules.interfaces.Assets {
         if(_format == null) _format = audio_format_from_ext(_id);
 
         var _info = switch(_format) {
-            case wav: WAV.from_bytes(app, _id, _bytes);
-            case ogg: OGG.from_bytes(app, _id, _bytes);
-            case pcm: PCM.from_bytes(app, _id, _bytes);
+            case af_wav: WAV.from_bytes(app, _id, _bytes);
+            case af_ogg: OGG.from_bytes(app, _id, _bytes);
+            case af_pcm: PCM.from_bytes(app, _id, _bytes);
             case _ : null;
         } //switch _format
 
@@ -213,10 +213,10 @@ class Assets implements snow.modules.interfaces.Assets {
 
         var _ext = haxe.io.Path.extension(_path);
         return switch(_ext) {
-            case 'wav': wav;
-            case 'ogg': ogg;
-            case 'pcm': pcm;
-            case _: unknown;
+            case 'wav': af_wav;
+            case 'ogg': af_ogg;
+            case 'pcm': af_pcm;
+            case _:     af_unknown;
         }
 
     } //audio_format_from_ext
@@ -326,7 +326,7 @@ private class WAV {
  //helpers
 
     static function from_file_handle(app:snow.Snow, _handle:FileHandle, _path:String, _is_stream:Bool) : AudioInfo {
-    
+
         if(_handle == null) return null;
 
         var _length = 0;
@@ -334,9 +334,9 @@ private class WAV {
             app:        app,
             id:         _path,
             is_stream:  _is_stream,
-            format:     AudioFormatType.wav,
+            format:     af_wav,
             data: {
-                samples         : null, 
+                samples         : null,
                 length          : _length,
                 length_pcm      : _length,
                 channels        : 1,
@@ -350,7 +350,7 @@ private class WAV {
 
             var _header = new Uint8Array(12);
             app.io.module.file_read(_handle, _header, 12, 1);
-            
+
             var _bytes = _header.toBytes();
             var _file_id = _bytes.getString(0, 4);
             var _file_format = _bytes.getString(8, 4);
@@ -417,7 +417,7 @@ private class WAV {
     } //from_file_handle
 
     static function read_chunk(app:snow.Snow, _handle:FileHandle, _read_if:Array<String>) : WavChunk {
-            
+
         var _header_size = 8;
         var _header = new Uint8Array(_header_size);
 
@@ -478,7 +478,7 @@ private class AudioInfoPCM extends AudioInfo {
     override public function seek(_to:Int) : Bool {
 
         if(handle == null) return false;
-        
+
         var _result = app.io.module.file_seek(handle, _to, FileSeek.set);
 
         return _result == 0;
@@ -486,9 +486,9 @@ private class AudioInfoPCM extends AudioInfo {
     } //seek
 
     override public function portion(_into:Uint8Array, _start:Int, _len:Int, _into_result:Array<Int>) : Array<Int> {
-    
+
         inline function _fail() {
-            _into_result[0] = 0; 
+            _into_result[0] = 0;
             _into_result[1] = 1;
             return _into_result;
         }
@@ -507,7 +507,7 @@ private class AudioInfoPCM extends AudioInfo {
         if(_distance_to_end <= _read_len) {
             _read_len = _distance_to_end;
             _complete = true;
-        }   
+        }
 
         if(_read_len <= 0) return _fail();
 
@@ -562,7 +562,7 @@ private class PCM {
             app:        app,
             id:         _path,
             is_stream:  _is_stream,
-            format:     AudioFormatType.pcm,
+            format:     af_pcm,
             data: {
                 samples         : _samples,
                 length          : _length,
@@ -583,7 +583,7 @@ private class PCM {
             app:        app,
             id:         _id,
             is_stream:  false,
-            format:     AudioFormatType.pcm,
+            format:     af_pcm,
             data: {
                 samples         : _bytes,
                 length          : _bytes.length,
@@ -639,7 +639,7 @@ private class AudioInfoOGG extends AudioInfo {
     } //seek
 
     override public function portion(_into:Uint8Array, _start:Int, _len:Int, _into_result:Array<Int>) : Array<Int> {
-        
+
         var complete = false;
         var word = 2; //1 for 8 bit, 2 for 16 bit. 2 is typical
         var sgned = 1; //0 for unsigned, 1 is typical
@@ -721,7 +721,7 @@ private class OGG {
 
 
     static function from_bytes(app:snow.Snow, _path:String, _bytes:Uint8Array) : AudioInfo {
-    
+
         var _handle = app.io.module.file_handle_from_mem(_bytes, _bytes.length);
 
         return from_file_handle(app, _handle, _path, true);
@@ -737,9 +737,9 @@ private class OGG {
         var _ogg = new AudioInfoOGG(_handle, _ogg_file, {
             app:    app,
             id:     _path,
-            format: AudioFormatType.ogg,
+            format: af_ogg,
             data: {
-                samples         : null, 
+                samples         : null,
                 length          : app.io.module.file_size(_handle),
                 length_pcm      : 0,
                 channels        : 0,
@@ -840,7 +840,7 @@ private class OGG {
             case _:'$_code';
         }
     } //code
- 
+
 
 
  //ogg callbacks
@@ -854,7 +854,7 @@ private class OGG {
         var _buffer = new Uint8Array(_bytes);
 
         //file_read past the end of file may return 0 amount read,
-        //which can mislead the amounts, so we work out how much is left if near the end 
+        //which can mislead the amounts, so we work out how much is left if near the end
         var _file_size = _ogg.app.io.module.file_size(_ogg.handle);
         var _file_cur = _ogg.app.io.module.file_tell(_ogg.handle);
         var _read_size = Std.int(Math.min(_file_size-_file_cur, _total));
