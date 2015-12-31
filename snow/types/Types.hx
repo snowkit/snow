@@ -434,619 +434,634 @@ typedef WindowConfig = {
 
 } //WindowConfig
 
-/** A system event */
-class SystemEvent {
 
-        /** The type of system event this event is. SystemEventType */
-    public var type (default,null) : SystemEventType;
-        /** If type is `window` this will be populated, otherwise null */
-    public var window (default,null) : WindowEvent;
-        /** If type is `input` this will be populated, otherwise null */
-    public var input (default,null) : InputEvent;
+//Event types
 
+    /** A system event */
     @:allow(snow.Snow)
-    function new() {}
+    class SystemEvent {
+     //
+            /** The type of system event this event is. SystemEventType */
+        public var type (default,null) : SystemEventType;
+            /** If type is `window` this will be populated, otherwise null */
+        public var window (default,null) : WindowEvent;
+            /** If type is `input` this will be populated, otherwise null */
+        public var input (default,null) : InputEvent;
 
+        inline function new() {}
+
+        inline function set(_type:SystemEventType, _window:WindowEvent, _input:InputEvent) {
+            type = _type;
+            window = _window;
+            input = _input;
+        }
+
+        inline function toString() {
+            var _s = '{ "SystemEvent":true, "type":"$type"';
+            if(window != null) _s += ', "window":$window';
+            if(input != null) _s += ', "input":$input';
+            _s += ' }';
+            return _s;
+        }
+
+    } //SystemEvent
+
+    /** A system window event */
     @:allow(snow.Snow)
-    inline function set(_type:SystemEventType, _window:WindowEvent, _input:InputEvent) {
-        type = _type;
-        window = _window;
-        input = _input;
-    }
+    class WindowEvent {
+     //
+            /** The type of window event this was. */
+        public var type (default,null) : WindowEventType = unknown;
+            /** The time in seconds that this event occured, useful for deltas */
+        public var timestamp (default,null) : Float = 0.0;
+            /** The window id from which this event originated */
+        public var window_id (default,null) : Int = -1;
+            /** Potential window event data */
+        public var x (default,null) : Null<Int>;
+            /** Potential window event data */
+        public var y (default,null) : Null<Int>;
 
-    function toString() return '{ "SystemEvent":true, "type":"$type", "window":$window, "input":$input }';
+        inline function new() {}
 
-} //SystemEvent
-
-/** A system window event */
-class WindowEvent {
- //
-        /** The type of window event this was. */
-    public var type (default,null) : WindowEventType = unknown;
-        /** The time in seconds that this event occured, useful for deltas */
-    public var timestamp (default,null) : Float = 0.0;
-        /** The window id from which this event originated */
-    public var window_id (default,null) : Int = -1;
-        /** Potential window event data */
-    public var x (default,null) : Null<Int>;
-        /** Potential window event data */
-    public var y (default,null) : Null<Int>;
-
-    @:allow(snow.Snow)
-    function new() {}
-
-    @:allow(snow.Snow)
-    inline function set(_type:WindowEventType, _timestamp:Float, _window_id:Int, ?_x:Null<Int>, ?_y:Null<Int>) {
-        type = _type;
-        timestamp = _timestamp;
-        window_id = _window_id;
-        x = _x;
-        y = _y;
-    }
-
-    function toString() return '{ "WindowEvent":true, "type":"$type", "window":$window_id, "x":$x, "y":$y, "time":$timestamp }';
-
-} //WindowEvent
-
-/** A key specific event event type */
-@:enum abstract KeyEventType(Int) from Int to Int {
-    var ke_unknown  = 0;
-    var ke_down     = 1;
-    var ke_up       = 2;
-
-    inline function toString() {
-        return switch(this) {
-            case ke_unknown: 'ke_unknown';
-            case ke_down:    'ke_down';
-            case ke_up:      'ke_up';
-            case _:          '$this';
+        inline function set(_type:WindowEventType, _timestamp:Float, _window_id:Int, ?_x:Null<Int>, ?_y:Null<Int>) {
+            type = _type;
+            timestamp = _timestamp;
+            window_id = _window_id;
+            x = _x;
+            y = _y;
         }
-    } //toString
-} //KeyEventType
 
-/** A mouse specific event event type */
-@:enum abstract MouseEventType(Int) from Int to Int {
-    var me_unknown  = 0;
-    var me_move     = 1;
-    var me_down     = 2;
-    var me_up       = 3;
-    var me_wheel    = 4;
+        inline function toString() return '{ "WindowEvent":true, "type":"$type", "window":$window_id, "x":$x, "y":$y, "time":$timestamp }';
 
-    inline function toString() {
-        return switch(this) {
-            case me_unknown:    'me_unknown';
-            case me_move:       'me_move';
-            case me_down:       'me_down';
-            case me_up:         'me_up';
-            case me_wheel:      'me_wheel';
-            case _:             '$this';
+    } //WindowEvent
+
+    @:allow(snow.systems.input.Input)
+    class KeyEvent {
+
+        public var type (default,null): Null<KeyEventType>;
+        public var keycode (default,null): Null<Int>;
+        public var scancode (default,null): Null<Int>;
+        public var repeat (default,null): Null<Bool>;
+        public var mod (default,null): ModState;
+
+        inline function new() {}
+
+        inline function set(_type:KeyEventType, _keycode:Int, _scancode:Int, _repeat:Bool, _mod:ModState) {
+            type = _type;
+            keycode = _keycode;
+            scancode = _scancode;
+            repeat = _repeat;
+            mod = _mod;
         }
-    } //toString
-} //MouseEventType
 
-/** A touch specific event event type */
-@:enum abstract TouchEventType(Int) from Int to Int {
-    var te_unknown  = 0;
-    var te_move     = 1;
-    var te_down     = 2;
-    var te_up       = 3;
+        inline function toString() return '{ "KeyEvent":true, "type":"$type", "keycode":$keycode, "scancode":$scancode, "repeat":$repeat, "mod":$mod }';
 
-    inline function toString() {
-        return switch(this) {
-            case te_unknown:    'te_unknown';
-            case te_move:       'te_move';
-            case te_down:       'te_down';
-            case te_up:         'te_up';
-            case _:             '$this';
+    } //KeyEvent
+
+    @:allow(snow.systems.input.Input)
+    class TextEvent {
+
+        public var type (default, null): Null<TextEventType>;
+        public var text (default, null): String;
+        public var start (default, null): Null<Int>;
+        public var length (default, null): Null<Int>;
+
+        inline function new() {}
+
+        @:allow(snow.core.Runtime)
+        inline function set(_type:TextEventType, _text:String, _start:Int, _length:Int) {
+            type = _type;
+            text = _text;
+            start = _start;
+            length = _length;
         }
-    } //toString
-} //TouchEventType
 
-/** A touch specific event event type */
-@:enum abstract GamepadEventType(Int) from Int to Int {
-    var ge_unknown  = 0;
-    var ge_axis     = 1;
-    var ge_down     = 2;
-    var ge_up       = 3;
-    var ge_device   = 4;
+        inline function toString() return '{ "TextEvent":true, "type":"$type", "text":"$text", "start":$start, "length":$length }';
 
-    inline function toString() {
-        return switch(this) {
-            case ge_unknown:    'ge_unknown';
-            case ge_axis:       'ge_axis';
-            case ge_down:       'ge_down';
-            case ge_up:         'ge_up';
-            case ge_device:     'ge_device';
-            case _:             '$this';
+    } //TextEvent
+
+    @:allow(snow.systems.input.Input)
+    class MouseEvent {
+        public var type (default, null): MouseEventType;
+        public var x (default, null): Int;
+        public var y (default, null): Int;
+        public var x_rel (default, null): Int;
+        public var y_rel (default, null): Int;
+        public var button (default, null): Int;
+        public var wheel_x (default, null): Float;
+        public var wheel_y (default, null): Float;
+
+        inline function new() {}
+
+        inline function set(_type:MouseEventType, _x:Int, _y:Int, _x_rel:Int, _y_rel:Int, _button:Int, _wheel_x:Float, _wheel_y:Float) {
+            type = _type;
+            x = _x;
+            y = _y;
+            x_rel = _x_rel;
+            y_rel = _y_rel;
+            button = _button;
+            wheel_x = _wheel_x;
+            wheel_y = _wheel_y;
         }
-    } //toString
-} //GamepadEventType
-    
-@:allow(snow.systems.input.Input)
-class KeyEvent {
 
-    public var type (default,null): Null<KeyEventType>;
-    public var keycode (default,null): Null<Int>;
-    public var scancode (default,null): Null<Int>;
-    public var repeat (default,null): Null<Bool>;
-    public var mod (default,null): ModState;
+        inline function toString() return '{ "MouseEvent":true, "type":"$type", "x":$x, "y":$y, "button":$button, "x_rel":$x_rel, "y_rel":$y_rel, "wheel_x":$wheel_x, "wheel_y":$wheel_y }';
 
-    inline function new() {}
+    } //MouseEvent
 
-    inline function set(_type:KeyEventType, _keycode:Int, _scancode:Int, _repeat:Bool, _mod:ModState) {
-        type = _type;
-        keycode = _keycode;
-        scancode = _scancode;
-        repeat = _repeat;
-        mod = _mod;
-    }
+    @:allow(snow.systems.input.Input)
+    class TouchEvent {
 
-    inline function toString() return '{ "KeyEvent":true, "type":"$type", "keycode":$keycode, "scancode":$scancode, "repeat":$repeat, "mod":$mod }';
+        public var type (default,null): TouchEventType;
+        public var touch_id (default,null): Int;
+        public var x (default,null): Float;
+        public var y (default,null): Float;
+        public var dx (default,null): Float;
+        public var dy (default,null): Float;
 
-} //KeyEvent
+        inline function new() {}
 
-@:allow(snow.systems.input.Input)
-class TextEvent {
-
-    public var type (default, null): Null<TextEventType>;
-    public var text (default, null): String;
-    public var start (default, null): Null<Int>;
-    public var length (default, null): Null<Int>;
-
-    inline function new() {}
-
-    @:allow(snow.core.Runtime)
-    inline function set(_type:TextEventType, _text:String, _start:Int, _length:Int) {
-        type = _type;
-        text = _text;
-        start = _start;
-        length = _length;
-    }
-
-    inline function toString() return '{ "TextEvent":true, "type":"$type", "text":"$text", "start":$start, "length":$length }';
-
-} //TextEvent
-
-@:allow(snow.systems.input.Input)
-class MouseEvent {
-    public var type (default, null): MouseEventType;
-    public var x (default, null): Int;
-    public var y (default, null): Int;
-    public var x_rel (default, null): Int;
-    public var y_rel (default, null): Int;
-    public var button (default, null): Int;
-    public var wheel_x (default, null): Float;
-    public var wheel_y (default, null): Float;
-
-    inline function new() {}
-
-    inline function set(_type:MouseEventType, _x:Int, _y:Int, _x_rel:Int, _y_rel:Int, _button:Int, _wheel_x:Float, _wheel_y:Float) {
-        type = _type;
-        x = _x;
-        y = _y;
-        x_rel = _x_rel;
-        y_rel = _y_rel;
-        button = _button;
-        wheel_x = _wheel_x;
-        wheel_y = _wheel_y;
-    }
-
-    inline function toString() return '{ "MouseEvent":true, "type":"$type", "x":$x, "y":$y, "button":$button, "x_rel":$x_rel, "y_rel":$y_rel, "wheel_x":$wheel_x, "wheel_y":$wheel_y }';
-
-} //MouseEvent
-
-@:allow(snow.systems.input.Input)
-class TouchEvent {
-
-    public var type (default,null): TouchEventType;
-    public var touch_id (default,null): Int;
-    public var x (default,null): Float;
-    public var y (default,null): Float;
-    public var dx (default,null): Float;
-    public var dy (default,null): Float;
-
-    inline function new() {}
-
-    inline function set(_type:TouchEventType, _id:Int, _x:Float, _y:Float, _dx:Float, _dy:Float) {
-        type = _type;
-        touch_id = _id;
-        x = _x;
-        y = _y;
-        dx = _dx;
-        dy = _dy;
-    }
-
-    inline function toString() return '{ "TouchEvent":true, "type":"$type", "touch_id":$touch_id, "x":$x, "y":$y, "dx":$dx, "dy":$dy }';
-
-} //TouchEvent
-
-@:allow(snow.systems.input.Input)
-class GamepadEvent {
-
-    public var type (default,null): GamepadEventType;
-    public var gamepad (default,null): Int;
-    public var axis (default,null): Null<Int>;
-    public var button (default,null): Null<Int>;
-    public var value (default,null): Null<Float>;
-    public var device_id (default,null): String;
-    public var device_event (default,null): Null<GamepadDeviceEventType>;
-
-    inline function new() {}
-
-    inline function set_axis(_gamepad:Int, _axis:Int, _value:Float) {
-        button = null;
-        device_id = null;
-        device_event = null;
-
-        axis    = _axis;
-        value   = _value;
-        type    = ge_axis;
-        gamepad = _gamepad;
-    } //set_axis
-
-    inline function set_button(_type:GamepadEventType, _gamepad:Int, _button:Int, _value:Float) {
-        axis = null;
-        device_id = null;
-        device_event = null;
-            
-        type    = _type;
-        value   = _value;
-        button  = _button;
-        gamepad = _gamepad;
-    } //set_button
-
-    inline function set_device(_gamepad:Int, _id:String, _event:GamepadDeviceEventType) {
-        axis = null;
-        value = null;
-        button = null;
-
-        device_id    = _id;
-        device_event = _event;
-        gamepad      = _gamepad;
-        type         = ge_device;
-    } //set_device
-
-    inline function toString() return '{ "GamepadEvent":true, "type":"$type", "gamepad":$gamepad, "axis":$axis, "button":$button, "value":$value, "device_id":"$device_id", "device_event":"$device_event" }';
-
-} //GamepadEvent
-
-@:allow(snow.systems.input.Input)
-class InputEvent {
- //
-        /** The type of input event this was. */
-    public var type (default,null) : InputEventType;
-        /** The time in seconds that this event occured, useful for deltas. 0.0 if not specified */
-    public var timestamp (default,null) : Float = 0.0;
-        /** The window id from which this event originated, if any. -1 if not specified */
-    public var window_id (default,null) : Int = -1;
-        /** Populated if the event type is ie_key, otherwise null */
-    public var key (default,null) : KeyEvent;
-        /** Populated if the event type is ie_text, otherwise null */
-    public var text (default,null) : TextEvent;
-        /** Populated if the event type is ie_mouse, otherwise null */
-    public var mouse (default,null) : MouseEvent;
-        /** Populated if the event type is ie_touch, otherwise null */
-    public var touch (default,null) : TouchEvent;
-        /** Populated if the event type is ie_gamepad, otherwise null */
-    public var gamepad (default,null) : GamepadEvent;
-
-    function new() {}
-
-    inline function reset(_type:InputEventType, _window_id:Int, _timestamp:Float) {
-
-        type = _type;
-        key = null;
-        text = null;
-        mouse = null;
-        touch = null;
-        gamepad = null;
-        window_id = _window_id;
-        timestamp = _timestamp;
-
-    } //reset
-
-    inline function set_key(_event:KeyEvent, _window_id:Int, _timestamp:Float) {
-        reset(ie_key, _window_id, _timestamp);
-        key = _event;
-    } //set_key
-
-    inline function set_text(_event:TextEvent, _window_id:Int, _timestamp:Float) {
-        reset(ie_text, _window_id, _timestamp);
-        text = _event;
-    } //set_text
-
-    inline function set_mouse(_event:MouseEvent, _window_id:Int, _timestamp:Float) {
-        reset(ie_mouse, _window_id, _timestamp);
-        mouse = _event;
-    } //set_mouse
-
-    inline function set_touch(_event:TouchEvent, _timestamp:Float) {
-        reset(ie_touch, 0, _timestamp);
-        touch = _event;
-    } //set_touch
-
-    inline function set_gamepad(_event:GamepadEvent, _timestamp:Float) {
-        reset(ie_gamepad, 0, _timestamp);
-        gamepad = _event;
-    } //set_gamepad
-
-    inline function toString() return '{ "InputEvent":true, "type":"$type", "window":$window_id, "key":$key, "text":$text, "mouse":$mouse, "touch":$touch, "gamepad":$gamepad, "time":$timestamp }';
-
-} //InputEvent
-
-/** A text specific event event type */
-@:enum abstract TextEventType(Int) from Int to Int {
-    //
-        /** An unknown text event */
-    var te_unknown    = 0;
-        /** An edit text typing event */
-    var te_edit    = 1;
-        /** An input text typing event */
-    var te_input   = 2;
-
-    inline function toString() {
-        return switch(this) {
-            case te_unknown: 'te_unknown';
-            case te_edit:    'te_edit';
-            case te_input:   'te_input';
-            case _:          '$this';
+        inline function set(_type:TouchEventType, _id:Int, _x:Float, _y:Float, _dx:Float, _dy:Float) {
+            type = _type;
+            touch_id = _id;
+            x = _x;
+            y = _y;
+            dx = _dx;
+            dy = _dy;
         }
-    } //toString
 
-} //TextEventType
+        inline function toString() return '{ "TouchEvent":true, "type":"$type", "touch_id":$touch_id, "x":$x, "y":$y, "dx":$dx, "dy":$dy }';
 
-/** A gamepad device event type */
-@:enum abstract GamepadDeviceEventType(Int) from Int to Int {
-    //
-        /** A unknown device event */
-    var ge_unknown             = 0;
-        /** A device added event */
-    var ge_device_added        = 1;
-        /** A device removed event */
-    var ge_device_removed      = 2;
-        /** A device was remapped */
-    var ge_device_remapped     = 3;
+    } //TouchEvent
 
-    inline function toString() {
-        return switch(this) {
-            case ge_unknown:         'ge_unknown';
-            case ge_device_added:    'ge_device_added';
-            case ge_device_removed:  'ge_device_removed';
-            case ge_device_remapped: 'ge_device_remapped';
-            case _:                  '$this';
+    @:allow(snow.systems.input.Input)
+    class GamepadEvent {
+
+        public var type (default,null): GamepadEventType;
+        public var gamepad (default,null): Int;
+        public var axis (default,null): Null<Int>;
+        public var button (default,null): Null<Int>;
+        public var value (default,null): Null<Float>;
+        public var device_id (default,null): String;
+        public var device_event (default,null): Null<GamepadDeviceEventType>;
+
+        inline function new() {}
+
+        inline function set_axis(_gamepad:Int, _axis:Int, _value:Float) {
+            button = null;
+            device_id = null;
+            device_event = null;
+
+            axis    = _axis;
+            value   = _value;
+            type    = ge_axis;
+            gamepad = _gamepad;
+        } //set_axis
+
+        inline function set_button(_type:GamepadEventType, _gamepad:Int, _button:Int, _value:Float) {
+            axis = null;
+            device_id = null;
+            device_event = null;
+
+            type    = _type;
+            value   = _value;
+            button  = _button;
+            gamepad = _gamepad;
+        } //set_button
+
+        inline function set_device(_gamepad:Int, _id:String, _event:GamepadDeviceEventType) {
+            axis = null;
+            value = null;
+            button = null;
+
+            device_id    = _id;
+            device_event = _event;
+            gamepad      = _gamepad;
+            type         = ge_device;
+        } //set_device
+
+        inline function toString() return '{ "GamepadEvent":true, "type":"$type", "gamepad":$gamepad, "axis":$axis, "button":$button, "value":$value, "device_id":"$device_id", "device_event":"$device_event" }';
+
+    } //GamepadEvent
+
+    @:allow(snow.systems.input.Input)
+    class InputEvent {
+     //
+            /** The type of input event this was. */
+        public var type (default,null) : InputEventType;
+            /** The time in seconds that this event occured, useful for deltas. 0.0 if not specified */
+        public var timestamp (default,null) : Float = 0.0;
+            /** The window id from which this event originated, if any. -1 if not specified */
+        public var window_id (default,null) : Int = -1;
+            /** Populated if the event type is ie_key, otherwise null */
+        public var key (default,null) : KeyEvent;
+            /** Populated if the event type is ie_text, otherwise null */
+        public var text (default,null) : TextEvent;
+            /** Populated if the event type is ie_mouse, otherwise null */
+        public var mouse (default,null) : MouseEvent;
+            /** Populated if the event type is ie_touch, otherwise null */
+        public var touch (default,null) : TouchEvent;
+            /** Populated if the event type is ie_gamepad, otherwise null */
+        public var gamepad (default,null) : GamepadEvent;
+
+        function new() {}
+
+        inline function reset(_type:InputEventType, _window_id:Int, _timestamp:Float) {
+
+            type = _type;
+            key = null;
+            text = null;
+            mouse = null;
+            touch = null;
+            gamepad = null;
+            window_id = _window_id;
+            timestamp = _timestamp;
+
+        } //reset
+
+        inline function set_key(_event:KeyEvent, _window_id:Int, _timestamp:Float) {
+            reset(ie_key, _window_id, _timestamp);
+            key = _event;
+        } //set_key
+
+        inline function set_text(_event:TextEvent, _window_id:Int, _timestamp:Float) {
+            reset(ie_text, _window_id, _timestamp);
+            text = _event;
+        } //set_text
+
+        inline function set_mouse(_event:MouseEvent, _window_id:Int, _timestamp:Float) {
+            reset(ie_mouse, _window_id, _timestamp);
+            mouse = _event;
+        } //set_mouse
+
+        inline function set_touch(_event:TouchEvent, _timestamp:Float) {
+            reset(ie_touch, 0, _timestamp);
+            touch = _event;
+        } //set_touch
+
+        inline function set_gamepad(_event:GamepadEvent, _timestamp:Float) {
+            reset(ie_gamepad, 0, _timestamp);
+            gamepad = _event;
+        } //set_gamepad
+
+        inline function toString() {
+            var _s = '{ "InputEvent":true, "type":"$type"';
+
+                if(key != null)     _s += ', "key":$key';
+                if(text != null)    _s += ', "text":$text';
+                if(mouse != null)   _s += ', "mouse":$mouse';
+                if(touch != null)   _s += ', "touch":$touch';
+                if(gamepad != null) _s += ', "gamepad":$gamepad';
+
+                _s += '"window":$window_id, "time":$timestamp }';
+
+            return _s;
         }
-    } //toString
 
-} //GamepadDeviceEventType
+    } //InputEvent
+
+    /** Input modifier state */
+    @:publicFields
+    class ModState {
+
+        @:allow(snow)
+        private inline function new() {}
+
+            /** no modifiers are down */
+        var none : Bool = false;
+            /** left shift key is down */
+        var lshift : Bool = false;
+            /** right shift key is down */
+        var rshift : Bool = false;
+            /** left ctrl key is down */
+        var lctrl : Bool = false;
+            /** right ctrl key is down */
+        var rctrl : Bool = false;
+            /** left alt/option key is down */
+        var lalt : Bool = false;
+            /** right alt/option key is down */
+        var ralt : Bool = false;
+            /** left windows/command key is down */
+        var lmeta : Bool = false;
+            /** right windows/command key is down */
+        var rmeta : Bool = false;
+            /** numlock is enabled */
+        var num : Bool = false;
+            /** capslock is enabled */
+        var caps : Bool = false;
+            /** mode key is down */
+        var mode : Bool = false;
+            /** left or right ctrl key is down */
+        var ctrl : Bool = false;
+            /** left or right shift key is down */
+        var shift : Bool = false;
+            /** left or right alt/option key is down */
+        var alt : Bool = false;
+            /** left or right windows/command key is down */
+        var meta : Bool = false;
+
+        inline function toString() {
+
+            var _s = '{ "ModState":true ';
+
+            if(none) return _s + ', "none":true }';
+
+                if(lshift) _s += ', "lshift":true';
+                if(rshift) _s += ', "rshift":true';
+                if(lctrl)  _s += ', "lctrl":true';
+                if(rctrl)  _s += ', "rctrl":true';
+                if(lalt)   _s += ', "lalt":true';
+                if(ralt)   _s += ', "ralt":true';
+                if(lmeta)  _s += ', "lmeta":true';
+                if(rmeta)  _s += ', "rmeta":true';
+                if(num)    _s += ', "num":true';
+                if(caps)   _s += ', "caps":true';
+                if(mode)   _s += ', "mode":true';
+                if(ctrl)   _s += ', "ctrl":true';
+                if(shift)  _s += ', "shift":true';
+                if(alt)    _s += ', "alt":true';
+                if(meta)   _s += ', "meta":true';
+
+            _s += '}';
+
+            return _s;
+
+        } //toString
+
+    } //ModState
+
+//Event Type enums
+
+    /** A key specific event event type */
+    @:enum abstract KeyEventType(Int) from Int to Int {
+        var ke_unknown  = 0;
+        var ke_down     = 1;
+        var ke_up       = 2;
+
+        inline function toString() {
+            return switch(this) {
+                case ke_unknown: 'ke_unknown';
+                case ke_down:    'ke_down';
+                case ke_up:      'ke_up';
+                case _:          '$this';
+            }
+        } //toString
+    } //KeyEventType
+
+    /** A mouse specific event event type */
+    @:enum abstract MouseEventType(Int) from Int to Int {
+        var me_unknown  = 0;
+        var me_move     = 1;
+        var me_down     = 2;
+        var me_up       = 3;
+        var me_wheel    = 4;
+
+        inline function toString() {
+            return switch(this) {
+                case me_unknown:    'me_unknown';
+                case me_move:       'me_move';
+                case me_down:       'me_down';
+                case me_up:         'me_up';
+                case me_wheel:      'me_wheel';
+                case _:             '$this';
+            }
+        } //toString
+    } //MouseEventType
+
+    /** A touch specific event event type */
+    @:enum abstract TouchEventType(Int) from Int to Int {
+        var te_unknown  = 0;
+        var te_move     = 1;
+        var te_down     = 2;
+        var te_up       = 3;
+
+        inline function toString() {
+            return switch(this) {
+                case te_unknown:    'te_unknown';
+                case te_move:       'te_move';
+                case te_down:       'te_down';
+                case te_up:         'te_up';
+                case _:             '$this';
+            }
+        } //toString
+    } //TouchEventType
+
+    /** A touch specific event event type */
+    @:enum abstract GamepadEventType(Int) from Int to Int {
+        var ge_unknown  = 0;
+        var ge_axis     = 1;
+        var ge_down     = 2;
+        var ge_up       = 3;
+        var ge_device   = 4;
+
+        inline function toString() {
+            return switch(this) {
+                case ge_unknown:    'ge_unknown';
+                case ge_axis:       'ge_axis';
+                case ge_down:       'ge_down';
+                case ge_up:         'ge_up';
+                case ge_device:     'ge_device';
+                case _:             '$this';
+            }
+        } //toString
+    } //GamepadEventType
+
+    /** A text specific event event type */
+    @:enum abstract TextEventType(Int) from Int to Int {
+        //
+            /** An unknown text event */
+        var te_unknown    = 0;
+            /** An edit text typing event */
+        var te_edit    = 1;
+            /** An input text typing event */
+        var te_input   = 2;
+
+        inline function toString() {
+            return switch(this) {
+                case te_unknown: 'te_unknown';
+                case te_edit:    'te_edit';
+                case te_input:   'te_input';
+                case _:          '$this';
+            }
+        } //toString
+    } //TextEventType
+
+    /** A gamepad device event type */
+    @:enum abstract GamepadDeviceEventType(Int) from Int to Int {
+        //
+            /** A unknown device event */
+        var ge_unknown             = 0;
+            /** A device added event */
+        var ge_device_added        = 1;
+            /** A device removed event */
+        var ge_device_removed      = 2;
+            /** A device was remapped */
+        var ge_device_remapped     = 3;
+
+        inline function toString() {
+            return switch(this) {
+                case ge_unknown:         'ge_unknown';
+                case ge_device_added:    'ge_device_added';
+                case ge_device_removed:  'ge_device_removed';
+                case ge_device_remapped: 'ge_device_remapped';
+                case _:                  '$this';
+            }
+        } //toString
+    } //GamepadDeviceEventType
+
+    @:enum abstract SystemEventType(Int) from Int to Int {
+        //
+            /** An unknown system event */
+        var se_unknown                  = 0;
+            /** An system init event */
+        var se_init                     = 1;
+            /** An system ready event */
+        var se_ready                    = 2;
+            /** An system tick event */
+        var se_tick                     = 3;
+            /** An system freeze event */
+        var se_freeze                   = 4;
+            /** An system unfreeze event */
+        var se_unfreeze                 = 5;
+            /** An system pause event */
+        var se_suspend                  = 6;
+            /** An system shutdown event */
+        var se_shutdown                 = 7;
+            /** An system window event */
+        var se_window                   = 8;
+            /** An system input event */
+        var se_input                    = 9;
+
+            //snow application events
+
+            /** An system quit event. Initiated by user, can be cancelled/ignored */
+        var se_quit                       = 10;
+            /** An system terminating event, called by the OS (mobile specific) */
+        var se_app_terminating            = 11;
+            /** An system low memory event, clear memory if you can. Called by the OS (mobile specific) */
+        var se_app_lowmemory              = 12;
+            /** An event for just before the app enters the background, called by the OS (mobile specific) */
+        var se_app_willenterbackground    = 13;
+            /** An event for when the app enters the background, called by the OS (mobile specific) */
+        var se_app_didenterbackground     = 14;
+            /** An event for just before the app enters the foreground, called by the OS (mobile specific) */
+        var se_app_willenterforeground    = 15;
+            /** An event for when the app enters the foreground, called by the OS (mobile specific) */
+        var se_app_didenterforeground     = 16;
 
 
-/** Input modifier state */
-@:publicFields
-class ModState {
-    
-    @:allow(snow)
-    private inline function new() {}
+        inline function toString() {
+            return switch(this) {
+                case se_unknown:                    'se_unknown';
+                case se_init:                       'se_init';
+                case se_ready:                      'se_ready';
+                case se_tick:                       'se_tick';
+                case se_freeze:                     'se_freeze';
+                case se_unfreeze:                   'se_unfreeze';
+                case se_shutdown:                   'se_shutdown';
+                case se_window:                     'se_window';
+                case se_input:                      'se_input';
+                case se_quit:                       'se_quit';
+                case se_app_terminating:            'se_app_terminating';
+                case se_app_lowmemory:              'se_app_lowmemory';
+                case se_app_willenterbackground:    'se_app_willenterbackground';
+                case se_app_didenterbackground:     'se_app_didenterbackground';
+                case se_app_willenterforeground:    'se_app_willenterforeground';
+                case se_app_didenterforeground:     'se_app_didenterforeground';
+                case _:                             '$this';
+            }
+        } //toString
+    } //SystemEventType
 
-        /** no modifiers are down */
-    var none : Bool = false;
-        /** left shift key is down */
-    var lshift : Bool = false;
-        /** right shift key is down */
-    var rshift : Bool = false;
-        /** left ctrl key is down */
-    var lctrl : Bool = false;
-        /** right ctrl key is down */
-    var rctrl : Bool = false;
-        /** left alt/option key is down */
-    var lalt : Bool = false;
-        /** right alt/option key is down */
-    var ralt : Bool = false;
-        /** left windows/command key is down */
-    var lmeta : Bool = false;
-        /** right windows/command key is down */
-    var rmeta : Bool = false;
-        /** numlock is enabled */
-    var num : Bool = false;
-        /** capslock is enabled */
-    var caps : Bool = false;
-        /** mode key is down */
-    var mode : Bool = false;
-        /** left or right ctrl key is down */
-    var ctrl : Bool = false;
-        /** left or right shift key is down */
-    var shift : Bool = false;
-        /** left or right alt/option key is down */
-    var alt : Bool = false;
-        /** left or right windows/command key is down */
-    var meta : Bool = false;
+    @:enum abstract WindowEventType(Int) from Int to Int {
+        //
+            /** An unknown window event */
+        var unknown          = 0;
+            /** A window is created */
+        var created          = 1;
+            /** A window is shown */
+        var shown            = 2;
+            /** A window is hidden */
+        var hidden           = 3;
+            /** A window is exposed */
+        var exposed          = 4;
+            /** A window is moved */
+        var moved            = 5;
+            /** A window is resized, by the user or code. */
+        var resized          = 6;
+            /** A window is resized, by the OS or internals. */
+        var size_changed     = 7;
+            /** A window is minimized */
+        var minimized        = 8;
+            /** A window is maximized */
+        var maximized        = 9;
+            /** A window is restored */
+        var restored         = 10;
+            /** A window is entered by a mouse */
+        var enter            = 11;
+            /** A window is left by a mouse */
+        var leave            = 12;
+            /** A window has gained focus */
+        var focus_gained     = 13;
+            /** A window has lost focus */
+        var focus_lost       = 14;
+            /** A window is being closed/hidden */
+        var close            = 15;
+            /** A window is being destroyed */
+        var destroy          = 16;
 
-    inline function toString() {
+        inline function toString() {
+            return switch(this) {
+                case unknown:       'unknown';
+                case created:       'created';
+                case shown:         'shown';
+                case hidden:        'hidden';
+                case exposed:       'exposed';
+                case moved:         'moved';
+                case resized:       'resized';
+                case size_changed:  'size_changed';
+                case minimized:     'minimized';
+                case maximized:     'maximized';
+                case restored:      'restored';
+                case enter:         'enter';
+                case leave:         'leave';
+                case focus_gained:  'focus_gained';
+                case focus_lost:    'focus_lost';
+                case close:         'close';
+                case destroy:       'destroy';
+                case _:             '$this';
+            }
+        } //toString
+    } //WindowEventType
 
-        var _s = '{ "ModState":true ';
+    @:enum abstract InputEventType(Int) from Int to Int {
+        //
+            /** An unknown input event */
+        var ie_unknown        = 0;
+            /** An keyboard input event */
+        var ie_key            = 1;
+            /** An keyboard text input event */
+        var ie_text           = 2;
+            /** An mouse input event */
+        var ie_mouse          = 3;
+            /** An touch input event */
+        var ie_touch          = 4;
+            /** An gamepad input event. */
+        var ie_gamepad        = 5;
+            /** An joystick input event. These are for older devices, and on mobile (for now): accellerometer */
+        var ie_joystick       = 6;
 
-        if(none) return _s + ', "none":true }';
+        inline function toString() {
+            return switch(this) {
+                case ie_unknown:       'ie_unknown';
+                case ie_key:           'ie_key';
+                case ie_text:          'ie_text';
+                case ie_mouse:         'ie_mouse';
+                case ie_touch:         'ie_touch';
+                case ie_gamepad:       'ie_gamepad';
+                case ie_joystick:      'ie_joystick';
+                case _:                '$this';
+            }
+        } //toString
+    } //InputEventType
 
-            if(lshift) _s += ', "lshift":true';
-            if(rshift) _s += ', "rshift":true';
-            if(lctrl)  _s += ', "lctrl":true';
-            if(rctrl)  _s += ', "rctrl":true';
-            if(lalt)   _s += ', "lalt":true';
-            if(ralt)   _s += ', "ralt":true';
-            if(lmeta)  _s += ', "lmeta":true';
-            if(rmeta)  _s += ', "rmeta":true';
-            if(num)    _s += ', "num":true';
-            if(caps)   _s += ', "caps":true';
-            if(mode)   _s += ', "mode":true';
-            if(ctrl)   _s += ', "ctrl":true';
-            if(shift)  _s += ', "shift":true';
-            if(alt)    _s += ', "alt":true';
-            if(meta)   _s += ', "meta":true';
-
-        _s += '}';
-
-        return _s;
-
-    } //toString
-
-} //ModState
-
-
-@:enum abstract SystemEventType(Int) from Int to Int {
-    //
-        /** An unknown system event */
-    var se_unknown                  = 0;
-        /** An system init event */
-    var se_init                     = 1;
-        /** An system ready event */
-    var se_ready                    = 2;
-        /** An system tick event */
-    var se_tick                     = 3;
-        /** An system freeze event */
-    var se_freeze                   = 4;
-        /** An system unfreeze event */
-    var se_unfreeze                 = 5;
-        /** An system pause event */
-    var se_suspend                  = 6;
-        /** An system shutdown event */
-    var se_shutdown                 = 7;
-        /** An system window event */
-    var se_window                   = 8;
-        /** An system input event */
-    var se_input                    = 9;
-
-        //snow application events
-
-        /** An system quit event. Initiated by user, can be cancelled/ignored */
-    var se_quit                       = 10;
-        /** An system terminating event, called by the OS (mobile specific) */
-    var se_app_terminating            = 11;
-        /** An system low memory event, clear memory if you can. Called by the OS (mobile specific) */
-    var se_app_lowmemory              = 12;
-        /** An event for just before the app enters the background, called by the OS (mobile specific) */
-    var se_app_willenterbackground    = 13;
-        /** An event for when the app enters the background, called by the OS (mobile specific) */
-    var se_app_didenterbackground     = 14;
-        /** An event for just before the app enters the foreground, called by the OS (mobile specific) */
-    var se_app_willenterforeground    = 15;
-        /** An event for when the app enters the foreground, called by the OS (mobile specific) */
-    var se_app_didenterforeground     = 16;
-
-
-    inline function toString() {
-        return switch(this) {
-            case se_unknown:                    'se_unknown';
-            case se_init:                       'se_init';
-            case se_ready:                      'se_ready';
-            case se_tick:                       'se_tick';
-            case se_freeze:                     'se_freeze';
-            case se_unfreeze:                   'se_unfreeze';
-            case se_shutdown:                   'se_shutdown';
-            case se_window:                     'se_window';
-            case se_input:                      'se_input';
-            case se_quit:                       'se_quit';
-            case se_app_terminating:            'se_app_terminating';
-            case se_app_lowmemory:              'se_app_lowmemory';
-            case se_app_willenterbackground:    'se_app_willenterbackground';
-            case se_app_didenterbackground:     'se_app_didenterbackground';
-            case se_app_willenterforeground:    'se_app_willenterforeground';
-            case se_app_didenterforeground:     'se_app_didenterforeground';
-            case _:                             '$this';
-        }
-    } //toString
-
-} //SystemEventType
-
-@:enum abstract WindowEventType(Int) from Int to Int {
-    //
-        /** An unknown window event */
-    var unknown          = 0;
-        /** A window is created */
-    var created          = 1;
-        /** A window is shown */
-    var shown            = 2;
-        /** A window is hidden */
-    var hidden           = 3;
-        /** A window is exposed */
-    var exposed          = 4;
-        /** A window is moved */
-    var moved            = 5;
-        /** A window is resized, by the user or code. */
-    var resized          = 6;
-        /** A window is resized, by the OS or internals. */
-    var size_changed     = 7;
-        /** A window is minimized */
-    var minimized        = 8;
-        /** A window is maximized */
-    var maximized        = 9;
-        /** A window is restored */
-    var restored         = 10;
-        /** A window is entered by a mouse */
-    var enter            = 11;
-        /** A window is left by a mouse */
-    var leave            = 12;
-        /** A window has gained focus */
-    var focus_gained     = 13;
-        /** A window has lost focus */
-    var focus_lost       = 14;
-        /** A window is being closed/hidden */
-    var close            = 15;
-        /** A window is being destroyed */
-    var destroy          = 16;
-
-    inline function toString() {
-        return switch(this) {
-            case unknown:       'unknown';
-            case created:       'created';
-            case shown:         'shown';
-            case hidden:        'hidden';
-            case exposed:       'exposed';
-            case moved:         'moved';
-            case resized:       'resized';
-            case size_changed:  'size_changed';
-            case minimized:     'minimized';
-            case maximized:     'maximized';
-            case restored:      'restored';
-            case enter:         'enter';
-            case leave:         'leave';
-            case focus_gained:  'focus_gained';
-            case focus_lost:    'focus_lost';
-            case close:         'close';
-            case destroy:       'destroy';
-            case _:             '$this';
-        }
-    } //toString
-
-} //WindowEventType
-
-@:enum abstract InputEventType(Int) from Int to Int {
-    //
-        /** An unknown input event */
-    var ie_unknown        = 0;
-        /** An keyboard input event */
-    var ie_key            = 1;
-        /** An keyboard text input event */
-    var ie_text           = 2;
-        /** An mouse input event */
-    var ie_mouse          = 3;
-        /** An touch input event */
-    var ie_touch          = 4;
-        /** An gamepad input event. */
-    var ie_gamepad        = 5;
-        /** An joystick input event. These are for older devices, and on mobile (for now): accellerometer */
-    var ie_joystick       = 6;
-
-    inline function toString() {
-        return switch(this) {
-            case ie_unknown:       'ie_unknown';
-            case ie_key:           'ie_key';
-            case ie_text:          'ie_text';
-            case ie_mouse:         'ie_mouse';
-            case ie_touch:         'ie_touch';
-            case ie_gamepad:       'ie_gamepad';
-            case ie_joystick:      'ie_joystick';
-            case _:                '$this';
-        }
-    } //toString
-
-} //InputEventType
 
