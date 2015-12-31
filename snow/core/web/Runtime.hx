@@ -14,8 +14,6 @@ class Runtime implements snow.core.Runtime {
     static var timestamp_start : Float = 0.0;
 
 
-        /** internal: a pre allocated window event */
-    var _window_event_ : WindowEvent;
         /** The window id to use for events */
     var web_window_id = 1;
         /** The window x position, this is set by update_window_pos only */
@@ -45,8 +43,6 @@ class Runtime implements snow.core.Runtime {
                 Key.backspace, Key.tab, Key.delete, Key.space
             ]
         };
-
-        _window_event_ = new WindowEvent();
 
         gamepads_init();
 
@@ -127,8 +123,7 @@ class Runtime implements snow.core.Runtime {
 //internal
 
     inline function dispatch_window_ev(_type:WindowEventType) {
-        _window_event_.set(_type, timestamp(), web_window_id, null, null);
-        app.dispatch_event(se_window, _window_event_);
+        app.dispatch_window_event(_type, timestamp(), web_window_id, null, null);
     }
 
     function setup_events() {
@@ -218,7 +213,7 @@ class Runtime implements snow.core.Runtime {
 
                     app.input.dispatch_text_event(
                         _text, 0, _text.length,
-                        TextEventType.input,
+                        te_input,
                         timestamp(),
                         web_window_id
                     );
@@ -408,7 +403,7 @@ class Runtime implements snow.core.Runtime {
                 app.input.dispatch_gamepad_device_event(
                     _ev.gamepad.index,
                     _ev.gamepad.id,
-                    GamepadDeviceEventType.device_added,
+                    ge_device_added,
                     timestamp()
                 );
 
@@ -423,7 +418,7 @@ class Runtime implements snow.core.Runtime {
                 app.input.dispatch_gamepad_device_event(
                     _ev.gamepad.index,
                     _ev.gamepad.id,
-                    GamepadDeviceEventType.device_removed,
+                    ge_device_removed,
                     timestamp()
                 );
 
@@ -572,24 +567,24 @@ class Runtime implements snow.core.Runtime {
             !_key_event.metaKey &&
             !_key_event.shiftKey;
 
-        return {
-            none    : _none,
-            lshift  : _key_event.shiftKey,
-            rshift  : _key_event.shiftKey,
-            lctrl   : _key_event.ctrlKey,
-            rctrl   : _key_event.ctrlKey,
-            lalt    : _key_event.altKey,
-            ralt    : _key_event.altKey,
-            lmeta   : _key_event.metaKey,
-            rmeta   : _key_event.metaKey,
-            num     : false, //:unsupported:
-            caps    : false, //:unsupported:
-            mode    : false, //:unsupported:
-            ctrl    : _key_event.ctrlKey,
-            shift   : _key_event.shiftKey,
-            alt     : _key_event.altKey,
-            meta    : _key_event.metaKey
-        };
+            app.input.mod_state.none    = _none;
+            app.input.mod_state.lshift  = _key_event.shiftKey;
+            app.input.mod_state.rshift  = _key_event.shiftKey;
+            app.input.mod_state.lctrl   = _key_event.ctrlKey;
+            app.input.mod_state.rctrl   = _key_event.ctrlKey;
+            app.input.mod_state.lalt    = _key_event.altKey;
+            app.input.mod_state.ralt    = _key_event.altKey;
+            app.input.mod_state.lmeta   = _key_event.metaKey;
+            app.input.mod_state.rmeta   = _key_event.metaKey;
+            app.input.mod_state.num     = false;                //:unsupported:
+            app.input.mod_state.caps    = false;                //:unsupported:
+            app.input.mod_state.mode    = false;                //:unsupported:
+            app.input.mod_state.ctrl    = _key_event.ctrlKey;
+            app.input.mod_state.shift   = _key_event.shiftKey;
+            app.input.mod_state.alt     = _key_event.altKey;
+            app.input.mod_state.meta    = _key_event.metaKey;
+        
+        return app.input.mod_state;
 
     } //mod_state_from_event
 

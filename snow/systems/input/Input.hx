@@ -15,11 +15,29 @@ class Input {
 
         /** An internal value for how many gamepads to pre-set up at creation time */
     var gamepad_init_count = 16;
+        /** A prealloacated input event for dispatching */
+    var event: InputEvent;
+    var key_event: KeyEvent;
+    var text_event: TextEvent;
+    var mouse_event: MouseEvent;
+    var touch_event: TouchEvent;
+    var gamepad_event: GamepadEvent;
 
-        /** constructed internally, use `app.input` */
+    @:allow(snow.core.Runtime)
+    var mod_state: ModState;
+
+        /** Constructed internally, use `app.input` */
     function new( _app:Snow ) {
 
         app = _app;
+        event = new InputEvent();
+        key_event = new KeyEvent();
+        text_event = new TextEvent();
+        mouse_event = new MouseEvent();
+        touch_event = new TouchEvent();
+        gamepad_event = new GamepadEvent();
+        mod_state = new ModState();
+        mod_state.none = true;
 
         //keys
 
@@ -66,7 +84,7 @@ class Input {
 
 
     //Key immediate style access
-
+     //
             /** returns true if the `Key` value was pressed in the latest frame */
         public function keypressed( _code:Int ) : Bool {
             return key_code_pressed.exists(_code);
@@ -98,7 +116,7 @@ class Input {
         } //keydown
 
     //Mouse immediate style access
-
+      //
             /** returns true if the mouse button was pressed in the latest frame */
         public function mousepressed( _button:Int ) : Bool {
             return mouse_button_pressed.exists(_button);
@@ -115,7 +133,7 @@ class Input {
         } //mousedown
 
     //Gamepad immediate style access
-
+     //
             /** returns true if the mouse button was pressed in the latest frame */
         public function gamepadpressed( _gamepad:Int, _button:Int ) : Bool {
 
@@ -155,7 +173,9 @@ class Input {
         } //gamepaddown
 
         /** manually dispatch a key down event through the system, delivered to the app handlers, internal and external */
+
     public function dispatch_key_down_event( keycode:Int, scancode:Int, repeat:Bool, mod:ModState, timestamp:Float, window_id:Int ) {
+        //
 
             //only do the realtime flags if not key repeat
         if(!repeat) {
@@ -169,13 +189,19 @@ class Input {
             scan_code_down.set(scancode, true);
         }
 
-            //forward the event
+            //dispatch the event
+        key_event.set(ke_down, keycode, scancode, repeat, mod);
+        event.set_key(key_event, window_id, timestamp);
+        app.dispatch_input_event(event);
+
+            //call the app directly
         app.host.onkeydown(keycode, scancode, repeat, mod, timestamp, window_id);
 
     } //dispatch_key_down_event
 
         /** manually dispatch a key up event through the system, delivered to the app handlers, internal and external */
     public function dispatch_key_up_event( keycode:Int, scancode:Int, repeat:Bool, mod:ModState, timestamp:Float, window_id:Int ) {
+        //
 
             //flag it as released but unprocessed
         key_code_released.set(keycode, false);
@@ -189,12 +215,21 @@ class Input {
 
 
             //dispatch the event
+        key_event.set(ke_up, keycode, scancode, repeat, mod);
+        event.set_key(key_event, window_id, timestamp);
+        app.dispatch_input_event(event);
+
+            //call the app directly
         app.host.onkeyup(keycode, scancode, repeat, mod, timestamp, window_id);
 
     } //dispatch_key_up_event
 
         /** manually dispatch a text event through the system, delivered to the app handlers, internal and external */
     public function dispatch_text_event( text:String, start:Int, length:Int, type:TextEventType, timestamp:Float, window_id:Int ) {
+
+        text_event.set(type, text, start, length);
+        event.set_text(text_event, window_id, timestamp);
+        app.dispatch_input_event(event);
 
         app.host.ontextinput( text, start, length, type, timestamp, window_id );
 
@@ -204,18 +239,25 @@ class Input {
         /** manually dispatch a mouse move event through the system, delivered to the app handlers, internal and external */
     public function dispatch_mouse_move_event( x:Int, y:Int, xrel:Int, yrel:Int, timestamp:Float, window_id:Int ) {
 
+        mouse_event.set(me_move, x, y, xrel, yrel, 0, 0, 0);
+        event.set_mouse(mouse_event, window_id, timestamp);
+        app.dispatch_input_event(event);
+
         app.host.onmousemove( x, y, xrel, yrel, timestamp, window_id );
 
     } //dispatch_mouse_move_event
 
         /** manually dispatch a mouse button down event through the system, delivered to the app handlers, internal and external */
     public function dispatch_mouse_down_event( x:Int, y:Int, button:Int, timestamp:Float, window_id:Int ) {
-
+        //
             //flag the button as pressed, but unprocessed (false)
         mouse_button_pressed.set(button, false);
             //flag it as down, because mouseup removes it
         mouse_button_down.set(button, true);
 
+        mouse_event.set(me_down, x, y, 0, 0, button, 0, 0);
+        event.set_mouse(mouse_event, window_id, timestamp);
+        app.dispatch_input_event(event);
 
         app.host.onmousedown( x, y, button, timestamp, window_id );
 
@@ -223,11 +265,15 @@ class Input {
 
         /** manually dispatch a mouse button up event through the system, delivered to the app handlers, internal and external */
     public function dispatch_mouse_up_event( x:Int, y:Int, button:Int, timestamp:Float, window_id:Int ) {
-
+        //
             //flag it as released but unprocessed
         mouse_button_released.set(button, false);
             //remove the down flag
         mouse_button_down.remove(button);
+
+        mouse_event.set(me_up, x, y, 0, 0, button, 0, 0);
+        event.set_mouse(mouse_event, window_id, timestamp);
+        app.dispatch_input_event(event);
 
 
         app.host.onmouseup( x, y, button, timestamp, window_id );
@@ -236,6 +282,10 @@ class Input {
 
         /** manually dispatch a mouse wheel event through the system, delivered to the app handlers, internal and external */
     public function dispatch_mouse_wheel_event( x:Float, y:Float, timestamp:Float, window_id:Int ) {
+
+        mouse_event.set(me_wheel, 0, 0, 0, 0, 0, x, y);
+        event.set_mouse(mouse_event, window_id, timestamp);
+        app.dispatch_input_event(event);
 
         app.host.onmousewheel( x, y, timestamp, window_id );
 
@@ -249,12 +299,20 @@ class Input {
             touches_down.set(touch_id, true);
         }
 
+        touch_event.set(te_down, touch_id, x, y, dx, dy);
+        event.set_touch(touch_event, timestamp);
+        app.dispatch_input_event(event);
+
         app.host.ontouchdown( x, y, dx, dy, touch_id, timestamp );
 
     } //dispatch_touch_down_event
 
         /** manually dispatch a touch up through the system, delivered to the app handlers, internal and external */
     public function dispatch_touch_up_event( x:Float, y:Float, dx:Float, dy:Float, touch_id:Int, timestamp:Float ) {
+
+        touch_event.set(te_up, touch_id, x, y, dx, dy);
+        event.set_touch(touch_event, timestamp);
+        app.dispatch_input_event(event);
 
         app.host.ontouchup( x, y, dx, dy, touch_id, timestamp );
 
@@ -266,6 +324,10 @@ class Input {
 
         /** manually dispatch a touch move through the system, delivered to the app handlers, internal and external */
     public function dispatch_touch_move_event( x:Float, y:Float, dx:Float, dy:Float, touch_id:Int, timestamp:Float ) {
+        
+        touch_event.set(te_move, touch_id, x, y, dx, dy);
+        event.set_touch(touch_event, timestamp);
+        app.dispatch_input_event(event);
 
         app.host.ontouchmove( x, y, dx, dy, touch_id, timestamp );
 
@@ -278,6 +340,10 @@ class Input {
 
             //update the axis value
         gamepad_axis_values.get(gamepad).set(axis, value);
+
+        gamepad_event.set_axis(gamepad, axis, value);
+        event.set_gamepad(gamepad_event, timestamp);
+        app.dispatch_input_event(event);
 
         app.host.ongamepadaxis( gamepad, axis, value, timestamp );
 
@@ -294,6 +360,9 @@ class Input {
             //flag it as down, because gamepadup removes it
         gamepad_button_down.get(gamepad).set(button, true);
 
+        gamepad_event.set_button(ge_down, gamepad, button, value);
+        event.set_gamepad(gamepad_event, timestamp);
+        app.dispatch_input_event(event);
 
         app.host.ongamepaddown( gamepad, button, value, timestamp );
 
@@ -310,6 +379,10 @@ class Input {
             //flag it as down, because gamepadup removes it
         gamepad_button_down.get(gamepad).remove(button);
 
+        gamepad_event.set_button(ge_up, gamepad, button, value);
+        event.set_gamepad(gamepad_event, timestamp);
+        app.dispatch_input_event(event);
+
         app.host.ongamepadup(gamepad, button, value, timestamp);
 
     } //dispatch_gamepad_button_up_event
@@ -317,12 +390,16 @@ class Input {
         /** manually dispatch a gamepad device event through the system, delivered to the app handlers, internal and external */
     public function dispatch_gamepad_device_event( gamepad:Int, id:String, type:GamepadDeviceEventType, timestamp:Float ) {
 
+        gamepad_event.set_device(gamepad, id, type);
+        event.set_gamepad(gamepad_event, timestamp);
+        app.dispatch_input_event(event);
+
         app.host.ongamepaddevice(gamepad, id, type, timestamp);
 
     } //dispatch_gamepad_device_event
 
 //Interal API
-
+ //
         /** Called when a system event is dispatched through the core */
     function onevent( _event:SystemEvent ) {
 
@@ -336,7 +413,7 @@ class Input {
 
 
 //internal
-
+ //
         /** update mouse pressed/released/down states */
     function _update_mousestate() {
 

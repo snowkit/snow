@@ -16,8 +16,6 @@ class Runtime extends snow.core.native.Runtime {
     public var gl : sdl.GLContext;
         /** The SDL window handle */
     public var window : sdl.Window;
-        /** internal: a pre allocated window event */
-    var _window_event_ : WindowEvent;
         /** internal: map of gamepad index to gamepad instance */
     var gamepads : Map<Int, sdl.GameController>;
         /** internal: map of joystick index to joystick instance */
@@ -34,7 +32,6 @@ class Runtime extends snow.core.native.Runtime {
             audio_buffer_count : 4
         }
 
-        _window_event_ = new WindowEvent();
         gamepads = new Map();
         joysticks = new Map();
 
@@ -299,8 +296,7 @@ class Runtime extends snow.core.native.Runtime {
             } //switch
 
             if(_type != unknown) {
-                _window_event_.set(_type, e.window.timestamp/1000.0, cast e.window.windowID, _data1, _data2);
-                app.dispatch_event(se_window, _window_event_);
+                app.dispatch_window_event(_type, e.window.timestamp/1000.0, cast e.window.windowID, _data1, _data2);
             }
         }
 
@@ -547,7 +543,7 @@ class Runtime extends snow.core.native.Runtime {
                         e.edit.text,
                         e.edit.start,
                         e.edit.length,
-                        TextEventType.edit,
+                        TextEventType.te_edit,
                         e.edit.timestamp/1000.0,
                         cast e.edit.windowID
                     );
@@ -556,7 +552,7 @@ class Runtime extends snow.core.native.Runtime {
                         e.text.text,
                         0,
                         0,
-                        TextEventType.input,
+                        TextEventType.te_input,
                         e.text.timestamp/1000.0,
                         cast e.text.windowID
                     );
@@ -673,7 +669,7 @@ class Runtime extends snow.core.native.Runtime {
                         app.input.dispatch_gamepad_device_event(
                             e.jdevice.which,
                             SDL.joystickNameForIndex(e.jdevice.which),
-                            GamepadDeviceEventType.device_added,
+                            GamepadDeviceEventType.ge_device_added,
                             e.jdevice.timestamp/1000.0
                         );
                     }
@@ -687,7 +683,7 @@ class Runtime extends snow.core.native.Runtime {
                         app.input.dispatch_gamepad_device_event(
                             e.jdevice.which,
                             SDL.joystickNameForIndex(e.jdevice.which),
-                            GamepadDeviceEventType.device_removed,
+                            GamepadDeviceEventType.ge_device_removed,
                             e.jdevice.timestamp/1000.0
                         );
                     }
@@ -726,7 +722,7 @@ class Runtime extends snow.core.native.Runtime {
                     app.input.dispatch_gamepad_device_event(
                         e.cdevice.which,
                         SDL.gameControllerNameForIndex(e.cdevice.which),
-                        GamepadDeviceEventType.device_added,
+                        GamepadDeviceEventType.ge_device_added,
                         e.cdevice.timestamp/1000.0
                     );
                 case SDL_CONTROLLERDEVICEREMOVED:
@@ -738,14 +734,14 @@ class Runtime extends snow.core.native.Runtime {
                     app.input.dispatch_gamepad_device_event(
                         e.cdevice.which,
                         SDL.gameControllerNameForIndex(e.cdevice.which),
-                        GamepadDeviceEventType.device_removed,
+                        GamepadDeviceEventType.ge_device_removed,
                         e.cdevice.timestamp/1000.0
                     );
                 case SDL_CONTROLLERDEVICEREMAPPED:
                     app.input.dispatch_gamepad_device_event(
                         e.cdevice.which,
                         SDL.gameControllerNameForIndex(e.cdevice.which),
-                        GamepadDeviceEventType.device_remapped,
+                        GamepadDeviceEventType.ge_device_remapped,
                         e.cdevice.timestamp/1000.0
                     );
                 case _:
@@ -757,46 +753,29 @@ class Runtime extends snow.core.native.Runtime {
     /** Helper to return a `ModState` (shift, ctrl etc) from a given `InputEvent` */
     function to_key_mod( mod_value:Int ) : ModState {
 
-        return {
+            app.input.mod_state.none    = mod_value == KMOD_NONE;
 
-            none    : mod_value == KMOD_NONE,
+            app.input.mod_state.lshift  = mod_value == KMOD_LSHIFT;
+            app.input.mod_state.rshift  = mod_value == KMOD_RSHIFT;
+            app.input.mod_state.lctrl   = mod_value == KMOD_LCTRL;
+            app.input.mod_state.rctrl   = mod_value == KMOD_RCTRL;
+            app.input.mod_state.lalt    = mod_value == KMOD_LALT;
+            app.input.mod_state.ralt    = mod_value == KMOD_RALT;
+            app.input.mod_state.lmeta   = mod_value == KMOD_LGUI;
+            app.input.mod_state.rmeta   = mod_value == KMOD_RGUI;
 
-            lshift  : mod_value == KMOD_LSHIFT,
-            rshift  : mod_value == KMOD_RSHIFT,
-            lctrl   : mod_value == KMOD_LCTRL,
-            rctrl   : mod_value == KMOD_RCTRL,
-            lalt    : mod_value == KMOD_LALT,
-            ralt    : mod_value == KMOD_RALT,
-            lmeta   : mod_value == KMOD_LGUI,
-            rmeta   : mod_value == KMOD_RGUI,
+            app.input.mod_state.num     = mod_value == KMOD_NUM;
+            app.input.mod_state.caps    = mod_value == KMOD_CAPS;
+            app.input.mod_state.mode    = mod_value == KMOD_MODE;
 
-            num     : mod_value == KMOD_NUM,
-            caps    : mod_value == KMOD_CAPS,
-            mode    : mod_value == KMOD_MODE,
+            app.input.mod_state.ctrl    = (mod_value == KMOD_CTRL  || mod_value == KMOD_LCTRL  || mod_value == KMOD_RCTRL);
+            app.input.mod_state.shift   = (mod_value == KMOD_SHIFT || mod_value == KMOD_LSHIFT || mod_value == KMOD_RSHIFT);
+            app.input.mod_state.alt     = (mod_value == KMOD_ALT   || mod_value == KMOD_LALT   || mod_value == KMOD_RALT);
+            app.input.mod_state.meta    = (mod_value == KMOD_GUI   || mod_value == KMOD_LGUI   || mod_value == KMOD_RGUI);
 
-            ctrl    : (mod_value == KMOD_CTRL || mod_value == KMOD_LCTRL || mod_value == KMOD_RCTRL),
-            shift   : (mod_value == KMOD_SHIFT || mod_value == KMOD_LSHIFT || mod_value == KMOD_RSHIFT),
-            alt     : (mod_value == KMOD_ALT || mod_value == KMOD_LALT || mod_value == KMOD_RALT),
-            meta    : (mod_value == KMOD_GUI || mod_value == KMOD_LGUI || mod_value == KMOD_RGUI)
-
-        };
+        return app.input.mod_state;
 
     } //to_key_mod
-
-    function empty_key_mod() {
-        return {
-            none:true,
-            lshift:false,   rshift:false,
-            lctrl:false,    rctrl:false,
-            lalt:false,     ralt:false,
-            lmeta:false,    rmeta:false,
-            num:false,      caps:false,     mode:false,
-            ctrl:false,     shift:false,    alt:false,  meta:false
-        };
-    }
-
-
-
 
 } //Runtime
 

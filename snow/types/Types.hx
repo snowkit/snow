@@ -3,7 +3,7 @@ package snow.types;
 import snow.api.buffers.Uint8Array;
 
 
-//These types include further types we don't want to 
+//These types include further types we don't want to
 #if !macro
     typedef Asset      = snow.systems.assets.Asset.Asset;
     typedef AssetBytes = snow.systems.assets.Asset.AssetBytes;
@@ -167,26 +167,26 @@ typedef AudioHandle = Int;
 
     inline function toString() {
         return switch(this) {
-            case unknown:  'unknown';
-            case custom:  'custom';
-            case ogg:  'ogg';
-            case wav:  'wav';
-            case pcm:  'pcm';
-            case _: '$this';
+            case unknown:   'unknown';
+            case custom:    'custom';
+            case ogg:       'ogg';
+            case wav:       'wav';
+            case pcm:       'pcm';
+            case _:         '$this';
         }
     }
 
 } //AudioFormatType
 
 
-@:enum abstract AudioEvent(Int) 
+@:enum abstract AudioEvent(Int)
     from Int to Int {
         var ae_end = 0;
         var ae_destroyed = 1;
         var ae_destroyed_source = 2;
 } //AudioEvent
 
-@:enum abstract AudioState(Int) 
+@:enum abstract AudioState(Int)
     from Int to Int {
         var as_invalid  = -1;
         var as_paused   = 0;
@@ -227,9 +227,9 @@ typedef AudioData = {
 
 typedef AudioInfoOptions = {
     app:snow.Snow,
-    data:AudioData, 
-    ?id:String, 
-    ?format:AudioFormatType, 
+    data:AudioData,
+    ?id:String,
+    ?format:AudioFormatType,
     ?is_stream:Bool
 };
 
@@ -256,7 +256,7 @@ class AudioInfo {
         is_stream = _opt.is_stream;
     }
 
-    inline function toString() return 'AudioInfo{ id($id) format($format) is_stream($is_stream) data($data) }';
+    inline function toString() return '{ "AudioInfo":true, "id":$id, "format":"$format", "is_stream":$is_stream, data:$data }';
 
     public function destroy() {
 
@@ -279,26 +279,26 @@ typedef RenderConfig = {
         /** Request the number of depth bits for the rendering context.
             A value of 0 will not request a depth buffer. default: 0 */
     @:optional var depth   : Int;
-        /** Request the number of stencil bits for the rendering context. 
+        /** Request the number of stencil bits for the rendering context.
             A value of 0 will not request a stencil buffer. default: 0 */
     @:optional var stencil   : Int;
-        /** A value of `0`, `2`, `4`, `8` or other valid system value. 
-            On WebGL contexts this value is true or false, bigger than 0 being true. 
-            On native contexts this value sets the MSAA typically. 
+        /** A value of `0`, `2`, `4`, `8` or other valid system value.
+            On WebGL contexts this value is true or false, bigger than 0 being true.
+            On native contexts this value sets the MSAA typically.
             default webgl: 1 (enabled)
             default: 0 */
     @:optional var antialiasing : Int;
 
-        /** Request a specific number of red bits for the rendering context. 
+        /** Request a specific number of red bits for the rendering context.
             Unless you need to change this, don't. default: 8 */
     @:optional var red_bits   : Int;
-        /** Request a specific number of green bits for the rendering context. 
+        /** Request a specific number of green bits for the rendering context.
             Unless you need to change this, don't. default: 8 */
     @:optional var green_bits   : Int;
-        /** Request a specific number of blue bits for the rendering context. 
+        /** Request a specific number of blue bits for the rendering context.
             Unless you need to change this, don't. default: 8 */
     @:optional var blue_bits   : Int;
-        /** Request a specific number of alpha bits for the rendering context. 
+        /** Request a specific number of alpha bits for the rendering context.
             Unless you need to change this, don't. default: 8 */
     @:optional var alpha_bits   : Int;
 
@@ -349,7 +349,7 @@ typedef RenderConfigOpenGL = {
 
 } //RenderConfigOpenGL
 
-/** Config specific to a WebGL rendering context. 
+/** Config specific to a WebGL rendering context.
     See: https://www.khronos.org/registry/webgl/specs/latest/1.0/#WEBGLCONTEXTATTRIBUTES */
 typedef RenderConfigWebGL = {
 
@@ -357,52 +357,52 @@ typedef RenderConfigWebGL = {
     @:optional var version : Int;
         /** If the value is true, the drawing buffer has an alpha channel for the
             purposes of performing OpenGL destination alpha operations and
-            compositing with the page. If the value is false, no alpha buffer is available. 
+            compositing with the page. If the value is false, no alpha buffer is available.
             snow default: false
             webgl default:true */
     @:optional var alpha : Bool;
-        /** If the value is true, the drawing buffer has a depth buffer of at least 16 bits. 
-            If the value is false, no depth buffer is available. 
+        /** If the value is true, the drawing buffer has a depth buffer of at least 16 bits.
+            If the value is false, no depth buffer is available.
             snow default: uses render config depth flag
             webgl default:true */
     @:optional var depth : Bool;
-        /** If the value is true, the drawing buffer has a stencil buffer of at least 8 bits. 
+        /** If the value is true, the drawing buffer has a stencil buffer of at least 8 bits.
             If the value is false, no stencil buffer is available.
             snow default: uses render config stencil flag
             webgl default: false */
     @:optional var stencil : Bool;
-        /** If the value is true and the implementation supports antialiasing the drawing buffer 
+        /** If the value is true and the implementation supports antialiasing the drawing buffer
             will perform antialiasing using its choice of technique (multisample/supersample) and quality.
-            If the value is false or the implementation does not support 
+            If the value is false or the implementation does not support
             antialiasing, no antialiasing is performed
             snow default: uses render config antialias flag
             webgl default: true */
     @:optional var antialias : Bool;
-        /** If the value is true the page compositor will assume the drawing buffer contains colors with premultiplied alpha. 
-            If the value is false the page compositor will assume that colors in the drawing buffer are not premultiplied. 
+        /** If the value is true the page compositor will assume the drawing buffer contains colors with premultiplied alpha.
+            If the value is false the page compositor will assume that colors in the drawing buffer are not premultiplied.
             This flag is ignored if the alpha flag is false.
             snow default: false
             webgl default: true */
     @:optional var premultipliedAlpha : Bool;
-        /** If false, once the drawing buffer is presented as described in theDrawing Buffer section, 
-            the contents of the drawing buffer are cleared to their default values. All elements of the 
-            drawing buffer (color, depth and stencil) are cleared. If the value is true the buffers will 
+        /** If false, once the drawing buffer is presented as described in theDrawing Buffer section,
+            the contents of the drawing buffer are cleared to their default values. All elements of the
+            drawing buffer (color, depth and stencil) are cleared. If the value is true the buffers will
             not be cleared and will preserve their values until cleared or overwritten by the author.
-            On some hardware setting the preserveDrawingBuffer flag to true can have significant performance implications. 
-            snow default: uses webgl default 
+            On some hardware setting the preserveDrawingBuffer flag to true can have significant performance implications.
+            snow default: uses webgl default
             webgl default: false */
     @:optional var preserveDrawingBuffer : Bool;
-        /** Provides a hint to the implementation suggesting that, if possible, it creates a context 
-            that optimizes for power consumption over performance. For example, on hardware that has more 
-            than one GPU, it may be the case that one of them is less powerful but also uses less power. 
+        /** Provides a hint to the implementation suggesting that, if possible, it creates a context
+            that optimizes for power consumption over performance. For example, on hardware that has more
+            than one GPU, it may be the case that one of them is less powerful but also uses less power.
             An implementation may choose to, and may have to, ignore this hint.
-            snow default: uses webgl default 
+            snow default: uses webgl default
             webgl default: false */
     @:optional var preferLowPowerToHighPerformance : Bool;
-        /** If the value is true, context creation will fail if the implementation determines that the 
-            performance of the created WebGL context would be dramatically lower than that of a native 
+        /** If the value is true, context creation will fail if the implementation determines that the
+            performance of the created WebGL context would be dramatically lower than that of a native
             application making equivalent OpenGL calls.
-            snow default: uses webgl default 
+            snow default: uses webgl default
             webgl default: false */
     @:optional var failIfMajorPerformanceCaveat : Bool;
 
@@ -441,23 +441,26 @@ class SystemEvent {
     public var type (default,null) : SystemEventType;
         /** If type is `window` this will be populated, otherwise null */
     public var window (default,null) : WindowEvent;
+        /** If type is `input` this will be populated, otherwise null */
+    public var input (default,null) : InputEvent;
 
     @:allow(snow.Snow)
     function new() {}
 
     @:allow(snow.Snow)
-    inline function set(_type:SystemEventType, _window:WindowEvent) {
+    inline function set(_type:SystemEventType, _window:WindowEvent, _input:InputEvent) {
         type = _type;
         window = _window;
+        input = _input;
     }
 
-    function toString() return 'SystemEvent{ type($type) window($window) }';
+    function toString() return '{ "SystemEvent":true, "type":"$type", "window":$window, "input":$input }';
 
 } //SystemEvent
 
 /** A system window event */
 class WindowEvent {
-
+ //
         /** The type of window event this was. */
     public var type (default,null) : WindowEventType = unknown;
         /** The time in seconds that this event occured, useful for deltas */
@@ -465,45 +468,328 @@ class WindowEvent {
         /** The window id from which this event originated */
     public var window_id (default,null) : Int = -1;
         /** Potential window event data */
-    public var data1 (default,null) : Null<Int>;
+    public var x (default,null) : Null<Int>;
         /** Potential window event data */
-    public var data2 (default,null) : Null<Int>;
-        /** A convenience getter for data1 */
-    public var x (get,never) : Null<Int>; inline function get_x() return data1;
-        /** A convenience getter for data2 */
-    public var y (get,never) : Null<Int>; inline function get_y() return data2;
+    public var y (default,null) : Null<Int>;
 
-    public function new() {}
+    @:allow(snow.Snow)
+    function new() {}
 
-    @:allow(snow.core.Runtime)
-    inline function set(_type:WindowEventType, _timestamp:Float, _window_id:Int, ?_data1:Null<Int>, ?_data2:Null<Int>) {
+    @:allow(snow.Snow)
+    inline function set(_type:WindowEventType, _timestamp:Float, _window_id:Int, ?_x:Null<Int>, ?_y:Null<Int>) {
         type = _type;
         timestamp = _timestamp;
         window_id = _window_id;
-        data1 = _data1;
-        data2 = _data2;
+        x = _x;
+        y = _y;
     }
 
-    function toString() return 'WindowEvent{ type($type) window($window_id) data1($data1), data2($data2) time($timestamp) }';
+    function toString() return '{ "WindowEvent":true, "type":"$type", "window":$window_id, "x":$x, "y":$y, "time":$timestamp }';
 
 } //WindowEvent
 
-/** A text specific event event type */
-@:enum abstract TextEventType(Int) from Int to Int {
-
-        /** An unknown text event */
-    var unknown    = 0;
-        /** An edit text typing event */
-    var edit    = 1;
-        /** An input text typing event */
-    var input   = 2;
+/** A key specific event event type */
+@:enum abstract KeyEventType(Int) from Int to Int {
+    var ke_unknown  = 0;
+    var ke_down     = 1;
+    var ke_up       = 2;
 
     inline function toString() {
         return switch(this) {
-            case unknown: 'unknown';
-            case edit:    'edit';
-            case input:   'input';
-            case _:       '$this';
+            case ke_unknown: 'ke_unknown';
+            case ke_down:    'ke_down';
+            case ke_up:      'ke_up';
+            case _:          '$this';
+        }
+    } //toString
+} //KeyEventType
+
+/** A mouse specific event event type */
+@:enum abstract MouseEventType(Int) from Int to Int {
+    var me_unknown  = 0;
+    var me_move     = 1;
+    var me_down     = 2;
+    var me_up       = 3;
+    var me_wheel    = 4;
+
+    inline function toString() {
+        return switch(this) {
+            case me_unknown:    'me_unknown';
+            case me_move:       'me_move';
+            case me_down:       'me_down';
+            case me_up:         'me_up';
+            case me_wheel:      'me_wheel';
+            case _:             '$this';
+        }
+    } //toString
+} //MouseEventType
+
+/** A touch specific event event type */
+@:enum abstract TouchEventType(Int) from Int to Int {
+    var te_unknown  = 0;
+    var te_move     = 1;
+    var te_down     = 2;
+    var te_up       = 3;
+
+    inline function toString() {
+        return switch(this) {
+            case te_unknown:    'te_unknown';
+            case te_move:       'te_move';
+            case te_down:       'te_down';
+            case te_up:         'te_up';
+            case _:             '$this';
+        }
+    } //toString
+} //TouchEventType
+
+/** A touch specific event event type */
+@:enum abstract GamepadEventType(Int) from Int to Int {
+    var ge_unknown  = 0;
+    var ge_axis     = 1;
+    var ge_down     = 2;
+    var ge_up       = 3;
+    var ge_device   = 4;
+
+    inline function toString() {
+        return switch(this) {
+            case ge_unknown:    'ge_unknown';
+            case ge_axis:       'ge_axis';
+            case ge_down:       'ge_down';
+            case ge_up:         'ge_up';
+            case ge_device:     'ge_device';
+            case _:             '$this';
+        }
+    } //toString
+} //GamepadEventType
+    
+@:allow(snow.systems.input.Input)
+class KeyEvent {
+
+    public var type (default,null): Null<KeyEventType>;
+    public var keycode (default,null): Null<Int>;
+    public var scancode (default,null): Null<Int>;
+    public var repeat (default,null): Null<Bool>;
+    public var mod (default,null): ModState;
+
+    inline function new() {}
+
+    inline function set(_type:KeyEventType, _keycode:Int, _scancode:Int, _repeat:Bool, _mod:ModState) {
+        type = _type;
+        keycode = _keycode;
+        scancode = _scancode;
+        repeat = _repeat;
+        mod = _mod;
+    }
+
+    inline function toString() return '{ "KeyEvent":true, "type":"$type", "keycode":$keycode, "scancode":$scancode, "repeat":$repeat, "mod":$mod }';
+
+} //KeyEvent
+
+@:allow(snow.systems.input.Input)
+class TextEvent {
+
+    public var type (default, null): Null<TextEventType>;
+    public var text (default, null): String;
+    public var start (default, null): Null<Int>;
+    public var length (default, null): Null<Int>;
+
+    inline function new() {}
+
+    @:allow(snow.core.Runtime)
+    inline function set(_type:TextEventType, _text:String, _start:Int, _length:Int) {
+        type = _type;
+        text = _text;
+        start = _start;
+        length = _length;
+    }
+
+    inline function toString() return '{ "TextEvent":true, "type":"$type", "text":"$text", "start":$start, "length":$length }';
+
+} //TextEvent
+
+@:allow(snow.systems.input.Input)
+class MouseEvent {
+    public var type (default, null): MouseEventType;
+    public var x (default, null): Int;
+    public var y (default, null): Int;
+    public var x_rel (default, null): Int;
+    public var y_rel (default, null): Int;
+    public var button (default, null): Int;
+    public var wheel_x (default, null): Float;
+    public var wheel_y (default, null): Float;
+
+    inline function new() {}
+
+    inline function set(_type:MouseEventType, _x:Int, _y:Int, _x_rel:Int, _y_rel:Int, _button:Int, _wheel_x:Float, _wheel_y:Float) {
+        type = _type;
+        x = _x;
+        y = _y;
+        x_rel = _x_rel;
+        y_rel = _y_rel;
+        button = _button;
+        wheel_x = _wheel_x;
+        wheel_y = _wheel_y;
+    }
+
+    inline function toString() return '{ "MouseEvent":true, "type":"$type", "x":$x, "y":$y, "button":$button, "x_rel":$x_rel, "y_rel":$y_rel, "wheel_x":$wheel_x, "wheel_y":$wheel_y }';
+
+} //MouseEvent
+
+@:allow(snow.systems.input.Input)
+class TouchEvent {
+
+    public var type (default,null): TouchEventType;
+    public var touch_id (default,null): Int;
+    public var x (default,null): Float;
+    public var y (default,null): Float;
+    public var dx (default,null): Float;
+    public var dy (default,null): Float;
+
+    inline function new() {}
+
+    inline function set(_type:TouchEventType, _id:Int, _x:Float, _y:Float, _dx:Float, _dy:Float) {
+        type = _type;
+        touch_id = _id;
+        x = _x;
+        y = _y;
+        dx = _dx;
+        dy = _dy;
+    }
+
+    inline function toString() return '{ "TouchEvent":true, "type":"$type", "touch_id":$touch_id, "x":$x, "y":$y, "dx":$dx, "dy":$dy }';
+
+} //TouchEvent
+
+@:allow(snow.systems.input.Input)
+class GamepadEvent {
+
+    public var type (default,null): GamepadEventType;
+    public var gamepad (default,null): Int;
+    public var axis (default,null): Null<Int>;
+    public var button (default,null): Null<Int>;
+    public var value (default,null): Null<Float>;
+    public var device_id (default,null): String;
+    public var device_event (default,null): Null<GamepadDeviceEventType>;
+
+    inline function new() {}
+
+    inline function set_axis(_gamepad:Int, _axis:Int, _value:Float) {
+        button = null;
+        device_id = null;
+        device_event = null;
+
+        axis    = _axis;
+        value   = _value;
+        type    = ge_axis;
+        gamepad = _gamepad;
+    } //set_axis
+
+    inline function set_button(_type:GamepadEventType, _gamepad:Int, _button:Int, _value:Float) {
+        axis = null;
+        device_id = null;
+        device_event = null;
+            
+        type    = _type;
+        value   = _value;
+        button  = _button;
+        gamepad = _gamepad;
+    } //set_button
+
+    inline function set_device(_gamepad:Int, _id:String, _event:GamepadDeviceEventType) {
+        axis = null;
+        value = null;
+        button = null;
+
+        device_id    = _id;
+        device_event = _event;
+        gamepad      = _gamepad;
+        type         = ge_device;
+    } //set_device
+
+    inline function toString() return '{ "GamepadEvent":true, "type":"$type", "gamepad":$gamepad, "axis":$axis, "button":$button, "value":$value, "device_id":"$device_id", "device_event":"$device_event" }';
+
+} //GamepadEvent
+
+@:allow(snow.systems.input.Input)
+class InputEvent {
+ //
+        /** The type of input event this was. */
+    public var type (default,null) : InputEventType;
+        /** The time in seconds that this event occured, useful for deltas. 0.0 if not specified */
+    public var timestamp (default,null) : Float = 0.0;
+        /** The window id from which this event originated, if any. -1 if not specified */
+    public var window_id (default,null) : Int = -1;
+        /** Populated if the event type is ie_key, otherwise null */
+    public var key (default,null) : KeyEvent;
+        /** Populated if the event type is ie_text, otherwise null */
+    public var text (default,null) : TextEvent;
+        /** Populated if the event type is ie_mouse, otherwise null */
+    public var mouse (default,null) : MouseEvent;
+        /** Populated if the event type is ie_touch, otherwise null */
+    public var touch (default,null) : TouchEvent;
+        /** Populated if the event type is ie_gamepad, otherwise null */
+    public var gamepad (default,null) : GamepadEvent;
+
+    function new() {}
+
+    inline function reset(_type:InputEventType, _window_id:Int, _timestamp:Float) {
+
+        type = _type;
+        key = null;
+        text = null;
+        mouse = null;
+        touch = null;
+        gamepad = null;
+        window_id = _window_id;
+        timestamp = _timestamp;
+
+    } //reset
+
+    inline function set_key(_event:KeyEvent, _window_id:Int, _timestamp:Float) {
+        reset(ie_key, _window_id, _timestamp);
+        key = _event;
+    } //set_key
+
+    inline function set_text(_event:TextEvent, _window_id:Int, _timestamp:Float) {
+        reset(ie_text, _window_id, _timestamp);
+        text = _event;
+    } //set_text
+
+    inline function set_mouse(_event:MouseEvent, _window_id:Int, _timestamp:Float) {
+        reset(ie_mouse, _window_id, _timestamp);
+        mouse = _event;
+    } //set_mouse
+
+    inline function set_touch(_event:TouchEvent, _timestamp:Float) {
+        reset(ie_touch, 0, _timestamp);
+        touch = _event;
+    } //set_touch
+
+    inline function set_gamepad(_event:GamepadEvent, _timestamp:Float) {
+        reset(ie_gamepad, 0, _timestamp);
+        gamepad = _event;
+    } //set_gamepad
+
+    inline function toString() return '{ "InputEvent":true, "type":"$type", "window":$window_id, "key":$key, "text":$text, "mouse":$mouse, "touch":$touch, "gamepad":$gamepad, "time":$timestamp }';
+
+} //InputEvent
+
+/** A text specific event event type */
+@:enum abstract TextEventType(Int) from Int to Int {
+    //
+        /** An unknown text event */
+    var te_unknown    = 0;
+        /** An edit text typing event */
+    var te_edit    = 1;
+        /** An input text typing event */
+    var te_input   = 2;
+
+    inline function toString() {
+        return switch(this) {
+            case te_unknown: 'te_unknown';
+            case te_edit:    'te_edit';
+            case te_input:   'te_input';
+            case _:          '$this';
         }
     } //toString
 
@@ -511,23 +797,23 @@ class WindowEvent {
 
 /** A gamepad device event type */
 @:enum abstract GamepadDeviceEventType(Int) from Int to Int {
-
+    //
         /** A unknown device event */
-    var unknown             = 0;
+    var ge_unknown             = 0;
         /** A device added event */
-    var device_added        = 1;
+    var ge_device_added        = 1;
         /** A device removed event */
-    var device_removed      = 2;
+    var ge_device_removed      = 2;
         /** A device was remapped */
-    var device_remapped     = 3;
+    var ge_device_remapped     = 3;
 
     inline function toString() {
         return switch(this) {
-            case unknown:         'unknown';
-            case device_added:    'device_added';
-            case device_removed:  'device_removed';
-            case device_remapped: 'device_remapped';
-            case _:               '$this';
+            case ge_unknown:         'ge_unknown';
+            case ge_device_added:    'ge_device_added';
+            case ge_device_removed:  'ge_device_removed';
+            case ge_device_remapped: 'ge_device_remapped';
+            case _:                  '$this';
         }
     } //toString
 
@@ -535,46 +821,78 @@ class WindowEvent {
 
 
 /** Input modifier state */
-typedef ModState = {
+@:publicFields
+class ModState {
+    
+    @:allow(snow)
+    private inline function new() {}
 
         /** no modifiers are down */
-    var none : Bool;
+    var none : Bool = false;
         /** left shift key is down */
-    var lshift : Bool;
+    var lshift : Bool = false;
         /** right shift key is down */
-    var rshift : Bool;
+    var rshift : Bool = false;
         /** left ctrl key is down */
-    var lctrl : Bool;
+    var lctrl : Bool = false;
         /** right ctrl key is down */
-    var rctrl : Bool;
+    var rctrl : Bool = false;
         /** left alt/option key is down */
-    var lalt : Bool;
+    var lalt : Bool = false;
         /** right alt/option key is down */
-    var ralt : Bool;
+    var ralt : Bool = false;
         /** left windows/command key is down */
-    var lmeta : Bool;
+    var lmeta : Bool = false;
         /** right windows/command key is down */
-    var rmeta : Bool;
+    var rmeta : Bool = false;
         /** numlock is enabled */
-    var num : Bool;
+    var num : Bool = false;
         /** capslock is enabled */
-    var caps : Bool;
+    var caps : Bool = false;
         /** mode key is down */
-    var mode : Bool;
+    var mode : Bool = false;
         /** left or right ctrl key is down */
-    var ctrl : Bool;
+    var ctrl : Bool = false;
         /** left or right shift key is down */
-    var shift : Bool;
+    var shift : Bool = false;
         /** left or right alt/option key is down */
-    var alt : Bool;
+    var alt : Bool = false;
         /** left or right windows/command key is down */
-    var meta : Bool;
+    var meta : Bool = false;
+
+    inline function toString() {
+
+        var _s = '{ "ModState":true ';
+
+        if(none) return _s + ', "none":true }';
+
+            if(lshift) _s += ', "lshift":true';
+            if(rshift) _s += ', "rshift":true';
+            if(lctrl)  _s += ', "lctrl":true';
+            if(rctrl)  _s += ', "rctrl":true';
+            if(lalt)   _s += ', "lalt":true';
+            if(ralt)   _s += ', "ralt":true';
+            if(lmeta)  _s += ', "lmeta":true';
+            if(rmeta)  _s += ', "rmeta":true';
+            if(num)    _s += ', "num":true';
+            if(caps)   _s += ', "caps":true';
+            if(mode)   _s += ', "mode":true';
+            if(ctrl)   _s += ', "ctrl":true';
+            if(shift)  _s += ', "shift":true';
+            if(alt)    _s += ', "alt":true';
+            if(meta)   _s += ', "meta":true';
+
+        _s += '}';
+
+        return _s;
+
+    } //toString
 
 } //ModState
 
 
 @:enum abstract SystemEventType(Int) from Int to Int {
-
+    //
         /** An unknown system event */
     var se_unknown                  = 0;
         /** An system init event */
@@ -639,7 +957,7 @@ typedef ModState = {
 } //SystemEventType
 
 @:enum abstract WindowEventType(Int) from Int to Int {
-
+    //
         /** An unknown window event */
     var unknown          = 0;
         /** A window is created */
@@ -698,34 +1016,37 @@ typedef ModState = {
         }
     } //toString
 
-} //WindowEvent
+} //WindowEventType
 
 @:enum abstract InputEventType(Int) from Int to Int {
-
+    //
         /** An unknown input event */
-    var unknown        = 0;
+    var ie_unknown        = 0;
         /** An keyboard input event */
-    var key            = 1;
+    var ie_key            = 1;
+        /** An keyboard text input event */
+    var ie_text           = 2;
         /** An mouse input event */
-    var mouse          = 2;
+    var ie_mouse          = 3;
         /** An touch input event */
-    var touch          = 3;
-        /** An joystick input event. On mobile, accellerometer is a joystick (for now) */
-    var joystick       = 4;
-        /** An controller input event. Use these instead of joystick on desktop. */
-    var controller     = 5;
+    var ie_touch          = 4;
+        /** An gamepad input event. */
+    var ie_gamepad        = 5;
+        /** An joystick input event. These are for older devices, and on mobile (for now): accellerometer */
+    var ie_joystick       = 6;
 
     inline function toString() {
         return switch(this) {
-            case unknown:       'unknown';
-            case key:           'key';
-            case mouse:         'mouse';
-            case touch:         'touch';
-            case joystick:      'joystick';
-            case controller:    'controller';
-            case _:             '$this';
+            case ie_unknown:       'ie_unknown';
+            case ie_key:           'ie_key';
+            case ie_text:          'ie_text';
+            case ie_mouse:         'ie_mouse';
+            case ie_touch:         'ie_touch';
+            case ie_gamepad:       'ie_gamepad';
+            case ie_joystick:      'ie_joystick';
+            case _:                '$this';
         }
     } //toString
 
-} //InputEvent
+} //InputEventType
 

@@ -63,9 +63,10 @@ class Snow {
             /** Set if shut dow has completed  */
         public var has_shutdown : Bool = false;
 
-    //internal
+    //internal preallocated events
 
-        var sys_event:SystemEvent;
+        var sys_event: SystemEvent;
+        var win_event: WindowEvent;
 
     //api
 
@@ -92,6 +93,7 @@ class Snow {
             log('app / io / ${snow.types.TypeNames.module_io}');
 
             sys_event = new SystemEvent();
+            win_event = new WindowEvent();
 
             io = new IO(this);
             input = new Input(this);
@@ -155,13 +157,31 @@ class Snow {
     //events
 
             /** Dispatch a system event explicitly */
-        public function dispatch_event(_type:SystemEventType, ?_window:WindowEvent) {
+        public function dispatch_event(_type:SystemEventType) {
 
-            sys_event.set(_type, _window);
+            sys_event.set(_type, null, null);
 
             onevent(sys_event);
 
         } //dispatch_event
+
+        public function dispatch_window_event(_type:WindowEventType, _timestamp:Float, _window_id:Int, _x:Int, y:Int) {
+            
+            win_event.set(_type, _timestamp, _window_id, _x, y);
+            sys_event.set(se_window, win_event, null);
+            
+            onevent(sys_event);
+
+        } //dispatch_window_event
+
+        @:allow(snow.systems.input.Input)
+        function dispatch_input_event(_event:InputEvent) {
+            
+            sys_event.set(se_input, null, _event);
+            
+            onevent(sys_event);
+
+        } //dispatch_input_event
 
             /** Handles snow system events, typically emitted via the runtime and modules.
                 Dispatch events manually using the `dispatch_*` calls. */
