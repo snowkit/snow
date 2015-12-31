@@ -329,11 +329,6 @@ typedef RenderConfig = {
 } //OpenGLProfile
 
 
-@:noCompletion typedef WindowingConfig = {
-    config:WindowConfig,
-    render_config:RenderConfig
-}
-
 /** Config specific to an OpenGL rendering context.
     Note that these are hints to the system,
     you must always check the values after initializing

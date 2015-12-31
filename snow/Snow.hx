@@ -165,9 +165,9 @@ class Snow {
 
         } //dispatch_event
 
-        public function dispatch_window_event(_type:WindowEventType, _timestamp:Float, _window_id:Int, _x:Int, y:Int) {
+        public function dispatch_window_event(_type:WindowEventType, _timestamp:Float, _window_id:Int, _x:Int, _y:Int) {
             
-            win_event.set(_type, _timestamp, _window_id, _x, y);
+            win_event.set(_type, _timestamp, _window_id, _x, _y);
             sys_event.set(se_window, win_event, null);
             
             onevent(sys_event);
