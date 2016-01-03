@@ -114,7 +114,7 @@ class Main extends snow.App {
         // if(event.type != se_tick) trace('system event : ${event.type}');
 
         if(event.window != null) {
-            if(event.window.type == WindowEventType.size_changed||event.window.type == WindowEventType.resized) {
+            if(event.window.type == we_size_changed||event.window.type == we_resized) {
                 window_width = event.window.x;
                 window_height = event.window.y;
                 var _scale = app.runtime.window_device_pixel_ratio();
