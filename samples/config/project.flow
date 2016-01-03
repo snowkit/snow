@@ -1,0 +1,38 @@
+{
+
+  snow : {
+    config: {
+      config_path: 'config.json'
+    }
+  },
+
+  project : {
+    name : 'snow.config',
+    version : '1.0.0',
+    author : 'snowkit',
+
+    app : {
+      name : 'snow_test_config',
+      package : 'org.snowkit.snow_test_config',
+    },
+
+    //HAH
+
+    build : {
+      flags:['-dce full'],
+      dependencies : {
+        snowdev : '*'
+      }
+    },
+
+    files : {
+        //The config file is copied to the build output folder,
+        //and is copied to the same path (so <output>/config.json).
+        //That's where snow looks for it with that name, by default. 
+        //(You can change that with config_path, as above in the snow.config node)
+      config : 'config.json'
+    }
+
+  }
+
+}
