@@ -28,6 +28,7 @@ class Main extends snow.App {
         log('ready');
         log('app config: ${app.config.user}');
 
+        assert(app.config.user != null);
         assert(app.config.user.int == 12);
         assert(app.config.user.float == 1.2);
         assert(app.config.user.string == 'snow');

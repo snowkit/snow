@@ -12,8 +12,8 @@
   },
 
   snow : {
-    config : {
-      has_loop : true
+    config: {
+      config_path: 'config.json'
     }
   },
 

@@ -1,11 +1,5 @@
 {
 
-  snow : {
-    config: {
-      config_path: 'config.json'
-    }
-  },
-
   project : {
     name : 'snow.config',
     version : '1.0.0',
