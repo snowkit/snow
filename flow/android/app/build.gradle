@@ -1,3 +1,5 @@
+import org.apache.tools.ant.taskdefs.condition.Os;
+
 apply plugin: 'com.android.application'
 android {
     compileSdkVersion 23
@@ -22,3 +24,46 @@ android {
 dependencies {
     compile 'com.android.support:support-v4:23.1.1'
 }
+
+
+
+
+// flow / start
+
+    //These shouldn't be duplicated, but gradle was being pedantic
+
+        task flow_print << {
+            println 'flow / gradle / project path / ' + project.parent.projectDir.parent
+        }
+
+        task flow_build_unix_debug(type:Exec, dependsOn:flow_print) {
+            executable 'bash'
+            args '-l', '-c', 'haxelib run flow build android --debug --project-root ../../'
+}
+
+        task flow_build_unix(type:Exec, dependsOn:flow_print) {
+            executable 'bash'
+            args '-l', '-c', 'haxelib run flow build android --project-root ../../'
+        }
+
+        task flow_build_win_debug(type:Exec, dependsOn:flow_print) {
+            executable 'haxelib'
+            args 'run', 'flow', 'build', 'android', '--debug', '--project-root','../../'
+        }
+
+        task flow_build_win(type:Exec, dependsOn:flow_print) {
+            executable 'haxelib'
+            args 'run', 'flow', 'build', 'android', '--project-root','../../'
+        }
+
+    project.afterEvaluate {
+        if(Os.isFamily(Os.FAMILY_WINDOWS)) {
+            assembleDebug.dependsOn(flow_build_win_debug)
+            assembleRelease.dependsOn(flow_build_win)
+        } else {
+            assembleDebug.dependsOn(flow_build_unix_debug)
+            assembleRelease.dependsOn(flow_build_unix)
+        }
+    }
+
+// flow / end
