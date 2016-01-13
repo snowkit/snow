@@ -59,6 +59,10 @@ class Main extends snow.App {
         window_width = config.window.width;
         window_height = config.window.height;
 
+        //If you want to test against GL 3.x+ core profile, uncomment this,
+        //but note that this has system requirements obviously
+        // config.render.opengl.profile = OpenGLProfile.core;
+
         trace(config.window);
 
         return config;
@@ -306,7 +310,7 @@ class Main extends snow.App {
     override function ongamepadaxis( gamepad:Int, axis:Int, value:Float, timestamp:Float ) {
 
         if(Math.abs(value) > 0.2 || no_gamepad_deadzone) {
-            log('axis; device: ${gamepad}, axis: ${axis}, value: ${value} timestamp: ${timestamp}');
+            // log('axis; device: ${gamepad}, axis: ${axis}, value: ${value} timestamp: ${timestamp}');
             if(axis == 1) {
                 render_y += value * 2 * speed * frame_delta;
             }
@@ -340,7 +344,7 @@ class Main extends snow.App {
         var uniform_MV:GLUniformLocation;
         var uniform_MP:GLUniformLocation;
         var attr_texcoord:Int;
-        var attr_pos:Int;
+        var attr_pos:Int = 0;
 
     //GL data
 
@@ -362,10 +366,21 @@ class Main extends snow.App {
             frag_shader += "precision mediump float;";
         #end
 
-        vert_shader +=
+        if(app.config.render.opengl.profile == OpenGLProfile.core) {
+            vert_shader +=
+            "
+            #version 330 core
+            layout(location = 0) in vec3 vert_pos;
+            ";
+        } else {
+            vert_shader +=
             "
             attribute vec3 vert_pos;
+            ";
+        }
 
+        vert_shader +=
+            "
             uniform mat4 modelview;
             uniform mat4 projection;
 
@@ -374,12 +389,23 @@ class Main extends snow.App {
             }
             ";
 
-        frag_shader +=
-            "
-            void main(void) {
-                gl_FragColor = vec4(0.0235, 0.706, 0.984, 1);
-            }
-            ";
+        if(app.config.render.opengl.profile == OpenGLProfile.core) {
+            frag_shader +=
+                "
+                #version 330 core
+                out vec4 color;
+                void main(void) {
+                    color = vec4(0.0235, 0.706, 0.984, 1);
+                }
+                ";
+        } else {
+            frag_shader +=
+                "
+                    void main(void) {
+                        gl_FragColor = vec4(0.0235, 0.706, 0.984, 1);
+                    }
+                ";
+        }
 
         //vertex
         log("about to create a vertex shader");
@@ -424,13 +450,19 @@ class Main extends snow.App {
             throw "Unable to link the shader program: " + GL.getProgramInfoLog(program);
         }
 
-        attr_pos = GL.getAttribLocation (program, "vert_pos");
+        GL.bindAttribLocation(program, attr_pos, "vert_pos");
         uniform_MP = GL.getUniformLocation (program, "projection");
         uniform_MV = GL.getUniformLocation (program, "modelview");
 
     } //init_shaders
 
     function init_buffers() {
+
+        if(app.config.render.opengl.profile == OpenGLProfile.core) {
+            var vaos = [0];
+            opengl.GL.glGenVertexArrays(1, vaos);
+            opengl.GL.glBindVertexArray(vaos[0]);
+        }
 
         var vertices = [
             size, size, 0,

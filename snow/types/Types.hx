@@ -23,25 +23,44 @@ import snow.api.buffers.Uint8Array;
     }
 
     /** A platform identifier string */
-    @:enum abstract Platform(String) from String to String {
+    @:enum abstract Platform(String)
+        from String to String {
+
+            /** */
         var platform_unknown = 'unknown';
+            /** */
         var platform_windows = 'windows';
+            /** */
         var platform_mac     = 'mac';
+            /** */
         var platform_linux   = 'linux';
+            /** */
         var platform_android = 'android';
+            /** */
         var platform_ios     = 'ios';
+            /** */
         var platform_web     = 'web';
-    }
+
+    } //Platform
 
     /** A platform identifier string */
-    @:enum abstract OS(String) from String to String {
+    @:enum abstract OS(String)
+        from String to String {
+
+            /** */
         var os_unknown = 'unknown';
+            /** */
         var os_windows = 'windows';
+            /** */
         var os_mac     = 'mac';
+            /** */
         var os_linux   = 'linux';
+            /** */
         var os_android = 'android';
+            /** */
         var os_ios     = 'ios';
-    }
+
+    } //OS
 
 //Compile time bound types
 
