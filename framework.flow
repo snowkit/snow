@@ -20,7 +20,7 @@
   project : {
 
     name : 'snowdev',
-    version : '1.0.0',
+    version : '1.0.0-alpha.2',
     author : 'snowkit',
 
     app : {
