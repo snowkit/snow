@@ -34,7 +34,7 @@ class Audio implements snow.modules.interfaces.Audio {
         instances = new Map();
         buffers = new Map();
 
-        log('init');
+        _debug('init');
         device = ALC.openDevice();
 
         if(device == null) {
@@ -43,13 +43,13 @@ class Audio implements snow.modules.interfaces.Audio {
             return;
         }
 
-        log('created device / ${device} / ${ ALCError.desc(ALC.getError(device)) }');
+        _debug('created device / ${device} / ${ ALCError.desc(ALC.getError(device)) }');
 
         context = ALC.createContext(device, null);
-        log('created context / ${context} / ${ ALCError.desc(ALC.getError(device)) }');
+        _debug('created context / ${context} / ${ ALCError.desc(ALC.getError(device)) }');
 
         ALC.makeContextCurrent(context);
-        log('set current / ${ ALCError.desc(ALC.getError(device)) }');
+        _debug('set current / ${ ALCError.desc(ALC.getError(device)) }');
 
     } //new
 
@@ -123,13 +123,13 @@ class Audio implements snow.modules.interfaces.Audio {
         }
 
         ALC.makeContextCurrent(cast null);
-        log('invalidate context / ${ ALCError.desc(ALC.getError(device)) }');
+        _debug('invalidate context / ${ ALCError.desc(ALC.getError(device)) }');
 
         ALC.destroyContext(context);
-        log('destroyed context / ${ ALCError.desc(ALC.getError(device)) }');
+        _debug('destroyed context / ${ ALCError.desc(ALC.getError(device)) }');
 
         ALC.closeDevice(device);
-        log('closed device / ${ ALCError.desc(ALC.getError(device)) }');
+        _debug('closed device / ${ ALCError.desc(ALC.getError(device)) }');
 
         buffers = null;
         instances = null;
@@ -143,12 +143,12 @@ class Audio implements snow.modules.interfaces.Audio {
 
     public function suspend() {
 
-        log('suspending context');
-        log(ALError.desc(AL.getError()));
-        log(ALCError.desc(ALC.getError(device)));
+        _debug('suspending context');
+        _debug(ALError.desc(AL.getError()));
+        _debug(ALCError.desc(ALC.getError(device)));
 
         #if android
-            log('android: alc suspend');
+            _debug('android: alc suspend');
             ALC.androidSuspend();
         #end
 
@@ -159,18 +159,18 @@ class Audio implements snow.modules.interfaces.Audio {
 
     public function resume() {
 
-        log('resuming context');
+        _debug('resuming context');
 
         #if android
-            log('android: alc resume');
+            _debug('android: alc resume');
             ALC.androidResume();
         #end
 
         ALC.processContext(context);
         ALC.makeContextCurrent(context);
 
-        log(ALError.desc(AL.getError()));
-        log(ALCError.desc(ALC.getError(device)));
+        _debug(ALError.desc(AL.getError()));
+        _debug(ALCError.desc(ALC.getError(device)));
 
     } //resume
 

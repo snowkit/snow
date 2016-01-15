@@ -22,7 +22,7 @@ class Runtime implements snow.core.Runtime {
 
     function new(_app:snow.Snow) {
         
-        log('runtime / native / new');
+        _debug('runtime / native / new');
 
             app = _app;
 
@@ -36,20 +36,20 @@ class Runtime implements snow.core.Runtime {
 
         var _app_path = app.io.app_path();
 
-            log('init / app path / `$_app_path`');
-            log('init / pref path / `${app.io.app_path_prefs()}`');
+            _debug('init / app path / `$_app_path`');
+            _debug('init / pref path / `${app.io.app_path_prefs()}`');
 
         if(_app_path != null && _app_path != '') {
             Sys.setCwd( _app_path );
         } else {
-            log('init / app path / no change (app path was `$_app_path`)');
+            _debug('init / app path / no change (app path was `$_app_path`)');
         }
 
     } //new
 
     function run() : Bool {
 
-        log('runtime / native / run');
+        _debug('runtime / native / run');
         
         app.dispatch_event(se_tick);
 

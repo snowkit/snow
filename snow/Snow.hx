@@ -74,9 +74,9 @@ class Snow {
 
             assertnull(_host, 'snow App instance was null!');
 
-            log('app / init / debug:$debug');
-            log('app / ident: ' + snow.types.TypeNames.app_ident);
-            log('app / config: ' + snow.types.TypeNames.app_config);
+            _debug('app / init / debug:$debug');
+            _debug('app / ident: ' + snow.types.TypeNames.app_ident);
+            _debug('app / config: ' + snow.types.TypeNames.app_config);
 
             if(snow.api.Debug.get_level() > 1) {
                 log('log / level to ${snow.api.Debug.get_level()}' );
@@ -88,9 +88,9 @@ class Snow {
             host.app = this;
             config = default_config();
 
-            log('app / assets / ${snow.types.TypeNames.module_assets}');
-            log('app / audio / ${snow.types.TypeNames.module_audio}');
-            log('app / io / ${snow.types.TypeNames.module_io}');
+            _debug('app / assets / ${snow.types.TypeNames.module_assets}');
+            _debug('app / audio / ${snow.types.TypeNames.module_audio}');
+            _debug('app / io / ${snow.types.TypeNames.module_io}');
 
             sys_event = new SystemEvent();
             win_event = new WindowEvent();
@@ -100,7 +100,7 @@ class Snow {
             audio = new Audio(this);
             assets = new Assets(this);
 
-            log('app / runtime / new ${snow.types.TypeNames.app_runtime}');
+            _debug('app / runtime / new ${snow.types.TypeNames.app_runtime}');
 
             runtime = new AppRuntime(this);
 
@@ -108,18 +108,18 @@ class Snow {
             assertnull(platform, 'init - Runtime didn\'t set the app.platform value!');
             // assertnull(config.runtime, 'init - Runtime didn\'t set the app.config.runtime value!');
 
-            log('app / os:$os / platform:$platform / init / $time');
+            _debug('app / os:$os / platform:$platform / init / $time');
             dispatch_event(se_init);
             host.internal_init();
 
             step();
 
-            log('app / ready / $time');
+            _debug('app / ready / $time');
             dispatch_event(se_ready);
 
             step();
 
-            log('init / runtime / ${runtime.name} / run');
+            _debug('init / runtime / ${runtime.name} / run');
 
             var _should_exit = runtime.run();
             if(_should_exit && !(has_shutdown || shutting_down)) {
@@ -248,14 +248,14 @@ class Snow {
 
             setup_configs().then(function(_){
 
-                log('init / setup default configs : ok');
-                log('init / runtime ready');
+                _debug('init / setup default configs : ok');
+                _debug('init / runtime ready');
                 runtime.ready();
 
-                log('init / host ready');
+                _debug('init / host ready');
                 host.ready();
 
-                log('init / ready');
+                _debug('init / ready');
                 ready = true;
 
             }).error(function(e) {
@@ -301,7 +301,7 @@ class Snow {
 
             return new Promise(function(resolve, reject) {
 
-                log('config / fetching user config');
+                _debug('config / fetching user config');
 
                 default_user_config().then(function(_user_conf:Dynamic) {
 
@@ -324,7 +324,7 @@ class Snow {
 
         inline function setup_host_config() {
 
-            log('config / fetching host config');
+            _debug('config / fetching host config');
 
             config = host.config( config );
 
@@ -333,7 +333,7 @@ class Snow {
             /** Handles the default method of parsing a user config json */
         function default_user_config() : Promise {
 
-            log('config / setting up default user config');
+            _debug('config / setting up default user config');
 
                 //for the default config, we only reject if there is a json parse error
             return new Promise(function(resolve, reject) {
@@ -368,7 +368,7 @@ class Snow {
         /** Returns a default configured render config */
         function default_render_config() : RenderConfig {
 
-            log('config / fetching default render config');
+            _debug('config / fetching default render config');
 
             return {
                 depth : 0,
@@ -397,7 +397,7 @@ class Snow {
             /** Returns a default configured window config */
         function default_window_config() : WindowConfig {
 
-            log('config / fetching default window config');
+            _debug('config / fetching default window config');
 
             var conf : WindowConfig = {
                 fullscreen_desktop  : true,

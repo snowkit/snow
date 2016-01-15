@@ -46,7 +46,7 @@ class Runtime extends snow.core.native.Runtime {
             if(status != 0) {
                 throw Error.init('runtime / sdl / failed to init video / `${SDL.getError()}`');
             } else {
-                log('sdl / init video');
+                _debug('sdl / init video');
             }
 
         //input
@@ -56,7 +56,7 @@ class Runtime extends snow.core.native.Runtime {
                 if(status == -1) {
                     log('sdl / Could not initialize controller : `${SDL.getError()}`');
                 } else {
-                    log('sdl / init game controllers');
+                    _debug('sdl / init game controllers');
                 }
             #end
 
@@ -65,7 +65,7 @@ class Runtime extends snow.core.native.Runtime {
                 if(status == -1) {
                     log('sdl / Could not initialize joystick : `${SDL.getError()}`');
                 } else {
-                    log('sdl / init joystick');
+                    _debug('sdl / init joystick');
                 }
             #end
 
@@ -74,7 +74,7 @@ class Runtime extends snow.core.native.Runtime {
                 if(status == -1) {
                     log('sdl / Could not initialize haptic : `${SDL.getError()}`');
                 } else {
-                    log('sdl / init haptic');
+                    _debug('sdl / init haptic');
                 }
             #end
 
@@ -82,7 +82,7 @@ class Runtime extends snow.core.native.Runtime {
 
             SDL.addEventWatch( event_watch, null );
 
-        log('sdl / init ok');
+        _debug('sdl / init ok');
 
     } //new
 
@@ -90,13 +90,13 @@ class Runtime extends snow.core.native.Runtime {
 
         create_window();
 
-        log('sdl / ready');
+        _debug('sdl / ready');
 
     } //ready
 
     override function run() : Bool {
 
-        log('sdl / run');
+        _debug('sdl / run');
 
         SDL.showWindow(window);
 
@@ -108,9 +108,9 @@ class Runtime extends snow.core.native.Runtime {
 
         if(!_immediate) {
             SDL.quit();
-            log('sdl / shutdown');
+            _debug('sdl / shutdown');
         } else {
-            log('sdl / shutdown immediate');
+            _debug('sdl / shutdown immediate');
         }
 
     } //shutdown
@@ -175,12 +175,12 @@ class Runtime extends snow.core.native.Runtime {
         #if ios
 
             _done = false;
-            log('sdl / attaching iOS CADisplayLink loop');
+            _debug('sdl / attaching iOS CADisplayLink loop');
             SDL.iPhoneSetAnimationCallback(window, 1, loop, null);
 
          #else
 
-            log('sdl / running main loop');
+            _debug('sdl / running main loop');
 
             while(!app.shutting_down) {
 
@@ -311,7 +311,7 @@ class Runtime extends snow.core.native.Runtime {
 
     function create_window() {
 
-        log('sdl / creating window');
+        _debug('sdl / creating window');
 
         var config = app.config.window;
 
@@ -328,8 +328,8 @@ class Runtime extends snow.core.native.Runtime {
 
         var _id:Int = SDL.getWindowID(window);
 
-        log('sdl / created window / id: $_id');
-        log('sdl / creating render context');
+        _debug('sdl / created window / id: $_id');
+        _debug('sdl / creating render context');
 
         if(!create_render_context(window)) {
             throw Error.error('runtime / sdl / failed to create render context, unable to recover / `${SDL.getError()}`');
@@ -352,7 +352,7 @@ class Runtime extends snow.core.native.Runtime {
 
         var _success = gl.isnull() == false;
 
-        log('sdl / GL init / $_success');
+        _debug('sdl / GL init / $_success');
 
         return _success;
 
@@ -367,7 +367,7 @@ class Runtime extends snow.core.native.Runtime {
             if(_result != GLEW.OK) {
                 throw Error.error('runtime / sdl / failed to setup created render context, unable to recover / `${GLEW.error(_result)}`');
             } else {
-                log('sdl / GLEW init / ok');
+                _debug('sdl / GLEW init / ok');
             }
         #end
 
@@ -377,7 +377,7 @@ class Runtime extends snow.core.native.Runtime {
 
     function apply_GL_attr(render:RenderConfig) {
 
-        log('sdl / GL / RBGA / ${render.red_bits} ${render.green_bits} ${render.blue_bits} ${render.alpha_bits}');
+        _debug('sdl / GL / RBGA / ${render.red_bits} ${render.green_bits} ${render.blue_bits} ${render.alpha_bits}');
 
         SDL.GL_SetAttribute(SDL_GL_RED_SIZE,     render.red_bits);
         SDL.GL_SetAttribute(SDL_GL_GREEN_SIZE,   render.green_bits);
@@ -386,22 +386,22 @@ class Runtime extends snow.core.native.Runtime {
         SDL.GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
 
         if(render.depth > 0) {
-            log('sdl / GL / depth / ${render.depth}');
+            _debug('sdl / GL / depth / ${render.depth}');
             SDL.GL_SetAttribute(SDL_GL_DEPTH_SIZE, render.depth);
         }
 
         if(render.stencil > 0) {
-            log('sdl / GL / stencil / ${render.stencil}');
+            _debug('sdl / GL / stencil / ${render.stencil}');
             SDL.GL_SetAttribute(SDL_GL_STENCIL_SIZE, render.stencil);
         }
 
         if(render.antialiasing > 0) {
-            log('sdl / GL / MSAA / ${render.antialiasing}');
+            _debug('sdl / GL / MSAA / ${render.antialiasing}');
             SDL.GL_SetAttribute(SDL_GL_MULTISAMPLEBUFFERS, 1);
             SDL.GL_SetAttribute(SDL_GL_MULTISAMPLESAMPLES, render.antialiasing);
         }
 
-        log('sdl / GL / profile / ${render.opengl.profile}');
+        _debug('sdl / GL / profile / ${render.opengl.profile}');
 
         switch(render.opengl.profile) {
 
@@ -424,7 +424,7 @@ class Runtime extends snow.core.native.Runtime {
         } // profile
 
         if(render.opengl.major != 0) {
-            log('sdl / GL / version / ${render.opengl.major}.${render.opengl.minor}');
+            _debug('sdl / GL / version / ${render.opengl.major}.${render.opengl.minor}');
             SDL.GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, render.opengl.major);
             SDL.GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, render.opengl.minor);
         }
@@ -475,7 +475,7 @@ class Runtime extends snow.core.native.Runtime {
         config.height = window_h = size.h;
 
         window_dpr = window_device_pixel_ratio();
-        log('sdl / window / x:${config.x} y:${config.y} w:${config.width} h:${config.height} / scale $window_dpr');
+        _debug('sdl / window / x:${config.x} y:${config.y} w:${config.width} h:${config.height} / scale $window_dpr');
 
         return config;
 
