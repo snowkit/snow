@@ -82,6 +82,12 @@
       }
     },
 
+    "android || ios" : {
+      build: {
+        defines: ['linc_opengl_GLES']
+      }
+    },
+
     web : {
       build: {
         defines : ['snow_web']
