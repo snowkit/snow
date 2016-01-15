@@ -43,7 +43,6 @@ class ALStream extends ALSound {
         _bytes = null;
 
         err('generated ${source.stream_buffer_count} buffers');
-        log(buffers);
 
         instance.data_seek(0);
 
