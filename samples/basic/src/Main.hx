@@ -191,11 +191,7 @@ class Main extends snow.App {
         GL.bindBuffer(GL.ARRAY_BUFFER, null);
         GL.disableVertexAttribArray(attr_pos);
         
-        #if snow_native
-        GL.useProgram(0);
-        #else
         GL.useProgram(null);
-        #end
 
     } //draw
 
@@ -415,7 +411,7 @@ class Main extends snow.App {
                 GL.shaderSource (vshader, vert_shader);
                 GL.compileShader (vshader);
 
-            if (GL.getShaderParameter(vshader, GL.COMPILE_STATUS) == 0) {
+            if(GL.getShaderParameter(vshader, GL.COMPILE_STATUS) == 0) {
                 throw "Error compiling vertex shader" + GL.getShaderInfoLog(vshader);
             }
 
@@ -451,18 +447,20 @@ class Main extends snow.App {
         }
 
         GL.bindAttribLocation(program, attr_pos, "vert_pos");
-        uniform_MP = GL.getUniformLocation (program, "projection");
-        uniform_MV = GL.getUniformLocation (program, "modelview");
+        uniform_MP = GL.getUniformLocation(program, "projection");
+        uniform_MV = GL.getUniformLocation(program, "modelview");
 
     } //init_shaders
 
     function init_buffers() {
 
-        if(app.config.render.opengl.profile == OpenGLProfile.core) {
-            var vaos = [0];
-            opengl.GL.glGenVertexArrays(1, vaos);
-            opengl.GL.glBindVertexArray(vaos[0]);
-        }
+        #if !linc_opengl_GLES
+            if(app.config.render.opengl.profile == OpenGLProfile.core) {
+                var vaos = [0];
+                opengl.GL.glGenVertexArrays(1, vaos);
+                opengl.GL.glBindVertexArray(vaos[0]);
+            }
+        #end
 
         var vertices = [
             size, size, 0,
