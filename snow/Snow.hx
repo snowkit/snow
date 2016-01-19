@@ -134,7 +134,12 @@ class Snow {
             /** Shutdown the engine and quit */
         public function shutdown() {
 
-            assert(shutting_down == false, 'snow - calling shutdown more than once is disallowed');
+            // assert(shutting_down == false, 'snow - calling shutdown more than once is disallowed');
+            if(shutting_down) {
+                log('shutdown / called again, already shutting down - ignoring');
+                return;
+            }
+            
             assert(has_shutdown == false, 'snow - calling shutdown more than once is disallowed');
 
             shutting_down = true;
