@@ -80,7 +80,9 @@ class Runtime extends snow.core.native.Runtime {
 
         //mobile events
 
-            SDL.addEventWatch( event_watch, null );
+            #if (android || ios)
+                SDL.addEventWatch( event_watch, null );
+            #end
 
         _debug('sdl / init ok');
 
