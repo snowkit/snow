@@ -3,7 +3,7 @@ apply from: 'flow.gradle'
 
 android {
     compileSdkVersion 23
-    buildToolsVersion "21.1.2"
+    buildToolsVersion "23.0.2"
 
     defaultConfig {
         applicationId "{{project.app.package}}"
