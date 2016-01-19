@@ -162,7 +162,7 @@ import snow.api.buffers.Uint8Array;
 //Audio types
 
     /** An audio handle for tracking audio instances */
-    typedef AudioHandle = Int;
+    typedef AudioHandle = Null<Int>;
 
     /** The type of format data for audio */
     @:enum abstract AudioFormatType(Null<Int>)
