@@ -168,13 +168,13 @@ class ALStream extends ALSound {
         var _amount = _read[0];
 
         // log('bufferData / $_buffer / format:$alformat / freq:${source.info.data.rate} / size: ${_read[0]}');
-        err('pre fill buffer ${_buffer}');
+        // err('pre fill buffer ${_buffer}');
 
         if(_amount > 0) {
             AL.bufferData(_buffer, alformat, source.info.data.rate, buffer_bytes, buffer_data.byteOffset, _amount);
         }
 
-        err('post fill buffer ${_buffer} read: $_read');
+        // err('post fill buffer ${_buffer} read: $_read');
 
         return _read[1] == 1;
 
@@ -196,7 +196,7 @@ class ALStream extends ALSound {
 
         var processed_buffers = AL.getSourcei(alsource, AL.BUFFERS_PROCESSED);
 
-        err('query processed buffers $processed_buffers');
+        // err('query processed buffers $processed_buffers');
 
             //disallow large or invalid values since we are using a while loop
         if(processed_buffers > source.stream_buffer_count) processed_buffers = source.stream_buffer_count;
@@ -204,7 +204,7 @@ class ALStream extends ALSound {
 
             var _buffer:ALuint = AL.sourceUnqueueBuffer(alsource);
 
-            err('sourceUnqueueBuffer $_buffer');
+            // err('sourceUnqueueBuffer $_buffer');
 
             var _buffer_size = AL.getBufferi(_buffer, AL.SIZE);
 

@@ -175,13 +175,12 @@ class Audio {
         module.onevent(_event);
 
         if(_event.type == se_window) {
-            var _we_type = _event.window.type;
-            switch(_we_type) {
-                case we_minimized:
+            switch(_event.window.type) {
+                case WindowEventType.we_minimized:
                     suspend();
-                case we_restored:
+                case WindowEventType.we_restored:
                     resume();
-                case _:
+                case _: {}
             }
         }
 
