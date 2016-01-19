@@ -968,9 +968,6 @@ class SDLMain implements Runnable {
     public void run() {
         // Runs SDL_main()
         SDLActivity.nativeInit(SDLActivity.mSingleton.getArguments());
-        //--:snow:start
-        org.haxe.HXCPP.run();
-        //--:snow:end
         //Log.v("SDL", "SDL thread terminated");
     }
 }
