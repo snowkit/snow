@@ -80,7 +80,7 @@ class Assets {
         return AssetAudio.load(this, _id, _is_stream);
 
         /** Get an asset as an `AssetAudio`, data stored as `AudioInfo`, created from audio file bytes. */
-    public inline function audio_from_bytes(_id:String, _bytes:Uint8Array) : Promise
-        return AssetAudio.load_from_bytes(this, _id, _bytes);
+    public inline function audio_from_bytes(_id:String, _bytes:Uint8Array, _format:AudioFormatType) : Promise
+        return AssetAudio.load_from_bytes(this, _id, _bytes, _format);
 
 } //Assets

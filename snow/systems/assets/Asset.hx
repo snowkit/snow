@@ -230,7 +230,7 @@ class Asset {
             }
 
                 /** Reload the asset from bytes */
-            public function reload_from_bytes(_bytes:Uint8Array, ?_format:AudioFormatType) {
+            public function reload_from_bytes(_bytes:Uint8Array, _format:AudioFormatType) {
 
                 loaded = false;
 
@@ -258,13 +258,13 @@ class Asset {
 
             } //load
 
-            public static function load_from_bytes(_system:Assets, _id:String, _bytes:Uint8Array) : Promise {
+            public static function load_from_bytes(_system:Assets, _id:String, _bytes:Uint8Array, _format:AudioFormatType) : Promise {
 
                 assertnull( _id );
                 assertnull( _bytes );
                 assertnull( _system );
 
-                return new AssetAudio(_system, _id, null).reload_from_bytes(_bytes);
+                return new AssetAudio(_system, _id, null).reload_from_bytes(_bytes, _format);
 
             } //load_from_bytes
 
