@@ -319,7 +319,7 @@ private class WAV {
 
         var _handle = app.io.module.file_handle_from_mem(_bytes, _bytes.length);
 
-        return from_file_handle(app, _handle, _path, true);
+        return from_file_handle(app, _handle, _path, false);
 
     } //from_bytes
 
@@ -724,7 +724,7 @@ private class OGG {
 
         var _handle = app.io.module.file_handle_from_mem(_bytes, _bytes.length);
 
-        return from_file_handle(app, _handle, _path, true);
+        return from_file_handle(app, _handle, _path, false);
 
     } //from_bytes
 
