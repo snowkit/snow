@@ -123,9 +123,27 @@ class Assets implements snow.modules.interfaces.Assets {
 
 //Audio
 
-    public function audio_info_from_load(_path:String, ?_is_stream:Bool=false, ?_format:AudioFormatType) : Promise {
+    public function audio_info_from_load(_id:String, ?_is_stream:Bool=false, ?_format:AudioFormatType) : Promise {
+
+        if(_format == null) _format = audio_format_from_path(_id);
+
+        var info = new AudioInfo({
+            app: app,
+            id: _id,
+            format: _format,
+            is_stream: _is_stream,
+            data: {
+                length: 0,
+                length_pcm: 0,
+                channels: 0,
+                rate: 0,
+                bits_per_sample: 0
+            }
+        });
+
         //:todo:web:audio_info_from_load
-        return null;
+        return Promise.resolve(info);
+
     } //audio_info_from_load
 
     public function audio_info_from_bytes(_id:String, _bytes:Uint8Array, ?_format:AudioFormatType) : Promise {
@@ -267,6 +285,21 @@ class Assets implements snow.modules.interfaces.Assets {
             return _value;
 
         } //nearest_power_of_two
+
+    //Helpers
+
+            /** Uses the extension of the given path to return the `AudioFormatType` */
+        public function audio_format_from_path(_path:String) : AudioFormatType {
+
+            var _ext = haxe.io.Path.extension(_path);
+            return switch(_ext) {
+                case 'wav': af_wav;
+                case 'ogg': af_ogg;
+                case 'pcm': af_pcm;
+                case _:     af_unknown;
+            }
+
+        } // audio_format_from_path
 
 } //Assets
 

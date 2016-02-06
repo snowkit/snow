@@ -137,7 +137,7 @@ class Assets implements snow.modules.interfaces.Assets {
 
         assertnull(_path);
 
-        if(_format == null) _format = audio_format_from_ext(_path);
+        if(_format == null) _format = audio_format_from_path(_path);
 
         return new Promise(function(resolve,reject) {
 
@@ -157,7 +157,7 @@ class Assets implements snow.modules.interfaces.Assets {
 
         assertnull(_path);
 
-        if(_format == null) _format = audio_format_from_ext(_path);
+        if(_format == null) _format = audio_format_from_path(_path);
 
         var _info = switch(_format) {
             case af_wav: WAV.from_file(app, _path, _is_stream);
@@ -194,7 +194,7 @@ class Assets implements snow.modules.interfaces.Assets {
         assertnull(_id);
         assertnull(_bytes);
 
-        if(_format == null) _format = audio_format_from_ext(_id);
+        if(_format == null) _format = audio_format_from_path(_id);
 
         var _info = switch(_format) {
             case af_wav: WAV.from_bytes(app, _id, _bytes);
@@ -207,19 +207,20 @@ class Assets implements snow.modules.interfaces.Assets {
 
     } //audio_info_from_bytes_direct
 
-//helpers
+    //Helpers
 
-    function audio_format_from_ext(_path:String) : AudioFormatType {
+            /** Uses the extension of the given path to return the `AudioFormatType` */
+        public inline function audio_format_from_path(_path:String) : AudioFormatType {
 
-        var _ext = haxe.io.Path.extension(_path);
-        return switch(_ext) {
-            case 'wav': af_wav;
-            case 'ogg': af_ogg;
-            case 'pcm': af_pcm;
-            case _:     af_unknown;
-        }
+            var _ext = haxe.io.Path.extension(_path);
+            return switch(_ext) {
+                case 'wav': af_wav;
+                case 'ogg': af_ogg;
+                case 'pcm': af_pcm;
+                case _:     af_unknown;
+            }
 
-    } //audio_format_from_ext
+        } //audio_format_from_path
 
 } //Assets
 
