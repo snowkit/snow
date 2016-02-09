@@ -26,11 +26,11 @@ class Main extends snow.App {
         var list = [
             app.assets.audio('assets/135034__mrlindstrom__windloop6sec.wav'),
             app.assets.audio('assets/sound.wav'),
-            app.assets.audio('assets/music.wav')
+            app.assets.audio('assets/music.wav', true)
         ];
 
         snow.api.Promise.all(list)
-            .then(sound_loaded).error(function(e) log(e));
+            .then(sound_loaded).error(function(e) log('Error loading sounds: '+ e));
 
     } //ready
 
@@ -46,18 +46,18 @@ class Main extends snow.App {
 
         wind = new AudioSource(app, list[0].audio);
         sound = new AudioSource(app, list[1].audio);
-        music = new AudioSource(app, list[2].audio, true);
+        music = new AudioSource(app, list[2].audio);
 
-        log('loaded wind : ' + wind.info);
-        log('loaded sound : ' + sound.info);
-        log('loaded music : ' + music.info);
+        log('loaded wind : ' + wind.data);
+        log('loaded sound : ' + sound.data);
+        log('loaded music : ' + music.data);
 
         wind_handle = app.audio.loop(wind,0.2);
         music_handle = app.audio.loop(music,1);
 
         trace('wind playing, handle: $wind_handle');
         trace('music playing, handle: $music_handle');
-        
+
         app.audio.on(ae_end, function(_handle) {
             trace('audio ended: $_handle');
         }); //_handle
@@ -66,11 +66,11 @@ class Main extends snow.App {
 
     override function onmousemove(x:Int, y:Int, _, _, _, _) {
 
-        var p = x / (app.runtime.window_width()-1);
+        var p = (x / (app.runtime.window_width()-1));
 
         if(app.input.keydown(Key.key_p)) {
             p *= 2.0;
-            app.audio.pitch(wind_handle, p);    
+            app.audio.pitch(wind_handle, p);
             log('wind pitch $p');
         } else if(app.input.keydown(Key.key_l)) {
             p = (p - 0.5) * 2.0;
@@ -80,7 +80,7 @@ class Main extends snow.App {
             app.audio.volume(wind_handle, p);
             log('wind volume $p');
         }
-        
+
     }
 
     override function onmouseup( x:Int, y:Int, button:Int, _, _ ) {
@@ -93,6 +93,9 @@ class Main extends snow.App {
     } //onmouseup
 
     var s = false;
+    var p = false;
+    var g = false;
+
     override function onkeyup( keycode:Int, _,_, mod:ModState, _,_ ) {
 
 
@@ -113,6 +116,22 @@ class Main extends snow.App {
                     trace('music playing, handle: $music_handle');
                 }
             }
+        }
+
+        if(keycode == Key.key_k) {
+            p = !p;
+            if(p) app.audio.pause(wind_handle); else app.audio.unpause(wind_handle);
+            trace(p);
+        }
+
+        if(keycode == Key.key_j) {
+            app.audio.position(music_handle, 21.25);
+        }
+
+        if(keycode == Key.key_g) {
+            g = !g;
+            if(g) app.audio.stop(music_handle); else app.audio.unpause(music_handle);
+            trace(p);
         }
 
         if(keycode == Key.key_n) {

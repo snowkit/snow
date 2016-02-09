@@ -86,8 +86,8 @@ class Main extends snow.App {
             var wavfsize = app.io.module.file_size(wavhandle);
             var wavbytes = new snow.api.buffers.Uint8Array(wavfsize);
             app.io.module.file_read(wavhandle, wavbytes, wavfsize, 1);
-            var wavinfo = app.assets.module.audio_info_from_load_direct('assets/sound.wav');
-            var wavinfo2 = app.assets.module.audio_info_from_bytes_direct('assets/sound.wav', wavbytes);
+            var wavinfo =  snow.core.native.audio.NativeAudioData.data_from_load_direct(app, 'assets/sound.wav');
+            var wavinfo2 = snow.core.native.audio.NativeAudioData.data_from_bytes_direct(app, 'assets/sound.wav', wavbytes);
             trace(wavinfo);
             trace(wavinfo2);
 
@@ -95,8 +95,8 @@ class Main extends snow.App {
             var oggfsize = app.io.module.file_size(ogghandle);
             var oggbytes = new snow.api.buffers.Uint8Array(oggfsize);
             app.io.module.file_read(ogghandle, oggbytes, oggfsize, 1);
-            var ogginfo = app.assets.module.audio_info_from_load_direct('assets/sound.ogg');
-            var ogginfo2 = app.assets.module.audio_info_from_bytes_direct('assets/sound.ogg', oggbytes);
+            var ogginfo = snow.core.native.audio.NativeAudioData.data_from_load_direct(app, 'assets/sound.ogg');
+            var ogginfo2 = snow.core.native.audio.NativeAudioData.data_from_bytes_direct(app, 'assets/sound.ogg', oggbytes);
             trace(ogginfo);
             trace(ogginfo2);
         #end

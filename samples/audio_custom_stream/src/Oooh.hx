@@ -8,16 +8,12 @@ class OoohSource extends AudioSource {
 
     public function new(app:snow.Snow) {
 
-        super(app, new AudioInfo({
-            app: app,
+        super(app, new AudioData(app, {
             id : 'oooh',
-            data : {
-                length_pcm: 0,
-                channels: 2,
-                rate: 44100,
-                bits_per_sample: 16
-            }
-        }), true);
+            is_stream: true,
+            channels: 2,
+            rate: 44100
+        }));
 
             //tenth of a second
         stream_buffer_length = Std.int(44100/10);
@@ -54,7 +50,7 @@ class Oooh extends AudioInstance {
             //right
             ints[i*2+1] = Std.int(Math.cos(counter-0.4)*32767);
 
-            counter += 1.0/source.info.data.rate*freq*2;
+            counter += 1.0/source.data.rate*freq*2;
         
         }
 
