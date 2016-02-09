@@ -106,7 +106,7 @@ package snow.api.buffers;
 
     //Internal
 
-        inline function toString() return 'Float32Array [byteLength:${this.byteLength}, length:${this.length}]';
+        inline function toString() return this == null ? null : 'Float32Array [byteLength:${this.byteLength}, length:${this.length}]';
 
         @:extern inline function get_length() return this.length;
 

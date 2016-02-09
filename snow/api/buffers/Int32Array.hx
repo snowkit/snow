@@ -120,7 +120,7 @@ package snow.api.buffers;
             ArrayBufferIO.setInt32(this.buffer, this.byteOffset+(idx*BYTES_PER_ELEMENT), val);
         }
 
-        inline function toString() return 'Int32Array [byteLength:${this.byteLength}, length:${this.length}]';
+        inline function toString() return this == null ? null : 'Int32Array [byteLength:${this.byteLength}, length:${this.length}]';
 
     }
 

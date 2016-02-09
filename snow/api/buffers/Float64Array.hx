@@ -120,7 +120,7 @@ package snow.api.buffers;
             ArrayBufferIO.setFloat64(this.buffer, this.byteOffset+(idx*BYTES_PER_ELEMENT), val);
         }
 
-        inline function toString() return 'Float64Array [byteLength:${this.byteLength}, length:${this.length}]';
+        inline function toString() return this == null ? null : 'Float64Array [byteLength:${this.byteLength}, length:${this.length}]';
 
     }
 

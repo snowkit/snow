@@ -120,7 +120,7 @@ package snow.api.buffers;
             ArrayBufferIO.setInt8(this.buffer, this.byteOffset+idx, val);
         }
 
-        inline function toString() return 'Int8Array [byteLength:${this.byteLength}, length:${this.length}]';
+        inline function toString() return this == null ? null : 'Int8Array [byteLength:${this.byteLength}, length:${this.length}]';
 
     }
 
