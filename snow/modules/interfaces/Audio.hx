@@ -15,6 +15,9 @@ interface Audio {
     private function onevent(event:SystemEvent):Void;
     private function shutdown():Void;
 
+    function data_from_load(_path:String, ?_is_stream:Bool=false, ?_format:AudioFormatType) : Promise;
+    function data_from_bytes(_id:String, _bytes:Uint8Array, ?_format:AudioFormatType) : Promise;
+
     function play(_source:AudioSource, _volume:Float, _paused:Bool) : AudioHandle;
     function loop(_source:AudioSource, _volume:Float, _paused:Bool) : AudioHandle;
     function pause(_handle:AudioHandle) : Void;
