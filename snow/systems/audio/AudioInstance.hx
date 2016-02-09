@@ -50,7 +50,7 @@ class AudioInstance {
 
         assert(destroyed == false, 'snow / Audio / Instance data_get queried after being destroyed');
 
-        return source.info.portion(_into, _start, _length, _into_result);
+        return source.data.portion(_into, _start, _length, _into_result);
 
     } //data_get
         
@@ -58,7 +58,7 @@ class AudioInstance {
 
         assert(destroyed == false, 'snow / Audio / Instance data_seek queried after being destroyed');
 
-        return source.info.seek(_to_samples);
+        return source.data.seek(_to_samples);
 
     } //data_seek
     

@@ -8,6 +8,8 @@ import snow.api.buffers.Float32Array;
 import snow.systems.audio.AudioSource;
 import snow.systems.audio.AudioInstance;
 
+import snow.core.native.audio.NativeAudioData;
+
 import snow.modules.openal.AL;
 import snow.modules.openal.AL.Context;
 import snow.modules.openal.AL.Device;
@@ -68,7 +70,7 @@ class Audio implements snow.modules.interfaces.Audio {
                         _snd.tick();
 
                         //:todo: seems this should be in the instance probably
-                    if(_snd.looping && !_snd.source.is_stream) {
+                    if(_snd.looping && !_snd.source.data.is_stream) {
                         if(_snd.current_time >= _snd.source.duration()) {
                             _snd.current_time = 0.0;
                             app.audio.emit(ae_end, _handle);
@@ -87,7 +89,7 @@ class Audio implements snow.modules.interfaces.Audio {
 
     function on_source_destroyed(_source:AudioSource) {
 
-        _debug('source being destroyed: ' + _source.info.id);
+        _debug('source being destroyed: ' + _source.data.id);
         var _buffer = buffers.get(_source);
         if(_buffer != null) {
             _debug('   destroying buffer ' + _buffer);
@@ -103,7 +105,7 @@ class Audio implements snow.modules.interfaces.Audio {
         var _snd = instances.get(_handle);
 
         if(_snd != null) {
-            _debug('    snd: ' + _snd.source.info.id);
+            _debug('    snd: ' + _snd.source.data.id);
             _snd.destroy();
             _snd = null;
         }
@@ -184,12 +186,14 @@ class Audio implements snow.modules.interfaces.Audio {
     public function play(_source:AudioSource, _volume:Float, _paused:Bool) : AudioHandle {
 
         assertnull(_source);
-        assertnull(_source.info);
-        assertnull(_source.info.data);
+        assertnull(_source.data);
 
         var _handle = handle_seq;
         var _inst = _source.instance(_handle);
-        var _snd = switch(_source.is_stream) {
+
+        _debug('playing source `${_source.data.id}` as stream: ${_source.data.is_stream}');
+
+        var _snd = switch(_source.data.is_stream) {
             case false: new ALSound(this, _source, _inst);
             case true : new ALStream(this, _source, _inst);
         }
@@ -203,7 +207,7 @@ class Audio implements snow.modules.interfaces.Audio {
             AL.sourcePlay(_snd.alsource);
         }
 
-        _debug('play ${_source.info.id}, handle=$_handle');
+        _debug('play ${_source.data.id}, handle=$_handle');
         err('play');
 
         handle_seq++;
@@ -220,11 +224,11 @@ class Audio implements snow.modules.interfaces.Audio {
         var _snd = snd_of(_handle);
         _snd.looping = true;
 
-        if(!_snd.source.is_stream) {
+        if(!_snd.source.data.is_stream) {
             AL.sourcei(_snd.alsource, AL.LOOPING, AL.TRUE);
         }
 
-        _debug('loop ${_source.info.id}, handle=$_handle');
+        _debug('loop ${_source.data.id}, handle=$_handle');
 
         err('loop');
 
@@ -237,7 +241,7 @@ class Audio implements snow.modules.interfaces.Audio {
         var _snd = snd_of(_handle);
         if(_snd == null) return;
 
-        _debug('pause handle=$_handle, ' + _snd.source.info.id);
+        _debug('pause handle=$_handle, ' + _snd.source.data.id);
 
         AL.sourcePause(_snd.alsource);
 
@@ -250,7 +254,7 @@ class Audio implements snow.modules.interfaces.Audio {
         var _snd = snd_of(_handle);
         if(_snd == null) return;
 
-        _debug('unpause handle=$_handle, ' + _snd.source.info.id);
+        _debug('unpause handle=$_handle, ' + _snd.source.data.id);
 
         AL.sourcePlay(_snd.alsource);
 
@@ -263,7 +267,7 @@ class Audio implements snow.modules.interfaces.Audio {
         var _snd = snd_of(_handle);
         if(_snd == null) return;
 
-        _debug('stop handle=$_handle, ' + _snd.source.info.id);
+        _debug('stop handle=$_handle, ' + _snd.source.data.id);
 
         AL.sourceStop(_snd.alsource);
 
@@ -277,7 +281,7 @@ class Audio implements snow.modules.interfaces.Audio {
         var _snd = snd_of(_handle);
         if(_snd == null) return;
 
-        _debug('volume=$_volume handle=$_handle, ' + _snd.source.info.id);
+        _debug('volume=$_volume handle=$_handle, ' + _snd.source.data.id);
 
         AL.sourcef(_snd.alsource, AL.GAIN, _volume);
 
@@ -291,7 +295,7 @@ class Audio implements snow.modules.interfaces.Audio {
         var _snd = snd_of(_handle);
         if(_snd == null) return;
 
-        _debug('pan=$_pan handle=$_handle, ' + _snd.source.info.id);
+        _debug('pan=$_pan handle=$_handle, ' + _snd.source.data.id);
 
         _snd.pan = _pan;
 
@@ -305,7 +309,7 @@ class Audio implements snow.modules.interfaces.Audio {
         var _snd = snd_of(_handle);
         if(_snd == null) return;
 
-        _debug('pitch=$_pitch handle=$_handle, ' + _snd.source.info.id);
+        _debug('pitch=$_pitch handle=$_handle, ' + _snd.source.data.id);
 
         AL.sourcef(_snd.alsource, AL.PITCH, _pitch);
 
@@ -317,7 +321,7 @@ class Audio implements snow.modules.interfaces.Audio {
         var _snd = snd_of(_handle);
         if(_snd == null) return;
 
-        _debug('position=$_time handle=$_handle, ' + _snd.source.info.id);
+        _debug('position=$_time handle=$_handle, ' + _snd.source.data.id);
 
         _snd.position(_time);
 
@@ -397,6 +401,23 @@ class Audio implements snow.modules.interfaces.Audio {
         return _snd.instance;
 
     } //instance_of
+
+//data API
+        
+        /** Promises an AudioData instance from the given path */        
+    public function data_from_load(_path:String, ?_is_stream:Bool=false, ?_format:AudioFormatType) : Promise {
+        
+        return NativeAudioData.data_from_load(app, _path, _is_stream, _format);
+
+    } //data_from_load
+        
+        /** Promises an AudioData instance from the given bytes */            
+    public function data_from_bytes(_id:String, _bytes:Uint8Array, ?_format:AudioFormatType) : Promise {
+
+        return NativeAudioData.data_from_bytes(app, _id, _bytes, _format);
+
+    } //data_from_bytes
+
 
 //internal
 

@@ -2,16 +2,14 @@ package snow.systems.audio;
 
 import snow.api.Debug.*;
 import snow.types.Types.AudioHandle;
-import snow.types.Types.AudioInfo;
+import snow.types.Types.AudioData;
 import snow.systems.audio.AudioInstance;
 
 class AudioSource {
 
     public var app: snow.Snow;
-    public var info: AudioInfo;
+    public var data: AudioData;
 
-        /** Whether or not the source is a stream */
-    public var is_stream (default,null) : Bool = false;
         /** Streams only:  The size in bytes of a single stream buffer.
             This is ~1 sec in 16 bit mono. default:176400
             for most cases this can be left alone. */
@@ -24,11 +22,10 @@ class AudioSource {
         //used when destroying the source, to take instances with it.
     var instances : Array<AudioInstance>;
 
-    public function new(_app:snow.Snow, _info:AudioInfo, _is_stream:Bool=false) {
+    public function new(_app:snow.Snow, _data:AudioData) {
 
         app = _app;
-        info = _info;
-        is_stream = _is_stream;
+        data = _data;
 
         instances = [];
 
@@ -50,9 +47,10 @@ class AudioSource {
         /** A helper for converting bytes to seconds for a sound source */
     public function bytes_to_seconds(_bytes:Int) : Float {
 
-        var _data = info.data;
-        var _word = _data.bits_per_sample == 16 ? 2 : 1;
-        var _sample_frames = (_data.rate * _data.channels * _word);
+            //:todo: audio bits per sample config
+        var _bits_per_sample = 16;
+        var _word = _bits_per_sample == 16 ? 2 : 1;
+        var _sample_frames = (data.rate * data.channels * _word);
 
         return _bytes / _sample_frames;
 
@@ -61,9 +59,10 @@ class AudioSource {
         /** A helper for converting seconds to bytes for this audio source */
     public function seconds_to_bytes(_seconds:Float) : Int {
 
-        var _data = info.data;
-        var _word = _data.bits_per_sample == 16 ? 2 : 1;
-        var _sample_frames = (_data.rate * _data.channels * _word);
+            //:todo: audio bits per sample config
+        var _bits_per_sample = 16;
+        var _word = _bits_per_sample == 16 ? 2 : 1;
+        var _sample_frames = (data.rate * data.channels * _word);
 
         return Std.int(_seconds * _sample_frames);
 
@@ -72,7 +71,7 @@ class AudioSource {
         //
     public function duration() : Float {
 
-        return bytes_to_seconds(info.data.length_pcm);
+        return bytes_to_seconds(data.length);
 
     } //duration
 
@@ -81,7 +80,7 @@ class AudioSource {
         var c = instances.length;
         var i = 0;
 
-        log('destroy ${info.id}, stream=${is_stream}, instances=$c');
+        log('destroy ${data.id}, stream=${data.is_stream}, instances=$c');
 
         app.audio.emit(ae_destroyed_source, this);
 
@@ -92,8 +91,8 @@ class AudioSource {
             i++;
         }
 
-        info.destroy();
-        info = null;
+        data.destroy();
+        data = null;
         instances = null;
         app = null;
 
@@ -106,4 +105,4 @@ class AudioSource {
 
     }
 
-}
+} //AudioSource

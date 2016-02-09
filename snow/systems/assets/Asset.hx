@@ -186,9 +186,9 @@ class Asset {
 
     class AssetAudio extends snow.systems.assets.Asset {
 
-        public var audio (default,set): AudioInfo;
+        public var audio (default,set): AudioData;
 
-        public function new(_system:Assets, _id:String, _audio:AudioInfo) {
+        public function new(_system:Assets, _id:String, _audio:AudioData) {
 
             super(_system, _id, at_audio);
             audio = _audio;
@@ -197,17 +197,17 @@ class Asset {
 
         //Public API
 
-                /** Reloads the audio from the stored id, using audio_info_from_load, returning a promise for the asset. */
+                /** Reloads the audio from the stored id, using audio module `data_from_load`, returning a promise for the asset. */
             public function reload(?_is_stream:Bool=false) : Promise {
 
                 loaded = false;
 
                 return new Promise(function(resolve, reject) {
 
-                    var _load = system.app.assets.module.audio_info_from_load(system.path(id), _is_stream);
+                    var _load = system.app.audio.module.data_from_load(system.path(id), _is_stream);
 
                     _load.then(
-                        function(_audio:AudioInfo){
+                        function(_audio:AudioData){
                             audio = _audio;
                             resolve(this);
                         }
@@ -218,16 +218,18 @@ class Asset {
             } //reload
 
             override public function destroy() {
-                if(audio.data != null) {
-                    if(audio.data.samples != null) {
-                        //:note: can't set the buffer on js, this is mostly for cpp gc anyway
-                        #if snow_native audio.data.samples.buffer = null; #end
-                        audio.data.samples = null;
-                    }
-                    audio.data = null;
+            
+                    //:todo: AudioData has a destroy call, which can encapsulate platform specifics here
+                if(audio.samples != null) {
+                    //:note: can't set the buffer on js, this is mostly for cpp gc anyway
+                    #if snow_native audio.samples.buffer = null; #end
+                    audio.samples = null;
                 }
+            
+                audio.destroy();
                 audio = null;
-            }
+            
+            } //destroy
 
                 /** Reload the asset from bytes */
             public function reload_from_bytes(_bytes:Uint8Array, _format:AudioFormatType) {
@@ -236,9 +238,9 @@ class Asset {
 
                 return new Promise(function(resolve, reject){
 
-                    var _load = system.module.audio_info_from_bytes(id, _bytes, _format);
+                    var _load = system.app.audio.module.data_from_bytes(id, _bytes, _format);
 
-                    _load.then(function(_audio:AudioInfo){
+                    _load.then(function(_audio:AudioData){
                         audio = _audio;
                         resolve(this);
                     }).error(reject);
@@ -271,7 +273,7 @@ class Asset {
         //Internal
 
                 /** Set the audio contained to a new value */
-            function set_audio(_audio:AudioInfo) {
+            function set_audio(_audio:AudioData) {
 
                 loaded = _audio != null;
                 return audio = _audio;

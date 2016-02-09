@@ -1,6 +1,8 @@
 package snow.core;
 
 import snow.types.Types;
+import snow.api.Promise;
+import snow.api.buffers.Uint8Array;
 import snow.systems.audio.AudioSource;
 import snow.systems.audio.AudioInstance;
 
@@ -13,6 +15,9 @@ class Audio implements snow.modules.interfaces.Audio {
     function shutdown():Void {}
     public function suspend():Void {}
     public function resume():Void {}
+
+    public function data_from_load(_path:String, ?_is_stream:Bool=false, ?_format:AudioFormatType) : Promise { return null; }
+    public function data_from_bytes(_id:String, _bytes:Uint8Array, ?_format:AudioFormatType) : Promise { return null; }
 
     public function play(_source:AudioSource, _volume:Float, _paused:Bool) : AudioHandle { return null; }
     public function loop(_source:AudioSource, _volume:Float, _paused:Bool) : AudioHandle { return null; }
@@ -32,5 +37,18 @@ class Audio implements snow.modules.interfaces.Audio {
     public function state_of(_handle:AudioHandle) : AudioState { return as_invalid; }
     public function loop_of(_handle:AudioHandle) : Bool { return false; }
     public function instance_of(_handle:AudioHandle) : AudioInstance { return null; }
+
+   /** Uses the extension of the given path to return the `AudioFormatType` */
+        public static inline function audio_format_from_path(_path:String) : AudioFormatType {
+
+            var _ext = haxe.io.Path.extension(_path);
+            return switch(_ext) {
+                case 'wav': af_wav;
+                case 'ogg': af_ogg;
+                case 'pcm': af_pcm;
+                case _:     af_unknown;
+            }
+
+        } //audio_format_from_path
 
 }

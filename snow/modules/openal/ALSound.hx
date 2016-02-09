@@ -41,9 +41,9 @@ class ALSound {
 
         if(_buffer == AL.NONE) {
 
-            var _data = source.info.data;
+            var _data = source.data;
 
-            _debug(' > new buffer ${source.info.id} / ${alformat}');
+            _debug(' > new buffer ${_data.id} / ${alformat}');
 
             _buffer = AL.genBuffer();
 
@@ -51,7 +51,7 @@ class ALSound {
                 AL.bufferData(_buffer, alformat, _data.rate, _data.samples.toBytes().getData(), _data.samples.byteOffset, _data.samples.byteLength); 
             } else {
                 _buffer = AL.NONE;
-                log(' > new buffer ${source.info.id} / created with AL.NONE buffer!');
+                log(' > new buffer ${_data.id} / created with AL.NONE buffer!');
             }
 
             err('new buffer');
@@ -117,11 +117,12 @@ class ALSound {
 
     function source_format() {
 
-        var _data = source.info.data;
         var _format = AL.FORMAT_MONO16;
+            //:todo: audio bits per sample config
+        var _bits_per_sample = 16;
 
-        if(_data.channels > 1) {
-            if(_data.bits_per_sample == 8) {
+        if(source.data.channels > 1) {
+            if(_bits_per_sample == 8) {
                 _format = AL.FORMAT_STEREO8;
                 _debug('source format: stereo 8');
             } else {
@@ -129,7 +130,7 @@ class ALSound {
                 _debug('source format: stereo 16');
             }
         } else { //mono
-            if(_data.bits_per_sample == 8) {
+            if(_bits_per_sample == 8) {
                 _format = AL.FORMAT_MONO8;
                 _debug('source format: mono 8');
             } else {

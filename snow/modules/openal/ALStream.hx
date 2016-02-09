@@ -54,7 +54,7 @@ class ALStream extends ALSound {
 
     override function destroy() {
 
-        _debug('destroy ' + source.info.id);
+        _debug('destroy ' + source.data.id);
 
         err('pre source stop');
 
@@ -167,11 +167,11 @@ class ALStream extends ALSound {
         var _read = instance.data_get(buffer_data, -1, source.stream_buffer_length, data_get_result);
         var _amount = _read[0];
 
-        // log('bufferData / $_buffer / format:$alformat / freq:${source.info.data.rate} / size: ${_read[0]}');
+        // log('bufferData / $_buffer / format:$alformat / freq:${source.data.rate} / size: ${_read[0]}');
         // err('pre fill buffer ${_buffer}');
 
         if(_amount > 0) {
-            AL.bufferData(_buffer, alformat, source.info.data.rate, buffer_bytes, buffer_data.byteOffset, _amount);
+            AL.bufferData(_buffer, alformat, source.data.rate, buffer_bytes, buffer_data.byteOffset, _amount);
         }
 
         // err('post fill buffer ${_buffer} read: $_read');
@@ -192,7 +192,7 @@ class ALStream extends ALSound {
 
         var still_streaming = true;
 
-        // log('alsource:$alsource ${state_str()} ${position_of()}/$duration | ${source.seconds_to_bytes(position_of())}/${source.info.data.length_pcm} | ${buffers_left} ');
+        // log('alsource:$alsource ${state_str()} ${position_of()}/$duration | ${source.seconds_to_bytes(position_of())}/${source.data.length_pcm} | ${buffers_left} ');
 
         var processed_buffers = AL.getSourcei(alsource, AL.BUFFERS_PROCESSED);
 

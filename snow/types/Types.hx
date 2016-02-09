@@ -1,5 +1,6 @@
 package snow.types;
 
+import snow.api.Debug.*;
 import snow.api.buffers.Uint8Array;
 
 //Common types
@@ -237,65 +238,63 @@ import snow.api.buffers.Uint8Array;
         } //toString
     } //AudioState
 
-    /** The platform specific implementation detail about the audio data */
-    typedef AudioData = {
+        /** Options for constructing an AudioData instance */
+    typedef AudioDataOptions = {
 
-        /** the file length in bytes */
-        @:optional var length : Int;
-            /** the pcm uncompressed raw length in bytes */
-        var length_pcm : Int;
-            /** number of channels */
-        var channels : Int;
-            /** hz rate */
-        var rate : Int;
-            /** bits per sample, 8 / 16 */
-        var bits_per_sample : Int;
-            /** sound bitrate */
-        @:optional var bitrate : Int;
-            /** sound raw data */
-        @:optional var samples : Uint8Array;
+        @:optional var id: String;
 
-    } //AudioData
+        @:optional var rate: Int;
+        @:optional var length: Int;
+        @:optional var channels: Int;
+        @:optional var is_stream: Bool;
+        @:optional var format: AudioFormatType;
+        @:optional var samples: Uint8Array;
 
-    /** */    //:todo: AudioInfo type conversion still typedef
-    typedef AudioInfoOptions = {
-        app:snow.Snow,
-        data:AudioData,
-        ?id:String,
-        ?format:AudioFormatType,
-        ?is_stream:Bool
-    }
+    } //AudioDataOptions
 
-    /** Information about an audio file/data */
+        /** An audio data object contains information about audio samples or streams, ready to be used. 
+            `AudioData` objects typically come from the `app.assets.audio` API or `app.audio.module.data_from_path`,
+            since the implemenation details of decoding audio and streams are module level implementation details.
+            This is stored by `AudioSource` and `AssetAudio` objects for example.*/
     @:allow(snow.systems.audio.AudioInstance)
-    class AudioInfo {
+    class AudioData {
 
-        /** access to the api */
-        public var app : snow.Snow;
-            /** the platform audio data info */
-        public var data : AudioData;
-            /** file source id */
-        public var id : String;
-            /** format. Use AudioFormatType */
-        public var format : AudioFormatType;
-            /** Whether or not this relates to streaming purposes, this a convenience only from load apis */
-        public var is_stream : Bool;
+            /** Access to the snow runtime */
+        public var app: snow.Snow;
+            /** The associated id for the data */
+        public var id: String = 'AudioData';
+            /** The sample data bytes, if any (streams don't populate this) */
+        public var samples: Uint8Array;
+            /** The sample rate in samples per second */
+        public var rate: Int = 44100;
+            /** The PCM length in samples */
+        public var length: Int = 0;
+            /** The number of channels for this data */
+        public var channels: Int = 1;
+            /** The audio format type of the sample data */
+        public var format: AudioFormatType = af_unknown;
+            /** Whether or not this data is a stream of samples */
+        public var is_stream: Bool = false;
 
-            inline public function new(_opt:AudioInfoOptions) {
+        inline public function new(_app:snow.Snow, _options:AudioDataOptions) {
+            
+            app = _app;
 
-                app = _opt.app;
-                data = _opt.data;
-                id = _opt.id;
-                format = _opt.format;
-                is_stream = _opt.is_stream;
+            id = def(_options.id, id);
+            rate = def(_options.rate, rate);
+            length = def(_options.length, length);
+            format = def(_options.format, format);
+            channels = def(_options.channels, channels);
+            is_stream = def(_options.is_stream, is_stream);
+            samples = def(_options.samples, samples);
 
-            } //new
+            _options = null;
+
+        } //new
 
         //Public API, typically populated by subclasses
 
-            public function destroy() {
-
-            }
+            public function destroy() {}
 
         //Internal implementation details, populated by subclasses
 
@@ -303,9 +302,9 @@ import snow.api.buffers.Uint8Array;
 
             function portion(_into:Uint8Array, _start:Int, _len:Int, _into_result:Array<Int>) : Array<Int> return _into_result;
 
-            inline function toString() return '{ "AudioInfo":true, "id":$id, "format":"$format", "is_stream":$is_stream, data:$data }';
+            inline function toString() return '{ "AudioData":true, "id":$id, "rate":$rate, "length":$length, "channels":$channels, "format":"$format", "is_stream":$is_stream }';
 
-    } //AudioInfo
+    } //AudioData
 
 //App config types
 
