@@ -14,3 +14,7 @@ ios.project
 android.project
 mac.project
 *.xcuserstate
+tests/wip
+samples/audio/assets/music.wav
+
+samples/audio/assets/music.aac
