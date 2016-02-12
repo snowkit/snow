@@ -7,22 +7,34 @@ import snow.api.Debug.*;
 class Runtime implements snow.core.Runtime {
 
     public var app:snow.Snow;
+        /** The runtime window canvas */
     public var window : WindowHandle;
-    public var name: String = 'web';
-
-        /** internal start time for 0 based time values */
-    static var timestamp_start : Float = 0.0;
-
+        /** The name of this runtime */
+    public var name (default, null): String = 'web';
 
         /** The window id to use for events */
-    var web_window_id = 1;
-        /** The window x position, this is set by update_window_pos only */
+    static inline var web_window_id = 1;
+
+        /** The window x position. 
+            Internal, set by update_window_bounds */
     var window_x : Int = 0;
-        /** The window y position, this is set by update_window_pos only */
+        /** The window y position.
+            Internal, set by update_window_bounds */
     var window_y : Int = 0;
+        /** The window element width
+            Internal, set by update_window_bounds */
+    var window_w : Int = 0;
+        /** The window element height
+            Internal, set by update_window_bounds */
+    var window_h : Int = 0;
+        /** The window device pixel ratio
+            Internal, set by update_window_bounds */
+    var window_dpr : Float = 1.0;
 
-
+        /** Whether or not the browser has gamepad API support */
     var gamepads_supported : Bool = false;
+        /** internal start time, allowing 0 based time values */
+    static var timestamp_start : Float = 0.0;
 
     function new(_app:snow.Snow) {
 
@@ -74,15 +86,100 @@ class Runtime implements snow.core.Runtime {
 
         log('runtime / web / window_grab');
 
+        //:todo: window_grab
+
         return false;
 
     } //window_grab
 
+    var p_padding = '0';
+    var p_margin = '0';
+    var p_s_width = '';
+    var p_s_height = '';
+    var p_width = 0;
+    var p_height = 0;
+    var p_body_overflow = '0';
+    var p_body_margin = '0';
+
+        //the window.onresize event handler
+    inline function onresize_handler(_) {
+
+        window.style.width = '${js.Browser.window.innerWidth}px';
+        window.style.height = '${js.Browser.window.innerHeight}px';
+    
+    } //onresize_handler
+
     public function window_fullscreen(enable:Bool, ?true_fullscreen:Bool=false) : Bool {
 
-        log('runtime / web / window_fullscreen');
+        var _result = true;
 
-        return false;
+        if(enable) {
+
+            p_padding       = window.style.padding;
+            p_margin        = window.style.margin;
+            p_s_width       = window.style.width;
+            p_s_height      = window.style.height;
+            p_width         = window.width;
+            p_height        = window.height;
+            p_body_margin   = js.Browser.document.body.style.margin;
+            p_body_overflow = js.Browser.document.body.style.overflow;
+
+            window.style.margin = '0';
+            window.style.padding = '0';
+            window.style.width = js.Browser.window.innerWidth + 'px';
+            window.style.height = js.Browser.window.innerHeight + 'px';
+            window.width = js.Browser.window.innerWidth;
+            window.height = js.Browser.window.innerHeight;
+
+                //stop the browser page from having scrollbars etc
+            js.Browser.document.body.style.margin = '0';
+            js.Browser.document.body.style.overflow = 'hidden';
+
+            if(true_fullscreen) {
+                if(window.requestFullscreen != null) {
+                    window.requestFullscreen();
+                } else if(untyped window.requestFullScreen != null) {
+                    untyped window.requestFullScreen(null);
+                } else if(untyped window.webkitRequestFullscreen != null) {
+                    untyped window.webkitRequestFullscreen();
+                } else if(untyped window.mozRequestFullScreen != null) {
+                    untyped window.mozRequestFullScreen();
+                } else {
+                    _result = false;
+                }
+            } //if true_fullscreen
+
+                //listen for changes, this will trigger the right resize
+            js.Browser.window.addEventListener("resize", onresize_handler);
+
+        } else {
+
+            js.Browser.window.removeEventListener("resize", onresize_handler);
+
+            window.style.padding = p_padding;
+            window.style.margin = p_margin;
+            window.style.width = p_s_width;
+            window.style.height = p_s_height;
+            window.width = p_width;
+            window.height = p_height;
+            js.Browser.document.body.style.margin = p_body_margin;
+            js.Browser.document.body.style.overflow = p_body_overflow;
+
+            if(true_fullscreen) {
+                if(js.Browser.document.exitFullscreen != null) {
+                    js.Browser.document.exitFullscreen();
+                } else if(untyped js.Browser.document.webkitExitFullscreen != null) {
+                    untyped js.Browser.document.webkitExitFullscreen();
+                } else if(untyped js.Browser.document.mozCancelFullScreen != null) {
+                    untyped js.Browser.document.mozCancelFullScreen();
+                } else {
+                    _result = false;
+                }
+            } //true_fullscreen
+
+        } //enable
+
+        return _result;
 
     } //window_fullscreen
 
@@ -92,7 +189,7 @@ class Runtime implements snow.core.Runtime {
 
         return (js.Browser.window.performance.now()/1000.0) - timestamp_start;
 
-    }
+    } //timestamp
 
 //Internal runtime API
 
@@ -106,7 +203,7 @@ class Runtime implements snow.core.Runtime {
 
         log('web / run');
 
-        request_frame();
+        loop_pre_ready();
 
         return false;
 
@@ -122,9 +219,11 @@ class Runtime implements snow.core.Runtime {
 
 //internal
 
-    inline function dispatch_window_ev(_type:WindowEventType) {
-        app.dispatch_window_event(_type, timestamp(), web_window_id, null, null);
-    }
+    inline function dispatch_window_ev(_type:WindowEventType, ?_x:Int, ?_y:Int) {
+
+        app.dispatch_window_event(_type, timestamp(), web_window_id, _x, _y);
+
+    } //dispatch_window_ev
 
     function setup_events() {
 
@@ -232,23 +331,20 @@ class Runtime implements snow.core.Runtime {
 
             }); //contextmenu
 
-            inline function translate_mouse_x(_dpr:Float, _ev:js.html.MouseEvent) {
-                return Math.floor(_dpr * (_ev.pageX - window_x));
+            inline function translate_mouse_x(_ev:js.html.MouseEvent) {
+                return Math.floor(window_dpr * (_ev.pageX - window_x));
             }
 
-            inline function translate_mouse_y(_dpr:Float, _ev:js.html.MouseEvent) {
-                return Math.floor(_dpr * (_ev.pageY - window_y));
+            inline function translate_mouse_y(_ev:js.html.MouseEvent) {
+                return Math.floor(window_dpr * (_ev.pageY - window_y));
             }
 
             window.addEventListener('mousedown', function(_ev:js.html.MouseEvent) {
 
-                var _dpr = window_device_pixel_ratio();
-                update_window_pos();
-
                 app.input.dispatch_mouse_down_event(
-                    translate_mouse_x(_dpr, _ev),
-                    translate_mouse_y(_dpr, _ev),
-                    _ev.button + 1, //:parity: native buttons are 1 based
+                    translate_mouse_x(_ev),
+                    translate_mouse_y(_ev),
+                    _ev.button + 1, //:native buttons are 1 based
                     timestamp(),
                     web_window_id
                 );
@@ -257,13 +353,10 @@ class Runtime implements snow.core.Runtime {
 
             window.addEventListener('mouseup', function(_ev:js.html.MouseEvent){
 
-                var _dpr = window_device_pixel_ratio();
-                update_window_pos();
-
                 app.input.dispatch_mouse_up_event(
-                    translate_mouse_x(_dpr, _ev),
-                    translate_mouse_y(_dpr, _ev),
-                    _ev.button + 1, //:parity: native buttons are 1 based
+                    translate_mouse_x(_ev),
+                    translate_mouse_y(_ev),
+                    _ev.button + 1, //:native buttons are 1 based
                     timestamp(),
                     web_window_id
                 );
@@ -272,17 +365,14 @@ class Runtime implements snow.core.Runtime {
 
             window.addEventListener('mousemove', function(_ev:js.html.MouseEvent){
 
-                var _dpr = window_device_pixel_ratio();
-                update_window_pos();
-
                 var _movement_x = _ev.movementX == null ? 0 : _ev.movementX;
                 var _movement_y = _ev.movementY == null ? 0 : _ev.movementY;
-                    _movement_x = Math.floor(_movement_x * _dpr);
-                    _movement_y = Math.floor(_movement_y * _dpr);
+                    _movement_x = Math.floor(_movement_x * window_dpr);
+                    _movement_y = Math.floor(_movement_y * window_dpr);
 
                 app.input.dispatch_mouse_move_event(
-                    translate_mouse_x(_dpr, _ev),
-                    translate_mouse_y(_dpr, _ev),
+                    translate_mouse_x(_ev),
+                    translate_mouse_y(_ev),
                     _movement_x,
                     _movement_y,
                     timestamp(),
@@ -314,7 +404,7 @@ class Runtime implements snow.core.Runtime {
                     _ev.preventDefault();
                 }
 
-                    //:todo:web:touch: test with update_window_pos values
+                    //:todo:web:touch: test with window_x/y/w/h
                 var _bound = window.getBoundingClientRect();
                 for(touch in _ev.changedTouches) {
 
@@ -342,7 +432,7 @@ class Runtime implements snow.core.Runtime {
                     _ev.preventDefault();
                 }
 
-                    //:todo:web:touch: test with update_window_pos values
+                    //:todo:web:touch: test with window_x/y/w/h
                 var _bound = window.getBoundingClientRect();
                 for(touch in _ev.changedTouches) {
 
@@ -370,7 +460,7 @@ class Runtime implements snow.core.Runtime {
                     _ev.preventDefault();
                 }
 
-                    //:todo:web:touch: test with update_window_pos values
+                    //:todo:web:touch: test with window_x/y/w/h
                 var _bound = window.getBoundingClientRect();
                 for(touch in _ev.changedTouches) {
 
@@ -424,26 +514,31 @@ class Runtime implements snow.core.Runtime {
 
             }); //gamepaddisconnected
 
+        //window events
 
-        //:todo:web:orientation events
+            //:todo:web:orientation events
 
     } //setup_events
 
     function create_window() {
 
         var config = app.config.window;
-        var _dpr = window_device_pixel_ratio();
-
         window = js.Browser.document.createCanvasElement();
 
             //For High DPI, we scale the config sizes
-        window.width = Math.floor(config.width * _dpr);
-        window.height = Math.floor(config.height * _dpr);
+        window_dpr = window_device_pixel_ratio();
+        window.width = Math.floor(config.width * window_dpr);
+        window.height = Math.floor(config.height * window_dpr);
+
             //These are in css device pixels
+        window_w = config.width;
+        window_h = config.width;
         window.style.width = config.width+'px';
         window.style.height = config.height+'px';
-            //This is typically required for our WebGL and blending
+            //This is typically required for our WebGL blending
         window.style.background = '#000';
+
+        _debug('created window at ${window_x},${window_y} - ${window.width}x${window.height} pixels (${config.width}x${config.width}@${window_dpr}x)');
 
         window.id = app.config.runtime.window_id;
         app.config.runtime.window_parent.appendChild(window);
@@ -458,6 +553,10 @@ class Runtime implements snow.core.Runtime {
         }
 
         setup_events();
+
+        if(config.fullscreen) {
+            window_fullscreen(true, config.true_fullscreen);
+        }
 
     } //create_window
 
@@ -547,6 +646,8 @@ class Runtime implements snow.core.Runtime {
 
         if(gamepads_supported) gamepads_poll();
 
+        update_window_bounds();
+
         app.dispatch_event(se_tick);
 
         if(!app.shutting_down) {
@@ -556,6 +657,24 @@ class Runtime implements snow.core.Runtime {
         return true;
 
     } //loop
+
+//internal main loop before ready is fired
+
+    function loop_pre_ready(?_t:Float = 0.016) : Bool {
+
+        app.dispatch_event(se_tick);
+
+        if(!app.shutting_down) {
+            if(!app.ready) {
+                js.Browser.window.requestAnimationFrame(loop_pre_ready);
+            } else {
+                js.Browser.window.requestAnimationFrame(loop);
+            }
+        }
+
+        return true;
+
+    } //loop_pre_ready
 
 //input
 
@@ -604,56 +723,54 @@ class Runtime implements snow.core.Runtime {
 
 //window helpers
 
-    public function update_window_pos() {
+    inline function get_window_x(_bounds:js.html.DOMRect) {
+        return Math.round(_bounds.left + js.Browser.window.pageXOffset - js.Browser.document.body.clientTop);
+    }
+    
+    inline function get_window_y(_bounds:js.html.DOMRect) {
+        return Math.round(_bounds.top + js.Browser.window.pageYOffset - js.Browser.document.body.clientLeft);
+    }
+        
+    inline function update_window_bounds() {
 
-        // see the following link for this implementation
-        // http://www.quirksmode.org/js/findpos.html
+        window_dpr = window_device_pixel_ratio();
 
-        var _obj : js.html.Element = window;
+        var _bounds = window.getBoundingClientRect();
 
-        var curleft = 0;
-        var curtop = 0;
-        var _has_parent = true;
-        var _max_count = 0;
+        var _x = get_window_x(_bounds);
+        var _y = get_window_y(_bounds);
+        var _w = Math.round(_bounds.width);
+        var _h = Math.round(_bounds.height);
 
-        while(_has_parent == true) {
+        if(_x != window_x || _y != window_y) {
+            window_x = _x;
+            window_y = _y;
+            dispatch_window_ev(we_moved, window_x, window_y);
+        }
 
-            _max_count++;
+        if(_w != window_w || _h != window_h) {
+            window_w = _w;
+            window_h = _h;
+            window.width = Math.floor(window_w * window_dpr);
+            window.height = Math.floor(window_h * window_dpr);
+            dispatch_window_ev(we_size_changed, window.width, window.height);
+        }
 
-                //prevent rogue endless loops
-            if(_max_count > 100) {
-                _has_parent = false;
-                break;
-            }
-
-            if(_obj.offsetParent != null) {
-
-                    //it still has an offset parent, add it up
-                curleft += _obj.offsetLeft;
-                curtop += _obj.offsetTop;
-
-                    //then move onto the parent
-                _obj = _obj.offsetParent;
-
-            } else {
-                _has_parent = false;
-            }
-
-        } //while
-
-        window_x = curleft;
-        window_y = curtop;
-
-    } //update_window_pos
+    } //update_window_bounds
 
 //gamepads
     
     var gamepad_btns_cache : Array<Array<Float>>;
 
     inline function gamepads_init_cache(_gamepad:js.html.Gamepad) {
+
         gamepad_btns_cache[_gamepad.index] = [];
-        for(i in 0 ... _gamepad.buttons.length) gamepad_btns_cache[_gamepad.index].push(0);
-    }
+        
+        for(i in 0 ... _gamepad.buttons.length) {
+            gamepad_btns_cache[_gamepad.index].push(0);
+        }
+
+    } //gamepads_init_cache
 
     inline function gamepads_init() {
 
@@ -740,12 +857,10 @@ class Runtime implements snow.core.Runtime {
 
     inline function gamepads_get_list() : Array<js.html.Gamepad> {
 
-            //try official api first
         if( js.Browser.navigator.getGamepads != null ) {
             return js.Browser.navigator.getGamepads();
         }
 
-            //try webkit GetGamepads() function as well
         if( untyped js.Browser.navigator.webkitGetGamepads != null ) {
             return untyped js.Browser.navigator.webkitGetGamepads();
         }
@@ -780,7 +895,7 @@ class Runtime implements snow.core.Runtime {
 
     } //guess_os
 
-}
+} //Runtime
 
 
 typedef WindowHandle = js.html.CanvasElement;
