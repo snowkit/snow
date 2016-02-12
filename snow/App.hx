@@ -151,7 +151,7 @@ class App {
 
         ontickend();
 
-        #if (snow_native && !snow_native_tick_sleep)
+        #if (snow_native && !snow_native_no_tick_sleep)
             Sys.sleep(0);
         #end
 
