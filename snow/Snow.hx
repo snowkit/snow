@@ -80,8 +80,10 @@ class Snow {
 
             if(snow.api.Debug.get_level() > 1) {
                 log('log / level to ${snow.api.Debug.get_level()}' );
-                log('log / filter : ${snow.api.Debug.get_filter()}');
-                log('log / exclude : ${snow.api.Debug.get_exclude()}');
+                var _filter = snow.api.Debug.get_filter();
+                var _exclude = snow.api.Debug.get_exclude();
+                if(_filter != null) log('log / filter : $_filter');
+                if(_exclude != null) log('log / exclude : $_exclude');
             }
 
             host = _host;
@@ -405,7 +407,7 @@ class Snow {
             _debug('config / fetching default window config');
 
             var conf : WindowConfig = {
-                fullscreen_desktop  : true,
+                true_fullscreen     : false,
                 fullscreen          : false,
                 borderless          : false,
                 resizable           : true,
@@ -483,11 +485,11 @@ class Snow {
     //helpers
 
         @:noCompletion public
-        function copy_window_config( _config:WindowConfig ) : WindowConfig {
+        inline function copy_window_config( _config:WindowConfig ) : WindowConfig {
             return {
                 borderless:_config.borderless,
                 fullscreen:_config.fullscreen,
-                fullscreen_desktop:_config.fullscreen_desktop,
+                true_fullscreen:_config.true_fullscreen,
                 height:_config.height,
                 no_input:_config.no_input,
                 resizable:_config.resizable,
@@ -499,7 +501,7 @@ class Snow {
         }
 
         @:noCompletion public
-        function copy_render_config( _config:RenderConfig ) : RenderConfig {
+        inline function copy_render_config( _config:RenderConfig ) : RenderConfig {
             return {
                 antialiasing: _config.antialiasing,
                 depth: _config.depth,
@@ -542,11 +544,5 @@ class Snow {
             return Std.string(to_char(r));
 
         } //make_uniqueid
-
-        inline function typename(t:Dynamic) {
-
-            return Type.getClassName(Type.getClass(t));
-
-        } //typename
 
 } //Snow

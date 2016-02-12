@@ -460,8 +460,9 @@ import snow.api.buffers.Uint8Array;
 
         /** create in fullscreen, default: false, `mobile` true */
         @:optional var fullscreen   : Bool;
-            /** If true, the users native desktop resolution will be used for fullscreen instead of the specified window size. default: true */
-        @:optional var fullscreen_desktop : Bool;
+            /** If false, the users native window/desktop resolution will be used instead of the specified window size. default: false
+                On native, changing the users video mode is less than ideal, so true_fullscreen is commonly discouraged. */
+        @:optional var true_fullscreen : Bool;
             /** allow the window to be resized, default: true */
         @:optional var resizable    : Bool;
             /** create as a borderless window, default: false */
@@ -1051,43 +1052,38 @@ import snow.api.buffers.Uint8Array;
 
             /** An unknown window event */
         var we_unknown          = 0;
-            /** A window is created */
-        var we_created          = 1;
-            /** A window is shown */
-        var we_shown            = 2;
-            /** A window is hidden */
-        var we_hidden           = 3;
-            /** A window is exposed */
-        var we_exposed          = 4;
-            /** A window is moved */
-        var we_moved            = 5;
-            /** A window is resized, by the user or code. */
-        var we_resized          = 6;
-            /** A window is resized, by the OS or internals. */
-        var we_size_changed     = 7;
-            /** A window is minimized */
-        var we_minimized        = 8;
-            /** A window is maximized */
-        var we_maximized        = 9;
-            /** A window is restored */
-        var we_restored         = 10;
-            /** A window is entered by a mouse */
-        var we_enter            = 11;
-            /** A window is left by a mouse */
-        var we_leave            = 12;
-            /** A window has gained focus */
-        var we_focus_gained     = 13;
-            /** A window has lost focus */
-        var we_focus_lost       = 14;
-            /** A window is being closed/hidden */
-        var we_close            = 15;
-            /** A window is being destroyed */
-        var we_destroy          = 16;
+            /** The window is shown */
+        var we_shown            = 1;
+            /** The window is hidden */
+        var we_hidden           = 2;
+            /** The window is exposed */
+        var we_exposed          = 3;
+            /** The window is moved */
+        var we_moved            = 4;
+            /** The window is resized, by the user or code. */
+        var we_resized          = 5;
+            /** The window is resized, by the OS or internals. */
+        var we_size_changed     = 6;
+            /** The window is minimized */
+        var we_minimized        = 7;
+            /** The window is maximized */
+        var we_maximized        = 8;
+            /** The window is restored */
+        var we_restored         = 9;
+            /** The window is entered by a mouse */
+        var we_enter            = 10;
+            /** The window is left by a mouse */
+        var we_leave            = 11;
+            /** The window has gained focus */
+        var we_focus_gained     = 12;
+            /** The window has lost focus */
+        var we_focus_lost       = 13;
+            /** The window is being closed/hidden */
+        var we_close            = 14;
 
         inline function toString() {
             return switch(this) {
                 case we_unknown:       'we_unknown';
-                case we_created:       'we_created';
                 case we_shown:         'we_shown';
                 case we_hidden:        'we_hidden';
                 case we_exposed:       'we_exposed';
@@ -1102,7 +1098,6 @@ import snow.api.buffers.Uint8Array;
                 case we_focus_gained:  'we_focus_gained';
                 case we_focus_lost:    'we_focus_lost';
                 case we_close:         'we_close';
-                case we_destroy:       'we_destroy';
                 case _:                '$this';
             }
         } //toString

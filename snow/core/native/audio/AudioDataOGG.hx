@@ -119,9 +119,9 @@ class OGG {
 
     public static function from_file(app:snow.Snow, _path:String, _is_stream:Bool) : AudioData {
 
-        var _handle = app.io.module.file_handle(_path, 'rb');
+        _debug('from file is_stream:$_is_stream `$_path`');
 
-        trace('OGG.from_file $_path $_is_stream');
+        var _handle = app.io.module.file_handle(_path, 'rb');
 
         return from_file_handle(app, _handle, _path, _is_stream);
 
@@ -129,6 +129,8 @@ class OGG {
 
 
     public static function from_bytes(app:snow.Snow, _path:String, _bytes:Uint8Array) : AudioData {
+
+        _debug('from bytes is_stream:$_is_stream `$_path`');
 
         var _handle = app.io.module.file_handle_from_mem(_bytes, _bytes.length);
 
@@ -175,7 +177,7 @@ class OGG {
 
         var _ogg_info = Ogg.ov_info(_ogg_file, -1);
 
-        _verbose('path: '+_path);
+        _debug('path: '+_path);
         _verbose('version: '+Std.int(_ogg_info.version));
         _verbose('serial: '+Std.int(Ogg.ov_serialnumber(_ogg_file,-1)));
         _verbose('seekable: '+Std.int(Ogg.ov_seekable(_ogg_file)));
@@ -183,9 +185,9 @@ class OGG {
         _verbose('rate: '+Std.int(_ogg_info.rate));
         _verbose('channels: '+Std.int(_ogg_info.channels));
 
-        _verbose('pcm: '+Std.string( Ogg.ov_pcm_total(_ogg_file,-1) ));
+        _debug('pcm: '+Std.string( Ogg.ov_pcm_total(_ogg_file,-1) ));
         _verbose('raw: '+Std.string( Ogg.ov_raw_total(_ogg_file,-1) ));
-        _verbose('time: '+Std.string( Ogg.ov_time_total(_ogg_file,-1) ));
+        _debug('time: '+Std.string( Ogg.ov_time_total(_ogg_file,-1) ));
 
         _verbose('ov_bitrate: ' + code(Ogg.ov_bitrate(_ogg_file, -1)));
         _verbose('ov_bitrate_instant: ' + code(Ogg.ov_bitrate_instant(_ogg_file)));
