@@ -130,7 +130,7 @@ class OGG {
 
     public static function from_bytes(app:snow.Snow, _path:String, _bytes:Uint8Array) : AudioData {
 
-        _debug('from bytes is_stream:$_is_stream `$_path`');
+        _debug('from bytes `$_path`');
 
         var _handle = app.io.module.file_handle_from_mem(_bytes, _bytes.length);
 
