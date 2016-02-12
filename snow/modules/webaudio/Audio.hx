@@ -239,7 +239,7 @@ class Audio implements snow.modules.interfaces.Audio {
         var _snd = snd_of(_handle);
         if(_snd == null) return;
 
-        _debug('pause handle=$_handle, ' + _snd.source.info.id);
+        _debug('pause handle=$_handle, ' + _snd.source.data.id);
 
         _snd.time_pause = app.time - _snd.time_start;
         _snd.state = as_paused;
@@ -258,7 +258,7 @@ class Audio implements snow.modules.interfaces.Audio {
         if(_snd == null) return;
         if(_snd.state != as_paused) return;
 
-        _debug('unpause handle=$_handle, ' + _snd.source.info.id);
+        _debug('unpause handle=$_handle, ' + _snd.source.data.id);
 
         if(_snd.media_node == null) {
             play_buffer_again(_handle, _snd, _snd.time_pause);
@@ -275,7 +275,7 @@ class Audio implements snow.modules.interfaces.Audio {
         var _snd = snd_of(_handle);
         if(_snd == null) return;
 
-        _debug('stop handle=$_handle, ' + _snd.source.info.id);
+        _debug('stop handle=$_handle, ' + _snd.source.data.id);
 
         if(_snd.buffer_node != null) {
             _snd.buffer_node.stop();
@@ -298,7 +298,7 @@ class Audio implements snow.modules.interfaces.Audio {
         var _snd = snd_of(_handle);
         if(_snd == null) return;
 
-        _debug('volume=$_volume handle=$_handle, ' + _snd.source.info.id);
+        _debug('volume=$_volume handle=$_handle, ' + _snd.source.data.id);
 
         _snd.gain_node.gain.value = _volume;
 
@@ -309,7 +309,7 @@ class Audio implements snow.modules.interfaces.Audio {
         var _snd = snd_of(_handle);
         if(_snd == null) return;
 
-        _debug('pan=$_pan handle=$_handle, ' + _snd.source.info.id);
+        _debug('pan=$_pan handle=$_handle, ' + _snd.source.data.id);
 
         _snd.pan = _pan;
         _snd.pan_node.setPosition( Math.cos( (_pan-1)*half_pi ),   0,   Math.sin( (_pan+1)*half_pi ) );
@@ -321,7 +321,7 @@ class Audio implements snow.modules.interfaces.Audio {
         var _snd = snd_of(_handle);
         if(_snd == null) return;
 
-        _debug('pitch=$_pitch handle=$_handle, ' + _snd.source.info.id);
+        _debug('pitch=$_pitch handle=$_handle, ' + _snd.source.data.id);
 
         if(_snd.buffer_node != null) {
             _snd.buffer_node.playbackRate.value = _pitch;
@@ -336,7 +336,7 @@ class Audio implements snow.modules.interfaces.Audio {
         var _snd = snd_of(_handle);
         if(_snd == null) return;
 
-        _debug('position=_time handle=$_handle, ' + _snd.source.info.id);
+        _debug('position=_time handle=$_handle, ' + _snd.source.data.id);
 
         if(_snd.buffer_node != null) {
             stop_buffer(_snd);
