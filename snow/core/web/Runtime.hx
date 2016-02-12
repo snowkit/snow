@@ -84,11 +84,33 @@ class Runtime implements snow.core.Runtime {
 
     public function window_grab(enable:Bool) : Bool {
 
-        log('runtime / web / window_grab');
+        if(enable) {
+    
+            if(window.requestPointerLock != null) {
+                window.requestPointerLock();
+            } else if(untyped window.webkitRequestPointerLock != null) {
+                untyped window.webkitRequestPointerLock();
+            } else if(untyped window.mozRequestPointerLock != null) {
+                untyped window.mozRequestPointerLock(); 
+            } else {
+                return false;
+            }
 
-        //:todo: window_grab
+        } else {
 
-        return false;
+            if(js.Browser.document.exitPointerLock != null) {
+                js.Browser.document.exitPointerLock();
+            } else if(untyped js.Browser.document.webkitExitPointerLock != null) {
+                untyped js.Browser.document.webkitExitPointerLock();
+            } else if(untyped js.Browser.document.mozExitPointerLock != null) {
+                untyped js.Browser.document.mozExitPointerLock();
+            } else {
+                return false;
+            }
+
+        }
+
+        return true;
 
     } //window_grab
 
