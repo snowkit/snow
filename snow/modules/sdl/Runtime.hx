@@ -445,7 +445,7 @@ class Runtime extends snow.core.native.Runtime {
         if(config.borderless) flags |= SDL_WINDOW_BORDERLESS;
 
         if(config.fullscreen) {
-            if(config.fullscreen_desktop) {
+            if(!config.true_fullscreen) {
                 flags |= SDL_WINDOW_FULLSCREEN_DESKTOP;
             } else {
                 #if !mac
@@ -461,7 +461,7 @@ class Runtime extends snow.core.native.Runtime {
     function update_window_config(_window:sdl.Window, config:WindowConfig) : WindowConfig {
 
         if(config.fullscreen) {
-            if(!config.fullscreen_desktop) {
+            if(config.true_fullscreen) {
                 #if mac
                     SDL.setWindowFullscreen(_window, SDL_WINDOW_FULLSCREEN);
                 #end
