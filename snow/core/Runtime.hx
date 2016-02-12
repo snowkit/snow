@@ -3,7 +3,7 @@ package snow.core;
 @:allow(snow.Snow)
 interface Runtime {
 
-    var name : String;
+    var name (default, null) : String;
     var app : snow.Snow;
 
         /** After the ready event but before the app ready */
