@@ -19,7 +19,7 @@
 
   project : {
 
-    name : 'snowdev',
+    name : 'snow',
     version : '1.0.0-alpha.2',
     author : 'snowkit',
 

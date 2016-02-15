@@ -20,7 +20,7 @@
       flags:['-dce full'],
       defines:['snow_web_tga','snow_web_psd'],
       dependencies : {
-        snowdev : '*'
+        snow : '*'
       }
     },
 

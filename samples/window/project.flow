@@ -22,7 +22,7 @@
     build : {
       flags:['-dce full'],
       dependencies : {
-        snowdev : '*'
+        snow : '*'
       }
     },
 

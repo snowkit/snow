@@ -19,7 +19,7 @@
     build : {
       defines:[],
       dependencies : {
-        snowdev : '*',
+        snow : '*',
         // snowhxt : '*',
       }
     },
