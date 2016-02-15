@@ -211,7 +211,7 @@ class Snow {
                 case se_ready:                      on_ready_event();
                 case se_tick:                       on_tick_event();
                 case se_quit:                       shutdown();
-                case se_shutdown:                   log('Goodbye.');
+                case se_shutdown:                   log('goodbye.');
                     //mobile app terminate is an immediate termination
                 case se_app_terminating:
                     immediate_shutdown = true;
