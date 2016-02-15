@@ -97,6 +97,9 @@ import snow.api.buffers.Uint8Array;
         typedef FileHandle = FileHandleDef;
     #end
 
+    @:build(snow.types.TypeCreate.ext())
+    private class ExtensionsInit {}
+
 //Asset types
 
     /** A type to identify assets when stored as an Asset */
