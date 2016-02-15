@@ -1,4 +1,4 @@
-package snow.modules.audio.soloud;
+package snow.modules.soloud;
 
 import snow.api.Debug.*;
 import snow.types.Types;
@@ -10,7 +10,7 @@ import snow.systems.audio.AudioSource;
 import soloud.Soloud;
 
 @:log_as('soloud')
-@:allow(snow.modules.audio.soloud)
+@:allow(snow.modules.soloud)
 @:allow(snow.systems.audio.Audio)
 class Audio {
 
