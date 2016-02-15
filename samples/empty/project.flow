@@ -1,7 +1,14 @@
 {
 
+  snow : {
+    config: {
+      config_path: 'config.json',
+      log: 1
+    }
+  },
+
   project : {
-    name : 'empty',
+    name : 'snow.empty',
     version : '1.0.0',
     author : 'snowkit',
 
@@ -10,9 +17,12 @@
       package : 'org.snowkit.snow',
     },
 
+    //HAH
+
     build : {
+      flags:['-dce full'],
       dependencies : {
-        snow : '*',
+        snowdev : '*'
       }
     },
 

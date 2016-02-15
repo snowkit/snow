@@ -1,632 +1,571 @@
 package snow;
 
-import snow.App;
-import snow.types.Types;
-
 import snow.api.Debug.*;
 import snow.api.Timer;
 import snow.api.Promise;
 import snow.api.buffers.Uint8Array;
+import snow.types.Types;
 
-import snow.system.audio.Audio;
-import snow.system.assets.Assets;
-import snow.system.io.IO;
-import snow.system.input.Input;
-import snow.system.window.Window;
-import snow.system.window.Windowing;
+import snow.core.Runtime;
+import snow.systems.io.IO;
+import snow.systems.input.Input;
+import snow.systems.assets.Asset.AssetJSON;
+import snow.systems.assets.Assets;
+import snow.systems.audio.Audio;
 
 
 class Snow {
 
-//Property accessors
-
-        /** The current timestamp */
-    public var time (get,never) : Float;
-        /** Generate a unique ID to use */
-    public var uniqueid (get,never) : String;
-
-//Static convenience
-
-    public static var timestamp (get, never) : Float;
-
-//State management
-
-        /** The host application */
-    public var host : App;
-        /** The application configuration specifics (like window, runtime, and asset lists) */
-    public var config : snow.types.Types.AppConfig;
-        /** The configuration for snow itself, set via build project flags */
-    public var snow_config : SnowConfig;
-        /** Whether or not we are frozen, ignoring events i.e backgrounded/paused */
-    public var freeze (default,set) : Bool = false;
-
-//Sub systems
-
-        /** The io system */
-    public var io : IO;
-        /** The input system */
-    public var input : Input;
-        /** The asset system */
-    public var assets : Assets;
-        /** The audio system */
-    public var audio : Audio;
-        /** The window manager */
-    public var windowing : Windowing;
-        /** The platform identifier, a string,
-            but uses `snow.types.Types.Platform` abstract enum internally */
-    public var platform : String = 'unknown';
-        /** The os identifier, a string,
-            but uses `snow.types.Types.OS` abstract enum internally */
-    public var os : String = 'unknown';
-        /** A debug flag for convenience, true if the app was built with the haxe -debug flag or define */
-    public var debug : Bool = #if debug true #else false #end;
+    //public
+
+            /** The host application */
+        public var host : AppHost;
+            /** The application configuration specifics (like window, user, runtime, etc) */
+        public var config : snow.types.Types.AppConfig;
+            /** Whether or not we are frozen, ignoring events i.e backgrounded/paused */
+        public var freeze (default,set) : Bool = false;
+            /** Whether or not the ready state has been reached */
+        public var ready (default, null) : Bool = false;
 
-        /** Set if shut down has commenced */
-    public var shutting_down : Bool = false;
-        /** Set if shut dow has completed  */
-    public var has_shutdown : Bool = false;
-        /** If the config specifies a default window, this is it */
-    public var window : Window;
+            /** The current timestamp */
+        public var time (get,never) : Float;
+            /** Generate a unique ID to use */
+        public var uniqueid (get,never) : String;
+            /** A static access to the timestamp for convenience */
+        public static var timestamp (get, never) : Float;
 
-//Internal values
+    //systems
 
-        //if already passed the ready state
-    var was_ready : Bool = false;
-        //if ready has completed, so systems can begin safely
-    var is_ready : Bool = false;
-        //the core platform instance to bind us
-    @:noCompletion public static var core : Core;
-        //the list of functions to run next loop
-    static var next_queue : Array<Void->Void>;
-        //the list of functions to run at the end of the current loop
-    static var defer_queue : Array<Void->Void>;
+            /** The runtime module */
+        public var runtime : AppRuntime;
+            /** The io system */
+        public var io : IO;
+            /** The input system */
+        public var input : Input;
+            /** The audio system */
+        public var audio : Audio;
+            /** The asset system */
+        public var assets : Assets;
 
-    @:noCompletion
-    public function new() {
+    //state
 
-        if(snow.api.Debug.get_level() > 1) {
-            log('log / level to ${snow.api.Debug.get_level()}' );
-            log('log / filter : ${snow.api.Debug.get_filter()}');
-            log('log / exclude : ${snow.api.Debug.get_exclude()}');
-        }
+            /** The platform identifier, a string,
+                but uses `snow.types.Types.Platform` abstract enum internally */
+        public var platform : String = 'unknown';
+            /** The os identifier, a string,
+                but uses `snow.types.Types.OS` abstract enum internally */
+        public var os : String;
+            /** A debug flag for convenience, true if the app was built with the haxe -debug flag or define */
+        public var debug : Bool = #if debug true #else false #end;
 
-        #if ios      platform = Platform.platform_ios;       #end
-        #if mac      platform = Platform.platform_mac;       #end
-        #if web      platform = Platform.platform_web;       #end
-        #if linux    platform = Platform.platform_linux;     #end
-        #if android  platform = Platform.platform_android;   #end
-        #if windows  platform = Platform.platform_windows;   #end
+            /** Set if shut down has commenced */
+        public var shutting_down : Bool = false;
+            /** Set if shut dow has completed  */
+        public var has_shutdown : Bool = false;
 
-            //We create the core as a concrete platform version of the core
-        core = new Core( this );
-        next_queue = [];
-        defer_queue = [];
+    //extensions
 
-    } //new
+        var extensions: Array<snow.core.Extension>;
 
-//Public API
+    //internal preallocated events
 
-        /** Shutdown the engine and quit */
-    public function shutdown() {
+        var sys_event: SystemEvent;
+        var win_event: WindowEvent;
 
-        shutting_down = true;
+    //api
 
-        host.ondestroy();
-        io.destroy();
-        audio.destroy();
-        input.destroy();
-        windowing.destroy();
+        public function new(_host : AppHost) {
 
-        core.shutdown();
+            assertnull(_host, 'snow App instance was null!');
 
-        has_shutdown = true;
+            _debug('app / init / debug:$debug');
+            _debug('app / ident: ' + snow.types.Config.app_ident);
+            _debug('app / config: ' + snow.types.Config.app_config);
 
-    } //shutdown
+            if(snow.api.Debug.get_level() > 1) {
+                log('log / level to ${snow.api.Debug.get_level()}' );
+                var _filter = snow.api.Debug.get_filter();
+                var _exclude = snow.api.Debug.get_exclude();
+                if(_filter != null) log('log / filter : $_filter');
+                if(_exclude != null) log('log / exclude : $_exclude');
+            }
 
-        /** Called for you by snow, unless configured otherwise.
-            Only call this manually if your render_rate is 0! */
-    public inline function render() {
+            host = _host;
+            host.app = this;
+            config = default_config();
 
-        windowing.update();
+            _debug('app / assets / ${snow.types.Config.module_assets}');
+            _debug('app / audio / ${snow.types.Config.module_audio}');
+            _debug('app / io / ${snow.types.Config.module_io}');
 
-    } //render
+            sys_event = new SystemEvent();
+            win_event = new WindowEvent();
 
-    public inline function dispatch_system_event( _event:SystemEvent ) {
+            io = new IO(this);
+            input = new Input(this);
+            audio = new Audio(this);
+            assets = new Assets(this);
 
-        on_event(_event);
+            extensions = [];
+            for(_ext_type in snow.types.Config.extensions) {
 
-    } //dispatch_system_event
+                var _class = Type.resolveClass(_ext_type);
+                if(_class == null) throw Error.error('Extension `$_ext_type`: Type not found via Type.resolveClass!');
 
-//Public static API
+                var _instance:snow.core.Extension = Type.createInstance(_class, null);
+                if(_instance == null) throw Error.error('Extension `$_ext_type`: Instance was null on calling new()!');
 
-        /** Call a function at the start of the next frame,
-            useful for async calls in a sync context, allowing the sync function to return safely before the onload is fired. */
-    inline
-    public static function next( func: Void->Void ) {
+                extensions.push(_instance);
 
-        if(func != null) next_queue.push(func);
+            } //each extension
 
-    } //next
+            _debug('app / runtime / new ${snow.types.Config.app_runtime}');
 
-        /** Call a function at the end of the current frame */
-    inline
-    public static function defer( func: Void->Void ) {
+            runtime = new AppRuntime(this);
 
-        if(func != null) defer_queue.push(func);
+            assertnull(os, 'init - Runtime didn\'t set the app.os value!');
+            assertnull(platform, 'init - Runtime didn\'t set the app.platform value!');
+            // assertnull(config.runtime, 'init - Runtime didn\'t set the app.config.runtime value!');
 
-    } //defer
+            _debug('app / os:$os / platform:$platform / init / $time');
+            dispatch_event(se_init);
+            host.internal_init();
 
-//Internal API
+            step();
 
-    @:noCompletion
-    public function init( _snow_config:SnowConfig, _host : App ) {
+            _debug('app / ready / $time');
+            dispatch_event(se_ready);
 
-        snow_config = _snow_config;
+            step();
 
-        if(snow_config.app_package == null) {
-            snow_config.app_package = 'org.snowkit.snow';
-        }
+            _debug('init / runtime / ${runtime.name} / run');
 
-        if(snow_config.config_path == null) {
-            snow_config.config_path = '';
-        }
-
-        config = default_config();
-        host = _host;
-        host.app = this;
-
-        core.init( on_event );
-
-    } //init
-
-    function on_snow_init() {
-
-        _debug('init / initializing');
-        _debug('init / pre ready, init host');
-
-            //any app pre ready init can be handled in here
-        host.on_internal_init();
-
-    } //on_snow_init
-
-    function on_snow_ready() {
-
-        if(was_ready) {
-            throw Error.error('firing ready event more than once is invalid usage');
-        }
-
-        _debug('init / setting up additional systems...');
-
-                //create the sub systems
-            io = new IO( this );
-            input = new Input( this );
-            audio = new Audio( this );
-            assets = new Assets( this );
-            windowing = new Windowing( this );
-
-        _debug('modules /');
-        _debug('  Assets - '    + typename(assets.module));
-        _debug('  Audio - '     + typename(audio.module));
-        _debug('  Input - '     + typename(input.module));
-        _debug('  IO - '        + typename(io.module));
-        _debug('  Windowing - ' + typename(windowing.module));
-
-            //disllow re-entry
-        was_ready = true;
-
-        setup_app_path();
-
-        _debug('init / setup default assets : ok');
-
-        setup_configs().then(function(_){
-
-            _debug('init / setup default configs : ok');
-
-            setup_default_window();
-
-            next(on_ready);
-
-        }).error(function(e) {
-
-            throw Error.init('snow / cannot recover from error: $e');
-
-        });
-
-            //make sure the initial promises happen
-        snow.api.Promise.Promises.step();
-
-            //make sure all events pushed into
-            //the queues are flushed
-        while(next_queue.length > 0) {
-            cycle_next_queue();
-        }
-
-        while(defer_queue.length > 0) {
-            cycle_defer_queue();
-        }
-
-    } //on_snow_ready
-
-    @:allow(snow.App)
-    function do_internal_update( dt:Float ) {
-
-        io.update();
-        input.update();
-        audio.update();
-        host.update( dt );
-
-    } //do_internal_update
-
-        //once start up is done, this is called
-    function on_ready() {
-
-        _debug('init / calling host ready');
-        is_ready = true;
-        host.ready();
-
-    } //on_ready
-
-    function on_snow_update() {
-
-        if(freeze) return;
-
-            //first update timers
-        Timer.update();
-
-            //handle promise executions
-        snow.api.Promise.Promises.step();
-
-            //handle the events
-        cycle_next_queue();
-
-            //game updates aren't allowed till we are flagged
-        if(!is_ready) return;
-
-            //handle any internal pre updates
-        host.ontickstart();
-
-            //handle any internal updates
-        host.on_internal_update();
-
-            //handle any internal render updates
-        host.on_internal_render();
-
-            //let the system have some time
-        #if snow_native
-            Sys.sleep(0);
-        #end
-
-            //handle any internal post updates
-        host.ontickend();
-
-        cycle_defer_queue();
-
-    } //on_snow_update
-
-    function on_event( _event:SystemEvent ) {
-
-        if( _event.type != SystemEventType.update &&
-            _event.type != SystemEventType.unknown &&
-            _event.type != SystemEventType.window &&
-            _event.type != SystemEventType.input
-
-        ) {
-            _debug( 'event / system event / ${_event.type} / $_event');
-        }
-
-        if( _event.type != SystemEventType.update ) {
-            _verboser( 'event / system event / $_event');
-        }
-
-            //all systems should get these basically...
-            //cos of app lifecycles etc being here.
-        if(is_ready) {
-            io.on_event( _event );
-            audio.on_event( _event );
-            windowing.on_event( _event );
-            input.on_event( _event );
-        }
-
-        host.onevent( _event );
-
-        switch(_event.type) {
-
-            case SystemEventType.init: {
-                on_snow_init();
-            } //init
-
-            case SystemEventType.ready: {
-                on_snow_ready();
-            } //ready
-
-            case SystemEventType.update: {
-                on_snow_update();
-            } //update
-
-            case SystemEventType.quit, SystemEventType.app_terminating: {
+            var _should_exit = runtime.run();
+            if(_should_exit && !(has_shutdown || shutting_down)) {
                 shutdown();
-            } //quit
+            }
 
-            case SystemEventType.shutdown: {
-                log('Goodbye.');
-            } //shutdown
+        } //new
 
-            default: {
+            //internal
+        var immediate_shutdown = false;
 
-            } //default
+            /** Shutdown the engine and quit */
+        public function shutdown() {
 
-        } //switch _event.type
+            // assert(shutting_down == false, 'snow - calling shutdown more than once is disallowed');
+            if(shutting_down) {
+                log('shutdown / called again, already shutting down - ignoring');
+                return;
+            }
+            
+            assert(has_shutdown == false, 'snow - calling shutdown more than once is disallowed');
 
-    } //on_event
+            shutting_down = true;
 
-    inline function cycle_next_queue() {
+            host.ondestroy();
 
-        var count = next_queue.length;
+            dispatch_event(se_shutdown);
+
+            io.shutdown();
+            audio.shutdown();
+            assets.shutdown();
+            input.shutdown();
+
+            runtime.shutdown(immediate_shutdown);
+
+            has_shutdown = true;
+
+        } //shutdown
+
+    //events
+
+            /** Dispatch a system event explicitly */
+        public function dispatch_event(_type:SystemEventType) {
+
+            sys_event.set(_type, null, null);
+
+            onevent(sys_event);
+
+        } //dispatch_event
+
+        public function dispatch_window_event(_type:WindowEventType, _timestamp:Float, _window_id:Int, _x:Int, _y:Int) {
+            
+            win_event.set(_type, _timestamp, _window_id, _x, _y);
+            sys_event.set(se_window, win_event, null);
+            
+            onevent(sys_event);
+
+        } //dispatch_window_event
+
+        @:allow(snow.systems.input.Input)
+        function dispatch_input_event(_event:InputEvent) {
+            
+            sys_event.set(se_input, null, _event);
+            
+            onevent(sys_event);
+
+        } //dispatch_input_event
+
+            /** Handles snow system events, typically emitted via the runtime and modules.
+                Dispatch events manually using the `dispatch_*` calls. */
         var i = 0;
-        while(i < count) {
-            (next_queue.shift())();
-            ++i;
-        }
+        public function onevent(_event:SystemEvent) {
 
-    } //cycle_next_queue
+            // if( _event.type != se_tick ) {
+            //    log('event / system event / ${_event.type}');
+            //     if(_event.window != null) {
+            //         log('   window / ${_event.window.type} / ${_event.window.window_id} / ${_event.window.data1},${_event.window.data2}');
+            //     }
+            // }
 
-    inline function cycle_defer_queue() {
+            io.onevent( _event );
+            audio.onevent( _event );
+            input.onevent( _event );
+            host.onevent( _event );
 
-        var count = defer_queue.length;
-        var i = 0;
-        while(i < count) {
-            (defer_queue.shift())();
-            ++i;
-        }
+            i = 0; while(i < extensions.length) {
+                extensions[i].onevent(_event);
+                ++i;
+            }
 
-    } //cycle_next_queue
+            switch(_event.type) {
 
-//Setup specifics
+                case se_ready:                      on_ready_event();
+                case se_tick:                       on_tick_event();
+                case se_quit:                       shutdown();
+                case se_shutdown:                   log('goodbye.');
+                    //mobile app terminate is an immediate termination
+                case se_app_terminating:
+                    immediate_shutdown = true;
+                    shutdown();
+                case _:
 
-        //ensure that we are in the correct location for asset loading
-    function setup_app_path() {
+            } //switch _event.type
 
-        #if snow_native
+        } //onevent
 
-            var app_path = io.module.app_path();
-            var pref_path = io.module.app_path_prefs();
+            /** Call a function at the start of the next frame,
+                useful for async calls in a sync context, allowing the sync function to return safely before the onload is fired. */
+        inline
+        public static function next( func: Void->Void ) {
 
-            Sys.setCwd( app_path );
+            if(func != null) next_queue.push(func);
 
-            _debug('init / setting up app path $app_path');
-            _debug('init / setting up pref path: $pref_path');
+        } //next
 
-        #end //snow_native
+            /** Call a function at the end of the current frame */
+        inline
+        public static function defer( func: Void->Void ) {
 
-    } //setup_app_path
+            if(func != null) defer_queue.push(func);
 
-    function setup_configs() {
+        } //defer
 
-            //blank config path means don't try to load config.json
-        if(snow_config.config_path == '') {
-            setup_host_config();
-            return Promise.resolve();
-        }
+    //internal endpoints
 
-        return new Promise(function(resolve, reject) {
+        inline function get_time() : Float return get_timestamp();
+        inline function get_uniqueid() : String return make_uniqueid();
+        static inline function get_timestamp() : Float return AppRuntime.timestamp();
 
-            _debug('config / fetching runtime config');
+    //internal event handlers
 
-            default_runtime_config().then(function(_runtime_conf:Dynamic) {
+        var had_ready_event = false;
+        inline function on_ready_event() {
 
-                config.runtime = _runtime_conf;
+            assert(had_ready_event == false, 'snow; the ready event should not be fired repeatedly');
+            had_ready_event = true;
 
-            }).error(function(error){
+            setup_configs().then(function(_) {
 
-                throw Error.init('config / failed / default runtime config failed to parse as JSON. cannot recover. $error');
+                _debug('init / setup default configs : ok');
+                _debug('init / runtime ready');
+                runtime.ready();
 
-            }).then(function(){
+                _debug('init / host ready');
+                host.ready();
 
-                setup_host_config();
-                resolve();
+                _debug('init / ready');
+                ready = true;
+
+            }).error(function(e) {
+
+                throw Error.init('snow / cannot recover from error: $e');
 
             });
 
-        }); //promise
+            step();
 
-    } //setup_configs
+        } //on_ready_event
 
-    function setup_host_config() {
+        inline function on_tick_event() {
 
-        _debug('config / fetching user config');
+            if(freeze) return;
 
-        config = host.config( config );
+            Timer.update();
 
-    } //setup_host_config
+            snow.api.Promise.Promises.step();
 
-    function setup_default_window() {
+            cycle_next_queue();
 
-        _debug('windowing / creating default window');
-
-            //force fullscreen on mobile to get better
-            //behavior from the window for now.
-            //borderless will control the status bar
-        #if mobile
-            config.window.fullscreen = true;
-        #end //mobile
-
-            //now if they requested a window, let's open one
-        if(config.has_window == true) {
-
-            _debug('windowing / has window, so creating with ${config.window}');
-
-            window = windowing.create( config.window );
-
-                //failed to create?
-            if(window.handle == null) {
-                throw Error.windowing('requested default window cannot be created. cannot continue');
+            if(!shutting_down && ready) {
+                host.internal_tick();
             }
 
-        } else { //has_window
+            cycle_defer_queue();
 
-            _debug('windowing / not! creating default window, has_window was ${config.has_window}');
+        } //on_tick_event
 
-        }
+    //setup and boot
 
-    } //create_default_window
+        function setup_configs() {
 
-//Default handlers
+                //blank/null config path means don't try to load it
+            if(snow.types.Config.app_config == null || snow.types.Config.app_config == '') {
 
-    function default_config() : AppConfig {
-        return {
-            has_window : true,
-            runtime : {},
-            window : default_window_config(),
-            render : default_render_config(),
-            web : {
-                no_context_menu : true,
-                prevent_default_keys : [
-                    Key.left, Key.right, Key.up, Key.down,
-                    Key.backspace, Key.tab, Key.delete
-                ],
-                prevent_default_mouse_wheel : true,
-                true_fullscreen : false
-            },
-            native : {
-                audio_buffer_length : 176400,
-                audio_buffer_count : 4
-            }
-        }
-    }
+                setup_host_config();
 
-        /** handles the default method of parsing a runtime config json,
-            To change this behavior override `get_runtime_config`. This is called by default in get_runtime_config. */
-    function default_runtime_config() : Promise {
+                return Promise.resolve();
 
-        _debug('config / setting up default runtime config');
+            } //blank config
 
-            //for the default config, we only reject if there is a json parse error
-        return new Promise(function(resolve, reject) {
+            return new Promise(function(resolve, reject) {
 
-            var load = io.data_flow( assets.path(snow_config.config_path), AssetJSON.processor);
+                _debug('config / fetching user config');
 
-                load.then(resolve).error(function(error:Error) {
-                    switch(error) {
-                        case Error.parse(val):
-                            reject(error);
-                        case _:
-                            _debug('config / default config rejected / $error');
-                            resolve();
-                    }
+                default_user_config().then(function(_user_conf:Dynamic) {
+
+                    config.user = _user_conf;
+
+                }).error(function(error){
+
+                    throw Error.init('config / failed / default user config JSON failed to parse. Cannot recover. $error');
+
+                }).then(function(){
+
+                    setup_host_config();
+                    resolve();
+
                 });
 
-        }); //promise
+            }); //promise
 
-    } //default_runtime_config
+        } //setup_configs
+
+        inline function setup_host_config() {
+
+            _debug('config / fetching host config');
+
+            config = host.config( config );
+
+        } //setup_host_config
+
+            /** Handles the default method of parsing a user config json */
+        function default_user_config() : Promise {
+
+            _debug('config / setting up default user config');
+
+                //for the default config, we only reject if there is a json parse error
+            return new Promise(function(resolve, reject) {
+
+                var load = io.data_flow(assets.path(snow.types.Config.app_config), AssetJSON.processor);
+
+                    load.then(resolve).error(function(error:Error) {
+                        switch(error) {
+                            case Error.parse(val):
+                                reject(error);
+                            case _:
+                                log('config / user config will be null! / $error');
+                                resolve(null);
+                        }
+                    });
+
+            }); //promise
+
+        } //default_user_config
+
+        function default_config() : AppConfig {
+
+            return {
+                user : null,
+                window : default_window_config(),
+                render : default_render_config(),
+                runtime : null
+            }
+
+        } //default_config
 
         /** Returns a default configured render config */
-    function default_render_config() : RenderConfig {
+        function default_render_config() : RenderConfig {
 
-        _debug('config / fetching default render config');
+            _debug('config / fetching default render config');
 
-        return {
-            depth : false,
-            stencil : false,
-            antialiasing : 0,
-            red_bits : 8,
-            green_bits : 8,
-            blue_bits : 8,
-            alpha_bits : 8,
-            depth_bits : 0,
-            stencil_bits : 0,
-            opengl : {
-                minor:0, major:0,
-                profile:OpenGLProfile.compatibility
+            return {
+                depth : 0,
+                stencil : 0,
+                antialiasing : 0,
+                red_bits : 8,
+                green_bits : 8,
+                blue_bits : 8,
+                alpha_bits : 8,
+                opengl : {
+                    #if mobile
+                        major:2, minor:0,
+                        profile: OpenGLProfile.gles
+                    #else
+                        major:0, minor: 0,
+                        profile: OpenGLProfile.compatibility
+                    #end
+                },
+                webgl : {
+                    version : 1
+                }
+            };
+
+        } //default_render_config
+
+            /** Returns a default configured window config */
+        function default_window_config() : WindowConfig {
+
+            _debug('config / fetching default window config');
+
+            var conf : WindowConfig = {
+                true_fullscreen     : false,
+                fullscreen          : false,
+                borderless          : false,
+                resizable           : true,
+                x                   : 0x1FFF0000,
+                y                   : 0x1FFF0000,
+                width               : 960,
+                height              : 640,
+                title               : 'snow app'
+            };
+
+                #if mobile
+                    conf.fullscreen = true;
+                    conf.borderless = true;
+                #end //mobile
+
+            return conf;
+
+        } //default_window_config
+
+    //properties
+
+        function set_freeze( _freeze:Bool ) {
+
+            freeze = _freeze;
+
+            dispatch_event(_freeze ? se_freeze : se_unfreeze);
+
+            return freeze;
+
+        } //set_freeze
+
+    //step
+
+        inline function step() {
+
+            snow.api.Promise.Promises.step();
+
+            while(next_queue.length > 0) {
+                cycle_next_queue();
             }
-        };
 
-    } //default_render_config
+            while(defer_queue.length > 0) {
+                cycle_defer_queue();
+            }
 
-        /** Returns a default configured window config */
-    function default_window_config() : WindowConfig {
+        } //step
 
-        _debug('config / fetching default window config');
+    //callbacks
 
-        var conf =  {
-            fullscreen_desktop  : true,
-            fullscreen          : false,
-            borderless          : false,
-            resizable           : true,
-            x                   : 0x1FFF0000,
-            y                   : 0x1FFF0000,
-            width               : 960,
-            height              : 640,
-            title               : 'snow app'
-        };
+        static var next_queue : Array<Void->Void> = [];
+        static var defer_queue : Array<Void->Void> = [];
 
-            #if mobile
-                conf.fullscreen = true;
-                conf.borderless = true;
-            #end //mobile
+        inline function cycle_next_queue() {
 
-        return conf;
+            var count = next_queue.length;
+            var i = 0;
+            while(i < count) {
+                (next_queue.shift())();
+                ++i;
+            }
 
-    } //default_window_config
+        } //cycle_next_queue
 
-//Properties
+        inline function cycle_defer_queue() {
 
-    function set_freeze( _freeze:Bool ) {
+            var count = defer_queue.length;
+            var i = 0;
+            while(i < count) {
+                (defer_queue.shift())();
+                ++i;
+            }
 
-        freeze = _freeze;
+        } //cycle_next_queue
 
-        if(_freeze) {
-            audio.suspend();
-        } else {
-            audio.resume();
+    //helpers
+
+        @:noCompletion public
+        inline function copy_window_config( _config:WindowConfig ) : WindowConfig {
+            return {
+                borderless:_config.borderless,
+                fullscreen:_config.fullscreen,
+                true_fullscreen:_config.true_fullscreen,
+                height:_config.height,
+                no_input:_config.no_input,
+                resizable:_config.resizable,
+                title:'${_config.title}',
+                width:_config.width,
+                x:_config.x,
+                y:_config.y
+            }
         }
 
-        return freeze;
-
-    } //set_freeze
-
-    inline function get_time() : Float return core.timestamp();
-    inline function get_uniqueid() : String return make_uniqueid();
-    static inline function get_timestamp() return core.timestamp();
-
-//Helpers
-
-
-        // http://www.anotherchris.net/csharp/friendly-unique-id-generation-part-2/#base62
-    function make_uniqueid(?val:Int) : String {
-
-        if(val == null) {
-            #if neko val = Std.random(0x3FFFFFFF);
-            #else val = Std.random(0x7fffffff);
-            #end
+        @:noCompletion public
+        inline function copy_render_config( _config:RenderConfig ) : RenderConfig {
+            return {
+                antialiasing: _config.antialiasing,
+                depth: _config.depth,
+                stencil: _config.stencil,
+                red_bits: _config.red_bits,
+                green_bits: _config.green_bits,
+                blue_bits: _config.blue_bits,
+                alpha_bits: _config.alpha_bits,
+                opengl : {
+                    major: _config.opengl.major,
+                    minor: _config.opengl.minor,
+                    profile: _config.opengl.profile
+                }
+            }
         }
 
-        inline function to_char(value:Int) {
-            if (value > 9) {
-                var ascii = (65 + (value - 10));
-                if (ascii > 90) ascii += 6;
-                return String.fromCharCode(ascii);
-            } else return Std.string(value).charAt(0);
-        } //to_char
+        function make_uniqueid(?val:Int) : String {
 
-        var r = Std.int(val % 62);
-        var q = Std.int(val / 62);
+            // http://www.anotherchris.net/csharp/friendly-unique-id-generation-part-2/#base62
 
-        if (q > 0) return make_uniqueid(q) + to_char(r);
+            if(val == null) {
+                #if neko val = Std.random(0x3FFFFFFF);
+                #else val = Std.random(0x7fffffff);
+                #end
+            }
 
-        return Std.string(to_char(r));
+            inline function to_char(value:Int) {
+                if (value > 9) {
+                    var ascii = (65 + (value - 10));
+                    if (ascii > 90) ascii += 6;
+                    return String.fromCharCode(ascii);
+                } else return Std.string(value).charAt(0);
+            } //to_char
 
-    } //make_uniqueid
+            var r = Std.int(val % 62);
+            var q = Std.int(val / 62);
 
-    inline function typename(t:Dynamic) {
-        return Type.getClassName(Type.getClass(t));
-    }
+            if (q > 0) return make_uniqueid(q) + to_char(r);
+
+            return Std.string(to_char(r));
+
+        } //make_uniqueid
 
 } //Snow
-
-
-
-#if snow_web
-    private typedef Core = snow.core.web.Core;
-#else
-    private typedef Core = snow.core.native.Core;
-#end

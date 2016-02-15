@@ -1,0 +1,33 @@
+{
+
+  snow : {
+    config: {
+      config_path: ''
+    }
+  },
+
+  project : {
+    name : 'snow.assets',
+    version : '1.0.0',
+    author : 'snowkit',
+
+    app : {
+      name : 'snow_assets',
+      package : 'org.snowkit.snow_assets'
+    },
+
+    build : {
+      flags:['-dce full'],
+      defines:['snow_web_tga','snow_web_psd'],
+      dependencies : {
+        snowdev : '*'
+      }
+    },
+
+    files : {
+      assets : 'assets/'
+    }
+
+  }
+
+}

@@ -3,12 +3,16 @@ import snow.api.Debug.*;
 import snow.types.Types;
 import snow.modules.opengl.GL;
 
+typedef UserConfig = {}
+
 @:log_as('app')
 class Main extends snow.App {
 
+    function new() {}
+
     override function config( config:AppConfig ) : AppConfig {
 
-        config.window.title = 'snow empty application template';
+        config.window.title = 'snow empty app';
 
         return config;
 
@@ -17,8 +21,6 @@ class Main extends snow.App {
     override function ready() {
 
         log('ready');
-
-        app.window.onrender = render;
 
     } //ready
 
@@ -30,15 +32,11 @@ class Main extends snow.App {
 
     } //onkeyup
 
-    override function update( delta:Float ) {
-
-    } //update
-
-    function render( window:snow.system.window.Window ) {
+    override function tick( delta:Float ) {
 
         GL.clearColor(1.0, 1.0, 1.0, 1.0);
         GL.clear(GL.COLOR_BUFFER_BIT);
 
-    } //render
+    } //update
 
 } //Main

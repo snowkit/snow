@@ -8,14 +8,27 @@ import snow.api.Promise;
 import snow.api.Debug.*;
 
 
-@:allow(snow.system.io.IO)
+@:allow(snow.systems.io.IO)
 class IO implements snow.modules.interfaces.IO {
 
-    var system : snow.system.io.IO;
-
-    function new( _system:snow.system.io.IO ) system = _system;
+    var app: snow.Snow;
+    function new(_app:snow.Snow) app = _app;
+    function shutdown() {}
+    function onevent( _event:SystemEvent ) : Void {}
 
 //Public API
+
+    public function app_path() : String {
+
+        return './';
+
+    } //app_path
+
+    public function app_path_prefs() : String {
+
+        return './';
+
+    } //app_path_prefs
 
     public function url_open( _url:String ) {
 
@@ -48,13 +61,9 @@ class IO implements snow.modules.interfaces.IO {
                 request.overrideMimeType('text/plain; charset=UTF-8');
             }
 
-                //only _async can set the type it seems
+                //only _async can set this type
             if(_async) {
-                #if (haxe_ver < 3.2)
-                    request.responseType = 'arraybuffer';
-                #else
-                    request.responseType = js.html.XMLHttpRequestResponseType.ARRAYBUFFER;
-                #end
+                request.responseType = js.html.XMLHttpRequestResponseType.ARRAYBUFFER;
             }
 
             request.onload = function(data) {
@@ -83,7 +92,7 @@ class IO implements snow.modules.interfaces.IO {
         /** Returns the path where string_save operates.
             One targets where this is not a path, the path will be prefaced with `< >/`,
             i.e on web targets the path will be `<localstorage>/` followed by the ID. */
-    public function string_save_path( _slot:Int = 0 ) : String {
+    public function string_save_path( ?_slot:Int = 0 ) : String {
 
         var _pref_path = '<localstorage>';
         var _slot_path = string_slot_id(_slot);
@@ -95,20 +104,15 @@ class IO implements snow.modules.interfaces.IO {
 
 //Internal API
 
-    function init() {}
-    function update() {}
-    function destroy() {}
-    function on_event( _event:SystemEvent ) {}
-
     inline function string_slot_id(_slot:Int = 0) {
-        var _parts = system.app.snow_config.app_package.split('.');
+        var _parts = snow.types.Config.app_ident.split('.');
         var _appname = _parts.pop();
         var _org = _parts.join('.');
 
-        return '$_org/$_appname/${system.string_save_prefix}.$_slot';
+        return '$_org/$_appname/${app.io.string_save_prefix}.$_slot';
     }
 
-    inline function string_slot_destroy( _slot:Int = 0 ) : Bool {
+    inline function string_slot_destroy( ?_slot:Int = 0 ) : Bool {
 
         var storage = js.Browser.window.localStorage;
         if(storage == null) {
@@ -125,7 +129,7 @@ class IO implements snow.modules.interfaces.IO {
     } //string_slot_destroy
 
         //flush the string map to disk
-    inline function string_slot_save( _slot:Int = 0, _contents:String ) : Bool {
+    inline function string_slot_save( ?_slot:Int = 0, _contents:String ) : Bool {
 
         var storage = js.Browser.window.localStorage;
         if(storage == null) {
@@ -143,7 +147,7 @@ class IO implements snow.modules.interfaces.IO {
 
         //get the string contents of this slot,
         //or null if not found/doesn't exist
-    inline function string_slot_load( _slot:Int = 0 ) : String {
+    inline function string_slot_load( ?_slot:Int = 0 ) : String {
 
         var storage = js.Browser.window.localStorage;
         if(storage == null) {

@@ -8,7 +8,10 @@ obj/
 builds/
 bin/
 users/
+dump/
 ndll/
 ios.project
 android.project
+mac.project
 *.xcuserstate
+wip/tests

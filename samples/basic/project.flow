@@ -1,7 +1,13 @@
 {
+  snow : {
+    config: {
+      config_path: 'config.json',
+      log: 1
+    }
+  },
 
   project : {
-    name : 'snow basic',
+    name : 'snow.basic',
     version : '1.0.0',
     author : 'snowkit',
 
@@ -11,8 +17,10 @@
     },
 
     build : {
+      defines:[],
       dependencies : {
-        snow : '*',
+        snowdev : '*',
+        // snowhxt : '*',
       }
     },
 

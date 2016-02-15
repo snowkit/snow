@@ -1,0 +1,20 @@
+{{#if snow.main~}}
+--macro snow.Set.main("{{{toString snow.main}}}")
+{{~else~}}
+--macro snow.Set.main("{{{toString project.app.main}}}")
+{{~/if}}
+{{#if project.app.package~}}
+--macro snow.Set.ident("{{{toString project.app.package}}}")
+{{~/if}}
+{{#if snow.config.log~}}
+--macro snow.api.Debug.level({{{snow.config.log}}})
+{{~/if}}
+{{#if snow.config.config_path~}}
+--macro snow.Set.config("{{{toString snow.config.config_path}}}")
+{{~/if}}
+{{#if snow.runtime~}}
+--macro snow.Set.runtime("{{{toString snow.runtime}}}")
+{{~/if}}
+{{#if snow.audio~}}
+--macro snow.Set.audio("{{{toString snow.audio}}}")
+{{~/if}}

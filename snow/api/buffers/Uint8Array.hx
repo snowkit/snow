@@ -105,7 +105,7 @@ package snow.api.buffers;
 
     //Internal
 
-        inline function toString() return 'Uint8Array [byteLength:${this.byteLength}, length:${this.length}]';
+        inline function toString() return this == null ? null : 'Uint8Array [byteLength:${this.byteLength}, length:${this.length}]';
 
         inline function get_length() return this.length;
 

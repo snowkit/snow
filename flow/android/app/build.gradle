@@ -1,0 +1,26 @@
+apply plugin: 'com.android.application'
+apply from: 'flow.gradle'
+
+android {
+    compileSdkVersion 23
+    buildToolsVersion "23.0.2"
+
+    defaultConfig {
+        applicationId "{{project.app.package}}"
+        minSdkVersion 14
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+        }
+        debug {
+            jniDebuggable true
+        }
+    }
+}
+
+dependencies {
+    compile 'com.android.support:support-v4:23.1.1'
+}

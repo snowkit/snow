@@ -25,431 +25,432 @@ class GL {
 
 
 
-    public static var version(get_version, null):Int;
-    public static var current_context:RenderingContext;
+    public static var version(get_version, null) : Int;
+    public static var gl : RenderingContext;
 
 //non-spec
 
     public static function versionString():String {
 
-        var ver = current_context.getParameter(VERSION);
-        var slver = current_context.getParameter(SHADING_LANGUAGE_VERSION);
-        var ren = current_context.getParameter(RENDERER);
-        var ven = current_context.getParameter(VENDOR);
+        var ver = gl.getParameter(VERSION);
+        var slver = gl.getParameter(SHADING_LANGUAGE_VERSION);
+        var ren = gl.getParameter(RENDERER);
+        var ven = gl.getParameter(VENDOR);
 
         return "/ " + ver + " / " + slver + " / " + ren + " / " + ven + " /";
-    }
+    
+    } //versionString
 
 //spec
 
     inline public static function activeTexture(texture:Int):Void
-        current_context.activeTexture(texture);
+        gl.activeTexture(texture);
 
     inline public static function attachShader(program:GLProgram, shader:GLShader):Void
-        current_context.attachShader(program, shader);
+        gl.attachShader(program, shader);
 
     inline public static function bindAttribLocation(program:GLProgram, index:Int, name:String):Void
-        current_context.bindAttribLocation(program, index, name);
+        gl.bindAttribLocation(program, index, name);
 
     inline public static function bindBuffer(target:Int, buffer:GLBuffer):Void
-        current_context.bindBuffer(target, buffer);
+        gl.bindBuffer(target, buffer);
 
     inline public static function bindFramebuffer(target:Int, framebuffer:GLFramebuffer):Void
-        current_context.bindFramebuffer(target, framebuffer);
+        gl.bindFramebuffer(target, framebuffer);
 
     inline public static function bindRenderbuffer(target:Int, renderbuffer:GLRenderbuffer):Void
-        current_context.bindRenderbuffer(target, renderbuffer);
+        gl.bindRenderbuffer(target, renderbuffer);
 
     inline public static function bindTexture(target:Int, texture:GLTexture):Void
-        current_context.bindTexture(target, texture);
+        gl.bindTexture(target, texture);
 
     inline public static function blendColor(red:Float, green:Float, blue:Float, alpha:Float):Void
-        current_context.blendColor(red, green, blue, alpha);
+        gl.blendColor(red, green, blue, alpha);
 
     inline public static function blendEquation(mode:Int):Void
-        current_context.blendEquation(mode);
+        gl.blendEquation(mode);
 
     inline public static function blendEquationSeparate(modeRGB:Int, modeAlpha:Int):Void
-        current_context.blendEquationSeparate(modeRGB, modeAlpha);
+        gl.blendEquationSeparate(modeRGB, modeAlpha);
 
     inline public static function blendFunc(sfactor:Int, dfactor:Int):Void
-        current_context.blendFunc(sfactor, dfactor);
+        gl.blendFunc(sfactor, dfactor);
 
     inline public static function blendFuncSeparate(srcRGB:Int, dstRGB:Int, srcAlpha:Int, dstAlpha:Int):Void
-        current_context.blendFuncSeparate(srcRGB, dstRGB, srcAlpha, dstAlpha);
+        gl.blendFuncSeparate(srcRGB, dstRGB, srcAlpha, dstAlpha);
 
     inline public static function bufferData(target:Int, data:ArrayBufferView, usage:Int):Void
-        current_context.bufferData( target, data, usage );
+        gl.bufferData( target, data, usage );
 
     inline public static function bufferSubData(target:Int, offset:Int, data:ArrayBufferView):Void
-        current_context.bufferSubData(target, offset, data);
+        gl.bufferSubData(target, offset, data);
 
     inline public static function checkFramebufferStatus(target:Int):Int
-        return current_context.checkFramebufferStatus(target);
+        return gl.checkFramebufferStatus(target);
 
     inline public static function clear(mask:Int):Void
-        current_context.clear(mask);
+        gl.clear(mask);
 
     inline public static function clearColor(red:Float, green:Float, blue:Float, alpha:Float):Void
-        current_context.clearColor(red, green, blue, alpha);
+        gl.clearColor(red, green, blue, alpha);
 
     inline public static function clearDepth(depth:Float):Void
-        current_context.clearDepth(depth);
+        gl.clearDepth(depth);
 
     inline public static function clearStencil(s:Int):Void
-        current_context.clearStencil(s);
+        gl.clearStencil(s);
 
     inline public static function colorMask(red:Bool, green:Bool, blue:Bool, alpha:Bool):Void
-        current_context.colorMask(red, green, blue, alpha);
+        gl.colorMask(red, green, blue, alpha);
 
     inline public static function compileShader(shader:GLShader):Void
-        current_context.compileShader(shader);
+        gl.compileShader(shader);
 
     inline public static function compressedTexImage2D(target:Int, level:Int, internalformat:Int, width:Int, height:Int, border:Int, data:ArrayBufferView):Void
-        current_context.compressedTexImage2D(target, level, internalformat, width, height, border, data);
+        gl.compressedTexImage2D(target, level, internalformat, width, height, border, data);
 
     inline public static function compressedTexSubImage2D(target:Int, level:Int, xoffset:Int, yoffset:Int, width:Int, height:Int, format:Int, data:ArrayBufferView):Void
-        current_context.compressedTexSubImage2D(target, level, xoffset, yoffset, width, height, format, data);
+        gl.compressedTexSubImage2D(target, level, xoffset, yoffset, width, height, format, data);
 
     inline public static function copyTexImage2D(target:Int, level:Int, internalformat:Int, x:Int, y:Int, width:Int, height:Int, border:Int):Void
-        current_context.copyTexImage2D(target, level, internalformat, x, y, width, height, border);
+        gl.copyTexImage2D(target, level, internalformat, x, y, width, height, border);
 
     inline public static function copyTexSubImage2D(target:Int, level:Int, xoffset:Int, yoffset:Int, x:Int, y:Int, width:Int, height:Int):Void
-        current_context.copyTexSubImage2D(target, level, xoffset, yoffset, x, y, width, height);
+        gl.copyTexSubImage2D(target, level, xoffset, yoffset, x, y, width, height);
 
     inline public static function createBuffer():GLBuffer
-        return current_context.createBuffer();
+        return gl.createBuffer();
 
     inline public static function createFramebuffer():GLFramebuffer
-        return current_context.createFramebuffer();
+        return gl.createFramebuffer();
 
     inline public static function createProgram():GLProgram
-        return current_context.createProgram();
+        return gl.createProgram();
 
     inline public static function createRenderbuffer():GLRenderbuffer
-        return current_context.createRenderbuffer();
+        return gl.createRenderbuffer();
 
     inline public static function createShader(type:Int):GLShader
-        return current_context.createShader(type);
+        return gl.createShader(type);
 
     inline public static function createTexture():GLTexture
-        return current_context.createTexture();
+        return gl.createTexture();
 
     inline public static function cullFace(mode:Int):Void
-        current_context.cullFace(mode);
+        gl.cullFace(mode);
 
     inline public static function deleteBuffer(buffer:GLBuffer):Void
-        current_context.deleteBuffer(buffer);
+        gl.deleteBuffer(buffer);
 
     inline public static function deleteFramebuffer(framebuffer:GLFramebuffer):Void
-        current_context.deleteFramebuffer(framebuffer);
+        gl.deleteFramebuffer(framebuffer);
 
     inline public static function deleteProgram(program:GLProgram):Void
-        current_context.deleteProgram(program);
+        gl.deleteProgram(program);
 
     inline public static function deleteRenderbuffer(renderbuffer:GLRenderbuffer):Void
-        current_context.deleteRenderbuffer(renderbuffer);
+        gl.deleteRenderbuffer(renderbuffer);
 
     inline public static function deleteShader(shader:GLShader):Void
-        current_context.deleteShader(shader);
+        gl.deleteShader(shader);
 
     inline public static function deleteTexture(texture:GLTexture):Void
-        current_context.deleteTexture(texture);
+        gl.deleteTexture(texture);
 
     inline public static function depthFunc(func:Int):Void
-        current_context.depthFunc(func);
+        gl.depthFunc(func);
 
     inline public static function depthMask(flag:Bool):Void
-        current_context.depthMask(flag);
+        gl.depthMask(flag);
 
     inline public static function depthRange(zNear:Float, zFar:Float):Void
-        current_context.depthRange(zNear, zFar);
+        gl.depthRange(zNear, zFar);
 
     inline public static function detachShader(program:GLProgram, shader:GLShader):Void
-        current_context.detachShader(program, shader);
+        gl.detachShader(program, shader);
 
     inline public static function disable(cap:Int):Void
-        current_context.disable(cap);
+        gl.disable(cap);
 
     inline public static function disableVertexAttribArray(index:Int):Void
-        current_context.disableVertexAttribArray(index);
+        gl.disableVertexAttribArray(index);
 
     inline public static function drawArrays(mode:Int, first:Int, count:Int):Void
-        current_context.drawArrays(mode, first, count);
+        gl.drawArrays(mode, first, count);
 
     inline public static function drawElements(mode:Int, count:Int, type:Int, offset:Int):Void
-        current_context.drawElements(mode, count, type, offset);
+        gl.drawElements(mode, count, type, offset);
 
     inline public static function enable(cap:Int):Void
-        current_context.enable(cap);
+        gl.enable(cap);
 
     inline public static function enableVertexAttribArray(index:Int):Void
-        current_context.enableVertexAttribArray(index);
+        gl.enableVertexAttribArray(index);
 
     inline public static function finish():Void
-        current_context.finish();
+        gl.finish();
 
     inline public static function flush():Void
-        current_context.flush();
+        gl.flush();
 
     inline public static function framebufferRenderbuffer(target:Int, attachment:Int, renderbuffertarget:Int, renderbuffer:GLRenderbuffer):Void
-        current_context.framebufferRenderbuffer(target, attachment, renderbuffertarget, renderbuffer);
+        gl.framebufferRenderbuffer(target, attachment, renderbuffertarget, renderbuffer);
 
     inline public static function framebufferTexture2D(target:Int, attachment:Int, textarget:Int, texture:GLTexture, level:Int):Void
-        current_context.framebufferTexture2D(target, attachment, textarget, texture, level);
+        gl.framebufferTexture2D(target, attachment, textarget, texture, level);
 
     inline public static function frontFace(mode:Int):Void
-        current_context.frontFace(mode);
+        gl.frontFace(mode);
 
     inline public static function generateMipmap(target:Int):Void
-        current_context.generateMipmap(target);
+        gl.generateMipmap(target);
 
     inline public static function getActiveAttrib(program:GLProgram, index:Int):GLActiveInfo
-        return current_context.getActiveAttrib(program, index);
+        return gl.getActiveAttrib(program, index);
 
     inline public static function getActiveUniform(program:GLProgram, index:Int):GLActiveInfo
-        return current_context.getActiveUniform(program, index);
+        return gl.getActiveUniform(program, index);
 
     inline public static function getAttachedShaders(program:GLProgram):Array<GLShader>
-        return current_context.getAttachedShaders(program);
+        return gl.getAttachedShaders(program);
 
     inline public static function getAttribLocation(program:GLProgram, name:String):Int
-        return current_context.getAttribLocation(program, name);
+        return gl.getAttribLocation(program, name);
 
     inline public static function getBufferParameter(target:Int, pname:Int):Dynamic
-        return current_context.getBufferParameter(target, pname);
+        return gl.getBufferParameter(target, pname);
 
     inline public static function getContextAttributes():GLContextAttributes
-        return current_context.getContextAttributes();
+        return gl.getContextAttributes();
 
     inline public static function getError():Int
-        return current_context.getError();
+        return gl.getError();
 
     inline public static function getExtension(name:String):Dynamic
-        return current_context.getExtension(name);
+        return gl.getExtension(name);
 
     inline public static function getFramebufferAttachmentParameter(target:Int, attachment:Int, pname:Int):Dynamic
-        return current_context.getFramebufferAttachmentParameter(target, attachment, pname);
+        return gl.getFramebufferAttachmentParameter(target, attachment, pname);
 
     inline public static function getParameter(pname:Int):Dynamic
-        return current_context.getParameter(pname);
+        return gl.getParameter(pname);
 
     inline public static function getProgramInfoLog(program:GLProgram):String
-        return current_context.getProgramInfoLog(program);
+        return gl.getProgramInfoLog(program);
 
     inline public static function getProgramParameter(program:GLProgram, pname:Int):Int
-        return current_context.getProgramParameter(program, pname);
+        return gl.getProgramParameter(program, pname);
 
     inline public static function getRenderbufferParameter(target:Int, pname:Int):Dynamic
-        return current_context.getRenderbufferParameter(target, pname);
+        return gl.getRenderbufferParameter(target, pname);
 
     inline public static function getShaderInfoLog(shader:GLShader):String
-        return current_context.getShaderInfoLog(shader);
+        return gl.getShaderInfoLog(shader);
 
     inline public static function getShaderParameter(shader:GLShader, pname:Int):Int
-        return current_context.getShaderParameter(shader, pname);
+        return gl.getShaderParameter(shader, pname);
 
     inline public static function getShaderPrecisionFormat(shadertype:Int, precisiontype:Int) : GLShaderPrecisionFormat
-        return current_context.getShaderPrecisionFormat(shadertype, precisiontype);
+        return gl.getShaderPrecisionFormat(shadertype, precisiontype);
 
     inline public static function getShaderSource(shader:GLShader):String
-        return current_context.getShaderSource(shader);
+        return gl.getShaderSource(shader);
 
     inline public static function getSupportedExtensions() : Array<String>
-        return current_context.getSupportedExtensions();
+        return gl.getSupportedExtensions();
 
     inline public static function getTexParameter(target:Int, pname:Int):Dynamic
-        return current_context.getTexParameter(target, pname);
+        return gl.getTexParameter(target, pname);
 
     inline public static function getUniform(program:GLProgram, location:GLUniformLocation):Dynamic
-        return current_context.getUniform(program, location);
+        return gl.getUniform(program, location);
 
     inline public static function getUniformLocation(program:GLProgram, name:String):GLUniformLocation
-        return current_context.getUniformLocation(program, name);
+        return gl.getUniformLocation(program, name);
 
     inline public static function getVertexAttrib(index:Int, pname:Int):Dynamic
-        return current_context.getVertexAttrib(index, pname);
+        return gl.getVertexAttrib(index, pname);
 
     inline public static function getVertexAttribOffset(index:Int, pname:Int):Int
-        return current_context.getVertexAttribOffset(index, pname);
+        return gl.getVertexAttribOffset(index, pname);
 
     inline public static function hint(target:Int, mode:Int):Void
-        current_context.hint(target, mode);
+        gl.hint(target, mode);
 
     inline public static function isBuffer(buffer:GLBuffer):Bool
-        return current_context.isBuffer(buffer);
+        return gl.isBuffer(buffer);
 
     // This is non-static
     // public function isContextLost():Bool { return false; }
 
     inline public static function isEnabled(cap:Int):Bool
-        return current_context.isEnabled(cap);
+        return gl.isEnabled(cap);
 
     inline public static function isFramebuffer(framebuffer:GLFramebuffer):Bool
-        return current_context.isFramebuffer(framebuffer);
+        return gl.isFramebuffer(framebuffer);
 
     inline public static function isProgram(program:GLProgram):Bool
-        return current_context.isProgram(program);
+        return gl.isProgram(program);
 
     inline public static function isRenderbuffer(renderbuffer:GLRenderbuffer):Bool
-        return current_context.isRenderbuffer(renderbuffer);
+        return gl.isRenderbuffer(renderbuffer);
 
     inline public static function isShader(shader:GLShader):Bool
-        return current_context.isShader(shader);
+        return gl.isShader(shader);
 
     inline public static function isTexture(texture:GLTexture):Bool
-        return current_context.isTexture(texture);
+        return gl.isTexture(texture);
 
     inline public static function lineWidth(width:Float):Void
-        current_context.lineWidth(width);
+        gl.lineWidth(width);
 
     inline public static function linkProgram(program:GLProgram):Void
-        current_context.linkProgram(program);
+        gl.linkProgram(program);
 
     inline public static function pixelStorei(pname:Int, param:Int):Void
-        current_context.pixelStorei(pname, param);
+        gl.pixelStorei(pname, param);
 
     inline public static function polygonOffset(factor:Float, units:Float):Void
-        current_context.polygonOffset(factor, units);
+        gl.polygonOffset(factor, units);
 
         // TODO: pixels? May need setting to work (canvas.getContext("experimental-webgl", {preserveDrawingBuffer: true});)
     inline public static function readPixels(x:Int, y:Int, width:Int, height:Int, format:Int, type:Int, data:ArrayBufferView):Void
-        current_context.readPixels(x, y, width, height, format, type, data);
+        gl.readPixels(x, y, width, height, format, type, data);
 
     inline public static function renderbufferStorage(target:Int, internalformat:Int, width:Int, height:Int):Void
-        current_context.renderbufferStorage(target, internalformat, width, height);
+        gl.renderbufferStorage(target, internalformat, width, height);
 
     inline public static function sampleCoverage(value:Float, invert:Bool):Void
-        current_context.sampleCoverage(value, invert);
+        gl.sampleCoverage(value, invert);
 
     inline public static function scissor(x:Int, y:Int, width:Int, height:Int):Void
-        current_context.scissor(x, y, width, height);
+        gl.scissor(x, y, width, height);
 
     inline public static function shaderSource(shader:GLShader, source:String):Void
-        current_context.shaderSource(shader, source);
+        gl.shaderSource(shader, source);
 
     inline public static function stencilFunc(func:Int, ref:Int, mask:Int):Void
-        current_context.stencilFunc(func, ref, mask);
+        gl.stencilFunc(func, ref, mask);
 
     inline public static function stencilFuncSeparate(face:Int, func:Int, ref:Int, mask:Int):Void
-        current_context.stencilFuncSeparate(face, func, ref, mask);
+        gl.stencilFuncSeparate(face, func, ref, mask);
 
     inline public static function stencilMask(mask:Int):Void
-        current_context.stencilMask(mask);
+        gl.stencilMask(mask);
 
     inline public static function stencilMaskSeparate(face:Int, mask:Int):Void
-        current_context.stencilMaskSeparate(face, mask);
+        gl.stencilMaskSeparate(face, mask);
 
     inline public static function stencilOp(fail:Int, zfail:Int, zpass:Int):Void
-        current_context.stencilOp(fail, zfail, zpass);
+        gl.stencilOp(fail, zfail, zpass);
 
     inline public static function stencilOpSeparate(face:Int, fail:Int, zfail:Int, zpass:Int):Void
-        current_context.stencilOpSeparate(face, fail, zfail, zpass);
+        gl.stencilOpSeparate(face, fail, zfail, zpass);
 
     inline public static function texImage2D(target:Int, level:Int, internalformat:Int, width:Int, height:Int, border:Int, format:Int, type:Int, data:ArrayBufferView):Void
-        current_context.texImage2D(target, level, internalformat, width, height, border, format, type, data);
+        gl.texImage2D(target, level, internalformat, width, height, border, format, type, data);
 
     inline public static function texParameterf(target:Int, pname:Int, param:Float):Void
-        current_context.texParameterf(target, pname, param);
+        gl.texParameterf(target, pname, param);
 
     inline public static function texParameteri(target:Int, pname:Int, param:Int):Void
-        current_context.texParameteri(target, pname, param);
+        gl.texParameteri(target, pname, param);
 
     inline public static function texSubImage2D(target:Int, level:Int, xoffset:Int, yoffset:Int, width:Int, height:Int, format:Int, type:Int, data:ArrayBufferView):Void
-        current_context.texSubImage2D(target, level, xoffset, yoffset, width, height, format, type, data);
+        gl.texSubImage2D(target, level, xoffset, yoffset, width, height, format, type, data);
 
     inline public static function uniform1f(location:GLUniformLocation, x:Float):Void
-        current_context.uniform1f(location, x);
+        gl.uniform1f(location, x);
 
     inline public static function uniform1fv(location:GLUniformLocation, data:Float32Array):Void
-        current_context.uniform1fv(location, data);
+        gl.uniform1fv(location, data);
 
     inline public static function uniform1i(location:GLUniformLocation, x:Int):Void
-        current_context.uniform1i(location, x);
+        gl.uniform1i(location, x);
 
     inline public static function uniform1iv(location:GLUniformLocation, data:Int32Array):Void
-        current_context.uniform1iv(location, data);
+        gl.uniform1iv(location, data);
 
     inline public static function uniform2f(location:GLUniformLocation, x:Float, y:Float):Void
-        current_context.uniform2f(location, x, y);
+        gl.uniform2f(location, x, y);
 
     inline public static function uniform2fv(location:GLUniformLocation, data:Float32Array):Void
-        current_context.uniform2fv(location, data);
+        gl.uniform2fv(location, data);
 
     inline public static function uniform2i(location:GLUniformLocation, x:Int, y:Int):Void
-        current_context.uniform2i(location, x, y);
+        gl.uniform2i(location, x, y);
 
     inline public static function uniform2iv(location:GLUniformLocation, data:Int32Array):Void
-        current_context.uniform2iv(location, data);
+        gl.uniform2iv(location, data);
 
     inline public static function uniform3f(location:GLUniformLocation, x:Float, y:Float, z:Float):Void
-        current_context.uniform3f(location, x, y, z);
+        gl.uniform3f(location, x, y, z);
 
     inline public static function uniform3fv(location:GLUniformLocation, data:Float32Array):Void
-        current_context.uniform3fv(location, data);
+        gl.uniform3fv(location, data);
 
     inline public static function uniform3i(location:GLUniformLocation, x:Int, y:Int, z:Int):Void
-        current_context.uniform3i(location, x, y, z);
+        gl.uniform3i(location, x, y, z);
 
     inline public static function uniform3iv(location:GLUniformLocation, data:Int32Array):Void
-        current_context.uniform3iv(location, data);
+        gl.uniform3iv(location, data);
 
     inline public static function uniform4f(location:GLUniformLocation, x:Float, y:Float, z:Float, w:Float):Void
-        current_context.uniform4f(location, x, y, z, w);
+        gl.uniform4f(location, x, y, z, w);
 
     inline public static function uniform4fv(location:GLUniformLocation, data:Float32Array):Void
-        current_context.uniform4fv(location, data);
+        gl.uniform4fv(location, data);
 
     inline public static function uniform4i(location:GLUniformLocation, x:Int, y:Int, z:Int, w:Int):Void
-        current_context.uniform4i(location, x, y, z, w);
+        gl.uniform4i(location, x, y, z, w);
 
     inline public static function uniform4iv(location:GLUniformLocation, data:Int32Array):Void
-        current_context.uniform4iv(location, data);
+        gl.uniform4iv(location, data);
 
     inline public static function uniformMatrix2fv(location:GLUniformLocation, transpose:Bool, data:Float32Array):Void
-        current_context.uniformMatrix2fv(location, transpose, data);
+        gl.uniformMatrix2fv(location, transpose, data);
 
     inline public static function uniformMatrix3fv(location:GLUniformLocation, transpose:Bool, data:Float32Array):Void
-        current_context.uniformMatrix3fv(location, transpose, data);
+        gl.uniformMatrix3fv(location, transpose, data);
 
     inline public static function uniformMatrix4fv(location:GLUniformLocation, transpose:Bool, data:Float32Array):Void
-        current_context.uniformMatrix4fv(location, transpose, data);
+        gl.uniformMatrix4fv(location, transpose, data);
 
     inline public static function useProgram(program:GLProgram):Void
-        current_context.useProgram(program);
+        gl.useProgram(program);
 
     inline public static function validateProgram(program:GLProgram):Void
-        current_context.validateProgram(program);
+        gl.validateProgram(program);
 
     inline public static function vertexAttrib1f(indx:Int, x:Float):Void
-        current_context.vertexAttrib1f(indx, x);
+        gl.vertexAttrib1f(indx, x);
 
     inline public static function vertexAttrib1fv(indx:Int, data:Float32Array):Void
-        current_context.vertexAttrib1fv(indx, data);
+        gl.vertexAttrib1fv(indx, data);
 
     inline public static function vertexAttrib2f(indx:Int, x:Float, y:Float):Void
-        current_context.vertexAttrib2f(indx, x, y);
+        gl.vertexAttrib2f(indx, x, y);
 
     inline public static function vertexAttrib2fv(indx:Int, data:Float32Array):Void
-        current_context.vertexAttrib2fv(indx, data);
+        gl.vertexAttrib2fv(indx, data);
 
     inline public static function vertexAttrib3f(indx:Int, x:Float, y:Float, z:Float):Void
-        current_context.vertexAttrib3f(indx, x, y, z);
+        gl.vertexAttrib3f(indx, x, y, z);
 
     inline public static function vertexAttrib3fv(indx:Int, data:Float32Array):Void
-        current_context.vertexAttrib3fv(indx, data);
+        gl.vertexAttrib3fv(indx, data);
 
     inline public static function vertexAttrib4f(indx:Int, x:Float, y:Float, z:Float, w:Float):Void
-        current_context.vertexAttrib4f(indx, x, y, z, w);
+        gl.vertexAttrib4f(indx, x, y, z, w);
 
     inline public static function vertexAttrib4fv(indx:Int, data:Float32Array):Void
-        current_context.vertexAttrib4fv(indx, data);
+        gl.vertexAttrib4fv(indx, data);
 
     inline public static function vertexAttribPointer(indx:Int, size:Int, type:Int, normalized:Bool, stride:Int, offset:Int):Void
-        current_context.vertexAttribPointer(indx, size, type, normalized, stride, offset);
+        gl.vertexAttribPointer(indx, size, type, normalized, stride, offset);
 
     inline public static function viewport(x:Int, y:Int, width:Int, height:Int):Void
-        current_context.viewport(x, y, width, height);
+        gl.viewport(x, y, width, height);
 
 
 // getters/setters

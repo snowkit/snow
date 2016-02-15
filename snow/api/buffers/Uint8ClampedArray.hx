@@ -129,7 +129,7 @@ package snow.api.buffers;
             ArrayBufferIO.setUint8Clamped(this.buffer, this.byteOffset+idx, val);
         }
 
-        inline function toString() return 'Uint8ClampedArray [byteLength:${this.byteLength}, length:${this.length}]';
+        inline function toString() return this == null ? null : 'Uint8ClampedArray [byteLength:${this.byteLength}, length:${this.length}]';
 
     }
 

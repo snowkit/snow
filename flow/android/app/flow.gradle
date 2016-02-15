@@ -1,0 +1,21 @@
+import org.apache.tools.ant.taskdefs.condition.Os;
+
+    task flowBuildUnix(type:Exec) {
+        executable 'bash'
+        args '-l', '-c', 'haxelib run flow build android --project-root ../../'
+    }
+
+    task flowBuildWindows(type:Exec) {
+        executable 'haxelib'
+        args 'run', 'flow', 'build', 'android', '--project-root','../../'
+    }
+
+    project.afterEvaluate {
+        if(Os.isFamily(Os.FAMILY_WINDOWS)) {
+            assembleDebug.dependsOn(flowBuildWindows)
+            assembleRelease.dependsOn(flowBuildWindows)
+        } else {
+            assembleDebug.dependsOn(flowBuildUnix)
+            assembleRelease.dependsOn(flowBuildUnix)
+        }
+    }
