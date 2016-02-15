@@ -26,7 +26,8 @@ class Main extends snow.App {
         var list = [
             app.assets.audio('assets/135034__mrlindstrom__windloop6sec.wav'),
             app.assets.audio('assets/sound.wav'),
-            app.assets.audio('assets/music.wav', true)
+            app.assets.audio('assets/sound.ogg'),
+            app.assets.audio('assets/music.ogg', true)
         ];
 
         snow.api.Promise.all(list)
@@ -35,7 +36,8 @@ class Main extends snow.App {
     } //ready
 
     var wind : AudioSource;
-    var sound : AudioSource;
+    var sound_wav : AudioSource;
+    var sound_ogg : AudioSource;
     var music : AudioSource;
 
     var wind_handle : AudioHandle;
@@ -45,11 +47,13 @@ class Main extends snow.App {
     function sound_loaded(list:Array<AssetAudio>) {
 
         wind = new AudioSource(app, list[0].audio);
-        sound = new AudioSource(app, list[1].audio);
-        music = new AudioSource(app, list[2].audio);
+        sound_wav = new AudioSource(app, list[1].audio);
+        sound_ogg = new AudioSource(app, list[2].audio);
+        music = new AudioSource(app, list[3].audio);
 
         log('loaded wind : ' + wind.data);
-        log('loaded sound : ' + sound.data);
+        log('loaded sound wav : ' + sound_wav.data);
+        log('loaded sound ogg : ' + sound_ogg.data);
         log('loaded music : ' + music.data);
 
         wind_handle = app.audio.loop(wind,0.2);
@@ -85,9 +89,14 @@ class Main extends snow.App {
 
     override function onmouseup( x:Int, y:Int, button:Int, _, _ ) {
 
-        if(sound != null) {
-            var _handle = app.audio.play(sound);
-            trace('played sound with handle: $_handle');
+        if(button == 1 && sound_wav != null) {
+            var _handle = app.audio.play(sound_wav);
+            trace('played sound wav with handle: $_handle');
+        }
+
+        if(button == 3 && sound_ogg != null) {
+            var _handle = app.audio.play(sound_ogg);
+            trace('played sound ogg with handle: $_handle');
         }
 
     } //onmouseup

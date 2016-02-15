@@ -14,10 +14,8 @@
 
     app : {
       name : 'snow_audio',
-      package : 'org.snowkit.snowaudio', //oh
+      package : 'org.snowkit.snowaudio',
     },
-
-    //HAH
 
     build : {
       flags:['-dce full'],
