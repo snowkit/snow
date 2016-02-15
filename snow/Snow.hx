@@ -63,6 +63,10 @@ class Snow {
             /** Set if shut dow has completed  */
         public var has_shutdown : Bool = false;
 
+    //extensions
+
+        var extensions: Array<snow.core.Extension>;
+
     //internal preallocated events
 
         var sys_event: SystemEvent;
@@ -75,8 +79,8 @@ class Snow {
             assertnull(_host, 'snow App instance was null!');
 
             _debug('app / init / debug:$debug');
-            _debug('app / ident: ' + snow.types.TypeNames.app_ident);
-            _debug('app / config: ' + snow.types.TypeNames.app_config);
+            _debug('app / ident: ' + snow.types.Config.app_ident);
+            _debug('app / config: ' + snow.types.Config.app_config);
 
             if(snow.api.Debug.get_level() > 1) {
                 log('log / level to ${snow.api.Debug.get_level()}' );
@@ -90,9 +94,9 @@ class Snow {
             host.app = this;
             config = default_config();
 
-            _debug('app / assets / ${snow.types.TypeNames.module_assets}');
-            _debug('app / audio / ${snow.types.TypeNames.module_audio}');
-            _debug('app / io / ${snow.types.TypeNames.module_io}');
+            _debug('app / assets / ${snow.types.Config.module_assets}');
+            _debug('app / audio / ${snow.types.Config.module_audio}');
+            _debug('app / io / ${snow.types.Config.module_io}');
 
             sys_event = new SystemEvent();
             win_event = new WindowEvent();
@@ -102,7 +106,20 @@ class Snow {
             audio = new Audio(this);
             assets = new Assets(this);
 
-            _debug('app / runtime / new ${snow.types.TypeNames.app_runtime}');
+            extensions = [];
+            for(_ext_type in snow.types.Config.extensions) {
+
+                var _class = Type.resolveClass(_ext_type);
+                if(_class == null) throw Error.error('Extension `$_ext_type`: Type not found via Type.resolveClass!');
+
+                var _instance:snow.core.Extension = Type.createInstance(_class, null);
+                if(_instance == null) throw Error.error('Extension `$_ext_type`: Instance was null on calling new()!');
+
+                extensions.push(_instance);
+
+            } //each extension
+
+            _debug('app / runtime / new ${snow.types.Config.app_runtime}');
 
             runtime = new AppRuntime(this);
 
@@ -192,6 +209,7 @@ class Snow {
 
             /** Handles snow system events, typically emitted via the runtime and modules.
                 Dispatch events manually using the `dispatch_*` calls. */
+        var i = 0;
         public function onevent(_event:SystemEvent) {
 
             // if( _event.type != se_tick ) {
@@ -205,6 +223,11 @@ class Snow {
             audio.onevent( _event );
             input.onevent( _event );
             host.onevent( _event );
+
+            i = 0; while(i < extensions.length) {
+                extensions[i].onevent(_event);
+                ++i;
+            }
 
             switch(_event.type) {
 
@@ -253,7 +276,7 @@ class Snow {
             assert(had_ready_event == false, 'snow; the ready event should not be fired repeatedly');
             had_ready_event = true;
 
-            setup_configs().then(function(_){
+            setup_configs().then(function(_) {
 
                 _debug('init / setup default configs : ok');
                 _debug('init / runtime ready');
@@ -298,7 +321,7 @@ class Snow {
         function setup_configs() {
 
                 //blank/null config path means don't try to load it
-            if(snow.types.TypeNames.app_config == null || snow.types.TypeNames.app_config == '') {
+            if(snow.types.Config.app_config == null || snow.types.Config.app_config == '') {
 
                 setup_host_config();
 
@@ -345,7 +368,7 @@ class Snow {
                 //for the default config, we only reject if there is a json parse error
             return new Promise(function(resolve, reject) {
 
-                var load = io.data_flow(assets.path(snow.types.TypeNames.app_config), AssetJSON.processor);
+                var load = io.data_flow(assets.path(snow.types.Config.app_config), AssetJSON.processor);
 
                     load.then(resolve).error(function(error:Error) {
                         switch(error) {

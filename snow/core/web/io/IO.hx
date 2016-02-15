@@ -105,7 +105,7 @@ class IO implements snow.modules.interfaces.IO {
 //Internal API
 
     inline function string_slot_id(_slot:Int = 0) {
-        var _parts = snow.types.TypeNames.app_ident.split('.');
+        var _parts = snow.types.Config.app_ident.split('.');
         var _appname = _parts.pop();
         var _org = _parts.join('.');
 

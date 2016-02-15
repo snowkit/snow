@@ -23,7 +23,7 @@ class IO extends snow.core.native.io.IO {
 
     override public function app_path_prefs() {
 
-        var _parts = snow.types.TypeNames.app_ident.split('.');
+        var _parts = snow.types.Config.app_ident.split('.');
         var _appname = _parts.pop();
         var _org = _parts.join('.');
 
