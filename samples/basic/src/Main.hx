@@ -44,6 +44,8 @@ class Main extends snow.App {
 
     override function config( config:AppConfig ) : AppConfig {
 
+        config.window.title = 'snow / samples / basic';
+
         fixed_timestep = true;
 
             //here we can change the config.window and config.runtime values

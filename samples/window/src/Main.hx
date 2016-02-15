@@ -12,7 +12,7 @@ class Main extends snow.App {
 
     override function config( config:AppConfig ) : AppConfig {
 
-        config.window.title = 'snow test window';
+        config.window.title = 'snow / samples / window';
         config.window.width = 300;
         config.window.height = 300;
 

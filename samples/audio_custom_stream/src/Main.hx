@@ -14,6 +14,14 @@ class Main extends snow.App {
     var oooh : Oooh;
 
     function new() {}
+
+    override function config( config:AppConfig ) : AppConfig {
+
+        config.window.title = 'snow / samples / audio custom stream';
+        return config;
+
+    } //config
+
     override function ready() {
 
         log('ready');

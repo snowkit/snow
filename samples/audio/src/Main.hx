@@ -13,7 +13,7 @@ class Main extends snow.App {
 
     override function config( config:AppConfig ) : AppConfig {
 
-        config.window.title = 'snow audio';
+        config.window.title = 'snow / samples / audio';
 
         return config;
 

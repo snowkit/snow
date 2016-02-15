@@ -17,7 +17,7 @@ class Main extends snow.App {
 
     override function config( config:AppConfig ) : AppConfig {
 
-        config.window.title = 'snow test config';
+        config.window.title = 'snow / samples / config';
 
         return config;
 
@@ -34,24 +34,8 @@ class Main extends snow.App {
         assert(app.config.user.string == 'snow');
         assert(app.config.user.test == true);
 
+        app.shutdown();
+
     } //ready
-
-    override function onkeyup( keycode:Int, _,_, mod:ModState, _,_ ) {
-
-        if( keycode == Key.escape ) {
-            app.shutdown();
-        }
-
-    } //onkeyup
-
-    var r = 0.0;
-    override function tick( delta:Float ) {
-
-        r = r % 1.0;
-
-        GL.clearColor(r,r,r,1.0);
-        GL.clear(GL.COLOR_BUFFER_BIT);
-
-    } //update
 
 } //Main

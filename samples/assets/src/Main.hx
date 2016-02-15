@@ -10,14 +10,13 @@ class Main extends snow.App {
 
     function new() {}
 
-    override function config( config:AppConfig ) : AppConfig {
+    override function config(config:AppConfig) : AppConfig {
 
-        config.window.title = 'snow empty app';
+        config.window.title = 'snow / samples / assets';
 
         return config;
 
     } //config
-
 
     override function ready() {
 
@@ -30,7 +29,7 @@ class Main extends snow.App {
 
     } //ready
 
-    override function onkeyup( keycode:Int, _,_, mod:ModState, _,_ ) {
+    override function onkeyup(keycode:Int, _, _, mod:ModState, _, _) {
 
         if( keycode == Key.escape ) {
             app.shutdown();
@@ -38,13 +37,9 @@ class Main extends snow.App {
 
     } //onkeyup
 
-    var r = 0.0;
-    override function tick( delta:Float ) {
+    override function tick(delta:Float) {
 
-        r += (0.3 * delta);
-        r = r % 1.0;
-
-        GL.clearColor(r,r,r,1.0);
+        GL.clearColor(1.0, 1.0, 1.0, 1.0);
         GL.clear(GL.COLOR_BUFFER_BIT);
 
     } //update
