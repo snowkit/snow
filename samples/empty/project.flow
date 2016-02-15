@@ -14,7 +14,7 @@
 
     app : {
       name : 'snow_empty',
-      package : 'org.snowkit.snow', //oh
+      package : 'org.snowkit.snow',
     },
 
     //HAH
