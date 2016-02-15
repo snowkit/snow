@@ -49,8 +49,8 @@ class TypeCreate {
 
     macro public static function ext() : Array<Field> {
         
-        var _extensions = snow.types.Config.extensions;
-        for(_extension_type in _extensions) {
+        if(snow.types.Config.extensions == null) snow.types.Config.extensions = [];
+        for(_extension_type in snow.types.Config.extensions) {
             var _modules = Context.getModule(_extension_type);
                 _modules = _modules.map(function(t){
                     return Context.follow(t);
