@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <title>snow - </title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <link rel="shortcut icon" href="../../../images/favicon.png" />
+
+        <link rel="stylesheet" type="text/css" href="../../../css/style.css" media="all">
+        <link rel="stylesheet" type="text/css" href="../../../css/code.css" media="all">
+        <link rel="stylesheet" type="text/css" href="../../../css/font.css" media="all">
+
+        <link rel="stylesheet" type="text/css" href="../../../css/tooltipster.css" media="all">
+        <link rel="stylesheet" type="text/css" href="../../../css/tooltipster-shadow.css" media="all">
+
+        <script src="../../../js/jquery-2.0.3.min.js"> </script>
+        <script src="../../../js/jquery.tooltipster.min.js"> </script>
+
+        <script>
+
+            $(document).ready(function() {
+
+                $('.section').css('display','none');
+                $('.readmore').click(function(e){
+                    var _child = $(this).parent().find('.section').first();
+                    var _opp = 'block';
+                    if( _child.css('display') == 'block' ) {
+                        _opp = 'none';
+                    } else {
+                    }
+                    _child.css('display', _opp);
+                });
+
+                $('div.sample').on('click', function(e){
+                        //get the data tag
+                    var content = $(this).attr('data-content');
+                        //remove clicking handler
+                    $(this).off('click');
+                        //replace the content!
+                    $(this).html('<iframe src="'+content+'" sandbox="allow-same-origin allow-scripts" style="overflow:hidden; scrollbar:none; border: 0; width:640px; height:427px;"></iframe> ')
+                });
+
+                $('.tooltip').each(function(e){
+                    var c = $(this).attr('data-tooltip');
+                    $(this).tooltipster({
+                        content:$('<span>' + c + '</span>'),
+                        interactive:true,
+                    theme:'tooltipster-shadow'
+                    });
+                });
+
+            }); //document.ready
+
+        </script>
+    </head>
+
+    <body>
+        <div class="content">
+            <p><a href="../../../api/index.html"><img src="../../../images/logo.png" alt="Logo"></a></p>
+<p><hr/>
+<a href="#" id="search_bar" onclick="return;"><div> search API <em>(or start typing anywhere)</em> </div></a></p>
+<hr/>
+
+<script src="../../../js/omnibar.js"> </script>
+<link rel="stylesheet" type="text/css" href="../../../css/omnibar.css" media="all">
+
+<div id="omnibar"> <a href="#" onclick="return" id="omnibar_close"></a> <input id="omnibar_text" type="text" placeholder="search types..."></input></div>
+<script  id="typelist" data-relpath="../../../" data-types="snow.App,snow.Set,snow.Snow,snow.api.Debug,snow.api.DebugError,snow.api.Emitter,snow.api.Promise,snow.api.PromiseError,snow.api.PromiseState,snow.api.Promises,snow.api.Timer,snow.api._Debug.LogError,snow.api._Emitter.EmitHandler,snow.api._Emitter.EmitNode,snow.api._Emitter.HandlerList,snow.api._Promise.PromiseState_Impl_,snow.api.buffers.ArrayBuffer,snow.api.buffers.ArrayBufferIO,snow.api.buffers.ArrayBufferView,snow.api.buffers.DataView,snow.api.buffers.Float32Array,snow.api.buffers.Float64Array,snow.api.buffers.Int16Array,snow.api.buffers.Int32Array,snow.api.buffers.Int8Array,snow.api.buffers.TAError,snow.api.buffers.TypedArrayType,snow.api.buffers.Uint16Array,snow.api.buffers.Uint32Array,snow.api.buffers.Uint8Array,snow.api.buffers.Uint8ClampedArray,snow.api.buffers._ArrayBuffer.ArrayBuffer_Impl_,snow.api.buffers._Float32Array.Float32Array_Impl_,snow.api.buffers._Float64Array.Float64Array_Impl_,snow.api.buffers._Int16Array.Int16Array_Impl_,snow.api.buffers._Int32Array.Int32Array_Impl_,snow.api.buffers._Int8Array.Int8Array_Impl_,snow.api.buffers._TypedArrayType.TypedArrayType_Impl_,snow.api.buffers._Uint16Array.Uint16Array_Impl_,snow.api.buffers._Uint32Array.Uint32Array_Impl_,snow.api.buffers._Uint8Array.Uint8Array_Impl_,snow.api.buffers._Uint8ClampedArray.Uint8ClampedArray_Impl_,snow.core.Audio,snow.core.Extension,snow.core.Runtime,snow.core.native.Runtime,snow.core.native.assets.Assets,snow.core.native.audio.AudioDataOGG,snow.core.native.audio.AudioDataPCM,snow.core.native.audio.AudioDataWAV,snow.core.native.audio.NativeAudioData,snow.core.native.audio.OGG,snow.core.native.audio.PCM,snow.core.native.audio.WAV,snow.core.native.audio._AudioDataWAV.WavChunk,snow.core.native.audio._AudioDataWAV.WavHandle,snow.core.native.io.FileSeek,snow.core.native.io.IO,snow.core.native.io._IO.FileSeek_Impl_,snow.core.web.assets.psd.PSD,snow.modules.interfaces.Assets,snow.modules.interfaces.Audio,snow.modules.interfaces.IO,snow.modules.openal.AL,snow.modules.openal.ALC,snow.modules.openal.ALCError,snow.modules.openal.ALError,snow.modules.openal.ALSound,snow.modules.openal.ALStream,snow.modules.openal.ALuint,snow.modules.openal.Audio,snow.modules.openal.Context,snow.modules.openal.Device,snow.modules.opengl.GL,snow.modules.opengl.GLActiveInfo,snow.modules.opengl.GLBuffer,snow.modules.opengl.GLContextAttributes,snow.modules.opengl.GLFramebuffer,snow.modules.opengl.GLProgram,snow.modules.opengl.GLRenderbuffer,snow.modules.opengl.GLShader,snow.modules.opengl.GLTexture,snow.modules.opengl.GLUniformLocation,snow.modules.sdl.FileHandle,snow.modules.sdl.IO,snow.modules.sdl.Runtime,snow.modules.sdl.RuntimeConfig,snow.modules.sdl.WindowHandle,snow.systems.assets.Asset,snow.systems.assets.AssetAudio,snow.systems.assets.AssetBytes,snow.systems.assets.AssetImage,snow.systems.assets.AssetJSON,snow.systems.assets.AssetText,snow.systems.assets.Assets,snow.systems.audio.Audio,snow.systems.audio.AudioInstance,snow.systems.audio.AudioSource,snow.systems.input.Input,snow.systems.input.Keycodes,snow.systems.input.MapIntBool,snow.systems.input.MapIntFloat,snow.systems.input.Scancodes,snow.systems.io.IO,snow.types.AppConfig,snow.types.AppHost,snow.types.AppRuntime,snow.types.Asset,snow.types.AssetAudio,snow.types.AssetBytes,snow.types.AssetImage,snow.types.AssetJSON,snow.types.AssetText,snow.types.AssetType,snow.types.AudioData,snow.types.AudioDataOptions,snow.types.AudioEvent,snow.types.AudioFormatType,snow.types.AudioHandle,snow.types.AudioState,snow.types.Config,snow.types.Error,snow.types.FileHandle,snow.types.GamepadDeviceEventType,snow.types.GamepadEvent,snow.types.GamepadEventType,snow.types.IODataOptions,snow.types.ImageInfo,snow.types.InputEvent,snow.types.InputEventType,snow.types.Key,snow.types.KeyEvent,snow.types.KeyEventType,snow.types.ModState,snow.types.ModuleAssets,snow.types.ModuleAudio,snow.types.ModuleIO,snow.types.MouseEvent,snow.types.MouseEventType,snow.types.OS,snow.types.OpenGLProfile,snow.types.Platform,snow.types.RenderConfig,snow.types.RenderConfigOpenGL,snow.types.RenderConfigWebGL,snow.types.RuntimeConfig,snow.types.Scan,snow.types.SystemEvent,snow.types.SystemEventType,snow.types.TextEvent,snow.types.TextEventType,snow.types.TouchEvent,snow.types.TouchEventType,snow.types.UserConfig,snow.types.WindowConfig,snow.types.WindowEvent,snow.types.WindowEventType,snow.types.WindowHandle,snow.types._Types.AppHostInit,snow.types._Types.AppRuntimeInit,snow.types._Types.ApplyType,snow.types._Types.AssetType_Impl_,snow.types._Types.AudioEvent_Impl_,snow.types._Types.AudioFormatType_Impl_,snow.types._Types.AudioState_Impl_,snow.types._Types.ExtensionsInit,snow.types._Types.FileHandleInit,snow.types._Types.GamepadDeviceEventType_Impl_,snow.types._Types.GamepadEventType_Impl_,snow.types._Types.InputEventType_Impl_,snow.types._Types.KeyEventType_Impl_,snow.types._Types.ModuleAssetsInit,snow.types._Types.ModuleAudioInit,snow.types._Types.ModuleIOInit,snow.types._Types.MouseEventType_Impl_,snow.types._Types.OS_Impl_,snow.types._Types.OpenGLProfile_Impl_,snow.types._Types.Platform_Impl_,snow.types._Types.RuntimeConfigInit,snow.types._Types.SystemEventType_Impl_,snow.types._Types.TextEventType_Impl_,snow.types._Types.TouchEventType_Impl_,snow.types._Types.UserConfigInit,snow.types._Types.WindowEventType_Impl_,snow.types._Types.WindowHandleInit"></script>
+
+
+<p><h1>AudioDataOptions</h1>
+<small><code>snow.types.AudioDataOptions</code> defined in <code>snow.types.Types</code></small></p>
+<p>Options for constructing an AudioData instance</p>
+<hr/>
+
+<p><code>typedef</code></p>
+<hr/>
+
+<p>&nbsp;</p>
+<p><h3>Members</h3> <hr/><span class="member apipage">
+                <a name="samples"><a class="lift" href="#samples">samples</a></a><div class="clear"></div>
+                <code class="signature apipage">samples : <a href="http://api.haxe.org/Null.html">Null</a>&lt;<a href="../../../api/snow/api/buffers/Uint8Array.html">snow.api.buffers.Uint8Array</a>&gt;</code><br/></span>
+            <span class="small_desc_flat"></span><br/><span class="member apipage">
+                <a name="rate"><a class="lift" href="#rate">rate</a></a><div class="clear"></div>
+                <code class="signature apipage">rate : <a href="http://api.haxe.org/Null.html">Null</a>&lt;<a href="http://api.haxe.org/Int.html">Int</a>&gt;</code><br/></span>
+            <span class="small_desc_flat"></span><br/><span class="member apipage">
+                <a name="length"><a class="lift" href="#length">length</a></a><div class="clear"></div>
+                <code class="signature apipage">length : <a href="http://api.haxe.org/Null.html">Null</a>&lt;<a href="http://api.haxe.org/Int.html">Int</a>&gt;</code><br/></span>
+            <span class="small_desc_flat"></span><br/><span class="member apipage">
+                <a name="is_stream"><a class="lift" href="#is_stream">is_stream</a></a><div class="clear"></div>
+                <code class="signature apipage">is_stream : <a href="http://api.haxe.org/Null.html">Null</a>&lt;<a href="http://api.haxe.org/Bool.html">Bool</a>&gt;</code><br/></span>
+            <span class="small_desc_flat"></span><br/><span class="member apipage">
+                <a name="id"><a class="lift" href="#id">id</a></a><div class="clear"></div>
+                <code class="signature apipage">id : <a href="http://api.haxe.org/Null.html">Null</a>&lt;<a href="http://api.haxe.org/String.html">String</a>&gt;</code><br/></span>
+            <span class="small_desc_flat"></span><br/><span class="member apipage">
+                <a name="format"><a class="lift" href="#format">format</a></a><div class="clear"></div>
+                <code class="signature apipage">format : <a href="http://api.haxe.org/Null.html">Null</a>&lt;<a href="../../../api/snow/types/AudioFormatType.html">snow.types.AudioFormatType</a>&gt;</code><br/></span>
+            <span class="small_desc_flat"></span><br/><span class="member apipage">
+                <a name="channels"><a class="lift" href="#channels">channels</a></a><div class="clear"></div>
+                <code class="signature apipage">channels : <a href="http://api.haxe.org/Null.html">Null</a>&lt;<a href="http://api.haxe.org/Int.html">Int</a>&gt;</code><br/></span>
+            <span class="small_desc_flat"></span><br/></p>
+<hr/>
+
+<p>&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;</p>
+
+        </div>
+    </body>
+
+</html>

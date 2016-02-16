@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <title>snow - </title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <link rel="shortcut icon" href="../../../../images/favicon.png" />
+
+        <link rel="stylesheet" type="text/css" href="../../../../css/style.css" media="all">
+        <link rel="stylesheet" type="text/css" href="../../../../css/code.css" media="all">
+        <link rel="stylesheet" type="text/css" href="../../../../css/font.css" media="all">
+
+        <link rel="stylesheet" type="text/css" href="../../../../css/tooltipster.css" media="all">
+        <link rel="stylesheet" type="text/css" href="../../../../css/tooltipster-shadow.css" media="all">
+
+        <script src="../../../../js/jquery-2.0.3.min.js"> </script>
+        <script src="../../../../js/jquery.tooltipster.min.js"> </script>
+
+        <script>
+
+            $(document).ready(function() {
+
+                $('.section').css('display','none');
+                $('.readmore').click(function(e){
+                    var _child = $(this).parent().find('.section').first();
+                    var _opp = 'block';
+                    if( _child.css('display') == 'block' ) {
+                        _opp = 'none';
+                    } else {
+                    }
+                    _child.css('display', _opp);
+                });
+
+                $('div.sample').on('click', function(e){
+                        //get the data tag
+                    var content = $(this).attr('data-content');
+                        //remove clicking handler
+                    $(this).off('click');
+                        //replace the content!
+                    $(this).html('<iframe src="'+content+'" sandbox="allow-same-origin allow-scripts" style="overflow:hidden; scrollbar:none; border: 0; width:640px; height:427px;"></iframe> ')
+                });
+
+                $('.tooltip').each(function(e){
+                    var c = $(this).attr('data-tooltip');
+                    $(this).tooltipster({
+                        content:$('<span>' + c + '</span>'),
+                        interactive:true,
+                    theme:'tooltipster-shadow'
+                    });
+                });
+
+            }); //document.ready
+
+        </script>
+    </head>
+
+    <body>
+        <div class="content">
+            <p><a href="../../../../api/index.html"><img src="../../../../images/logo.png" alt="Logo"></a></p>
+<p><hr/>
+<a href="#" id="search_bar" onclick="return;"><div> search API <em>(or start typing anywhere)</em> </div></a></p>
+<hr/>
+
+<script src="../../../../js/omnibar.js"> </script>
+<link rel="stylesheet" type="text/css" href="../../../../css/omnibar.css" media="all">
+
+<div id="omnibar"> <a href="#" onclick="return" id="omnibar_close"></a> <input id="omnibar_text" type="text" placeholder="search types..."></input></div>
+<script  id="typelist" data-relpath="../../../../" data-types="snow.App,snow.Set,snow.Snow,snow.api.Debug,snow.api.DebugError,snow.api.Emitter,snow.api.Promise,snow.api.PromiseError,snow.api.PromiseState,snow.api.Promises,snow.api.Timer,snow.api._Debug.LogError,snow.api._Emitter.EmitHandler,snow.api._Emitter.EmitNode,snow.api._Emitter.HandlerList,snow.api._Promise.PromiseState_Impl_,snow.api.buffers.ArrayBuffer,snow.api.buffers.ArrayBufferIO,snow.api.buffers.ArrayBufferView,snow.api.buffers.DataView,snow.api.buffers.Float32Array,snow.api.buffers.Float64Array,snow.api.buffers.Int16Array,snow.api.buffers.Int32Array,snow.api.buffers.Int8Array,snow.api.buffers.TAError,snow.api.buffers.TypedArrayType,snow.api.buffers.Uint16Array,snow.api.buffers.Uint32Array,snow.api.buffers.Uint8Array,snow.api.buffers.Uint8ClampedArray,snow.api.buffers._ArrayBuffer.ArrayBuffer_Impl_,snow.api.buffers._Float32Array.Float32Array_Impl_,snow.api.buffers._Float64Array.Float64Array_Impl_,snow.api.buffers._Int16Array.Int16Array_Impl_,snow.api.buffers._Int32Array.Int32Array_Impl_,snow.api.buffers._Int8Array.Int8Array_Impl_,snow.api.buffers._TypedArrayType.TypedArrayType_Impl_,snow.api.buffers._Uint16Array.Uint16Array_Impl_,snow.api.buffers._Uint32Array.Uint32Array_Impl_,snow.api.buffers._Uint8Array.Uint8Array_Impl_,snow.api.buffers._Uint8ClampedArray.Uint8ClampedArray_Impl_,snow.core.Audio,snow.core.Extension,snow.core.Runtime,snow.core.native.Runtime,snow.core.native.assets.Assets,snow.core.native.audio.AudioDataOGG,snow.core.native.audio.AudioDataPCM,snow.core.native.audio.AudioDataWAV,snow.core.native.audio.NativeAudioData,snow.core.native.audio.OGG,snow.core.native.audio.PCM,snow.core.native.audio.WAV,snow.core.native.audio._AudioDataWAV.WavChunk,snow.core.native.audio._AudioDataWAV.WavHandle,snow.core.native.io.FileSeek,snow.core.native.io.IO,snow.core.native.io._IO.FileSeek_Impl_,snow.core.web.assets.psd.PSD,snow.modules.interfaces.Assets,snow.modules.interfaces.Audio,snow.modules.interfaces.IO,snow.modules.openal.AL,snow.modules.openal.ALC,snow.modules.openal.ALCError,snow.modules.openal.ALError,snow.modules.openal.ALSound,snow.modules.openal.ALStream,snow.modules.openal.ALuint,snow.modules.openal.Audio,snow.modules.openal.Context,snow.modules.openal.Device,snow.modules.opengl.GL,snow.modules.opengl.GLActiveInfo,snow.modules.opengl.GLBuffer,snow.modules.opengl.GLContextAttributes,snow.modules.opengl.GLFramebuffer,snow.modules.opengl.GLProgram,snow.modules.opengl.GLRenderbuffer,snow.modules.opengl.GLShader,snow.modules.opengl.GLTexture,snow.modules.opengl.GLUniformLocation,snow.modules.sdl.FileHandle,snow.modules.sdl.IO,snow.modules.sdl.Runtime,snow.modules.sdl.RuntimeConfig,snow.modules.sdl.WindowHandle,snow.systems.assets.Asset,snow.systems.assets.AssetAudio,snow.systems.assets.AssetBytes,snow.systems.assets.AssetImage,snow.systems.assets.AssetJSON,snow.systems.assets.AssetText,snow.systems.assets.Assets,snow.systems.audio.Audio,snow.systems.audio.AudioInstance,snow.systems.audio.AudioSource,snow.systems.input.Input,snow.systems.input.Keycodes,snow.systems.input.MapIntBool,snow.systems.input.MapIntFloat,snow.systems.input.Scancodes,snow.systems.io.IO,snow.types.AppConfig,snow.types.AppHost,snow.types.AppRuntime,snow.types.Asset,snow.types.AssetAudio,snow.types.AssetBytes,snow.types.AssetImage,snow.types.AssetJSON,snow.types.AssetText,snow.types.AssetType,snow.types.AudioData,snow.types.AudioDataOptions,snow.types.AudioEvent,snow.types.AudioFormatType,snow.types.AudioHandle,snow.types.AudioState,snow.types.Config,snow.types.Error,snow.types.FileHandle,snow.types.GamepadDeviceEventType,snow.types.GamepadEvent,snow.types.GamepadEventType,snow.types.IODataOptions,snow.types.ImageInfo,snow.types.InputEvent,snow.types.InputEventType,snow.types.Key,snow.types.KeyEvent,snow.types.KeyEventType,snow.types.ModState,snow.types.ModuleAssets,snow.types.ModuleAudio,snow.types.ModuleIO,snow.types.MouseEvent,snow.types.MouseEventType,snow.types.OS,snow.types.OpenGLProfile,snow.types.Platform,snow.types.RenderConfig,snow.types.RenderConfigOpenGL,snow.types.RenderConfigWebGL,snow.types.RuntimeConfig,snow.types.Scan,snow.types.SystemEvent,snow.types.SystemEventType,snow.types.TextEvent,snow.types.TextEventType,snow.types.TouchEvent,snow.types.TouchEventType,snow.types.UserConfig,snow.types.WindowConfig,snow.types.WindowEvent,snow.types.WindowEventType,snow.types.WindowHandle,snow.types._Types.AppHostInit,snow.types._Types.AppRuntimeInit,snow.types._Types.ApplyType,snow.types._Types.AssetType_Impl_,snow.types._Types.AudioEvent_Impl_,snow.types._Types.AudioFormatType_Impl_,snow.types._Types.AudioState_Impl_,snow.types._Types.ExtensionsInit,snow.types._Types.FileHandleInit,snow.types._Types.GamepadDeviceEventType_Impl_,snow.types._Types.GamepadEventType_Impl_,snow.types._Types.InputEventType_Impl_,snow.types._Types.KeyEventType_Impl_,snow.types._Types.ModuleAssetsInit,snow.types._Types.ModuleAudioInit,snow.types._Types.ModuleIOInit,snow.types._Types.MouseEventType_Impl_,snow.types._Types.OS_Impl_,snow.types._Types.OpenGLProfile_Impl_,snow.types._Types.Platform_Impl_,snow.types._Types.RuntimeConfigInit,snow.types._Types.SystemEventType_Impl_,snow.types._Types.TextEventType_Impl_,snow.types._Types.TouchEventType_Impl_,snow.types._Types.UserConfigInit,snow.types._Types.WindowEventType_Impl_,snow.types._Types.WindowHandleInit"></script>
+
+
+<p><h1>Input</h1>
+<small><code>snow.systems.input.Input</code> defined in ``</small></p>
+<p>The snow input system. Accessed via <code>app.input</code></p>
+<hr/>
+
+<p><code>class</code><br/><span class="meta">
+meta: @:allow(snow.Snow)</span></p>
+<hr/>
+
+<p>&nbsp;</p>
+<p><h3>Members</h3> <hr/></p>
+<p><h3>Methods</h3> <hr/><span class="method apipage">
+            <a name="dispatch_gamepad_axis_event"><a class="lift" href="#dispatch_gamepad_axis_event">dispatch_gamepad_axis_event</a></a><div class="clear"></div>
+            <code class="signature apipage">dispatch_gamepad_axis_event(gamepad:<a href="http://api.haxe.org/Int.html">Int</a><span></span>, axis:<a href="http://api.haxe.org/Int.html">Int</a><span></span>, value:<a href="http://api.haxe.org/Float.html">Float</a><span></span>, timestamp:<a href="http://api.haxe.org/Float.html">Float</a><span></span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat">manually dispatch a gamepad axis event through the system, delivered to the app handlers, internal and external</span></p>
+<p></span>
+<span class="method apipage">
+            <a name="dispatch_gamepad_button_down_event"><a class="lift" href="#dispatch_gamepad_button_down_event">dispatch_gamepad_button_down_event</a></a><div class="clear"></div>
+            <code class="signature apipage">dispatch_gamepad_button_down_event(gamepad:<a href="http://api.haxe.org/Int.html">Int</a><span></span>, button:<a href="http://api.haxe.org/Int.html">Int</a><span></span>, value:<a href="http://api.haxe.org/Float.html">Float</a><span></span>, timestamp:<a href="http://api.haxe.org/Float.html">Float</a><span></span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat">manually dispatch a gamepad button down event through the system, delivered to the app handlers, internal and external</span></p>
+<p></span>
+<span class="method apipage">
+            <a name="dispatch_gamepad_button_up_event"><a class="lift" href="#dispatch_gamepad_button_up_event">dispatch_gamepad_button_up_event</a></a><div class="clear"></div>
+            <code class="signature apipage">dispatch_gamepad_button_up_event(gamepad:<a href="http://api.haxe.org/Int.html">Int</a><span></span>, button:<a href="http://api.haxe.org/Int.html">Int</a><span></span>, value:<a href="http://api.haxe.org/Float.html">Float</a><span></span>, timestamp:<a href="http://api.haxe.org/Float.html">Float</a><span></span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat">manually dispatch a gamepad button up event through the system, delivered to the app handlers, internal and external</span></p>
+<p></span>
+<span class="method apipage">
+            <a name="dispatch_gamepad_device_event"><a class="lift" href="#dispatch_gamepad_device_event">dispatch_gamepad_device_event</a></a><div class="clear"></div>
+            <code class="signature apipage">dispatch_gamepad_device_event(gamepad:<a href="http://api.haxe.org/Int.html">Int</a><span></span>, id:<a href="http://api.haxe.org/String.html">String</a><span></span>, type:<a href="../../../../api/snow/types/GamepadDeviceEventType.html">snow.types.GamepadDeviceEventType</a><span></span>, timestamp:<a href="http://api.haxe.org/Float.html">Float</a><span></span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat">manually dispatch a gamepad device event through the system, delivered to the app handlers, internal and external</span></p>
+<p></span>
+<span class="method apipage">
+            <a name="dispatch_key_down_event"><a class="lift" href="#dispatch_key_down_event">dispatch_key_down_event</a></a><div class="clear"></div>
+            <code class="signature apipage">dispatch_key_down_event(keycode:<a href="http://api.haxe.org/Int.html">Int</a><span></span>, scancode:<a href="http://api.haxe.org/Int.html">Int</a><span></span>, repeat:<a href="http://api.haxe.org/Bool.html">Bool</a><span></span>, mod:<a href="../../../../api/snow/types/ModState.html">snow.types.ModState</a><span></span>, timestamp:<a href="http://api.haxe.org/Float.html">Float</a><span></span>, window_id:<a href="http://api.haxe.org/Int.html">Int</a><span></span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat">manually dispatch a key down event through the system, delivered to the app handlers, internal and external</span></p>
+<p></span>
+<span class="method apipage">
+            <a name="dispatch_key_up_event"><a class="lift" href="#dispatch_key_up_event">dispatch_key_up_event</a></a><div class="clear"></div>
+            <code class="signature apipage">dispatch_key_up_event(keycode:<a href="http://api.haxe.org/Int.html">Int</a><span></span>, scancode:<a href="http://api.haxe.org/Int.html">Int</a><span></span>, repeat:<a href="http://api.haxe.org/Bool.html">Bool</a><span></span>, mod:<a href="../../../../api/snow/types/ModState.html">snow.types.ModState</a><span></span>, timestamp:<a href="http://api.haxe.org/Float.html">Float</a><span></span>, window_id:<a href="http://api.haxe.org/Int.html">Int</a><span></span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat">manually dispatch a key up event through the system, delivered to the app handlers, internal and external</span></p>
+<p></span>
+<span class="method apipage">
+            <a name="dispatch_mouse_down_event"><a class="lift" href="#dispatch_mouse_down_event">dispatch_mouse_down_event</a></a><div class="clear"></div>
+            <code class="signature apipage">dispatch_mouse_down_event(x:<a href="http://api.haxe.org/Int.html">Int</a><span></span>, y:<a href="http://api.haxe.org/Int.html">Int</a><span></span>, button:<a href="http://api.haxe.org/Int.html">Int</a><span></span>, timestamp:<a href="http://api.haxe.org/Float.html">Float</a><span></span>, window_id:<a href="http://api.haxe.org/Int.html">Int</a><span></span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat">manually dispatch a mouse button down event through the system, delivered to the app handlers, internal and external</span></p>
+<p></span>
+<span class="method apipage">
+            <a name="dispatch_mouse_move_event"><a class="lift" href="#dispatch_mouse_move_event">dispatch_mouse_move_event</a></a><div class="clear"></div>
+            <code class="signature apipage">dispatch_mouse_move_event(x:<a href="http://api.haxe.org/Int.html">Int</a><span></span>, y:<a href="http://api.haxe.org/Int.html">Int</a><span></span>, xrel:<a href="http://api.haxe.org/Int.html">Int</a><span></span>, yrel:<a href="http://api.haxe.org/Int.html">Int</a><span></span>, timestamp:<a href="http://api.haxe.org/Float.html">Float</a><span></span>, window_id:<a href="http://api.haxe.org/Int.html">Int</a><span></span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat">manually dispatch a mouse move event through the system, delivered to the app handlers, internal and external</span></p>
+<p></span>
+<span class="method apipage">
+            <a name="dispatch_mouse_up_event"><a class="lift" href="#dispatch_mouse_up_event">dispatch_mouse_up_event</a></a><div class="clear"></div>
+            <code class="signature apipage">dispatch_mouse_up_event(x:<a href="http://api.haxe.org/Int.html">Int</a><span></span>, y:<a href="http://api.haxe.org/Int.html">Int</a><span></span>, button:<a href="http://api.haxe.org/Int.html">Int</a><span></span>, timestamp:<a href="http://api.haxe.org/Float.html">Float</a><span></span>, window_id:<a href="http://api.haxe.org/Int.html">Int</a><span></span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat">manually dispatch a mouse button up event through the system, delivered to the app handlers, internal and external</span></p>
+<p></span>
+<span class="method apipage">
+            <a name="dispatch_mouse_wheel_event"><a class="lift" href="#dispatch_mouse_wheel_event">dispatch_mouse_wheel_event</a></a><div class="clear"></div>
+            <code class="signature apipage">dispatch_mouse_wheel_event(x:<a href="http://api.haxe.org/Float.html">Float</a><span></span>, y:<a href="http://api.haxe.org/Float.html">Float</a><span></span>, timestamp:<a href="http://api.haxe.org/Float.html">Float</a><span></span>, window_id:<a href="http://api.haxe.org/Int.html">Int</a><span></span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat">manually dispatch a mouse wheel event through the system, delivered to the app handlers, internal and external</span></p>
+<p></span>
+<span class="method apipage">
+            <a name="dispatch_text_event"><a class="lift" href="#dispatch_text_event">dispatch_text_event</a></a><div class="clear"></div>
+            <code class="signature apipage">dispatch_text_event(text:<a href="http://api.haxe.org/String.html">String</a><span></span>, start:<a href="http://api.haxe.org/Int.html">Int</a><span></span>, length:<a href="http://api.haxe.org/Int.html">Int</a><span></span>, type:<a href="../../../../api/snow/types/TextEventType.html">snow.types.TextEventType</a><span></span>, timestamp:<a href="http://api.haxe.org/Float.html">Float</a><span></span>, window_id:<a href="http://api.haxe.org/Int.html">Int</a><span></span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat">manually dispatch a text event through the system, delivered to the app handlers, internal and external</span></p>
+<p></span>
+<span class="method apipage">
+            <a name="dispatch_touch_down_event"><a class="lift" href="#dispatch_touch_down_event">dispatch_touch_down_event</a></a><div class="clear"></div>
+            <code class="signature apipage">dispatch_touch_down_event(x:<a href="http://api.haxe.org/Float.html">Float</a><span></span>, y:<a href="http://api.haxe.org/Float.html">Float</a><span></span>, dx:<a href="http://api.haxe.org/Float.html">Float</a><span></span>, dy:<a href="http://api.haxe.org/Float.html">Float</a><span></span>, touch_id:<a href="http://api.haxe.org/Int.html">Int</a><span></span>, timestamp:<a href="http://api.haxe.org/Float.html">Float</a><span></span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat">manually dispatch a touch down through the system, delivered to the app handlers, internal and external</span></p>
+<p></span>
+<span class="method apipage">
+            <a name="dispatch_touch_move_event"><a class="lift" href="#dispatch_touch_move_event">dispatch_touch_move_event</a></a><div class="clear"></div>
+            <code class="signature apipage">dispatch_touch_move_event(x:<a href="http://api.haxe.org/Float.html">Float</a><span></span>, y:<a href="http://api.haxe.org/Float.html">Float</a><span></span>, dx:<a href="http://api.haxe.org/Float.html">Float</a><span></span>, dy:<a href="http://api.haxe.org/Float.html">Float</a><span></span>, touch_id:<a href="http://api.haxe.org/Int.html">Int</a><span></span>, timestamp:<a href="http://api.haxe.org/Float.html">Float</a><span></span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat">manually dispatch a touch move through the system, delivered to the app handlers, internal and external</span></p>
+<p></span>
+<span class="method apipage">
+            <a name="dispatch_touch_up_event"><a class="lift" href="#dispatch_touch_up_event">dispatch_touch_up_event</a></a><div class="clear"></div>
+            <code class="signature apipage">dispatch_touch_up_event(x:<a href="http://api.haxe.org/Float.html">Float</a><span></span>, y:<a href="http://api.haxe.org/Float.html">Float</a><span></span>, dx:<a href="http://api.haxe.org/Float.html">Float</a><span></span>, dy:<a href="http://api.haxe.org/Float.html">Float</a><span></span>, touch_id:<a href="http://api.haxe.org/Int.html">Int</a><span></span>, timestamp:<a href="http://api.haxe.org/Float.html">Float</a><span></span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat">manually dispatch a touch up through the system, delivered to the app handlers, internal and external</span></p>
+<p></span>
+<span class="method apipage">
+            <a name="gamepadaxis"><a class="lift" href="#gamepadaxis">gamepadaxis</a></a><div class="clear"></div>
+            <code class="signature apipage">gamepadaxis(_gamepad:<a href="http://api.haxe.org/Int.html">Int</a><span></span>, _axis:<a href="http://api.haxe.org/Int.html">Int</a><span></span>) : <a href="http://api.haxe.org/Float.html">Float</a></code><br/><span class="small_desc_flat">returns true if the gamepad button value is down at the time of calling this</span></p>
+<p></span>
+<span class="method apipage">
+            <a name="gamepaddown"><a class="lift" href="#gamepaddown">gamepaddown</a></a><div class="clear"></div>
+            <code class="signature apipage">gamepaddown(_gamepad:<a href="http://api.haxe.org/Int.html">Int</a><span></span>, _button:<a href="http://api.haxe.org/Int.html">Int</a><span></span>) : <a href="http://api.haxe.org/Bool.html">Bool</a></code><br/><span class="small_desc_flat">returns true if the gamepad button value is down at the time of calling this</span></p>
+<p></span>
+<span class="method apipage">
+            <a name="gamepadpressed"><a class="lift" href="#gamepadpressed">gamepadpressed</a></a><div class="clear"></div>
+            <code class="signature apipage">gamepadpressed(_gamepad:<a href="http://api.haxe.org/Int.html">Int</a><span></span>, _button:<a href="http://api.haxe.org/Int.html">Int</a><span></span>) : <a href="http://api.haxe.org/Bool.html">Bool</a></code><br/><span class="small_desc_flat">returns true if the mouse button was pressed in the latest frame</span></p>
+<p></span>
+<span class="method apipage">
+            <a name="gamepadreleased"><a class="lift" href="#gamepadreleased">gamepadreleased</a></a><div class="clear"></div>
+            <code class="signature apipage">gamepadreleased(_gamepad:<a href="http://api.haxe.org/Int.html">Int</a><span></span>, _button:<a href="http://api.haxe.org/Int.html">Int</a><span></span>) : <a href="http://api.haxe.org/Bool.html">Bool</a></code><br/><span class="small_desc_flat">returns true if the gamepad button was released in the latest frame</span></p>
+<p></span>
+<span class="method apipage">
+            <a name="keydown"><a class="lift" href="#keydown">keydown</a></a><div class="clear"></div>
+            <code class="signature apipage">keydown(_code:<a href="http://api.haxe.org/Int.html">Int</a><span></span>) : <a href="http://api.haxe.org/Bool.html">Bool</a></code><br/><span class="small_desc_flat">returns true if the <code>Key</code> value is down at the time of calling this</span></p>
+<p></span>
+<span class="method apipage">
+            <a name="keypressed"><a class="lift" href="#keypressed">keypressed</a></a><div class="clear"></div>
+            <code class="signature apipage">keypressed(_code:<a href="http://api.haxe.org/Int.html">Int</a><span></span>) : <a href="http://api.haxe.org/Bool.html">Bool</a></code><br/><span class="small_desc_flat">returns true if the <code>Key</code> value was pressed in the latest frame</span></p>
+<p></span>
+<span class="method apipage">
+            <a name="keyreleased"><a class="lift" href="#keyreleased">keyreleased</a></a><div class="clear"></div>
+            <code class="signature apipage">keyreleased(_code:<a href="http://api.haxe.org/Int.html">Int</a><span></span>) : <a href="http://api.haxe.org/Bool.html">Bool</a></code><br/><span class="small_desc_flat">returns true if the <code>Key</code> value was released in the latest frame</span></p>
+<p></span>
+<span class="method apipage">
+            <a name="mousedown"><a class="lift" href="#mousedown">mousedown</a></a><div class="clear"></div>
+            <code class="signature apipage">mousedown(_button:<a href="http://api.haxe.org/Int.html">Int</a><span></span>) : <a href="http://api.haxe.org/Bool.html">Bool</a></code><br/><span class="small_desc_flat">returns true if the mouse button value is down at the time of calling this</span></p>
+<p></span>
+<span class="method apipage">
+            <a name="mousepressed"><a class="lift" href="#mousepressed">mousepressed</a></a><div class="clear"></div>
+            <code class="signature apipage">mousepressed(_button:<a href="http://api.haxe.org/Int.html">Int</a><span></span>) : <a href="http://api.haxe.org/Bool.html">Bool</a></code><br/><span class="small_desc_flat">returns true if the mouse button was pressed in the latest frame</span></p>
+<p></span>
+<span class="method apipage">
+            <a name="mousereleased"><a class="lift" href="#mousereleased">mousereleased</a></a><div class="clear"></div>
+            <code class="signature apipage">mousereleased(_button:<a href="http://api.haxe.org/Int.html">Int</a><span></span>) : <a href="http://api.haxe.org/Bool.html">Bool</a></code><br/><span class="small_desc_flat">returns true if the mouse button was released in the latest frame</span></p>
+<p></span>
+<span class="method apipage">
+            <a name="scandown"><a class="lift" href="#scandown">scandown</a></a><div class="clear"></div>
+            <code class="signature apipage">scandown(_code:<a href="http://api.haxe.org/Int.html">Int</a><span></span>) : <a href="http://api.haxe.org/Bool.html">Bool</a></code><br/><span class="small_desc_flat">returns true if the <code>Scan</code> value is down at the time of calling this</span></p>
+<p></span>
+<span class="method apipage">
+            <a name="scanpressed"><a class="lift" href="#scanpressed">scanpressed</a></a><div class="clear"></div>
+            <code class="signature apipage">scanpressed(_code:<a href="http://api.haxe.org/Int.html">Int</a><span></span>) : <a href="http://api.haxe.org/Bool.html">Bool</a></code><br/><span class="small_desc_flat">returns true if the <code>Scan</code> value was pressed in the latest frame</span></p>
+<p></span>
+<span class="method apipage">
+            <a name="scanreleased"><a class="lift" href="#scanreleased">scanreleased</a></a><div class="clear"></div>
+            <code class="signature apipage">scanreleased(_code:<a href="http://api.haxe.org/Int.html">Int</a><span></span>) : <a href="http://api.haxe.org/Bool.html">Bool</a></code><br/><span class="small_desc_flat">returns true if the <code>Scan</code> value was released in the latest frame</span></p>
+<p></span></p>
+<hr/>
+
+<p>&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;</p>
+
+        </div>
+    </body>
+
+</html>

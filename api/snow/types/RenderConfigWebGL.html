@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <title>snow - </title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <link rel="shortcut icon" href="../../../images/favicon.png" />
+
+        <link rel="stylesheet" type="text/css" href="../../../css/style.css" media="all">
+        <link rel="stylesheet" type="text/css" href="../../../css/code.css" media="all">
+        <link rel="stylesheet" type="text/css" href="../../../css/font.css" media="all">
+
+        <link rel="stylesheet" type="text/css" href="../../../css/tooltipster.css" media="all">
+        <link rel="stylesheet" type="text/css" href="../../../css/tooltipster-shadow.css" media="all">
+
+        <script src="../../../js/jquery-2.0.3.min.js"> </script>
+        <script src="../../../js/jquery.tooltipster.min.js"> </script>
+
+        <script>
+
+            $(document).ready(function() {
+
+                $('.section').css('display','none');
+                $('.readmore').click(function(e){
+                    var _child = $(this).parent().find('.section').first();
+                    var _opp = 'block';
+                    if( _child.css('display') == 'block' ) {
+                        _opp = 'none';
+                    } else {
+                    }
+                    _child.css('display', _opp);
+                });
+
+                $('div.sample').on('click', function(e){
+                        //get the data tag
+                    var content = $(this).attr('data-content');
+                        //remove clicking handler
+                    $(this).off('click');
+                        //replace the content!
+                    $(this).html('<iframe src="'+content+'" sandbox="allow-same-origin allow-scripts" style="overflow:hidden; scrollbar:none; border: 0; width:640px; height:427px;"></iframe> ')
+                });
+
+                $('.tooltip').each(function(e){
+                    var c = $(this).attr('data-tooltip');
+                    $(this).tooltipster({
+                        content:$('<span>' + c + '</span>'),
+                        interactive:true,
+                    theme:'tooltipster-shadow'
+                    });
+                });
+
+            }); //document.ready
+
+        </script>
+    </head>
+
+    <body>
+        <div class="content">
+            <p><a href="../../../api/index.html"><img src="../../../images/logo.png" alt="Logo"></a></p>
+<p><hr/>
+<a href="#" id="search_bar" onclick="return;"><div> search API <em>(or start typing anywhere)</em> </div></a></p>
+<hr/>
+
+<script src="../../../js/omnibar.js"> </script>
+<link rel="stylesheet" type="text/css" href="../../../css/omnibar.css" media="all">
+
+<div id="omnibar"> <a href="#" onclick="return" id="omnibar_close"></a> <input id="omnibar_text" type="text" placeholder="search types..."></input></div>
+<script  id="typelist" data-relpath="../../../" data-types="snow.App,snow.Set,snow.Snow,snow.api.Debug,snow.api.DebugError,snow.api.Emitter,snow.api.Promise,snow.api.PromiseError,snow.api.PromiseState,snow.api.Promises,snow.api.Timer,snow.api._Debug.LogError,snow.api._Emitter.EmitHandler,snow.api._Emitter.EmitNode,snow.api._Emitter.HandlerList,snow.api._Promise.PromiseState_Impl_,snow.api.buffers.ArrayBuffer,snow.api.buffers.ArrayBufferIO,snow.api.buffers.ArrayBufferView,snow.api.buffers.DataView,snow.api.buffers.Float32Array,snow.api.buffers.Float64Array,snow.api.buffers.Int16Array,snow.api.buffers.Int32Array,snow.api.buffers.Int8Array,snow.api.buffers.TAError,snow.api.buffers.TypedArrayType,snow.api.buffers.Uint16Array,snow.api.buffers.Uint32Array,snow.api.buffers.Uint8Array,snow.api.buffers.Uint8ClampedArray,snow.api.buffers._ArrayBuffer.ArrayBuffer_Impl_,snow.api.buffers._Float32Array.Float32Array_Impl_,snow.api.buffers._Float64Array.Float64Array_Impl_,snow.api.buffers._Int16Array.Int16Array_Impl_,snow.api.buffers._Int32Array.Int32Array_Impl_,snow.api.buffers._Int8Array.Int8Array_Impl_,snow.api.buffers._TypedArrayType.TypedArrayType_Impl_,snow.api.buffers._Uint16Array.Uint16Array_Impl_,snow.api.buffers._Uint32Array.Uint32Array_Impl_,snow.api.buffers._Uint8Array.Uint8Array_Impl_,snow.api.buffers._Uint8ClampedArray.Uint8ClampedArray_Impl_,snow.core.Audio,snow.core.Extension,snow.core.Runtime,snow.core.native.Runtime,snow.core.native.assets.Assets,snow.core.native.audio.AudioDataOGG,snow.core.native.audio.AudioDataPCM,snow.core.native.audio.AudioDataWAV,snow.core.native.audio.NativeAudioData,snow.core.native.audio.OGG,snow.core.native.audio.PCM,snow.core.native.audio.WAV,snow.core.native.audio._AudioDataWAV.WavChunk,snow.core.native.audio._AudioDataWAV.WavHandle,snow.core.native.io.FileSeek,snow.core.native.io.IO,snow.core.native.io._IO.FileSeek_Impl_,snow.core.web.assets.psd.PSD,snow.modules.interfaces.Assets,snow.modules.interfaces.Audio,snow.modules.interfaces.IO,snow.modules.openal.AL,snow.modules.openal.ALC,snow.modules.openal.ALCError,snow.modules.openal.ALError,snow.modules.openal.ALSound,snow.modules.openal.ALStream,snow.modules.openal.ALuint,snow.modules.openal.Audio,snow.modules.openal.Context,snow.modules.openal.Device,snow.modules.opengl.GL,snow.modules.opengl.GLActiveInfo,snow.modules.opengl.GLBuffer,snow.modules.opengl.GLContextAttributes,snow.modules.opengl.GLFramebuffer,snow.modules.opengl.GLProgram,snow.modules.opengl.GLRenderbuffer,snow.modules.opengl.GLShader,snow.modules.opengl.GLTexture,snow.modules.opengl.GLUniformLocation,snow.modules.sdl.FileHandle,snow.modules.sdl.IO,snow.modules.sdl.Runtime,snow.modules.sdl.RuntimeConfig,snow.modules.sdl.WindowHandle,snow.systems.assets.Asset,snow.systems.assets.AssetAudio,snow.systems.assets.AssetBytes,snow.systems.assets.AssetImage,snow.systems.assets.AssetJSON,snow.systems.assets.AssetText,snow.systems.assets.Assets,snow.systems.audio.Audio,snow.systems.audio.AudioInstance,snow.systems.audio.AudioSource,snow.systems.input.Input,snow.systems.input.Keycodes,snow.systems.input.MapIntBool,snow.systems.input.MapIntFloat,snow.systems.input.Scancodes,snow.systems.io.IO,snow.types.AppConfig,snow.types.AppHost,snow.types.AppRuntime,snow.types.Asset,snow.types.AssetAudio,snow.types.AssetBytes,snow.types.AssetImage,snow.types.AssetJSON,snow.types.AssetText,snow.types.AssetType,snow.types.AudioData,snow.types.AudioDataOptions,snow.types.AudioEvent,snow.types.AudioFormatType,snow.types.AudioHandle,snow.types.AudioState,snow.types.Config,snow.types.Error,snow.types.FileHandle,snow.types.GamepadDeviceEventType,snow.types.GamepadEvent,snow.types.GamepadEventType,snow.types.IODataOptions,snow.types.ImageInfo,snow.types.InputEvent,snow.types.InputEventType,snow.types.Key,snow.types.KeyEvent,snow.types.KeyEventType,snow.types.ModState,snow.types.ModuleAssets,snow.types.ModuleAudio,snow.types.ModuleIO,snow.types.MouseEvent,snow.types.MouseEventType,snow.types.OS,snow.types.OpenGLProfile,snow.types.Platform,snow.types.RenderConfig,snow.types.RenderConfigOpenGL,snow.types.RenderConfigWebGL,snow.types.RuntimeConfig,snow.types.Scan,snow.types.SystemEvent,snow.types.SystemEventType,snow.types.TextEvent,snow.types.TextEventType,snow.types.TouchEvent,snow.types.TouchEventType,snow.types.UserConfig,snow.types.WindowConfig,snow.types.WindowEvent,snow.types.WindowEventType,snow.types.WindowHandle,snow.types._Types.AppHostInit,snow.types._Types.AppRuntimeInit,snow.types._Types.ApplyType,snow.types._Types.AssetType_Impl_,snow.types._Types.AudioEvent_Impl_,snow.types._Types.AudioFormatType_Impl_,snow.types._Types.AudioState_Impl_,snow.types._Types.ExtensionsInit,snow.types._Types.FileHandleInit,snow.types._Types.GamepadDeviceEventType_Impl_,snow.types._Types.GamepadEventType_Impl_,snow.types._Types.InputEventType_Impl_,snow.types._Types.KeyEventType_Impl_,snow.types._Types.ModuleAssetsInit,snow.types._Types.ModuleAudioInit,snow.types._Types.ModuleIOInit,snow.types._Types.MouseEventType_Impl_,snow.types._Types.OS_Impl_,snow.types._Types.OpenGLProfile_Impl_,snow.types._Types.Platform_Impl_,snow.types._Types.RuntimeConfigInit,snow.types._Types.SystemEventType_Impl_,snow.types._Types.TextEventType_Impl_,snow.types._Types.TouchEventType_Impl_,snow.types._Types.UserConfigInit,snow.types._Types.WindowEventType_Impl_,snow.types._Types.WindowHandleInit"></script>
+
+
+<p><h1>RenderConfigWebGL</h1>
+<small><code>snow.types.RenderConfigWebGL</code> defined in <code>snow.types.Types</code></small></p>
+<p>Config specific to a WebGL rendering context.
+        See: <a href="https://www.khronos.org/registry/webgl/specs/latest/1.0/#WEBGLCONTEXTATTRIBUTES">https://www.khronos.org/registry/webgl/specs/latest/1.0/#WEBGLCONTEXTATTRIBUTES</a></p>
+<hr/>
+
+<p><code>typedef</code></p>
+<hr/>
+
+<p>&nbsp;</p>
+<p><h3>Members</h3> <hr/><span class="member apipage">
+                <a name="version"><a class="lift" href="#version">version</a></a><div class="clear"></div>
+                <code class="signature apipage">version : <a href="http://api.haxe.org/Null.html">Null</a>&lt;<a href="http://api.haxe.org/Int.html">Int</a>&gt;</code><br/></span>
+            <span class="small_desc_flat">The WebGL version to request. default: 1</span><br/><span class="member apipage">
+                <a name="stencil"><a class="lift" href="#stencil">stencil</a></a><div class="clear"></div>
+                <code class="signature apipage">stencil : <a href="http://api.haxe.org/Null.html">Null</a>&lt;<a href="http://api.haxe.org/Bool.html">Bool</a>&gt;</code><br/></span>
+            <span class="small_desc_flat">If the value is true, the drawing buffer has a stencil buffer of at least 8 bits.
+                If the value is false, no stencil buffer is available.
+                snow default: uses render config stencil flag
+                webgl default: false</span><br/><span class="member apipage">
+                <a name="preserveDrawingBuffer"><a class="lift" href="#preserveDrawingBuffer">preserveDrawingBuffer</a></a><div class="clear"></div>
+                <code class="signature apipage">preserveDrawingBuffer : <a href="http://api.haxe.org/Null.html">Null</a>&lt;<a href="http://api.haxe.org/Bool.html">Bool</a>&gt;</code><br/></span>
+            <span class="small_desc_flat">If false, once the drawing buffer is presented as described in theDrawing Buffer section,
+                the contents of the drawing buffer are cleared to their default values. All elements of the
+                drawing buffer (color, depth and stencil) are cleared. If the value is true the buffers will
+                not be cleared and will preserve their values until cleared or overwritten by the author.
+                On some hardware setting the preserveDrawingBuffer flag to true can have significant performance implications.
+                snow default: uses webgl default
+                webgl default: false</span><br/><span class="member apipage">
+                <a name="premultipliedAlpha"><a class="lift" href="#premultipliedAlpha">premultipliedAlpha</a></a><div class="clear"></div>
+                <code class="signature apipage">premultipliedAlpha : <a href="http://api.haxe.org/Null.html">Null</a>&lt;<a href="http://api.haxe.org/Bool.html">Bool</a>&gt;</code><br/></span>
+            <span class="small_desc_flat">If the value is true the page compositor will assume the drawing buffer contains colors with premultiplied alpha.
+                If the value is false the page compositor will assume that colors in the drawing buffer are not premultiplied.
+                This flag is ignored if the alpha flag is false.
+                snow default: false
+                webgl default: true</span><br/><span class="member apipage">
+                <a name="preferLowPowerToHighPerformance"><a class="lift" href="#preferLowPowerToHighPerformance">preferLowPowerToHighPerformance</a></a><div class="clear"></div>
+                <code class="signature apipage">preferLowPowerToHighPerformance : <a href="http://api.haxe.org/Null.html">Null</a>&lt;<a href="http://api.haxe.org/Bool.html">Bool</a>&gt;</code><br/></span>
+            <span class="small_desc_flat">Provides a hint to the implementation suggesting that, if possible, it creates a context
+                that optimizes for power consumption over performance. For example, on hardware that has more
+                than one GPU, it may be the case that one of them is less powerful but also uses less power.
+                An implementation may choose to, and may have to, ignore this hint.
+                snow default: uses webgl default
+                webgl default: false</span><br/><span class="member apipage">
+                <a name="failIfMajorPerformanceCaveat"><a class="lift" href="#failIfMajorPerformanceCaveat">failIfMajorPerformanceCaveat</a></a><div class="clear"></div>
+                <code class="signature apipage">failIfMajorPerformanceCaveat : <a href="http://api.haxe.org/Null.html">Null</a>&lt;<a href="http://api.haxe.org/Bool.html">Bool</a>&gt;</code><br/></span>
+            <span class="small_desc_flat">If the value is true, context creation will fail if the implementation determines that the
+                performance of the created WebGL context would be dramatically lower than that of a native
+                application making equivalent OpenGL calls.
+                snow default: uses webgl default
+                webgl default: false</span><br/><span class="member apipage">
+                <a name="depth"><a class="lift" href="#depth">depth</a></a><div class="clear"></div>
+                <code class="signature apipage">depth : <a href="http://api.haxe.org/Null.html">Null</a>&lt;<a href="http://api.haxe.org/Bool.html">Bool</a>&gt;</code><br/></span>
+            <span class="small_desc_flat">If the value is true, the drawing buffer has a depth buffer of at least 16 bits.
+                If the value is false, no depth buffer is available.
+                snow default: uses render config depth flag
+                webgl default:true</span><br/><span class="member apipage">
+                <a name="antialias"><a class="lift" href="#antialias">antialias</a></a><div class="clear"></div>
+                <code class="signature apipage">antialias : <a href="http://api.haxe.org/Null.html">Null</a>&lt;<a href="http://api.haxe.org/Bool.html">Bool</a>&gt;</code><br/></span>
+            <span class="small_desc_flat">If the value is true and the implementation supports antialiasing the drawing buffer
+                will perform antialiasing using its choice of technique (multisample/supersample) and quality.
+                If the value is false or the implementation does not support
+                antialiasing, no antialiasing is performed
+                snow default: uses render config antialias flag
+                webgl default: true</span><br/><span class="member apipage">
+                <a name="alpha"><a class="lift" href="#alpha">alpha</a></a><div class="clear"></div>
+                <code class="signature apipage">alpha : <a href="http://api.haxe.org/Null.html">Null</a>&lt;<a href="http://api.haxe.org/Bool.html">Bool</a>&gt;</code><br/></span>
+            <span class="small_desc_flat">If the value is true, the drawing buffer has an alpha channel for the
+                purposes of performing OpenGL destination alpha operations and
+                compositing with the page. If the value is false, no alpha buffer is available.
+                snow default: false
+                webgl default:true</span><br/></p>
+<hr/>
+
+<p>&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;</p>
+
+        </div>
+    </body>
+
+</html>
