@@ -45,7 +45,7 @@
                     $(this).tooltipster({
                         content:$('<span>' + c + '</span>'),
                         interactive:true,
-                        theme:'tooltipster-shadow'
+                    theme:'tooltipster-shadow'
                     });
                 });
 
@@ -69,14 +69,16 @@
 
 
 <p><h1>IO</h1>
-<small><code>snow.system.io.IO</code> defined in ``</small></p>
+<small><code>snow.system.io.IO</code></small></p>
 <hr/>
 
 <p><code>class</code><br/><span class="meta">
 meta: @:directlyUsed, @:allow(snow.Snow)</span></p>
 <hr/>
 
-<p>&nbsp;</p>
+
+<p>&nbsp;
+&nbsp;</p>
 <p><h3>Members</h3> <hr/><span class="member apipage">
                 <a name="module"><a class="lift" href="#module">module</a></a><div class="clear"></div>
                 <code class="signature apipage">module : <a href="../../../../api/snow/system/module/IO.html">snow.system.module.IO</a></code><br/></span>
@@ -91,12 +93,12 @@ meta: @:directlyUsed, @:allow(snow.Snow)</span></p>
             <code class="signature apipage">data_flow&lt;T&gt;(_id:<a href="http://api.haxe.org/String.html">String</a><span></span>, _processor:<a href="../../../../api/snow/Snow.html">snow.Snow</a>&nbsp; -&gt; <a href="http://api.haxe.org/String.html">String</a>&nbsp; -&gt; <a href="#">data_flow.T</a>&nbsp;-&gt; <a href="../../../../api/snow/api/Promise.html">snow.api.Promise</a><span></span>, _provider:<a href="../../../../api/snow/Snow.html">snow.Snow</a>&nbsp; -&gt; <a href="http://api.haxe.org/String.html">String</a>&nbsp;-&gt; <a href="../../../../api/snow/api/Promise.html">snow.api.Promise</a><span></span>) : <a href="../../../../api/snow/api/Promise.html">snow.api.Promise</a></code><br/><span class="small_desc_flat">Returns a promise for data, optionally provided by the given provider, and optionally processed by the given processor.</span></p>
 <p></span>
 <span class="method apipage">
-            <a name="data_load"><a class="lift" href="#data_load">data_load</a></a><span class="inline-block static">inline</span><div class="clear"></div>
+            <a name="data_load"><a class="lift" href="#data_load">data_load</a></a><div class="clear"></div>
             <code class="signature apipage">data_load(_path:<a href="http://api.haxe.org/String.html">String</a><span></span>, _options:<a href="../../../../api/snow/types/IODataOptions.html">snow.types.IODataOptions</a><span></span>) : <a href="../../../../api/snow/api/Promise.html">snow.api.Promise</a></code><br/><span class="small_desc_flat">Load bytes from the file path/url given.
             On web a request is sent for the data</span></p>
 <p></span>
 <span class="method apipage">
-            <a name="data_save"><a class="lift" href="#data_save">data_save</a></a><span class="inline-block static">inline</span><div class="clear"></div>
+            <a name="data_save"><a class="lift" href="#data_save">data_save</a></a><div class="clear"></div>
             <code class="signature apipage">data_save(_path:<a href="http://api.haxe.org/String.html">String</a><span></span>, _data:<a href="../../../../api/snow/api/buffers/Uint8Array.html">snow.api.buffers.Uint8Array</a><span></span>, _options:<a href="../../../../api/snow/types/IODataOptions.html">snow.types.IODataOptions</a><span></span>) : <a href="http://api.haxe.org/Bool.html">Bool</a></code><br/><span class="small_desc_flat">Save bytes to the file path/url given.
             On platforms where this doesn’t make sense (web) this will do nothing atm</span></p>
 <p></span>
@@ -127,7 +129,7 @@ meta: @:directlyUsed, @:allow(snow.Snow)</span></p>
             i.e on web targets the path will be <code>&lt;localstorage&gt;/</code> followed by the ID.</span></p>
 <p></span>
 <span class="method apipage">
-            <a name="url_open"><a class="lift" href="#url_open">url_open</a></a><span class="inline-block static">inline</span><div class="clear"></div>
+            <a name="url_open"><a class="lift" href="#url_open">url_open</a></a><div class="clear"></div>
             <code class="signature apipage">url_open(_url:<a href="http://api.haxe.org/String.html">String</a><span></span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat">Call this to open a url in the default browser</span></p>
 <p></span></p>
 <hr/>

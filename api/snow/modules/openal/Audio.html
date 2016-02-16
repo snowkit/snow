@@ -45,7 +45,7 @@
                     $(this).tooltipster({
                         content:$('<span>' + c + '</span>'),
                         interactive:true,
-                        theme:'tooltipster-shadow'
+                    theme:'tooltipster-shadow'
                     });
                 });
 
@@ -70,7 +70,6 @@
 
 <p><h1>Audio</h1>
 <small><code>snow.modules.openal.Audio</code> defined in ``</small></p>
-<p>Internal audio system implementation for OpenAL, interact with this system through <code>snow.Audio</code>, not directly</p>
 <hr/>
 
 <p><code>class</code><br/>implements <code><span>snow.modules.interfaces.Audio</span></code><br/><span class="meta">
@@ -78,7 +77,13 @@ meta: @:keep, @:log_as(&quot;openal&quot;), @:allow(snow.modules.openal), @:allo
 <hr/>
 
 <p>&nbsp;</p>
-<p><h3>Members</h3> <hr/></p>
+<p><h3>Members</h3> <hr/><span class="member apipage">
+                <a name="context"><a class="lift" href="#context">context</a></a><div class="clear"></div>
+                <code class="signature apipage">context : <a href="../../../../api/snow/modules/openal/Context.html">snow.modules.openal.Context</a></code><br/></span>
+            <span class="small_desc_flat"></span><br/><span class="member apipage">
+                <a name="device"><a class="lift" href="#device">device</a></a><div class="clear"></div>
+                <code class="signature apipage">device : <a href="../../../../api/snow/modules/openal/Device.html">snow.modules.openal.Device</a></code><br/></span>
+            <span class="small_desc_flat"></span><br/></p>
 <p><h3>Methods</h3> <hr/><span class="method apipage">
             <a name="data_from_bytes"><a class="lift" href="#data_from_bytes">data_from_bytes</a></a><div class="clear"></div>
             <code class="signature apipage">data_from_bytes(_id:<a href="http://api.haxe.org/String.html">String</a><span></span>, _bytes:<a href="../../../../api/snow/api/buffers/Uint8Array.html">snow.api.buffers.Uint8Array</a><span></span>, _format:<a href="../../../../api/snow/types/AudioFormatType.html">snow.types.AudioFormatType</a><span></span>) : <a href="../../../../api/snow/api/Promise.html">snow.api.Promise</a></code><br/><span class="small_desc_flat">Promises an AudioData instance from the given bytes</span></p>

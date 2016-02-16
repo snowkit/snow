@@ -45,7 +45,7 @@
                     $(this).tooltipster({
                         content:$('<span>' + c + '</span>'),
                         interactive:true,
-                        theme:'tooltipster-shadow'
+                    theme:'tooltipster-shadow'
                     });
                 });
 
@@ -69,7 +69,7 @@
 
 
 <p><h1>Assets</h1>
-<small><code>snow.system.assets.Assets</code> defined in ``</small></p>
+<small><code>snow.system.assets.Assets</code></small></p>
 <p>The asset system class gives you access to fetching and manipulating assets,
     handling loading files and data in a consistent cross platform way</p>
 <hr/>
@@ -78,11 +78,19 @@
 meta: @:directlyUsed</span></p>
 <hr/>
 
-<p>&nbsp;</p>
+
+<p>&nbsp;
+&nbsp;</p>
 <p><h3>Members</h3> <hr/><span class="member apipage">
                 <a name="app"><a class="lift" href="#app">app</a></a><div class="clear"></div>
                 <code class="signature apipage">app : <a href="../../../../api/snow/Snow.html">snow.Snow</a></code><br/></span>
             <span class="small_desc_flat">access to snow from subsystems</span><br/><span class="member apipage">
+                <a name="list"><a class="lift" href="#list">list</a></a><div class="clear"></div>
+                <code class="signature apipage">list : <a href="http://api.haxe.org/Array.html">Array</a>&lt;<a href="http://api.haxe.org/String.html">String</a>&gt;</code><br/></span>
+            <span class="small_desc_flat">The list of assets found in the manifest</span><br/><span class="member apipage">
+                <a name="manifest_path"><a class="lift" href="#manifest_path">manifest_path</a></a><div class="clear"></div>
+                <code class="signature apipage">manifest_path : <a href="http://api.haxe.org/String.html">String</a></code><br/></span>
+            <span class="small_desc_flat">The manifest file to parse for the asset list. By default, this is set to <code>manifest</code> from the build tools but the <code>App</code> class can have a custom <code>get_asset_list</code> handler use this value.</span><br/><span class="member apipage">
                 <a name="module"><a class="lift" href="#module">module</a></a><div class="clear"></div>
                 <code class="signature apipage">module : <a href="../../../../api/snow/system/module/Assets.html">snow.system.module.Assets</a></code><br/></span>
             <span class="small_desc_flat">access to module implementation</span><br/><span class="member apipage">
@@ -90,31 +98,35 @@ meta: @:directlyUsed</span></p>
                 <code class="signature apipage">root : <a href="http://api.haxe.org/String.html">String</a></code><br/></span>
             <span class="small_desc_flat">If the assets are not relative to the runtime root path, this value can adjust all asset paths. This is automatically handled and exists to allow control.</span><br/></p>
 <p><h3>Methods</h3> <hr/><span class="method apipage">
-            <a name="bytes"><a class="lift" href="#bytes">bytes</a></a><span class="inline-block static">inline</span><div class="clear"></div>
+            <a name="bytes"><a class="lift" href="#bytes">bytes</a></a><div class="clear"></div>
             <code class="signature apipage">bytes(_id:<a href="http://api.haxe.org/String.html">String</a><span></span>) : <a href="../../../../api/snow/api/Promise.html">snow.api.Promise</a></code><br/><span class="small_desc_flat">Get an asset as an <code>AssetBytes</code>, data stored as <code>Uint8Array</code>, using the default processor and provider</span></p>
 <p></span>
 <span class="method apipage">
-            <a name="image"><a class="lift" href="#image">image</a></a><span class="inline-block static">inline</span><div class="clear"></div>
+            <a name="image"><a class="lift" href="#image">image</a></a><div class="clear"></div>
             <code class="signature apipage">image(_id:<a href="http://api.haxe.org/String.html">String</a><span></span>) : <a href="../../../../api/snow/api/Promise.html">snow.api.Promise</a></code><br/><span class="small_desc_flat">Get an asset as an <code>AssetImage</code>, data stored as <code>ImageInfo</code>, using the default processor and provider</span></p>
 <p></span>
 <span class="method apipage">
-            <a name="image_from_bytes"><a class="lift" href="#image_from_bytes">image_from_bytes</a></a><span class="inline-block static">inline</span><div class="clear"></div>
+            <a name="image_from_bytes"><a class="lift" href="#image_from_bytes">image_from_bytes</a></a><div class="clear"></div>
             <code class="signature apipage">image_from_bytes(_id:<a href="http://api.haxe.org/String.html">String</a><span></span>, _bytes:<a href="../../../../api/snow/api/buffers/Uint8Array.html">snow.api.buffers.Uint8Array</a><span></span>) : <a href="../../../../api/snow/api/Promise.html">snow.api.Promise</a></code><br/><span class="small_desc_flat">Get an asset as an <code>AssetImage</code>, data stored as <code>ImageInfo</code>, created from image file bytes (not pixels).</span></p>
 <p></span>
 <span class="method apipage">
-            <a name="image_from_pixels"><a class="lift" href="#image_from_pixels">image_from_pixels</a></a><span class="inline-block static">inline</span><div class="clear"></div>
+            <a name="image_from_pixels"><a class="lift" href="#image_from_pixels">image_from_pixels</a></a><div class="clear"></div>
             <code class="signature apipage">image_from_pixels(_id:<a href="http://api.haxe.org/String.html">String</a><span></span>, _width:<a href="http://api.haxe.org/Int.html">Int</a><span></span>, _height:<a href="http://api.haxe.org/Int.html">Int</a><span></span>, _pixels:<a href="../../../../api/snow/api/buffers/Uint8Array.html">snow.api.buffers.Uint8Array</a><span></span>) : <a href="../../../../api/snow/system/assets/AssetImage.html">snow.system.assets.AssetImage</a></code><br/><span class="small_desc_flat">Get an asset as an <code>AssetImage</code>, data stored as <code>ImageInfo</code>, created from image file pixels</span></p>
 <p></span>
 <span class="method apipage">
-            <a name="json"><a class="lift" href="#json">json</a></a><span class="inline-block static">inline</span><div class="clear"></div>
+            <a name="json"><a class="lift" href="#json">json</a></a><div class="clear"></div>
             <code class="signature apipage">json(_id:<a href="http://api.haxe.org/String.html">String</a><span></span>) : <a href="../../../../api/snow/api/Promise.html">snow.api.Promise</a></code><br/><span class="small_desc_flat">Get an asset as an <code>AssetJSON</code>, data stored as <code>Dynamic</code>, using the default processor and provider</span></p>
 <p></span>
 <span class="method apipage">
-            <a name="path"><a class="lift" href="#path">path</a></a><span class="inline-block static">inline</span><div class="clear"></div>
+            <a name="listed"><a class="lift" href="#listed">listed</a></a><div class="clear"></div>
+            <code class="signature apipage">listed(_id:<a href="http://api.haxe.org/String.html">String</a><span></span>) : <a href="http://api.haxe.org/Bool.html">Bool</a></code><br/><span class="small_desc_flat">Check if an asset info exists in the list for a given id.</span></p>
+<p></span>
+<span class="method apipage">
+            <a name="path"><a class="lift" href="#path">path</a></a><div class="clear"></div>
             <code class="signature apipage">path(_id:<a href="http://api.haxe.org/String.html">String</a><span></span>) : <a href="http://api.haxe.org/String.html">String</a></code><br/><span class="small_desc_flat">Get the asset path for an asset, adjusted by platform, root etc.</span></p>
 <p></span>
 <span class="method apipage">
-            <a name="text"><a class="lift" href="#text">text</a></a><span class="inline-block static">inline</span><div class="clear"></div>
+            <a name="text"><a class="lift" href="#text">text</a></a><div class="clear"></div>
             <code class="signature apipage">text(_id:<a href="http://api.haxe.org/String.html">String</a><span></span>) : <a href="../../../../api/snow/api/Promise.html">snow.api.Promise</a></code><br/><span class="small_desc_flat">Get an asset as an <code>AssetText</code>, data stored as <code>String</code>, using the default processor and provider</span></p>
 <p></span></p>
 <hr/>

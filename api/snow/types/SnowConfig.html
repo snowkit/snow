@@ -45,7 +45,7 @@
                     $(this).tooltipster({
                         content:$('<span>' + c + '</span>'),
                         interactive:true,
-                        theme:'tooltipster-shadow'
+                    theme:'tooltipster-shadow'
                     });
                 });
 
@@ -69,23 +69,32 @@
 
 
 <p><h1>SnowConfig</h1>
-<small><code>snow.types.SnowConfig</code> defined in <code>snow.types.Types</code></small></p>
+<small><code>snow.types.SnowConfig</code></small></p>
 <p>Snow specific configurations, set from build config</p>
 <hr/>
 
 <p><code>typedef</code></p>
 <hr/>
 
-<p>&nbsp;</p>
+
+<p>&nbsp;
+&nbsp;</p>
 <p><h3>Members</h3> <hr/><span class="member apipage">
                 <a name="has_loop"><a class="lift" href="#has_loop">has_loop</a></a><div class="clear"></div>
                 <code class="signature apipage">has_loop : <a href="http://api.haxe.org/Null.html">Null</a>&lt;<a href="http://api.haxe.org/Bool.html">Bool</a>&gt;</code><br/></span>
             <span class="small_desc_flat">whether or not the core should run a loop at all, default: true</span><br/><span class="member apipage">
-                <a name="config_path"><a class="lift" href="#config_path">config_path</a></a><div class="clear"></div>
-                <code class="signature apipage">config_path : <a href="http://api.haxe.org/Null.html">Null</a>&lt;<a href="http://api.haxe.org/String.html">String</a>&gt;</code><br/></span>
-            <span class="small_desc_flat">The default place to find the runtime config file. 
-            Set this value to a blank string to disable the automatic
-            loading of the config json file. default: <code>config.json</code></span><br/><span class="member apipage">
+                <a name="config_runtime_path"><a class="lift" href="#config_runtime_path">config_runtime_path</a></a><div class="clear"></div>
+                <code class="signature apipage">config_runtime_path : <a href="http://api.haxe.org/Null.html">Null</a>&lt;<a href="http://api.haxe.org/String.html">String</a>&gt;</code><br/></span>
+            <span class="small_desc_flat">The default place to find the runtime config file, default: <code>config.json</code></span><br/><span class="member apipage">
+                <a name="config_custom_runtime"><a class="lift" href="#config_custom_runtime">config_custom_runtime</a></a><div class="clear"></div>
+                <code class="signature apipage">config_custom_runtime : <a href="http://api.haxe.org/Null.html">Null</a>&lt;<a href="http://api.haxe.org/Bool.html">Bool</a>&gt;</code><br/></span>
+            <span class="small_desc_flat">If set, no default runtime config will be loaded (use <code>App.config</code> to load a config manually). default: false</span><br/><span class="member apipage">
+                <a name="config_custom_assets"><a class="lift" href="#config_custom_assets">config_custom_assets</a></a><div class="clear"></div>
+                <code class="signature apipage">config_custom_assets : <a href="http://api.haxe.org/Null.html">Null</a>&lt;<a href="http://api.haxe.org/Bool.html">Bool</a>&gt;</code><br/></span>
+            <span class="small_desc_flat">If set, no default asset list will be loaded (use <code>App.config</code> to load a config manually). default: false</span><br/><span class="member apipage">
+                <a name="config_assets_path"><a class="lift" href="#config_assets_path">config_assets_path</a></a><div class="clear"></div>
+                <code class="signature apipage">config_assets_path : <a href="http://api.haxe.org/Null.html">Null</a>&lt;<a href="http://api.haxe.org/String.html">String</a>&gt;</code><br/></span>
+            <span class="small_desc_flat">The default place to find the asset manifest file, default: <code>manifest</code></span><br/><span class="member apipage">
                 <a name="app_package"><a class="lift" href="#app_package">app_package</a></a><div class="clear"></div>
                 <code class="signature apipage">app_package : <a href="http://api.haxe.org/Null.html">Null</a>&lt;<a href="http://api.haxe.org/String.html">String</a>&gt;</code><br/></span>
             <span class="small_desc_flat">The application specific package. i.e org.snowkit.snowapp
