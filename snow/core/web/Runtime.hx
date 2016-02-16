@@ -1,5 +1,7 @@
 package snow.core.web;
 
+#if js
+
 import snow.types.Types;
 import snow.api.Debug.*;
 
@@ -1151,3 +1153,5 @@ private class DOMKeys {
     static inline var dom_meta           = 224;
 
 } //DOMKeys
+
+#end

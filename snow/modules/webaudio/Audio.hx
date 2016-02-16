@@ -1,5 +1,7 @@
 package snow.modules.webaudio;
 
+#if js
+
 import snow.api.Debug.*;
 import snow.types.Types;
 import snow.api.Promise;
@@ -591,3 +593,5 @@ private class AudioDataWebAudio extends AudioData {
     } //destroy
 
 } //AudioDataWebAudio
+
+#end
