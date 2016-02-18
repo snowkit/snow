@@ -9,7 +9,8 @@ import snow.systems.audio.AudioInstance;
 @:allow(snow.systems.audio.Audio)
 class Audio implements snow.modules.interfaces.Audio {
 
-    var app : snow.Snow;
+    var app: snow.Snow;
+    var active: Bool = false;
     function new(_app:snow.Snow) app = _app;
     function onevent(event:SystemEvent):Void {}
     function shutdown():Void {}

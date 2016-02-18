@@ -27,11 +27,14 @@ class Audio implements snow.modules.interfaces.Audio {
 
     var instances: Map<AudioHandle, HowlSound>;
 
-    var app : snow.Snow;
+    var app: snow.Snow;
+    var active: Bool = false;
+
     function new(_app:snow.Snow) {
 
         app = _app;
         instances = new Map();
+        active = true;
 
         log('howlerjs');
 

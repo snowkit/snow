@@ -12,6 +12,7 @@ import snow.types.Types;
 interface Audio {
 
     private var app: snow.Snow;
+    private var active: Bool;
     private function onevent(event:SystemEvent):Void;
     private function shutdown():Void;
 

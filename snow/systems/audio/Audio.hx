@@ -26,7 +26,7 @@ class Audio {
         app = _app;
         module = new ModuleAudio(app);
         emitter = new Emitter();
-        active = true;
+        active = module.active;
 
     } //new
 
@@ -157,7 +157,7 @@ class Audio {
 
     public function resume() : Void {
 
-        if(active) {
+        if(active || !module.active) {
             return;
         }
 

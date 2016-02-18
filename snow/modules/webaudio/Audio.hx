@@ -42,7 +42,9 @@ class Audio implements snow.modules.interfaces.Audio {
 
     static inline var half_pi : Float = 1.5707;
 
-    var app : snow.Snow;
+    var app: snow.Snow;
+    var active: Bool = false;
+
     function new(_app:snow.Snow) {
 
         app = _app;
@@ -64,6 +66,8 @@ class Audio implements snow.modules.interfaces.Audio {
             'numberOfOutputs: ${context.destination.numberOfOutputs}';
 
         log('webaudio: $context / sampleRate: ${context.sampleRate} / destination: $info');
+
+        active = true;
 
     } //new
 

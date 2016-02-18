@@ -29,7 +29,9 @@ class Audio implements snow.modules.interfaces.Audio {
         /** A map of audio source to AL buffer handles */
     var buffers : Map<AudioSource, ALuint>;
 
-    var app : snow.Snow;
+    var app: snow.Snow;
+    var active: Bool = false;
+
     function new(_app:snow.Snow) {
 
         app = _app;
@@ -40,7 +42,6 @@ class Audio implements snow.modules.interfaces.Audio {
         device = ALC.openDevice();
 
         if(device == null) {
-            app.audio.active = false;
             log('failed / didn\'t create device!');
             return;
         }
@@ -53,9 +54,13 @@ class Audio implements snow.modules.interfaces.Audio {
         ALC.makeContextCurrent(context);
         _debug('set current / ${ ALCError.desc(ALC.getError(device)) }');
 
+        active = true;
+
     } //new
 
     function onevent(event:SystemEvent) {
+
+        if(!active) return;
 
         if(event.type == se_ready) {
             app.audio.on(ae_destroyed, on_instance_destroyed);
@@ -116,6 +121,8 @@ class Audio implements snow.modules.interfaces.Audio {
 
     function shutdown() {
 
+        if(!active) return;
+
         for(_snd in instances) {
             _snd.instance.destroy();
         }
@@ -145,6 +152,8 @@ class Audio implements snow.modules.interfaces.Audio {
 
     public function suspend() {
 
+        if(!active) return;
+
         _debug('suspending context');
         _debug(ALError.desc(AL.getError()));
         _debug(ALCError.desc(ALC.getError(device)));
@@ -160,6 +169,8 @@ class Audio implements snow.modules.interfaces.Audio {
     } //suspend
 
     public function resume() {
+
+        if(!active) return;
 
         _debug('resuming context');
 
