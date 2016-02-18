@@ -33,13 +33,13 @@ class Assets implements snow.modules.interfaces.Assets {
         } //image_info_from_load
 
             /** Create an image info (padded to POT) from a given Canvas or Image element. */
-        public function image_info_from_element( _id:String, _elem ) {
+        public function image_info_from_element( _id:String, _elem ) : ImageData {
 
             var width_pot = nearest_power_of_two(_elem.width);
             var height_pot = nearest_power_of_two(_elem.height);
             var image_bytes = POT_bytes_from_element(_elem.width, _elem.height, width_pot, height_pot, cast _elem);
 
-            var info : ImageInfo = {
+            var info = new ImageData(app, {
                 id : _id,
                 bpp : 4,
                 width : _elem.width,
@@ -48,7 +48,7 @@ class Assets implements snow.modules.interfaces.Assets {
                 height_actual : height_pot,
                 bpp_source : 4,
                 pixels : image_bytes
-            };
+            });
 
             image_bytes = null;
 
@@ -57,9 +57,9 @@ class Assets implements snow.modules.interfaces.Assets {
         } //image_info_from_element
 
             /** Create an image info from raw (already decoded) image pixels */
-        public function image_info_from_pixels(_id:String, _width:Int, _height:Int, _pixels:Uint8Array, ?_bpp:Int=4) : ImageInfo {
+        public function image_info_from_pixels(_id:String, _width:Int, _height:Int, _pixels:Uint8Array, ?_bpp:Int=4) : ImageData {
 
-            var info : ImageInfo = {
+            var info = new ImageData(app, {
                 id : _id,
                 bpp : 4,
                 width : _width,
@@ -68,12 +68,12 @@ class Assets implements snow.modules.interfaces.Assets {
                 height_actual : _height,
                 bpp_source : 4,
                 pixels : _pixels,
-            };
+            });
 
             return info;
         }
 
-            /** Create an image info (padded to POT) from bytes. Promises an ImageInfo. */
+            /** Create an image info (padded to POT) from bytes. Promises an ImageData. */
         public function image_info_from_bytes( _id:String, _bytes:Uint8Array, ?_components:Int = 4 ) : Promise {
 
             assertnull(_id);

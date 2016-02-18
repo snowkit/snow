@@ -49,9 +49,9 @@ class Asset {
 
     class AssetImage extends snow.systems.assets.Asset {
 
-        public var image (default,set): ImageInfo;
+        public var image (default,set): ImageData;
 
-        public function new(_system:Assets, _id:String, _image:ImageInfo) {
+        public function new(_system:Assets, _id:String, _image:ImageData) {
 
             super(_system, _id, at_image);
             image = _image;
@@ -70,7 +70,7 @@ class Asset {
                     var _load = system.app.io.data_flow(system.path(id), provider);
 
                     _load.then(
-                        function(_image:ImageInfo){
+                        function(_image:ImageData){
                             image = _image;
                             resolve(this);
                         }
@@ -82,11 +82,7 @@ class Asset {
 
             override public function destroy() {
 
-                if(image.pixels != null) {
-                    //:note: can't set the buffer on js, this is mostly for cpp gc anyway
-                    #if snow_native image.pixels.buffer = null; #end
-                    image.pixels = null;
-                }
+                image.destroy();
                 image = null;
 
             }
@@ -100,7 +96,7 @@ class Asset {
 
                     var _load = system.module.image_info_from_bytes(id, _bytes);
 
-                    _load.then(function(_image:ImageInfo){
+                    _load.then(function(_image:ImageData){
                         image = _image;
                         resolve(this);
                     }).error(reject);
@@ -152,14 +148,14 @@ class Asset {
             } //load_from_pixels
 
                 /** A default io provider, using image_info_from_load from the asset module.
-                    Promises ImageInfo. Takes an asset path, not an asset id (use assets.path(id))*/
+                    Promises ImageData. Takes an asset path, not an asset id (use assets.path(id))*/
             public static function provider(_app:snow.Snow, _path:String) : Promise {
 
                 return _app.assets.module.image_info_from_load(_path);
 
             } //provider
 
-                /** A convenience io processor, using image_info_from_bytes, from the asset module. Promises ImageInfo */
+                /** A convenience io processor, using image_info_from_bytes, from the asset module. Promises ImageData */
             public static function processor(_app:snow.Snow, _id:String, _data:Uint8Array) : Promise {
 
                 if(_data == null) return Promise.reject(Error.error("AssetImage processor: data was null"));
@@ -171,7 +167,7 @@ class Asset {
         //Internal
 
                 /** Set the image contained to a new value */
-            function set_image(_image:ImageInfo) {
+            function set_image(_image:ImageData) {
 
                 loaded = _image != null;
                 return image = _image;
@@ -218,13 +214,6 @@ class Asset {
             } //reload
 
             override public function destroy() {
-            
-                    //:todo: AudioData has a destroy call, which can encapsulate platform specifics here
-                if(audio.samples != null) {
-                    //:note: can't set the buffer on js, this is mostly for cpp gc anyway
-                    #if snow_native audio.samples.buffer = null; #end
-                    audio.samples = null;
-                }
             
                 audio.destroy();
                 audio = null;

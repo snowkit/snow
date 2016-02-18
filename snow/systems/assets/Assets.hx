@@ -63,15 +63,15 @@ class Assets {
     public inline function json(_id:String) : Promise
         return AssetJSON.load(this, _id);
 
-        /** Get an asset as an `AssetImage`, data stored as `ImageInfo`, using the default processor and provider */
+        /** Get an asset as an `AssetImage`, data stored as `ImageData`, using the default processor and provider */
     public inline function image(_id:String) : Promise
         return AssetImage.load(this, _id);
 
-        /** Get an asset as an `AssetImage`, data stored as `ImageInfo`, created from image file bytes (not pixels). */
+        /** Get an asset as an `AssetImage`, data stored as `ImageData`, created from image file bytes (not pixels). */
     public inline function image_from_bytes(_id:String, _bytes:Uint8Array) : Promise
         return AssetImage.load_from_bytes(this, _id, _bytes);
 
-        /** Get an asset as an `AssetImage`, data stored as `ImageInfo`, created from image file pixels */
+        /** Get an asset as an `AssetImage`, data stored as `ImageData`, created from image file pixels */
     public inline function image_from_pixels(_id:String, _width:Int, _height:Int, _pixels:Uint8Array) : AssetImage
         return AssetImage.load_from_pixels(this, _id, _width, _height, _pixels);
 

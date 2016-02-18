@@ -114,7 +114,7 @@ import snow.api.buffers.Uint8Array;
         var at_text    = 2;
             /** An asset holding JSON data, as `Dynamic` */
         var at_json    = 3;
-            /** An asset holding image data, as `ImageInfo` */
+            /** An asset holding image data, as `ImageData` */
         var at_image   = 4;
             /** An asset holding audio data, as `AudioSource` */
         var at_audio   = 5;
@@ -134,9 +134,9 @@ import snow.api.buffers.Uint8Array;
     } //AssetType
 
     /** Information about an image file/data */
-    typedef ImageInfo = {
+    typedef ImageDataOptions = {
 
-        /** source asset id */
+            /** source asset id */
         var id : String;
             /** image width from source image */
         var width : Int;
@@ -153,7 +153,56 @@ import snow.api.buffers.Uint8Array;
             /** image pixel data */
         var pixels : Uint8Array;
 
-    } //ImageInfo
+    } //ImageDataOptions
+
+    class ImageData {
+                
+        public var app : snow.Snow;
+            /** source asset id */
+        public var id : String = 'ImageData';
+            /** image width from source image */
+        public var width : Int = 0;
+            /** image height from source image */
+        public var height : Int = 0;
+            /** The actual width, used when image is automatically padded to POT */
+        public var width_actual : Int = 0;
+            /** The actual height, used when image is automatically padded to POT */
+        public var height_actual : Int = 0;
+            /** used bits per pixel */
+        public var bpp : Int = 4;
+            /** source bits per pixel */
+        public var bpp_source : Int = 4;
+            /** image pixel data */
+        public var pixels : Uint8Array;
+
+        inline public function new(_app:snow.Snow, _options:ImageDataOptions) {
+            
+            app = _app;
+
+            id = def(_options.id, id);
+            width = _options.width;
+            height = _options.height;
+            width_actual = _options.width_actual;
+            height_actual = _options.height_actual;
+            bpp = _options.bpp;
+            bpp_source = _options.bpp_source;
+            pixels = def(_options.pixels, pixels);
+
+            _options = null;
+
+        } //new
+
+        public function destroy() {
+
+            id = null;
+            #if snow_native pixels.buffer = null; #end
+            pixels = null;
+
+        } //destroy
+
+        inline function toString() return '{ "ImageData":true, "id":$id, "width":$width, "height":$height, "width_actual":$width_actual, "height_actual":$height_actual, "bpp":$bpp, "bpp_source":$bpp_source }';
+
+    } //ImageData
 
     /** Options for an IO data query */
     typedef IODataOptions = {
@@ -297,7 +346,13 @@ import snow.api.buffers.Uint8Array;
 
         //Public API, typically populated by subclasses
 
-            public function destroy() {}
+            public function destroy() {
+
+                id = null;
+                #if snow_native samples.buffer = null; #end
+                samples = null;
+
+            } //destroy
 
         //Internal implementation details, populated by subclasses
 
