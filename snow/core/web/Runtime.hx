@@ -562,7 +562,7 @@ class Runtime implements snow.core.Runtime {
             //This is typically required for our WebGL blending
         window.style.background = '#000';
 
-        _debug('created window at ${window_x},${window_y} - ${window.width}x${window.height} pixels (${config.width}x${config.width}@${window_dpr}x)');
+        _debug('created window at ${window_x},${window_y} - ${window.width}x${window.height} pixels (${config.width}x${config.height}@${window_dpr}x)');
 
         window.id = app.config.runtime.window_id;
         app.config.runtime.window_parent.appendChild(window);
@@ -580,6 +580,7 @@ class Runtime implements snow.core.Runtime {
 
         if(config.fullscreen) {
             window_fullscreen(true, config.true_fullscreen);
+            update_window_bounds();
         }
 
     } //create_window
