@@ -599,7 +599,7 @@ class Runtime extends snow.core.native.Runtime {
                         e.tfinger.y,
                         e.tfinger.dx,
                         e.tfinger.dy,
-                        cast e.tfinger.touchId,
+                        cast e.tfinger.fingerId,
                         e.tfinger.timestamp/1000.0
                     );
                 case SDL_FINGERUP:
@@ -608,7 +608,7 @@ class Runtime extends snow.core.native.Runtime {
                         e.tfinger.y,
                         e.tfinger.dx,
                         e.tfinger.dy,
-                        cast e.tfinger.touchId,
+                        cast e.tfinger.fingerId,
                         e.tfinger.timestamp/1000.0
                     );
                 case SDL_FINGERMOTION:
@@ -617,7 +617,7 @@ class Runtime extends snow.core.native.Runtime {
                         e.tfinger.y,
                         e.tfinger.dx,
                         e.tfinger.dy,
-                        cast e.tfinger.touchId,
+                        cast e.tfinger.fingerId,
                         e.tfinger.timestamp/1000.0
                     );
 
