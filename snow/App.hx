@@ -157,7 +157,8 @@ class App {
 
     } //internal_tick
 
-    inline function internal_tick_default() : Void {
+    //inline  //:todo: better handling of update_rate for inlining
+    function internal_tick_default() : Void {
 
         if(update_rate != 0) {
 
