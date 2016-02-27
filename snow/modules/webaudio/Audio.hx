@@ -116,6 +116,7 @@ class Audio implements snow.modules.interfaces.Audio {
         _snd.gain_node.disconnect();
         _snd.pan_node = null;
         _snd.gain_node = null;
+        instances.remove(_snd.handle);
     }
 
     function play_instance(
@@ -294,7 +295,10 @@ class Audio implements snow.modules.interfaces.Audio {
 
         _snd.gain_node.disconnect();
         _snd.pan_node.disconnect();
+        _snd.pan_node = null;
+        _snd.gain_node = null;
         _snd.state = as_stopped;
+        instances.remove(_handle);
 
     } //stop
 
