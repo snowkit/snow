@@ -105,19 +105,9 @@ class Audio implements snow.modules.interfaces.Audio {
         _snd.pan_node.connect(_snd.gain_node);
         _snd.gain_node.connect(context.destination);
         _snd.buffer_node.start(0, _start_time);
-        _snd.buffer_node.onended = end_buffer.bind(_snd);
+        _snd.buffer_node.onended = destroy_snd.bind(_snd);
 
     } //play_buffer_again
-
-    function end_buffer(_snd:WebSound) {
-        _snd.buffer_node.stop();
-        _snd.buffer_node.disconnect();
-        _snd.pan_node.disconnect();
-        _snd.gain_node.disconnect();
-        _snd.pan_node = null;
-        _snd.gain_node = null;
-        instances.remove(_snd.handle);
-    }
 
     function play_instance(
         _handle:AudioHandle,
@@ -177,7 +167,7 @@ class Audio implements snow.modules.interfaces.Audio {
 
         if(_buffer_node != null) {
             _buffer_node.start(0);
-            _buffer_node.onended = end_buffer.bind(_snd);
+            _buffer_node.onended = destroy_snd.bind(_snd);
         }
 
         if(_data.media_node != null) {
@@ -277,6 +267,37 @@ class Audio implements snow.modules.interfaces.Audio {
 
     } //unpause
 
+    inline function destroy_snd(_snd:WebSound) {
+
+        if(_snd.buffer_node != null) {
+            _snd.buffer_node.stop();
+            _snd.buffer_node.disconnect();
+            _snd.buffer_node = null;
+        }
+
+        if(_snd.media_node != null) {
+            _snd.media_elem.pause();
+            _snd.media_elem.currentTime = 0;
+            _snd.media_node.disconnect();
+            _snd.media_elem = null;
+            _snd.media_node = null;
+        }
+
+        if(_snd.gain_node != null) {
+            _snd.gain_node.disconnect();
+            _snd.gain_node = null;
+        } 
+
+        if(_snd.pan_node != null) {
+            _snd.pan_node.disconnect();
+            _snd.pan_node = null;
+        }
+
+        instances.remove(_snd.handle);
+        _snd = null;
+
+    } //destroy_snd
+
     public function stop(_handle:AudioHandle) : Void {
 
         var _snd = snd_of(_handle);
@@ -284,21 +305,9 @@ class Audio implements snow.modules.interfaces.Audio {
 
         _debug('stop handle=$_handle, ' + _snd.source.data.id);
 
-        if(_snd.buffer_node != null) {
-            _snd.buffer_node.stop();
-            _snd.buffer_node.disconnect();
-        } else if(_snd.media_node != null) {
-            _snd.media_elem.pause();
-            _snd.media_elem.currentTime = 0;
-            _snd.media_node.disconnect();
-        }
+        destroy_snd(_snd);
 
-        _snd.gain_node.disconnect();
-        _snd.pan_node.disconnect();
-        _snd.pan_node = null;
-        _snd.gain_node = null;
         _snd.state = as_stopped;
-        instances.remove(_handle);
 
     } //stop
 
