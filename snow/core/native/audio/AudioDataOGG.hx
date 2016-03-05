@@ -264,7 +264,7 @@ class OGG {
 
         //file_read past the end of file may return 0 amount read,
         //which can mislead the amounts, so we work out how much is left if near the end
-        var _file_size = _ogg.app.io.module.file_size(_ogg.handle);
+        var _file_size:Int = _ogg.app.io.module.file_size(_ogg.handle);
         var _file_cur = _ogg.app.io.module.file_tell(_ogg.handle);
         var _read_size = Std.int(Math.min(_file_size-_file_cur, _total));
 
