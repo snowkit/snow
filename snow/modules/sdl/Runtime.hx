@@ -97,8 +97,6 @@ class Runtime extends snow.core.native.Runtime {
 
         _debug('sdl / run');
 
-        SDL.showWindow(window);
-
         return run_loop();
 
     } //run
@@ -336,6 +334,8 @@ class Runtime extends snow.core.native.Runtime {
 
         post_render_context(window);
 
+        //:todo:runtime:sdl: The updated window/render configs aren't accessible anymore
+        
             //start with a copy
         var actual_config = app.copy_window_config(config);
         var actual_render = app.copy_render_config(app.config.render);
@@ -434,7 +434,6 @@ class Runtime extends snow.core.native.Runtime {
 
         var flags : SDLWindowFlags = 0;
 
-        flags |= SDL_WINDOW_HIDDEN;
         flags |= SDL_WINDOW_OPENGL;
         flags |= SDL_WINDOW_ALLOW_HIGHDPI;
 
