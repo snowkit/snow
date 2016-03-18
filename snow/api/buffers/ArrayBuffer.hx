@@ -13,6 +13,12 @@ package snow.api.buffers;
         public inline function new( byteLength:Int ) {
             this = Bytes.alloc( byteLength );
         }
+
+        public var byteLength (get, never) : Int;
+
+        inline function get_byteLength() {
+            return this.length;
+        }
     }
 
 #end //!js
