@@ -205,24 +205,32 @@ class Debug {
 
     } //_verboser
 
-    macro public static function assert(expr:Expr, ?reason:String='') {
+    macro public static function assert(expr:Expr, ?reason:ExprOf<String>) {
         #if !snow_no_assertions
-            var str = haxe.macro.ExprTools.toString(expr);
-                if(reason != '') str += ' ($reason)';
+            var _str = haxe.macro.ExprTools.toString(expr);
+
+            reason = switch(reason) {
+                case macro null: macro '';
+                case _: macro ' ( ' + $reason + ' )';
+            }
+
             return macro @:pos(Context.currentPos()) {
-                if(!$expr) throw snow.api.Debug.DebugError.assertion('$str');
+                if(!$expr) throw snow.api.Debug.DebugError.assertion( '$_str' + $reason);
             }
         #end
         return macro null;
     } //assert
 
-
-    macro public static function assertnull(value:Expr, ?reason:String='') {
+    macro public static function assertnull(value:Expr, ?reason:ExprOf<String>) {
         #if !snow_no_assertions
-            var str = haxe.macro.ExprTools.toString(value);
-            if(reason != '') reason = ' ($reason)';
+            var _str = haxe.macro.ExprTools.toString(value);
+
+            reason = switch(reason) {
+                case macro null: macro '';
+                case _: macro ' ( ' + $reason + ' )';
+            }
             return macro @:pos(Context.currentPos()) {
-                if($value == null) throw snow.api.Debug.DebugError.null_assertion('$str was null$reason');
+                if($value == null) throw snow.api.Debug.DebugError.null_assertion('$_str was null' + $reason);
             }
         #end
         return macro null;
