@@ -109,6 +109,13 @@ class Runtime implements snow.core.Runtime {
 
     } //window_height
 
+    inline public static function timestamp() : Float {
+
+        return haxe.Timer.stamp();
+
+    } //timestamp
 
 } //Runtime
 
+@:noCompletion typedef RuntimeConfig = {}
+@:noCompletion typedef WindowHandle = Int
