@@ -456,7 +456,7 @@ class Main extends snow.App {
 
     function init_buffers() {
 
-        #if !linc_opengl_GLES
+        #if (linc_opengl && !js && !linc_opengl_GLES)
             if(app.config.render.opengl.profile == OpenGLProfile.core) {
                 var vaos = [0];
                 opengl.GL.glGenVertexArrays(1, vaos);
