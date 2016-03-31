@@ -114,7 +114,6 @@ class Runtime extends snow.core.native.Runtime {
 
     override function window_grab(enable:Bool) : Bool {
 
-        SDL.setWindowGrab(window, enable);
         var res = SDL.setRelativeMouseMode(enable);
 
         return res == 0;
