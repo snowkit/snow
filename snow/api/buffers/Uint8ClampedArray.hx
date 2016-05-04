@@ -9,28 +9,20 @@ package snow.api.buffers;
 
         public inline static var BYTES_PER_ELEMENT : Int = 1;
 
-        @:generic
-        public inline function new<T>(
-            ?elements:Int,
-            ?array:Array<T>,
-            ?view:ArrayBufferView,
-            ?buffer:ArrayBuffer, ?byteoffset:Int = 0, ?len:Null<Int>
-        ) {
-            if(elements != null) {
-                this = new js.html.Uint8ClampedArray( elements );
-            } else if(array != null) {
-                this = new js.html.Uint8ClampedArray( untyped array );
-            } else if(view != null) {
-                this = new js.html.Uint8ClampedArray( untyped view );
-            } else if(buffer != null) {
-                if (len == null) {
-                    this = new js.html.Uint8ClampedArray( buffer, byteoffset );
-                } else {
-                    this = new js.html.Uint8ClampedArray( buffer, byteoffset, len );
-                }
-            } else {
-                this = null;
-            }
+        inline public function new(_elements:Int) {
+            this = new js.html.Uint8ClampedArray(_elements);
+        }
+        
+        inline static public function fromArray<T>(_array:Array<T>) : Uint8ClampedArray {
+            return new js.html.Uint8ClampedArray(untyped _array);
+        }
+        
+        inline static public function fromView(_view:ArrayBufferView) : Uint8ClampedArray {
+            return new js.html.Uint8ClampedArray(untyped _view);
+        }
+        
+        inline static public function fromBuffer(_buffer:ArrayBuffer, _byteOffset:Int, _byteLength:Int) : Uint8ClampedArray {
+            return new js.html.Uint8ClampedArray(_buffer, _byteOffset, _byteLength);
         }
 
         @:arrayAccess @:extern inline function __set(idx:Int, val:UInt) : Void this[idx] = _clamp(val);
@@ -77,25 +69,21 @@ package snow.api.buffers;
 
         public var length (get, never):Int;
 
-        @:generic
-        public inline function new<T>(
-            ?elements:Int,
-            ?array:Array<T>,
-            ?view:ArrayBufferView,
-            ?buffer:ArrayBuffer, ?byteoffset:Int = 0, ?len:Null<Int>
-        ) {
+        inline public function new(_elements:Int) {
+            this = ArrayBufferView.fromElements(Uint8Clamped, _elements);
+        }
 
-            if(elements != null) {
-                this = new ArrayBufferView( elements, Uint8Clamped );
-            } else if(array != null) {
-                this = new ArrayBufferView(0, Uint8Clamped).initArray(array);
-            } else if(view != null) {
-                this = new ArrayBufferView(0, Uint8Clamped).initTypedArray(view);
-            } else if(buffer != null) {
-                this = new ArrayBufferView(0, Uint8Clamped).initBuffer(buffer, byteoffset, len);
-            } else {
-                throw "Invalid constructor arguments for Uint8ClampedArray";
-            }
+        // @:generic
+        static public inline function fromArray<T>(_array:Array<T>) : Uint8ClampedArray {
+            return ArrayBufferView.fromArray(Uint8Clamped, cast _array);
+        }
+
+        static public inline function fromView(_view:ArrayBufferView) : Uint8ClampedArray {
+            return ArrayBufferView.fromView(Uint8Clamped, _view);
+        }
+
+        static public inline function fromBuffer(_buffer:ArrayBuffer, _byteOffset:Int, _byteLength:Int) : Uint8ClampedArray {
+            return ArrayBufferView.fromBuffer(Uint8Clamped, _buffer, _byteOffset, _byteLength);
         }
 
     //Public API
@@ -103,13 +91,13 @@ package snow.api.buffers;
         public inline function subarray( begin:Int, end:Null<Int> = null) : Uint8ClampedArray return this.subarray(begin, end);
 
 
-            //non spec haxe conversions
-        inline public static function fromBytes( bytes:haxe.io.Bytes, ?byteOffset:Int=0, ?len:Int ) : Uint8ClampedArray {
-            return new Uint8ClampedArray(bytes, byteOffset, len);
+        inline public static function fromBytes(_bytes:haxe.io.Bytes, ?_byteOffset:Int=0, ?_byteLength:Int) : Uint8ClampedArray {
+            if(_byteLength == null) _byteLength = _bytes.length;
+            return Uint8ClampedArray.fromBuffer(_bytes.getData(), _byteOffset, _byteLength);
         }
 
         inline public function toBytes() : haxe.io.Bytes {
-            return this.buffer;
+            return haxe.io.Bytes.ofData(this.buffer);
         }
 
     //Internal

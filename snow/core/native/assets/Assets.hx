@@ -90,14 +90,13 @@ class Assets implements snow.modules.interfaces.Assets {
         assertnull(_id);
         assertnull(_bytes);
 
-        var _image_bytes = _bytes.toBytes();
-        var _info = stb.Image.load_from_memory(_image_bytes.getData(), _image_bytes.length, _components);
+        var _info = stb.Image.load_from_memory(_bytes.buffer, _bytes.length, _components);
 
         if(_info == null) {
             return null;
         }
 
-        var _pixel_bytes : haxe.io.Bytes = haxe.io.Bytes.ofData(_info.bytes);
+        // var _pixel_bytes : haxe.io.Bytes = haxe.io.Bytes.ofData(_info.bytes);
 
         return new ImageData(app, {
             id : _id,
@@ -107,7 +106,7 @@ class Assets implements snow.modules.interfaces.Assets {
             width_actual : _info.w,
             height_actual : _info.h,
             bpp_source : _info.comp,
-            pixels : new Uint8Array( _pixel_bytes )
+            pixels : Uint8Array.fromBuffer(_info.bytes, 0, _info.bytes.length) //new Uint8Array( _pixel_bytes )
         });
 
     } //info_from_bytes

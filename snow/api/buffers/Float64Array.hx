@@ -9,29 +9,22 @@ package snow.api.buffers;
 
         public inline static var BYTES_PER_ELEMENT : Int = 8;
 
-        @:generic
-        public inline function new<T>(
-            ?elements:Int,
-            ?array:Array<T>,
-            ?view:ArrayBufferView,
-            ?buffer:ArrayBuffer, ?byteoffset:Int = 0, ?len:Null<Int>
-        ) {
-            if(elements != null) {
-                this = new js.html.Float64Array( elements );
-            } else if(array != null) {
-                this = new js.html.Float64Array( untyped array );
-            } else if(view != null) {
-                this = new js.html.Float64Array( untyped view );
-            } else if(buffer != null) {
-                if(len == null) {
-                    this = new js.html.Float64Array( buffer, byteoffset );
-                } else {
-                    this = new js.html.Float64Array( buffer, byteoffset, len );
-                }
-            } else {
-                this = null;
-            }
+        inline public function new(_elements:Int) {
+            this = new js.html.Float64Array(_elements);
         }
+        
+        inline static public function fromArray<T>(_array:Array<T>) : Float64Array {
+            return new js.html.Float64Array(untyped _array);
+        }
+        
+        inline static public function fromView(_view:ArrayBufferView) : Float64Array {
+            return new js.html.Float64Array(untyped _view);
+        }
+        
+        inline static public function fromBuffer(_buffer:ArrayBuffer, _byteOffset:Int, _byteLength:Int) : Float64Array {
+            return new js.html.Float64Array(_buffer, _byteOffset, Std.int(_byteLength/BYTES_PER_ELEMENT));
+        }
+        
 
         @:arrayAccess @:extern inline function __set(idx:Int, val:Float) : Void this[idx] = val;
         @:arrayAccess @:extern inline function __get(idx:Int) : Float return this[idx];
@@ -68,25 +61,21 @@ package snow.api.buffers;
 
         public var length (get, never):Int;
 
-        @:generic
-        public inline function new<T>(
-            ?elements:Int,
-            ?array:Array<T>,
-            ?view:ArrayBufferView,
-            ?buffer:ArrayBuffer, ?byteoffset:Int = 0, ?len:Null<Int>
-        ) {
+        inline public function new(_elements:Int) {
+            this = ArrayBufferView.fromElements(Float64, _elements);
+        }
 
-            if(elements != null) {
-                this = new ArrayBufferView( elements, Float64 );
-            } else if(array != null) {
-                this = new ArrayBufferView(0, Float64).initArray(array);
-            } else if(view != null) {
-                this = new ArrayBufferView(0, Float64).initTypedArray(view);
-            } else if(buffer != null) {
-                this = new ArrayBufferView(0, Float64).initBuffer(buffer, byteoffset, len);
-            } else {
-                throw "Invalid constructor arguments for Float64Array";
-            }
+        // @:generic
+        static public inline function fromArray<T>(_array:Array<T>) : Float64Array {
+            return ArrayBufferView.fromArray(Float64, cast _array);
+        }
+
+        static public inline function fromView(_view:ArrayBufferView) : Float64Array {
+            return ArrayBufferView.fromView(Float64, _view);
+        }
+
+        static public inline function fromBuffer(_buffer:ArrayBuffer, _byteOffset:Int, _byteLength:Int) : Float64Array {
+            return ArrayBufferView.fromBuffer(Float64, _buffer, _byteOffset, _byteLength);
         }
 
     //Public API
@@ -94,13 +83,14 @@ package snow.api.buffers;
         public inline function subarray( begin:Int, end:Null<Int> = null) : Float64Array return this.subarray(begin, end);
 
 
-            //non spec haxe conversions
-        inline public static function fromBytes( bytes:haxe.io.Bytes, ?byteOffset:Int=0, ?len:Int ) : Float64Array {
-            return new Float64Array(bytes, byteOffset, len);
+        inline public static function fromBytes(_bytes:haxe.io.Bytes, ?_byteOffset:Int=0, ?_byteLength:Int) : Float64Array {
+            if(_byteLength == null) _byteLength = _bytes.length;
+            return Float64Array.fromBuffer(_bytes.getData(), _byteOffset, _byteLength);
         }
 
+
         inline public function toBytes() : haxe.io.Bytes {
-            return this.buffer;
+            return haxe.io.Bytes.ofData(this.buffer);
         }
 
     //Internal

@@ -1,6 +1,5 @@
 package snow.modules.interfaces;
 
-import haxe.io.BytesData;
 import snow.types.Types;
 import snow.api.Promise;
 import snow.api.buffers.Uint8Array;

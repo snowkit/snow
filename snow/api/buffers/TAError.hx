@@ -1,5 +1,5 @@
 package snow.api.buffers;
 
 enum TAError {
-    RangeError;
+    RangeError(reason:String);
 }

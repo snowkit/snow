@@ -474,7 +474,7 @@ class Main extends snow.App {
         pos_buffer = GL.createBuffer ();
         GL.bindBuffer (GL.ARRAY_BUFFER, pos_buffer);
 
-            GL.bufferData (GL.ARRAY_BUFFER, new Float32Array(vertices), GL.STATIC_DRAW);
+            GL.bufferData(GL.ARRAY_BUFFER, Float32Array.fromArray(vertices), GL.STATIC_DRAW);
 
         GL.bindBuffer (GL.ARRAY_BUFFER, null);
 

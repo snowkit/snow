@@ -19,8 +19,6 @@ class ALStream extends ALSound {
         /** remaining buffers to play */
     public var buffers_left : Int = 0;
 
-        //internal reference to the bytesdata to avoid converting each time
-    var buffer_bytes : haxe.io.BytesData;
     var duration = 0.0;
 
     public function new(_module:Audio, _source:snow.systems.audio.AudioSource, _instance:AudioInstance) {
@@ -38,9 +36,6 @@ class ALStream extends ALSound {
         buffers = [for (i in 0...source.stream_buffer_count) 0];
         buffers = AL.genBuffers(source.stream_buffer_count, buffers);
         buffer_data = new Uint8Array(source.stream_buffer_length);
-        var _bytes = buffer_data.toBytes();
-        buffer_bytes = _bytes.getData();
-        _bytes = null;
 
         err('generated ${source.stream_buffer_count} buffers');
 
@@ -76,7 +71,6 @@ class ALStream extends ALSound {
         }
 
         buffers = null;
-        buffer_bytes = null;
         buffer_data.buffer = null;
         buffer_data = null;
 
@@ -171,7 +165,7 @@ class ALStream extends ALSound {
         // err('pre fill buffer ${_buffer}');
 
         if(_amount > 0) {
-            AL.bufferData(_buffer, alformat, source.data.rate, buffer_bytes, buffer_data.byteOffset, _amount);
+            AL.bufferData(_buffer, alformat, source.data.rate, buffer_data.buffer, buffer_data.byteOffset, _amount);
         }
 
         // err('post fill buffer ${_buffer} read: $_read');

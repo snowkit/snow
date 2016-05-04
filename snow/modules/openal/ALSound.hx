@@ -48,7 +48,7 @@ class ALSound {
             _buffer = AL.genBuffer();
 
             if(_data.samples != null) {
-                AL.bufferData(_buffer, alformat, _data.rate, _data.samples.toBytes().getData(), _data.samples.byteOffset, _data.samples.byteLength); 
+                AL.bufferData(_buffer, alformat, _data.rate, _data.samples.buffer, _data.samples.byteOffset, _data.samples.byteLength); 
             } else {
                 _buffer = AL.NONE;
                 log(' > new buffer ${_data.id} / created with AL.NONE buffer!');

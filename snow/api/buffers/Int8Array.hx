@@ -9,29 +9,22 @@ package snow.api.buffers;
 
         public inline static var BYTES_PER_ELEMENT : Int = 1;
 
-        @:generic
-        public inline function new<T>(
-            ?elements:Int,
-            ?array:Array<T>,
-            ?view:ArrayBufferView,
-            ?buffer:ArrayBuffer, ?byteoffset:Int = 0, ?len:Null<Int>
-        ) {
-            if(elements != null) {
-                this = new js.html.Int8Array( elements );
-            } else if(array != null) {
-                this = new js.html.Int8Array( untyped array );
-            } else if(view != null) {
-                this = new js.html.Int8Array( untyped view );
-            } else if(buffer != null) {
-                if(len == null) {
-                    this = new js.html.Int8Array( buffer, byteoffset );
-                } else {
-                    this = new js.html.Int8Array( buffer, byteoffset, len );
-                }
-            } else {
-                this = null;
-            }
+        inline public function new(_elements:Int) {
+            this = new js.html.Int8Array(_elements);
         }
+        
+        inline static public function fromArray<T>(_array:Array<T>) : Int8Array {
+            return new js.html.Int8Array(untyped _array);
+        }
+        
+        inline static public function fromView(_view:ArrayBufferView) : Int8Array {
+            return new js.html.Int8Array(untyped _view);
+        }
+        
+        inline static public function fromBuffer(_buffer:ArrayBuffer, _byteOffset:Int, _byteLength:Int) : Int8Array {
+            return new js.html.Int8Array(_buffer, _byteOffset, _byteLength);
+        }
+
 
         @:arrayAccess @:extern inline function __set(idx:Int, val:Int) : Void this[idx] = val;
         @:arrayAccess @:extern inline function __get(idx:Int) : Int return this[idx];
@@ -66,25 +59,21 @@ package snow.api.buffers;
 
         public var length (get, never):Int;
 
-        @:generic
-        public inline function new<T>(
-            ?elements:Int,
-            ?array:Array<T>,
-            ?view:ArrayBufferView,
-            ?buffer:ArrayBuffer, ?byteoffset:Int = 0, ?len:Null<Int>
-        ) {
+        inline public function new(_elements:Int) {
+            this = ArrayBufferView.fromElements(Int8, _elements);
+        }
 
-            if(elements != null) {
-                this = new ArrayBufferView( elements, Int8 );
-            } else if(array != null) {
-                this = new ArrayBufferView(0, Int8).initArray(array);
-            } else if(view != null) {
-                this = new ArrayBufferView(0, Int8).initTypedArray(view);
-            } else if(buffer != null) {
-                this = new ArrayBufferView(0, Int8).initBuffer(buffer, byteoffset, len);
-            } else {
-                throw "Invalid constructor arguments for Int8Array";
-            }
+        // @:generic
+        static public inline function fromArray<T>(_array:Array<T>) : Int8Array {
+            return ArrayBufferView.fromArray(Int8, cast _array);
+        }
+
+        static public inline function fromView(_view:ArrayBufferView) : Int8Array {
+            return ArrayBufferView.fromView(Int8, _view);
+        }
+
+        static public inline function fromBuffer(_buffer:ArrayBuffer, _byteOffset:Int, _byteLength:Int) : Int8Array {
+            return ArrayBufferView.fromBuffer(Int8, _buffer, _byteOffset, _byteLength);
         }
 
     //Public API
@@ -92,15 +81,13 @@ package snow.api.buffers;
         public inline function subarray( begin:Int, end:Null<Int> = null) : Int8Array return this.subarray(begin, end);
 
 
-            //non spec haxe conversions
-        inline public static function fromBytes( bytes:haxe.io.Bytes, ?byteOffset:Int=0, ?len:Int ) : Int8Array {
-            if(byteOffset == null) return new Int8Array(cast bytes.getData());
-            if(len == null) return new Int8Array(cast bytes.getData(), byteOffset);
-            return new Int8Array(cast bytes.getData(), byteOffset, len);
+        inline public static function fromBytes(_bytes:haxe.io.Bytes, ?_byteOffset:Int=0, ?_byteLength:Int) : Int8Array {
+            if(_byteLength == null) _byteLength = _bytes.length;
+            return Int8Array.fromBuffer(_bytes.getData(), _byteOffset, _byteLength);
         }
 
         inline public function toBytes() : haxe.io.Bytes {
-            return this.buffer;
+            return haxe.io.Bytes.ofData(this.buffer);
         }
 
     //Internal

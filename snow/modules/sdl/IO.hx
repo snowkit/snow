@@ -41,7 +41,7 @@ class IO extends snow.core.native.io.IO {
 
     override public function file_handle_from_mem(mem:ArrayBufferView, size:Int) : FileHandle {
 
-        return SDL.RWFromMem(mem.buffer.getData(), size);
+        return SDL.RWFromMem(mem.buffer, size);
 
     } //file_handle_from_mem
 
@@ -49,7 +49,7 @@ class IO extends snow.core.native.io.IO {
 
         assertnull(file);
 
-        return SDL.RWread(file, dest.buffer.getData(), size, maxnum);
+        return SDL.RWread(file, dest.buffer, size, maxnum);
 
     } //file_read
 
@@ -57,7 +57,7 @@ class IO extends snow.core.native.io.IO {
 
         assertnull(file);
 
-        return SDL.RWwrite(file, src.buffer.getData(), size, num);
+        return SDL.RWwrite(file, src.buffer, size, num);
 
     } //file_write
 

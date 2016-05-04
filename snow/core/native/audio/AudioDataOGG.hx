@@ -78,7 +78,7 @@ class AudioDataOGG extends AudioData {
             }
 
                 // Read the decoded sound data
-            bytes_read = Ogg.ov_read(oggfile, _into.buffer.getData(), total_read, _read_max, OggEndian.TYPICAL, OggWord.TYPICAL, OggSigned.TYPICAL);
+            bytes_read = Ogg.ov_read(oggfile, _into.buffer, total_read, _read_max, OggEndian.TYPICAL, OggWord.TYPICAL, OggSigned.TYPICAL);
 
             total_read += bytes_read;
             bytes_left -= bytes_read;
@@ -259,8 +259,7 @@ class OGG {
     static function ogg_read(_ogg:AudioDataOGG, size:Int, nmemb:Int, data:haxe.io.BytesData):Int {
 
         var _total = size * nmemb;
-        var _bytes = haxe.io.Bytes.ofData(data);
-        var _buffer = new Uint8Array(_bytes);
+        var _buffer = Uint8Array.fromBuffer(data, 0, data.length);
 
         //file_read past the end of file may return 0 amount read,
         //which can mislead the amounts, so we work out how much is left if near the end
@@ -272,8 +271,6 @@ class OGG {
         var _read = (_read_n * _read_size);
 
         // trace('ogg_read cur:$_file_cur, fs:$_file_size, rs:$_read_size, size:$size, nmemb:$nmemb, read amount:$_read');
-
-        _bytes = null;
 
         return _read;
 

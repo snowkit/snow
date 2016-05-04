@@ -190,7 +190,7 @@ class Assets implements snow.modules.interfaces.Assets {
         tmp_context = null;
         _imgdata = null;
 
-        return new Uint8Array(image_bytes.data);
+        return Uint8Array.fromView(image_bytes.data);
     
     }
 
@@ -226,7 +226,7 @@ class Assets implements snow.modules.interfaces.Assets {
             //cleanup
         tmp_canvas = null; tmp_context = null;
 
-        return new Uint8Array(image_bytes.data);
+        return Uint8Array.fromView(image_bytes.data);
 
     } //POT_bytes_from_element
 

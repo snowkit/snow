@@ -38,7 +38,7 @@ class Oooh extends AudioInstance {
     override function data_get(_into:Uint8Array, _start:Int, _length:Int, _res:Array<Int>) : Array<Int> {
 
         //view the bytes as short
-        var ints = new Int16Array(_into.buffer);
+        var ints = Int16Array.fromBuffer(_into.buffer, 0, _into.buffer.length);
             //2 bytes per sample
         var _samples = (_length/2);
         var _samples_per_channel = Std.int(_samples/2);

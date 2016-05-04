@@ -5,41 +5,27 @@ package snow.api.buffers;
     typedef ArrayBufferView = js.html.ArrayBufferView;
 
 #else
-
+    
+    using cpp.NativeArray;
     import snow.api.buffers.TypedArrayType;
 
     class ArrayBufferView {
 
         public var type = TypedArrayType.None;
-        public var buffer:ArrayBuffer;
-        public var byteOffset:Int;
-        public var byteLength:Int;
-        public var length:Int;
+        public var buffer: ArrayBuffer;
+        public var byteOffset: Int;
+        public var byteLength: Int;
+        public var length: Int;
 
             //internal for avoiding switching on types
         var bytesPerElement (default,null) : Int = 0;
 
         @:allow(snow.api.buffers)
         #if !snow_no_inline_buffers inline #end
-        function new( ?elements:Null<Int> = null, in_type:TypedArrayType) {
+        function new(in_type:TypedArrayType) {
 
             type = in_type;
             bytesPerElement = bytesForType(type);
-
-                //other constructor types use
-                //the init calls below
-            if(elements != null && elements != 0) {
-
-                if(elements < 0) elements = 0;
-                //:note:spec: also has, platform specific max int?
-                //elements = min(elements,maxint);
-
-                byteOffset = 0;
-                byteLength = toByteLength(elements);
-                buffer = new ArrayBuffer( byteLength );
-                length = elements;
-
-            }
 
         } //new
 
@@ -47,94 +33,105 @@ package snow.api.buffers;
 
         @:allow(snow.api.buffers)
         #if !snow_no_inline_buffers inline #end
-        function initTypedArray( view:ArrayBufferView ) {
+        static function fromElements(_type:TypedArrayType, _elements:Int) : ArrayBufferView {
 
-            var srcData = view.buffer;
-            var srcLength = view.length;
-            var srcByteOffset = view.byteOffset;
-            var srcElementSize = view.bytesPerElement;
-            var elementSize = bytesPerElement;
+            if(_elements < 0) _elements = 0;
+            //:note:spec: also has, platform specific max int?
+            //_elements = min(_elements,maxint);
 
-                    //same species, so just blit the data
-                    //in other words, it shares the same bytes per element etc
-                if(view.type == type) {
-                    cloneBuffer(srcData, srcByteOffset);
-                } else {
-                    //see :note:1: below use FPHelper!
-                    throw ("unimplemented");
+            var _view = new ArrayBufferView(_type);
+            var _bytelen = _view.toByteLength(_elements);
+
+                _view.byteOffset = 0;
+                _view.byteLength = _bytelen;
+                _view.buffer = new ArrayBuffer(_bytelen);
+                _view.length = _elements;
+
+            return _view;
+
+        } //fromElements
+
+        @:allow(snow.api.buffers)
+        #if !snow_no_inline_buffers inline #end
+        static function fromView(_type:TypedArrayType, _other:ArrayBufferView) : ArrayBufferView {
+
+            var _src_type = _other.type;
+            var _src_data = _other.buffer;
+            var _src_length = _other.length;
+            var _src_byte_offset = _other.byteOffset;
+
+            var _view = new ArrayBufferView(_type);
+
+                    //same TypedArrayType, so just blit the data.
+                    //In other words, it shares the same bytes per element etc
+                if(_src_type == _type) {
+                    _view.cloneBuffer(_src_data, _src_byte_offset);
+                } else {                    
+                    throw ("unimplemented"); //see :note:1: below use FPHelper!
                 }
 
-            byteLength = bytesPerElement * srcLength;
-            byteOffset = 0;
-            length = srcLength;
+            _view.byteLength = _view.bytesPerElement * _src_length;
+            _view.byteOffset = 0;
+            _view.length = _src_length;
 
-            return this;
+            return _view;
 
-        } //(typedArray)
+        } //fromView
 
         @:allow(snow.api.buffers)
         #if !snow_no_inline_buffers inline #end
-        function initBuffer( in_buffer:ArrayBuffer, ?in_byteOffset:Int = 0, len:Null<Int> = null ) {
+        static function fromBuffer(_type:TypedArrayType, _buffer:ArrayBuffer, _byte_offset:Int, _byte_length:Int) : ArrayBufferView {
 
-            if(in_byteOffset < 0) throw TAError.RangeError;
-            if(in_byteOffset % bytesPerElement != 0) throw TAError.RangeError;
+            var _view = new ArrayBufferView(_type);
+            var _bytes_per_elem = _view.bytesPerElement;
 
-            var bufferByteLength = in_buffer.length;
-            var elementSize = bytesPerElement;
-            var newByteLength = bufferByteLength;
+            if(_byte_offset < 0) throw TAError.RangeError('fromBuffer: byte offset must be positive (> 0)');
+            if(_byte_offset % _bytes_per_elem != 0) throw TAError.RangeError('fromBuffer: byte offset must be aligned with the bytes per element');
 
-            if( len == null ) {
+            var _src_bytelen = _buffer.length;
+            var _new_range = _byte_offset + _byte_length;
+            if( _new_range > _src_bytelen ) throw TAError.RangeError('fromBuffer: specified range would exceed the source buffer');
 
-                newByteLength = bufferByteLength - in_byteOffset;
+            _view.buffer = _buffer;
+            _view.byteOffset = _byte_offset;
+            _view.byteLength = _byte_length;
+            _view.length = Std.int(_byte_length / _bytes_per_elem);
 
-                if(bufferByteLength % bytesPerElement != 0) throw TAError.RangeError;
-                if(newByteLength < 0) throw TAError.RangeError;
+            return _view;
 
-            } else {
-
-                newByteLength = len * bytesPerElement;
-
-                var newRange = in_byteOffset + newByteLength;
-                if( newRange > bufferByteLength ) throw TAError.RangeError;
-
-            }
-
-            buffer = in_buffer;
-            byteOffset = in_byteOffset;
-            byteLength = newByteLength;
-            length = Std.int(newByteLength / bytesPerElement);
-
-            return this;
-
-        } //(buffer [, byteOffset [, length]])
+        } //fromBuffer
 
 
         @:allow(snow.api.buffers)
         #if !snow_no_inline_buffers inline #end
-        function initArray<T>( array:Array<T> ) {
+        static function fromArray(_type:TypedArrayType, _array:Array<Float>) : ArrayBufferView {
 
-            byteOffset = 0;
-            length = array.length;
-            byteLength = toByteLength(length);
+            var _view = new ArrayBufferView(_type);
+            var _length = _array.length;
+            var _bytelen = _view.toByteLength(_length);
 
-            buffer = new ArrayBuffer( byteLength );
-            copyFromArray(cast array);
+                _view.byteOffset = 0;
+                _view.length = _length;
+                _view.byteLength = _bytelen;
+                _view.buffer = new ArrayBuffer(_bytelen);
 
-            return this;
+                _view.copyFromArray(_array);
 
-        }
+            return _view;
+
+        } //fromArray
 
 
     //Public shared APIs
 
     //T is required because it can translate [0,0] as Int array
         #if !snow_no_inline_buffers inline #end
-    public function set<T>( ?view:ArrayBufferView, ?array:Array<T>, offset:Int = 0 ) : Void {
+    public function set( ?view:ArrayBufferView, ?array:Array<Float>, offset:Int = 0 ) : Void {
 
         if(view != null && array == null) {
             buffer.blit( toByteLength(offset), view.buffer, view.byteOffset, view.byteLength );
         } else if(array != null && view == null) {
-            copyFromArray(cast array, offset);
+            copyFromArray(array, offset);
         } else {
             throw "Invalid .set call. either view, or array must be not-null.";
         }
@@ -150,7 +147,8 @@ package snow.api.buffers;
             var srcLength = src.length;
             var cloneLength = srcLength - srcByteOffset;
 
-            buffer = new ArrayBuffer( cloneLength );
+            buffer = new ArrayBuffer(cloneLength);
+
             buffer.blit( 0, src, srcByteOffset, cloneLength );
 
         }
@@ -162,38 +160,38 @@ package snow.api.buffers;
         function subarray<T_subarray>( begin:Int, end:Null<Int> = null ) : T_subarray {
 
             if (end == null) end == length;
-            var len = end - begin;
+            var byte_len = toByteLength(end - begin);
             var byte_offset = toByteLength(begin) + byteOffset;
 
             var view : ArrayBufferView =
                 switch(type) {
 
                     case Int8:
-                         new Int8Array(buffer, byte_offset, len);
+                         Int8Array.fromBuffer(buffer, byte_offset, byte_len);
 
                     case Int16:
-                         new Int16Array(buffer, byte_offset, len);
+                         Int16Array.fromBuffer(buffer, byte_offset, byte_len);
 
                     case Int32:
-                         new Int32Array(buffer, byte_offset, len);
+                         Int32Array.fromBuffer(buffer, byte_offset, byte_len);
 
                     case Uint8:
-                         new Uint8Array(buffer, byte_offset, len);
+                         Uint8Array.fromBuffer(buffer, byte_offset, byte_len);
 
                     case Uint8Clamped:
-                         new Uint8ClampedArray(buffer, byte_offset, len);
+                         Uint8ClampedArray.fromBuffer(buffer, byte_offset, byte_len);
 
                     case Uint16:
-                         new Uint16Array(buffer, byte_offset, len);
+                         Uint16Array.fromBuffer(buffer, byte_offset, byte_len);
 
                     case Uint32:
-                         new Uint32Array(buffer, byte_offset, len);
+                         Uint32Array.fromBuffer(buffer, byte_offset, byte_len);
 
                     case Float32:
-                         new Float32Array(buffer, byte_offset, len);
+                         Float32Array.fromBuffer(buffer, byte_offset, byte_len);
 
                     case Float64:
-                         new Float64Array(buffer, byte_offset, len);
+                         Float64Array.fromBuffer(buffer, byte_offset, byte_len);
 
                     case None:
                         throw "subarray on a blank ArrayBufferView";

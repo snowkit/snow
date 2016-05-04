@@ -1,108 +1,113 @@
 package snow.api.buffers;
 
+import snow.api.buffers.DataView;
+
 #if js
 
     @:forward
-    abstract DataView(js.html.DataView)
+    abstract DataViewBE(js.html.DataView)
         from js.html.DataView
         to js.html.DataView {
 
-        public inline function new(buffer:ArrayBuffer, byteOffset:Null<Int> = null, byteLength:Null<Int> = null) {
-            if(byteOffset != null && byteLength == null) this = new js.html.DataView(buffer, byteOffset);
-            else if(byteOffset != null && byteLength != null) this = new js.html.DataView(buffer, byteOffset, byteLength);
-            else this = new js.html.DataView(buffer);
+        public inline function new( buffer:ArrayBuffer, byteOffset:Null<Int> = null, byteLength:Null<Int> = null ) {
+            if(byteOffset != null && byteLength == null) this = new js.html.DataView( buffer, byteOffset );
+            else if(byteOffset != null && byteLength != null) this = new js.html.DataView( buffer, byteOffset, byteLength);
+            else this = new js.html.DataView( buffer );
         }
 
         #if !snow_no_inline_buffers inline #end
         public function getInt8(byteOffset:Int) : Int {
-            return this.getInt8(byteOffset);
+            return this.getInt8( byteOffset);
         }
 
         #if !snow_no_inline_buffers inline #end
         public function getInt16(byteOffset:Int) : Int {
-            return this.getInt16(byteOffset, true);
+            return this.getInt16( byteOffset, false);
         }
 
         #if !snow_no_inline_buffers inline #end
         public function getInt32(byteOffset:Int) : Int {
-            return this.getInt32(byteOffset, true);
+            return this.getInt32( byteOffset, false);
         }
 
         #if !snow_no_inline_buffers inline #end
         public function getUint8(byteOffset:Int) : UInt {
-            return this.getUint8(byteOffset);
+            return this.getUint8( byteOffset);
         }
 
         #if !snow_no_inline_buffers inline #end
         public function getUint16(byteOffset:Int) : UInt {
-            return this.getUint16(byteOffset, true);
+            return this.getUint16( byteOffset, false);
         }
 
         #if !snow_no_inline_buffers inline #end
         public function getUint32(byteOffset:Int) : UInt {
-            return this.getUint32(byteOffset, true);
+            return this.getUint32( byteOffset, false);
         }
 
         #if !snow_no_inline_buffers inline #end
         public function getFloat32(byteOffset:Int) : Float {
-            return this.getFloat32(byteOffset, true);
+            return this.getFloat32( byteOffset, false);
         }
 
         #if !snow_no_inline_buffers inline #end
         public function getFloat64(byteOffset:Int) : Float {
-            return this.getFloat64(byteOffset, true);
+            return this.getFloat64( byteOffset, false);
         }
 
 
 
 
         #if !snow_no_inline_buffers inline #end
-        public function setInt8(byteOffset:Int, value:Int) {
-            this.setInt8(byteOffset, value);
+        public function setInt8( byteOffset:Int, value:Int ) {
+            this.setInt8( byteOffset, value);
         }
 
         #if !snow_no_inline_buffers inline #end
-        public function setInt16(byteOffset:Int, value:Int) {
-            this.setInt16(byteOffset, value, true);
+        public function setInt16( byteOffset:Int, value:Int) {
+            this.setInt16( byteOffset, value, false);
         }
 
         #if !snow_no_inline_buffers inline #end
-        public function setInt32(byteOffset:Int, value:Int) {
-            this.setInt32(byteOffset, value, true);
+        public function setInt32( byteOffset:Int, value:Int) {
+            this.setInt32( byteOffset, value, false);
         }
 
         #if !snow_no_inline_buffers inline #end
-        public function setUint8(byteOffset:Int, value:UInt) {
-            this.setUint8(byteOffset, value);
+        public function setUint8( byteOffset:Int, value:UInt ) {
+            this.setUint8( byteOffset, value);
         }
 
         #if !snow_no_inline_buffers inline #end
-        public function setUint16(byteOffset:Int, value:UInt) {
-            this.setUint16(byteOffset, value, true);
+        public function setUint16( byteOffset:Int, value:UInt) {
+            this.setUint16( byteOffset, value, false);
         }
 
         #if !snow_no_inline_buffers inline #end
-        public function setUint32(byteOffset:Int, value:UInt) {
-            this.setUint32(byteOffset, value, true);
+        public function setUint32( byteOffset:Int, value:UInt) {
+            this.setUint32( byteOffset, value, false);
         }
 
         #if !snow_no_inline_buffers inline #end
-        public function setFloat32(byteOffset:Int, value:Float) {
-            this.setFloat32(byteOffset, value, true);
+        public function setFloat32( byteOffset:Int, value:Float) {
+            this.setFloat32( byteOffset, value, false);
         }
 
         #if !snow_no_inline_buffers inline #end
-        public function setFloat64(byteOffset:Int, value:Float) {
-            this.setFloat64(byteOffset, value, true);
+        public function setFloat64( byteOffset:Int, value:Float) {
+            this.setFloat64( byteOffset, value, false);
         }
 
-    } //DataView
+    } //DataViewBE
+
 
 #else
 
-    import snow.api.buffers.ArrayBuffer;
-
-    class DataView {
+        /** A big endian Data view,
+            where all get/set calls will read/write in BE,
+            overriding the behavior of the underlying dataview.
+            Note that this class doesn't work correctly (yet) on CPP! */
+    class DataViewBE {
 
         public var buffer:ArrayBuffer;
         public var byteLength:Int;
@@ -132,7 +137,7 @@ package snow.api.buffers;
             this.byteLength = viewByteLength;
             this.byteOffset = byteOffset;
 
-        }
+        } //new
 
         #if !snow_no_inline_buffers inline #end
         public function getInt8(byteOffset:Int) : Int {
@@ -141,12 +146,12 @@ package snow.api.buffers;
 
         #if !snow_no_inline_buffers inline #end
         public function getInt16(byteOffset:Int) : Int {
-            return ArrayBufferIO.getInt16(buffer, byteOffset);                
+            return ArrayBufferIO.getInt16_BE(buffer, byteOffset);
         }
 
         #if !snow_no_inline_buffers inline #end
         public function getInt32(byteOffset:Int) : Int {
-            return ArrayBufferIO.getInt32(buffer, byteOffset);                
+            return ArrayBufferIO.getInt32_BE(buffer, byteOffset);
         }
 
         #if !snow_no_inline_buffers inline #end
@@ -156,67 +161,64 @@ package snow.api.buffers;
 
         #if !snow_no_inline_buffers inline #end
         public function getUint16(byteOffset:Int) : UInt {
-            return ArrayBufferIO.getUint16(buffer, byteOffset);                
+            return ArrayBufferIO.getUint16_BE(buffer, byteOffset);
         }
 
         #if !snow_no_inline_buffers inline #end
         public function getUint32(byteOffset:Int) : UInt {
-            return ArrayBufferIO.getUint32(buffer, byteOffset);                
+            return ArrayBufferIO.getUint32_BE(buffer, byteOffset);
         }
 
         #if !snow_no_inline_buffers inline #end
         public function getFloat32(byteOffset:Int) : Float {
-            return ArrayBufferIO.getFloat32(buffer, byteOffset);                
+            return ArrayBufferIO.getFloat32_BE(buffer, byteOffset);
         }
 
         #if !snow_no_inline_buffers inline #end
         public function getFloat64(byteOffset:Int) : Float {
-            return ArrayBufferIO.getFloat64(buffer, byteOffset);                
+            return ArrayBufferIO.getFloat64_BE(buffer, byteOffset);
         }
 
-
-
         #if !snow_no_inline_buffers inline #end
-        public function setInt8(byteOffset:Int, value:Int) {
+        public function setInt8( byteOffset:Int, value:Int ) {
             ArrayBufferIO.setInt8(buffer, byteOffset, value);
         }
 
         #if !snow_no_inline_buffers inline #end
-        public function setInt16(byteOffset:Int, value:Int) {
-            ArrayBufferIO.setInt16(buffer, byteOffset, value);
+        public function setInt16( byteOffset:Int, value:Int) {
+            ArrayBufferIO.setInt16_BE(buffer, byteOffset, value);
         }
 
         #if !snow_no_inline_buffers inline #end
-        public function setInt32(byteOffset:Int, value:Int) {
-            ArrayBufferIO.setInt32(buffer, byteOffset, value);
+        public function setInt32( byteOffset:Int, value:Int) {
+            ArrayBufferIO.setInt32_BE(buffer, byteOffset, value);
         }
 
         #if !snow_no_inline_buffers inline #end
-        public function setUint8(byteOffset:Int, value:UInt) {
+        public function setUint8( byteOffset:Int, value:UInt ) {
             ArrayBufferIO.setUint8(buffer, byteOffset, value);
         }
 
         #if !snow_no_inline_buffers inline #end
-        public function setUint16(byteOffset:Int, value:UInt) {
-            ArrayBufferIO.setUint16(buffer, byteOffset, value);
+        public function setUint16( byteOffset:Int, value:UInt) {
+            ArrayBufferIO.setUint16_BE(buffer, byteOffset, value);
         }
 
         #if !snow_no_inline_buffers inline #end
-        public function setUint32(byteOffset:Int, value:UInt) {
-            ArrayBufferIO.setUint32(buffer, byteOffset, value);
+        public function setUint32( byteOffset:Int, value:UInt) {
+            ArrayBufferIO.setUint32_BE(buffer, byteOffset, value);
         }
 
         #if !snow_no_inline_buffers inline #end
-        public function setFloat32(byteOffset:Int, value:Float) {
-            ArrayBufferIO.setFloat32(buffer, byteOffset, value);
+        public function setFloat32( byteOffset:Int, value:Float) {
+            ArrayBufferIO.setFloat32_BE(buffer, byteOffset, value);
         }
 
         #if !snow_no_inline_buffers inline #end
-        public function setFloat64(byteOffset:Int, value:Float) {
-            ArrayBufferIO.setFloat64(buffer, byteOffset, value);
+        public function setFloat64( byteOffset:Int, value:Float) {
+            ArrayBufferIO.setFloat64_BE(buffer, byteOffset, value);
         }
 
-
-    } //DataView
+    } //DataViewBE
 
 #end //!js

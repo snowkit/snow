@@ -6,15 +6,17 @@ package snow.api.buffers;
 
 #else
 
-    import haxe.io.Bytes;
+    import haxe.io.BytesData;
 
     @:forward
-    abstract ArrayBuffer(Bytes) from Bytes to Bytes {
-        public inline function new( byteLength:Int ) {
-            this = Bytes.alloc( byteLength );
-        }
+    abstract ArrayBuffer(BytesData) from BytesData to BytesData {
 
         public var byteLength (get, never) : Int;
+
+        public inline function new( byteLength:Int ) {
+            this = new BytesData();
+            if(byteLength>0) this[byteLength-1] = untyped 0;
+        }
 
         inline function get_byteLength() {
             return this.length;

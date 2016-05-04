@@ -9,28 +9,20 @@ package snow.api.buffers;
 
         public inline static var BYTES_PER_ELEMENT : Int = 2;
 
-        @:generic
-        public inline function new<T>(
-            ?elements:Int,
-            ?array:Array<T>,
-            ?view:ArrayBufferView,
-            ?buffer:ArrayBuffer, ?byteoffset:Int = 0, ?len:Null<Int>
-        ) {
-            if(elements != null) {
-                this = new js.html.Int16Array( elements );
-            } else if(array != null) {
-                this = new js.html.Int16Array( untyped array );
-            } else if(view != null) {
-                this = new js.html.Int16Array( untyped view );
-            } else if(buffer != null) {
-                if(len == null) {
-                    this = new js.html.Int16Array( buffer, byteoffset );
-                } else {
-                    this = new js.html.Int16Array( buffer, byteoffset, len );
-                }
-            } else {
-                this = null;
-            }
+        inline public function new(_elements:Int) {
+            this = new js.html.Int16Array(_elements);
+        }
+        
+        inline static public function fromArray<T>(_array:Array<T>) : Int16Array {
+            return new js.html.Int16Array(untyped _array);
+        }
+        
+        inline static public function fromView(_view:ArrayBufferView) : Int16Array {
+            return new js.html.Int16Array(untyped _view);
+        }
+        
+        inline static public function fromBuffer(_buffer:ArrayBuffer, _byteOffset:Int, _byteLength:Int) : Int16Array {
+            return new js.html.Int16Array(_buffer, _byteOffset, Std.int(_byteLength/BYTES_PER_ELEMENT));
         }
 
         @:arrayAccess @:extern inline function __set(idx:Int, val:Int) : Void this[idx] = val;
@@ -68,25 +60,21 @@ package snow.api.buffers;
 
         public var length (get, never):Int;
 
-        @:generic
-        public inline function new<T>(
-            ?elements:Int,
-            ?array:Array<T>,
-            ?view:ArrayBufferView,
-            ?buffer:ArrayBuffer, ?byteoffset:Int = 0, ?len:Null<Int>
-        ) {
+        inline public function new(_elements:Int) {
+            this = ArrayBufferView.fromElements(Int16, _elements);
+        }
 
-            if(elements != null) {
-                this = new ArrayBufferView( elements, Int16 );
-            } else if(array != null) {
-                this = new ArrayBufferView(0, Int16).initArray(array);
-            } else if(view != null) {
-                this = new ArrayBufferView(0, Int16).initTypedArray(view);
-            } else if(buffer != null) {
-                this = new ArrayBufferView(0, Int16).initBuffer(buffer, byteoffset, len);
-            } else {
-                throw "Invalid constructor arguments for Int16Array";
-            }
+        // @:generic
+        static public inline function fromArray<T>(_array:Array<T>) : Int16Array {
+            return ArrayBufferView.fromArray(Int16, cast _array);
+        }
+
+        static public inline function fromView(_view:ArrayBufferView) : Int16Array {
+            return ArrayBufferView.fromView(Int16, _view);
+        }
+
+        static public inline function fromBuffer(_buffer:ArrayBuffer, _byteOffset:Int, _byteLength:Int) : Int16Array {
+            return ArrayBufferView.fromBuffer(Int16, _buffer, _byteOffset, _byteLength);
         }
 
     //Public API
@@ -94,13 +82,13 @@ package snow.api.buffers;
         public inline function subarray( begin:Int, end:Null<Int> = null) : Int16Array return this.subarray(begin, end);
 
 
-            //non spec haxe conversions
-        inline public static function fromBytes( bytes:haxe.io.Bytes, ?byteOffset:Int=0, ?len:Int ) : Int16Array {
-            return new Int16Array(bytes, byteOffset, len);
+        inline public static function fromBytes(_bytes:haxe.io.Bytes, ?_byteOffset:Int=0, ?_byteLength:Int) : Int16Array {
+            if(_byteLength == null) _byteLength = _bytes.length;
+            return Int16Array.fromBuffer(_bytes.getData(), _byteOffset, _byteLength);
         }
 
         inline public function toBytes() : haxe.io.Bytes {
-            return this.buffer;
+            return haxe.io.Bytes.ofData(this.buffer);
         }
 
     //Internal
