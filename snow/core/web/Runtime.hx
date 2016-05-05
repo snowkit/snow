@@ -221,6 +221,18 @@ class Runtime implements snow.core.Runtime {
 
         log('runtime / web / shutdown');
 
+        js.Browser.document.removeEventListener('visibilitychange', on_visibilitychange);
+        js.Browser.document.removeEventListener('keydown', on_keydown);
+        js.Browser.document.removeEventListener('keyup', on_keyup);
+        js.Browser.document.removeEventListener('keypress', on_keypress);
+
+        js.Browser.window.removeEventListener("gamepadconnected", on_gamepadconnected);
+        js.Browser.window.removeEventListener("gamepaddisconnected", on_gamepaddisconnected);
+
+        window.remove();
+        window = null;
+        snow.modules.opengl.GL.gl = null;
+
     } //shutdown
 
     function run() : Bool {
@@ -265,85 +277,13 @@ class Runtime implements snow.core.Runtime {
 
             }); //mouseenter
 
-            js.Browser.document.addEventListener('visibilitychange', function(_) {
-
-                if(js.Browser.document.hidden) {
-                    dispatch_window_ev(we_hidden);
-                    dispatch_window_ev(we_minimized);
-                    dispatch_window_ev(we_focus_lost);
-                } else {
-                    dispatch_window_ev(we_shown);
-                    dispatch_window_ev(we_restored);
-                    dispatch_window_ev(we_focus_gained);
-                }
-
-            }); //visibilitychange
+            js.Browser.document.addEventListener('visibilitychange', on_visibilitychange);
 
         //key events
 
-            inline function prevent_defaults(_keycode:Int, _ev:js.html.KeyboardEvent) {
-                if(app.config.runtime.prevent_default_keys.indexOf(_keycode) != -1) {
-                    _ev.preventDefault();
-                }
-            }
-
-            js.Browser.document.addEventListener('keydown', function(_ev:js.html.KeyboardEvent) {
-
-                var _keycode = convert_keycode(_ev.keyCode);
-                var _scancode = Key.to_scan(_keycode);
-                var _mod_state = mod_state_from_event(_ev);
-
-                prevent_defaults(_keycode, _ev);
-
-                app.input.dispatch_key_down_event(
-                    _keycode,
-                    _scancode,
-                    _ev.repeat,
-                    _mod_state,
-                    timestamp(),
-                    web_window_id
-                );
-
-            }); //keydown
-
-            js.Browser.document.addEventListener('keyup', function(_ev:js.html.KeyboardEvent) {
-
-                var _keycode = convert_keycode(_ev.keyCode);
-                var _scancode = Key.to_scan(_keycode);
-                var _mod_state = mod_state_from_event(_ev);
-
-                prevent_defaults(_keycode, _ev);
-
-                app.input.dispatch_key_up_event(
-                    _keycode,
-                    _scancode,
-                    _ev.repeat,
-                    _mod_state,
-                    timestamp(),
-                    web_window_id
-                );
-
-            }); //keyup
-
-                //a list of keycodes that should not generate text
-                //based typing events, because... browsers.
-            var _ignored = [Key.backspace, Key.enter];
-            js.Browser.document.addEventListener('keypress', function(_ev:js.html.KeyboardEvent) {
-
-                if(_ev.which != 0 && _ignored.indexOf(_ev.keyCode) == -1) {
-
-                    var _text = String.fromCharCode(_ev.charCode);
-
-                    app.input.dispatch_text_event(
-                        _text, 0, _text.length,
-                        te_input,
-                        timestamp(),
-                        web_window_id
-                    );
-
-                }
-
-            }); //keypress
+            js.Browser.document.addEventListener('keydown',  on_keydown);
+            js.Browser.document.addEventListener('keyup',    on_keyup);
+            js.Browser.document.addEventListener('keypress', on_keypress);
 
         //mouse events
 
@@ -508,41 +448,122 @@ class Runtime implements snow.core.Runtime {
 
         //gamepad events
 
-            js.Browser.window.addEventListener("gamepadconnected", function(_ev:{ gamepad:js.html.Gamepad }) {
-
-                _debug('gamepad connected at index ${_ev.gamepad.index}: ${_ev.gamepad.id}. ${_ev.gamepad.buttons.length} buttons, ${_ev.gamepad.axes.length} axes');
-
-                gamepads_init_cache(_ev.gamepad);
-
-                app.input.dispatch_gamepad_device_event(
-                    _ev.gamepad.index,
-                    _ev.gamepad.id,
-                    ge_device_added,
-                    timestamp()
-                );
-
-            }); //gamepadconnected
-
-            js.Browser.window.addEventListener("gamepaddisconnected", function(_ev:{ gamepad:js.html.Gamepad }) {
-                
-                _debug('gamepad disconnected at index ${_ev.gamepad.index}: ${_ev.gamepad.id}');
-
-                gamepad_btns_cache[_ev.gamepad.index] = null;
-                
-                app.input.dispatch_gamepad_device_event(
-                    _ev.gamepad.index,
-                    _ev.gamepad.id,
-                    ge_device_removed,
-                    timestamp()
-                );
-
-            }); //gamepaddisconnected
+            js.Browser.window.addEventListener("gamepadconnected",    on_gamepadconnected);
+            js.Browser.window.addEventListener("gamepaddisconnected", on_gamepaddisconnected);
 
         //window events
 
             //:todo:web:orientation events
 
     } //setup_events
+
+    //event handlers
+
+        function on_visibilitychange(_) {
+
+            if(js.Browser.document.hidden) {
+                dispatch_window_ev(we_hidden);
+                dispatch_window_ev(we_minimized);
+                dispatch_window_ev(we_focus_lost);
+            } else {
+                dispatch_window_ev(we_shown);
+                dispatch_window_ev(we_restored);
+                dispatch_window_ev(we_focus_gained);
+            }
+
+        } //on_visibilitychange
+
+        function on_keydown(_ev:js.html.KeyboardEvent) {
+
+            var _keycode = convert_keycode(_ev.keyCode);
+            var _scancode = Key.to_scan(_keycode);
+            var _mod_state = mod_state_from_event(_ev);
+
+            if(app.config.runtime.prevent_default_keys.indexOf(_keycode) != -1) {
+                _ev.preventDefault();
+            }
+
+            app.input.dispatch_key_down_event(
+                _keycode,
+                _scancode,
+                _ev.repeat,
+                _mod_state,
+                timestamp(),
+                web_window_id
+            );
+
+        } //on_keydown
+
+        function on_keyup(_ev:js.html.KeyboardEvent) {
+
+            var _keycode = convert_keycode(_ev.keyCode);
+            var _scancode = Key.to_scan(_keycode);
+            var _mod_state = mod_state_from_event(_ev);
+
+            if(app.config.runtime.prevent_default_keys.indexOf(_keycode) != -1) {
+                _ev.preventDefault();
+            }
+
+            app.input.dispatch_key_up_event(
+                _keycode,
+                _scancode,
+                _ev.repeat,
+                _mod_state,
+                timestamp(),
+                web_window_id
+            );
+
+        } //on_keyup
+
+            //a list of keycodes that should not generate text
+            //based typing events, because... browsers.
+        static var key_press_ignored = [Key.backspace, Key.enter];
+        function on_keypress(_ev:js.html.KeyboardEvent) {
+
+            if(_ev.which != 0 && key_press_ignored.indexOf(_ev.keyCode) == -1) {
+
+                var _text = String.fromCharCode(_ev.charCode);
+
+                app.input.dispatch_text_event(
+                    _text, 0, _text.length,
+                    te_input,
+                    timestamp(),
+                    web_window_id
+                );
+
+            }
+
+        } //on_keypress
+
+        function on_gamepadconnected(_ev:{ gamepad:js.html.Gamepad }) {
+
+            _debug('gamepad connected at index ${_ev.gamepad.index}: ${_ev.gamepad.id}. ${_ev.gamepad.buttons.length} buttons, ${_ev.gamepad.axes.length} axes');
+
+            gamepads_init_cache(_ev.gamepad);
+
+            app.input.dispatch_gamepad_device_event(
+                _ev.gamepad.index,
+                _ev.gamepad.id,
+                ge_device_added,
+                timestamp()
+            );
+
+        } //on_gamepadconnected
+
+        function on_gamepaddisconnected(_ev:{ gamepad:js.html.Gamepad }) {
+
+            _debug('gamepad disconnected at index ${_ev.gamepad.index}: ${_ev.gamepad.id}');
+
+            gamepad_btns_cache[_ev.gamepad.index] = null;
+            
+            app.input.dispatch_gamepad_device_event(
+                _ev.gamepad.index,
+                _ev.gamepad.id,
+                ge_device_removed,
+                timestamp()
+            );
+
+        } //on_gamepaddisconnected
 
     function create_window() {
 
@@ -668,6 +689,8 @@ class Runtime implements snow.core.Runtime {
     } //request_frame
 
     function loop(?_t:Float = 0.016) : Bool {
+
+        if(app.has_shutdown) return false;
 
         if(gamepads_supported) gamepads_poll();
 
