@@ -44,7 +44,7 @@ class Runtime implements snow.core.Runtime {
         app.platform = Platform.platform_web;
         app.os = guess_os();
 
-        timestamp_start = timestamp();
+        timestamp_start = (js.Browser.window.performance.now()/1000.0);
 
         app.config.runtime = {
             window_id : 'app',

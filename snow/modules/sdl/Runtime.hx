@@ -24,7 +24,7 @@ class Runtime extends snow.core.native.Runtime {
     function new(_app:snow.Snow) {
 
         super(_app);
-        timestamp_start = timestamp();
+        timestamp_start = Timestamp.now();
         name = 'sdl';
 
         app.config.runtime = {}
