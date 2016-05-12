@@ -1,11 +1,17 @@
 var   path = require('path')
     , fs = require('fs')
+    , exec = require('child_process').execSync
 
 
 var mobile = {};
 var desktop = {};
 
 exports.hook = function(flow, done) {
+
+        //A temporary solution for the openal binaries while openal is the default
+    if(flow.target == 'windows') {
+        desktop.copy_openal(flow);
+    }
 
     var generate_project = flow.flags['generate-project'];
 
@@ -27,6 +33,40 @@ exports.hook = function(flow, done) {
     done();
 
 } //hook
+
+desktop.copy_openal = function(flow) {
+
+    var fail = function(e) {
+        flow.log(2, 'failed to copy linc_openal binary! reason:', e);
+        return false;
+    }
+
+    var _out = flow.project.paths.output;
+    var _source = '';
+    try { _source = exec('haxelib path linc_openal', { encoding:'utf-8'});
+    } catch(e) { return fail(e); }
+
+    var _lines = _source.replace('\r\n','\n').split('\n');
+        _lines = _lines.map(function(l){ return l.trim(); });
+    
+    _source = _lines[0];
+    if(!_source) return fail('haxelib path returned does not exist. got:'+_lines);
+    if(!fs.existsSync(_source)) return fail('haxelib path returned for linc_openal does not exist. got: '+_lines);
+
+    var _folder = 'Windows' + ((flow.target_arch == '64') ? '64' : '');
+    _source = path.join(_source, 'lib/openal-soft/lib/', _folder, 'OpenAL32.dll');
+
+    if(!fs.existsSync(_source)) return fail('library for target arch does not exist. expected: '+_source);
+
+    _out = path.join(_out, path.basename(_source));
+    flow.log(3, 'build / copying openal library to output path at %s from %s', _out, _source);
+
+    try { fs.writeFileSync(_out, fs.readFileSync(_source));
+    } catch(e) { return fail(e) }
+
+    return true;
+
+} //copy_openal
 
 desktop.mac = function(flow, done, generate) {
 
