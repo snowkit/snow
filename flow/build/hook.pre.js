@@ -34,6 +34,38 @@ exports.hook = function(flow, done) {
 
 } //hook
 
+//https://github.com/jprichardson/node-fs-extra/tree/master/lib/mkdirs
+var _0777 = parseInt('0777', 8);
+desktop.mkdir = function mkdir_sync(_path, _made) {
+
+    var _mode = _0777 & (~process.umask());
+    if (!_made) _made = null;
+    _path = path.resolve(_path);
+
+    try {
+        fs.mkdirSync(_path, _mode);
+        _made = _made || _path;
+    }
+    catch (err0) {
+        switch (err0.code) {
+            case 'ENOENT' :
+                _made = mkdir_sync(path.dirname(_path), _made);
+                mkdir_sync(_path, _made);
+                break;
+
+            default:
+                var stat;
+                try { stat = fs.statSync(_path);
+                } catch (err1) { throw err0; }
+                if(!stat.isDirectory()) throw err0;
+                break;
+        }
+    }
+
+    return _made;
+
+} //mkdir
+
 desktop.copy_openal = function(flow) {
 
     var fail = function(e) {
@@ -41,12 +73,24 @@ desktop.copy_openal = function(flow) {
         return false;
     }
 
-    var _out = flow.project.paths.output;
+    var _out = path.resolve(flow.project.paths.output);
+
+    if(fs.existsSync(path.join(_out, 'OpenAL32.dll'))) {
+        flow.log(4, 'already had openal dll, skip!');
+        return true;
+    }
+
+    try { 
+        desktop.mkdir(_out);
+    } catch(_err) {
+        return fail('cannot create folder at '+_out+', is there a permission issue? error:'+_err);
+    }
+
     var _source = '';
     try { _source = exec('haxelib path linc_openal', { encoding:'utf-8'});
     } catch(e) { return fail(e); }
 
-    var _lines = _source.replace('\r\n','\n').split('\n');
+    var _lines = _source.replace(/\r\n/g,'\n').split('\n');
         _lines = _lines.map(function(l){ return l.trim(); });
     
     _source = _lines[0];
