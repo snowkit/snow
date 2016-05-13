@@ -149,7 +149,7 @@ class Audio {
             return;
         }
 
-        log("suspending sound context");
+        _debug("suspending sound context");
         active = false;
         module.suspend();
 
@@ -161,7 +161,7 @@ class Audio {
             return;
         }
 
-        log("resuming sound context");
+        _debug("resuming sound context");
         active = true;
         module.resume();
 
