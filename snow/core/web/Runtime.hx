@@ -624,7 +624,7 @@ class Runtime implements snow.core.Runtime {
 
         snow.modules.opengl.GL.gl = _gl;
 
-        log('web / GL / context($_gl)');
+        log('web / GL / context(${_gl != null})');
 
         return _gl != null;
 
