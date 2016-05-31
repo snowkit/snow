@@ -68,32 +68,32 @@ import snow.api.buffers.Uint8Array;
     @:genericBuild(snow.types.TypeCreate.build())
     private class ApplyType<Const> {}
 
-    private typedef UserConfigInit = ApplyType<"UserConfig">;
+    @:eager private typedef UserConfigInit = ApplyType<"UserConfig">;
     typedef UserConfig = UserConfigDef;
 
-    private typedef RuntimeConfigInit = ApplyType<"RuntimeConfig">;
+    @:eager private typedef RuntimeConfigInit = ApplyType<"RuntimeConfig">;
     typedef RuntimeConfig = RuntimeConfigDef;
 
-    private typedef WindowHandleInit = ApplyType<"WindowHandle">;
+    @:eager private typedef WindowHandleInit = ApplyType<"WindowHandle">;
     typedef WindowHandle = WindowHandleDef;
 
-    private typedef AppHostInit = ApplyType<"AppHost">;
+    @:eager private typedef AppHostInit = ApplyType<"AppHost">;
     @:noCompletion typedef AppHost = AppHostDef;
 
-    private typedef AppRuntimeInit = ApplyType<"AppRuntime">;
+    @:eager private typedef AppRuntimeInit = ApplyType<"AppRuntime">;
     @:noCompletion typedef AppRuntime = AppRuntimeDef;
 
-    private typedef ModuleIOInit = ApplyType<"ModuleIO">;
+    @:eager private typedef ModuleIOInit = ApplyType<"ModuleIO">;
     @:noCompletion typedef ModuleIO = ModuleIODef;
 
-    private typedef ModuleAudioInit = ApplyType<"ModuleAudio">;
+    @:eager private typedef ModuleAudioInit = ApplyType<"ModuleAudio">;
     @:noCompletion typedef ModuleAudio = ModuleAudioDef;
 
-    private typedef ModuleAssetsInit = ApplyType<"ModuleAssets">;
+    @:eager private typedef ModuleAssetsInit = ApplyType<"ModuleAssets">;
     @:noCompletion typedef ModuleAssets = ModuleAssetsDef;
 
     #if snow_native //:todo: snow_native define use
-        private typedef FileHandleInit = ApplyType<"FileHandle">;
+        @:eager private typedef FileHandleInit = ApplyType<"FileHandle">;
         typedef FileHandle = FileHandleDef;
     #end
 
