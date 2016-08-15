@@ -148,12 +148,16 @@ class Runtime implements snow.core.Runtime {
             p_body_margin   = js.Browser.document.body.style.margin;
             p_body_overflow = js.Browser.document.body.style.overflow;
 
+                //css device pixels
             window.style.margin = '0';
             window.style.padding = '0';
             window.style.width = js.Browser.window.innerWidth + 'px';
             window.style.height = js.Browser.window.innerHeight + 'px';
-            window.width = js.Browser.window.innerWidth;
-            window.height = js.Browser.window.innerHeight;
+
+                //renderable pixels, we request latest dpr, since this can happen at any time
+            window_dpr = window_device_pixel_ratio();
+            window.width = Math.floor(js.Browser.window.innerWidth * window_dpr);
+            window.height = Math.floor(js.Browser.window.innerHeight * window_dpr);
 
                 //stop the browser page from having scrollbars etc
             js.Browser.document.body.style.margin = '0';
