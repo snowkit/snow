@@ -577,7 +577,7 @@ class Runtime implements snow.core.Runtime {
 
             //These are in css device pixels
         window_w = config.width;
-        window_h = config.width;
+        window_h = config.height;
         window.style.width = config.width+'px';
         window.style.height = config.height+'px';
             //This is typically required for our WebGL blending
