@@ -49,10 +49,16 @@ class Audio implements snow.modules.interfaces.Audio {
 
         app = _app;
         instances = new Map();
+
         try {
             context = new js.html.audio.AudioContext();
         } catch(err:Dynamic) {
-            context = untyped __js__('new window.webkitAudioContext()');
+            try {
+                context = untyped __js__('new window.webkitAudioContext()');
+            } catch(err:Dynamic) {
+                log('WebAudio: no AudioContext could be created! No audio loading or playback will be available.');
+                return;
+            }
         }
 
         assertnull(context, 'Audio / webaudio / no AudioContext could be created, is the Web Audio API supported?');
@@ -459,6 +465,8 @@ class Audio implements snow.modules.interfaces.Audio {
 
     public function data_from_load(_path:String, ?_is_stream:Bool=false, ?_format:AudioFormatType) : Promise {
 
+        if(!active) return Promise.reject('WebAudio context unavailable');
+
         if(_format == null) _format = snow.core.Audio.audio_format_from_path(_path);
 
         if(_is_stream) {
@@ -470,6 +478,8 @@ class Audio implements snow.modules.interfaces.Audio {
     } //data_from_load
 
     public function data_from_bytes(_id:String, _bytes:Uint8Array, ?_format:AudioFormatType) : Promise {
+
+        if(!active) return Promise.reject('WebAudio context unavailable');
 
         return new Promise(function(resolve, reject) {
 
