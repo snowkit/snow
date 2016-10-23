@@ -5,7 +5,7 @@ import snow.types.Types;
 import sdl.SDL;
 import timestamp.Timestamp;
 
-#if !mobile
+#if snow_use_glew
 import glew.GLEW;
 #end
 
@@ -360,7 +360,7 @@ class Runtime extends snow.core.native.Runtime {
 
         SDL.GL_MakeCurrent(_window, gl);
 
-        #if !mobile
+        #if snow_use_glew
             var _result = GLEW.init();
             if(_result != GLEW.OK) {
                 throw Error.error('runtime / sdl / failed to setup created render context, unable to recover / `${GLEW.error(_result)}`');
