@@ -26,7 +26,7 @@ package snow.api.buffers;
         }
 
         @:arrayAccess @:extern inline function __set(idx:Int, val:UInt) : Void this[idx] = val;
-        @:arrayAccess @:extern inline function __get(idx:Int) : UInt return this[idx];
+        @:arrayAccess @:extern inline function __get(idx:Int) : Int return this[idx];
 
 
             //non spec haxe conversions
