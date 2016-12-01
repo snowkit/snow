@@ -55,6 +55,8 @@ class Audio {
     
     public function play(_source:AudioSource, ?_volume:Float=1.0, ?_paused:Bool=false) : AudioHandle {
 
+        assert(_source != null, 'audio source must not be null');
+
         if(!active) {
             return -1;
         }
@@ -66,6 +68,8 @@ class Audio {
         /** play and loop a sound source, indefinitely. Use stop to end it. */
     public function loop(_source:AudioSource, ?_volume:Float=1.0, ?_paused:Bool=false) : AudioHandle {
         
+        assert(_source != null, 'audio source must not be null');
+
         if(!active) {
             return -1;
         }
@@ -75,37 +79,37 @@ class Audio {
     } //loop
 
     public function pause(_handle:AudioHandle) : Void {
-        if(!active) return;
+        if(!active || _handle == null) return;
         module.pause(_handle);
     } //pause
 
     public function unpause(_handle:AudioHandle) : Void {
-        if(!active) return;
+        if(!active || _handle == null) return;
         module.unpause(_handle);
     } //unpause
 
     public function stop(_handle:AudioHandle) : Void {
-        if(!active) return;
+        if(!active || _handle == null) return;
         module.stop(_handle);
     } //stop
 
     public function volume(_handle:AudioHandle, _volume:Float) : Void {
-        if(!active) return;
+        if(!active || _handle == null) return;
         module.volume(_handle, _volume);
     } //volume
 
     public function pan(_handle:AudioHandle, _pan:Float) : Void {
-        if(!active) return;
+        if(!active || _handle == null) return;
         module.pan(_handle, _pan);
     } //pan
 
     public function pitch(_handle:AudioHandle, _pitch:Float) : Void {
-        if(!active) return;
+        if(!active || _handle == null) return;
         module.pitch(_handle, _pitch);
     } //pitch
 
     public function position(_handle:AudioHandle, _position:Float) : Void {
-        if(!active) return;
+        if(!active || _handle == null) return;
         module.position(_handle, _position);
     } //position
 
