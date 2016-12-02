@@ -169,7 +169,7 @@ class OGG {
 
             app.io.module.file_close(_handle);
 
-            log('/ snow / ogg file failed to open!? / result:$_ogg_result code: ${code(_ogg_result)}');
+            log('ogg file failed to open!? / result:$_ogg_result code: ${code(_ogg_result)}');
 
             return null;
 
