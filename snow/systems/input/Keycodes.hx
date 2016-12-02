@@ -5,7 +5,7 @@ package snow.systems.input;
 but they aren't specific to SDL so they are used generically */
 @:noCompletion class Keycodes {
 
-        /** Convert a scancode to a keycode for comparison */
+    /** Convert a scancode to a keycode for comparison */
     public static function from_scan( scancode : Int ) : Int {
         return (scancode | Scancodes.MASK);
     } //from_scan
@@ -178,9 +178,9 @@ but they aren't specific to SDL so they are used generically */
     public static inline var greater : Int                     = 62;
     public static inline var question : Int                    = 63;
     public static inline var at : Int                          = 64;
-    /*
-       Skip uppercase letters
-     */
+    
+       // Skip uppercase letters
+     
     public static inline var leftbracket : Int                 = 91;
     public static inline var backslash : Int                   = 92;
     public static inline var rightbracket : Int                = 93;
@@ -398,7 +398,7 @@ but they aren't specific to SDL so they are used generically */
 but they aren't specific to SDL so they are used generically */
 @:noCompletion class Scancodes {
 
-        /** Convert a scancode to a name */
+    /** Convert a scancode to a readable name */
     public static function name( scancode : Int ) : String {
 
         var res = null;
@@ -412,373 +412,372 @@ but they aren't specific to SDL so they are used generically */
     } //name
 
         //special value remains caps
-    public static var MASK:Int                      = (1<<30);
+    public static inline var MASK:Int                      = (1<<30);
 
-    public static var unknown : Int                 = 0;
+    public static inline var unknown : Int                 = 0;
 
        // Usage page 0x07
        // These values are from usage page 0x07 (USB keyboard page).
 
-    public static var key_a : Int                   = 4;
-    public static var key_b : Int                   = 5;
-    public static var key_c : Int                   = 6;
-    public static var key_d : Int                   = 7;
-    public static var key_e : Int                   = 8;
-    public static var key_f : Int                   = 9;
-    public static var key_g : Int                   = 10;
-    public static var key_h : Int                   = 11;
-    public static var key_i : Int                   = 12;
-    public static var key_j : Int                   = 13;
-    public static var key_k : Int                   = 14;
-    public static var key_l : Int                   = 15;
-    public static var key_m : Int                   = 16;
-    public static var key_n : Int                   = 17;
-    public static var key_o : Int                   = 18;
-    public static var key_p : Int                   = 19;
-    public static var key_q : Int                   = 20;
-    public static var key_r : Int                   = 21;
-    public static var key_s : Int                   = 22;
-    public static var key_t : Int                   = 23;
-    public static var key_u : Int                   = 24;
-    public static var key_v : Int                   = 25;
-    public static var key_w : Int                   = 26;
-    public static var key_x : Int                   = 27;
-    public static var key_y : Int                   = 28;
-    public static var key_z : Int                   = 29;
+    public static inline var key_a : Int                   = 4;
+    public static inline var key_b : Int                   = 5;
+    public static inline var key_c : Int                   = 6;
+    public static inline var key_d : Int                   = 7;
+    public static inline var key_e : Int                   = 8;
+    public static inline var key_f : Int                   = 9;
+    public static inline var key_g : Int                   = 10;
+    public static inline var key_h : Int                   = 11;
+    public static inline var key_i : Int                   = 12;
+    public static inline var key_j : Int                   = 13;
+    public static inline var key_k : Int                   = 14;
+    public static inline var key_l : Int                   = 15;
+    public static inline var key_m : Int                   = 16;
+    public static inline var key_n : Int                   = 17;
+    public static inline var key_o : Int                   = 18;
+    public static inline var key_p : Int                   = 19;
+    public static inline var key_q : Int                   = 20;
+    public static inline var key_r : Int                   = 21;
+    public static inline var key_s : Int                   = 22;
+    public static inline var key_t : Int                   = 23;
+    public static inline var key_u : Int                   = 24;
+    public static inline var key_v : Int                   = 25;
+    public static inline var key_w : Int                   = 26;
+    public static inline var key_x : Int                   = 27;
+    public static inline var key_y : Int                   = 28;
+    public static inline var key_z : Int                   = 29;
 
-    public static var key_1 : Int                   = 30;
-    public static var key_2 : Int                   = 31;
-    public static var key_3 : Int                   = 32;
-    public static var key_4 : Int                   = 33;
-    public static var key_5 : Int                   = 34;
-    public static var key_6 : Int                   = 35;
-    public static var key_7 : Int                   = 36;
-    public static var key_8 : Int                   = 37;
-    public static var key_9 : Int                   = 38;
-    public static var key_0 : Int                   = 39;
+    public static inline var key_1 : Int                   = 30;
+    public static inline var key_2 : Int                   = 31;
+    public static inline var key_3 : Int                   = 32;
+    public static inline var key_4 : Int                   = 33;
+    public static inline var key_5 : Int                   = 34;
+    public static inline var key_6 : Int                   = 35;
+    public static inline var key_7 : Int                   = 36;
+    public static inline var key_8 : Int                   = 37;
+    public static inline var key_9 : Int                   = 38;
+    public static inline var key_0 : Int                   = 39;
 
-    public static var enter : Int                   = 40;
-    public static var escape : Int                  = 41;
-    public static var backspace : Int               = 42;
-    public static var tab : Int                     = 43;
-    public static var space : Int                   = 44;
+    public static inline var enter : Int                   = 40;
+    public static inline var escape : Int                  = 41;
+    public static inline var backspace : Int               = 42;
+    public static inline var tab : Int                     = 43;
+    public static inline var space : Int                   = 44;
 
-    public static var minus : Int                   = 45;
-    public static var equals : Int                  = 46;
-    public static var leftbracket : Int             = 47;
-    public static var rightbracket : Int            = 48;
+    public static inline var minus : Int                   = 45;
+    public static inline var equals : Int                  = 46;
+    public static inline var leftbracket : Int             = 47;
+    public static inline var rightbracket : Int            = 48;
 
-/** Located at the lower left of the return
-    key on ISO keyboards and at the right end
-    of the QWERTY row on ANSI keyboards.
-    Produces REVERSE SOLIDUS (backslash) and
-    VERTICAL LINE in a US layout, REVERSE
-    SOLIDUS and VERTICAL LINE in a UK Mac
-    layout, NUMBER SIGN and TILDE in a UK
-    Windows layout, DOLLAR SIGN and POUND SIGN
-    in a Swiss German layout, NUMBER SIGN and
-    APOSTROPHE in a German layout, GRAVE
-    ACCENT and POUND SIGN in a French Mac
-    layout, and ASTERISK and MICRO SIGN in a
-    French Windows layout.
-*/
-    public static var backslash : Int               = 49;
+        // Located at the lower left of the return
+        // key on ISO keyboards and at the right end
+        // of the QWERTY row on ANSI keyboards.
+        // Produces REVERSE SOLIDUS (backslash) and
+        // VERTICAL LINE in a US layout, REVERSE
+        // SOLIDUS and VERTICAL LINE in a UK Mac
+        // layout, NUMBER SIGN and TILDE in a UK
+        // Windows layout, DOLLAR SIGN and POUND SIGN
+        // in a Swiss German layout, NUMBER SIGN and
+        // APOSTROPHE in a German layout, GRAVE
+        // ACCENT and POUND SIGN in a French Mac
+        // layout, and ASTERISK and MICRO SIGN in a
+        // French Windows layout.
 
-/** ISO USB keyboards actually use this code
-    instead of 49 for the same key, but all
-    OSes I've seen treat the two codes
-    identically. So, as an implementor, unless
-    your keyboard generates both of those
-    codes and your OS treats them differently,
-    you should generate public static var BACKSLASH
-    instead of this code. As a user, you
-    should not rely on this code because SDL
-    will never generate it with most (all?)
-    keyboards.
-*/
-    public static var nonushash : Int          = 50;
-    public static var semicolon : Int          = 51;
-    public static var apostrophe : Int         = 52;
+    public static inline var backslash : Int               = 49;
 
-/** Located in the top left corner (on both ANSI
-    and ISO keyboards). Produces GRAVE ACCENT and
-    TILDE in a US Windows layout and in US and UK
-    Mac layouts on ANSI keyboards, GRAVE ACCENT
-    and NOT SIGN in a UK Windows layout, SECTION
-    SIGN and PLUS-MINUS SIGN in US and UK Mac
-    layouts on ISO keyboards, SECTION SIGN and
-    DEGREE SIGN in a Swiss German layout (Mac:
-    only on ISO keyboards); CIRCUMFLEX ACCENT and
-    DEGREE SIGN in a German layout (Mac: only on
-    ISO keyboards), SUPERSCRIPT TWO and TILDE in a
-    French Windows layout, COMMERCIAL AT and
-    NUMBER SIGN in a French Mac layout on ISO
-    keyboards, and LESS-THAN SIGN and GREATER-THAN
-    SIGN in a Swiss German, German, or French Mac
-    layout on ANSI keyboards.
-*/
-    public static var grave : Int              = 53;
-    public static var comma : Int              = 54;
-    public static var period : Int             = 55;
-    public static var slash : Int              = 56;
+        // ISO USB keyboards actually use this code
+        // instead of 49 for the same key, but all
+        // OSes I've seen treat the two codes
+        // identically. So, as an implementor, unless
+        // your keyboard generates both of those
+        // codes and your OS treats them differently,
+        // you should generate public static inline var BACKSLASH
+        // instead of this code. As a user, you
+        // should not rely on this code because SDL
+        // will never generate it with most (all?)
+        // keyboards.
 
-    public static var capslock : Int           = 57;
+    public static inline var nonushash : Int          = 50;
+    public static inline var semicolon : Int          = 51;
+    public static inline var apostrophe : Int         = 52;
 
-    public static var f1 : Int                 = 58;
-    public static var f2 : Int                 = 59;
-    public static var f3 : Int                 = 60;
-    public static var f4 : Int                 = 61;
-    public static var f5 : Int                 = 62;
-    public static var f6 : Int                 = 63;
-    public static var f7 : Int                 = 64;
-    public static var f8 : Int                 = 65;
-    public static var f9 : Int                 = 66;
-    public static var f10 : Int                = 67;
-    public static var f11 : Int                = 68;
-    public static var f12 : Int                = 69;
+        // Located in the top left corner (on both ANSI
+        // and ISO keyboards). Produces GRAVE ACCENT and
+        // TILDE in a US Windows layout and in US and UK
+        // Mac layouts on ANSI keyboards, GRAVE ACCENT
+        // and NOT SIGN in a UK Windows layout, SECTION
+        // SIGN and PLUS-MINUS SIGN in US and UK Mac
+        // layouts on ISO keyboards, SECTION SIGN and
+        // DEGREE SIGN in a Swiss German layout (Mac:
+        // only on ISO keyboards); CIRCUMFLEX ACCENT and
+        // DEGREE SIGN in a German layout (Mac: only on
+        // ISO keyboards), SUPERSCRIPT TWO and TILDE in a
+        // French Windows layout, COMMERCIAL AT and
+        // NUMBER SIGN in a French Mac layout on ISO
+        // keyboards, and LESS-THAN SIGN and GREATER-THAN
+        // SIGN in a Swiss German, German, or French Mac
+        // layout on ANSI keyboards.
+        
+    public static inline var grave : Int              = 53;
+    public static inline var comma : Int              = 54;
+    public static inline var period : Int             = 55;
+    public static inline var slash : Int              = 56;
 
-    public static var printscreen : Int        = 70;
-    public static var scrolllock : Int         = 71;
-    public static var pause : Int              = 72;
+    public static inline var capslock : Int           = 57;
 
-/** insert on PC, help on some Mac keyboards (but does send code 73, not 117) */
-    public static var insert : Int             = 73;
-    public static var home : Int               = 74;
-    public static var pageup : Int             = 75;
-    public static var delete : Int             = 76;
-    public static var end : Int                = 77;
-    public static var pagedown : Int           = 78;
-    public static var right : Int              = 79;
-    public static var left : Int               = 80;
-    public static var down : Int               = 81;
-    public static var up : Int                 = 82;
+    public static inline var f1 : Int                 = 58;
+    public static inline var f2 : Int                 = 59;
+    public static inline var f3 : Int                 = 60;
+    public static inline var f4 : Int                 = 61;
+    public static inline var f5 : Int                 = 62;
+    public static inline var f6 : Int                 = 63;
+    public static inline var f7 : Int                 = 64;
+    public static inline var f8 : Int                 = 65;
+    public static inline var f9 : Int                 = 66;
+    public static inline var f10 : Int                = 67;
+    public static inline var f11 : Int                = 68;
+    public static inline var f12 : Int                = 69;
 
-/** num lock on PC, clear on Mac keyboards */
-    public static var numlockclear : Int       = 83;
-    public static var kp_divide : Int          = 84;
-    public static var kp_multiply : Int        = 85;
-    public static var kp_minus : Int           = 86;
-    public static var kp_plus : Int            = 87;
-    public static var kp_enter : Int           = 88;
-    public static var kp_1 : Int               = 89;
-    public static var kp_2 : Int               = 90;
-    public static var kp_3 : Int               = 91;
-    public static var kp_4 : Int               = 92;
-    public static var kp_5 : Int               = 93;
-    public static var kp_6 : Int               = 94;
-    public static var kp_7 : Int               = 95;
-    public static var kp_8 : Int               = 96;
-    public static var kp_9 : Int               = 97;
-    public static var kp_0 : Int               = 98;
-    public static var kp_period : Int          = 99;
+    public static inline var printscreen : Int        = 70;
+    public static inline var scrolllock : Int         = 71;
+    public static inline var pause : Int              = 72;
 
+        // insert on PC, help on some Mac keyboards (but does send code 73, not 117) 
+    public static inline var insert : Int             = 73;
+    public static inline var home : Int               = 74;
+    public static inline var pageup : Int             = 75;
+    public static inline var delete : Int             = 76;
+    public static inline var end : Int                = 77;
+    public static inline var pagedown : Int           = 78;
+    public static inline var right : Int              = 79;
+    public static inline var left : Int               = 80;
+    public static inline var down : Int               = 81;
+    public static inline var up : Int                 = 82;
 
-/** This is the additional key that ISO
-    keyboards have over ANSI ones,
-    located between left shift and Y.
-    Produces GRAVE ACCENT and TILDE in a
-    US or UK Mac layout, REVERSE SOLIDUS
-    (backslash) and VERTICAL LINE in a
-    US or UK Windows layout, and
-    LESS-THAN SIGN and GREATER-THAN SIGN
-    in a Swiss German, German, or French
-    layout. */
-    public static var nonusbackslash : Int     = 100;
-
-/** windows contextual menu, compose */
-    public static var application : Int        = 101;
-
-/** The USB document says this is a status flag,
-    not a physical key - but some Mac keyboards
-    do have a power key. */
-    public static var power : Int              = 102;
-    public static var kp_equals : Int          = 103;
-    public static var f13 : Int                = 104;
-    public static var f14 : Int                = 105;
-    public static var f15 : Int                = 106;
-    public static var f16 : Int                = 107;
-    public static var f17 : Int                = 108;
-    public static var f18 : Int                = 109;
-    public static var f19 : Int                = 110;
-    public static var f20 : Int                = 111;
-    public static var f21 : Int                = 112;
-    public static var f22 : Int                = 113;
-    public static var f23 : Int                = 114;
-    public static var f24 : Int                = 115;
-    public static var execute : Int            = 116;
-    public static var help : Int               = 117;
-    public static var menu : Int               = 118;
-    public static var select : Int             = 119;
-    public static var stop : Int               = 120;
-
-/** redo */
-    public static var again : Int              = 121;
-    public static var undo : Int               = 122;
-    public static var cut : Int                = 123;
-    public static var copy : Int               = 124;
-    public static var paste : Int              = 125;
-    public static var find : Int               = 126;
-    public static var mute : Int               = 127;
-    public static var volumeup : Int           = 128;
-    public static var volumedown : Int         = 129;
-
-// not sure whether there's a reason to enable these
-//     public static var lockingcapslock = 130,
-//     public static var lockingnumlock = 131,
-//     public static var lockingscrolllock = 132,
-
-    public static var kp_comma : Int           = 133;
-    public static var kp_equalsas400 : Int     = 134;
-
-/** used on Asian keyboards; see footnotes in USB doc */
-    public static var international1 : Int     = 135;
-    public static var international2 : Int     = 136;
-
-/** Yen */
-    public static var international3 : Int     = 137;
-    public static var international4 : Int     = 138;
-    public static var international5 : Int     = 139;
-    public static var international6 : Int     = 140;
-    public static var international7 : Int     = 141;
-    public static var international8 : Int     = 142;
-    public static var international9 : Int     = 143;
-/** Hangul/English toggle */
-    public static var lang1 : Int              = 144;
-/** Hanja conversion */
-    public static var lang2 : Int              = 145;
-/** Katakana */
-    public static var lang3 : Int              = 146;
-/** Hiragana */
-    public static var lang4 : Int              = 147;
-/** Zenkaku/Hankaku */
-    public static var lang5 : Int              = 148;
-/** reserved */
-    public static var lang6 : Int              = 149;
-/** reserved */
-    public static var lang7 : Int              = 150;
-/** reserved */
-    public static var lang8 : Int              = 151;
-/** reserved */
-    public static var lang9 : Int              = 152;
-/** Erase-Eaze */
-    public static var alterase : Int           = 153;
-    public static var sysreq : Int             = 154;
-    public static var cancel : Int             = 155;
-    public static var clear : Int              = 156;
-    public static var prior : Int              = 157;
-    public static var return2 : Int            = 158;
-    public static var separator : Int          = 159;
-    public static var out : Int                = 160;
-    public static var oper : Int               = 161;
-    public static var clearagain : Int         = 162;
-    public static var crsel : Int              = 163;
-    public static var exsel : Int              = 164;
-
-    public static var kp_00 : Int              = 176;
-    public static var kp_000 : Int             = 177;
-    public static var thousandsseparator : Int = 178;
-    public static var decimalseparator : Int   = 179;
-    public static var currencyunit : Int       = 180;
-    public static var currencysubunit : Int    = 181;
-    public static var kp_leftparen : Int       = 182;
-    public static var kp_rightparen : Int      = 183;
-    public static var kp_leftbrace : Int       = 184;
-    public static var kp_rightbrace : Int      = 185;
-    public static var kp_tab : Int             = 186;
-    public static var kp_backspace : Int       = 187;
-    public static var kp_a : Int               = 188;
-    public static var kp_b : Int               = 189;
-    public static var kp_c : Int               = 190;
-    public static var kp_d : Int               = 191;
-    public static var kp_e : Int               = 192;
-    public static var kp_f : Int               = 193;
-    public static var kp_xor : Int             = 194;
-    public static var kp_power : Int           = 195;
-    public static var kp_percent : Int         = 196;
-    public static var kp_less : Int            = 197;
-    public static var kp_greater : Int         = 198;
-    public static var kp_ampersand : Int       = 199;
-    public static var kp_dblampersand : Int    = 200;
-    public static var kp_verticalbar : Int     = 201;
-    public static var kp_dblverticalbar : Int  = 202;
-    public static var kp_colon : Int           = 203;
-    public static var kp_hash : Int            = 204;
-    public static var kp_space : Int           = 205;
-    public static var kp_at : Int              = 206;
-    public static var kp_exclam : Int          = 207;
-    public static var kp_memstore : Int        = 208;
-    public static var kp_memrecall : Int       = 209;
-    public static var kp_memclear : Int        = 210;
-    public static var kp_memadd : Int          = 211;
-    public static var kp_memsubtract : Int     = 212;
-    public static var kp_memmultiply : Int     = 213;
-    public static var kp_memdivide : Int       = 214;
-    public static var kp_plusminus : Int       = 215;
-    public static var kp_clear : Int           = 216;
-    public static var kp_clearentry : Int      = 217;
-    public static var kp_binary : Int          = 218;
-    public static var kp_octal : Int           = 219;
-    public static var kp_decimal : Int         = 220;
-    public static var kp_hexadecimal : Int     = 221;
-
-    public static var lctrl : Int              = 224;
-    public static var lshift : Int             = 225;
-/** alt, option */
-    public static var lalt : Int               = 226;
-/** windows, command (apple), meta */
-    public static var lmeta : Int              = 227;
-    public static var rctrl : Int              = 228;
-    public static var rshift : Int             = 229;
-/** alt gr, option */
-    public static var ralt : Int               = 230;
-/** windows, command (apple), meta */
-    public static var rmeta : Int              = 231;
-
-/** Not sure if this is really not covered
-    by any of the above, but since there's a
-    special KMOD_MODE for it I'm adding it here */
-    public static var mode : Int               = 257;
+        // num lock on PC, clear on Mac keyboards 
+    public static inline var numlockclear : Int       = 83;
+    public static inline var kp_divide : Int          = 84;
+    public static inline var kp_multiply : Int        = 85;
+    public static inline var kp_minus : Int           = 86;
+    public static inline var kp_plus : Int            = 87;
+    public static inline var kp_enter : Int           = 88;
+    public static inline var kp_1 : Int               = 89;
+    public static inline var kp_2 : Int               = 90;
+    public static inline var kp_3 : Int               = 91;
+    public static inline var kp_4 : Int               = 92;
+    public static inline var kp_5 : Int               = 93;
+    public static inline var kp_6 : Int               = 94;
+    public static inline var kp_7 : Int               = 95;
+    public static inline var kp_8 : Int               = 96;
+    public static inline var kp_9 : Int               = 97;
+    public static inline var kp_0 : Int               = 98;
+    public static inline var kp_period : Int          = 99;
 
 
-    //
-    //    Usage page 0x0C
-    //    These values are mapped from usage page 0x0C (USB consumer page).
+        // This is the additional key that ISO
+        // keyboards have over ANSI ones,
+        // located between left shift and Y.
+        // Produces GRAVE ACCENT and TILDE in a
+        // US or UK Mac layout, REVERSE SOLIDUS
+        // (backslash) and VERTICAL LINE in a
+        // US or UK Windows layout, and
+        // LESS-THAN SIGN and GREATER-THAN SIGN
+        // in a Swiss German, German, or French
+        // layout. 
+    public static inline var nonusbackslash : Int     = 100;
 
-    public static var audionext : Int          = 258;
-    public static var audioprev : Int          = 259;
-    public static var audiostop : Int          = 260;
-    public static var audioplay : Int          = 261;
-    public static var audiomute : Int          = 262;
-    public static var mediaselect : Int        = 263;
-    public static var www : Int                = 264;
-    public static var mail : Int               = 265;
-    public static var calculator : Int         = 266;
-    public static var computer : Int           = 267;
-    public static var ac_search : Int          = 268;
-    public static var ac_home : Int            = 269;
-    public static var ac_back : Int            = 270;
-    public static var ac_forward : Int         = 271;
-    public static var ac_stop : Int            = 272;
-    public static var ac_refresh : Int         = 273;
-    public static var ac_bookmarks : Int       = 274;
+        // windows contextual menu, compose 
+    public static inline var application : Int        = 101;
 
-      // Walther keys
-      // These are values that Christian Walther added (for mac keyboard?).
+        // The USB document says this is a status flag,
+        // not a physical key - but some Mac keyboards
+        // do have a power key.
+    public static inline var power : Int              = 102;
+    public static inline var kp_equals : Int          = 103;
+    public static inline var f13 : Int                = 104;
+    public static inline var f14 : Int                = 105;
+    public static inline var f15 : Int                = 106;
+    public static inline var f16 : Int                = 107;
+    public static inline var f17 : Int                = 108;
+    public static inline var f18 : Int                = 109;
+    public static inline var f19 : Int                = 110;
+    public static inline var f20 : Int                = 111;
+    public static inline var f21 : Int                = 112;
+    public static inline var f22 : Int                = 113;
+    public static inline var f23 : Int                = 114;
+    public static inline var f24 : Int                = 115;
+    public static inline var execute : Int            = 116;
+    public static inline var help : Int               = 117;
+    public static inline var menu : Int               = 118;
+    public static inline var select : Int             = 119;
+    public static inline var stop : Int               = 120;
 
-    public static var brightnessdown : Int     = 275;
-    public static var brightnessup : Int       = 276;
+        // redo
+    public static inline var again : Int              = 121;
+    public static inline var undo : Int               = 122;
+    public static inline var cut : Int                = 123;
+    public static inline var copy : Int               = 124;
+    public static inline var paste : Int              = 125;
+    public static inline var find : Int               = 126;
+    public static inline var mute : Int               = 127;
+    public static inline var volumeup : Int           = 128;
+    public static inline var volumedown : Int         = 129;
 
-/** display mirroring/dual display switch, video mode switch */
-    public static var displayswitch : Int      = 277;
+        // not sure whether there's a reason to enable these
+    //  public static inline var lockingcapslock = 130,
+    //  public static inline var lockingnumlock = 131,
+    //  public static inline var lockingscrolllock = 132,
 
-    public static var kbdillumtoggle : Int     = 278;
-    public static var kbdillumdown : Int       = 279;
-    public static var kbdillumup : Int         = 280;
-    public static var eject : Int              = 281;
-    public static var sleep : Int              = 282;
+    public static inline var kp_comma : Int           = 133;
+    public static inline var kp_equalsas400 : Int     = 134;
 
-    public static var app1 : Int               = 283;
-    public static var app2 : Int               = 284;
+        // used on Asian keyboards; see footnotes in USB doc
+    public static inline var international1 : Int     = 135;
+    public static inline var international2 : Int     = 136;
+
+        // Yen
+    public static inline var international3 : Int     = 137;
+    public static inline var international4 : Int     = 138;
+    public static inline var international5 : Int     = 139;
+    public static inline var international6 : Int     = 140;
+    public static inline var international7 : Int     = 141;
+    public static inline var international8 : Int     = 142;
+    public static inline var international9 : Int     = 143;
+        // Hangul/English toggle
+    public static inline var lang1 : Int              = 144;
+        // Hanja conversion
+    public static inline var lang2 : Int              = 145;
+        // Katakana
+    public static inline var lang3 : Int              = 146;
+        // Hiragana
+    public static inline var lang4 : Int              = 147;
+        // Zenkaku/Hankaku
+    public static inline var lang5 : Int              = 148;
+        // reserved
+    public static inline var lang6 : Int              = 149;
+        // reserved
+    public static inline var lang7 : Int              = 150;
+        // reserved
+    public static inline var lang8 : Int              = 151;
+        // reserved
+    public static inline var lang9 : Int              = 152;
+        // Erase-Eaze
+    public static inline var alterase : Int           = 153;
+    public static inline var sysreq : Int             = 154;
+    public static inline var cancel : Int             = 155;
+    public static inline var clear : Int              = 156;
+    public static inline var prior : Int              = 157;
+    public static inline var return2 : Int            = 158;
+    public static inline var separator : Int          = 159;
+    public static inline var out : Int                = 160;
+    public static inline var oper : Int               = 161;
+    public static inline var clearagain : Int         = 162;
+    public static inline var crsel : Int              = 163;
+    public static inline var exsel : Int              = 164;
+
+    public static inline var kp_00 : Int              = 176;
+    public static inline var kp_000 : Int             = 177;
+    public static inline var thousandsseparator : Int = 178;
+    public static inline var decimalseparator : Int   = 179;
+    public static inline var currencyunit : Int       = 180;
+    public static inline var currencysubunit : Int    = 181;
+    public static inline var kp_leftparen : Int       = 182;
+    public static inline var kp_rightparen : Int      = 183;
+    public static inline var kp_leftbrace : Int       = 184;
+    public static inline var kp_rightbrace : Int      = 185;
+    public static inline var kp_tab : Int             = 186;
+    public static inline var kp_backspace : Int       = 187;
+    public static inline var kp_a : Int               = 188;
+    public static inline var kp_b : Int               = 189;
+    public static inline var kp_c : Int               = 190;
+    public static inline var kp_d : Int               = 191;
+    public static inline var kp_e : Int               = 192;
+    public static inline var kp_f : Int               = 193;
+    public static inline var kp_xor : Int             = 194;
+    public static inline var kp_power : Int           = 195;
+    public static inline var kp_percent : Int         = 196;
+    public static inline var kp_less : Int            = 197;
+    public static inline var kp_greater : Int         = 198;
+    public static inline var kp_ampersand : Int       = 199;
+    public static inline var kp_dblampersand : Int    = 200;
+    public static inline var kp_verticalbar : Int     = 201;
+    public static inline var kp_dblverticalbar : Int  = 202;
+    public static inline var kp_colon : Int           = 203;
+    public static inline var kp_hash : Int            = 204;
+    public static inline var kp_space : Int           = 205;
+    public static inline var kp_at : Int              = 206;
+    public static inline var kp_exclam : Int          = 207;
+    public static inline var kp_memstore : Int        = 208;
+    public static inline var kp_memrecall : Int       = 209;
+    public static inline var kp_memclear : Int        = 210;
+    public static inline var kp_memadd : Int          = 211;
+    public static inline var kp_memsubtract : Int     = 212;
+    public static inline var kp_memmultiply : Int     = 213;
+    public static inline var kp_memdivide : Int       = 214;
+    public static inline var kp_plusminus : Int       = 215;
+    public static inline var kp_clear : Int           = 216;
+    public static inline var kp_clearentry : Int      = 217;
+    public static inline var kp_binary : Int          = 218;
+    public static inline var kp_octal : Int           = 219;
+    public static inline var kp_decimal : Int         = 220;
+    public static inline var kp_hexadecimal : Int     = 221;
+
+    public static inline var lctrl : Int              = 224;
+    public static inline var lshift : Int             = 225;
+        // alt, option
+    public static inline var lalt : Int               = 226;
+        // windows, command (apple), meta, super
+    public static inline var lmeta : Int              = 227;
+    public static inline var rctrl : Int              = 228;
+    public static inline var rshift : Int             = 229;
+        // alt gr, option
+    public static inline var ralt : Int               = 230;
+        // windows, command (apple), meta, super
+    public static inline var rmeta : Int              = 231;
+
+        // Not sure if this is really not covered
+        // by any of the above, but since there's a
+        // special KMOD_MODE for it I'm adding it here
+    public static inline var mode : Int               = 257;
+
+        //
+        // Usage page 0x0C
+        // These values are mapped from usage page 0x0C (USB consumer page).
+
+    public static inline var audionext : Int          = 258;
+    public static inline var audioprev : Int          = 259;
+    public static inline var audiostop : Int          = 260;
+    public static inline var audioplay : Int          = 261;
+    public static inline var audiomute : Int          = 262;
+    public static inline var mediaselect : Int        = 263;
+    public static inline var www : Int                = 264;
+    public static inline var mail : Int               = 265;
+    public static inline var calculator : Int         = 266;
+    public static inline var computer : Int           = 267;
+    public static inline var ac_search : Int          = 268;
+    public static inline var ac_home : Int            = 269;
+    public static inline var ac_back : Int            = 270;
+    public static inline var ac_forward : Int         = 271;
+    public static inline var ac_stop : Int            = 272;
+    public static inline var ac_refresh : Int         = 273;
+    public static inline var ac_bookmarks : Int       = 274;
+
+        // Walther keys
+        // These are values that Christian Walther added (for mac keyboard?).
+
+    public static inline var brightnessdown : Int     = 275;
+    public static inline var brightnessup : Int       = 276;
+
+        // Display mirroring/dual display switch, video mode switch */
+    public static inline var displayswitch : Int      = 277;
+
+    public static inline var kbdillumtoggle : Int     = 278;
+    public static inline var kbdillumdown : Int       = 279;
+    public static inline var kbdillumup : Int         = 280;
+    public static inline var eject : Int              = 281;
+    public static inline var sleep : Int              = 282;
+
+    public static inline var app1 : Int               = 283;
+    public static inline var app2 : Int               = 284;
 
     static var scancode_names:Array<String> = [
         null, null, null, null,
@@ -1011,7 +1010,6 @@ but they aren't specific to SDL so they are used generically */
         "Eject",
         "Sleep",
     ]; //scancode names
-
 
 } //Scancodes
 
