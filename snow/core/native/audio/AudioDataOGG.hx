@@ -154,8 +154,6 @@ class OGG {
             rate:       0
         });
 
-        // trace('file size is ' + _ogg.data.length);
-
         var _ogg_result = Ogg.ov_open_callbacks(_ogg, _ogg_file, null, 0, {
             read_fn:  ogg_read,
             seek_fn:  ogg_seek,
