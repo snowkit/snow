@@ -67,39 +67,36 @@ import snow.api.buffers.Uint8Array;
 
     } //OS
 
-//Compile time bound types
+//Init bound types
 
-    @:genericBuild(snow.types.TypeCreate.build())
-    private class ApplyType<Const> {}
-
-    private typedef UserConfigInit = ApplyType<"UserConfig">;
-    typedef UserConfig = UserConfigDef;
-
-    private typedef RuntimeConfigInit = ApplyType<"RuntimeConfig">;
-    typedef RuntimeConfig = RuntimeConfigDef;
-
-    private typedef WindowHandleInit = ApplyType<"WindowHandle">;
-    typedef WindowHandle = WindowHandleDef;
-
-    private typedef AppHostInit = ApplyType<"AppHost">;
-    @:noCompletion typedef AppHost = AppHostDef;
-
-    private typedef AppRuntimeInit = ApplyType<"AppRuntime">;
-    @:noCompletion typedef AppRuntime = AppRuntimeDef;
-
-    private typedef ModuleIOInit = ApplyType<"ModuleIO">;
-    @:noCompletion typedef ModuleIO = ModuleIODef;
-
-    private typedef ModuleAudioInit = ApplyType<"ModuleAudio">;
-    @:noCompletion typedef ModuleAudio = ModuleAudioDef;
-
-    private typedef ModuleAssetsInit = ApplyType<"ModuleAssets">;
-    @:noCompletion typedef ModuleAssets = ModuleAssetsDef;
-
-    #if snow_native //:todo: snow_native define use
-        private typedef FileHandleInit = ApplyType<"FileHandle">;
-        typedef FileHandle = FileHandleDef;
+    private typedef UserConfigInit     = haxe.macro.MacroType<[snow.types.TypeCreate.build("UserConfig")]>;
+    private typedef RuntimeConfigInit  = haxe.macro.MacroType<[snow.types.TypeCreate.build("RuntimeConfig")]>;
+    private typedef WindowHandleInit   = haxe.macro.MacroType<[snow.types.TypeCreate.build("WindowHandle")]>;
+    private typedef AppHostInit        = haxe.macro.MacroType<[snow.types.TypeCreate.build("AppHost")]>;
+    private typedef AppRuntimeInit     = haxe.macro.MacroType<[snow.types.TypeCreate.build("AppRuntime")]>;
+    private typedef ModuleIOInit       = haxe.macro.MacroType<[snow.types.TypeCreate.build("ModuleIO")]>;
+    private typedef ModuleAudioInit    = haxe.macro.MacroType<[snow.types.TypeCreate.build("ModuleAudio")]>;
+    private typedef ModuleAssetsInit   = haxe.macro.MacroType<[snow.types.TypeCreate.build("ModuleAssets")]>;
+    #if snow_native
+        private typedef FileHandleInit = haxe.macro.MacroType<[snow.types.TypeCreate.build("FileHandle")]>; //:todo: snow_native use
     #end
+
+//Then define aliases
+//Trying to directly alias from the MacroType build call, 
+//triggers assertions in the compiler with no error message
+
+    typedef UserConfig      = snow.types.user.UserConfig;
+    typedef RuntimeConfig   = snow.types.user.RuntimeConfig;
+    typedef WindowHandle    = snow.types.user.WindowHandle;
+    typedef AppHost         = snow.types.user.AppHost;
+    typedef AppRuntime      = snow.types.user.AppRuntime;
+    typedef ModuleIO        = snow.types.user.ModuleIO;
+    typedef ModuleAudio     = snow.types.user.ModuleAudio;
+    typedef ModuleAssets    = snow.types.user.ModuleAssets;
+    #if snow_native
+        typedef FileHandle  = snow.types.user.FileHandle;
+    #end
+
 
     @:build(snow.types.TypeCreate.ext())
     private class ExtensionsInit {}
