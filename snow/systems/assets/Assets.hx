@@ -25,7 +25,7 @@ class Assets {
         /** constructed internally, use `app.assets` */
     function new( _app:Snow ) {
 
-        #if ios
+        #if (ios || tvos)
                 //This is because of how the files are put into the xcode project
                 //for the iOS builds, it stores them inside of /assets to avoid
                 //including the root in the project in the Resources/ folder

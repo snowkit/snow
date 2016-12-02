@@ -26,6 +26,7 @@ class Runtime implements snow.core.Runtime {
 
             app = _app;
 
+            #if tvos     app.os = os_tvos;    app.platform = platform_tvos;    #end
             #if ios      app.os = os_ios;     app.platform = platform_ios;     #end
             #if mac      app.os = os_mac;     app.platform = platform_mac;     #end
             #if linux    app.os = os_linux;   app.platform = platform_linux;   #end

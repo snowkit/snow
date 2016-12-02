@@ -40,6 +40,8 @@ import snow.api.buffers.Uint8Array;
             /** */
         var platform_ios     = 'ios';
             /** */
+        var platform_tvos    = 'tvos';
+            /** */
         var platform_web     = 'web';
 
     } //Platform
@@ -60,6 +62,8 @@ import snow.api.buffers.Uint8Array;
         var os_android = 'android';
             /** */
         var os_ios     = 'ios';
+
+        var os_tvos    = 'tvos';
 
     } //OS
 
@@ -156,7 +160,7 @@ import snow.api.buffers.Uint8Array;
     } //ImageDataOptions
 
     class ImageData {
-                
+
         public var app : snow.Snow;
             /** source asset id */
         public var id : String = 'ImageData';
@@ -176,7 +180,7 @@ import snow.api.buffers.Uint8Array;
         public var pixels : Uint8Array;
 
         inline public function new(_app:snow.Snow, _options:ImageDataOptions) {
-            
+
             app = _app;
 
             id = def(_options.id, id);
@@ -304,7 +308,7 @@ import snow.api.buffers.Uint8Array;
 
     } //AudioDataOptions
 
-        /** An audio data object contains information about audio samples or streams, ready to be used. 
+        /** An audio data object contains information about audio samples or streams, ready to be used.
             `AudioData` objects typically come from the `app.assets.audio` API or `app.audio.module.data_from_path`,
             since the implemenation details of decoding audio and streams are module level implementation details.
             This is stored by `AudioSource` and `AssetAudio` objects for example.*/
@@ -329,7 +333,7 @@ import snow.api.buffers.Uint8Array;
         public var is_stream: Bool = false;
 
         inline public function new(_app:snow.Snow, _options:AudioDataOptions) {
-            
+
             app = _app;
 
             id = def(_options.id, id);

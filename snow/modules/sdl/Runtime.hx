@@ -77,7 +77,7 @@ class Runtime extends snow.core.native.Runtime {
 
         //mobile events
 
-            #if (android || ios)
+            #if (android || ios || tvos)
                 SDL.addEventWatch( event_watch, null );
             #end
 
@@ -168,7 +168,7 @@ class Runtime extends snow.core.native.Runtime {
 
         var _done = true;
 
-        #if ios
+        #if (ios || tvos)
 
             _done = false;
             _debug('sdl / attaching iOS CADisplayLink loop');
