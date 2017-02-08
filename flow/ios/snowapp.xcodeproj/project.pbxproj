@@ -231,8 +231,12 @@
                 GCC_PREFIX_HEADER = "project/project-Prefix.pch";
                 INFOPLIST_FILE = "project/project-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
-				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/../bin/ios.build/cpp";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/../bin/ios.build/cpp",
+				);
 				OTHER_LDFLAGS = (
+					"$(inherited)",
 					"-l",
 					"\"{{project.app.name}}\"",
 				);
@@ -259,8 +263,12 @@
                 GCC_PREFIX_HEADER = "project/project-Prefix.pch";
                 INFOPLIST_FILE = "project/project-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
-                LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/../bin/ios.build/cpp";
+               			LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/../bin/ios.build/cpp",
+				);
 				OTHER_LDFLAGS = (
+					"$(inherited)",
                     "-l",
                     "\"{{project.app.name}}\"",
                 );
