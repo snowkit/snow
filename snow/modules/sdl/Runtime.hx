@@ -120,7 +120,7 @@ class Runtime extends snow.core.native.Runtime {
 
     } //window_grab
 
-    public inline function window_swap() {
+    public function window_swap() {
 
         SDL.GL_SwapWindow(window);
 
