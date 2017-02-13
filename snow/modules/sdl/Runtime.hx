@@ -376,7 +376,7 @@ class Runtime extends snow.core.native.Runtime {
             //also clear the garbage in both front/back buffer
         #if (snow_native && linc_opengl && !snow_no_initial_glclear)
             GL.clearDepth(1.0);
-            GL.clearColor(1,0,0,1);
+            GL.clearColor(0,0,0,1);
             GL.clearStencil(0);
             GL.clear(GL.COLOR_BUFFER_BIT | GL.DEPTH_BUFFER_BIT | GL.STENCIL_BUFFER_BIT);
             window_swap();
