@@ -583,9 +583,9 @@ import snow.api.buffers.Uint8Array;
             /** The window id from which this event originated */
         public var window_id (default,null) : Int = -1;
             /** Potential window event data */
-        public var x (default,null) : Null<Int>;
+        public var x (default,default) : Null<Int>;
             /** Potential window event data */
-        public var y (default,null) : Null<Int>;
+        public var y (default,default) : Null<Int>;
 
         inline function new() {}
 
