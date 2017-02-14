@@ -54,7 +54,7 @@ class Runtime implements snow.core.Runtime {
             prevent_default_touches : true,
             prevent_default_keys : [
                 Key.left, Key.right, Key.up, Key.down,
-                Key.backspace, Key.tab, Key.delete
+                Key.backspace, Key.tab, Key.delete, Key.space
             ]
         };
 
