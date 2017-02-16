@@ -410,6 +410,11 @@ import snow.api.buffers.Uint8Array;
                 Unless you need to change this, don't. default: 8 */
         @:optional var alpha_bits   : Int;
 
+            /** A color value that when creating the window, the window backbuffer will be cleared to.
+                A framework above snow can also use this for default clear color if desired.
+                The values are specified as 0..1. default: black, 0,0,0,1  */
+        @:optional var default_clear : { r:Float, g:Float, b:Float, a:Float };
+
             /** OpenGL render context specific settings */
         @:optional var opengl : RenderConfigOpenGL;
             /** WebGL render context specific settings */

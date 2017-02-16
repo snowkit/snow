@@ -9,7 +9,7 @@ import timestamp.Timestamp;
 import glew.GLEW;
 #end
 
-#if (snow_native && linc_opengl)
+#if (!snow_no_initial_glclear && linc_opengl)
 import opengl.WebGL as GL;
 #end
 
@@ -374,13 +374,17 @@ class Runtime extends snow.core.native.Runtime {
         #end
 
             //also clear the garbage in both front/back buffer
-        #if (snow_native && linc_opengl && !snow_no_initial_glclear)
+        #if (!snow_no_initial_glclear && linc_opengl)
+
+            var color = app.config.render.default_clear;
+
             GL.clearDepth(1.0);
-            GL.clearColor(0,0,0,1);
             GL.clearStencil(0);
+            GL.clearColor(color.r, color.g, color.b, color.a);
             GL.clear(GL.COLOR_BUFFER_BIT | GL.DEPTH_BUFFER_BIT | GL.STENCIL_BUFFER_BIT);
             window_swap();
             GL.clear(GL.COLOR_BUFFER_BIT | GL.DEPTH_BUFFER_BIT | GL.STENCIL_BUFFER_BIT);
+
         #end
 
     } //post_render_context

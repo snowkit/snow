@@ -408,6 +408,7 @@ class Snow {
                 green_bits : 8,
                 blue_bits : 8,
                 alpha_bits : 8,
+                default_clear: { r:0, g:0, b:0, a:1 },
                 opengl : {
                     #if mobile
                         major:2, minor:0,
@@ -533,6 +534,12 @@ class Snow {
                 green_bits: _config.green_bits,
                 blue_bits: _config.blue_bits,
                 alpha_bits: _config.alpha_bits,
+                default_clear: { 
+                    r: _config.default_clear.r,
+                    g: _config.default_clear.g,
+                    b: _config.default_clear.b,
+                    a: _config.default_clear.a
+                },
                 opengl : {
                     major: _config.opengl.major,
                     minor: _config.opengl.minor,

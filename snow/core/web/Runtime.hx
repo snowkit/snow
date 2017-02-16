@@ -5,6 +5,10 @@ package snow.core.web;
 import snow.types.Types;
 import snow.api.Debug.*;
 
+#if (!snow_no_initial_glclear)
+import snow.modules.opengl.GL;
+#end
+
 @:allow(snow.Snow)
 class Runtime implements snow.core.Runtime {
 
@@ -601,6 +605,8 @@ class Runtime implements snow.core.Runtime {
             return;
         }
 
+        post_render_context(window);
+
         setup_events();
 
         if(config.fullscreen) {
@@ -609,6 +615,21 @@ class Runtime implements snow.core.Runtime {
         }
 
     } //create_window
+
+    function post_render_context(window:WindowHandle) {
+
+        #if (!snow_no_initial_gl_clear)
+
+            var color = app.config.render.default_clear;
+
+            GL.clearDepth(1.0);
+            GL.clearStencil(0);
+            GL.clearColor(color.r, color.g, color.b, color.a);
+            GL.clear(GL.COLOR_BUFFER_BIT | GL.DEPTH_BUFFER_BIT | GL.STENCIL_BUFFER_BIT);
+
+        #end
+
+    } //post_render_context
 
     function create_render_context(_window:WindowHandle) : Bool {
 
