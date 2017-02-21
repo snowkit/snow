@@ -189,10 +189,21 @@ class Snow {
 
         } //dispatch_event
 
+        //internal
+        var window_in_background = false;
+
         public function dispatch_window_event(_type:WindowEventType, _timestamp:Float, _window_id:Int, _x:Int, _y:Int) {
             
             win_event.set(_type, _timestamp, _window_id, _x, _y);
             sys_event.set(se_window, win_event, null);
+
+            #if snow_native
+                if(_type == WindowEventType.we_focus_lost) {
+                    window_in_background = true;
+                } else if(_type == WindowEventType.we_focus_gained) {
+                    window_in_background = false;
+                }
+            #end
             
             onevent(sys_event);
 
@@ -301,6 +312,12 @@ class Snow {
         inline function on_tick_event() {
 
             if(freeze) return;
+            
+            #if snow_native
+                if(window_in_background && config.window.background_sleep != 0) {
+                    Sys.sleep(config.window.background_sleep);
+                }
+            #end
 
             Timer.update();
 
@@ -439,7 +456,9 @@ class Snow {
                 y                   : 0x1FFF0000,
                 width               : 960,
                 height              : 640,
-                title               : 'snow app'
+                title               : 'snow app',
+                no_input            : false,
+                background_sleep    : 1/15
             };
 
                 #if mobile
@@ -516,6 +535,7 @@ class Snow {
                 true_fullscreen:_config.true_fullscreen,
                 height:_config.height,
                 no_input:_config.no_input,
+                background_sleep:_config.background_sleep,
                 resizable:_config.resizable,
                 title:'${_config.title}',
                 width:_config.width,
