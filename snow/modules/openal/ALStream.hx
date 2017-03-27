@@ -161,14 +161,14 @@ class ALStream extends ALSound {
         var _read = instance.data_get(buffer_data, -1, source.stream_buffer_length, data_get_result);
         var _amount = _read[0];
 
-        // log('bufferData / $_buffer / format:$alformat / freq:${source.data.rate} / size: ${_read[0]}');
-        // err('pre fill buffer ${_buffer}');
+        _verbose('bufferData / $_buffer / format:$alformat / freq:${source.data.rate} / size: ${_read[0]}');
+        err('pre fill buffer ${_buffer}');
 
         if(_amount > 0) {
             AL.bufferData(_buffer, alformat, source.data.rate, buffer_data.buffer, buffer_data.byteOffset, _amount);
         }
 
-        // err('post fill buffer ${_buffer} read: $_read');
+        err('post fill buffer ${_buffer} read: $_read');
 
         return _read[1] == 1;
 
@@ -186,11 +186,11 @@ class ALStream extends ALSound {
 
         var still_streaming = true;
 
-        // log('alsource:$alsource ${state_str()} ${position_of()}/$duration | ${source.seconds_to_bytes(position_of())}/${source.data.length_pcm} | ${buffers_left} ');
+        _verbose('alsource:$alsource ${state_str()} ${position_of()}/$duration | ${source.seconds_to_bytes(position_of())}/${source.data.length} | ${buffers_left} ');
 
         var processed_buffers = AL.getSourcei(alsource, AL.BUFFERS_PROCESSED);
 
-        // err('query processed buffers $processed_buffers');
+        err('query processed buffers $processed_buffers');
 
             //disallow large or invalid values since we are using a while loop
         if(processed_buffers > source.stream_buffer_count) processed_buffers = source.stream_buffer_count;
@@ -198,47 +198,62 @@ class ALStream extends ALSound {
 
             var _buffer:ALuint = AL.sourceUnqueueBuffer(alsource);
 
-            // err('sourceUnqueueBuffer $_buffer');
+            err('sourceUnqueueBuffer $_buffer');
 
             var _buffer_size = AL.getBufferi(_buffer, AL.SIZE);
 
             current_time += source.bytes_to_seconds(_buffer_size);
 
-            // log('    > buffer was done / ${_buffer} / size(${_buffer_size}) / current_time(${current_time}) / pos(${position_of()})');
+            _verbose('    > buffer was done / ${_buffer} / size(${_buffer_size}) / current_time(${current_time}) / pos(${position_of()})');
 
                 //repopulate this empty buffer,
                 //if it succeeds, then throw it back at the end of
                 //the queue list to keep playing.
-            var _complete = fill_buffer(_buffer);
-                //we shouldn't queue if complete and not looping, or if the data length was 0
-            var skip_queue = (!looping && _complete);
-
+            var _data_ended = fill_buffer(_buffer);
+                //if not looping, we shouldn't queue up the buffer again
+            var skip_queue = (!looping && _data_ended);
+                
                 //make sure the time resets correctly when looping
-            var at_end = position_of() >= duration;
-            if(at_end && looping) {
+            var time_is_at_end = position_of() >= duration;
+                //If the time has run over, we reset the timer if looping
+            if(time_is_at_end && looping) {
                 current_time = 0;
                 module.app.audio.emit(ae_end, instance.handle);
             }
 
-            if(_complete) {
+            _verbose('    > data has ended? $_data_ended');
+            _verbose('    > at end? $time_is_at_end ${position_of()} >= $duration');
+
+                //If the data was complete,
+                //we reset the source data to 0, 
+                //and try get some more, otherwise 
+                //we just wait for our queued buffers to run out
+            if(_data_ended) {
 
                 if(looping) {
+
+                    _verbose('    > data ended while looping, seek audio to 0, refill buffer');
+                
                     instance.data_seek(0);
+                    fill_buffer(_buffer);
+                
                 } else {
+                
                     buffers_left--;
-                    // log('another buffer down ${buffers_left}');
+                    _verbose('    > running down buffers, one more down, ${buffers_left} to go');
                     if(buffers_left < 0) {
                         still_streaming = false;
                     } else {
                         skip_queue = false;
                     }
-                }
+                
+                } //!looping
 
             } //complete
 
             if(!skip_queue) {
                 AL.sourceQueueBuffer(alsource, _buffer);
-                // log("requeue buffer " + _buffer);
+                _verbose("    > requeued buffer " + _buffer);
             }
 
             processed_buffers--;

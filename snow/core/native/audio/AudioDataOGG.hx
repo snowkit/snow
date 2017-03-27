@@ -53,6 +53,19 @@ class AudioDataOGG extends AudioData {
 
         var _read_len = _len;
 
+        _verbose('    > OGG > requested ogg portion start $_start / len $_len');
+
+        var st = Ogg.ov_time_tell(oggfile);
+        var sp = Ogg.ov_pcm_tell(oggfile);
+        var sr = Ogg.ov_raw_tell(oggfile);
+        var ct = Ogg.ov_time_total(oggfile, -1);
+        var cp = Ogg.ov_pcm_total(oggfile, -1);
+        var cr = Ogg.ov_raw_total(oggfile, -1);
+
+        _verbose('    > OGG > tell time $st / $ct');
+        _verbose('    > OGG > tell pcm $sp / $cp');
+        _verbose('    > OGG > tell raw $sr / $cr');
+
         if(_start != -1) {
             // log('start was $_start, skipping there first');
             seek(_start);
@@ -83,6 +96,8 @@ class AudioDataOGG extends AudioData {
             total_read += bytes_read;
             bytes_left -= bytes_read;
 
+            _verboser('    > OGG > read $bytes_read / total read $total_read / left $bytes_left');
+
                 //at the end?
             if(bytes_read == 0) {
                 reading = false;
@@ -99,7 +114,7 @@ class AudioDataOGG extends AudioData {
             //just in case it read shorter than requested
         if(total_read != _read_len) {
             var byte_gap = (_read_len & 0x03);
-            // trace('not matched size $total_read / $_read_len');
+            _verbose('    > OGG > total read doesn\'t match expected read: $total_read / $_read_len');
             // out_buffer.resize(total_read+byte_gap);
             //:todo: check these alignment paddings in snow alpha-2.0
         }
@@ -161,7 +176,7 @@ class OGG {
             tell_fn:  ogg_tell
         });
 
-        // trace('ov_open_callbacks ' + code(_ogg_result));
+        // _verbose('ov_open_callbacks ' + code(_ogg_result));
 
         if(_ogg_result < 0) {
 
@@ -268,7 +283,7 @@ class OGG {
         var _read_n = _ogg.app.io.module.file_read(_ogg.handle, _buffer, _read_size, 1);
         var _read = (_read_n * _read_size);
 
-        // trace('ogg_read cur:$_file_cur, fs:$_file_size, rs:$_read_size, size:$size, nmemb:$nmemb, read amount:$_read');
+        // _verboser('ogg_read cur:$_file_cur, fs:$_file_size, rs:$_read_size, size:$size, nmemb:$nmemb, read amount:$_read');
 
         return _read;
 
@@ -277,7 +292,7 @@ class OGG {
         //seek function for ogg callbacks
     static function ogg_seek(_ogg:AudioDataOGG, offset:Int, whence:OggWhence):Void {
 
-        // trace('ogg_seek offset:$offset whence:$whence');
+        // _verboser('ogg_seek offset:$offset whence:$whence');
 
         var _w:FileSeek = switch(whence) {
             case OGG_SEEK_CUR: cur;
@@ -294,7 +309,7 @@ class OGG {
 
         var res = _ogg.app.io.module.file_tell(_ogg.handle);
 
-        // trace('ogg_tell tell:$res');
+        // _verboser('ogg_tell tell:$res');
 
         return res;
 
