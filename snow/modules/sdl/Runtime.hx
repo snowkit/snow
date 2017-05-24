@@ -320,6 +320,15 @@ class Runtime extends snow.core.native.Runtime {
         window_w = config.width;
         window_h = config.height;
 
+            //init SDL video subsystem
+        var status = SDL.initSubSystem(SDL_INIT_VIDEO);
+        if(status != 0) {
+            throw Error.init('runtime / sdl / failed to init video / `${SDL.getError()}`');
+        } else {
+            _debug('sdl / init video');
+        }
+
+            //create window
         window = SDL.createWindow((cast config.title:String), config.x, config.y, config.width, config.height, window_flags(config));
 
         if(window == null) {
