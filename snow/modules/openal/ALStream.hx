@@ -154,8 +154,10 @@ class ALStream extends ALSound {
 
     } //flush_queue
 
+        //returns the result of the data request, which may not get any data,
+        //and which may have reached the end of the data source itself.
     var data_get_result = [0,0];
-    function fill_buffer(_buffer:ALuint) : Bool {
+    function fill_buffer(_buffer:ALuint) : Array<Int> {
 
             //try to read the data into the buffer, the -1 means "from current"
         var _read = instance.data_get(buffer_data, -1, source.stream_buffer_length, data_get_result);
@@ -170,7 +172,7 @@ class ALStream extends ALSound {
 
         err('post fill buffer ${_buffer} read: $_read');
 
-        return _read[1] == 1;
+        return data_get_result;
 
     } //fill_buffer
     
@@ -209,7 +211,9 @@ class ALStream extends ALSound {
                 //repopulate this empty buffer,
                 //if it succeeds, then throw it back at the end of
                 //the queue list to keep playing.
-            var _data_ended = fill_buffer(_buffer);
+            var _data_state = fill_buffer(_buffer);
+            var _data_amount = _data_state[0];
+            var _data_ended = _data_state[1] == 1;
                 //if not looping, we shouldn't queue up the buffer again
             var skip_queue = (!looping && _data_ended);
                 
@@ -232,10 +236,17 @@ class ALStream extends ALSound {
 
                 if(looping) {
 
-                    _verbose('    > data ended while looping, seek audio to 0, refill buffer');
+                    _verbose('    > data ended while looping, seek audio to 0');
                 
                     instance.data_seek(0);
-                    fill_buffer(_buffer);
+
+                        //if looping, and we just reset the data source,
+                        //if the amount we got back was zero, it means this buffer
+                        //is empty, and needs to be filled.
+                    if(_data_amount == 0) {
+                        _verbose('    > buffer was empty due to end of stream, refilling');
+                        fill_buffer(_buffer);
+                    }
                 
                 } else {
                 
@@ -249,7 +260,7 @@ class ALStream extends ALSound {
                 
                 } //!looping
 
-            } //complete
+            } //_data_ended
 
             if(!skip_queue) {
                 AL.sourceQueueBuffer(alsource, _buffer);
