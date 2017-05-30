@@ -74,7 +74,6 @@ class ALStream extends ALSound {
         buffer_data.buffer = null;
         buffer_data = null;
 
-
     } //destroy
 
     override function position_of() {
@@ -93,10 +92,20 @@ class ALStream extends ALSound {
 
             //clamp between 0 and duration
         _time = (_time < 0) ? 0 : (( _time > duration) ? duration : _time);
-
         current_time = _time;
 
-        if(_playing) AL.sourcePlay(alsource);
+        var _samples = source.seconds_to_bytes(_time);
+
+        instance.data_seek(_samples);
+
+        _verbose('position $_time, seek to $_samples');
+
+            //make sure queue is refilled from the new position
+        init_queue();
+
+        if(_playing) {
+            AL.sourcePlay(alsource);
+        }
 
     } //position
 
