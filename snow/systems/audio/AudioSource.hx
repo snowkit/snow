@@ -47,9 +47,7 @@ class AudioSource {
         /** A helper for converting bytes to seconds for a sound source */
     public function bytes_to_seconds(_bytes:Int) : Float {
 
-            //:todo: audio bits per sample config
-        var _bits_per_sample = 16;
-        var _word = _bits_per_sample == 16 ? 2 : 1;
+        var _word = data.bits_per_sample == 16 ? 2 : 1;
         var _sample_frames = (data.rate * data.channels * _word);
 
         return _bytes / _sample_frames;
@@ -59,9 +57,7 @@ class AudioSource {
         /** A helper for converting seconds to bytes for this audio source */
     public function seconds_to_bytes(_seconds:Float) : Int {
 
-            //:todo: audio bits per sample config
-        var _bits_per_sample = 16;
-        var _word = _bits_per_sample == 16 ? 2 : 1;
+        var _word = data.bits_per_sample == 16 ? 2 : 1;
         var _sample_frames = (data.rate * data.channels * _word);
 
         return Std.int(_seconds * _sample_frames);

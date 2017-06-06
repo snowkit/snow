@@ -118,11 +118,9 @@ class ALSound {
     function source_format() {
 
         var _format = AL.FORMAT_MONO16;
-            //:todo: audio bits per sample config
-        var _bits_per_sample = 16;
 
         if(source.data.channels > 1) {
-            if(_bits_per_sample == 8) {
+            if(source.data.bits_per_sample == 8) {
                 _format = AL.FORMAT_STEREO8;
                 _debug('source format: stereo 8');
             } else {
@@ -130,7 +128,7 @@ class ALSound {
                 _debug('source format: stereo 16');
             }
         } else { //mono
-            if(_bits_per_sample == 8) {
+            if(source.data.bits_per_sample == 8) {
                 _format = AL.FORMAT_MONO8;
                 _debug('source format: mono 8');
             } else {
@@ -138,7 +136,6 @@ class ALSound {
                 _debug('source format: mono 16');
             }
         }
-
 
         return _format;
 

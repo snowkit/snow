@@ -166,7 +166,7 @@ class WAV {
 
                 var _format = _chunk.data.toBytes();
                 var _bitrate = _format.getInt32(8);
-                var _bits_per_sample = _format.getUInt16(14);
+                _info.bits_per_sample = _format.getUInt16(14);
                 _info.channels = _format.getUInt16(2);
                 _info.rate = _format.getInt32(4);
                 _format = null;

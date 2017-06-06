@@ -96,7 +96,7 @@ class AudioDataOGG extends AudioData {
             total_read += bytes_read;
             bytes_left -= bytes_read;
 
-            _verboser('    > OGG > read $bytes_read / total read $total_read / left $bytes_left');
+            // _verboser('    > OGG > read $bytes_read / total read $total_read / left $bytes_left');
 
                 //at the end?
             if(bytes_read == 0) {

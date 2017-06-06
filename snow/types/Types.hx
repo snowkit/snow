@@ -299,9 +299,10 @@ import snow.api.buffers.Uint8Array;
         @:optional var rate: Int;
         @:optional var length: Int;
         @:optional var channels: Int;
-        @:optional var is_stream: Bool;
+        @:optional var bits_per_sample: Int;
         @:optional var format: AudioFormatType;
         @:optional var samples: Uint8Array;
+        @:optional var is_stream: Bool;
 
     } //AudioDataOptions
 
@@ -324,6 +325,8 @@ import snow.api.buffers.Uint8Array;
         public var length: Int = 0;
             /** The number of channels for this data */
         public var channels: Int = 1;
+            /** The number of bits per sample for this data */
+        public var bits_per_sample: Int = 16;
             /** The audio format type of the sample data */
         public var format: AudioFormatType = af_unknown;
             /** Whether or not this data is a stream of samples */
@@ -338,6 +341,7 @@ import snow.api.buffers.Uint8Array;
             length = def(_options.length, length);
             format = def(_options.format, format);
             channels = def(_options.channels, channels);
+            bits_per_sample = def(_options.bits_per_sample, bits_per_sample);
             is_stream = def(_options.is_stream, is_stream);
             samples = def(_options.samples, samples);
 
