@@ -20,6 +20,8 @@ class Runtime extends snow.core.native.Runtime {
     public var gl : sdl.GLContext;
         /** The SDL window handle */
     public var window : sdl.Window;
+        /** Toggle auto window swap */
+    public var auto_swap : Bool = true;
         /** internal: map of gamepad index to gamepad instance */
     var gamepads : Map<Int, sdl.GameController>;
         /** internal: map of joystick index to joystick instance */
@@ -211,7 +213,7 @@ class Runtime extends snow.core.native.Runtime {
 
         app.dispatch_event(se_tick);
 
-        if(!app.has_shutdown) {
+        if(auto_swap && !app.has_shutdown) {
             window_swap();
         }
 
