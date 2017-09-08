@@ -178,7 +178,11 @@ class Audio {
 
         module.onevent(_event);
 
-        if(_event.type == se_window) {
+        if(_event.type == se_freeze) {
+            suspend();
+        } else if(_event.type == se_unfreeze) {
+            resume();
+        } else if(_event.type == se_window) {
             switch(_event.window.type) {
                 case WindowEventType.we_minimized:
                     suspend();
