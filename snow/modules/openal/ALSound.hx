@@ -37,15 +37,15 @@ class ALSound {
 
     public function init() {
 
-        var _buffer:ALuint = module.buffers.get(source);
+        var _buffer:ALuint = module.buffers.get(source.source_id);
 
         if(_buffer == AL.NONE) {
 
             var _data = source.data;
 
-            _debug(' > new buffer ${_data.id} / ${alformat}');
-
             _buffer = AL.genBuffer();
+
+            _debug(' > new buffer ${_data.id} / format ${alformat} / buffer $_buffer');
 
             if(_data.samples != null) {
                 AL.bufferData(_buffer, alformat, _data.rate, _data.samples.buffer, _data.samples.byteOffset, _data.samples.byteLength); 
@@ -56,9 +56,15 @@ class ALSound {
 
             err('new buffer');
 
-            module.buffers.set(source, _buffer);
+            _debug('new buffer made for source / `${source.data.id}` / `${source.source_id}` / $_buffer');
 
-        } //_buffer == 0
+            module.buffers.set(source.source_id, _buffer);
+
+        } else { //_buffer == 0
+
+            _debug('existing buffer found for source / `${source.data.id}` / `${source.source_id}` / $_buffer');
+
+        }
 
         AL.sourcei(alsource, AL.BUFFER, _buffer);
 
@@ -80,17 +86,23 @@ class ALSound {
 
     public function destroy() {
 
-        //clear error state
+            //clear error state
         AL.getError();
 
         if(AL.getSourcei(alsource, AL.SOURCE_STATE) == AL.PLAYING) {
             AL.sourceStop(alsource);
-            err('stop source');
+            err('stop alsource');
+        }
+
+            //detach buffer
+        if(AL.getSourcei(alsource, AL.BUFFER) != 0) {
+            AL.sourcei(alsource, AL.BUFFER, 0);
+            err('detach buffer');
         }
 
         AL.deleteSource(alsource);
 
-        err('delete source');
+        err('delete alsource');
 
         // alsource = 0;
 
