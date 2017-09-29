@@ -617,6 +617,8 @@ private class AudioDataWebAudio extends AudioData {
         media_node = null;
         media_elem = null;
 
+        super.destroy();
+
     } //destroy
 
 } //AudioDataWebAudio

@@ -31,6 +31,8 @@ class AudioDataOGG extends AudioData {
         Ogg.ov_clear(oggfile);
         oggfile = null;
 
+        super.destroy();
+
     } //destroy
 
     override public function seek(_to:Int) : Bool {

@@ -331,6 +331,8 @@ import snow.api.buffers.Uint8Array;
         public var format: AudioFormatType = af_unknown;
             /** Whether or not this data is a stream of samples */
         public var is_stream: Bool = false;
+            /** Whether or not this data has been destroyed */
+        public var destroyed: Bool = false;
 
         inline public function new(_app:snow.Snow, _options:AudioDataOptions) {
 
@@ -353,8 +355,17 @@ import snow.api.buffers.Uint8Array;
 
             public function destroy() {
 
+                if(destroyed) return;
+
+                _debug('destroy AudioData `$id`');
+                destroyed = true;
+
                 id = null;
-                #if snow_native samples.buffer = null; #end
+                #if snow_native 
+                    if(samples != null) {
+                        samples.buffer = null; 
+                    }
+                #end
                 samples = null;
 
             } //destroy

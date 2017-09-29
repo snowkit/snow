@@ -30,6 +30,8 @@ class AudioDataWAV extends AudioData {
 
         handle = null;
 
+        super.destroy();
+
     } //destroy
 
     override public function seek(_to:Int) : Bool {

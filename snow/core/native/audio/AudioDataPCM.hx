@@ -27,6 +27,8 @@ class AudioDataPCM extends AudioData {
         app = null;
         handle = null;
 
+        super.destroy();
+
     } //destroy
 
     override public function seek(_to:Int) : Bool {
