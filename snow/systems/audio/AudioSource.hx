@@ -86,7 +86,7 @@ class AudioSource {
         var c = instances.length;
         var i = 0;
 
-        log('destroy ${data.id}, stream=${data.is_stream}, instances=$c');
+        _debug('destroy ${data.id}, stream=${data.is_stream}, instances=$c');
 
         app.audio.emit(ae_destroyed_source, this);
 
