@@ -17,9 +17,10 @@ class AudioSource {
         /** Streams only: The number of buffers to queue up. default:2
             For most cases this can be left alone. */
     public var stream_buffer_count : Int = 2;
-
         /** Whether this source has been destroyed */
     public var destroyed : Bool = false;
+        /** A unique key for this source  */
+    public var source_id : String;
 
         //local list of instances spawned from this source.
         //used when destroying the source, to take instances with it.
@@ -29,6 +30,9 @@ class AudioSource {
 
         app = _app;
         data = _data;
+        source_id = app.uniqueid;
+
+        _debug('AudioSource / `$source_id` / ${data.id}');
 
         instances = [];
 
@@ -86,9 +90,7 @@ class AudioSource {
         var c = instances.length;
         var i = 0;
 
-        _debug('destroy ${data.id}, stream=${data.is_stream}, instances=$c');
-
-        app.audio.emit(ae_destroyed_source, this);
+        _debug('destroy / $source_id / ${data.id}, stream=${data.is_stream}, instances=$c');
 
         while(i < c) {
             var _instance = instances.pop();
@@ -96,6 +98,8 @@ class AudioSource {
             _instance = null;
             i++;
         }
+
+        app.audio.emit(ae_destroyed_source, this);
 
         data.destroy();
         data = null;

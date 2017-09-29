@@ -27,7 +27,7 @@ class Audio implements snow.modules.interfaces.Audio {
     var handle_seq = 0;
     var instances : Map<AudioHandle, ALSound>;
         /** A map of audio source to AL buffer handles */
-    var buffers : Map<AudioSource, ALuint>;
+    var buffers : Map<String, ALuint>;
 
     var app: snow.Snow;
     var active: Bool = false;
@@ -94,12 +94,15 @@ class Audio implements snow.modules.interfaces.Audio {
 
     function on_source_destroyed(_source:AudioSource) {
 
-        _debug('source being destroyed: ' + _source.data.id);
-        var _buffer = buffers.get(_source);
+        var _buffer = buffers.get(_source.source_id);
         if(_buffer != null) {
             _debug('   destroying buffer ' + _buffer);
             AL.deleteBuffer(_buffer);
+            _debug('delete buffer / ${ALError.desc(AL.getError())}');
         }
+
+        var removed = buffers.remove(_source.source_id);
+        _debug('source being destroyed / ${_source.data.id} / buffer $_buffer / removed? $removed');
 
     } //
 
