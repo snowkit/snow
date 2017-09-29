@@ -84,7 +84,7 @@ class Audio implements snow.modules.interfaces.Audio {
 
                     if(_snd.instance.has_ended()) {
                         app.audio.emit(ae_end, _handle);
-                        _snd.instance.destroy();
+                        if(!_snd.instance.destroyed) _snd.instance.destroy();
                     }
                 } //each instance
             } //audio active
@@ -154,9 +154,8 @@ class Audio implements snow.modules.interfaces.Audio {
 
         if(!active) return;
 
-        _debug('suspending context');
-        _debug(ALError.desc(AL.getError()));
-        _debug(ALCError.desc(ALC.getError(device)));
+        _debug('suspend AL ${ALError.desc(AL.getError())}');
+        _debug('suspend ALC ${ALCError.desc(ALC.getError(device))}');
 
         #if android
             _debug('android: alc suspend');
@@ -179,11 +178,11 @@ class Audio implements snow.modules.interfaces.Audio {
             ALC.androidResume();
         #end
 
-        ALC.processContext(context);
         ALC.makeContextCurrent(context);
+        ALC.processContext(context);
 
-        _debug(ALError.desc(AL.getError()));
-        _debug(ALCError.desc(ALC.getError(device)));
+        _debug('resume AL ${ALError.desc(AL.getError())}');
+        _debug('resume ALC ${ALCError.desc(ALC.getError(device))}');
 
     } //resume
 

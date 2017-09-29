@@ -80,9 +80,13 @@ class ALSound {
 
     public function destroy() {
 
-        AL.sourceStop(alsource);
+        //clear error state
+        AL.getError();
 
-        err('stop source');
+        if(AL.getSourcei(alsource, AL.SOURCE_STATE) == AL.PLAYING) {
+            AL.sourceStop(alsource);
+            err('stop source');
+        }
 
         AL.deleteSource(alsource);
 

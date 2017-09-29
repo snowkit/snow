@@ -18,6 +18,9 @@ class AudioSource {
             For most cases this can be left alone. */
     public var stream_buffer_count : Int = 2;
 
+        /** Whether this source has been destroyed */
+    public var destroyed : Bool = false;
+
         //local list of instances spawned from this source.
         //used when destroying the source, to take instances with it.
     var instances : Array<AudioInstance>;
@@ -72,6 +75,13 @@ class AudioSource {
     } //duration
 
     public function destroy() {
+
+        if(destroyed) {
+            log('destroying already destroyed source!');
+            return;
+        }
+
+        destroyed = true;
 
         var c = instances.length;
         var i = 0;
