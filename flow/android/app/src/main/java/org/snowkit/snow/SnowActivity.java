@@ -10,6 +10,7 @@ import android.view.WindowManager;
 import android.media.AudioManager;
 import android.annotation.TargetApi;
 
+import android.content.Intent;
 import org.libsdl.app.SDLActivity;
 
 public class SnowActivity extends org.libsdl.app.SDLActivity {
@@ -113,6 +114,21 @@ public class SnowActivity extends org.libsdl.app.SDLActivity {
             | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
     
     }
+
+    //User facing API helpers
+
+        public static void url_open(String url) {
+
+            Log.i(SNOW_TAG, ">>>>>>>>/ snow / opening url " + url);
+
+            Intent intent = new Intent(Intent.ACTION_VIEW, android.net.Uri.parse(url));
+
+            intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY | Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
+
+            snow_activity.startActivity(intent);
+
+        } //url_open
 
 } //SnowActivity
 
