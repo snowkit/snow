@@ -636,25 +636,25 @@ private class JNIInfo {
     } //cpp_body
 
 
-    public static var jni_bool   = 'Z';
-    public static var jni_byte   = 'B';
-    public static var jni_char   = 'C';
-    public static var jni_double = 'D';
-    public static var jni_float  = 'F';
-    public static var jni_int    = 'I';
-    public static var jni_long   = 'J';
-    public static var jni_void   = 'V';
-    public static var jni_object = 'L{object_type};';
-    public static var jni_array  = '[{array_content};';
-    public static var jni_method = '({args_type}){return_type}';
+    public static inline var jni_bool   = 'Z';
+    public static inline var jni_byte   = 'B';
+    public static inline var jni_char   = 'C';
+    public static inline var jni_double = 'D';
+    public static inline var jni_float  = 'F';
+    public static inline var jni_int    = 'I';
+    public static inline var jni_long   = 'J';
+    public static inline var jni_void   = 'V';
+    public static inline var jni_object = 'L{object_type};';
+    public static inline var jni_array  = '[{array_content};';
+    public static inline var jni_method = '({args_type}){return_type}';
 
-    public static var jnic_void     = 'void';
-    public static var jnic_string   = 'jstring';
-    public static var jnic_int      = 'jint';
-    public static var jnic_bool     = 'jboolean';
-    public static var jnic_float    = 'jfloat';
+    public static inline var jnic_void     = 'void';
+    public static inline var jnic_string   = 'jstring';
+    public static inline var jnic_int      = 'jint';
+    public static inline var jnic_bool     = 'jboolean';
+    public static inline var jnic_float    = 'jfloat';
 
-    public static var jnic_special_activity = 'jactivity';
+    public static inline var jnic_special_activity = 'jactivity';
 
 } //JNIInfo
 
