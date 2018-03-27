@@ -183,8 +183,8 @@ class JNI {
 
         switch(arg.type) {
             case JNIInfo.jnic_string: {
-                pre = '\t\t\tconst char* ${name}_char = env->GetStringUTFChars($jname, 0);\n
-::String $name = ::String(${name}_char);\n';
+                pre = '\t\t\tconst char* ${name}_char = env->GetStringUTFChars($jname, 0);\n';
+                pre += '\t\t\t::String $name = ::String(${name}_char);\n';
                 post = '\t\t\tenv->ReleaseStringUTFChars($jname, ${name}_char);\n';
             }
 
