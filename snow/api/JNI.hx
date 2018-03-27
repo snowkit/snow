@@ -7,8 +7,8 @@ import haxe.macro.Context;
 import haxe.macro.Expr;
 
 // Please note this JNI stuff is an experimental approach that
-// has proved useful but has several caveats. 
-// - static functions only 
+// has proved useful but has several caveats.
+// - static functions only
 // - primitive types only (no arrays yet)
 // - specific to snow atm (relies on snow activity api)
 // - rough/wip code
@@ -18,7 +18,7 @@ class JNI {
     //
         /** Expose public static haxe functions to `native` externs in Java side.
             For example in Java: `public static native void exampleCallback(int idx);`
-            in Haxe: 
+            in Haxe:
                 @:build(JNI.native('com.your.game.AppActivity'))
                 class Callbacks {
                     public static function exampleCallback(idx:Int) : Void {
@@ -75,14 +75,14 @@ class JNI {
 
     } //native
 
-        /** declare a Haxe class extern to a Java class. 
+        /** declare a Haxe class extern to a Java class.
             The class must have only static functions without a body.
             Only primitives can be used as args, in cases where the activity
             is needed it will be automatically injected if the java side wants it.
             In Java:
                 public static boolean isSignedIn() { return false; }
                 public static void achievementUnlock(String ach) { .. }
-            In Haxe (using google play as an example): 
+            In Haxe (using google play as an example):
                 @:build(JNI.declare('com.your.game.AppActivity'))
                 class PlayAchievements {
                     public static function isSignedIn() : Bool;
@@ -183,8 +183,9 @@ class JNI {
 
         switch(arg.type) {
             case JNIInfo.jnic_string: {
-                pre = '\t\t\tconst char* $name = env->GetStringUTFChars($jname, 0);\n';
-                post = '\t\t\tenv->ReleaseStringUTFChars($jname, nativeString);\n';
+                pre = '\t\t\tconst char* ${name}_char = env->GetStringUTFChars($jname, 0);\n
+::String $name = ::String(${name}_char);\n';
+                post = '\t\t\tenv->ReleaseStringUTFChars($jname, ${name}_char);\n';
             }
 
             case JNIInfo.jnic_int: pre = '\t\tint $name = (int)$jname;\n';
@@ -198,7 +199,7 @@ class JNI {
     } //jni_to_cpp_arg
 
     static function cpp_start_callback() {
-        
+       
         var c = '';
 
             c +='\t\tint _autohaxe_base = 0;\n';
@@ -209,7 +210,7 @@ class JNI {
     } //cpp_start_callback
 
     static function cpp_end_callback() {
-        
+       
         return '\t\t::hx::SetTopOfStack((int*)0, true);\n\n';
 
     } //cpp_end_callback
@@ -245,7 +246,7 @@ class JNI {
         args_list += ')';
         var cppjni_body = ' {\n\n';
 
-                cppjni_body += cpp_start_callback();                
+                cppjni_body += cpp_start_callback();
 
                 for(jarg in jargs) {
                     cppjni_body += jarg.pre;
@@ -272,7 +273,7 @@ class JNI {
 
             cppjni_body += '\t}\n';
 
-        return 'extern "C" {\n' + func_def + args_list + cppjni_body + '} //extern c';
+        return 'extern "C" {\n' + func_def + args_list + cppjni_body + '} //extern c\n';
 
     } //cppjni_method
 
@@ -345,11 +346,11 @@ class JNI {
                 // start SDK JNI includes
                 #include <jni.h>
                 #include <android/log.h>
-                #ifndef LOGI 
-                    #define LOGI(...) __android_log_print(ANDROID_LOG_INFO,"SNOWJNI",__VA_ARGS__) 
+                #ifndef LOGI
+                    #define LOGI(...) __android_log_print(ANDROID_LOG_INFO,"SNOWJNI",__VA_ARGS__)
                 #endif
-                #ifndef LOGE 
-                    #define LOGE(...) __android_log_print(ANDROID_LOG_ERROR,"SNOWJNI",__VA_ARGS__) 
+                #ifndef LOGE
+                    #define LOGE(...) __android_log_print(ANDROID_LOG_ERROR,"SNOWJNI",__VA_ARGS__)
                 #endif
                 extern "C" { extern void* SDL_AndroidGetJNIEnv(void); }
                 // end SDK JNI includes\n'
@@ -417,10 +418,10 @@ private class JNIInfo {
         //takes a jni type (Z, B, etc) and returns it's corresponding jni type
     public static function jni_type_from_jni_short(type:String) : String {
         return switch(type) {
-            case 'V': jnic_void; 
-            case 'I': jnic_int; 
+            case 'V': jnic_void;
+            case 'I': jnic_int;
             case 'Z': jnic_bool;
-            case 'F': jnic_float; 
+            case 'F': jnic_float;
             case _:         throw 'unknown type `$type`';
         }
     }
@@ -557,7 +558,7 @@ private class JNIInfo {
     } //cpp_get_arg_decl
 
         /** Get the method body for the given details, pre transform
-            class_name = package.blah.Class, func_name = methodname, 
+            class_name = package.blah.Class, func_name = methodname,
             ret_type = jni return type, i.e jni_void etc
         */
     public static function cpp_method_body( class_name:String, func_name:String, is_static:Bool, ret_type:String, arg_list:Array<JArg> ) {
@@ -636,25 +637,25 @@ private class JNIInfo {
     } //cpp_body
 
 
-    public static var jni_bool   = 'Z';
-    public static var jni_byte   = 'B';
-    public static var jni_char   = 'C';
-    public static var jni_double = 'D';
-    public static var jni_float  = 'F';
-    public static var jni_int    = 'I';
-    public static var jni_long   = 'J';
-    public static var jni_void   = 'V';
-    public static var jni_object = 'L{object_type};';
-    public static var jni_array  = '[{array_content};';
-    public static var jni_method = '({args_type}){return_type}';
+    public static var jni_bool(default, never)   = 'Z';
+    public static var jni_byte(default, never)   = 'B';
+    public static var jni_char(default, never)   = 'C';
+    public static var jni_double(default, never) = 'D';
+    public static var jni_float(default, never)  = 'F';
+    public static var jni_int(default, never)    = 'I';
+    public static var jni_long(default, never)   = 'J';
+    public static var jni_void(default, never)   = 'V';
+    public static var jni_object(default, never) = 'L{object_type};';
+    public static var jni_array(default, never)  = '[{array_content};';
+    public static var jni_method(default, never) = '({args_type}){return_type}';
 
-    public static var jnic_void     = 'void';
-    public static var jnic_string   = 'jstring';
-    public static var jnic_int      = 'jint';
-    public static var jnic_bool     = 'jboolean';
-    public static var jnic_float    = 'jfloat';
+    public static var jnic_void(default, never)     = 'void';
+    public static var jnic_string(default, never)   = 'jstring';
+    public static var jnic_int(default, never)      = 'jint';
+    public static var jnic_bool(default, never)     = 'jboolean';
+    public static var jnic_float(default, never)    = 'jfloat';
 
-    public static var jnic_special_activity = 'jactivity';
+    public static var jnic_special_activity(default, never) = 'jactivity';
 
 } //JNIInfo
 
