@@ -59,7 +59,10 @@ class Runtime implements snow.core.Runtime {
             prevent_default_keys : [
                 Key.left, Key.right, Key.up, Key.down,
                 Key.backspace, Key.tab, Key.delete, Key.space
-            ]
+            ],
+            browser_window_mousedown: false,
+            browser_window_mouseup: false,
+            browser_window_mousemove: false
         };
 
         gamepads_init();
@@ -311,7 +314,8 @@ class Runtime implements snow.core.Runtime {
                 return Math.floor(window_dpr * (_ev.pageY - window_y));
             }
 
-            window.addEventListener('mousedown', function(_ev:js.html.MouseEvent) {
+            var mousedown_window = app.config.runtime.browser_window_mousedown ? js.Browser.window : window;
+            mousedown_window.addEventListener('mousedown', function(_ev:js.html.MouseEvent) {
 
                 app.input.dispatch_mouse_down_event(
                     translate_mouse_x(_ev),
@@ -323,7 +327,8 @@ class Runtime implements snow.core.Runtime {
 
             }); //mousedown
 
-            window.addEventListener('mouseup', function(_ev:js.html.MouseEvent){
+            var mouseup_window = app.config.runtime.browser_window_mouseup ? js.Browser.window : window;
+            mouseup_window.addEventListener('mouseup', function(_ev:js.html.MouseEvent){
 
                 app.input.dispatch_mouse_up_event(
                     translate_mouse_x(_ev),
@@ -335,7 +340,8 @@ class Runtime implements snow.core.Runtime {
 
             }); //mouseup
 
-            window.addEventListener('mousemove', function(_ev:js.html.MouseEvent){
+            var mousemove_window = app.config.runtime.browser_window_mousemove ? js.Browser.window : window;
+            mousemove_window.addEventListener('mousemove', function(_ev:js.html.MouseEvent){
 
                 var _movement_x = _ev.movementX == null ? 0 : _ev.movementX;
                 var _movement_y = _ev.movementY == null ? 0 : _ev.movementY;
@@ -988,6 +994,15 @@ typedef RuntimeConfig = {
     @:optional var prevent_default_touches : Bool;
         /** If true, right clicking will consume the event on the canvas. `event.preventDefault` is used. default: true*/
     @:optional var prevent_default_context_menu : Bool;
+
+        /** If true, mousedown events of the entire browser window will be handled. default: false*/
+    @:optional var browser_window_mousedown : Bool;
+        /** If true, mouseup events of the entire browser window will be handled. default: false*/
+    @:optional var browser_window_mouseup : Bool;
+        /** If true, mousemove events of the entire browser window will be handled. default: false*/
+    @:optional var browser_window_mousemove : Bool;
+
+
 
 } //RuntimeConfig
 
